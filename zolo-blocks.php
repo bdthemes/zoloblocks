@@ -20,6 +20,7 @@ if (!defined('ABSPATH')) {
 
 //Define Global Constants
 define('ZOLO_NAME', 'zolo-blocks');
+define('ZOLO_SLUG', 'zolo-blocks');
 define('ZOLO_VERSION', '0.0.1');
 define('ZOLO_FILE', __FILE__);
 define('ZOLO_DIR_PATH', plugin_dir_path(__FILE__));
@@ -32,7 +33,7 @@ if (!version_compare(ZOLO_PHP_VERSION, '5.6', '>=')) {
     add_action('admin_notices', 'zolo_check_php_version');
 } elseif (!version_compare(ZOLO_WP_VERSION, '5.8', '>=')) {
     add_action('admin_notices', 'zolo_check_wp_version');
-} elseif (function_exists('register_block_type')) {
+} elseif (!function_exists('register_block_type')) {
     add_action('admin_notices', 'zolo_check_gutenberg_active');
 } else {
     require_once 'includes/zolo-blocks-loader.php';
