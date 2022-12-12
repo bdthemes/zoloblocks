@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Zolo Blocks Loader. 
+ * Zolo Blocks Loader.
  *
  * @package Zolo
  */
@@ -72,6 +72,7 @@ if (!class_exists('Zolo_Blocks_Loader')) {
 		public function loader()
 		{
 			require_once ZOLO_DIR_PATH . 'includes/classes/zolo-ajax.php';
+			require_once ZOLO_DIR_PATH . 'includes/classes/zolo-enqueues.php';
 		}
 
 		/**
