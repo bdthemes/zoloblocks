@@ -1,8 +1,24 @@
-const WithResDeviceBtn = ({ label, resRequiredProps, onReset, children }) => {
-  const { resDevice } = resRequiredProps;
+const WithResDeviceBtn = ({
+  label,
+  resRequiredProps,
+  children,
+  noUnits,
+  controlName,
+}) => {
+  const { resDevice, objAttributes, setAttributes } = resRequiredProps;
 
   const onReset = () => {
-    console.log("onReset");
+    if (noUnits) {
+    } else {
+      resDevice == "Desktop"
+        ? setAttributes({
+            [`${controlName}Range`]:
+              objAttributes[`${controlName}Range`].default,
+            [`${controlName}Unit`]:
+              objAttributes[`${controlName}Unit`].default || "px",
+          })
+        : "";
+    }
   };
 
   return (

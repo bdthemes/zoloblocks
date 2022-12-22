@@ -1,3 +1,4 @@
+import { RangeControl } from "@wordpress/components";
 import UnitBtn from "../unit-btn";
 import WithResDeviceBtn from "../with-res-device-btn";
 
@@ -12,6 +13,11 @@ const ResRangeController = ({
   noUnits,
 }) => {
   const { attributes, setAttributes, resDevice } = resRequiredProps;
+  const {
+    [`${controlName}Range`]: desktopRange,
+    [`TAB${controlName}Range`]: tabRange,
+    [`MOB ${controlName}Range`]: mobRange,
+  } = attributes;
   let sizeUnit;
   let TABsizeUnit;
   let MOBsizeUnit;
@@ -48,7 +54,15 @@ const ResRangeController = ({
               resRequiredProps={resRequiredProps}
               controlName={controlName}
             >
-              <h1>Range</h1>
+              <RangeControl
+                value={desktopRange}
+                onChange={(val) =>
+                  setAttributes({ [`${controlName}Range`]: val })
+                }
+                min={min || 0}
+                max={max || 100}
+                step={step || 1}
+              />
             </WithResDeviceBtn>
           </>
         )}
@@ -69,7 +83,15 @@ const ResRangeController = ({
               resRequiredProps={resRequiredProps}
               controlName={controlName}
             >
-              Range
+              <RangeControl
+                value={tabRange}
+                onChange={(val) =>
+                  setAttributes({ [`TAB${controlName}Range`]: val })
+                }
+                min={min || 0}
+                max={max || 100}
+                step={step || 1}
+              />
             </WithResDeviceBtn>
           </>
         )}
@@ -90,7 +112,15 @@ const ResRangeController = ({
               resRequiredProps={resRequiredProps}
               controlName={controlName}
             >
-              Rnage
+              <RangeControl
+                value={mobRange}
+                onChange={(val) =>
+                  setAttributes({ [`MOB${controlName}Range`]: val })
+                }
+                min={min || 0}
+                max={max || 100}
+                step={step || 1}
+              />
             </WithResDeviceBtn>
           </>
         )}
