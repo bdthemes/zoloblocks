@@ -1,3 +1,5 @@
+import { generateResRangeAttributies } from "../../../src/helpers/res-range-helper";
+
 const attributes = {
   //Common Attributes
   uniqueId: {
@@ -9,31 +11,34 @@ const attributes = {
   },
 
   //range attributes
-  buttonSizeRange: {
-    type: "number",
-    default: 101,
-  },
-  TABbuttonSizeRange: {
-    type: "number",
-    default: 60,
-  },
-  MOBbuttonSizeRange: {
-    type: "number",
-    default: 40,
-  },
+  ...generateResRangeAttributies("buttonSize", {
+    defaultRange: 20,
+  }),
+  // buttonSizeRange: {
+  //   type: "number",
+  //   default: 101,
+  // },
+  // TABbuttonSizeRange: {
+  //   type: "number",
+  //   default: 60,
+  // },
+  // MOBbuttonSizeRange: {
+  //   type: "number",
+  //   default: 40,
+  // },
 
-  buttonSizeUnit: {
-    type: "string",
-    default: "%",
-  },
-  TABbuttonSizeUnit: {
-    type: "string",
-    default: "px",
-  },
-  MOBbuttonSizeUnit: {
-    type: "string",
-    default: "px",
-  },
+  // buttonSizeUnit: {
+  //   type: "string",
+  //   default: "%",
+  // },
+  // TABbuttonSizeUnit: {
+  //   type: "string",
+  //   default: "px",
+  // },
+  // MOBbuttonSizeUnit: {
+  //   type: "string",
+  //   default: "em",
+  // },
 
   //Block specific Attributes
   preset: {

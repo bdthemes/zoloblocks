@@ -16,7 +16,7 @@ const ResRangeController = ({
   const {
     [`${controlName}Range`]: desktopRange,
     [`TAB${controlName}Range`]: tabRange,
-    [`MOB ${controlName}Range`]: mobRange,
+    [`MOB${controlName}Range`]: mobRange,
   } = attributes;
   let sizeUnit;
   let TABsizeUnit;
