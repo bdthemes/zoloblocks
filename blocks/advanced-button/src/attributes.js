@@ -1,5 +1,5 @@
 import { generateResRangeAttributies } from "../../../src/helpers/res-range-helper";
-
+import { BUTTON_WIDTH } from "./constants";
 const attributes = {
   //Common Attributes
   uniqueId: {
@@ -11,7 +11,7 @@ const attributes = {
   },
 
   //range attributes
-  ...generateResRangeAttributies("buttonSize", {
+  ...generateResRangeAttributies(BUTTON_WIDTH, {
     defaultRange: 20,
   }),
   // buttonSizeRange: {

@@ -5,11 +5,13 @@ import { InspectorControls } from "@wordpress/block-editor";
 import { PanelBody, SelectControl, TabPanel } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
+/**
+ * Internal depencencies
+ */
 import ResRangeController from "../../../src/controls/res-range-controller";
-
 // import { PRESETS } from "../../../src/global/constants";
 import objAttributes from "./attributes";
-import { PRESETS } from "./constants";
+import { BUTTON_WIDTH, PRESETS } from "./constants";
 
 function Inspector(props) {
   const { attributes, setAttributes } = props;
@@ -81,12 +83,13 @@ function Inspector(props) {
                     />
 
                     <ResRangeController
-                      label={__("Button Size", "zolo-blocks")}
+                      label={__("Button Width", "zolo-blocks")}
                       resRequiredProps={resRequiredProps}
-                      controlName="buttonSize"
+                      controlName={BUTTON_WIDTH}
                       min={0}
                       max={500}
                       step={1}
+                      noUnits={true}
                     />
                   </PanelBody>
                 </>

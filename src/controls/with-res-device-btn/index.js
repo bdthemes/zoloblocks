@@ -11,6 +11,26 @@ const WithResDeviceBtn = ({
 
   const onReset = () => {
     if (noUnits) {
+      resDevice == "Desktop"
+        ? setAttributes({
+            [`${controlName}Range`]:
+              objAttributes[`${controlName}Range`].default,
+          })
+        : "";
+
+      resDevice == "Tablet"
+        ? setAttributes({
+            [`TAB${controlName}Range`]:
+              objAttributes[`TAB${controlName}Range`].default,
+          })
+        : "";
+
+      resDevice == "Mobile"
+        ? setAttributes({
+            [`MOB${controlName}Range`]:
+              objAttributes[`MOB${controlName}Range`].default,
+          })
+        : "";
     } else {
       resDevice == "Desktop"
         ? setAttributes({

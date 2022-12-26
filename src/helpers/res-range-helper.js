@@ -42,3 +42,30 @@ export const generateResRangeAttributies = (controlName, defaults = {}) => {
     ...units,
   };
 };
+
+export const generateResRangeStyle = ({
+  controlName,
+  property,
+  attributes,
+}) => {
+  const {
+    [`${controlName}Range`]: desktopRange,
+    [`TAB${controlName}Range`]: tabRange,
+    [`MOB${controlName}Range`]: mobRange,
+
+    [`${controlName}Unit`]: desktopUnit,
+    [`TAB${controlName}Unit`]: tabUnit,
+    [`MOB${controlName}Unit`]: mobUnit,
+  } = attributes;
+
+  const desktopRangeStyle =
+    desktopRange || desktopRange == 0
+      ? property + ":" + desktopRange + desktopUnit + ";"
+      : "";
+
+  const tabRangeStyle =
+    tabRange || tabRange == 0 ? property + ":" + tabRange + tabUnit + ";" : "";
+  const mobRangeStyle =
+    mobRange || mobRange == 0 ? property + ":" + mobRange + mobUnit + ";" : "";
+  return { desktopRangeStyle, tabRangeStyle, mobRangeStyle };
+};

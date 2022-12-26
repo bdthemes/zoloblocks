@@ -36,19 +36,9 @@ const ResRangeController = ({
 
   return (
     <div className="res-range-controller-wrapper">
-      <>
-        {resDevice == "Desktop" && (
-          <>
-            <UnitBtn
-              selectedUnit={sizeUnit}
-              unitTypes={units || defaultUnits}
-              onClick={(sizeUnit) =>
-                setAttributes({
-                  [`${controlName}Unit`]: sizeUnit,
-                })
-              }
-            />
-
+      {noUnits ? (
+        <>
+          {resDevice == "Desktop" && (
             <WithResDeviceBtn
               label={label}
               resRequiredProps={resRequiredProps}
@@ -64,20 +54,9 @@ const ResRangeController = ({
                 step={step || 1}
               />
             </WithResDeviceBtn>
-          </>
-        )}
+          )}
 
-        {resDevice == "Tablet" && (
-          <>
-            <UnitBtn
-              selectedUnit={TABsizeUnit}
-              unitTypes={units || defaultUnits}
-              onClick={(TABsizeUnit) =>
-                setAttributes({
-                  [`TAB${controlName}Unit`]: TABsizeUnit,
-                })
-              }
-            />
+          {resDevice == "Tablet" && (
             <WithResDeviceBtn
               label={label}
               resRequiredProps={resRequiredProps}
@@ -93,20 +72,9 @@ const ResRangeController = ({
                 step={step || 1}
               />
             </WithResDeviceBtn>
-          </>
-        )}
+          )}
 
-        {resDevice == "Mobile" && (
-          <>
-            <UnitBtn
-              selectedUnit={MOBsizeUnit}
-              unitTypes={units || defaultUnits}
-              onClick={(MOBsizeUnit) =>
-                setAttributes({
-                  [`MOB${controlName}Unit`]: MOBsizeUnit,
-                })
-              }
-            />
+          {resDevice == "Mobile" && (
             <WithResDeviceBtn
               label={label}
               resRequiredProps={resRequiredProps}
@@ -122,9 +90,99 @@ const ResRangeController = ({
                 step={step || 1}
               />
             </WithResDeviceBtn>
-          </>
-        )}
-      </>
+          )}
+        </>
+      ) : (
+        <>
+          {resDevice == "Desktop" && (
+            <>
+              <UnitBtn
+                selectedUnit={sizeUnit}
+                unitTypes={units || defaultUnits}
+                onClick={(sizeUnit) =>
+                  setAttributes({
+                    [`${controlName}Unit`]: sizeUnit,
+                  })
+                }
+              />
+
+              <WithResDeviceBtn
+                label={label}
+                resRequiredProps={resRequiredProps}
+                controlName={controlName}
+              >
+                <RangeControl
+                  value={desktopRange}
+                  onChange={(val) =>
+                    setAttributes({ [`${controlName}Range`]: val })
+                  }
+                  min={min || 0}
+                  max={max || 100}
+                  step={step || 1}
+                />
+              </WithResDeviceBtn>
+            </>
+          )}
+
+          {resDevice == "Tablet" && (
+            <>
+              <UnitBtn
+                selectedUnit={TABsizeUnit}
+                unitTypes={units || defaultUnits}
+                onClick={(TABsizeUnit) =>
+                  setAttributes({
+                    [`TAB${controlName}Unit`]: TABsizeUnit,
+                  })
+                }
+              />
+              <WithResDeviceBtn
+                label={label}
+                resRequiredProps={resRequiredProps}
+                controlName={controlName}
+              >
+                <RangeControl
+                  value={tabRange}
+                  onChange={(val) =>
+                    setAttributes({ [`TAB${controlName}Range`]: val })
+                  }
+                  min={min || 0}
+                  max={max || 100}
+                  step={step || 1}
+                />
+              </WithResDeviceBtn>
+            </>
+          )}
+
+          {resDevice == "Mobile" && (
+            <>
+              <UnitBtn
+                selectedUnit={MOBsizeUnit}
+                unitTypes={units || defaultUnits}
+                onClick={(MOBsizeUnit) =>
+                  setAttributes({
+                    [`MOB${controlName}Unit`]: MOBsizeUnit,
+                  })
+                }
+              />
+              <WithResDeviceBtn
+                label={label}
+                resRequiredProps={resRequiredProps}
+                controlName={controlName}
+              >
+                <RangeControl
+                  value={mobRange}
+                  onChange={(val) =>
+                    setAttributes({ [`MOB${controlName}Range`]: val })
+                  }
+                  min={min || 0}
+                  max={max || 100}
+                  step={step || 1}
+                />
+              </WithResDeviceBtn>
+            </>
+          )}
+        </>
+      )}
     </div>
   );
 };
