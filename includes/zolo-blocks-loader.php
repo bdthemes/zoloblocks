@@ -60,6 +60,13 @@ if (!class_exists('Zolo_Blocks_Loader')) {
 			add_action('plugins_loaded', array($this, 'load_plugin'));
 
 			add_action('init', array($this, 'init_actions'));
+
+			//Register Block Category
+			if (version_compare(ZOLO_WP_VERSION, '5.8', '>=')) {
+				add_filter('block_categories_all', array($this, 'register_block_category'), 99999, 2);
+			} else {
+				add_filter('block_categories', array($this, 'register_block_category'), 99999, 2);
+			}
 		}
 
 		/**
@@ -120,7 +127,7 @@ if (!class_exists('Zolo_Blocks_Loader')) {
 			$class = 'notice notice-error';
 			/* translators: %s: html tags */
 			$message = sprintf(
-				__('The <%1$s>%2$s</%1$s> plugin requires <%1$s>Gutenberg</%1$s> plugin installed & activated.', 'zolo-blocks'), 
+				__('The <%1$s>%2$s</%1$s> plugin requires <%1$s>Gutenberg</%1$s> plugin installed & activated.', 'zolo-blocks'),
 				$tag = 'strong',
 				ZOLO_NAME
 			);
@@ -172,6 +179,25 @@ if (!class_exists('Zolo_Blocks_Loader')) {
 			if ('astra' === $theme_folder) {
 				require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-astra-compatibility.php';
 			}
+		}
+
+		/**
+		 * Regoster Block Category
+		 *
+		 * @since 0.0.1
+		 *
+		 * @return array
+		 */
+		public function register_block_category($categories, $post)
+		{
+			$updatedCat = [];
+			$eb_category = array(
+				'slug' => 'zolo-blocks',
+				'title' => __('Zolo Blocks', 'zolo-blocks'),
+			);
+			$updatedCat[0] = $eb_category;
+			$updatedCat = array_merge($updatedCat, $categories);
+			return $updatedCat;
 		}
 	}
 }

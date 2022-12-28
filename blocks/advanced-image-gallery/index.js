@@ -1,1 +1,1 @@
-console.log("Advanced Image Gallery")
+// console.log("Advanced Image Gallery")

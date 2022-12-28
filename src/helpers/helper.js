@@ -1,6 +1,9 @@
 import { select } from "@wordpress/data";
 
-// this function is for creating a unique blockId for each block's unique className
+/**
+ * this function is for creating a unique blockId for each block's unique className
+ * @param {BLOCK_PREFIX: type "string", uniqueId: "current uniqueId", setAttributes: type function, clientId} 
+ */
 export const handleUniqueId = ({
   BLOCK_PREFIX,
   uniqueId,
