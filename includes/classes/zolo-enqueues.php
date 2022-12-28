@@ -78,12 +78,12 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             );
 
             // Common Editor style.
-            // wp_enqueue_style(
-            //     'zolo-block-common-editor-style',
-            //     ZOLO_ADMIN_URL . 'dist/editor.css',
-            //     array('wp-edit-blocks'),
-            //     ZOLO_VERSION
-            // );
+            wp_enqueue_style(
+                'zolo-block-common-editor-style',
+                ZOLO_ADMIN_URL . 'dist/style.css',
+                array('wp-edit-blocks'),
+                ZOLO_VERSION
+            );
         }
     }
 }

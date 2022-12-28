@@ -12,7 +12,7 @@ const attributes = {
 
   //range attributes
   ...generateResRangeAttributies(BUTTON_WIDTH, {
-    defaultRange: 20,
+    defaultRange: 100,
   }),
   // buttonSizeRange: {
   //   type: "number",

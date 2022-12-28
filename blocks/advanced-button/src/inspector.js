@@ -89,7 +89,6 @@ function Inspector(props) {
                       min={0}
                       max={500}
                       step={1}
-                      noUnits={true}
                     />
                   </PanelBody>
                 </>
