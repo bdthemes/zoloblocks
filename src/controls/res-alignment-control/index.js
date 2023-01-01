@@ -1,5 +1,4 @@
 import { Button, ButtonGroup } from "@wordpress/components";
-import { __ } from "@wordpress/i18n";
 import WithResDeviceBtn from "../with-res-device-btn";
 
 const ResAlignmentControl = ({
@@ -7,6 +6,7 @@ const ResAlignmentControl = ({
   controlName,
   resRequiredProps,
   alignOptions,
+  alignText,
 }) => {
   const { attributes, setAttributes, resDevice } = resRequiredProps;
 
@@ -48,7 +48,17 @@ const ResAlignmentControl = ({
                       : "secondary"
                   }
                 >
-                  <span>{alignItem.label}</span>
+                  {alignText ? (
+                    <span>{alignItem.label}</span>
+                  ) : (
+                    <span
+                      className={`dashicon dashicons dashicons-editor-${
+                        alignItem.value == "justify"
+                          ? alignItem.value
+                          : "align" + alignItem.value
+                      }`}
+                    ></span>
+                  )}
                 </Button>
               );
             })}
@@ -80,7 +90,17 @@ const ResAlignmentControl = ({
                       : "secondary"
                   }
                 >
-                  <span>{__(alignItem.label, "zolo-blocks")}</span>
+                  {alignText ? (
+                    <span>{alignItem.label}</span>
+                  ) : (
+                    <span
+                      className={`dashicon dashicons dashicons-editor-${
+                        alignItem.value == "justify"
+                          ? alignItem.value
+                          : "align" + alignItem.value
+                      }`}
+                    ></span>
+                  )}
                 </Button>
               );
             })}
@@ -112,7 +132,17 @@ const ResAlignmentControl = ({
                       : "secondary"
                   }
                 >
-                  <span>{__(alignItem.label, "zolo-blocks")}</span>
+                  {alignText ? (
+                    <span className="align-text">{alignItem.label}</span>
+                  ) : (
+                    <span
+                      className={`align-icon dashicon dashicons dashicons-editor-${
+                        alignItem.value == "justify"
+                          ? alignItem.value
+                          : "align" + alignItem.value
+                      }`}
+                    ></span>
+                  )}
                 </Button>
               );
             })}

@@ -97,6 +97,12 @@ function Inspector(props) {
                       label={__("Button Alignmet", "zolo-blocks")}
                       controlName={BUTTON_ALIGNMENT}
                       resRequiredProps={resRequiredProps}
+                      alignOptions={[
+                        { label: "Left", value: "left" },
+                        { label: "Center", value: "center" },
+                        { label: "Right", value: "right" },
+                        { label: "Justify", value: "justify" },
+                      ]}
                     />
                   </PanelBody>
                 </>
