@@ -28,6 +28,7 @@
     "@wordpress/compose": "^5.0.7",
     "@wordpress/data": "^6.1.5",
     "@wordpress/element": "^4.0.4",
+    "@wordpress/hooks": "^3.23.0",
     "@wordpress/i18n": "^4.2.4",
     "@wordpress/keycodes": "^3.2.4",
     "@wordpress/scripts": "^19.2.2",
