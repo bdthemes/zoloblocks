@@ -1,5 +1,6 @@
+import { generateResAlignmentAttributies } from "../../../src/helpers/res-alignment-helper";
 import { generateResRangeAttributies } from "../../../src/helpers/res-range-helper";
-import { BUTTON_WIDTH } from "./constants";
+import { BUTTON_ALIGNMENT, BUTTON_WIDTH } from "./constants";
 const attributes = {
   //Common Attributes
   uniqueId: {
@@ -14,6 +15,11 @@ const attributes = {
   ...generateResRangeAttributies(BUTTON_WIDTH, {
     defaultRange: 100,
   }),
+  //alignment attributes
+  ...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
+    defaultAlign: "left",
+  }),
+
   // buttonSizeRange: {
   //   type: "number",
   //   default: 101,

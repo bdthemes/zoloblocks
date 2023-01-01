@@ -2,7 +2,7 @@ import { RangeControl } from "@wordpress/components";
 import UnitBtn from "../unit-btn";
 import WithResDeviceBtn from "../with-res-device-btn";
 
-const ResRangeController = ({
+const ResRangeControl = ({
   label,
   controlName,
   units,
@@ -35,7 +35,7 @@ const ResRangeController = ({
   }
 
   return (
-    <div className="res-range-controller-wrapper">
+    <div className="res-range-control-wrapper">
       {noUnits ? (
         <>
           {resDevice == "Desktop" && (
@@ -186,4 +186,4 @@ const ResRangeController = ({
     </div>
   );
 };
-export default ResRangeController;
+export default ResRangeControl;

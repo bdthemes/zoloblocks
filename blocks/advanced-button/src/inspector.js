@@ -8,10 +8,12 @@ import { __ } from "@wordpress/i18n";
 /**
  * Internal depencencies
  */
-import ResRangeController from "../../../src/controls/res-range-controller";
+import ResAlignmentControl from "../../../src/controls/res-alignment-control";
+import ResRangeControl from "../../../src/controls/res-range-control";
+
 // import { PRESETS } from "../../../src/global/constants";
 import objAttributes from "./attributes";
-import { BUTTON_WIDTH, PRESETS } from "./constants";
+import { BUTTON_ALIGNMENT, BUTTON_WIDTH, PRESETS } from "./constants";
 
 function Inspector(props) {
   const { attributes, setAttributes } = props;
@@ -82,13 +84,19 @@ function Inspector(props) {
                       onChange={(selected) => changePreset(selected)}
                     />
 
-                    <ResRangeController
+                    <ResRangeControl
                       label={__("Button Width", "zolo-blocks")}
                       resRequiredProps={resRequiredProps}
                       controlName={BUTTON_WIDTH}
                       min={0}
                       max={500}
                       step={1}
+                    />
+
+                    <ResAlignmentControl
+                      label={__("Button Alignmet", "zolo-blocks")}
+                      controlName={BUTTON_ALIGNMENT}
+                      resRequiredProps={resRequiredProps}
                     />
                   </PanelBody>
                 </>

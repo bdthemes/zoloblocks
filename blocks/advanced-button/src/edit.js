@@ -9,8 +9,9 @@ import { useEffect } from "@wordpress/element";
  */
 import classnames from "classnames";
 import { handleUniqueId } from "../../../src/helpers/helper";
+import { generateResAlignmentStyle } from "../../../src/helpers/res-alignment-helper";
 import { generateResRangeStyle } from "../../../src/helpers/res-range-helper";
-import { BLOCK_PREFIX, BUTTON_WIDTH } from "./constants";
+import { BLOCK_PREFIX, BUTTON_ALIGNMENT, BUTTON_WIDTH } from "./constants";
 import Inspector from "./inspector";
 
 export default function Edit(props) {
@@ -41,19 +42,32 @@ export default function Edit(props) {
     attributes,
   });
 
+  const {
+    desktopAlignStyle: buttonAlignmentDesktop,
+    tabAlignStyle: buttonAlignmentTab,
+    mobAlignStyle: buttonAlignmentMob,
+  } = generateResAlignmentStyle({
+    controlName: BUTTON_ALIGNMENT,
+    property: "text-align",
+    attributes,
+  });
+
   const desktopAllStyle = `
 	.zolo-${uniqueId}{
 		${buttonWidthDesktop}
+    ${buttonAlignmentDesktop}
 	}
   `;
   const tabletAllStyle = `
 	.zolo-${uniqueId}{
 		${buttonWidthTab}
+    ${buttonAlignmentTab}
 	}
   `;
   const mobileAllStyle = `
   	.zolo-${uniqueId}{
 		${buttonWithMob}
+    ${buttonAlignmentMob}
 	}
   `;
   return (
