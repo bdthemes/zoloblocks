@@ -1,6 +1,6 @@
 import { RangeControl } from "@wordpress/components";
 import UnitBtn from "../unit-btn";
-import WithResDeviceBtn from "../with-res-device-btn";
+import WithResDeviceBtn from "./res-device-btn";
 
 const ResRangeControl = ({
   label,
@@ -14,9 +14,9 @@ const ResRangeControl = ({
 }) => {
   const { attributes, setAttributes, resDevice } = resRequiredProps;
   const {
-    [`${controlName}Range`]: desktopRange,
-    [`TAB${controlName}Range`]: tabRange,
-    [`MOB${controlName}Range`]: mobRange,
+    [`${controlName}ZRPRange`]: desktopRange,
+    [`TAB${controlName}ZRPRange`]: tabRange,
+    [`MOB${controlName}ZRPRange`]: mobRange,
   } = attributes;
   let sizeUnit;
   let TABsizeUnit;
@@ -47,7 +47,7 @@ const ResRangeControl = ({
               <RangeControl
                 value={desktopRange}
                 onChange={(val) =>
-                  setAttributes({ [`${controlName}Range`]: val })
+                  setAttributes({ [`${controlName}ZRPRange`]: val })
                 }
                 min={min || 0}
                 max={max || 100}
@@ -65,7 +65,7 @@ const ResRangeControl = ({
               <RangeControl
                 value={tabRange}
                 onChange={(val) =>
-                  setAttributes({ [`TAB${controlName}Range`]: val })
+                  setAttributes({ [`TAB${controlName}ZRPRange`]: val })
                 }
                 min={min || 0}
                 max={max || 100}
@@ -83,7 +83,7 @@ const ResRangeControl = ({
               <RangeControl
                 value={mobRange}
                 onChange={(val) =>
-                  setAttributes({ [`MOB${controlName}Range`]: val })
+                  setAttributes({ [`MOB${controlName}ZRPRange`]: val })
                 }
                 min={min || 0}
                 max={max || 100}
@@ -114,7 +114,7 @@ const ResRangeControl = ({
                 <RangeControl
                   value={desktopRange}
                   onChange={(val) =>
-                    setAttributes({ [`${controlName}Range`]: val })
+                    setAttributes({ [`${controlName}ZRPRange`]: val })
                   }
                   min={min || 0}
                   max={max || 100}
@@ -143,7 +143,7 @@ const ResRangeControl = ({
                 <RangeControl
                   value={tabRange}
                   onChange={(val) =>
-                    setAttributes({ [`TAB${controlName}Range`]: val })
+                    setAttributes({ [`TAB${controlName}ZRPRange`]: val })
                   }
                   min={min || 0}
                   max={max || 100}
@@ -172,7 +172,7 @@ const ResRangeControl = ({
                 <RangeControl
                   value={mobRange}
                   onChange={(val) =>
-                    setAttributes({ [`MOB${controlName}Range`]: val })
+                    setAttributes({ [`MOB${controlName}ZRPRange`]: val })
                   }
                   min={min || 0}
                   max={max || 100}

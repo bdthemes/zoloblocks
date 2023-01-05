@@ -2,22 +2,22 @@ export const generateResAlignmentAttributies = (controlName, defaults = {}) => {
   const { defaultAlign } = defaults;
   const desktopAlign = defaultAlign
     ? {
-        [`${controlName}Align`]: {
+        [`${controlName}ZRPAlign`]: {
           type: "string",
           default: defaultAlign,
         },
       }
     : {
-        [`${controlName}Align`]: {
+        [`${controlName}ZRPAlign`]: {
           type: "string",
         },
       };
   return {
     ...desktopAlign,
-    [`TAB${controlName}Align`]: {
+    [`TAB${controlName}ZRPAlign`]: {
       type: "string",
     },
-    [`MOB${controlName}Align`]: {
+    [`MOB${controlName}ZRPAlign`]: {
       type: "string",
     },
   };
@@ -29,9 +29,9 @@ export const generateResAlignmentStyle = ({
   attributes,
 }) => {
   const {
-    [`${controlName}Align`]: desktopAlign,
-    [`TAB${controlName}Align`]: tabAlign,
-    [`MOB${controlName}Align`]: mobAlign,
+    [`${controlName}ZRPAlign`]: desktopAlign,
+    [`TAB${controlName}ZRPAlign`]: tabAlign,
+    [`MOB${controlName}ZRPAlign`]: mobAlign,
   } = attributes;
 
   const desktopAlignStyle =

@@ -2,13 +2,13 @@ export const generateResRangeAttributies = (controlName, defaults = {}) => {
   const { defaultRange, noUnits, defaultUnit = "px" } = defaults;
   const desktopRange = defaultRange
     ? {
-        [`${controlName}Range`]: {
+        [`${controlName}ZRPRange`]: {
           type: "number",
           default: defaultRange,
         },
       }
     : {
-        [`${controlName}Range`]: {
+        [`${controlName}ZRPRange`]: {
           type: "number",
         },
       };
@@ -33,10 +33,10 @@ export const generateResRangeAttributies = (controlName, defaults = {}) => {
 
   return {
     ...desktopRange,
-    [`TAB${controlName}Range`]: {
+    [`TAB${controlName}ZRPRange`]: {
       type: "string",
     },
-    [`MOB${controlName}Range`]: {
+    [`MOB${controlName}ZRPRange`]: {
       type: "string",
     },
     ...units,
@@ -49,9 +49,9 @@ export const generateResRangeStyle = ({
   attributes,
 }) => {
   const {
-    [`${controlName}Range`]: desktopRange,
-    [`TAB${controlName}Range`]: tabRange,
-    [`MOB${controlName}Range`]: mobRange,
+    [`${controlName}ZRPRange`]: desktopRange,
+    [`TAB${controlName}ZRPRange`]: tabRange,
+    [`MOB${controlName}ZRPRange`]: mobRange,
 
     [`${controlName}Unit`]: desktopUnit,
     [`TAB${controlName}Unit`]: tabUnit,

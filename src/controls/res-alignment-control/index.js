@@ -1,5 +1,5 @@
 import { Button, ButtonGroup } from "@wordpress/components";
-import WithResDeviceBtn from "../with-res-device-btn";
+import WithResDeviceBtn from "./res-device-btn";
 
 const ResAlignmentControl = ({
   label,
@@ -11,9 +11,9 @@ const ResAlignmentControl = ({
   const { attributes, setAttributes, resDevice } = resRequiredProps;
 
   const {
-    [`${controlName}Align`]: desktopAlignment,
-    [`TAB${controlName}Align`]: tabletAlignment,
-    [`MOB${controlName}Align`]: mobileAlignment,
+    [`${controlName}ZRPAlign`]: desktopAlignment,
+    [`TAB${controlName}ZRPAlign`]: tabletAlignment,
+    [`MOB${controlName}ZRPAlign`]: mobileAlignment,
   } = attributes;
 
   const defaultAlign =
@@ -37,7 +37,9 @@ const ResAlignmentControl = ({
               return (
                 <Button
                   onClick={() =>
-                    setAttributes({ [`${controlName}Align`]: alignItem.value })
+                    setAttributes({
+                      [`${controlName}ZRPAlign`]: alignItem.value,
+                    })
                   }
                   className={`rb-button ${
                     desktopAlignment == alignItem.value ? "active" : ""
@@ -78,7 +80,7 @@ const ResAlignmentControl = ({
                 <Button
                   onClick={() =>
                     setAttributes({
-                      [`TAB${controlName}Align`]: alignItem.value,
+                      [`TAB${controlName}ZRPAlign`]: alignItem.value,
                     })
                   }
                   className={`rb-button ${
@@ -120,7 +122,7 @@ const ResAlignmentControl = ({
                 <Button
                   onClick={() =>
                     setAttributes({
-                      [`MOB${controlName}Align`]: alignItem.value,
+                      [`MOB${controlName}ZRPAlign`]: alignItem.value,
                     })
                   }
                   className={`rb-button ${
