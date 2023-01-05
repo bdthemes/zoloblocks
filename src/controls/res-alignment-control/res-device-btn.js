@@ -4,61 +4,31 @@ const WithResDeviceBtn = ({
   label,
   resRequiredProps,
   children,
-  noUnits,
   controlName,
 }) => {
   const { resDevice, objAttributes, setAttributes } = resRequiredProps;
 
   const onReset = () => {
-    if (noUnits) {
-      resDevice == "Desktop"
-        ? setAttributes({
-            [`${controlName}ZRPAlign`]:
-              objAttributes[`${controlName}ZRPAlign`].default,
-          })
-        : "";
+    resDevice == "Desktop"
+      ? setAttributes({
+          [`${controlName}ZRPAlign`]:
+            objAttributes[`${controlName}ZRPAlign`].default,
+        })
+      : "";
 
-      resDevice == "Tablet"
-        ? setAttributes({
-            [`TAB${controlName}ZRPAlign`]:
-              objAttributes[`TAB${controlName}ZRPAlign`].default,
-          })
-        : "";
+    resDevice == "Tablet"
+      ? setAttributes({
+          [`TAB${controlName}ZRPAlign`]:
+            objAttributes[`TAB${controlName}ZRPAlign`].default,
+        })
+      : "";
 
-      resDevice == "Mobile"
-        ? setAttributes({
-            [`MOB${controlName}ZRPAlign`]:
-              objAttributes[`MOB${controlName}ZRPAlign`].default,
-          })
-        : "";
-    } else {
-      resDevice == "Desktop"
-        ? setAttributes({
-            [`${controlName}ZRPAlign`]:
-              objAttributes[`${controlName}ZRPAlign`].default,
-            [`${controlName}Unit`]:
-              objAttributes[`${controlName}Unit`].default || "px",
-          })
-        : "";
-
-      resDevice == "Tablet"
-        ? setAttributes({
-            [`TAB${controlName}ZRPAlign`]:
-              objAttributes[`TAB${controlName}ZRPAlign`].default,
-            [`TAB${controlName}Unit`]:
-              objAttributes[`TAB${controlName}Unit`].default || "px",
-          })
-        : "";
-
-      resDevice == "Mobile"
-        ? setAttributes({
-            [`MOB${controlName}ZRPAlign`]:
-              objAttributes[`MOB${controlName}ZRPAlign`].default,
-            [`MOB${controlName}Unit`]:
-              objAttributes[`MOB${controlName}Unit`].default || "px",
-          })
-        : "";
-    }
+    resDevice == "Mobile"
+      ? setAttributes({
+          [`MOB${controlName}ZRPAlign`]:
+            objAttributes[`MOB${controlName}ZRPAlign`].default,
+        })
+      : "";
   };
 
   const onDesktopBtnClick = ({ setAttributes }) => {
