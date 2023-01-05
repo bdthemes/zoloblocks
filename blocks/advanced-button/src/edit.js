@@ -16,7 +16,7 @@ import Inspector from "./inspector";
 
 export default function Edit(props) {
   const { attributes, setAttributes, className, clientId, isSelected } = props;
-  const { uniqueId, preset, bgColor, textColor } = attributes;
+  const { uniqueId, preset, buttonColor, textColor } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
   useEffect(() => {
@@ -56,6 +56,7 @@ export default function Edit(props) {
 	.zolo-${uniqueId}{
 		${buttonWidthDesktop}
     ${buttonAlignmentDesktop}
+    color:${buttonColor}
 	}
   `;
   const tabletAllStyle = `

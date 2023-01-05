@@ -20,6 +20,11 @@ const attributes = {
     defaultAlign: "left",
   }),
 
+  buttonColor: {
+    type: "string",
+    default: "red",
+  },
+
   // buttonSizeRange: {
   //   type: "number",
   //   default: 101,

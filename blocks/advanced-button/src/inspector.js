@@ -8,6 +8,7 @@ import { __ } from "@wordpress/i18n";
 /**
  * Internal depencencies
  */
+import ColorControl from "../../../src/controls/color-control";
 import ResAlignmentControl from "../../../src/controls/res-alignment-control";
 import ResRangeControl from "../../../src/controls/res-range-control";
 
@@ -17,7 +18,7 @@ import { BUTTON_ALIGNMENT, BUTTON_WIDTH, PRESETS } from "./constants";
 
 function Inspector(props) {
   const { attributes, setAttributes } = props;
-  const { uniqueId, preset, resDevice, bgColor, textColor } = attributes;
+  const { uniqueId, preset, resDevice, bgColor, buttonColor } = attributes;
 
   const changePreset = (selected) => {
     setAttributes({ preset: selected });
@@ -103,6 +104,13 @@ function Inspector(props) {
                         { label: "Right", value: "right" },
                         { label: "Justify", value: "justify" },
                       ]}
+                    />
+
+                    <ColorControl
+                      label={__("Button color", "zolo-blocks")}
+                      color={buttonColor}
+                      defaultColor={"red"}
+                      onChange={(val) => setAttributes({ buttonColor: val })}
                     />
                   </PanelBody>
                 </>
