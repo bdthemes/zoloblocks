@@ -25,7 +25,7 @@ const ResAlignmentControl = ({
           { label: "Right", value: "right" },
         ];
   return (
-    <div className="res-alignment-control-wrapper">
+    <div className="zb-res-alignment-control-wrapper">
       {resDevice == "Desktop" && (
         <WithResDeviceBtn
           label={label}

@@ -35,7 +35,7 @@ const ResRangeControl = ({
   }
 
   return (
-    <div className="res-range-control-wrapper">
+    <div className="zb-res-range-control-wrapper">
       {noUnits ? (
         <>
           {resDevice == "Desktop" && (
