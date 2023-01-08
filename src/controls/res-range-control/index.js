@@ -24,9 +24,9 @@ const ResRangeControl = ({
   let defaultUnits;
 
   if (!noUnits) {
-    sizeUnit = attributes[`${controlName}Unit`];
-    TABsizeUnit = attributes[`TAB${controlName}Unit`];
-    MOBsizeUnit = attributes[`MOB${controlName}Unit`];
+    sizeUnit = attributes[`${controlName}ZRPUnit`];
+    TABsizeUnit = attributes[`TAB${controlName}ZRPUnit`];
+    MOBsizeUnit = attributes[`MOB${controlName}ZRPUnit`];
     defaultUnits = [
       { label: "px", value: "px" },
       { label: "em", value: "em" },
@@ -101,7 +101,7 @@ const ResRangeControl = ({
                 unitTypes={units || defaultUnits}
                 onClick={(sizeUnit) =>
                   setAttributes({
-                    [`${controlName}Unit`]: sizeUnit,
+                    [`${controlName}ZRPUnit`]: sizeUnit,
                   })
                 }
               />
@@ -131,7 +131,7 @@ const ResRangeControl = ({
                 unitTypes={units || defaultUnits}
                 onClick={(TABsizeUnit) =>
                   setAttributes({
-                    [`TAB${controlName}Unit`]: TABsizeUnit,
+                    [`TAB${controlName}ZRPUnit`]: TABsizeUnit,
                   })
                 }
               />
@@ -160,7 +160,7 @@ const ResRangeControl = ({
                 unitTypes={units || defaultUnits}
                 onClick={(MOBsizeUnit) =>
                   setAttributes({
-                    [`MOB${controlName}Unit`]: MOBsizeUnit,
+                    [`MOB${controlName}ZRPUnit`]: MOBsizeUnit,
                   })
                 }
               />

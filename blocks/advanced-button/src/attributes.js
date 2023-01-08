@@ -14,6 +14,7 @@ const attributes = {
   //range attributes
   ...generateResRangeAttributies(BUTTON_WIDTH, {
     defaultRange: 100,
+    defaultUnit: "%",
   }),
   //alignment attributes
   ...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {

@@ -13,3 +13,5 @@ export const PRESETS = [
 export const BUTTON_WIDTH = "buttonWidth";
 
 export const BUTTON_ALIGNMENT = "buttonAlignment";
+
+export const BUTTON_MARGIN = "buttonMargin";

@@ -16,16 +16,16 @@ export const generateResRangeAttributies = (controlName, defaults = {}) => {
     noUnits == true
       ? {}
       : {
-          [`${controlName}Unit`]: {
+          [`${controlName}ZRPUnit`]: {
             type: "string",
             default: defaultUnit,
           },
 
-          [`TAB${controlName}Unit`]: {
+          [`TAB${controlName}ZRPUnit`]: {
             type: "string",
             default: "px",
           },
-          [`MOB${controlName}Unit`]: {
+          [`MOB${controlName}ZRPUnit`]: {
             type: "string",
             default: "px",
           },
@@ -53,9 +53,9 @@ export const generateResRangeStyle = ({
     [`TAB${controlName}ZRPRange`]: tabRange,
     [`MOB${controlName}ZRPRange`]: mobRange,
 
-    [`${controlName}Unit`]: desktopUnit,
-    [`TAB${controlName}Unit`]: tabUnit,
-    [`MOB${controlName}Unit`]: mobUnit,
+    [`${controlName}ZRPUnit`]: desktopUnit,
+    [`TAB${controlName}ZRPUnit`]: tabUnit,
+    [`MOB${controlName}ZRPUnit`]: mobUnit,
   } = attributes;
 
   const desktopRangeStyle =

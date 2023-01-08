@@ -9,12 +9,18 @@ import { __ } from "@wordpress/i18n";
  * Internal depencencies
  */
 import ColorControl from "../../../src/controls/color-control";
+import ResDimensionsControl from "../../../src/controls/dimensions-control";
 import ResAlignmentControl from "../../../src/controls/res-alignment-control";
 import ResRangeControl from "../../../src/controls/res-range-control";
 
 // import { PRESETS } from "../../../src/global/constants";
 import objAttributes from "./attributes";
-import { BUTTON_ALIGNMENT, BUTTON_WIDTH, PRESETS } from "./constants";
+import {
+  BUTTON_ALIGNMENT,
+  BUTTON_MARGIN,
+  BUTTON_WIDTH,
+  PRESETS,
+} from "./constants";
 
 function Inspector(props) {
   const { attributes, setAttributes } = props;
@@ -111,6 +117,12 @@ function Inspector(props) {
                       color={buttonColor}
                       defaultColor={"red"}
                       onChange={(val) => setAttributes({ buttonColor: val })}
+                    />
+
+                    <ResDimensionsControl
+                      label="Margin"
+                      controlName={BUTTON_MARGIN}
+                      resRequiredProps={resRequiredProps}
                     />
                   </PanelBody>
                 </>

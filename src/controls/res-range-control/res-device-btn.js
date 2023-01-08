@@ -1,4 +1,8 @@
-import { dispatch } from "@wordpress/data";
+import {
+  onDesktopBtnClick,
+  onMobileBtnClick,
+  onTabletBtnClick,
+} from "../../helpers/preview-btns-helper";
 
 const WithResDeviceBtn = ({
   label,
@@ -36,8 +40,8 @@ const WithResDeviceBtn = ({
         ? setAttributes({
             [`${controlName}ZRPRange`]:
               objAttributes[`${controlName}ZRPRange`].default,
-            [`${controlName}Unit`]:
-              objAttributes[`${controlName}Unit`].default || "px",
+            [`${controlName}ZRPUnit`]:
+              objAttributes[`${controlName}ZRPUnit`].default || "px",
           })
         : "";
 
@@ -45,8 +49,8 @@ const WithResDeviceBtn = ({
         ? setAttributes({
             [`TAB${controlName}ZRPRange`]:
               objAttributes[`TAB${controlName}ZRPRange`].default,
-            [`TAB${controlName}Unit`]:
-              objAttributes[`TAB${controlName}Unit`].default || "px",
+            [`TAB${controlName}ZRPUnit`]:
+              objAttributes[`TAB${controlName}ZRPUnit`].default || "px",
           })
         : "";
 
@@ -54,31 +58,31 @@ const WithResDeviceBtn = ({
         ? setAttributes({
             [`MOB${controlName}ZRPRange`]:
               objAttributes[`MOB${controlName}ZRPRange`].default,
-            [`MOB${controlName}Unit`]:
-              objAttributes[`MOB${controlName}Unit`].default || "px",
+            [`MOB${controlName}ZRPUnit`]:
+              objAttributes[`MOB${controlName}ZRPUnit`].default || "px",
           })
         : "";
     }
   };
 
-  const onDesktopBtnClick = ({ setAttributes }) => {
-    setAttributes({ resDevice: "Desktop" });
-    dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Desktop");
-  };
+  // const onDesktopBtnClick = ({ setAttributes }) => {
+  //   setAttributes({ resDevice: "Desktop" });
+  //   dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Desktop");
+  // };
 
-  const onTabletBtnClick = ({ setAttributes }) => {
-    setAttributes({ resDevice: "Tablet" });
-    dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Tablet");
-  };
+  // const onTabletBtnClick = ({ setAttributes }) => {
+  //   setAttributes({ resDevice: "Tablet" });
+  //   dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Tablet");
+  // };
 
-  const onMobileBtnClick = ({ setAttributes }) => {
-    setAttributes({ resDevice: "Mobile" });
-    dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Mobile");
-  };
+  // const onMobileBtnClick = ({ setAttributes }) => {
+  //   setAttributes({ resDevice: "Mobile" });
+  //   dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Mobile");
+  // };
 
   return (
     <div className="zb-res-device-btn-wrapper">
-      <div className="res-btns">
+      <div className="zb-res-device-btns">
         <span className="res-btn-label">{label}</span>
 
         <span

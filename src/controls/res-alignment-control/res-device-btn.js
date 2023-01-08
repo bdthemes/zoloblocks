@@ -1,4 +1,8 @@
-import { dispatch } from "@wordpress/data";
+import {
+  onDesktopBtnClick,
+  onMobileBtnClick,
+  onTabletBtnClick,
+} from "../../helpers/preview-btns-helper";
 
 const WithResDeviceBtn = ({
   label,
@@ -31,24 +35,24 @@ const WithResDeviceBtn = ({
       : "";
   };
 
-  const onDesktopBtnClick = ({ setAttributes }) => {
-    setAttributes({ resDevice: "Desktop" });
-    dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Desktop");
-  };
+  // const onDesktopBtnClick = ({ setAttributes }) => {
+  //   setAttributes({ resDevice: "Desktop" });
+  //   dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Desktop");
+  // };
 
-  const onTabletBtnClick = ({ setAttributes }) => {
-    setAttributes({ resDevice: "Tablet" });
-    dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Tablet");
-  };
+  // const onTabletBtnClick = ({ setAttributes }) => {
+  //   setAttributes({ resDevice: "Tablet" });
+  //   dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Tablet");
+  // };
 
-  const onMobileBtnClick = ({ setAttributes }) => {
-    setAttributes({ resDevice: "Mobile" });
-    dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Mobile");
-  };
+  // const onMobileBtnClick = ({ setAttributes }) => {
+  //   setAttributes({ resDevice: "Mobile" });
+  //   dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Mobile");
+  // };
 
   return (
     <div className="zb-res-device-btn-wrapper">
-      <div className="res-btns">
+      <div className="zb-res-device-btns">
         <span className="res-btn-label">{label}</span>
 
         <span
