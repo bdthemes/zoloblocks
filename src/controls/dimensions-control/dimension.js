@@ -57,7 +57,7 @@ const DimensionControl = ({
 
   useEffect(() => {
     setAttributes({
-      [`${controlName}ZRPisLinked`]: isLinked,
+      [`${controlName}ZRPIsLinked`]: isLinked,
     });
   }, [isLinked]);
 

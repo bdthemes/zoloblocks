@@ -1,6 +1,8 @@
+import { generateDimensionAttributes } from "../../../src/helpers/dimension-helper";
 import { generateResAlignmentAttributies } from "../../../src/helpers/res-alignment-helper";
 import { generateResRangeAttributies } from "../../../src/helpers/res-range-helper";
-import { BUTTON_ALIGNMENT, BUTTON_WIDTH } from "./constants";
+import { BUTTON_ALIGNMENT, BUTTON_MARGIN, BUTTON_PADDING,BUTTON_BRADIUS,BUTTON_WIDTH } from "./constants";
+
 const attributes = {
   //Common Attributes
   uniqueId: {
@@ -25,6 +27,35 @@ const attributes = {
     type: "string",
     default: "red",
   },
+
+  buttonBGColor: {
+    type: "string",
+    default: "green",
+  },
+
+  ...generateDimensionAttributes(BUTTON_MARGIN, {
+    top: 10,
+    right: 15,
+    bottom: 20,
+    left: 25,
+    isLinked: true,
+  }),
+
+  ...generateDimensionAttributes(BUTTON_PADDING, {
+    top: 10,
+    right: 15,
+    bottom: 20,
+    left: 25,
+    isLinked: true,
+  }),
+
+  ...generateDimensionAttributes(BUTTON_BRADIUS, {
+    top: 10,
+    right: 10,
+    bottom: 10,
+    left: 10,
+    isLinked: true,
+  }),
 
   // buttonSizeRange: {
   //   type: "number",

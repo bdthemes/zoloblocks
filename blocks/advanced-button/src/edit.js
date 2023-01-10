@@ -8,15 +8,23 @@ import { useEffect } from "@wordpress/element";
  * Internal depencencies
  */
 import classnames from "classnames";
+import { generateDimensionStyle } from "../../../src/helpers/dimension-helper";
 import { handleUniqueId } from "../../../src/helpers/helper";
 import { generateResAlignmentStyle } from "../../../src/helpers/res-alignment-helper";
 import { generateResRangeStyle } from "../../../src/helpers/res-range-helper";
-import { BLOCK_PREFIX, BUTTON_ALIGNMENT, BUTTON_WIDTH } from "./constants";
+import {
+  BLOCK_PREFIX,
+  BUTTON_ALIGNMENT,
+  BUTTON_BRADIUS,
+  BUTTON_MARGIN,
+  BUTTON_PADDING,
+  BUTTON_WIDTH,
+} from "./constants";
 import Inspector from "./inspector";
 
 export default function Edit(props) {
   const { attributes, setAttributes, className, clientId, isSelected } = props;
-  const { uniqueId, preset, buttonColor, textColor } = attributes;
+  const { uniqueId, preset, buttonColor, buttonBGColor } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
   useEffect(() => {
@@ -52,23 +60,63 @@ export default function Edit(props) {
     attributes,
   });
 
+  const {
+    dimensionStylesDesktop: buttonMarginDesktop,
+    dimensionStylesTab: buttonMarginTab,
+    dimensionStylesMobile: buttonMarginMobile,
+  } = generateDimensionStyle({
+    controlName: BUTTON_MARGIN,
+    styleFor: "margin",
+    attributes,
+  });
+
+  const {
+    dimensionStylesDesktop: buttonPaddingDesktop,
+    dimensionStylesTab: buttonPaddingTab,
+    dimensionStylesMobile: buttonPaddingMobile,
+  } = generateDimensionStyle({
+    controlName: BUTTON_PADDING,
+    styleFor: "padding",
+    attributes,
+  });
+
+  const {
+    dimensionStylesDesktop: buttonBorderRadiusDesktop,
+    dimensionStylesTab: buttonBorderRadiusTab,
+    dimensionStylesMobile: buttonBorderRadiusMobile,
+  } = generateDimensionStyle({
+    controlName: BUTTON_BRADIUS,
+    styleFor: "border-radius",
+    attributes,
+  });
+
   const desktopAllStyle = `
 	.zolo-${uniqueId}{
 		${buttonWidthDesktop}
     ${buttonAlignmentDesktop}
-    color:${buttonColor}
+    color:${buttonColor};
+    background-color:${buttonBGColor};
+    ${buttonMarginDesktop}
+    ${buttonPaddingDesktop}
+    ${buttonBorderRadiusDesktop}
 	}
   `;
   const tabletAllStyle = `
 	.zolo-${uniqueId}{
 		${buttonWidthTab}
     ${buttonAlignmentTab}
+    ${buttonMarginTab}
+    ${buttonPaddingTab}
+    ${buttonBorderRadiusTab}
 	}
   `;
   const mobileAllStyle = `
   	.zolo-${uniqueId}{
 		${buttonWithMob}
     ${buttonAlignmentMob}
+    ${buttonMarginMobile}
+    ${buttonPaddingMobile}
+    ${buttonBorderRadiusMobile}
 	}
   `;
   return (

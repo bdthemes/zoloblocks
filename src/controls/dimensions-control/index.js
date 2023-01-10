@@ -29,7 +29,7 @@ const ResDimensionsControl = ({
     [`MOB${controlName}ZRPBottom`]: MOBdimensionBottom,
     [`MOB${controlName}ZRPLeft`]: MOBdimensionLeft,
 
-    [`${controlName}ZRPisLinked`]: dimensionIsLinked,
+    [`${controlName}ZRPIsLinked`]: dimensionIsLinked,
   } = attributes;
 
   const defaultUnits = [

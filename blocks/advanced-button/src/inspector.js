@@ -17,14 +17,17 @@ import ResRangeControl from "../../../src/controls/res-range-control";
 import objAttributes from "./attributes";
 import {
   BUTTON_ALIGNMENT,
+  BUTTON_BRADIUS,
   BUTTON_MARGIN,
+  BUTTON_PADDING,
   BUTTON_WIDTH,
   PRESETS,
 } from "./constants";
 
 function Inspector(props) {
   const { attributes, setAttributes } = props;
-  const { uniqueId, preset, resDevice, bgColor, buttonColor } = attributes;
+  const { uniqueId, preset, resDevice, buttonBGColor, buttonColor } =
+    attributes;
 
   const changePreset = (selected) => {
     setAttributes({ preset: selected });
@@ -55,29 +58,29 @@ function Inspector(props) {
     <InspectorControls key="controls">
       <div className="zolo-panel-control">
         <TabPanel
-          className="eb-parent-tab-panel"
+          className="zb-parent-tab-panel"
           activeClass="active-tab"
           // onSelect={onSelect}
           tabs={[
             {
               name: "settings",
               title: "Settings",
-              className: "eb-tab settings",
+              className: "zb-tab settings",
             },
             {
               name: "design",
               title: "Design",
-              className: "eb-tab design",
+              className: "zb-tab design",
             },
             {
               name: "advanced",
               title: "Advanced",
-              className: "eb-tab advanced",
+              className: "zb-tab advanced",
             },
           ]}
         >
           {(tab) => (
-            <div className={"eb-tab-controls" + tab.name}>
+            <div className={"zb-tab-controls" + tab.name}>
               {tab.name === "settings" && (
                 <>
                   <PanelBody
@@ -119,9 +122,27 @@ function Inspector(props) {
                       onChange={(val) => setAttributes({ buttonColor: val })}
                     />
 
+                    <ColorControl
+                      label={__("Button BG color", "zolo-blocks")}
+                      color={buttonBGColor}
+                      defaultColor={"green"}
+                      onChange={(val) => setAttributes({ buttonBGColor: val })}
+                    />
+
                     <ResDimensionsControl
                       label="Margin"
                       controlName={BUTTON_MARGIN}
+                      resRequiredProps={resRequiredProps}
+                    />
+
+                    <ResDimensionsControl
+                      label="Padding"
+                      controlName={BUTTON_PADDING}
+                      resRequiredProps={resRequiredProps}
+                    />
+                    <ResDimensionsControl
+                      label="Border Radius"
+                      controlName={BUTTON_BRADIUS}
                       resRequiredProps={resRequiredProps}
                     />
                   </PanelBody>

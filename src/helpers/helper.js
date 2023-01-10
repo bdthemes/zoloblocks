@@ -2,7 +2,7 @@ import { select } from "@wordpress/data";
 
 /**
  * this function is for creating a unique blockId for each block's unique className
- * @param {BLOCK_PREFIX: type "string", uniqueId: "current uniqueId", setAttributes: type function, clientId} 
+ * @param {BLOCK_PREFIX: type "string", uniqueId: "current uniqueId", setAttributes: type function, clientId}
  */
 export const handleUniqueId = ({
   BLOCK_PREFIX,
@@ -48,3 +48,6 @@ export const handleUniqueId = ({
 
   fixDuplicateUniqueId(all_blocks);
 };
+
+//check if input number has value
+export const hasVal = (val) => val || val === 0;
