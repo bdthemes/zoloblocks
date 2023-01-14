@@ -3,30 +3,22 @@
  */
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TabPanel } from '@wordpress/components';
-import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-
+import ColorControl from '../../../src/controls/color-control';
 import ColorControl from '../../../src/controls/color-control';
 import ResDimensionsControl from '../../../src/controls/dimensions-control';
 import ResAlignmentControl from '../../../src/controls/res-alignment-control';
 import ResRangeControl from '../../../src/controls/res-range-control';
-
-import objAttributes from './attributes';
-
+import {
+import {
+	BUTTON_ALIGNMENT,
 import {
 	BUTTON_ALIGNMENT,
 	BUTTON_BRADIUS,
 	BUTTON_MARGIN,
 	BUTTON_PADDING,
-	BUTTON_WIDTH,
-	BUTTON_TYPO,
-	PRESETS,
+	BUTTON_WIDTH, PRESETS
 } from './constants';
-
-function Inspector(props) {
-	const { attributes, setAttributes } = props;
-	const { uniqueId, preset, resDevice, buttonBGColor, buttonColor } =
-		attributes;
 	const resRequiredProps = {
 		attributes,
 		setAttributes,

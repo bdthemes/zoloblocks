@@ -1,15 +1,10 @@
-import { __ } from '@wordpress/i18n';
 import {
 	BaseControl,
 	Button,
-	Dropdown,
-	RangeControl,
-	SelectControl,
+	Dropdown
 } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
-import UnitBtn from '../unit-btn';
-import WithResButtons from '../with-res-device-btn';
-import FontPicker from './fontPicker';
 
 const TypographyDropdown = ({
 	label,
