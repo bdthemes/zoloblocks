@@ -1,5 +1,5 @@
 //Import Global Hooks
-import "./global/hooks";
+// import "./global/hooks";
 
 //Import Blocks
 import "../blocks/advanced-button/index.js";
