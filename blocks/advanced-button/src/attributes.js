@@ -13,38 +13,12 @@ const attributes = {
 
   //range attributes
   ...generateResRangeAttributies(BUTTON_WIDTH, {
-    defaultRange: 100,
+    defaultRange: 200,
   }),
   //alignment attributes
   ...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
     defaultAlign: "left",
   }),
-
-  // buttonSizeRange: {
-  //   type: "number",
-  //   default: 101,
-  // },
-  // TABbuttonSizeRange: {
-  //   type: "number",
-  //   default: 60,
-  // },
-  // MOBbuttonSizeRange: {
-  //   type: "number",
-  //   default: 40,
-  // },
-
-  // buttonSizeUnit: {
-  //   type: "string",
-  //   default: "%",
-  // },
-  // TABbuttonSizeUnit: {
-  //   type: "string",
-  //   default: "px",
-  // },
-  // MOBbuttonSizeUnit: {
-  //   type: "string",
-  //   default: "em",
-  // },
 
   //Block specific Attributes
   preset: {
@@ -53,12 +27,15 @@ const attributes = {
   },
   bgColor: {
     type: "string",
-    default: "#000000",
+    default: "#3799FF",
   },
   textColor: {
     type: "string",
     default: "#ffffff",
   },
+  blockStyle: {
+    type: "object"
+  }
 };
 
 export default attributes;

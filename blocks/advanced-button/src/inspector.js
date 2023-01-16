@@ -2,7 +2,12 @@
  * WordPress dependencies
  */
 import { InspectorControls } from "@wordpress/block-editor";
-import { PanelBody, SelectControl, TabPanel } from "@wordpress/components";
+import {
+  PanelBody,
+  SelectControl,
+  TabPanel,
+  ColorPalette
+} from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
 /**
@@ -17,7 +22,13 @@ import { BUTTON_ALIGNMENT, BUTTON_WIDTH, PRESETS } from "./constants";
 
 function Inspector(props) {
   const { attributes, setAttributes } = props;
-  const { uniqueId, preset, resDevice, bgColor, textColor } = attributes;
+  const {
+    uniqueId,
+    preset,
+    resDevice,
+    bgColor,
+    textColor
+  } = attributes;
 
   const changePreset = (selected) => {
     setAttributes({ preset: selected });
@@ -82,6 +93,18 @@ function Inspector(props) {
                       value={preset}
                       options={PRESETS}
                       onChange={(selected) => changePreset(selected)}
+                    />
+
+                    <ColorPalette
+                      colors={[]}
+                      value={bgColor}
+                      onChange={(color) => setAttributes({ bgColor: color })}
+                    />
+
+                    <ColorPalette
+                      colors={[]}
+                      value={textColor}
+                      onChange={(color) => setAttributes({ textColor: color })}
                     />
 
                     <ResRangeControl

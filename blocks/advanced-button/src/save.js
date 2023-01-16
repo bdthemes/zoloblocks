@@ -11,12 +11,14 @@ const Save = ({ attributes }) => {
 
 	return (
 		<div {...useBlockProps.save()}>
-			<div
-				className={`zolo-block-inner zolo-inner-${uniqueId} ${BLOCK_PREFIX} ${preset}`}
-				data-id={uniqueId}
-			>
-				<div className={`zolo-content`}>
-					Advanced Button Block
+			<div className={`zolo-block-wrapper zolo-advanced-button ${uniqueId}`}>
+				<div
+					className={`zolo-block-inner zolo-inner-${uniqueId} ${BLOCK_PREFIX} ${preset}`}
+					data-id={uniqueId}
+				>
+					<div className={`zolo-content`}>
+						<button>Advanced Button</button>
+					</div>
 				</div>
 			</div>
 		</div>

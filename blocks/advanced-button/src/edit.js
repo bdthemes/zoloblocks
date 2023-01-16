@@ -16,7 +16,13 @@ import Inspector from "./inspector";
 
 export default function Edit(props) {
   const { attributes, setAttributes, className, clientId, isSelected } = props;
-  const { uniqueId, preset, bgColor, textColor } = attributes;
+  const {
+    uniqueId,
+    preset,
+    bgColor,
+    textColor,
+    blockStyle
+  } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
   useEffect(() => {
@@ -29,7 +35,7 @@ export default function Edit(props) {
   }, []);
 
   const blockProps = useBlockProps({
-    className: classnames(className, `zolo-block-wrapper zolo-${uniqueId}`),
+    className: classnames(className, ``),
   });
 
   const {
@@ -53,23 +59,40 @@ export default function Edit(props) {
   });
 
   const desktopAllStyle = `
-	.zolo-${uniqueId}{
-		${buttonWidthDesktop}
-    ${buttonAlignmentDesktop}
-	}
+    .${uniqueId}{
+      ${buttonWidthDesktop}
+      ${buttonAlignmentDesktop}
+    }
+    .${uniqueId} button {
+      background-color: ${bgColor};
+      color: ${textColor};
+    }
   `;
   const tabletAllStyle = `
-	.zolo-${uniqueId}{
-		${buttonWidthTab}
-    ${buttonAlignmentTab}
-	}
+    .${uniqueId}{
+      ${buttonWidthTab}
+      ${buttonAlignmentTab}
+    }
   `;
   const mobileAllStyle = `
-  	.zolo-${uniqueId}{
-		${buttonWithMob}
-    ${buttonAlignmentMob}
-	}
+  	.${uniqueId}{
+      ${buttonWithMob}
+      ${buttonAlignmentMob}
+    }
   `;
+
+  // Set All Style in "blockStyle" Attribute
+  useEffect(() => {
+    const styles = {
+      desktop: desktopAllStyle,
+      tablet: tabletAllStyle,
+      mobile: mobileAllStyle,
+    };
+    if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
+      setAttributes({ blockStyle: styles });
+    }
+  }, [attributes]);
+
   return (
     <>
       {isSelected && (
@@ -91,14 +114,18 @@ export default function Edit(props) {
 					/* mobcssStart */			
 					${mobileAllStyle}
 					/* mobcssEnd */
-				}			
+				}	
 			`}
         </style>
-        <div
-          className={`zolo-block-inner zolo-inner-${uniqueId} ${BLOCK_PREFIX} ${preset}`}
-          data-id={uniqueId}
-        >
-          <div className={`zolo-content`}>Advanced Button Block</div>
+        <div className={`zolo-block-wrapper zolo-advanced-button ${uniqueId}`}>
+          <div
+            className={`zolo-block-inner zolo-inner-${uniqueId} ${BLOCK_PREFIX} ${preset}`}
+            data-id={uniqueId}
+          >
+            <div className={`zolo-content`}>
+              <button>Advanced Button</button>
+            </div>
+          </div>
         </div>
       </div>
     </>
