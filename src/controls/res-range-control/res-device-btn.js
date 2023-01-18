@@ -11,32 +11,32 @@ const WithResDeviceBtn = ({
 	noUnits,
 	controlName,
 }) => {
-	const { resDevice, objAttributes, setAttributes } = resRequiredProps;
+	const { resMode, objAttributes, setAttributes } = resRequiredProps;
 
 	const onReset = () => {
 		if (noUnits) {
-			resDevice == 'Desktop'
+			resMode == 'Desktop'
 				? setAttributes({
 						[`${controlName}ZRPRange`]:
 							objAttributes[`${controlName}ZRPRange`].default,
 				  })
 				: '';
 
-			resDevice == 'Tablet'
+			resMode == 'Tablet'
 				? setAttributes({
 						[`TAB${controlName}ZRPRange`]:
 							objAttributes[`TAB${controlName}ZRPRange`].default,
 				  })
 				: '';
 
-			resDevice == 'Mobile'
+			resMode == 'Mobile'
 				? setAttributes({
 						[`MOB${controlName}ZRPRange`]:
 							objAttributes[`MOB${controlName}ZRPRange`].default,
 				  })
 				: '';
 		} else {
-			resDevice == 'Desktop'
+			resMode == 'Desktop'
 				? setAttributes({
 						[`${controlName}ZRPRange`]:
 							objAttributes[`${controlName}ZRPRange`].default,
@@ -46,7 +46,7 @@ const WithResDeviceBtn = ({
 				  })
 				: '';
 
-			resDevice == 'Tablet'
+			resMode == 'Tablet'
 				? setAttributes({
 						[`TAB${controlName}ZRPRange`]:
 							objAttributes[`TAB${controlName}ZRPRange`].default,
@@ -56,7 +56,7 @@ const WithResDeviceBtn = ({
 				  })
 				: '';
 
-			resDevice == 'Mobile'
+			resMode == 'Mobile'
 				? setAttributes({
 						[`MOB${controlName}ZRPRange`]:
 							objAttributes[`MOB${controlName}ZRPRange`].default,
@@ -68,21 +68,6 @@ const WithResDeviceBtn = ({
 		}
 	};
 
-	// const onDesktopBtnClick = ({ setAttributes }) => {
-	//   setAttributes({ resDevice: "Desktop" });
-	//   dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Desktop");
-	// };
-
-	// const onTabletBtnClick = ({ setAttributes }) => {
-	//   setAttributes({ resDevice: "Tablet" });
-	//   dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Tablet");
-	// };
-
-	// const onMobileBtnClick = ({ setAttributes }) => {
-	//   setAttributes({ resDevice: "Mobile" });
-	//   dispatch("core/edit-post").__experimentalSetPreviewDeviceType("Mobile");
-	// };
-
 	return (
 		<div className="zb-res-device-btn-wrapper">
 			<div className="zb-res-device-btns">
@@ -90,21 +75,21 @@ const WithResDeviceBtn = ({
 
 				<span
 					className={`res-btn dashicons dashicons-desktop ${
-						resDevice === 'Desktop' ? 'active' : ' '
+						resMode === 'Desktop' ? 'active' : ' '
 					}`}
 					onClick={() => onDesktopBtnClick({ setAttributes })}
 				></span>
 
 				<span
 					className={`res-btn dashicons dashicons-tablet ${
-						resDevice === 'Tablet' ? 'active' : ' '
+						resMode === 'Tablet' ? 'active' : ' '
 					}`}
 					onClick={() => onTabletBtnClick({ setAttributes })}
 				></span>
 
 				<span
 					className={`res-btn dashicons dashicons-smartphone ${
-						resDevice === 'Mobile' ? 'active' : ' '
+						resMode === 'Mobile' ? 'active' : ' '
 					}`}
 					onClick={() => onMobileBtnClick({ setAttributes })}
 				></span>

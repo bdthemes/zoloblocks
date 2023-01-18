@@ -45,3 +45,8 @@ export const fontStyleOptions = [
 	{ label: __('Italic', 'zolo-blocks'), value: 'italic' },
 	{ label: __('Oblique', 'zolo-blocks'), value: 'oblique' },
 ];
+
+export const LHLS_UNITS = [
+	{ label: "px", value: "px" },
+	{ label: "em", value: "em" },
+];

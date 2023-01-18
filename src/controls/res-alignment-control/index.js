@@ -8,7 +8,7 @@ const ResAlignmentControl = ({
 	alignOptions,
 	alignText,
 }) => {
-	const { attributes, setAttributes, resDevice } = resRequiredProps;
+	const { attributes, setAttributes, resMode } = resRequiredProps;
 
 	const {
 		[`${controlName}ZRPAlign`]: desktopAlignment,
@@ -26,7 +26,7 @@ const ResAlignmentControl = ({
 			  ];
 	return (
 		<div className="zb-res-alignment-control-wrapper">
-			{resDevice == 'Desktop' && (
+			{resMode == 'Desktop' && (
 				<WithResDeviceBtn
 					label={label}
 					resRequiredProps={resRequiredProps}
@@ -71,7 +71,7 @@ const ResAlignmentControl = ({
 				</WithResDeviceBtn>
 			)}
 
-			{resDevice == 'Tablet' && (
+			{resMode == 'Tablet' && (
 				<WithResDeviceBtn
 					label={label}
 					resRequiredProps={resRequiredProps}
@@ -116,7 +116,7 @@ const ResAlignmentControl = ({
 				</WithResDeviceBtn>
 			)}
 
-			{resDevice == 'Mobile' && (
+			{resMode == 'Mobile' && (
 				<WithResDeviceBtn
 					label={label}
 					resRequiredProps={resRequiredProps}

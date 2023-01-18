@@ -1,0 +1,47 @@
+.zb-typography-component-panel{
+	min-width: 220px;
+	background-color: $control_primary_bg_color;
+
+	.zb-res-device-btn-wrapper{
+		position: relative;
+		.zb-res-device-btns{
+			position: absolute;
+			left: 70px;
+		}
+		&.zb-letter-spacing{
+			.zb-res-device-btns{
+				left: 95px;
+			}
+		}
+	}
+
+	.zb-range-controller-container{
+		align-items: flex-start;
+		display: flex;
+		 .components-range-control {
+			flex: 1;
+		}
+	}
+
+	.zb-range-reset-button {
+		background: transparent;
+		border: none;
+		box-shadow: none;
+		cursor: pointer;
+		height: 26px;
+		margin-left: 2px;
+		margin-top: 20px;
+		outline: none;
+		padding: 0;
+		width: 20px;
+		.dashicon {
+			align-items: center;
+			color: #62626f;
+			display: flex;
+			font-size: 14px;
+			justify-content: center;
+			transform: scaleX(-1) rotate(90deg);
+			width: 20px;
+		}
+	}
+}

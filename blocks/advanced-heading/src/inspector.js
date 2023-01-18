@@ -1,31 +1,42 @@
-/**
- * WordPress dependencies
- */
+//wrodpress dependencies
+import { __ } from '@wordpress/i18n'
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TabPanel } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
-import ColorControl from '../../../src/controls/color-control';
-import ColorControl from '../../../src/controls/color-control';
-import ResDimensionsControl from '../../../src/controls/dimensions-control';
-import ResAlignmentControl from '../../../src/controls/res-alignment-control';
+import {TabPanel,PanelBody} from '@wordpress/components';
+
+//import { MultiSelect } from "react-multi-select-component";
+import Select from 'react-select'
+
+//internal dependencies controls
 import ResRangeControl from '../../../src/controls/res-range-control';
-import {
-import {
-	BUTTON_ALIGNMENT,
-import {
-	BUTTON_ALIGNMENT,
-	BUTTON_BRADIUS,
-	BUTTON_MARGIN,
-	BUTTON_PADDING,
-	BUTTON_WIDTH, PRESETS
-} from './constants';
+import ResAlignmentControl from '../../../src/controls/res-alignment-control';
+import ColorControl from '../../../src/controls/color-control';
+import ResDimensionsControl from '../../../src/controls/dimensions-control'
+import TypographyDropdown from '../../../src/controls/typography-control';
+
+//block attributes
+import objAttributes from './attributes';
+
+//block constants
+import {HEADING_WIDTH,HEADING_ALIGNMENT,HEADING_PADDING,HEADING_TYPO} from './constants';
+
+const Inspector =({ attributes,setAttributes})=>{
+
+	const { resMode,headingColor} =attributes;
+	
 	const resRequiredProps = {
 		attributes,
 		setAttributes,
-		resDevice,
+		resMode,
 		objAttributes,
 	};
-	return (
+
+	const options = [
+		{ label: "Grapes 🍇", value: "grapes" },
+		{ label: "Mango 🥭", value: "mango" },
+		{ label: "Strawberry 🍓", value: "strawberry", disabled: true },
+	];
+
+	return(
 		<InspectorControls key="controls">
 			<div className="zolo-panel-control">
 				<TabPanel
@@ -50,7 +61,7 @@ import {
 						},
 					]}
 				>
-					{(tab) => (
+					{(tab)=>(
 						<div className={'zb-tab-controls' + tab.name}>
 							{tab.name === 'settings' && (
 								<>
@@ -58,40 +69,32 @@ import {
 										title={__('General', 'zolo-blocks')}
 										initialOpen={true}
 									>
-										<SelectControl
-											label={__(
-												'Preset Designs',
-												'zolo-blocks'
-											)}
-											value={preset}
-											options={PRESETS}
-											onChange={(selected) =>
-												changePreset(selected)
-											}
-										/>
-										{/* <TypographyDropdown
-											label="Typography"
-											typoPrefixConstant={BUTTON_TYPO}
-											resRequiredProps={resRequiredProps}
-											defaultFontSize={22}
+
+										{/* <MultiSelect
+											options={options}
+											labelledBy="Select"
 										/> */}
+
+										{/* <Select options={options} /> */}
+
 										<ResRangeControl
 											label={__(
-												'Button Width',
+												'Heading Width',
 												'zolo-blocks'
 											)}
 											resRequiredProps={resRequiredProps}
-											controlName={BUTTON_WIDTH}
+											controlName={HEADING_WIDTH}
 											min={0}
 											max={500}
 											step={1}
 										/>
+
 										<ResAlignmentControl
 											label={__(
-												'Button Alignmet',
+												'Heading Alignmet',
 												'zolo-blocks'
 											)}
-											controlName={BUTTON_ALIGNMENT}
+											controlName={HEADING_ALIGNMENT}
 											resRequiredProps={resRequiredProps}
 											alignOptions={[
 												{
@@ -112,74 +115,67 @@ import {
 												},
 											]}
 										/>
+
 										<ColorControl
 											label={__(
-												'Button color',
+												'Heading color',
 												'zolo-blocks'
 											)}
-											color={buttonColor}
+											color={headingColor}
 											defaultColor={'red'}
 											onChange={(val) =>
 												setAttributes({
-													buttonColor: val,
+													headingColor: val,
 												})
 											}
 										/>
-										<ColorControl
-											label={__(
-												'Button BG color',
-												'zolo-blocks'
-											)}
-											color={buttonBGColor}
-											defaultColor={'green'}
-											onChange={(val) =>
-												setAttributes({
-													buttonBGColor: val,
-												})
-											}
-										/>
-										<ResDimensionsControl
-											label="Margin"
-											controlName={BUTTON_MARGIN}
-											resRequiredProps={resRequiredProps}
-										/>
+
 										<ResDimensionsControl
 											label="Padding"
-											controlName={BUTTON_PADDING}
+											controlName={HEADING_PADDING}
 											resRequiredProps={resRequiredProps}
 										/>
-										<ResDimensionsControl
-											label="Border Radius"
-											controlName={BUTTON_BRADIUS}
+
+										<TypographyDropdown
+											label="Typography"
+											typoPrefixConstant={HEADING_TYPO}
 											resRequiredProps={resRequiredProps}
+											defaultFontSize={22}
 										/>
+
 									</PanelBody>
 								</>
 							)}
+
 							{tab.name === 'design' && (
 								<>
 									<PanelBody
-										title={__('Button', 'zolo-blocks')}
-										initialOpen={true}
-									></PanelBody>
-								</>
-							)}
-							{tab.name === 'advance' && (
-								<>
-									<PanelBody
-										title={__('Button', 'zolo-blocks')}
+										title={__('Style', 'zolo-blocks')}
 										initialOpen={true}
 									>
-										<h1>Advvance</h1>
+
+										
+									</PanelBody>
+								</>
+							)}
+							{tab.name === 'advanced' && (
+								<>
+									<PanelBody
+										title={__('Advanced', 'zolo-blocks')}
+										initialOpen={true}
+									>
+
+										
 									</PanelBody>
 								</>
 							)}
 						</div>
 					)}
+
 				</TabPanel>
 			</div>
 		</InspectorControls>
-	);
+	)
 }
 
 export default Inspector;

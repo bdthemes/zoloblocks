@@ -8,7 +8,7 @@ const ResDimensionsControl = ({
 	forBorderRadius,
 	units,
 }) => {
-	const { attributes, setAttributes, resDevice } = resRequiredProps;
+	const { attributes, setAttributes, resMode } = resRequiredProps;
 
 	const {
 		[`${controlName}ZRPUnit`]: dimensionUnit,
@@ -42,7 +42,7 @@ const ResDimensionsControl = ({
 		label,
 		controlName,
 		setAttributes,
-		resDevice,
+		resMode,
 		dimensionIsLinked,
 		forBorderRadius,
 		controlName,
@@ -50,7 +50,7 @@ const ResDimensionsControl = ({
 
 	return (
 		<div className="dimensions-control-wraper">
-			{resDevice == 'Desktop' && (
+			{resMode == 'Desktop' && (
 				<>
 					<UnitBtn
 						selectedUnit={dimensionUnit}
@@ -79,9 +79,59 @@ const ResDimensionsControl = ({
 				</>
 			)}
 
-			{resDevice == 'Tablet' && <></>}
+			{resMode == 'Tablet' && (
+			<>
+				<UnitBtn
+					selectedUnit={TABdimensionUnit}
+					unitTypes={units || defaultUnits}
+					onClick={(TABdimensionUnit) =>
+						setAttributes({ [`TAB${controlName}ZRPUnit`]: TABdimensionUnit })
+					}
+				/>
 
-			{resDevice == 'Mobile' && <></>}
+				<DimensionControl
+					top={TABdimensionTop}
+					right={TABdimensionRight}
+					bottom={TABdimensionBottom}
+					left={TABdimensionLeft}
+					neededProps={neededProps}
+					onChange={({ top, right, bottom, left }) =>
+						setAttributes({
+							[`TAB${controlName}ZRPTop`]: top,
+							[`TAB${controlName}ZRPRight`]: right,
+							[`TAB${controlName}ZRPBottom`]: bottom,
+							[`TAB${controlName}ZRPLeft`]: left,
+						})
+					}
+				/>
+			</>
+			)}
+
+			{resMode == 'Mobile' && (<>
+			  <UnitBtn
+            selectedUnit={MOBdimensionUnit}
+						unitTypes={units || defaultUnits}
+            onClick={(MOBdimensionUnit) =>
+              setAttributes({ [`MOB${controlName}ZRPUnit`]: MOBdimensionUnit })
+            }
+          />
+
+          <DimensionControl
+            top={MOBdimensionTop}
+            right={MOBdimensionRight}
+            bottom={MOBdimensionBottom}
+            left={MOBdimensionLeft}
+            neededProps={neededProps}
+            onChange={({ top, right, bottom, left }) =>
+              setAttributes({
+                [`MOB${controlName}ZRPTop`]: top,
+                [`MOB${controlName}ZRPRight`]: right,
+                [`MOB${controlName}ZRPBottom`]: bottom,
+                [`MOB${controlName}ZRPLeft`]: left,
+              })
+            }
+          />
+			</>)}
 		</div>
 	);
 };

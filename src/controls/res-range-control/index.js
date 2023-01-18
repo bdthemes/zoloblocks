@@ -12,7 +12,7 @@ const ResRangeControl = ({
 	step,
 	noUnits,
 }) => {
-	const { attributes, setAttributes, resDevice } = resRequiredProps;
+	const { attributes, setAttributes, resMode } = resRequiredProps;
 	const {
 		[`${controlName}ZRPRange`]: desktopRange,
 		[`TAB${controlName}ZRPRange`]: tabRange,
@@ -38,7 +38,7 @@ const ResRangeControl = ({
 		<div className="zb-res-range-control-wrapper">
 			{noUnits ? (
 				<>
-					{resDevice == 'Desktop' && (
+					{resMode == 'Desktop' && (
 						<WithResDeviceBtn
 							label={label}
 							resRequiredProps={resRequiredProps}
@@ -58,7 +58,7 @@ const ResRangeControl = ({
 						</WithResDeviceBtn>
 					)}
 
-					{resDevice == 'Tablet' && (
+					{resMode == 'Tablet' && (
 						<WithResDeviceBtn
 							label={label}
 							resRequiredProps={resRequiredProps}
@@ -78,7 +78,7 @@ const ResRangeControl = ({
 						</WithResDeviceBtn>
 					)}
 
-					{resDevice == 'Mobile' && (
+					{resMode == 'Mobile' && (
 						<WithResDeviceBtn
 							label={label}
 							resRequiredProps={resRequiredProps}
@@ -100,7 +100,7 @@ const ResRangeControl = ({
 				</>
 			) : (
 				<>
-					{resDevice == 'Desktop' && (
+					{resMode == 'Desktop' && (
 						<>
 							<UnitBtn
 								selectedUnit={sizeUnit}
@@ -132,7 +132,7 @@ const ResRangeControl = ({
 						</>
 					)}
 
-					{resDevice == 'Tablet' && (
+					{resMode == 'Tablet' && (
 						<>
 							<UnitBtn
 								selectedUnit={TABsizeUnit}
@@ -164,7 +164,7 @@ const ResRangeControl = ({
 						</>
 					)}
 
-					{resDevice == 'Mobile' && (
+					{resMode == 'Mobile' && (
 						<>
 							<UnitBtn
 								selectedUnit={MOBsizeUnit}

@@ -15,7 +15,7 @@ const DimensionControl = ({
 }) => {
 	const {
 		label,
-		resDevice,
+		resMode,
 		setAttributes,
 		dimensionIsLinked,
 		forBorderRadius,
@@ -67,21 +67,21 @@ const DimensionControl = ({
 				<span className="res-btn-label">{label}</span>
 				<span
 					className={`res-btn dashicons dashicons-desktop ${
-						resDevice === 'Desktop' ? 'active' : ' '
+						resMode === 'Desktop' ? 'active' : ' '
 					}`}
 					onClick={() => onDesktopBtnClick({ setAttributes })}
 				></span>
 
 				<span
 					className={`res-btn dashicons dashicons-tablet ${
-						resDevice === 'Tablet' ? 'active' : ' '
+						resMode === 'Tablet' ? 'active' : ' '
 					}`}
 					onClick={() => onTabletBtnClick({ setAttributes })}
 				></span>
 
 				<span
 					className={`res-btn dashicons dashicons-smartphone ${
-						resDevice === 'Mobile' ? 'active' : ' '
+						resMode === 'Mobile' ? 'active' : ' '
 					}`}
 					onClick={() => onMobileBtnClick({ setAttributes })}
 				></span>

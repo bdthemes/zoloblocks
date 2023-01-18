@@ -14,8 +14,8 @@
 		"array-move": "^3.0.1",
 		"classnames": "^2.3.1",
 		"rc-switch": "^3.2.2",
-		"react-select": "^5.2.1",
-		"select2": "^4.1.0-rc.0",
+		"react-multi-select-component": "^4.3.4",
+		"react-select": "^5.7.0",
 		"striptags": "^3.2.0"
 	},
 	"devDependencies": {
@@ -32,7 +32,7 @@
 		"@wordpress/element": "^4.0.4",
 		"@wordpress/i18n": "^4.2.4",
 		"@wordpress/keycodes": "^3.2.4",
-		"@wordpress/scripts": "^19.2.2",
+		"@wordpress/scripts": "^25.2.0",
 		"babel-loader": "^8.2.3",
 		"html-react-parser": "^3.0.4",
 		"lodash": "^4.17.21",
