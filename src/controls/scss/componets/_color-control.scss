@@ -1,0 +1,30 @@
+.zb-color-control-wrapper {
+  .color-label {
+    .components-base-control__label {
+      flex: 10;
+      margin-right: 0 !important;
+    }
+    .components-dropdown {
+      flex: 1;
+    }
+    > div {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .color-ball {
+    background-image: linear-gradient(45deg, #ddd 25%, transparent 0),
+      linear-gradient(-45deg, #ddd 25%, transparent 0),
+      linear-gradient(45deg, transparent 75%, #ddd 0),
+      linear-gradient(-45deg, transparent 75%, #ddd 0);
+    background-position: 0 0, 0 5px, 5px -5px, -5px 0;
+    background-size: 10px 10px;
+    border-radius: 50%;
+    > div {
+      border-radius: 20px !important;
+      height: 25px !important;
+      width: 25px !important;
+    }
+  }
+}

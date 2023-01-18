@@ -1,71 +1,75 @@
 export const generateResRangeAttributies = (controlName, defaults = {}) => {
-  const { defaultRange, noUnits, defaultUnit = "px" } = defaults;
-  const desktopRange = defaultRange
-    ? {
-        [`${controlName}Range`]: {
-          type: "number",
-          default: defaultRange,
-        },
-      }
-    : {
-        [`${controlName}Range`]: {
-          type: "number",
-        },
-      };
-  const units =
-    noUnits == true
-      ? {}
-      : {
-          [`${controlName}Unit`]: {
-            type: "string",
-            default: defaultUnit,
-          },
+	const { defaultRange, noUnits, defaultUnit = 'px' } = defaults;
+	const desktopRange = defaultRange
+		? {
+				[`${controlName}ZRPRange`]: {
+					type: 'number',
+					default: defaultRange,
+				},
+		  }
+		: {
+				[`${controlName}ZRPRange`]: {
+					type: 'number',
+				},
+		  };
+	const units =
+		noUnits == true
+			? {}
+			: {
+					[`${controlName}ZRPUnit`]: {
+						type: 'string',
+						default: defaultUnit,
+					},
 
-          [`TAB${controlName}Unit`]: {
-            type: "string",
-            default: "px",
-          },
-          [`MOB${controlName}Unit`]: {
-            type: "string",
-            default: "px",
-          },
-        };
+					[`TAB${controlName}ZRPUnit`]: {
+						type: 'string',
+						default: 'px',
+					},
+					[`MOB${controlName}ZRPUnit`]: {
+						type: 'string',
+						default: 'px',
+					},
+			  };
 
-  return {
-    ...desktopRange,
-    [`TAB${controlName}Range`]: {
-      type: "string",
-    },
-    [`MOB${controlName}Range`]: {
-      type: "string",
-    },
-    ...units,
-  };
+	return {
+		...desktopRange,
+		[`TAB${controlName}ZRPRange`]: {
+			type: 'string',
+		},
+		[`MOB${controlName}ZRPRange`]: {
+			type: 'string',
+		},
+		...units,
+	};
 };
 
 export const generateResRangeStyle = ({
-  controlName,
-  property,
-  attributes,
+	controlName,
+	property,
+	attributes,
 }) => {
-  const {
-    [`${controlName}Range`]: desktopRange,
-    [`TAB${controlName}Range`]: tabRange,
-    [`MOB${controlName}Range`]: mobRange,
+	const {
+		[`${controlName}ZRPRange`]: desktopRange,
+		[`TAB${controlName}ZRPRange`]: tabRange,
+		[`MOB${controlName}ZRPRange`]: mobRange,
 
-    [`${controlName}Unit`]: desktopUnit,
-    [`TAB${controlName}Unit`]: tabUnit,
-    [`MOB${controlName}Unit`]: mobUnit,
-  } = attributes;
+		[`${controlName}ZRPUnit`]: desktopUnit,
+		[`TAB${controlName}ZRPUnit`]: tabUnit,
+		[`MOB${controlName}ZRPUnit`]: mobUnit,
+	} = attributes;
 
-  const desktopRangeStyle =
-    desktopRange || desktopRange == 0
-      ? property + ":" + desktopRange + desktopUnit + ";"
-      : "";
+	const desktopRangeStyle =
+		desktopRange || desktopRange == 0
+			? property + ':' + desktopRange + desktopUnit + ';'
+			: '';
 
-  const tabRangeStyle =
-    tabRange || tabRange == 0 ? property + ":" + tabRange + tabUnit + ";" : "";
-  const mobRangeStyle =
-    mobRange || mobRange == 0 ? property + ":" + mobRange + mobUnit + ";" : "";
-  return { desktopRangeStyle, tabRangeStyle, mobRangeStyle };
+	const tabRangeStyle =
+		tabRange || tabRange == 0
+			? property + ':' + tabRange + tabUnit + ';'
+			: '';
+	const mobRangeStyle =
+		mobRange || mobRange == 0
+			? property + ':' + mobRange + mobUnit + ';'
+			: '';
+	return { desktopRangeStyle, tabRangeStyle, mobRangeStyle };
 };
