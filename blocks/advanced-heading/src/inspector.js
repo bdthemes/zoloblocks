@@ -1,10 +1,10 @@
 //wrodpress dependencies
 import { __ } from '@wordpress/i18n'
 import { InspectorControls } from '@wordpress/block-editor';
-import {TabPanel,PanelBody} from '@wordpress/components';
+import { TabPanel, PanelBody } from '@wordpress/components';
 
 //import { MultiSelect } from "react-multi-select-component";
-import Select from 'react-select'
+import Select2 from 'react-select'
 
 //internal dependencies controls
 import ResRangeControl from '../../../src/controls/res-range-control';
@@ -17,12 +17,12 @@ import TypographyDropdown from '../../../src/controls/typography-control';
 import objAttributes from './attributes';
 
 //block constants
-import {HEADING_WIDTH,HEADING_ALIGNMENT,HEADING_PADDING,HEADING_TYPO} from './constants';
+import { HEADING_WIDTH, HEADING_ALIGNMENT, HEADING_PADDING, HEADING_TYPO } from './constants';
 
-const Inspector =({ attributes,setAttributes})=>{
+const Inspector = ({ attributes, setAttributes }) => {
 
-	const { resMode,headingColor} =attributes;
-	
+	const { resMode, headingColor } = attributes;
+
 	const resRequiredProps = {
 		attributes,
 		setAttributes,
@@ -36,7 +36,7 @@ const Inspector =({ attributes,setAttributes})=>{
 		{ label: "Strawberry 🍓", value: "strawberry", disabled: true },
 	];
 
-	return(
+	return (
 		<InspectorControls key="controls">
 			<div className="zolo-panel-control">
 				<TabPanel
@@ -61,7 +61,7 @@ const Inspector =({ attributes,setAttributes})=>{
 						},
 					]}
 				>
-					{(tab)=>(
+					{(tab) => (
 						<div className={'zb-tab-controls' + tab.name}>
 							{tab.name === 'settings' && (
 								<>
@@ -75,7 +75,14 @@ const Inspector =({ attributes,setAttributes})=>{
 											labelledBy="Select"
 										/> */}
 
-										{/* <Select options={options} /> */}
+										<Select2
+											options={options}
+											name='zolo-select'
+											value={{ label: "Grapes 🍇", value: "grapes" }}
+											// onChange={(selected) => setAttributes({ headerMeta: JSON.stringify(selected) })}
+											// options={metaOptions}
+											// isMulti='true'
+										/>
 
 										<ResRangeControl
 											label={__(
@@ -154,7 +161,7 @@ const Inspector =({ attributes,setAttributes})=>{
 										initialOpen={true}
 									>
 
-										
+
 									</PanelBody>
 								</>
 							)}
@@ -165,7 +172,7 @@ const Inspector =({ attributes,setAttributes})=>{
 										initialOpen={true}
 									>
 
-										
+
 									</PanelBody>
 								</>
 							)}
