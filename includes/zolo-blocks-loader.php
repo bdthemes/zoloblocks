@@ -80,6 +80,8 @@ if (!class_exists('Zolo_Blocks_Loader')) {
 		{
 			require_once ZOLO_DIR_PATH . 'includes/classes/zolo-ajax.php';
 			require_once ZOLO_DIR_PATH . 'includes/classes/zolo-enqueues.php';
+			require_once ZOLO_DIR_PATH . '/includes/classes/font-loader.php';
+			require_once ZOLO_DIR_PATH . '/includes/classes/post-meta.php';
 		}
 
 		/**

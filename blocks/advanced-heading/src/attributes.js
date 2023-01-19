@@ -2,12 +2,14 @@
 import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
 import {generateResAlignmentAttributies} from '../../../src/helpers/res-alignment-helper';
 import {generateDimensionAttributes} from '../../../src/helpers/dimension-helper';
+import { generateTypographyAttributes } from '../../../src/helpers/typoHelpers';
 //block constants
 import {
 	HEADING_WIDTH,
 	HEADING_ALIGNMENT,
 	HEADING_PADDING
 } from './constants';
+import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes ={
 
@@ -34,6 +36,9 @@ const attributes ={
 		left: 10,
 		isLinked: true,
 	}),
+
+	// typography attributes ⬇
+	...generateTypographyAttributes(Object.values(typographyObjs)),
 
 }
 

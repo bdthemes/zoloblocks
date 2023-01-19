@@ -17,7 +17,8 @@ import TypographyDropdown from '../../../src/controls/typography-control';
 import objAttributes from './attributes';
 
 //block constants
-import {HEADING_WIDTH,HEADING_ALIGNMENT,HEADING_PADDING,HEADING_TYPO} from './constants';
+import {HEADING_WIDTH,HEADING_ALIGNMENT,HEADING_PADDING} from './constants';
+import {TITLE_TYPOGRAPHY,SUBTITLE_TYPOGRAPHY} from './constants/typoPrefixConstant';
 
 const Inspector =({ attributes,setAttributes})=>{
 
@@ -75,7 +76,7 @@ const Inspector =({ attributes,setAttributes})=>{
 											labelledBy="Select"
 										/> */}
 
-										{/* <Select options={options} /> */}
+										<Select options={options} />
 
 										<ResRangeControl
 											label={__(
@@ -138,7 +139,7 @@ const Inspector =({ attributes,setAttributes})=>{
 
 										<TypographyDropdown
 											label="Typography"
-											typoPrefixConstant={HEADING_TYPO}
+											typoPrefixConstant={TITLE_TYPOGRAPHY}
 											resRequiredProps={resRequiredProps}
 											defaultFontSize={22}
 										/>
