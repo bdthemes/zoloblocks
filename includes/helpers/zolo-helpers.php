@@ -38,7 +38,7 @@ class Zolo_Helpers
 
     /**
      * Isset Check
-    */
+     */
     public static function zolo_isset_check($value, $default = '')
     {
         if (isset($_POST[$value])) {
@@ -70,5 +70,31 @@ class Zolo_Helpers
         }
 
         return false;
+    }
+
+    /**
+     * Generate Style String
+     */
+    public static function zolo_generate_style($style)
+    {
+        // var_dump($style);
+        $css = "";
+        if (isset($style['desktop']) && strlen($style['desktop']) > 0) {
+            $css .= $style['desktop'];
+        }
+        if (isset($style['tablet']) && strlen($style['tablet']) > 0) {
+            $css .= sprintf(
+                '@media all and (max-width: 1024px) {%1$s}',
+                $style['tablet']
+            );
+        }
+        if (isset($style['mobile']) && strlen($style['mobile']) > 0) {
+            $css .= sprintf(
+                '@media all and (max-width: 767px) {%1$s}',
+                $style['mobile']
+            );
+        }
+
+        return $css;
     }
 }

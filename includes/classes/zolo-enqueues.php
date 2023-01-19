@@ -55,17 +55,42 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          */
         public function editor_assets_loader()
         {
-            $dependency_path = ZOLO_DIR_PATH . 'dist/index.asset.php';
-            $script_dependecy     = file_exists($dependency_path) ? include $dependency_path : array(
+            //Register vendor bundle
+            $dependency_path = ZOLO_DIR_PATH . 'vendor-bundle/index.asset.php';
+            $script_dependecy = file_exists($dependency_path) ? include $dependency_path : array(
                 'dependencies' => array(),
-                'version'      => ZOLO_VERSION,
+                'version' => ZOLO_VERSION,
+            );
+
+            $version = $script_dependecy['version'];
+
+            // Enqueue Scripts
+            wp_register_script(
+                'zolo-block-editor-dependency',
+                ZOLO_ADMIN_URL . 'vendor-bundle/index.js',
+                $script_dependecy['dependencies'],
+                $version,
+                true
+            );
+
+
+            $dependency_path = ZOLO_DIR_PATH . 'dist/index.asset.php';
+            $script_dependecy = file_exists($dependency_path) ? include $dependency_path : array(
+                'dependencies' => array(),
+                'version' => ZOLO_VERSION,
             );
 
             $version = $script_dependecy['version'];
 
             $script_dependecy = array_merge(
                 $script_dependecy['dependencies'],
-                array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-components')
+                array(
+                    'wp-blocks',
+                    'wp-i18n',
+                    'wp-element',
+                    'wp-components',
+                    'zolo-block-editor-dependency'
+                )
             );
 
             // Enqueue Scripts

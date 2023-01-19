@@ -61,6 +61,9 @@ if (!class_exists('Zolo_Blocks_Loader')) {
 
 			add_action('init', array($this, 'init_actions'));
 
+			//Generate Style on block render
+			add_filter('render_block', array($this, 'generate_style_on_render_block'), 10, 2);
+
 			//Register Block Category
 			if (version_compare(ZOLO_WP_VERSION, '5.8', '>=')) {
 				add_filter('block_categories_all', array($this, 'register_block_category'), 99999, 2);
@@ -93,7 +96,7 @@ if (!class_exists('Zolo_Blocks_Loader')) {
 		 */
 		public function load_plugin()
 		{
-			// require_once ZOLO_DIR_PATH . 'helpers/zolo-helpers.php';
+			require_once ZOLO_DIR_PATH . 'includes/helpers/zolo-helpers.php';
 
 			if (is_admin()) {
 				//Load Admin required files
@@ -134,7 +137,7 @@ if (!class_exists('Zolo_Blocks_Loader')) {
 				ZOLO_NAME
 			);
 
-			$action_url   = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=gutenberg'), 'install-plugin_gutenberg');
+			$action_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=gutenberg'), 'install-plugin_gutenberg');
 			$button_label = __('Install Gutenberg', 'zolo-blocks');
 
 			$button = '<p><a href="' . $action_url . '" class="button-primary">' . $button_label . '</a></p><p></p>';
@@ -184,7 +187,7 @@ if (!class_exists('Zolo_Blocks_Loader')) {
 		}
 
 		/**
-		 * Regoster Block Category
+		 * Register Block Category
 		 *
 		 * @since 0.0.1
 		 *
@@ -200,6 +203,30 @@ if (!class_exists('Zolo_Blocks_Loader')) {
 			$updatedCat[0] = $eb_category;
 			$updatedCat = array_merge($updatedCat, $categories);
 			return $updatedCat;
+		}
+
+		/**
+		 * Hanlde Block Style
+		 *
+		 * @since 0.0.1
+		 *
+		 * @return array
+		 */
+		public function generate_style_on_render_block($block_content, $block)
+		{
+			if (str_contains($block['blockName'], 'zolo/')) {
+				if (isset($block['attrs']['blockStyle'])) {
+					$style = Zolo_Helpers::zolo_generate_style($block['attrs']['blockStyle']);
+					// var_dump($style);
+					$block_content = sprintf(
+						'<style>%1$s</style>%2$s',
+						$style,
+						$block_content
+					);
+				}
+			}
+
+			return $block_content;
 		}
 	}
 }
