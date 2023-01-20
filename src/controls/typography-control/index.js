@@ -97,7 +97,14 @@ const TypographyDropdown = ({
 				renderContent={() => (
 					<div className="zb-panel-control zb-typography-component-panel">
 
-					<FontPicker/>
+						<FontPicker
+							className="zb-fontpicker-fontfamily"
+							label={__("Font Family", "essential-blocks")}
+							value={fontFamily}
+							onChange={(FontFamily) => {
+								setAttributes({[`${typoPrefixConstant}ZRPFontFamily`]:FontFamily});
+							}}
+						/>
 
 						<WithResDeviceBtn 
 							className="zb-font-size"

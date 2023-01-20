@@ -17,7 +17,9 @@ import TypographyDropdown from '../../../src/controls/typography-control';
 import objAttributes from './attributes';
 
 //block constants
-import { HEADING_WIDTH, HEADING_ALIGNMENT, HEADING_PADDING, HEADING_TYPO } from './constants';
+import { HEADING_WIDTH, HEADING_ALIGNMENT, HEADING_PADDING } from './constants';
+
+import{ TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant'
 
 const Inspector = ({ attributes, setAttributes }) => {
 

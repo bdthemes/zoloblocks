@@ -8,7 +8,7 @@ import { withInstanceId } from "@wordpress/compose";
 /**
  * External Dependencies
  */
-// import Select2 from "react-select";
+import Select2 from "react-select";
 
 /**
  * Internal dependencies
@@ -41,50 +41,39 @@ const FontFamilyPicker = ({
 
 
 	const onChangeValue = (select) => {
+
+		console.log("🚀 ~ file: index.js:44 ~ onChangeValue ~ select", select)
+		
+
 		let selectedFont = select.label;
-		const meta = wp.data
-			.select("core/editor")
-			.getEditedPostAttribute("meta");
+
+		const meta = wp.data.select("core/editor").getEditedPostAttribute("meta");
 		let ba = "";
-		const googleFontsAttr =
-			":100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic";
+		const googleFontsAttr =":100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic";
 		const link = document.createElement("link");
 		link.rel = "stylesheet";
 
-		if (
-			typeof meta !== "undefined" &&
-			typeof meta._zb_attr !== "undefined"
-		) {
+		if (typeof meta !== "undefined" && typeof meta._zb_attr !== "undefined") {
 			ba = meta._zb_attr;
 		}
 
 		if (ba.length > 0) {
 			//Load fonts on the header
 			if (!ba.includes(selectedFont)) {
-				link.href =
-					"https://fonts.googleapis.com/css?family=" +
-					selectedFont.replace(/ /g, "+") +
-					googleFontsAttr;
+				link.href ="https://fonts.googleapis.com/css?family=" + selectedFont.replace(/ /g, "+") +	googleFontsAttr;
 				document.head.appendChild(link);
 			}
-
 			ba = ba.replace("," + selectedFont, "");
 			ba = ba + "," + selectedFont;
 		} else {
-			link.href =
-				"https://fonts.googleapis.com/css?family=" +
-				selectedFont.replace(/ /g, "+") +
-				googleFontsAttr;
+			link.href ="https://fonts.googleapis.com/css?family=" +selectedFont.replace(/ /g, "+") +	googleFontsAttr;
 			document.head.appendChild(link);
-
 			ba = selectedFont;
 		}
 
 		//Save values to metadata
 		wp.data.dispatch("core/editor").editPost({
-			meta: {
-				_zb_attr: ba,
-			},
+			meta: {_zb_attr: ba},
 		});
 
 		onChange(selectedFont);
@@ -92,10 +81,8 @@ const FontFamilyPicker = ({
 
 	return (
 		<BaseControl label={label} id={id} help={help} className={className}>
-			<h1>Font family picker</h1>
-
-			<SelectControl
-				className="zb-select-font"
+			<Select2
+				name="zb-select-font"
 				value={{
 					value: (value || "").replace(/\s+/g, "-"),
 					label: value,
@@ -103,7 +90,6 @@ const FontFamilyPicker = ({
 				onChange={onChangeValue}
 				options={fonts}
 			/>
-		
 		</BaseControl>
 	);
 };

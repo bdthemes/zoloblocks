@@ -11,11 +11,13 @@ import Inspector from './inspector';
 
 //block constants
 import {BLOCK_PREFIX,HEADING_ALIGNMENT,HEADING_WIDTH,HEADING_PADDING} from './constants';
+import {TITLE_TYPOGRAPHY} from './constants/typoPrefixConstant';
 
 //generate style
 import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
 import {generateResAlignmentStyle} from '../../../src/helpers/res-alignment-helper';
 import {generateDimensionStyle} from '../../../src/helpers/dimension-helper';
+import { generateTypographyStyles } from '../../../src/helpers/typoHelpers';
 
 const Edit=(props)=>{
 
@@ -67,14 +69,27 @@ const Edit=(props)=>{
 		styleFor: 'padding',
 		attributes,
 	});
-	
-	
+
+	//title typography
+	const {
+		typoStylesDesktop:titleTypoDesktop,
+    typoStylesTab:titleTypoTab,
+    typoStylesMobile:titleTypoMob,
+	}=generateTypographyStyles({
+		prefixConstant:TITLE_TYPOGRAPHY,
+		defaultFontSize:22,
+		attributes,
+	})
+
 	const desktopAllStyle = `
 		.zolo-${blockId}{
 			${headingWidthDesktop}
 			${headingAlignmentDesktop}
 			color:${headingColor};
 			${headingPaddingDesktop}
+		}
+		.zolo-${blockId} h3{
+			${titleTypoDesktop}
 		}
 	`;
 
@@ -84,6 +99,9 @@ const Edit=(props)=>{
 			${headingAlignmentTab}
 			${headingPaddingTab}
 		}
+		.zolo-${blockId} h3{
+			${titleTypoTab}
+		}
 	`;
 
 	const mobileAllStyle = `
@@ -91,6 +109,9 @@ const Edit=(props)=>{
 			${headingWithMob}
 			${headingAlignmentMob}
 			${headingPaddingMobile}
+		}
+		.zolo-${blockId} h3{
+			${titleTypoMob}
 		}
 	`;
 

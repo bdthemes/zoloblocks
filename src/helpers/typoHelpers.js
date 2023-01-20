@@ -92,3 +92,67 @@ export const generateTypographyAttributes = (prefixArray) => {
   }, {});
   return typoAttrs;
 };
+
+// function to generate typography styles for an element based on it's prefix
+export const generateTypographyStyles = ({
+  prefixConstant,
+  defaultFontSize,
+  attributes,
+}) => {
+  const {
+    [`${prefixConstant}ZRPFontFamily`]: fontFamily,
+    [`${prefixConstant}ZRPFontWeight`]: fontWeight,
+    [`${prefixConstant}ZRPFontStyle`]: fontStyle,
+    [`${prefixConstant}ZRPTextTransform`]: textTransform,
+    [`${prefixConstant}ZRPTextDecoration`]: textDecoration,
+    [`${prefixConstant}ZRPFontSize`]: fontSize = defaultFontSize,
+    [`${prefixConstant}ZRPSizeUnit`]: sizeUnit,
+    [`${prefixConstant}ZRPLetterSpacing`]: letterSpacing,
+    [`${prefixConstant}ZRPLetterSpacingUnit`]: letterSpacingUnit,
+    [`${prefixConstant}ZRPLineHeight`]: lineHeight,
+    [`${prefixConstant}ZRPLineHeightUnit`]: lineHeightUnit,
+
+    [`TAB${prefixConstant}ZRPSizeUnit`]: TABsizeUnit,
+    [`TAB${prefixConstant}ZRPLetterSpacingUnit`]: TABletterSpacingUnit,
+    [`TAB${prefixConstant}ZRPLineHeightUnit`]: TABlineHeightUnit,
+    [`TAB${prefixConstant}ZRPFontSize`]: TABfontSize,
+    [`TAB${prefixConstant}ZRPLetterSpacing`]: TABletterSpacing,
+    [`TAB${prefixConstant}ZRPLineHeight`]: TABlineHeight,
+
+    [`MOB${prefixConstant}ZRPSizeUnit`]: MOBsizeUnit,
+    [`MOB${prefixConstant}ZRPLetterSpacingUnit`]: MOBletterSpacingUnit,
+    [`MOB${prefixConstant}ZRPLineHeightUnit`]: MOBlineHeightUnit,
+    [`MOB${prefixConstant}ZRPFontSize`]: MOBfontSize,
+    [`MOB${prefixConstant}ZRPLetterSpacing`]: MOBletterSpacing,
+    [`MOB${prefixConstant}ZRPLineHeight`]: MOBlineHeight,
+  } = attributes;
+
+  const typoStylesDesktop = `
+		${fontFamily ? `font-family: ${fontFamily};` : " "}
+		${hasVal(fontSize) ? `font-size: ${fontSize}${sizeUnit};` : " "}
+		${hasVal(lineHeight)? `line-height: ${lineHeight}${lineHeightUnit};`: " "}
+		${fontWeight ? `font-weight: ${fontWeight};` : " "}
+		${fontStyle ? `font-style: ${fontStyle};` : " "}
+		${textDecoration ? `text-decoration: ${textDecoration};` : " "}
+		${textTransform ? `text-transform: ${textTransform};` : " "}
+		${hasVal(letterSpacing)? `letter-spacing: ${letterSpacing}${letterSpacingUnit};`: " "}
+	`;
+
+  const typoStylesTab = `
+		${ hasVal(TABfontSize)? `font-size: ${TABfontSize}${TABsizeUnit};`: " "}
+		${ hasVal(TABlineHeight)? `line-height: ${TABlineHeight}${TABlineHeightUnit};`: " " }
+		${ hasVal(TABletterSpacing)? `letter-spacing: ${TABletterSpacing}${TABletterSpacingUnit};`: " "}
+	`;
+
+  const typoStylesMobile = `
+		${hasVal(MOBfontSize)? `font-size: ${MOBfontSize}${MOBsizeUnit};` : " " }
+		${hasVal(MOBlineHeight) ? `line-height: ${MOBlineHeight}${MOBlineHeightUnit};` : " " }
+		${hasVal(MOBletterSpacing) ? `letter-spacing: ${MOBletterSpacing}${MOBletterSpacingUnit};` : " "}
+	`;
+
+  return {
+    typoStylesDesktop,
+    typoStylesTab,
+    typoStylesMobile,
+  };
+};
