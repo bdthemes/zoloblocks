@@ -1,7 +1,7 @@
 import {
 	onDesktopBtnClick,
 	onMobileBtnClick,
-	onTabletBtnClick,
+	onTabletBtnClick
 } from '../../helpers/preview-btns-helper';
 
 const WithResDeviceBtn = ({
@@ -13,32 +13,33 @@ const WithResDeviceBtn = ({
 	const { resMode, setAttributes } = resRequiredProps;
 
 	return (
-		<div className={`zb-res-device-btn-wrapper ${className ||' '}`}>
+		<div className={`zb-res-device-btn-wrapper ${className || ' '}`}>
+
+			<span className="res-btn-label">{label}</span>
+
 			<div className="zb-res-device-btns">
+
 				<span
-					className={`res-btn dashicons dashicons-desktop ${
-						resMode === 'Desktop' ? 'active' : ' '
-					}`}
+					className={`res-btn dashicons dashicons-desktop ${resMode === 'Desktop' ? 'active' : ' '
+						}`}
 					onClick={() => onDesktopBtnClick({ setAttributes })}
 				></span>
 
 				<span
-					className={`res-btn dashicons dashicons-tablet ${
-						resMode === 'Tablet' ? 'active' : ' '
-					}`}
+					className={`res-btn dashicons dashicons-tablet ${resMode === 'Tablet' ? 'active' : ' '
+						}`}
 					onClick={() => onTabletBtnClick({ setAttributes })}
 				></span>
 
 				<span
-					className={`res-btn dashicons dashicons-smartphone ${
-						resMode === 'Mobile' ? 'active' : ' '
-					}`}
+					className={`res-btn dashicons dashicons-smartphone ${resMode === 'Mobile' ? 'active' : ' '
+						}`}
 					onClick={() => onMobileBtnClick({ setAttributes })}
 				></span>
 			</div>
 
 			{children}
-			
+
 		</div>
 	);
 };

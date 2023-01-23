@@ -8,14 +8,15 @@
 		"build": "wp-scripts build",
 		"packages-update": "wp-scripts packages-update"
 	},
+	"prettier": "@wordpress/prettier-config",
 	"dependencies": {
 		"@wordpress/server-side-render": "^3.0.17",
 		"array-move": "^3.0.1",
 		"classnames": "^2.3.1",
 		"rc-switch": "^3.2.2",
+		"react-multi-select-component": "^4.3.4",
 		"react-select": "^5.2.1",
-		"striptags": "^3.2.0",
-		"react-multi-select-component": "^4.3.4"
+		"striptags": "^3.2.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.16.5",
@@ -32,6 +33,7 @@
 		"@wordpress/hooks": "^3.23.0",
 		"@wordpress/i18n": "^4.2.4",
 		"@wordpress/keycodes": "^3.2.4",
+		"@wordpress/prettier-config": "^2.8.0",
 		"@wordpress/scripts": "^19.2.2",
 		"babel-loader": "^8.2.3",
 		"html-react-parser": "^3.0.4",

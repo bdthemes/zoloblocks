@@ -1,5 +1,5 @@
-import { __ } from '@wordpress/i18n';
 import { Dashicon } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 export const UNIT_TYPES = [
 	{ label: 'px', value: 'px' },
@@ -37,3 +37,8 @@ export const SEPERATOR_STYLES = [
 	{ label: __('Outset', 'essential-blocks'), value: 'outset' },
 	{ label: __('Ridge', 'essential-blocks'), value: 'ridge' },
 ];
+
+export const BACKGROUND_TYPES = [
+	{ label: __("Classic", "zolo-blocks"), value: "classic" },
+	{ label: __("Gradient", "zolo-blocks"), value: "gradient" },
+]

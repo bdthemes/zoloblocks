@@ -1,25 +1,23 @@
 //wrodpress dependencies
-import { __ } from '@wordpress/i18n'
 import { InspectorControls } from '@wordpress/block-editor';
-import { TabPanel, PanelBody } from '@wordpress/components';
-
-//import { MultiSelect } from "react-multi-select-component";
-import Select2 from 'react-select'
+import { PanelBody, TabPanel } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import Select2 from 'react-select';
 
 //internal dependencies controls
-import ResRangeControl from '../../../src/controls/res-range-control';
-import ResAlignmentControl from '../../../src/controls/res-alignment-control';
+import BackgroundControl from '../../../src/controls/background-control';
 import ColorControl from '../../../src/controls/color-control';
-import ResDimensionsControl from '../../../src/controls/dimensions-control'
+import ResDimensionsControl from '../../../src/controls/dimensions-control';
+import ResAlignmentControl from '../../../src/controls/res-alignment-control';
+import ResRangeControl from '../../../src/controls/res-range-control';
 import TypographyDropdown from '../../../src/controls/typography-control';
 
 //block attributes
 import objAttributes from './attributes';
 
 //block constants
-import { HEADING_WIDTH, HEADING_ALIGNMENT, HEADING_PADDING } from './constants';
-
-import{ TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant'
+import { HEADING_ALIGNMENT, HEADING_BG, HEADING_PADDING, HEADING_WIDTH } from './constants';
+import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Inspector = ({ attributes, setAttributes }) => {
 
@@ -72,18 +70,13 @@ const Inspector = ({ attributes, setAttributes }) => {
 										initialOpen={true}
 									>
 
-										{/* <MultiSelect
-											options={options}
-											labelledBy="Select"
-										/> */}
-
 										<Select2
 											options={options}
 											name='zolo-select'
 											value={{ label: "Grapes 🍇", value: "grapes" }}
-											// onChange={(selected) => setAttributes({ headerMeta: JSON.stringify(selected) })}
-											// options={metaOptions}
-											// isMulti='true'
+										// onChange={(selected) => setAttributes({ headerMeta: JSON.stringify(selected) })}
+										// options={metaOptions}
+										// isMulti='true'
 										/>
 
 										<ResRangeControl
@@ -152,6 +145,11 @@ const Inspector = ({ attributes, setAttributes }) => {
 											defaultFontSize={22}
 										/>
 
+										<BackgroundControl
+											controlName={HEADING_BG}
+											resRequiredProps={resRequiredProps}
+										/>
+
 									</PanelBody>
 								</>
 							)}
@@ -162,8 +160,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 										title={__('Style', 'zolo-blocks')}
 										initialOpen={true}
 									>
-
-
 									</PanelBody>
 								</>
 							)}
@@ -173,8 +169,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 										title={__('Advanced', 'zolo-blocks')}
 										initialOpen={true}
 									>
-
-
 									</PanelBody>
 								</>
 							)}
