@@ -1,28 +1,54 @@
+import { ToggleControl } from "@wordpress/components";
+import { __ } from "@wordpress/i18n";
+
 import BGControl from "./bg-control";
 import OverlayControl from "./overlay-control";
 
 const BackgroundControl = ({
+	resRequiredProps,
 	controlName,
-	resRequiredProps
+	noOverlay = false,
+	noMainBGImg = false,
+	noOverlayBGImg = false,
+	noTransition = false,
 }) => {
 
+	const { setAttributes, attributes } = resRequiredProps;
+
+	const { [`${controlName}isBgOverlay`]: isBgOverlay } = attributes;
 
 	return (
 		<>
 			<BGControl
 				controlName={controlName}
 				resRequiredProps={resRequiredProps}
-				noMainBGImg={false}
+				noMainBGImg={noMainBGImg}
+				noTransition={noTransition}
 			/>
 
-			<h1>Background control</h1>
+			{noOverlay === false && (<>
+				<ToggleControl
+					label={__("Enable Overlay", "essential-blocks")}
+					checked={isBgOverlay}
+					onChange={() =>
+						setAttributes({
+							[`${controlName}isBgOverlay`]: !isBgOverlay,
+						})
+					}
+				/>
 
-			<OverlayControl
-				controlName={controlName}
-				resRequiredProps={resRequiredProps}
-			/>
+				{isBgOverlay && (
+					<OverlayControl
+						controlName={controlName}
+						resRequiredProps={resRequiredProps}
+						noOverlayBGImg={noOverlayBGImg}
+						noTransition={noTransition}
+					/>
+				)}
+			</>
+			)}
+
 		</>
-
 	)
 }
 

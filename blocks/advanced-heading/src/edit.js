@@ -6,23 +6,24 @@ import { useEffect } from '@wordpress/element';
 import classnames from 'classnames';
 
 //internal dependencies
-import { handleUniqueId,softMinifyCssStrings } from '../../../src/helpers/helper'
+import { handleUniqueId, softMinifyCssStrings } from '../../../src/helpers/helper';
 import Inspector from './inspector';
 
 //block constants
-import {BLOCK_PREFIX,HEADING_ALIGNMENT,HEADING_WIDTH,HEADING_PADDING} from './constants';
-import {TITLE_TYPOGRAPHY} from './constants/typoPrefixConstant';
+import { BLOCK_PREFIX, HEADING_ALIGNMENT, HEADING_BG, HEADING_PADDING, HEADING_WIDTH } from './constants';
+import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 //generate style
+import { generateBackgroundControlStyles } from '../../../src/helpers/backgroundHelpers';
+import { generateDimensionStyle } from '../../../src/helpers/dimension-helper';
+import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
-import {generateResAlignmentStyle} from '../../../src/helpers/res-alignment-helper';
-import {generateDimensionStyle} from '../../../src/helpers/dimension-helper';
 import { generateTypographyStyles } from '../../../src/helpers/typoHelpers';
 
-const Edit=(props)=>{
+const Edit = (props) => {
 
 	const { attributes, setAttributes, className, clientId, isSelected } = props;
-	const { blockId,headingColor } = attributes;
+	const { blockId, headingColor } = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -72,14 +73,33 @@ const Edit=(props)=>{
 
 	//title typography
 	const {
-		typoStylesDesktop:titleTypoDesktop,
-    typoStylesTab:titleTypoTab,
-    typoStylesMobile:titleTypoMob,
-	}=generateTypographyStyles({
-		prefixConstant:TITLE_TYPOGRAPHY,
-		defaultFontSize:22,
+		typoStylesDesktop: titleTypoDesktop,
+		typoStylesTab: titleTypoTab,
+		typoStylesMobile: titleTypoMob,
+	} = generateTypographyStyles({
+		prefixConstant: TITLE_TYPOGRAPHY,
+		defaultFontSize: 22,
 		attributes,
 	})
+
+	//Generate Background
+	const {
+		backgroundStylesDesktop: headingBackgroundStylesDesktop,
+		hoverBackgroundStylesDesktop: headingHoverBackgroundStylesDesktop,
+		backgroundStylesTab: headingBackgroundStylesTab,
+		hoverBackgroundStylesTab: headingHoverBackgroundStylesTab,
+		backgroundStylesMobile: headingBackgroundStylesMobile,
+		hoverBackgroundStylesMobile: headingHoverBackgroundStylesMobile,
+		overlayStylesDesktop: headingOverlayStylesDesktop,
+		hoverOverlayStylesDesktop: headingHoverOverlayStylesDesktop,
+		overlayStylesTab: headingOverlayStylesTab,
+		hoverOverlayStylesTab: headingHoverOverlayStylesTab,
+		overlayStylesMobile: headingOverlayStylesMobile,
+		hoverOverlayStylesMobile: headingHoverOverlayStylesMobile,
+	} = generateBackgroundControlStyles({
+		attributes,
+		controlName: HEADING_BG,
+	});
 
 	const desktopAllStyle = `
 		.zolo-${blockId}{
@@ -87,6 +107,16 @@ const Edit=(props)=>{
 			${headingAlignmentDesktop}
 			color:${headingColor};
 			${headingPaddingDesktop}
+			${headingBackgroundStylesDesktop}
+		}
+		.zolo-${blockId}:hover{
+			${headingHoverBackgroundStylesDesktop}
+		}
+		.zolo-${blockId}::before{
+			${headingOverlayStylesDesktop}
+		}
+		.zolo-${blockId}::before:hover{
+			${headingHoverOverlayStylesDesktop}
 		}
 		.zolo-${blockId} h3{
 			${titleTypoDesktop}
@@ -98,6 +128,16 @@ const Edit=(props)=>{
 			${headingWidthTab}
 			${headingAlignmentTab}
 			${headingPaddingTab}
+			${headingBackgroundStylesTab}
+		}
+		.zolo-${blockId}:hover{
+			${headingHoverBackgroundStylesTab}
+		}
+		.zolo-${blockId}::before{
+			${headingOverlayStylesTab}
+		}
+		.zolo-${blockId}::before:hover{
+			${headingHoverOverlayStylesTab}
 		}
 		.zolo-${blockId} h3{
 			${titleTypoTab}
@@ -109,13 +149,23 @@ const Edit=(props)=>{
 			${headingWithMob}
 			${headingAlignmentMob}
 			${headingPaddingMobile}
+			${headingBackgroundStylesMobile}
+		}
+		.zolo-${blockId}:hover{
+			${headingHoverBackgroundStylesMobile}
+		}
+		.zolo-${blockId}::before{
+			${headingOverlayStylesMobile}
+		}
+		.zolo-${blockId}::before:hover{
+			${headingHoverOverlayStylesMobile}
 		}
 		.zolo-${blockId} h3{
 			${titleTypoMob}
 		}
 	`;
 
-	return(
+	return (
 		<>
 			{isSelected && (
 				<Inspector

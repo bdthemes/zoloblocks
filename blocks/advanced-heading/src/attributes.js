@@ -1,17 +1,17 @@
 //internal dependencies controls
+import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHelpers';
+import { generateDimensionAttributes } from '../../../src/helpers/dimension-helper';
+import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
-import {generateResAlignmentAttributies} from '../../../src/helpers/res-alignment-helper';
-import {generateDimensionAttributes} from '../../../src/helpers/dimension-helper';
 import { generateTypographyAttributes } from '../../../src/helpers/typoHelpers';
 //block constants
 import {
-	HEADING_WIDTH,
-	HEADING_ALIGNMENT,
-	HEADING_PADDING
+	HEADING_ALIGNMENT, HEADING_BG, HEADING_PADDING,
+	HEADING_WIDTH
 } from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
-const attributes ={
+const attributes = {
 
 	//range attributes
 	...generateResRangeAttributies(HEADING_WIDTH, {
@@ -23,7 +23,7 @@ const attributes ={
 	...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
 		defaultAlign: 'left',
 	}),
-	
+
 	headingColor: {
 		type: 'string',
 		default: 'red',
@@ -37,9 +37,13 @@ const attributes ={
 		isLinked: true,
 	}),
 
-	// typography attributes ⬇
+	//typography attributes 
 	...generateTypographyAttributes(Object.values(typographyObjs)),
 
-}
+	//generate backgroud attribute
+	...generateBackgroundAttributes(HEADING_BG, {
+		defaultBgGradient: "linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)",
+	}),
 
+}
 export default attributes;

@@ -1,5 +1,4 @@
 //wordpress dependencies
-import { __ } from '@wordpress/i18n';
 import {
 	BaseControl,
 	Button,
@@ -7,22 +6,18 @@ import {
 	RangeControl,
 	SelectControl
 } from '@wordpress/components';
-import {useState,useEffect} from '@wordpress/element'
+import { useEffect, useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 
 //internal dependencies control
-import WithResDeviceBtn from '../with-res-device-btn';
-import UnitBtn from '../unit-btn';
 import ResetControl from '../reset-control';
+import UnitBtn from '../unit-btn';
+import WithResDeviceBtn from '../with-res-device-btn';
 import FontPicker from "./fontPicker";
 
 //block constant
 import {
-	sizeUnitTypes,
-	fontWeightOptions,
-	textTransformOptions,
-	textDecorationOptions,
-	fontStyleOptions,
-	LHLS_UNITS
+	fontStyleOptions, fontWeightOptions, LHLS_UNITS, sizeUnitTypes, textDecorationOptions, textTransformOptions
 } from './constant';
 
 //googlefonts
@@ -42,7 +37,7 @@ const TypographyDropdown = ({
 		[`${typoPrefixConstant}ZRPFontStyle`]: fontStyle,
 		[`${typoPrefixConstant}ZRPTextTransform`]: textTransform,
 		[`${typoPrefixConstant}ZRPTextDecoration`]: textDecoration,
-		[`${typoPrefixConstant}ZRPFontSize`]: fontSize = defaultFontSize ||	undefined,
+		[`${typoPrefixConstant}ZRPFontSize`]: fontSize = defaultFontSize || undefined,
 		[`${typoPrefixConstant}ZRPSizeUnit`]: sizeUnit,
 		[`${typoPrefixConstant}ZRPLetterSpacing`]: letterSpacing,
 		[`${typoPrefixConstant}ZRPLetterSpacingUnit`]: letterSpacingUnit,
@@ -50,14 +45,14 @@ const TypographyDropdown = ({
 		[`${typoPrefixConstant}ZRPLineHeightUnit`]: lineHeightUnit,
 
 		[`TAB${typoPrefixConstant}ZRPSizeUnit`]: TABsizeUnit,
-		[`TAB${typoPrefixConstant}ZRPLetterSpacingUnit`]:TABletterSpacingUnit,
+		[`TAB${typoPrefixConstant}ZRPLetterSpacingUnit`]: TABletterSpacingUnit,
 		[`TAB${typoPrefixConstant}ZRPLineHeightUnit`]: TABlineHeightUnit,
 		[`TAB${typoPrefixConstant}ZRPFontSize`]: TABfontSize,
 		[`TAB${typoPrefixConstant}ZRPLetterSpacing`]: TABletterSpacing,
 		[`TAB${typoPrefixConstant}ZRPLineHeight`]: TABlineHeight,
 
 		[`MOB${typoPrefixConstant}ZRPSizeUnit`]: MOBsizeUnit,
-		[`MOB${typoPrefixConstant}ZRPLetterSpacingUnit`]:MOBletterSpacingUnit,
+		[`MOB${typoPrefixConstant}ZRPLetterSpacingUnit`]: MOBletterSpacingUnit,
 		[`MOB${typoPrefixConstant}ZRPLineHeightUnit`]: MOBlineHeightUnit,
 		[`MOB${typoPrefixConstant}ZRPFontSize`]: MOBfontSize,
 		[`MOB${typoPrefixConstant}ZRPLetterSpacing`]: MOBletterSpacing,
@@ -84,7 +79,7 @@ const TypographyDropdown = ({
 	}, [fontFamily]);
 
 	return (
-		<BaseControl label={__(label)} className="zb-typography-base">
+		<BaseControl label={__(label)} className="zb-typography-control-wrapper">
 			<Dropdown
 				className="zb-typography-dropdown"
 				contentClassName="my-popover-content-classname"
@@ -102,11 +97,11 @@ const TypographyDropdown = ({
 							label={__("Font Family", "essential-blocks")}
 							value={fontFamily}
 							onChange={(FontFamily) => {
-								setAttributes({[`${typoPrefixConstant}ZRPFontFamily`]:FontFamily});
+								setAttributes({ [`${typoPrefixConstant}ZRPFontFamily`]: FontFamily });
 							}}
 						/>
 
-						<WithResDeviceBtn 
+						<WithResDeviceBtn
 							className="zb-font-size"
 							resRequiredProps={resRequiredProps}>
 
@@ -117,7 +112,7 @@ const TypographyDropdown = ({
 										unitTypes={sizeUnitTypes}
 										onClick={(sizeUnit) =>
 											setAttributes({
-												[`${typoPrefixConstant}ZRPSizeUnit`]:sizeUnit,
+												[`${typoPrefixConstant}ZRPSizeUnit`]: sizeUnit,
 											})
 										}
 									/>
@@ -127,13 +122,13 @@ const TypographyDropdown = ({
 												[`${typoPrefixConstant}ZRPFontSize`]: defaultFontSize ||
 													(
 														objAttributes[
-															`${typoPrefixConstant}ZRPFontSize`
+														`${typoPrefixConstant}ZRPFontSize`
 														] || {}
 													).default,
 											})
 										}>
 										<RangeControl
-											label={__("Font Size","zolo-blocks")}
+											label={__("Font Size", "zolo-blocks")}
 											value={fontSize}
 											onChange={(FontSize) =>
 												setAttributes({
@@ -168,13 +163,13 @@ const TypographyDropdown = ({
 												[`TAB${typoPrefixConstant}ZRPFontSize`]:
 													(
 														objAttributes[
-															`TAB${typoPrefixConstant}ZRPFontSize`
+														`TAB${typoPrefixConstant}ZRPFontSize`
 														] || {}
 													).default,
 											})
 										}>
 										<RangeControl
-											label={__("Font Size","zolo-blocks"	)}
+											label={__("Font Size", "zolo-blocks")}
 											value={TABfontSize}
 											onChange={(FontSize) =>
 												setAttributes({
@@ -210,13 +205,13 @@ const TypographyDropdown = ({
 												[`MOB${typoPrefixConstant}ZRPFontSize`]:
 													(
 														objAttributes[
-															`MOB${typoPrefixConstant}ZRPFontSize`
+														`MOB${typoPrefixConstant}ZRPFontSize`
 														] || {}
 													).default,
 											})
 										}>
 										<RangeControl
-											label={__("Font Size","zolo-blocks")}
+											label={__("Font Size", "zolo-blocks")}
 											value={MOBfontSize}
 											onChange={(FontSize) =>
 												setAttributes({
@@ -304,13 +299,13 @@ const TypographyDropdown = ({
 												[`${typoPrefixConstant}ZRPLetterSpacing`]:
 													(
 														objAttributes[
-															`${typoPrefixConstant}ZRPLetterSpacing`
+														`${typoPrefixConstant}ZRPLetterSpacing`
 														] || {}
 													).default,
 											})
 										}>
 										<RangeControl
-											label={__("Letter Spacing","zolo-blocks"	)}
+											label={__("Letter Spacing", "zolo-blocks")}
 											value={letterSpacing}
 											onChange={(LetterSpacing) =>
 												setAttributes({
@@ -320,8 +315,8 @@ const TypographyDropdown = ({
 											}
 											min={0}
 											max={
-												letterSpacingUnit === "em"? 10: 100}
-											step={letterSpacingUnit === "em"? 0.1: 1}
+												letterSpacingUnit === "em" ? 10 : 100}
+											step={letterSpacingUnit === "em" ? 0.1 : 1}
 										/>
 									</ResetControl>
 								</>
@@ -346,13 +341,13 @@ const TypographyDropdown = ({
 												[`TAB${typoPrefixConstant}ZRPLetterSpacing`]:
 													(
 														objAttributes[
-															`TAB${typoPrefixConstant}ZRPLetterSpacing`
+														`TAB${typoPrefixConstant}ZRPLetterSpacing`
 														] || {}
 													).default,
 											})
 										}>
 										<RangeControl
-											label={__("Letter Spacing","zolo-blocks")}
+											label={__("Letter Spacing", "zolo-blocks")}
 											value={TABletterSpacing}
 											onChange={(LetterSpacing) =>
 												setAttributes({
@@ -366,7 +361,7 @@ const TypographyDropdown = ({
 													? 10
 													: 100
 											}
-											step={TABletterSpacingUnit === "em"? 0.1: 1}
+											step={TABletterSpacingUnit === "em" ? 0.1 : 1}
 										/>
 									</ResetControl>
 								</>
@@ -391,13 +386,13 @@ const TypographyDropdown = ({
 												[`MOB${typoPrefixConstant}ZRPLetterSpacing`]:
 													(
 														objAttributes[
-															`MOB${typoPrefixConstant}ZRPLetterSpacing`
+														`MOB${typoPrefixConstant}ZRPLetterSpacing`
 														] || {}
 													).default,
 											})
 										}>
 										<RangeControl
-											label={__("Letter Spacing","zolo-blocks")}
+											label={__("Letter Spacing", "zolo-blocks")}
 											value={MOBletterSpacing}
 											onChange={(LetterSpacing) =>
 												setAttributes({
@@ -406,8 +401,8 @@ const TypographyDropdown = ({
 												})
 											}
 											min={0}
-											max={	MOBletterSpacingUnit === "em"	? 10: 100}
-											step={MOBletterSpacingUnit === "em"	? 0.1: 1}
+											max={MOBletterSpacingUnit === "em" ? 10 : 100}
+											step={MOBletterSpacingUnit === "em" ? 0.1 : 1}
 										/>
 									</ResetControl>
 								</>
@@ -436,13 +431,13 @@ const TypographyDropdown = ({
 												[`${typoPrefixConstant}ZRPLineHeight`]:
 													(
 														objAttributes[
-															`${typoPrefixConstant}ZRPLineHeight`
+														`${typoPrefixConstant}ZRPLineHeight`
 														] || {}
 													).default,
 											})
 										}>
 										<RangeControl
-											label={__("Line Height","zolo-blocks")}
+											label={__("Line Height", "zolo-blocks")}
 											value={lineHeight}
 											onChange={(LineHeight) =>
 												setAttributes({
@@ -451,8 +446,8 @@ const TypographyDropdown = ({
 												})
 											}
 											min={0}
-											max={	lineHeightUnit === "em"? 10: 600}
-											step={lineHeightUnit === "em"? 0.1: 1}
+											max={lineHeightUnit === "em" ? 10 : 600}
+											step={lineHeightUnit === "em" ? 0.1 : 1}
 										/>
 									</ResetControl>
 								</>
@@ -477,13 +472,13 @@ const TypographyDropdown = ({
 												[`TAB${typoPrefixConstant}ZRPLineHeight`]:
 													(
 														objAttributes[
-															`TAB${typoPrefixConstant}ZRPLineHeight`
+														`TAB${typoPrefixConstant}ZRPLineHeight`
 														] || {}
 													).default,
 											})
 										}>
 										<RangeControl
-											label={__("Line Height","zolo-blocks")}
+											label={__("Line Height", "zolo-blocks")}
 											value={TABlineHeight}
 											onChange={(LineHeight) =>
 												setAttributes({
@@ -492,8 +487,8 @@ const TypographyDropdown = ({
 												})
 											}
 											min={0}
-											max={TABlineHeightUnit === "em"? 10: 600}
-											step={TABlineHeightUnit === "em"? 0.1: 1}
+											max={TABlineHeightUnit === "em" ? 10 : 600}
+											step={TABlineHeightUnit === "em" ? 0.1 : 1}
 										/>
 									</ResetControl>
 								</>
@@ -518,13 +513,13 @@ const TypographyDropdown = ({
 												[`MOB${typoPrefixConstant}ZRPLineHeight`]:
 													(
 														objAttributes[
-															`MOB${typoPrefixConstant}ZRPLineHeight`
+														`MOB${typoPrefixConstant}ZRPLineHeight`
 														] || {}
 													).default,
 											})
 										}>
 										<RangeControl
-											label={__("Line Height","zolo-blocks"	)}
+											label={__("Line Height", "zolo-blocks")}
 											value={MOBlineHeight}
 											onChange={(LineHeight) =>
 												setAttributes({
@@ -533,8 +528,8 @@ const TypographyDropdown = ({
 												})
 											}
 											min={0}
-											max={MOBlineHeightUnit === "em"? 10: 600}
-											step={MOBlineHeightUnit === "em"	? 0.1	: 1}
+											max={MOBlineHeightUnit === "em" ? 10 : 600}
+											step={MOBlineHeightUnit === "em" ? 0.1 : 1}
 										/>
 									</ResetControl>
 								</>
