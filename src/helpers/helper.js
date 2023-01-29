@@ -1,12 +1,12 @@
 import { select } from '@wordpress/data';
 
 /**
- * this function is for creating a unique blockId for each block's unique className
- * @param {BLOCK_PREFIX: type "string", blockId: "current blockId", setAttributes: type function, clientId}
+ * this function is for creating a unique uniqueId for each block's unique className
+ * @param {BLOCK_PREFIX: type "string", uniqueId: "current uniqueId", setAttributes: type function, clientId}
  */
 export const handleUniqueId = ({
 	BLOCK_PREFIX,
-	blockId,
+	uniqueId,
 	setAttributes,
 	clientId,
 }) => {
@@ -16,12 +16,12 @@ export const handleUniqueId = ({
 	/**
 	 * Define and Generate Unique Block ID
 	 */
-	if (!blockId) {
-		setAttributes({ blockId: unique_id });
+	if (!uniqueId) {
+		setAttributes({ uniqueId: unique_id });
 	}
 
 	/**
-	 * Assign New Unique ID when duplicate blockId found
+	 * Assign New Unique ID when duplicate uniqueId found
 	 * Mostly happens when User Duplicate a Block
 	 */
 
@@ -32,9 +32,9 @@ export const handleUniqueId = ({
 		if (duplicateFound) return;
 		for (const item of blocks) {
 			const { innerBlocks } = item;
-			if (item.attributes.blockId === blockId) {
+			if (item.attributes.uniqueId === uniqueId) {
 				if (item.clientId !== clientId) {
-					setAttributes({ blockId: unique_id });
+					setAttributes({ uniqueId: unique_id });
 					duplicateFound = true;
 					return;
 				} else if (innerBlocks.length > 0) {

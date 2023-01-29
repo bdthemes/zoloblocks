@@ -10,6 +10,9 @@ const attributes = {
     type: "string",
     default: "Desktop",
   },
+  blockStyle: {
+    type: "object"
+  },
 
   //range attributes
   ...generateResRangeAttributies(BUTTON_WIDTH, {
@@ -33,9 +36,6 @@ const attributes = {
     type: "string",
     default: "#ffffff",
   },
-  blockStyle: {
-    type: "object"
-  }
 };
 
 export default attributes;

@@ -24,13 +24,18 @@ import { generateTypographyStyles } from '../../../src/helpers/typoHelpers';
 const Edit = (props) => {
 
 	const { attributes, setAttributes, className, clientId, isSelected } = props;
-	const { blockId, headingColor } = attributes;
+	const {
+		uniqueId,
+		resDevice,
+		blockStyle,
+		headingColor
+	} = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
 		handleUniqueId({
 			BLOCK_PREFIX,
-			blockId,
+			uniqueId,
 			setAttributes,
 			clientId,
 		});
@@ -38,7 +43,7 @@ const Edit = (props) => {
 
 	//block wrapper class
 	const blockProps = useBlockProps({
-		className: classnames(className, `zolo-block-wrapper zolo-${blockId}`),
+		className: classnames(className, ``),
 	});
 
 	//css generate
@@ -113,7 +118,7 @@ const Edit = (props) => {
 
 
 	const desktopAllStyle = `
-		.zolo-${blockId}{
+		.${uniqueId}{
 			${headingWidthDesktop}
 			${headingAlignmentDesktop}
 			color:${headingColor};
@@ -121,63 +126,75 @@ const Edit = (props) => {
 			${headingBackgroundStylesDesktop}
 			${headingBorderDesktop}
 		}
-		.zolo-${blockId}:hover{
+		.${uniqueId}:hover{
 			${headingHoverBackgroundStylesDesktop}
 		}
-		.zolo-${blockId}::before{
+		.${uniqueId}::before{
 			${headingOverlayStylesDesktop}
 		}
-		.zolo-${blockId}::before:hover{
+		.${uniqueId}::before:hover{
 			${headingHoverOverlayStylesDesktop}
 		}
-		.zolo-${blockId} h3{
+		.${uniqueId} h3{
 			${titleTypoDesktop}
 		}
 	`;
 
 	const tabletAllStyle = `
-		.zolo-${blockId}{
+		.${uniqueId}{
 			${headingWidthTab}
 			${headingAlignmentTab}
 			${headingPaddingTab}
 			${headingBackgroundStylesTab}
 			${headingBorderTab}
 		}
-		.zolo-${blockId}:hover{
+		.${uniqueId}:hover{
 			${headingHoverBackgroundStylesTab}
 		}
-		.zolo-${blockId}::before{
+		.${uniqueId}::before{
 			${headingOverlayStylesTab}
 		}
-		.zolo-${blockId}::before:hover{
+		.${uniqueId}::before:hover{
 			${headingHoverOverlayStylesTab}
 		}
-		.zolo-${blockId} h3{
+		.${uniqueId} h3{
 			${titleTypoTab}
 		}
 	`;
 
 	const mobileAllStyle = `
-		.zolo-${blockId}{
+		.${uniqueId}{
 			${headingWithMob}
 			${headingAlignmentMob}
 			${headingPaddingMobile}
 			${headingBackgroundStylesMobile}
 			${headingBorderMob}
 		}
-		.zolo-${blockId}:hover{
+		.${uniqueId}:hover{
 			${headingHoverBackgroundStylesMobile}
 		}
-		.zolo-${blockId}::before{
+		.${uniqueId}::before{
 			${headingOverlayStylesMobile}
 		}
-		.zolo-${blockId}::before:hover{
+		.${uniqueId}::before:hover{
 			${headingHoverOverlayStylesMobile}
 		}
-		.zolo-${blockId} h3{
+		.${uniqueId} h3{
 			${titleTypoMob}
 		}
 	`;
+
+	// Set All Style in "blockStyle" Attribute
+	useEffect(() => {
+		const styles = {
+			desktop: desktopAllStyle,
+			tablet: tabletAllStyle,
+			mobile: mobileAllStyle,
+		};
+		if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
+			setAttributes({ blockStyle: styles });
+		}
+	}, [attributes]);
 
 	return (
 		<>
@@ -208,8 +225,9 @@ const Edit = (props) => {
 						}			
 					`}
 				</style>
-
-				<h3>Advance Heading From Edit</h3>
+				<div className={`zolo-block-wrapper zolo-advanced-heading ${uniqueId}`}>
+					<h3>Advance Heading From Edit</h3>
+				</div>
 			</div>
 		</>
 	)

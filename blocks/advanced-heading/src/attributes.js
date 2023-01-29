@@ -14,7 +14,18 @@ import {
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes = {
-
+	//Common Attributes
+	uniqueId: {
+		type: "string",
+	},
+	resDevice: {
+		type: "string",
+		default: "Desktop",
+	},
+	blockStyle: {
+		type: "object"
+	},
+	
 	//range attributes
 	...generateResRangeAttributies(HEADING_WIDTH, {
 		defaultRange: 100,
