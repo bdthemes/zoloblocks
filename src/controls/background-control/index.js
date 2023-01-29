@@ -28,7 +28,7 @@ const BackgroundControl = ({
 
 			{noOverlay === false && (<>
 				<ToggleControl
-					label={__("Enable Overlay", "essential-blocks")}
+					label={__("Enable Overlay", "zolo-blocks")}
 					checked={isBgOverlay}
 					onChange={() =>
 						setAttributes({

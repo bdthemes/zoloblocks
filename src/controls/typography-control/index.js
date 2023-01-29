@@ -94,7 +94,7 @@ const TypographyDropdown = ({
 
 						<FontPicker
 							className="zb-fontpicker-fontfamily"
-							label={__("Font Family", "essential-blocks")}
+							label={__("Font Family", "zolo-blocks")}
 							value={fontFamily}
 							onChange={(FontFamily) => {
 								setAttributes({ [`${typoPrefixConstant}ZRPFontFamily`]: FontFamily });
