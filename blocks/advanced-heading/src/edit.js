@@ -10,11 +10,12 @@ import { handleUniqueId, softMinifyCssStrings } from '../../../src/helpers/helpe
 import Inspector from './inspector';
 
 //block constants
-import { BLOCK_PREFIX, HEADING_ALIGNMENT, HEADING_BG, HEADING_PADDING, HEADING_WIDTH } from './constants';
+import { BLOCK_PREFIX, HEADING_ALIGNMENT, HEADING_BG, HEADING_BORDER, HEADING_PADDING, HEADING_WIDTH } from './constants';
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 //generate style
 import { generateBackgroundControlStyles } from '../../../src/helpers/backgroundHelpers';
+import { generateBorderStyle } from '../../../src/helpers/border-helper';
 import { generateDimensionStyle } from '../../../src/helpers/dimension-helper';
 import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
@@ -101,6 +102,16 @@ const Edit = (props) => {
 		controlName: HEADING_BG,
 	});
 
+	const {
+		desktopBorderStyle: headingBorderDesktop,
+		tabBorderStyle: headingBorderTab,
+		mobBorderStyle: headingBorderMob
+	} = generateBorderStyle({
+		attributes,
+		controlName: HEADING_BORDER,
+	});
+
+
 	const desktopAllStyle = `
 		.zolo-${blockId}{
 			${headingWidthDesktop}
@@ -108,6 +119,7 @@ const Edit = (props) => {
 			color:${headingColor};
 			${headingPaddingDesktop}
 			${headingBackgroundStylesDesktop}
+			${headingBorderDesktop}
 		}
 		.zolo-${blockId}:hover{
 			${headingHoverBackgroundStylesDesktop}
@@ -129,6 +141,7 @@ const Edit = (props) => {
 			${headingAlignmentTab}
 			${headingPaddingTab}
 			${headingBackgroundStylesTab}
+			${headingBorderTab}
 		}
 		.zolo-${blockId}:hover{
 			${headingHoverBackgroundStylesTab}
@@ -150,6 +163,7 @@ const Edit = (props) => {
 			${headingAlignmentMob}
 			${headingPaddingMobile}
 			${headingBackgroundStylesMobile}
+			${headingBorderMob}
 		}
 		.zolo-${blockId}:hover{
 			${headingHoverBackgroundStylesMobile}

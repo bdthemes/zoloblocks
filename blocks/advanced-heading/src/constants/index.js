@@ -20,3 +20,5 @@ export const HEADING_PADDING = 'headingPadding';
 export const HEADING_BRADIUS = 'headingBRadius';
 
 export const HEADING_BG = 'headingBg';
+
+export const HEADING_BORDER = 'headingBd'

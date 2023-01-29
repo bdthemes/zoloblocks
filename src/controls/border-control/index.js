@@ -1,19 +1,36 @@
 import {
 	__experimentalBorderBoxControl as BorderBoxControl
 } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
+import WithResDeviceBtn from '../with-res-device-btn';
 
-const BorderControl = () => {
+const BorderControl = ({
+	label,
+	controlName,
+	resRequiredProps
+}) => {
+
+	const { attributes, setAttributes, resMode } = resRequiredProps;
+	const borderAttr = `${resMode === 'Desktop' ? '' : resMode.slice(0, 3).toUpperCase()}${controlName}Border`;
+	const borderVal = attributes[borderAttr];
+
+	const setSettings = (val) => {
+		setAttributes({ [borderAttr]: val });
+	};
 
 	return (
+		<div className="border-control-wrapper">
 
-		<BorderBoxControl
-			label={__('Border Color', 'zolo-blocks')}
-			value={borderObj}
-			onChange={(newBorder) => {
-				setAttributes({ borderObj: newBorder })
-			}}
-		/>
+			<WithResDeviceBtn
+				resRequiredProps={resRequiredProps}
+				label={label}>
+
+				<BorderBoxControl
+					value={borderVal}
+					onChange={(newBorder) => { setSettings(newBorder) }}
+				/>
+
+			</WithResDeviceBtn>
+		</div>
 	)
 
 }
