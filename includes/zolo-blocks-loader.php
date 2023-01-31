@@ -217,7 +217,6 @@ if (!class_exists('Zolo_Blocks_Loader')) {
 			if (str_contains($block['blockName'], 'zolo/')) {
 				if (isset($block['attrs']['blockStyle'])) {
 					$style = Zolo_Helpers::zolo_generate_style($block['attrs']['blockStyle']);
-					// var_dump($style);
 					$block_content = sprintf(
 						'<style>%1$s</style>%2$s',
 						$style,
