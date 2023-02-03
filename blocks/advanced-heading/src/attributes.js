@@ -1,15 +1,14 @@
 //internal dependencies controls
 import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHelpers';
 import { generateBorderAttributies } from '../../../src/helpers/border-helper';
+import { generateBoxShadowAttributies } from '../../../src/helpers/boxshadow-helper';
 import { generateDimensionAttributes } from '../../../src/helpers/dimension-helper';
 import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
 import { generateTypographyAttributes } from '../../../src/helpers/typoHelpers';
-
 //block constants
 import {
-	HEADING_ALIGNMENT, HEADING_BG, HEADING_BORDER, HEADING_PADDING,
-	HEADING_WIDTH
+	HEADING_ALIGNMENT, HEADING_BG, HEADING_BORDER, HEADING_PADDING, HEADING_SHADOW, HEADING_WIDTH
 } from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
@@ -25,7 +24,7 @@ const attributes = {
 	blockStyle: {
 		type: "object"
 	},
-	
+
 	//range attributes
 	...generateResRangeAttributies(HEADING_WIDTH, {
 		defaultRange: 100,
@@ -65,6 +64,8 @@ const attributes = {
 			color: '#ddd'
 		}
 	}),
+
+	...generateBoxShadowAttributies(HEADING_SHADOW)
 
 }
 export default attributes;

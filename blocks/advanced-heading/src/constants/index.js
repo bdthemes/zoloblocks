@@ -21,4 +21,6 @@ export const HEADING_BRADIUS = 'headingBRadius';
 
 export const HEADING_BG = 'headingBg';
 
-export const HEADING_BORDER = 'headingBd'
+export const HEADING_BORDER = 'headingBd';
+
+export const HEADING_SHADOW = 'headingShadow'

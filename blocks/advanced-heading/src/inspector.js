@@ -7,6 +7,7 @@ import Select2 from 'react-select';
 //internal dependencies controls
 import BackgroundControl from '../../../src/controls/background-control';
 import BorderControl from '../../../src/controls/border-control';
+import BoxShadowControl from '../../../src/controls/boxshadow-control';
 import ColorControl from '../../../src/controls/color-control';
 import ResDimensionsControl from '../../../src/controls/dimensions-control';
 import ResAlignmentControl from '../../../src/controls/res-alignment-control';
@@ -17,7 +18,10 @@ import TypographyDropdown from '../../../src/controls/typography-control';
 import objAttributes from './attributes';
 
 //block constants
-import { HEADING_ALIGNMENT, HEADING_BG, HEADING_BORDER, HEADING_PADDING, HEADING_WIDTH } from './constants';
+import {
+	HEADING_ALIGNMENT, HEADING_BG, HEADING_BORDER,
+	HEADING_PADDING, HEADING_SHADOW, HEADING_WIDTH
+} from './constants';
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Inspector = ({ attributes, setAttributes }) => {
@@ -155,6 +159,13 @@ const Inspector = ({ attributes, setAttributes }) => {
 											label={"Heading Border"}
 											controlName={HEADING_BORDER}
 											resRequiredProps={resRequiredProps}
+										/>
+
+										<BoxShadowControl
+											controlName={HEADING_SHADOW}
+											resRequiredProps={resRequiredProps}
+										// noShadow
+										// noBorder
 										/>
 
 									</PanelBody>

@@ -10,12 +10,13 @@ import { handleUniqueId, softMinifyCssStrings } from '../../../src/helpers/helpe
 import Inspector from './inspector';
 
 //block constants
-import { BLOCK_PREFIX, HEADING_ALIGNMENT, HEADING_BG, HEADING_BORDER, HEADING_PADDING, HEADING_WIDTH } from './constants';
+import { BLOCK_PREFIX, HEADING_ALIGNMENT, HEADING_BG, HEADING_BORDER, HEADING_PADDING, HEADING_SHADOW, HEADING_WIDTH } from './constants';
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 //generate style
 import { generateBackgroundControlStyles } from '../../../src/helpers/backgroundHelpers';
 import { generateBorderStyle } from '../../../src/helpers/border-helper';
+import { generateBoxShadowStyles } from '../../../src/helpers/boxshadow-helper';
 import { generateDimensionStyle } from '../../../src/helpers/dimension-helper';
 import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
@@ -116,6 +117,14 @@ const Edit = (props) => {
 		controlName: HEADING_BORDER,
 	});
 
+	const {
+		boxShadowStyle: headingShadow,
+		hoverBoxShadowstyle: headingHoverShadow,
+		transitionStyle: headingShadowTransition
+	} = generateBoxShadowStyles({
+		attributes,
+		controlName: HEADING_SHADOW,
+	});
 
 	const desktopAllStyle = `
 		.${uniqueId}{
@@ -125,9 +134,12 @@ const Edit = (props) => {
 			${headingPaddingDesktop}
 			${headingBackgroundStylesDesktop}
 			${headingBorderDesktop}
+			${headingShadow}
+			transition:${headingShadowTransition};
 		}
 		.${uniqueId}:hover{
 			${headingHoverBackgroundStylesDesktop}
+			${headingHoverShadow}
 		}
 		.${uniqueId}::before{
 			${headingOverlayStylesDesktop}
