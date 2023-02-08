@@ -1,8 +1,7 @@
 //wrodpress dependencies
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TabPanel } from '@wordpress/components';
+import { BaseControl, Button, ButtonGroup, PanelBody, TabPanel, TextControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import Select2 from 'react-select';
 
 //internal dependencies controls
 import BackgroundControl from '../../../src/controls/background-control';
@@ -11,7 +10,6 @@ import BoxShadowControl from '../../../src/controls/boxshadow-control';
 import ColorControl from '../../../src/controls/color-control';
 import ResDimensionsControl from '../../../src/controls/dimensions-control';
 import ResAlignmentControl from '../../../src/controls/res-alignment-control';
-import ResRangeControl from '../../../src/controls/res-range-control';
 import TypographyDropdown from '../../../src/controls/typography-control';
 
 //block attributes
@@ -19,14 +17,24 @@ import objAttributes from './attributes';
 
 //block constants
 import {
-	HEADING_ALIGNMENT, HEADING_BG, HEADING_BORDER,
-	HEADING_PADDING, HEADING_SHADOW, HEADING_WIDTH
+	HEADING_ALIGNMENT, HEADING_TAG, SUB_TITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG,
+	WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW
 } from './constants';
-import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Inspector = ({ attributes, setAttributes }) => {
 
-	const { resMode, headingColor } = attributes;
+	const {
+		resMode,
+		titleColor,
+		subTitleColor,
+		titleText,
+		showSubTitle,
+		subTitleText,
+		titleTagName,
+		showSeparator,
+		subTitleTagName
+	} = attributes;
 
 	const resRequiredProps = {
 		attributes,
@@ -34,12 +42,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 		resMode,
 		objAttributes,
 	};
-
-	const options = [
-		{ label: "Grapes 🍇", value: "grapes" },
-		{ label: "Mango 🥭", value: "mango" },
-		{ label: "Strawberry 🍓", value: "strawberry", disabled: true },
-	];
 
 	return (
 		<InspectorControls key="controls">
@@ -74,17 +76,63 @@ const Inspector = ({ attributes, setAttributes }) => {
 										title={__('General', 'zolo-blocks')}
 										initialOpen={true}
 									>
-
-										<Select2
-											options={options}
-											name='zolo-select'
-											value={{ label: "Grapes 🍇", value: "grapes" }}
-										// onChange={(selected) => setAttributes({ headerMeta: JSON.stringify(selected) })}
-										// options={metaOptions}
-										// isMulti='true'
+										<TextControl
+											label={__('Title Text', 'zolo-blocks')}
+											value={titleText}
+											onChange={(titleText) => setAttributes({ titleText })}
 										/>
 
-										<ResRangeControl
+										<BaseControl label={__("Title Tag", "essential-blocks")} >
+											<ButtonGroup>
+												{HEADING_TAG.map((item, key) => (
+													<Button
+														key={key}
+														variant={titleTagName === item.value ? 'primary' : 'secondary'}
+														onClick={() => setAttributes({ titleTagName: item.value })}
+													>
+														{item.label}
+													</Button>
+												))}
+											</ButtonGroup>
+										</BaseControl>
+
+										<ToggleControl
+											label={__('Show Sub TItle', 'zolo-blocks')}
+											checked={showSubTitle}
+											onChange={(showSubTitle) => setAttributes({ showSubTitle })}
+										/>
+
+										<ToggleControl
+											label={__('Show Separator', 'zolo-blocks')}
+											checked={showSeparator}
+											onChange={(showSeparator) => setAttributes({ showSeparator })}
+										/>
+
+										{showSubTitle && (
+											<>
+												<TextControl
+													label={__('Sub Title Text', 'zolo-blocks')}
+													value={subTitleText}
+													onChange={(subTitleText) => setAttributes({ subTitleText })}
+												/>
+
+												<BaseControl label={__("Sub Title Tag", "essential-blocks")} >
+													<ButtonGroup>
+														{HEADING_TAG.map((item, key) => (
+															<Button
+																key={key}
+																variant={subTitleTagName === item.value ? 'primary' : 'secondary'}
+																onClick={() => setAttributes({ subTitleTagName: item.value })}
+															>
+																{item.label}
+															</Button>
+														))}
+													</ButtonGroup>
+												</BaseControl>
+											</>
+										)}
+
+										{/* <ResRangeControl
 											label={__(
 												'Heading Width',
 												'zolo-blocks'
@@ -94,13 +142,10 @@ const Inspector = ({ attributes, setAttributes }) => {
 											min={0}
 											max={500}
 											step={1}
-										/>
+										/> */}
 
 										<ResAlignmentControl
-											label={__(
-												'Heading Alignmet',
-												'zolo-blocks'
-											)}
+											label={__('Alignmet', 'zolo-blocks')}
 											controlName={HEADING_ALIGNMENT}
 											resRequiredProps={resRequiredProps}
 											alignOptions={[
@@ -123,50 +168,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 											]}
 										/>
 
-										<ColorControl
-											label={__(
-												'Heading color',
-												'zolo-blocks'
-											)}
-											color={headingColor}
-											defaultColor={'red'}
-											onChange={(val) =>
-												setAttributes({
-													headingColor: val,
-												})
-											}
-										/>
-
-										<ResDimensionsControl
-											label="Padding"
-											controlName={HEADING_PADDING}
-											resRequiredProps={resRequiredProps}
-										/>
-
-										<TypographyDropdown
-											label="Typography"
-											typoPrefixConstant={TITLE_TYPOGRAPHY}
-											resRequiredProps={resRequiredProps}
-											defaultFontSize={22}
-										/>
-
-										<BackgroundControl
-											controlName={HEADING_BG}
-											resRequiredProps={resRequiredProps}
-										/>
-
-										<BorderControl
-											label={"Heading Border"}
-											controlName={HEADING_BORDER}
-											resRequiredProps={resRequiredProps}
-										/>
-
-										<BoxShadowControl
-											controlName={HEADING_SHADOW}
-											resRequiredProps={resRequiredProps}
-										// noShadow
-										// noBorder
-										/>
 
 									</PanelBody>
 								</>
@@ -175,18 +176,101 @@ const Inspector = ({ attributes, setAttributes }) => {
 							{tab.name === 'design' && (
 								<>
 									<PanelBody
-										title={__('Style', 'zolo-blocks')}
+										title={__('Title', 'zolo-blocks')}
 										initialOpen={true}
 									>
+										<TypographyDropdown
+											label="Typography"
+											typoPrefixConstant={TITLE_TYPOGRAPHY}
+											resRequiredProps={resRequiredProps}
+										/>
+
+										<ColorControl
+											label={__('Color', 'zolo-blocks')}
+											color={titleColor}
+											onChange={(val) => setAttributes({
+												titleColor: val,
+											})}
+										/>
+
+										<ResDimensionsControl
+											label={__('Margin', 'zolo-blocks')}
+											controlName={TITLE_MARGIN}
+											resRequiredProps={resRequiredProps}
+										/>
+
+									</PanelBody>
+
+									<PanelBody
+										title={__('Sub Title', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<TypographyDropdown
+											label="Typography"
+											typoPrefixConstant={SUBTITLE_TYPOGRAPHY}
+											resRequiredProps={resRequiredProps}
+										/>
+
+										<ColorControl
+											label={__('Color', 'zolo-blocks')}
+											color={subTitleColor}
+											onChange={(val) => setAttributes({
+												subTitleColor: val,
+											})}
+										/>
+
+										<ResDimensionsControl
+											label={__('Margin', 'zolo-blocks')}
+											controlName={SUB_TITLE_MARGIN}
+											resRequiredProps={resRequiredProps}
+										/>
+
 									</PanelBody>
 								</>
 							)}
 							{tab.name === 'advanced' && (
 								<>
 									<PanelBody
-										title={__('Advanced', 'zolo-blocks')}
+										title={__('Wrapper Margin & Padding', 'zolo-blocks')}
 										initialOpen={true}
 									>
+										<ResDimensionsControl
+											label="Margin"
+											controlName={WRAPPER_MARGIN}
+											resRequiredProps={resRequiredProps}
+										/>
+
+										<ResDimensionsControl
+											label="Padding"
+											controlName={WRAPPER_PADDING}
+											resRequiredProps={resRequiredProps}
+										/>
+									</PanelBody>
+
+									<PanelBody
+										title={__('Background', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<BackgroundControl
+											controlName={WRAPPER_BG}
+											resRequiredProps={resRequiredProps}
+										/>
+									</PanelBody>
+
+									<PanelBody
+										title={__('Border & BoxShadow', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<BorderControl
+											label={__('Border', 'zolo-blocks')}
+											controlName={WRAPPER_BORDER}
+											resRequiredProps={resRequiredProps}
+										/>
+										<BoxShadowControl
+											controlName={WRAPPER_SHADOW}
+											resRequiredProps={resRequiredProps}
+										/>
+
 									</PanelBody>
 								</>
 							)}

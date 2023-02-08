@@ -15,9 +15,9 @@ const WithResDeviceBtn = ({
 	return (
 		<div className={`zb-res-device-btn-wrapper ${className || ' '}`}>
 
-			<span className="res-btn-label">{label}</span>
-
 			<div className="zb-res-device-btns">
+
+				{label && (<span className="res-btn-label">{label}</span>)}
 
 				<span
 					className={`res-btn dashicons dashicons-desktop ${resMode === 'Desktop' ? 'active' : ' '

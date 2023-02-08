@@ -33,10 +33,10 @@ function BoxShadowControl({
 
 		<BaseControl
 			label={__("Box Shadow", "radius-blocks")}
-			className="zb-typography-base">
+			className="zb-boxshadow-control-wrap">
 			<Dropdown
-				className="zb-typography-dropdown"
-				contentClassName="my-popover-content-classname"
+				className="zb-boxshadow-control-dropdown"
+				contentClassName="zb-popover-content-area"
 				position="bottom right"
 				renderToggle={({ isOpen, onToggle }) => (
 					<Button
@@ -49,7 +49,7 @@ function BoxShadowControl({
 				renderContent={() => (
 					<>
 						<div
-							className="zb-panel-control"
+							className="zb-boxshadow-content-wrap"
 							style={{
 								minWidth: "230px",
 								padding: "10px",

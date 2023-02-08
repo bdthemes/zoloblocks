@@ -8,7 +8,7 @@ import { generateResRangeAttributies } from '../../../src/helpers/res-range-help
 import { generateTypographyAttributes } from '../../../src/helpers/typoHelpers';
 //block constants
 import {
-	HEADING_ALIGNMENT, HEADING_BG, HEADING_BORDER, HEADING_PADDING, HEADING_SHADOW, HEADING_WIDTH
+	HEADING_ALIGNMENT, HEADING_WIDTH, SUB_TITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW
 } from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
@@ -41,31 +41,20 @@ const attributes = {
 		default: 'red',
 	},
 
-	...generateDimensionAttributes(HEADING_PADDING, {
-		top: 10,
-		right: 10,
-		bottom: 10,
-		left: 10,
-		isLinked: true,
-	}),
 
-	//typography attributes 
+	//style tab attributes
+	...generateDimensionAttributes(TITLE_MARGIN),
+	...generateDimensionAttributes(SUB_TITLE_MARGIN),
 	...generateTypographyAttributes(Object.values(typographyObjs)),
 
-	//generate backgroud attribute
-	...generateBackgroundAttributes(HEADING_BG, {
+	//advance tab attributes
+	...generateDimensionAttributes(WRAPPER_MARGIN),
+	...generateDimensionAttributes(WRAPPER_PADDING),
+	...generateBackgroundAttributes(WRAPPER_BG, {
 		defaultBgGradient: "linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)",
 	}),
-
-	...generateBorderAttributies(HEADING_BORDER, {
-		defaultBorder: {
-			width: '5px',
-			style: 'solid',
-			color: '#ddd'
-		}
-	}),
-
-	...generateBoxShadowAttributies(HEADING_SHADOW)
+	...generateBorderAttributies(WRAPPER_BORDER),
+	...generateBoxShadowAttributies(WRAPPER_SHADOW),
 
 }
 export default attributes;
