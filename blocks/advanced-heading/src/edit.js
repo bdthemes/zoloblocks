@@ -7,7 +7,10 @@ import classnames from 'classnames';
 
 //internal dependencies
 import { handleUniqueId, softMinifyCssStrings } from '../../../src/helpers/helper';
+import { generateControls } from '../../../src/helpers/generateControls';
 import Inspector from './inspector';
+
+import controls from "./controls.json"
 
 //block constants
 import {
@@ -329,6 +332,9 @@ const Edit = (props) => {
 
 	return (
 		<>
+			{isSelected && (
+				generateControls(controls, attributes, setAttributes)
+			)}
 			{isSelected && (
 				<Inspector
 					attributes={attributes}

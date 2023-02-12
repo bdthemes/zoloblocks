@@ -4,17 +4,25 @@
 root = true
 
 [*]
-indent_style = tab
-indent_size = 4
-end_of_line = lf
 charset = utf-8
-trim_trailing_whitespace = false
-insert_final_newline = false
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = tab
+indent_size = 2
+
+[{.jshintrc,*.json,*.yml}]
+indent_style = space
+indent_size = 4
+
+[*.php]
+indent_size = 4
+indent_style = space
+php_diagnostic_php1412 = false
 
 [*.js]
-indent_style = tab
-indent_size = 2
+indent_size = 4
+indent_style = space
 
-[*.jsx]
-indent_style = tab
-indent_size = 2
+[{*.txt,wp-config-sample.php}]
+end_of_line = crlf
