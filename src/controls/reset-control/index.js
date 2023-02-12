@@ -1,8 +1,8 @@
-const ResetControl = ({  onReset, children }) => {
+const ResetControl = ({ onReset, children }) => {
 	return (
-		<div className="zb-range-controller-container">
+		<div className="zb-control-container">
 			{children}
-			<button className="zb-range-reset-button" onClick={onReset}>
+			<button className="zb-reset-button" onClick={onReset}>
 				<span className="dashicon dashicons dashicons-image-rotate"></span>
 			</button>
 		</div>

@@ -1,16 +1,11 @@
 //internal dependencies controls
 import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHelpers';
 import { generateBorderAttributies } from '../../../src/helpers/border-helper';
+import { generateBoxShadowAttributies } from '../../../src/helpers/boxshadow-helper';
 import { generateDimensionAttributes } from '../../../src/helpers/dimension-helper';
-import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
-import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
 import { generateTypographyAttributes } from '../../../src/helpers/typoHelpers';
-
 //block constants
-import {
-	HEADING_ALIGNMENT, HEADING_BG, HEADING_BORDER, HEADING_PADDING,
-	HEADING_WIDTH
-} from './constants';
+import { SUB_TITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW } from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes = {
@@ -25,46 +20,57 @@ const attributes = {
 	blockStyle: {
 		type: "object"
 	},
-	
-	//range attributes
-	...generateResRangeAttributies(HEADING_WIDTH, {
-		defaultRange: 100,
-		defaultUnit: '%',
-	}),
 
-	//alignment attributes
-	...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
-		defaultAlign: 'left',
-	}),
+	// //range attributes
+	// ...generateResRangeAttributies(HEADING_WIDTH, {
+	// 	defaultRange: 100,
+	// 	defaultUnit: '%',
+	// }),
 
-	headingColor: {
+	// //alignment attributes
+	// ...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
+	// 	defaultAlign: 'left',
+	// }),
+
+	//settings tab
+	titleText: {
 		type: 'string',
-		default: 'red',
+		default: "Zolo Block Advanced Heading",
+	},
+	subTitleText: {
+		type: 'string',
+		default: "Zolo Block Sub Title",
+	},
+	titleTagName: {
+		type: "string",
+		default: "h3",
+	},
+	subTitleTagName: {
+		type: "string",
+		default: "p",
 	},
 
-	...generateDimensionAttributes(HEADING_PADDING, {
-		top: 10,
-		right: 10,
-		bottom: 10,
-		left: 10,
-		isLinked: true,
-	}),
-
-	//typography attributes 
+	//design tab attributes
+	titleColor: {
+		type: 'string',
+		default: '',
+	},
+	subTitleColor: {
+		type: 'string',
+		default: '',
+	},
+	...generateDimensionAttributes(TITLE_MARGIN),
+	...generateDimensionAttributes(SUB_TITLE_MARGIN),
 	...generateTypographyAttributes(Object.values(typographyObjs)),
 
-	//generate backgroud attribute
-	...generateBackgroundAttributes(HEADING_BG, {
+	//advance tab attributes
+	...generateDimensionAttributes(WRAPPER_MARGIN),
+	...generateDimensionAttributes(WRAPPER_PADDING),
+	...generateBackgroundAttributes(WRAPPER_BG, {
 		defaultBgGradient: "linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)",
 	}),
-
-	...generateBorderAttributies(HEADING_BORDER, {
-		defaultBorder: {
-			width: '5px',
-			style: 'solid',
-			color: '#ddd'
-		}
-	}),
+	...generateBorderAttributies(WRAPPER_BORDER),
+	...generateBoxShadowAttributies(WRAPPER_SHADOW),
 
 }
 export default attributes;
