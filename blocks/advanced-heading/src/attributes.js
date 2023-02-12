@@ -3,13 +3,9 @@ import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHel
 import { generateBorderAttributies } from '../../../src/helpers/border-helper';
 import { generateBoxShadowAttributies } from '../../../src/helpers/boxshadow-helper';
 import { generateDimensionAttributes } from '../../../src/helpers/dimension-helper';
-import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
-import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
 import { generateTypographyAttributes } from '../../../src/helpers/typoHelpers';
 //block constants
-import {
-	HEADING_ALIGNMENT, HEADING_WIDTH, SUB_TITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW
-} from './constants';
+import { SUB_TITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW } from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes = {
@@ -25,24 +21,44 @@ const attributes = {
 		type: "object"
 	},
 
-	//range attributes
-	...generateResRangeAttributies(HEADING_WIDTH, {
-		defaultRange: 100,
-		defaultUnit: '%',
-	}),
+	// //range attributes
+	// ...generateResRangeAttributies(HEADING_WIDTH, {
+	// 	defaultRange: 100,
+	// 	defaultUnit: '%',
+	// }),
 
-	//alignment attributes
-	...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
-		defaultAlign: 'left',
-	}),
+	// //alignment attributes
+	// ...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
+	// 	defaultAlign: 'left',
+	// }),
 
-	headingColor: {
+	//settings tab
+	titleText: {
 		type: 'string',
-		default: 'red',
+		default: "Zolo Block Advanced Heading",
+	},
+	subTitleText: {
+		type: 'string',
+		default: "Zolo Block Sub Title",
+	},
+	titleTagName: {
+		type: "string",
+		default: "h3",
+	},
+	subTitleTagName: {
+		type: "string",
+		default: "p",
 	},
 
-
-	//style tab attributes
+	//design tab attributes
+	titleColor: {
+		type: 'string',
+		default: '',
+	},
+	subTitleColor: {
+		type: 'string',
+		default: '',
+	},
 	...generateDimensionAttributes(TITLE_MARGIN),
 	...generateDimensionAttributes(SUB_TITLE_MARGIN),
 	...generateTypographyAttributes(Object.values(typographyObjs)),

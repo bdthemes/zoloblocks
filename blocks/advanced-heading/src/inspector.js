@@ -26,14 +26,17 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 	const {
 		resMode,
-		titleColor,
-		subTitleColor,
+		//settings
 		titleText,
-		showSubTitle,
 		subTitleText,
 		titleTagName,
+		subTitleTagName,
+		showSubTitle,
 		showSeparator,
-		subTitleTagName
+
+		//design
+		titleColor,
+		subTitleColor,
 	} = attributes;
 
 	const resRequiredProps = {
