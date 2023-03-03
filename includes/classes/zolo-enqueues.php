@@ -64,10 +64,28 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             $version = $script_dependecy['version'];
 
-            // Enqueue Scripts
+            // Enqueue vendor bundle Scripts
             wp_register_script(
                 'zolo-block-editor-dependency',
                 ZOLO_ADMIN_URL . 'vendor-bundle/index.js',
+                $script_dependecy['dependencies'],
+                $version,
+                true
+            );
+
+            //Register Modules
+            $modules_dep_path = ZOLO_DIR_PATH . 'modules/index.asset.php';
+            $script_dependecy = file_exists($modules_dep_path) ? include $modules_dep_path : array(
+                'dependencies' => array(),
+                'version' => ZOLO_VERSION,
+            );
+
+            $version = $script_dependecy['version'];
+
+            // Enqueue Modules Scripts
+            wp_register_script(
+                'zolo-block-modules',
+                ZOLO_ADMIN_URL . 'modules/index.js',
                 $script_dependecy['dependencies'],
                 $version,
                 true
@@ -89,7 +107,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'wp-i18n',
                     'wp-element',
                     'wp-components',
-                    'zolo-block-editor-dependency'
+                    'zolo-block-editor-dependency',
+                    'zolo-block-modules'
                 )
             );
 
@@ -106,6 +125,14 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             wp_enqueue_style(
                 'zolo-block-common-editor-style',
                 ZOLO_ADMIN_URL . 'dist/style.css',
+                array('wp-edit-blocks'),
+                ZOLO_VERSION
+            );
+
+            // Controls Editor style.
+            wp_enqueue_style(
+                'zolo-block-control-editor-style',
+                ZOLO_ADMIN_URL . 'modules/style.css',
                 array('wp-edit-blocks'),
                 ZOLO_VERSION
             );
