@@ -19,23 +19,23 @@ export const TEXT_ALIGN = [
 ];
 
 export const HEADING = [
-	{ label: __('H1', 'essential-blocks'), value: 'h1' },
-	{ label: __('H2', 'essential-blocks'), value: 'h2' },
-	{ label: __('H3', 'essential-blocks'), value: 'h3' },
-	{ label: __('H4', 'essential-blocks'), value: 'h4' },
-	{ label: __('H5', 'essential-blocks'), value: 'h5' },
-	{ label: __('H6', 'essential-blocks'), value: 'h6' },
-	{ label: __('P', 'essential-blocks'), value: 'p' },
+	{ label: __('H1', 'zolo-blocks'), value: 'h1' },
+	{ label: __('H2', 'zolo-blocks'), value: 'h2' },
+	{ label: __('H3', 'zolo-blocks'), value: 'h3' },
+	{ label: __('H4', 'zolo-blocks'), value: 'h4' },
+	{ label: __('H5', 'zolo-blocks'), value: 'h5' },
+	{ label: __('H6', 'zolo-blocks'), value: 'h6' },
+	{ label: __('P', 'zolo-blocks'), value: 'p' },
 ];
 
 export const SEPERATOR_STYLES = [
-	{ label: __('Solid', 'essential-blocks'), value: 'solid' },
-	{ label: __('Dashed', 'essential-blocks'), value: 'dashed' },
-	{ label: __('Dotted', 'essential-blocks'), value: 'dotted' },
-	{ label: __('Double', 'essential-blocks'), value: 'double' },
-	{ label: __('Groove', 'essential-blocks'), value: 'groove' },
-	{ label: __('Outset', 'essential-blocks'), value: 'outset' },
-	{ label: __('Ridge', 'essential-blocks'), value: 'ridge' },
+	{ label: __('Solid', 'zolo-blocks'), value: 'solid' },
+	{ label: __('Dashed', 'zolo-blocks'), value: 'dashed' },
+	{ label: __('Dotted', 'zolo-blocks'), value: 'dotted' },
+	{ label: __('Double', 'zolo-blocks'), value: 'double' },
+	{ label: __('Groove', 'zolo-blocks'), value: 'groove' },
+	{ label: __('Outset', 'zolo-blocks'), value: 'outset' },
+	{ label: __('Ridge', 'zolo-blocks'), value: 'ridge' },
 ];
 
 export const BACKGROUND_TYPES = [

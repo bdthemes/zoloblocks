@@ -33,6 +33,10 @@ const attributes = {
 	// }),
 
 	//settings tab
+	styles: {
+		type: 'string',
+		default: "style-1",
+	},
 	titleText: {
 		type: 'string',
 		default: "Zolo Block Advanced Heading",

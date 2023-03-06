@@ -1,7 +1,17 @@
 //wrodpress dependencies
 import { InspectorControls } from '@wordpress/block-editor';
-import { BaseControl, Button, ButtonGroup, PanelBody, TabPanel, TextControl, ToggleControl } from '@wordpress/components';
+import {
+    BaseControl,
+    Button,
+    ButtonGroup,
+    PanelBody,
+    TabPanel,
+    TextControl,
+    ToggleControl,
+    SelectControl
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { doAction, applyFilters } from "@wordpress/hooks";
 
 //internal dependencies controls
 // import BackgroundControl from '../../../src/controls/background-control';
@@ -27,8 +37,16 @@ import objAttributes from './attributes';
 
 //block constants
 import {
-    HEADING_ALIGNMENT, HEADING_TAG, SUB_TITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG,
-    WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW
+    STYLES,
+    HEADING_ALIGNMENT,
+    HEADING_TAG,
+    SUB_TITLE_MARGIN,
+    TITLE_MARGIN,
+    WRAPPER_BG,
+    WRAPPER_BORDER,
+    WRAPPER_MARGIN,
+    WRAPPER_PADDING,
+    WRAPPER_SHADOW
 } from './constants';
 import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
@@ -37,6 +55,7 @@ const Inspector = ({ attributes, setAttributes }) => {
     const {
         resMode,
         //settings
+        styles,
         titleText,
         subTitleText,
         titleTagName,
@@ -89,13 +108,23 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         title={__('General', 'zolo-blocks')}
                                         initialOpen={true}
                                     >
+                                        {/* Hook Test */}
+                                        {doAction('zolo_ah_general_start_action', attributes)}
+                                        {applyFilters('zolo_ah_general_start_filter', '', attributes, setAttributes)}
+
+                                        <SelectControl
+                                            label={__("Premade Styles", "zolo-blocks")}
+                                            value={styles}
+                                            options={applyFilters('zolo_ah_style_filter', STYLES) || STYLES}
+                                            onChange={(selected) => console.log("styles: ", selected)}
+                                        />
                                         <TextControl
                                             label={__('Title Text', 'zolo-blocks')}
                                             value={titleText}
                                             onChange={(titleText) => setAttributes({ titleText })}
                                         />
 
-                                        <BaseControl label={__("Title Tag", "essential-blocks")} >
+                                        <BaseControl label={__("Title Tag", "zolo-blocks")} >
                                             <ButtonGroup>
                                                 {HEADING_TAG.map((item, key) => (
                                                     <Button
@@ -129,7 +158,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                                     onChange={(subTitleText) => setAttributes({ subTitleText })}
                                                 />
 
-                                                <BaseControl label={__("Sub Title Tag", "essential-blocks")} >
+                                                <BaseControl label={__("Sub Title Tag", "zolo-blocks")} >
                                                     <ButtonGroup>
                                                         {HEADING_TAG.map((item, key) => (
                                                             <Button
