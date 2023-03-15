@@ -124,7 +124,6 @@ final class Zolo_Blocks {
     }
 }
 
-
 /**
  * Initialize the Zolo_Blocks
  */
