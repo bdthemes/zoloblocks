@@ -1,0 +1,46 @@
+{
+	"name": "zolo-blocks",
+	"version": "0.0.1",
+	"main": "Gruntfile.js",
+	"author": "BdThemes",
+	"scripts": {
+		"start": "wp-scripts start",
+		"build": "wp-scripts build",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"prettier": "@wordpress/prettier-config",
+	"dependencies": {
+		"@wordpress/server-side-render": "^3.0.17",
+		"array-move": "^3.0.1",
+		"classnames": "^2.3.1",
+		"rc-switch": "^3.2.2",
+		"react-multi-select-component": "^4.3.4",
+		"react-select": "^5.2.1",
+		"striptags": "^3.2.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.16.5",
+		"@babel/plugin-proposal-class-properties": "^7.16.5",
+		"@babel/preset-env": "^7.16.5",
+		"@babel/preset-react": "^7.16.5",
+		"@wordpress/api-fetch": "^5.2.6",
+		"@wordpress/block-editor": "^8.0.12",
+		"@wordpress/blocks": "^11.1.5",
+		"@wordpress/components": "^19.1.6",
+		"@wordpress/compose": "^5.0.7",
+		"@wordpress/data": "^6.1.5",
+		"@wordpress/element": "^4.0.4",
+		"@wordpress/hooks": "^3.23.0",
+		"@wordpress/i18n": "^4.2.4",
+		"@wordpress/keycodes": "^3.2.4",
+		"@wordpress/prettier-config": "^2.8.0",
+		"@wordpress/scripts": "^19.2.2",
+		"babel-loader": "^8.2.3",
+		"html-react-parser": "^3.0.4",
+		"lodash": "^4.17.21",
+		"moment": "^2.29.1",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-transition-group": "^4.4.2"
+	}
+}

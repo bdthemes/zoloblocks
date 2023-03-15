@@ -1,0 +1,24 @@
+.zb-unit-control-btn-group {
+  display: block;
+  margin: 0 0 -20px;
+  text-align: right;
+  .zb-unit-control-btn {
+    display: inline-block;
+    font-size: 10px;
+    box-shadow: none !important;
+    border: none !important;
+    text-transform: uppercase;
+    height: 20px !important;
+    padding: 0 0 0 6px;
+    background-color: transparent;
+    &:hover {
+      background-color: initial;
+      box-shadow: none !important;
+      background-color: transparent !important;
+    }
+    &.zb-unit-active {
+      color: $control_active_color !important;
+      font-weight: 700;
+    }
+  }
+}

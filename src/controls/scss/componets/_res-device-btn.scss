@@ -1,0 +1,54 @@
+.zb-res-device-btns {
+  .res-btn-label {
+    display: inline-block;
+    color: $control_primary_color !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    line-height: 16px !important;
+    min-height: auto;
+    text-transform: capitalize !important;
+    margin-right: 8px;
+  }
+  .res-btn {
+    background-color: #e8e8e8;
+    border-radius: 3px;
+    color: $control_primary_color;
+    cursor: pointer;
+    font-size: 11px;
+    height: 18px;
+    line-height: 18px;
+    margin: 0 8px 5px 0;
+    position: relative;
+    text-align: center;
+    width: 18px;
+    &.active {
+      color: $control_active_color !important;
+    }
+  }
+}
+
+.zb-res-device-btn-wrapper {
+  .zb-component-wrapper {
+    display: flex;
+    .zb-reset-button {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      cursor: pointer;
+      height: 26px;
+      margin-left: 2px;
+      outline: none;
+      padding: 0;
+      width: 20px;
+      .dashicon {
+        align-items: center;
+        color: #62626f;
+        display: flex;
+        font-size: 14px;
+        justify-content: center;
+        transform: scaleX(-1) rotate(90deg);
+        width: 20px;
+      }
+    }
+  }
+}
