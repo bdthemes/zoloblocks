@@ -1,10 +1,10 @@
 //internal dependencies controls
 const {
-    generateBackgroundAttributes,
-    generateBorderAttributies,
-    generateBoxShadowAttributies,
-    generateDimensionAttributes,
-    generateTypographyAttributes,
+  generateBackgroundAttributes,
+  generateBorderAttributies,
+  generateBoxShadowAttributies,
+  generateDimensionAttributes,
+  generateTypographyAttributes,
 } = window.zoloModule;
 
 //block constants
@@ -12,72 +12,90 @@ import { SUB_TITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MAR
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes = {
-    //Common Attributes
-    uniqueId: {
-        type: "string",
-    },
-    resDevice: {
-        type: "string",
-        default: "Desktop",
-    },
-    blockStyle: {
-        type: "object"
-    },
+  //Common Attributes
+  uniqueId: {
+    type: "string",
+  },
+  resDevice: {
+    type: "string",
+    default: "Desktop",
+  },
+  blockStyle: {
+    type: "object"
+  },
 
-    // //range attributes
-    // ...generateResRangeAttributies(HEADING_WIDTH, {
-    // 	defaultRange: 100,
-    // 	defaultUnit: '%',
-    // }),
+  // //range attributes
+  // ...generateResRangeAttributies(HEADING_WIDTH, {
+  // 	defaultRange: 100,
+  // 	defaultUnit: '%',
+  // }),
 
-    // //alignment attributes
-    // ...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
-    // 	defaultAlign: 'left',
-    // }),
+  // //alignment attributes
+  // ...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
+  // 	defaultAlign: 'left',
+  // }),
 
-    //settings tab
-    styles: {
-        type: 'string',
-        default: "style-1",
-    },
-    titleText: {
-        type: 'string',
-        default: "Zolo Block Advanced Heading",
-    },
-    subTitleText: {
-        type: 'string',
-        default: "Zolo Block Sub Title",
-    },
-    titleTagName: {
-        type: "string",
-        default: "h3",
-    },
-    subTitleTagName: {
-        type: "string",
-        default: "p",
-    },
+  //settings tab
+  styles: {
+    type: 'string',
+    default: "style-1",
+  },
+  titleText: {
+    type: 'string',
+    default: "Zolo Block Advanced Heading",
+  },
+  subTitleText: {
+    type: 'string',
+    default: "Zolo Block Sub Title",
+  },
+  titleTagName: {
+    type: "string",
+    default: "h3",
+  },
+  subTitleTagName: {
+    type: "string",
+    default: "p",
+  },
+  transparentTitleText: {
+    type: 'string',
+    default: "Zolo Block Sub Title",
+  },
+  showSubTitle: {
+    type: 'boolean',
+    default: false,
+  },
+  showSeparator: {
+    type: 'boolean',
+    default: false,
+  },
+  showTransparentTitle: {
+    type: 'boolean',
+    default: false,
+  },
 
-    //design tab attributes
-    titleColor: {
-        type: 'string',
-        default: '',
-    },
-    subTitleColor: {
-        type: 'string',
-        default: '',
-    },
-    ...generateDimensionAttributes(TITLE_MARGIN),
-    ...generateDimensionAttributes(SUB_TITLE_MARGIN),
-    ...generateTypographyAttributes(Object.values(typographyObjs)),
 
-    //advance tab attributes
-    ...generateDimensionAttributes(WRAPPER_MARGIN),
-    ...generateDimensionAttributes(WRAPPER_PADDING),
-    ...generateBackgroundAttributes(WRAPPER_BG, {
-        defaultBgGradient: "linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)",
-    }),
-    ...generateBorderAttributies(WRAPPER_BORDER),
-    ...generateBoxShadowAttributies(WRAPPER_SHADOW),
+
+  //design tab attributes
+  titleColor: {
+    type: 'string',
+    default: '',
+  },
+  subTitleColor: {
+    type: 'string',
+    default: '',
+  },
+  ...generateDimensionAttributes(TITLE_MARGIN),
+  ...generateDimensionAttributes(SUB_TITLE_MARGIN),
+  ...generateTypographyAttributes(Object.values(typographyObjs)),
+
+  //advance tab attributes
+  ...generateDimensionAttributes(WRAPPER_MARGIN),
+  ...generateDimensionAttributes(WRAPPER_PADDING),
+  ...generateBackgroundAttributes(WRAPPER_BG, {
+    defaultBgGradient: "linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)",
+  }),
+  ...generateBorderAttributies(WRAPPER_BORDER),
+  ...generateBoxShadowAttributies(WRAPPER_SHADOW),
 
 }
 export default attributes;
