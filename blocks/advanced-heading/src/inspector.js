@@ -28,9 +28,12 @@ import objAttributes from './attributes';
 //block constants
 import {
   HEADING_ALIGNMENT,
-  HEADING_TAG, STYLES, SUB_TITLE_MARGIN,
-  TITLE_MARGIN,
-  WRAPPER_BG,
+  HEADING_TAG,
+  SEPERATOR_ALIGN,
+  STYLES,
+  ST_POSITION,
+  SUB_TITLE_MARGIN,
+  TITLE_MARGIN, WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_MARGIN,
   WRAPPER_PADDING,
@@ -52,6 +55,9 @@ const Inspector = ({ attributes, setAttributes }) => {
     showSeparator,
     showTransparentTitle,
     transparentTitleText,
+    subTitlePosition,
+    separaTorPosition,
+    separaTorAlign,
 
     //design
     titleColor,
@@ -134,18 +140,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                       onChange={(showSubTitle) => setAttributes({ showSubTitle })}
                     />
 
-                    <ToggleControl
-                      label={__('Show Separator', 'zolo-blocks')}
-                      checked={showSeparator}
-                      onChange={(showSeparator) => setAttributes({ showSeparator })}
-                    />
-
-                    <ToggleControl
-                      label={__('Show Transparent Title', 'zolo-blocks')}
-                      checked={showTransparentTitle}
-                      onChange={(showTransparentTitle) => setAttributes({ showTransparentTitle })}
-                    />
-
                     {showSubTitle && (
                       <>
                         <TextControl
@@ -167,8 +161,28 @@ const Inspector = ({ attributes, setAttributes }) => {
                             ))}
                           </ButtonGroup>
                         </BaseControl>
+
+                        <BaseControl label={__("Sub Title Position", "zolo-blocks")} >
+                          <ButtonGroup>
+                            {ST_POSITION.map((item, key) => (
+                              <Button
+                                key={key}
+                                variant={subTitlePosition === item.value ? 'primary' : 'secondary'}
+                                onClick={() => setAttributes({ subTitlePosition: item.value })}
+                              >
+                                {item.label}
+                              </Button>
+                            ))}
+                          </ButtonGroup>
+                        </BaseControl>
                       </>
                     )}
+
+                    <ToggleControl
+                      label={__('Show Transparent Title', 'zolo-blocks')}
+                      checked={showTransparentTitle}
+                      onChange={(showTransparentTitle) => setAttributes({ showTransparentTitle })}
+                    />
 
                     {showTransparentTitle && (
                       <TextControl
@@ -178,7 +192,44 @@ const Inspector = ({ attributes, setAttributes }) => {
                       />
                     )}
 
+                    <ToggleControl
+                      label={__('Show Separator', 'zolo-blocks')}
+                      checked={showSeparator}
+                      onChange={(showSeparator) => setAttributes({ showSeparator })}
+                    />
 
+                    {showSeparator && (
+                      <>
+
+                        <BaseControl label={__("Separator Position", "zolo-blocks")} >
+                          <ButtonGroup>
+                            {ST_POSITION.map((item, key) => (
+                              <Button
+                                key={key}
+                                variant={separaTorPosition === item.value ? 'primary' : 'secondary'}
+                                onClick={() => setAttributes({ separaTorPosition: item.value })}
+                              >
+                                {item.label}
+                              </Button>
+                            ))}
+                          </ButtonGroup>
+                        </BaseControl>
+
+                        <BaseControl label={__("Separator Alignment", "zolo-blocks")} >
+                          <ButtonGroup>
+                            {SEPERATOR_ALIGN.map((item, key) => (
+                              <Button
+                                key={key}
+                                variant={separaTorAlign === item.value ? 'primary' : 'secondary'}
+                                onClick={() => setAttributes({ separaTorAlign: item.value })}
+                              >
+                                {item.label}
+                              </Button>
+                            ))}
+                          </ButtonGroup>
+                        </BaseControl>
+                      </>
+                    )}
 
                     {/* <ResRangeControl
 											label={__(
@@ -191,6 +242,8 @@ const Inspector = ({ attributes, setAttributes }) => {
 											max={500}
 											step={1}
 										/> */}
+
+
 
                     <ResAlignmentControl
                       label={__('Alignmet', 'zolo-blocks')}

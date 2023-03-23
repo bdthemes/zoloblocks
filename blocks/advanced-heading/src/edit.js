@@ -52,6 +52,9 @@ const Edit = (props) => {
     subTitleTagName,
     showTransparentTitle,
     transparentTitleText,
+    subTitlePosition,
+    separaTorPosition,
+    separaTorAlign,
 
     //style
     titleColor,
@@ -202,6 +205,7 @@ const Edit = (props) => {
 			${wrapperBorderDesktop}
 			${wrapperShadow}
 			transition:${wrapperShadowTransition};
+      ${headingAlignmentDesktop}
 		}
 		.zolo-block-wrapper.${uniqueId}:hover{
 			${wrapperHoverBackgroundStylesDesktop}
@@ -220,6 +224,7 @@ const Edit = (props) => {
 			${wrapperPaddingTab}
 			${wrapperBackgroundStylesTab}
 			${wrapperBorderTab}
+      ${headingAlignmentTab}
 		}
 		.zolo-block-wrapper.${uniqueId}:hover{
 			${wrapperHoverBackgroundStylesTab}
@@ -237,6 +242,7 @@ const Edit = (props) => {
 			${wrapperPaddingMobile}
 			${wrapperBackgroundStylesMobile}
 			${wrapperBorderMob}
+      ${headingAlignmentMob}
 		}
 		.zolo-block-wrapper.${uniqueId}:hover{
 			${wrapperHoverBackgroundStylesMobile}
@@ -331,6 +337,17 @@ const Edit = (props) => {
     }
   }, [attributes]);
 
+  const DynamicTag = (props) => {
+    const { tagName, children, ...rest } = props;
+    const Tag = tagName || 'div';
+    return (
+      <Tag {...rest}>
+        {children}
+      </Tag>
+    );
+  }
+
+
   return (
     <>
       {/* {isSelected && (
@@ -367,15 +384,8 @@ const Edit = (props) => {
         <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
 
           {showTransparentTitle && <h3 class="zolo-transparent-heading">{transparentTitleText}</h3>}
-          <RichText
-            tagName={titleTagName}
-            className="zolo-ah-title"
-            value={titleText}
-            formattingControl={["bold", "italic"]}
-            onChange={(titleText) => setAttributes({ titleText })}
-          />
 
-          {showSubTitle && (
+          {(showSubTitle && subTitlePosition == 'top') && (
             <RichText
               tagName={subTitleTagName}
               className="zolo-ah-sub-title"
@@ -385,9 +395,26 @@ const Edit = (props) => {
             />
           )}
 
-          {showSeparator && (
-            <div className={"zolo-ah-separator line"}></div>
+          <DynamicTag tagName={titleTagName} className={`zolo-ah-title ${showSeparator ? 'separator ' + separaTorPosition + ' ' + separaTorAlign : ''}`}>
+            <RichText
+              tagName={'span'}
+              className="zolo-ah-main-title"
+              value={titleText}
+              formattingControl={["bold", "italic"]}
+              onChange={(titleText) => setAttributes({ titleText })}
+            />
+          </DynamicTag>
+
+          {(showSubTitle && subTitlePosition == 'bottom') && (
+            <RichText
+              tagName={subTitleTagName}
+              className="zolo-ah-sub-title"
+              value={subTitleText}
+              formattingControl={["bold", "italic"]}
+              onChange={(subTitleText) => setAttributes({ subTitleText })}
+            />
           )}
+
 
         </div>
       </div>

@@ -50,11 +50,11 @@ const attributes = {
   },
   titleTagName: {
     type: "string",
-    default: "h3",
+    default: "h2",
   },
   subTitleTagName: {
     type: "string",
-    default: "p",
+    default: "h4",
   },
   transparentTitleText: {
     type: 'string',
@@ -72,7 +72,18 @@ const attributes = {
     type: 'boolean',
     default: false,
   },
-
+  subTitlePosition: {
+    type: 'string',
+    default: 'top'
+  },
+  separaTorPosition: {
+    type: 'string',
+    default: 'bottom'
+  },
+  separaTorAlign: {
+    type: 'string',
+    default: 'left'
+  },
 
 
   //design tab attributes

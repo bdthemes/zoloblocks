@@ -29,6 +29,39 @@
 	font-weight: 700;
 	color: #202224;
 	text-transform: capitalize;
+
+	&.separator::before {
+		position: absolute;
+		content: '';
+		left: 0;
+		width: 70px;
+		height: 3px;
+		background-color: #1b5080;
+	}
+
+	&.separator {
+		&.top::before {
+			top: -7px;
+		}
+
+		&.bottom::before {
+			bottom: -5px;
+		}
+
+		&.left::before {
+			left: 0;
+		}
+
+		&.center::before {
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		&.right::before {
+			right: 0;
+			left: unset;
+		}
+	}
 }
 
 .zolo-ah-title,
@@ -149,7 +182,7 @@
 	background-color: #1b5080;
 }
 
-.zolo-ah-style-13 .zolo-advanced-heading-main-title {
+.zolo-ah-style-13 .zolo-ah-main-title {
 	background-color: #fff;
 	padding: 10px 20px;
 }
@@ -176,7 +209,7 @@
 	content: '';
 }
 
-.zolo-ah-style-14 .zolo-advanced-heading-main-title {
+.zolo-ah-style-14 .zolo-ah-main-title {
 	z-index: 1;
 	position: relative;
 }

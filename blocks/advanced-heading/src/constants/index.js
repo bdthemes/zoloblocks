@@ -16,16 +16,31 @@ export const STYLES = [
   { label: __('Style 10', 'zolo-blocks'), value: 'style-10' },
   { label: __('Style 11', 'zolo-blocks'), value: 'style-11' },
   { label: __('Style 12', 'zolo-blocks'), value: 'style-12' },
+  { label: __('Style 13', 'zolo-blocks'), value: 'style-13' },
+  { label: __('Style 14', 'zolo-blocks'), value: 'style-14' },
 ];
 
-export const HEADING_WIDTH = 'headingWidth';
+export const SEPERATOR_ALIGN = [
+  { label: 'Left', value: 'left' },
+  { label: 'Center', value: 'center' },
+  { label: 'Right', value: 'right' }
+];
+
+export const ST_POSITION = [
+  { label: 'Top', value: 'top' },
+  { label: 'Bottom', value: 'bottom' }
+];
+
 export const HEADING_ALIGNMENT = 'headingAlignment';
-export const HEADING_MARGIN = 'headingMargin';
-export const HEADING_PADDING = 'headingPadding';
-export const HEADING_BRADIUS = 'headingBRadius';
-export const HEADING_BG = 'headingBg';
-export const HEADING_BORDER = 'headingBd';
-export const HEADING_SHADOW = 'headingShadow';
+
+// export const HEADING_WIDTH = 'headingWidth';
+// export const HEADING_ALIGNMENT = 'headingAlignment';
+// export const HEADING_MARGIN = 'headingMargin';
+// export const HEADING_PADDING = 'headingPadding';
+// export const HEADING_BRADIUS = 'headingBRadius';
+// export const HEADING_BG = 'headingBg';
+// export const HEADING_BORDER = 'headingBd';
+// export const HEADING_SHADOW = 'headingShadow';
 
 //settings tab
 export const HEADING_TAG = [
