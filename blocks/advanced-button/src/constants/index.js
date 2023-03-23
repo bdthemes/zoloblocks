@@ -15,4 +15,6 @@ export const BUTTON_WIDTH = 'buttonWidth';
 // Button Alignment
 export const BUTTON_ALIGNMENT = 'buttonAlignment';
 // Button BG
-export const BUTTON_BG = 'buttonBg';
+export const BUTTON_BG = 'buttonBackground';
+// Button Border
+export const BUTTON_BORDER = 'buttonBorder';

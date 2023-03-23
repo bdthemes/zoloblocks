@@ -1,6 +1,13 @@
 import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
-import { BUTTON_ALIGNMENT, BUTTON_WIDTH } from './constants';
+import { generateBorderAttributies } from '../../../src/helpers/border-helper';
+import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHelpers';
+import {
+	BUTTON_ALIGNMENT,
+	BUTTON_WIDTH,
+	BUTTON_BG,
+	BUTTON_BORDER,
+} from './constants';
 const attributes = {
 	//Common Attributes
 	uniqueId: {
@@ -13,7 +20,6 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
-
 	//range attributes
 	...generateResRangeAttributies(BUTTON_WIDTH, {
 		defaultRange: 200,
@@ -22,7 +28,10 @@ const attributes = {
 	...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
 		defaultAlign: 'left',
 	}),
-
+	// background attributes
+	...generateBackgroundAttributes(BUTTON_BG),
+	// border attributes
+	...generateBorderAttributies(BUTTON_BORDER),
 	//Block specific Attributes
 	preset: {
 		type: 'string',

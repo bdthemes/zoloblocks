@@ -20,6 +20,7 @@ import ResAlignmentControl from '../../../src/controls/res-alignment-control';
 import ResRangeControl from '../../../src/controls/res-range-control';
 import ColorControl from '../../../src/controls/color-control';
 import BackgroundControl from '../../../src/controls/background-control';
+import BorderControl from '../../../src/controls/border-control';
 
 // const {
 // 	BackgroundControl,
@@ -38,6 +39,7 @@ import {
 	BUTTON_WIDTH,
 	PRESETS,
 	BUTTON_BG,
+	BUTTON_BORDER,
 } from './constants';
 
 function Inspector(props) {
@@ -45,6 +47,7 @@ function Inspector(props) {
 	const {
 		uniqueId,
 		preset,
+		resMode,
 		resDevice,
 		label,
 		link,
@@ -78,7 +81,7 @@ function Inspector(props) {
 	const resRequiredProps = {
 		attributes,
 		setAttributes,
-		resDevice,
+		resMode,
 		objAttributes,
 	};
 
@@ -306,6 +309,16 @@ function Inspector(props) {
 										/>
 										<BackgroundControl
 											controlName={BUTTON_BG}
+											resRequiredProps={resRequiredProps}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Border', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<BorderControl
+											label={__('Border', 'zolo-blocks')}
+											controlName={BUTTON_BORDER}
 											resRequiredProps={resRequiredProps}
 										/>
 									</PanelBody>
