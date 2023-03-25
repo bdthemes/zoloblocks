@@ -41,8 +41,12 @@ const attributes = {
 		type: 'string',
 	},
 	link: {
-		type: 'string',
-		default: '#',
+		type: 'object',
+		default: {
+			url: '#',
+			opensInNewTab: false,
+			addNoFollow: false,
+		}
 	},
 	openInNewTab: {
 		type: 'boolean',

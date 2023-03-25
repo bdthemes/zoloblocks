@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls,  __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
 import {
 	PanelBody,
 	SelectControl,
@@ -183,10 +183,28 @@ function Inspector(props) {
 												'zolo-blocks'
 											)}
 										/>
-										<TextControl
+										<LinkControl
+											searchInputPlaceholder="Search here..."
+											value={ link }
+											settings={[
+												{
+													id: 'opensInNewTab',
+													title: __( 'Open in new tab', 'zolo-blocks')
+												},
+												{
+													id: 'addNoFollow',
+													title: __( 'Add nofollow to link', 'zolo-blocks')
+												}
+											]}
+											onChange={ ( data ) => setAttributes( { link: data } ) }
+										></LinkControl>
+										{/* <TextControl
 											label={__('Link', 'zolo-blocks')}
 											onChange={(value) =>
-												setAttributes({ link: value })
+												setAttributes({
+													...link,
+													url: value
+												})
 											}
 											value={link}
 											placeholder={__(
@@ -217,7 +235,7 @@ function Inspector(props) {
 													addNoFollow: !addNoFollow,
 												})
 											}
-										/>
+										/> */}
 									</PanelBody>
 									<PanelBody
 										title={__('Icon', 'zolo-blocks')}

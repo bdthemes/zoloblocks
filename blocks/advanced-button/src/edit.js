@@ -1,8 +1,10 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, RichText, BlockControls, __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
+import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
@@ -21,7 +23,7 @@ import Inspector from './inspector';
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
 		props;
-	const { uniqueId, preset, bgColor, textColor, blockStyle } = attributes;
+	const { uniqueId, preset, label, link, bgColor, textColor, blockStyle } = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -73,16 +75,15 @@ export default function Edit(props) {
 		attributes,
 	});
 
-	console.log('bgStyles', borderStyles);
-
 	const desktopAllStyle = `
     .${uniqueId}{
       ${buttonWidthDesktop}
       ${buttonAlignmentDesktop}
     }
-    .${uniqueId} button {
+    .${uniqueId} .zolo-button {
       background-color: ${bgColor};
       color: ${textColor};
+	  ${borderStyles}
     }
   `;
 	const tabletAllStyle = `
@@ -90,12 +91,18 @@ export default function Edit(props) {
       ${buttonWidthTab}
       ${buttonAlignmentTab}
     }
+	.${uniqueId} .zolo-button {
+		${borderStylesTab}
+	}
   `;
 	const mobileAllStyle = `
   	.${uniqueId}{
       ${buttonWithMob}
       ${buttonAlignmentMob}
     }
+	.${uniqueId} .zolo-button {
+		${borderStylesMob}
+	}
   `;
 
 	// Set All Style in "blockStyle" Attribute
@@ -110,6 +117,8 @@ export default function Edit(props) {
 		}
 	}, [attributes]);
 
+	console.log(link);
+
 	return (
 		<>
 			{isSelected && (
@@ -118,7 +127,43 @@ export default function Edit(props) {
 					setAttributes={setAttributes}
 				/>
 			)}
-
+			<BlockControls>
+				<ToolbarGroup>
+					<Dropdown
+						className="my-container-class-name"
+						contentClassName="my-popover-content-classname"
+						popoverProps={ { placement: 'bottom-start' } }
+						renderToggle={ ( { isOpen, onToggle } ) => (
+							<ToolbarButton
+								icon="admin-links"
+								label={ __( 'Link', 'zolo-blocks' )}
+								onClick={ onToggle }
+								aria-expanded={ isOpen }
+							/>
+						) }
+						renderContent={ () => (
+							<div className="zolo-dropdown-link">
+								<LinkControl
+									searchInputPlaceholder="Search here..."
+									value={ link }
+									settings={[
+										{
+											id: 'opensInNewTab',
+											title: __( 'Open in new tab', 'zolo-blocks')
+										},
+										{
+											id: 'addNoFollow',
+											title: __( 'Add nofollow to link', 'zolo-blocks')
+										}
+									]}
+									onChange={ ( data ) => setAttributes( { link: data } ) }
+								>
+								</LinkControl>
+							</div>
+						) }
+					/>
+				</ToolbarGroup>
+			</BlockControls>
 			<div {...blockProps}>
 				<style>
 					{`
@@ -145,7 +190,13 @@ export default function Edit(props) {
 						data-id={uniqueId}
 					>
 						<div className={`zolo-content`}>
-							<button>Advanced Button</button>
+							<RichText
+								className='zolo-button'
+								value={ label }
+							  	onChange={ ( text ) => setAttributes( { label: text } ) }
+								placeholder={ __( 'Button Text', 'zolo-blocks' ) }
+								allowedFormats={ [] }
+							/>
 						</div>
 					</div>
 				</div>
