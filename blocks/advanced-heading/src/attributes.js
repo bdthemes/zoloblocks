@@ -8,7 +8,7 @@ const {
 } = window.zoloModule;
 
 //block constants
-import { SUB_TITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW } from './constants';
+import { SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW } from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes = {
@@ -96,7 +96,7 @@ const attributes = {
     default: '',
   },
   ...generateDimensionAttributes(TITLE_MARGIN),
-  ...generateDimensionAttributes(SUB_TITLE_MARGIN),
+  ...generateDimensionAttributes(SUBTITLE_MARGIN),
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
   //advance tab attributes

@@ -54,7 +54,7 @@ export const HEADING_TAG = [
 ];
 //style tab
 export const TITLE_MARGIN = 'titleMargin';
-export const SUB_TITLE_MARGIN = 'subTitleMargin';
+export const SUBTITLE_MARGIN = 'subTitleMargin';
 //advance tab
 export const WRAPPER_MARGIN = 'wrapMargin';
 export const WRAPPER_PADDING = 'wrapPadding';

@@ -11,9 +11,7 @@ import Inspector from './inspector';
 
 //block constants
 import {
-  HEADING_ALIGNMENT,
-  TITLE_MARGIN,
-  WRAPPER_BG,
+  HEADING_ALIGNMENT, SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_MARGIN,
   WRAPPER_PADDING,
@@ -58,9 +56,7 @@ const Edit = (props) => {
 
     //style
     titleColor,
-    titleHoverColor,
     subTitleColor,
-    subTitleHoverColor
   } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -130,7 +126,7 @@ const Edit = (props) => {
     dimensionStylesTab: subTitleMarginTab,
     dimensionStylesMobile: subTitleMarginMobile,
   } = generateDimensionStyle({
-    controlName: SUBTITLE_TYPOGRAPHY,
+    controlName: SUBTITLE_MARGIN,
     styleFor: 'margin',
     attributes,
   });
@@ -262,9 +258,6 @@ const Edit = (props) => {
 				${titleTypoDesktop}
 				${titleMarginDesktop}
 			}
-			.zolo-block-wrapper.${uniqueId}:hover .zolo-ah-title {
-				color: ${titleHoverColor};
-			}
 		`;
 
   const titleStylesTab = `
@@ -287,9 +280,6 @@ const Edit = (props) => {
 			color: ${subTitleColor};
 			${subTitleTypoDesktop}
 			${subTitleMarginDesktop}
-		}
-		.zolo-block-wrapper.${uniqueId}:hover .zolo-ah-subtitle {
-			color: ${subTitleHoverColor};
 		}
 	`;
 
@@ -337,15 +327,22 @@ const Edit = (props) => {
     }
   }, [attributes]);
 
+  //Dynamic Title Tag
   const DynamicTag = (props) => {
-    const { tagName, children, ...rest } = props;
-    const Tag = tagName || 'div';
+    const { tagName, children, ...attr } = props;
+    const Tag = tagName || 'h2';
     return (
-      <Tag {...rest}>
+      <Tag {...attr}>
         {children}
       </Tag>
     );
   }
+
+  //title classname
+  const titleClass = classnames([
+    'zolo-ah-title',
+    showSeparator ? 'separator ' + separaTorPosition + ' ' + separaTorAlign : ''
+  ]);
 
 
   return (
@@ -388,14 +385,14 @@ const Edit = (props) => {
           {(showSubTitle && subTitlePosition == 'top') && (
             <RichText
               tagName={subTitleTagName}
-              className="zolo-ah-sub-title"
+              className="zolo-ah-subtitle"
               value={subTitleText}
               formattingControl={["bold", "italic"]}
               onChange={(subTitleText) => setAttributes({ subTitleText })}
             />
           )}
 
-          <DynamicTag tagName={titleTagName} className={`zolo-ah-title ${showSeparator ? 'separator ' + separaTorPosition + ' ' + separaTorAlign : ''}`}>
+          <DynamicTag tagName={titleTagName} className={titleClass}>
             <RichText
               tagName={'span'}
               className="zolo-ah-main-title"
@@ -408,13 +405,12 @@ const Edit = (props) => {
           {(showSubTitle && subTitlePosition == 'bottom') && (
             <RichText
               tagName={subTitleTagName}
-              className="zolo-ah-sub-title"
+              className="zolo-ah-subtitle"
               value={subTitleText}
               formattingControl={["bold", "italic"]}
               onChange={(subTitleText) => setAttributes({ subTitleText })}
             />
           )}
-
 
         </div>
       </div>

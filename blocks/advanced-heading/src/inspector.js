@@ -32,7 +32,7 @@ import {
   SEPERATOR_ALIGN,
   STYLES,
   ST_POSITION,
-  SUB_TITLE_MARGIN,
+  SUBTITLE_MARGIN,
   TITLE_MARGIN, WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_MARGIN,
@@ -322,7 +322,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 
                     <ResDimensionsControl
                       label={__('Margin', 'zolo-blocks')}
-                      controlName={SUB_TITLE_MARGIN}
+                      controlName={SUBTITLE_MARGIN}
                       resRequiredProps={resRequiredProps}
                     />
 
