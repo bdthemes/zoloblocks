@@ -19,7 +19,8 @@ const {
   ColorControl,
   ResDimensionsControl,
   ResAlignmentControl,
-  TypographyDropdown
+  TypographyDropdown,
+  ResRangeControl,
 } = window.zoloModule;
 
 //block attributes
@@ -27,19 +28,15 @@ import objAttributes from './attributes';
 
 //block constants
 import {
-  HEADING_ALIGNMENT,
-  HEADING_TAG,
-  SEPERATOR_ALIGN,
-  STYLES,
+  HEADING_TAG, SEPARATOR_ALIGN, SEPARATOR_HEIGHT, SEPARATOR_WIDTH, STYLES,
   ST_POSITION,
-  SUBTITLE_MARGIN,
-  TITLE_MARGIN, WRAPPER_BG,
+  SUBTITLE_MARGIN, TEXT_ALIGN, TITLE_MARGIN, WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_MARGIN,
   WRAPPER_PADDING,
   WRAPPER_SHADOW
 } from './constants';
-import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Inspector = ({ attributes, setAttributes }) => {
 
@@ -58,10 +55,13 @@ const Inspector = ({ attributes, setAttributes }) => {
     subTitlePosition,
     separaTorPosition,
     separaTorAlign,
+    align,
 
     //design
     titleColor,
     subTitleColor,
+    tpColor,
+    separatorColor
   } = attributes;
 
   const resRequiredProps = {
@@ -69,6 +69,55 @@ const Inspector = ({ attributes, setAttributes }) => {
     setAttributes,
     resMode,
     objAttributes,
+  };
+
+  const changePremade = (selected) => {
+    setAttributes({ styles: selected });
+    switch (selected) {
+      case 'style-1':
+        setAttributes({
+          showSubTitle: true,
+          showTransparentTitle: true,
+          showSeparator: false,
+          headingAlignmentZRPAlign: 'center'
+        });
+        break;
+      case 'style-2':
+        setAttributes({
+          showSubTitle: true,
+          showTransparentTitle: true,
+          showSeparator: false,
+          headingAlignmentZRPAlign: 'center'
+        });
+        break;
+      case 'style-3':
+        setAttributes({
+          showSubTitle: true,
+          showTransparentTitle: true,
+          showSeparator: false,
+          headingAlignmentZRPAlign: 'center'
+        });
+        break;
+
+      case 'style-4':
+        setAttributes({
+          showSubTitle: true,
+          showTransparentTitle: true,
+          showSeparator: true,
+          separaTorAlign: 'center',
+          headingAlignmentZRPAlign: 'center'
+        });
+        break;
+      case 'style-5':
+        setAttributes({
+          showSubTitle: false,
+          showTransparentTitle: false,
+          showSeparator: true
+        });
+        break;
+      default:
+        return false;
+    }
   };
 
   return (
@@ -112,7 +161,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                       label={__("Premade Styles", "zolo-blocks")}
                       value={styles}
                       options={applyFilters('zolo_ah_style_filter', STYLES) || STYLES}
-                      onChange={(selected) => setAttributes({ styles: selected })}
+                      onChange={(selected) => changePremade(selected)}
                     />
                     <TextControl
                       label={__('Title Text', 'zolo-blocks')}
@@ -217,7 +266,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 
                         <BaseControl label={__("Separator Alignment", "zolo-blocks")} >
                           <ButtonGroup>
-                            {SEPERATOR_ALIGN.map((item, key) => (
+                            {SEPARATOR_ALIGN.map((item, key) => (
                               <Button
                                 key={key}
                                 variant={separaTorAlign === item.value ? 'primary' : 'secondary'}
@@ -231,21 +280,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                       </>
                     )}
 
-                    {/* <ResRangeControl
-											label={__(
-												'Heading Width',
-												'zolo-blocks'
-											)}
-											resRequiredProps={resRequiredProps}
-											controlName={HEADING_WIDTH}
-											min={0}
-											max={500}
-											step={1}
-										/> */}
-
-
-
-                    <ResAlignmentControl
+                    {/* <ResAlignmentControl
                       label={__('Alignmet', 'zolo-blocks')}
                       controlName={HEADING_ALIGNMENT}
                       resRequiredProps={resRequiredProps}
@@ -267,8 +302,21 @@ const Inspector = ({ attributes, setAttributes }) => {
                           value: 'justify',
                         },
                       ]}
-                    />
+                    /> */}
 
+                    <BaseControl label={__("Alignment", "zolo-blocks")} >
+                      <ButtonGroup className="zolo-alignment-button">
+                        {TEXT_ALIGN.map((item, key) => (
+                          <Button
+                            key={key}
+                            variant={align === item.value ? 'primary' : 'secondary'}
+                            onClick={() => setAttributes({ align: item.value, })}
+                          >
+                            {item.label}
+                          </Button>
+                        ))}
+                      </ButtonGroup>
+                    </BaseControl>
 
                   </PanelBody>
                 </>
@@ -326,6 +374,61 @@ const Inspector = ({ attributes, setAttributes }) => {
                       resRequiredProps={resRequiredProps}
                     />
 
+                  </PanelBody>
+
+                  <PanelBody
+                    title={__('Transparent Title', 'zolo-blocks')}
+                    initialOpen={false}
+                  >
+                    <TypographyDropdown
+                      label="Typography"
+                      typoPrefixConstant={TRANSPARENT_TYPOGRAPHY}
+                      resRequiredProps={resRequiredProps}
+                    />
+
+                    <ColorControl
+                      label={__('Color', 'zolo-blocks')}
+                      color={tpColor}
+                      onChange={(val) => setAttributes({
+                        tpColor: val,
+                      })}
+                    />
+                  </PanelBody>
+
+                  <PanelBody
+                    title={__('Separator', 'zolo-blocks')}
+                    initialOpen={false}
+                  >
+                    <ResRangeControl
+                      label={__(
+                        'Width',
+                        'zolo-blocks'
+                      )}
+                      resRequiredProps={resRequiredProps}
+                      controlName={SEPARATOR_WIDTH}
+                      min={0}
+                      max={300}
+                      step={1}
+                    />
+                    <ResRangeControl
+                      label={__(
+                        'Height',
+                        'zolo-blocks'
+                      )}
+                      resRequiredProps={resRequiredProps}
+                      controlName={SEPARATOR_HEIGHT}
+                      min={0}
+                      max={100}
+                      step={1}
+                    />
+
+                    <ColorControl
+                      label={__('Color', 'zolo-blocks')}
+                      color={separatorColor}
+                      onChange={(val) => setAttributes({
+                        separatorColor: val,
+                      })}
+                    />
                   </PanelBody>
                 </>
               )}

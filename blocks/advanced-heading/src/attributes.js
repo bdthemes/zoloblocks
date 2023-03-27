@@ -5,10 +5,12 @@ const {
   generateBoxShadowAttributies,
   generateDimensionAttributes,
   generateTypographyAttributes,
+  generateResRangeAttributies,
+  generateResAlignmentAttributies
 } = window.zoloModule;
 
 //block constants
-import { SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW } from './constants';
+import { HEADING_ALIGNMENT, SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW } from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes = {
@@ -24,21 +26,19 @@ const attributes = {
     type: "object"
   },
 
-  // //range attributes
-  // ...generateResRangeAttributies(HEADING_WIDTH, {
-  // 	defaultRange: 100,
-  // 	defaultUnit: '%',
-  // }),
+  //range attributes
+  ...generateResRangeAttributies(SEPARATOR_WIDTH),
+  ...generateResRangeAttributies(SEPARATOR_HEIGHT),
 
-  // //alignment attributes
-  // ...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
-  // 	defaultAlign: 'left',
-  // }),
+  //alignment attributes
+  ...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
+    defaultAlign: 'left',
+  }),
 
   //settings tab
   styles: {
     type: 'string',
-    default: "style-1",
+    default: "style-0",
   },
   titleText: {
     type: 'string',
@@ -58,7 +58,7 @@ const attributes = {
   },
   transparentTitleText: {
     type: 'string',
-    default: "Zolo Block Sub Title",
+    default: "Advanced Heading",
   },
   showSubTitle: {
     type: 'boolean',
@@ -84,7 +84,10 @@ const attributes = {
     type: 'string',
     default: 'left'
   },
-
+  align: {
+    type: "string",
+    default: "left",
+  },
 
   //design tab attributes
   titleColor: {
@@ -95,6 +98,15 @@ const attributes = {
     type: 'string',
     default: '',
   },
+  tpColor: {
+    type: 'string',
+    default: '',
+  },
+  separatorColor: {
+    type: 'string',
+    default: '',
+  },
+
   ...generateDimensionAttributes(TITLE_MARGIN),
   ...generateDimensionAttributes(SUBTITLE_MARGIN),
   ...generateTypographyAttributes(Object.values(typographyObjs)),

@@ -11,13 +11,13 @@ import Inspector from './inspector';
 
 //block constants
 import {
-  HEADING_ALIGNMENT, SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG,
+  HEADING_ALIGNMENT, SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_MARGIN,
   WRAPPER_PADDING,
   WRAPPER_SHADOW
 } from './constants';
-import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 
 const {
@@ -29,6 +29,7 @@ const {
   generateDimensionStyle,
   generateResAlignmentStyle,
   generateTypographyStyles,
+  generateResRangeStyle,
 
   // generateControls,
 } = window.zoloModule;
@@ -57,6 +58,8 @@ const Edit = (props) => {
     //style
     titleColor,
     subTitleColor,
+    tpColor,
+    separatorColor
   } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -95,7 +98,7 @@ const Edit = (props) => {
     typoStylesMobile: titleTypoMobile,
   } = generateTypographyStyles({
     prefixConstant: TITLE_TYPOGRAPHY,
-    defaultFontSize: 22,
+    defaultFontSize: 25,
     attributes,
   })
   //margin
@@ -109,6 +112,27 @@ const Edit = (props) => {
     attributes,
   });
 
+  const {
+    desktopRangeStyle: separatorWidthDesktop,
+    tabRangeStyle: separatorWidthTab,
+    mobRangeStyle: separatorWidthMob,
+  } = generateResRangeStyle({
+    controlName: SEPARATOR_WIDTH,
+    property: 'width',
+    attributes,
+  });
+
+  const {
+    desktopRangeStyle: separatorHeightDesktop,
+    tabRangeStyle: separatorHeightTab,
+    mobRangeStyle: separatorHeightMob,
+  } = generateResRangeStyle({
+    controlName: SEPARATOR_HEIGHT,
+    property: 'height',
+    attributes,
+  });
+
+
   //subtitle style generate
   //typography
   const {
@@ -117,7 +141,7 @@ const Edit = (props) => {
     typoStylesMobile: subTitleTypoMobile,
   } = generateTypographyStyles({
     prefixConstant: SUBTITLE_TYPOGRAPHY,
-    defaultFontSize: 22,
+    defaultFontSize: 16,
     attributes,
   })
   //margin
@@ -130,6 +154,16 @@ const Edit = (props) => {
     styleFor: 'margin',
     attributes,
   });
+  //transparent style generate
+  const {
+    typoStylesDesktop: transparentTypoDesktop,
+    typoStylesTab: transparentTypoTab,
+    typoStylesMobile: transparentTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: TRANSPARENT_TYPOGRAPHY,
+    defaultFontSize: 55,
+    attributes,
+  })
 
   //wrapper style generate
   //margin
@@ -213,6 +247,17 @@ const Edit = (props) => {
 		.zolo-block-wrapper.${uniqueId}:hover::befor{
 			${wrapperHoverOverlayStylesDesktop}
 		}
+    .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading{
+      font-weight: 900;
+    }
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
+      font-weight: 400;
+      color: #323641;
+    }
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-title{
+      font-weight: 500;
+      color: #202224;
+    }
 	`;
   const wrapperStylesTab = `
 		.zolo-block-wrapper.${uniqueId}{
@@ -254,10 +299,19 @@ const Edit = (props) => {
   // Title styles css in strings
   const titleStylesDesktop = `
 			.zolo-block-wrapper.${uniqueId} .zolo-ah-title {
-				color: ${titleColor};
+        ${titleColor ? `color: ${titleColor};` : ""}
 				${titleTypoDesktop}
 				${titleMarginDesktop}
 			}
+      .zolo-block-wrapper.${uniqueId} .zolo-ah-title.separator::before{
+        ${separatorWidthDesktop}
+        ${separatorHeightDesktop}
+        background-color:${separatorColor};
+      }
+      .zolo-block-wrapper.${uniqueId}.zolo-ah-style-12 .zolo-ah-title {
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: ${tpColor};
+      }
 		`;
 
   const titleStylesTab = `
@@ -277,7 +331,7 @@ const Edit = (props) => {
   // Subtitle styles css in strings
   const subtitleStylesDesktop = `
 		.zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
-			color: ${subTitleColor};
+      ${subTitleColor ? `color: ${subTitleColor};` : ""}
 			${subTitleTypoDesktop}
 			${subTitleMarginDesktop}
 		}
@@ -297,22 +351,49 @@ const Edit = (props) => {
 		}
 	`;
 
+  //transparent styles css
+  const transparentStylesDesktop = `
+    .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
+      ${tpColor ? `color: ${tpColor};` : ''}
+      ${transparentTypoDesktop}
+    }
+    .zolo-block-wrapper.${uniqueId}.zolo-ah-style-2 .zolo-transparent-heading {
+      -webkit-text-stroke-width: 3px;
+      -webkit-text-stroke-color: ${tpColor};
+    }
+  `;
+
+  const transparentStylesTab = `
+    .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
+      ${transparentTypoTab}
+    }
+  `;
+
+  const transparentStylesMobile = `
+    .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
+      ${transparentTypoMobile}
+    }
+  `;
+
   const desktopAllStyle = `
 		${wrapperStylesDesktop}
 		${titleStylesDesktop}
 		${subtitleStylesDesktop}
+    ${transparentStylesDesktop}
 	`;
 
   const tabletAllStyle = `
 		${wrapperStylesTab}
 		${titleStylesTab}
 		${subtitleStylesTab}
+    ${transparentStylesTab}
 	`;
 
   const mobileAllStyle = `
 		${wrapperStylesMobile}
 		${titleStylesMobile}
 		${subtitleStylesMobile}
+    ${transparentStylesMobile}
 	`;
 
   // Set All Style in "blockStyle" Attribute

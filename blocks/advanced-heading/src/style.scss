@@ -70,146 +70,152 @@
 	position: relative;
 }
 
-.zolo-ah-style-1.zolo-advanced-heading,
-.zolo-ah-style-2.zolo-advanced-heading,
-.zolo-ah-style-3.zolo-advanced-heading,
-.zolo-ah-style-4.zolo-advanced-heading,
-.zolo-ah-style-9.zolo-advanced-heading,
-.zolo-ah-style-13.zolo-advanced-heading {
-	text-align: center;
-}
-
-.zolo-ah-style-6.zolo-advanced-heading,
-.zolo-ah-style-10.zolo-advanced-heading {
-	text-align: right;
-}
-
-.zolo-ah-style-2 .zolo-transparent-heading,
-.zolo-ah-style-12 .zolo-ah-title {
-	color: transparent;
-	-webkit-text-fill-color: transparent;
-
-}
-
-.zolo-ah-style-2 .zolo-transparent-heading {
-	-webkit-text-stroke-width: 3px;
-	-webkit-text-stroke-color: rgba(6, 6, 7, 0.22);
-}
-
-.zolo-ah-style-3 .zolo-ah-title,
-.zolo-ah-style-11 .zolo-ah-title {
+.zolo-ah-style-3 .zolo-ah-title {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-image: url(https://www.elementpack.pro/demo/wp-content/uploads/2018/02/bg1.jpg);
 }
 
-.zolo-ah-style-7 .zolo-transparent-heading,
-.zolo-ah-style-8 .zolo-transparent-heading,
-.zolo-ah-style-9 .zolo-transparent-heading,
-.zolo-ah-style-10 .zolo-transparent-heading,
-.zolo-ah-style-11 .zolo-transparent-heading,
-.zolo-ah-style-12 .zolo-transparent-heading,
-.zolo-ah-style-7 .zolo-ah-subtitle,
-.zolo-ah-style-8 .zolo-ah-subtitle,
-.zolo-ah-style-9 .zolo-ah-subtitle,
-.zolo-ah-style-10 .zolo-ah-subtitle,
-.zolo-ah-style-13 .zolo-ah-subtitle {
-	display: none;
-}
+// .zolo-ah-style-1.zolo-advanced-heading,
+// .zolo-ah-style-2.zolo-advanced-heading,
+// .zolo-ah-style-3.zolo-advanced-heading,
+// .zolo-ah-style-4.zolo-advanced-heading,
+// .zolo-ah-style-9.zolo-advanced-heading,
+// .zolo-ah-style-13.zolo-advanced-heading {
+// 	text-align: center;
+// }
 
-.zolo-ah-title {
-	position: relative;
-	display: inline-block;
-}
+// .zolo-ah-style-6.zolo-advanced-heading,
+// .zolo-ah-style-10.zolo-advanced-heading {
+// 	text-align: right;
+// }
 
-.zolo-ah-style-4 .zolo-ah-title:before,
-.zolo-ah-style-5 .zolo-ah-title:before,
-.zolo-ah-style-6 .zolo-ah-title:before,
-.zolo-ah-style-7 .zolo-ah-title:before,
-.zolo-ah-style-8 .zolo-ah-title:before,
-.zolo-ah-style-9 .zolo-ah-title:before,
-.zolo-ah-style-10 .zolo-ah-title:before {
-	position: absolute;
-	content: '';
-	left: 0;
-	width: 70px;
-	height: 3px;
-	background-color: #1b5080;
-}
+// .zolo-ah-style-2 .zolo-transparent-heading,
+// .zolo-ah-style-12 .zolo-ah-title {
+// 	color: transparent;
+// 	-webkit-text-fill-color: transparent;
 
-.zolo-ah-style-7 .zolo-ah-title:before {
-	top: -7px;
-}
+// }
 
-.zolo-ah-style-4 .zolo-ah-title:before,
-.zolo-ah-style-5 .zolo-ah-title:before,
-.zolo-ah-style-6 .zolo-ah-title:before,
-.zolo-ah-style-8 .zolo-ah-title:before,
-.zolo-ah-style-9 .zolo-ah-title:before,
-.zolo-ah-style-10 .zolo-ah-title:before {
-	bottom: -5px;
-}
+// .zolo-ah-style-2 .zolo-transparent-heading {
+// 	-webkit-text-stroke-width: 3px;
+// 	-webkit-text-stroke-color: rgba(6, 6, 7, 0.22);
+// }
 
-.zolo-ah-style-4 .zolo-ah-title:before,
-.zolo-ah-style-9 .zolo-ah-title:before {
-	left: 50%;
-	transform: translateX(-50%);
-}
+// .zolo-ah-style-3 .zolo-ah-title,
+// .zolo-ah-style-11 .zolo-ah-title {
+// 	-webkit-background-clip: text;
+// 	-webkit-text-fill-color: transparent;
+// 	background-image: url(https://www.elementpack.pro/demo/wp-content/uploads/2018/02/bg1.jpg);
+// }
 
-.zolo-ah-style-6 .zolo-ah-title:before,
-.zolo-ah-style-10 .zolo-ah-title:before {
-	right: 0;
-	left: unset;
-}
+// .zolo-ah-style-7 .zolo-transparent-heading,
+// .zolo-ah-style-8 .zolo-transparent-heading,
+// .zolo-ah-style-9 .zolo-transparent-heading,
+// .zolo-ah-style-10 .zolo-transparent-heading,
+// .zolo-ah-style-11 .zolo-transparent-heading,
+// .zolo-ah-style-12 .zolo-transparent-heading,
+// .zolo-ah-style-7 .zolo-ah-subtitle,
+// .zolo-ah-style-8 .zolo-ah-subtitle,
+// .zolo-ah-style-9 .zolo-ah-subtitle,
+// .zolo-ah-style-10 .zolo-ah-subtitle,
+// .zolo-ah-style-13 .zolo-ah-subtitle {
+// 	display: none;
+// }
 
-.zolo-ah-style-12 .zolo-ah-title {
-	-webkit-text-stroke-width: 1px;
-	-webkit-text-stroke-color: rgba(6, 6, 7, 0.919);
-}
+// .zolo-ah-title {
+// 	position: relative;
+// 	display: inline-block;
+// }
 
-.zolo-ah-style-13 .zolo-ah-title {
-	font-size: 24px;
-	font-weight: 300;
-}
+// .zolo-ah-style-4 .zolo-ah-title:before,
+// .zolo-ah-style-5 .zolo-ah-title:before,
+// .zolo-ah-style-6 .zolo-ah-title:before,
+// .zolo-ah-style-7 .zolo-ah-title:before,
+// .zolo-ah-style-8 .zolo-ah-title:before,
+// .zolo-ah-style-9 .zolo-ah-title:before,
+// .zolo-ah-style-10 .zolo-ah-title:before {
+// 	position: absolute;
+// 	content: '';
+// 	left: 0;
+// 	width: 70px;
+// 	height: 3px;
+// 	background-color: #1b5080;
+// }
 
-.zolo-ah-style-13 .zolo-ah-title:before,
-.zolo-ah-style-13 .zolo-ah-title::after {
-	position: absolute;
-	content: '';
-	left: 0;
-	width: 100%;
-	height: 1px;
-	background-color: #1b5080;
-}
+// .zolo-ah-style-7 .zolo-ah-title:before {
+// 	top: -7px;
+// }
 
-.zolo-ah-style-13 .zolo-ah-main-title {
-	background-color: #fff;
-	padding: 10px 20px;
-}
+// .zolo-ah-style-4 .zolo-ah-title:before,
+// .zolo-ah-style-5 .zolo-ah-title:before,
+// .zolo-ah-style-6 .zolo-ah-title:before,
+// .zolo-ah-style-8 .zolo-ah-title:before,
+// .zolo-ah-style-9 .zolo-ah-title:before,
+// .zolo-ah-style-10 .zolo-ah-title:before {
+// 	bottom: -5px;
+// }
 
-.zolo-ah-style-13 .zolo-ah-title:before {
-	top: -5px;
-}
+// .zolo-ah-style-4 .zolo-ah-title:before,
+// .zolo-ah-style-9 .zolo-ah-title:before {
+// 	left: 50%;
+// 	transform: translateX(-50%);
+// }
 
-.zolo-ah-style-13 .zolo-ah-title::after {
-	bottom: -5px;
-}
+// .zolo-ah-style-6 .zolo-ah-title:before,
+// .zolo-ah-style-10 .zolo-ah-title:before {
+// 	right: 0;
+// 	left: unset;
+// }
 
-.zolo-ah-style-13 .zolo-transparent-heading {
-	font-size: 125px;
-}
+// .zolo-ah-style-12 .zolo-ah-title {
+// 	-webkit-text-stroke-width: 1px;
+// 	-webkit-text-stroke-color: rgba(6, 6, 7, 0.919);
+// }
 
-.zolo-ah-style-14 .zolo-ah-title:before {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 10px;
-	height: 100%;
-	background-color: #ff1e1e;
-	content: '';
-}
+// .zolo-ah-style-13 .zolo-ah-title {
+// 	font-size: 24px;
+// 	font-weight: 300;
+// }
 
-.zolo-ah-style-14 .zolo-ah-main-title {
-	z-index: 1;
-	position: relative;
-}
+// .zolo-ah-style-13 .zolo-ah-title:before,
+// .zolo-ah-style-13 .zolo-ah-title::after {
+// 	position: absolute;
+// 	content: '';
+// 	left: 0;
+// 	width: 100%;
+// 	height: 1px;
+// 	background-color: #1b5080;
+// }
+
+// .zolo-ah-style-13 .zolo-ah-main-title {
+// 	background-color: #fff;
+// 	padding: 10px 20px;
+// }
+
+// .zolo-ah-style-13 .zolo-ah-title:before {
+// 	top: -5px;
+// }
+
+// .zolo-ah-style-13 .zolo-ah-title::after {
+// 	bottom: -5px;
+// }
+
+// .zolo-ah-style-13 .zolo-transparent-heading {
+// 	font-size: 125px;
+// }
+
+// .zolo-ah-style-14 .zolo-ah-title:before {
+// 	position: absolute;
+// 	top: 0;
+// 	right: 0;
+// 	width: 10px;
+// 	height: 100%;
+// 	background-color: #ff1e1e;
+// 	content: '';
+// }
+
+// .zolo-ah-style-14 .zolo-ah-main-title {
+// 	z-index: 1;
+// 	position: relative;
+// }
