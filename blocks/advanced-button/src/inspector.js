@@ -1,7 +1,10 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls,  __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
+import {
+	InspectorControls,
+	__experimentalLinkControl as LinkControl,
+} from '@wordpress/block-editor';
 import {
 	PanelBody,
 	SelectControl,
@@ -21,6 +24,7 @@ import ResRangeControl from '../../../src/controls/res-range-control';
 import ColorControl from '../../../src/controls/color-control';
 import BackgroundControl from '../../../src/controls/background-control';
 import BorderControl from '../../../src/controls/border-control';
+import ResDimensionsControl from '../../../src/controls/dimensions-control';
 
 // const {
 // 	BackgroundControl,
@@ -36,10 +40,13 @@ import BorderControl from '../../../src/controls/border-control';
 import objAttributes from './attributes';
 import {
 	BUTTON_ALIGNMENT,
-	BUTTON_WIDTH,
 	PRESETS,
 	BUTTON_BG,
 	BUTTON_BORDER,
+	BUTTON_PADDING,
+	BUTTON_MARGIN,
+	ICON_SIZE,
+	ICON_TEXT_SPACING,
 } from './constants';
 
 function Inspector(props) {
@@ -129,18 +136,6 @@ function Inspector(props) {
 												changePreset(selected)
 											}
 										/>
-										<ResRangeControl
-											label={__(
-												'Button Width',
-												'zolo-blocks'
-											)}
-											resRequiredProps={resRequiredProps}
-											controlName={BUTTON_WIDTH}
-											min={0}
-											max={500}
-											step={1}
-										/>
-
 										<ResAlignmentControl
 											label={__(
 												'Button Alignmet',
@@ -185,18 +180,26 @@ function Inspector(props) {
 										/>
 										<LinkControl
 											searchInputPlaceholder="Search here..."
-											value={ link }
+											value={link}
 											settings={[
 												{
 													id: 'opensInNewTab',
-													title: __( 'Open in new tab', 'zolo-blocks')
+													title: __(
+														'Open in new tab',
+														'zolo-blocks'
+													),
 												},
 												{
 													id: 'addNoFollow',
-													title: __( 'Add nofollow to link', 'zolo-blocks')
-												}
+													title: __(
+														'Add nofollow to link',
+														'zolo-blocks'
+													),
+												},
 											]}
-											onChange={ ( data ) => setAttributes( { link: data } ) }
+											onChange={(data) =>
+												setAttributes({ link: data })
+											}
 										></LinkControl>
 										{/* <TextControl
 											label={__('Link', 'zolo-blocks')}
@@ -289,6 +292,34 @@ function Inspector(props) {
 													}}
 													value={iconPosition}
 												/>
+												<ResRangeControl
+													label={__(
+														'Icon Size',
+														'zolo-blocks'
+													)}
+													controlName={ICON_SIZE}
+													resRequiredProps={
+														resRequiredProps
+													}
+													min={0}
+													max={100}
+													step={1}
+												/>
+												<ResRangeControl
+													label={__(
+														'Gap',
+														'zolo-blocks'
+													)}
+													controlName={
+														ICON_TEXT_SPACING
+													}
+													resRequiredProps={
+														resRequiredProps
+													}
+													min={0}
+													max={100}
+													step={1}
+												/>
 											</Fragment>
 										)}
 									</PanelBody>
@@ -343,8 +374,25 @@ function Inspector(props) {
 								</>
 							)}
 
-							{tab.name === 'advance' && (
-								<>{/* Advanced Controls */}</>
+							{tab.name === 'advanced' && (
+								<>
+									{/* Advanced Controls */}
+									<PanelBody
+										title={__('Spacing', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<ResDimensionsControl
+											label={__('Padding', 'zolo-blocks')}
+											controlName={BUTTON_PADDING}
+											resRequiredProps={resRequiredProps}
+										/>
+										<ResDimensionsControl
+											label={__('Margin', 'zolo-blocks')}
+											controlName={BUTTON_MARGIN}
+											resRequiredProps={resRequiredProps}
+										/>
+									</PanelBody>
+								</>
 							)}
 						</div>
 					)}

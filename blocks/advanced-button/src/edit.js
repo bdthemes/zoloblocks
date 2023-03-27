@@ -1,7 +1,12 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, BlockControls, __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	RichText,
+	BlockControls,
+	__experimentalLinkControl as LinkControl,
+} from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -13,17 +18,31 @@ import classnames from 'classnames';
 import { handleUniqueId } from '../../../src/helpers/helper';
 import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
-import { BLOCK_PREFIX, BUTTON_ALIGNMENT, BUTTON_WIDTH } from './constants';
+import { BLOCK_PREFIX, BUTTON_ALIGNMENT } from './constants';
 import { generateBackgroundControlStyles } from '../../../src/helpers/backgroundHelpers';
 import { generateBorderStyle } from '../../../src/helpers/border-helper';
-import { BUTTON_BG, BUTTON_BORDER } from './constants';
+import {
+	BUTTON_BG,
+	BUTTON_BORDER,
+	ICON_SIZE,
+	ICON_TEXT_SPACING,
+} from './constants';
 
 import Inspector from './inspector';
 
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
 		props;
-	const { uniqueId, preset, label, link, bgColor, textColor, blockStyle } = attributes;
+	const {
+		uniqueId,
+		preset,
+		label,
+		link,
+		bgColor,
+		textColor,
+		blockStyle,
+		showIcon,
+	} = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -37,16 +56,6 @@ export default function Edit(props) {
 
 	const blockProps = useBlockProps({
 		className: classnames(className, ``),
-	});
-
-	const {
-		desktopRangeStyle: buttonWidthDesktop,
-		tabRangeStyle: buttonWidthTab,
-		mobRangeStyle: buttonWithMob,
-	} = generateResRangeStyle({
-		controlName: BUTTON_WIDTH,
-		property: 'width',
-		attributes,
 	});
 
 	const {
@@ -75,35 +84,76 @@ export default function Edit(props) {
 		attributes,
 	});
 
+	// generate icon size
+	const {
+		desktopRangeStyle: iconSize,
+		tabRangeStyle: iconSizeTab,
+		mobRangeStyle: iconSizeMob,
+	} = generateResRangeStyle({
+		controlName: ICON_SIZE,
+		property: 'font-size',
+		attributes,
+	});
+
+	// gap
+	const {
+		desktopRangeStyle: gap,
+		tabRangeStyle: gapTab,
+		mobRangeStyle: gapMob,
+	} = generateResRangeStyle({
+		controlName: ICON_TEXT_SPACING,
+		property: 'gap',
+		attributes,
+	});
+
+	/**
+	 * All Style Combination
+	 */
 	const desktopAllStyle = `
-    .${uniqueId}{
-      ${buttonWidthDesktop}
-      ${buttonAlignmentDesktop}
-    }
-    .${uniqueId} .zolo-button {
-      background-color: ${bgColor};
-      color: ${textColor};
-	  ${borderStyles}
-    }
-  `;
+		.${uniqueId}{
+			${buttonAlignmentDesktop}
+		}
+		.${uniqueId} .zolo-content {
+			background-color: ${bgColor};
+			color: ${textColor};
+			${borderStyles}
+		}
+		.${uniqueId} .zolo-content {
+			${gap}
+		}
+		.${uniqueId} .zolo-button-icon {
+			${iconSize}
+		}
+  	`;
 	const tabletAllStyle = `
-    .${uniqueId}{
-      ${buttonWidthTab}
-      ${buttonAlignmentTab}
-    }
-	.${uniqueId} .zolo-button {
-		${borderStylesTab}
-	}
-  `;
+		.${uniqueId}{
+			${buttonAlignmentTab}
+		}
+		.${uniqueId} .zolo-content {
+			${borderStylesTab}
+		}
+		.${uniqueId} .zolo-content {
+			${gapTab}
+		}
+		.${uniqueId} .zolo-button-icon {
+			${iconSizeTab}
+		}
+	`;
+
 	const mobileAllStyle = `
-  	.${uniqueId}{
-      ${buttonWithMob}
-      ${buttonAlignmentMob}
-    }
-	.${uniqueId} .zolo-button {
-		${borderStylesMob}
-	}
-  `;
+		.${uniqueId}{
+			${buttonAlignmentMob}
+		}
+		.${uniqueId} .zolo-content {
+			${borderStylesMob}
+		}
+		.${uniqueId} .zolo-content {
+			${gapMob}
+		}
+		.${uniqueId} .zolo-button-icon {
+			${iconSizeMob}
+		}
+  	`;
 
 	// Set All Style in "blockStyle" Attribute
 	useEffect(() => {
@@ -116,8 +166,6 @@ export default function Edit(props) {
 			setAttributes({ blockStyle: styles });
 		}
 	}, [attributes]);
-
-	console.log(link);
 
 	return (
 		<>
@@ -132,56 +180,63 @@ export default function Edit(props) {
 					<Dropdown
 						className="my-container-class-name"
 						contentClassName="my-popover-content-classname"
-						popoverProps={ { placement: 'bottom-start' } }
-						renderToggle={ ( { isOpen, onToggle } ) => (
+						popoverProps={{ placement: 'bottom-start' }}
+						renderToggle={({ isOpen, onToggle }) => (
 							<ToolbarButton
 								icon="admin-links"
-								label={ __( 'Link', 'zolo-blocks' )}
-								onClick={ onToggle }
-								aria-expanded={ isOpen }
+								label={__('Link', 'zolo-blocks')}
+								onClick={onToggle}
+								aria-expanded={isOpen}
 							/>
-						) }
-						renderContent={ () => (
+						)}
+						renderContent={() => (
 							<div className="zolo-dropdown-link">
 								<LinkControl
 									searchInputPlaceholder="Search here..."
-									value={ link }
+									value={link}
 									settings={[
 										{
 											id: 'opensInNewTab',
-											title: __( 'Open in new tab', 'zolo-blocks')
+											title: __(
+												'Open in new tab',
+												'zolo-blocks'
+											),
 										},
 										{
 											id: 'addNoFollow',
-											title: __( 'Add nofollow to link', 'zolo-blocks')
-										}
+											title: __(
+												'Add nofollow to link',
+												'zolo-blocks'
+											),
+										},
 									]}
-									onChange={ ( data ) => setAttributes( { link: data } ) }
-								>
-								</LinkControl>
+									onChange={(data) =>
+										setAttributes({ link: data })
+									}
+								></LinkControl>
 							</div>
-						) }
+						)}
 					/>
 				</ToolbarGroup>
 			</BlockControls>
-			<div {...blockProps}>
-				<style>
-					{`
-				${desktopAllStyle}
+			<style>
+				{`
+					${desktopAllStyle}
 
-				@media all and (max-width: 1024px) {	
-					/* tabcssStart */			
-					${tabletAllStyle}
-					/* tabcssEnd */			
-				}
-					
-				@media all and (max-width: 767px) {
-					/* mobcssStart */			
-					${mobileAllStyle}
-					/* mobcssEnd */
-				}	
-			`}
-				</style>
+					@media all and (max-width: 1024px) {	
+						/* tabcssStart */			
+						${tabletAllStyle}
+						/* tabcssEnd */			
+					}
+						
+					@media all and (max-width: 767px) {
+						/* mobcssStart */			
+						${mobileAllStyle}
+						/* mobcssEnd */
+					}	
+				`}
+			</style>
+			<div {...blockProps}>
 				<div
 					className={`zolo-block-wrapper zolo-advanced-button ${uniqueId}`}
 				>
@@ -191,12 +246,17 @@ export default function Edit(props) {
 					>
 						<div className={`zolo-content`}>
 							<RichText
-								className='zolo-button'
-								value={ label }
-							  	onChange={ ( text ) => setAttributes( { label: text } ) }
-								placeholder={ __( 'Button Text', 'zolo-blocks' ) }
-								allowedFormats={ [] }
+								className={`zolo-button`}
+								value={label}
+								onChange={(text) =>
+									setAttributes({ label: text })
+								}
+								placeholder={__('Button Text', 'zolo-blocks')}
+								allowedFormats={[]}
 							/>
+							{showIcon && (
+								<span className="dashicons dashicons-arrow-right-alt zolo-button-icon"></span>
+							)}
 						</div>
 					</div>
 				</div>

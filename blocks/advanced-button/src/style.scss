@@ -1,5 +1,8 @@
 .zolo-advanced-button {
-    button {
-        padding: 10px 20px;
-    }
+	.zolo-content {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		padding: 10px 20px;
+	}
 }

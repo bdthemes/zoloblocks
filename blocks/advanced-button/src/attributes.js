@@ -2,11 +2,13 @@ import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignm
 import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
 import { generateBorderAttributies } from '../../../src/helpers/border-helper';
 import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHelpers';
+
 import {
 	BUTTON_ALIGNMENT,
-	BUTTON_WIDTH,
 	BUTTON_BG,
 	BUTTON_BORDER,
+	ICON_SIZE,
+	ICON_TEXT_SPACING,
 } from './constants';
 const attributes = {
 	//Common Attributes
@@ -20,10 +22,6 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
-	//range attributes
-	...generateResRangeAttributies(BUTTON_WIDTH, {
-		defaultRange: 200,
-	}),
 	//alignment attributes
 	...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
 		defaultAlign: 'left',
@@ -46,7 +44,7 @@ const attributes = {
 			url: '#',
 			opensInNewTab: false,
 			addNoFollow: false,
-		}
+		},
 	},
 	openInNewTab: {
 		type: 'boolean',
@@ -75,6 +73,12 @@ const attributes = {
 		type: 'string',
 		default: '#ffffff',
 	},
+	...generateResRangeAttributies(ICON_SIZE, {
+		default: 16,
+	}),
+	...generateResRangeAttributies(ICON_TEXT_SPACING, {
+		default: 5,
+	}),
 };
 
 export default attributes;
