@@ -1,10 +1,6 @@
 export const generateColorsGroupAttributes = (controlName, defaults = {}) => {
 	const { Color, HoverColor } = defaults;
 	return {
-		[`${controlName}ColorType`]: {
-			type: 'string',
-			default: 'normal',
-		},
 		[`${controlName}Color`]: {
 			type: 'string',
 			default: Color,

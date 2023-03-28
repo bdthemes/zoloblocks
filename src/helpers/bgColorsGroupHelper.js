@@ -1,11 +1,11 @@
 export const generateBgColorsGroupAttributes = (controlName, defaults = {}) => {
 	const { BgColor, BgHoverColor } = defaults;
 	return {
-		[`${controlName}ColorType`]: {
-			type: 'string',
-			default: 'normal',
-		},
 		[`${controlName}BgType`]: {
+			type: 'string',
+			default: 'classic',
+		},
+		[`${controlName}HoverBgType`]: {
 			type: 'string',
 			default: 'classic',
 		},
@@ -28,6 +28,7 @@ export const generateBgColorsGroupStyle = ({
 }) => {
 	const {
 		[`${controlName}BgType`]: BgType,
+		[`${controlName}HoverBgType`]: BgHoverType,
 		[`${controlName}BgColor`]: BgColor,
 		[`${controlName}BgHoverColor`]: BgHoverColor,
 	} = attributes;
@@ -41,7 +42,7 @@ export const generateBgColorsGroupStyle = ({
 
 	const bgHoverColor =
 		BgHoverColor || BgHoverColor == ''
-			? BgType === 'classic'
+			? BgHoverType === 'classic'
 				? property + ':' + BgHoverColor + ';'
 				: 'background-image:' + BgHoverColor + ';'
 			: '';
