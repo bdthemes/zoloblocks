@@ -52,8 +52,9 @@ const Edit = (props) => {
     showTransparentTitle,
     transparentTitleText,
     subTitlePosition,
-    separaTorPosition,
+    separatorPosition,
     separaTorAlign,
+    align,
 
     //style
     titleColor,
@@ -128,7 +129,7 @@ const Edit = (props) => {
     mobRangeStyle: separatorHeightMob,
   } = generateResRangeStyle({
     controlName: SEPARATOR_HEIGHT,
-    property: 'height',
+    property: 'border-width',
     attributes,
   });
 
@@ -235,7 +236,7 @@ const Edit = (props) => {
 			${wrapperBorderDesktop}
 			${wrapperShadow}
 			transition:${wrapperShadowTransition};
-      ${headingAlignmentDesktop}
+      text-align: ${align};
 		}
 		.zolo-block-wrapper.${uniqueId}:hover{
 			${wrapperHoverBackgroundStylesDesktop}
@@ -258,6 +259,15 @@ const Edit = (props) => {
       font-weight: 500;
       color: #202224;
     }
+		.zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
+			border-style: none none solid;
+			border-color: ${separatorColor};
+			${separatorHeightDesktop}
+			${separatorWidthDesktop}
+			${align === "center" ? "margin-left: auto; margin-right: auto" : ""}
+			${align === "right" ? "margin-left: auto; margin-right: 0" : ""}
+		}
+
 	`;
   const wrapperStylesTab = `
 		.zolo-block-wrapper.${uniqueId}{
@@ -265,7 +275,6 @@ const Edit = (props) => {
 			${wrapperPaddingTab}
 			${wrapperBackgroundStylesTab}
 			${wrapperBorderTab}
-      ${headingAlignmentTab}
 		}
 		.zolo-block-wrapper.${uniqueId}:hover{
 			${wrapperHoverBackgroundStylesTab}
@@ -276,6 +285,10 @@ const Edit = (props) => {
 		.zolo-block-wrapper.${uniqueId}:hover::before{
 			${wrapperHoverOverlayStylesTab}
 		}
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
+      ${separatorHeightTab}
+			${separatorWidthTab}
+    }
 	`;
   const wrapperStylesMobile = `
 		.zolo-block-wrapper.${uniqueId}{
@@ -283,7 +296,6 @@ const Edit = (props) => {
 			${wrapperPaddingMobile}
 			${wrapperBackgroundStylesMobile}
 			${wrapperBorderMob}
-      ${headingAlignmentMob}
 		}
 		.zolo-block-wrapper.${uniqueId}:hover{
 			${wrapperHoverBackgroundStylesMobile}
@@ -294,6 +306,10 @@ const Edit = (props) => {
 		.zolo-block-wrapper.${uniqueId}::before:hover{
 			${wrapperHoverOverlayStylesMobile}
 		}
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
+      ${separatorHeightMob}
+			${separatorWidthMob}
+    }
 	`;
 
   // Title styles css in strings
@@ -308,9 +324,9 @@ const Edit = (props) => {
         ${separatorHeightDesktop}
         background-color:${separatorColor};
       }
-      .zolo-block-wrapper.${uniqueId}.zolo-ah-style-12 .zolo-ah-title {
+      .zolo-block-wrapper.${uniqueId}.zolo-ah-style-6 .zolo-ah-title {
         -webkit-text-stroke-width: 1px;
-        -webkit-text-stroke-color: ${tpColor};
+        -webkit-text-stroke-color: ${tpColor || 'rgba(6, 6, 7, 0.919)'};
       }
 		`;
 
@@ -359,7 +375,7 @@ const Edit = (props) => {
     }
     .zolo-block-wrapper.${uniqueId}.zolo-ah-style-2 .zolo-transparent-heading {
       -webkit-text-stroke-width: 3px;
-      -webkit-text-stroke-color: ${tpColor};
+      -webkit-text-stroke-color: ${tpColor || 'rgba(6, 6, 7, 0.22)'};
     }
   `;
 
@@ -419,11 +435,7 @@ const Edit = (props) => {
     );
   }
 
-  //title classname
-  const titleClass = classnames([
-    'zolo-ah-title',
-    showSeparator ? 'separator ' + separaTorPosition + ' ' + separaTorAlign : ''
-  ]);
+
 
 
   return (
@@ -463,6 +475,10 @@ const Edit = (props) => {
 
           {showTransparentTitle && <h3 class="zolo-transparent-heading">{transparentTitleText}</h3>}
 
+          {showSeparator && separatorPosition === "top" && (
+            <div className="zolo-ah-separator"></div>
+          )}
+
           {(showSubTitle && subTitlePosition == 'top') && (
             <RichText
               tagName={subTitleTagName}
@@ -473,7 +489,7 @@ const Edit = (props) => {
             />
           )}
 
-          <DynamicTag tagName={titleTagName} className={titleClass}>
+          <DynamicTag tagName={titleTagName} className='zolo-ah-title'>
             <RichText
               tagName={'span'}
               className="zolo-ah-main-title"
@@ -491,6 +507,10 @@ const Edit = (props) => {
               formattingControl={["bold", "italic"]}
               onChange={(subTitleText) => setAttributes({ subTitleText })}
             />
+          )}
+
+          {showSeparator && separatorPosition === "bottom" && (
+            <div className="zolo-ah-separator"></div>
           )}
 
         </div>

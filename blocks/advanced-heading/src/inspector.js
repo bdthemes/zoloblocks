@@ -18,7 +18,6 @@ const {
   BoxShadowControl,
   ColorControl,
   ResDimensionsControl,
-  ResAlignmentControl,
   TypographyDropdown,
   ResRangeControl,
 } = window.zoloModule;
@@ -28,7 +27,7 @@ import objAttributes from './attributes';
 
 //block constants
 import {
-  HEADING_TAG, SEPARATOR_ALIGN, SEPARATOR_HEIGHT, SEPARATOR_WIDTH, STYLES,
+  HEADING_TAG, SEPARATOR_HEIGHT, SEPARATOR_WIDTH, STYLES,
   ST_POSITION,
   SUBTITLE_MARGIN, TEXT_ALIGN, TITLE_MARGIN, WRAPPER_BG,
   WRAPPER_BORDER,
@@ -53,8 +52,7 @@ const Inspector = ({ attributes, setAttributes }) => {
     showTransparentTitle,
     transparentTitleText,
     subTitlePosition,
-    separaTorPosition,
-    separaTorAlign,
+    separatorPosition,
     align,
 
     //design
@@ -77,44 +75,80 @@ const Inspector = ({ attributes, setAttributes }) => {
       case 'style-1':
         setAttributes({
           showSubTitle: true,
+          subTitlePosition: 'top',
           showTransparentTitle: true,
           showSeparator: false,
-          headingAlignmentZRPAlign: 'center'
+          align: 'center'
         });
         break;
+
       case 'style-2':
         setAttributes({
           showSubTitle: true,
+          subTitlePosition: 'top',
           showTransparentTitle: true,
           showSeparator: false,
-          headingAlignmentZRPAlign: 'center'
+          align: 'center'
         });
         break;
+
       case 'style-3':
         setAttributes({
           showSubTitle: true,
+          subTitlePosition: 'top',
           showTransparentTitle: true,
           showSeparator: false,
-          headingAlignmentZRPAlign: 'center'
+          align: 'center'
         });
         break;
 
       case 'style-4':
         setAttributes({
           showSubTitle: true,
+          subTitlePosition: 'top',
           showTransparentTitle: true,
           showSeparator: true,
-          separaTorAlign: 'center',
-          headingAlignmentZRPAlign: 'center'
+          align: 'center'
         });
         break;
+
       case 'style-5':
         setAttributes({
           showSubTitle: false,
           showTransparentTitle: false,
-          showSeparator: true
+          showSeparator: true,
+          align: 'center'
         });
         break;
+
+      case 'style-6':
+        setAttributes({
+          showSubTitle: true,
+          subTitlePosition: 'top',
+          showTransparentTitle: false,
+          showSeparator: false,
+          align: 'center'
+        });
+        break;
+
+      case 'style-7':
+        setAttributes({
+          showSubTitle: false,
+          showTransparentTitle: true,
+          showSeparator: false,
+          align: 'center'
+        });
+        break;
+
+      case 'style-8':
+        setAttributes({
+          showSubTitle: true,
+          showTransparentTitle: true,
+          showSeparator: false,
+          align: 'left'
+        });
+        break;
+
       default:
         return false;
     }
@@ -249,28 +283,13 @@ const Inspector = ({ attributes, setAttributes }) => {
 
                     {showSeparator && (
                       <>
-
                         <BaseControl label={__("Separator Position", "zolo-blocks")} >
                           <ButtonGroup>
                             {ST_POSITION.map((item, key) => (
                               <Button
                                 key={key}
-                                variant={separaTorPosition === item.value ? 'primary' : 'secondary'}
-                                onClick={() => setAttributes({ separaTorPosition: item.value })}
-                              >
-                                {item.label}
-                              </Button>
-                            ))}
-                          </ButtonGroup>
-                        </BaseControl>
-
-                        <BaseControl label={__("Separator Alignment", "zolo-blocks")} >
-                          <ButtonGroup>
-                            {SEPARATOR_ALIGN.map((item, key) => (
-                              <Button
-                                key={key}
-                                variant={separaTorAlign === item.value ? 'primary' : 'secondary'}
-                                onClick={() => setAttributes({ separaTorAlign: item.value })}
+                                variant={separatorPosition === item.value ? 'primary' : 'secondary'}
+                                onClick={() => setAttributes({ separatorPosition: item.value })}
                               >
                                 {item.label}
                               </Button>

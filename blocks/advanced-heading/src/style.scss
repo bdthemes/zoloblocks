@@ -76,6 +76,61 @@
 	background-image: url(https://www.elementpack.pro/demo/wp-content/uploads/2018/02/bg1.jpg);
 }
 
+
+.zolo-ah-style-2 .zolo-transparent-heading,
+.zolo-ah-style-6 .zolo-ah-title {
+	color: transparent;
+	-webkit-text-fill-color: transparent;
+}
+
+.zolo-ah-style-7 {
+	.zolo-ah-main-title {
+		background-color: #fff;
+		padding: 10px 20px;
+	}
+
+	.zolo-ah-title {
+		display: inline-block;
+
+		&::after,
+		&::before {
+			position: absolute;
+			content: '';
+			left: 0;
+			width: 100%;
+			height: 1px;
+			background-color: #1b5080;
+		}
+
+		&::before {
+			top: -4px;
+		}
+
+		&::after {
+			bottom: -5px;
+		}
+	}
+}
+
+.zolo-ah-style-8 {
+	.zolo-ah-title {
+		display: inline-block;
+
+		&::before {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 10px;
+			height: 100%;
+			background-color: #ff1e1e;
+			content: '';
+		}
+	}
+}
+
+
+
+
 // .zolo-ah-style-1.zolo-advanced-heading,
 // .zolo-ah-style-2.zolo-advanced-heading,
 // .zolo-ah-style-3.zolo-advanced-heading,

@@ -13,18 +13,6 @@ export const STYLES = [
   { label: __('Style 6', 'zolo-blocks'), value: 'style-6' },
   { label: __('Style 7', 'zolo-blocks'), value: 'style-7' },
   { label: __('Style 8', 'zolo-blocks'), value: 'style-8' },
-  { label: __('Style 9', 'zolo-blocks'), value: 'style-9' },
-  { label: __('Style 10', 'zolo-blocks'), value: 'style-10' },
-  { label: __('Style 11', 'zolo-blocks'), value: 'style-11' },
-  { label: __('Style 12', 'zolo-blocks'), value: 'style-12' },
-  { label: __('Style 13', 'zolo-blocks'), value: 'style-13' },
-  { label: __('Style 14', 'zolo-blocks'), value: 'style-14' },
-];
-
-export const SEPARATOR_ALIGN = [
-  { label: 'Left', value: 'left' },
-  { label: 'Center', value: 'center' },
-  { label: 'Right', value: 'right' }
 ];
 
 export const ST_POSITION = [

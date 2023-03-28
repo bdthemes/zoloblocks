@@ -27,8 +27,12 @@ const attributes = {
   },
 
   //range attributes
-  ...generateResRangeAttributies(SEPARATOR_WIDTH),
-  ...generateResRangeAttributies(SEPARATOR_HEIGHT),
+  ...generateResRangeAttributies(SEPARATOR_WIDTH, {
+    defaultRange: 70
+  }),
+  ...generateResRangeAttributies(SEPARATOR_HEIGHT, {
+    defaultRange: 3
+  }),
 
   //alignment attributes
   ...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
@@ -76,7 +80,7 @@ const attributes = {
     type: 'string',
     default: 'top'
   },
-  separaTorPosition: {
+  separatorPosition: {
     type: 'string',
     default: 'bottom'
   },
