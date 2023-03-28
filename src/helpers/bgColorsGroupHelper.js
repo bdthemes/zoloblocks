@@ -36,14 +36,14 @@ export const generateBgColorsGroupStyle = ({
 		BgColor || BgColor == ''
 			? BgType === 'classic'
 				? property + ':' + BgColor + ';'
-				: 'background-image:' + BgColor
+				: 'background-image:' + BgColor + ';'
 			: '';
 
 	const bgHoverColor =
 		BgHoverColor || BgHoverColor == ''
 			? BgType === 'classic'
 				? property + ':' + BgHoverColor + ';'
-				: 'background-image:' + BgHoverColor
+				: 'background-image:' + BgHoverColor + ';'
 			: '';
 
 	return { bgColor, bgHoverColor };
