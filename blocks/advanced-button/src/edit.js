@@ -18,14 +18,15 @@ import classnames from 'classnames';
 import { handleUniqueId } from '../../../src/helpers/helper';
 import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
-import { BLOCK_PREFIX, BUTTON_ALIGNMENT } from './constants';
-import { generateBackgroundControlStyles } from '../../../src/helpers/backgroundHelpers';
 import { generateBorderStyle } from '../../../src/helpers/border-helper';
 import { generateColorsGroupStyle } from '../../../src/helpers/colorsGroupHelper';
+import { generateBgColorsGroupStyle } from '../../../src/helpers/bgColorsGroupHelper';
 
 import {
+	BLOCK_PREFIX,
+	BUTTON_ALIGNMENT,
 	BUTTON_TEXT_COLOR,
-	BUTTON_BG,
+	BUTTON_BG_COLOR,
 	BUTTON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
@@ -36,16 +37,7 @@ import Inspector from './inspector';
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
 		props;
-	const {
-		uniqueId,
-		preset,
-		label,
-		link,
-		bgColor,
-		textColor,
-		blockStyle,
-		showIcon,
-	} = attributes;
+	const { uniqueId, preset, label, link, blockStyle, showIcon } = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -77,6 +69,15 @@ export default function Edit(props) {
 		property: 'color',
 		attributes,
 	});
+
+	// generate background colors
+	const { bgColor, bgHoverColor } = generateBgColorsGroupStyle({
+		controlName: BUTTON_BG_COLOR,
+		property: 'background',
+		attributes,
+	});
+
+	console.log('bgColor', bgColor);
 
 	// generate border style
 	const {
@@ -119,10 +120,12 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zolo-content {
 			${color}
+			${bgColor}
 			${borderStyles}
 		}
 		.${uniqueId} .zolo-content:hover {
 			${hoverColor}
+			${bgHoverColor}
 		}
 		.${uniqueId} .zolo-content {
 			${gap}

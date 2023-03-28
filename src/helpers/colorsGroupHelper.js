@@ -1,4 +1,4 @@
-export const generateColorsGroup = (controlName, defaults = {}) => {
+export const generateColorsGroupAttributes = (controlName, defaults = {}) => {
 	const { Color, HoverColor } = defaults;
 	return {
 		[`${controlName}ColorType`]: {

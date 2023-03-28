@@ -12,6 +12,8 @@ export const PRESETS = [
 ];
 // Button Color
 export const BUTTON_TEXT_COLOR = 'buttonText';
+// Button BG
+export const BUTTON_BG_COLOR = 'buttonBackground';
 // Button Typography
 export const BUTTON_TYPOGRAPHY = 'buttonTypography';
 
@@ -21,8 +23,6 @@ export const BUTTON_PADDING = 'buttonPadding';
 export const BUTTON_MARGIN = 'buttonMargin';
 // Button Alignment
 export const BUTTON_ALIGNMENT = 'buttonAlignment';
-// Button BG
-export const BUTTON_BG = 'buttonBackground';
 // Button Border
 export const BUTTON_BORDER = 'buttonBorder';
 // Icon Size

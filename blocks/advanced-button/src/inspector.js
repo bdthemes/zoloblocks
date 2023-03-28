@@ -27,6 +27,7 @@ import BorderControl from '../../../src/controls/border-control';
 import ResDimensionsControl from '../../../src/controls/dimensions-control';
 import TypographyDropdown from '../../../src/controls/typography-control';
 import ColorsGroupControl from '../../../src/controls/colors-group-control';
+import BgColorsGroupControl from '../../../src/controls/bgcolors-group-control';
 
 // const {
 // 	BackgroundControl,
@@ -46,7 +47,7 @@ import {
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
 	BUTTON_TYPOGRAPHY,
-	BUTTON_BG,
+	BUTTON_BG_COLOR,
 	BUTTON_BORDER,
 	BUTTON_PADDING,
 	BUTTON_MARGIN,
@@ -346,6 +347,15 @@ function Inspector(props) {
 										/>
 										<ColorsGroupControl
 											controlName={BUTTON_TEXT_COLOR}
+											resRequiredProps={resRequiredProps}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Background', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<BgColorsGroupControl
+											controlName={BUTTON_BG_COLOR}
 											resRequiredProps={resRequiredProps}
 										/>
 									</PanelBody>

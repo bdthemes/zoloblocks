@@ -1,13 +1,13 @@
 import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
 import { generateBorderAttributies } from '../../../src/helpers/border-helper';
-import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHelpers';
-import { generateColorsGroup } from '../../../src/helpers/colorsGroupHelper';
+import { generateColorsGroupAttributes } from '../../../src/helpers/colorsGroupHelper';
+import { generateBgColorsGroupAttributes } from '../../../src/helpers/bgColorsGroupHelper';
 
 import {
 	BUTTON_ALIGNMENT,
 	BUTTON_TEXT_COLOR,
-	BUTTON_BG,
+	BUTTON_BG_COLOR,
 	BUTTON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
@@ -29,10 +29,16 @@ const attributes = {
 	...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
 		defaultAlign: 'left',
 	}),
-	// background attributes
-	...generateBackgroundAttributes(BUTTON_BG),
 	// border attributes
 	...generateBorderAttributies(BUTTON_BORDER),
+	...generateColorsGroupAttributes(BUTTON_TEXT_COLOR, {}),
+	...generateResRangeAttributies(ICON_SIZE, {
+		default: 16,
+	}),
+	...generateBgColorsGroupAttributes(BUTTON_BG_COLOR, {}),
+	...generateResRangeAttributies(ICON_TEXT_SPACING, {
+		default: 5,
+	}),
 	//Block specific Attributes
 	preset: {
 		type: 'string',
@@ -68,21 +74,6 @@ const attributes = {
 		type: 'string',
 		default: 'after',
 	},
-	bgColor: {
-		type: 'string',
-		default: '#3799FF',
-	},
-	textColor: {
-		type: 'string',
-		default: '#ffffff',
-	},
-	...generateColorsGroup(BUTTON_TEXT_COLOR, {}),
-	...generateResRangeAttributies(ICON_SIZE, {
-		default: 16,
-	}),
-	...generateResRangeAttributies(ICON_TEXT_SPACING, {
-		default: 5,
-	}),
 };
 
 export default attributes;
