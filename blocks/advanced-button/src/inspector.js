@@ -25,6 +25,8 @@ import ColorControl from '../../../src/controls/color-control';
 import BackgroundControl from '../../../src/controls/background-control';
 import BorderControl from '../../../src/controls/border-control';
 import ResDimensionsControl from '../../../src/controls/dimensions-control';
+import TypographyDropdown from '../../../src/controls/typography-control';
+import ColorsGroupControl from '../../../src/controls/colors-group-control';
 
 // const {
 // 	BackgroundControl,
@@ -41,12 +43,14 @@ import objAttributes from './attributes';
 import {
 	BUTTON_ALIGNMENT,
 	PRESETS,
+	ICON_SIZE,
+	ICON_TEXT_SPACING,
+	BUTTON_TYPOGRAPHY,
 	BUTTON_BG,
 	BUTTON_BORDER,
 	BUTTON_PADDING,
 	BUTTON_MARGIN,
-	ICON_SIZE,
-	ICON_TEXT_SPACING,
+	BUTTON_TEXT_COLOR,
 } from './constants';
 
 function Inspector(props) {
@@ -63,6 +67,7 @@ function Inspector(props) {
 		showIcon,
 		icon,
 		iconPosition,
+		colorType,
 		bgColor,
 		textColor,
 	} = attributes;
@@ -329,35 +334,18 @@ function Inspector(props) {
 							{tab.name === 'design' && (
 								<>
 									<PanelBody
-										title={__('Button', 'zolo-blocks')}
+										title={__('Text', 'zolo-blocks')}
 										initialOpen={true}
 									>
-										<ColorControl
-											label={__(
-												'Text Color',
-												'zolo-blocks'
-											)}
-											color={textColor}
-											onChange={(value) =>
-												setAttributes({
-													textColor: value,
-												})
+										<TypographyDropdown
+											label="Typography"
+											typoPrefixConstant={
+												BUTTON_TYPOGRAPHY
 											}
+											resRequiredProps={resRequiredProps}
 										/>
-										<ColorControl
-											label={__(
-												'Background Color',
-												'zolo-blocks'
-											)}
-											color={bgColor}
-											onChange={(value) =>
-												setAttributes({
-													bgColor: value,
-												})
-											}
-										/>
-										<BackgroundControl
-											controlName={BUTTON_BG}
+										<ColorsGroupControl
+											controlName={BUTTON_TEXT_COLOR}
 											resRequiredProps={resRequiredProps}
 										/>
 									</PanelBody>

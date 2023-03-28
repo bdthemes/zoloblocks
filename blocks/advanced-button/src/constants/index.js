@@ -10,6 +10,11 @@ export const PRESETS = [
 	{ label: __('Default', 'zolo-blocks'), value: 'preset-1' },
 	{ label: __('Preset 1', 'zolo-blocks'), value: 'preset-2' },
 ];
+// Button Color
+export const BUTTON_TEXT_COLOR = 'buttonText';
+// Button Typography
+export const BUTTON_TYPOGRAPHY = 'buttonTypography';
+
 // Button Padding
 export const BUTTON_PADDING = 'buttonPadding';
 // Button Margin

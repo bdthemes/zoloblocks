@@ -2,14 +2,17 @@ import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignm
 import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
 import { generateBorderAttributies } from '../../../src/helpers/border-helper';
 import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHelpers';
+import { generateColorsGroup } from '../../../src/helpers/colorsGroupHelper';
 
 import {
 	BUTTON_ALIGNMENT,
+	BUTTON_TEXT_COLOR,
 	BUTTON_BG,
 	BUTTON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
 } from './constants';
+
 const attributes = {
 	//Common Attributes
 	uniqueId: {
@@ -73,6 +76,7 @@ const attributes = {
 		type: 'string',
 		default: '#ffffff',
 	},
+	...generateColorsGroup(BUTTON_TEXT_COLOR, {}),
 	...generateResRangeAttributies(ICON_SIZE, {
 		default: 16,
 	}),

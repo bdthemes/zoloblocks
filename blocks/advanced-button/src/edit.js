@@ -21,7 +21,10 @@ import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
 import { BLOCK_PREFIX, BUTTON_ALIGNMENT } from './constants';
 import { generateBackgroundControlStyles } from '../../../src/helpers/backgroundHelpers';
 import { generateBorderStyle } from '../../../src/helpers/border-helper';
+import { generateColorsGroupStyle } from '../../../src/helpers/colorsGroupHelper';
+
 import {
+	BUTTON_TEXT_COLOR,
 	BUTTON_BG,
 	BUTTON_BORDER,
 	ICON_SIZE,
@@ -68,9 +71,10 @@ export default function Edit(props) {
 		attributes,
 	});
 
-	// generate background style
-	const bgStyles = generateBackgroundControlStyles({
-		controlName: BUTTON_BG,
+	// generate colors
+	const { color, hoverColor } = generateColorsGroupStyle({
+		controlName: BUTTON_TEXT_COLOR,
+		property: 'color',
 		attributes,
 	});
 
@@ -114,9 +118,11 @@ export default function Edit(props) {
 			${buttonAlignmentDesktop}
 		}
 		.${uniqueId} .zolo-content {
-			background-color: ${bgColor};
-			color: ${textColor};
+			${color}
 			${borderStyles}
+		}
+		.${uniqueId} .zolo-content:hover {
+			${hoverColor}
 		}
 		.${uniqueId} .zolo-content {
 			${gap}
