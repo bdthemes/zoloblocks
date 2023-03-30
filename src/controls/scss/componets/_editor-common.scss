@@ -1,0 +1,30 @@
+.eb-parent-tab-panel {
+	.block-editor-link-control {
+		min-width: auto;
+	}
+	.block-editor-link-control__search-item.is-current,
+	.block-editor-link-control__tools {
+		padding: 16px 0;
+	}
+	.components-button.has-icon {
+		width: 20px;
+		min-width: auto;
+		padding: 0px;
+	}
+	.zb-bg-control-img-btn {
+		width: 100% !important;
+		display: flex;
+		align-items: center !important;
+		justify-content: center !important;
+		min-height: 160px;
+		border: 1px solid #ddd;
+		border-radius: 3px;
+		flex-direction: column;
+		&:hover {
+			cursor: crosshair;
+		}
+		.dashicon {
+			margin-bottom: 5px;
+		}
+	}
+}

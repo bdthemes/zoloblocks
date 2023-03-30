@@ -6,10 +6,10 @@ import {
 	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import {
+	CardDivider,
 	PanelBody,
 	SelectControl,
 	TabPanel,
-	ColorPalette,
 	TextControl,
 	ToggleControl,
 } from '@wordpress/components';
@@ -22,12 +22,12 @@ import { Fragment } from '@wordpress/element';
 import ResAlignmentControl from '../../../src/controls/res-alignment-control';
 import ResRangeControl from '../../../src/controls/res-range-control';
 import ColorControl from '../../../src/controls/color-control';
-import BackgroundControl from '../../../src/controls/background-control';
 import BorderControl from '../../../src/controls/border-control';
 import ResDimensionsControl from '../../../src/controls/dimensions-control';
 import TypographyDropdown from '../../../src/controls/typography-control';
-import ColorsGroupControl from '../../../src/controls/colors-group-control';
-import BgColorsGroupControl from '../../../src/controls/bgcolors-group-control';
+import BgColorControl from '../../../src/controls/bgcolor-control';
+import BgGroupControl from '../../../src/controls/bggroup-control';
+import TabPanelControl from '../../../src/controls/tabpanel-control';
 
 // const {
 // 	BackgroundControl,
@@ -44,14 +44,15 @@ import objAttributes from './attributes';
 import {
 	BUTTON_ALIGNMENT,
 	PRESETS,
+	ICON_POSITIONS,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
 	BUTTON_TYPOGRAPHY,
 	BUTTON_BG_COLOR,
+	BUTTON_HOVER_BG_COLOR,
 	BUTTON_BORDER,
 	BUTTON_PADDING,
 	BUTTON_MARGIN,
-	BUTTON_TEXT_COLOR,
 } from './constants';
 
 function Inspector(props) {
@@ -68,9 +69,8 @@ function Inspector(props) {
 		showIcon,
 		icon,
 		iconPosition,
-		colorType,
-		bgColor,
 		textColor,
+		textHoverColor,
 	} = attributes;
 
 	const changePreset = (selected) => {
@@ -128,7 +128,7 @@ function Inspector(props) {
 							{tab.name === 'settings' && (
 								<>
 									<PanelBody
-										title={__('General', 'zolo-blocks')}
+										title={__('Content', 'zolo-blocks')}
 										initialOpen={true}
 									>
 										<SelectControl
@@ -142,37 +142,6 @@ function Inspector(props) {
 												changePreset(selected)
 											}
 										/>
-										<ResAlignmentControl
-											label={__(
-												'Button Alignmet',
-												'zolo-blocks'
-											)}
-											controlName={BUTTON_ALIGNMENT}
-											resRequiredProps={resRequiredProps}
-											alignOptions={[
-												{
-													label: 'Left',
-													value: 'left',
-												},
-												{
-													label: 'Center',
-													value: 'center',
-												},
-												{
-													label: 'Right',
-													value: 'right',
-												},
-												{
-													label: 'Justify',
-													value: 'justify',
-												},
-											]}
-										/>
-									</PanelBody>
-									<PanelBody
-										title={__('Content', 'zolo-blocks')}
-										initialOpen={false}
-									>
 										<TextControl
 											label={__('Label', 'zolo-blocks')}
 											onChange={(value) =>
@@ -206,50 +175,8 @@ function Inspector(props) {
 											onChange={(data) =>
 												setAttributes({ link: data })
 											}
-										></LinkControl>
-										{/* <TextControl
-											label={__('Link', 'zolo-blocks')}
-											onChange={(value) =>
-												setAttributes({
-													...link,
-													url: value
-												})
-											}
-											value={link}
-											placeholder={__(
-												'link',
-												'zolo-blocks'
-											)}
 										/>
-										<ToggleControl
-											label={__(
-												'Open in new tab',
-												'zolo-blocks'
-											)}
-											checked={openInNewTab}
-											onChange={() =>
-												setAttributes({
-													openInNewTab: !openInNewTab,
-												})
-											}
-										/>
-										<ToggleControl
-											label={__(
-												'Add "nofollow" to link',
-												'zolo-blocks'
-											)}
-											checked={addNoFollow}
-											onChange={() =>
-												setAttributes({
-													addNoFollow: !addNoFollow,
-												})
-											}
-										/> */}
-									</PanelBody>
-									<PanelBody
-										title={__('Icon', 'zolo-blocks')}
-										initialOpen={false}
-									>
+										<CardDivider />
 										<ToggleControl
 											label={__(
 												'Enable Icon',
@@ -272,24 +199,7 @@ function Inspector(props) {
 														'Position',
 														'zolo-blocks'
 													)}
-													options={[
-														{
-															label: 'Left',
-															value: 'left',
-														},
-														{
-															label: 'Right',
-															value: 'right',
-														},
-														{
-															label: 'Top',
-															value: 'top',
-														},
-														{
-															label: 'Bottom',
-															value: 'bottom',
-														},
-													]}
+													options={ICON_POSITIONS}
 													onChange={(position) => {
 														setAttributes({
 															iconPosition:
@@ -328,6 +238,33 @@ function Inspector(props) {
 												/>
 											</Fragment>
 										)}
+										<CardDivider />
+										<ResAlignmentControl
+											label={__(
+												'Button Alignmet',
+												'zolo-blocks'
+											)}
+											controlName={BUTTON_ALIGNMENT}
+											resRequiredProps={resRequiredProps}
+											alignOptions={[
+												{
+													label: 'Left',
+													value: 'left',
+												},
+												{
+													label: 'Center',
+													value: 'center',
+												},
+												{
+													label: 'Right',
+													value: 'right',
+												},
+												{
+													label: 'Justify',
+													value: 'justify',
+												},
+											]}
+										/>
 									</PanelBody>
 								</>
 							)}
@@ -345,18 +282,65 @@ function Inspector(props) {
 											}
 											resRequiredProps={resRequiredProps}
 										/>
-										<ColorsGroupControl
-											controlName={BUTTON_TEXT_COLOR}
-											resRequiredProps={resRequiredProps}
-										/>
-									</PanelBody>
-									<PanelBody
-										title={__('Background', 'zolo-blocks')}
-										initialOpen={false}
-									>
-										<BgColorsGroupControl
-											controlName={BUTTON_BG_COLOR}
-											resRequiredProps={resRequiredProps}
+										<TabPanelControl
+											normalComponents={
+												<>
+													<ColorControl
+														label={__(
+															'Color',
+															'zolo-blocks'
+														)}
+														color={textColor}
+														onChange={(value) =>
+															setAttributes({
+																textColor:
+																	value,
+															})
+														}
+													/>
+													{/* <BgColorControl
+														controlName={
+															BUTTON_BG_COLOR
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+													/> */}
+													<BgGroupControl
+														controlName={
+															BUTTON_BG_COLOR
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+													/>
+												</>
+											}
+											hoverComponents={
+												<>
+													<ColorControl
+														label={__(
+															'Color',
+															'zolo-blocks'
+														)}
+														color={textHoverColor}
+														onChange={(value) =>
+															setAttributes({
+																textHoverColor:
+																	value,
+															})
+														}
+													/>
+													<BgColorControl
+														controlName={
+															BUTTON_HOVER_BG_COLOR
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+													/>
+												</>
+											}
 										/>
 									</PanelBody>
 									<PanelBody

@@ -19,14 +19,15 @@ import { handleUniqueId } from '../../../src/helpers/helper';
 import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
 import { generateBorderStyle } from '../../../src/helpers/border-helper';
-import { generateColorsGroupStyle } from '../../../src/helpers/colorsGroupHelper';
-import { generateBgColorsGroupStyle } from '../../../src/helpers/bgColorsGroupHelper';
+import { generateBgColorStyle } from '../../../src/helpers/bgcolor-control-helper';
+import { generateBgGroupControlStyle } from '../../../src/helpers/bggroup-control-helper';
 
 import {
 	BLOCK_PREFIX,
 	BUTTON_ALIGNMENT,
 	BUTTON_TEXT_COLOR,
 	BUTTON_BG_COLOR,
+	BUTTON_HOVER_BG_COLOR,
 	BUTTON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
@@ -37,7 +38,17 @@ import Inspector from './inspector';
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
 		props;
-	const { uniqueId, preset, label, link, blockStyle, showIcon } = attributes;
+	const {
+		uniqueId,
+		preset,
+		label,
+		link,
+		blockStyle,
+		showIcon,
+		textColor,
+		textHoverColor,
+		iconPosition,
+	} = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -53,6 +64,15 @@ export default function Edit(props) {
 		className: classnames(className, ``),
 	});
 
+	// generate bg
+	const { bgDesktopStyle: bgStyles } = generateBgGroupControlStyle({
+		controlName: BUTTON_BG_COLOR,
+		attributes,
+	});
+
+	console.log(attributes);
+	console.log(bgStyles);
+
 	const {
 		desktopAlignStyle: buttonAlignmentDesktop,
 		tabAlignStyle: buttonAlignmentTab,
@@ -62,22 +82,6 @@ export default function Edit(props) {
 		property: 'text-align',
 		attributes,
 	});
-
-	// generate colors
-	const { color, hoverColor } = generateColorsGroupStyle({
-		controlName: BUTTON_TEXT_COLOR,
-		property: 'color',
-		attributes,
-	});
-
-	// generate background colors
-	const { bgColor, bgHoverColor } = generateBgColorsGroupStyle({
-		controlName: BUTTON_BG_COLOR,
-		property: 'background',
-		attributes,
-	});
-
-	console.log('bgColor', bgColor);
 
 	// generate border style
 	const {
@@ -111,6 +115,22 @@ export default function Edit(props) {
 		attributes,
 	});
 
+	// // generate background color
+	// const bgColor = generateBgColorStyle({
+	// 	controlName: BUTTON_BG_COLOR,
+	// 	property: 'background',
+	// 	attributes,
+	// });
+
+	// generate background hover color
+	const bgHoverColor = generateBgColorStyle({
+		controlName: BUTTON_HOVER_BG_COLOR,
+		property: 'background',
+		attributes,
+	});
+
+	// generate typography
+
 	/**
 	 * All Style Combination
 	 */
@@ -119,13 +139,12 @@ export default function Edit(props) {
 			${buttonAlignmentDesktop}
 		}
 		.${uniqueId} .zolo-content {
-			${color}
-			${bgColor}
 			${borderStyles}
+			color: ${textColor};
 		}
 		.${uniqueId} .zolo-content:hover {
-			${hoverColor}
 			${bgHoverColor}
+			color: ${textHoverColor};
 		}
 		.${uniqueId} .zolo-content {
 			${gap}
@@ -253,7 +272,7 @@ export default function Edit(props) {
 						className={`zolo-block-inner zolo-inner-${uniqueId} ${BLOCK_PREFIX} ${preset}`}
 						data-id={uniqueId}
 					>
-						<div className={`zolo-content`}>
+						<div className={`zolo-content ${iconPosition}`}>
 							<RichText
 								className={`zolo-button`}
 								value={label}

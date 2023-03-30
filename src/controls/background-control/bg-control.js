@@ -1,5 +1,11 @@
 import { MediaUpload } from '@wordpress/block-editor';
-import { BaseControl, Button, ButtonGroup, RangeControl, SelectControl } from '@wordpress/components';
+import {
+	BaseControl,
+	Button,
+	ButtonGroup,
+	RangeControl,
+	SelectControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';
 import ColorControl from '../color-control';
@@ -8,12 +14,7 @@ import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 
-
-const BGControl = ({
-	controlName,
-	resRequiredProps,
-	noMainBGImg
-}) => {
+const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 	const { setAttributes, attributes, resMode } = resRequiredProps;
 
 	const {
@@ -79,30 +80,28 @@ const BGControl = ({
 		[`hov_TAB${controlName}backgroundSize`]: hov_TABbackgroundSize,
 		[`hov_TAB${controlName}bgImgCustomSize`]: hov_TABbgImgCustomSize,
 		[`hov_TAB${controlName}bgImgCustomSizeUnit`]:
-		hov_TABbgImgCustomSizeUnit,
+			hov_TABbgImgCustomSizeUnit,
 		[`hov_TAB${controlName}bgImgPos`]: hov_TABbgImgPos,
 		[`hov_TAB${controlName}bgImgcustomPosX`]: hov_TABbgImgcustomPosX,
 		[`hov_TAB${controlName}bgImgcustomPosXUnit`]:
-		hov_TABbgImgcustomPosXUnit,
+			hov_TABbgImgcustomPosXUnit,
 		[`hov_TAB${controlName}bgImgcustomPosY`]: hov_TABbgImgcustomPosY,
 		[`hov_TAB${controlName}bgImgcustomPosYUnit`]:
-		hov_TABbgImgcustomPosYUnit,
+			hov_TABbgImgcustomPosYUnit,
 		[`hov_TAB${controlName}bgImgRepeat`]: hov_TABbgImgRepeat,
 
 		[`hov_MOB${controlName}backgroundSize`]: hov_MOBbackgroundSize,
 		[`hov_MOB${controlName}bgImgCustomSize`]: hov_MOBbgImgCustomSize,
 		[`hov_MOB${controlName}bgImgCustomSizeUnit`]:
-		hov_MOBbgImgCustomSizeUnit,
+			hov_MOBbgImgCustomSizeUnit,
 		[`hov_MOB${controlName}bgImgPos`]: hov_MOBbgImgPos,
 		[`hov_MOB${controlName}bgImgcustomPosX`]: hov_MOBbgImgcustomPosX,
 		[`hov_MOB${controlName}bgImgcustomPosXUnit`]:
-		hov_MOBbgImgcustomPosXUnit,
+			hov_MOBbgImgcustomPosXUnit,
 		[`hov_MOB${controlName}bgImgcustomPosY`]: hov_MOBbgImgcustomPosY,
 		[`hov_MOB${controlName}bgImgcustomPosYUnit`]:
-		hov_MOBbgImgcustomPosYUnit,
+			hov_MOBbgImgcustomPosYUnit,
 		[`hov_MOB${controlName}bgImgRepeat`]: hov_MOBbgImgRepeat,
-
-
 	} = attributes;
 
 	return (
@@ -111,24 +110,39 @@ const BGControl = ({
 				<ButtonGroup>
 					{NORMAL_HOVER.map(({ value, label }) => (
 						<Button
-							variant={bg_hoverType === value ? 'primary' : 'secondary'}
-							onClick={() => setAttributes({ [`${controlName}bg_hoverType`]: value })}>
+							variant={
+								bg_hoverType === value ? 'primary' : 'secondary'
+							}
+							onClick={() =>
+								setAttributes({
+									[`${controlName}bg_hoverType`]: value,
+								})
+							}
+						>
 							{label}
 						</Button>
 					))}
 				</ButtonGroup>
 			</BaseControl>
 
-
-			{bg_hoverType === "normal" && (
+			{bg_hoverType === 'normal' && (
 				<>
-					<BaseControl
-						label={__("Background Type", "zolo-blocks")}>
+					<BaseControl label={__('Background Type', 'zolo-blocks')}>
 						<ButtonGroup>
 							{BACKGROUND_TYPES.map(({ value, label }) => (
 								<Button
-									variant={backgroundType === value ? 'primary' : 'secondary'}
-									onClick={() => setAttributes({ [`${controlName}backgroundType`]: value })}>
+									variant={
+										backgroundType === value
+											? 'primary'
+											: 'secondary'
+									}
+									onClick={() =>
+										setAttributes({
+											[`${controlName}backgroundType`]:
+												value,
+										})
+									}
+								>
 									{label}
 								</Button>
 							))}
@@ -138,9 +152,13 @@ const BGControl = ({
 					{backgroundType === 'classic' && (
 						<>
 							<ColorControl
-								label={__("Background Color", "zolo-blocks")}
+								label={__('Background Color', 'zolo-blocks')}
 								color={backgroundColor}
-								onChange={(backgroundColor) => setAttributes({ [`${controlName}backgroundColor`]: backgroundColor })
+								onChange={(backgroundColor) =>
+									setAttributes({
+										[`${controlName}backgroundColor`]:
+											backgroundColor,
+									})
 								}
 							/>
 
@@ -149,7 +167,8 @@ const BGControl = ({
 									<MediaUpload
 										onSelect={({ url, id }) =>
 											setAttributes({
-												[`${controlName}bgImageURL`]: url,
+												[`${controlName}bgImageURL`]:
+													url,
 												[`${controlName}bgImageID`]: id,
 											})
 										}
@@ -160,15 +179,19 @@ const BGControl = ({
 												<>
 													<Button
 														className="zb-bg-control-img-btn components-button"
-														label={__("Upload Image", "zolo-blocks")}
+														label={__(
+															'Upload Image',
+															'zolo-blocks'
+														)}
 														icon="format-image"
 														onClick={open}
 													/>
 													<span
 														style={{
-															padding: "10px 0",
-															display: "block",
-														}}></span>
+															padding: '10px 0',
+															display: 'block',
+														}}
+													></span>
 												</>
 											)
 										}
@@ -178,90 +201,101 @@ const BGControl = ({
 										<>
 											<ImageAvatar
 												imageUrl={bgImageURL}
-												onDeleteImage={() => setAttributes({ [`${controlName}bgImageURL`]: null })}
+												onDeleteImage={() =>
+													setAttributes({
+														[`${controlName}bgImageURL`]:
+															null,
+													})
+												}
 											/>
 
-											{resMode === "Desktop" && (
+											{resMode === 'Desktop' && (
 												<>
-
 													<WithResDeviceBtn
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Position">
+														label="Position"
+													>
 														<SelectControl
 															value={bgImgPos}
 															options={[
 																{
-																	label: __("Default", "zolo-blocks"),
-																	value: "",
-																},
-																{
-																	label: __("Center Center", "zolo-blocks"),
-																	value: "center center",
+																	label: __(
+																		'Default',
+																		'zolo-blocks'
+																	),
+																	value: '',
 																},
 																{
 																	label: __(
-																		"Center Left",
-																		"zolo-blocks"
+																		'Center Center',
+																		'zolo-blocks'
 																	),
-																	value: "center left",
+																	value: 'center center',
 																},
 																{
 																	label: __(
-																		"Center Right",
-																		"zolo-blocks"
+																		'Center Left',
+																		'zolo-blocks'
 																	),
-																	value: "center right",
+																	value: 'center left',
 																},
 																{
 																	label: __(
-																		"Top Center",
-																		"zolo-blocks"
+																		'Center Right',
+																		'zolo-blocks'
 																	),
-																	value: "top center",
+																	value: 'center right',
 																},
 																{
 																	label: __(
-																		"Top Left",
-																		"zolo-blocks"
+																		'Top Center',
+																		'zolo-blocks'
 																	),
-																	value: "top left",
+																	value: 'top center',
 																},
 																{
 																	label: __(
-																		"Top Right",
-																		"zolo-blocks"
+																		'Top Left',
+																		'zolo-blocks'
 																	),
-																	value: "top right",
+																	value: 'top left',
 																},
 																{
 																	label: __(
-																		"Bottom Center",
-																		"zolo-blocks"
+																		'Top Right',
+																		'zolo-blocks'
 																	),
-																	value: "bottom center",
+																	value: 'top right',
 																},
 																{
 																	label: __(
-																		"Bottom Left",
-																		"zolo-blocks"
+																		'Bottom Center',
+																		'zolo-blocks'
 																	),
-																	value: "bottom left",
+																	value: 'bottom center',
 																},
 																{
 																	label: __(
-																		"Bottom Right",
-																		"zolo-blocks"
+																		'Bottom Left',
+																		'zolo-blocks'
 																	),
-																	value: "bottom right",
+																	value: 'bottom left',
 																},
 																{
 																	label: __(
-																		"Custom",
-																		"zolo-blocks"
+																		'Bottom Right',
+																		'zolo-blocks'
 																	),
-																	value: "custom",
+																	value: 'bottom right',
+																},
+																{
+																	label: __(
+																		'Custom',
+																		'zolo-blocks'
+																	),
+																	value: 'custom',
 																},
 															]}
 															onChange={(
@@ -275,7 +309,7 @@ const BGControl = ({
 														/>
 													</WithResDeviceBtn>
 
-													{bgImgPos === "custom" && (
+													{bgImgPos === 'custom' && (
 														<>
 															<UnitBtn
 																selectedUnit={
@@ -283,16 +317,16 @@ const BGControl = ({
 																}
 																unitTypes={[
 																	{
-																		label: "px",
-																		value: "px",
+																		label: 'px',
+																		value: 'px',
 																	},
 																	{
-																		label: "em",
-																		value: "em",
+																		label: 'em',
+																		value: 'em',
 																	},
 																	{
-																		label: "%",
-																		value: "%",
+																		label: '%',
+																		value: '%',
 																	},
 																]}
 																onClick={(
@@ -311,7 +345,8 @@ const BGControl = ({
 																resRequiredProps={
 																	resRequiredProps
 																}
-																label="X Position">
+																label="X Position"
+															>
 																<RangeControl
 																	value={
 																		bgImgcustomPosX
@@ -337,16 +372,16 @@ const BGControl = ({
 																}
 																unitTypes={[
 																	{
-																		label: "px",
-																		value: "px",
+																		label: 'px',
+																		value: 'px',
 																	},
 																	{
-																		label: "em",
-																		value: "em",
+																		label: 'em',
+																		value: 'em',
 																	},
 																	{
-																		label: "%",
-																		value: "%",
+																		label: '%',
+																		value: '%',
 																	},
 																]}
 																onClick={(
@@ -365,7 +400,8 @@ const BGControl = ({
 																resRequiredProps={
 																	resRequiredProps
 																}
-																label="Y Position">
+																label="Y Position"
+															>
 																<RangeControl
 																	value={
 																		bgImgcustomPosY
@@ -374,7 +410,7 @@ const BGControl = ({
 																	max={2000}
 																	step={
 																		bgImgcustomPosYUnit ===
-																			"px"
+																		'px'
 																			? 1
 																			: 0.1
 																	}
@@ -399,24 +435,24 @@ const BGControl = ({
 														options={[
 															{
 																label: __(
-																	"Default",
-																	"zolo-blocks"
+																	'Default',
+																	'zolo-blocks'
 																),
-																value: "",
+																value: '',
 															},
 															{
 																label: __(
-																	"Scroll",
-																	"zolo-blocks"
+																	'Scroll',
+																	'zolo-blocks'
 																),
-																value: "scroll",
+																value: 'scroll',
 															},
 															{
 																label: __(
-																	"Fixed",
-																	"zolo-blocks"
+																	'Fixed',
+																	'zolo-blocks'
 																),
-																value: "fixed",
+																value: 'fixed',
 															},
 														]}
 														onChange={(
@@ -430,64 +466,66 @@ const BGControl = ({
 													/>
 
 													{bgImgAttachment ===
-														"fixed" && (
-															<p
-																style={{
-																	marginTop:
-																		"-10px",
-																	paddingBottom:
-																		"10px",
-																}}>
-																<i>
-																	Note: Attachment
-																	Fixed works only
-																	on desktop.
-																</i>
-															</p>
-														)}
+														'fixed' && (
+														<p
+															style={{
+																marginTop:
+																	'-10px',
+																paddingBottom:
+																	'10px',
+															}}
+														>
+															<i>
+																Note: Attachment
+																Fixed works only
+																on desktop.
+															</i>
+														</p>
+													)}
 
 													<WithResDeviceBtn
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Repeat">
+														label="Repeat"
+													>
 														<SelectControl
 															value={bgImgRepeat}
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"No-repeat",
-																		"zolo-blocks"
+																		'No-repeat',
+																		'zolo-blocks'
 																	),
-																	value: "no-repeat",
+																	value: 'no-repeat',
 																},
 																{
 																	label: __(
-																		"Repeat",
-																		"zolo-blocks"
+																		'Repeat',
+																		'zolo-blocks'
 																	),
-																	value: "repeat",
+																	value: 'repeat',
 																},
 																{
 																	label: __(
-																		"Repeat-x",
-																		"zolo-blocks"
+																		'Repeat-x',
+																		'zolo-blocks'
 																	),
-																	value: "repeat-x",
+																	value: 'repeat-x',
 																},
 																{
 																	label: __(
-																		"Repeat-y",
-																		"zolo-blocks"
+																		'Repeat-y',
+																		'zolo-blocks'
 																	),
-																	value: "repeat-y",
+																	value: 'repeat-y',
 																},
 															]}
 															onChange={(
@@ -505,7 +543,8 @@ const BGControl = ({
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Size">
+														label="Size"
+													>
 														<SelectControl
 															value={
 																backgroundSize
@@ -513,38 +552,38 @@ const BGControl = ({
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"Auto",
-																		"zolo-blocks"
+																		'Auto',
+																		'zolo-blocks'
 																	),
-																	value: "auto",
+																	value: 'auto',
 																},
 																{
 																	label: __(
-																		"Cover",
-																		"zolo-blocks"
+																		'Cover',
+																		'zolo-blocks'
 																	),
-																	value: "cover",
+																	value: 'cover',
 																},
 																{
 																	label: __(
-																		"Contain",
-																		"zolo-blocks"
+																		'Contain',
+																		'zolo-blocks'
 																	),
-																	value: "contain",
+																	value: 'contain',
 																},
 																{
 																	label: __(
-																		"Custom",
-																		"zolo-blocks"
+																		'Custom',
+																		'zolo-blocks'
 																	),
-																	value: "custom",
+																	value: 'custom',
 																},
 															]}
 															onChange={(
@@ -559,164 +598,165 @@ const BGControl = ({
 													</WithResDeviceBtn>
 
 													{backgroundSize ===
-														"custom" && (
-															<>
-																<UnitBtn
-																	selectedUnit={
-																		bgImgCustomSizeUnit
+														'custom' && (
+														<>
+															<UnitBtn
+																selectedUnit={
+																	bgImgCustomSizeUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	bgImgCustomSizeUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`${controlName}bgImgCustomSizeUnit`]:
+																				bgImgCustomSizeUnit,
+																		}
+																	)
+																}
+															/>
+
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="Width"
+															>
+																<RangeControl
+																	value={
+																		bgImgCustomSize
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		bgImgCustomSizeUnit
+																	min={0}
+																	max={
+																		bgImgCustomSizeUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	step={
+																		bgImgCustomSizeUnit ===
+																		'px'
+																			? 1
+																			: 0.1
+																	}
+																	onChange={(
+																		bgImgCustomSize
 																	) =>
 																		setAttributes(
 																			{
-																				[`${controlName}bgImgCustomSizeUnit`]:
-																					bgImgCustomSizeUnit,
+																				[`${controlName}bgImgCustomSize`]:
+																					bgImgCustomSize,
 																			}
 																		)
 																	}
 																/>
-
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="Width">
-																	<RangeControl
-																		value={
-																			bgImgCustomSize
-																		}
-																		min={0}
-																		max={
-																			bgImgCustomSizeUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		step={
-																			bgImgCustomSizeUnit ===
-																				"px"
-																				? 1
-																				: 0.1
-																		}
-																		onChange={(
-																			bgImgCustomSize
-																		) =>
-																			setAttributes(
-																				{
-																					[`${controlName}bgImgCustomSize`]:
-																						bgImgCustomSize,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
-															</>
-														)}
-
+															</WithResDeviceBtn>
+														</>
+													)}
 												</>
 											)}
 
-											{resMode === "Tablet" && (
+											{resMode === 'Tablet' && (
 												<>
 													<WithResDeviceBtn
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Position">
+														label="Position"
+													>
 														<SelectControl
 															value={TABbgImgPos}
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"Center Center",
-																		"zolo-blocks"
+																		'Center Center',
+																		'zolo-blocks'
 																	),
-																	value: "center center",
+																	value: 'center center',
 																},
 																{
 																	label: __(
-																		"Center Left",
-																		"zolo-blocks"
+																		'Center Left',
+																		'zolo-blocks'
 																	),
-																	value: "center left",
+																	value: 'center left',
 																},
 																{
 																	label: __(
-																		"Center Right",
-																		"zolo-blocks"
+																		'Center Right',
+																		'zolo-blocks'
 																	),
-																	value: "center right",
+																	value: 'center right',
 																},
 																{
 																	label: __(
-																		"Top Center",
-																		"zolo-blocks"
+																		'Top Center',
+																		'zolo-blocks'
 																	),
-																	value: "top center",
+																	value: 'top center',
 																},
 																{
 																	label: __(
-																		"Top Left",
-																		"zolo-blocks"
+																		'Top Left',
+																		'zolo-blocks'
 																	),
-																	value: "top left",
+																	value: 'top left',
 																},
 																{
 																	label: __(
-																		"Top Right",
-																		"zolo-blocks"
+																		'Top Right',
+																		'zolo-blocks'
 																	),
-																	value: "top right",
+																	value: 'top right',
 																},
 																{
 																	label: __(
-																		"Bottom Center",
-																		"zolo-blocks"
+																		'Bottom Center',
+																		'zolo-blocks'
 																	),
-																	value: "bottom center",
+																	value: 'bottom center',
 																},
 																{
 																	label: __(
-																		"Bottom Left",
-																		"zolo-blocks"
+																		'Bottom Left',
+																		'zolo-blocks'
 																	),
-																	value: "bottom left",
+																	value: 'bottom left',
 																},
 																{
 																	label: __(
-																		"Bottom Right",
-																		"zolo-blocks"
+																		'Bottom Right',
+																		'zolo-blocks'
 																	),
-																	value: "bottom right",
+																	value: 'bottom right',
 																},
 																{
 																	label: __(
-																		"Custom",
-																		"zolo-blocks"
+																		'Custom',
+																		'zolo-blocks'
 																	),
-																	value: "custom",
+																	value: 'custom',
 																},
 															]}
 															onChange={(
@@ -731,133 +771,135 @@ const BGControl = ({
 													</WithResDeviceBtn>
 
 													{TABbgImgPos ===
-														"custom" && (
-															<>
-																<UnitBtn
-																	selectedUnit={
-																		TABbgImgcustomPosXUnit
+														'custom' && (
+														<>
+															<UnitBtn
+																selectedUnit={
+																	TABbgImgcustomPosXUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	TABbgImgcustomPosXUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`TAB${controlName}bgImgcustomPosXUnit`]:
+																				TABbgImgcustomPosXUnit,
+																		}
+																	)
+																}
+															/>
+
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="X Position"
+															>
+																<RangeControl
+																	value={
+																		TABbgImgcustomPosX
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		TABbgImgcustomPosXUnit
+																	min={0}
+																	max={
+																		TABbgImgcustomPosXUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	onChange={(
+																		TABbgImgcustomPosX
 																	) =>
 																		setAttributes(
 																			{
-																				[`TAB${controlName}bgImgcustomPosXUnit`]:
-																					TABbgImgcustomPosXUnit,
+																				[`TAB${controlName}bgImgcustomPosX`]:
+																					TABbgImgcustomPosX,
 																			}
 																		)
 																	}
 																/>
+															</WithResDeviceBtn>
 
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="X Position">
-																	<RangeControl
-																		value={
-																			TABbgImgcustomPosX
+															<UnitBtn
+																selectedUnit={
+																	TABbgImgcustomPosYUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	TABbgImgcustomPosYUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`TAB${controlName}bgImgcustomPosYUnit`]:
+																				TABbgImgcustomPosYUnit,
 																		}
-																		min={0}
-																		max={
-																			TABbgImgcustomPosXUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		onChange={(
-																			TABbgImgcustomPosX
-																		) =>
-																			setAttributes(
-																				{
-																					[`TAB${controlName}bgImgcustomPosX`]:
-																						TABbgImgcustomPosX,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
+																	)
+																}
+															/>
 
-																<UnitBtn
-																	selectedUnit={
-																		TABbgImgcustomPosYUnit
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="Y Position"
+															>
+																<RangeControl
+																	value={
+																		TABbgImgcustomPosY
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		TABbgImgcustomPosYUnit
+																	min={0}
+																	max={
+																		TABbgImgcustomPosYUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	step={
+																		TABbgImgcustomPosYUnit ===
+																		'px'
+																			? 1
+																			: 0.1
+																	}
+																	onChange={(
+																		TABbgImgcustomPosY
 																	) =>
 																		setAttributes(
 																			{
-																				[`TAB${controlName}bgImgcustomPosYUnit`]:
-																					TABbgImgcustomPosYUnit,
+																				[`TAB${controlName}bgImgcustomPosY`]:
+																					TABbgImgcustomPosY,
 																			}
 																		)
 																	}
 																/>
-
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="Y Position">
-																	<RangeControl
-																		value={
-																			TABbgImgcustomPosY
-																		}
-																		min={0}
-																		max={
-																			TABbgImgcustomPosYUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		step={
-																			TABbgImgcustomPosYUnit ===
-																				"px"
-																				? 1
-																				: 0.1
-																		}
-																		onChange={(
-																			TABbgImgcustomPosY
-																		) =>
-																			setAttributes(
-																				{
-																					[`TAB${controlName}bgImgcustomPosY`]:
-																						TABbgImgcustomPosY,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
-															</>
-														)}
+															</WithResDeviceBtn>
+														</>
+													)}
 
 													<SelectControl
 														label="Attachment"
@@ -865,24 +907,24 @@ const BGControl = ({
 														options={[
 															{
 																label: __(
-																	"Default",
-																	"zolo-blocks"
+																	'Default',
+																	'zolo-blocks'
 																),
-																value: "",
+																value: '',
 															},
 															{
 																label: __(
-																	"Scroll",
-																	"zolo-blocks"
+																	'Scroll',
+																	'zolo-blocks'
 																),
-																value: "scroll",
+																value: 'scroll',
 															},
 															{
 																label: __(
-																	"Fixed",
-																	"zolo-blocks"
+																	'Fixed',
+																	'zolo-blocks'
 																),
-																value: "fixed",
+																value: 'fixed',
 															},
 														]}
 														onChange={(
@@ -896,27 +938,29 @@ const BGControl = ({
 													/>
 
 													{bgImgAttachment ===
-														"fixed" && (
-															<p
-																style={{
-																	marginTop:
-																		"-10px",
-																	paddingBottom:
-																		"10px",
-																}}>
-																<i>
-																	Note: Attachment
-																	Fixed works only
-																	on desktop.
-																</i>
-															</p>
-														)}
+														'fixed' && (
+														<p
+															style={{
+																marginTop:
+																	'-10px',
+																paddingBottom:
+																	'10px',
+															}}
+														>
+															<i>
+																Note: Attachment
+																Fixed works only
+																on desktop.
+															</i>
+														</p>
+													)}
 
 													<WithResDeviceBtn
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Repeat">
+														label="Repeat"
+													>
 														<SelectControl
 															value={
 																TABbgImgRepeat
@@ -924,38 +968,38 @@ const BGControl = ({
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"No-repeat",
-																		"zolo-blocks"
+																		'No-repeat',
+																		'zolo-blocks'
 																	),
-																	value: "no-repeat",
+																	value: 'no-repeat',
 																},
 																{
 																	label: __(
-																		"Repeat",
-																		"zolo-blocks"
+																		'Repeat',
+																		'zolo-blocks'
 																	),
-																	value: "repeat",
+																	value: 'repeat',
 																},
 																{
 																	label: __(
-																		"Repeat-x",
-																		"zolo-blocks"
+																		'Repeat-x',
+																		'zolo-blocks'
 																	),
-																	value: "repeat-x",
+																	value: 'repeat-x',
 																},
 																{
 																	label: __(
-																		"Repeat-y",
-																		"zolo-blocks"
+																		'Repeat-y',
+																		'zolo-blocks'
 																	),
-																	value: "repeat-y",
+																	value: 'repeat-y',
 																},
 															]}
 															onChange={(
@@ -973,7 +1017,8 @@ const BGControl = ({
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Size">
+														label="Size"
+													>
 														<SelectControl
 															value={
 																TABbackgroundSize
@@ -981,38 +1026,38 @@ const BGControl = ({
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"Auto",
-																		"zolo-blocks"
+																		'Auto',
+																		'zolo-blocks'
 																	),
-																	value: "auto",
+																	value: 'auto',
 																},
 																{
 																	label: __(
-																		"Cover",
-																		"zolo-blocks"
+																		'Cover',
+																		'zolo-blocks'
 																	),
-																	value: "cover",
+																	value: 'cover',
 																},
 																{
 																	label: __(
-																		"Contain",
-																		"zolo-blocks"
+																		'Contain',
+																		'zolo-blocks'
 																	),
-																	value: "contain",
+																	value: 'contain',
 																},
 																{
 																	label: __(
-																		"Custom",
-																		"zolo-blocks"
+																		'Custom',
+																		'zolo-blocks'
 																	),
-																	value: "custom",
+																	value: 'custom',
 																},
 															]}
 															onChange={(
@@ -1027,163 +1072,165 @@ const BGControl = ({
 													</WithResDeviceBtn>
 
 													{TABbackgroundSize ===
-														"custom" && (
-															<>
-																<UnitBtn
-																	selectedUnit={
-																		TABbgImgCustomSizeUnit
+														'custom' && (
+														<>
+															<UnitBtn
+																selectedUnit={
+																	TABbgImgCustomSizeUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	TABbgImgCustomSizeUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`TAB${controlName}bgImgCustomSizeUnit`]:
+																				TABbgImgCustomSizeUnit,
+																		}
+																	)
+																}
+															/>
+
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="Width"
+															>
+																<RangeControl
+																	value={
+																		TABbgImgCustomSize
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		TABbgImgCustomSizeUnit
+																	min={0}
+																	max={
+																		TABbgImgCustomSizeUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	step={
+																		TABbgImgCustomSizeUnit ===
+																		'px'
+																			? 1
+																			: 0.1
+																	}
+																	onChange={(
+																		TABbgImgCustomSize
 																	) =>
 																		setAttributes(
 																			{
-																				[`TAB${controlName}bgImgCustomSizeUnit`]:
-																					TABbgImgCustomSizeUnit,
+																				[`TAB${controlName}bgImgCustomSize`]:
+																					TABbgImgCustomSize,
 																			}
 																		)
 																	}
 																/>
-
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="Width">
-																	<RangeControl
-																		value={
-																			TABbgImgCustomSize
-																		}
-																		min={0}
-																		max={
-																			TABbgImgCustomSizeUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		step={
-																			TABbgImgCustomSizeUnit ===
-																				"px"
-																				? 1
-																				: 0.1
-																		}
-																		onChange={(
-																			TABbgImgCustomSize
-																		) =>
-																			setAttributes(
-																				{
-																					[`TAB${controlName}bgImgCustomSize`]:
-																						TABbgImgCustomSize,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
-															</>
-														)}
+															</WithResDeviceBtn>
+														</>
+													)}
 												</>
 											)}
 
-											{resMode === "Mobile" && (
+											{resMode === 'Mobile' && (
 												<>
 													<WithResDeviceBtn
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Position">
+														label="Position"
+													>
 														<SelectControl
 															value={MOBbgImgPos}
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"Center Center",
-																		"zolo-blocks"
+																		'Center Center',
+																		'zolo-blocks'
 																	),
-																	value: "center center",
+																	value: 'center center',
 																},
 																{
 																	label: __(
-																		"Center Left",
-																		"zolo-blocks"
+																		'Center Left',
+																		'zolo-blocks'
 																	),
-																	value: "center left",
+																	value: 'center left',
 																},
 																{
 																	label: __(
-																		"Center Right",
-																		"zolo-blocks"
+																		'Center Right',
+																		'zolo-blocks'
 																	),
-																	value: "center right",
+																	value: 'center right',
 																},
 																{
 																	label: __(
-																		"Top Center",
-																		"zolo-blocks"
+																		'Top Center',
+																		'zolo-blocks'
 																	),
-																	value: "top center",
+																	value: 'top center',
 																},
 																{
 																	label: __(
-																		"Top Left",
-																		"zolo-blocks"
+																		'Top Left',
+																		'zolo-blocks'
 																	),
-																	value: "top left",
+																	value: 'top left',
 																},
 																{
 																	label: __(
-																		"Top Right",
-																		"zolo-blocks"
+																		'Top Right',
+																		'zolo-blocks'
 																	),
-																	value: "top right",
+																	value: 'top right',
 																},
 																{
 																	label: __(
-																		"Bottom Center",
-																		"zolo-blocks"
+																		'Bottom Center',
+																		'zolo-blocks'
 																	),
-																	value: "bottom center",
+																	value: 'bottom center',
 																},
 																{
 																	label: __(
-																		"Bottom Left",
-																		"zolo-blocks"
+																		'Bottom Left',
+																		'zolo-blocks'
 																	),
-																	value: "bottom left",
+																	value: 'bottom left',
 																},
 																{
 																	label: __(
-																		"Bottom Right",
-																		"zolo-blocks"
+																		'Bottom Right',
+																		'zolo-blocks'
 																	),
-																	value: "bottom right",
+																	value: 'bottom right',
 																},
 																{
 																	label: __(
-																		"Custom",
-																		"zolo-blocks"
+																		'Custom',
+																		'zolo-blocks'
 																	),
-																	value: "custom",
+																	value: 'custom',
 																},
 															]}
 															onChange={(
@@ -1198,133 +1245,135 @@ const BGControl = ({
 													</WithResDeviceBtn>
 
 													{MOBbgImgPos ===
-														"custom" && (
-															<>
-																<UnitBtn
-																	selectedUnit={
-																		MOBbgImgcustomPosXUnit
+														'custom' && (
+														<>
+															<UnitBtn
+																selectedUnit={
+																	MOBbgImgcustomPosXUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	MOBbgImgcustomPosXUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`MOB${controlName}bgImgcustomPosXUnit`]:
+																				MOBbgImgcustomPosXUnit,
+																		}
+																	)
+																}
+															/>
+
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="X Position"
+															>
+																<RangeControl
+																	value={
+																		MOBbgImgcustomPosX
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		MOBbgImgcustomPosXUnit
+																	min={0}
+																	max={
+																		MOBbgImgcustomPosXUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	onChange={(
+																		MOBbgImgcustomPosX
 																	) =>
 																		setAttributes(
 																			{
-																				[`MOB${controlName}bgImgcustomPosXUnit`]:
-																					MOBbgImgcustomPosXUnit,
+																				[`MOB${controlName}bgImgcustomPosX`]:
+																					MOBbgImgcustomPosX,
 																			}
 																		)
 																	}
 																/>
+															</WithResDeviceBtn>
 
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="X Position">
-																	<RangeControl
-																		value={
-																			MOBbgImgcustomPosX
+															<UnitBtn
+																selectedUnit={
+																	MOBbgImgcustomPosYUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	MOBbgImgcustomPosYUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`MOB${controlName}bgImgcustomPosYUnit`]:
+																				MOBbgImgcustomPosYUnit,
 																		}
-																		min={0}
-																		max={
-																			MOBbgImgcustomPosXUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		onChange={(
-																			MOBbgImgcustomPosX
-																		) =>
-																			setAttributes(
-																				{
-																					[`MOB${controlName}bgImgcustomPosX`]:
-																						MOBbgImgcustomPosX,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
+																	)
+																}
+															/>
 
-																<UnitBtn
-																	selectedUnit={
-																		MOBbgImgcustomPosYUnit
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="Y Position"
+															>
+																<RangeControl
+																	value={
+																		MOBbgImgcustomPosY
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		MOBbgImgcustomPosYUnit
+																	min={0}
+																	max={
+																		MOBbgImgcustomPosYUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	step={
+																		MOBbgImgcustomPosYUnit ===
+																		'px'
+																			? 1
+																			: 0.1
+																	}
+																	onChange={(
+																		MOBbgImgcustomPosY
 																	) =>
 																		setAttributes(
 																			{
-																				[`MOB${controlName}bgImgcustomPosYUnit`]:
-																					MOBbgImgcustomPosYUnit,
+																				[`MOB${controlName}bgImgcustomPosY`]:
+																					MOBbgImgcustomPosY,
 																			}
 																		)
 																	}
 																/>
-
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="Y Position">
-																	<RangeControl
-																		value={
-																			MOBbgImgcustomPosY
-																		}
-																		min={0}
-																		max={
-																			MOBbgImgcustomPosYUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		step={
-																			MOBbgImgcustomPosYUnit ===
-																				"px"
-																				? 1
-																				: 0.1
-																		}
-																		onChange={(
-																			MOBbgImgcustomPosY
-																		) =>
-																			setAttributes(
-																				{
-																					[`MOB${controlName}bgImgcustomPosY`]:
-																						MOBbgImgcustomPosY,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
-															</>
-														)}
+															</WithResDeviceBtn>
+														</>
+													)}
 
 													<SelectControl
 														label="Attachment"
@@ -1332,24 +1381,24 @@ const BGControl = ({
 														options={[
 															{
 																label: __(
-																	"Default",
-																	"zolo-blocks"
+																	'Default',
+																	'zolo-blocks'
 																),
-																value: "",
+																value: '',
 															},
 															{
 																label: __(
-																	"Scroll",
-																	"zolo-blocks"
+																	'Scroll',
+																	'zolo-blocks'
 																),
-																value: "scroll",
+																value: 'scroll',
 															},
 															{
 																label: __(
-																	"Fixed",
-																	"zolo-blocks"
+																	'Fixed',
+																	'zolo-blocks'
 																),
-																value: "fixed",
+																value: 'fixed',
 															},
 														]}
 														onChange={(
@@ -1363,27 +1412,29 @@ const BGControl = ({
 													/>
 
 													{bgImgAttachment ===
-														"fixed" && (
-															<p
-																style={{
-																	marginTop:
-																		"-10px",
-																	paddingBottom:
-																		"10px",
-																}}>
-																<i>
-																	Note: Attachment
-																	Fixed works only
-																	on desktop.
-																</i>
-															</p>
-														)}
+														'fixed' && (
+														<p
+															style={{
+																marginTop:
+																	'-10px',
+																paddingBottom:
+																	'10px',
+															}}
+														>
+															<i>
+																Note: Attachment
+																Fixed works only
+																on desktop.
+															</i>
+														</p>
+													)}
 
 													<WithResDeviceBtn
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Repeat">
+														label="Repeat"
+													>
 														<SelectControl
 															value={
 																MOBbgImgRepeat
@@ -1391,38 +1442,38 @@ const BGControl = ({
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"No-repeat",
-																		"zolo-blocks"
+																		'No-repeat',
+																		'zolo-blocks'
 																	),
-																	value: "no-repeat",
+																	value: 'no-repeat',
 																},
 																{
 																	label: __(
-																		"Repeat",
-																		"zolo-blocks"
+																		'Repeat',
+																		'zolo-blocks'
 																	),
-																	value: "repeat",
+																	value: 'repeat',
 																},
 																{
 																	label: __(
-																		"Repeat-x",
-																		"zolo-blocks"
+																		'Repeat-x',
+																		'zolo-blocks'
 																	),
-																	value: "repeat-x",
+																	value: 'repeat-x',
 																},
 																{
 																	label: __(
-																		"Repeat-y",
-																		"zolo-blocks"
+																		'Repeat-y',
+																		'zolo-blocks'
 																	),
-																	value: "repeat-y",
+																	value: 'repeat-y',
 																},
 															]}
 															onChange={(
@@ -1440,7 +1491,8 @@ const BGControl = ({
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Size">
+														label="Size"
+													>
 														<SelectControl
 															value={
 																MOBbackgroundSize
@@ -1448,38 +1500,38 @@ const BGControl = ({
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"Auto",
-																		"zolo-blocks"
+																		'Auto',
+																		'zolo-blocks'
 																	),
-																	value: "auto",
+																	value: 'auto',
 																},
 																{
 																	label: __(
-																		"Cover",
-																		"zolo-blocks"
+																		'Cover',
+																		'zolo-blocks'
 																	),
-																	value: "cover",
+																	value: 'cover',
 																},
 																{
 																	label: __(
-																		"Contain",
-																		"zolo-blocks"
+																		'Contain',
+																		'zolo-blocks'
 																	),
-																	value: "contain",
+																	value: 'contain',
 																},
 																{
 																	label: __(
-																		"Custom",
-																		"zolo-blocks"
+																		'Custom',
+																		'zolo-blocks'
 																	),
-																	value: "custom",
+																	value: 'custom',
 																},
 															]}
 															onChange={(
@@ -1494,106 +1546,116 @@ const BGControl = ({
 													</WithResDeviceBtn>
 
 													{MOBbackgroundSize ===
-														"custom" && (
-															<>
-																<UnitBtn
-																	selectedUnit={
-																		MOBbgImgCustomSizeUnit
+														'custom' && (
+														<>
+															<UnitBtn
+																selectedUnit={
+																	MOBbgImgCustomSizeUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	MOBbgImgCustomSizeUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`MOB${controlName}bgImgCustomSizeUnit`]:
+																				MOBbgImgCustomSizeUnit,
+																		}
+																	)
+																}
+															/>
+
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="Width"
+															>
+																<RangeControl
+																	value={
+																		MOBbgImgCustomSize
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		MOBbgImgCustomSizeUnit
+																	min={0}
+																	max={
+																		MOBbgImgCustomSizeUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	step={
+																		MOBbgImgCustomSizeUnit ===
+																		'px'
+																			? 1
+																			: 0.1
+																	}
+																	onChange={(
+																		MOBbgImgCustomSize
 																	) =>
 																		setAttributes(
 																			{
-																				[`MOB${controlName}bgImgCustomSizeUnit`]:
-																					MOBbgImgCustomSizeUnit,
+																				[`MOB${controlName}bgImgCustomSize`]:
+																					MOBbgImgCustomSize,
 																			}
 																		)
 																	}
 																/>
-
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="Width">
-																	<RangeControl
-																		value={
-																			MOBbgImgCustomSize
-																		}
-																		min={0}
-																		max={
-																			MOBbgImgCustomSizeUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		step={
-																			MOBbgImgCustomSizeUnit ===
-																				"px"
-																				? 1
-																				: 0.1
-																		}
-																		onChange={(
-																			MOBbgImgCustomSize
-																		) =>
-																			setAttributes(
-																				{
-																					[`MOB${controlName}bgImgCustomSize`]:
-																						MOBbgImgCustomSize,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
-															</>
-														)}
+															</WithResDeviceBtn>
+														</>
+													)}
 												</>
 											)}
-
 										</>
 									)}
-
 								</>
 							)}
 						</>
 					)}
 
 					{backgroundType === 'gradient' && (
-
 						<GradientControl
-							label={"Gradient Color"}
+							label={'Gradient Color'}
 							value={gradientColor}
-							onChange={(newVal) => setAttributes({ [`${controlName}gradientColor`]: newVal })}
+							onChange={(newVal) =>
+								setAttributes({
+									[`${controlName}gradientColor`]: newVal,
+								})
+							}
 						/>
 					)}
-
 				</>
 			)}
 
-			{bg_hoverType === "hover" && (
+			{bg_hoverType === 'hover' && (
 				<>
-					<BaseControl
-						label={__("Background Type", "zolo-blocks")}>
+					<BaseControl label={__('Background Type', 'zolo-blocks')}>
 						<ButtonGroup>
 							{BACKGROUND_TYPES.map(({ value, label }) => (
 								<Button
-									variant={hov_backgroundType === value ? 'primary' : 'secondary'}
-									onClick={() => setAttributes({ [`hov_${controlName}backgroundType`]: value })}>
+									variant={
+										hov_backgroundType === value
+											? 'primary'
+											: 'secondary'
+									}
+									onClick={() =>
+										setAttributes({
+											[`hov_${controlName}backgroundType`]:
+												value,
+										})
+									}
+								>
 									{label}
 								</Button>
 							))}
@@ -1603,9 +1665,13 @@ const BGControl = ({
 					{hov_backgroundType === 'classic' && (
 						<>
 							<ColorControl
-								label={__("Background Color", "zolo-blocks")}
+								label={__('Background Color', 'zolo-blocks')}
 								color={hov_backgroundColor}
-								onChange={(newVal) => setAttributes({ [`hov_${controlName}backgroundColor`]: newVal })
+								onChange={(newVal) =>
+									setAttributes({
+										[`hov_${controlName}backgroundColor`]:
+											newVal,
+									})
 								}
 							/>
 
@@ -1614,8 +1680,10 @@ const BGControl = ({
 									<MediaUpload
 										onSelect={({ url, id }) =>
 											setAttributes({
-												[`hov_${controlName}bgImageURL`]: url,
-												[`hov_${controlName}bgImageID`]: id,
+												[`hov_${controlName}bgImageURL`]:
+													url,
+												[`hov_${controlName}bgImageID`]:
+													id,
 											})
 										}
 										type="image"
@@ -1625,15 +1693,19 @@ const BGControl = ({
 												<>
 													<Button
 														className="zb-bg-control-img-btn components-button"
-														label={__("Upload Image", "zolo-blocks")}
+														label={__(
+															'Upload Image',
+															'zolo-blocks'
+														)}
 														icon="format-image"
 														onClick={open}
 													/>
 													<span
 														style={{
-															padding: "10px 0",
-															display: "block",
-														}}></span>
+															padding: '10px 0',
+															display: 'block',
+														}}
+													></span>
 												</>
 											)
 										}
@@ -1643,90 +1715,101 @@ const BGControl = ({
 										<>
 											<ImageAvatar
 												imageUrl={hov_bgImageURL}
-												onDeleteImage={() => setAttributes({ [`hov_${controlName}bgImageURL`]: null })}
+												onDeleteImage={() =>
+													setAttributes({
+														[`hov_${controlName}bgImageURL`]:
+															null,
+													})
+												}
 											/>
 
-											{resMode === "Desktop" && (
+											{resMode === 'Desktop' && (
 												<>
-
 													<WithResDeviceBtn
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Position">
+														label="Position"
+													>
 														<SelectControl
 															value={hov_bgImgPos}
 															options={[
 																{
-																	label: __("Default", "zolo-blocks"),
-																	value: "",
-																},
-																{
-																	label: __("Center Center", "zolo-blocks"),
-																	value: "center center",
+																	label: __(
+																		'Default',
+																		'zolo-blocks'
+																	),
+																	value: '',
 																},
 																{
 																	label: __(
-																		"Center Left",
-																		"zolo-blocks"
+																		'Center Center',
+																		'zolo-blocks'
 																	),
-																	value: "center left",
+																	value: 'center center',
 																},
 																{
 																	label: __(
-																		"Center Right",
-																		"zolo-blocks"
+																		'Center Left',
+																		'zolo-blocks'
 																	),
-																	value: "center right",
+																	value: 'center left',
 																},
 																{
 																	label: __(
-																		"Top Center",
-																		"zolo-blocks"
+																		'Center Right',
+																		'zolo-blocks'
 																	),
-																	value: "top center",
+																	value: 'center right',
 																},
 																{
 																	label: __(
-																		"Top Left",
-																		"zolo-blocks"
+																		'Top Center',
+																		'zolo-blocks'
 																	),
-																	value: "top left",
+																	value: 'top center',
 																},
 																{
 																	label: __(
-																		"Top Right",
-																		"zolo-blocks"
+																		'Top Left',
+																		'zolo-blocks'
 																	),
-																	value: "top right",
+																	value: 'top left',
 																},
 																{
 																	label: __(
-																		"Bottom Center",
-																		"zolo-blocks"
+																		'Top Right',
+																		'zolo-blocks'
 																	),
-																	value: "bottom center",
+																	value: 'top right',
 																},
 																{
 																	label: __(
-																		"Bottom Left",
-																		"zolo-blocks"
+																		'Bottom Center',
+																		'zolo-blocks'
 																	),
-																	value: "bottom left",
+																	value: 'bottom center',
 																},
 																{
 																	label: __(
-																		"Bottom Right",
-																		"zolo-blocks"
+																		'Bottom Left',
+																		'zolo-blocks'
 																	),
-																	value: "bottom right",
+																	value: 'bottom left',
 																},
 																{
 																	label: __(
-																		"Custom",
-																		"zolo-blocks"
+																		'Bottom Right',
+																		'zolo-blocks'
 																	),
-																	value: "custom",
+																	value: 'bottom right',
+																},
+																{
+																	label: __(
+																		'Custom',
+																		'zolo-blocks'
+																	),
+																	value: 'custom',
 																},
 															]}
 															onChange={(
@@ -1740,7 +1823,8 @@ const BGControl = ({
 														/>
 													</WithResDeviceBtn>
 
-													{hov_bgImgPos === "custom" && (
+													{hov_bgImgPos ===
+														'custom' && (
 														<>
 															<UnitBtn
 																selectedUnit={
@@ -1748,16 +1832,16 @@ const BGControl = ({
 																}
 																unitTypes={[
 																	{
-																		label: "px",
-																		value: "px",
+																		label: 'px',
+																		value: 'px',
 																	},
 																	{
-																		label: "em",
-																		value: "em",
+																		label: 'em',
+																		value: 'em',
 																	},
 																	{
-																		label: "%",
-																		value: "%",
+																		label: '%',
+																		value: '%',
 																	},
 																]}
 																onClick={(
@@ -1776,7 +1860,8 @@ const BGControl = ({
 																resRequiredProps={
 																	resRequiredProps
 																}
-																label="X Position">
+																label="X Position"
+															>
 																<RangeControl
 																	value={
 																		hov_bgImgcustomPosX
@@ -1802,16 +1887,16 @@ const BGControl = ({
 																}
 																unitTypes={[
 																	{
-																		label: "px",
-																		value: "px",
+																		label: 'px',
+																		value: 'px',
 																	},
 																	{
-																		label: "em",
-																		value: "em",
+																		label: 'em',
+																		value: 'em',
 																	},
 																	{
-																		label: "%",
-																		value: "%",
+																		label: '%',
+																		value: '%',
 																	},
 																]}
 																onClick={(
@@ -1830,7 +1915,8 @@ const BGControl = ({
 																resRequiredProps={
 																	resRequiredProps
 																}
-																label="Y Position">
+																label="Y Position"
+															>
 																<RangeControl
 																	value={
 																		hov_bgImgcustomPosY
@@ -1839,7 +1925,7 @@ const BGControl = ({
 																	max={2000}
 																	step={
 																		hov_bgImgcustomPosYUnit ===
-																			"px"
+																		'px'
 																			? 1
 																			: 0.1
 																	}
@@ -1860,28 +1946,30 @@ const BGControl = ({
 
 													<SelectControl
 														label="Attachment"
-														value={hov_bgImgAttachment}
+														value={
+															hov_bgImgAttachment
+														}
 														options={[
 															{
 																label: __(
-																	"Default",
-																	"zolo-blocks"
+																	'Default',
+																	'zolo-blocks'
 																),
-																value: "",
+																value: '',
 															},
 															{
 																label: __(
-																	"Scroll",
-																	"zolo-blocks"
+																	'Scroll',
+																	'zolo-blocks'
 																),
-																value: "scroll",
+																value: 'scroll',
 															},
 															{
 																label: __(
-																	"Fixed",
-																	"zolo-blocks"
+																	'Fixed',
+																	'zolo-blocks'
 																),
-																value: "fixed",
+																value: 'fixed',
 															},
 														]}
 														onChange={(
@@ -1895,64 +1983,68 @@ const BGControl = ({
 													/>
 
 													{hov_bgImgAttachment ===
-														"fixed" && (
-															<p
-																style={{
-																	marginTop:
-																		"-10px",
-																	paddingBottom:
-																		"10px",
-																}}>
-																<i>
-																	Note: Attachment
-																	Fixed works only
-																	on desktop.
-																</i>
-															</p>
-														)}
+														'fixed' && (
+														<p
+															style={{
+																marginTop:
+																	'-10px',
+																paddingBottom:
+																	'10px',
+															}}
+														>
+															<i>
+																Note: Attachment
+																Fixed works only
+																on desktop.
+															</i>
+														</p>
+													)}
 
 													<WithResDeviceBtn
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Repeat">
+														label="Repeat"
+													>
 														<SelectControl
-															value={hov_bgImgRepeat}
+															value={
+																hov_bgImgRepeat
+															}
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"No-repeat",
-																		"zolo-blocks"
+																		'No-repeat',
+																		'zolo-blocks'
 																	),
-																	value: "no-repeat",
+																	value: 'no-repeat',
 																},
 																{
 																	label: __(
-																		"Repeat",
-																		"zolo-blocks"
+																		'Repeat',
+																		'zolo-blocks'
 																	),
-																	value: "repeat",
+																	value: 'repeat',
 																},
 																{
 																	label: __(
-																		"Repeat-x",
-																		"zolo-blocks"
+																		'Repeat-x',
+																		'zolo-blocks'
 																	),
-																	value: "repeat-x",
+																	value: 'repeat-x',
 																},
 																{
 																	label: __(
-																		"Repeat-y",
-																		"zolo-blocks"
+																		'Repeat-y',
+																		'zolo-blocks'
 																	),
-																	value: "repeat-y",
+																	value: 'repeat-y',
 																},
 															]}
 															onChange={(
@@ -1970,7 +2062,8 @@ const BGControl = ({
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Size">
+														label="Size"
+													>
 														<SelectControl
 															value={
 																hov_backgroundSize
@@ -1978,38 +2071,38 @@ const BGControl = ({
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"Auto",
-																		"zolo-blocks"
+																		'Auto',
+																		'zolo-blocks'
 																	),
-																	value: "auto",
+																	value: 'auto',
 																},
 																{
 																	label: __(
-																		"Cover",
-																		"zolo-blocks"
+																		'Cover',
+																		'zolo-blocks'
 																	),
-																	value: "cover",
+																	value: 'cover',
 																},
 																{
 																	label: __(
-																		"Contain",
-																		"zolo-blocks"
+																		'Contain',
+																		'zolo-blocks'
 																	),
-																	value: "contain",
+																	value: 'contain',
 																},
 																{
 																	label: __(
-																		"Custom",
-																		"zolo-blocks"
+																		'Custom',
+																		'zolo-blocks'
 																	),
-																	value: "custom",
+																	value: 'custom',
 																},
 															]}
 															onChange={(
@@ -2024,164 +2117,167 @@ const BGControl = ({
 													</WithResDeviceBtn>
 
 													{hov_backgroundSize ===
-														"custom" && (
-															<>
-																<UnitBtn
-																	selectedUnit={
-																		hov_bgImgCustomSizeUnit
+														'custom' && (
+														<>
+															<UnitBtn
+																selectedUnit={
+																	hov_bgImgCustomSizeUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	hov_bgImgCustomSizeUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`hov_${controlName}bgImgCustomSizeUnit`]:
+																				hov_bgImgCustomSizeUnit,
+																		}
+																	)
+																}
+															/>
+
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="Width"
+															>
+																<RangeControl
+																	value={
+																		hov_bgImgCustomSize
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		hov_bgImgCustomSizeUnit
+																	min={0}
+																	max={
+																		hov_bgImgCustomSizeUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	step={
+																		hov_bgImgCustomSizeUnit ===
+																		'px'
+																			? 1
+																			: 0.1
+																	}
+																	onChange={(
+																		hov_bgImgCustomSize
 																	) =>
 																		setAttributes(
 																			{
-																				[`hov_${controlName}bgImgCustomSizeUnit`]:
-																					hov_bgImgCustomSizeUnit,
+																				[`hov_${controlName}bgImgCustomSize`]:
+																					hov_bgImgCustomSize,
 																			}
 																		)
 																	}
 																/>
-
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="Width">
-																	<RangeControl
-																		value={
-																			hov_bgImgCustomSize
-																		}
-																		min={0}
-																		max={
-																			hov_bgImgCustomSizeUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		step={
-																			hov_bgImgCustomSizeUnit ===
-																				"px"
-																				? 1
-																				: 0.1
-																		}
-																		onChange={(
-																			hov_bgImgCustomSize
-																		) =>
-																			setAttributes(
-																				{
-																					[`hov_${controlName}bgImgCustomSize`]:
-																						hov_bgImgCustomSize,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
-															</>
-														)}
-
+															</WithResDeviceBtn>
+														</>
+													)}
 												</>
 											)}
 
-											{resMode === "Tablet" && (
+											{resMode === 'Tablet' && (
 												<>
 													<WithResDeviceBtn
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Position">
+														label="Position"
+													>
 														<SelectControl
-															value={hov_TABbgImgPos}
+															value={
+																hov_TABbgImgPos
+															}
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"Center Center",
-																		"zolo-blocks"
+																		'Center Center',
+																		'zolo-blocks'
 																	),
-																	value: "center center",
+																	value: 'center center',
 																},
 																{
 																	label: __(
-																		"Center Left",
-																		"zolo-blocks"
+																		'Center Left',
+																		'zolo-blocks'
 																	),
-																	value: "center left",
+																	value: 'center left',
 																},
 																{
 																	label: __(
-																		"Center Right",
-																		"zolo-blocks"
+																		'Center Right',
+																		'zolo-blocks'
 																	),
-																	value: "center right",
+																	value: 'center right',
 																},
 																{
 																	label: __(
-																		"Top Center",
-																		"zolo-blocks"
+																		'Top Center',
+																		'zolo-blocks'
 																	),
-																	value: "top center",
+																	value: 'top center',
 																},
 																{
 																	label: __(
-																		"Top Left",
-																		"zolo-blocks"
+																		'Top Left',
+																		'zolo-blocks'
 																	),
-																	value: "top left",
+																	value: 'top left',
 																},
 																{
 																	label: __(
-																		"Top Right",
-																		"zolo-blocks"
+																		'Top Right',
+																		'zolo-blocks'
 																	),
-																	value: "top right",
+																	value: 'top right',
 																},
 																{
 																	label: __(
-																		"Bottom Center",
-																		"zolo-blocks"
+																		'Bottom Center',
+																		'zolo-blocks'
 																	),
-																	value: "bottom center",
+																	value: 'bottom center',
 																},
 																{
 																	label: __(
-																		"Bottom Left",
-																		"zolo-blocks"
+																		'Bottom Left',
+																		'zolo-blocks'
 																	),
-																	value: "bottom left",
+																	value: 'bottom left',
 																},
 																{
 																	label: __(
-																		"Bottom Right",
-																		"zolo-blocks"
+																		'Bottom Right',
+																		'zolo-blocks'
 																	),
-																	value: "bottom right",
+																	value: 'bottom right',
 																},
 																{
 																	label: __(
-																		"Custom",
-																		"zolo-blocks"
+																		'Custom',
+																		'zolo-blocks'
 																	),
-																	value: "custom",
+																	value: 'custom',
 																},
 															]}
 															onChange={(
@@ -2196,158 +2292,162 @@ const BGControl = ({
 													</WithResDeviceBtn>
 
 													{hov_TABbgImgPos ===
-														"custom" && (
-															<>
-																<UnitBtn
-																	selectedUnit={
-																		hov_TABbgImgcustomPosXUnit
+														'custom' && (
+														<>
+															<UnitBtn
+																selectedUnit={
+																	hov_TABbgImgcustomPosXUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	hov_TABbgImgcustomPosXUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`hov_TAB${controlName}bgImgcustomPosXUnit`]:
+																				hov_TABbgImgcustomPosXUnit,
+																		}
+																	)
+																}
+															/>
+
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="X Position"
+															>
+																<RangeControl
+																	value={
+																		hov_TABbgImgcustomPosX
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		hov_TABbgImgcustomPosXUnit
+																	min={0}
+																	max={
+																		hov_TABbgImgcustomPosXUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	onChange={(
+																		hov_TABbgImgcustomPosX
 																	) =>
 																		setAttributes(
 																			{
-																				[`hov_TAB${controlName}bgImgcustomPosXUnit`]:
-																					hov_TABbgImgcustomPosXUnit,
+																				[`hov_TAB${controlName}bgImgcustomPosX`]:
+																					hov_TABbgImgcustomPosX,
 																			}
 																		)
 																	}
 																/>
+															</WithResDeviceBtn>
 
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="X Position">
-																	<RangeControl
-																		value={
-																			hov_TABbgImgcustomPosX
+															<UnitBtn
+																selectedUnit={
+																	hov_TABbgImgcustomPosYUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	hov_TABbgImgcustomPosYUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`hov_TAB${controlName}bgImgcustomPosYUnit`]:
+																				hov_TABbgImgcustomPosYUnit,
 																		}
-																		min={0}
-																		max={
-																			hov_TABbgImgcustomPosXUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		onChange={(
-																			hov_TABbgImgcustomPosX
-																		) =>
-																			setAttributes(
-																				{
-																					[`hov_TAB${controlName}bgImgcustomPosX`]:
-																						hov_TABbgImgcustomPosX,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
+																	)
+																}
+															/>
 
-																<UnitBtn
-																	selectedUnit={
-																		hov_TABbgImgcustomPosYUnit
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="Y Position"
+															>
+																<RangeControl
+																	value={
+																		hov_TABbgImgcustomPosY
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		hov_TABbgImgcustomPosYUnit
+																	min={0}
+																	max={
+																		hov_TABbgImgcustomPosYUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	step={
+																		hov_TABbgImgcustomPosYUnit ===
+																		'px'
+																			? 1
+																			: 0.1
+																	}
+																	onChange={(
+																		hov_TABbgImgcustomPosY
 																	) =>
 																		setAttributes(
 																			{
-																				[`hov_TAB${controlName}bgImgcustomPosYUnit`]:
-																					hov_TABbgImgcustomPosYUnit,
+																				[`hov_TAB${controlName}bgImgcustomPosY`]:
+																					hov_TABbgImgcustomPosY,
 																			}
 																		)
 																	}
 																/>
-
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="Y Position">
-																	<RangeControl
-																		value={
-																			hov_TABbgImgcustomPosY
-																		}
-																		min={0}
-																		max={
-																			hov_TABbgImgcustomPosYUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		step={
-																			hov_TABbgImgcustomPosYUnit ===
-																				"px"
-																				? 1
-																				: 0.1
-																		}
-																		onChange={(
-																			hov_TABbgImgcustomPosY
-																		) =>
-																			setAttributes(
-																				{
-																					[`hov_TAB${controlName}bgImgcustomPosY`]:
-																						hov_TABbgImgcustomPosY,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
-															</>
-														)}
+															</WithResDeviceBtn>
+														</>
+													)}
 
 													<SelectControl
 														label="Attachment"
-														value={hov_bgImgAttachment}
+														value={
+															hov_bgImgAttachment
+														}
 														options={[
 															{
 																label: __(
-																	"Default",
-																	"zolo-blocks"
+																	'Default',
+																	'zolo-blocks'
 																),
-																value: "",
+																value: '',
 															},
 															{
 																label: __(
-																	"Scroll",
-																	"zolo-blocks"
+																	'Scroll',
+																	'zolo-blocks'
 																),
-																value: "scroll",
+																value: 'scroll',
 															},
 															{
 																label: __(
-																	"Fixed",
-																	"zolo-blocks"
+																	'Fixed',
+																	'zolo-blocks'
 																),
-																value: "fixed",
+																value: 'fixed',
 															},
 														]}
 														onChange={(
@@ -2361,27 +2461,29 @@ const BGControl = ({
 													/>
 
 													{hov_bgImgAttachment ===
-														"fixed" && (
-															<p
-																style={{
-																	marginTop:
-																		"-10px",
-																	paddingBottom:
-																		"10px",
-																}}>
-																<i>
-																	Note: Attachment
-																	Fixed works only
-																	on desktop.
-																</i>
-															</p>
-														)}
+														'fixed' && (
+														<p
+															style={{
+																marginTop:
+																	'-10px',
+																paddingBottom:
+																	'10px',
+															}}
+														>
+															<i>
+																Note: Attachment
+																Fixed works only
+																on desktop.
+															</i>
+														</p>
+													)}
 
 													<WithResDeviceBtn
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Repeat">
+														label="Repeat"
+													>
 														<SelectControl
 															value={
 																hov_TABbgImgRepeat
@@ -2389,38 +2491,38 @@ const BGControl = ({
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"No-repeat",
-																		"zolo-blocks"
+																		'No-repeat',
+																		'zolo-blocks'
 																	),
-																	value: "no-repeat",
+																	value: 'no-repeat',
 																},
 																{
 																	label: __(
-																		"Repeat",
-																		"zolo-blocks"
+																		'Repeat',
+																		'zolo-blocks'
 																	),
-																	value: "repeat",
+																	value: 'repeat',
 																},
 																{
 																	label: __(
-																		"Repeat-x",
-																		"zolo-blocks"
+																		'Repeat-x',
+																		'zolo-blocks'
 																	),
-																	value: "repeat-x",
+																	value: 'repeat-x',
 																},
 																{
 																	label: __(
-																		"Repeat-y",
-																		"zolo-blocks"
+																		'Repeat-y',
+																		'zolo-blocks'
 																	),
-																	value: "repeat-y",
+																	value: 'repeat-y',
 																},
 															]}
 															onChange={(
@@ -2438,7 +2540,8 @@ const BGControl = ({
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Size">
+														label="Size"
+													>
 														<SelectControl
 															value={
 																hov_TABbackgroundSize
@@ -2446,38 +2549,38 @@ const BGControl = ({
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"Auto",
-																		"zolo-blocks"
+																		'Auto',
+																		'zolo-blocks'
 																	),
-																	value: "auto",
+																	value: 'auto',
 																},
 																{
 																	label: __(
-																		"Cover",
-																		"zolo-blocks"
+																		'Cover',
+																		'zolo-blocks'
 																	),
-																	value: "cover",
+																	value: 'cover',
 																},
 																{
 																	label: __(
-																		"Contain",
-																		"zolo-blocks"
+																		'Contain',
+																		'zolo-blocks'
 																	),
-																	value: "contain",
+																	value: 'contain',
 																},
 																{
 																	label: __(
-																		"Custom",
-																		"zolo-blocks"
+																		'Custom',
+																		'zolo-blocks'
 																	),
-																	value: "custom",
+																	value: 'custom',
 																},
 															]}
 															onChange={(
@@ -2492,163 +2595,167 @@ const BGControl = ({
 													</WithResDeviceBtn>
 
 													{hov_TABbackgroundSize ===
-														"custom" && (
-															<>
-																<UnitBtn
-																	selectedUnit={
-																		hov_TABbgImgCustomSizeUnit
+														'custom' && (
+														<>
+															<UnitBtn
+																selectedUnit={
+																	hov_TABbgImgCustomSizeUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	hov_TABbgImgCustomSizeUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`hov_TAB${controlName}bgImgCustomSizeUnit`]:
+																				hov_TABbgImgCustomSizeUnit,
+																		}
+																	)
+																}
+															/>
+
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="Width"
+															>
+																<RangeControl
+																	value={
+																		hov_TABbgImgCustomSize
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		hov_TABbgImgCustomSizeUnit
+																	min={0}
+																	max={
+																		hov_TABbgImgCustomSizeUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	step={
+																		hov_TABbgImgCustomSizeUnit ===
+																		'px'
+																			? 1
+																			: 0.1
+																	}
+																	onChange={(
+																		hov_TABbgImgCustomSize
 																	) =>
 																		setAttributes(
 																			{
-																				[`hov_TAB${controlName}bgImgCustomSizeUnit`]:
-																					hov_TABbgImgCustomSizeUnit,
+																				[`hov_TAB${controlName}bgImgCustomSize`]:
+																					hov_TABbgImgCustomSize,
 																			}
 																		)
 																	}
 																/>
-
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="Width">
-																	<RangeControl
-																		value={
-																			hov_TABbgImgCustomSize
-																		}
-																		min={0}
-																		max={
-																			hov_TABbgImgCustomSizeUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		step={
-																			hov_TABbgImgCustomSizeUnit ===
-																				"px"
-																				? 1
-																				: 0.1
-																		}
-																		onChange={(
-																			hov_TABbgImgCustomSize
-																		) =>
-																			setAttributes(
-																				{
-																					[`hov_TAB${controlName}bgImgCustomSize`]:
-																						hov_TABbgImgCustomSize,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
-															</>
-														)}
+															</WithResDeviceBtn>
+														</>
+													)}
 												</>
 											)}
 
-											{resMode === "Mobile" && (
+											{resMode === 'Mobile' && (
 												<>
 													<WithResDeviceBtn
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Position">
+														label="Position"
+													>
 														<SelectControl
-															value={hov_MOBbgImgPos}
+															value={
+																hov_MOBbgImgPos
+															}
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"Center Center",
-																		"zolo-blocks"
+																		'Center Center',
+																		'zolo-blocks'
 																	),
-																	value: "center center",
+																	value: 'center center',
 																},
 																{
 																	label: __(
-																		"Center Left",
-																		"zolo-blocks"
+																		'Center Left',
+																		'zolo-blocks'
 																	),
-																	value: "center left",
+																	value: 'center left',
 																},
 																{
 																	label: __(
-																		"Center Right",
-																		"zolo-blocks"
+																		'Center Right',
+																		'zolo-blocks'
 																	),
-																	value: "center right",
+																	value: 'center right',
 																},
 																{
 																	label: __(
-																		"Top Center",
-																		"zolo-blocks"
+																		'Top Center',
+																		'zolo-blocks'
 																	),
-																	value: "top center",
+																	value: 'top center',
 																},
 																{
 																	label: __(
-																		"Top Left",
-																		"zolo-blocks"
+																		'Top Left',
+																		'zolo-blocks'
 																	),
-																	value: "top left",
+																	value: 'top left',
 																},
 																{
 																	label: __(
-																		"Top Right",
-																		"zolo-blocks"
+																		'Top Right',
+																		'zolo-blocks'
 																	),
-																	value: "top right",
+																	value: 'top right',
 																},
 																{
 																	label: __(
-																		"Bottom Center",
-																		"zolo-blocks"
+																		'Bottom Center',
+																		'zolo-blocks'
 																	),
-																	value: "bottom center",
+																	value: 'bottom center',
 																},
 																{
 																	label: __(
-																		"Bottom Left",
-																		"zolo-blocks"
+																		'Bottom Left',
+																		'zolo-blocks'
 																	),
-																	value: "bottom left",
+																	value: 'bottom left',
 																},
 																{
 																	label: __(
-																		"Bottom Right",
-																		"zolo-blocks"
+																		'Bottom Right',
+																		'zolo-blocks'
 																	),
-																	value: "bottom right",
+																	value: 'bottom right',
 																},
 																{
 																	label: __(
-																		"Custom",
-																		"zolo-blocks"
+																		'Custom',
+																		'zolo-blocks'
 																	),
-																	value: "custom",
+																	value: 'custom',
 																},
 															]}
 															onChange={(
@@ -2663,158 +2770,162 @@ const BGControl = ({
 													</WithResDeviceBtn>
 
 													{hov_MOBbgImgPos ===
-														"custom" && (
-															<>
-																<UnitBtn
-																	selectedUnit={
-																		hov_MOBbgImgcustomPosXUnit
+														'custom' && (
+														<>
+															<UnitBtn
+																selectedUnit={
+																	hov_MOBbgImgcustomPosXUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	hov_MOBbgImgcustomPosXUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`hov_MOB${controlName}bgImgcustomPosXUnit`]:
+																				hov_MOBbgImgcustomPosXUnit,
+																		}
+																	)
+																}
+															/>
+
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="X Position"
+															>
+																<RangeControl
+																	value={
+																		hov_MOBbgImgcustomPosX
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		hov_MOBbgImgcustomPosXUnit
+																	min={0}
+																	max={
+																		hov_MOBbgImgcustomPosXUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	onChange={(
+																		hov_MOBbgImgcustomPosX
 																	) =>
 																		setAttributes(
 																			{
-																				[`hov_MOB${controlName}bgImgcustomPosXUnit`]:
-																					hov_MOBbgImgcustomPosXUnit,
+																				[`hov_MOB${controlName}bgImgcustomPosX`]:
+																					hov_MOBbgImgcustomPosX,
 																			}
 																		)
 																	}
 																/>
+															</WithResDeviceBtn>
 
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="X Position">
-																	<RangeControl
-																		value={
-																			hov_MOBbgImgcustomPosX
+															<UnitBtn
+																selectedUnit={
+																	hov_MOBbgImgcustomPosYUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	hov_MOBbgImgcustomPosYUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`hov_MOB${controlName}bgImgcustomPosYUnit`]:
+																				hov_MOBbgImgcustomPosYUnit,
 																		}
-																		min={0}
-																		max={
-																			hov_MOBbgImgcustomPosXUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		onChange={(
-																			hov_MOBbgImgcustomPosX
-																		) =>
-																			setAttributes(
-																				{
-																					[`hov_MOB${controlName}bgImgcustomPosX`]:
-																						hov_MOBbgImgcustomPosX,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
+																	)
+																}
+															/>
 
-																<UnitBtn
-																	selectedUnit={
-																		hov_MOBbgImgcustomPosYUnit
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="Y Position"
+															>
+																<RangeControl
+																	value={
+																		hov_MOBbgImgcustomPosY
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		hov_MOBbgImgcustomPosYUnit
+																	min={0}
+																	max={
+																		hov_MOBbgImgcustomPosYUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	step={
+																		hov_MOBbgImgcustomPosYUnit ===
+																		'px'
+																			? 1
+																			: 0.1
+																	}
+																	onChange={(
+																		hov_MOBbgImgcustomPosY
 																	) =>
 																		setAttributes(
 																			{
-																				[`hov_MOB${controlName}bgImgcustomPosYUnit`]:
-																					hov_MOBbgImgcustomPosYUnit,
+																				[`hov_MOB${controlName}bgImgcustomPosY`]:
+																					hov_MOBbgImgcustomPosY,
 																			}
 																		)
 																	}
 																/>
-
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="Y Position">
-																	<RangeControl
-																		value={
-																			hov_MOBbgImgcustomPosY
-																		}
-																		min={0}
-																		max={
-																			hov_MOBbgImgcustomPosYUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		step={
-																			hov_MOBbgImgcustomPosYUnit ===
-																				"px"
-																				? 1
-																				: 0.1
-																		}
-																		onChange={(
-																			hov_MOBbgImgcustomPosY
-																		) =>
-																			setAttributes(
-																				{
-																					[`hov_MOB${controlName}bgImgcustomPosY`]:
-																						hov_MOBbgImgcustomPosY,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
-															</>
-														)}
+															</WithResDeviceBtn>
+														</>
+													)}
 
 													<SelectControl
 														label="Attachment"
-														value={hov_bgImgAttachment}
+														value={
+															hov_bgImgAttachment
+														}
 														options={[
 															{
 																label: __(
-																	"Default",
-																	"zolo-blocks"
+																	'Default',
+																	'zolo-blocks'
 																),
-																value: "",
+																value: '',
 															},
 															{
 																label: __(
-																	"Scroll",
-																	"zolo-blocks"
+																	'Scroll',
+																	'zolo-blocks'
 																),
-																value: "scroll",
+																value: 'scroll',
 															},
 															{
 																label: __(
-																	"Fixed",
-																	"zolo-blocks"
+																	'Fixed',
+																	'zolo-blocks'
 																),
-																value: "fixed",
+																value: 'fixed',
 															},
 														]}
 														onChange={(
@@ -2828,27 +2939,29 @@ const BGControl = ({
 													/>
 
 													{hov_bgImgAttachment ===
-														"fixed" && (
-															<p
-																style={{
-																	marginTop:
-																		"-10px",
-																	paddingBottom:
-																		"10px",
-																}}>
-																<i>
-																	Note: Attachment
-																	Fixed works only
-																	on desktop.
-																</i>
-															</p>
-														)}
+														'fixed' && (
+														<p
+															style={{
+																marginTop:
+																	'-10px',
+																paddingBottom:
+																	'10px',
+															}}
+														>
+															<i>
+																Note: Attachment
+																Fixed works only
+																on desktop.
+															</i>
+														</p>
+													)}
 
 													<WithResDeviceBtn
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Repeat">
+														label="Repeat"
+													>
 														<SelectControl
 															value={
 																hov_MOBbgImgRepeat
@@ -2856,38 +2969,38 @@ const BGControl = ({
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"No-repeat",
-																		"zolo-blocks"
+																		'No-repeat',
+																		'zolo-blocks'
 																	),
-																	value: "no-repeat",
+																	value: 'no-repeat',
 																},
 																{
 																	label: __(
-																		"Repeat",
-																		"zolo-blocks"
+																		'Repeat',
+																		'zolo-blocks'
 																	),
-																	value: "repeat",
+																	value: 'repeat',
 																},
 																{
 																	label: __(
-																		"Repeat-x",
-																		"zolo-blocks"
+																		'Repeat-x',
+																		'zolo-blocks'
 																	),
-																	value: "repeat-x",
+																	value: 'repeat-x',
 																},
 																{
 																	label: __(
-																		"Repeat-y",
-																		"zolo-blocks"
+																		'Repeat-y',
+																		'zolo-blocks'
 																	),
-																	value: "repeat-y",
+																	value: 'repeat-y',
 																},
 															]}
 															onChange={(
@@ -2905,7 +3018,8 @@ const BGControl = ({
 														resRequiredProps={
 															resRequiredProps
 														}
-														label="Size">
+														label="Size"
+													>
 														<SelectControl
 															value={
 																hov_MOBbackgroundSize
@@ -2913,38 +3027,38 @@ const BGControl = ({
 															options={[
 																{
 																	label: __(
-																		"Default",
-																		"zolo-blocks"
+																		'Default',
+																		'zolo-blocks'
 																	),
-																	value: "",
+																	value: '',
 																},
 																{
 																	label: __(
-																		"Auto",
-																		"zolo-blocks"
+																		'Auto',
+																		'zolo-blocks'
 																	),
-																	value: "auto",
+																	value: 'auto',
 																},
 																{
 																	label: __(
-																		"Cover",
-																		"zolo-blocks"
+																		'Cover',
+																		'zolo-blocks'
 																	),
-																	value: "cover",
+																	value: 'cover',
 																},
 																{
 																	label: __(
-																		"Contain",
-																		"zolo-blocks"
+																		'Contain',
+																		'zolo-blocks'
 																	),
-																	value: "contain",
+																	value: 'contain',
 																},
 																{
 																	label: __(
-																		"Custom",
-																		"zolo-blocks"
+																		'Custom',
+																		'zolo-blocks'
 																	),
-																	value: "custom",
+																	value: 'custom',
 																},
 															]}
 															onChange={(
@@ -2959,80 +3073,79 @@ const BGControl = ({
 													</WithResDeviceBtn>
 
 													{hov_MOBbackgroundSize ===
-														"custom" && (
-															<>
-																<UnitBtn
-																	selectedUnit={
-																		hov_MOBbgImgCustomSizeUnit
+														'custom' && (
+														<>
+															<UnitBtn
+																selectedUnit={
+																	hov_MOBbgImgCustomSizeUnit
+																}
+																unitTypes={[
+																	{
+																		label: 'px',
+																		value: 'px',
+																	},
+																	{
+																		label: 'em',
+																		value: 'em',
+																	},
+																	{
+																		label: '%',
+																		value: '%',
+																	},
+																]}
+																onClick={(
+																	hov_MOBbgImgCustomSizeUnit
+																) =>
+																	setAttributes(
+																		{
+																			[`hov_MOB${controlName}bgImgCustomSizeUnit`]:
+																				hov_MOBbgImgCustomSizeUnit,
+																		}
+																	)
+																}
+															/>
+
+															<WithResDeviceBtn
+																resRequiredProps={
+																	resRequiredProps
+																}
+																label="Width"
+															>
+																<RangeControl
+																	value={
+																		hov_MOBbgImgCustomSize
 																	}
-																	unitTypes={[
-																		{
-																			label: "px",
-																			value: "px",
-																		},
-																		{
-																			label: "em",
-																			value: "em",
-																		},
-																		{
-																			label: "%",
-																			value: "%",
-																		},
-																	]}
-																	onClick={(
-																		hov_MOBbgImgCustomSizeUnit
+																	min={0}
+																	max={
+																		hov_MOBbgImgCustomSizeUnit ===
+																		'px'
+																			? 2000
+																			: 100
+																	}
+																	step={
+																		hov_MOBbgImgCustomSizeUnit ===
+																		'px'
+																			? 1
+																			: 0.1
+																	}
+																	onChange={(
+																		hov_MOBbgImgCustomSize
 																	) =>
 																		setAttributes(
 																			{
-																				[`hov_MOB${controlName}bgImgCustomSizeUnit`]:
-																					hov_MOBbgImgCustomSizeUnit,
+																				[`hov_MOB${controlName}bgImgCustomSize`]:
+																					hov_MOBbgImgCustomSize,
 																			}
 																		)
 																	}
 																/>
-
-																<WithResDeviceBtn
-																	resRequiredProps={
-																		resRequiredProps
-																	}
-																	label="Width">
-																	<RangeControl
-																		value={
-																			hov_MOBbgImgCustomSize
-																		}
-																		min={0}
-																		max={
-																			hov_MOBbgImgCustomSizeUnit ===
-																				"px"
-																				? 2000
-																				: 100
-																		}
-																		step={
-																			hov_MOBbgImgCustomSizeUnit ===
-																				"px"
-																				? 1
-																				: 0.1
-																		}
-																		onChange={(
-																			hov_MOBbgImgCustomSize
-																		) =>
-																			setAttributes(
-																				{
-																					[`hov_MOB${controlName}bgImgCustomSize`]:
-																						hov_MOBbgImgCustomSize,
-																				}
-																			)
-																		}
-																	/>
-																</WithResDeviceBtn>
-															</>
-														)}
+															</WithResDeviceBtn>
+														</>
+													)}
 												</>
 											)}
-
 										</>
 									)}
-
 								</>
 							)}
 						</>
@@ -3040,16 +3153,19 @@ const BGControl = ({
 
 					{hov_backgroundType === 'gradient' && (
 						<GradientControl
-							label={"Gradient Color"}
+							label={'Gradient Color'}
 							value={hov_gradientColor}
-							onChange={(newVal) => setAttributes({ [`hov_${controlName}gradientColor`]: newVal })}
+							onChange={(newVal) =>
+								setAttributes({
+									[`hov_${controlName}gradientColor`]: newVal,
+								})
+							}
 						/>
 					)}
 				</>
 			)}
-
 		</>
-	)
-}
+	);
+};
 
 export default BGControl;
