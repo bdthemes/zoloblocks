@@ -124,7 +124,7 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 			return 'Desktop';
 		});
 
-		// this useEffect is for setting the resMode attribute to desktop/tab/mobile depending on the added 'eb-res-option-' class
+		// this useEffect is for setting the resMode attribute to desktop/tab/mobile depending on the added 'zolo-res-option-' class
 		useEffect(() => {
 			setAttributes({
 				resMode: deviceType,

@@ -188,8 +188,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                     initialOpen={true}
                   >
                     {/* Hook Test */}
-                    {doAction('zolo_ah_general_start_action', attributes)}
-                    {applyFilters('zolo_ah_general_start_filter', '', attributes, setAttributes)}
+                    {/* {doAction('zolo_ah_general_start_action', attributes)}
+                    {applyFilters('zolo_ah_general_start_filter', '', attributes, setAttributes)} */}
 
                     <SelectControl
                       label={__("Premade Styles", "zolo-blocks")}
