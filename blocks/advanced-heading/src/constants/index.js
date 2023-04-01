@@ -20,8 +20,6 @@ export const ST_POSITION = [
   { label: 'Bottom', value: 'bottom' }
 ];
 
-export const HEADING_ALIGNMENT = 'headingAlignment';
-
 export const HEADING_TAG = [
   { label: __("H1", "zolo-blocks"), value: "h1" },
   { label: __("H2", "zolo-blocks"), value: "h2" },

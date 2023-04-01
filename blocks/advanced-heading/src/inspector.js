@@ -59,7 +59,9 @@ const Inspector = ({ attributes, setAttributes }) => {
     titleColor,
     subTitleColor,
     tpColor,
-    separatorColor
+    separatorColor,
+    titleBgColor,
+    titleBorderColor
   } = attributes;
 
   const resRequiredProps = {
@@ -72,6 +74,16 @@ const Inspector = ({ attributes, setAttributes }) => {
   const changePremade = (selected) => {
     setAttributes({ styles: selected });
     switch (selected) {
+
+      case 'style-0':
+        setAttributes({
+          showSubTitle: false,
+          showTransparentTitle: false,
+          showSeparator: false,
+          align: 'left'
+        });
+        break;
+
       case 'style-1':
         setAttributes({
           showSubTitle: true,
@@ -299,30 +311,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                       </>
                     )}
 
-                    {/* <ResAlignmentControl
-                      label={__('Alignmet', 'zolo-blocks')}
-                      controlName={HEADING_ALIGNMENT}
-                      resRequiredProps={resRequiredProps}
-                      alignOptions={[
-                        {
-                          label: 'Left',
-                          value: 'left',
-                        },
-                        {
-                          label: 'Center',
-                          value: 'center',
-                        },
-                        {
-                          label: 'Right',
-                          value: 'right',
-                        },
-                        {
-                          label: 'Justify',
-                          value: 'justify',
-                        },
-                      ]}
-                    /> */}
-
                     <BaseControl label={__("Alignment", "zolo-blocks")} >
                       <ButtonGroup className="zolo-alignment-button">
                         {TEXT_ALIGN.map((item, key) => (
@@ -360,6 +348,25 @@ const Inspector = ({ attributes, setAttributes }) => {
                         titleColor: val,
                       })}
                     />
+
+                    {styles == 'style-7' && (
+                      <>
+                        <ColorControl
+                          label={__('Background Color', 'zolo-blocks')}
+                          color={titleBgColor}
+                          onChange={(val) => setAttributes({
+                            titleBgColor: val,
+                          })}
+                        />
+                        <ColorControl
+                          label={__('Border Color', 'zolo-blocks')}
+                          color={titleBorderColor}
+                          onChange={(val) => setAttributes({
+                            titleBorderColor: val,
+                          })}
+                        />
+                      </>
+                    )}
 
                     <ResDimensionsControl
                       label={__('Margin', 'zolo-blocks')}

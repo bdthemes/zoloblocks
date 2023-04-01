@@ -44,6 +44,9 @@ if (!class_exists('Zolo_Block_Enqueue')) {
         {
 
             add_action('enqueue_block_editor_assets', array($this, 'editor_assets_loader'));
+
+            add_action('enqueue_block_editor_assets', [$this, 'frontend_backend_assets']);
+            add_action('wp_enqueue_scripts', [$this, 'frontend_backend_assets']);
         }
 
         /**
@@ -121,19 +124,30 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 true
             );
 
-            // Common Editor style.
-            wp_enqueue_style(
-                'zolo-block-common-editor-style',
-                ZOLO_ADMIN_URL . 'dist/style.css',
-                array('wp-edit-blocks'),
-                ZOLO_VERSION
-            );
+            //  // Common Editor style.
+            //  wp_enqueue_style(
+            //     'zolo-block-common-editor-style',
+            //     ZOLO_ADMIN_URL . 'dist/style.css',
+            //     array('wp-edit-blocks'),
+            //     ZOLO_VERSION
+            // );
 
             // Controls Editor style.
             wp_enqueue_style(
                 'zolo-block-control-editor-style',
                 ZOLO_ADMIN_URL . 'modules/style.css',
                 array('wp-edit-blocks'),
+                ZOLO_VERSION
+            );
+        }
+
+        public function frontend_backend_assets()
+        {
+            // Common Editor and frontend style.
+            wp_enqueue_style(
+                'zolo-block-frontend-style',
+                ZOLO_ADMIN_URL . 'dist/style.css',
+                array(),
                 ZOLO_VERSION
             );
         }

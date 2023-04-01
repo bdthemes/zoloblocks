@@ -6,11 +6,10 @@ const {
   generateDimensionAttributes,
   generateTypographyAttributes,
   generateResRangeAttributies,
-  generateResAlignmentAttributies
 } = window.zoloModule;
 
 //block constants
-import { HEADING_ALIGNMENT, SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW } from './constants';
+import { SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW } from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes = {
@@ -32,11 +31,6 @@ const attributes = {
   }),
   ...generateResRangeAttributies(SEPARATOR_HEIGHT, {
     defaultRange: 3
-  }),
-
-  //alignment attributes
-  ...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
-    defaultAlign: 'left',
   }),
 
   //settings tab
@@ -84,10 +78,7 @@ const attributes = {
     type: 'string',
     default: 'bottom'
   },
-  separaTorAlign: {
-    type: 'string',
-    default: 'left'
-  },
+
   align: {
     type: "string",
     default: "left",
@@ -95,6 +86,14 @@ const attributes = {
 
   //design tab attributes
   titleColor: {
+    type: 'string',
+    default: '',
+  },
+  titleBgColor: {
+    type: 'string',
+    default: '',
+  },
+  titleBorderColor: {
     type: 'string',
     default: '',
   },
