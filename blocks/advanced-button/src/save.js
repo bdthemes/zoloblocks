@@ -13,7 +13,8 @@ const Save = ({ attributes }) => {
 		textColor,
 	} = attributes;
 
-	const linkRel = link && link.opensInNewTab ? 'noopener noreferrer' : null;
+	let linkRel = link && link.opensInNewTab ? 'noopener noreferrer' : '';
+	const rel = link && link.addNoFollow ? `${linkRel} nofollow` : linkRel;
 
 	return (
 		<div {...useBlockProps.save()}>
@@ -27,9 +28,7 @@ const Save = ({ attributes }) => {
 					<a
 						href={link && link.url}
 						className={`zolo-content ${iconPosition}`}
-						rel={
-							link && link.opensInNewTab && 'noopener noreferrer'
-						}
+						rel={rel}
 					>
 						<RichText.Content
 							className={`zolo-button`}
