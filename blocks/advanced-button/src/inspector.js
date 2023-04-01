@@ -25,8 +25,6 @@ import ColorControl from '../../../src/controls/color-control';
 import BorderControl from '../../../src/controls/border-control';
 import ResDimensionsControl from '../../../src/controls/dimensions-control';
 import TypographyDropdown from '../../../src/controls/typography-control';
-import BgColorControl from '../../../src/controls/bgcolor-control';
-import BgGroupControl from '../../../src/controls/bggroup-control';
 import TabPanelControl from '../../../src/controls/tabpanel-control';
 
 // const {
@@ -298,22 +296,6 @@ function Inspector(props) {
 															})
 														}
 													/>
-													{/* <BgColorControl
-														controlName={
-															BUTTON_BG_COLOR
-														}
-														resRequiredProps={
-															resRequiredProps
-														}
-													/> */}
-													<BgGroupControl
-														controlName={
-															BUTTON_BG_COLOR
-														}
-														resRequiredProps={
-															resRequiredProps
-														}
-													/>
 												</>
 											}
 											hoverComponents={
@@ -329,14 +311,6 @@ function Inspector(props) {
 																textHoverColor:
 																	value,
 															})
-														}
-													/>
-													<BgColorControl
-														controlName={
-															BUTTON_HOVER_BG_COLOR
-														}
-														resRequiredProps={
-															resRequiredProps
 														}
 													/>
 												</>

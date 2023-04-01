@@ -3,6 +3,7 @@
 		transition: 0.2s;
 		display: inline-flex;
 		align-items: center;
+		justify-content: center;
 		gap: 5px;
 		padding: 10px 20px;
 		&.top {
@@ -17,5 +18,24 @@
 		&.right {
 			flex-direction: row;
 		}
+	}
+	// button icon
+	.zolo-button-icon {
+		width: 20px;
+		display: block;
+	}
+}
+
+// tablet view
+@media (max-width: 1024px) {
+	.zolo-advanced-button {
+		// code here
+	}
+}
+
+// mobile view
+@media (max-width: 767px) {
+	.zolo-advanced-button {
+		// code here
 	}
 }

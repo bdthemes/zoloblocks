@@ -15,12 +15,13 @@ import { __ } from '@wordpress/i18n';
  * Internal depencencies
  */
 import classnames from 'classnames';
-import { handleUniqueId } from '../../../src/helpers/helper';
+import {
+	handleUniqueId,
+	softMinifyCssStrings,
+} from '../../../src/helpers/helper';
 import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
 import { generateBorderStyle } from '../../../src/helpers/border-helper';
-import { generateBgColorStyle } from '../../../src/helpers/bgcolor-control-helper';
-import { generateBgGroupControlStyle } from '../../../src/helpers/bggroup-control-helper';
 
 import {
 	BLOCK_PREFIX,
@@ -64,15 +65,7 @@ export default function Edit(props) {
 		className: classnames(className, ``),
 	});
 
-	// generate bg
-	const { bgDesktopStyle: bgStyles } = generateBgGroupControlStyle({
-		controlName: BUTTON_BG_COLOR,
-		attributes,
-	});
-
-	console.log(attributes);
-	console.log(bgStyles);
-
+	// alignment
 	const {
 		desktopAlignStyle: buttonAlignmentDesktop,
 		tabAlignStyle: buttonAlignmentTab,
@@ -82,6 +75,23 @@ export default function Edit(props) {
 		property: 'text-align',
 		attributes,
 	});
+
+	/**
+	 * Generate Alignment Class
+	 */
+	const deskAlign = `display: ${
+		buttonAlignmentDesktop === 'text-align:justify;'
+			? 'flex'
+			: 'inline-flex'
+	};`;
+
+	const tabAlign = `display: ${
+		buttonAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
+	};`;
+
+	const mobAlign = `display: ${
+		buttonAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
+	};`;
 
 	// generate border style
 	const {
@@ -100,11 +110,11 @@ export default function Edit(props) {
 		mobRangeStyle: iconSizeMob,
 	} = generateResRangeStyle({
 		controlName: ICON_SIZE,
-		property: 'font-size',
+		property: 'width',
 		attributes,
 	});
 
-	// gap
+	// Spacing between icon and text
 	const {
 		desktopRangeStyle: gap,
 		tabRangeStyle: gapTab,
@@ -115,22 +125,6 @@ export default function Edit(props) {
 		attributes,
 	});
 
-	// // generate background color
-	// const bgColor = generateBgColorStyle({
-	// 	controlName: BUTTON_BG_COLOR,
-	// 	property: 'background',
-	// 	attributes,
-	// });
-
-	// generate background hover color
-	const bgHoverColor = generateBgColorStyle({
-		controlName: BUTTON_HOVER_BG_COLOR,
-		property: 'background',
-		attributes,
-	});
-
-	// generate typography
-
 	/**
 	 * All Style Combination
 	 */
@@ -140,14 +134,12 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zolo-content {
 			${borderStyles}
-			color: ${textColor};
+			${gap}
+			${deskAlign}
+			color: ${textColor ? textColor : 'inherit'};
 		}
 		.${uniqueId} .zolo-content:hover {
-			${bgHoverColor}
-			color: ${textHoverColor};
-		}
-		.${uniqueId} .zolo-content {
-			${gap}
+			color: ${textHoverColor ? textHoverColor : 'inherit'};
 		}
 		.${uniqueId} .zolo-button-icon {
 			${iconSize}
@@ -159,9 +151,8 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zolo-content {
 			${borderStylesTab}
-		}
-		.${uniqueId} .zolo-content {
 			${gapTab}
+			${tabAlign}
 		}
 		.${uniqueId} .zolo-button-icon {
 			${iconSizeTab}
@@ -174,14 +165,23 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zolo-content {
 			${borderStylesMob}
-		}
-		.${uniqueId} .zolo-content {
 			${gapMob}
+			${mobAlign}
 		}
 		.${uniqueId} .zolo-button-icon {
 			${iconSizeMob}
 		}
   	`;
+
+	const allStyle = `
+		${desktopAllStyle}
+		@media all and (max-width: 1024px) {
+			${tabletAllStyle}
+		}
+		@media all and (max-width: 767px) {
+			${mobileAllStyle}
+		}
+	`;
 
 	// Set All Style in "blockStyle" Attribute
 	useEffect(() => {
@@ -247,23 +247,7 @@ export default function Edit(props) {
 					/>
 				</ToolbarGroup>
 			</BlockControls>
-			<style>
-				{`
-					${desktopAllStyle}
-
-					@media all and (max-width: 1024px) {	
-						/* tabcssStart */			
-						${tabletAllStyle}
-						/* tabcssEnd */			
-					}
-						
-					@media all and (max-width: 767px) {
-						/* mobcssStart */			
-						${mobileAllStyle}
-						/* mobcssEnd */
-					}	
-				`}
-			</style>
+			<style>{` ${softMinifyCssStrings(allStyle)}`}</style>
 			<div {...blockProps}>
 				<div
 					className={`zolo-block-wrapper zolo-advanced-button ${uniqueId}`}
@@ -283,7 +267,20 @@ export default function Edit(props) {
 								allowedFormats={[]}
 							/>
 							{showIcon && (
-								<span className="dashicons dashicons-arrow-right-alt zolo-button-icon"></span>
+								<svg
+									clipRule="evenodd"
+									fillRule="evenodd"
+									strokeLinejoin="round"
+									strokeMiterlimit="2"
+									viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg"
+									className="zolo-button-icon"
+								>
+									<path
+										d="m14.523 18.787s4.501-4.505 6.255-6.26c.146-.146.219-.338.219-.53s-.073-.383-.219-.53c-1.753-1.754-6.255-6.258-6.255-6.258-.144-.145-.334-.217-.524-.217-.193 0-.385.074-.532.221-.293.292-.295.766-.004 1.056l4.978 4.978h-14.692c-.414 0-.75.336-.75.75s.336.75.75.75h14.692l-4.979 4.979c-.289.289-.286.762.006 1.054.148.148.341.222.533.222.19 0 .378-.072.522-.215z"
+										fill-rule="nonzero"
+									/>
+								</svg>
 							)}
 						</div>
 					</div>

@@ -1,8 +1,6 @@
 import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
 import { generateBorderAttributies } from '../../../src/helpers/border-helper';
-import { generateBgColorAttributes } from '../../../src/helpers/bgcolor-control-helper';
-import { generateBgGroupControlAttributes } from '../../../src/helpers/bggroup-control-helper';
 
 import {
 	BUTTON_ALIGNMENT,
@@ -34,13 +32,9 @@ const attributes = {
 	...generateResRangeAttributies(ICON_SIZE, {
 		default: 16,
 	}),
-	// ...generateBgColorAttributes(BUTTON_BG_COLOR, {}),
-	...generateBgColorAttributes(BUTTON_HOVER_BG_COLOR, {}),
 	...generateResRangeAttributies(ICON_TEXT_SPACING, {
 		default: 5,
 	}),
-	// bggroup color attributes
-	...generateBgGroupControlAttributes(BUTTON_BG_COLOR, {}),
 	//Block specific Attributes
 	preset: {
 		type: 'string',

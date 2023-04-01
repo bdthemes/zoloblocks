@@ -44,6 +44,23 @@ if (!class_exists('Zolo_Block_Enqueue')) {
         {
 
             add_action('enqueue_block_editor_assets', array($this, 'editor_assets_loader'));
+
+            // enqueue style for both editor and frontend
+            add_action('enqueue_block_assets', array($this, 'block_assets_loader'));
+        }
+
+        /**
+         * Load Block Assets for both editor and frontend
+         * @since 0.0.1
+         * @return void
+         */
+        public function block_assets_loader() {
+            wp_enqueue_style(
+                'zolo-block-common-style',
+                ZOLO_ADMIN_URL . 'dist/style.css',
+                array(),
+                ZOLO_VERSION
+            );
         }
 
         /**
@@ -119,14 +136,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 $script_dependecy,
                 $version,
                 true
-            );
-
-            // Common Editor style.
-            wp_enqueue_style(
-                'zolo-block-common-editor-style',
-                ZOLO_ADMIN_URL . 'dist/style.css',
-                array('wp-edit-blocks'),
-                ZOLO_VERSION
             );
 
             // Controls Editor style.
