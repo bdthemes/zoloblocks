@@ -1,14 +1,19 @@
 import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
 import { generateBorderAttributies } from '../../../src/helpers/border-helper';
+import { generateDimensionAttributes } from '../../../src/helpers/dimension-helper';
+import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHelpers';
+import { generateBoxShadowAttributies } from '../../../src/helpers/boxshadow-helper';
 
 import {
 	BUTTON_ALIGNMENT,
-	BUTTON_BG_COLOR,
+	BUTTON_BG,
 	BUTTON_HOVER_BG_COLOR,
 	BUTTON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
+	BUTTON_BORDER_RADIUS,
+	BUTTON_BOX_SHADOW,
 } from './constants';
 
 const attributes = {
@@ -23,11 +28,10 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
-	//alignment attributes
+	// generators
 	...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
 		defaultAlign: 'left',
 	}),
-	// border attributes
 	...generateBorderAttributies(BUTTON_BORDER),
 	...generateResRangeAttributies(ICON_SIZE, {
 		default: 16,
@@ -35,6 +39,9 @@ const attributes = {
 	...generateResRangeAttributies(ICON_TEXT_SPACING, {
 		default: 5,
 	}),
+	...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
+	...generateBackgroundAttributes(BUTTON_BG),
+	...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
 	//Block specific Attributes
 	preset: {
 		type: 'string',
@@ -70,10 +77,19 @@ const attributes = {
 		type: 'string',
 		default: 'right',
 	},
+	iconColor: {
+		type: 'string',
+	},
+	iconHoverColor: {
+		type: 'string',
+	},
 	textColor: {
 		type: 'string',
 	},
 	textHoverColor: {
+		type: 'string',
+	},
+	borderHoverColor: {
 		type: 'string',
 	},
 };

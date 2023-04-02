@@ -26,6 +26,8 @@ import BorderControl from '../../../src/controls/border-control';
 import ResDimensionsControl from '../../../src/controls/dimensions-control';
 import TypographyDropdown from '../../../src/controls/typography-control';
 import TabPanelControl from '../../../src/controls/tabpanel-control';
+import BackgroundControl from '../../../src/controls/background-control';
+import BoxShadowControl from '../../../src/controls/boxshadow-control';
 
 // const {
 // 	BackgroundControl,
@@ -46,11 +48,12 @@ import {
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
 	BUTTON_TYPOGRAPHY,
-	BUTTON_BG_COLOR,
-	BUTTON_HOVER_BG_COLOR,
 	BUTTON_BORDER,
+	BUTTON_BORDER_RADIUS,
 	BUTTON_PADDING,
 	BUTTON_MARGIN,
+	BUTTON_BG,
+	BUTTON_BOX_SHADOW,
 } from './constants';
 
 function Inspector(props) {
@@ -62,13 +65,14 @@ function Inspector(props) {
 		resDevice,
 		label,
 		link,
-		openInNewTab,
-		addNoFollow,
 		showIcon,
 		icon,
 		iconPosition,
+		iconColor,
+		iconHoverColor,
 		textColor,
 		textHoverColor,
+		borderHoverColor,
 	} = attributes;
 
 	const changePreset = (selected) => {
@@ -285,7 +289,7 @@ function Inspector(props) {
 												<>
 													<ColorControl
 														label={__(
-															'Color',
+															'Text Color',
 															'zolo-blocks'
 														)}
 														color={textColor}
@@ -296,13 +300,34 @@ function Inspector(props) {
 															})
 														}
 													/>
+													<ColorControl
+														label={__(
+															'Icon Color',
+															'zolo-blocks'
+														)}
+														color={iconColor}
+														onChange={(value) =>
+															setAttributes({
+																iconColor:
+																	value,
+															})
+														}
+													/>
+													<BoxShadowControl
+														controlName={
+															BUTTON_BOX_SHADOW
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+													/>
 												</>
 											}
 											hoverComponents={
 												<>
 													<ColorControl
 														label={__(
-															'Color',
+															'Text Color',
 															'zolo-blocks'
 														)}
 														color={textHoverColor}
@@ -313,8 +338,44 @@ function Inspector(props) {
 															})
 														}
 													/>
+													<ColorControl
+														label={__(
+															'Icon Color',
+															'zolo-blocks'
+														)}
+														color={iconHoverColor}
+														onChange={(value) =>
+															setAttributes({
+																iconHoverColor:
+																	value,
+															})
+														}
+													/>
+													<ColorControl
+														label={__(
+															'Border Color',
+															'zolo-blocks'
+														)}
+														color={borderHoverColor}
+														onChange={(value) =>
+															setAttributes({
+																borderHoverColor:
+																	value,
+															})
+														}
+													/>
 												</>
 											}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Background', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<BackgroundControl
+											resRequiredProps={resRequiredProps}
+											controlName={BUTTON_BG}
+											noOverlay={true}
 										/>
 									</PanelBody>
 									<PanelBody
@@ -325,6 +386,15 @@ function Inspector(props) {
 											label={__('Border', 'zolo-blocks')}
 											controlName={BUTTON_BORDER}
 											resRequiredProps={resRequiredProps}
+										/>
+										<ResDimensionsControl
+											label={__(
+												'Border Radius',
+												'zolo-blocks'
+											)}
+											controlName={BUTTON_BORDER_RADIUS}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={true}
 										/>
 									</PanelBody>
 								</>

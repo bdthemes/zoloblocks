@@ -1,16 +1,16 @@
 import {
-	BaseControl, Button, ButtonGroup, Dropdown, RangeControl, ToggleControl
-} from "@wordpress/components";
-import { __ } from "@wordpress/i18n";
+	BaseControl,
+	Button,
+	ButtonGroup,
+	Dropdown,
+	RangeControl,
+	ToggleControl,
+} from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 import ColorControl from '../color-control';
 import ResetControl from '../reset-control';
 
-function BoxShadowControl({
-	controlName,
-	resRequiredProps,
-	noShdowHover
-}) {
-
+function BoxShadowControl({ controlName, resRequiredProps, noShdowHover }) {
 	const { setAttributes, attributes, objAttributes } = resRequiredProps;
 
 	const {
@@ -30,19 +30,16 @@ function BoxShadowControl({
 	} = attributes;
 
 	return (
-
 		<BaseControl
-			label={__("Box Shadow", "radius-blocks")}
-			className="zb-boxshadow-control-wrap">
+			label={__('Box Shadow', 'radius-blocks')}
+			className="zb-boxshadow-control-wrap"
+		>
 			<Dropdown
 				className="zb-boxshadow-control-dropdown"
 				contentClassName="zb-popover-content-area"
 				position="bottom right"
 				renderToggle={({ isOpen, onToggle }) => (
-					<Button
-						isSmall
-						onClick={onToggle}
-						aria-expanded={isOpen}>
+					<Button isSmall onClick={onToggle} aria-expanded={isOpen}>
 						<span className="dashicons dashicons-edit"></span>
 					</Button>
 				)}
@@ -51,43 +48,65 @@ function BoxShadowControl({
 						<div
 							className="zb-boxshadow-content-wrap"
 							style={{
-								minWidth: "230px",
-								padding: "10px",
-							}}>
-
+								minWidth: '230px',
+								padding: '10px',
+							}}
+						>
 							{!noShdowHover && (
 								<BaseControl id="zb-infobox-shadow-hover-ptions">
 									<ButtonGroup id="zb-infobox-shadow-hover-ptions">
 										{[
-											{ label: "Normal", value: "normal" },
-											{ label: "Hover", value: "hover" }
-										].map(
-											({ value, label }) => (
-												<Button
-													isLarge
-													variant={shadowType === value ? 'primary' : 'secondary'}
-													onClick={() =>
-														setAttributes({ [`${controlName}shadowType`]: value })
-													}>
-													{label}
-												</Button>
-											)
-										)}
+											{
+												label: 'Normal',
+												value: 'normal',
+											},
+											{ label: 'Hover', value: 'hover' },
+										].map(({ value, label }) => (
+											<Button
+												isLarge
+												variant={
+													shadowType === value
+														? 'primary'
+														: 'secondary'
+												}
+												onClick={() =>
+													setAttributes({
+														[`${controlName}shadowType`]:
+															value,
+													})
+												}
+											>
+												{label}
+											</Button>
+										))}
 									</ButtonGroup>
 								</BaseControl>
 							)}
 
 							<ToggleControl
-								label={__("Inset", "radius-blocks")}
+								label={__('Inset', 'radius-blocks')}
 								checked={inset}
-								onChange={() => setAttributes({ [`${controlName}inset`]: !inset })}
+								onChange={() =>
+									setAttributes({
+										[`${controlName}inset`]: !inset,
+									})
+								}
 							/>
 
-							{(shadowType === "normal" || noShdowHover) && (
+							{(shadowType === 'normal' || noShdowHover) && (
 								<>
 									<ColorControl
-										defaultColor={(objAttributes[`${controlName}shadowColor`] || {}).default}
-										label={__("Shadow Color", "radius-blocks")}
+										defaultColor={
+											(
+												objAttributes[
+													`${controlName}shadowColor`
+												] || {}
+											).default
+										}
+										label={__(
+											'Shadow Color',
+											'radius-blocks'
+										)}
 										color={shadowColor}
 										onChange={(shadowColor) =>
 											setAttributes({
@@ -103,9 +122,13 @@ function BoxShadowControl({
 												[`${controlName}hOffset`]:
 													undefined,
 											})
-										}>
+										}
+									>
 										<RangeControl
-											label={__("Horizontal Offset", "radius-blocks")}
+											label={__(
+												'Horizontal Offset',
+												'radius-blocks'
+											)}
 											value={hOffset}
 											onChange={(hOffset) =>
 												setAttributes({
@@ -124,9 +147,13 @@ function BoxShadowControl({
 												[`${controlName}vOffset`]:
 													undefined,
 											})
-										}>
+										}
+									>
 										<RangeControl
-											label={__("Vertical Offset", "radius-blocks")}
+											label={__(
+												'Vertical Offset',
+												'radius-blocks'
+											)}
 											value={vOffset}
 											onChange={(vOffset) =>
 												setAttributes({
@@ -145,9 +172,13 @@ function BoxShadowControl({
 												[`${controlName}blur`]:
 													undefined,
 											})
-										}>
+										}
+									>
 										<RangeControl
-											label={__("Shadow Blur", "radius-blocks")}
+											label={__(
+												'Shadow Blur',
+												'radius-blocks'
+											)}
 											value={blur}
 											onChange={(blur) =>
 												setAttributes({
@@ -166,10 +197,13 @@ function BoxShadowControl({
 												[`${controlName}spread`]:
 													undefined,
 											})
-										}>
-
+										}
+									>
 										<RangeControl
-											label={__("Shadow Spread", "radius-blocks")}
+											label={__(
+												'Shadow Spread',
+												'radius-blocks'
+											)}
 											value={spread}
 											onChange={(spread) =>
 												setAttributes({
@@ -184,13 +218,26 @@ function BoxShadowControl({
 								</>
 							)}
 
-							{shadowType === "hover" && !noShdowHover && (
+							{shadowType === 'hover' && !noShdowHover && (
 								<>
 									<ColorControl
-										defaultColor={(objAttributes[`${controlName}hoverShadowColor`] || {}).default}
-										label={__("Hover Shadow Color", "radius-blocks")}
+										defaultColor={
+											(
+												objAttributes[
+													`${controlName}hoverShadowColor`
+												] || {}
+											).default
+										}
+										label={__(
+											'Hover Shadow Color',
+											'radius-blocks'
+										)}
 										color={hoverShadowColor}
-										onChange={(hoverShadowColor) => setAttributes({ [`${controlName}hoverShadowColor`]: hoverShadowColor })
+										onChange={(hoverShadowColor) =>
+											setAttributes({
+												[`${controlName}hoverShadowColor`]:
+													hoverShadowColor,
+											})
 										}
 									/>
 
@@ -200,13 +247,15 @@ function BoxShadowControl({
 												[`${controlName}hoverHOffset`]:
 													undefined,
 											})
-										}>
+										}
+									>
 										<RangeControl
-											label={__("Horizontal Offset", "radius-blocks")}
+											label={__(
+												'Horizontal Offset',
+												'radius-blocks'
+											)}
 											value={hoverHOffset}
-											onChange={(
-												hoverHOffset
-											) =>
+											onChange={(hoverHOffset) =>
 												setAttributes({
 													[`${controlName}hoverHOffset`]:
 														hoverHOffset,
@@ -223,9 +272,13 @@ function BoxShadowControl({
 												[`${controlName}hoverVOffset`]:
 													undefined,
 											})
-										}>
+										}
+									>
 										<RangeControl
-											label={__("Vertical Offset", "radius-blocks")}
+											label={__(
+												'Vertical Offset',
+												'radius-blocks'
+											)}
 											value={hoverVOffset}
 											onChange={(hoverVOffset) =>
 												setAttributes({
@@ -244,9 +297,13 @@ function BoxShadowControl({
 												[`${controlName}hoverBlur`]:
 													undefined,
 											})
-										}>
+										}
+									>
 										<RangeControl
-											label={__("Shadow Blur", "radius-blocks")}
+											label={__(
+												'Shadow Blur',
+												'radius-blocks'
+											)}
 											value={hoverBlur}
 											onChange={(hoverBlur) =>
 												setAttributes({
@@ -265,13 +322,15 @@ function BoxShadowControl({
 												[`${controlName}hoverSpread`]:
 													undefined,
 											})
-										}>
+										}
+									>
 										<RangeControl
-											label={__("Shadow Spread", "radius-blocks")}
+											label={__(
+												'Shadow Spread',
+												'radius-blocks'
+											)}
 											value={hoverSpread}
-											onChange={(
-												hoverSpread
-											) =>
+											onChange={(hoverSpread) =>
 												setAttributes({
 													[`${controlName}hoverSpread`]:
 														hoverSpread,
@@ -283,7 +342,10 @@ function BoxShadowControl({
 									</ResetControl>
 
 									<RangeControl
-										label={__("Shadow Transition", "radius-blocks")}
+										label={__(
+											'Shadow Transition',
+											'radius-blocks'
+										)}
 										value={shadowTransition}
 										onChange={(shadowTransition) =>
 											setAttributes({
@@ -302,8 +364,7 @@ function BoxShadowControl({
 				)}
 			/>
 		</BaseControl>
-
-	)
+	);
 }
 
 export default BoxShadowControl;

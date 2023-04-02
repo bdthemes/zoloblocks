@@ -31,7 +31,7 @@ export const ICON_POSITIONS = [
 	},
 ];
 // Button BG
-export const BUTTON_BG_COLOR = 'buttonNormal';
+export const BUTTON_BG = 'buttonBg';
 // Button Hover BG
 export const BUTTON_HOVER_BG_COLOR = 'buttonHover';
 // Button Typography
@@ -49,3 +49,7 @@ export const BUTTON_BORDER = 'buttonBorder';
 export const ICON_SIZE = 'iconSize';
 // icon and text spacing
 export const ICON_TEXT_SPACING = 'iconTextSpacing';
+// Button Border Radius
+export const BUTTON_BORDER_RADIUS = 'buttonBorderRadius';
+// Button Box Shadow
+export const BUTTON_BOX_SHADOW = 'buttonBoxShadow';

@@ -22,16 +22,17 @@ import {
 import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
 import { generateBorderStyle } from '../../../src/helpers/border-helper';
+import { generateDimensionStyle } from '../../../src/helpers/dimension-helper';
+import { generateBackgroundControlStyles } from '../../../src/helpers/backgroundHelpers';
 
 import {
 	BLOCK_PREFIX,
 	BUTTON_ALIGNMENT,
-	BUTTON_TEXT_COLOR,
-	BUTTON_BG_COLOR,
-	BUTTON_HOVER_BG_COLOR,
 	BUTTON_BORDER,
+	BUTTON_BORDER_RADIUS,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
+	BUTTON_BG,
 } from './constants';
 
 import Inspector from './inspector';
@@ -46,9 +47,12 @@ export default function Edit(props) {
 		link,
 		blockStyle,
 		showIcon,
+		iconPosition,
+		iconColor,
+		iconHoverColor,
 		textColor,
 		textHoverColor,
-		iconPosition,
+		borderHoverColor,
 	} = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -93,6 +97,19 @@ export default function Edit(props) {
 		buttonAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
 	};`;
 
+	// generate Background
+	const {
+		backgroundStylesDesktop,
+		hoverBackgroundStylesDesktop,
+		backgroundStylesTab,
+		hoverBackgroundStylesTab,
+		backgroundStylesMobile,
+		hoverBackgroundStylesMobile,
+	} = generateBackgroundControlStyles({
+		attributes,
+		controlName: BUTTON_BG,
+	});
+
 	// generate border style
 	const {
 		desktopBorderStyle: borderStyles,
@@ -100,6 +117,17 @@ export default function Edit(props) {
 		mobBorderStyle: borderStylesMob,
 	} = generateBorderStyle({
 		controlName: BUTTON_BORDER,
+		attributes,
+	});
+
+	// generate border radius
+	const {
+		dimensionStylesDesktop: borderRadiusDesktop,
+		dimensionStylesTab: borderRadiusTab,
+		dimensionStylesMobile: borderRadiusMob,
+	} = generateDimensionStyle({
+		controlName: BUTTON_BORDER_RADIUS,
+		styleFor: 'border-radius',
 		attributes,
 	});
 
@@ -131,26 +159,41 @@ export default function Edit(props) {
 	const desktopAllStyle = `
 		.${uniqueId}{
 			${buttonAlignmentDesktop}
+			${backgroundStylesDesktop}
+			${borderStyles}
+			${borderRadiusDesktop}
+		}
+		.${uniqueId}:hover{
+			${hoverBackgroundStylesDesktop}
 		}
 		.${uniqueId} .zolo-content {
-			${borderStyles}
 			${gap}
 			${deskAlign}
 			color: ${textColor ? textColor : 'inherit'};
 		}
 		.${uniqueId} .zolo-content:hover {
 			color: ${textHoverColor ? textHoverColor : 'inherit'};
+			border-color: ${borderHoverColor ? borderHoverColor : 'inherit'};
+		}
+		.${uniqueId} .zolo-content:hover .zolo-button-icon{
+			fill: ${iconHoverColor ? iconHoverColor : 'inherit'};
 		}
 		.${uniqueId} .zolo-button-icon {
 			${iconSize}
+			fill: ${iconColor ? iconColor : 'inherit'};
 		}
   	`;
 	const tabletAllStyle = `
 		.${uniqueId}{
 			${buttonAlignmentTab}
+			${borderStylesTab}
+			${borderRadiusTab}
+			${backgroundStylesTab}
+		}
+		.${uniqueId}:hover{
+			${hoverBackgroundStylesTab}
 		}
 		.${uniqueId} .zolo-content {
-			${borderStylesTab}
 			${gapTab}
 			${tabAlign}
 		}
@@ -162,9 +205,14 @@ export default function Edit(props) {
 	const mobileAllStyle = `
 		.${uniqueId}{
 			${buttonAlignmentMob}
+			${borderStylesMob}
+			${borderRadiusMob}
+			${backgroundStylesMobile}
+		}
+		.${uniqueId}:hover{
+			${hoverBackgroundStylesMobile}
 		}
 		.${uniqueId} .zolo-content {
-			${borderStylesMob}
 			${gapMob}
 			${mobAlign}
 		}
