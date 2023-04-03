@@ -26,8 +26,6 @@ import BorderControl from '../../../src/controls/border-control';
 import ResDimensionsControl from '../../../src/controls/dimensions-control';
 import TypographyDropdown from '../../../src/controls/typography-control';
 import TabPanelControl from '../../../src/controls/tabpanel-control';
-import BackgroundControl from '../../../src/controls/background-control';
-import BoxShadowControl from '../../../src/controls/boxshadow-control';
 
 // const {
 // 	BackgroundControl,
@@ -42,19 +40,17 @@ import BoxShadowControl from '../../../src/controls/boxshadow-control';
 // import { PRESETS } from "../../../src/global/constants";
 import objAttributes from './attributes';
 import {
-	BUTTON_ALIGNMENT,
+	ICON_ALIGNMENT,
 	PRESETS,
 	ICON_POSITIONS,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
-	BUTTON_TYPOGRAPHY,
-	BUTTON_BORDER,
-	BUTTON_BORDER_RADIUS,
-	BUTTON_PADDING,
-	BUTTON_MARGIN,
-	BUTTON_BG,
-	BUTTON_BOX_SHADOW,
-	BUTTON_HOVER_BOX_SHADOW,
+	ICON_TYPOGRAPHY,
+	ICON_BG_COLOR,
+	ICON_HOVER_BG_COLOR,
+	ICON_BORDER,
+	ICON_PADDING,
+	ICON_MARGIN,
 } from './constants';
 
 function Inspector(props) {
@@ -66,14 +62,13 @@ function Inspector(props) {
 		resDevice,
 		label,
 		link,
+		openInNewTab,
+		addNoFollow,
 		showIcon,
 		icon,
 		iconPosition,
-		iconColor,
-		iconHoverColor,
 		textColor,
 		textHoverColor,
-		borderHoverColor,
 	} = attributes;
 
 	const changePreset = (selected) => {
@@ -179,11 +174,7 @@ function Inspector(props) {
 												setAttributes({ link: data })
 											}
 										/>
-									</PanelBody>
-									<PanelBody
-										title={__('Icon', 'zolo-blocks')}
-										initialOpen={false}
-									>
+										<CardDivider />
 										<ToggleControl
 											label={__(
 												'Enable Icon',
@@ -248,10 +239,10 @@ function Inspector(props) {
 										<CardDivider />
 										<ResAlignmentControl
 											label={__(
-												'Button Alignmet',
+												'Icon Alignmet',
 												'zolo-blocks'
 											)}
-											controlName={BUTTON_ALIGNMENT}
+											controlName={ICON_ALIGNMENT}
 											resRequiredProps={resRequiredProps}
 											alignOptions={[
 												{
@@ -285,7 +276,7 @@ function Inspector(props) {
 										<TypographyDropdown
 											label="Typography"
 											typoPrefixConstant={
-												BUTTON_TYPOGRAPHY
+												ICON_TYPOGRAPHY
 											}
 											resRequiredProps={resRequiredProps}
 										/>
@@ -294,7 +285,7 @@ function Inspector(props) {
 												<>
 													<ColorControl
 														label={__(
-															'Text Color',
+															'Color',
 															'zolo-blocks'
 														)}
 														color={textColor}
@@ -305,35 +296,13 @@ function Inspector(props) {
 															})
 														}
 													/>
-													<ColorControl
-														label={__(
-															'Icon Color',
-															'zolo-blocks'
-														)}
-														color={iconColor}
-														onChange={(value) =>
-															setAttributes({
-																iconColor:
-																	value,
-															})
-														}
-													/>
-													<BoxShadowControl
-														controlName={
-															BUTTON_BOX_SHADOW
-														}
-														resRequiredProps={
-															resRequiredProps
-														}
-														enableTransition={false}
-													/>
 												</>
 											}
 											hoverComponents={
 												<>
 													<ColorControl
 														label={__(
-															'Text Color',
+															'Color',
 															'zolo-blocks'
 														)}
 														color={textHoverColor}
@@ -344,53 +313,8 @@ function Inspector(props) {
 															})
 														}
 													/>
-													<ColorControl
-														label={__(
-															'Icon Color',
-															'zolo-blocks'
-														)}
-														color={iconHoverColor}
-														onChange={(value) =>
-															setAttributes({
-																iconHoverColor:
-																	value,
-															})
-														}
-													/>
-													<ColorControl
-														label={__(
-															'Border Color',
-															'zolo-blocks'
-														)}
-														color={borderHoverColor}
-														onChange={(value) =>
-															setAttributes({
-																borderHoverColor:
-																	value,
-															})
-														}
-													/>
-													<BoxShadowControl
-														controlName={
-															BUTTON_HOVER_BOX_SHADOW
-														}
-														resRequiredProps={
-															resRequiredProps
-														}
-														enableTransition={true}
-													/>
 												</>
 											}
-										/>
-									</PanelBody>
-									<PanelBody
-										title={__('Background', 'zolo-blocks')}
-										initialOpen={false}
-									>
-										<BackgroundControl
-											resRequiredProps={resRequiredProps}
-											controlName={BUTTON_BG}
-											noOverlay={false}
 										/>
 									</PanelBody>
 									<PanelBody
@@ -399,17 +323,8 @@ function Inspector(props) {
 									>
 										<BorderControl
 											label={__('Border', 'zolo-blocks')}
-											controlName={BUTTON_BORDER}
+											controlName={ICON_BORDER}
 											resRequiredProps={resRequiredProps}
-										/>
-										<ResDimensionsControl
-											label={__(
-												'Border Radius',
-												'zolo-blocks'
-											)}
-											controlName={BUTTON_BORDER_RADIUS}
-											resRequiredProps={resRequiredProps}
-											forBorderRadius={true}
 										/>
 									</PanelBody>
 								</>
@@ -424,12 +339,12 @@ function Inspector(props) {
 									>
 										<ResDimensionsControl
 											label={__('Padding', 'zolo-blocks')}
-											controlName={BUTTON_PADDING}
+											controlName={ICON_PADDING}
 											resRequiredProps={resRequiredProps}
 										/>
 										<ResDimensionsControl
 											label={__('Margin', 'zolo-blocks')}
-											controlName={BUTTON_MARGIN}
+											controlName={ICON_MARGIN}
 											resRequiredProps={resRequiredProps}
 										/>
 									</PanelBody>

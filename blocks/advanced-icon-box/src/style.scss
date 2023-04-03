@@ -1,0 +1,41 @@
+.zolo-advanced-icon {
+	.zolo-content {
+		transition: 0.2s;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		padding: 10px 20px;
+		&.top {
+			flex-direction: column-reverse;
+		}
+		&.bottom {
+			flex-direction: column;
+		}
+		&.left {
+			flex-direction: row-reverse;
+		}
+		&.right {
+			flex-direction: row;
+		}
+	}
+	// icon icon
+	.zolo-icon-icon {
+		width: 20px;
+		display: block;
+	}
+}
+
+// tablet view
+@media (max-width: 1024px) {
+	.zolo-advanced-icon {
+		// code here
+	}
+}
+
+// mobile view
+@media (max-width: 767px) {
+	.zolo-advanced-icon {
+		// code here
+	}
+}

@@ -53,3 +53,5 @@ export const ICON_TEXT_SPACING = 'iconTextSpacing';
 export const BUTTON_BORDER_RADIUS = 'buttonBorderRadius';
 // Button Box Shadow
 export const BUTTON_BOX_SHADOW = 'buttonBoxShadow';
+// Button Hover Box Shadow
+export const BUTTON_HOVER_BOX_SHADOW = 'buttonHoverBoxShadow';
