@@ -1,0 +1,50 @@
+.zolo-icon-area {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: 5px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	align-items: flex-start;
+	justify-content: flex-start;
+	max-height: 225px;
+	margin-bottom: 20px;
+
+	.zolo-icon-box {
+		background-color: #e4e4e4;
+		text-align: center;
+		width: calc(33.33% - 5px);
+		height: 70px;
+		position: relative;
+		transition: .3s;
+
+		&:hover {
+			background-color: #c7c7c7;
+			cursor: pointer;
+		}
+
+		.zolo-icon-content {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translate(-50%, 10px);
+			height: 100%;
+			width: 100%;
+			padding: 5px;
+		}
+
+		.dashicon {
+			font-size: 22px;
+			display: block;
+			margin: 0 auto 8px;
+		}
+
+		.components-panel__row {
+			font-size: 11px;
+			line-height: 1;
+			height: auto !important;
+			display: block;
+			text-transform: capitalize;
+		}
+	}
+}

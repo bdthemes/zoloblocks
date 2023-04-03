@@ -12,6 +12,7 @@ export {default as ImageAvatar} from "./controls/image-avatar";
 export {default as ResAlignmentControl} from "./controls/res-alignment-control";
 export {default as ResRangeControl} from "./controls/res-range-control";
 export {default as TypographyDropdown} from "./controls/typography-control";
+export {default as IconPicker} from "./controls/icon-picker";
 
 //Export Helpers
 export {
@@ -60,3 +61,4 @@ export {
     generateTypographyAttributes,
     generateTypographyStyles
 } from "./helpers/typoHelpers";
+
