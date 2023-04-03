@@ -17,7 +17,13 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 
 
+import ResRangeControl from '../../../src/controls/res-range-control';
+
+
 import objAttributes from './attributes';
+import { controls } from '@wordpress/data';
+import { set } from 'lodash';
+import {SOCIAL_TEXT,COLUMNS_NUMBER} from './constants'
 
 function Inspector (props){
 
@@ -27,6 +33,7 @@ function Inspector (props){
 		preset,
 		resMode,
 		resDevice,
+        socialText
 		
 	} = attributes;
 
@@ -46,23 +53,56 @@ function Inspector (props){
                             // onSelect={ onSelect }
                             tabs={ [
                                 {
-                                    name: 'settings',
-                                    title: 'Settings',
-                                    className: 'eb-tab settings',
+                                    name: 'Content',
+                                    title: 'Content',
+                                    className: 'eb-tab Content',
                                 },
                                 {
-                                    name: 'design',
-                                    title: 'Design',
-                                    className: 'eb-tab design',
+                                    name: 'Style',
+                                    title: 'Style',
+                                    className: 'eb-tab Style',
                                 },
                                 {
-                                    name: 'advanced',
+                                    name: 'Advanced',
                                     title: 'Advanced',
                                     className: 'eb-tab advanced',
                                 },
                             ] }>
                             {
-                                ( tab ) => <p>{ tab.title }</p>
+                                ( tab ) => (
+                                    <div className={'eb-tab--control' + tab.name}>
+                                            {tab.name === "Content" &&(
+                                                <>
+                                                  <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={true}>
+
+                                                              <SelectControl
+                                                                  label="View"
+                                                                  value={socialText}
+                                                                  options={SOCIAL_TEXT}
+                                                                  onChange={ ( iconV ) => setAttributes({socialText:iconV}) }
+                                                              />
+
+                                                              <ResRangeControl
+                                                                label={__(
+                                                                    'Columns Numbers',
+                                                                    'zolo-blocks'
+                                                                )}
+                                                                controlName={COLUMNS_NUMBER}
+                                                                resRequiredProps={
+                                                                    resRequiredProps
+                                                                }
+                                                                min={0}
+                                                                max={100}
+                                                                step={1}
+                                                              />
+                                                        
+                                                  </PanelBody>
+                                                  
+
+                                                </>
+                                            )}
+                                    </div>
+                                )
                             }
                         </TabPanel>
                  
@@ -73,3 +113,5 @@ function Inspector (props){
 
 
 }
+
+export default Inspector;
