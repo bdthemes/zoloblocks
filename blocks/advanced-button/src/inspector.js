@@ -47,7 +47,6 @@ import {
 	ICON_POSITIONS,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
-	BUTTON_TYPOGRAPHY,
 	BUTTON_BORDER,
 	BUTTON_BORDER_RADIUS,
 	BUTTON_PADDING,
@@ -56,6 +55,8 @@ import {
 	BUTTON_BOX_SHADOW,
 	BUTTON_HOVER_BOX_SHADOW,
 } from './constants';
+
+import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
@@ -131,7 +132,7 @@ function Inspector(props) {
 							{tab.name === 'settings' && (
 								<>
 									<PanelBody
-										title={__('Content', 'zolo-blocks')}
+										title={__('General', 'zolo-blocks')}
 										initialOpen={true}
 									>
 										<SelectControl
@@ -145,6 +146,37 @@ function Inspector(props) {
 												changePreset(selected)
 											}
 										/>
+										<ResAlignmentControl
+											label={__(
+												'Button Alignmet',
+												'zolo-blocks'
+											)}
+											controlName={BUTTON_ALIGNMENT}
+											resRequiredProps={resRequiredProps}
+											alignOptions={[
+												{
+													label: 'Left',
+													value: 'left',
+												},
+												{
+													label: 'Center',
+													value: 'center',
+												},
+												{
+													label: 'Right',
+													value: 'right',
+												},
+												{
+													label: 'Justify',
+													value: 'justify',
+												},
+											]}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Content', 'zolo-blocks')}
+										initialOpen={false}
+									>
 										<TextControl
 											label={__('Label', 'zolo-blocks')}
 											onChange={(value) =>
@@ -245,33 +277,6 @@ function Inspector(props) {
 												/>
 											</Fragment>
 										)}
-										<CardDivider />
-										<ResAlignmentControl
-											label={__(
-												'Button Alignmet',
-												'zolo-blocks'
-											)}
-											controlName={BUTTON_ALIGNMENT}
-											resRequiredProps={resRequiredProps}
-											alignOptions={[
-												{
-													label: 'Left',
-													value: 'left',
-												},
-												{
-													label: 'Center',
-													value: 'center',
-												},
-												{
-													label: 'Right',
-													value: 'right',
-												},
-												{
-													label: 'Justify',
-													value: 'justify',
-												},
-											]}
-										/>
 									</PanelBody>
 								</>
 							)}
@@ -390,7 +395,7 @@ function Inspector(props) {
 										<BackgroundControl
 											resRequiredProps={resRequiredProps}
 											controlName={BUTTON_BG}
-											noOverlay={false}
+											noOverlay={true}
 										/>
 									</PanelBody>
 									<PanelBody

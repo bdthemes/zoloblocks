@@ -7,8 +7,10 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'advanced-button';
 // Presets
 export const PRESETS = [
-	{ label: __('Default', 'zolo-blocks'), value: 'preset-1' },
-	{ label: __('Preset 1', 'zolo-blocks'), value: 'preset-2' },
+	{ label: __('Default', 'zolo-blocks'), value: '' },
+	{ label: __('Preset 1', 'zolo-blocks'), value: 'button-1' },
+	{ label: __('Preset 2', 'zolo-blocks'), value: 'button-2' },
+	{ label: __('Preset 3', 'zolo-blocks'), value: 'button-3' },
 ];
 
 // button icon positions
@@ -34,9 +36,6 @@ export const ICON_POSITIONS = [
 export const BUTTON_BG = 'buttonBg';
 // Button Hover BG
 export const BUTTON_HOVER_BG_COLOR = 'buttonHover';
-// Button Typography
-export const BUTTON_TYPOGRAPHY = 'buttonTypography';
-
 // Button Padding
 export const BUTTON_PADDING = 'buttonPadding';
 // Button Margin

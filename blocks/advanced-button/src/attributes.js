@@ -4,6 +4,7 @@ import { generateBorderAttributies } from '../../../src/helpers/border-helper';
 import { generateDimensionAttributes } from '../../../src/helpers/dimension-helper';
 import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHelpers';
 import { generateBoxShadowAttributies } from '../../../src/helpers/boxshadow-helper';
+import { generateTypographyAttributes } from '../../../src/helpers/typoHelpers';
 
 import {
 	BUTTON_ALIGNMENT,
@@ -16,6 +17,8 @@ import {
 	BUTTON_BOX_SHADOW,
 	BUTTON_HOVER_BOX_SHADOW,
 } from './constants';
+
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
 	//Common Attributes
@@ -44,10 +47,11 @@ const attributes = {
 	...generateBackgroundAttributes(BUTTON_BG),
 	...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
 	...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
+	...generateTypographyAttributes(Object.values(typographyObjs)),
 	//Block specific Attributes
 	preset: {
 		type: 'string',
-		default: 'preset-1',
+		default: 'button-1',
 	},
 	label: {
 		type: 'string',
