@@ -45,8 +45,6 @@ import {
 	BUTTON_ALIGNMENT,
 	PRESETS,
 	ICON_POSITIONS,
-	ICON_SIZE,
-	ICON_TEXT_SPACING,
 	BUTTON_BORDER,
 	BUTTON_BORDER_RADIUS,
 	BUTTON_PADDING,
@@ -54,6 +52,13 @@ import {
 	BUTTON_BG,
 	BUTTON_BOX_SHADOW,
 	BUTTON_HOVER_BOX_SHADOW,
+	ICON_SIZE,
+	ICON_TEXT_SPACING,
+	ICON_BORDER,
+	ICON_BORDER_RADIUS,
+	ICON_BOX_SHADOW,
+	ICON_HOVER_BOX_SHADOW,
+	ICON_PADDING,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -72,6 +77,9 @@ function Inspector(props) {
 		iconPosition,
 		iconColor,
 		iconHoverColor,
+		iconBg,
+		iconHoverBg,
+		iconBorderHoverColor,
 		textColor,
 		textHoverColor,
 		borderHoverColor,
@@ -284,7 +292,7 @@ function Inspector(props) {
 							{tab.name === 'design' && (
 								<>
 									<PanelBody
-										title={__('Text', 'zolo-blocks')}
+										title={__('General', 'zolo-blocks')}
 										initialOpen={true}
 									>
 										<TypographyDropdown
@@ -310,6 +318,7 @@ function Inspector(props) {
 															})
 														}
 													/>
+													<CardDivider />
 													<ColorControl
 														label={__(
 															'Icon Color',
@@ -323,6 +332,28 @@ function Inspector(props) {
 															})
 														}
 													/>
+													<ColorControl
+														label={__(
+															'Icon Background',
+															'zolo-blocks'
+														)}
+														color={iconBg}
+														onChange={(value) =>
+															setAttributes({
+																iconBg: value,
+															})
+														}
+													/>
+													<BoxShadowControl
+														controlName={
+															ICON_BOX_SHADOW
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+														enableTransition={false}
+													/>
+													<CardDivider />
 													<BoxShadowControl
 														controlName={
 															BUTTON_BOX_SHADOW
@@ -349,6 +380,7 @@ function Inspector(props) {
 															})
 														}
 													/>
+													<CardDivider />
 													<ColorControl
 														label={__(
 															'Icon Color',
@@ -362,6 +394,44 @@ function Inspector(props) {
 															})
 														}
 													/>
+													<ColorControl
+														label={__(
+															'Icon Border Color',
+															'zolo-blocks'
+														)}
+														color={
+															iconBorderHoverColor
+														}
+														onChange={(value) =>
+															setAttributes({
+																iconBorderHoverColor:
+																	value,
+															})
+														}
+													/>
+													<ColorControl
+														label={__(
+															'Icon Background',
+															'zolo-blocks'
+														)}
+														color={iconHoverBg}
+														onChange={(value) =>
+															setAttributes({
+																iconHoverBg:
+																	value,
+															})
+														}
+													/>
+													<BoxShadowControl
+														controlName={
+															ICON_HOVER_BOX_SHADOW
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+														enableTransition={true}
+													/>
+													<CardDivider />
 													<ColorControl
 														label={__(
 															'Border Color',
@@ -399,7 +469,7 @@ function Inspector(props) {
 										/>
 									</PanelBody>
 									<PanelBody
-										title={__('Border', 'zolo-blocks')}
+										title={__('Container', 'zolo-blocks')}
 										initialOpen={false}
 									>
 										<BorderControl
@@ -417,6 +487,31 @@ function Inspector(props) {
 											forBorderRadius={true}
 										/>
 									</PanelBody>
+									<PanelBody
+										title={__('Icon', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<BorderControl
+											label={__('Border', 'zolo-blocks')}
+											controlName={ICON_BORDER}
+											resRequiredProps={resRequiredProps}
+										/>
+										<ResDimensionsControl
+											label={__(
+												'Border Radius',
+												'zolo-blocks'
+											)}
+											controlName={ICON_BORDER_RADIUS}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={true}
+										/>
+										<ResDimensionsControl
+											label={__('Padding', 'zolo-blocks')}
+											controlName={ICON_PADDING}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
+										/>
+									</PanelBody>
 								</>
 							)}
 
@@ -431,11 +526,13 @@ function Inspector(props) {
 											label={__('Padding', 'zolo-blocks')}
 											controlName={BUTTON_PADDING}
 											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
 										/>
 										<ResDimensionsControl
 											label={__('Margin', 'zolo-blocks')}
 											controlName={BUTTON_MARGIN}
 											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
 										/>
 									</PanelBody>
 								</>

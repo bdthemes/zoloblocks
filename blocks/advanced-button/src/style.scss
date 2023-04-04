@@ -4,21 +4,14 @@
 }
 
 .zolo-advanced-button {
+	text-align: center;
 	.zolo-button {
-		border-radius: 4px;
-		border: 0;
 		box-sizing: border-box;
-		color: #fff;
 		cursor: pointer;
-		background-color: transparent;
 		display: inline-flex;
 		align-items: center;
-		font-size: 14px;
-		font-weight: 400;
-		line-height: 20px;
-		padding: 12px 40px;
+		justify-content: center;
 		text-align: center;
-		text-transform: none;
 		white-space: nowrap;
 		transition: 0.2s ease-in;
 		&.top {
@@ -40,31 +33,10 @@
 			}
 		}
 	}
-	// .zolo-content {
-	// 	transition: 0.2s;
-	// 	display: inline-flex;
-	// 	align-items: center;
-	// 	justify-content: center;
-	// 	gap: 5px;
-	// 	padding: 10px 20px;
-	// &.top {
-	// 	flex-direction: column-reverse;
-	// }
-	// &.bottom {
-	// 	flex-direction: column;
-	// }
-	// &.left {
-	// 	flex-direction: row-reverse;
-	// }
-	// &.right {
-	// 	flex-direction: row;
-	// }
-	// }
-	// // button icon
+	// button icon
 	.zolo-button-icon {
 		width: 20px;
 		display: block;
-		fill: #fff !important;
 	}
 }
 
@@ -81,28 +53,6 @@
 		// code here
 	}
 }
-
-.container {
-	display: flow-root;
-	/* 1 */
-	box-sizing: content-box;
-	max-width: 1200px;
-	margin-left: auto;
-	margin-right: auto;
-	padding-left: 15px;
-	padding-right: 15px;
-	margin-top: 100px;
-}
-
-.bdt-button-wrap {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-gap: 30px;
-}
-
-/* CSS */
-
-/* primary button css here  */
 
 /* button number 2 css here  */
 

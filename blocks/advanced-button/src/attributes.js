@@ -11,11 +11,18 @@ import {
 	BUTTON_BG,
 	BUTTON_HOVER_BG_COLOR,
 	BUTTON_BORDER,
-	ICON_SIZE,
-	ICON_TEXT_SPACING,
 	BUTTON_BORDER_RADIUS,
 	BUTTON_BOX_SHADOW,
 	BUTTON_HOVER_BOX_SHADOW,
+	BUTTON_PADDING,
+	BUTTON_MARGIN,
+	ICON_SIZE,
+	ICON_TEXT_SPACING,
+	ICON_BORDER,
+	ICON_BORDER_RADIUS,
+	ICON_BOX_SHADOW,
+	ICON_HOVER_BOX_SHADOW,
+	ICON_PADDING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -32,7 +39,7 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
-	// generators
+	// Button Generators
 	...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
 		defaultAlign: 'left',
 	}),
@@ -48,6 +55,14 @@ const attributes = {
 	...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
 	...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
 	...generateTypographyAttributes(Object.values(typographyObjs)),
+	...generateDimensionAttributes(BUTTON_PADDING),
+	...generateDimensionAttributes(BUTTON_MARGIN),
+	// button icon generator
+	...generateBorderAttributies(ICON_BORDER),
+	...generateDimensionAttributes(ICON_BORDER_RADIUS),
+	...generateBoxShadowAttributies(ICON_BOX_SHADOW),
+	...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
+	...generateDimensionAttributes(ICON_PADDING),
 	//Block specific Attributes
 	preset: {
 		type: 'string',
@@ -87,6 +102,15 @@ const attributes = {
 		type: 'string',
 	},
 	iconHoverColor: {
+		type: 'string',
+	},
+	iconBg: {
+		type: 'string',
+	},
+	iconHoverBg: {
+		type: 'string',
+	},
+	iconBorderHoverColor: {
 		type: 'string',
 	},
 	textColor: {

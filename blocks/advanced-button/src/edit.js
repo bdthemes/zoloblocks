@@ -32,11 +32,18 @@ import {
 	BUTTON_ALIGNMENT,
 	BUTTON_BORDER,
 	BUTTON_BORDER_RADIUS,
-	ICON_SIZE,
-	ICON_TEXT_SPACING,
 	BUTTON_BG,
 	BUTTON_BOX_SHADOW,
 	BUTTON_HOVER_BOX_SHADOW,
+	BUTTON_PADDING,
+	BUTTON_MARGIN,
+	ICON_SIZE,
+	ICON_TEXT_SPACING,
+	ICON_BORDER,
+	ICON_BORDER_RADIUS,
+	ICON_BOX_SHADOW,
+	ICON_HOVER_BOX_SHADOW,
+	ICON_PADDING,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -56,6 +63,9 @@ export default function Edit(props) {
 		iconPosition,
 		iconColor,
 		iconHoverColor,
+		iconBg,
+		iconHoverBg,
+		iconBorderHoverColor,
 		textColor,
 		textHoverColor,
 		borderHoverColor,
@@ -91,16 +101,16 @@ export default function Edit(props) {
 	 */
 	const deskAlign = `display: ${
 		buttonAlignmentDesktop === 'text-align:justify;'
-			? 'flex'
-			: 'inline-flex'
+			? 'block'
+			: 'inline-block'
 	};`;
 
 	const tabAlign = `display: ${
-		buttonAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
+		buttonAlignmentTab === 'text-align:justify;' ? 'block' : 'inline-block'
 	};`;
 
 	const mobAlign = `display: ${
-		buttonAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
+		buttonAlignmentMob === 'text-align:justify;' ? 'block' : 'inline-block'
 	};`;
 
 	// generate Background
@@ -166,11 +176,13 @@ export default function Edit(props) {
 	});
 
 	// Generate Hover Box Shadow
-	const { boxShadowStyle: hoverBoxShadowStyle, transitionStyle } =
-		generateBoxShadowStyles({
-			attributes,
-			controlName: BUTTON_HOVER_BOX_SHADOW,
-		});
+	const {
+		boxShadowStyle: hoverBoxShadowStyle,
+		transitionStyle: buttonTransitionStyle,
+	} = generateBoxShadowStyles({
+		attributes,
+		controlName: BUTTON_HOVER_BOX_SHADOW,
+	});
 
 	// Generate Typography
 	const {
@@ -183,85 +195,192 @@ export default function Edit(props) {
 		attributes,
 	});
 
-	console.log(attributes);
+	// Generate Padding
+	const {
+		dimensionStylesDesktop: paddingDesktop,
+		dimensionStylesTab: paddingTab,
+		dimensionStylesMobile: paddingMob,
+	} = generateDimensionStyle({
+		controlName: BUTTON_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
+
+	// Generate Margin
+	const {
+		dimensionStylesDesktop: marginDesktop,
+		dimensionStylesTab: marginTab,
+		dimensionStylesMobile: marginMob,
+	} = generateDimensionStyle({
+		controlName: BUTTON_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	});
+
+	/**
+	 * Button Icon
+	 */
+	// generate border style
+	const {
+		desktopBorderStyle: iconBorderDesktop,
+		tabBorderStyle: iconBorderTab,
+		mobBorderStyle: iconBorderMob,
+	} = generateBorderStyle({
+		controlName: ICON_BORDER,
+		attributes,
+	});
+
+	// generate border radius
+	const {
+		dimensionStylesDesktop: iconBorderRadiusDesktop,
+		dimensionStylesTab: iconBorderRadiusTab,
+		dimensionStylesMobile: iconBorderRadiusMob,
+	} = generateDimensionStyle({
+		controlName: ICON_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	});
+
+	// box shadow
+	const { boxShadowStyle: iconNormalBoxShadow } = generateBoxShadowStyles({
+		attributes,
+		controlName: ICON_BOX_SHADOW,
+	});
+
+	// hover box shadow
+	const {
+		boxShadowStyle: iconHoverBoxShadow,
+		transitionStyle: iconTransitionStyle,
+	} = generateBoxShadowStyles({
+		attributes,
+		controlName: ICON_HOVER_BOX_SHADOW,
+	});
+
+	// padding
+	const {
+		dimensionStylesDesktop: iconPaddingDesktop,
+		dimensionStylesTab: iconPaddingTab,
+		dimensionStylesMobile: iconPaddingMob,
+	} = generateDimensionStyle({
+		controlName: ICON_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
 
 	/**
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
-		.${uniqueId}{
+		.wp-block-zolo-advanced-button {
 			${buttonAlignmentDesktop}
+		}
+		.${uniqueId}{
 			${backgroundStylesDesktop}
 			${borderStyles}
 			${borderRadiusDesktop}
 			${normalBoxShadowStyle}
-			transition: ${transitionStyle}
+			${paddingDesktop}
+			${marginDesktop}
+			${deskAlign}
+			transition: ${buttonTransitionStyle}
 		}
 		.${uniqueId}:hover{
 			${hoverBoxShadowStyle}
 			${hoverBackgroundStylesDesktop}
-			border-color: ${borderHoverColor ? borderHoverColor : 'inherit'};
+			border-color: ${borderHoverColor ? borderHoverColor : ''};
 		}
-		.${uniqueId} .zolo-content {
-			${gap}
-			${deskAlign}
-			color: ${textColor ? textColor : 'inherit'};
-		}
+
 		.${uniqueId} .zolo-button {
+			${gap}
+		}
+
+		.${uniqueId} .zolo-button-content {
 			${btnTypoDesktop}
+			color: ${textColor ? textColor : ''};
 		}
-		.${uniqueId} .zolo-content:hover {
-			color: ${textHoverColor ? textHoverColor : 'inherit'};
+		.${uniqueId}:hover .zolo-button-content {
+			color: ${textHoverColor ? textHoverColor : ''};
 		}
-		.${uniqueId} .zolo-content:hover .zolo-button-icon{
-			fill: ${iconHoverColor ? iconHoverColor : 'inherit'};
-		}
+
 		.${uniqueId} .zolo-button-icon {
 			${iconSize}
-			fill: ${iconColor ? iconColor : 'inherit'};
+			${iconBorderDesktop}
+			${iconBorderRadiusDesktop}
+			${iconNormalBoxShadow}
+			${iconPaddingDesktop}
+			transition: ${iconTransitionStyle}
+			fill: ${iconColor ? iconColor : ''};
+			background: ${iconBg ? iconBg : ''};
 		}
+		.${uniqueId}:hover .zolo-button-icon{
+			${iconHoverBoxShadow}
+			fill: ${iconHoverColor ? iconHoverColor : ''};
+			background: ${iconHoverBg ? iconHoverBg : ''};
+			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''};
+		}
+
   	`;
 	const tabletAllStyle = `
-		.${uniqueId}{
+		.wp-block-zolo-advanced-button {
 			${buttonAlignmentTab}
+		}
+		.${uniqueId}{
 			${borderStylesTab}
 			${borderRadiusTab}
 			${backgroundStylesTab}
+			${paddingTab}
+			${marginTab}
+			${tabAlign}
 		}
 		.${uniqueId}:hover{
 			${hoverBackgroundStylesTab}
 		}
-		.${uniqueId} .zolo-content {
-			${gapTab}
-			${tabAlign}
-		}
+
 		.${uniqueId} .zolo-button {
+			${gapTab}
+		}
+
+		.${uniqueId} .zolo-button-content {
 			${btnTypoTab}
 		}
+
 		.${uniqueId} .zolo-button-icon {
 			${iconSizeTab}
+			${iconBorderTab}
+			${iconBorderRadiusTab}
+			${iconPaddingTab}
 		}
 	`;
 
 	const mobileAllStyle = `
-		.${uniqueId}{
+		.wp-block-zolo-advanced-button {
 			${buttonAlignmentMob}
+		}
+		.${uniqueId}{
 			${borderStylesMob}
 			${borderRadiusMob}
 			${backgroundStylesMobile}
+			${paddingMob}
+			${marginMob}
+			${mobAlign}
 		}
 		.${uniqueId}:hover{
 			${hoverBackgroundStylesMobile}
 		}
-		.${uniqueId} .zolo-content {
-			${gapMob}
-			${mobAlign}
-		}
+
 		.${uniqueId} .zolo-button {
+			${gapMob}
+		}
+
+		.${uniqueId} .zolo-button-content {
 			${btnTypoMob}
 		}
+
 		.${uniqueId} .zolo-button-icon {
 			${iconSizeMob}
+			${iconBorderMob}
+			${iconBorderRadiusMob}
+			${iconPaddingMob}
 		}
   	`;
 
@@ -342,9 +461,9 @@ export default function Edit(props) {
 			<style>{` ${softMinifyCssStrings(allStyle)}`}</style>
 			<div {...blockProps}>
 				<div
-					className={`zolo-block-wrapper zolo-advanced-button ${uniqueId}`}
+					className={`zolo-block-wrapper zolo-advanced-button ${uniqueId} ${preset}`}
 				>
-					<div className={`zolo-button ${preset} ${iconPosition}`}>
+					<div className={`zolo-button ${iconPosition}`}>
 						<RichText
 							tagName="span"
 							className={`zolo-button-content`}

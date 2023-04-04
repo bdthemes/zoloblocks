@@ -32,25 +32,28 @@ export const ICON_POSITIONS = [
 		value: 'bottom',
 	},
 ];
-// Button BG
+/**
+ * Button
+ */
+
 export const BUTTON_BG = 'buttonBg';
-// Button Hover BG
 export const BUTTON_HOVER_BG_COLOR = 'buttonHover';
-// Button Padding
 export const BUTTON_PADDING = 'buttonPadding';
-// Button Margin
 export const BUTTON_MARGIN = 'buttonMargin';
-// Button Alignment
 export const BUTTON_ALIGNMENT = 'buttonAlignment';
-// Button Border
 export const BUTTON_BORDER = 'buttonBorder';
-// Icon Size
-export const ICON_SIZE = 'iconSize';
-// icon and text spacing
-export const ICON_TEXT_SPACING = 'iconTextSpacing';
-// Button Border Radius
 export const BUTTON_BORDER_RADIUS = 'buttonBorderRadius';
-// Button Box Shadow
 export const BUTTON_BOX_SHADOW = 'buttonBoxShadow';
-// Button Hover Box Shadow
 export const BUTTON_HOVER_BOX_SHADOW = 'buttonHoverBoxShadow';
+
+/**
+ * Button Icon
+ */
+
+export const ICON_SIZE = 'iconSize';
+export const ICON_TEXT_SPACING = 'iconTextSpacing';
+export const ICON_BORDER = 'btnIconBorder';
+export const ICON_BORDER_RADIUS = 'btnIconBorderRadius';
+export const ICON_BOX_SHADOW = 'btnIconBoxShadow';
+export const ICON_HOVER_BOX_SHADOW = 'btnIconHoverBoxShadow';
+export const ICON_PADDING = 'btnIconPadding';
