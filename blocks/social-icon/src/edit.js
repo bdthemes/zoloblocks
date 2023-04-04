@@ -268,7 +268,7 @@ export default function Edit(props) {
 								placeholder={__('Social Text', 'zolo-blocks')}
 								allowedFormats={[]}
 							 />
-                           
+                        
 						</div>
 					</div>
 				</div>

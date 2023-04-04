@@ -5,6 +5,7 @@ import {
 	InspectorControls,
 	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
+import { useSelect } from '@wordpress/data';
 import {
 	CardDivider,
 	PanelBody,
@@ -12,9 +13,10 @@ import {
 	TabPanel,
 	TextControl,
 	ToggleControl,
+    Button
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+import { Fragment, } from '@wordpress/element';
 
 
 import ResRangeControl from '../../../src/controls/res-range-control';
@@ -23,7 +25,8 @@ import ResRangeControl from '../../../src/controls/res-range-control';
 import objAttributes from './attributes';
 import { controls } from '@wordpress/data';
 import { set } from 'lodash';
-import {SOCIAL_TEXT,COLUMNS_NUMBER} from './constants'
+import {SOCIAL_TEXT,COLUMNS_NUMBER,COLUMNS_GAP,ROW_GAP} from './constants'
+import { useEffect } from 'react';
 
 function Inspector (props){
 
@@ -33,8 +36,8 @@ function Inspector (props){
 		preset,
 		resMode,
 		resDevice,
-        socialText
-		
+        socialText,
+		 targetPage
 	} = attributes;
 
     const resRequiredProps = {
@@ -43,7 +46,11 @@ function Inspector (props){
 		resMode,
 		objAttributes,
 	};
-
+    // it is used for experimental purpose
+    //   const posts = useSelect( ( select ) => {
+    //     return wp.data.select("core/editor").getCurrentPostId();
+    // }, [] );
+     
     return(
         <InspectorControls key="controls">
                 <div className='zolo-panel-control'>
@@ -84,7 +91,7 @@ function Inspector (props){
 
                                                               <ResRangeControl
                                                                 label={__(
-                                                                    'Columns Numbers',
+                                                                    'Columns',
                                                                     'zolo-blocks'
                                                                 )}
                                                                 controlName={COLUMNS_NUMBER}
@@ -95,7 +102,49 @@ function Inspector (props){
                                                                 max={100}
                                                                 step={1}
                                                               />
-                                                        
+                                                              <ResRangeControl
+                                                                label={__(
+                                                                    'Columns Gap',
+                                                                    'zolo-blocks'
+                                                                )}
+                                                                controlName={COLUMNS_GAP}
+                                                                resRequiredProps={
+                                                                    resRequiredProps
+                                                                }
+                                                                min={0}
+                                                                max={100}
+                                                                step={1}
+                                                              />
+
+                                                                <ResRangeControl
+                                                                label={__(
+                                                                    'Row Gap',
+                                                                    'zolo-blocks'
+                                                                )}
+                                                                controlName={ROW_GAP}
+                                                                resRequiredProps={
+                                                                    resRequiredProps
+                                                                }
+                                                                min={0}
+                                                                max={100}
+                                                                step={1}
+                                                              />
+                                                      
+                                            
+                                                            <SelectControl
+                                                                label="Target Url"
+                                                                value={ targetPage}
+                                                                options={ [
+                                                                    { label: 'Custom', value: 'Custom' },
+                                                                    { label: 'Current page', value: 'Current page' },
+                                                                    
+                                                                ] }
+                                                                onChange={ ( page ) => { setAttributes( { targetPage:page } ) } }
+                                                            />
+                                                       
+                                                     
+                                                      
+                                                      
                                                   </PanelBody>
                                                   
 

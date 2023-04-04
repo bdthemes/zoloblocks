@@ -9,7 +9,10 @@ import {
 	BUTTON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
-	COLUMNS_NUMBER
+	COLUMNS_NUMBER,
+	COLUMNS_GAP ,
+	ROW_GAP
+	
 } from './constants';
 
 const attributes = {
@@ -34,9 +37,13 @@ const attributes = {
 	...generateResRangeAttributies(ICON_SIZE, {
 		default: 16,
 	}),
-	...generateResRangeAttributies(COLUMNS_NUMBER, {
-		default: 16,
-	}),
+	//columns Number
+	...generateResRangeAttributies(COLUMNS_NUMBER),
+	//columns gaps
+	...generateResRangeAttributies(COLUMNS_GAP),
+	//row gaps
+	...generateResRangeAttributies(ROW_GAP),
+	//icon spacing 
 	...generateResRangeAttributies(ICON_TEXT_SPACING, {
 		default: 5,
 	}),
@@ -65,6 +72,9 @@ const attributes = {
 		default: false,
 	},
 	socialText: {
+		type:"string"
+	},
+	targetPage:{
 		type:"string"
 	},
 	showIcon: {

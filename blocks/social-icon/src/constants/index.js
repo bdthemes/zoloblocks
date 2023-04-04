@@ -45,7 +45,10 @@ export const SOCIAL_TEXT =[
 		value:'text',
 	}
 ]
+//columns Number
 export const COLUMNS_NUMBER = "columns";
+export const COLUMNS_GAP = "columnsGap";
+export const ROW_GAP ="rowGap";
 // Button BG
 export const BUTTON_BG_COLOR = 'buttonNormal';
 // Button Hover BG
