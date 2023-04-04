@@ -1,3 +1,25 @@
+#zoloIcon {
+	margin-bottom: 20px;
+
+	.dashicon {
+		font-size: 30px;
+
+		&:hover {
+			cursor: pointer;
+			color: #3175d5;
+		}
+	}
+}
+
+.zolo-iconpicker-popup {
+	width: 350px;
+	top: 10px !important;
+
+	.components-popover__content {
+		width: 100%;
+	}
+}
+
 .zolo-icon-area {
 	display: flex;
 	flex-wrap: wrap;
@@ -31,9 +53,10 @@
 			height: 100%;
 			width: 100%;
 			padding: 5px;
+			overflow: hidden;
 		}
 
-		.dashicon {
+		.dashicon, i {
 			font-size: 22px;
 			display: block;
 			margin: 0 auto 8px;
