@@ -1,7 +1,8 @@
 #zoloIcon {
 	margin-bottom: 20px;
 
-	.dashicon {
+	.dashicon,
+	i {
 		font-size: 30px;
 
 		&:hover {
@@ -20,6 +21,19 @@
 	}
 }
 
+.zolo-parent-tab-panel {
+	.zolo-tab {
+		height: 30px;
+		color: #9f9d9d;
+		margin-bottom: 8px;
+
+		&.active-tab {
+			border-bottom: 2px solid #3c434a;
+			color: #3c434a;
+		}
+	}
+}
+
 .zolo-icon-area {
 	display: flex;
 	flex-wrap: wrap;
@@ -31,14 +45,21 @@
 	justify-content: flex-start;
 	max-height: 225px;
 	margin-bottom: 20px;
+	margin-left: 5px;
 
 	.zolo-icon-box {
 		background-color: #e4e4e4;
 		text-align: center;
-		width: calc(33.33% - 5px);
+		width: calc(33.33% - 7px);
 		height: 70px;
 		position: relative;
 		transition: .3s;
+		order: 2;
+
+		&.active {
+			background-color: #bcd4f0;
+			order: 1;
+		}
 
 		&:hover {
 			background-color: #c7c7c7;
@@ -56,7 +77,8 @@
 			overflow: hidden;
 		}
 
-		.dashicon, i {
+		.dashicon,
+		i {
 			font-size: 22px;
 			display: block;
 			margin: 0 auto 8px;

@@ -13,6 +13,7 @@ export {default as ResAlignmentControl} from "./controls/res-alignment-control";
 export {default as ResRangeControl} from "./controls/res-range-control";
 export {default as TypographyDropdown} from "./controls/typography-control";
 export {default as IconPicker} from "./controls/icon-picker";
+export {default as DisplayIcon} from "./controls/icon-picker/DisplayIcon";
 
 //Export Helpers
 export {

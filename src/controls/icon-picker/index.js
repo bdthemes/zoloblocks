@@ -8,6 +8,7 @@ import {
 } from '@wordpress/components';
 import { useEffect, useState, useRef } from '@wordpress/element';
 
+import DisplayIcon from "./DisplayIcon"
 import "../scss/componets/_icon-picker.scss"
 
 
@@ -36,6 +37,13 @@ function useOutsideAlerter(ref, setVal) {
 
 
 const IconPicker = (props) => {
+    const {
+        attrName,
+        attrValue,
+        setValue
+    } = props
+
+    const [selectedIcon, setSelectedIcon] = useState("");
     const [searchInput, setSearchInput] = useState("");
     const [iconType, setIconType] = useState("dashicon");
     const [icons, setIcons] = useState("");
@@ -71,6 +79,9 @@ const IconPicker = (props) => {
     }, [])
 
     useEffect(() => {
+        //Set search text to empty
+        setSearchInput("")
+
         switch (iconType) {
             case "fontawesome":
                 if (typeof fontAwesome === 'object' && Object.keys(fontAwesome).length > 0) {
@@ -84,6 +95,19 @@ const IconPicker = (props) => {
         }
     }, [iconType])
 
+    useEffect(() => {
+        if (!attrValue || typeof attrValue != 'object') {
+            return
+        }
+        const key = Object.keys(attrValue)[0]
+        setSelectedIcon(key)
+
+        if (attrValue[key].source) {
+            console.log("save", attrValue[key].source)
+            setIconType(attrValue[key].source)
+        }
+    }, [attrValue])
+
 
     const searchIcon = (text) => {
         setSearchInput(text)
@@ -94,7 +118,7 @@ const IconPicker = (props) => {
             .filter((item) => item.includes(text))
             .reduce((obj, key) => {
                 return Object.assign(obj, {
-                    [key]: dashIcon[key]
+                    [key]: iconList[key]
                 })
             }, {})
 
@@ -102,14 +126,28 @@ const IconPicker = (props) => {
         setIcons(filteredIcons)
     }
 
+    const saveIcon = (value) => {
+        //Save attribute value
+        setValue({ [attrName]: value })
+
+        //Hide popover
+        setShowPopover(false)
+    }
+
     return (
         <>
             <PanelRow>Select Icon</PanelRow>
-            <div id={"zoloIcon"}>
-                <Dashicon
-                    icon={'admin-media'}
-                    onClick={() => setShowPopover(true)}
-                />
+            <div
+                id={"zoloIcon"}
+                onClick={() => setShowPopover(true)}
+            >
+                {attrValue && (
+                    <DisplayIcon label="Click to choose Icon" icon={attrValue} />
+                )}
+                {!attrValue && (
+                    <Dashicon className='zolo-iconpicker-placeholder' icon={'insert'} />
+                )}
+
             </div>
             {showPopover && (
                 <Popover
@@ -125,6 +163,7 @@ const IconPicker = (props) => {
                         className="zolo-parent-tab-panel"
                         activeClass="active-tab"
                         onSelect={(selected) => setIconType(selected)}
+                        initialTabName={iconType}
                         tabs={[
                             {
                                 name: 'dashicon',
@@ -142,7 +181,10 @@ const IconPicker = (props) => {
                             <div className='zolo-icon-area'>
                                 {
                                     Object.keys(icons).map((item, index) => (
-                                        <div className='zolo-icon-box'>
+                                        <div
+                                            className={`zolo-icon-box${selectedIcon === item ? ' active' : ''}`}
+                                            onClick={() => saveIcon({ [item]: icons[item] })}
+                                        >
                                             <div className='zolo-icon-content'>
                                                 {iconType === 'dashicon' && (
                                                     <Dashicon icon={item} />

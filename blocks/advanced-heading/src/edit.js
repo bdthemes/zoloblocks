@@ -11,224 +11,225 @@ import Inspector from './inspector';
 
 //block constants
 import {
-  HEADING_ALIGNMENT, SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG,
-  WRAPPER_BORDER,
-  WRAPPER_MARGIN,
-  WRAPPER_PADDING,
-  WRAPPER_SHADOW
+    HEADING_ALIGNMENT, SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG,
+    WRAPPER_BORDER,
+    WRAPPER_MARGIN,
+    WRAPPER_PADDING,
+    WRAPPER_SHADOW
 } from './constants';
 import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 
 const {
-  handleUniqueId,
-  softMinifyCssStrings,
-  generateBackgroundControlStyles,
-  generateBorderStyle,
-  generateBoxShadowStyles,
-  generateDimensionStyle,
-  generateResAlignmentStyle,
-  generateTypographyStyles,
-  generateResRangeStyle,
-
-  // generateControls,
+    handleUniqueId,
+    softMinifyCssStrings,
+    generateBackgroundControlStyles,
+    generateBorderStyle,
+    generateBoxShadowStyles,
+    generateDimensionStyle,
+    generateResAlignmentStyle,
+    generateTypographyStyles,
+    generateResRangeStyle,
+    DisplayIcon
+    // generateControls,
 } = window.zoloModule;
 
 const Edit = (props) => {
 
-  const { attributes, setAttributes, className, clientId, isSelected } = props;
-  const {
-    uniqueId,
-    blockStyle,
+    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const {
+        uniqueId,
+        blockStyle,
 
-    //settings
-    styles,
-    titleText,
-    subTitleText,
-    showSubTitle,
-    titleTagName,
-    showSeparator,
-    subTitleTagName,
-    showTransparentTitle,
-    transparentTitleText,
-    subTitlePosition,
-    separatorPosition,
-    separaTorAlign,
-    align,
+        //settings
+        styles,
+        headingIcon,
+        titleText,
+        subTitleText,
+        showSubTitle,
+        titleTagName,
+        showSeparator,
+        subTitleTagName,
+        showTransparentTitle,
+        transparentTitleText,
+        subTitlePosition,
+        separatorPosition,
+        separaTorAlign,
+        align,
 
-    //style
-    titleColor,
-    subTitleColor,
-    tpColor,
-    separatorColor
-  } = attributes;
+        //style
+        titleColor,
+        subTitleColor,
+        tpColor,
+        separatorColor
+    } = attributes;
 
-  // this useEffect is for creating a unique id for each block's unique className by a random unique number
-  useEffect(() => {
-    const BLOCK_PREFIX = "zolo-advance-heading";
-    handleUniqueId({
-      BLOCK_PREFIX,
-      uniqueId,
-      setAttributes,
-      clientId,
+    // this useEffect is for creating a unique id for each block's unique className by a random unique number
+    useEffect(() => {
+        const BLOCK_PREFIX = "zolo-advance-heading";
+        handleUniqueId({
+            BLOCK_PREFIX,
+            uniqueId,
+            setAttributes,
+            clientId,
+        });
+    }, []);
+
+    //block wrapper class
+    const blockProps = useBlockProps({
+        className: classnames(className, ``),
     });
-  }, []);
 
-  //block wrapper class
-  const blockProps = useBlockProps({
-    className: classnames(className, ``),
-  });
-
-  //css generate
-  const {
-    desktopAlignStyle: headingAlignmentDesktop,
-    tabAlignStyle: headingAlignmentTab,
-    mobAlignStyle: headingAlignmentMob,
-  } = generateResAlignmentStyle({
-    controlName: HEADING_ALIGNMENT,
-    property: 'text-align',
-    attributes,
-  });
+    //css generate
+    const {
+        desktopAlignStyle: headingAlignmentDesktop,
+        tabAlignStyle: headingAlignmentTab,
+        mobAlignStyle: headingAlignmentMob,
+    } = generateResAlignmentStyle({
+        controlName: HEADING_ALIGNMENT,
+        property: 'text-align',
+        attributes,
+    });
 
 
-  //title style generate
-  //typography
-  const {
-    typoStylesDesktop: titleTypoDesktop,
-    typoStylesTab: titleTypoTab,
-    typoStylesMobile: titleTypoMobile,
-  } = generateTypographyStyles({
-    prefixConstant: TITLE_TYPOGRAPHY,
-    defaultFontSize: 25,
-    attributes,
-  })
-  //margin
-  const {
-    dimensionStylesDesktop: titleMarginDesktop,
-    dimensionStylesTab: titleMarginTab,
-    dimensionStylesMobile: titleMarginMobile,
-  } = generateDimensionStyle({
-    controlName: TITLE_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
+    //title style generate
+    //typography
+    const {
+        typoStylesDesktop: titleTypoDesktop,
+        typoStylesTab: titleTypoTab,
+        typoStylesMobile: titleTypoMobile,
+    } = generateTypographyStyles({
+        prefixConstant: TITLE_TYPOGRAPHY,
+        defaultFontSize: 25,
+        attributes,
+    })
+    //margin
+    const {
+        dimensionStylesDesktop: titleMarginDesktop,
+        dimensionStylesTab: titleMarginTab,
+        dimensionStylesMobile: titleMarginMobile,
+    } = generateDimensionStyle({
+        controlName: TITLE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
 
-  const {
-    desktopRangeStyle: separatorWidthDesktop,
-    tabRangeStyle: separatorWidthTab,
-    mobRangeStyle: separatorWidthMob,
-  } = generateResRangeStyle({
-    controlName: SEPARATOR_WIDTH,
-    property: 'width',
-    attributes,
-  });
+    const {
+        desktopRangeStyle: separatorWidthDesktop,
+        tabRangeStyle: separatorWidthTab,
+        mobRangeStyle: separatorWidthMob,
+    } = generateResRangeStyle({
+        controlName: SEPARATOR_WIDTH,
+        property: 'width',
+        attributes,
+    });
 
-  const {
-    desktopRangeStyle: separatorHeightDesktop,
-    tabRangeStyle: separatorHeightTab,
-    mobRangeStyle: separatorHeightMob,
-  } = generateResRangeStyle({
-    controlName: SEPARATOR_HEIGHT,
-    property: 'border-width',
-    attributes,
-  });
-
-
-  //subtitle style generate
-  //typography
-  const {
-    typoStylesDesktop: subTitleTypoDesktop,
-    typoStylesTab: subTitleTypoTab,
-    typoStylesMobile: subTitleTypoMobile,
-  } = generateTypographyStyles({
-    prefixConstant: SUBTITLE_TYPOGRAPHY,
-    defaultFontSize: 16,
-    attributes,
-  })
-  //margin
-  const {
-    dimensionStylesDesktop: subTitleMarginDesktop,
-    dimensionStylesTab: subTitleMarginTab,
-    dimensionStylesMobile: subTitleMarginMobile,
-  } = generateDimensionStyle({
-    controlName: SUBTITLE_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
-  //transparent style generate
-  const {
-    typoStylesDesktop: transparentTypoDesktop,
-    typoStylesTab: transparentTypoTab,
-    typoStylesMobile: transparentTypoMobile,
-  } = generateTypographyStyles({
-    prefixConstant: TRANSPARENT_TYPOGRAPHY,
-    defaultFontSize: 55,
-    attributes,
-  })
-
-  //wrapper style generate
-  //margin
-  const {
-    dimensionStylesDesktop: wrapperMarginDesktop,
-    dimensionStylesTab: wrapperMarginTab,
-    dimensionStylesMobile: wrapperMarginMobile,
-  } = generateDimensionStyle({
-    controlName: WRAPPER_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
-  //padding
-  const {
-    dimensionStylesDesktop: wrapperPaddingDesktop,
-    dimensionStylesTab: wrapperPaddingTab,
-    dimensionStylesMobile: wrapperPaddingMobile,
-  } = generateDimensionStyle({
-    controlName: WRAPPER_PADDING,
-    styleFor: 'padding',
-    attributes,
-  });
-  //Background
-  const {
-    backgroundStylesDesktop: wrapperBackgroundStylesDesktop,
-    hoverBackgroundStylesDesktop: wrapperHoverBackgroundStylesDesktop,
-    backgroundStylesTab: wrapperBackgroundStylesTab,
-    hoverBackgroundStylesTab: wrapperHoverBackgroundStylesTab,
-    backgroundStylesMobile: wrapperBackgroundStylesMobile,
-    hoverBackgroundStylesMobile: wrapperHoverBackgroundStylesMobile,
-    overlayStylesDesktop: wrapperOverlayStylesDesktop,
-    hoverOverlayStylesDesktop: wrapperHoverOverlayStylesDesktop,
-    overlayStylesTab: wrapperOverlayStylesTab,
-    hoverOverlayStylesTab: wrapperHoverOverlayStylesTab,
-    overlayStylesMobile: wrapperOverlayStylesMobile,
-    hoverOverlayStylesMobile: wrapperHoverOverlayStylesMobile,
-  } = generateBackgroundControlStyles({
-    attributes,
-    controlName: WRAPPER_BG,
-  });
-
-  //boxshadow
-  const {
-    boxShadowStyle: wrapperShadow,
-    hoverBoxShadowstyle: wrapperHoverShadow,
-    transitionStyle: wrapperShadowTransition
-  } = generateBoxShadowStyles({
-    attributes,
-    controlName: WRAPPER_SHADOW,
-  });
-
-  //border
-  const {
-    desktopBorderStyle: wrapperBorderDesktop,
-    tabBorderStyle: wrapperBorderTab,
-    mobBorderStyle: wrapperBorderMob
-  } = generateBorderStyle({
-    attributes,
-    controlName: WRAPPER_BORDER,
-  });
+    const {
+        desktopRangeStyle: separatorHeightDesktop,
+        tabRangeStyle: separatorHeightTab,
+        mobRangeStyle: separatorHeightMob,
+    } = generateResRangeStyle({
+        controlName: SEPARATOR_HEIGHT,
+        property: 'border-width',
+        attributes,
+    });
 
 
-  //css style
-  const wrapperStylesDesktop = `
+    //subtitle style generate
+    //typography
+    const {
+        typoStylesDesktop: subTitleTypoDesktop,
+        typoStylesTab: subTitleTypoTab,
+        typoStylesMobile: subTitleTypoMobile,
+    } = generateTypographyStyles({
+        prefixConstant: SUBTITLE_TYPOGRAPHY,
+        defaultFontSize: 16,
+        attributes,
+    })
+    //margin
+    const {
+        dimensionStylesDesktop: subTitleMarginDesktop,
+        dimensionStylesTab: subTitleMarginTab,
+        dimensionStylesMobile: subTitleMarginMobile,
+    } = generateDimensionStyle({
+        controlName: SUBTITLE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+    //transparent style generate
+    const {
+        typoStylesDesktop: transparentTypoDesktop,
+        typoStylesTab: transparentTypoTab,
+        typoStylesMobile: transparentTypoMobile,
+    } = generateTypographyStyles({
+        prefixConstant: TRANSPARENT_TYPOGRAPHY,
+        defaultFontSize: 55,
+        attributes,
+    })
+
+    //wrapper style generate
+    //margin
+    const {
+        dimensionStylesDesktop: wrapperMarginDesktop,
+        dimensionStylesTab: wrapperMarginTab,
+        dimensionStylesMobile: wrapperMarginMobile,
+    } = generateDimensionStyle({
+        controlName: WRAPPER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+    //padding
+    const {
+        dimensionStylesDesktop: wrapperPaddingDesktop,
+        dimensionStylesTab: wrapperPaddingTab,
+        dimensionStylesMobile: wrapperPaddingMobile,
+    } = generateDimensionStyle({
+        controlName: WRAPPER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    //Background
+    const {
+        backgroundStylesDesktop: wrapperBackgroundStylesDesktop,
+        hoverBackgroundStylesDesktop: wrapperHoverBackgroundStylesDesktop,
+        backgroundStylesTab: wrapperBackgroundStylesTab,
+        hoverBackgroundStylesTab: wrapperHoverBackgroundStylesTab,
+        backgroundStylesMobile: wrapperBackgroundStylesMobile,
+        hoverBackgroundStylesMobile: wrapperHoverBackgroundStylesMobile,
+        overlayStylesDesktop: wrapperOverlayStylesDesktop,
+        hoverOverlayStylesDesktop: wrapperHoverOverlayStylesDesktop,
+        overlayStylesTab: wrapperOverlayStylesTab,
+        hoverOverlayStylesTab: wrapperHoverOverlayStylesTab,
+        overlayStylesMobile: wrapperOverlayStylesMobile,
+        hoverOverlayStylesMobile: wrapperHoverOverlayStylesMobile,
+    } = generateBackgroundControlStyles({
+        attributes,
+        controlName: WRAPPER_BG,
+    });
+
+    //boxshadow
+    const {
+        boxShadowStyle: wrapperShadow,
+        hoverBoxShadowstyle: wrapperHoverShadow,
+        transitionStyle: wrapperShadowTransition
+    } = generateBoxShadowStyles({
+        attributes,
+        controlName: WRAPPER_SHADOW,
+    });
+
+    //border
+    const {
+        desktopBorderStyle: wrapperBorderDesktop,
+        tabBorderStyle: wrapperBorderTab,
+        mobBorderStyle: wrapperBorderMob
+    } = generateBorderStyle({
+        attributes,
+        controlName: WRAPPER_BORDER,
+    });
+
+
+    //css style
+    const wrapperStylesDesktop = `
 		.zolo-block-wrapper.${uniqueId}{
 			${wrapperMarginDesktop}
 			${wrapperPaddingDesktop}
@@ -269,7 +270,7 @@ const Edit = (props) => {
 		}
 
 	`;
-  const wrapperStylesTab = `
+    const wrapperStylesTab = `
 		.zolo-block-wrapper.${uniqueId}{
 			${wrapperMarginTab}
 			${wrapperPaddingTab}
@@ -290,7 +291,7 @@ const Edit = (props) => {
 			${separatorWidthTab}
     }
 	`;
-  const wrapperStylesMobile = `
+    const wrapperStylesMobile = `
 		.zolo-block-wrapper.${uniqueId}{
 			${wrapperMarginMobile}
 			${wrapperPaddingMobile}
@@ -312,8 +313,8 @@ const Edit = (props) => {
     }
 	`;
 
-  // Title styles css in strings
-  const titleStylesDesktop = `
+    // Title styles css in strings
+    const titleStylesDesktop = `
 			.zolo-block-wrapper.${uniqueId} .zolo-ah-title {
         ${titleColor ? `color: ${titleColor};` : ""}
 				${titleTypoDesktop}
@@ -330,22 +331,22 @@ const Edit = (props) => {
       }
 		`;
 
-  const titleStylesTab = `
+    const titleStylesTab = `
 		.zolo-block-wrapper.${uniqueId} .zolo-ah-title {
 			${titleTypoTab}
 			${titleMarginTab}
 		}
 	`;
 
-  const titleStylesMobile = `
+    const titleStylesMobile = `
 		.zolo-block-wrapper.${uniqueId} .zolo-ah-title {
 			${titleTypoMobile}
 			${titleMarginMobile}
 		}
 	`;
 
-  // Subtitle styles css in strings
-  const subtitleStylesDesktop = `
+    // Subtitle styles css in strings
+    const subtitleStylesDesktop = `
 		.zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
       ${subTitleColor ? `color: ${subTitleColor};` : ""}
 			${subTitleTypoDesktop}
@@ -353,22 +354,22 @@ const Edit = (props) => {
 		}
 	`;
 
-  const subtitleStylesTab = `
+    const subtitleStylesTab = `
 		.zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
 			${subTitleTypoTab}
 			${subTitleMarginTab}
 		}
 	`;
 
-  const subtitleStylesMobile = `
+    const subtitleStylesMobile = `
 		.zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
 			${subTitleTypoMobile}
 			${subTitleMarginMobile}
 		}
 	`;
 
-  //transparent styles css
-  const transparentStylesDesktop = `
+    //transparent styles css
+    const transparentStylesDesktop = `
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
       ${tpColor ? `color: ${tpColor};` : ''}
       ${transparentTypoDesktop}
@@ -379,80 +380,80 @@ const Edit = (props) => {
     }
   `;
 
-  const transparentStylesTab = `
+    const transparentStylesTab = `
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
       ${transparentTypoTab}
     }
   `;
 
-  const transparentStylesMobile = `
+    const transparentStylesMobile = `
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
       ${transparentTypoMobile}
     }
   `;
 
-  const desktopAllStyle = `
+    const desktopAllStyle = `
 		${wrapperStylesDesktop}
 		${titleStylesDesktop}
 		${subtitleStylesDesktop}
     ${transparentStylesDesktop}
 	`;
 
-  const tabletAllStyle = `
+    const tabletAllStyle = `
 		${wrapperStylesTab}
 		${titleStylesTab}
 		${subtitleStylesTab}
     ${transparentStylesTab}
 	`;
 
-  const mobileAllStyle = `
+    const mobileAllStyle = `
 		${wrapperStylesMobile}
 		${titleStylesMobile}
 		${subtitleStylesMobile}
     ${transparentStylesMobile}
 	`;
 
-  // Set All Style in "blockStyle" Attribute
-  useEffect(() => {
-    const styles = {
-      desktop: desktopAllStyle,
-      tablet: tabletAllStyle,
-      mobile: mobileAllStyle,
-    };
-    if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-      setAttributes({ blockStyle: styles });
+    // Set All Style in "blockStyle" Attribute
+    useEffect(() => {
+        const styles = {
+            desktop: desktopAllStyle,
+            tablet: tabletAllStyle,
+            mobile: mobileAllStyle,
+        };
+        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
+            setAttributes({ blockStyle: styles });
+        }
+    }, [attributes]);
+
+    //Dynamic Title Tag
+    const DynamicTag = (props) => {
+        const { tagName, children, ...attr } = props;
+        const Tag = tagName || 'h2';
+        return (
+            <Tag {...attr}>
+                {children}
+            </Tag>
+        );
     }
-  }, [attributes]);
 
-  //Dynamic Title Tag
-  const DynamicTag = (props) => {
-    const { tagName, children, ...attr } = props;
-    const Tag = tagName || 'h2';
+
+
+
     return (
-      <Tag {...attr}>
-        {children}
-      </Tag>
-    );
-  }
-
-
-
-
-  return (
-    <>
-      {/* {isSelected && (
+        <>
+            {/* {isSelected && (
                 generateControls(controls, attributes, setAttributes)
             )} */}
-      {isSelected && (
-        <Inspector
-          attributes={attributes}
-          setAttributes={setAttributes}
-        />
-      )}
-      <div {...blockProps}>
+            {isSelected && (
+                <Inspector
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                />
+            )}
+            <div {...blockProps}>
 
-        <style>
-          {`
+                <style>
+                    {`
 						/* desktopcssStart */
 						${softMinifyCssStrings(desktopAllStyle)}
 						/* desktopcssEnd */
@@ -469,54 +470,55 @@ const Edit = (props) => {
 							/* mobcssEnd */
 						}
 					`}
-        </style>
+                </style>
 
-        <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
+                <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
+                    <DisplayIcon icon={headingIcon} />
 
-          {showTransparentTitle && <h3 class="zolo-transparent-heading">{transparentTitleText}</h3>}
+                    {showTransparentTitle && <h3 class="zolo-transparent-heading">{transparentTitleText}</h3>}
 
-          {showSeparator && separatorPosition === "top" && (
-            <div className="zolo-ah-separator"></div>
-          )}
+                    {showSeparator && separatorPosition === "top" && (
+                        <div className="zolo-ah-separator"></div>
+                    )}
 
-          {(showSubTitle && subTitlePosition == 'top') && (
-            <RichText
-              tagName={subTitleTagName}
-              className="zolo-ah-subtitle"
-              value={subTitleText}
-              formattingControl={["bold", "italic"]}
-              onChange={(subTitleText) => setAttributes({ subTitleText })}
-            />
-          )}
+                    {(showSubTitle && subTitlePosition == 'top') && (
+                        <RichText
+                            tagName={subTitleTagName}
+                            className="zolo-ah-subtitle"
+                            value={subTitleText}
+                            formattingControl={["bold", "italic"]}
+                            onChange={(subTitleText) => setAttributes({ subTitleText })}
+                        />
+                    )}
 
-          <DynamicTag tagName={titleTagName} className='zolo-ah-title'>
-            <RichText
-              tagName={'span'}
-              className="zolo-ah-main-title"
-              value={titleText}
-              formattingControl={["bold", "italic"]}
-              onChange={(titleText) => setAttributes({ titleText })}
-            />
-          </DynamicTag>
+                    <DynamicTag tagName={titleTagName} className='zolo-ah-title'>
+                        <RichText
+                            tagName={'span'}
+                            className="zolo-ah-main-title"
+                            value={titleText}
+                            formattingControl={["bold", "italic"]}
+                            onChange={(titleText) => setAttributes({ titleText })}
+                        />
+                    </DynamicTag>
 
-          {(showSubTitle && subTitlePosition == 'bottom') && (
-            <RichText
-              tagName={subTitleTagName}
-              className="zolo-ah-subtitle"
-              value={subTitleText}
-              formattingControl={["bold", "italic"]}
-              onChange={(subTitleText) => setAttributes({ subTitleText })}
-            />
-          )}
+                    {(showSubTitle && subTitlePosition == 'bottom') && (
+                        <RichText
+                            tagName={subTitleTagName}
+                            className="zolo-ah-subtitle"
+                            value={subTitleText}
+                            formattingControl={["bold", "italic"]}
+                            onChange={(subTitleText) => setAttributes({ subTitleText })}
+                        />
+                    )}
 
-          {showSeparator && separatorPosition === "bottom" && (
-            <div className="zolo-ah-separator"></div>
-          )}
+                    {showSeparator && separatorPosition === "bottom" && (
+                        <div className="zolo-ah-separator"></div>
+                    )}
 
-        </div>
-      </div>
-    </>
-  )
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default Edit;
