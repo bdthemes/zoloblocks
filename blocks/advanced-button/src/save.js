@@ -15,7 +15,7 @@ const Save = ({ attributes }) => {
 				<a
 					className={`zolo-button ${iconPosition}`}
 					href={link && link.url}
-					rel={rel}
+					rel={(link.opensInNewTab || link.addNoFollow) && rel}
 				>
 					<RichText.Content
 						tagName="span"

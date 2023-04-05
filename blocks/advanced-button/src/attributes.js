@@ -66,7 +66,6 @@ const attributes = {
 	//Block specific Attributes
 	preset: {
 		type: 'string',
-		default: 'button-1',
 	},
 	label: {
 		type: 'string',

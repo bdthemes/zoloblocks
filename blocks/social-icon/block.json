@@ -1,8 +1,8 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"title": "Advanced Button",
-	"icon": "button",
-	"name": "zolo/advanced-social-icon",
+	"title": "Social Icon",
+	"icon": "share",
+	"name": "zolo/social-icon",
 	"category": "zolo-blocks",
 	"keywords": ["icon", "advanced icon"],
 	"description": "Advanced icon description",
