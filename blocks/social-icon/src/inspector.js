@@ -13,7 +13,7 @@ import {
 	TabPanel,
 	TextControl,
 	ToggleControl,
-    Button
+
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment, } from '@wordpress/element';
@@ -37,7 +37,8 @@ function Inspector (props){
 		resMode,
 		resDevice,
         socialText,
-		 targetPage
+		 targetPage,
+         customLink
 	} = attributes;
 
     const resRequiredProps = {
@@ -47,9 +48,9 @@ function Inspector (props){
 		objAttributes,
 	};
     // it is used for experimental purpose
-    //   const posts = useSelect( ( select ) => {
-    //     return wp.data.select("core/editor").getCurrentPostId();
-    // }, [] );
+      const posts = useSelect( ( select ) => {
+        return wp.data.select("core/editor").getCurrentPostId();
+    }, [] );
      
     return(
         <InspectorControls key="controls">
@@ -141,9 +142,17 @@ function Inspector (props){
                                                                 ] }
                                                                 onChange={ ( page ) => { setAttributes( { targetPage:page } ) } }
                                                             />
-                                                       
+                                                   
+                                                         
                                                      
+                                                     {'Custom'===targetPage &&
+                                                            (<TextControl
+                                                               label="CUSTOM LINK"
+                                                               value={ customLink }
+                                                               onChange={ ( custom ) => setAttributes( { customLink:custom } ) }
+                                                           />)
                                                       
+                                                     }
                                                       
                                                   </PanelBody>
                                                   

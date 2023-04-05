@@ -77,6 +77,9 @@ const attributes = {
 	targetPage:{
 		type:"string"
 	},
+	customLink:{
+		type:"string"
+	},
 	showIcon: {
 		type: 'boolean',
 		default: false,
