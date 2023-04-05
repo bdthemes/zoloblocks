@@ -9,7 +9,7 @@ import './style.scss';
 
 //block constants
 import {
-  SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG,
+  SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, TPT_ALIGNMENT, WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_MARGIN,
   WRAPPER_PADDING,
@@ -26,7 +26,8 @@ const {
   generateDimensionStyle,
   generateTypographyStyles,
   generateResRangeStyle,
-  DynamicTag
+  DynamicTag,
+  generateResAlignmentStyle
 } = window.zoloModule;
 
 const Edit = (props) => {
@@ -43,12 +44,15 @@ const Edit = (props) => {
     showSubTitle,
     titleTagName,
     showSeparator,
-    subTitleTagName,
-    showTransparentTitle,
-    transparentTitleText,
     subTitlePosition,
     separatorPosition,
     align,
+    showTransparentTitle,
+    transparentTitleText,
+    transparentTitleXOffset,
+    transparentTitleYOffset,
+    transparentTitleRotate,
+    transparentTitleRotateOrigin,
 
     //style
     titleColor,
@@ -147,6 +151,16 @@ const Edit = (props) => {
     attributes,
   })
 
+  const {
+    desktopAlignStyle: tptAlignmentDesktop,
+    tabAlignStyle: tptAlignmentTab,
+    mobAlignStyle: tptAlignmentMob,
+  } = generateResAlignmentStyle({
+    controlName: TPT_ALIGNMENT,
+    property: "text-align",
+    attributes,
+  });
+
   //wrapper style generate
   const {
     dimensionStylesDesktop: wrapperMarginDesktop,
@@ -213,6 +227,9 @@ const Edit = (props) => {
 			${wrapperShadow}
 			transition:${wrapperShadowTransition};
       text-align: ${align};
+      --zb-advanced-heading-pos-x: ${transparentTitleXOffset}px;
+      --zb-advanced-heading-pos-y: ${transparentTitleYOffset}px;
+      --zb-advanced-heading-rotate: ${transparentTitleRotate}deg;
 		}
 		.zolo-block-wrapper.${uniqueId}:hover{
 			${wrapperHoverBackgroundStylesDesktop}
@@ -361,9 +378,18 @@ const Edit = (props) => {
 
   //transparent styles css
   const transparentStylesDesktop = `
+
+    .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
+      ${tptAlignmentDesktop}
+    }
+
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
       ${tpColor ? `color: ${tpColor};` : ''}
       ${transparentTypoDesktop}
+
+      display:inline-block;
+      -webkit-transform: translate(var(--zb-advanced-heading-pos-x, 0), var(--zb-advanced-heading-pos-y, 0)) rotate(var(--zb-advanced-heading-rotate, 0));
+      transform: translate(var(--zb-advanced-heading-pos-x, 0), var(--zb-advanced-heading-pos-y, 0)) rotate(var(--zb-advanced-heading-rotate, 0));
     }
     .zolo-block-wrapper.${uniqueId}.zolo-ah-style-2 .zolo-transparent-heading {
       -webkit-text-stroke-width: 3px;
@@ -372,12 +398,18 @@ const Edit = (props) => {
   `;
 
   const transparentStylesTab = `
+    .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
+      ${tptAlignmentTab}
+    }
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
       ${transparentTypoTab}
     }
   `;
 
   const transparentStylesMobile = `
+    .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
+      ${tptAlignmentMob}
+    }
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
       ${transparentTypoMobile}
     }
@@ -453,7 +485,11 @@ const Edit = (props) => {
 
         <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
 
-          {showTransparentTitle && <h3 class="zolo-transparent-heading">{transparentTitleText}</h3>}
+          {showTransparentTitle &&
+            <div className='zolo-transparent-heading-wrap'>
+              <h3 className={`zolo-transparent-heading zolo-transform-origin-${transparentTitleRotateOrigin}`}>{transparentTitleText}</h3>
+            </div>
+          }
 
           {showSeparator && separatorPosition === "top" && (
             <div className="zolo-ah-separator"></div>
@@ -461,7 +497,7 @@ const Edit = (props) => {
 
           {(showSubTitle && subTitlePosition == 'top') && (
             <RichText
-              tagName={subTitleTagName}
+              tagName={'h4'}
               className="zolo-ah-subtitle"
               value={subTitleText}
               formattingControl={["bold", "italic"]}
@@ -481,7 +517,7 @@ const Edit = (props) => {
 
           {(showSubTitle && subTitlePosition == 'bottom') && (
             <RichText
-              tagName={subTitleTagName}
+              tagName={'h4'}
               className="zolo-ah-subtitle"
               value={subTitleText}
               formattingControl={["bold", "italic"]}

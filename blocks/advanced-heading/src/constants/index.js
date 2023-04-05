@@ -27,14 +27,38 @@ export const HEADING_TAG = [
   { label: __("H4", "zolo-blocks"), value: "h4" },
   { label: __("H5", "zolo-blocks"), value: "h5" },
   { label: __("H6", "zolo-blocks"), value: "h6" },
+  { label: __("Div", "zolo-blocks"), value: "div" },
   { label: __("P", "zolo-blocks"), value: "p" },
+  { label: __("Span", "zolo-blocks"), value: "span" },
 ];
+
 export const TEXT_ALIGN = [
   { label: __(<Dashicon icon={"editor-alignleft"} />), value: "left" },
   { label: __(<Dashicon icon={"editor-aligncenter"} />), value: "center" },
   { label: __(<Dashicon icon={"editor-alignright"} />), value: "right" },
   { label: __(<Dashicon icon={"editor-justify"} />), value: "justify" }
 ];
+
+export const TPT_HIDE = [
+  { label: 'Nothing', value: 'nothing' },
+  { label: 'Tablet and Mobile', value: 'tab-mob' },
+  { label: 'Mobile', value: 'mob' }
+];
+
+export const TPT_ROTATE_ORIGIN = [
+  { label: 'Default', value: '' },
+  { label: 'Top Left', value: 'top-left' },
+  { label: 'Top Center', value: 'top-center' },
+  { label: 'Top Right', value: 'top-right' },
+  { label: 'Center', value: 'center' },
+  { label: 'Center Left', value: 'center-left' },
+  { label: 'Center Right', value: 'center-right' },
+  { label: 'Bottom Left', value: 'bottom-left' },
+  { label: 'Bottom Center', value: 'bottom-center' },
+  { label: 'Bottom Right', value: 'bottom-right' }
+];
+
+export const TPT_ALIGNMENT = 'tpAlign'
 //style tab
 export const TITLE_MARGIN = 'titleMargin';
 export const SUBTITLE_MARGIN = 'subTitleMargin';

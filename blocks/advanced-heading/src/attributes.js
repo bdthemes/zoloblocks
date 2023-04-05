@@ -6,10 +6,11 @@ const {
   generateDimensionAttributes,
   generateTypographyAttributes,
   generateResRangeAttributies,
+  generateResAlignmentAttributies
 } = window.zoloModule;
 
 //block constants
-import { SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW } from './constants';
+import { SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, TPT_ALIGNMENT, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW } from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes = {
@@ -40,49 +41,70 @@ const attributes = {
   },
   titleText: {
     type: 'string',
-    default: "Zolo Block Advanced Heading",
+    default: "I am Advanced Heading",
   },
-  subTitleText: {
-    type: 'string',
-    default: "Zolo Block Sub Title",
+  titleLink: {
+    type: "string",
+    default: "",
   },
   titleTagName: {
     type: "string",
     default: "h2",
   },
-  subTitleTagName: {
-    type: "string",
-    default: "h4",
-  },
-  transparentTitleText: {
-    type: 'string',
-    default: "Advanced Heading",
-  },
   showSubTitle: {
     type: 'boolean',
     default: false,
   },
-  showSeparator: {
-    type: 'boolean',
-    default: false,
-  },
-  showTransparentTitle: {
-    type: 'boolean',
-    default: false,
+  subTitleText: {
+    type: 'string',
+    default: "Sub Heading Here",
   },
   subTitlePosition: {
     type: 'string',
     default: 'top'
   },
+  showSeparator: {
+    type: 'boolean',
+    default: false,
+  },
   separatorPosition: {
     type: 'string',
     default: 'bottom'
   },
-
   align: {
     type: "string",
     default: "left",
   },
+  showTransparentTitle: {
+    type: 'boolean',
+    default: false,
+  },
+  transparentTitleText: {
+    type: "string",
+    default: "Advanced Heading",
+  },
+  transparentTitleXOffset: {
+    type: 'number',
+    default: '',
+  },
+  transparentTitleYOffset: {
+    type: 'number',
+    default: '',
+  },
+  transparentTitleRotate: {
+    type: 'number',
+    default: '',
+  },
+  transparentTitleHide: {
+    type: "string",
+    default: "",
+  },
+  transparentTitleRotateOrigin: {
+    type: "string",
+    default: "top-left",
+  },
+
+  ...generateResAlignmentAttributies(TPT_ALIGNMENT),
 
   //design tab attributes
   titleColor: {
