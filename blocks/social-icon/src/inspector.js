@@ -38,7 +38,8 @@ function Inspector (props){
 		resDevice,
         socialText,
 		 targetPage,
-         customLink
+         customLink,
+         socialStyle
 	} = attributes;
 
     const resRequiredProps = {
@@ -63,22 +64,22 @@ function Inspector (props){
                                 {
                                     name: 'Content',
                                     title: 'Content',
-                                    className: 'eb-tab Content',
+                                    className: 'zolo-tab Content',
                                 },
                                 {
                                     name: 'Style',
                                     title: 'Style',
-                                    className: 'eb-tab Style',
+                                    className: 'zolo-tab Style',
                                 },
                                 {
                                     name: 'Advanced',
                                     title: 'Advanced',
-                                    className: 'eb-tab advanced',
+                                    className: 'zolo-tab advanced',
                                 },
                             ] }>
                             {
                                 ( tab ) => (
-                                    <div className={'eb-tab--control' + tab.name}>
+                                    <div className={'zolo-tab--control' + tab.name}>
                                             {tab.name === "Content" &&(
                                                 <>
                                                   <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={true}>
@@ -157,6 +158,35 @@ function Inspector (props){
                                                   </PanelBody>
                                                   
 
+                                                </>
+                                            )}
+
+                                            {tab.name === "Style" &&(
+                                                <>
+                                             <div className="style-wrapper">
+                                                <div className="style-title" ><h3>Style</h3></div>
+                                                <div className="panel-body" >
+                                                <PanelBody
+                                                        initialOpen={ true }
+                                                        >                                                   
+                                                             <SelectControl
+                                                                 
+                                                                 value={ socialStyle }
+                                                                 options={ [
+                                                                     { label: 'Flat', value: 'Flat' },
+                                                                     { label: 'Framed', value: 'Framed' },
+                                                                     { label: 'Gradiant', value: 'Gradiant' },
+                                                                     { label: 'Minimal', value: 'Minimal' },
+                                                                     { label: 'Boxed Icon', value: 'Boxed Icon' },
+                                                                 ] }
+                                                                 onChange={ ( style ) => { setAttributes( { socialStyle:style } ) } }
+                                                             />
+                                                      
+                                                    </PanelBody>
+                                                </div>
+                                             </div>
+                                                    
+                                              
                                                 </>
                                             )}
                                     </div>

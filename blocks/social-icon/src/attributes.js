@@ -53,7 +53,7 @@ const attributes = {
 		default: 'preset-1',
 	},
 	label: {
-		type: 'string',
+		type: 'object',
 	},
 	link: {
 		type: 'object',
@@ -72,6 +72,9 @@ const attributes = {
 		default: false,
 	},
 	socialText: {
+		type:"string"
+	},
+    socialStyle:{
 		type:"string"
 	},
 	targetPage:{
