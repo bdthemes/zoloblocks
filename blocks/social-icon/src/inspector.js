@@ -163,14 +163,14 @@ function Inspector (props){
 
                                             {tab.name === "Style" &&(
                                                 <>
-                                             
-                                                    <PanelBody
-                                                        title="Style"
+                                             <div className="style-wrapper" style={{width:'100%',display:"flex"}}>
+                                                <div className="style-title" style={{width:'50%'}}><h3>Style</h3></div>
+                                                <div className="panel-body" style={{width:'50%'}}>
+                                                <PanelBody
                                                         initialOpen={ true }
-                                                        >
-                                                      
+                                                        >                                                   
                                                              <SelectControl
-                                                                 label="Style"
+                                                                 
                                                                  value={ socialStyle }
                                                                  options={ [
                                                                      { label: 'Flat', value: 'Flat' },
@@ -183,6 +183,9 @@ function Inspector (props){
                                                              />
                                                       
                                                     </PanelBody>
+                                                </div>
+                                             </div>
+                                                    
                                               
                                                 </>
                                             )}
