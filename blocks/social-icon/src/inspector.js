@@ -163,9 +163,9 @@ function Inspector (props){
 
                                             {tab.name === "Style" &&(
                                                 <>
-                                             <div className="style-wrapper" style={{width:'100%',display:"flex"}}>
-                                                <div className="style-title" style={{width:'50%'}}><h3>Style</h3></div>
-                                                <div className="panel-body" style={{width:'50%'}}>
+                                             <div className="style-wrapper">
+                                                <div className="style-title" ><h3>Style</h3></div>
+                                                <div className="panel-body" >
                                                 <PanelBody
                                                         initialOpen={ true }
                                                         >                                                   
