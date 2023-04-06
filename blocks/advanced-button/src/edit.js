@@ -69,6 +69,8 @@ export default function Edit(props) {
 		textColor,
 		textHoverColor,
 		borderHoverColor,
+		presetOneStyles,
+		presetTwoStyles,
 	} = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -176,10 +178,7 @@ export default function Edit(props) {
 	});
 
 	// Generate Hover Box Shadow
-	const {
-		boxShadowStyle: hoverBoxShadowStyle,
-		transitionStyle: buttonTransitionStyle,
-	} = generateBoxShadowStyles({
+	const { boxShadowStyle: hoverBoxShadowStyle } = generateBoxShadowStyles({
 		attributes,
 		controlName: BUTTON_HOVER_BOX_SHADOW,
 	});
@@ -248,10 +247,7 @@ export default function Edit(props) {
 	});
 
 	// hover box shadow
-	const {
-		boxShadowStyle: iconHoverBoxShadow,
-		transitionStyle: iconTransitionStyle,
-	} = generateBoxShadowStyles({
+	const { boxShadowStyle: iconHoverBoxShadow } = generateBoxShadowStyles({
 		attributes,
 		controlName: ICON_HOVER_BOX_SHADOW,
 	});
@@ -268,9 +264,42 @@ export default function Edit(props) {
 	});
 
 	/**
+	 * Presets Based Styles
+	 */
+	let presetStyles;
+	let presetHoverStyles;
+	switch (preset) {
+		case 'button-1':
+			presetStyles = `
+				.zolo-advanced-button.${uniqueId}{
+					box-shadow: #fff 4px 4px 0 0, ${
+						presetOneStyles && presetOneStyles.shadowColor
+					} 4px 4px 0 1px;
+				}
+			`;
+			break;
+
+		case 'button-2':
+			presetStyles = `
+				.zolo-advanced-button.${uniqueId}:before{
+					background-color: ${presetTwoStyles && presetTwoStyles.bgColor};
+				}`;
+			presetHoverStyles = `
+				.zolo-advanced-button.${uniqueId}:hover:before{
+					background-color: ${presetTwoStyles && presetTwoStyles.hoverBgColor};
+				}`;
+			break;
+		default:
+			presetStyles = '';
+			presetHoverStyles = '';
+	}
+
+	/**
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
+		${presetStyles !== '' && presetStyles}
+		${presetHoverStyles !== '' && presetHoverStyles}
 		.wp-block-zolo-advanced-button {
 			${buttonAlignmentDesktop}
 		}
@@ -282,7 +311,6 @@ export default function Edit(props) {
 			${paddingDesktop}
 			${marginDesktop}
 			${deskAlign}
-			transition: ${buttonTransitionStyle};
 		}
 		.zolo-advanced-button.${uniqueId}:hover{
 			${hoverBoxShadowStyle}
@@ -308,7 +336,6 @@ export default function Edit(props) {
 			${iconBorderRadiusDesktop}
 			${iconNormalBoxShadow}
 			${iconPaddingDesktop}
-			transition: ${iconTransitionStyle};
 			fill: ${iconColor ? iconColor : ''};
 			background: ${iconBg ? iconBg : ''};
 		}

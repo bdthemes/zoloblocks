@@ -67,7 +67,6 @@ function Inspector(props) {
 	const { attributes, setAttributes } = props;
 	const {
 		uniqueId,
-		preset,
 		resMode,
 		resDevice,
 		label,
@@ -83,25 +82,28 @@ function Inspector(props) {
 		textColor,
 		textHoverColor,
 		borderHoverColor,
+		preset,
+		presetOneStyles,
+		presetTwoStyles,
 	} = attributes;
 
-	const changePreset = (selected) => {
-		setAttributes({ preset: selected });
-		switch (selected) {
-			case 'preset-1':
-				//Write code here
-				setAttributes({
-					bgColor: '#551ef7',
-					textColor: '#ffffff',
-				});
-				break;
-			case 'preset-2':
-				//Write code here
-				break;
-			default:
-				return false;
-		}
-	};
+	// const changePreset = (selected) => {
+	// 	setAttributes({ preset: selected });
+	// 	switch (selected) {
+	// 		case 'preset-1':
+	// 			//Write code here
+	// 			setAttributes({
+	// 				bgColor: '#551ef7',
+	// 				textColor: '#ffffff',
+	// 			});
+	// 			break;
+	// 		case 'preset-2':
+	// 			//Write code here
+	// 			break;
+	// 		default:
+	// 			return false;
+	// 	}
+	// };
 
 	const resRequiredProps = {
 		attributes,
@@ -150,8 +152,10 @@ function Inspector(props) {
 											)}
 											value={preset}
 											options={PRESETS}
-											onChange={(selected) =>
-												changePreset(selected)
+											onChange={(value) =>
+												setAttributes({
+													preset: value,
+												})
 											}
 										/>
 										<ResAlignmentControl
@@ -291,9 +295,102 @@ function Inspector(props) {
 
 							{tab.name === 'design' && (
 								<>
+									{preset !== '' && (
+										<PanelBody
+											title={__('Preset', 'zolo-blocks')}
+											initialOpen={true}
+										>
+											{preset === 'button-1' && (
+												<Fragment>
+													<ColorControl
+														label={__(
+															'Shadow Color',
+															'zolo-blocks'
+														)}
+														color={
+															presetOneStyles &&
+															presetOneStyles.shadowColor
+														}
+														onChange={(value) =>
+															setAttributes({
+																presetOneStyles:
+																	{
+																		...presetOneStyles,
+																		shadowColor:
+																			value,
+																	},
+															})
+														}
+													/>
+												</Fragment>
+											)}
+											{preset === 'button-2' && (
+												<Fragment>
+													<TabPanelControl
+														normalComponents={
+															<Fragment>
+																<ColorControl
+																	label={__(
+																		'Overlay Color',
+																		'zolo-blocks'
+																	)}
+																	color={
+																		presetTwoStyles &&
+																		presetTwoStyles.bgColor
+																	}
+																	onChange={(
+																		value
+																	) =>
+																		setAttributes(
+																			{
+																				presetTwoStyles:
+																					{
+																						...presetTwoStyles,
+																						bgColor:
+																							value,
+																					},
+																			}
+																		)
+																	}
+																/>
+															</Fragment>
+														}
+														hoverComponents={
+															<Fragment>
+																<ColorControl
+																	label={__(
+																		'Overlay Color',
+																		'zolo-blocks'
+																	)}
+																	color={
+																		presetTwoStyles &&
+																		presetTwoStyles.hoverBgColor
+																	}
+																	onChange={(
+																		value
+																	) =>
+																		setAttributes(
+																			{
+																				presetTwoStyles:
+																					{
+																						...presetTwoStyles,
+																						hoverBgColor:
+																							value,
+																					},
+																			}
+																		)
+																	}
+																/>
+															</Fragment>
+														}
+													/>
+												</Fragment>
+											)}
+										</PanelBody>
+									)}
 									<PanelBody
 										title={__('General', 'zolo-blocks')}
-										initialOpen={true}
+										initialOpen={false}
 									>
 										<TypographyDropdown
 											label="Typography"

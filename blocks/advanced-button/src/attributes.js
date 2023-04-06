@@ -67,6 +67,19 @@ const attributes = {
 	preset: {
 		type: 'string',
 	},
+	presetOneStyles: {
+		type: 'object',
+		default: {
+			shadowColor: '#000000',
+		},
+	},
+	presetTwoStyles: {
+		type: 'object',
+		default: {
+			bgColor: '#d5edf6',
+			hoverBgColor: '#6dcff6',
+		},
+	},
 	label: {
 		type: 'string',
 	},
