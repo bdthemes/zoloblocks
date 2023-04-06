@@ -11,7 +11,10 @@ import {
 	ICON_TEXT_SPACING,
 	COLUMNS_NUMBER,
 	COLUMNS_GAP ,
-	ROW_GAP
+	ROW_GAP,
+	BUTTON_SIZE,
+	BUTTON_ICON_SIZE,
+	BUTTON_HEIGHT
 	
 } from './constants';
 
@@ -43,7 +46,15 @@ const attributes = {
 	...generateResRangeAttributies(COLUMNS_GAP),
 	//row gaps
 	...generateResRangeAttributies(ROW_GAP),
-	//icon spacing 
+	
+	//button size
+	...generateResRangeAttributies(BUTTON_SIZE),
+	//button icon size
+	...generateResRangeAttributies(BUTTON_ICON_SIZE),
+	//button height
+	...generateResRangeAttributies(BUTTON_HEIGHT),
+	
+	//icon spacing
 	...generateResRangeAttributies(ICON_TEXT_SPACING, {
 		default: 5,
 	}),
@@ -81,6 +92,9 @@ const attributes = {
 		type:"string"
 	},
 	customLink:{
+		type:"string"
+	},
+	columnsNumber:{
 		type:"string"
 	},
 	showIcon: {
