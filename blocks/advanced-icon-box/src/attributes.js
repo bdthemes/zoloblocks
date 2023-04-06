@@ -76,6 +76,26 @@ const attributes = {
 	textHoverColor: {
 		type: 'string',
 	},
+	iconType: {
+		type: 'string',
+		default: 'icon',
+	},
+	iconTypeImage: {
+		type: 'object',
+	},
+	iconBoxTitle: {
+		type: 'string',
+	},
+	iconBoxDescription: {
+		type: 'string',
+	},
+	buttonText: {
+		type: 'string',
+	},
+	buttonLink: {
+		type: 'string',
+		default: '#',
+	},
 };
 
 export default attributes;
