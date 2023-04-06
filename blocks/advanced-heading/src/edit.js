@@ -43,6 +43,7 @@ const Edit = (props) => {
     subTitleText,
     showSubTitle,
     titleTagName,
+    titleLink,
     showSeparator,
     subTitlePosition,
     separatorPosition,
@@ -53,6 +54,7 @@ const Edit = (props) => {
     transparentTitleYOffset,
     transparentTitleRotate,
     transparentTitleRotateOrigin,
+    transparentTitleHide,
 
     //style
     titleColor,
@@ -259,6 +261,11 @@ const Edit = (props) => {
 			${wrapperPaddingTab}
 			${wrapperBackgroundStylesTab}
 			${wrapperBorderTab}
+      ${transparentTitleHide === 'nothing' && `
+        --zb-advanced-heading-pos-x: 0px;
+        --zb-advanced-heading-pos-y: 0px;
+        --zb-advanced-heading-rotate: 0deg;
+      `}
 		}
 		.zolo-block-wrapper.${uniqueId}:hover{
 			${wrapperHoverBackgroundStylesTab}
@@ -276,6 +283,11 @@ const Edit = (props) => {
 			${wrapperPaddingMobile}
 			${wrapperBackgroundStylesMobile}
 			${wrapperBorderMob}
+      ${transparentTitleHide === 'nothing' && `
+        --zb-advanced-heading-pos-x: 0px;
+        --zb-advanced-heading-pos-y: 0px;
+        --zb-advanced-heading-rotate: 0deg;
+      `}
 		}
 		.zolo-block-wrapper.${uniqueId}:hover{
 			${wrapperHoverBackgroundStylesMobile}
@@ -378,11 +390,9 @@ const Edit = (props) => {
 
   //transparent styles css
   const transparentStylesDesktop = `
-
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
       ${tptAlignmentDesktop}
     }
-
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
       ${tpColor ? `color: ${tpColor};` : ''}
       ${transparentTypoDesktop}
@@ -400,6 +410,7 @@ const Edit = (props) => {
   const transparentStylesTab = `
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
       ${tptAlignmentTab}
+      ${transparentTitleHide === 'tab-mob' && `display:none`}
     }
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
       ${transparentTypoTab}
@@ -409,6 +420,7 @@ const Edit = (props) => {
   const transparentStylesMobile = `
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
       ${tptAlignmentMob}
+      ${(transparentTitleHide === 'tab-mob' || transparentTitleHide === 'mob') && `display:none`}
     }
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
       ${transparentTypoMobile}
@@ -506,12 +518,14 @@ const Edit = (props) => {
           )}
 
           <DynamicTag tagName={titleTagName} className='zolo-ah-title'>
+
             <RichText
-              tagName={'span'}
+              tagName={titleLink ? 'a' : 'span'}
               className="zolo-ah-main-title"
               value={titleText}
               formattingControl={["bold", "italic"]}
               onChange={(titleText) => setAttributes({ titleText })}
+              {...(titleLink ? { href: titleLink } : {})}
             />
           </DynamicTag>
 

@@ -384,9 +384,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 
                       </PanelBody>
                     )}
-
-
-
                   </PanelBody>
                 </>
               )}
@@ -394,7 +391,7 @@ const Inspector = ({ attributes, setAttributes }) => {
               {tab.name === 'design' && (
                 <>
                   <PanelBody
-                    title={__('Title', 'zolo-blocks')}
+                    title={__('Main Heading', 'zolo-blocks')}
                     initialOpen={true}
                   >
                     <TypographyDropdown
@@ -439,7 +436,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                   </PanelBody>
 
                   <PanelBody
-                    title={__('Sub Title', 'zolo-blocks')}
+                    title={__('Sub Heading', 'zolo-blocks')}
                     initialOpen={false}
                   >
                     <TypographyDropdown
@@ -462,25 +459,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                       resRequiredProps={resRequiredProps}
                     />
 
-                  </PanelBody>
-
-                  <PanelBody
-                    title={__('Transparent Title', 'zolo-blocks')}
-                    initialOpen={false}
-                  >
-                    <TypographyDropdown
-                      label="Typography"
-                      typoPrefixConstant={TRANSPARENT_TYPOGRAPHY}
-                      resRequiredProps={resRequiredProps}
-                    />
-
-                    <ColorControl
-                      label={__('Color', 'zolo-blocks')}
-                      color={tpColor}
-                      onChange={(val) => setAttributes({
-                        tpColor: val,
-                      })}
-                    />
                   </PanelBody>
 
                   <PanelBody
@@ -515,6 +493,25 @@ const Inspector = ({ attributes, setAttributes }) => {
                       color={separatorColor}
                       onChange={(val) => setAttributes({
                         separatorColor: val,
+                      })}
+                    />
+                  </PanelBody>
+
+                  <PanelBody
+                    title={__('Advanced Heading', 'zolo-blocks')}
+                    initialOpen={false}
+                  >
+                    <TypographyDropdown
+                      label="Typography"
+                      typoPrefixConstant={TRANSPARENT_TYPOGRAPHY}
+                      resRequiredProps={resRequiredProps}
+                    />
+
+                    <ColorControl
+                      label={__('Color', 'zolo-blocks')}
+                      color={tpColor}
+                      onChange={(val) => setAttributes({
+                        tpColor: val,
                       })}
                     />
                   </PanelBody>

@@ -85,19 +85,19 @@ const attributes = {
   },
   transparentTitleXOffset: {
     type: 'number',
-    default: '',
+    default: 0,
   },
   transparentTitleYOffset: {
     type: 'number',
-    default: '',
+    default: 0,
   },
   transparentTitleRotate: {
     type: 'number',
-    default: '',
+    default: 0,
   },
   transparentTitleHide: {
     type: "string",
-    default: "",
+    default: "tab-mob",
   },
   transparentTitleRotateOrigin: {
     type: "string",

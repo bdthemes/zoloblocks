@@ -8,15 +8,16 @@ const Save = ({ attributes }) => {
     uniqueId,
     //settings
     titleText,
+    titleLink,
+    titleTagName,
     subTitleText,
     showSubTitle,
-    titleTagName,
+    subTitlePosition,
     showSeparator,
-    subTitleTagName,
+    separatorPosition,
     showTransparentTitle,
     transparentTitleText,
-    separatorPosition,
-    subTitlePosition,
+    transparentTitleRotateOrigin,
     //styles
     styles
   } = attributes;
@@ -26,7 +27,11 @@ const Save = ({ attributes }) => {
 
       <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
 
-        {showTransparentTitle && <h3 class="zolo-transparent-heading">{transparentTitleText}</h3>}
+        {showTransparentTitle &&
+          <div className='zolo-transparent-heading-wrap'>
+            <h3 className={`zolo-transparent-heading zolo-transform-origin-${transparentTitleRotateOrigin}`}>{transparentTitleText}</h3>
+          </div>
+        }
 
         {showSeparator && separatorPosition === "top" && (
           <div className="zolo-ah-separator"></div>
@@ -34,7 +39,7 @@ const Save = ({ attributes }) => {
 
         {(showSubTitle && subTitlePosition == 'top') && (
           <RichText.Content
-            tagName={subTitleTagName}
+            tagName={'h4'}
             className="zolo-ah-subtitle"
             value={subTitleText}
             formattingControl={["bold", "italic"]}
@@ -43,16 +48,17 @@ const Save = ({ attributes }) => {
 
         <DynamicTag tagName={titleTagName} className='zolo-ah-title'>
           <RichText.Content
-            tagName={'span'}
+            tagName={titleLink ? 'a' : 'span'}
             className="zolo-ah-main-title"
             value={titleText}
             formattingControl={["bold", "italic"]}
+            {...(titleLink ? { href: titleLink } : {})}
           />
         </DynamicTag>
 
         {(showSubTitle && subTitlePosition == 'bottom') && (
           <RichText.Content
-            tagName={subTitleTagName}
+            tagName={'h4'}
             className="zolo-ah-subtitle"
             value={subTitleText}
             formattingControl={["bold", "italic"]}
