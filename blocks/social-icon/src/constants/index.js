@@ -49,6 +49,11 @@ export const SOCIAL_TEXT =[
 export const COLUMNS_NUMBER = "columns";
 export const COLUMNS_GAP = "columnsGap";
 export const ROW_GAP ="rowGap";
+//button size
+export const BUTTON_SIZE = "btnSize";
+export const BUTTON_ICON_SIZE = "buttonIconSize";
+export const BUTTON_HEIGHT = "buttonHeight";
+
 // Button BG
 export const BUTTON_BG_COLOR = 'buttonNormal';
 // Button Hover BG
