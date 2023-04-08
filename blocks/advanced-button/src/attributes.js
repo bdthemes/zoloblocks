@@ -67,6 +67,68 @@ const attributes = {
 	preset: {
 		type: 'string',
 	},
+	presetOneStyles: {
+		type: 'object',
+		default: {
+			shadowColor: '',
+		},
+	},
+	presetTwoStyles: {
+		type: 'object',
+		default: {
+			bgColor: '',
+			hoverBgColor: '',
+		},
+	},
+	presetThreeStyles: {
+		type: 'object',
+		default: {
+			bgColor: '',
+		},
+	},
+	presetFourStyles: {
+		type: 'object',
+		default: {
+			colorOne: '',
+			colorTwo: '',
+		},
+	},
+	presetFiveStyles: {
+		type: 'object',
+		default: {
+			borderColor: '',
+		},
+	},
+	presetSevenStyles: {
+		type: 'object',
+		default: {
+			bgColor: '',
+		},
+	},
+	presetEightStyles: {
+		type: 'object',
+		default: {
+			overlayColor: '',
+		},
+	},
+	presetTenStyles: {
+		type: 'object',
+		default: {
+			outlineColor: '#373b44',
+		},
+	},
+	presetElevenStyles: {
+		type: 'object',
+		default: {
+			overlayBgColor: '',
+		},
+	},
+	presetTwelveStyles: {
+		type: 'object',
+		default: {
+			overlayBgColor: '',
+		},
+	},
 	label: {
 		type: 'string',
 	},
