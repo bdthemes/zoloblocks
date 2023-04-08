@@ -85,6 +85,14 @@ function Inspector(props) {
 		preset,
 		presetOneStyles,
 		presetTwoStyles,
+		presetThreeStyles,
+		presetFourStyles,
+		presetFiveStyles,
+		presetSevenStyles,
+		presetEightStyles,
+		presetTenStyles,
+		presetElevenStyles,
+		presetTwelveStyles,
 	} = attributes;
 
 	// const changePreset = (selected) => {
@@ -295,99 +303,318 @@ function Inspector(props) {
 
 							{tab.name === 'design' && (
 								<>
-									{preset !== '' && (
-										<PanelBody
-											title={__('Preset', 'zolo-blocks')}
-											initialOpen={true}
-										>
-											{preset === 'button-1' && (
-												<Fragment>
-													<ColorControl
-														label={__(
-															'Shadow Color',
-															'zolo-blocks'
-														)}
-														color={
-															presetOneStyles &&
-															presetOneStyles.shadowColor
-														}
-														onChange={(value) =>
-															setAttributes({
-																presetOneStyles:
-																	{
-																		...presetOneStyles,
-																		shadowColor:
-																			value,
-																	},
-															})
-														}
-													/>
-												</Fragment>
-											)}
-											{preset === 'button-2' && (
-												<Fragment>
-													<TabPanelControl
-														normalComponents={
-															<Fragment>
-																<ColorControl
-																	label={__(
-																		'Overlay Color',
-																		'zolo-blocks'
-																	)}
-																	color={
-																		presetTwoStyles &&
-																		presetTwoStyles.bgColor
-																	}
-																	onChange={(
-																		value
-																	) =>
-																		setAttributes(
-																			{
-																				presetTwoStyles:
-																					{
-																						...presetTwoStyles,
-																						bgColor:
-																							value,
-																					},
-																			}
-																		)
-																	}
-																/>
-															</Fragment>
-														}
-														hoverComponents={
-															<Fragment>
-																<ColorControl
-																	label={__(
-																		'Overlay Color',
-																		'zolo-blocks'
-																	)}
-																	color={
-																		presetTwoStyles &&
-																		presetTwoStyles.hoverBgColor
-																	}
-																	onChange={(
-																		value
-																	) =>
-																		setAttributes(
-																			{
-																				presetTwoStyles:
-																					{
-																						...presetTwoStyles,
-																						hoverBgColor:
-																							value,
-																					},
-																			}
-																		)
-																	}
-																/>
-															</Fragment>
-														}
-													/>
-												</Fragment>
-											)}
-										</PanelBody>
-									)}
+									{preset !== '' &&
+										preset !== 'button-6' &&
+										preset !== 'button-9' &&
+										preset !== 'button-13' &&
+										preset !== 'button-14' && (
+											<PanelBody
+												title={__(
+													'Preset',
+													'zolo-blocks'
+												)}
+												initialOpen={true}
+											>
+												{preset === 'button-1' && (
+													<Fragment>
+														<ColorControl
+															label={__(
+																'Shadow Color',
+																'zolo-blocks'
+															)}
+															color={
+																presetOneStyles &&
+																presetOneStyles.shadowColor
+															}
+															onChange={(value) =>
+																setAttributes({
+																	presetOneStyles:
+																		{
+																			...presetOneStyles,
+																			shadowColor:
+																				value,
+																		},
+																})
+															}
+														/>
+													</Fragment>
+												)}
+												{preset === 'button-2' && (
+													<Fragment>
+														<TabPanelControl
+															normalComponents={
+																<Fragment>
+																	<ColorControl
+																		label={__(
+																			'Overlay Color',
+																			'zolo-blocks'
+																		)}
+																		color={
+																			presetTwoStyles &&
+																			presetTwoStyles.bgColor
+																		}
+																		onChange={(
+																			value
+																		) =>
+																			setAttributes(
+																				{
+																					presetTwoStyles:
+																						{
+																							...presetTwoStyles,
+																							bgColor:
+																								value,
+																						},
+																				}
+																			)
+																		}
+																	/>
+																</Fragment>
+															}
+															hoverComponents={
+																<Fragment>
+																	<ColorControl
+																		label={__(
+																			'Overlay Color',
+																			'zolo-blocks'
+																		)}
+																		color={
+																			presetTwoStyles &&
+																			presetTwoStyles.hoverBgColor
+																		}
+																		onChange={(
+																			value
+																		) =>
+																			setAttributes(
+																				{
+																					presetTwoStyles:
+																						{
+																							...presetTwoStyles,
+																							hoverBgColor:
+																								value,
+																						},
+																				}
+																			)
+																		}
+																	/>
+																</Fragment>
+															}
+														/>
+													</Fragment>
+												)}
+												{preset === 'button-3' && (
+													<Fragment>
+														<ColorControl
+															label={__(
+																'Overlay Color',
+																'zolo-blocks'
+															)}
+															color={
+																presetThreeStyles &&
+																presetThreeStyles.bgColor
+															}
+															onChange={(value) =>
+																setAttributes({
+																	presetThreeStyles:
+																		{
+																			...presetThreeStyles,
+																			bgColor:
+																				value,
+																		},
+																})
+															}
+														/>
+													</Fragment>
+												)}
+												{preset === 'button-4' && (
+													<Fragment>
+														<ColorControl
+															label={__(
+																'Overlay Color 1',
+																'zolo-blocks'
+															)}
+															color={
+																presetFourStyles &&
+																presetFourStyles.colorOne
+															}
+															onChange={(value) =>
+																setAttributes({
+																	presetFourStyles:
+																		{
+																			...presetFourStyles,
+																			colorOne:
+																				value,
+																		},
+																})
+															}
+														/>
+														<ColorControl
+															label={__(
+																'Overlay Color 2',
+																'zolo-blocks'
+															)}
+															color={
+																presetFourStyles &&
+																presetFourStyles.colorTwo
+															}
+															onChange={(value) =>
+																setAttributes({
+																	presetFourStyles:
+																		{
+																			...presetFourStyles,
+																			colorTwo:
+																				value,
+																		},
+																})
+															}
+														/>
+													</Fragment>
+												)}
+												{preset === 'button-5' && (
+													<Fragment>
+														<ColorControl
+															label={__(
+																'Border Color',
+																'zolo-blocks'
+															)}
+															color={
+																presetFiveStyles &&
+																presetFiveStyles.borderColor
+															}
+															onChange={(value) =>
+																setAttributes({
+																	presetFiveStyles:
+																		{
+																			...presetFiveStyles,
+																			borderColor:
+																				value,
+																		},
+																})
+															}
+														/>
+													</Fragment>
+												)}
+												{preset === 'button-7' && (
+													<Fragment>
+														<ColorControl
+															label={__(
+																'Background Color',
+																'zolo-blocks'
+															)}
+															color={
+																presetSevenStyles &&
+																presetSevenStyles.bgColor
+															}
+															onChange={(value) =>
+																setAttributes({
+																	presetSevenStyles:
+																		{
+																			...presetSevenStyles,
+																			bgColor:
+																				value,
+																		},
+																})
+															}
+														/>
+													</Fragment>
+												)}
+												{preset === 'button-8' && (
+													<Fragment>
+														<ColorControl
+															label={__(
+																'Overlay Color',
+																'zolo-blocks'
+															)}
+															color={
+																presetEightStyles &&
+																presetEightStyles.overlayColor
+															}
+															onChange={(value) =>
+																setAttributes({
+																	presetEightStyles:
+																		{
+																			...presetEightStyles,
+																			overlayColor:
+																				value,
+																		},
+																})
+															}
+														/>
+													</Fragment>
+												)}
+												{preset === 'button-10' && (
+													<Fragment>
+														<ColorControl
+															label={__(
+																'Outline Color',
+																'zolo-blocks'
+															)}
+															color={
+																presetTenStyles &&
+																presetTenStyles.outlineColor
+															}
+															onChange={(value) =>
+																setAttributes({
+																	presetTenStyles:
+																		{
+																			...presetTenStyles,
+																			outlineColor:
+																				value,
+																		},
+																})
+															}
+														/>
+													</Fragment>
+												)}
+												{preset === 'button-11' && (
+													<Fragment>
+														<ColorControl
+															label={__(
+																'Overlay Background',
+																'zolo-blocks'
+															)}
+															color={
+																presetElevenStyles &&
+																presetElevenStyles.overlayBgColor
+															}
+															onChange={(value) =>
+																setAttributes({
+																	presetElevenStyles:
+																		{
+																			...presetElevenStyles,
+																			overlayBgColor:
+																				value,
+																		},
+																})
+															}
+														/>
+													</Fragment>
+												)}
+												{preset === 'button-12' && (
+													<Fragment>
+														<ColorControl
+															label={__(
+																'Overlay Background',
+																'zolo-blocks'
+															)}
+															color={
+																presetTwelveStyles &&
+																presetTwelveStyles.overlayBgColor
+															}
+															onChange={(value) =>
+																setAttributes({
+																	presetTwelveStyles:
+																		{
+																			...presetTwelveStyles,
+																			overlayBgColor:
+																				value,
+																		},
+																})
+															}
+														/>
+													</Fragment>
+												)}
+											</PanelBody>
+										)}
 									<PanelBody
 										title={__('General', 'zolo-blocks')}
 										initialOpen={false}

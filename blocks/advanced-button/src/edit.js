@@ -71,6 +71,14 @@ export default function Edit(props) {
 		borderHoverColor,
 		presetOneStyles,
 		presetTwoStyles,
+		presetThreeStyles,
+		presetFourStyles,
+		presetFiveStyles,
+		presetSevenStyles,
+		presetEightStyles,
+		presetTenStyles,
+		presetElevenStyles,
+		presetTwelveStyles,
 	} = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -287,6 +295,68 @@ export default function Edit(props) {
 			presetHoverStyles = `
 				.zolo-advanced-button.${uniqueId}:hover:before{
 					background-color: ${presetTwoStyles && presetTwoStyles.hoverBgColor};
+				}`;
+			break;
+		case 'button-3':
+			presetStyles = `
+				.zolo-advanced-button.${uniqueId}:after{
+					background-color: ${presetThreeStyles && presetThreeStyles.bgColor};
+				}`;
+			break;
+		case 'button-4':
+			presetStyles = `
+				.zolo-advanced-button.${uniqueId}{
+					background: linear-gradient(45deg, transparent 5%, ${
+						presetFourStyles.colorTwo
+					} 5%);
+					box-shadow: 6px 0px 0px ${presetFourStyles.colorOne};
+				}
+				.zolo-advanced-button.${uniqueId}:after{
+					background: linear-gradient(45deg, transparent 3%, ${
+						presetFourStyles && presetFourStyles.colorOne
+					} 3%, ${
+				presetFourStyles && presetFourStyles.colorOne
+			} 5%, ${presetFourStyles && presetFourStyles.colorTwo} 5%);
+				}`;
+			break;
+		case 'button-5':
+			presetStyles = `
+				.zolo-advanced-button.${uniqueId}:after{
+					border-color: ${presetFiveStyles && presetFiveStyles.borderColor};
+				}`;
+			break;
+		case 'button-7':
+			presetStyles = `
+				.zolo-advanced-button.${uniqueId}:after{
+					background-color: ${presetSevenStyles && presetSevenStyles.bgColor};
+				}`;
+			break;
+		case 'button-8':
+			presetStyles = `
+				.zolo-advanced-button.${uniqueId}:after{
+					background: ${presetEightStyles && presetEightStyles.overlayColor};
+				}`;
+			break;
+		case 'button-10':
+			presetStyles = `
+				.zolo-advanced-button.${uniqueId}{
+					--color: ${
+						presetTenStyles.outlineColor
+							? presetTenStyles.outlineColor
+							: '#373b44'
+					};
+				}`;
+			break;
+		case 'button-11':
+			presetStyles = `
+				.zolo-advanced-button.${uniqueId}:after{
+					background-color: ${presetElevenStyles && presetElevenStyles.overlayBgColor};
+				}`;
+			break;
+		case 'button-12':
+			presetStyles = `
+				.zolo-advanced-button.${uniqueId}:after{
+					background-color: ${presetTwelveStyles && presetTwelveStyles.overlayBgColor};
 				}`;
 			break;
 		default:
