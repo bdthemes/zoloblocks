@@ -64,7 +64,11 @@ const attributes = {
 		default: 'preset-1',
 	},
 	label: {
-		type: 'object',
+		type: 'string',
+	},
+	socialRepeat:{
+		type:"array",
+		default:[]
 	},
 	link: {
 		type: 'object',
