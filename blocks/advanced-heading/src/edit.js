@@ -9,7 +9,19 @@ import './style.scss';
 
 //block constants
 import {
-  SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, TPT_ALIGNMENT, WRAPPER_BG,
+  SEPARATOR_HEIGHT, SEPARATOR_SPACING, SEPARATOR_WIDTH, SUBTITLE_MARGIN,
+  TITLE_BORDER,
+  TITLE_BORDER_RADIUS,
+  TITLE_MARGIN,
+  TITLE_PADDING,
+  TITLE_SHADOW,
+  TPT_ALIGNMENT,
+  TPT_BORDER,
+  TPT_BORDER_RADIUS,
+  TPT_MARGIN,
+  TPT_PADDING,
+  TPT_SHADOW,
+  WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_MARGIN,
   WRAPPER_PADDING,
@@ -59,10 +71,11 @@ const Edit = (props) => {
     //style
     titleColor,
     subTitleColor,
-    tpColor,
+    tptColor,
+    tptBgColor,
+    tptOpacity,
     separatorColor,
     titleBgColor,
-    titleBorderColor
   } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -103,6 +116,45 @@ const Edit = (props) => {
   });
 
   const {
+    dimensionStylesDesktop: titlePaddingDesktop,
+    dimensionStylesTab: titlePaddingTab,
+    dimensionStylesMobile: titlePaddingMob,
+  } = generateDimensionStyle({
+    controlName: TITLE_PADDING,
+    styleFor: 'padding',
+    attributes,
+  });
+
+  const {
+    dimensionStylesDesktop: titleBorderRadiusDesktop,
+    dimensionStylesTab: titleBorderRadiusTab,
+    dimensionStylesMobile: titleBorderRadiusMob,
+  } = generateDimensionStyle({
+    controlName: TITLE_BORDER_RADIUS,
+    styleFor: 'border-radius',
+    attributes,
+  });
+
+  const {
+    boxShadowStyle: titleShadow,
+    hoverBoxShadowstyle: titleHoverShadow,
+    transitionStyle: titleShadowTransition
+  } = generateBoxShadowStyles({
+    attributes,
+    controlName: TITLE_SHADOW,
+  });
+
+  const {
+    desktopBorderStyle: titleBorderDesktop,
+    tabBorderStyle: titleBorderTab,
+    mobBorderStyle: titleBorderMob
+  } = generateBorderStyle({
+    attributes,
+    controlName: TITLE_BORDER,
+  });
+
+  //separator style generate
+  const {
     desktopRangeStyle: separatorWidthDesktop,
     tabRangeStyle: separatorWidthTab,
     mobRangeStyle: separatorWidthMob,
@@ -121,6 +173,17 @@ const Edit = (props) => {
     property: 'border-width',
     attributes,
   });
+  const {
+    desktopRangeStyle: separatorSpacingDesktop,
+    tabRangeStyle: separatorSpacingTab,
+    mobRangeStyle: separatorSpacingMob,
+  } = generateResRangeStyle({
+    controlName: SEPARATOR_SPACING,
+    property: 'margin-top',
+    attributes,
+  });
+
+
 
   //subtitle style generate
   const {
@@ -161,6 +224,54 @@ const Edit = (props) => {
     controlName: TPT_ALIGNMENT,
     property: "text-align",
     attributes,
+  });
+
+  const {
+    dimensionStylesDesktop: tptMarginDesktop,
+    dimensionStylesTab: tptMarginTab,
+    dimensionStylesMobile: tptMarginMob,
+  } = generateDimensionStyle({
+    controlName: TPT_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+
+  const {
+    dimensionStylesDesktop: tptPaddingDesktop,
+    dimensionStylesTab: tptPaddingTab,
+    dimensionStylesMobile: tptPaddingMob,
+  } = generateDimensionStyle({
+    controlName: TPT_PADDING,
+    styleFor: 'padding',
+    attributes,
+  });
+
+  const {
+    dimensionStylesDesktop: tptBorderRadiusDesktop,
+    dimensionStylesTab: tptBorderRadiusTab,
+    dimensionStylesMobile: tptBorderRadiusMob,
+  } = generateDimensionStyle({
+    controlName: TPT_BORDER_RADIUS,
+    styleFor: 'border-radius',
+    attributes,
+  });
+
+  const {
+    boxShadowStyle: tptShadow,
+    hoverBoxShadowstyle: tptHoverShadow,
+    transitionStyle: tptShadowTransition
+  } = generateBoxShadowStyles({
+    attributes,
+    controlName: TPT_SHADOW,
+  });
+
+  const {
+    desktopBorderStyle: tptBorderDesktop,
+    tabBorderStyle: tptBorderTab,
+    mobBorderStyle: tptBorderMob
+  } = generateBorderStyle({
+    attributes,
+    controlName: TPT_BORDER,
   });
 
   //wrapper style generate
@@ -302,42 +413,48 @@ const Edit = (props) => {
 
   // Title styles css in strings
   const titleStylesDesktop = `
-			.zolo-block-wrapper.${uniqueId} .zolo-ah-title {
+			.zolo-block-wrapper.${uniqueId} .zolo-ah-title .zolo-ah-main-title {
         ${titleColor ? `color: ${titleColor};` : ""}
+        ${titleBgColor ? `background-color: ${titleBgColor};` : ""}
 				${titleTypoDesktop}
 				${titleMarginDesktop}
-
+        ${titlePaddingDesktop}
+        ${titleBorderDesktop}
+        ${titleBorderRadiusDesktop}
 			}
-      .zolo-block-wrapper.${uniqueId} .zolo-ah-title.separator::before{
-        ${separatorWidthDesktop}
-        ${separatorHeightDesktop}
-        background-color:${separatorColor};
-      }
+
       .zolo-block-wrapper.${uniqueId}.zolo-ah-style-6 .zolo-ah-title {
         -webkit-text-stroke-width: 1px;
         -webkit-text-stroke-color: ${titleColor || 'rgba(6, 6, 7, 0.919)'};
       }
 
-      .zolo-block-wrapper.${uniqueId}.zolo-ah-style-7 .zolo-ah-main-title {
-        ${titleBgColor ? `background-color: ${titleBgColor};` : ""}
-      }
-      .zolo-block-wrapper.${uniqueId}.zolo-ah-style-7 .zolo-ah-title::before,
-      .zolo-block-wrapper.${uniqueId}.zolo-ah-style-7 .zolo-ah-title::after {
-        ${titleBorderColor ? `background-color: ${titleBorderColor};` : ""}
-      }
 		`;
 
+  // .zolo-block-wrapper.${uniqueId}.zolo-ah-style-7 .zolo-ah-main-title {
+  //   ${titleBgColor ? `background-color: ${titleBgColor};` : ""}
+  // }
+  // .zolo-block-wrapper.${uniqueId}.zolo-ah-style-7 .zolo-ah-title::before,
+  // .zolo-block-wrapper.${uniqueId}.zolo-ah-style-7 .zolo-ah-title::after {
+  //   ${titleBorderColor ? `background-color: ${titleBorderColor};` : ""}
+  // }
+
   const titleStylesTab = `
-		.zolo-block-wrapper.${uniqueId} .zolo-ah-title {
+		.zolo-block-wrapper.${uniqueId} .zolo-ah-title .zolo-ah-main-title {
 			${titleTypoTab}
 			${titleMarginTab}
+      ${titlePaddingTab}
+      ${titleBorderTab}
+      ${titleBorderRadiusTab}
 		}
 	`;
 
   const titleStylesMobile = `
-		.zolo-block-wrapper.${uniqueId} .zolo-ah-title {
+		.zolo-block-wrapper.${uniqueId} .zolo-ah-title .zolo-ah-main-title {
 			${titleTypoMobile}
 			${titleMarginMobile}
+      ${titlePaddingMob}
+      ${titleBorderMob}
+      ${titleBorderRadiusMob}
 		}
 	`;
 
@@ -345,9 +462,10 @@ const Edit = (props) => {
   const separatorStylesDesktop = `
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       border-style: none none solid;
-      border-color: ${separatorColor};
+      ${separatorColor ? `border-color: ${separatorColor};` : ""}
       ${separatorHeightDesktop}
       ${separatorWidthDesktop}
+      ${separatorSpacingDesktop}
       ${align === "center" ? "margin-left: auto; margin-right: auto" : ""}
       ${align === "right" ? "margin-left: auto; margin-right: 0" : ""}
     }
@@ -357,6 +475,7 @@ const Edit = (props) => {
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       ${separatorHeightTab}
       ${separatorWidthTab}
+      ${separatorSpacingTab}
     }
   `;
 
@@ -364,6 +483,7 @@ const Edit = (props) => {
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       ${separatorHeightMob}
       ${separatorWidthMob}
+      ${separatorSpacingMob}
     }
   `;
 
@@ -394,8 +514,14 @@ const Edit = (props) => {
       ${tptAlignmentDesktop}
     }
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
-      ${tpColor ? `color: ${tpColor};` : ''}
+      ${tptColor ? `color: ${tptColor};` : ''}
+      ${tptBgColor ? `background-color: ${tptBgColor};` : ''}
+      ${tptOpacity ? `opacity: ${tptOpacity};` : ''}
       ${transparentTypoDesktop}
+      ${tptMarginDesktop}
+      ${tptPaddingDesktop}
+      ${tptBorderDesktop}
+      ${tptBorderRadiusDesktop}
 
       display:inline-block;
       -webkit-transform: translate(var(--zb-advanced-heading-pos-x, 0), var(--zb-advanced-heading-pos-y, 0)) rotate(var(--zb-advanced-heading-rotate, 0));
@@ -403,7 +529,7 @@ const Edit = (props) => {
     }
     .zolo-block-wrapper.${uniqueId}.zolo-ah-style-2 .zolo-transparent-heading {
       -webkit-text-stroke-width: 3px;
-      -webkit-text-stroke-color: ${tpColor || 'rgba(6, 6, 7, 0.22)'};
+      -webkit-text-stroke-color: ${tptColor || 'rgba(6, 6, 7, 0.22)'};
     }
   `;
 
@@ -414,6 +540,10 @@ const Edit = (props) => {
     }
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
       ${transparentTypoTab}
+      ${tptMarginTab}
+      ${tptPaddingTab}
+      ${tptBorderTab}
+      ${tptBorderRadiusTab}
     }
   `;
 
@@ -424,6 +554,10 @@ const Edit = (props) => {
     }
     .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
       ${transparentTypoMobile}
+      ${tptMarginMob}
+      ${tptPaddingMob}
+      ${tptBorderMob}
+      ${tptBorderRadiusMob}
     }
   `;
 

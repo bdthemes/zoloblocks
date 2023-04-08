@@ -30,12 +30,25 @@ import objAttributes from './attributes';
 
 //block constants
 import {
-  HEADING_TAG, SEPARATOR_HEIGHT, SEPARATOR_WIDTH, STYLES,
+  HEADING_TAG, SEPARATOR_HEIGHT,
+  SEPARATOR_SPACING,
+  SEPARATOR_WIDTH,
+  STYLES,
   ST_POSITION,
-  SUBTITLE_MARGIN, TEXT_ALIGN, TITLE_MARGIN,
+  SUBTITLE_MARGIN, TEXT_ALIGN,
+  TITLE_BORDER,
+  TITLE_BORDER_RADIUS,
+  TITLE_MARGIN,
+  TITLE_PADDING,
+  TITLE_SHADOW,
   TPT_ALIGNMENT,
+  TPT_BORDER,
+  TPT_BORDER_RADIUS,
   TPT_HIDE,
+  TPT_MARGIN,
+  TPT_PADDING,
   TPT_ROTATE_ORIGIN,
+  TPT_SHADOW,
   WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_MARGIN,
@@ -70,11 +83,14 @@ const Inspector = ({ attributes, setAttributes }) => {
 
     //design
     titleColor,
-    subTitleColor,
-    tpColor,
-    separatorColor,
     titleBgColor,
-    titleBorderColor
+
+    subTitleColor,
+    tptColor,
+    tptBgColor,
+    tptOpacity,
+    separatorColor,
+
   } = attributes;
 
   const resRequiredProps = {
@@ -408,28 +424,44 @@ const Inspector = ({ attributes, setAttributes }) => {
                       })}
                     />
 
-                    {styles == 'style-7' && (
-                      <>
-                        <ColorControl
-                          label={__('Background Color', 'zolo-blocks')}
-                          color={titleBgColor}
-                          onChange={(val) => setAttributes({
-                            titleBgColor: val,
-                          })}
-                        />
-                        <ColorControl
-                          label={__('Border Color', 'zolo-blocks')}
-                          color={titleBorderColor}
-                          onChange={(val) => setAttributes({
-                            titleBorderColor: val,
-                          })}
-                        />
-                      </>
-                    )}
+                    <ColorControl
+                      label={__('Background', 'zolo-blocks')}
+                      color={titleBgColor}
+                      onChange={(val) => setAttributes({
+                        titleBgColor: val,
+                      })}
+                    />
+
+                    <ResDimensionsControl
+                      label={__('Padding', 'zolo-blocks')}
+                      controlName={TITLE_PADDING}
+                      resRequiredProps={resRequiredProps}
+                    />
 
                     <ResDimensionsControl
                       label={__('Margin', 'zolo-blocks')}
                       controlName={TITLE_MARGIN}
+                      resRequiredProps={resRequiredProps}
+                    />
+
+                    <BorderControl
+                      label={__('Border', 'zolo-blocks')}
+                      controlName={TITLE_BORDER}
+                      resRequiredProps={resRequiredProps}
+                    />
+
+                    <ResDimensionsControl
+                      label={__(
+                        'Border Radius',
+                        'zolo-blocks'
+                      )}
+                      controlName={TITLE_BORDER_RADIUS}
+                      resRequiredProps={resRequiredProps}
+                      forBorderRadius={true}
+                    />
+
+                    <BoxShadowControl
+                      controlName={TITLE_SHADOW}
                       resRequiredProps={resRequiredProps}
                     />
 
@@ -465,6 +497,13 @@ const Inspector = ({ attributes, setAttributes }) => {
                     title={__('Separator', 'zolo-blocks')}
                     initialOpen={false}
                   >
+                    <ColorControl
+                      label={__('Color', 'zolo-blocks')}
+                      color={separatorColor}
+                      onChange={(val) => setAttributes({
+                        separatorColor: val,
+                      })}
+                    />
                     <ResRangeControl
                       label={__(
                         'Width',
@@ -487,14 +526,18 @@ const Inspector = ({ attributes, setAttributes }) => {
                       max={100}
                       step={1}
                     />
-
-                    <ColorControl
-                      label={__('Color', 'zolo-blocks')}
-                      color={separatorColor}
-                      onChange={(val) => setAttributes({
-                        separatorColor: val,
-                      })}
+                    <ResRangeControl
+                      label={__(
+                        'Spacing',
+                        'zolo-blocks'
+                      )}
+                      resRequiredProps={resRequiredProps}
+                      controlName={SEPARATOR_SPACING}
+                      min={0}
+                      max={50}
+                      step={1}
                     />
+
                   </PanelBody>
 
                   <PanelBody
@@ -509,10 +552,58 @@ const Inspector = ({ attributes, setAttributes }) => {
 
                     <ColorControl
                       label={__('Color', 'zolo-blocks')}
-                      color={tpColor}
+                      color={tptColor}
                       onChange={(val) => setAttributes({
-                        tpColor: val,
+                        tptColor: val,
                       })}
+                    />
+                    <ColorControl
+                      label={__('Background', 'zolo-blocks')}
+                      color={tptBgColor}
+                      onChange={(val) => setAttributes({
+                        tptBgColor: val,
+                      })}
+                    />
+
+                    <ResDimensionsControl
+                      label={__('Padding', 'zolo-blocks')}
+                      controlName={TPT_PADDING}
+                      resRequiredProps={resRequiredProps}
+                    />
+                    <ResDimensionsControl
+                      label={__('Margin', 'zolo-blocks')}
+                      controlName={TPT_MARGIN}
+                      resRequiredProps={resRequiredProps}
+                    />
+
+                    <BorderControl
+                      label={__('Border', 'zolo-blocks')}
+                      controlName={TPT_BORDER}
+                      resRequiredProps={resRequiredProps}
+                    />
+
+                    <ResDimensionsControl
+                      label={__(
+                        'Border Radius',
+                        'zolo-blocks'
+                      )}
+                      controlName={TPT_BORDER_RADIUS}
+                      resRequiredProps={resRequiredProps}
+                      forBorderRadius={true}
+                    />
+
+                    <BoxShadowControl
+                      controlName={TPT_SHADOW}
+                      resRequiredProps={resRequiredProps}
+                    />
+
+                    <RangeControl
+                      label={__('Opacity', 'zolo-blocks')}
+                      value={tptOpacity}
+                      onChange={(tptOpacity) => setAttributes({ tptOpacity })}
+                      min={0.05}
+                      max={1}
+                      step={0.01}
                     />
                   </PanelBody>
                 </>

@@ -61,9 +61,20 @@ export const TPT_ROTATE_ORIGIN = [
 export const TPT_ALIGNMENT = 'tpAlign'
 //style tab
 export const TITLE_MARGIN = 'titleMargin';
+export const TITLE_BORDER = 'titleBorder';
+export const TITLE_BORDER_RADIUS = 'titleBorderRadius';
+export const TITLE_PADDING = 'titlePadding';
+export const TITLE_SHADOW = 'titleShadow';
+
 export const SUBTITLE_MARGIN = 'subTitleMargin';
 export const SEPARATOR_WIDTH = 'separatorWidth';
+export const SEPARATOR_SPACING = 'separatorSpacing';
 export const SEPARATOR_HEIGHT = 'separatorHeight';
+export const TPT_MARGIN = 'TPTMargin';
+export const TPT_BORDER = 'TPTBorder';
+export const TPT_BORDER_RADIUS = 'TPTBorderRadius';
+export const TPT_PADDING = 'TPTPadding';
+export const TPT_SHADOW = 'TPTShadow';
 
 //advance tab
 export const WRAPPER_MARGIN = 'wrapMargin';

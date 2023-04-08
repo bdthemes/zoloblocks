@@ -10,7 +10,18 @@ const {
 } = window.zoloModule;
 
 //block constants
-import { SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, TPT_ALIGNMENT, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW } from './constants';
+import {
+  SEPARATOR_HEIGHT, SEPARATOR_SPACING, SEPARATOR_WIDTH, SUBTITLE_MARGIN,
+  TITLE_BORDER,
+  TITLE_BORDER_RADIUS,
+  TITLE_MARGIN, TITLE_PADDING,
+  TITLE_SHADOW, TPT_ALIGNMENT,
+  TPT_BORDER,
+  TPT_BORDER_RADIUS,
+  TPT_MARGIN,
+  TPT_PADDING,
+  TPT_SHADOW, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW
+} from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes = {
@@ -25,14 +36,6 @@ const attributes = {
   blockStyle: {
     type: "object"
   },
-
-  //range attributes
-  ...generateResRangeAttributies(SEPARATOR_WIDTH, {
-    defaultRange: 70
-  }),
-  ...generateResRangeAttributies(SEPARATOR_HEIGHT, {
-    defaultRange: 3
-  }),
 
   //settings tab
   styles: {
@@ -115,24 +118,49 @@ const attributes = {
     type: 'string',
     default: '',
   },
-  titleBorderColor: {
-    type: 'string',
-    default: '',
-  },
+
+
   subTitleColor: {
     type: 'string',
     default: '',
   },
-  tpColor: {
+  tptColor: {
     type: 'string',
     default: '',
   },
+  tptBgColor: {
+    type: 'string',
+    default: '',
+  },
+  tptOpacity: {
+    type: 'number',
+    default: 0.05,
+  },
+
   separatorColor: {
     type: 'string',
     default: '',
   },
+  ...generateResRangeAttributies(SEPARATOR_WIDTH, {
+    defaultRange: 70
+  }),
+  ...generateResRangeAttributies(SEPARATOR_HEIGHT, {
+    defaultRange: 3
+  }),
+  ...generateResRangeAttributies(SEPARATOR_SPACING),
 
   ...generateDimensionAttributes(TITLE_MARGIN),
+  ...generateDimensionAttributes(TITLE_PADDING),
+  ...generateBorderAttributies(TITLE_BORDER),
+  ...generateDimensionAttributes(TITLE_BORDER_RADIUS),
+  ...generateBoxShadowAttributies(TITLE_SHADOW),
+
+  ...generateDimensionAttributes(TPT_MARGIN),
+  ...generateDimensionAttributes(TPT_PADDING),
+  ...generateBorderAttributies(TPT_BORDER),
+  ...generateDimensionAttributes(TPT_BORDER_RADIUS),
+  ...generateBoxShadowAttributies(TPT_SHADOW),
+
   ...generateDimensionAttributes(SUBTITLE_MARGIN),
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
