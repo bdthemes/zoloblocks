@@ -17,57 +17,47 @@ export { default as TextStrokeControl } from "./controls/textstroke-control";
 export { default as TypographyDropdown } from "./controls/typography-control";
 //Export Helpers
 export {
-  generateBackgroundAttributes,
-  generateBackgroundControlStyles
+    generateBackgroundAttributes,
+    generateBackgroundControlStyles
 } from "./helpers/backgroundHelpers";
 export {
-  generateBorderAttributies,
-  generateBorderStyle
+    generateBorderAttributies,
+    generateBorderStyle
 } from "./helpers/border-helper";
 export {
-  generateBoxShadowAttributies,
-  generateBoxShadowStyles
+    generateBoxShadowAttributies,
+    generateBoxShadowStyles
 } from "./helpers/boxshadow-helper";
 export {
-  generateDimensionAttributes,
-  generateDimensionStyle
+    generateDimensionAttributes,
+    generateDimensionStyle
 } from "./helpers/dimension-helper";
 export {
-  DynamicTag, handleUniqueId,
-  hasVal,
-  softMinifyCssStrings
+    DynamicTag, handleUniqueId,
+    hasVal,
+    softMinifyCssStrings
 } from "./helpers/helper";
 export {
-  onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick
+    onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick
 } from "./helpers/preview-btns-helper";
 export {
-  generateResAlignmentAttributies,
-  generateResAlignmentStyle
+    generateResAlignmentAttributies,
+    generateResAlignmentStyle
 } from "./helpers/res-alignment-helper";
 export {
-  generateResRangeAttributies,
-  generateResRangeStyle
+    generateResRangeAttributies,
+    generateResRangeStyle
 } from "./helpers/res-range-helper";
 export {
-  generateTextShadowAttributies,
-  generateTextShadowStyles
+    generateTextShadowAttributies,
+    generateTextShadowStyles
 } from "./helpers/textshadow-helper";
 export {
-  generateTextStrokeAttributies,
-  generateTextStrokeStyles
+    generateTextStrokeAttributies,
+    generateTextStrokeStyles
 } from "./helpers/textstroke-helper";
 export {
-  generateTypographyAttributes,
-  generateTypographyStyles
+    generateTypographyAttributes,
+    generateTypographyStyles
 } from "./helpers/typoHelpers";
-
-
-
-
-
-
-
-
-
-
 

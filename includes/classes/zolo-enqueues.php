@@ -45,8 +45,31 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             add_action('enqueue_block_editor_assets', array($this, 'editor_assets_loader'));
 
-            add_action('enqueue_block_editor_assets', [$this, 'frontend_backend_assets']);
-            add_action('wp_enqueue_scripts', [$this, 'frontend_backend_assets']);
+            // enqueue style for both editor and frontend
+            add_action('enqueue_block_assets', array($this, 'block_assets_loader'));
+        }
+
+        /**
+         * Load Block Assets for both editor and frontend
+         * @since 0.0.1
+         * @return void
+         */
+        public function block_assets_loader()
+        {
+            wp_enqueue_style(
+                'zolo-block-common-style',
+                ZOLO_ADMIN_URL . 'dist/style.css',
+                array(),
+                ZOLO_VERSION
+            );
+
+            // enqueue fontawesome icons
+            wp_enqueue_style(
+                'zolo-block-fontawesome',
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
+                array(),
+                ZOLO_VERSION
+            );
         }
 
         /**
@@ -124,30 +147,11 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 true
             );
 
-            //  // Common Editor style.
-            //  wp_enqueue_style(
-            //     'zolo-block-common-editor-style',
-            //     ZOLO_ADMIN_URL . 'dist/style.css',
-            //     array('wp-edit-blocks'),
-            //     ZOLO_VERSION
-            // );
-
             // Controls Editor style.
             wp_enqueue_style(
                 'zolo-block-control-editor-style',
                 ZOLO_ADMIN_URL . 'modules/style.css',
                 array('wp-edit-blocks'),
-                ZOLO_VERSION
-            );
-        }
-
-        public function frontend_backend_assets()
-        {
-            // Common Editor and frontend style.
-            wp_enqueue_style(
-                'zolo-block-frontend-style',
-                ZOLO_ADMIN_URL . 'dist/style.css',
-                array(),
                 ZOLO_VERSION
             );
         }
