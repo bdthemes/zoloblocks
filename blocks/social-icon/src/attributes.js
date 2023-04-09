@@ -3,12 +3,16 @@ import { generateResRangeAttributies } from '../../../src/helpers/res-range-help
 import { generateBorderAttributies } from '../../../src/helpers/border-helper';
 
 import {
-	ICON_ALIGNMENT,
-	ICON_BG_COLOR,
-	ICON_HOVER_BG_COLOR,
-	ICON_BORDER,
+	BUTTON_ALIGNMENT,
+	BUTTON_BG_COLOR,
+	BUTTON_HOVER_BG_COLOR,
+	BUTTON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
+	COLUMNS_NUMBER,
+	COLUMNS_GAP ,
+	ROW_GAP
+	
 } from './constants';
 
 const attributes = {
@@ -24,14 +28,22 @@ const attributes = {
 		type: 'object',
 	},
 	//alignment attributes
-	...generateResAlignmentAttributies(ICON_ALIGNMENT, {
+	...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
 		defaultAlign: 'left',
 	}),
+
 	// border attributes
-	...generateBorderAttributies(ICON_BORDER),
+	...generateBorderAttributies(BUTTON_BORDER),
 	...generateResRangeAttributies(ICON_SIZE, {
 		default: 16,
 	}),
+	//columns Number
+	...generateResRangeAttributies(COLUMNS_NUMBER),
+	//columns gaps
+	...generateResRangeAttributies(COLUMNS_GAP),
+	//row gaps
+	...generateResRangeAttributies(ROW_GAP),
+	//icon spacing 
 	...generateResRangeAttributies(ICON_TEXT_SPACING, {
 		default: 5,
 	}),
@@ -41,7 +53,7 @@ const attributes = {
 		default: 'preset-1',
 	},
 	label: {
-		type: 'string',
+		type: 'object',
 	},
 	link: {
 		type: 'object',
@@ -59,6 +71,18 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	socialText: {
+		type:"string"
+	},
+    socialStyle:{
+		type:"string"
+	},
+	targetPage:{
+		type:"string"
+	},
+	customLink:{
+		type:"string"
+	},
 	showIcon: {
 		type: 'boolean',
 		default: false,
@@ -75,26 +99,6 @@ const attributes = {
 	},
 	textHoverColor: {
 		type: 'string',
-	},
-	iconType: {
-		type: 'string',
-		default: 'icon',
-	},
-	iconTypeImage: {
-		type: 'object',
-	},
-	iconBoxTitle: {
-		type: 'string',
-	},
-	iconBoxDescription: {
-		type: 'string',
-	},
-	buttonText: {
-		type: 'string',
-	},
-	buttonLink: {
-		type: 'string',
-		default: '#',
 	},
 };
 
