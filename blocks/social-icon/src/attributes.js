@@ -11,15 +11,11 @@ import {
 	ICON_TEXT_SPACING,
 	COLUMNS_NUMBER,
 	COLUMNS_GAP ,
-<<<<<<< HEAD
 	ROW_GAP,
 	BUTTON_SIZE,
 	BUTTON_ICON_SIZE,
 	BUTTON_HEIGHT,
 	SOCIAL_TYPOGRAPHY
-=======
-	ROW_GAP
->>>>>>> 84128bc6c2090871a462b75ba73403d92ef04d9f
 	
 } from './constants';
 
@@ -51,7 +47,6 @@ const attributes = {
 	...generateResRangeAttributies(COLUMNS_GAP),
 	//row gaps
 	...generateResRangeAttributies(ROW_GAP),
-<<<<<<< HEAD
 	//typography 
 	//  ...generateTypographyAttributes(SOCIAL_TYPOGRAPHY),
 	//button size
@@ -62,9 +57,7 @@ const attributes = {
 	...generateResRangeAttributies(BUTTON_HEIGHT),
 	
 	//icon spacing
-=======
 	//icon spacing 
->>>>>>> 84128bc6c2090871a462b75ba73403d92ef04d9f
 	...generateResRangeAttributies(ICON_TEXT_SPACING, {
 		default: 5,
 	}),
@@ -74,14 +67,10 @@ const attributes = {
 		default: 'preset-1',
 	},
 	label: {
-<<<<<<< HEAD
 		type: 'string',
 	},
 	socialRepeat:{
 		type:"array",
-=======
-		type: 'object',
->>>>>>> 84128bc6c2090871a462b75ba73403d92ef04d9f
 	},
 
 	link: {
