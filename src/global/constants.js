@@ -39,6 +39,14 @@ export const SEPERATOR_STYLES = [
 ];
 
 export const BACKGROUND_TYPES = [
-	{ label: __("Classic", "zolo-blocks"), value: "classic" },
-	{ label: __("Gradient", "zolo-blocks"), value: "gradient" },
-]
+	{
+		label: __('Classic', 'zolo-blocks'),
+		value: 'classic',
+		icon: 'color-picker',
+	},
+	{
+		label: __('Gradient', 'zolo-blocks'),
+		value: 'gradient',
+		icon: 'art',
+	},
+];

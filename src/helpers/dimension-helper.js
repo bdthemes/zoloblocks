@@ -139,16 +139,22 @@ export const generateDimensionStyle = ({
 
 	if (isLinked === true) {
 		if (styleFor === 'border-radius') {
-			dimensionStylesDesktop = `${dimensionTop
-				? `border-radius: ${parseFloat(dimensionTop)}${dimensionUnit};`
-				: ' '}
+			dimensionStylesDesktop = `${
+				dimensionTop
+					? `border-radius: ${parseFloat(
+							dimensionTop
+					  )}${dimensionUnit};`
+					: ' '
+			}
     	`;
 
-			dimensionStylesTab = ` ${TABdimensionTop
-				? `border-radius: ${parseFloat(
-						TABdimensionTop
-				  )}${TABdimensionUnit};`
-				: ' '}
+			dimensionStylesTab = ` ${
+				TABdimensionTop
+					? `border-radius: ${parseFloat(
+							TABdimensionTop
+					  )}${TABdimensionUnit};`
+					: ' '
+			}
    		 `;
 
 			dimensionStylesMobile = `
@@ -166,7 +172,7 @@ export const generateDimensionStyle = ({
 			dimensionTop
 				? `${styleFor}: ${parseFloat(dimensionTop)}${dimensionUnit};`
 				: ' '
-				}
+		}
         `;
 
 			dimensionStylesTab = `
