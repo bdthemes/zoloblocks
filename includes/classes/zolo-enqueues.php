@@ -61,6 +61,14 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 array(),
                 ZOLO_VERSION
             );
+
+            // enqueue fontawesome icons
+            wp_enqueue_style(
+                'zolo-block-fontawesome',
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
+                array(),
+                ZOLO_VERSION
+            );
         }
 
         /**
