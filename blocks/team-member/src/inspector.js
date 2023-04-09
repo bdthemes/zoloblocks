@@ -44,8 +44,10 @@ function Inspector(props) {
 		preset,
 		showMemberPhoto,
 		memberPhoto,
+		enableMemberDetailsPage,
 		enableMemberLink,
 		memberLink,
+		showSocialProfiles,
 	} = attributes;
 
 	// const changePreset = (selected) => {
@@ -134,14 +136,42 @@ function Inspector(props) {
 										/>
 										<ToggleControl
 											label={__(
-												'Enable Member Link',
+												'Show Member Details Link',
 												'zolo-blocks'
 											)}
-											checked={enableMemberLink}
+											checked={enableMemberDetailsPage}
 											onChange={() =>
 												setAttributes({
-													enableMemberLink:
-														!enableMemberLink,
+													enableMemberDetailsPage:
+														!enableMemberDetailsPage,
+												})
+											}
+										/>
+										{enableMemberDetailsPage && (
+											<ToggleControl
+												label={__(
+													'Link Photo to Details Page',
+													'zolo-blocks'
+												)}
+												checked={enableMemberLink}
+												onChange={() =>
+													setAttributes({
+														enableMemberLink:
+															!enableMemberLink,
+													})
+												}
+											/>
+										)}
+										<ToggleControl
+											label={__(
+												'Show Social Profiles',
+												'zolo-blocks'
+											)}
+											checked={showSocialProfiles}
+											onChange={() =>
+												setAttributes({
+													showSocialProfiles:
+														!showSocialProfiles,
 												})
 											}
 										/>
@@ -150,11 +180,11 @@ function Inspector(props) {
 										title={__('Content', 'zolo-blocks')}
 										initialOpen={false}
 									>
-										{enableMemberLink && (
+										{enableMemberDetailsPage && (
 											<Fragment>
 												<TextControl
 													label={__(
-														'Member Link',
+														'Member Details Page Link',
 														'zolo-blocks'
 													)}
 													onChange={(link) => {
