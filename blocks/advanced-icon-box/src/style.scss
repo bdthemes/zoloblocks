@@ -1,28 +1,72 @@
-.zolo-advanced-icon {
-	.zolo-content {
-		transition: 0.2s;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		gap: 5px;
-		padding: 10px 20px;
-		&.top {
-			flex-direction: column-reverse;
-		}
-		&.bottom {
-			flex-direction: column;
-		}
-		&.left {
-			flex-direction: row-reverse;
-		}
-		&.right {
-			flex-direction: row;
-		}
+.wp-block-zolo-advanced-icon-box {
+	/* icon box style 9 start */
+
+	.bdt-avnaced-icon-box-style-9 .bdt-hover-icon,
+	.bdt-avnaced-icon-box-style-10 .bdt-hover-icon {
+		display: none;
 	}
-	// icon icon
-	.zolo-icon-icon {
+
+	.bdt-avnaced-icon-box-style-9 .bdt-item,
+	.bdt-avnaced-icon-box-style-10 .bdt-item {
+		border-radius: 10px;
+		text-align: center;
+		padding: 80px 40px 40px 40px !important;
+	}
+
+	.bdt-advanced-icon-box .bdt-item {
+		border: 1px solid rgba(247, 247, 247, 0.829);
+		padding: 30px;
+		transition: border 0.3s ease;
+		position: relative;
+		overflow: hidden;
+		border-radius: 10px;
+		background: rgba(147, 255, 170, 0.15);
+	}
+
+	.bdt-advanced-icon-box .bdt-item:hover {
+		border-color: #32de23;
+	}
+
+	.bdt-advanced-icon-box .bdt-item:hover .bdt-link-btn a {
+		color: #fff;
+		background-color: #32de23;
+	}
+
+	.bdt-avnaced-icon-box-style-9 .bdt-icon-wrap,
+	.bdt-avnaced-icon-box-style-10 .bdt-icon-wrap {
+		position: absolute;
+		margin: 0;
+		background: #32de23;
+	}
+
+	.bdt-avnaced-icon-box-style-9 .bdt-icon-wrap {
+		top: -11px;
+		left: -12px;
+		border-radius: 16px;
+		padding: 24px 15px 13px 24px;
+	}
+
+	.bdt-avnaced-icon-box-style-9 .bdt-icon-wrap svg,
+	.bdt-avnaced-icon-box-style-10 .bdt-icon-wrap svg {
+		color: #fff;
 		width: 20px;
-		display: block;
+		height: 20px;
+	}
+
+	.bdt-advanced-icon-box .bdt-link-btn {
+		margin-top: 22px;
+	}
+
+	.bdt-advanced-icon-box .bdt-link-btn a {
+		text-decoration: none;
+		font-size: 14px;
+		border: 1px solid #32de23;
+		padding: 10px 15px;
+		display: inline-block;
+		color: #32de23;
+		border-radius: 30px;
+		text-transform: capitalize;
+		transition: all 0.3s ease;
 	}
 }
 

@@ -4,6 +4,9 @@
 import {
 	InspectorControls,
 	__experimentalLinkControl as LinkControl,
+	MediaUpload,
+	MediaUploadCheck,
+	BlockControls,
 } from '@wordpress/block-editor';
 import {
 	CardDivider,
@@ -12,6 +15,9 @@ import {
 	TabPanel,
 	TextControl,
 	ToggleControl,
+	ToolbarGroup,
+	ToolbarButton,
+	Button,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
@@ -69,25 +75,10 @@ function Inspector(props) {
 		iconPosition,
 		textColor,
 		textHoverColor,
+		iconType,
+		iconTypeImage,
+		buttonLink,
 	} = attributes;
-
-	const changePreset = (selected) => {
-		setAttributes({ preset: selected });
-		switch (selected) {
-			case 'preset-1':
-				//Write code here
-				setAttributes({
-					bgColor: '#551ef7',
-					textColor: '#ffffff',
-				});
-				break;
-			case 'preset-2':
-				//Write code here
-				break;
-			default:
-				return false;
-		}
-	};
 
 	const resRequiredProps = {
 		attributes,
@@ -131,66 +122,71 @@ function Inspector(props) {
 									>
 										<SelectControl
 											label={__(
-												'Preset Designs',
+												'Select Icon Type',
 												'zolo-blocks'
 											)}
-											value={preset}
-											options={PRESETS}
-											onChange={(selected) =>
-												changePreset(selected)
-											}
-										/>
-										<TextControl
-											label={__('Label', 'zolo-blocks')}
-											onChange={(value) =>
-												setAttributes({ label: value })
-											}
-											value={label}
-											placeholder={__(
-												'label',
-												'zolo-blocks'
-											)}
-										/>
-										<LinkControl
-											searchInputPlaceholder="Search here..."
-											value={link}
-											settings={[
+											value={iconType}
+											options={[
 												{
-													id: 'opensInNewTab',
-													title: __(
-														'Open in new tab',
-														'zolo-blocks'
-													),
+													label: 'Icon',
+													value: 'icon',
 												},
 												{
-													id: 'addNoFollow',
-													title: __(
-														'Add nofollow to link',
-														'zolo-blocks'
-													),
+													label: 'Image',
+													value: 'image',
 												},
 											]}
-											onChange={(data) =>
-												setAttributes({ link: data })
-											}
-										/>
-										<CardDivider />
-										<ToggleControl
-											label={__(
-												'Enable Icon',
-												'zolo-blocks'
-											)}
-											checked={showIcon}
-											onChange={() =>
+											onChange={(value) =>
 												setAttributes({
-													showIcon: !showIcon,
+													iconType: value,
 												})
 											}
 										/>
-										{showIcon && (
+
+										{iconType == 'icon' && (
 											<Fragment>
 												<p>
 													<strong>Icon Picker</strong>
+													<br />
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														width="24"
+														height="24"
+														viewBox="0 0 24 24"
+														fill="none"
+														stroke="#000000"
+														stroke-width="2"
+														stroke-linecap="round"
+														stroke-linejoin="round"
+													>
+														<circle
+															cx="18"
+															cy="5"
+															r="3"
+														></circle>
+														<circle
+															cx="6"
+															cy="12"
+															r="3"
+														></circle>
+														<circle
+															cx="18"
+															cy="19"
+															r="3"
+														></circle>
+														<line
+															x1="8.59"
+															y1="13.51"
+															x2="15.42"
+															y2="17.49"
+														></line>
+														<line
+															x1="15.41"
+															y1="6.51"
+															x2="8.59"
+															y2="10.49"
+														></line>
+													</svg>
 												</p>
 												<SelectControl
 													label={__(
@@ -234,34 +230,87 @@ function Inspector(props) {
 													max={100}
 													step={1}
 												/>
+												<ResAlignmentControl
+													label={__(
+														'Icon Alignmet',
+														'zolo-blocks'
+													)}
+													controlName={ICON_ALIGNMENT}
+													resRequiredProps={
+														resRequiredProps
+													}
+													alignOptions={[
+														{
+															label: 'Left',
+															value: 'left',
+														},
+														{
+															label: 'Center',
+															value: 'center',
+														},
+														{
+															label: 'Right',
+															value: 'right',
+														},
+														{
+															label: 'Justify',
+															value: 'justify',
+														},
+													]}
+												/>
 											</Fragment>
 										)}
+
+										{iconType == 'image' &&
+											(iconTypeImage ? (
+												<img
+													src={iconTypeImage.url}
+													alt={
+														iconTypeImage.alt
+															? iconTypeImage.alt
+															: 'image alt text'
+													}
+												/>
+											) : (
+												<MediaUploadCheck>
+													<MediaUpload
+														onSelect={(media) =>
+															setAttributes({
+																iconTypeImage:
+																	media,
+															})
+														}
+														allowedTypes={['image']}
+														value={
+															iconTypeImage &&
+															iconTypeImage.id
+														}
+														render={({ open }) => (
+															<Button
+																onClick={open}
+																icon="upload"
+																variant="secondary"
+															>
+																{__(
+																	'Add Image',
+																	'zolo-blocks'
+																)}
+															</Button>
+														)}
+													/>
+												</MediaUploadCheck>
+											))}
+
 										<CardDivider />
-										<ResAlignmentControl
-											label={__(
-												'Icon Alignmet',
-												'zolo-blocks'
-											)}
-											controlName={ICON_ALIGNMENT}
-											resRequiredProps={resRequiredProps}
-											alignOptions={[
-												{
-													label: 'Left',
-													value: 'left',
-												},
-												{
-													label: 'Center',
-													value: 'center',
-												},
-												{
-													label: 'Right',
-													value: 'right',
-												},
-												{
-													label: 'Justify',
-													value: 'justify',
-												},
-											]}
+
+										<TextControl
+											label="Button Link"
+											value={buttonLink}
+											onChange={(link) =>
+												setAttributes({
+													buttonLink: link,
+												})
+											}
 										/>
 									</PanelBody>
 								</>
@@ -275,9 +324,7 @@ function Inspector(props) {
 									>
 										<TypographyDropdown
 											label="Typography"
-											typoPrefixConstant={
-												ICON_TYPOGRAPHY
-											}
+											typoPrefixConstant={ICON_TYPOGRAPHY}
 											resRequiredProps={resRequiredProps}
 										/>
 										<TabPanelControl

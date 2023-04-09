@@ -6,3 +6,5 @@ import '../blocks/advanced-button/index.js';
 import '../blocks/advanced-heading/index.js';
 import '../blocks/advanced-image-gallery/index.js';
 import '../blocks/social-icon/index.js';
+
+import '../blocks/advanced-icon-box/index.js';

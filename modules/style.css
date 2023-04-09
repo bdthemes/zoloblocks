@@ -1,5 +1,9 @@
 /*!********************************************************************************************************************************************************************************************************************************************************!*\
+<<<<<<< HEAD
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/controls/scss/controls.scss ***!
+=======
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/controls/scss/controls.scss ***!
+>>>>>>> 84128bc6c2090871a462b75ba73403d92ef04d9f
   \********************************************************************************************************************************************************************************************************************************************************/
 .zb-res-range-control-wrapper .components-range-control {
   flex-grow: 1;

@@ -49,6 +49,12 @@ export default function Edit(props) {
 		textColor,
 		textHoverColor,
 		iconPosition,
+		iconType,
+		iconBoxTitle,
+		iconBoxDescription,
+		iconTypeImage,
+		buttonText,
+		buttonLink,
 	} = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -80,9 +86,7 @@ export default function Edit(props) {
 	 * Generate Alignment Class
 	 */
 	const deskAlign = `display: ${
-		iconAlignmentDesktop === 'text-align:justify;'
-			? 'flex'
-			: 'inline-flex'
+		iconAlignmentDesktop === 'text-align:justify;' ? 'flex' : 'inline-flex'
 	};`;
 
 	const tabAlign = `display: ${
@@ -256,32 +260,90 @@ export default function Edit(props) {
 						className={`zolo-block-inner zolo-inner-${uniqueId} ${BLOCK_PREFIX} ${preset}`}
 						data-id={uniqueId}
 					>
-						<div className={`zolo-content ${iconPosition}`}>
-							<RichText
-								className={`zolo-icon`}
-								value={label}
-								onChange={(text) =>
-									setAttributes({ label: text })
-								}
-								placeholder={__('Your Icon Here', 'zolo-blocks')}
-								allowedFormats={[]}
-							/>
-							{showIcon && (
-								<svg
-									clipRule="evenodd"
-									fillRule="evenodd"
-									strokeLinejoin="round"
-									strokeMiterlimit="2"
-									viewBox="0 0 24 24"
-									xmlns="http://www.w3.org/2000/svg"
-									className="zolo-icon-icon"
-								>
-									<path
-										d="m14.523 18.787s4.501-4.505 6.255-6.26c.146-.146.219-.338.219-.53s-.073-.383-.219-.53c-1.753-1.754-6.255-6.258-6.255-6.258-.144-.145-.334-.217-.524-.217-.193 0-.385.074-.532.221-.293.292-.295.766-.004 1.056l4.978 4.978h-14.692c-.414 0-.75.336-.75.75s.336.75.75.75h14.692l-4.979 4.979c-.289.289-.286.762.006 1.054.148.148.341.222.533.222.19 0 .378-.072.522-.215z"
-										fill-rule="nonzero"
+						<div className="bdt-advanced-icon-box bdt-avnaced-icon-box-style-9">
+							<div className="bdt-item">
+								<div className="bdt-icon-wrap">
+									{iconType == 'icon' && (
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="16"
+											height="16"
+											fill="currentColor"
+											className="bi bi-gear"
+											viewBox="0 0 16 16"
+										>
+											<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path>
+											<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path>
+										</svg>
+									)}
+								</div>
+
+								<div className="bdt-body-content">
+									<RichText
+										className={`bdt-title`}
+										tagName="h2"
+										value={iconBoxTitle}
+										onChange={(text) =>
+											setAttributes({
+												iconBoxTitle: text,
+											})
+										}
+										placeholder={__(
+											'The Theme Setting',
+											'zolo-blocks'
+										)}
+										allowedFormats={[]}
 									/>
-								</svg>
-							)}
+
+									<RichText
+										className={`bdt-desc`}
+										tagName="div"
+										value={iconBoxDescription}
+										onChange={(text) =>
+											setAttributes({
+												iconBoxDescription: text,
+											})
+										}
+										placeholder={__(
+											'The Theme Setting is a website that provides users with a range of tools to customize their web experience.',
+											'zolo-blocks'
+										)}
+										allowedFormats={[]}
+									/>
+
+									<div className="bdt-link-btn">
+										<a href="#">
+											<RichText
+												value={buttonText}
+												onChange={(text) =>
+													setAttributes({
+														buttonText: text,
+													})
+												}
+												placeholder={__(
+													'Read More',
+													'zolo-blocks'
+												)}
+												allowedFormats={[]}
+											/>
+										</a>
+									</div>
+								</div>
+
+								<div className="bdt-hover-icon">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="16"
+										height="16"
+										fill="currentColor"
+										className="bi bi-gear"
+										viewBox="0 0 16 16"
+									>
+										<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path>
+										<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path>
+									</svg>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

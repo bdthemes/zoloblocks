@@ -92,7 +92,7 @@ export default function Edit(props) {
 	}, []);
 
 	const blockProps = useBlockProps({
-		className: classnames(className, ``),
+		className: classnames(className, `${uniqueId}`),
 	});
 
 	// alignment
@@ -363,14 +363,11 @@ export default function Edit(props) {
 			presetStyles = '';
 			presetHoverStyles = '';
 	}
-
 	/**
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
-		${presetStyles !== '' && presetStyles}
-		${presetHoverStyles !== '' && presetHoverStyles}
-		.wp-block-zolo-advanced-button {
+		.wp-block-zolo-advanced-button.${uniqueId} {
 			${buttonAlignmentDesktop}
 		}
 		.zolo-advanced-button.${uniqueId}{
@@ -415,7 +412,8 @@ export default function Edit(props) {
 			background: ${iconHoverBg ? iconHoverBg : ''};
 			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''};
 		}
-
+		${presetStyles}
+		${presetHoverStyles}
   	`;
 	const tabletAllStyle = `
 		.wp-block-zolo-advanced-button {
