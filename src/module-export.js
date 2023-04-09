@@ -11,6 +11,9 @@ export { default as GradientControl } from "./controls/gradient-control";
 export { default as ImageAvatar } from "./controls/image-avatar";
 export { default as ResAlignmentControl } from "./controls/res-alignment-control";
 export { default as ResRangeControl } from "./controls/res-range-control";
+export { default as ResetControl } from "./controls/reset-control";
+export { default as TextShadowControl } from './controls/textshadow-control';
+export { default as TextStrokeControl } from "./controls/textstroke-control";
 export { default as TypographyDropdown } from "./controls/typography-control";
 //Export Helpers
 export {
@@ -46,9 +49,18 @@ export {
   generateResRangeStyle
 } from "./helpers/res-range-helper";
 export {
+  generateTextShadowAttributies,
+  generateTextShadowStyles
+} from "./helpers/textshadow-helper";
+export {
+  generateTextStrokeAttributies,
+  generateTextStrokeStyles
+} from "./helpers/textstroke-helper";
+export {
   generateTypographyAttributes,
   generateTypographyStyles
 } from "./helpers/typoHelpers";
+
 
 
 

@@ -4094,6 +4094,248 @@ const ResetControl = _ref => {
 
 /***/ }),
 
+/***/ "./src/controls/textshadow-control/index.js":
+/*!**************************************************!*\
+  !*** ./src/controls/textshadow-control/index.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _color_control__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../color-control */ "./src/controls/color-control/index.js");
+/* harmony import */ var _reset_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reset-control */ "./src/controls/reset-control/index.js");
+
+
+
+
+
+function TextShadowControl(_ref) {
+  let {
+    controlName,
+    resRequiredProps,
+    enableTransition
+  } = _ref;
+  const {
+    setAttributes,
+    attributes,
+    objAttributes
+  } = resRequiredProps;
+  const {
+    [`${controlName}shadowColor`]: shadowColor,
+    [`${controlName}hShadow`]: hShadow,
+    [`${controlName}vShadow`]: vShadow,
+    [`${controlName}blur`]: blur,
+    [`${controlName}shadowTransition`]: shadowTransition
+  } = attributes;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Text Shadow', 'zolo-blocks'),
+    className: "zb-textshadow-control-wrap"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Dropdown, {
+    className: "zb-textshadow-control-dropdown",
+    contentClassName: "zb-popover-content-area",
+    position: "bottom right",
+    renderToggle: _ref2 => {
+      let {
+        isOpen,
+        onToggle
+      } = _ref2;
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+        isSmall: true,
+        onClick: onToggle,
+        "aria-expanded": isOpen
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+        className: "dashicons dashicons-edit"
+      }));
+    },
+    renderContent: () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "zb-textshadow-content-wrap",
+      style: {
+        minWidth: '230px',
+        padding: '10px'
+      }
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_color_control__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      defaultColor: (objAttributes[`${controlName}shadowColor`] || {}).default,
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Color', 'zolo-blocks'),
+      color: shadowColor,
+      onChange: shadowColor => setAttributes({
+        [`${controlName}shadowColor`]: shadowColor
+      })
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_reset_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      onReset: () => setAttributes({
+        [`${controlName}blur`]: undefined
+      })
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Blur', 'zolo-blocks'),
+      value: blur,
+      onChange: blur => setAttributes({
+        [`${controlName}blur`]: blur
+      }),
+      min: 0,
+      max: 100
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_reset_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      onReset: () => setAttributes({
+        [`${controlName}hShadow`]: undefined
+      })
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Horizontal', 'zolo-blocks'),
+      value: hShadow,
+      onChange: hShadow => setAttributes({
+        [`${controlName}hShadow`]: hShadow
+      }),
+      min: 0,
+      max: 100
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_reset_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      onReset: () => setAttributes({
+        [`${controlName}vShadow`]: undefined
+      })
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Vertical', 'zolo-blocks'),
+      value: vShadow,
+      onChange: vShadow => setAttributes({
+        [`${controlName}vShadow`]: vShadow
+      }),
+      min: 0,
+      max: 100
+    })), enableTransition && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shadow Transition', 'zolo-blocks'),
+      value: shadowTransition,
+      onChange: shadowTransition => setAttributes({
+        [`${controlName}shadowTransition`]: shadowTransition
+      }),
+      step: 0.01,
+      min: 0,
+      max: 5
+    })))
+  }));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TextShadowControl);
+
+/***/ }),
+
+/***/ "./src/controls/textstroke-control/index.js":
+/*!**************************************************!*\
+  !*** ./src/controls/textstroke-control/index.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _color_control__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../color-control */ "./src/controls/color-control/index.js");
+/* harmony import */ var _reset_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reset-control */ "./src/controls/reset-control/index.js");
+/* harmony import */ var _unit_btn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../unit-btn */ "./src/controls/unit-btn/index.js");
+/* harmony import */ var _with_res_device_btn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../with-res-device-btn */ "./src/controls/with-res-device-btn/index.js");
+
+
+
+
+
+
+
+function TextShadowControl(_ref) {
+  let {
+    controlName,
+    resRequiredProps
+  } = _ref;
+  const {
+    attributes,
+    setAttributes,
+    resMode,
+    objAttributes
+  } = resRequiredProps;
+  const strokeWidthAttr = `${resMode === 'Desktop' ? '' : resMode.slice(0, 3).toUpperCase()}${controlName}strokeWidth`;
+  const strokeUnitAttr = `${resMode === 'Desktop' ? '' : resMode.slice(0, 3).toUpperCase()}${controlName}strokeUnit`;
+  const strokeWidthVal = attributes[strokeWidthAttr];
+  const strokeUnitVal = attributes[strokeUnitAttr];
+  const {
+    [`${controlName}strokeColor`]: strokeColor
+  } = attributes;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Text Stroke', 'zolo-blocks'),
+    className: "zb-textstroke-control-wrap"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Dropdown, {
+    className: "zb-textstroke-control-dropdown",
+    contentClassName: "zb-popover-content-area",
+    position: "bottom right",
+    renderToggle: _ref2 => {
+      let {
+        isOpen,
+        onToggle
+      } = _ref2;
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+        isSmall: true,
+        onClick: onToggle,
+        "aria-expanded": isOpen
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+        className: "dashicons dashicons-edit"
+      }));
+    },
+    renderContent: () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "zb-textstroke-content-wrap",
+      style: {
+        minWidth: '230px',
+        padding: '10px'
+      }
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_with_res_device_btn__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      className: "zb-text-stroke",
+      resRequiredProps: resRequiredProps
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_unit_btn__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      selectedUnit: strokeUnitVal,
+      unitTypes: [{
+        label: 'px',
+        value: 'px'
+      }, {
+        label: 'em',
+        value: 'em'
+      }, {
+        label: 'rem',
+        value: 'rem'
+      }],
+      onClick: val => setAttributes({
+        [strokeUnitAttr]: val
+      })
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_reset_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      onReset: () => setAttributes({
+        [strokeWidthAttr]: (objAttributes[strokeWidthAttr] || {}).default
+      })
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Text Stroke", "zolo-blocks"),
+      value: strokeWidthVal,
+      onChange: val => setAttributes({
+        [strokeWidthAttr]: val
+      }),
+      min: 0,
+      max: strokeUnitVal === "em" || strokeUnitVal === "rem" ? 1 : 10,
+      step: strokeUnitVal === "em" || strokeUnitVal === "rem" ? 0.1 : 1
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_color_control__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      defaultColor: (objAttributes[`${controlName}strokeColor`] || {}).default,
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Color', 'zolo-blocks'),
+      color: strokeColor,
+      onChange: strokeColor => setAttributes({
+        [`${controlName}strokeColor`]: strokeColor
+      })
+    })))
+  }));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TextShadowControl);
+
+/***/ }),
+
 /***/ "./src/controls/typography-control/constant.js":
 /*!*****************************************************!*\
   !*** ./src/controls/typography-control/constant.js ***!
@@ -14639,6 +14881,191 @@ const generateResRangeStyle = _ref => {
 
 /***/ }),
 
+/***/ "./src/helpers/textshadow-helper.js":
+/*!******************************************!*\
+  !*** ./src/helpers/textshadow-helper.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "generateTextShadowAttributies": () => (/* binding */ generateTextShadowAttributies),
+/* harmony export */   "generateTextShadowStyles": () => (/* binding */ generateTextShadowStyles)
+/* harmony export */ });
+const generateTextShadowAttributies = function (controlName) {
+  let defaults = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  const {
+    enableTransition = false
+  } = defaults;
+  const shdAttrs = {
+    // shadow attributes  ⬇
+    [`${controlName}shadowColor`]: {
+      type: 'string'
+    },
+    [`${controlName}hShadow`]: {
+      type: 'number'
+    },
+    [`${controlName}vShadow`]: {
+      type: 'number'
+    },
+    [`${controlName}blur`]: {
+      type: 'number'
+    }
+  };
+  if (enableTransition) {
+    return {
+      ...shdAttrs
+    };
+  } else {
+    return {
+      ...shdAttrs,
+      [`${controlName}shadowTransition`]: {
+        type: 'number',
+        default: 0.5
+      }
+    };
+  }
+};
+const generateTextShadowStyles = _ref => {
+  let {
+    controlName,
+    attributes
+  } = _ref;
+  const {
+    [`${controlName}shadowColor`]: shadowColor,
+    [`${controlName}hShadow`]: hShadow = 0,
+    [`${controlName}vShadow`]: vShadow = 0,
+    [`${controlName}blur`]: blur = 0,
+    [`${controlName}shadowTransition`]: shadowTransition
+  } = attributes;
+  const textShadowStyle = `${shadowColor ? `text-shadow: ${hShadow}px ${vShadow}px ${blur}px ${shadowColor};` : ' '}
+	`;
+  const transitionStyle = `text-shadow ${shadowTransition || 0}s `;
+  return {
+    textShadowStyle,
+    transitionStyle
+  };
+};
+
+/***/ }),
+
+/***/ "./src/helpers/textstroke-helper.js":
+/*!******************************************!*\
+  !*** ./src/helpers/textstroke-helper.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "generateTextStrokeAttributies": () => (/* binding */ generateTextStrokeAttributies),
+/* harmony export */   "generateTextStrokeStyles": () => (/* binding */ generateTextStrokeStyles)
+/* harmony export */ });
+const generateTextStrokeAttributies = function (controlName) {
+  let defaults = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  const {
+    defaultStroke,
+    defaultUnit = 'px',
+    defaultColor = '#000'
+  } = defaults;
+  const desktopStrokeWidth = defaultStroke ? {
+    [`${controlName}strokeWidth`]: {
+      type: 'number',
+      default: defaultStroke
+    }
+  } : {
+    [`${controlName}strokeWidth`]: {
+      type: 'number'
+    }
+  };
+  const desktopStrokeUnit = defaultUnit ? {
+    [`${controlName}strokeUnit`]: {
+      type: "string",
+      default: defaultUnit
+    }
+  } : {
+    [`${controlName}strokeUnit`]: {
+      type: "string",
+      default: 'px'
+    }
+  };
+  const strokeColor = defaultColor ? {
+    [`${controlName}strokeColor`]: {
+      type: 'string',
+      default: defaultColor
+    }
+  } : {
+    [`${controlName}strokeColor`]: {
+      type: 'string'
+    }
+  };
+  const strokeAttrs = {
+    // stroke attributes  ⬇
+    ...strokeColor,
+    ...desktopStrokeUnit,
+    [`TAB${controlName}strokeUnit`]: {
+      type: "string",
+      default: "px"
+    },
+    [`MOB${controlName}strokeUnit`]: {
+      type: "string",
+      default: "px"
+    },
+    ...desktopStrokeWidth,
+    [`TAB${controlName}strokeWidth`]: {
+      type: 'number'
+    },
+    [`MOB${controlName}strokeWidth`]: {
+      type: 'number'
+    }
+  };
+  return {
+    ...strokeAttrs
+  };
+};
+const generateTextStrokeStyles = _ref => {
+  let {
+    controlName,
+    attributes
+  } = _ref;
+  const {
+    [`${controlName}strokeColor`]: strokeColor,
+    [`${controlName}strokeWidth`]: desktopstrokeWidth,
+    [`TAB${controlName}strokeWidth`]: tabstrokeWidth,
+    [`MOB${controlName}strokeWidth`]: mobstrokeWidth,
+    [`${controlName}strokeUnit`]: desktopstrokeUnit,
+    [`TAB${controlName}strokeUnit`]: tabstrokeUnit,
+    [`MOB${controlName}strokeUnit`]: mobstrokeUnit
+  } = attributes;
+  const desktopTextStrokeStyle = `${desktopstrokeWidth || desktopstrokeWidth == 0 ? `
+    -webkit-text-stroke-width: ${desktopstrokeWidth}${desktopstrokeUnit};
+    stroke-width: ${desktopstrokeWidth}${desktopstrokeUnit};
+    -webkit-text-stroke-color: ${strokeColor};
+    stroke:  ${strokeColor};
+    ` : ' '}
+	`;
+  const tabTextStrokeStyle = `${tabstrokeWidth || tabstrokeWidth == 0 ? `
+  -webkit-text-stroke-width: ${tabstrokeWidth}${tabstrokeUnit};
+  stroke-width: ${tabstrokeWidth}${tabstrokeUnit};
+  -webkit-text-stroke-color: ${strokeColor};
+  stroke:  ${strokeColor};
+  ` : ' '}
+`;
+  const mobTextStrokeStyle = `${mobstrokeWidth || mobstrokeWidth == 0 ? `
+  -webkit-text-stroke-width: ${mobstrokeWidth}${mobstrokeUnit};
+  stroke-width: ${mobstrokeWidth}${mobstrokeUnit};
+  -webkit-text-stroke-color: ${strokeColor};
+  stroke:  ${strokeColor};
+  ` : ' '}
+`;
+  return {
+    desktopTextStrokeStyle,
+    tabTextStrokeStyle,
+    mobTextStrokeStyle
+  };
+};
+
+/***/ }),
+
 /***/ "./src/helpers/typoHelpers.js":
 /*!************************************!*\
   !*** ./src/helpers/typoHelpers.js ***!
@@ -14817,33 +15244,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "BorderControl": () => (/* reexport safe */ _controls_border_control__WEBPACK_IMPORTED_MODULE_2__["default"]),
 /* harmony export */   "BoxShadowControl": () => (/* reexport safe */ _controls_boxshadow_control__WEBPACK_IMPORTED_MODULE_3__["default"]),
 /* harmony export */   "ColorControl": () => (/* reexport safe */ _controls_color_control__WEBPACK_IMPORTED_MODULE_4__["default"]),
-/* harmony export */   "DynamicTag": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_15__.DynamicTag),
+/* harmony export */   "DynamicTag": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_18__.DynamicTag),
 /* harmony export */   "GradientControl": () => (/* reexport safe */ _controls_gradient_control__WEBPACK_IMPORTED_MODULE_6__["default"]),
 /* harmony export */   "ImageAvatar": () => (/* reexport safe */ _controls_image_avatar__WEBPACK_IMPORTED_MODULE_7__["default"]),
 /* harmony export */   "ResAlignmentControl": () => (/* reexport safe */ _controls_res_alignment_control__WEBPACK_IMPORTED_MODULE_8__["default"]),
 /* harmony export */   "ResDimensionsControl": () => (/* reexport safe */ _controls_dimensions_control__WEBPACK_IMPORTED_MODULE_5__["default"]),
 /* harmony export */   "ResRangeControl": () => (/* reexport safe */ _controls_res_range_control__WEBPACK_IMPORTED_MODULE_9__["default"]),
-/* harmony export */   "TypographyDropdown": () => (/* reexport safe */ _controls_typography_control__WEBPACK_IMPORTED_MODULE_10__["default"]),
-/* harmony export */   "generateBackgroundAttributes": () => (/* reexport safe */ _helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_11__.generateBackgroundAttributes),
-/* harmony export */   "generateBackgroundControlStyles": () => (/* reexport safe */ _helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_11__.generateBackgroundControlStyles),
-/* harmony export */   "generateBorderAttributies": () => (/* reexport safe */ _helpers_border_helper__WEBPACK_IMPORTED_MODULE_12__.generateBorderAttributies),
-/* harmony export */   "generateBorderStyle": () => (/* reexport safe */ _helpers_border_helper__WEBPACK_IMPORTED_MODULE_12__.generateBorderStyle),
-/* harmony export */   "generateBoxShadowAttributies": () => (/* reexport safe */ _helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_13__.generateBoxShadowAttributies),
-/* harmony export */   "generateBoxShadowStyles": () => (/* reexport safe */ _helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_13__.generateBoxShadowStyles),
-/* harmony export */   "generateDimensionAttributes": () => (/* reexport safe */ _helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_14__.generateDimensionAttributes),
-/* harmony export */   "generateDimensionStyle": () => (/* reexport safe */ _helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_14__.generateDimensionStyle),
-/* harmony export */   "generateResAlignmentAttributies": () => (/* reexport safe */ _helpers_res_alignment_helper__WEBPACK_IMPORTED_MODULE_17__.generateResAlignmentAttributies),
-/* harmony export */   "generateResAlignmentStyle": () => (/* reexport safe */ _helpers_res_alignment_helper__WEBPACK_IMPORTED_MODULE_17__.generateResAlignmentStyle),
-/* harmony export */   "generateResRangeAttributies": () => (/* reexport safe */ _helpers_res_range_helper__WEBPACK_IMPORTED_MODULE_18__.generateResRangeAttributies),
-/* harmony export */   "generateResRangeStyle": () => (/* reexport safe */ _helpers_res_range_helper__WEBPACK_IMPORTED_MODULE_18__.generateResRangeStyle),
-/* harmony export */   "generateTypographyAttributes": () => (/* reexport safe */ _helpers_typoHelpers__WEBPACK_IMPORTED_MODULE_19__.generateTypographyAttributes),
-/* harmony export */   "generateTypographyStyles": () => (/* reexport safe */ _helpers_typoHelpers__WEBPACK_IMPORTED_MODULE_19__.generateTypographyStyles),
-/* harmony export */   "handleUniqueId": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_15__.handleUniqueId),
-/* harmony export */   "hasVal": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_15__.hasVal),
-/* harmony export */   "onDesktopBtnClick": () => (/* reexport safe */ _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_16__.onDesktopBtnClick),
-/* harmony export */   "onMobileBtnClick": () => (/* reexport safe */ _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_16__.onMobileBtnClick),
-/* harmony export */   "onTabletBtnClick": () => (/* reexport safe */ _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_16__.onTabletBtnClick),
-/* harmony export */   "softMinifyCssStrings": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_15__.softMinifyCssStrings)
+/* harmony export */   "ResetControl": () => (/* reexport safe */ _controls_reset_control__WEBPACK_IMPORTED_MODULE_10__["default"]),
+/* harmony export */   "TextShadowControl": () => (/* reexport safe */ _controls_textshadow_control__WEBPACK_IMPORTED_MODULE_11__["default"]),
+/* harmony export */   "TextStrokeControl": () => (/* reexport safe */ _controls_textstroke_control__WEBPACK_IMPORTED_MODULE_12__["default"]),
+/* harmony export */   "TypographyDropdown": () => (/* reexport safe */ _controls_typography_control__WEBPACK_IMPORTED_MODULE_13__["default"]),
+/* harmony export */   "generateBackgroundAttributes": () => (/* reexport safe */ _helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_14__.generateBackgroundAttributes),
+/* harmony export */   "generateBackgroundControlStyles": () => (/* reexport safe */ _helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_14__.generateBackgroundControlStyles),
+/* harmony export */   "generateBorderAttributies": () => (/* reexport safe */ _helpers_border_helper__WEBPACK_IMPORTED_MODULE_15__.generateBorderAttributies),
+/* harmony export */   "generateBorderStyle": () => (/* reexport safe */ _helpers_border_helper__WEBPACK_IMPORTED_MODULE_15__.generateBorderStyle),
+/* harmony export */   "generateBoxShadowAttributies": () => (/* reexport safe */ _helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_16__.generateBoxShadowAttributies),
+/* harmony export */   "generateBoxShadowStyles": () => (/* reexport safe */ _helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_16__.generateBoxShadowStyles),
+/* harmony export */   "generateDimensionAttributes": () => (/* reexport safe */ _helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_17__.generateDimensionAttributes),
+/* harmony export */   "generateDimensionStyle": () => (/* reexport safe */ _helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_17__.generateDimensionStyle),
+/* harmony export */   "generateResAlignmentAttributies": () => (/* reexport safe */ _helpers_res_alignment_helper__WEBPACK_IMPORTED_MODULE_20__.generateResAlignmentAttributies),
+/* harmony export */   "generateResAlignmentStyle": () => (/* reexport safe */ _helpers_res_alignment_helper__WEBPACK_IMPORTED_MODULE_20__.generateResAlignmentStyle),
+/* harmony export */   "generateResRangeAttributies": () => (/* reexport safe */ _helpers_res_range_helper__WEBPACK_IMPORTED_MODULE_21__.generateResRangeAttributies),
+/* harmony export */   "generateResRangeStyle": () => (/* reexport safe */ _helpers_res_range_helper__WEBPACK_IMPORTED_MODULE_21__.generateResRangeStyle),
+/* harmony export */   "generateTextShadowAttributies": () => (/* reexport safe */ _helpers_textshadow_helper__WEBPACK_IMPORTED_MODULE_22__.generateTextShadowAttributies),
+/* harmony export */   "generateTextShadowStyles": () => (/* reexport safe */ _helpers_textshadow_helper__WEBPACK_IMPORTED_MODULE_22__.generateTextShadowStyles),
+/* harmony export */   "generateTextStrokeAttributies": () => (/* reexport safe */ _helpers_textstroke_helper__WEBPACK_IMPORTED_MODULE_23__.generateTextStrokeAttributies),
+/* harmony export */   "generateTextStrokeStyles": () => (/* reexport safe */ _helpers_textstroke_helper__WEBPACK_IMPORTED_MODULE_23__.generateTextStrokeStyles),
+/* harmony export */   "generateTypographyAttributes": () => (/* reexport safe */ _helpers_typoHelpers__WEBPACK_IMPORTED_MODULE_24__.generateTypographyAttributes),
+/* harmony export */   "generateTypographyStyles": () => (/* reexport safe */ _helpers_typoHelpers__WEBPACK_IMPORTED_MODULE_24__.generateTypographyStyles),
+/* harmony export */   "handleUniqueId": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_18__.handleUniqueId),
+/* harmony export */   "hasVal": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_18__.hasVal),
+/* harmony export */   "onDesktopBtnClick": () => (/* reexport safe */ _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_19__.onDesktopBtnClick),
+/* harmony export */   "onMobileBtnClick": () => (/* reexport safe */ _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_19__.onMobileBtnClick),
+/* harmony export */   "onTabletBtnClick": () => (/* reexport safe */ _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_19__.onTabletBtnClick),
+/* harmony export */   "softMinifyCssStrings": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_18__.softMinifyCssStrings)
 /* harmony export */ });
 /* harmony import */ var _controls_scss_controls_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controls/scss/controls.scss */ "./src/controls/scss/controls.scss");
 /* harmony import */ var _controls_background_control__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./controls/background-control */ "./src/controls/background-control/index.js");
@@ -14855,16 +15289,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _controls_image_avatar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./controls/image-avatar */ "./src/controls/image-avatar/index.js");
 /* harmony import */ var _controls_res_alignment_control__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./controls/res-alignment-control */ "./src/controls/res-alignment-control/index.js");
 /* harmony import */ var _controls_res_range_control__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./controls/res-range-control */ "./src/controls/res-range-control/index.js");
-/* harmony import */ var _controls_typography_control__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./controls/typography-control */ "./src/controls/typography-control/index.js");
-/* harmony import */ var _helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./helpers/backgroundHelpers */ "./src/helpers/backgroundHelpers.js");
-/* harmony import */ var _helpers_border_helper__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./helpers/border-helper */ "./src/helpers/border-helper.js");
-/* harmony import */ var _helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./helpers/boxshadow-helper */ "./src/helpers/boxshadow-helper.js");
-/* harmony import */ var _helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./helpers/dimension-helper */ "./src/helpers/dimension-helper.js");
-/* harmony import */ var _helpers_helper__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./helpers/helper */ "./src/helpers/helper.js");
-/* harmony import */ var _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./helpers/preview-btns-helper */ "./src/helpers/preview-btns-helper.js");
-/* harmony import */ var _helpers_res_alignment_helper__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./helpers/res-alignment-helper */ "./src/helpers/res-alignment-helper.js");
-/* harmony import */ var _helpers_res_range_helper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./helpers/res-range-helper */ "./src/helpers/res-range-helper.js");
-/* harmony import */ var _helpers_typoHelpers__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./helpers/typoHelpers */ "./src/helpers/typoHelpers.js");
+/* harmony import */ var _controls_reset_control__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./controls/reset-control */ "./src/controls/reset-control/index.js");
+/* harmony import */ var _controls_textshadow_control__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./controls/textshadow-control */ "./src/controls/textshadow-control/index.js");
+/* harmony import */ var _controls_textstroke_control__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./controls/textstroke-control */ "./src/controls/textstroke-control/index.js");
+/* harmony import */ var _controls_typography_control__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./controls/typography-control */ "./src/controls/typography-control/index.js");
+/* harmony import */ var _helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./helpers/backgroundHelpers */ "./src/helpers/backgroundHelpers.js");
+/* harmony import */ var _helpers_border_helper__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./helpers/border-helper */ "./src/helpers/border-helper.js");
+/* harmony import */ var _helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./helpers/boxshadow-helper */ "./src/helpers/boxshadow-helper.js");
+/* harmony import */ var _helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./helpers/dimension-helper */ "./src/helpers/dimension-helper.js");
+/* harmony import */ var _helpers_helper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./helpers/helper */ "./src/helpers/helper.js");
+/* harmony import */ var _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./helpers/preview-btns-helper */ "./src/helpers/preview-btns-helper.js");
+/* harmony import */ var _helpers_res_alignment_helper__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./helpers/res-alignment-helper */ "./src/helpers/res-alignment-helper.js");
+/* harmony import */ var _helpers_res_range_helper__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./helpers/res-range-helper */ "./src/helpers/res-range-helper.js");
+/* harmony import */ var _helpers_textshadow_helper__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./helpers/textshadow-helper */ "./src/helpers/textshadow-helper.js");
+/* harmony import */ var _helpers_textstroke_helper__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./helpers/textstroke-helper */ "./src/helpers/textstroke-helper.js");
+/* harmony import */ var _helpers_typoHelpers__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./helpers/typoHelpers */ "./src/helpers/typoHelpers.js");
 //Import controls css
 
 
@@ -14879,7 +15318,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 //Export Helpers
+
+
 
 
 

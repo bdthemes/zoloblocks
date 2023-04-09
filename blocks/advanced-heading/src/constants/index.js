@@ -65,16 +65,23 @@ export const TITLE_BORDER = 'titleBorder';
 export const TITLE_BORDER_RADIUS = 'titleBorderRadius';
 export const TITLE_PADDING = 'titlePadding';
 export const TITLE_SHADOW = 'titleShadow';
+export const TITLE_TEXT_SHADOW = 'titleTextShadow';
+export const TITLE_TEXT_STROKE = 'titleTextStroke';
 
 export const SUBTITLE_MARGIN = 'subTitleMargin';
+export const SUBTITLE_TEXT_SHADOW = 'subTitleTextShadow';
+export const SUBTITLE_TEXT_STROKE = 'subTitleTextStroke';
 export const SEPARATOR_WIDTH = 'separatorWidth';
 export const SEPARATOR_SPACING = 'separatorSpacing';
 export const SEPARATOR_HEIGHT = 'separatorHeight';
+
 export const TPT_MARGIN = 'TPTMargin';
 export const TPT_BORDER = 'TPTBorder';
 export const TPT_BORDER_RADIUS = 'TPTBorderRadius';
 export const TPT_PADDING = 'TPTPadding';
 export const TPT_SHADOW = 'TPTShadow';
+export const TPT_TEXT_SHADOW = 'TPTTextShadow';
+export const TPT_TEXT_STROKE = 'TPTTextStroke';
 
 //advance tab
 export const WRAPPER_MARGIN = 'wrapMargin';

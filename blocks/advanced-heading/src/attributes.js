@@ -6,21 +6,31 @@ const {
   generateDimensionAttributes,
   generateTypographyAttributes,
   generateResRangeAttributies,
-  generateResAlignmentAttributies
+  generateResAlignmentAttributies,
+  generateTextShadowAttributies,
+  generateTextStrokeAttributies,
 } = window.zoloModule;
 
 //block constants
 import {
   SEPARATOR_HEIGHT, SEPARATOR_SPACING, SEPARATOR_WIDTH, SUBTITLE_MARGIN,
+  SUBTITLE_TEXT_SHADOW,
+  SUBTITLE_TEXT_STROKE,
   TITLE_BORDER,
   TITLE_BORDER_RADIUS,
   TITLE_MARGIN, TITLE_PADDING,
-  TITLE_SHADOW, TPT_ALIGNMENT,
+  TITLE_SHADOW,
+  TITLE_TEXT_SHADOW,
+  TITLE_TEXT_STROKE,
+  TPT_ALIGNMENT,
   TPT_BORDER,
   TPT_BORDER_RADIUS,
   TPT_MARGIN,
   TPT_PADDING,
-  TPT_SHADOW, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW
+  TPT_SHADOW,
+  TPT_TEXT_SHADOW,
+  TPT_TEXT_STROKE,
+  WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW
 } from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
@@ -119,7 +129,6 @@ const attributes = {
     default: '',
   },
 
-
   subTitleColor: {
     type: 'string',
     default: '',
@@ -154,14 +163,20 @@ const attributes = {
   ...generateBorderAttributies(TITLE_BORDER),
   ...generateDimensionAttributes(TITLE_BORDER_RADIUS),
   ...generateBoxShadowAttributies(TITLE_SHADOW),
+  ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
+  ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
 
   ...generateDimensionAttributes(TPT_MARGIN),
   ...generateDimensionAttributes(TPT_PADDING),
   ...generateBorderAttributies(TPT_BORDER),
   ...generateDimensionAttributes(TPT_BORDER_RADIUS),
   ...generateBoxShadowAttributies(TPT_SHADOW),
+  ...generateTextShadowAttributies(TPT_TEXT_SHADOW),
+  ...generateTextStrokeAttributies(TPT_TEXT_STROKE),
 
   ...generateDimensionAttributes(SUBTITLE_MARGIN),
+  ...generateTextShadowAttributies(SUBTITLE_TEXT_SHADOW),
+  ...generateTextStrokeAttributies(SUBTITLE_TEXT_STROKE),
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
   //advance tab attributes

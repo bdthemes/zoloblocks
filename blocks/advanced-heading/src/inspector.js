@@ -22,7 +22,10 @@ const {
   ResDimensionsControl,
   TypographyDropdown,
   ResRangeControl,
-  ResAlignmentControl
+  ResAlignmentControl,
+  TextShadowControl,
+  TextStrokeControl,
+  ResetControl
 } = window.zoloModule;
 
 //block attributes
@@ -35,12 +38,17 @@ import {
   SEPARATOR_WIDTH,
   STYLES,
   ST_POSITION,
-  SUBTITLE_MARGIN, TEXT_ALIGN,
+  SUBTITLE_MARGIN,
+  SUBTITLE_TEXT_SHADOW,
+  SUBTITLE_TEXT_STROKE,
+  TEXT_ALIGN,
   TITLE_BORDER,
   TITLE_BORDER_RADIUS,
   TITLE_MARGIN,
   TITLE_PADDING,
   TITLE_SHADOW,
+  TITLE_TEXT_SHADOW,
+  TITLE_TEXT_STROKE,
   TPT_ALIGNMENT,
   TPT_BORDER,
   TPT_BORDER_RADIUS,
@@ -49,6 +57,8 @@ import {
   TPT_PADDING,
   TPT_ROTATE_ORIGIN,
   TPT_SHADOW,
+  TPT_TEXT_SHADOW,
+  TPT_TEXT_STROKE,
   WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_MARGIN,
@@ -359,38 +369,57 @@ const Inspector = ({ attributes, setAttributes }) => {
                             { label: "Right", value: "right" },
                           ]}
                         />
-
-                        <RangeControl
-                          label={__('X Offset', 'zolo-blocks')}
-                          value={transparentTitleXOffset}
-                          onChange={(transparentTitleXOffset) => setAttributes({ transparentTitleXOffset })}
-                          min={-800}
-                          max={800}
-                        />
-
-                        <RangeControl
-                          label={__('Y Offset', 'zolo-blocks')}
-                          value={transparentTitleYOffset}
-                          onChange={(transparentTitleYOffset) => setAttributes({ transparentTitleYOffset })}
-                          min={-800}
-                          max={800}
-                        />
-
+                        <ResetControl
+                          onReset={() =>
+                            setAttributes({
+                              transparentTitleXOffset: 0,
+                            })
+                          }
+                        >
+                          <RangeControl
+                            label={__('X Offset', 'zolo-blocks')}
+                            value={transparentTitleXOffset}
+                            onChange={(transparentTitleXOffset) => setAttributes({ transparentTitleXOffset })}
+                            min={-800}
+                            max={800}
+                          />
+                        </ResetControl>
+                        <ResetControl
+                          onReset={() =>
+                            setAttributes({
+                              transparentTitleYOffset: 0,
+                            })
+                          }
+                        >
+                          <RangeControl
+                            label={__('Y Offset', 'zolo-blocks')}
+                            value={transparentTitleYOffset}
+                            onChange={(transparentTitleYOffset) => setAttributes({ transparentTitleYOffset })}
+                            min={-800}
+                            max={800}
+                          />
+                        </ResetControl>
                         <SelectControl
                           label={__("Rotate Origin", "zolo-blocks")}
                           value={transparentTitleRotateOrigin}
                           options={TPT_ROTATE_ORIGIN}
                           onChange={(transparentTitleRotateOrigin) => setAttributes({ transparentTitleRotateOrigin })}
                         />
-
-                        <RangeControl
-                          label={__('Rotate', 'zolo-blocks')}
-                          value={transparentTitleRotate}
-                          onChange={(transparentTitleRotate) => setAttributes({ transparentTitleRotate })}
-                          min={-180}
-                          max={180}
-                        />
-
+                        <ResetControl
+                          onReset={() =>
+                            setAttributes({
+                              transparentTitleRotate: 0,
+                            })
+                          }
+                        >
+                          <RangeControl
+                            label={__('Rotate', 'zolo-blocks')}
+                            value={transparentTitleRotate}
+                            onChange={(transparentTitleRotate) => setAttributes({ transparentTitleRotate })}
+                            min={-180}
+                            max={180}
+                          />
+                        </ResetControl>
                         <SelectControl
                           label={__("Hide At", "zolo-blocks")}
                           value={transparentTitleHide}
@@ -465,6 +494,18 @@ const Inspector = ({ attributes, setAttributes }) => {
                       resRequiredProps={resRequiredProps}
                     />
 
+                    <TextShadowControl
+                      controlName={TITLE_TEXT_SHADOW}
+                      resRequiredProps={resRequiredProps}
+                      enableTransition={false}
+                    />
+
+                    <TextStrokeControl
+                      controlName={TITLE_TEXT_STROKE}
+                      resRequiredProps={resRequiredProps}
+                      enableTransition={false}
+                    />
+
                   </PanelBody>
 
                   <PanelBody
@@ -489,6 +530,18 @@ const Inspector = ({ attributes, setAttributes }) => {
                       label={__('Margin', 'zolo-blocks')}
                       controlName={SUBTITLE_MARGIN}
                       resRequiredProps={resRequiredProps}
+                    />
+
+                    <TextShadowControl
+                      controlName={SUBTITLE_TEXT_SHADOW}
+                      resRequiredProps={resRequiredProps}
+                      enableTransition={false}
+                    />
+
+                    <TextStrokeControl
+                      controlName={SUBTITLE_TEXT_STROKE}
+                      resRequiredProps={resRequiredProps}
+                      enableTransition={false}
                     />
 
                   </PanelBody>
@@ -595,6 +648,17 @@ const Inspector = ({ attributes, setAttributes }) => {
                     <BoxShadowControl
                       controlName={TPT_SHADOW}
                       resRequiredProps={resRequiredProps}
+                    />
+                    <TextShadowControl
+                      controlName={TPT_TEXT_SHADOW}
+                      resRequiredProps={resRequiredProps}
+                      enableTransition={false}
+                    />
+
+                    <TextStrokeControl
+                      controlName={TPT_TEXT_STROKE}
+                      resRequiredProps={resRequiredProps}
+                      enableTransition={false}
                     />
 
                     <RangeControl

@@ -10,17 +10,23 @@ import './style.scss';
 //block constants
 import {
   SEPARATOR_HEIGHT, SEPARATOR_SPACING, SEPARATOR_WIDTH, SUBTITLE_MARGIN,
+  SUBTITLE_TEXT_SHADOW,
+  SUBTITLE_TEXT_STROKE,
   TITLE_BORDER,
   TITLE_BORDER_RADIUS,
   TITLE_MARGIN,
   TITLE_PADDING,
   TITLE_SHADOW,
+  TITLE_TEXT_SHADOW,
+  TITLE_TEXT_STROKE,
   TPT_ALIGNMENT,
   TPT_BORDER,
   TPT_BORDER_RADIUS,
   TPT_MARGIN,
   TPT_PADDING,
   TPT_SHADOW,
+  TPT_TEXT_SHADOW,
+  TPT_TEXT_STROKE,
   WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_MARGIN,
@@ -39,7 +45,9 @@ const {
   generateTypographyStyles,
   generateResRangeStyle,
   DynamicTag,
-  generateResAlignmentStyle
+  generateResAlignmentStyle,
+  generateTextShadowStyles,
+  generateTextStrokeStyles
 } = window.zoloModule;
 
 const Edit = (props) => {
@@ -152,6 +160,22 @@ const Edit = (props) => {
     attributes,
     controlName: TITLE_BORDER,
   });
+  const {
+    textShadowStyle: titleTextShadowStyle
+  } = generateTextShadowStyles({
+    attributes,
+    controlName: TITLE_TEXT_SHADOW,
+  });
+
+  const {
+    desktopTextStrokeStyle: titleTextStrokeStyle,
+    tabTextStrokeStyle: tabTitleTextStrokeStyle,
+    mobTextStrokeStyle: mobTitleTextStrokeStyle
+  } = generateTextStrokeStyles({
+    attributes,
+    controlName: TITLE_TEXT_STROKE,
+  });
+
 
   //separator style generate
   const {
@@ -204,6 +228,22 @@ const Edit = (props) => {
     styleFor: 'margin',
     attributes,
   });
+  const {
+    textShadowStyle: subTitleTextShadowStyle
+  } = generateTextShadowStyles({
+    attributes,
+    controlName: SUBTITLE_TEXT_SHADOW,
+  });
+
+  const {
+    desktopTextStrokeStyle: subTitleTextStrokeStyle,
+    tabTextStrokeStyle: tabSubTitleTextStrokeStyle,
+    mobTextStrokeStyle: mobSubTitleTextStrokeStyle
+  } = generateTextStrokeStyles({
+    attributes,
+    controlName: SUBTITLE_TEXT_STROKE,
+  });
+
 
   //transparent style generate
   const {
@@ -272,6 +312,22 @@ const Edit = (props) => {
   } = generateBorderStyle({
     attributes,
     controlName: TPT_BORDER,
+  });
+
+  const {
+    textShadowStyle: tptTextShadowStyle
+  } = generateTextShadowStyles({
+    attributes,
+    controlName: TPT_TEXT_SHADOW,
+  });
+
+  const {
+    desktopTextStrokeStyle: tptTextStrokeStyle,
+    tabTextStrokeStyle: tabtptTextStrokeStyle,
+    mobTextStrokeStyle: mobtptTextStrokeStyle
+  } = generateTextStrokeStyles({
+    attributes,
+    controlName: TPT_TEXT_STROKE,
   });
 
   //wrapper style generate
@@ -421,6 +477,8 @@ const Edit = (props) => {
         ${titlePaddingDesktop}
         ${titleBorderDesktop}
         ${titleBorderRadiusDesktop}
+        ${titleTextShadowStyle}
+        ${titleTextStrokeStyle}
 			}
 
       .zolo-block-wrapper.${uniqueId}.zolo-ah-style-6 .zolo-ah-title {
@@ -445,6 +503,7 @@ const Edit = (props) => {
       ${titlePaddingTab}
       ${titleBorderTab}
       ${titleBorderRadiusTab}
+      ${tabTitleTextStrokeStyle}
 		}
 	`;
 
@@ -455,10 +514,11 @@ const Edit = (props) => {
       ${titlePaddingMob}
       ${titleBorderMob}
       ${titleBorderRadiusMob}
+      ${mobTitleTextStrokeStyle}
 		}
 	`;
 
-  // Subtitle styles css in strings
+  // separator styles css in strings
   const separatorStylesDesktop = `
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       border-style: none none solid;
@@ -493,18 +553,22 @@ const Edit = (props) => {
       ${subTitleColor ? `color: ${subTitleColor};` : ""}
 			${subTitleTypoDesktop}
 			${subTitleMarginDesktop}
+      ${subTitleTextShadowStyle}
+      ${subTitleTextStrokeStyle}
 		}
 	`;
   const subtitleStylesTab = `
 		.zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
 			${subTitleTypoTab}
 			${subTitleMarginTab}
+      ${tabSubTitleTextStrokeStyle}
 		}
 	`;
   const subtitleStylesMobile = `
 		.zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
 			${subTitleTypoMobile}
 			${subTitleMarginMobile}
+      ${mobSubTitleTextStrokeStyle}
 		}
 	`;
 
@@ -522,6 +586,8 @@ const Edit = (props) => {
       ${tptPaddingDesktop}
       ${tptBorderDesktop}
       ${tptBorderRadiusDesktop}
+      ${tptTextShadowStyle}
+      ${tptTextStrokeStyle}
 
       display:inline-block;
       -webkit-transform: translate(var(--zb-advanced-heading-pos-x, 0), var(--zb-advanced-heading-pos-y, 0)) rotate(var(--zb-advanced-heading-rotate, 0));
@@ -544,6 +610,8 @@ const Edit = (props) => {
       ${tptPaddingTab}
       ${tptBorderTab}
       ${tptBorderRadiusTab}
+      ${tptTextShadowStyle}
+      ${tabtptTextStrokeStyle}
     }
   `;
 
@@ -558,6 +626,7 @@ const Edit = (props) => {
       ${tptPaddingMob}
       ${tptBorderMob}
       ${tptBorderRadiusMob}
+      ${mobtptTextStrokeStyle}
     }
   `;
 
