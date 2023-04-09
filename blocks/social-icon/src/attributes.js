@@ -1,7 +1,7 @@
 import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
 import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
 import { generateBorderAttributies } from '../../../src/helpers/border-helper';
-import {generateTypographyAttributes} from '../../../src/helpers/typoHelpers'
+
 import {
 	BUTTON_ALIGNMENT,
 	BUTTON_BG_COLOR,
@@ -14,8 +14,7 @@ import {
 	ROW_GAP,
 	BUTTON_SIZE,
 	BUTTON_ICON_SIZE,
-	BUTTON_HEIGHT,
-	SOCIAL_TYPOGRAPHY
+	BUTTON_HEIGHT
 	
 } from './constants';
 
@@ -47,8 +46,7 @@ const attributes = {
 	...generateResRangeAttributies(COLUMNS_GAP),
 	//row gaps
 	...generateResRangeAttributies(ROW_GAP),
-	//typography 
-	//  ...generateTypographyAttributes(SOCIAL_TYPOGRAPHY),
+	
 	//button size
 	...generateResRangeAttributies(BUTTON_SIZE),
 	//button icon size
@@ -57,7 +55,6 @@ const attributes = {
 	...generateResRangeAttributies(BUTTON_HEIGHT),
 	
 	//icon spacing
-	//icon spacing 
 	...generateResRangeAttributies(ICON_TEXT_SPACING, {
 		default: 5,
 	}),
@@ -71,8 +68,8 @@ const attributes = {
 	},
 	socialRepeat:{
 		type:"array",
+		default:[]
 	},
-
 	link: {
 		type: 'object',
 		default: {
@@ -99,6 +96,9 @@ const attributes = {
 		type:"string"
 	},
 	customLink:{
+		type:"string"
+	},
+	columnsNumber:{
 		type:"string"
 	},
 	showIcon: {
