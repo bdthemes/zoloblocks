@@ -21,12 +21,12 @@ import { Fragment, } from '@wordpress/element';
 
 
 import ResRangeControl from '../../../src/controls/res-range-control';
-
+import Typhography from '../../../src/controls/typography-control';
 
 import objAttributes from './attributes';
 import { controls } from '@wordpress/data';
 import { set } from 'lodash';
-import {SOCIAL_TEXT,COLUMNS_GAP,ROW_GAP,BUTTON_SIZE,BUTTON_ICON_SIZE,BUTTON_HEIGHT} from './constants'
+import {SOCIAL_TEXT,COLUMNS_GAP,ROW_GAP,BUTTON_SIZE,BUTTON_ICON_SIZE,BUTTON_HEIGHT,SOCIAL_TYPOGRAPHY} from './constants'
 import { useEffect } from 'react';
 
 function Inspector (props){
@@ -42,7 +42,8 @@ function Inspector (props){
          customLink,
          socialStyle,
          columnsNumber,
-	     socialRepeat
+	     socialRepeat,
+         socialtodo
 
 	} = attributes;
 
@@ -52,8 +53,11 @@ function Inspector (props){
 		resMode,
 		objAttributes,
 	};
+//     const socialTodo = ()=>{
     
-   
+//         setAttributes({ socialRepeat : [... socialRepeat,socialtodo]})
+//     }
+//    console.log(socialRepeat)
     return(
         <InspectorControls key="controls">
                 <div className='zolo-panel-control'>
@@ -83,6 +87,7 @@ function Inspector (props){
                                     <div className={'zolo-tab--control' + tab.name}>
                                             {tab.name === "Content" &&(
                                                 <>
+
                                                   <PanelBody title={__('Content', 'zolo-blocks')} 
                                                          initialOpen={true}>
                                                         <SelectControl
@@ -92,7 +97,7 @@ function Inspector (props){
                                                                   onChange={ ( iconV ) => setAttributes({socialText:iconV}) }
                                                               />
                                               
-                                                       
+                                          
                                                   
                                                         <SelectControl
                                                                 label={__("columns","zolo-blocks")}
@@ -233,7 +238,15 @@ function Inspector (props){
                                                                 min={0}
                                                                 max={100}
                                                                 step={1}
-                                                              />                
+                                                              /> 
+                                                              <Typhography
+                                                                 label={__("Typhography","zolo-blocks")}
+                                                                 typoPrefixConstant ={SOCIAL_TYPOGRAPHY}
+                                                                 resRequiredProps={
+                                                                    resRequiredProps
+                                                                }
+                                                                defaultFontSize={14}
+                                                              />               
                                                     </PanelBody>
                                             
                                               

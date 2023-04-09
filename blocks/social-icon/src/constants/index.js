@@ -49,6 +49,8 @@ export const SOCIAL_TEXT =[
 export const COLUMNS_NUMBER = "columns";
 export const COLUMNS_GAP = "columnsGap";
 export const ROW_GAP ="rowGap";
+//typhygraphy
+export const SOCIAL_TYPOGRAPHY = "socialTypography";
 //button size
 export const BUTTON_SIZE = "btnSize";
 export const BUTTON_ICON_SIZE = "buttonIconSize";
