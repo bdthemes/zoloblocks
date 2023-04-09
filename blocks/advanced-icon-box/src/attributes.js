@@ -4,6 +4,7 @@ import { generateBorderAttributies } from '../../../src/helpers/border-helper';
 
 import {
 	ICON_ALIGNMENT,
+	HEADING_ALIGNMENT,
 	ICON_BG_COLOR,
 	ICON_HOVER_BG_COLOR,
 	ICON_BORDER,
@@ -25,6 +26,10 @@ const attributes = {
 	},
 	//alignment attributes
 	...generateResAlignmentAttributies(ICON_ALIGNMENT, {
+		defaultAlign: 'left',
+	}),
+	//heading alignment
+	...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
 		defaultAlign: 'left',
 	}),
 	// border attributes

@@ -47,6 +47,7 @@ import TabPanelControl from '../../../src/controls/tabpanel-control';
 import objAttributes from './attributes';
 import {
 	ICON_ALIGNMENT,
+	HEADING_ALIGNMENT,
 	PRESETS,
 	ICON_POSITIONS,
 	ICON_SIZE,
@@ -301,6 +302,33 @@ function Inspector(props) {
 												</MediaUploadCheck>
 											))}
 
+										<CardDivider />
+										<ResAlignmentControl
+											label={__(
+												'Heading Alignment',
+												'zolo-blocks'
+											)}
+											controlName={HEADING_ALIGNMENT}
+											resRequiredProps={resRequiredProps}
+											alignOptions={[
+												{
+													label: 'Left',
+													value: 'left',
+												},
+												{
+													label: 'Center',
+													value: 'center',
+												},
+												{
+													label: 'Right',
+													value: 'right',
+												},
+												{
+													label: 'Justify',
+													value: 'justify',
+												},
+											]}
+										/>
 										<CardDivider />
 
 										<TextControl

@@ -43,6 +43,8 @@ export const ICON_PADDING = 'iconPadding';
 export const ICON_MARGIN = 'iconMargin';
 // Icon Alignment
 export const ICON_ALIGNMENT = 'iconAlignment';
+// Heading Alignment
+export const HEADING_ALIGNMENT = 'headingAlignment';
 // Icon Border
 export const ICON_BORDER = 'iconBorder';
 // Icon Size
