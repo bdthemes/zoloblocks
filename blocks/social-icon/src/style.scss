@@ -1,0 +1,101 @@
+<<<<<<< HEAD
+//style panel css
+
+.style-wrapper{
+    width: 100%;
+    display: flex;
+    margin: 12px 0;
+    .style-title {
+        width: 50%;
+     
+        h3 {
+            margin-top: 6px;
+            margin-left: 9px;
+            font-weight: 700;
+        }
+    }
+    .panel-body{
+        width: 50%;
+    }
+    
+
+}
+
+
+//social view section 
+
+.social-text-wrap {
+    display: flex;
+    margin: 15px 0;
+
+    .view-label {
+        width: 50%;
+        margin-top: 10px;
+        h3 {  
+            font-weight: 600;
+            text-transform: uppercase;
+            font-family: monospace;
+        }
+      
+    }
+
+    .view-control {
+        width: 50%;
+    }
+}
+
+//columns control 
+
+.columns-wrap {
+    display: flex;
+    margin-bottom: 14px;
+    .columns-label {
+        width: 50%;
+        h3 {
+            margin-top: 12px;
+            text-transform: uppercase;
+        }
+    }
+    .columns-number {
+        width: 50%;
+    }
+}
+
+//target url section css
+
+.zb-target-wrap {
+    display: flex;
+    margin: 5px;
+    .zb-target-label {
+        width: 50%;
+        h3{
+            margin-top: 10px;
+            font-family: monospace;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+    }
+    .zb-target-control {
+        width: 50%;
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+>>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
