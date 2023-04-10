@@ -16,3 +16,4 @@ yarn.lock
 
 vendor-bundle/
 dist/
+modules/

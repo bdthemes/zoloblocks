@@ -14,6 +14,7 @@ import {
 	TabPanel,
 	TextControl,
 	ToggleControl,
+  
 
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -21,7 +22,7 @@ import { Fragment, } from '@wordpress/element';
 
 
 import ResRangeControl from '../../../src/controls/res-range-control';
-
+import TypographyControl from '../../../src/controls/typography-control'
 
 import objAttributes from './attributes';
 import { controls } from '@wordpress/data';
@@ -42,7 +43,8 @@ function Inspector (props){
          customLink,
          socialStyle,
          columnsNumber,
-	     socialRepeat
+	     socialRepeat,
+         socialColor
 
 	} = attributes;
 
@@ -233,7 +235,26 @@ function Inspector (props){
                                                                 min={0}
                                                                 max={100}
                                                                 step={1}
-                                                              />                
+                                                              />  
+                                                            <TypographyControl
+                                                              label={__('Typography','zolo-blocks')}
+                                                              resRequiredProps={resRequiredProps}
+                                                              defaultFontSize={14}
+                                                            />
+                                                           
+                                                            
+                                                           
+                                                                <SelectControl
+                                                                    label="Color"
+                                                                    value={ socialColor}
+                                                                    options={ [
+                                                                        { label: 'Custom Color', value: 'Custom Color' },
+                                                                        { label: 'Original Color', value: 'Original Color' },
+                                                                        
+                                                                    ] }
+                                                                    onChange={ ( color ) => { setAttributes( { socialColor: color } ) } }
+                                                                />
+                                                      
                                                     </PanelBody>
                                             
                                               

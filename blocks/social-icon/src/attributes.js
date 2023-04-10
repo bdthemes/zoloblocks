@@ -101,6 +101,9 @@ const attributes = {
 	columnsNumber:{
 		type:"string"
 	},
+	socialColor:{
+		type:"string"
+	},
 	showIcon: {
 		type: 'boolean',
 		default: false,

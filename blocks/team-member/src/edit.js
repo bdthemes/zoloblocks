@@ -8,12 +8,14 @@ import {
 	__experimentalLinkControl as LinkControl,
 	MediaUpload,
 } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
+import { Fragment, useState, useEffect } from '@wordpress/element';
+
 import {
 	ToolbarButton,
 	ToolbarGroup,
 	Dropdown,
 	Button,
+	Popover,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -41,11 +43,14 @@ export default function Edit(props) {
 		memberPhoto,
 		memberName,
 		enableMemberLink,
+		enableMemberDetailsPage,
 		memberLink,
 		memberDesignation,
 		memberShortBio,
 		showSocialProfiles,
 	} = attributes;
+
+	const [popoverVisible, setPopoverVisible] = useState(false);
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -100,41 +105,73 @@ export default function Edit(props) {
 				/>
 			)}
 			<style>{` ${softMinifyCssStrings(allStyle)}`}</style>
-			{showMemberPhoto && memberPhoto && (
-				<BlockControls>
-					<ToolbarGroup>
-						<MediaUpload
-							onSelect={(media) => {
-								setAttributes({
-									memberPhoto: media,
-								});
-							}}
-							allowedTypes={['image']}
-							value={memberPhoto && memberPhoto.id}
-							render={({ open }) => (
-								<ToolbarButton
-									className="components-toolbar__control"
-									label={__('Replace Photo', 'zolo-blocks')}
-									icon="update"
-									onClick={open}
-								/>
-							)}
+
+			<BlockControls>
+				{showMemberPhoto && memberPhoto && (
+					<Fragment>
+						<ToolbarGroup>
+							<MediaUpload
+								onSelect={(media) => {
+									setAttributes({
+										memberPhoto: media,
+									});
+								}}
+								allowedTypes={['image']}
+								value={memberPhoto && memberPhoto.id}
+								render={({ open }) => (
+									<ToolbarButton
+										className="components-toolbar__control"
+										label={__(
+											'Replace Photo',
+											'zolo-blocks'
+										)}
+										icon="update"
+										onClick={open}
+									/>
+								)}
+							/>
+							<ToolbarButton
+								className="components-toolbar__control"
+								label={__('Remove Photo', 'zolo-blocks')}
+								icon="trash"
+								onClick={() => {
+									setAttributes({
+										memberPhoto: null,
+									});
+								}}
+							/>
+						</ToolbarGroup>
+					</Fragment>
+				)}
+				<ToolbarGroup>
+					<ToolbarButton
+						icon="admin-links"
+						onClick={() => setPopoverVisible(!popoverVisible)}
+					/>
+				</ToolbarGroup>
+				{popoverVisible && (
+					<Popover
+						position="bottom right"
+						onFocusOutside={() => setPopoverVisible(false)}
+						offset={10}
+					>
+						<LinkControl
+							searchInputPlaceholder="Search here..."
+							value={memberLink}
+							settings={[
+								{
+									id: 'opensInNewTab',
+									title: __('Open in new tab', 'zolo-blocks'),
+								},
+							]}
+							onChange={(data) =>
+								setAttributes({ memberLink: data })
+							}
 						/>
-					</ToolbarGroup>
-					<ToolbarGroup>
-						<ToolbarButton
-							className="components-toolbar__control"
-							label={__('Remove Photo', 'zolo-blocks')}
-							icon="trash"
-							onClick={() => {
-								setAttributes({
-									memberPhoto: null,
-								});
-							}}
-						/>
-					</ToolbarGroup>
-				</BlockControls>
-			)}
+					</Popover>
+				)}
+			</BlockControls>
+
 			<div {...blockProps}>
 				<div className="zolo-advanced-member-wrap zolo-advanced-member-style-1">
 					<div className="zolo-item">
@@ -226,11 +263,25 @@ export default function Edit(props) {
 										<i className="fa-brands fa-instagram" />
 									</a>
 								</div>
-								<div className="zolo-link-btn">
-									<a href="#">
-										<i className="fa-solid fa-arrow-right" />
-									</a>
-								</div>
+								{enableMemberDetailsPage && (
+									<div className="zolo-link-btn">
+										<a
+											href={memberLink && memberLink.url}
+											rel={
+												memberLink &&
+												memberLink.newTab &&
+												'noreferer'
+											}
+											target={
+												memberLink &&
+												memberLink.newTab &&
+												'_blank'
+											}
+										>
+											<i className="fa-solid fa-arrow-right" />
+										</a>
+									</div>
+								)}
 							</div>
 						</div>
 						<div className="zolo-info-wrap">
@@ -293,11 +344,13 @@ export default function Edit(props) {
 									/>
 								</div>
 							</div>
-							<div className="zolo-link-btn">
-								<a href="#">
-									<i className="fa-solid fa-arrow-right" />
-								</a>
-							</div>
+							{enableMemberDetailsPage && (
+								<div className="zolo-link-btn">
+									<a href="#">
+										<i className="fa-solid fa-arrow-right" />
+									</a>
+								</div>
+							)}
 						</div>
 					</div>
 				</div>
