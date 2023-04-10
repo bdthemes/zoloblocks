@@ -25,7 +25,7 @@ import ResRangeControl from '../../../src/controls/res-range-control';
 import objAttributes from './attributes';
 import { controls } from '@wordpress/data';
 import { set } from 'lodash';
-import {SOCIAL_TEXT,COLUMNS_NUMBER,COLUMNS_GAP,ROW_GAP} from './constants'
+import {SOCIAL_TEXT,COLUMNS_GAP,ROW_GAP,BUTTON_SIZE,BUTTON_ICON_SIZE,BUTTON_HEIGHT} from './constants'
 import { useEffect } from 'react';
 
 function Inspector (props){
@@ -39,7 +39,8 @@ function Inspector (props){
         socialText,
 		 targetPage,
          customLink,
-         socialStyle
+         socialStyle,
+         columnsNumber
 	} = attributes;
 
     const resRequiredProps = {
@@ -48,10 +49,7 @@ function Inspector (props){
 		resMode,
 		objAttributes,
 	};
-    // it is used for experimental purpose
-      const posts = useSelect( ( select ) => {
-        return wp.data.select("core/editor").getCurrentPostId();
-    }, [] );
+    
      
     return(
         <InspectorControls key="controls">
@@ -83,27 +81,40 @@ function Inspector (props){
                                             {tab.name === "Content" &&(
                                                 <>
                                                   <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={true}>
-
-                                                              <SelectControl
-                                                                  label="View"
+                                                    <div className="social-text-wrap">
+                                                        <div className="view-label"><h3>view</h3></div>
+                                                        <div className="view-control">
+                                                        <SelectControl
                                                                   value={socialText}
                                                                   options={SOCIAL_TEXT}
                                                                   onChange={ ( iconV ) => setAttributes({socialText:iconV}) }
                                                               />
-
-                                                              <ResRangeControl
-                                                                label={__(
-                                                                    'Columns',
-                                                                    'zolo-blocks'
-                                                                )}
-                                                                controlName={COLUMNS_NUMBER}
-                                                                resRequiredProps={
-                                                                    resRequiredProps
-                                                                }
-                                                                min={0}
-                                                                max={100}
-                                                                step={1}
-                                                              />
+                                                        </div>
+                                                    </div>
+                                                   <div className="columns-wrap">
+                                                        <div className="columns-label">
+                                                            <h3>columns</h3>
+                                                        </div>
+                                                        <div className="columns-number">
+                                                        <SelectControl
+                                                                    value={ columnsNumber }
+                                                                    options={ [
+                                                                        { label: 'Auto', value: 'Auto' },
+                                                                        { label: '1', value: '1' },
+                                                                        { label: '2', value: '2' },
+                                                                        { label: '3', value: '3' },
+                                                                        { label: '4', value: '4' },
+                                                                        { label: '5', value: '5' },
+                                                                        { label: '6', value: '6' },
+                                                                    ] }
+                                                                    onChange={ ( size ) => { setAttributes( { columnsNumber:size } ) } }
+                                                                />
+                                                        </div>
+                                                   </div>
+                                                              
+                                                               
+                                                   
+                                                        
                                                               <ResRangeControl
                                                                 label={__(
                                                                     'Columns Gap',
@@ -132,17 +143,23 @@ function Inspector (props){
                                                                 step={1}
                                                               />
                                                       
-                                            
-                                                            <SelectControl
-                                                                label="Target Url"
-                                                                value={ targetPage}
-                                                                options={ [
-                                                                    { label: 'Custom', value: 'Custom' },
-                                                                    { label: 'Current page', value: 'Current page' },
-                                                                    
-                                                                ] }
-                                                                onChange={ ( page ) => { setAttributes( { targetPage:page } ) } }
-                                                            />
+                                                         <div className="zb-target-wrap">
+                                                            <div className="zb-target-label">
+                                                                <h3>Target Url</h3>
+                                                            </div>
+                                                            <div className="zb-target-control">
+                                                                <SelectControl
+                                                                    value={ targetPage}
+                                                                    options={ [
+                                                                        { label: 'Custom', value: 'Custom' },
+                                                                        { label: 'Current page', value: 'Current page' },
+                                                                        
+                                                                    ] }
+                                                                    onChange={ ( page ) => { setAttributes( { targetPage:page } ) } }
+                                                                />
+                                                            </div>
+                                                         </div>
+                                                            
                                                    
                                                          
                                                      
@@ -154,6 +171,8 @@ function Inspector (props){
                                                            />)
                                                       
                                                      }
+
+
                                                       
                                                   </PanelBody>
                                                   
@@ -163,12 +182,13 @@ function Inspector (props){
 
                                             {tab.name === "Style" &&(
                                                 <>
-                                             <div className="style-wrapper">
-                                                <div className="style-title" ><h3>Style</h3></div>
-                                                <div className="panel-body" >
+                                       
                                                 <PanelBody
                                                         initialOpen={ true }
-                                                        >                                                   
+                                                        >  
+                                                <div className="style-wrapper">
+                                                <div className="style-title" ><h3>Style</h3></div>
+                                                    <div className="panel-body" >                                                 
                                                              <SelectControl
                                                                  
                                                                  value={ socialStyle }
@@ -181,11 +201,53 @@ function Inspector (props){
                                                                  ] }
                                                                  onChange={ ( style ) => { setAttributes( { socialStyle:style } ) } }
                                                              />
-                                                      
-                                                    </PanelBody>
+
+                                                    </div>
                                                 </div>
-                                             </div>
                                                     
+                                                            <ResRangeControl
+                                                                label={__(
+                                                                    'Button Size',
+                                                                    'zolo-blocks'
+                                                                )}
+                                                                controlName={BUTTON_SIZE}
+                                                                resRequiredProps={
+                                                                    resRequiredProps
+                                                                }
+                                                                min={0}
+                                                                max={100}
+                                                                step={1}
+                                                              />  
+
+                                                            <ResRangeControl
+                                                                label={__(
+                                                                    'Button Icon Size',
+                                                                    'zolo-blocks'
+                                                                )}
+                                                                controlName={BUTTON_ICON_SIZE}
+                                                                resRequiredProps={
+                                                                    resRequiredProps
+                                                                }
+                                                                min={0}
+                                                                max={100}
+                                                                step={1}
+                                                              />  
+
+                                                                <ResRangeControl
+                                                                label={__(
+                                                                    'Button Height',
+                                                                    'zolo-blocks'
+                                                                )}
+                                                                controlName={BUTTON_HEIGHT}
+                                                                resRequiredProps={
+                                                                    resRequiredProps
+                                                                }
+                                                                min={0}
+                                                                max={100}
+                                                                step={1}
+                                                              />                
+                                                    </PanelBody>
+                                            
                                               
                                                 </>
                                             )}

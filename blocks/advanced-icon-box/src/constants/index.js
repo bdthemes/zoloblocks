@@ -7,12 +7,14 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'advanced-icon-box';
 // Presets
 export const PRESETS = [
-	{ label: __('Default', 'zolo-blocks'), value: 'preset-1' },
-	{ label: __('Preset 1', 'zolo-blocks'), value: 'preset-2' },
+	{ label: __('Default', 'zolo-blocks'), value: 'style-0' },
+	{ label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
+	{ label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
+	{ label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
 ];
 
 // icon positions
-export const ICON_POSITIONS = [
+export const ICON_BOX_POSITIONS = [
 	{
 		label: 'Left',
 		value: 'left',
@@ -42,7 +44,7 @@ export const ICON_PADDING = 'iconPadding';
 // Icon Margin
 export const ICON_MARGIN = 'iconMargin';
 // Icon Alignment
-export const ICON_ALIGNMENT = 'iconAlignment';
+export const ICON_BOX_ALIGNMENT = 'iconBoxAlignment';
 // Icon Border
 export const ICON_BORDER = 'iconBorder';
 // Icon Size

@@ -3,7 +3,7 @@ import { generateResRangeAttributies } from '../../../src/helpers/res-range-help
 import { generateBorderAttributies } from '../../../src/helpers/border-helper';
 
 import {
-	ICON_ALIGNMENT,
+	ICON_BOX_ALIGNMENT,
 	ICON_BG_COLOR,
 	ICON_HOVER_BG_COLOR,
 	ICON_BORDER,
@@ -24,7 +24,7 @@ const attributes = {
 		type: 'object',
 	},
 	//alignment attributes
-	...generateResAlignmentAttributies(ICON_ALIGNMENT, {
+	...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT, {
 		defaultAlign: 'left',
 	}),
 	// border attributes
@@ -38,7 +38,7 @@ const attributes = {
 	//Block specific Attributes
 	preset: {
 		type: 'string',
-		default: 'preset-1',
+		default: 'style-1',
 	},
 	label: {
 		type: 'string',
@@ -85,12 +85,16 @@ const attributes = {
 	},
 	iconBoxTitle: {
 		type: 'string',
+		default: 'The Theme Settings',
 	},
 	iconBoxDescription: {
 		type: 'string',
+		default:
+			'The Theme Setting is a website that provides users with a range of tools to customize their web experience.',
 	},
 	buttonText: {
 		type: 'string',
+		default: 'Read More',
 	},
 	buttonLink: {
 		type: 'string',
