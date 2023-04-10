@@ -58,6 +58,10 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	enableMemberDetailsPage: {
+		type: 'boolean',
+		default: false,
+	},
 	memberLink: {
 		type: 'object',
 		default: {
@@ -70,6 +74,10 @@ const attributes = {
 	},
 	memberShortBio: {
 		type: 'string',
+	},
+	showSocialProfiles: {
+		type: 'boolean',
+		default: false,
 	},
 };
 
