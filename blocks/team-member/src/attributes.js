@@ -54,7 +54,7 @@ const attributes = {
 	memberName: {
 		type: 'string',
 	},
-	enableMemberLink: {
+	linkedMemberPhoto: {
 		type: 'boolean',
 		default: false,
 	},
@@ -64,10 +64,6 @@ const attributes = {
 	},
 	memberLink: {
 		type: 'object',
-		default: {
-			url: '',
-			newTab: false,
-		},
 	},
 	memberDesignation: {
 		type: 'string',
@@ -78,6 +74,14 @@ const attributes = {
 	showSocialProfiles: {
 		type: 'boolean',
 		default: false,
+	},
+	socialProfiles: {
+		type: 'array',
+		default: [],
+	},
+	titles: {
+		type: 'array',
+		default: [],
 	},
 };
 

@@ -12,6 +12,7 @@ import {
 	SelectControl,
 	TabPanel,
 	TextControl,
+	TextareaControl,
 	ToggleControl,
 	BaseControl,
 	Button,
@@ -44,10 +45,15 @@ function Inspector(props) {
 		preset,
 		showMemberPhoto,
 		memberPhoto,
+		memberName,
+		memberDesignation,
 		enableMemberDetailsPage,
-		enableMemberLink,
+		linkedMemberPhoto,
 		memberLink,
 		showSocialProfiles,
+		socialProfiles,
+		memberShortBio,
+		titles,
 	} = attributes;
 
 	// const changePreset = (selected) => {
@@ -136,7 +142,7 @@ function Inspector(props) {
 										/>
 										<ToggleControl
 											label={__(
-												'Show Member Details Link',
+												'Show Details Page Link',
 												'zolo-blocks'
 											)}
 											checked={enableMemberDetailsPage}
@@ -153,11 +159,11 @@ function Inspector(props) {
 													'Link Photo to Details Page',
 													'zolo-blocks'
 												)}
-												checked={enableMemberLink}
+												checked={linkedMemberPhoto}
 												onChange={() =>
 													setAttributes({
-														enableMemberLink:
-															!enableMemberLink,
+														linkedMemberPhoto:
+															!linkedMemberPhoto,
 													})
 												}
 											/>
@@ -180,47 +186,229 @@ function Inspector(props) {
 										title={__('Content', 'zolo-blocks')}
 										initialOpen={false}
 									>
+										<BaseControl
+											label={__('Photo', 'zolo-blocks')}
+										>
+											{showMemberPhoto &&
+												(memberPhoto ? (
+													<ImageAvatar
+														imageUrl={
+															memberPhoto &&
+															memberPhoto.url
+														}
+														onDeleteImage={() =>
+															setAttributes({
+																memberPhoto:
+																	null,
+															})
+														}
+													/>
+												) : (
+													<MediaUpload
+														onSelect={(media) => {
+															setAttributes({
+																memberPhoto:
+																	media,
+															});
+														}}
+														allowedTypes={['image']}
+														value={
+															memberPhoto &&
+															memberPhoto.id
+														}
+														render={({ open }) => (
+															<Button
+																className="zolo-image-upload-btn"
+																onClick={open}
+															>
+																<svg
+																	width="24"
+																	height="24"
+																	xmlns="http://www.w3.org/2000/svg"
+																	fillRule="evenodd"
+																	clipRule="evenodd"
+																>
+																	<path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
+																</svg>
+																{__(
+																	' Upload Photo',
+																	'zolo-blocks'
+																)}
+															</Button>
+														)}
+													/>
+												))}
+										</BaseControl>
+										<TextControl
+											label={__('Name', 'zolo-blocks')}
+											onChange={(name) =>
+												setAttributes({
+													memberName: name,
+												})
+											}
+											value={memberName}
+											placeholder={__(
+												'Name..',
+												'zolo-blocks'
+											)}
+										/>
+										<TextControl
+											label={__(
+												'Designation',
+												'zolo-blocks'
+											)}
+											onChange={(d) =>
+												setAttributes({
+													memberDesignation: d,
+												})
+											}
+											value={memberDesignation}
+											placeholder={__(
+												'Designation..',
+												'zolo-blocks'
+											)}
+										/>
+										<TextareaControl
+											label={__(
+												'Short Bio',
+												'zolo-blocks'
+											)}
+											value={memberShortBio}
+											onChange={(bio) =>
+												setAttributes({
+													memberShortBio: bio,
+												})
+											}
+											placeholder={__(
+												'Short Bio..',
+												'zolo-blocks'
+											)}
+										/>
 										{enableMemberDetailsPage && (
-											<Fragment>
-												<TextControl
-													label={__(
-														'Member Details Page Link',
-														'zolo-blocks'
-													)}
-													onChange={(link) => {
+											<BaseControl
+												label={__(
+													'Details Page Link',
+													'zolo-blocks'
+												)}
+											>
+												<LinkControl
+													searchInputPlaceholder="Search here..."
+													value={memberLink}
+													settings={[
+														{
+															id: 'opensInNewTab',
+															title: __(
+																'Open in new tab',
+																'zolo-blocks'
+															),
+														},
+													]}
+													onChange={(data) =>
 														setAttributes({
-															memberLink: {
-																...memberLink,
-																url: link,
-															},
-														});
-													}}
-													value={
-														memberLink &&
-														memberLink.url
-													}
-												/>
-												<ToggleControl
-													label={__(
-														'Open in New Tab',
-														'zolo-blocks'
-													)}
-													checked={
-														memberLink &&
-														memberLink.newTab
-													}
-													onChange={() =>
-														setAttributes({
-															memberLink: {
-																...memberLink,
-																newTab: !memberLink.newTab,
-															},
+															memberLink: data,
 														})
 													}
 												/>
-											</Fragment>
+											</BaseControl>
 										)}
 									</PanelBody>
+									{showSocialProfiles && (
+										<PanelBody
+											title={__(
+												'Social Profiles',
+												'zolo-blocks'
+											)}
+											initialOpen={false}
+										>
+											<Button
+												variant="primary"
+												onClick={() =>
+													setAttributes({
+														socialProfiles: [
+															...socialProfiles,
+															{
+																icon: 'facebook',
+																link: '#',
+															},
+														],
+													})
+												}
+											>
+												{__(
+													'Add a Profile',
+													'zolo-blocks'
+												)}
+											</Button>
+											{socialProfiles &&
+												socialProfiles.map(
+													(profile, index) => {
+														return (
+															<div
+																className="zolo-social-profile"
+																key={index}
+															>
+																<Button>
+																	<i
+																		className={`fa-brands fa-${profile.icon}`}
+																	></i>
+																</Button>
+																<div className="profile-link">
+																	<TextControl
+																		value={
+																			profile.link
+																		}
+																		onChange={(
+																			v
+																		) =>
+																			setAttributes(
+																				{
+																					socialProfiles:
+																						socialProfiles.map(
+																							(
+																								profile,
+																								i
+																							) => {
+																								if (
+																									index ===
+																									i
+																								) {
+																									profile.link =
+																										v;
+																								}
+																								return profile;
+																							}
+																						),
+																				}
+																			)
+																		}
+																	/>
+																</div>
+																<Button
+																	className="remove-profile"
+																	onClick={() =>
+																		setAttributes(
+																			{
+																				socialProfiles:
+																					socialProfiles.filter(
+																						(
+																							profile,
+																							i
+																						) =>
+																							index !==
+																							i
+																					),
+																			}
+																		)
+																	}
+																>
+																	<i className="fas fa-times"></i>
+																</Button>
+															</div>
+														);
+													}
+												)}
+										</PanelBody>
+									)}
 								</>
 							)}
 
