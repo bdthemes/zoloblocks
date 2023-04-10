@@ -4,6 +4,7 @@
 import {
 	InspectorControls,
 	__experimentalLinkControl as LinkControl,
+    RichText
 } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import {
@@ -44,7 +45,8 @@ function Inspector (props){
          socialStyle,
          columnsNumber,
 	     socialRepeat,
-         socialColor
+         socialColor,
+         socialButton
 
 	} = attributes;
 
@@ -54,8 +56,27 @@ function Inspector (props){
 		resMode,
 		objAttributes,
 	};
+
+
+    //Experimental 
+
+//     const textItem = ( 
+//     <div className={`zb-reapter-${uniqueId}`}>
+//     <TextControl
+//     label="social reapet"
+//     value={socialButton}
+//     onChange={ ( v ) => setAttributes( { socialButton:v} ) }
     
+// />
+//     </div>
+// )
    
+    // const addItem =()=> setAttributes({socialRepeat:[...socialRepeat,textItem]});
+     
+  
+           
+   
+   console.log(socialRepeat)
     return(
         <InspectorControls key="controls">
                 <div className='zolo-panel-control'>
@@ -87,6 +108,17 @@ function Inspector (props){
                                                 <>
                                                   <PanelBody title={__('Content', 'zolo-blocks')} 
                                                          initialOpen={true}>
+
+                                                        {/* {socialRepeat && socialRepeat.map((social,i)=>(
+                                                            
+                                                            <span key={i}>{social}</span>
+                                                           
+                                                        ))} */}
+                                                      
+                                                           
+                                                    
+                                                        <button onClick={addItem}>Add Item</button>
+                                                  
                                                         <SelectControl
                                                                   label={__("Social Text","zolo-blocks")}
                                                                   value={socialText}

@@ -70,6 +70,9 @@ const attributes = {
 		type:"array",
 		default:[]
 	},
+	socialButton:{
+		type:"string"
+	},
 	link: {
 		type: 'object',
 		default: {
