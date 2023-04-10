@@ -104,12 +104,6 @@ const attributes = {
 	columnsNumber:{
 		type:"string"
 	},
-<<<<<<< HEAD
-=======
-	socialColor:{
-		type:"string"
-	},
->>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
 	showIcon: {
 		type: 'boolean',
 		default: false,
