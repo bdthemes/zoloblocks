@@ -8,11 +8,13 @@ import {
 import { useSelect } from '@wordpress/data';
 import {
 	CardDivider,
+	FlexItem,
 	PanelBody,
 	SelectControl,
 	TabPanel,
 	TextControl,
 	ToggleControl,
+  
 
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -20,7 +22,7 @@ import { Fragment, } from '@wordpress/element';
 
 
 import ResRangeControl from '../../../src/controls/res-range-control';
-
+import TypographyControl from '../../../src/controls/typography-control'
 
 import objAttributes from './attributes';
 import { controls } from '@wordpress/data';
@@ -40,7 +42,14 @@ function Inspector (props){
 		 targetPage,
          customLink,
          socialStyle,
+<<<<<<< HEAD
          columnsNumber
+=======
+         columnsNumber,
+	     socialRepeat,
+         socialColor
+
+>>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
 	} = attributes;
 
     const resRequiredProps = {
@@ -50,7 +59,11 @@ function Inspector (props){
 		objAttributes,
 	};
     
+<<<<<<< HEAD
      
+=======
+   
+>>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
     return(
         <InspectorControls key="controls">
                 <div className='zolo-panel-control'>
@@ -80,15 +93,23 @@ function Inspector (props){
                                     <div className={'zolo-tab--control' + tab.name}>
                                             {tab.name === "Content" &&(
                                                 <>
+<<<<<<< HEAD
                                                   <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={true}>
                                                     <div className="social-text-wrap">
                                                         <div className="view-label"><h3>view</h3></div>
                                                         <div className="view-control">
                                                         <SelectControl
+=======
+                                                  <PanelBody title={__('Content', 'zolo-blocks')} 
+                                                         initialOpen={true}>
+                                                        <SelectControl
+                                                                  label={__("Social Text","zolo-blocks")}
+>>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
                                                                   value={socialText}
                                                                   options={SOCIAL_TEXT}
                                                                   onChange={ ( iconV ) => setAttributes({socialText:iconV}) }
                                                               />
+<<<<<<< HEAD
                                                         </div>
                                                     </div>
                                                    <div className="columns-wrap">
@@ -97,6 +118,13 @@ function Inspector (props){
                                                         </div>
                                                         <div className="columns-number">
                                                         <SelectControl
+=======
+                                              
+                                                       
+                                                  
+                                                        <SelectControl
+                                                                label={__("columns","zolo-blocks")}
+>>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
                                                                     value={ columnsNumber }
                                                                     options={ [
                                                                         { label: 'Auto', value: 'Auto' },
@@ -109,9 +137,13 @@ function Inspector (props){
                                                                     ] }
                                                                     onChange={ ( size ) => { setAttributes( { columnsNumber:size } ) } }
                                                                 />
+<<<<<<< HEAD
                                                         </div>
                                                    </div>
                                                               
+=======
+                                                     
+>>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
                                                                
                                                    
                                                         
@@ -143,11 +175,15 @@ function Inspector (props){
                                                                 step={1}
                                                               />
                                                       
+<<<<<<< HEAD
                                                          <div className="zb-target-wrap">
                                                             <div className="zb-target-label">
                                                                 <h3>Target Url</h3>
                                                             </div>
                                                             <div className="zb-target-control">
+=======
+                                                        
+>>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
                                                                 <SelectControl
                                                                     value={ targetPage}
                                                                     options={ [
@@ -157,9 +193,13 @@ function Inspector (props){
                                                                     ] }
                                                                     onChange={ ( page ) => { setAttributes( { targetPage:page } ) } }
                                                                 />
+<<<<<<< HEAD
                                                             </div>
                                                          </div>
                                                             
+=======
+                                                         
+>>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
                                                    
                                                          
                                                      
@@ -186,11 +226,15 @@ function Inspector (props){
                                                 <PanelBody
                                                         initialOpen={ true }
                                                         >  
+<<<<<<< HEAD
                                                 <div className="style-wrapper">
                                                 <div className="style-title" ><h3>Style</h3></div>
                                                     <div className="panel-body" >                                                 
+=======
+                                                                                            
+>>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
                                                              <SelectControl
-                                                                 
+                                                                 label={__("Style","zolo-blocks")}
                                                                  value={ socialStyle }
                                                                  options={ [
                                                                      { label: 'Flat', value: 'Flat' },
@@ -202,8 +246,12 @@ function Inspector (props){
                                                                  onChange={ ( style ) => { setAttributes( { socialStyle:style } ) } }
                                                              />
 
+<<<<<<< HEAD
                                                     </div>
                                                 </div>
+=======
+                                                 
+>>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
                                                     
                                                             <ResRangeControl
                                                                 label={__(
@@ -245,7 +293,30 @@ function Inspector (props){
                                                                 min={0}
                                                                 max={100}
                                                                 step={1}
+<<<<<<< HEAD
                                                               />                
+=======
+                                                              />  
+                                                            <TypographyControl
+                                                              label={__('Typography','zolo-blocks')}
+                                                              resRequiredProps={resRequiredProps}
+                                                              defaultFontSize={14}
+                                                            />
+                                                           
+                                                            
+                                                           
+                                                                <SelectControl
+                                                                    label="Color"
+                                                                    value={ socialColor}
+                                                                    options={ [
+                                                                        { label: 'Custom Color', value: 'Custom Color' },
+                                                                        { label: 'Original Color', value: 'Original Color' },
+                                                                        
+                                                                    ] }
+                                                                    onChange={ ( color ) => { setAttributes( { socialColor: color } ) } }
+                                                                />
+                                                      
+>>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
                                                     </PanelBody>
                                             
                                               

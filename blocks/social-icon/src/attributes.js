@@ -64,7 +64,11 @@ const attributes = {
 		default: 'preset-1',
 	},
 	label: {
-		type: 'object',
+		type: 'string',
+	},
+	socialRepeat:{
+		type:"array",
+		default:[]
 	},
 	link: {
 		type: 'object',
@@ -97,6 +101,12 @@ const attributes = {
 	columnsNumber:{
 		type:"string"
 	},
+<<<<<<< HEAD
+=======
+	socialColor:{
+		type:"string"
+	},
+>>>>>>> 36ebbea47ca49f7234eebc8271eb7c368cfbc978
 	showIcon: {
 		type: 'boolean',
 		default: false,

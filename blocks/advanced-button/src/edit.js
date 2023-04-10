@@ -286,7 +286,6 @@ export default function Edit(props) {
 				}
 			`;
 			break;
-
 		case 'button-2':
 			presetStyles = `
 				.zolo-advanced-button.${uniqueId}:before{

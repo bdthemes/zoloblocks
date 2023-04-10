@@ -3497,18 +3497,18 @@ const ImageAvatar = _ref => {
   const [hover, setHover] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [deleteHover, setDeleteHover] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const deleteButtonStyle = {
-    visibility: hover ? "visible" : "hidden",
-    backgroundColor: deleteHover ? "white" : "#64666a",
-    color: "#b4b5b7",
-    position: "absolute",
+    visibility: hover ? 'visible' : 'hidden',
+    backgroundColor: deleteHover ? 'white' : '#64666a',
+    color: '#b4b5b7',
+    position: 'absolute',
     right: 34,
     fontSize: 16,
-    alignSelf: "center",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    alignSelf: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 3,
-    cursor: "pointer"
+    cursor: 'pointer'
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "zb-image-avatar-control",
