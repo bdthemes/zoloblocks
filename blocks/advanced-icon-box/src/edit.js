@@ -26,6 +26,7 @@ import { generateBorderStyle } from '../../../src/helpers/border-helper';
 import {
 	BLOCK_PREFIX,
 	ICON_BOX_ALIGNMENT,
+	TITLE_ALIGNMENT,
 	ICON_TEXT_COLOR,
 	ICON_BG_COLOR,
 	ICON_HOVER_BG_COLOR,
@@ -71,7 +72,7 @@ export default function Edit(props) {
 		className: classnames(className, ``),
 	});
 
-	// alignment
+	// icon alignment
 	const {
 		desktopAlignStyle: iconAlignmentDesktop,
 		tabAlignStyle: iconAlignmentTab,
@@ -81,6 +82,32 @@ export default function Edit(props) {
 		property: 'text-align',
 		attributes,
 	});
+
+	// title alignment
+	const {
+		desktopAlignStyle: textAlignmentDesktop,
+		tabAlignStyle: textAlignmentTab,
+		mobAlignStyle: textAlignmentMob,
+	} = generateResAlignmentStyle({
+		controlName: TITLE_ALIGNMENT,
+		property: 'text-align',
+		attributes,
+	});
+
+	/**
+	 * Generate Alignment Class
+	 */
+	const deskTitleAlign = `display: ${
+		textAlignmentDesktop === 'text-align:left;' ? 'flex' : 'inline-flex'
+	};`;
+
+	const tabTitleAlign = `display: ${
+		textAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
+	};`;
+
+	const mobTitleAlign = `display: ${
+		textAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
+	};`;
 
 	/**
 	 * Generate Alignment Class
@@ -136,6 +163,9 @@ export default function Edit(props) {
 		.${uniqueId}{
 			${iconAlignmentDesktop}
 		}
+		.${uniqueId} .zolo-block-title{
+			${textAlignmentDesktop}
+		}
 		.${uniqueId} .zolo-content {
 			${borderStyles}
 			${gap}
@@ -153,6 +183,9 @@ export default function Edit(props) {
 		.${uniqueId}{
 			${iconAlignmentTab}
 		}
+		.${uniqueId} .zolo-block-title{
+			${textAlignmentTab}
+		}
 		.${uniqueId} .zolo-content {
 			${borderStylesTab}
 			${gapTab}
@@ -166,6 +199,9 @@ export default function Edit(props) {
 	const mobileAllStyle = `
 		.${uniqueId}{
 			${iconAlignmentMob}
+		}
+		.${uniqueId} .zolo-block-title{
+			${textAlignmentMob}
 		}
 		.${uniqueId} .zolo-content {
 			${borderStylesMob}
@@ -307,7 +343,10 @@ export default function Edit(props) {
 							/>
 
 							<div className="zolo-block-link-btn">
-								<a href={buttonLink}>
+								<a
+									className={`zolo-box-button ${iconPosition}`}
+									href={buttonLink}
+								>
 									<RichText
 										value={buttonText}
 										onChange={(text) =>
@@ -321,6 +360,22 @@ export default function Edit(props) {
 										)}
 										allowedFormats={[]}
 									/>
+									{showIcon && (
+										<svg
+											clipRule="evenodd"
+											fillRule="evenodd"
+											strokeLinejoin="round"
+											strokeMiterlimit="2"
+											viewBox="0 0 24 24"
+											xmlns="http://www.w3.org/2000/svg"
+											className="zolo-button-icon"
+										>
+											<path
+												d="m14.523 18.787s4.501-4.505 6.255-6.26c.146-.146.219-.338.219-.53s-.073-.383-.219-.53c-1.753-1.754-6.255-6.258-6.255-6.258-.144-.145-.334-.217-.524-.217-.193 0-.385.074-.532.221-.293.292-.295.766-.004 1.056l4.978 4.978h-14.692c-.414 0-.75.336-.75.75s.336.75.75.75h14.692l-4.979 4.979c-.289.289-.286.762.006 1.054.148.148.341.222.533.222.19 0 .378-.072.522-.215z"
+												fill-rule="nonzero"
+											/>
+										</svg>
+									)}
 								</a>
 							</div>
 						</div>

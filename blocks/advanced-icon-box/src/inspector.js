@@ -47,7 +47,9 @@ import TabPanelControl from '../../../src/controls/tabpanel-control';
 import objAttributes from './attributes';
 import {
 	ICON_BOX_ALIGNMENT,
+	TITLE_ALIGNMENT,
 	PRESETS,
+	ICON_POSITIONS,
 	ICON_BOX_POSITIONS,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
@@ -284,7 +286,7 @@ function Inspector(props) {
 												'Title Alignment',
 												'zolo-blocks'
 											)}
-											controlName={ICON_BOX_ALIGNMENT}
+											controlName={TITLE_ALIGNMENT}
 											resRequiredProps={resRequiredProps}
 											alignOptions={[
 												{
@@ -346,6 +348,84 @@ function Inspector(props) {
 												})
 											}
 										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Button', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<TextControl
+											label={__(
+												'Button Link',
+												'zolo-blocks'
+											)}
+											value={buttonLink}
+											onChange={(link) =>
+												setAttributes({
+													buttonLink: link,
+												})
+											}
+										/>
+										<ToggleControl
+											label={__(
+												'Enable Icon',
+												'zolo-blocks'
+											)}
+											checked={showIcon}
+											onChange={() =>
+												setAttributes({
+													showIcon: !showIcon,
+												})
+											}
+										/>
+										{showIcon && (
+											<Fragment>
+												<p>
+													<strong>Icon Picker</strong>
+												</p>
+												<SelectControl
+													label={__(
+														'Position',
+														'zolo-blocks'
+													)}
+													options={ICON_POSITIONS}
+													onChange={(position) => {
+														setAttributes({
+															iconPosition:
+																position,
+														});
+													}}
+													value={iconPosition}
+												/>
+												<ResRangeControl
+													label={__(
+														'Icon Size',
+														'zolo-blocks'
+													)}
+													controlName={ICON_SIZE}
+													resRequiredProps={
+														resRequiredProps
+													}
+													min={0}
+													max={100}
+													step={1}
+												/>
+												<ResRangeControl
+													label={__(
+														'Gap',
+														'zolo-blocks'
+													)}
+													controlName={
+														ICON_TEXT_SPACING
+													}
+													resRequiredProps={
+														resRequiredProps
+													}
+													min={0}
+													max={100}
+													step={1}
+												/>
+											</Fragment>
+										)}
 									</PanelBody>
 								</>
 							)}

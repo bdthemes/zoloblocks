@@ -32,6 +32,26 @@ export const ICON_BOX_POSITIONS = [
 		value: 'bottom',
 	},
 ];
+
+// icon positions
+export const ICON_POSITIONS = [
+	{
+		label: 'Left',
+		value: 'left',
+	},
+	{
+		label: 'Right',
+		value: 'right',
+	},
+	{
+		label: 'Top',
+		value: 'top',
+	},
+	{
+		label: 'Bottom',
+		value: 'bottom',
+	},
+];
 // Icon BG
 export const ICON_BG_COLOR = 'iconNormal';
 // Icon Hover BG
@@ -51,3 +71,6 @@ export const ICON_BORDER = 'iconBorder';
 export const ICON_SIZE = 'iconSize';
 // icon and text spacing
 export const ICON_TEXT_SPACING = 'iconTextSpacing';
+
+// Title Alignment
+export const TITLE_ALIGNMENT = 'titleAlignment';
