@@ -429,6 +429,15 @@
   height: auto !important;
 }
 
+.wp-block-zolo-team-member .components-placeholder__label,
+.wp-block-zolo-team-member .components-placeholder__fieldset {
+  transition: 0.3s;
+}
+.wp-block-zolo-team-member:hover .components-placeholder__label,
+.wp-block-zolo-team-member:hover .components-placeholder__fieldset {
+  transform: translateY(-25px);
+}
+
 .zolo-social-profile {
   display: flex;
   align-items: stretch;

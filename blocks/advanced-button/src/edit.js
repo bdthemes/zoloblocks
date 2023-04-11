@@ -7,7 +7,7 @@ import {
 	BlockControls,
 	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -81,6 +81,7 @@ export default function Edit(props) {
 		presetTwelveStyles,
 	} = attributes;
 
+	const [popoverVisible, setPopoverVisible] = useState(false);
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
 		handleUniqueId({
@@ -510,47 +511,31 @@ export default function Edit(props) {
 			)}
 			<BlockControls>
 				<ToolbarGroup>
-					<Dropdown
-						className="my-container-class-name"
-						contentClassName="my-popover-content-classname"
-						popoverProps={{ placement: 'bottom-start' }}
-						renderToggle={({ isOpen, onToggle }) => (
-							<ToolbarButton
-								icon="admin-links"
-								label={__('Link', 'zolo-blocks')}
-								onClick={onToggle}
-								aria-expanded={isOpen}
-							/>
-						)}
-						renderContent={() => (
-							<div className="zolo-dropdown-link">
-								<LinkControl
-									searchInputPlaceholder="Search here..."
-									value={link}
-									settings={[
-										{
-											id: 'opensInNewTab',
-											title: __(
-												'Open in new tab',
-												'zolo-blocks'
-											),
-										},
-										{
-											id: 'addNoFollow',
-											title: __(
-												'Add nofollow to link',
-												'zolo-blocks'
-											),
-										},
-									]}
-									onChange={(data) =>
-										setAttributes({ link: data })
-									}
-								></LinkControl>
-							</div>
-						)}
+					<ToolbarButton
+						icon="admin-links"
+						label={__('Link', 'zolo-blocks')}
+						onClick={() => setPopoverVisible(!isPopoverVisible)}
 					/>
 				</ToolbarGroup>
+				{isPopoverVisible && (
+					<Popover
+						position="bottom right"
+						onFocusOutside={() => setPopoverVisible(false)}
+						offset={10}
+					>
+						<LinkControl
+							searchInputPlaceholder="Search here..."
+							value={link}
+							settings={[
+								{
+									id: 'opensInNewTab',
+									title: __('Open in new tab', 'zolo-blocks'),
+								},
+							]}
+							onChange={(data) => setAttributes({ link: data })}
+						/>
+					</Popover>
+				)}
 			</BlockControls>
 			<style>{` ${softMinifyCssStrings(allStyle)}`}</style>
 			<div {...blockProps}>

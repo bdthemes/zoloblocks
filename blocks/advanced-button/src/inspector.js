@@ -223,13 +223,6 @@ function Inspector(props) {
 															'zolo-blocks'
 														),
 													},
-													{
-														id: 'addNoFollow',
-														title: __(
-															'Add nofollow to link',
-															'zolo-blocks'
-														),
-													},
 												]}
 												onChange={(data) =>
 													setAttributes({

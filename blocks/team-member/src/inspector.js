@@ -34,7 +34,15 @@ import BackgroundControl from '../../../src/controls/background-control';
 import BoxShadowControl from '../../../src/controls/boxshadow-control';
 
 import objAttributes from './attributes';
-import { PRESETS } from './constants';
+import {
+	PRESETS,
+	CONTENT_ALIGNMENT,
+	TEAM_PHOTO_BORDER,
+	TEAM_PHOTO_BORDER_RADIUS,
+	TEAM_PHOTO_BOX_SHADOW,
+	TEAM_PHOTO_MARGIN,
+	TEAM_PHOTO_PADDING,
+} from './constants';
 import ImageAvatar from '../../../src/controls/image-avatar';
 
 function Inspector(props) {
@@ -49,11 +57,13 @@ function Inspector(props) {
 		memberDesignation,
 		enableMemberDetailsPage,
 		linkedMemberPhoto,
+		linkedMemberName,
 		memberLink,
 		showSocialProfiles,
 		socialProfiles,
 		memberShortBio,
-		titles,
+		socialProfilesLinkTarget,
+		photoBgColor,
 	} = attributes;
 
 	// const changePreset = (selected) => {
@@ -154,19 +164,34 @@ function Inspector(props) {
 											}
 										/>
 										{enableMemberDetailsPage && (
-											<ToggleControl
-												label={__(
-													'Link Photo to Details Page',
-													'zolo-blocks'
-												)}
-												checked={linkedMemberPhoto}
-												onChange={() =>
-													setAttributes({
-														linkedMemberPhoto:
-															!linkedMemberPhoto,
-													})
-												}
-											/>
+											<Fragment>
+												<ToggleControl
+													label={__(
+														'Link Name to Details Page',
+														'zolo-blocks'
+													)}
+													checked={linkedMemberName}
+													onChange={() =>
+														setAttributes({
+															linkedMemberName:
+																!linkedMemberName,
+														})
+													}
+												/>
+												<ToggleControl
+													label={__(
+														'Link Photo to Details Page',
+														'zolo-blocks'
+													)}
+													checked={linkedMemberPhoto}
+													onChange={() =>
+														setAttributes({
+															linkedMemberPhoto:
+																!linkedMemberPhoto,
+														})
+													}
+												/>
+											</Fragment>
 										)}
 										<ToggleControl
 											label={__(
@@ -407,12 +432,135 @@ function Inspector(props) {
 														);
 													}
 												)}
+											<CardDivider />
+											<ToggleControl
+												label={__(
+													'Open links in new tab',
+													'zolo-blocks'
+												)}
+												checked={
+													socialProfilesLinkTarget
+												}
+												onChange={() =>
+													setAttributes({
+														socialProfilesLinkTarget:
+															!socialProfilesLinkTarget,
+													})
+												}
+											/>
 										</PanelBody>
 									)}
 								</>
 							)}
 
-							{tab.name === 'design' && <>design</>}
+							{tab.name === 'design' && (
+								<>
+									<PanelBody
+										title={__('General', 'zolo-blocks')}
+										initialOpen={true}
+									>
+										<ResAlignmentControl
+											label={__(
+												'Content Alignmet',
+												'zolo-blocks'
+											)}
+											controlName={CONTENT_ALIGNMENT}
+											resRequiredProps={resRequiredProps}
+											alignOptions={[
+												{
+													label: 'Left',
+													value: 'left',
+												},
+												{
+													label: 'Center',
+													value: 'center',
+												},
+												{
+													label: 'Right',
+													value: 'right',
+												},
+												{
+													label: 'Justify',
+													value: 'justify',
+												},
+											]}
+										/>
+									</PanelBody>
+									{showMemberPhoto && (
+										<PanelBody
+											title={__('Photo', 'zolo-blocks')}
+											initialOpen={false}
+										>
+											<ColorControl
+												label={__(
+													'Background Color',
+													'zolo-blocks'
+												)}
+												color={photoBgColor}
+												onChange={(color) =>
+													setAttributes({
+														photoBgColor: color,
+													})
+												}
+											/>
+											<BorderControl
+												label={__(
+													'Border',
+													'zolo-blocks'
+												)}
+												controlName={TEAM_PHOTO_BORDER}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
+											<ResDimensionsControl
+												label={__(
+													'Border Radius',
+													'zolo-blocks'
+												)}
+												controlName={
+													TEAM_PHOTO_BORDER_RADIUS
+												}
+												resRequiredProps={
+													resRequiredProps
+												}
+												forBorderRadius={true}
+											/>
+											<BoxShadowControl
+												controlName={
+													TEAM_PHOTO_BOX_SHADOW
+												}
+												resRequiredProps={
+													resRequiredProps
+												}
+												enableTransition={false}
+											/>
+											<ResDimensionsControl
+												label={__(
+													'Padding',
+													'zolo-blocks'
+												)}
+												controlName={TEAM_PHOTO_PADDING}
+												resRequiredProps={
+													resRequiredProps
+												}
+												forBorderRadius={true}
+											/>
+											<ResDimensionsControl
+												label={__(
+													'Margin',
+													'zolo-blocks'
+												)}
+												controlName={TEAM_PHOTO_MARGIN}
+												resRequiredProps={
+													resRequiredProps
+												}
+												forBorderRadius={true}
+											/>
+										</PanelBody>
+									)}
+								</>
+							)}
 
 							{tab.name === 'advanced' && <>advanced</>}
 						</div>
