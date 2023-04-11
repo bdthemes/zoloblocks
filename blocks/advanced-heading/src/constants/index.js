@@ -20,8 +20,6 @@ export const ST_POSITION = [
   { label: 'Bottom', value: 'bottom' }
 ];
 
-export const HEADING_ALIGNMENT = 'headingAlignment';
-
 export const HEADING_TAG = [
   { label: __("H1", "zolo-blocks"), value: "h1" },
   { label: __("H2", "zolo-blocks"), value: "h2" },
@@ -29,19 +27,61 @@ export const HEADING_TAG = [
   { label: __("H4", "zolo-blocks"), value: "h4" },
   { label: __("H5", "zolo-blocks"), value: "h5" },
   { label: __("H6", "zolo-blocks"), value: "h6" },
+  { label: __("Div", "zolo-blocks"), value: "div" },
   { label: __("P", "zolo-blocks"), value: "p" },
+  { label: __("Span", "zolo-blocks"), value: "span" },
 ];
+
 export const TEXT_ALIGN = [
   { label: __(<Dashicon icon={"editor-alignleft"} />), value: "left" },
   { label: __(<Dashicon icon={"editor-aligncenter"} />), value: "center" },
   { label: __(<Dashicon icon={"editor-alignright"} />), value: "right" },
   { label: __(<Dashicon icon={"editor-justify"} />), value: "justify" }
 ];
+
+export const TPT_HIDE = [
+  { label: 'Nothing', value: 'nothing' },
+  { label: 'Tablet and Mobile', value: 'tab-mob' },
+  { label: 'Mobile', value: 'mob' }
+];
+
+export const TPT_ROTATE_ORIGIN = [
+  { label: 'Default', value: '' },
+  { label: 'Top Left', value: 'top-left' },
+  { label: 'Top Center', value: 'top-center' },
+  { label: 'Top Right', value: 'top-right' },
+  { label: 'Center', value: 'center' },
+  { label: 'Center Left', value: 'center-left' },
+  { label: 'Center Right', value: 'center-right' },
+  { label: 'Bottom Left', value: 'bottom-left' },
+  { label: 'Bottom Center', value: 'bottom-center' },
+  { label: 'Bottom Right', value: 'bottom-right' }
+];
+
+export const TPT_ALIGNMENT = 'tpAlign'
 //style tab
 export const TITLE_MARGIN = 'titleMargin';
+export const TITLE_BORDER = 'titleBorder';
+export const TITLE_BORDER_RADIUS = 'titleBorderRadius';
+export const TITLE_PADDING = 'titlePadding';
+export const TITLE_SHADOW = 'titleShadow';
+export const TITLE_TEXT_SHADOW = 'titleTextShadow';
+export const TITLE_TEXT_STROKE = 'titleTextStroke';
+
 export const SUBTITLE_MARGIN = 'subTitleMargin';
+export const SUBTITLE_TEXT_SHADOW = 'subTitleTextShadow';
+export const SUBTITLE_TEXT_STROKE = 'subTitleTextStroke';
 export const SEPARATOR_WIDTH = 'separatorWidth';
+export const SEPARATOR_SPACING = 'separatorSpacing';
 export const SEPARATOR_HEIGHT = 'separatorHeight';
+
+export const TPT_MARGIN = 'TPTMargin';
+export const TPT_BORDER = 'TPTBorder';
+export const TPT_BORDER_RADIUS = 'TPTBorderRadius';
+export const TPT_PADDING = 'TPTPadding';
+export const TPT_SHADOW = 'TPTShadow';
+export const TPT_TEXT_SHADOW = 'TPTTextShadow';
+export const TPT_TEXT_STROKE = 'TPTTextStroke';
 
 //advance tab
 export const WRAPPER_MARGIN = 'wrapMargin';

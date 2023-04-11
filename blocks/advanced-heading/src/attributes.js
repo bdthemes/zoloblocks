@@ -6,11 +6,32 @@ const {
   generateDimensionAttributes,
   generateTypographyAttributes,
   generateResRangeAttributies,
-  generateResAlignmentAttributies
+  generateResAlignmentAttributies,
+  generateTextShadowAttributies,
+  generateTextStrokeAttributies,
 } = window.zoloModule;
 
 //block constants
-import { HEADING_ALIGNMENT, SEPARATOR_HEIGHT, SEPARATOR_WIDTH, SUBTITLE_MARGIN, TITLE_MARGIN, WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW } from './constants';
+import {
+  SEPARATOR_HEIGHT, SEPARATOR_SPACING, SEPARATOR_WIDTH, SUBTITLE_MARGIN,
+  SUBTITLE_TEXT_SHADOW,
+  SUBTITLE_TEXT_STROKE,
+  TITLE_BORDER,
+  TITLE_BORDER_RADIUS,
+  TITLE_MARGIN, TITLE_PADDING,
+  TITLE_SHADOW,
+  TITLE_TEXT_SHADOW,
+  TITLE_TEXT_STROKE,
+  TPT_ALIGNMENT,
+  TPT_BORDER,
+  TPT_BORDER_RADIUS,
+  TPT_MARGIN,
+  TPT_PADDING,
+  TPT_SHADOW,
+  TPT_TEXT_SHADOW,
+  TPT_TEXT_STROKE,
+  WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW
+} from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes = {
@@ -26,19 +47,6 @@ const attributes = {
     type: "object"
   },
 
-  //range attributes
-  ...generateResRangeAttributies(SEPARATOR_WIDTH, {
-    defaultRange: 70
-  }),
-  ...generateResRangeAttributies(SEPARATOR_HEIGHT, {
-    defaultRange: 3
-  }),
-
-  //alignment attributes
-  ...generateResAlignmentAttributies(HEADING_ALIGNMENT, {
-    defaultAlign: 'left',
-  }),
-
   //settings tab
   styles: {
     type: 'string',
@@ -49,73 +57,129 @@ const attributes = {
   },
   titleText: {
     type: 'string',
-    default: "Zolo Block Advanced Heading",
+    default: "I am Advanced Heading",
   },
-  subTitleText: {
-    type: 'string',
-    default: "Zolo Block Sub Title",
+  titleLink: {
+    type: "string",
+    default: "",
   },
   titleTagName: {
     type: "string",
     default: "h2",
   },
-  subTitleTagName: {
-    type: "string",
-    default: "h4",
-  },
-  transparentTitleText: {
-    type: 'string',
-    default: "Advanced Heading",
-  },
   showSubTitle: {
     type: 'boolean',
     default: false,
   },
-  showSeparator: {
-    type: 'boolean',
-    default: false,
-  },
-  showTransparentTitle: {
-    type: 'boolean',
-    default: false,
+  subTitleText: {
+    type: 'string',
+    default: "Sub Heading Here",
   },
   subTitlePosition: {
     type: 'string',
     default: 'top'
   },
+  showSeparator: {
+    type: 'boolean',
+    default: false,
+  },
   separatorPosition: {
     type: 'string',
     default: 'bottom'
-  },
-  separaTorAlign: {
-    type: 'string',
-    default: 'left'
   },
   align: {
     type: "string",
     default: "left",
   },
+  showTransparentTitle: {
+    type: 'boolean',
+    default: false,
+  },
+  transparentTitleText: {
+    type: "string",
+    default: "Advanced Heading",
+  },
+  transparentTitleXOffset: {
+    type: 'number',
+    default: 0,
+  },
+  transparentTitleYOffset: {
+    type: 'number',
+    default: 0,
+  },
+  transparentTitleRotate: {
+    type: 'number',
+    default: 0,
+  },
+  transparentTitleHide: {
+    type: "string",
+    default: "tab-mob",
+  },
+  transparentTitleRotateOrigin: {
+    type: "string",
+    default: "top-left",
+  },
+
+  ...generateResAlignmentAttributies(TPT_ALIGNMENT),
 
   //design tab attributes
   titleColor: {
     type: 'string',
     default: '',
   },
-  subTitleColor: {
-    type: 'string',
-    default: '',
-  },
-  tpColor: {
-    type: 'string',
-    default: '',
-  },
-  separatorColor: {
+  titleBgColor: {
     type: 'string',
     default: '',
   },
 
+  subTitleColor: {
+    type: 'string',
+    default: '',
+  },
+  tptColor: {
+    type: 'string',
+    default: '',
+  },
+  tptBgColor: {
+    type: 'string',
+    default: '',
+  },
+  tptOpacity: {
+    type: 'number',
+    default: 0.14,
+  },
+
+  separatorColor: {
+    type: 'string',
+    default: '',
+  },
+  ...generateResRangeAttributies(SEPARATOR_WIDTH, {
+    defaultRange: 70
+  }),
+  ...generateResRangeAttributies(SEPARATOR_HEIGHT, {
+    defaultRange: 3
+  }),
+  ...generateResRangeAttributies(SEPARATOR_SPACING),
+
   ...generateDimensionAttributes(TITLE_MARGIN),
+  ...generateDimensionAttributes(TITLE_PADDING),
+  ...generateBorderAttributies(TITLE_BORDER),
+  ...generateDimensionAttributes(TITLE_BORDER_RADIUS),
+  ...generateBoxShadowAttributies(TITLE_SHADOW),
+  ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
+  ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
+
+  ...generateDimensionAttributes(TPT_MARGIN),
+  ...generateDimensionAttributes(TPT_PADDING),
+  ...generateBorderAttributies(TPT_BORDER),
+  ...generateDimensionAttributes(TPT_BORDER_RADIUS),
+  ...generateBoxShadowAttributies(TPT_SHADOW),
+  ...generateTextShadowAttributies(TPT_TEXT_SHADOW),
+  ...generateTextStrokeAttributies(TPT_TEXT_STROKE),
+
   ...generateDimensionAttributes(SUBTITLE_MARGIN),
+  ...generateTextShadowAttributies(SUBTITLE_TEXT_SHADOW),
+  ...generateTextStrokeAttributies(SUBTITLE_TEXT_STROKE),
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
   //advance tab attributes

@@ -4,7 +4,9 @@ import {
     BaseControl,
     Button,
     ButtonGroup,
-    PanelBody, SelectControl, TabPanel,
+    PanelBody,
+    RangeControl,
+    SelectControl, TabPanel,
     TextControl,
     ToggleControl
 } from '@wordpress/components';
@@ -20,6 +22,10 @@ const {
     ResDimensionsControl,
     TypographyDropdown,
     ResRangeControl,
+    ResAlignmentControl,
+    TextShadowControl,
+    TextStrokeControl,
+    ResetControl,
     IconPicker
 } = window.zoloModule;
 
@@ -28,9 +34,33 @@ import objAttributes from './attributes';
 
 //block constants
 import {
-    HEADING_TAG, SEPARATOR_HEIGHT, SEPARATOR_WIDTH, STYLES,
+    HEADING_TAG, SEPARATOR_HEIGHT,
+    SEPARATOR_SPACING,
+    SEPARATOR_WIDTH,
+    STYLES,
     ST_POSITION,
-    SUBTITLE_MARGIN, TEXT_ALIGN, TITLE_MARGIN, WRAPPER_BG,
+    SUBTITLE_MARGIN,
+    SUBTITLE_TEXT_SHADOW,
+    SUBTITLE_TEXT_STROKE,
+    TEXT_ALIGN,
+    TITLE_BORDER,
+    TITLE_BORDER_RADIUS,
+    TITLE_MARGIN,
+    TITLE_PADDING,
+    TITLE_SHADOW,
+    TITLE_TEXT_SHADOW,
+    TITLE_TEXT_STROKE,
+    TPT_ALIGNMENT,
+    TPT_BORDER,
+    TPT_BORDER_RADIUS,
+    TPT_HIDE,
+    TPT_MARGIN,
+    TPT_PADDING,
+    TPT_ROTATE_ORIGIN,
+    TPT_SHADOW,
+    TPT_TEXT_SHADOW,
+    TPT_TEXT_STROKE,
+    WRAPPER_BG,
     WRAPPER_BORDER,
     WRAPPER_MARGIN,
     WRAPPER_PADDING,
@@ -46,22 +76,33 @@ const Inspector = ({ attributes, setAttributes }) => {
         styles,
         headingIcon,
         titleText,
-        subTitleText,
+        titleLink,
         titleTagName,
-        subTitleTagName,
         showSubTitle,
-        showSeparator,
-        showTransparentTitle,
-        transparentTitleText,
+        subTitleText,
         subTitlePosition,
+        showSeparator,
         separatorPosition,
         align,
 
+        showTransparentTitle,
+        transparentTitleText,
+        transparentTitleXOffset,
+        transparentTitleYOffset,
+        transparentTitleRotate,
+        transparentTitleHide,
+        transparentTitleRotateOrigin,
+
         //design
         titleColor,
+        titleBgColor,
+
         subTitleColor,
-        tpColor,
-        separatorColor
+        tptColor,
+        tptBgColor,
+        tptOpacity,
+        separatorColor,
+
     } = attributes;
 
     const resRequiredProps = {
@@ -74,6 +115,16 @@ const Inspector = ({ attributes, setAttributes }) => {
     const changePremade = (selected) => {
         setAttributes({ styles: selected });
         switch (selected) {
+
+            case 'style-0':
+                setAttributes({
+                    showSubTitle: false,
+                    showTransparentTitle: false,
+                    showSeparator: false,
+                    align: 'left'
+                });
+                break;
+
             case 'style-1':
                 setAttributes({
                     showSubTitle: true,
@@ -194,9 +245,10 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             attrValue={headingIcon}
                                             setValue={setAttributes}
                                         />
+
                                         {/* Hook Test */}
                                         {/* {doAction('zolo_ah_general_start_action', attributes)}
-                    {applyFilters('zolo_ah_general_start_filter', '', attributes, setAttributes)} */}
+                                        {applyFilters('zolo_ah_general_start_filter', '', attributes, setAttributes)} */}
 
                                         <SelectControl
                                             label={__("Premade Styles", "zolo-blocks")}
@@ -204,13 +256,21 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             options={applyFilters('zolo_ah_style_filter', STYLES) || STYLES}
                                             onChange={(selected) => changePremade(selected)}
                                         />
+
                                         <TextControl
-                                            label={__('Title Text', 'zolo-blocks')}
+                                            label={__('Main Heading', 'zolo-blocks')}
                                             value={titleText}
                                             onChange={(titleText) => setAttributes({ titleText })}
                                         />
 
-                                        <BaseControl label={__("Title Tag", "zolo-blocks")} >
+                                        <TextControl
+                                            label={__('Link', 'zolo-blocks')}
+                                            value={titleLink}
+                                            onChange={(titleLink) => setAttributes({ titleLink })}
+                                            help={__('http://your-link.com', 'zolo-blocks')}
+                                        />
+
+                                        <BaseControl label={__("HTML Tag", "zolo-blocks")} >
                                             <ButtonGroup>
                                                 {HEADING_TAG.map((item, key) => (
                                                     <Button
@@ -225,7 +285,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         </BaseControl>
 
                                         <ToggleControl
-                                            label={__('Show Sub TItle', 'zolo-blocks')}
+                                            label={__('Show Sub Heading', 'zolo-blocks')}
                                             checked={showSubTitle}
                                             onChange={(showSubTitle) => setAttributes({ showSubTitle })}
                                         />
@@ -233,26 +293,12 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         {showSubTitle && (
                                             <>
                                                 <TextControl
-                                                    label={__('Sub Title Text', 'zolo-blocks')}
+                                                    label={__('Sub Heading', 'zolo-blocks')}
                                                     value={subTitleText}
                                                     onChange={(subTitleText) => setAttributes({ subTitleText })}
                                                 />
 
-                                                <BaseControl label={__("Sub Title Tag", "zolo-blocks")} >
-                                                    <ButtonGroup>
-                                                        {HEADING_TAG.map((item, key) => (
-                                                            <Button
-                                                                key={key}
-                                                                variant={subTitleTagName === item.value ? 'primary' : 'secondary'}
-                                                                onClick={() => setAttributes({ subTitleTagName: item.value })}
-                                                            >
-                                                                {item.label}
-                                                            </Button>
-                                                        ))}
-                                                    </ButtonGroup>
-                                                </BaseControl>
-
-                                                <BaseControl label={__("Sub Title Position", "zolo-blocks")} >
+                                                <BaseControl label={__("Sub Heading Position", "zolo-blocks")} >
                                                     <ButtonGroup>
                                                         {ST_POSITION.map((item, key) => (
                                                             <Button
@@ -266,20 +312,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                                                     </ButtonGroup>
                                                 </BaseControl>
                                             </>
-                                        )}
-
-                                        <ToggleControl
-                                            label={__('Show Transparent Title', 'zolo-blocks')}
-                                            checked={showTransparentTitle}
-                                            onChange={(showTransparentTitle) => setAttributes({ showTransparentTitle })}
-                                        />
-
-                                        {showTransparentTitle && (
-                                            <TextControl
-                                                label={__('Transparent Title Text', 'zolo-blocks')}
-                                                value={transparentTitleText}
-                                                onChange={(transparentTitleText) => setAttributes({ transparentTitleText })}
-                                            />
                                         )}
 
                                         <ToggleControl
@@ -306,30 +338,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             </>
                                         )}
 
-                                        {/* <ResAlignmentControl
-                      label={__('Alignmet', 'zolo-blocks')}
-                      controlName={HEADING_ALIGNMENT}
-                      resRequiredProps={resRequiredProps}
-                      alignOptions={[
-                        {
-                          label: 'Left',
-                          value: 'left',
-                        },
-                        {
-                          label: 'Center',
-                          value: 'center',
-                        },
-                        {
-                          label: 'Right',
-                          value: 'right',
-                        },
-                        {
-                          label: 'Justify',
-                          value: 'justify',
-                        },
-                      ]}
-                    /> */}
-
                                         <BaseControl label={__("Alignment", "zolo-blocks")} >
                                             <ButtonGroup className="zolo-alignment-button">
                                                 {TEXT_ALIGN.map((item, key) => (
@@ -344,6 +352,91 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             </ButtonGroup>
                                         </BaseControl>
 
+                                        <ToggleControl
+                                            label={__('Show Advanced Heading', 'zolo-blocks')}
+                                            checked={showTransparentTitle}
+                                            onChange={(showTransparentTitle) => setAttributes({ showTransparentTitle })}
+                                        />
+
+                                        {showTransparentTitle && (
+                                            <PanelBody title={__('Advanced Heading', 'zolo-blocks')} initialOpen={showTransparentTitle ? true : false}>
+                                                <TextControl
+                                                    label={__('Advanced Heading Text', 'zolo-blocks')}
+                                                    value={transparentTitleText}
+                                                    onChange={(transparentTitleText) => setAttributes({ transparentTitleText })}
+                                                    help={__('This heading will show as style as background and you can move and style many way.', 'zolo-blocks')}
+                                                />
+
+                                                <ResAlignmentControl
+                                                    label={__("Alignmet", "zolo-blocks")}
+                                                    controlName={TPT_ALIGNMENT}
+                                                    resRequiredProps={resRequiredProps}
+                                                    alignOptions={[
+                                                        { label: "Left", value: "left" },
+                                                        { label: "Center", value: "center" },
+                                                        { label: "Right", value: "right" },
+                                                    ]}
+                                                />
+                                                <ResetControl
+                                                    onReset={() =>
+                                                        setAttributes({
+                                                            transparentTitleXOffset: 0,
+                                                        })
+                                                    }
+                                                >
+                                                    <RangeControl
+                                                        label={__('X Offset', 'zolo-blocks')}
+                                                        value={transparentTitleXOffset}
+                                                        onChange={(transparentTitleXOffset) => setAttributes({ transparentTitleXOffset })}
+                                                        min={-800}
+                                                        max={800}
+                                                    />
+                                                </ResetControl>
+                                                <ResetControl
+                                                    onReset={() =>
+                                                        setAttributes({
+                                                            transparentTitleYOffset: 0,
+                                                        })
+                                                    }
+                                                >
+                                                    <RangeControl
+                                                        label={__('Y Offset', 'zolo-blocks')}
+                                                        value={transparentTitleYOffset}
+                                                        onChange={(transparentTitleYOffset) => setAttributes({ transparentTitleYOffset })}
+                                                        min={-800}
+                                                        max={800}
+                                                    />
+                                                </ResetControl>
+                                                <SelectControl
+                                                    label={__("Rotate Origin", "zolo-blocks")}
+                                                    value={transparentTitleRotateOrigin}
+                                                    options={TPT_ROTATE_ORIGIN}
+                                                    onChange={(transparentTitleRotateOrigin) => setAttributes({ transparentTitleRotateOrigin })}
+                                                />
+                                                <ResetControl
+                                                    onReset={() =>
+                                                        setAttributes({
+                                                            transparentTitleRotate: 0,
+                                                        })
+                                                    }
+                                                >
+                                                    <RangeControl
+                                                        label={__('Rotate', 'zolo-blocks')}
+                                                        value={transparentTitleRotate}
+                                                        onChange={(transparentTitleRotate) => setAttributes({ transparentTitleRotate })}
+                                                        min={-180}
+                                                        max={180}
+                                                    />
+                                                </ResetControl>
+                                                <SelectControl
+                                                    label={__("Hide At", "zolo-blocks")}
+                                                    value={transparentTitleHide}
+                                                    options={TPT_HIDE}
+                                                    onChange={(transparentTitleHide) => setAttributes({ transparentTitleHide })}
+                                                />
+
+                                            </PanelBody>
+                                        )}
                                     </PanelBody>
                                 </>
                             )}
@@ -351,7 +444,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                             {tab.name === 'design' && (
                                 <>
                                     <PanelBody
-                                        title={__('Title', 'zolo-blocks')}
+                                        title={__('Main Heading', 'zolo-blocks')}
                                         initialOpen={true}
                                     >
                                         <TypographyDropdown
@@ -368,16 +461,63 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             })}
                                         />
 
+                                        <ColorControl
+                                            label={__('Background', 'zolo-blocks')}
+                                            color={titleBgColor}
+                                            onChange={(val) => setAttributes({
+                                                titleBgColor: val,
+                                            })}
+                                        />
+
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zolo-blocks')}
+                                            controlName={TITLE_PADDING}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+
                                         <ResDimensionsControl
                                             label={__('Margin', 'zolo-blocks')}
                                             controlName={TITLE_MARGIN}
                                             resRequiredProps={resRequiredProps}
                                         />
 
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={TITLE_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+
+                                        <ResDimensionsControl
+                                            label={__(
+                                                'Border Radius',
+                                                'zolo-blocks'
+                                            )}
+                                            controlName={TITLE_BORDER_RADIUS}
+                                            resRequiredProps={resRequiredProps}
+                                            forBorderRadius={true}
+                                        />
+
+                                        <BoxShadowControl
+                                            controlName={TITLE_SHADOW}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+
+                                        <TextShadowControl
+                                            controlName={TITLE_TEXT_SHADOW}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
+                                        />
+
+                                        <TextStrokeControl
+                                            controlName={TITLE_TEXT_STROKE}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
+                                        />
+
                                     </PanelBody>
 
                                     <PanelBody
-                                        title={__('Sub Title', 'zolo-blocks')}
+                                        title={__('Sub Heading', 'zolo-blocks')}
                                         initialOpen={false}
                                     >
                                         <TypographyDropdown
@@ -400,31 +540,31 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             resRequiredProps={resRequiredProps}
                                         />
 
-                                    </PanelBody>
-
-                                    <PanelBody
-                                        title={__('Transparent Title', 'zolo-blocks')}
-                                        initialOpen={false}
-                                    >
-                                        <TypographyDropdown
-                                            label="Typography"
-                                            typoPrefixConstant={TRANSPARENT_TYPOGRAPHY}
+                                        <TextShadowControl
+                                            controlName={SUBTITLE_TEXT_SHADOW}
                                             resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
                                         />
 
-                                        <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
-                                            color={tpColor}
-                                            onChange={(val) => setAttributes({
-                                                tpColor: val,
-                                            })}
+                                        <TextStrokeControl
+                                            controlName={SUBTITLE_TEXT_STROKE}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
                                         />
+
                                     </PanelBody>
 
                                     <PanelBody
                                         title={__('Separator', 'zolo-blocks')}
                                         initialOpen={false}
                                     >
+                                        <ColorControl
+                                            label={__('Color', 'zolo-blocks')}
+                                            color={separatorColor}
+                                            onChange={(val) => setAttributes({
+                                                separatorColor: val,
+                                            })}
+                                        />
                                         <ResRangeControl
                                             label={__(
                                                 'Width',
@@ -447,13 +587,95 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             max={100}
                                             step={1}
                                         />
+                                        <ResRangeControl
+                                            label={__(
+                                                'Spacing',
+                                                'zolo-blocks'
+                                            )}
+                                            resRequiredProps={resRequiredProps}
+                                            controlName={SEPARATOR_SPACING}
+                                            min={0}
+                                            max={50}
+                                            step={1}
+                                        />
+
+                                    </PanelBody>
+
+                                    <PanelBody
+                                        title={__('Advanced Heading', 'zolo-blocks')}
+                                        initialOpen={false}
+                                    >
+                                        <TypographyDropdown
+                                            label="Typography"
+                                            typoPrefixConstant={TRANSPARENT_TYPOGRAPHY}
+                                            resRequiredProps={resRequiredProps}
+                                        />
 
                                         <ColorControl
                                             label={__('Color', 'zolo-blocks')}
-                                            color={separatorColor}
+                                            color={tptColor}
                                             onChange={(val) => setAttributes({
-                                                separatorColor: val,
+                                                tptColor: val,
                                             })}
+                                        />
+                                        <ColorControl
+                                            label={__('Background', 'zolo-blocks')}
+                                            color={tptBgColor}
+                                            onChange={(val) => setAttributes({
+                                                tptBgColor: val,
+                                            })}
+                                        />
+
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zolo-blocks')}
+                                            controlName={TPT_PADDING}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Margin', 'zolo-blocks')}
+                                            controlName={TPT_MARGIN}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={TPT_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+
+                                        <ResDimensionsControl
+                                            label={__(
+                                                'Border Radius',
+                                                'zolo-blocks'
+                                            )}
+                                            controlName={TPT_BORDER_RADIUS}
+                                            resRequiredProps={resRequiredProps}
+                                            forBorderRadius={true}
+                                        />
+
+                                        <BoxShadowControl
+                                            controlName={TPT_SHADOW}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <TextShadowControl
+                                            controlName={TPT_TEXT_SHADOW}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
+                                        />
+
+                                        <TextStrokeControl
+                                            controlName={TPT_TEXT_STROKE}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
+                                        />
+
+                                        <RangeControl
+                                            label={__('Opacity', 'zolo-blocks')}
+                                            value={tptOpacity}
+                                            onChange={(tptOpacity) => setAttributes({ tptOpacity })}
+                                            min={0.05}
+                                            max={1}
+                                            step={0.01}
                                         />
                                     </PanelBody>
                                 </>

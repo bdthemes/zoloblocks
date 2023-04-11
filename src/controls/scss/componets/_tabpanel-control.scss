@@ -1,0 +1,32 @@
+.zolo-tab-panel {
+	.components-tab-panel__tabs {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid #ddd;
+		margin-bottom: 16px;
+		border-radius: 3px;
+	}
+
+	.zolo-tab {
+		width: 100%;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+		padding: 8px;
+		height: auto;
+		line-height: 1;
+	}
+
+	.zolo-tab.normal {
+		border-right: 1px solid #ddd;
+	}
+
+	.zolo-tab.active-tab {
+		background: #ddd;
+	}
+
+	.components-tab-panel__tabs-item:focus:not(:disabled) {
+		box-shadow: none;
+	}
+}
