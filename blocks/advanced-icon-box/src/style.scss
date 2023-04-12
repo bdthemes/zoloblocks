@@ -65,6 +65,16 @@
 				z-index: 1;
 				position: relative;
 				margin-bottom: 20px;
+				display: flex;
+				&.icon-left {
+					justify-content: left;
+				}
+				&.icon-center {
+					justify-content: center;
+				}
+				&.icon-right {
+					justify-content: right;
+				}
 				& svg {
 					width: 30px;
 					height: 30px;
@@ -96,7 +106,6 @@
 						font-size: 14px;
 						border: 1px solid #32de23;
 						padding: 10px 15px;
-						display: inline-block;
 						color: #32de23;
 						border-radius: 30px;
 						text-transform: capitalize;
@@ -151,7 +160,6 @@
 						font-size: 14px;
 						border: 1px solid #32de23;
 						padding: 10px 15px;
-						display: inline-block;
 						color: #32de23;
 						border-radius: 30px;
 						text-transform: capitalize;
@@ -169,18 +177,38 @@
 	/* icon box style 3 */
 	& .zolo-block-advanced-icon-box-style-3 {
 		.zolo-block-item {
-			flex-direction: row-reverse;
 			text-align: right;
-			display: inline-flex;
 			grid-gap: 20px;
 			padding: 30px;
 
 			& .zolo-block-icon-wrap {
 				z-index: 1;
 				position: relative;
+				display: flex;
+				&.icon-left {
+					justify-content: left;
+				}
+				&.icon-center {
+					justify-content: center;
+				}
+				&.icon-right {
+					justify-content: right;
+				}
 				& svg {
 					width: 30px;
 					height: 30px;
+				}
+				&.top {
+					flex-direction: column-reverse;
+				}
+				&.bottom {
+					flex-direction: column;
+				}
+				&.left {
+					flex-direction: row-reverse;
+				}
+				&.right {
+					flex-direction: row;
 				}
 			}
 
@@ -225,6 +253,16 @@
 
 	.zolo-block-advanced-icon-box .zolo-block-link-btn {
 		margin-top: 22px;
+		display: flex;
+		&.button-left {
+			justify-content: left;
+		}
+		&.button-center {
+			justify-content: center;
+		}
+		&.button-right {
+			justify-content: right;
+		}
 		& .zolo-box-button {
 			display: inline-flex;
 			align-items: center;

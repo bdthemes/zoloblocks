@@ -27,6 +27,7 @@ import {
 	BLOCK_PREFIX,
 	ICON_BOX_ALIGNMENT,
 	TITLE_ALIGNMENT,
+	DESC_ALIGNMENT,
 	ICON_TEXT_COLOR,
 	ICON_BG_COLOR,
 	ICON_HOVER_BG_COLOR,
@@ -37,65 +38,76 @@ import {
 
 import Inspector from './inspector';
 
-export default function Edit(props) {
+export default function Edit( props ) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
 		props;
 	const {
 		uniqueId,
 		preset,
-		label,
 		link,
 		blockStyle,
 		showIcon,
 		textColor,
 		textHoverColor,
 		iconPosition,
+		topIconPosition,
+		buttonPosition,
 		iconType,
 		iconBoxTitle,
 		iconBoxDescription,
-		iconTypeImage,
 		buttonText,
 		buttonLink,
 	} = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
-	useEffect(() => {
-		handleUniqueId({
+	useEffect( () => {
+		handleUniqueId( {
 			BLOCK_PREFIX,
 			uniqueId,
 			setAttributes,
 			clientId,
-		});
-	}, []);
+		} );
+	}, [] );
 
-	const blockProps = useBlockProps({
-		className: classnames(className, ``),
-	});
+	const blockProps = useBlockProps( {
+		className: classnames( className, `` ),
+	} );
 
 	// icon alignment
 	const {
 		desktopAlignStyle: iconAlignmentDesktop,
 		tabAlignStyle: iconAlignmentTab,
 		mobAlignStyle: iconAlignmentMob,
-	} = generateResAlignmentStyle({
+	} = generateResAlignmentStyle( {
 		controlName: ICON_BOX_ALIGNMENT,
 		property: 'text-align',
 		attributes,
-	});
+	} );
 
 	// title alignment
 	const {
 		desktopAlignStyle: textAlignmentDesktop,
 		tabAlignStyle: textAlignmentTab,
 		mobAlignStyle: textAlignmentMob,
-	} = generateResAlignmentStyle({
+	} = generateResAlignmentStyle( {
 		controlName: TITLE_ALIGNMENT,
 		property: 'text-align',
 		attributes,
-	});
+	} );
+
+	// description alignment
+	const {
+		desktopAlignStyle: descAlignmentDesktop,
+		tabAlignStyle: descAlignmentTab,
+		mobAlignStyle: descAlignmentMob,
+	} = generateResAlignmentStyle( {
+		controlName: DESC_ALIGNMENT,
+		property: 'text-align',
+		attributes,
+	} );
 
 	/**
-	 * Generate Alignment Class
+	 * Generate Title Alignment Class
 	 */
 	const deskTitleAlign = `display: ${
 		textAlignmentDesktop === 'text-align:left;' ? 'flex' : 'inline-flex'
@@ -110,7 +122,23 @@ export default function Edit(props) {
 	};`;
 
 	/**
-	 * Generate Alignment Class
+	 * Generate Description Alignment Class
+	 */
+
+	const deskDescAlign = `display: ${
+		descAlignmentDesktop === 'text-align:left;' ? 'flex' : 'inline-flex'
+	};`;
+
+	const tabDescAlign = `display: ${
+		descAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
+	};`;
+
+	const mobDescAlign = `display: ${
+		descAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
+	};`;
+
+	/**
+	 * Generate Icon Alignment Class
 	 */
 	const deskAlign = `display: ${
 		iconAlignmentDesktop === 'text-align:justify;' ? 'flex' : 'inline-flex'
@@ -129,140 +157,149 @@ export default function Edit(props) {
 		desktopBorderStyle: borderStyles,
 		tabBorderStyle: borderStylesTab,
 		mobBorderStyle: borderStylesMob,
-	} = generateBorderStyle({
+	} = generateBorderStyle( {
 		controlName: ICON_BORDER,
 		attributes,
-	});
+	} );
 
 	// generate icon size
 	const {
 		desktopRangeStyle: iconSize,
 		tabRangeStyle: iconSizeTab,
 		mobRangeStyle: iconSizeMob,
-	} = generateResRangeStyle({
+	} = generateResRangeStyle( {
 		controlName: ICON_SIZE,
 		property: 'width',
 		attributes,
-	});
+	} );
 
 	// Spacing between icon and text
 	const {
 		desktopRangeStyle: gap,
 		tabRangeStyle: gapTab,
 		mobRangeStyle: gapMob,
-	} = generateResRangeStyle({
+	} = generateResRangeStyle( {
 		controlName: ICON_TEXT_SPACING,
 		property: 'gap',
 		attributes,
-	});
+	} );
 
 	/**
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
-		.${uniqueId}{
-			${iconAlignmentDesktop}
+		.${ uniqueId }{
+			${ iconAlignmentDesktop }
 		}
-		.${uniqueId} .zolo-block-title{
-			${textAlignmentDesktop}
+		.${ uniqueId } .zolo-block-title{
+			${ textAlignmentDesktop }
 		}
-		.${uniqueId} .zolo-content {
-			${borderStyles}
-			${gap}
-			${deskAlign}
-			color: ${textColor ? textColor : 'inherit'};
+		.${ uniqueId } .zolo-block-desc{
+			${ descAlignmentDesktop }
 		}
-		.${uniqueId} .zolo-content:hover {
-			color: ${textHoverColor ? textHoverColor : 'inherit'};
+		.${ uniqueId } .zolo-content {
+			${ borderStyles }
+			${ gap }
+			${ deskAlign }
+			color: ${ textColor ? textColor : 'inherit' };
 		}
-		.${uniqueId} .zolo-icon-icon {
-			${iconSize}
+		.${ uniqueId } .zolo-content:hover {
+			color: ${ textHoverColor ? textHoverColor : 'inherit' };
+		}
+		.${ uniqueId } .zolo-icon-icon {
+			${ iconSize }
 		}
   	`;
 	const tabletAllStyle = `
-		.${uniqueId}{
-			${iconAlignmentTab}
+		.${ uniqueId }{
+			${ iconAlignmentTab }
 		}
-		.${uniqueId} .zolo-block-title{
-			${textAlignmentTab}
+		.${ uniqueId } .zolo-block-title{
+			${ textAlignmentTab }
+		}		
+		.${ uniqueId } .zolo-block-desc{
+			${ descAlignmentTab }
 		}
-		.${uniqueId} .zolo-content {
-			${borderStylesTab}
-			${gapTab}
-			${tabAlign}
+		.${ uniqueId } .zolo-content {
+			${ borderStylesTab }
+			${ gapTab }
+			${ tabAlign }
 		}
-		.${uniqueId} .zolo-icon-icon {
-			${iconSizeTab}
+		.${ uniqueId } .zolo-icon-icon {
+			${ iconSizeTab }
 		}
 	`;
 
 	const mobileAllStyle = `
-		.${uniqueId}{
-			${iconAlignmentMob}
+		.${ uniqueId }{
+			${ iconAlignmentMob }
 		}
-		.${uniqueId} .zolo-block-title{
-			${textAlignmentMob}
+		.${ uniqueId } .zolo-block-title{
+			${ textAlignmentMob }
+		}		
+		.${ uniqueId } .zolo-block-desc{
+			${ descAlignmentMob }
 		}
-		.${uniqueId} .zolo-content {
-			${borderStylesMob}
-			${gapMob}
-			${mobAlign}
+		.${ uniqueId } .zolo-content {
+			${ borderStylesMob }
+			${ gapMob }
+			${ mobAlign }
 		}
-		.${uniqueId} .zolo-icon-icon {
-			${iconSizeMob}
+		.${ uniqueId } .zolo-icon-icon {
+			${ iconSizeMob }
 		}
   	`;
 
 	const allStyle = `
-		${desktopAllStyle}
+		${ desktopAllStyle }
 		@media all and (max-width: 1024px) {
-			${tabletAllStyle}
+			${ tabletAllStyle }
 		}
 		@media all and (max-width: 767px) {
-			${mobileAllStyle}
+			${ mobileAllStyle }
 		}
 	`;
 
 	// Set All Style in "blockStyle" Attribute
-	useEffect(() => {
+	useEffect( () => {
 		const styles = {
 			desktop: desktopAllStyle,
 			tablet: tabletAllStyle,
 			mobile: mobileAllStyle,
 		};
-		if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-			setAttributes({ blockStyle: styles });
+		if ( JSON.stringify( blockStyle ) != JSON.stringify( styles ) ) {
+			setAttributes( { blockStyle: styles } );
 		}
-	}, [attributes]);
+	}, [ attributes ] );
 
 	return (
 		<>
-			{isSelected && (
+			{ isSelected && (
 				<Inspector
-					attributes={attributes}
-					setAttributes={setAttributes}
+					attributes={ attributes }
+					setAttributes={ setAttributes }
 				/>
-			)}
+			) }
 			<BlockControls>
 				<ToolbarGroup>
 					<Dropdown
 						className="my-container-class-name"
 						contentClassName="my-popover-content-classname"
-						popoverProps={{ placement: 'bottom-start' }}
-						renderToggle={({ isOpen, onToggle }) => (
+						popoverProps={ { placement: 'bottom-start' } }
+						renderToggle={ ( { isOpen, onToggle } ) => (
 							<ToolbarButton
 								icon="admin-links"
-								label={__('Link', 'zolo-blocks')}
-								onClick={onToggle}
-								aria-expanded={isOpen}
+								label={ __( 'Link', 'zolo-blocks' ) }
+								onClick={ onToggle }
+								aria-expanded={ isOpen }
 							/>
-						)}
-						renderContent={() => (
+						) }
+						renderContent={ () => (
 							<div className="zolo-dropdown-link">
 								<LinkControl
 									searchInputPlaceholder="Search here..."
-									value={link}
-									settings={[
+									value={ link }
+									settings={ [
 										{
 											id: 'opensInNewTab',
 											title: __(
@@ -277,24 +314,26 @@ export default function Edit(props) {
 												'zolo-blocks'
 											),
 										},
-									]}
-									onChange={(data) =>
-										setAttributes({ link: data })
+									] }
+									onChange={ ( data ) =>
+										setAttributes( { link: data } )
 									}
 								></LinkControl>
 							</div>
-						)}
+						) }
 					/>
 				</ToolbarGroup>
 			</BlockControls>
-			<style>{` ${softMinifyCssStrings(allStyle)}`}</style>
-			<div {...blockProps}>
+			<style>{ ` ${ softMinifyCssStrings( allStyle ) }` }</style>
+			<div { ...blockProps }>
 				<div
-					className={`zolo-block-advanced-icon-box ${uniqueId} zolo-block-advanced-icon-box-${preset}`}
+					className={ `zolo-block-advanced-icon-box ${ uniqueId } zolo-block-advanced-icon-box-${ preset }` }
 				>
 					<div className="zolo-block-item">
-						<div className="zolo-block-icon-wrap">
-							{iconType == 'icon' && (
+						<div
+							className={ `zolo-block-icon-wrap ${ topIconPosition }` }
+						>
+							{ iconType == 'icon' && (
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="16"
@@ -306,61 +345,63 @@ export default function Edit(props) {
 									<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path>
 									<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path>
 								</svg>
-							)}
+							) }
 						</div>
 
 						<div className="zolo-block-body-content">
 							<RichText
-								className={`zolo-block-title`}
+								className={ `zolo-block-title` }
 								tagName="h2"
-								value={iconBoxTitle}
-								onChange={(text) =>
-									setAttributes({
+								value={ iconBoxTitle }
+								onChange={ ( text ) =>
+									setAttributes( {
 										iconBoxTitle: text,
-									})
+									} )
 								}
-								placeholder={__(
+								placeholder={ __(
 									'The Theme Setting',
 									'zolo-blocks'
-								)}
-								allowedFormats={[]}
+								) }
+								allowedFormats={ [] }
 							/>
 
 							<RichText
-								className={`zolo-block-desc`}
+								className={ `zolo-block-desc` }
 								tagName="div"
-								value={iconBoxDescription}
-								onChange={(text) =>
-									setAttributes({
+								value={ iconBoxDescription }
+								onChange={ ( text ) =>
+									setAttributes( {
 										iconBoxDescription: text,
-									})
+									} )
 								}
-								placeholder={__(
+								placeholder={ __(
 									'The Theme Setting is a website that provides users with a range of tools to customize their web experience.',
 									'zolo-blocks'
-								)}
-								allowedFormats={[]}
+								) }
+								allowedFormats={ [] }
 							/>
 
-							<div className="zolo-block-link-btn">
+							<div
+								className={ `zolo-block-link-btn ${ buttonPosition }` }
+							>
 								<a
-									className={`zolo-box-button ${iconPosition}`}
-									href={buttonLink}
+									className={ `zolo-box-button ${ iconPosition }` }
+									href={ buttonLink }
 								>
 									<RichText
-										value={buttonText}
-										onChange={(text) =>
-											setAttributes({
+										value={ buttonText }
+										onChange={ ( text ) =>
+											setAttributes( {
 												buttonText: text,
-											})
+											} )
 										}
-										placeholder={__(
+										placeholder={ __(
 											'Read More',
 											'zolo-blocks'
-										)}
-										allowedFormats={[]}
+										) }
+										allowedFormats={ [] }
 									/>
-									{showIcon && (
+									{ showIcon && (
 										<svg
 											clipRule="evenodd"
 											fillRule="evenodd"
@@ -375,7 +416,7 @@ export default function Edit(props) {
 												fill-rule="nonzero"
 											/>
 										</svg>
-									)}
+									) }
 								</a>
 							</div>
 						</div>

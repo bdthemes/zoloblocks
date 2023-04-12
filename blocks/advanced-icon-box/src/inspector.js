@@ -46,22 +46,21 @@ import TabPanelControl from '../../../src/controls/tabpanel-control';
 // import { PRESETS } from "../../../src/global/constants";
 import objAttributes from './attributes';
 import {
-	ICON_BOX_ALIGNMENT,
 	TITLE_ALIGNMENT,
+	DESC_ALIGNMENT,
 	PRESETS,
 	ICON_POSITIONS,
-	ICON_BOX_POSITIONS,
+	BUTTON_POSITIONS,
+	TOP_ICON_POSITIONS,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
 	ICON_TYPOGRAPHY,
-	ICON_BG_COLOR,
-	ICON_HOVER_BG_COLOR,
 	ICON_BORDER,
 	ICON_PADDING,
 	ICON_MARGIN,
 } from './constants';
 
-function Inspector(props) {
+function Inspector( props ) {
 	const { attributes, setAttributes } = props;
 	const {
 		uniqueId,
@@ -75,6 +74,8 @@ function Inspector(props) {
 		showIcon,
 		icon,
 		iconPosition,
+		topIconPosition,
+		buttonPosition,
 		textColor,
 		textHoverColor,
 		iconType,
@@ -96,7 +97,7 @@ function Inspector(props) {
 					className="eb-parent-tab-panel"
 					activeClass="active-tab"
 					// onSelect={onSelect}
-					tabs={[
+					tabs={ [
 						{
 							name: 'settings',
 							title: 'Settings',
@@ -112,41 +113,41 @@ function Inspector(props) {
 							title: 'Advanced',
 							className: 'eb-tab advanced',
 						},
-					]}
+					] }
 				>
-					{(tab) => (
-						<div className={'eb-tab-controls' + tab.name}>
-							{tab.name === 'settings' && (
+					{ ( tab ) => (
+						<div className={ 'eb-tab-controls' + tab.name }>
+							{ tab.name === 'settings' && (
 								<>
 									<PanelBody
-										title={__('General', 'zolo-blocks')}
-										initialOpen={true}
+										title={ __( 'General', 'zolo-blocks' ) }
+										initialOpen={ true }
 									>
 										<SelectControl
-											label={__(
+											label={ __(
 												'Preset Designs',
 												'zolo-blocks'
-											)}
-											value={preset}
-											options={PRESETS}
-											onChange={(value) =>
-												setAttributes({
+											) }
+											value={ preset }
+											options={ PRESETS }
+											onChange={ ( value ) =>
+												setAttributes( {
 													preset: value,
-												})
+												} )
 											}
 										/>
 									</PanelBody>
 									<PanelBody
-										title={__('Content', 'zolo-blocks')}
-										initialOpen={false}
+										title={ __( 'Content', 'zolo-blocks' ) }
+										initialOpen={ false }
 									>
 										<SelectControl
-											label={__(
+											label={ __(
 												'Select Icon Type',
 												'zolo-blocks'
-											)}
-											value={iconType}
-											options={[
+											) }
+											value={ iconType }
+											options={ [
 												{
 													label: 'Icon',
 													value: 'icon',
@@ -155,95 +156,117 @@ function Inspector(props) {
 													label: 'Image',
 													value: 'image',
 												},
-											]}
-											onChange={(value) =>
-												setAttributes({
+											] }
+											onChange={ ( value ) =>
+												setAttributes( {
 													iconType: value,
-												})
+												} )
 											}
 										/>
 
-										{iconType == 'icon' && (
+										{ iconType == 'icon' && (
 											<Fragment>
-												<p>
-													<strong>Icon Picker</strong>
-													<br />
-													<svg
-														xmlns="http://www.w3.org/2000/svg"
-														width="24"
-														height="24"
-														viewBox="0 0 24 24"
-														fill="none"
-														stroke="#000000"
-														stroke-width="2"
-														stroke-linecap="round"
-														stroke-linejoin="round"
-													>
-														<circle
-															cx="18"
-															cy="5"
-															r="3"
-														></circle>
-														<circle
-															cx="6"
-															cy="12"
-															r="3"
-														></circle>
-														<circle
-															cx="18"
-															cy="19"
-															r="3"
-														></circle>
-														<line
-															x1="8.59"
-															y1="13.51"
-															x2="15.42"
-															y2="17.49"
-														></line>
-														<line
-															x1="15.41"
-															y1="6.51"
-															x2="8.59"
-															y2="10.49"
-														></line>
-													</svg>
-												</p>
+												<strong>
+													{ __(
+														'Icon Picker',
+														'zolo-blocks'
+													) }
+												</strong>
+												<br />
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="24"
+													height="24"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="#000000"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<circle
+														cx="18"
+														cy="5"
+														r="3"
+													></circle>
+													<circle
+														cx="6"
+														cy="12"
+														r="3"
+													></circle>
+													<circle
+														cx="18"
+														cy="19"
+														r="3"
+													></circle>
+													<line
+														x1="8.59"
+														y1="13.51"
+														x2="15.42"
+														y2="17.49"
+													></line>
+													<line
+														x1="15.41"
+														y1="6.51"
+														x2="8.59"
+														y2="10.49"
+													></line>
+												</svg>
+												<br />
+												<br />
+												<SelectControl
+													label={ __(
+														'Position',
+														'zolo-blocks'
+													) }
+													options={
+														TOP_ICON_POSITIONS
+													}
+													onChange={ ( position ) => {
+														setAttributes( {
+															topIconPosition:
+																position,
+														} );
+													} }
+													value={ topIconPosition }
+												/>
+												<br />
 
 												<ResRangeControl
-													label={__(
+													label={ __(
 														'Icon Size',
 														'zolo-blocks'
-													)}
-													controlName={ICON_SIZE}
+													) }
+													controlName={ ICON_SIZE }
 													resRequiredProps={
 														resRequiredProps
 													}
-													min={0}
-													max={100}
-													step={1}
+													min={ 0 }
+													max={ 100 }
+													step={ 1 }
 												/>
 												<ResRangeControl
-													label={__(
+													label={ __(
 														'Gap',
 														'zolo-blocks'
-													)}
+													) }
 													controlName={
 														ICON_TEXT_SPACING
 													}
 													resRequiredProps={
 														resRequiredProps
 													}
-													min={0}
-													max={100}
-													step={1}
+													min={ 0 }
+													max={ 100 }
+													step={ 1 }
 												/>
 											</Fragment>
-										)}
+										) }
 
-										{iconType == 'image' &&
-											(iconTypeImage ? (
+										{ iconType == 'image' &&
+											( iconTypeImage ? (
 												<img
-													src={iconTypeImage.url}
+													src={ iconTypeImage.url }
 													alt={
 														iconTypeImage.alt
 															? iconTypeImage.alt
@@ -253,42 +276,48 @@ function Inspector(props) {
 											) : (
 												<MediaUploadCheck>
 													<MediaUpload
-														onSelect={(media) =>
-															setAttributes({
+														onSelect={ ( media ) =>
+															setAttributes( {
 																iconTypeImage:
 																	media,
-															})
+															} )
 														}
-														allowedTypes={['image']}
+														allowedTypes={ [
+															'image',
+														] }
 														value={
 															iconTypeImage &&
 															iconTypeImage.id
 														}
-														render={({ open }) => (
+														render={ ( {
+															open,
+														} ) => (
 															<Button
-																onClick={open}
+																onClick={ open }
 																icon="upload"
 																variant="secondary"
 															>
-																{__(
+																{ __(
 																	'Add Image',
 																	'zolo-blocks'
-																)}
+																) }
 															</Button>
-														)}
+														) }
 													/>
 												</MediaUploadCheck>
-											))}
+											) ) }
 
 										<CardDivider />
 										<ResAlignmentControl
-											label={__(
+											label={ __(
 												'Title Alignment',
 												'zolo-blocks'
-											)}
-											controlName={TITLE_ALIGNMENT}
-											resRequiredProps={resRequiredProps}
-											alignOptions={[
+											) }
+											controlName={ TITLE_ALIGNMENT }
+											resRequiredProps={
+												resRequiredProps
+											}
+											alignOptions={ [
 												{
 													label: 'Left',
 													value: 'left',
@@ -305,17 +334,19 @@ function Inspector(props) {
 													label: 'Justify',
 													value: 'justify',
 												},
-											]}
+											] }
 										/>
 										<br />
 										<ResAlignmentControl
-											label={__(
+											label={ __(
 												'Description Alignment',
 												'zolo-blocks'
-											)}
-											controlName={ICON_BOX_ALIGNMENT}
-											resRequiredProps={resRequiredProps}
-											alignOptions={[
+											) }
+											controlName={ DESC_ALIGNMENT }
+											resRequiredProps={
+												resRequiredProps
+											}
+											alignOptions={ [
 												{
 													label: 'Left',
 													value: 'left',
@@ -332,132 +363,149 @@ function Inspector(props) {
 													label: 'Justify',
 													value: 'justify',
 												},
-											]}
+											] }
 										/>
 										<CardDivider />
 
 										<TextControl
-											label={__(
+											label={ __(
 												'Button Link',
 												'zolo-blocks'
-											)}
-											value={buttonLink}
-											onChange={(link) =>
-												setAttributes({
+											) }
+											value={ buttonLink }
+											onChange={ ( link ) =>
+												setAttributes( {
 													buttonLink: link,
-												})
+												} )
 											}
 										/>
 									</PanelBody>
 									<PanelBody
-										title={__('Button', 'zolo-blocks')}
-										initialOpen={false}
+										title={ __( 'Button', 'zolo-blocks' ) }
+										initialOpen={ false }
 									>
 										<TextControl
-											label={__(
-												'Button Link',
+											label={ __(
+												'Button URL',
 												'zolo-blocks'
-											)}
-											value={buttonLink}
-											onChange={(link) =>
-												setAttributes({
+											) }
+											value={ buttonLink }
+											onChange={ ( link ) =>
+												setAttributes( {
 													buttonLink: link,
-												})
+												} )
 											}
+										/>
+										<SelectControl
+											label={ __(
+												'Button Position',
+												'zolo-blocks'
+											) }
+											options={ BUTTON_POSITIONS }
+											onChange={ ( position ) => {
+												setAttributes( {
+													buttonPosition: position,
+												} );
+											} }
+											value={ buttonPosition }
 										/>
 										<ToggleControl
-											label={__(
+											label={ __(
 												'Enable Icon',
 												'zolo-blocks'
-											)}
-											checked={showIcon}
-											onChange={() =>
-												setAttributes({
-													showIcon: !showIcon,
-												})
+											) }
+											checked={ showIcon }
+											onChange={ () =>
+												setAttributes( {
+													showIcon: ! showIcon,
+												} )
 											}
 										/>
-										{showIcon && (
+										{ showIcon && (
 											<Fragment>
 												<p>
 													<strong>Icon Picker</strong>
 												</p>
 												<SelectControl
-													label={__(
+													label={ __(
 														'Position',
 														'zolo-blocks'
-													)}
-													options={ICON_POSITIONS}
-													onChange={(position) => {
-														setAttributes({
+													) }
+													options={ ICON_POSITIONS }
+													onChange={ ( position ) => {
+														setAttributes( {
 															iconPosition:
 																position,
-														});
-													}}
-													value={iconPosition}
+														} );
+													} }
+													value={ iconPosition }
 												/>
 												<ResRangeControl
-													label={__(
+													label={ __(
 														'Icon Size',
 														'zolo-blocks'
-													)}
-													controlName={ICON_SIZE}
+													) }
+													controlName={ ICON_SIZE }
 													resRequiredProps={
 														resRequiredProps
 													}
-													min={0}
-													max={100}
-													step={1}
+													min={ 0 }
+													max={ 100 }
+													step={ 1 }
 												/>
 												<ResRangeControl
-													label={__(
+													label={ __(
 														'Gap',
 														'zolo-blocks'
-													)}
+													) }
 													controlName={
 														ICON_TEXT_SPACING
 													}
 													resRequiredProps={
 														resRequiredProps
 													}
-													min={0}
-													max={100}
-													step={1}
+													min={ 0 }
+													max={ 100 }
+													step={ 1 }
 												/>
 											</Fragment>
-										)}
+										) }
 									</PanelBody>
 								</>
-							)}
+							) }
 
-							{tab.name === 'design' && (
+							{ tab.name === 'design' && (
 								<>
 									<PanelBody
-										title={__('Text', 'zolo-blocks')}
-										initialOpen={true}
+										title={ __( 'Text', 'zolo-blocks' ) }
+										initialOpen={ true }
 									>
 										<TypographyDropdown
-											label={__(
+											label={ __(
 												'Typography',
 												'zolo-blocks'
-											)}
-											typoPrefixConstant={ICON_TYPOGRAPHY}
-											resRequiredProps={resRequiredProps}
+											) }
+											typoPrefixConstant={
+												ICON_TYPOGRAPHY
+											}
+											resRequiredProps={
+												resRequiredProps
+											}
 										/>
 										<TabPanelControl
 											normalComponents={
 												<>
 													<ColorControl
-														label={__(
+														label={ __(
 															'Color',
 															'zolo-blocks'
-														)}
-														color={textColor}
-														onChange={(value) =>
-															setAttributes({
+														) }
+														color={ textColor }
+														onChange={ ( value ) =>
+															setAttributes( {
 																textColor:
 																	value,
-															})
+															} )
 														}
 													/>
 												</>
@@ -465,16 +513,16 @@ function Inspector(props) {
 											hoverComponents={
 												<>
 													<ColorControl
-														label={__(
+														label={ __(
 															'Color',
 															'zolo-blocks'
-														)}
-														color={textHoverColor}
-														onChange={(value) =>
-															setAttributes({
+														) }
+														color={ textHoverColor }
+														onChange={ ( value ) =>
+															setAttributes( {
 																textHoverColor:
 																	value,
-															})
+															} )
 														}
 													/>
 												</>
@@ -482,40 +530,55 @@ function Inspector(props) {
 										/>
 									</PanelBody>
 									<PanelBody
-										title={__('Border', 'zolo-blocks')}
-										initialOpen={false}
+										title={ __( 'Border', 'zolo-blocks' ) }
+										initialOpen={ false }
 									>
 										<BorderControl
-											label={__('Border', 'zolo-blocks')}
-											controlName={ICON_BORDER}
-											resRequiredProps={resRequiredProps}
+											label={ __(
+												'Border',
+												'zolo-blocks'
+											) }
+											controlName={ ICON_BORDER }
+											resRequiredProps={
+												resRequiredProps
+											}
 										/>
 									</PanelBody>
 								</>
-							)}
+							) }
 
-							{tab.name === 'advanced' && (
+							{ tab.name === 'advanced' && (
 								<>
-									{/* Advanced Controls */}
+									{ /* Advanced Controls */ }
 									<PanelBody
-										title={__('Spacing', 'zolo-blocks')}
-										initialOpen={false}
+										title={ __( 'Spacing', 'zolo-blocks' ) }
+										initialOpen={ false }
 									>
 										<ResDimensionsControl
-											label={__('Padding', 'zolo-blocks')}
-											controlName={ICON_PADDING}
-											resRequiredProps={resRequiredProps}
+											label={ __(
+												'Padding',
+												'zolo-blocks'
+											) }
+											controlName={ ICON_PADDING }
+											resRequiredProps={
+												resRequiredProps
+											}
 										/>
 										<ResDimensionsControl
-											label={__('Margin', 'zolo-blocks')}
-											controlName={ICON_MARGIN}
-											resRequiredProps={resRequiredProps}
+											label={ __(
+												'Margin',
+												'zolo-blocks'
+											) }
+											controlName={ ICON_MARGIN }
+											resRequiredProps={
+												resRequiredProps
+											}
 										/>
 									</PanelBody>
 								</>
-							)}
+							) }
 						</div>
-					)}
+					) }
 				</TabPanel>
 			</div>
 		</InspectorControls>

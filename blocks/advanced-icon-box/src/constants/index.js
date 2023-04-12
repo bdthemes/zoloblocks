@@ -7,10 +7,10 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'advanced-icon-box';
 // Presets
 export const PRESETS = [
-	{ label: __('Default', 'zolo-blocks'), value: 'style-0' },
-	{ label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-	{ label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
-	{ label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
+	{ label: __( 'Default', 'zolo-blocks' ), value: 'style-0' },
+	{ label: __( 'Preset 1', 'zolo-blocks' ), value: 'style-1' },
+	{ label: __( 'Preset 2', 'zolo-blocks' ), value: 'style-2' },
+	{ label: __( 'Preset 3', 'zolo-blocks' ), value: 'style-3' },
 ];
 
 // icon positions
@@ -52,6 +52,38 @@ export const ICON_POSITIONS = [
 		value: 'bottom',
 	},
 ];
+
+// button positions
+export const BUTTON_POSITIONS = [
+	{
+		label: 'Left',
+		value: 'button-left',
+	},
+	{
+		label: 'Center',
+		value: 'button-center',
+	},
+	{
+		label: 'Right',
+		value: 'button-right',
+	},
+];
+
+// top icon positions
+export const TOP_ICON_POSITIONS = [
+	{
+		label: 'Left',
+		value: 'icon-left',
+	},
+	{
+		label: 'Center',
+		value: 'icon-center',
+	},
+	{
+		label: 'Right',
+		value: 'icon-right',
+	},
+];
 // Icon BG
 export const ICON_BG_COLOR = 'iconNormal';
 // Icon Hover BG
@@ -71,6 +103,7 @@ export const ICON_BORDER = 'iconBorder';
 export const ICON_SIZE = 'iconSize';
 // icon and text spacing
 export const ICON_TEXT_SPACING = 'iconTextSpacing';
-
-// Title Alignment
+// title Alignment
 export const TITLE_ALIGNMENT = 'titleAlignment';
+// description Alignment
+export const DESC_ALIGNMENT = 'descAlignment';
