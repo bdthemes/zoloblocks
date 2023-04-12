@@ -1,0 +1,58 @@
+.zb-dimension-container {
+  .input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .input-wrap {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+      input {
+        border-color: #ebebeb !important;
+        color: #1e1e1e;
+        height: 30px !important;
+      }
+      input {
+        border: 1px solid #ddd;
+        border-left-width: 0;
+        border-radius: 0;
+        height: 30px;
+        margin: 0;
+        min-height: 30px;
+        padding: 0;
+        text-align: center;
+        width: 100%;
+        color: #1e1e1e;
+        &:focus {
+          box-shadow: none;
+        }
+      }
+
+      &:first-child {
+        input {
+          border-radius: 4px 0 0 4px;
+          border-width: 1;
+        }
+        &:last-child {
+          input {
+            border-radius: 0 4px 4px 0;
+          }
+        }
+      }
+      .input-label {
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+
+    .zb-linked-btn {
+      box-shadow: none !important;
+      background: transparent !important;
+      color: $control_active_color !important;
+
+      &.dashicons {
+        font-family: "dashicons";
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Advanced Heading",
+    "icon": "universal-access-alt",
+    "name": "zolo/advanced-heading",
+    "category": "zolo-blocks",
+    "keywords": [ "heading", "advanced heading" ],
+    "description": "Advanced heading description",
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "supports": {
+      "anchor": true
+    },
+    "editorScript": ""
+  }

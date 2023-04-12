@@ -1,0 +1,22 @@
+.zb-res-range-control-wrapper {
+  .components-range-control {
+    flex-grow: 1;
+
+    .components-input-control {
+      margin-left: 8px !important;
+      width: 70px !important;
+      input {
+        height: 26px !important;
+        line-height: 26px;
+        max-width: 100%;
+        min-height: 26px !important;
+        padding: 0 10px !important;
+        text-align: center !important;
+        width: auto !important;
+      }
+      .components-input-control__backdrop {
+        border-color: #e8e8e8 !important;
+      }
+    }
+  }
+}

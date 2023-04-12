@@ -1,0 +1,46 @@
+{
+	"tab1": {
+		"name": "settings",
+		"title": "Settings",
+		"className": "zb-tab settings",
+		"inner": {
+			"panel": {
+				"title": "General",
+				"open": true,
+				"inner": {
+					"control": {
+						"type": "TextControl",
+						"label": "Title Text",
+						"value": "titleText",
+						"dependency": {
+							"condition": "=",
+							"value": ""
+						}
+					}
+				}
+			}
+		}
+	},
+	"tab2": {
+		"name": "settings",
+		"title": "Settings",
+		"className": "zb-tab settings",
+		"inner": {
+			"panel": {
+				"title": "General",
+				"open": true,
+				"inner": {
+					"control": {
+						"type": "TextControl",
+						"label": "Title Text",
+						"value": "titleText",
+						"dependency": {
+							"condition": "=",
+							"value": ""
+						}
+					}
+				}
+			}
+		}
+	}
+}
