@@ -8,7 +8,7 @@ import {
 	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import { useEffect, useState } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup, Popover } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -514,10 +514,10 @@ export default function Edit(props) {
 					<ToolbarButton
 						icon="admin-links"
 						label={__('Link', 'zolo-blocks')}
-						onClick={() => setPopoverVisible(!isPopoverVisible)}
+						onClick={() => setPopoverVisible(!popoverVisible)}
 					/>
 				</ToolbarGroup>
-				{isPopoverVisible && (
+				{popoverVisible && (
 					<Popover
 						position="bottom right"
 						onFocusOutside={() => setPopoverVisible(false)}

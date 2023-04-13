@@ -29,3 +29,24 @@ export const TEAM_PHOTO_MARGIN = 'teamPhotoMargin';
 
 // team padding
 export const TEAM_PHOTO_PADDING = 'teamPhotoPadding';
+
+// name margin
+export const TEAM_NAME_MARGIN = 'teamNameMargin';
+
+// designation margin
+export const TEAM_DESIGNATION_MARGIN = 'teamDesignationMargin';
+
+// short bio margin
+export const TEAM_SHORT_BIO_MARGIN = 'teamShortBioMargin';
+
+// social icons
+export const ICONS_SIZE = 'teamIconsSize';
+export const ICONS_SPACING = 'teamIconsSpacing';
+
+export const ICONS_BORDER = 'teamIconsBorder';
+export const ICONS_BORDER_RADIUS = 'teamIconsBorderRadius';
+
+export const ICONS_PADDING = 'teamIconsPadding';
+
+export const ICONS_BOX_SHADOW = 'teamIconsBoxShadow';
+export const ICONS_HOVER_BOX_SHADOW = 'teamIconsHoverBoxShadow';

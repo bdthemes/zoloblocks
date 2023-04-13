@@ -753,7 +753,7 @@ function Inspector(props) {
 														resRequiredProps={
 															resRequiredProps
 														}
-														enableTransition={true}
+														enableTransition={false}
 													/>
 													<CardDivider />
 													<ColorControl
