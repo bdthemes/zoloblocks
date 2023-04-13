@@ -53,6 +53,9 @@ const attributes = {
 	label: {
 		type: 'string',
 	},
+	titleTag: {
+		type: 'string',
+	},
 	link: {
 		type: 'object',
 		default: {
@@ -73,6 +76,10 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	globalLink: {
+		type: 'boolean',
+		default: false,
+	},
 	icon: {
 		type: 'string',
 	},
@@ -82,6 +89,7 @@ const attributes = {
 	},
 	topIconPosition: {
 		type: 'string',
+		default: 'left',
 	},
 	buttonPosition: {
 		type: 'string',
@@ -92,9 +100,21 @@ const attributes = {
 	textHoverColor: {
 		type: 'string',
 	},
+	descColor: {
+		type: 'string',
+	},
+	descHoverColor: {
+		type: 'string',
+	},
 	iconType: {
 		type: 'string',
 		default: 'icon',
+	},
+	iconColor: {
+		type: 'string',
+	},
+	iconHoverColor: {
+		type: 'string',
 	},
 	iconTypeImage: {
 		type: 'object',

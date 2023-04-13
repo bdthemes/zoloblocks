@@ -5,6 +5,7 @@ const Save = ( { attributes } ) => {
 	const {
 		uniqueId,
 		preset,
+		titleTag,
 		link,
 		showIcon,
 		iconPosition,
@@ -32,8 +33,8 @@ const Save = ( { attributes } ) => {
 						{ iconType == 'icon' && (
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								width="16"
-								height="16"
+								width="32"
+								height="32"
 								fill="currentColor"
 								className="bi bi-gear"
 								viewBox="0 0 16 16"
@@ -47,7 +48,7 @@ const Save = ( { attributes } ) => {
 					<div className="zolo-block-body-content">
 						<RichText.Content
 							value={ iconBoxTitle }
-							tagName="h2"
+							tagName={ titleTag }
 							className={ `zolo-block-title` }
 						/>
 						<RichText.Content

@@ -6,7 +6,6 @@ import {
 	__experimentalLinkControl as LinkControl,
 	MediaUpload,
 	MediaUploadCheck,
-	BlockControls,
 } from '@wordpress/block-editor';
 import {
 	CardDivider,
@@ -15,8 +14,6 @@ import {
 	TabPanel,
 	TextControl,
 	ToggleControl,
-	ToolbarGroup,
-	ToolbarButton,
 	Button,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -33,20 +30,10 @@ import ResDimensionsControl from '../../../src/controls/dimensions-control';
 import TypographyDropdown from '../../../src/controls/typography-control';
 import TabPanelControl from '../../../src/controls/tabpanel-control';
 
-// const {
-// 	BackgroundControl,
-// 	BorderControl,
-// 	BoxShadowControl,
-// 	ColorControl,
-// 	ResDimensionsControl,
-// 	ResAlignmentControl,
-// 	TypographyDropdown,
-// } = window.zoloModule;
-
-// import { PRESETS } from "../../../src/global/constants";
 import objAttributes from './attributes';
 import {
 	TITLE_ALIGNMENT,
+	TITLE_TAG,
 	DESC_ALIGNMENT,
 	PRESETS,
 	ICON_POSITIONS,
@@ -65,22 +52,22 @@ function Inspector( props ) {
 	const {
 		uniqueId,
 		preset,
+		titleTag,
 		resMode,
-		resDevice,
-		label,
-		link,
-		openInNewTab,
-		addNoFollow,
 		showIcon,
-		icon,
+		iconColor,
+		iconHoverColor,
 		iconPosition,
 		topIconPosition,
 		buttonPosition,
 		textColor,
 		textHoverColor,
+		descColor,
+		descHoverColor,
 		iconType,
 		iconTypeImage,
 		buttonLink,
+		globalLink,
 	} = attributes;
 
 	const resRequiredProps = {
@@ -96,7 +83,6 @@ function Inspector( props ) {
 				<TabPanel
 					className="eb-parent-tab-panel"
 					activeClass="active-tab"
-					// onSelect={onSelect}
 					tabs={ [
 						{
 							name: 'settings',
@@ -214,22 +200,31 @@ function Inspector( props ) {
 												</svg>
 												<br />
 												<br />
-												<SelectControl
-													label={ __(
-														'Position',
-														'zolo-blocks'
+
+												{ preset === 'style-1' &&
+													'style-3' && (
+														<SelectControl
+															label={ __(
+																'Position',
+																'zolo-blocks'
+															) }
+															options={
+																TOP_ICON_POSITIONS
+															}
+															onChange={ (
+																position
+															) => {
+																setAttributes( {
+																	topIconPosition:
+																		position,
+																} );
+															} }
+															value={
+																topIconPosition
+															}
+														/>
 													) }
-													options={
-														TOP_ICON_POSITIONS
-													}
-													onChange={ ( position ) => {
-														setAttributes( {
-															topIconPosition:
-																position,
-														} );
-													} }
-													value={ topIconPosition }
-												/>
+
 												<br />
 
 												<ResRangeControl
@@ -308,6 +303,19 @@ function Inspector( props ) {
 											) ) }
 
 										<CardDivider />
+										<SelectControl
+											label={ __(
+												'Title Tag',
+												'zolo-blocks'
+											) }
+											options={ TITLE_TAG }
+											onChange={ ( tag ) => {
+												setAttributes( {
+													titleTag: tag,
+												} );
+											} }
+											value={ titleTag }
+										/>
 										<ResAlignmentControl
 											label={ __(
 												'Title Alignment',
@@ -364,20 +372,6 @@ function Inspector( props ) {
 													value: 'justify',
 												},
 											] }
-										/>
-										<CardDivider />
-
-										<TextControl
-											label={ __(
-												'Button Link',
-												'zolo-blocks'
-											) }
-											value={ buttonLink }
-											onChange={ ( link ) =>
-												setAttributes( {
-													buttonLink: link,
-												} )
-											}
 										/>
 									</PanelBody>
 									<PanelBody
@@ -470,6 +464,18 @@ function Inspector( props ) {
 												/>
 											</Fragment>
 										) }
+										<ToggleControl
+											label={ __(
+												'Use as Global Link',
+												'zolo-blocks'
+											) }
+											checked={ globalLink }
+											onChange={ () =>
+												setAttributes( {
+													globalLink: ! globalLink,
+												} )
+											}
+										/>
 									</PanelBody>
 								</>
 							) }
@@ -477,8 +483,49 @@ function Inspector( props ) {
 							{ tab.name === 'design' && (
 								<>
 									<PanelBody
-										title={ __( 'Text', 'zolo-blocks' ) }
+										title={ __( 'Icon', 'zolo-blocks' ) }
 										initialOpen={ true }
+									>
+										<TabPanelControl
+											normalComponents={
+												<>
+													<ColorControl
+														label={ __(
+															'Color',
+															'zolo-blocks'
+														) }
+														color={ iconColor }
+														onChange={ ( value ) =>
+															setAttributes( {
+																iconColor:
+																	value,
+															} )
+														}
+													/>
+												</>
+											}
+											hoverComponents={
+												<>
+													<ColorControl
+														label={ __(
+															'Color',
+															'zolo-blocks'
+														) }
+														color={ iconHoverColor }
+														onChange={ ( value ) =>
+															setAttributes( {
+																iconHoverColor:
+																	value,
+															} )
+														}
+													/>
+												</>
+											}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={ __( 'Text', 'zolo-blocks' ) }
+										initialOpen={ false }
 									>
 										<TypographyDropdown
 											label={ __(
@@ -521,6 +568,62 @@ function Inspector( props ) {
 														onChange={ ( value ) =>
 															setAttributes( {
 																textHoverColor:
+																	value,
+															} )
+														}
+													/>
+												</>
+											}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={ __(
+											'Description',
+											'zolo-blocks'
+										) }
+										initialOpen={ false }
+									>
+										<TypographyDropdown
+											label={ __(
+												'Typography',
+												'zolo-blocks'
+											) }
+											typoPrefixConstant={
+												ICON_TYPOGRAPHY
+											}
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+										<TabPanelControl
+											normalComponents={
+												<>
+													<ColorControl
+														label={ __(
+															'Color',
+															'zolo-blocks'
+														) }
+														color={ descColor }
+														onChange={ ( value ) =>
+															setAttributes( {
+																descColor:
+																	value,
+															} )
+														}
+													/>
+												</>
+											}
+											hoverComponents={
+												<>
+													<ColorControl
+														label={ __(
+															'Color',
+															'zolo-blocks'
+														) }
+														color={ descHoverColor }
+														onChange={ ( value ) =>
+															setAttributes( {
+																descHoverColor:
 																	value,
 															} )
 														}

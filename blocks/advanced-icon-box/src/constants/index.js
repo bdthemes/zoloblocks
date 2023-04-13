@@ -13,6 +13,42 @@ export const PRESETS = [
 	{ label: __( 'Preset 3', 'zolo-blocks' ), value: 'style-3' },
 ];
 
+// title tag
+export const TITLE_TAG = [
+	{
+		label: 'H1',
+		value: 'h1',
+	},
+	{
+		label: 'H2',
+		value: 'h2',
+	},
+	{
+		label: 'H3',
+		value: 'h3',
+	},
+	{
+		label: 'H4',
+		value: 'h4',
+	},
+	{
+		label: 'H5',
+		value: 'h5',
+	},
+	{
+		label: 'H6',
+		value: 'h6',
+	},
+	{
+		label: 'Span',
+		value: 'span',
+	},
+	{
+		label: 'P',
+		value: 'p',
+	},
+];
+
 // icon positions
 export const ICON_BOX_POSITIONS = [
 	{

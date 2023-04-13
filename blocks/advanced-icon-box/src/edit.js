@@ -28,9 +28,6 @@ import {
 	ICON_BOX_ALIGNMENT,
 	TITLE_ALIGNMENT,
 	DESC_ALIGNMENT,
-	ICON_TEXT_COLOR,
-	ICON_BG_COLOR,
-	ICON_HOVER_BG_COLOR,
 	ICON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
@@ -44,12 +41,17 @@ export default function Edit( props ) {
 	const {
 		uniqueId,
 		preset,
+		titleTag,
 		link,
 		blockStyle,
 		showIcon,
 		textColor,
 		textHoverColor,
+		descColor,
+		descHoverColor,
 		iconPosition,
+		iconColor,
+		iconHoverColor,
 		topIconPosition,
 		buttonPosition,
 		iconType,
@@ -57,6 +59,7 @@ export default function Edit( props ) {
 		iconBoxDescription,
 		buttonText,
 		buttonLink,
+		globalLink,
 	} = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -193,9 +196,23 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-title{
 			${ textAlignmentDesktop }
+			color: ${ textColor ? textColor : '' };
+		}
+		.${ uniqueId } .zolo-block-title:hover{
+			color: ${ textHoverColor ? textHoverColor : '' };
 		}
 		.${ uniqueId } .zolo-block-desc{
 			${ descAlignmentDesktop }
+			color: ${ descColor ? descColor : '#87878a' };
+		}
+		.${ uniqueId } .zolo-block-desc:hover{
+			color: ${ descHoverColor ? descHoverColor : '' };
+		}
+		.${ uniqueId } .zolo-block-icon-wrap svg{
+			fill: ${ iconColor ? iconColor : '' };
+		}
+		.${ uniqueId } .zolo-block-icon-wrap svg:hover{
+			fill: ${ iconHoverColor ? iconHoverColor : '' };
 		}
 		.${ uniqueId } .zolo-content {
 			${ borderStyles }
@@ -329,6 +346,10 @@ export default function Edit( props ) {
 				<div
 					className={ `zolo-block-advanced-icon-box ${ uniqueId } zolo-block-advanced-icon-box-${ preset }` }
 				>
+					{ /* { globalLink == true && (
+						<a href="#">
+					) } */ }
+
 					<div className="zolo-block-item">
 						<div
 							className={ `zolo-block-icon-wrap ${ topIconPosition }` }
@@ -336,8 +357,8 @@ export default function Edit( props ) {
 							{ iconType == 'icon' && (
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
+									width="32"
+									height="32"
 									fill="currentColor"
 									className="bi bi-gear"
 									viewBox="0 0 16 16"
@@ -351,7 +372,7 @@ export default function Edit( props ) {
 						<div className="zolo-block-body-content">
 							<RichText
 								className={ `zolo-block-title` }
-								tagName="h2"
+								tagName={ titleTag }
 								value={ iconBoxTitle }
 								onChange={ ( text ) =>
 									setAttributes( {
@@ -435,6 +456,8 @@ export default function Edit( props ) {
 							</svg>
 						</div>
 					</div>
+					{ /* { globalLink == true && (</a>)
+					} */ }
 				</div>
 			</div>
 		</>
