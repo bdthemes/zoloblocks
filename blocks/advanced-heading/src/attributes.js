@@ -52,6 +52,9 @@ const attributes = {
     type: 'string',
     default: "style-0",
   },
+  headingIcon: {
+    type: 'object',
+  },
   titleText: {
     type: 'string',
     default: "I am Advanced Heading",

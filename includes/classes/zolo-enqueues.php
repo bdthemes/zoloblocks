@@ -66,7 +66,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // enqueue fontawesome icons
             wp_enqueue_style(
                 'zolo-block-fontawesome',
-                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
+                ZOLO_ADMIN_URL . 'assets/css/fontawesome/css/fontawesome.min.css',
                 array(),
                 ZOLO_VERSION
             );

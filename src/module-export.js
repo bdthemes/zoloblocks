@@ -15,6 +15,9 @@ export { default as ResetControl } from "./controls/reset-control";
 export { default as TextShadowControl } from './controls/textshadow-control';
 export { default as TextStrokeControl } from "./controls/textstroke-control";
 export { default as TypographyDropdown } from "./controls/typography-control";
+export { default as IconPicker } from "./controls/icon-picker";
+export { default as DisplayIcon } from "./controls/icon-picker/DisplayIcon";
+
 //Export Helpers
 export {
     generateBackgroundAttributes,
@@ -33,12 +36,15 @@ export {
     generateDimensionStyle
 } from "./helpers/dimension-helper";
 export {
-    DynamicTag, handleUniqueId,
+    DynamicTag,
+    handleUniqueId,
     hasVal,
     softMinifyCssStrings
 } from "./helpers/helper";
 export {
-    onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick
+    onDesktopBtnClick,
+    onMobileBtnClick,
+    onTabletBtnClick
 } from "./helpers/preview-btns-helper";
 export {
     generateResAlignmentAttributies,
@@ -60,4 +66,3 @@ export {
     generateTypographyAttributes,
     generateTypographyStyles
 } from "./helpers/typoHelpers";
-

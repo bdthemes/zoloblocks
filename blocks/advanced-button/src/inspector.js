@@ -124,29 +124,29 @@ function Inspector(props) {
 		<InspectorControls key="controls">
 			<div className="zolo-panel-control">
 				<TabPanel
-					className="eb-parent-tab-panel"
+					className="zolo-parent-tab-panel"
 					activeClass="active-tab"
 					// onSelect={onSelect}
 					tabs={[
 						{
 							name: 'settings',
 							title: 'Settings',
-							className: 'eb-tab settings',
+							className: 'zolo-tab settings',
 						},
 						{
 							name: 'design',
 							title: 'Design',
-							className: 'eb-tab design',
+							className: 'zolo-tab design',
 						},
 						{
 							name: 'advanced',
 							title: 'Advanced',
-							className: 'eb-tab advanced',
+							className: 'zolo-tab advanced',
 						},
 					]}
 				>
 					{(tab) => (
-						<div className={'eb-tab-controls' + tab.name}>
+						<div className={'zolo-tab-controls' + tab.name}>
 							{tab.name === 'settings' && (
 								<>
 									<PanelBody
