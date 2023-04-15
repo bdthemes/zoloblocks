@@ -375,7 +375,6 @@ export default function Edit(props) {
 			${borderStyles}
 			${borderRadiusDesktop}
 			${normalBoxShadowStyle}
-			${paddingDesktop}
 			${marginDesktop}
 			${deskAlign}
 		}
@@ -386,6 +385,7 @@ export default function Edit(props) {
 		}
 
 		.zolo-advanced-button.${uniqueId} .zolo-button {
+			${paddingDesktop}
 			${gap}
 		}
 
@@ -423,7 +423,6 @@ export default function Edit(props) {
 			${borderStylesTab}
 			${borderRadiusTab}
 			${backgroundStylesTab}
-			${paddingTab}
 			${marginTab}
 			${tabAlign}
 		}
@@ -432,6 +431,7 @@ export default function Edit(props) {
 		}
 
 		.zolo-advanced-button.${uniqueId} .zolo-button {
+			${paddingTab}
 			${gapTab}
 		}
 
@@ -455,7 +455,6 @@ export default function Edit(props) {
 			${borderStylesMob}
 			${borderRadiusMob}
 			${backgroundStylesMobile}
-			${paddingMob}
 			${marginMob}
 			${mobAlign}
 		}
@@ -464,6 +463,7 @@ export default function Edit(props) {
 		}
 
 		.zolo-advanced-button.${uniqueId} .zolo-button {
+			${paddingMob}
 			${gapMob}
 		}
 

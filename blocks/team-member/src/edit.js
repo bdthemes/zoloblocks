@@ -17,6 +17,7 @@ import {
 	Dropdown,
 	Button,
 	Popover,
+	Dashicon,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -33,10 +34,16 @@ import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-he
 import { generateBorderStyle } from '../../../src/helpers/border-helper';
 import { generateDimensionStyle } from '../../../src/helpers/dimension-helper';
 import { generateTypographyStyles } from '../../../src/helpers/typoHelpers';
+import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
 
 import {
 	BLOCK_PREFIX,
 	CONTENT_ALIGNMENT,
+	ICONS_BORDER,
+	ICONS_BORDER_RADIUS,
+	ICONS_PADDING,
+	ICONS_SIZE,
+	ICONS_SPACING,
 	TEAM_DESIGNATION_MARGIN,
 	TEAM_NAME_MARGIN,
 	TEAM_PHOTO_BORDER,
@@ -253,6 +260,56 @@ export default function Edit(props) {
 		attributes,
 	});
 
+	// Social Icons
+	const {
+		desktopRangeStyle: socialIconDesk,
+		tabRangeStyle: socialIconTab,
+		mobRangeStyle: socialIconMob,
+	} = generateResRangeStyle({
+		controlName: ICONS_SIZE,
+		property: 'font-size',
+		attributes,
+	});
+
+	const {
+		desktopRangeStyle: socialIconsGapDesk,
+		tabRangeStyle: socialIconsGapTab,
+		mobRangeStyle: socialIconsGapMob,
+	} = generateResRangeStyle({
+		controlName: ICONS_SPACING,
+		property: 'gap',
+		attributes,
+	});
+
+	const {
+		desktopBorderStyle: socialIconDeskBorderStyle,
+		tabBorderStyle: socialIconTabBorderStyle,
+		mobBorderStyle: socialIconMobBorderStyle,
+	} = generateBorderStyle({
+		controlName: ICONS_BORDER,
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: socialIconsBorderRadiusDesk,
+		dimensionStylesTab: socialIconsBorderRadiusTab,
+		dimensionStylesMobile: socialIconsBorderRadiusMob,
+	} = generateDimensionStyle({
+		controlName: ICONS_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: socialIconsPaddingDesk,
+		dimensionStylesTab: socialIconsPaddingTab,
+		dimensionStylesMobile: socialIconsPaddingMob,
+	} = generateDimensionStyle({
+		controlName: ICONS_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
+
 	/**
 	 * All Style Combination
 	 */
@@ -260,9 +317,11 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
 			${teamDeskAlignStyle}
 		}
+
 		.${uniqueId} .zolo-social-share {
 			${socialDeskAlignStyle}
 		}
+
 		.${uniqueId} .zolo-image-wrap img {
 			${
 				photoBgColor && photoBgColor !== ''
@@ -274,6 +333,7 @@ export default function Edit(props) {
 			${photoDeskPadding}
 			${photoDeskMargin}
 		}
+
 		.${uniqueId} .zolo-name {
 			${nameColor && nameColor !== '' ? `color: ${nameColor};` : ''}
 			${nameTypoDesk}
@@ -289,10 +349,25 @@ export default function Edit(props) {
 			${designationTypoDesk}
 			${designationDeskMargin}
 		}
+
 		.${uniqueId} .zolo-desc {
 			${shortBioColor && shortBioColor !== '' ? `color: ${shortBioColor};` : ''}
 			${shortBioTypoDesk}
 			${shortBioDeskMargin}
+		}
+
+		.${uniqueId} .zolo-social-share {
+			${socialIconsGapDesk}
+		}
+
+		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a {
+			${socialIconDeskBorderStyle}
+			${socialIconsBorderRadiusDesk}
+			${socialIconsPaddingDesk}
+		}
+
+		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
+			${socialIconDesk}
 		}
 	`;
 	const tabletAllStyle = `
@@ -320,6 +395,12 @@ export default function Edit(props) {
 			${shortBioTypoTab}
 			${shortBioTabMargin}
 		}
+		.${uniqueId} .zolo-social-share {
+			${socialIconsGapTab}
+		}
+		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
+			${socialIconTab}
+		}
 	`;
 
 	const mobileAllStyle = `
@@ -346,6 +427,12 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-desc {
 			${shortBioTypoMob}
 			${shortBioMobMargin}
+		}
+		.${uniqueId} .zolo-social-share {
+			${socialIconsGapMob}
+		}
+		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
+			${socialIconMob}
 		}
 	`;
 
@@ -508,9 +595,10 @@ export default function Edit(props) {
 														'noreferer'
 													}
 												>
-													<i
-														className={`fa-brands fa-${profile.icon}`}
-													/>
+													{/* <i
+														className={`fa-brands fa-facebook`}
+													/> */}
+													<Dashicon icon="insert" />
 												</a>
 											);
 										})}

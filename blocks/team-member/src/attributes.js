@@ -93,14 +93,22 @@ const attributes = {
 		type: 'boolean',
 		default: true,
 	},
+	// socialProfiles: {
+	// 	type: 'array',
+	// 	items: {
+	// 		type: 'object',
+	// 		properties: {
+	// 			icon: {
+	// 				type: 'object',
+	// 			},
+	// 			link: {
+	// 				type: 'string',
+	// 			},
+	// 		},
+	// 	},
+	// },
 	socialProfiles: {
 		type: 'array',
-		default: [
-			{
-				icon: 'facebook',
-				link: '#',
-			},
-		],
 	},
 	socialProfilesLinkTarget: {
 		type: 'boolean',
@@ -134,6 +142,9 @@ const attributes = {
 	},
 	iconHoverBorderColor: {
 		type: 'string',
+	},
+	teamSocialIcon: {
+		type: 'object',
 	},
 };
 

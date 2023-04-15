@@ -11,7 +11,7 @@ const Save = ({ attributes }) => {
 				<a
 					className={`zolo-button ${iconPosition}`}
 					href={link && link.url}
-					rel={link && link.opensInNewTab && 'noreferrer'}
+					rel={link && link.opensInNewTab && 'noreferrer noopener'}
 					target={link && link.opensInNewTab && '_blank'}
 				>
 					<RichText.Content

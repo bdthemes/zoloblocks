@@ -62,6 +62,8 @@ import {
 } from './constants/typoPrefixConstants';
 
 import ImageAvatar from '../../../src/controls/image-avatar';
+import IconPicker from '../../../src/controls/icon-picker';
+import DisplayIcon from '../../../src/controls/icon-picker/DisplayIcon';
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
@@ -88,6 +90,8 @@ function Inspector(props) {
 		iconBgColor,
 		iconHoverBgColor,
 		iconHoverBorderColor,
+		teamSocialIcon,
+		myicons,
 	} = attributes;
 
 	// const changePreset = (selected) => {
@@ -114,6 +118,12 @@ function Inspector(props) {
 		resMode,
 		objAttributes,
 	};
+
+	// console.log(teamSocialIcon);
+	// console.log('Selected Icon', zoloIcon && zoloIcon.zoloIcon['']);
+
+	console.log(socialProfiles);
+	// console.log(socialProfiles && socialProfiles[0].icon);
 
 	return (
 		<InspectorControls key="controls">
@@ -345,7 +355,7 @@ function Inspector(props) {
 														socialProfiles: [
 															...socialProfiles,
 															{
-																icon: 'facebook',
+																icon: '',
 																link: '#',
 															},
 														],
@@ -357,6 +367,7 @@ function Inspector(props) {
 													'zolo-blocks'
 												)}
 											</Button>
+											{console.log(teamSocialIcon)}
 											{socialProfiles &&
 												socialProfiles.map(
 													(profile, index) => {
@@ -365,11 +376,17 @@ function Inspector(props) {
 																className="zolo-social-profile"
 																key={index}
 															>
-																<Button>
-																	<i
-																		className={`fa-brands fa-${profile.icon}`}
-																	></i>
-																</Button>
+																<div className="profile-icon">
+																	<IconPicker
+																		setValue={(
+																			value
+																		) => {
+																			console.log(
+																				value
+																			);
+																		}}
+																	/>
+																</div>
 																<div className="profile-link">
 																	<TextControl
 																		value={
@@ -641,7 +658,7 @@ function Inspector(props) {
 											controlName={ICONS_SPACING}
 											resRequiredProps={resRequiredProps}
 										/>
-										<ResDimensionsControl
+										<BorderControl
 											label={__('Border', 'zolo-blocks')}
 											controlName={ICONS_BORDER}
 											resRequiredProps={resRequiredProps}
