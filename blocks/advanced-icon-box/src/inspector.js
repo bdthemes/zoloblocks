@@ -68,6 +68,8 @@ function Inspector( props ) {
 		iconTypeImage,
 		buttonLink,
 		globalLink,
+		presetOneStyles,
+		presetThreeStyles,
 	} = attributes;
 
 	const resRequiredProps = {
@@ -76,7 +78,6 @@ function Inspector( props ) {
 		resMode,
 		objAttributes,
 	};
-
 	return (
 		<InspectorControls key="controls">
 			<div className="zolo-panel-control">
@@ -201,8 +202,9 @@ function Inspector( props ) {
 												<br />
 												<br />
 
-												{ preset === 'style-1' &&
-													'style-3' && (
+												{ preset !== '' &&
+													preset !== 'style-2' &&
+													preset == 'style-1' && (
 														<SelectControl
 															label={ __(
 																'Position',
@@ -212,18 +214,46 @@ function Inspector( props ) {
 																TOP_ICON_POSITIONS
 															}
 															onChange={ (
-																position
-															) => {
+																value
+															) =>
 																setAttributes( {
-																	topIconPosition:
-																		position,
-																} );
-															} }
+																	presetOneStyles:
+																		{
+																			...presetOneStyles,
+																			iconPosition:
+																				value,
+																		},
+																} )
+															}
 															value={
-																topIconPosition
+																presetOneStyles.iconPosition
 															}
 														/>
 													) }
+												{ preset == 'style-3' && (
+													<SelectControl
+														label={ __(
+															'Position 3',
+															'zolo-blocks'
+														) }
+														options={
+															TOP_ICON_POSITIONS
+														}
+														onChange={ ( value ) =>
+															setAttributes( {
+																presetThreeStyles:
+																	{
+																		...presetThreeStyles,
+																		iconPosition:
+																			value,
+																	},
+															} )
+														}
+														value={
+															presetThreeStyles.iconPosition
+														}
+													/>
+												) }
 
 												<br />
 

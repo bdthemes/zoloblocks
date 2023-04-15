@@ -60,6 +60,8 @@ export default function Edit( props ) {
 		buttonText,
 		buttonLink,
 		globalLink,
+		presetOneStyles,
+		presetThreeStyles,
 	} = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -188,6 +190,36 @@ export default function Edit( props ) {
 	} );
 
 	/**
+	 * Presets Based Styles
+	 */
+	let presetStyles;
+	switch ( preset ) {
+		case 'style-1':
+			presetStyles = `
+				.${ uniqueId }
+				.zolo-block-icon-wrap{
+					justify-content: ${ presetOneStyles && presetOneStyles.iconPosition };
+				}				
+			
+			`;
+			break;
+		case 'style-2':
+			break;
+		case 'style-3':
+			presetStyles = `
+				.${ uniqueId }
+				.zolo-block-icon-wrap{
+					justify-content: ${ presetThreeStyles && presetThreeStyles.iconPosition };
+				}				
+			
+			`;
+			break;
+		case 'style-4':
+			break;
+		default:
+			presetStyles = '';
+	}
+	/**
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
@@ -226,7 +258,9 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-icon-icon {
 			${ iconSize }
 		}
+		${ presetStyles }		
   	`;
+
 	const tabletAllStyle = `
 		.${ uniqueId }{
 			${ iconAlignmentTab }
@@ -344,16 +378,14 @@ export default function Edit( props ) {
 			<style>{ ` ${ softMinifyCssStrings( allStyle ) }` }</style>
 			<div { ...blockProps }>
 				<div
-					className={ `zolo-block-advanced-icon-box ${ uniqueId } zolo-block-advanced-icon-box-${ preset }` }
+					className={ `zolo-block-advanced-icon-box ${ uniqueId } zolo-block-advanced-icon-box-style-1 ${ preset }` }
 				>
 					{ /* { globalLink == true && (
 						<a href="#">
 					) } */ }
 
 					<div className="zolo-block-item">
-						<div
-							className={ `zolo-block-icon-wrap ${ topIconPosition }` }
-						>
+						<div className={ `zolo-block-icon-wrap` }>
 							{ iconType == 'icon' && (
 								<svg
 									xmlns="http://www.w3.org/2000/svg"

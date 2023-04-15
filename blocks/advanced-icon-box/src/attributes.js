@@ -136,6 +136,18 @@ const attributes = {
 		type: 'string',
 		default: '#',
 	},
+	presetOneStyles: {
+		type: 'object',
+		default: {
+			iconPosition: 'left',
+		},
+	},
+	presetThreeStyles: {
+		type: 'object',
+		default: {
+			iconPosition: 'right',
+		},
+	},
 };
 
 export default attributes;

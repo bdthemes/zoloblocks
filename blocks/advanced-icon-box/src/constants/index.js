@@ -109,15 +109,15 @@ export const BUTTON_POSITIONS = [
 export const TOP_ICON_POSITIONS = [
 	{
 		label: 'Left',
-		value: 'icon-left',
+		value: 'left',
 	},
 	{
 		label: 'Center',
-		value: 'icon-center',
+		value: 'center',
 	},
 	{
 		label: 'Right',
-		value: 'icon-right',
+		value: 'right',
 	},
 ];
 // Icon BG
