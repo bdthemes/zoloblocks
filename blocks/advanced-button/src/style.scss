@@ -2,7 +2,38 @@
 	--primary-color: #000;
 	--secondary-color: #fff;
 	--hover-color: #395ddf;
+	--color-1: #f0f0f0;
+	--color-2: #0000;
+	--color-b1: #266db6;
+	--color-b2: #111;
+	--color-b3: #1a1a1a;
+	--color-b4: #18181a;
+	--color-bg1: #d5edf6;
+	--color-bg2: #6dcff6;
+	--color-bg3: #ffe54c;
+	--color-bg4: #ff013c;
+	--color-bg5: #00e6f6;
+	--color-bg6: #f8f005;
+	--color-bg7: #3dd1e7;
+	--color-bg8: #fee6e3;
+	--color-bg9: #28282d;
+	--color-bg10: rgba(255, 255, 255, 0.082);
+	--color-bg11: #ff512f;
+	--color-bg-12: #fff5;
+	--color-bg-13: #004dff;
+	--color-bs1: #f09819;
+	--color-ts: #0004;
+	--b: 3px;
+	--s: 0.45em;
+	--color: #373b44;
+	--slice-0: inset(50% 50% 50% 50%);
+	--slice-1: inset(80% -6px 0 0);
+	--slice-2: inset(50% -6px 30% 0);
+	--slice-3: inset(10% -6px 85% 0);
+	--slice-4: inset(40% -6px 43% 0);
+	--slice-5: inset(80% -6px 5% 0);
 }
+
 .wp-block-zolo-advanced-button {
 	position: relative;
 	z-index: 1;
@@ -47,11 +78,11 @@
 		*/
 	&.button-2 {
 		background-color: transparent;
-		border: 1px solid #266db6;
+		border: 1px solid var(--color-b1);
 		position: relative;
 		touch-action: manipulation;
 		&::before {
-			background-color: #d5edf6;
+			background-color: var(--color-bg1);
 			content: "";
 			height: calc(100% + 3px);
 			position: absolute;
@@ -63,7 +94,7 @@
 		}
 		&:hover {
 			&::before {
-				background-color: #6dcff6;
+				background-color: var(--color-bg2);
 			}
 		}
 		.zolo-button-content {
@@ -84,7 +115,7 @@
 		background-color: transparent;
 		&::after {
 			content: "";
-			background-color: #ffe54c;
+			background-color: var(--color-bg3);
 			width: 100%;
 			z-index: -1;
 			position: absolute;
@@ -111,17 +142,11 @@
 	* Button Style: 04
 	*/
 	&.button-4 {
-		background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
-		box-shadow: 6px 0px 0px #00e6f6;
+		background: linear-gradient(45deg, transparent 5%, var(--color-bg4) 5%);
+		box-shadow: 6px 0px 0px var(--color-bg5);
 		outline: transparent;
 		position: relative;
 		&::after {
-			--slice-0: inset(50% 50% 50% 50%);
-			--slice-1: inset(80% -6px 0 0);
-			--slice-2: inset(50% -6px 30% 0);
-			--slice-3: inset(10% -6px 85% 0);
-			--slice-4: inset(40% -6px 43% 0);
-			--slice-5: inset(80% -6px 5% 0);
 			content: "ALTERNATE TEXT";
 			display: block;
 			position: absolute;
@@ -132,11 +157,11 @@
 			background: linear-gradient(
 				45deg,
 				transparent 3%,
-				#00e6f6 3%,
-				#00e6f6 5%,
-				#ff013c 5%
+				var(--color-bg5) 3%,
+				var(--color-bg5) 5%,
+				var(--color-bg4) 5%
 			);
-			text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
+			text-shadow: -3px -3px 0px var(--color-bg6), 3px 3px 0px var(--color-bg5);
 			clip-path: var(--slice-0);
 		}
 		&:hover {
@@ -151,7 +176,7 @@
 	* Button Style: 05
 	*/
 	&.button-5 {
-		background-color: #3dd1e7;
+		background-color: var(--color-bg7);
 		transform: rotate(-2deg);
 		&::after {
 			content: "";
@@ -203,11 +228,11 @@
 	* Button Style: 07
 	*/
 	&.button-7 {
-		background-color: #fee6e3;
-		border: 2px solid #111;
+		background-color: var(--color-bg8);
+		border: 2px solid var(--color-b2);
 		border-radius: 8px;
 		&::after {
-			background-color: #111;
+			background-color: var(--color-b2);
 			border-radius: 8px;
 			content: "";
 			height: 100%;
@@ -233,12 +258,7 @@
 	* Button Style: 08
 	*/
 	&.button-8 {
-		// all: unset;
 		background: transparent;
-		// position: relative;
-		// color: #f0f0f0;
-		// z-index: 1;
-
 		&::after,
 		&::before {
 			content: "";
@@ -253,7 +273,7 @@
 			transform: translate(0%, 0%);
 			width: 100%;
 			height: 100%;
-			background: #28282d;
+			background: var(--color-bg9);
 			border-radius: 10px;
 		}
 
@@ -261,7 +281,7 @@
 			transform: translate(10px, 10px);
 			width: 35px;
 			height: 35px;
-			background: #ffffff15;
+			background: var(--color-bg10);
 			backdrop-filter: blur(5px);
 			-webkit-backdrop-filter: blur(5px);
 			border-radius: 50px;
@@ -282,7 +302,7 @@
 		}
 
 		.zolo-button-content {
-			color: #f0f0f0;
+			color: var(--color-1);
 		}
 	}
 
@@ -291,19 +311,19 @@
 	*/
 	&.button-9 {
 		background-size: 200% auto;
-		box-shadow: 0px 0px 14px -7px #f09819;
+		box-shadow: 0px 0px 14px -7px var(--color-bs1);
 		background-image: linear-gradient(
 			45deg,
-			#ff512f 0%,
-			#f09819 51%,
-			#ff512f 100%
+			var(--color-bg11) 0%,
+			var(--color-bs1) 51%,
+			var(--color-bg11) 100%
 		);
 
 		&:hover {
 			background-position: right center;
 			text-decoration: none;
 			.zolo-button-content {
-				color: #fff;
+				color: var(--secondary-color);
 			}
 		}
 	}
@@ -312,20 +332,17 @@
 	* Button Style: 10
 	*/
 	&.button-10 {
-		--b: 3px;
-		--s: 0.45em;
-		--color: #373b44;
 		padding: calc(0.6em + var(--s)) calc(0.9em + var(--s));
 		--_p: var(--s);
 		background: conic-gradient(
 				from 90deg at var(--b) var(--b),
-				#0000 90deg,
+				var(--color-2) 90deg,
 				var(--color) 0
 			)
 			var(--_p) var(--_p) / calc(100% - var(--b) - 2 * var(--_p))
 			calc(100% - var(--b) - 2 * var(--_p));
 		transition: 0.3s linear, color 0s, background-color 0s;
-		outline: var(--b) solid #0000;
+		outline: var(--b) solid var(--color-2);
 		outline-offset: 0.6em;
 
 		&:hover,
@@ -344,8 +361,8 @@
 	* Button Style: 11
 	*/
 	&.button-11 {
-		border: 1px solid #18181a;
-		background: #fff;
+		border: 1px solid var(--color-b4);
+		background: var(--secondary-color);
 		overflow: hidden;
 		z-index: 1;
 		&::after {
@@ -362,14 +379,14 @@
 			z-index: -1;
 		}
 		.zolo-button-content {
-			color: #18181a;
+			color: var(--color-b4);
 		}
 		&:hover {
 			&::after {
 				transform: skewY(9.3deg) scaleY(2);
 			}
 			.zolo-button-content {
-				color: #fff;
+				color: var(--secondary-color);
 			}
 		}
 	}
@@ -378,8 +395,8 @@
 	* Button Style: 12
 	*/
 	&.button-12 {
-		border: 1px solid #18181a;
-		background: #fff;
+		border: 1px solid var(--color-b4);
+		background: var(--secondary-color);
 		overflow: hidden;
 		z-index: 1;
 		&::after {
@@ -396,14 +413,14 @@
 			z-index: -1;
 		}
 		.zolo-button-content {
-			color: #18181a;
+			color: var(--color-b4);
 		}
 		&:hover {
 			&::after {
 				transform: skewY(9.3deg) scaleY(2);
 			}
 			.zolo-button-content {
-				color: #fff;
+				color: var(--secondary-color);
 			}
 		}
 	}
@@ -413,10 +430,10 @@
 	*/
 	&.button-13 {
 		background-color: var(--primary-color);
-		border: 2px solid #1a1a1a;
+		border: 2px solid var(--color-b3);
 
 		.zolo-button-content {
-			color: #ffffff;
+			color: var(--secondary-color);
 		}
 
 		&:hover {
@@ -429,14 +446,14 @@
 	* Button Style: 14
 	*/
 	&.button-14 {
-		--c: #fff;
-		background: linear-gradient(90deg, #0000 33%, #fff5, #0000 67%)
+
+		background: linear-gradient(90deg, var(--color-2) 33%, var(--color-bg-12), var(--color-2) 67%)
 				var(--_p, 100%) / 300% no-repeat,
-			#004dff;
-		color: #0000;
+			var(--color-bg-13);
+		color: var(--color-2);
 		transform: perspective(500px) rotateY(calc(20deg * var(--_i, -1)));
-		text-shadow: calc(var(--_i, -1) * 0.08em) -0.01em 0 var(--c),
-			calc(var(--_i, -1) * -0.08em) 0.01em 2px #0004;
+		text-shadow: calc(var(--_i, -1) * 0.08em) -0.01em 0 var(--secondary-color),
+			calc(var(--_i, -1) * -0.08em) 0.01em 2px var(--color-ts);
 		outline-offset: 0.1em;
 
 		&:hover,

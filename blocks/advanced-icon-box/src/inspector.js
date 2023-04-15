@@ -46,9 +46,11 @@ import TabPanelControl from '../../../src/controls/tabpanel-control';
 // import { PRESETS } from "../../../src/global/constants";
 import objAttributes from './attributes';
 import {
-	ICON_ALIGNMENT,
+	ICON_BOX_ALIGNMENT,
+	TITLE_ALIGNMENT,
 	PRESETS,
 	ICON_POSITIONS,
+	ICON_BOX_POSITIONS,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
 	ICON_TYPOGRAPHY,
@@ -117,8 +119,26 @@ function Inspector(props) {
 							{tab.name === 'settings' && (
 								<>
 									<PanelBody
-										title={__('Content', 'zolo-blocks')}
+										title={__('General', 'zolo-blocks')}
 										initialOpen={true}
+									>
+										<SelectControl
+											label={__(
+												'Preset Designs',
+												'zolo-blocks'
+											)}
+											value={preset}
+											options={PRESETS}
+											onChange={(value) =>
+												setAttributes({
+													preset: value,
+												})
+											}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Content', 'zolo-blocks')}
+										initialOpen={false}
 									>
 										<SelectControl
 											label={__(
@@ -188,20 +208,7 @@ function Inspector(props) {
 														></line>
 													</svg>
 												</p>
-												<SelectControl
-													label={__(
-														'Position',
-														'zolo-blocks'
-													)}
-													options={ICON_POSITIONS}
-													onChange={(position) => {
-														setAttributes({
-															iconPosition:
-																position,
-														});
-													}}
-													value={iconPosition}
-												/>
+
 												<ResRangeControl
 													label={__(
 														'Icon Size',
@@ -229,34 +236,6 @@ function Inspector(props) {
 													min={0}
 													max={100}
 													step={1}
-												/>
-												<ResAlignmentControl
-													label={__(
-														'Icon Alignmet',
-														'zolo-blocks'
-													)}
-													controlName={ICON_ALIGNMENT}
-													resRequiredProps={
-														resRequiredProps
-													}
-													alignOptions={[
-														{
-															label: 'Left',
-															value: 'left',
-														},
-														{
-															label: 'Center',
-															value: 'center',
-														},
-														{
-															label: 'Right',
-															value: 'right',
-														},
-														{
-															label: 'Justify',
-															value: 'justify',
-														},
-													]}
 												/>
 											</Fragment>
 										)}
@@ -302,9 +281,66 @@ function Inspector(props) {
 											))}
 
 										<CardDivider />
+										<ResAlignmentControl
+											label={__(
+												'Title Alignment',
+												'zolo-blocks'
+											)}
+											controlName={TITLE_ALIGNMENT}
+											resRequiredProps={resRequiredProps}
+											alignOptions={[
+												{
+													label: 'Left',
+													value: 'left',
+												},
+												{
+													label: 'Center',
+													value: 'center',
+												},
+												{
+													label: 'Right',
+													value: 'right',
+												},
+												{
+													label: 'Justify',
+													value: 'justify',
+												},
+											]}
+										/>
+										<br />
+										<ResAlignmentControl
+											label={__(
+												'Description Alignment',
+												'zolo-blocks'
+											)}
+											controlName={ICON_BOX_ALIGNMENT}
+											resRequiredProps={resRequiredProps}
+											alignOptions={[
+												{
+													label: 'Left',
+													value: 'left',
+												},
+												{
+													label: 'Center',
+													value: 'center',
+												},
+												{
+													label: 'Right',
+													value: 'right',
+												},
+												{
+													label: 'Justify',
+													value: 'justify',
+												},
+											]}
+										/>
+										<CardDivider />
 
 										<TextControl
-											label="Button Link"
+											label={__(
+												'Button Link',
+												'zolo-blocks'
+											)}
 											value={buttonLink}
 											onChange={(link) =>
 												setAttributes({
@@ -312,6 +348,84 @@ function Inspector(props) {
 												})
 											}
 										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Button', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<TextControl
+											label={__(
+												'Button Link',
+												'zolo-blocks'
+											)}
+											value={buttonLink}
+											onChange={(link) =>
+												setAttributes({
+													buttonLink: link,
+												})
+											}
+										/>
+										<ToggleControl
+											label={__(
+												'Enable Icon',
+												'zolo-blocks'
+											)}
+											checked={showIcon}
+											onChange={() =>
+												setAttributes({
+													showIcon: !showIcon,
+												})
+											}
+										/>
+										{showIcon && (
+											<Fragment>
+												<p>
+													<strong>Icon Picker</strong>
+												</p>
+												<SelectControl
+													label={__(
+														'Position',
+														'zolo-blocks'
+													)}
+													options={ICON_POSITIONS}
+													onChange={(position) => {
+														setAttributes({
+															iconPosition:
+																position,
+														});
+													}}
+													value={iconPosition}
+												/>
+												<ResRangeControl
+													label={__(
+														'Icon Size',
+														'zolo-blocks'
+													)}
+													controlName={ICON_SIZE}
+													resRequiredProps={
+														resRequiredProps
+													}
+													min={0}
+													max={100}
+													step={1}
+												/>
+												<ResRangeControl
+													label={__(
+														'Gap',
+														'zolo-blocks'
+													)}
+													controlName={
+														ICON_TEXT_SPACING
+													}
+													resRequiredProps={
+														resRequiredProps
+													}
+													min={0}
+													max={100}
+													step={1}
+												/>
+											</Fragment>
+										)}
 									</PanelBody>
 								</>
 							)}
@@ -323,7 +437,10 @@ function Inspector(props) {
 										initialOpen={true}
 									>
 										<TypographyDropdown
-											label="Typography"
+											label={__(
+												'Typography',
+												'zolo-blocks'
+											)}
 											typoPrefixConstant={ICON_TYPOGRAPHY}
 											resRequiredProps={resRequiredProps}
 										/>

@@ -3,10 +3,6 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 const Save = ({ attributes }) => {
 	const { uniqueId, preset, label, link, showIcon, iconPosition } =
 		attributes;
-
-	let linkRel = link && link.opensInNewTab ? 'noopener noreferrer' : '';
-	const rel = link && link.addNoFollow ? `${linkRel} nofollow` : linkRel;
-
 	return (
 		<div {...useBlockProps.save()}>
 			<div
@@ -15,7 +11,8 @@ const Save = ({ attributes }) => {
 				<a
 					className={`zolo-button ${iconPosition}`}
 					href={link && link.url}
-					rel={(link.opensInNewTab || link.addNoFollow) && rel}
+					rel={link && link.opensInNewTab && 'noreferrer'}
+					target={link && link.opensInNewTab && '_blank'}
 				>
 					<RichText.Content
 						tagName="span"

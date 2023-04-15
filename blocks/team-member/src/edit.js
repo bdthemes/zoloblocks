@@ -6,14 +6,17 @@ import {
 	RichText,
 	BlockControls,
 	__experimentalLinkControl as LinkControl,
+	MediaPlaceholder,
 	MediaUpload,
 } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
+import { Fragment, useState, useEffect } from '@wordpress/element';
+
 import {
 	ToolbarButton,
 	ToolbarGroup,
 	Dropdown,
 	Button,
+	Popover,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -26,7 +29,28 @@ import {
 	softMinifyCssStrings,
 } from '../../../src/helpers/helper';
 
-import { BLOCK_PREFIX } from './constants';
+import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-helper';
+import { generateBorderStyle } from '../../../src/helpers/border-helper';
+import { generateDimensionStyle } from '../../../src/helpers/dimension-helper';
+import { generateTypographyStyles } from '../../../src/helpers/typoHelpers';
+
+import {
+	BLOCK_PREFIX,
+	CONTENT_ALIGNMENT,
+	TEAM_DESIGNATION_MARGIN,
+	TEAM_NAME_MARGIN,
+	TEAM_PHOTO_BORDER,
+	TEAM_PHOTO_BORDER_RADIUS,
+	TEAM_PHOTO_MARGIN,
+	TEAM_PHOTO_PADDING,
+	TEAM_SHORT_BIO_MARGIN,
+} from './constants';
+
+import {
+	TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
+	TEAM_MEMBER_NAME_TYPOGRAPHY,
+	TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
+} from './constants/typoPrefixConstants';
 
 import Inspector from './inspector';
 
@@ -37,15 +61,23 @@ export default function Edit(props) {
 		uniqueId,
 		preset,
 		blockStyle,
-		showMemberPhoto,
 		memberPhoto,
 		memberName,
-		enableMemberLink,
-		memberLink,
+		enableMemberDetailsPage,
+		memberDetailPageLink,
 		memberDesignation,
+		showShortBio,
 		memberShortBio,
 		showSocialProfiles,
+		socialProfiles,
+		socialProfilesLinkTarget,
+		photoBgColor,
+		nameColor,
+		designationColor,
+		shortBioColor,
 	} = attributes;
+
+	const [popoverVisible, setPopoverVisible] = useState(false);
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -61,13 +93,261 @@ export default function Edit(props) {
 		className: classnames(className, `${uniqueId}`),
 	});
 
+	// content alignment
+	const {
+		desktopAlignStyle: teamDeskAlignStyle,
+		tabAlignStyle: teamTabAlignStyle,
+		mobAlignStyle: teamMobAlignStyle,
+	} = generateResAlignmentStyle({
+		controlName: CONTENT_ALIGNMENT,
+		property: 'text-align',
+		attributes,
+	});
+
+	// social icons alignment
+	let socialDeskAlignStyle;
+	switch (teamDeskAlignStyle) {
+		case 'text-align:left;':
+			socialDeskAlignStyle = 'justify-content: flex-start;';
+			break;
+		case 'text-align:center;':
+			socialDeskAlignStyle = 'justify-content: center;';
+			break;
+		case 'text-align:right;':
+			socialDeskAlignStyle = 'justify-content: flex-end;';
+			break;
+		default:
+			socialDeskAlignStyle = 'justify-content: flex-start;';
+	}
+
+	let socialTabAlignStyle;
+	switch (teamTabAlignStyle) {
+		case 'text-align:left;':
+			socialTabAlignStyle = 'justify-content: flex-start;';
+			break;
+		case 'text-align:center;':
+			socialTabAlignStyle = 'justify-content: center;';
+			break;
+		case 'text-align:right;':
+			socialTabAlignStyle = 'justify-content: flex-end;';
+			break;
+		default:
+			socialTabAlignStyle = 'justify-content: flex-start;';
+	}
+
+	let socialMobAlignStyle;
+	switch (teamMobAlignStyle) {
+		case 'text-align:left;':
+			socialMobAlignStyle = 'justify-content: flex-start;';
+			break;
+		case 'text-align:center;':
+			socialMobAlignStyle = 'justify-content: center;';
+			break;
+		case 'text-align:right;':
+			socialMobAlignStyle = 'justify-content: flex-end;';
+			break;
+		default:
+			socialMobAlignStyle = 'justify-content: flex-start;';
+	}
+
+	// Photo
+	const {
+		desktopBorderStyle: photoDeskBorderStyle,
+		tabBorderStyle: photoTabBorderStyle,
+		mobBorderStyle: photoMobBorderStyle,
+	} = generateBorderStyle({
+		controlName: TEAM_PHOTO_BORDER,
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: photoDeskBorderRadius,
+		dimensionStylesTab: photoTabBorderRadius,
+		dimensionStylesMobile: photoMobBorderRadius,
+	} = generateDimensionStyle({
+		controlName: TEAM_PHOTO_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: photoDeskPadding,
+		dimensionStylesTab: photoTabPadding,
+		dimensionStylesMobile: photoMobPadding,
+	} = generateDimensionStyle({
+		controlName: TEAM_PHOTO_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: photoDeskMargin,
+		dimensionStylesTab: photoTabMargin,
+		dimensionStylesMobile: photoMobMargin,
+	} = generateDimensionStyle({
+		controlName: TEAM_PHOTO_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	});
+
+	// Name
+	const {
+		typoStylesDesktop: nameTypoDesk,
+		typoStylesTab: nameTypoTab,
+		typoStylesMobile: nameTypoMob,
+	} = generateTypographyStyles({
+		prefixConstant: TEAM_MEMBER_NAME_TYPOGRAPHY,
+		defaultFontSize: 23,
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: nameDeskMargin,
+		dimensionStylesTab: nameTabMargin,
+		dimensionStylesMobile: nameMobMargin,
+	} = generateDimensionStyle({
+		controlName: TEAM_NAME_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	});
+
+	// Designation
+	const {
+		typoStylesDesktop: designationTypoDesk,
+		typoStylesTab: designationTypoTab,
+		typoStylesMobile: designationTypoMob,
+	} = generateTypographyStyles({
+		prefixConstant: TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
+		defaultFontSize: 16,
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: designationDeskMargin,
+		dimensionStylesTab: designationTabMargin,
+		dimensionStylesMobile: designationMobMargin,
+	} = generateDimensionStyle({
+		controlName: TEAM_DESIGNATION_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	});
+
+	// Short bio
+	const {
+		typoStylesDesktop: shortBioTypoDesk,
+		typoStylesTab: shortBioTypoTab,
+		typoStylesMobile: shortBioTypoMob,
+	} = generateTypographyStyles({
+		prefixConstant: TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
+		defaultFontSize: 16,
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: shortBioDeskMargin,
+		dimensionStylesTab: shortBioTabMargin,
+		dimensionStylesMobile: shortBioMobMargin,
+	} = generateDimensionStyle({
+		controlName: TEAM_SHORT_BIO_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	});
+
 	/**
 	 * All Style Combination
 	 */
-	const desktopAllStyle = ``;
-	const tabletAllStyle = ``;
+	const desktopAllStyle = `
+		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
+			${teamDeskAlignStyle}
+		}
+		.${uniqueId} .zolo-social-share {
+			${socialDeskAlignStyle}
+		}
+		.${uniqueId} .zolo-image-wrap img {
+			${
+				photoBgColor && photoBgColor !== ''
+					? `background-color: ${photoBgColor};`
+					: ''
+			}
+			${photoDeskBorderStyle}
+			${photoDeskBorderRadius}
+			${photoDeskPadding}
+			${photoDeskMargin}
+		}
+		.${uniqueId} .zolo-name {
+			${nameColor && nameColor !== '' ? `color: ${nameColor};` : ''}
+			${nameTypoDesk}
+			${nameDeskMargin}
+		}
 
-	const mobileAllStyle = ``;
+		.${uniqueId} .zolo-designation {
+			${
+				designationColor && designationColor !== ''
+					? `color: ${designationColor};`
+					: ''
+			}
+			${designationTypoDesk}
+			${designationDeskMargin}
+		}
+		.${uniqueId} .zolo-desc {
+			${shortBioColor && shortBioColor !== '' ? `color: ${shortBioColor};` : ''}
+			${shortBioTypoDesk}
+			${shortBioDeskMargin}
+		}
+	`;
+	const tabletAllStyle = `
+		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
+			${teamTabAlignStyle}
+		}
+		.${uniqueId} .zolo-social-share {
+			${socialTabAlignStyle}
+		}
+		.${uniqueId} .zolo-image-wrap img {
+			${photoTabBorderStyle}
+			${photoTabBorderRadius}
+			${photoTabPadding}
+			${photoTabMargin}
+		}
+		.${uniqueId} .zolo-name {
+			${nameTypoTab}
+			${nameTabMargin}
+		}
+		.${uniqueId} .zolo-designation {
+			${designationTypoTab}
+			${designationTabMargin}
+		}
+		.${uniqueId} .zolo-desc {
+			${shortBioTypoTab}
+			${shortBioTabMargin}
+		}
+	`;
+
+	const mobileAllStyle = `
+		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
+			${teamMobAlignStyle}
+		}
+		.${uniqueId} .zolo-social-share {
+			${socialMobAlignStyle}
+		}
+		.${uniqueId} .zolo-image-wrap img {
+			${photoMobBorderStyle}
+			${photoMobBorderRadius}
+			${photoMobPadding}
+			${photoMobMargin}
+		}
+		.${uniqueId} .zolo-name {
+			${nameTypoMob}
+			${nameMobMargin}
+		}
+		.${uniqueId} .zolo-designation {
+			${designationTypoMob}
+			${designationMobMargin}
+		}
+		.${uniqueId} .zolo-desc {
+			${shortBioTypoMob}
+			${shortBioMobMargin}
+		}
+	`;
 
 	const allStyle = `
 		${desktopAllStyle}
@@ -100,205 +380,218 @@ export default function Edit(props) {
 				/>
 			)}
 			<style>{` ${softMinifyCssStrings(allStyle)}`}</style>
-			{showMemberPhoto && memberPhoto && (
-				<BlockControls>
-					<ToolbarGroup>
-						<MediaUpload
-							onSelect={(media) => {
-								setAttributes({
-									memberPhoto: media,
-								});
-							}}
-							allowedTypes={['image']}
-							value={memberPhoto && memberPhoto.id}
-							render={({ open }) => (
-								<ToolbarButton
-									className="components-toolbar__control"
-									label={__('Replace Photo', 'zolo-blocks')}
-									icon="update"
-									onClick={open}
-								/>
-							)}
+
+			<BlockControls>
+				{memberPhoto && (
+					<Fragment>
+						<ToolbarGroup>
+							<MediaUpload
+								onSelect={(media) => {
+									setAttributes({
+										memberPhoto: media,
+									});
+								}}
+								allowedTypes={['image']}
+								value={memberPhoto && memberPhoto.id}
+								render={({ open }) => (
+									<ToolbarButton
+										className="components-toolbar__control"
+										label={__(
+											'Replace Photo',
+											'zolo-blocks'
+										)}
+										icon="update"
+										onClick={open}
+									/>
+								)}
+							/>
+							<ToolbarButton
+								className="components-toolbar__control"
+								label={__('Remove Photo', 'zolo-blocks')}
+								icon="trash"
+								onClick={() => {
+									setAttributes({
+										memberPhoto: null,
+									});
+								}}
+							/>
+						</ToolbarGroup>
+					</Fragment>
+				)}
+				<ToolbarGroup>
+					<ToolbarButton
+						icon="admin-links"
+						onClick={() => setPopoverVisible(!popoverVisible)}
+					/>
+				</ToolbarGroup>
+				{popoverVisible && (
+					<Popover
+						position="bottom right"
+						onFocusOutside={() => setPopoverVisible(false)}
+						offset={10}
+					>
+						<LinkControl
+							searchInputPlaceholder="Search here..."
+							value={memberDetailPageLink}
+							settings={[
+								{
+									id: 'opensInNewTab',
+									title: __('Open in new tab', 'zolo-blocks'),
+								},
+							]}
+							onChange={(data) =>
+								setAttributes({ memberDetailPageLink: data })
+							}
 						/>
-					</ToolbarGroup>
-					<ToolbarGroup>
-						<ToolbarButton
-							className="components-toolbar__control"
-							label={__('Remove Photo', 'zolo-blocks')}
-							icon="trash"
-							onClick={() => {
-								setAttributes({
-									memberPhoto: null,
-								});
-							}}
-						/>
-					</ToolbarGroup>
-				</BlockControls>
-			)}
+					</Popover>
+				)}
+			</BlockControls>
+
 			<div {...blockProps}>
-				<div className="zolo-advanced-member-wrap zolo-advanced-member-style-1">
-					<div className="zolo-item">
-						<div className="zolo-image-wrap">
-							{showMemberPhoto &&
-								(memberPhoto ? (
-									<img
-										src={memberPhoto.url}
-										alt={memberPhoto.alt || 'Team Member'}
-									/>
-								) : (
-									<MediaUpload
-										onSelect={(media) => {
-											setAttributes({
-												memberPhoto: media,
-											});
-										}}
-										allowedTypes={['image']}
-										value={memberPhoto && memberPhoto.id}
-										render={({ open }) => (
-											<Button
-												className="zolo-image-upload-btn"
-												onClick={open}
-											>
-												<svg
-													width="24"
-													height="24"
-													xmlns="http://www.w3.org/2000/svg"
-													fillRule="evenodd"
-													clipRule="evenodd"
-												>
-													<path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
-												</svg>
-												{__(
-													' Upload Photo',
-													'zolo-blocks'
-												)}
-											</Button>
-										)}
-									/>
-								))}
-							<div className="zolo-hover-content">
-								<div className="zolo-name">
-									<RichText
-										tagName="span"
-										className="zolo-team-member-name"
-										value={memberName}
-										onChange={(name) =>
-											setAttributes({ memberName: name })
-										}
-										placeholder={__(
-											'Name...',
-											'zolo-blocks'
-										)}
-										allowedFormats={[
-											'core/bold',
-											'core/italic',
-										]}
-									/>
-								</div>
-								<div className="zolo-designation">
-									<RichText
-										tagName="span"
-										className="zolo-team-member-designation"
-										value={memberDesignation}
-										onChange={(designation) =>
-											setAttributes({
-												memberDesignation: designation,
-											})
-										}
-										placeholder={__(
-											'Designation...',
-											'zolo-blocks'
-										)}
-										allowedFormats={[
-											'core/bold',
-											'core/italic',
-										]}
-									/>
-								</div>
+				<div className="zolo-item">
+					<div className="zolo-image-wrap">
+						{memberPhoto ? (
+							<img
+								src={memberPhoto.url}
+								alt={memberPhoto.alt || 'Team Member'}
+							/>
+						) : (
+							<MediaPlaceholder
+								icon="format-image"
+								labels={{
+									title: __('Add Photo', 'zolo-blocks'),
+									instructions: '',
+								}}
+								onSelect={(media) => {
+									setAttributes({
+										memberPhoto: media,
+									});
+								}}
+								accept="image/*"
+								allowedTypes={['image']}
+							/>
+						)}
+						<div className="zolo-hover-content">
+							<RichText
+								className="zolo-name"
+								value={memberName}
+								onChange={(name) =>
+									setAttributes({ memberName: name })
+								}
+								placeholder={__('Name...', 'zolo-blocks')}
+								allowedFormats={['core/bold', 'core/italic']}
+							/>
+							<RichText
+								className="zolo-designation"
+								value={memberDesignation}
+								onChange={(designation) =>
+									setAttributes({
+										memberDesignation: designation,
+									})
+								}
+								placeholder={__(
+									'Designation...',
+									'zolo-blocks'
+								)}
+								allowedFormats={['core/bold', 'core/italic']}
+							/>
+							{showSocialProfiles && (
 								<div className="zolo-social-share">
-									<a href="#">
-										<i className="fa-brands fa-facebook-f" />
-									</a>
-									<a href="#">
-										<i className="fa-brands fa-twitter" />
-									</a>
-									<a href="#">
-										<i className="fa-brands fa-instagram" />
-									</a>
+									{socialProfiles &&
+										socialProfiles.map((profile, index) => {
+											return (
+												<a
+													href={profile.link}
+													key={index}
+													rel={
+														socialProfilesLinkTarget &&
+														'noreferer'
+													}
+												>
+													<i
+														className={`fa-brands fa-${profile.icon}`}
+													/>
+												</a>
+											);
+										})}
 								</div>
+							)}
+							{enableMemberDetailsPage && (
 								<div className="zolo-link-btn">
-									<a href="#">
+									<a
+										href={
+											memberDetailPageLink &&
+											memberDetailPageLink.url
+										}
+										rel={
+											memberDetailPageLink &&
+											memberDetailPageLink.newTab &&
+											'noreferer'
+										}
+										target={
+											memberDetailPageLink &&
+											memberDetailPageLink.newTab &&
+											'_blank'
+										}
+									>
 										<i className="fa-solid fa-arrow-right" />
 									</a>
 								</div>
-							</div>
+							)}
 						</div>
-						<div className="zolo-info-wrap">
-							<div className="zolo-content">
-								<div className="zolo-name">
-									<RichText
-										tagName="span"
-										className="zolo-team-member-name"
-										value={memberName}
-										onChange={(name) =>
-											setAttributes({ memberName: name })
-										}
-										placeholder={__(
-											'Name...',
-											'zolo-blocks'
-										)}
-										allowedFormats={[
-											'core/bold',
-											'core/italic',
-										]}
-									/>
-								</div>
-								<div className="zolo-designation">
-									<RichText
-										tagName="span"
-										className="zolo-team-member-designation"
-										value={memberDesignation}
-										onChange={(designation) =>
-											setAttributes({
-												memberDesignation: designation,
-											})
-										}
-										placeholder={__(
-											'Designation...',
-											'zolo-blocks'
-										)}
-										allowedFormats={[
-											'core/bold',
-											'core/italic',
-										]}
-									/>
-								</div>
-								<div className="zolo-desc">
-									<RichText
-										className="zolo-team-member-short-bio"
-										value={memberShortBio}
-										onChange={(bio) =>
-											setAttributes({
-												memberShortBio: bio,
-											})
-										}
-										placeholder={__(
-											'short bio...',
-											'zolo-blocks'
-										)}
-										allowedFormats={[
-											'core/bold',
-											'core/italic',
-										]}
-									/>
-								</div>
-							</div>
+					</div>
+					<div className="zolo-info-wrap">
+						<div className="zolo-content">
+							<RichText
+								className="zolo-name"
+								value={memberName}
+								onChange={(name) =>
+									setAttributes({ memberName: name })
+								}
+								placeholder={__('Name...', 'zolo-blocks')}
+								allowedFormats={['core/bold', 'core/italic']}
+							/>
+							<RichText
+								className="zolo-designation"
+								value={memberDesignation}
+								onChange={(designation) =>
+									setAttributes({
+										memberDesignation: designation,
+									})
+								}
+								placeholder={__(
+									'Designation...',
+									'zolo-blocks'
+								)}
+								allowedFormats={['core/bold', 'core/italic']}
+							/>
+							{showShortBio && (
+								<RichText
+									className="zolo-desc"
+									value={memberShortBio}
+									onChange={(bio) =>
+										setAttributes({
+											memberShortBio: bio,
+										})
+									}
+									placeholder={__(
+										'short bio...',
+										'zolo-blocks'
+									)}
+									allowedFormats={[
+										'core/bold',
+										'core/italic',
+									]}
+								/>
+							)}
+						</div>
+						{enableMemberDetailsPage && (
 							<div className="zolo-link-btn">
 								<a href="#">
 									<i className="fa-solid fa-arrow-right" />
 								</a>
 							</div>
-						</div>
+						)}
 					</div>
 				</div>
 			</div>

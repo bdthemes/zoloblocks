@@ -12,6 +12,7 @@ import {
 	TabPanel,
 	TextControl,
 	ToggleControl,
+	BaseControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
@@ -208,29 +209,28 @@ function Inspector(props) {
 												'zolo-blocks'
 											)}
 										/>
-										<LinkControl
-											searchInputPlaceholder="Search here..."
-											value={link}
-											settings={[
-												{
-													id: 'opensInNewTab',
-													title: __(
-														'Open in new tab',
-														'zolo-blocks'
-													),
-												},
-												{
-													id: 'addNoFollow',
-													title: __(
-														'Add nofollow to link',
-														'zolo-blocks'
-													),
-												},
-											]}
-											onChange={(data) =>
-												setAttributes({ link: data })
-											}
-										/>
+										<BaseControl
+											label={__('Link', 'zolo-blocks')}
+										>
+											<LinkControl
+												searchInputPlaceholder="Search here..."
+												value={link}
+												settings={[
+													{
+														id: 'opensInNewTab',
+														title: __(
+															'Open in new tab',
+															'zolo-blocks'
+														),
+													},
+												]}
+												onChange={(data) =>
+													setAttributes({
+														link: data,
+													})
+												}
+											/>
+										</BaseControl>
 									</PanelBody>
 									<PanelBody
 										title={__('Icon', 'zolo-blocks')}
@@ -753,7 +753,7 @@ function Inspector(props) {
 														resRequiredProps={
 															resRequiredProps
 														}
-														enableTransition={true}
+														enableTransition={false}
 													/>
 													<CardDivider />
 													<ColorControl
