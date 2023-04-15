@@ -1,7 +1,7 @@
 import {
   __experimentalBorderBoxControl as BorderBoxControl
 } from '@wordpress/components';
-import WithResDeviceBtn from '../with-res-device-btn';
+import ResDeviceBtn from '../res-device-btn';
 
 const BorderControl = ({
   label,
@@ -20,7 +20,7 @@ const BorderControl = ({
   return (
     <div className="border-control-wrapper">
 
-      <WithResDeviceBtn
+      <ResDeviceBtn
         resRequiredProps={resRequiredProps}
         label={label}>
 
@@ -29,7 +29,7 @@ const BorderControl = ({
           onChange={(newBorder) => { setSettings(newBorder) }}
         />
 
-      </WithResDeviceBtn>
+      </ResDeviceBtn>
     </div>
   )
 

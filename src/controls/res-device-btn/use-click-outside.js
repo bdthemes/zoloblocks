@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from '@wordpress/element';
 
 // Improved version of https://usehooks.com/useOnClickOutside/
 const useClickOutside = (ref, handler) => {

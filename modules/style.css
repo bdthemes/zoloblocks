@@ -428,5 +428,149 @@
 .eb-parent-tab-panel .components-flex.components-h-stack {
   height: auto !important;
 }
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/controls/scss/componets/_resdevice-btn.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+.zb-device-switcher {
+  color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  height: 0;
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.15s;
+  font-size: 12px;
+}
+.zb-device-switcher i {
+  font-size: initial;
+}
+.zb-device-switcher.active {
+  height: 24px;
+  transform: scale(1);
+  opacity: 1;
+  color: var(--zb-admin-color-primary, #0066ff);
+}
+.zb-device-switchers {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+.zb-device-switchers-wrap {
+  position: absolute;
+  width: 100%;
+  top: 1px;
+  color: #e0e1e3;
+  z-index: 44;
+}
+.zb-device-switchers-open .zb-device-switchers-wrap {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+  background: #ffffff;
+  border-radius: 2px;
+}
+.zb-device-switchers-open.active-Desktop .zb-device-switchers-wrap {
+  top: 0;
+}
+.zb-device-switchers-open.active-Tablet .zb-device-switchers-wrap {
+  top: 0;
+}
+.zb-device-switchers-open.active-Mobile .zb-device-switchers-wrap {
+  top: 0;
+}
+.zb-device-switchers-open .zb-device-switcher {
+  height: 24px;
+  transform: scale(1);
+  opacity: 1;
+}
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/controls/scss/componets/_icon-picker.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+#zoloIcon {
+  margin-bottom: 20px;
+}
+#zoloIcon .dashicon,
+#zoloIcon i {
+  font-size: 30px;
+}
+#zoloIcon .dashicon:hover,
+#zoloIcon i:hover {
+  cursor: pointer;
+  color: #3175d5;
+}
+
+.zolo-iconpicker-popup {
+  width: 350px;
+  top: 10px !important;
+}
+.zolo-iconpicker-popup .components-popover__content {
+  width: 100%;
+}
+
+.zolo-parent-tab-panel .zolo-tab {
+  height: 30px;
+  color: #9f9d9d;
+  margin-bottom: 8px;
+}
+.zolo-parent-tab-panel .zolo-tab.active-tab {
+  border-bottom: 2px solid #3c434a;
+  color: #3c434a;
+}
+
+.zolo-icon-area {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-height: 225px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+}
+.zolo-icon-area .zolo-icon-box {
+  background-color: #e4e4e4;
+  text-align: center;
+  width: calc(33.33% - 7px);
+  height: 70px;
+  position: relative;
+  transition: 0.3s;
+  order: 2;
+}
+.zolo-icon-area .zolo-icon-box.active {
+  background-color: #bcd4f0;
+  order: 1;
+}
+.zolo-icon-area .zolo-icon-box:hover {
+  background-color: #c7c7c7;
+  cursor: pointer;
+}
+.zolo-icon-area .zolo-icon-box .zolo-icon-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  overflow: hidden;
+}
+.zolo-icon-area .zolo-icon-box .dashicon,
+.zolo-icon-area .zolo-icon-box i {
+  font-size: 22px;
+  display: block;
+  margin: 0 auto 8px;
+}
+.zolo-icon-area .zolo-icon-box .components-panel__row {
+  font-size: 11px;
+  line-height: 1;
+  height: auto !important;
+  display: block;
+  text-transform: capitalize;
+}
 
 /*# sourceMappingURL=style.css.map*/
