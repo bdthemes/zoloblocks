@@ -2954,7 +2954,7 @@ function BoxShadowControl(_ref) {
     [`${controlName}shadowTransition`]: shadowTransition
   } = attributes;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Box Shadow', 'radius-blocks'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Box Shadow', 'zolo-blocks'),
     className: "zb-boxshadow-control-wrap"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Dropdown, {
     className: "zb-boxshadow-control-dropdown",
@@ -2980,14 +2980,14 @@ function BoxShadowControl(_ref) {
         padding: '10px'
       }
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Inset', 'radius-blocks'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Inset', 'zolo-blocks'),
       checked: inset,
       onChange: () => setAttributes({
         [`${controlName}inset`]: !inset
       })
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_color_control__WEBPACK_IMPORTED_MODULE_3__["default"], {
       defaultColor: (objAttributes[`${controlName}shadowColor`] || {}).default,
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shadow Color', 'radius-blocks'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shadow Color', 'zolo-blocks'),
       color: shadowColor,
       onChange: shadowColor => setAttributes({
         [`${controlName}shadowColor`]: shadowColor
@@ -2997,7 +2997,7 @@ function BoxShadowControl(_ref) {
         [`${controlName}hOffset`]: undefined
       })
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Horizontal Offset', 'radius-blocks'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Horizontal Offset', 'zolo-blocks'),
       value: hOffset,
       onChange: hOffset => setAttributes({
         [`${controlName}hOffset`]: hOffset
@@ -3009,7 +3009,7 @@ function BoxShadowControl(_ref) {
         [`${controlName}vOffset`]: undefined
       })
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Vertical Offset', 'radius-blocks'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Vertical Offset', 'zolo-blocks'),
       value: vOffset,
       onChange: vOffset => setAttributes({
         [`${controlName}vOffset`]: vOffset
@@ -3021,7 +3021,7 @@ function BoxShadowControl(_ref) {
         [`${controlName}blur`]: undefined
       })
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shadow Blur', 'radius-blocks'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shadow Blur', 'zolo-blocks'),
       value: blur,
       onChange: blur => setAttributes({
         [`${controlName}blur`]: blur
@@ -3033,7 +3033,7 @@ function BoxShadowControl(_ref) {
         [`${controlName}spread`]: undefined
       })
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shadow Spread', 'radius-blocks'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shadow Spread', 'zolo-blocks'),
       value: spread,
       onChange: spread => setAttributes({
         [`${controlName}spread`]: spread
@@ -3041,7 +3041,7 @@ function BoxShadowControl(_ref) {
       min: 0,
       max: 200
     })), enableTransition && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shadow Transition', 'radius-blocks'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shadow Transition', 'zolo-blocks'),
       value: shadowTransition,
       onChange: shadowTransition => setAttributes({
         [`${controlName}shadowTransition`]: shadowTransition
@@ -9439,6 +9439,66 @@ const ImageAvatar = _ref => {
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageAvatar);
+
+/***/ }),
+
+/***/ "./src/controls/range-reset-control/index.js":
+/*!***************************************************!*\
+  !*** ./src/controls/range-reset-control/index.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _reset_control__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reset-control */ "./src/controls/reset-control/index.js");
+
+
+
+
+const RangeResetControl = _ref => {
+  let {
+    label,
+    controlName,
+    min,
+    max,
+    step,
+    help,
+    resRequiredProps
+  } = _ref;
+  const dataAttributes = {
+    min,
+    max,
+    step,
+    help
+  };
+  const {
+    attributes,
+    setAttributes,
+    objAttributes
+  } = resRequiredProps;
+  const {
+    [controlName]: controlVal
+  } = attributes;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_reset_control__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    onReset: () => setAttributes({
+      [controlName]: objAttributes[controlName].default
+    })
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    label: label,
+    value: controlVal,
+    onChange: val => setAttributes({
+      [controlName]: val
+    })
+  }, dataAttributes)));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RangeResetControl);
 
 /***/ }),
 
@@ -21142,42 +21202,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "BorderControl": () => (/* reexport safe */ _controls_border_control__WEBPACK_IMPORTED_MODULE_2__["default"]),
 /* harmony export */   "BoxShadowControl": () => (/* reexport safe */ _controls_boxshadow_control__WEBPACK_IMPORTED_MODULE_3__["default"]),
 /* harmony export */   "ColorControl": () => (/* reexport safe */ _controls_color_control__WEBPACK_IMPORTED_MODULE_4__["default"]),
-/* harmony export */   "DisplayIcon": () => (/* reexport safe */ _controls_icon_picker_DisplayIcon__WEBPACK_IMPORTED_MODULE_15__["default"]),
-/* harmony export */   "DynamicTag": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_20__.DynamicTag),
+/* harmony export */   "DisplayIcon": () => (/* reexport safe */ _controls_icon_picker_DisplayIcon__WEBPACK_IMPORTED_MODULE_8__["default"]),
+/* harmony export */   "DynamicTag": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_21__.DynamicTag),
 /* harmony export */   "GradientControl": () => (/* reexport safe */ _controls_gradient_control__WEBPACK_IMPORTED_MODULE_6__["default"]),
-/* harmony export */   "IconPicker": () => (/* reexport safe */ _controls_icon_picker__WEBPACK_IMPORTED_MODULE_14__["default"]),
-/* harmony export */   "ImageAvatar": () => (/* reexport safe */ _controls_image_avatar__WEBPACK_IMPORTED_MODULE_7__["default"]),
-/* harmony export */   "ResAlignmentControl": () => (/* reexport safe */ _controls_res_alignment_control__WEBPACK_IMPORTED_MODULE_8__["default"]),
+/* harmony export */   "IconPicker": () => (/* reexport safe */ _controls_icon_picker__WEBPACK_IMPORTED_MODULE_7__["default"]),
+/* harmony export */   "ImageAvatar": () => (/* reexport safe */ _controls_image_avatar__WEBPACK_IMPORTED_MODULE_9__["default"]),
+/* harmony export */   "RangeResetControl": () => (/* reexport safe */ _controls_range_reset_control__WEBPACK_IMPORTED_MODULE_10__["default"]),
+/* harmony export */   "ResAlignmentControl": () => (/* reexport safe */ _controls_res_alignment_control__WEBPACK_IMPORTED_MODULE_11__["default"]),
 /* harmony export */   "ResDimensionsControl": () => (/* reexport safe */ _controls_dimensions_control__WEBPACK_IMPORTED_MODULE_5__["default"]),
-/* harmony export */   "ResRangeControl": () => (/* reexport safe */ _controls_res_range_control__WEBPACK_IMPORTED_MODULE_9__["default"]),
-/* harmony export */   "ResetControl": () => (/* reexport safe */ _controls_reset_control__WEBPACK_IMPORTED_MODULE_10__["default"]),
-/* harmony export */   "TextShadowControl": () => (/* reexport safe */ _controls_textshadow_control__WEBPACK_IMPORTED_MODULE_11__["default"]),
-/* harmony export */   "TextStrokeControl": () => (/* reexport safe */ _controls_textstroke_control__WEBPACK_IMPORTED_MODULE_12__["default"]),
-/* harmony export */   "TypographyDropdown": () => (/* reexport safe */ _controls_typography_control__WEBPACK_IMPORTED_MODULE_13__["default"]),
-/* harmony export */   "generateBackgroundAttributes": () => (/* reexport safe */ _helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_16__.generateBackgroundAttributes),
-/* harmony export */   "generateBackgroundControlStyles": () => (/* reexport safe */ _helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_16__.generateBackgroundControlStyles),
-/* harmony export */   "generateBorderAttributies": () => (/* reexport safe */ _helpers_border_helper__WEBPACK_IMPORTED_MODULE_17__.generateBorderAttributies),
-/* harmony export */   "generateBorderStyle": () => (/* reexport safe */ _helpers_border_helper__WEBPACK_IMPORTED_MODULE_17__.generateBorderStyle),
-/* harmony export */   "generateBoxShadowAttributies": () => (/* reexport safe */ _helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_18__.generateBoxShadowAttributies),
-/* harmony export */   "generateBoxShadowStyles": () => (/* reexport safe */ _helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_18__.generateBoxShadowStyles),
-/* harmony export */   "generateDimensionAttributes": () => (/* reexport safe */ _helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_19__.generateDimensionAttributes),
-/* harmony export */   "generateDimensionStyle": () => (/* reexport safe */ _helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_19__.generateDimensionStyle),
-/* harmony export */   "generateResAlignmentAttributies": () => (/* reexport safe */ _helpers_res_alignment_helper__WEBPACK_IMPORTED_MODULE_22__.generateResAlignmentAttributies),
-/* harmony export */   "generateResAlignmentStyle": () => (/* reexport safe */ _helpers_res_alignment_helper__WEBPACK_IMPORTED_MODULE_22__.generateResAlignmentStyle),
-/* harmony export */   "generateResRangeAttributies": () => (/* reexport safe */ _helpers_res_range_helper__WEBPACK_IMPORTED_MODULE_23__.generateResRangeAttributies),
-/* harmony export */   "generateResRangeStyle": () => (/* reexport safe */ _helpers_res_range_helper__WEBPACK_IMPORTED_MODULE_23__.generateResRangeStyle),
-/* harmony export */   "generateTextShadowAttributies": () => (/* reexport safe */ _helpers_textshadow_helper__WEBPACK_IMPORTED_MODULE_24__.generateTextShadowAttributies),
-/* harmony export */   "generateTextShadowStyles": () => (/* reexport safe */ _helpers_textshadow_helper__WEBPACK_IMPORTED_MODULE_24__.generateTextShadowStyles),
-/* harmony export */   "generateTextStrokeAttributies": () => (/* reexport safe */ _helpers_textstroke_helper__WEBPACK_IMPORTED_MODULE_25__.generateTextStrokeAttributies),
-/* harmony export */   "generateTextStrokeStyles": () => (/* reexport safe */ _helpers_textstroke_helper__WEBPACK_IMPORTED_MODULE_25__.generateTextStrokeStyles),
-/* harmony export */   "generateTypographyAttributes": () => (/* reexport safe */ _helpers_typoHelpers__WEBPACK_IMPORTED_MODULE_26__.generateTypographyAttributes),
-/* harmony export */   "generateTypographyStyles": () => (/* reexport safe */ _helpers_typoHelpers__WEBPACK_IMPORTED_MODULE_26__.generateTypographyStyles),
-/* harmony export */   "handleUniqueId": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_20__.handleUniqueId),
-/* harmony export */   "hasVal": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_20__.hasVal),
-/* harmony export */   "onDesktopBtnClick": () => (/* reexport safe */ _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_21__.onDesktopBtnClick),
-/* harmony export */   "onMobileBtnClick": () => (/* reexport safe */ _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_21__.onMobileBtnClick),
-/* harmony export */   "onTabletBtnClick": () => (/* reexport safe */ _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_21__.onTabletBtnClick),
-/* harmony export */   "softMinifyCssStrings": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_20__.softMinifyCssStrings)
+/* harmony export */   "ResRangeControl": () => (/* reexport safe */ _controls_res_range_control__WEBPACK_IMPORTED_MODULE_12__["default"]),
+/* harmony export */   "ResetControl": () => (/* reexport safe */ _controls_reset_control__WEBPACK_IMPORTED_MODULE_13__["default"]),
+/* harmony export */   "TextShadowControl": () => (/* reexport safe */ _controls_textshadow_control__WEBPACK_IMPORTED_MODULE_14__["default"]),
+/* harmony export */   "TextStrokeControl": () => (/* reexport safe */ _controls_textstroke_control__WEBPACK_IMPORTED_MODULE_15__["default"]),
+/* harmony export */   "TypographyDropdown": () => (/* reexport safe */ _controls_typography_control__WEBPACK_IMPORTED_MODULE_16__["default"]),
+/* harmony export */   "generateBackgroundAttributes": () => (/* reexport safe */ _helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_17__.generateBackgroundAttributes),
+/* harmony export */   "generateBackgroundControlStyles": () => (/* reexport safe */ _helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_17__.generateBackgroundControlStyles),
+/* harmony export */   "generateBorderAttributies": () => (/* reexport safe */ _helpers_border_helper__WEBPACK_IMPORTED_MODULE_18__.generateBorderAttributies),
+/* harmony export */   "generateBorderStyle": () => (/* reexport safe */ _helpers_border_helper__WEBPACK_IMPORTED_MODULE_18__.generateBorderStyle),
+/* harmony export */   "generateBoxShadowAttributies": () => (/* reexport safe */ _helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_19__.generateBoxShadowAttributies),
+/* harmony export */   "generateBoxShadowStyles": () => (/* reexport safe */ _helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_19__.generateBoxShadowStyles),
+/* harmony export */   "generateDimensionAttributes": () => (/* reexport safe */ _helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_20__.generateDimensionAttributes),
+/* harmony export */   "generateDimensionStyle": () => (/* reexport safe */ _helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_20__.generateDimensionStyle),
+/* harmony export */   "generateResAlignmentAttributies": () => (/* reexport safe */ _helpers_res_alignment_helper__WEBPACK_IMPORTED_MODULE_23__.generateResAlignmentAttributies),
+/* harmony export */   "generateResAlignmentStyle": () => (/* reexport safe */ _helpers_res_alignment_helper__WEBPACK_IMPORTED_MODULE_23__.generateResAlignmentStyle),
+/* harmony export */   "generateResRangeAttributies": () => (/* reexport safe */ _helpers_res_range_helper__WEBPACK_IMPORTED_MODULE_24__.generateResRangeAttributies),
+/* harmony export */   "generateResRangeStyle": () => (/* reexport safe */ _helpers_res_range_helper__WEBPACK_IMPORTED_MODULE_24__.generateResRangeStyle),
+/* harmony export */   "generateTextShadowAttributies": () => (/* reexport safe */ _helpers_textshadow_helper__WEBPACK_IMPORTED_MODULE_25__.generateTextShadowAttributies),
+/* harmony export */   "generateTextShadowStyles": () => (/* reexport safe */ _helpers_textshadow_helper__WEBPACK_IMPORTED_MODULE_25__.generateTextShadowStyles),
+/* harmony export */   "generateTextStrokeAttributies": () => (/* reexport safe */ _helpers_textstroke_helper__WEBPACK_IMPORTED_MODULE_26__.generateTextStrokeAttributies),
+/* harmony export */   "generateTextStrokeStyles": () => (/* reexport safe */ _helpers_textstroke_helper__WEBPACK_IMPORTED_MODULE_26__.generateTextStrokeStyles),
+/* harmony export */   "generateTypographyAttributes": () => (/* reexport safe */ _helpers_typoHelpers__WEBPACK_IMPORTED_MODULE_27__.generateTypographyAttributes),
+/* harmony export */   "generateTypographyStyles": () => (/* reexport safe */ _helpers_typoHelpers__WEBPACK_IMPORTED_MODULE_27__.generateTypographyStyles),
+/* harmony export */   "handleUniqueId": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_21__.handleUniqueId),
+/* harmony export */   "hasVal": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_21__.hasVal),
+/* harmony export */   "onDesktopBtnClick": () => (/* reexport safe */ _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_22__.onDesktopBtnClick),
+/* harmony export */   "onMobileBtnClick": () => (/* reexport safe */ _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_22__.onMobileBtnClick),
+/* harmony export */   "onTabletBtnClick": () => (/* reexport safe */ _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_22__.onTabletBtnClick),
+/* harmony export */   "softMinifyCssStrings": () => (/* reexport safe */ _helpers_helper__WEBPACK_IMPORTED_MODULE_21__.softMinifyCssStrings)
 /* harmony export */ });
 /* harmony import */ var _controls_scss_controls_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controls/scss/controls.scss */ "./src/controls/scss/controls.scss");
 /* harmony import */ var _controls_background_control__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./controls/background-control */ "./src/controls/background-control/index.js");
@@ -21186,26 +21247,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _controls_color_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls/color-control */ "./src/controls/color-control/index.js");
 /* harmony import */ var _controls_dimensions_control__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./controls/dimensions-control */ "./src/controls/dimensions-control/index.js");
 /* harmony import */ var _controls_gradient_control__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controls/gradient-control */ "./src/controls/gradient-control/index.js");
-/* harmony import */ var _controls_image_avatar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./controls/image-avatar */ "./src/controls/image-avatar/index.js");
-/* harmony import */ var _controls_res_alignment_control__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./controls/res-alignment-control */ "./src/controls/res-alignment-control/index.js");
-/* harmony import */ var _controls_res_range_control__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./controls/res-range-control */ "./src/controls/res-range-control/index.js");
-/* harmony import */ var _controls_reset_control__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./controls/reset-control */ "./src/controls/reset-control/index.js");
-/* harmony import */ var _controls_textshadow_control__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./controls/textshadow-control */ "./src/controls/textshadow-control/index.js");
-/* harmony import */ var _controls_textstroke_control__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./controls/textstroke-control */ "./src/controls/textstroke-control/index.js");
-/* harmony import */ var _controls_typography_control__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./controls/typography-control */ "./src/controls/typography-control/index.js");
-/* harmony import */ var _controls_icon_picker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./controls/icon-picker */ "./src/controls/icon-picker/index.js");
-/* harmony import */ var _controls_icon_picker_DisplayIcon__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./controls/icon-picker/DisplayIcon */ "./src/controls/icon-picker/DisplayIcon.js");
-/* harmony import */ var _helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./helpers/backgroundHelpers */ "./src/helpers/backgroundHelpers.js");
-/* harmony import */ var _helpers_border_helper__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./helpers/border-helper */ "./src/helpers/border-helper.js");
-/* harmony import */ var _helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./helpers/boxshadow-helper */ "./src/helpers/boxshadow-helper.js");
-/* harmony import */ var _helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./helpers/dimension-helper */ "./src/helpers/dimension-helper.js");
-/* harmony import */ var _helpers_helper__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./helpers/helper */ "./src/helpers/helper.js");
-/* harmony import */ var _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./helpers/preview-btns-helper */ "./src/helpers/preview-btns-helper.js");
-/* harmony import */ var _helpers_res_alignment_helper__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./helpers/res-alignment-helper */ "./src/helpers/res-alignment-helper.js");
-/* harmony import */ var _helpers_res_range_helper__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./helpers/res-range-helper */ "./src/helpers/res-range-helper.js");
-/* harmony import */ var _helpers_textshadow_helper__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./helpers/textshadow-helper */ "./src/helpers/textshadow-helper.js");
-/* harmony import */ var _helpers_textstroke_helper__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./helpers/textstroke-helper */ "./src/helpers/textstroke-helper.js");
-/* harmony import */ var _helpers_typoHelpers__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./helpers/typoHelpers */ "./src/helpers/typoHelpers.js");
+/* harmony import */ var _controls_icon_picker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./controls/icon-picker */ "./src/controls/icon-picker/index.js");
+/* harmony import */ var _controls_icon_picker_DisplayIcon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./controls/icon-picker/DisplayIcon */ "./src/controls/icon-picker/DisplayIcon.js");
+/* harmony import */ var _controls_image_avatar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./controls/image-avatar */ "./src/controls/image-avatar/index.js");
+/* harmony import */ var _controls_range_reset_control__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./controls/range-reset-control */ "./src/controls/range-reset-control/index.js");
+/* harmony import */ var _controls_res_alignment_control__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./controls/res-alignment-control */ "./src/controls/res-alignment-control/index.js");
+/* harmony import */ var _controls_res_range_control__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./controls/res-range-control */ "./src/controls/res-range-control/index.js");
+/* harmony import */ var _controls_reset_control__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./controls/reset-control */ "./src/controls/reset-control/index.js");
+/* harmony import */ var _controls_textshadow_control__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./controls/textshadow-control */ "./src/controls/textshadow-control/index.js");
+/* harmony import */ var _controls_textstroke_control__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./controls/textstroke-control */ "./src/controls/textstroke-control/index.js");
+/* harmony import */ var _controls_typography_control__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./controls/typography-control */ "./src/controls/typography-control/index.js");
+/* harmony import */ var _helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./helpers/backgroundHelpers */ "./src/helpers/backgroundHelpers.js");
+/* harmony import */ var _helpers_border_helper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./helpers/border-helper */ "./src/helpers/border-helper.js");
+/* harmony import */ var _helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./helpers/boxshadow-helper */ "./src/helpers/boxshadow-helper.js");
+/* harmony import */ var _helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./helpers/dimension-helper */ "./src/helpers/dimension-helper.js");
+/* harmony import */ var _helpers_helper__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./helpers/helper */ "./src/helpers/helper.js");
+/* harmony import */ var _helpers_preview_btns_helper__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./helpers/preview-btns-helper */ "./src/helpers/preview-btns-helper.js");
+/* harmony import */ var _helpers_res_alignment_helper__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./helpers/res-alignment-helper */ "./src/helpers/res-alignment-helper.js");
+/* harmony import */ var _helpers_res_range_helper__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./helpers/res-range-helper */ "./src/helpers/res-range-helper.js");
+/* harmony import */ var _helpers_textshadow_helper__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./helpers/textshadow-helper */ "./src/helpers/textshadow-helper.js");
+/* harmony import */ var _helpers_textstroke_helper__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./helpers/textstroke-helper */ "./src/helpers/textstroke-helper.js");
+/* harmony import */ var _helpers_typoHelpers__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./helpers/typoHelpers */ "./src/helpers/typoHelpers.js");
 //Import controls css
 
 
