@@ -25,10 +25,11 @@ const {
   ResAlignmentControl,
   TextShadowControl,
   TextStrokeControl,
-  ResetControl,
   IconPicker,
-  RangeResetControl
+  RangeResetControl,
+  NormalBGControl
 } = window.zoloModule;
+
 
 //block attributes
 import objAttributes from './attributes';
@@ -43,6 +44,7 @@ import {
   SUBTITLE_MARGIN,
   SUBTITLE_TEXT_SHADOW,
   SUBTITLE_TEXT_STROKE,
+  TEST_NORMAL_BG,
   TEXT_ALIGN,
   TITLE_BORDER,
   TITLE_BORDER_RADIUS,
@@ -88,9 +90,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 
     showTransparentTitle,
     transparentTitleText,
-    transparentTitleXOffset,
-    transparentTitleYOffset,
-    transparentTitleRotate,
     transparentTitleHide,
     transparentTitleRotateOrigin,
 
@@ -247,9 +246,16 @@ const Inspector = ({ attributes, setAttributes }) => {
                       setValue={setAttributes}
                     />
 
+                    <PanelBody title={__('Test Background', 'zolo-blocks')} initialOpen={false}>
+                      <NormalBGControl
+                        controlName={TEST_NORMAL_BG}
+                        resRequiredProps={resRequiredProps}
+                      />
+                    </PanelBody>
+
                     {/* Hook Test */}
                     {/* {doAction('zolo_ah_general_start_action', attributes)}
-                                        {applyFilters('zolo_ah_general_start_filter', '', attributes, setAttributes)} */}
+                    {applyFilters('zolo_ah_general_start_filter', '', attributes, setAttributes)} */}
 
                     <SelectControl
                       label={__("Premade Styles", "zolo-blocks")}
@@ -388,22 +394,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                           step={1}
                         />
 
-                        {/* <ResetControl
-                          onReset={() =>
-                            setAttributes({
-                              transparentTitleXOffset: 0,
-                            })
-                          }
-                        >
-                          <RangeControl
-                            label={__('X Offset', 'zolo-blocks')}
-                            value={transparentTitleXOffset}
-                            onChange={(transparentTitleXOffset) => setAttributes({ transparentTitleXOffset })}
-                            min={-800}
-                            max={800}
-                          />
-                        </ResetControl> */}
-
                         <RangeResetControl
                           label={__('Y Offset', 'zolo-blocks')}
                           controlName={'transparentTitleYOffset'}
@@ -412,22 +402,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                           max={800}
                           step={1}
                         />
-
-                        {/* <ResetControl
-                          onReset={() =>
-                            setAttributes({
-                              transparentTitleYOffset: 0,
-                            })
-                          }
-                        >
-                          <RangeControl
-                            label={__('Y Offset', 'zolo-blocks')}
-                            value={transparentTitleYOffset}
-                            onChange={(transparentTitleYOffset) => setAttributes({ transparentTitleYOffset })}
-                            min={-800}
-                            max={800}
-                          />
-                        </ResetControl> */}
 
                         <SelectControl
                           label={__("Rotate Origin", "zolo-blocks")}
@@ -444,22 +418,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                           max={180}
                           step={1}
                         />
-
-                        {/* <ResetControl
-                          onReset={() =>
-                            setAttributes({
-                              transparentTitleRotate: 0,
-                            })
-                          }
-                        >
-                          <RangeControl
-                            label={__('Rotate', 'zolo-blocks')}
-                            value={transparentTitleRotate}
-                            onChange={(transparentTitleRotate) => setAttributes({ transparentTitleRotate })}
-                            min={-180}
-                            max={180}
-                          />
-                        </ResetControl> */}
 
                         <SelectControl
                           label={__("Hide At", "zolo-blocks")}
@@ -740,6 +698,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                       controlName={WRAPPER_BG}
                       resRequiredProps={resRequiredProps}
                     />
+
                   </PanelBody>
 
                   <PanelBody

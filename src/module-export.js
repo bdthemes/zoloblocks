@@ -11,6 +11,7 @@ export { default as GradientControl } from "./controls/gradient-control";
 export { default as IconPicker } from "./controls/icon-picker";
 export { default as DisplayIcon } from "./controls/icon-picker/DisplayIcon";
 export { default as ImageAvatar } from "./controls/image-avatar";
+export { default as NormalBGControl } from "./controls/normal-bg-control";
 export { default as RangeResetControl } from './controls/range-reset-control';
 export { default as ResAlignmentControl } from "./controls/res-alignment-control";
 export { default as ResRangeControl } from "./controls/res-range-control";
@@ -41,6 +42,10 @@ export {
   hasVal,
   softMinifyCssStrings
 } from "./helpers/helper";
+export {
+  generateNormalBGAttributes,
+  generateNormalBGControlStyles
+} from "./helpers/normal-bg-helpers";
 export {
   onDesktopBtnClick,
   onMobileBtnClick,
