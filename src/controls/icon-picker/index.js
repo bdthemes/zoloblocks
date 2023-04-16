@@ -38,9 +38,10 @@ function useOutsideAlerter(ref, setVal) {
 
 const IconPicker = (props) => {
     const {
-        attrName,
-        attrValue,
-        setValue
+        title = 'Select Icon',
+        value,
+        onChange,
+        showHeading = true
     } = props
 
     const [selectedIcon, setSelectedIcon] = useState("");
@@ -96,17 +97,16 @@ const IconPicker = (props) => {
     }, [iconType])
 
     useEffect(() => {
-        if (!attrValue || typeof attrValue != 'object') {
+        if (!value || typeof value != 'object') {
             return
         }
-        const key = Object.keys(attrValue)[0]
+        const key = Object.keys(value)[0]
         setSelectedIcon(key)
 
-        if (attrValue[key].source) {
-            console.log("save", attrValue[key].source)
-            setIconType(attrValue[key].source)
+        if (value[key].source) {
+            setIconType(value[key].source)
         }
-    }, [attrValue])
+    }, [value])
 
 
     const searchIcon = (text) => {
@@ -128,7 +128,7 @@ const IconPicker = (props) => {
 
     const saveIcon = (value) => {
         //Save attribute value
-        setValue({ [attrName]: value })
+        onChange(value)
 
         //Hide popover
         setShowPopover(false)
@@ -136,16 +136,23 @@ const IconPicker = (props) => {
 
     return (
         <>
-            <PanelRow>Select Icon</PanelRow>
+            {showHeading && (
+                <PanelRow>{title}</PanelRow>
+            )}
+
             <div
                 id={"zoloIcon"}
                 onClick={() => setShowPopover(true)}
             >
-                {attrValue && (
-                    <DisplayIcon label="Click to choose Icon" icon={attrValue} />
+                {value && (
+                    <>
+                        <DisplayIcon label="Click to choose Icon" icon={value} />
+                    </>
                 )}
-                {!attrValue && (
-                    <Dashicon className='zolo-iconpicker-placeholder' icon={'insert'} />
+                {!value && (
+                    <>
+                        <Dashicon className='zolo-iconpicker-placeholder' icon={'insert'} />
+                    </>
                 )}
 
             </div>
