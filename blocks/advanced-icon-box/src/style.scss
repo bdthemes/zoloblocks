@@ -1,19 +1,219 @@
 .wp-block-zolo-advanced-icon-box {
-	/* icon box style 9 start */
+	/* icon box style default */
+	& .zolo-block-advanced-icon-box-style-0 {
+		.zolo-block-item {
+			padding: 40px;
+			border: 1px solid rgba(247, 247, 247, 0.829);
+			padding: 30px;
+			transition: border 0.3s ease;
+			position: relative;
+			overflow: hidden;
+			border-radius: 10px;
+			background: rgba(147, 255, 170, 0.15);
 
-	.bdt-avnaced-icon-box-style-9 .bdt-hover-icon,
-	.bdt-avnaced-icon-box-style-10 .bdt-hover-icon {
-		display: none;
+			& .zolo-block-icon-wrap {
+				z-index: 1;
+				position: relative;
+				margin-bottom: 20px;
+				& svg {
+					width: 30px;
+					height: 30px;
+				}
+			}
+
+			& .zolo-block-body-content {
+				z-index: 1;
+				position: relative;
+
+				& .zolo-block-title {
+					margin: 0 0 12px 0;
+					font-size: 25px;
+					font-weight: 700;
+					text-transform: capitalize;
+				}
+
+				& .zolo-block-desc {
+					font-size: 16px;
+					color: #87878a;
+					line-height: 1.6;
+				}
+
+				& .zolo-block-link-btn {
+					margin-top: 22px;
+				}
+			}
+
+			& .zolo-block-hover-icon {
+				display: none;
+			}
+		}
 	}
 
-	.bdt-avnaced-icon-box-style-9 .bdt-item,
-	.bdt-avnaced-icon-box-style-10 .bdt-item {
-		border-radius: 10px;
-		text-align: center;
-		padding: 80px 40px 40px 40px !important;
+	/* icon box style 1 */
+	& .zolo-block-advanced-icon-box-style-1 {
+		.zolo-block-item {
+			padding: 40px;
+			border: 1px solid rgba(247, 247, 247, 0.829);
+			padding: 30px;
+			transition: border 0.3s ease;
+			position: relative;
+			overflow: hidden;
+			border-radius: 10px;
+			background: rgba(147, 255, 170, 0.15);
+
+			& .zolo-block-icon-wrap {
+				z-index: 1;
+				position: relative;
+				margin-bottom: 20px;
+				& svg {
+					width: 30px;
+					height: 30px;
+				}
+			}
+
+			& .zolo-block-body-content {
+				z-index: 1;
+				position: relative;
+
+				& .zolo-block-title {
+					margin: 0 0 12px 0;
+					font-size: 25px;
+					font-weight: 700;
+					text-transform: capitalize;
+				}
+
+				& .zolo-block-desc {
+					font-size: 16px;
+					color: #87878a;
+					line-height: 1.6;
+				}
+
+				& .zolo-block-link-btn {
+					margin-top: 22px;
+
+					& a {
+						text-decoration: none;
+						font-size: 14px;
+						border: 1px solid #32de23;
+						padding: 10px 15px;
+						display: inline-block;
+						color: #32de23;
+						border-radius: 30px;
+						text-transform: capitalize;
+						transition: all 0.3s ease;
+					}
+				}
+			}
+
+			& .zolo-block-hover-icon {
+				display: none;
+			}
+		}
 	}
 
-	.bdt-advanced-icon-box .bdt-item {
+	/* icon box style 2 */
+	& .zolo-block-advanced-icon-box-style-2 {
+		.zolo-block-item {
+			display: inline-flex;
+			grid-gap: 20px;
+			padding: 30px;
+
+			& .zolo-block-icon-wrap {
+				z-index: 1;
+				position: relative;
+				& svg {
+					width: 30px;
+					height: 30px;
+				}
+			}
+
+			& .zolo-block-body-content {
+				z-index: 1;
+				position: relative;
+
+				& .zolo-block-title {
+					margin: 0 0 12px 0;
+					font-size: 25px;
+					font-weight: 700;
+					text-transform: capitalize;
+				}
+
+				& .zolo-block-desc {
+					font-size: 16px;
+					color: #87878a;
+					line-height: 1.6;
+				}
+				& .zolo-block-link-btn {
+					margin-top: 22px;
+
+					& .zolo-box-button {
+						text-decoration: none;
+						font-size: 14px;
+						border: 1px solid #32de23;
+						padding: 10px 15px;
+						display: inline-block;
+						color: #32de23;
+						border-radius: 30px;
+						text-transform: capitalize;
+						transition: all 0.3s ease;
+					}
+				}
+			}
+
+			& .zolo-block-hover-icon {
+				display: none;
+			}
+		}
+	}
+
+	/* icon box style 3 */
+	& .zolo-block-advanced-icon-box-style-3 {
+		.zolo-block-item {
+			flex-direction: row-reverse;
+			text-align: right;
+			display: inline-flex;
+			grid-gap: 20px;
+			padding: 30px;
+
+			& .zolo-block-icon-wrap {
+				z-index: 1;
+				position: relative;
+				& svg {
+					width: 30px;
+					height: 30px;
+				}
+			}
+
+			& .zolo-block-body-content {
+				z-index: 1;
+				position: relative;
+
+				& .zolo-block-title {
+					margin: 0 0 12px 0;
+					font-size: 25px;
+					font-weight: 700;
+					text-transform: capitalize;
+				}
+
+				& .zolo-block-desc {
+					font-size: 16px;
+					color: #87878a;
+					line-height: 1.6;
+				}
+				& .zolo-block-link-btn {
+					margin-top: 22px;
+				}
+			}
+
+			& .zolo-block-hover-icon {
+				display: none;
+			}
+		}
+	}
+
+	/* General Styles */
+
+	.zolo-block-advanced-icon-box .zolo-block-item {
 		border: 1px solid rgba(247, 247, 247, 0.829);
 		padding: 30px;
 		transition: border 0.3s ease;
@@ -23,63 +223,63 @@
 		background: rgba(147, 255, 170, 0.15);
 	}
 
-	.bdt-advanced-icon-box .bdt-item:hover {
+	.zolo-block-advanced-icon-box .zolo-block-link-btn {
+		margin-top: 22px;
+		& .zolo-box-button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			text-decoration: none;
+			font-size: 14px;
+			border: 1px solid #32de23;
+			padding: 10px 15px;
+			border-radius: 30px;
+			text-transform: capitalize;
+			transition: all 0.3s ease;
+			& .zolo-button-icon {
+				width: 20px;
+				padding: 3px 5px;
+				display: block;
+			}
+			&.top {
+				flex-direction: column-reverse;
+			}
+			&.bottom {
+				flex-direction: column;
+			}
+			&.left {
+				flex-direction: row-reverse;
+			}
+			&.right {
+				flex-direction: row;
+			}
+		}
+	}
+
+	.zolo-block-advanced-icon-box .zolo-block-item:hover {
 		border-color: #32de23;
 	}
 
-	.bdt-advanced-icon-box .bdt-item:hover .bdt-link-btn a {
+	.zolo-block-advanced-icon-box
+		.zolo-block-item:hover
+		.zolo-block-link-btn
+		.zolo-box-button {
 		color: #fff;
 		background-color: #32de23;
-	}
-
-	.bdt-avnaced-icon-box-style-9 .bdt-icon-wrap,
-	.bdt-avnaced-icon-box-style-10 .bdt-icon-wrap {
-		position: absolute;
-		margin: 0;
-		background: #32de23;
-	}
-
-	.bdt-avnaced-icon-box-style-9 .bdt-icon-wrap {
-		top: -11px;
-		left: -12px;
-		border-radius: 16px;
-		padding: 24px 15px 13px 24px;
-	}
-
-	.bdt-avnaced-icon-box-style-9 .bdt-icon-wrap svg,
-	.bdt-avnaced-icon-box-style-10 .bdt-icon-wrap svg {
-		color: #fff;
-		width: 20px;
-		height: 20px;
-	}
-
-	.bdt-advanced-icon-box .bdt-link-btn {
-		margin-top: 22px;
-	}
-
-	.bdt-advanced-icon-box .bdt-link-btn a {
-		text-decoration: none;
-		font-size: 14px;
-		border: 1px solid #32de23;
-		padding: 10px 15px;
-		display: inline-block;
-		color: #32de23;
-		border-radius: 30px;
-		text-transform: capitalize;
-		transition: all 0.3s ease;
 	}
 }
 
 // tablet view
 @media (max-width: 1024px) {
 	.zolo-advanced-icon {
-		// code here
+		font-family: inherit;
 	}
 }
 
 // mobile view
 @media (max-width: 767px) {
 	.zolo-advanced-icon {
-		// code here
+		font-family: inherit;
 	}
 }

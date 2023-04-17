@@ -143,7 +143,7 @@ class Zolo_Blocks_Loader
      */
     public function generate_style_on_render_block($block_content, $block)
     {
-        if (str_contains($block['blockName'], 'zolo/')) {
+        if (isset($block['blockName']) && str_contains($block['blockName'], 'zolo/')) {
             if (isset($block['attrs']['blockStyle'])) {
                 $style = Zolo_Helpers::zolo_generate_style($block['attrs']['blockStyle']);
                 $block_content = sprintf(

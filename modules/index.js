@@ -20637,7 +20637,7 @@ const generateBackgroundControlStyles = _ref => {
   ${BGnoMainBgi === false && backgroundType === 'classic' && bgImageURL || backgroundType === 'gradient' && gradientColor ? `
     background-image: ${backgroundType === 'classic' ? `url("${bgImageURL}")` : backgroundType === 'gradient' ? gradientColor : 'none'};
     ` : ' '}
-  
+
   ${BGnoMainBgi === false && backgroundType === 'classic' && bgImageURL ? `
       ${backgroundSize && backgroundSize !== 'custom' ? `background-size: ${backgroundSize};` : backgroundSize === 'custom' ? `background-size: ${bgImgCustomSize}${bgImgCustomSizeUnit} auto;` : ' '}
 
@@ -20646,22 +20646,22 @@ const generateBackgroundControlStyles = _ref => {
       ${bgImgAttachment ? `background-attachment: ${bgImgAttachment};` : ' '}
 
       ${bgImgRepeat ? `background-repeat: ${bgImgRepeat};` : ' '}
-      
-      
+
+
       ` : ' '}
 
   ${isBgOverlay ? `
         z-index: 2;
         position: relative;
-      ` : ' '}	
+      ` : ' '}
 
   ${backgroundColor ? `background-color: ${backgroundColor};` : ' '}
-  
+
   ${forButton === true ? `
     position: relative;
     overflow: hidden;
     z-index:1;
-    
+
     ` : ''}
     `;
   const hoverBackgroundStylesDesktop = `
@@ -20680,69 +20680,69 @@ const generateBackgroundControlStyles = _ref => {
         ` : ''}
 
     ${BGnoMainBgi === false && hov_backgroundType === 'classic' && hov_bgImageURL || hov_backgroundType === 'gradient' && hov_gradientColor ? `
-        background-image: ${hov_backgroundType === 'classic' ? `url("${hov_bgImageURL}")` : hov_backgroundType === 'gradient' ? hov_gradientColor : 'none'};    
+        background-image: ${hov_backgroundType === 'classic' ? `url("${hov_bgImageURL}")` : hov_backgroundType === 'gradient' ? hov_gradientColor : 'none'};
         ` : ' '}
-  
+
     ${BGnoMainBgi === false && hov_backgroundType === 'classic' && hov_bgImageURL ? `
         ${hov_backgroundSize && hov_backgroundSize !== 'custom' ? `background-size: ${hov_backgroundSize};` : hov_backgroundSize === 'custom' ? `background-size: ${hov_bgImgCustomSize}${hov_bgImgCustomSizeUnit} auto;` : ' '}
-  
+
         ${hov_bgImgPos && hov_bgImgPos !== 'custom' ? `background-position: ${hov_bgImgPos};` : hov_bgImgPos === 'custom' ? `background-position: ${hov_bgImgcustomPosX}${hov_bgImgcustomPosXUnit} ${hov_bgImgcustomPosY}${hov_bgImgcustomPosYUnit};` : ' '}
-  
+
         ${hov_bgImgAttachment ? `background-attachment: ${hov_bgImgAttachment};` : ' '}
-  
+
         ${hov_bgImgRepeat ? `background-repeat: ${hov_bgImgRepeat};` : ' '}
-        
+
         ` : ' '}
-  
+
     ${hov_backgroundColor ? `background-color: ${hov_backgroundColor};` : ' '}
-  
+
   `;
   const backgroundStylesTab = `
       ${BGnoMainBgi === false && backgroundType === 'classic' && bgImageURL ? `
           ${TABbackgroundSize && TABbackgroundSize !== 'custom' ? `background-size: ${TABbackgroundSize};` : TABbackgroundSize === 'custom' ? `background-size: ${TABbgImgCustomSize}${TABbgImgCustomSizeUnit} auto;` : ' '}
-  
+
           ${TABbgImgPos && TABbgImgPos !== 'custom' ? `background-position: ${TABbgImgPos};` : TABbgImgPos === 'custom' ? `background-position: ${TABbgImgcustomPosX}${TABbgImgcustomPosXUnit} ${TABbgImgcustomPosY}${TABbgImgcustomPosYUnit};` : ' '}
-  
+
           ${TABbgImgRepeat ? `background-repeat: ${TABbgImgRepeat};` : ' '}
           background-attachment: scroll;
           ` : ' '}
-  
+
     `;
   const hoverBackgroundStylesTab = `
     ${BGnoMainBgi === false && hov_backgroundType === 'classic' && hov_bgImageURL ? `
         ${hov_TABbackgroundSize && hov_TABbackgroundSize !== 'custom' ? `background-size: ${hov_TABbackgroundSize};` : hov_TABbackgroundSize === 'custom' ? `background-size: ${hov_TABbgImgCustomSize}${hov_TABbgImgCustomSizeUnit} auto;` : ' '}
-  
+
         ${hov_TABbgImgPos && hov_TABbgImgPos !== 'custom' ? `background-position: ${hov_TABbgImgPos};` : hov_TABbgImgPos === 'custom' ? `background-position: ${hov_TABbgImgcustomPosX}${hov_TABbgImgcustomPosXUnit} ${hov_TABbgImgcustomPosY}${hov_TABbgImgcustomPosYUnit};` : ' '}
-  
+
         ${hov_TABbgImgRepeat ? `background-repeat: ${hov_TABbgImgRepeat};` : ' '}
         background-attachment: scroll;
         ` : ' '}
-  
+
   `;
   const backgroundStylesMobile = `
       ${BGnoMainBgi === false && backgroundType === 'classic' && bgImageURL ? `
           ${MOBbackgroundSize && MOBbackgroundSize !== 'custom' ? `background-size: ${MOBbackgroundSize};` : MOBbackgroundSize === 'custom' ? `background-size: ${MOBbgImgCustomSize}${MOBbgImgCustomSizeUnit} auto;` : ' '}
-  
+
           ${MOBbgImgPos && MOBbgImgPos !== 'custom' ? `background-position: ${MOBbgImgPos};` : MOBbgImgPos === 'custom' ? `background-position: ${MOBbgImgcustomPosX}${MOBbgImgcustomPosXUnit} ${MOBbgImgcustomPosY}${MOBbgImgcustomPosYUnit};` : ' '}
-  
+
           ${MOBbgImgRepeat ? `background-repeat: ${MOBbgImgRepeat};` : ' '}
-  
+
           ` : ' '}
-  
+
     `;
   const hoverBackgroundStylesMobile = `
     ${BGnoMainBgi === false && hov_backgroundType === 'classic' && hov_bgImageURL ? `
         ${hov_MOBbackgroundSize && hov_MOBbackgroundSize !== 'custom' ? `background-size: ${hov_MOBbackgroundSize};` : hov_MOBbackgroundSize === 'custom' ? `background-size: ${hov_MOBbgImgCustomSize}${hov_MOBbgImgCustomSizeUnit} auto;` : ' '}
-    
+
         ${hov_MOBbgImgPos && hov_MOBbgImgPos !== 'custom' ? `background-position: ${hov_MOBbgImgPos};` : hov_MOBbgImgPos === 'custom' ? `background-position: ${hov_MOBbgImgcustomPosX}${hov_MOBbgImgcustomPosXUnit} ${hov_MOBbgImgcustomPosY}${hov_MOBbgImgcustomPosYUnit};` : ' '}
-    
+
         ${hov_MOBbgImgRepeat ? `background-repeat: ${hov_MOBbgImgRepeat};` : ' '}
-    
+
         ` : ' '}
-    
+
     `;
   const overlayStylesDesktop = `
-    
+
       ${BGnoOverlay === false && isBgOverlay ? `
             content: "";
             position: absolute;
@@ -20752,96 +20752,96 @@ const generateBackgroundControlStyles = _ref => {
             left: 0;
             z-index: 0;
             ${BGnoOverlayBgi === false && overlayType === 'classic' && ovl_bgImageURL || overlayType === 'gradient' && overlayGradient ? `
-                background-image: ${overlayType === 'classic' ? `url("${ovl_bgImageURL}")` : overlayType === 'gradient' ? overlayGradient : 'none'};              
+                background-image: ${overlayType === 'classic' ? `url("${ovl_bgImageURL}")` : overlayType === 'gradient' ? overlayGradient : 'none'};
               ` : ' '}
-           
+
             ${overlayColor ? `background-color: ${overlayColor};` : ' '}
             ${ovl_opacity || ovl_opacity === 0 ? `opacity: ${ovl_opacity};` : ' '}
             ${ovl_blendMode ? `mix-blend-mode: ${ovl_blendMode};` : ' '}
-            ${ovl_allowFilters ? `filter: brightness( ${ovl_fltrBrightness}% ) contrast( ${ovl_fltrContrast}% ) saturate( ${ovl_fltrSaturation}% ) blur( ${ovl_fltrBlur}px ) hue-rotate( 
+            ${ovl_allowFilters ? `filter: brightness( ${ovl_fltrBrightness}% ) contrast( ${ovl_fltrContrast}% ) saturate( ${ovl_fltrSaturation}% ) blur( ${ovl_fltrBlur}px ) hue-rotate(
               ${ovl_fltrHue}deg );` : ' '}
-  
+
         ${BGnoOverlayBgi === false && overlayType === 'classic' && ovl_bgImageURL ? `
             ${ovl_backgroundSize && ovl_backgroundSize !== 'custom' ? `background-size: ${ovl_backgroundSize};` : ovl_backgroundSize === 'custom' ? `background-size: ${ovl_bgImgCustomSize}${ovl_bgImgCustomSizeUnit} auto;` : ' '}
-  
+
             ${ovl_bgImgPos && ovl_bgImgPos !== 'custom' ? `background-position: ${ovl_bgImgPos};` : ovl_bgImgPos === 'custom' ? `background-position: ${ovl_bgImgcustomPosX}${ovl_bgImgcustomPosXUnit} ${ovl_bgImgcustomPosY}${ovl_bgImgcustomPosYUnit};` : ' '}
-  
+
             ${ovl_bgImgAttachment ? `background-attachment: ${ovl_bgImgAttachment};` : ' '}
-  
+
             ${ovl_bgImgRepeat ? `background-repeat: ${ovl_bgImgRepeat};` : ' '}
-            
+
             ` : ' '}
         ` : ' '}
     `;
   const hoverOverlayStylesDesktop = `
-    
+
     ${BGnoOverlay === false && isBgOverlay ? `
         ${BGnoOverlayBgi === false && hov_overlayType === 'classic' && hov_ovl_bgImageURL || hov_overlayType === 'gradient' && hov_overlayGradient ? `
           background-image: ${hov_overlayType === 'classic' ? `url("${hov_ovl_bgImageURL}")` : hov_overlayType === 'gradient' ? hov_overlayGradient : 'none'};
           ` : ' '}
-  
+
         ${hov_overlayColor ? `background-color: ${hov_overlayColor};` : ' '}
         ${hov_ovl_opacity || hov_ovl_opacity === 0 ? `opacity: ${hov_ovl_opacity};` : ' '}
         ${hov_ovl_blendMode ? `mix-blend-mode: ${hov_ovl_blendMode};` : ' '}
-        ${hov_ovl_allowFilters ? `filter: brightness( ${hov_ovl_fltrBrightness}% ) contrast( ${hov_ovl_fltrContrast}% ) saturate( ${hov_ovl_fltrSaturation}% ) blur( ${hov_ovl_fltrBlur}px ) hue-rotate( 
+        ${hov_ovl_allowFilters ? `filter: brightness( ${hov_ovl_fltrBrightness}% ) contrast( ${hov_ovl_fltrContrast}% ) saturate( ${hov_ovl_fltrSaturation}% ) blur( ${hov_ovl_fltrBlur}px ) hue-rotate(
           ${hov_ovl_fltrHue}deg );` : ' '}
-    
+
       ${BGnoOverlayBgi === false && hov_overlayType === 'classic' && hov_ovl_bgImageURL ? `
           ${hov_ovl_backgroundSize && hov_ovl_backgroundSize !== 'custom' ? `background-size: ${hov_ovl_backgroundSize};` : hov_ovl_backgroundSize === 'custom' ? `background-size: ${hov_ovl_bgImgCustomSize}${hov_ovl_bgImgCustomSizeUnit} auto;` : ' '}
-    
+
           ${hov_ovl_bgImgPos && hov_ovl_bgImgPos !== 'custom' ? `background-position: ${hov_ovl_bgImgPos};` : hov_ovl_bgImgPos === 'custom' ? `background-position: ${hov_ovl_bgImgcustomPosX}${hov_ovl_bgImgcustomPosXUnit} ${hov_ovl_bgImgcustomPosY}${hov_ovl_bgImgcustomPosYUnit};` : ' '}
-    
+
           ${hov_ovl_bgImgAttachment ? `background-attachment: ${hov_ovl_bgImgAttachment};` : ' '}
-    
+
           ${hov_ovl_bgImgRepeat ? `background-repeat: ${hov_ovl_bgImgRepeat};` : ' '}
-          
+
           ` : ' '}
-    
+
       ` : ' '}
-    
-    
+
+
     `;
   const overlayStylesTab = `
     ${BGnoOverlay === false && BGnoOverlayBgi === false && isBgOverlay && overlayType === 'classic' && ovl_bgImageURL ? `
         ${TABovl_backgroundSize && TABovl_backgroundSize !== 'custom' ? `background-size: ${TABovl_backgroundSize};` : TABovl_backgroundSize === 'custom' ? `background-size: ${TABovl_bgImgCustomSize}${TABovl_bgImgCustomSizeUnit} auto;` : ' '}
-  
+
           ${TABovl_bgImgPos && TABovl_bgImgPos !== 'custom' ? `background-position: ${TABovl_bgImgPos};` : TABovl_bgImgPos === 'custom' ? `background-position: ${TABovl_bgImgcustomPosX}${TABovl_bgImgcustomPosXUnit} ${TABovl_bgImgcustomPosY}${TABovl_bgImgcustomPosYUnit};` : ' '}
-  
+
           ${TABovl_bgImgRepeat ? `background-repeat: ${TABovl_bgImgRepeat};` : ' '}
           background-attachment: scroll;
         ` : ' '}
-    
+
     `;
   const hoverOverlayStylesTab = `
   ${BGnoOverlay === false && BGnoOverlayBgi === false && isBgOverlay && hov_overlayType === 'classic' && hov_ovl_bgImageURL ? `
       ${hov_TABovl_backgroundSize && hov_TABovl_backgroundSize !== 'custom' ? `background-size: ${hov_TABovl_backgroundSize};` : hov_TABovl_backgroundSize === 'custom' ? `background-size: ${hov_TABovl_bgImgCustomSize}${hov_TABovl_bgImgCustomSizeUnit} auto;` : ' '}
-  
+
         ${hov_TABovl_bgImgPos && hov_TABovl_bgImgPos !== 'custom' ? `background-position: ${hov_TABovl_bgImgPos};` : hov_TABovl_bgImgPos === 'custom' ? `background-position: ${hov_TABovl_bgImgcustomPosX}${hov_TABovl_bgImgcustomPosXUnit} ${hov_TABovl_bgImgcustomPosY}${hov_TABovl_bgImgcustomPosYUnit};` : ' '}
-  
+
         ${hov_TABovl_bgImgRepeat ? `background-repeat: ${hov_TABovl_bgImgRepeat};` : ' '}
         background-attachment: scroll;
       ` : ' '}
-  
+
   `;
   const overlayStylesMobile = `
     ${BGnoOverlay === false && BGnoOverlayBgi === false && isBgOverlay && overlayType === 'classic' && ovl_bgImageURL ? `
         ${MOBovl_backgroundSize && MOBovl_backgroundSize !== 'custom' ? `background-size: ${MOBovl_backgroundSize};` : MOBovl_backgroundSize === 'custom' ? `background-size: ${MOBovl_bgImgCustomSize}${MOBovl_bgImgCustomSizeUnit} auto;` : ' '}
-  
+
         ${MOBovl_bgImgPos && MOBovl_bgImgPos !== 'custom' ? `background-position: ${MOBovl_bgImgPos};` : MOBovl_bgImgPos === 'custom' ? `background-position: ${MOBovl_bgImgcustomPosX}${MOBovl_bgImgcustomPosXUnit} ${MOBovl_bgImgcustomPosY}${MOBovl_bgImgcustomPosYUnit};` : ' '}
-  
+
         ${MOBovl_bgImgRepeat ? `background-repeat: ${MOBovl_bgImgRepeat};` : ' '}
         ` : ' '}
-    
+
     `;
   const hoverOverlayStylesMobile = `
     ${BGnoOverlay === false && BGnoOverlayBgi === false && isBgOverlay && hov_overlayType === 'classic' && hov_ovl_bgImageURL ? `
         ${hov_MOBovl_backgroundSize && hov_MOBovl_backgroundSize !== 'custom' ? `background-size: ${hov_MOBovl_backgroundSize};` : hov_MOBovl_backgroundSize === 'custom' ? `background-size: ${hov_MOBovl_bgImgCustomSize}${hov_MOBovl_bgImgCustomSizeUnit} auto;` : ' '}
-  
+
         ${hov_MOBovl_bgImgPos && hov_MOBovl_bgImgPos !== 'custom' ? `background-position: ${hov_MOBovl_bgImgPos};` : hov_MOBovl_bgImgPos === 'custom' ? `background-position: ${hov_MOBovl_bgImgcustomPosX}${hov_MOBovl_bgImgcustomPosXUnit} ${hov_MOBovl_bgImgcustomPosY}${hov_MOBovl_bgImgcustomPosYUnit};` : ' '}
-  
+
         ${hov_MOBovl_bgImgRepeat ? `background-repeat: ${hov_MOBovl_bgImgRepeat};` : ' '}
         ` : ' '}
-    
+
     `;
 
   // const bgTransitionStyle = noTransition
@@ -21223,21 +21223,21 @@ const generateDimensionStyle = _ref => {
                 ${dimensionRight ? `border-top-right-radius: ${parseFloat(dimensionRight)}${dimensionUnit};` : ' '}
                 ${dimensionLeft ? `border-bottom-left-radius: ${parseFloat(dimensionLeft)}${dimensionUnit};` : ' '}
                 ${dimensionBottom ? `border-bottom-right-radius: ${parseFloat(dimensionBottom)}${dimensionUnit};` : ' '}
-        
+
             `;
       dimensionStylesTab = `
                 ${TABdimensionTop ? `border-top-left-radius: ${parseFloat(TABdimensionTop)}${TABdimensionUnit};` : ' '}
                 ${TABdimensionRight ? `border-top-right-radius: ${parseFloat(TABdimensionRight)}${TABdimensionUnit};` : ' '}
                 ${TABdimensionLeft ? `border-bottom-left-radius: ${parseFloat(TABdimensionLeft)}${TABdimensionUnit};` : ' '}
                 ${TABdimensionBottom ? `border-bottom-right-radius: ${parseFloat(TABdimensionBottom)}${TABdimensionUnit};` : ' '}
-    
+
             `;
       dimensionStylesMobile = `
                 ${MOBdimensionTop ? `border-top-left-radius: ${parseFloat(MOBdimensionTop)}${MOBdimensionUnit};` : ' '}
                 ${MOBdimensionRight ? `border-top-right-radius: ${parseFloat(MOBdimensionRight)}${MOBdimensionUnit};` : ' '}
                 ${MOBdimensionLeft ? `border-bottom-left-radius: ${parseFloat(MOBdimensionLeft)}${MOBdimensionUnit};` : ' '}
                 ${MOBdimensionBottom ? `border-bottom-right-radius: ${parseFloat(MOBdimensionBottom)}${MOBdimensionUnit};` : ' '}
-    
+
             `;
     } else {
       dimensionStylesDesktop = `
@@ -21245,14 +21245,14 @@ const generateDimensionStyle = _ref => {
             ${dimensionRight ? `${styleFor}-right: ${parseFloat(dimensionRight)}${dimensionUnit};` : ' '}
             ${dimensionLeft ? `${styleFor}-left: ${parseFloat(dimensionLeft)}${dimensionUnit};` : ' '}
             ${dimensionBottom ? `${styleFor}-bottom: ${parseFloat(dimensionBottom)}${dimensionUnit};` : ' '}
-        
+
         `;
       dimensionStylesTab = `
             ${TABdimensionTop ? `${styleFor}-top: ${parseFloat(TABdimensionTop)}${TABdimensionUnit};` : ' '}
             ${TABdimensionRight ? `${styleFor}-right: ${parseFloat(TABdimensionRight)}${TABdimensionUnit};` : ' '}
             ${TABdimensionLeft ? `${styleFor}-left: ${parseFloat(TABdimensionLeft)}${TABdimensionUnit};` : ' '}
             ${TABdimensionBottom ? `${styleFor}-bottom: ${parseFloat(TABdimensionBottom)}${TABdimensionUnit};` : ' '}
-    
+
         `;
       dimensionStylesMobile = `
         ${MOBdimensionTop ? `${styleFor}-top: ${parseFloat(MOBdimensionTop)}${MOBdimensionUnit};` : ' '}
@@ -22393,7 +22393,7 @@ module.exports = window["wp"]["i18n"];
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -22407,17 +22407,17 @@ module.exports = window["wp"]["i18n"];
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	(() => {
@@ -22450,7 +22450,7 @@ module.exports = window["wp"]["i18n"];
 /******/ 			return result;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -22462,7 +22462,7 @@ module.exports = window["wp"]["i18n"];
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -22474,7 +22474,7 @@ module.exports = window["wp"]["i18n"];
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -22486,12 +22486,12 @@ module.exports = window["wp"]["i18n"];
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -22502,30 +22502,30 @@ module.exports = window["wp"]["i18n"];
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
-/******/ 		
+/******/
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"modules": 0
 /******/ 		};
-/******/ 		
+/******/
 /******/ 		// no chunk on demand loading
-/******/ 		
+/******/
 /******/ 		// no prefetching
-/******/ 		
+/******/
 /******/ 		// no preloaded
-/******/ 		
+/******/
 /******/ 		// no HMR
-/******/ 		
+/******/
 /******/ 		// no HMR manifest
-/******/ 		
+/******/
 /******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
+/******/
 /******/ 		// install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
 /******/ 			var [chunkIds, moreModules, runtime] = data;
@@ -22550,21 +22550,21 @@ module.exports = window["wp"]["i18n"];
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
-/******/ 		
+/******/
 /******/ 		var chunkLoadingGlobal = globalThis["webpackChunkzolo_blocks"] = globalThis["webpackChunkzolo_blocks"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendor-bundle"], () => (__webpack_require__("./src/module-export.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	window.zoloModule = __webpack_exports__;
-/******/ 	
+/******/
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map
