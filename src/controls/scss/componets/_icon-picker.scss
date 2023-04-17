@@ -93,3 +93,19 @@
 		}
 	}
 }
+
+.zolo-social-profile {
+	#zoloIcon {
+		margin-bottom: 0px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 100%;
+		min-width: 30px;
+
+		.dashicon,
+		i {
+			font-size: 18px;
+		}
+	}
+}

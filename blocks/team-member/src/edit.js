@@ -37,6 +37,22 @@ const {
 	generateBoxShadowStyles,
 } = window.zoloModule;
 
+const {
+	// handleUniqueId,
+	// softMinifyCssStrings,
+	// generateBackgroundControlStyles,
+	// generateBorderStyle,
+	// generateBoxShadowStyles,
+	// generateDimensionStyle,
+	// generateTypographyStyles,
+	// generateResRangeStyle,
+	// DynamicTag,
+	// generateResAlignmentStyle,
+	// generateTextShadowStyles,
+	// generateTextStrokeStyles,
+	DisplayIcon,
+} = window.zoloModule;
+
 import {
 	BLOCK_PREFIX,
 	CONTENT_ALIGNMENT,

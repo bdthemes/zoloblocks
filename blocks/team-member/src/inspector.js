@@ -33,6 +33,20 @@ const {
 	BackgroundControl,
 	BoxShadowControl,
 	ImageAvatar,
+} = window.zoloModule;
+
+const {
+	// BackgroundControl,
+	// BorderControl,
+	// BoxShadowControl,
+	// ColorControl,
+	// ResDimensionsControl,
+	// TypographyDropdown,
+	// ResRangeControl,
+	// ResAlignmentControl,
+	// TextShadowControl,
+	// TextStrokeControl,
+	// ResetControl,
 	IconPicker,
 } = window.zoloModule;
 
@@ -120,11 +134,13 @@ function Inspector(props) {
 		}
 	};
 
-	const resRequiredProps = {
-		attributes,
-		setAttributes,
-		resMode,
-		objAttributes,
+	const setProfileIcon = (value, index) => {
+		let profile = [...socialProfiles];
+		profile[index] = {
+			...profile[index],
+			icon: { ...value },
+		};
+		setAttributes({ socialProfiles: [...profile] });
 	};
 
 	return (
@@ -394,15 +410,7 @@ function Inspector(props) {
 																key={index}
 															>
 																<div className="profile-icon">
-																	<IconPicker
-																		setValue={(
-																			value
-																		) => {
-																			console.log(
-																				value
-																			);
-																		}}
-																	/>
+																	icon
 																</div>
 																<div className="profile-link">
 																	<TextControl

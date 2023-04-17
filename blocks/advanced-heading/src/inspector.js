@@ -241,9 +241,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         initialOpen={true}
                                     >
                                         <IconPicker
-                                            attrName='headingIcon'
-                                            attrValue={headingIcon}
-                                            setValue={setAttributes}
+                                            value={headingIcon}
+                                            onChange={(value) => setAttributes({ headingIcon: value })}
                                         />
 
                                         {/* Hook Test */}
