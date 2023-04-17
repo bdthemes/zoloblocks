@@ -83,45 +83,45 @@
 	// 	// 		}
 	// 	// 	}
 
-	// 	// 	& .zolo-block-body-content {
-	// 	// 		z-index: 1;
-	// 	// 		position: relative;
+	// 	& .zolo-block-body-content {
+	// 		z-index: 1;
+	// 		position: relative;
 
-	// 	// 		& .zolo-block-title {
-	// 	// 			margin: 0 0 12px 0;
+	// 		& .zolo-block-title {
+	// 			margin: 0 0 12px 0;
 
-	// 	// 			font-weight: 700;
-	// 	// 			text-transform: capitalize;
-	// 	// 		}
-	// 	// 		h2.zolo-block-title {
-	// 	// 			font-size: 25px;
-	// 	// 		}
+	// 			font-weight: 700;
+	// 			text-transform: capitalize;
+	// 		}
+	// 		h2.zolo-block-title {
+	// 			font-size: 25px;
+	// 		}
 
-	// 	// 		& .zolo-block-desc {
-	// 	// 			font-size: 16px;
-	// 	// 			line-height: 1.6;
-	// 	// 		}
+	// 		& .zolo-block-desc {
+	// 			font-size: 16px;
+	// 			line-height: 1.6;
+	// 		}
 
-	// 	// 		& .zolo-block-link-btn {
-	// 	// 			margin-top: 22px;
+	// 		& .zolo-block-link-btn {
+	// 			margin-top: 22px;
 
-	// 	// 			& a {
-	// 	// 				text-decoration: none;
-	// 	// 				font-size: 14px;
-	// 	// 				border: 1px solid #32de23;
-	// 	// 				padding: 10px 15px;
-	// 	// 				color: #32de23;
-	// 	// 				border-radius: 30px;
-	// 	// 				text-transform: capitalize;
-	// 	// 				transition: all 0.3s ease;
-	// 	// 			}
-	// 	// 		}
-	// 	// 	}
+	// 			& a {
+	// 				text-decoration: none;
+	// 				font-size: 14px;
+	// 				border: 1px solid #32de23;
+	// 				padding: 10px 15px;
+	// 				color: #32de23;
+	// 				border-radius: 30px;
+	// 				text-transform: capitalize;
+	// 				transition: all 0.3s ease;
+	// 			}
+	// 		}
+	// 	}
 
-	// 	// 	& .zolo-block-hover-icon {
-	// 	// 		display: none;
-	// 	// 	}
-	// 	// }
+	// 	& .zolo-block-hover-icon {
+	// 		display: none;
+	// 	}
+	// }
 	// }
 
 	/* icon box style 2 */
@@ -257,52 +257,66 @@
 		background: rgba(147, 255, 170, 0.15);
 		.zolo-block-icon-wrap {
 			display: flex;
+			margin-bottom: 20px;
+		}
+		.zolo-block-body-content {
+			z-index: 1;
+			position: relative;
+
+			& .zolo-block-title {
+				margin: 0 0 12px 0;
+
+				font-weight: 700;
+				text-transform: capitalize;
+			}
+			h2.zolo-block-title {
+				font-size: 25px;
+			}
+
+			& .zolo-block-desc {
+				font-size: 16px;
+				line-height: 1.6;
+			}
+
+			& .zolo-block-link-btn {
+				margin-top: 22px;
+				display: flex;
+				& .zolo-box-button {
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					text-align: center;
+					text-decoration: none;
+					font-size: 14px;
+					border: 1px solid #32de23;
+					padding: 10px 15px;
+					border-radius: 30px;
+					text-transform: capitalize;
+					transition: all 0.3s ease;
+					& .zolo-button-icon {
+						width: 20px;
+						padding: 3px 5px;
+						display: block;
+					}
+					// &.top {
+					// 	flex-direction: column-reverse;
+					// }
+					// &.bottom {
+					// 	flex-direction: column;
+					// }
+					// &.left {
+					// 	flex-direction: row-reverse;
+					// }
+					// &.right {
+					// 	flex-direction: row;
+					// }
+				}
+			}
+		}
+		& .zolo-block-hover-icon {
+			display: none;
 		}
 	}
-
-	// .zolo-block-advanced-icon-box .zolo-block-link-btn {
-	// 	margin-top: 22px;
-	// 	display: flex;
-	// 	&.button-left {
-	// 		justify-content: left;
-	// 	}
-	// 	&.button-center {
-	// 		justify-content: center;
-	// 	}
-	// 	&.button-right {
-	// 		justify-content: right;
-	// 	}
-	// 	& .zolo-box-button {
-	// 		display: inline-flex;
-	// 		align-items: center;
-	// 		justify-content: center;
-	// 		text-align: center;
-	// 		text-decoration: none;
-	// 		font-size: 14px;
-	// 		border: 1px solid #32de23;
-	// 		padding: 10px 15px;
-	// 		border-radius: 30px;
-	// 		text-transform: capitalize;
-	// 		transition: all 0.3s ease;
-	// 		& .zolo-button-icon {
-	// 			width: 20px;
-	// 			padding: 3px 5px;
-	// 			display: block;
-	// 		}
-	// 		&.top {
-	// 			flex-direction: column-reverse;
-	// 		}
-	// 		&.bottom {
-	// 			flex-direction: column;
-	// 		}
-	// 		&.left {
-	// 			flex-direction: row-reverse;
-	// 		}
-	// 		&.right {
-	// 			flex-direction: row;
-	// 		}
-	// 	}
-	// }
 
 	.zolo-block-advanced-icon-box .zolo-block-item:hover {
 		border-color: #32de23;

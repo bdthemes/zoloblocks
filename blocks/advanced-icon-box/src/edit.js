@@ -10,18 +10,17 @@ import {
 import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
+import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-import classnames from 'classnames';
-import {
+const {
 	handleUniqueId,
 	softMinifyCssStrings,
-} from '../../../src/helpers/helper';
-import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-helper';
-import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
-import { generateBorderStyle } from '../../../src/helpers/border-helper';
+	generateResAlignmentStyle,
+	generateResRangeStyle,
+	generateBorderStyle,
+} = window.zoloModule;
 
 import {
 	BLOCK_PREFIX,
@@ -52,14 +51,11 @@ export default function Edit( props ) {
 		iconPosition,
 		iconColor,
 		iconHoverColor,
-		topIconPosition,
-		buttonPosition,
 		iconType,
 		iconBoxTitle,
 		iconBoxDescription,
 		buttonText,
 		buttonLink,
-		globalLink,
 		presetOneStyles,
 		presetThreeStyles,
 	} = attributes;
@@ -199,6 +195,12 @@ export default function Edit( props ) {
 				.${ uniqueId }
 				.zolo-block-icon-wrap{
 					justify-content: ${ presetOneStyles && presetOneStyles.iconPosition };
+				}	
+				.zolo-block-link-btn{
+					justify-content: ${ presetOneStyles && presetOneStyles.buttonPosition };
+				}		
+				.zolo-box-button{
+					flex-direction: ${ presetOneStyles && presetOneStyles.buttonIconPosition };
 				}				
 			
 			`;
@@ -380,10 +382,6 @@ export default function Edit( props ) {
 				<div
 					className={ `zolo-block-advanced-icon-box ${ uniqueId } zolo-block-advanced-icon-box-style-1 ${ preset }` }
 				>
-					{ /* { globalLink == true && (
-						<a href="#">
-					) } */ }
-
 					<div className="zolo-block-item">
 						<div className={ `zolo-block-icon-wrap` }>
 							{ iconType == 'icon' && (
@@ -434,15 +432,11 @@ export default function Edit( props ) {
 								allowedFormats={ [] }
 							/>
 
-							<div
-								className={ `zolo-block-link-btn ${ buttonPosition }` }
-							>
-								<a
-									className={ `zolo-box-button ${ iconPosition }` }
-									href={ buttonLink }
-								>
+							<div className={ `zolo-block-link-btn` }>
+								<a className={ `zolo-box-button` }>
 									<RichText
 										value={ buttonText }
+										tagName="span"
 										onChange={ ( text ) =>
 											setAttributes( {
 												buttonText: text,
@@ -452,7 +446,6 @@ export default function Edit( props ) {
 											'Read More',
 											'zolo-blocks'
 										) }
-										allowedFormats={ [] }
 									/>
 									{ showIcon && (
 										<svg
@@ -488,8 +481,6 @@ export default function Edit( props ) {
 							</svg>
 						</div>
 					</div>
-					{ /* { globalLink == true && (</a>)
-					} */ }
 				</div>
 			</div>
 		</>

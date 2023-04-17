@@ -55,6 +55,7 @@ const attributes = {
 	},
 	titleTag: {
 		type: 'string',
+		default: 'h2',
 	},
 	link: {
 		type: 'object',
@@ -90,9 +91,6 @@ const attributes = {
 	topIconPosition: {
 		type: 'string',
 		default: 'left',
-	},
-	buttonPosition: {
-		type: 'string',
 	},
 	textColor: {
 		type: 'string',
@@ -140,6 +138,8 @@ const attributes = {
 		type: 'object',
 		default: {
 			iconPosition: 'left',
+			buttonPosition: 'left',
+			buttonIconPosition: 'row-reverse',
 		},
 	},
 	presetThreeStyles: {

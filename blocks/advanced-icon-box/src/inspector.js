@@ -426,12 +426,17 @@ function Inspector( props ) {
 												'zolo-blocks'
 											) }
 											options={ BUTTON_POSITIONS }
-											onChange={ ( position ) => {
+											onChange={ ( value ) =>
 												setAttributes( {
-													buttonPosition: position,
-												} );
-											} }
-											value={ buttonPosition }
+													presetOneStyles: {
+														...presetOneStyles,
+														buttonPosition: value,
+													},
+												} )
+											}
+											value={
+												presetOneStyles.buttonPosition
+											}
 										/>
 										<ToggleControl
 											label={ __(
@@ -458,11 +463,16 @@ function Inspector( props ) {
 													options={ ICON_POSITIONS }
 													onChange={ ( position ) => {
 														setAttributes( {
-															iconPosition:
-																position,
+															presetOneStyles: {
+																...presetOneStyles,
+																buttonIconPosition:
+																	position,
+															},
 														} );
 													} }
-													value={ iconPosition }
+													value={
+														presetOneStyles.buttonIconPosition
+													}
 												/>
 												<ResRangeControl
 													label={ __(

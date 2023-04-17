@@ -73,19 +73,19 @@ export const ICON_BOX_POSITIONS = [
 export const ICON_POSITIONS = [
 	{
 		label: 'Left',
-		value: 'left',
+		value: 'row-reverse',
 	},
 	{
 		label: 'Right',
-		value: 'right',
+		value: 'row',
 	},
 	{
 		label: 'Top',
-		value: 'top',
+		value: 'column-reverse',
 	},
 	{
 		label: 'Bottom',
-		value: 'bottom',
+		value: 'column',
 	},
 ];
 
@@ -93,15 +93,15 @@ export const ICON_POSITIONS = [
 export const BUTTON_POSITIONS = [
 	{
 		label: 'Left',
-		value: 'button-left',
+		value: 'left',
 	},
 	{
 		label: 'Center',
-		value: 'button-center',
+		value: 'center',
 	},
 	{
 		label: 'Right',
-		value: 'button-right',
+		value: 'right',
 	},
 ];
 
