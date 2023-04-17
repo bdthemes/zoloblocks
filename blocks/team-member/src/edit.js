@@ -35,21 +35,6 @@ const {
 	generateTypographyStyles,
 	generateResRangeStyle,
 	generateBoxShadowStyles,
-} = window.zoloModule;
-
-const {
-	// handleUniqueId,
-	// softMinifyCssStrings,
-	// generateBackgroundControlStyles,
-	// generateBorderStyle,
-	// generateBoxShadowStyles,
-	// generateDimensionStyle,
-	// generateTypographyStyles,
-	// generateResRangeStyle,
-	// DynamicTag,
-	// generateResAlignmentStyle,
-	// generateTextShadowStyles,
-	// generateTextStrokeStyles,
 	DisplayIcon,
 } = window.zoloModule;
 
@@ -109,7 +94,6 @@ export default function Edit(props) {
 		iconBgColor,
 		iconHoverBgColor,
 	} = attributes;
-
 	const [popoverVisible, setPopoverVisible] = useState(false);
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -679,10 +663,9 @@ export default function Edit(props) {
 														'noreferer'
 													}
 												>
-													<i
-														className={`fa-brands fa-facebook`}
+													<DisplayIcon
+														icon={profile.icon}
 													/>
-													{/* <Dashicon icon="insert" /> */}
 												</a>
 											);
 										})}

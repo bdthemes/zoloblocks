@@ -32,7 +32,6 @@ const {
 	BoxShadowControl,
 } = window.zoloModule;
 
-// import { PRESETS } from "../../../src/global/constants";
 import objAttributes from './attributes';
 import {
 	BUTTON_ALIGNMENT,
@@ -55,6 +54,7 @@ import {
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { NORMAL_HOVER } from '../../../src/global/constants';
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
@@ -87,24 +87,6 @@ function Inspector(props) {
 		presetElevenStyles,
 		presetTwelveStyles,
 	} = attributes;
-
-	// const changePreset = (selected) => {
-	// 	setAttributes({ preset: selected });
-	// 	switch (selected) {
-	// 		case 'preset-1':
-	// 			//Write code here
-	// 			setAttributes({
-	// 				bgColor: '#551ef7',
-	// 				textColor: '#ffffff',
-	// 			});
-	// 			break;
-	// 		case 'preset-2':
-	// 			//Write code here
-	// 			break;
-	// 		default:
-	// 			return false;
-	// 	}
-	// };
 
 	const resRequiredProps = {
 		attributes,
@@ -618,7 +600,229 @@ function Inspector(props) {
 											}
 											resRequiredProps={resRequiredProps}
 										/>
-										<TabPanelControl
+										<TabPanel
+											className="zolo-tab-panel"
+											activeClass="active-tab"
+											tabs={NORMAL_HOVER.map(
+												({ value, label }) => ({
+													name: value,
+													title: label,
+													className: `zolo-tab ${value}`,
+												})
+											)}
+										>
+											{(tab) => {
+												if ('normal' === tab.name) {
+													return (
+														<>
+															<ColorControl
+																label={__(
+																	'Text Color',
+																	'zolo-blocks'
+																)}
+																color={
+																	textColor
+																}
+																onChange={(
+																	value
+																) =>
+																	setAttributes(
+																		{
+																			textColor:
+																				value,
+																		}
+																	)
+																}
+															/>
+															<CardDivider />
+															<ColorControl
+																label={__(
+																	'Icon Color',
+																	'zolo-blocks'
+																)}
+																color={
+																	iconColor
+																}
+																onChange={(
+																	value
+																) =>
+																	setAttributes(
+																		{
+																			iconColor:
+																				value,
+																		}
+																	)
+																}
+															/>
+															<ColorControl
+																label={__(
+																	'Icon Background',
+																	'zolo-blocks'
+																)}
+																color={iconBg}
+																onChange={(
+																	value
+																) =>
+																	setAttributes(
+																		{
+																			iconBg: value,
+																		}
+																	)
+																}
+															/>
+															<BoxShadowControl
+																controlName={
+																	ICON_BOX_SHADOW
+																}
+																resRequiredProps={
+																	resRequiredProps
+																}
+																enableTransition={
+																	false
+																}
+															/>
+															<CardDivider />
+															<BoxShadowControl
+																controlName={
+																	BUTTON_BOX_SHADOW
+																}
+																resRequiredProps={
+																	resRequiredProps
+																}
+																enableTransition={
+																	false
+																}
+															/>
+														</>
+													);
+												} else {
+													return (
+														<>
+															<ColorControl
+																label={__(
+																	'Text Color',
+																	'zolo-blocks'
+																)}
+																color={
+																	textHoverColor
+																}
+																onChange={(
+																	value
+																) =>
+																	setAttributes(
+																		{
+																			textHoverColor:
+																				value,
+																		}
+																	)
+																}
+															/>
+															<CardDivider />
+															<ColorControl
+																label={__(
+																	'Icon Color',
+																	'zolo-blocks'
+																)}
+																color={
+																	iconHoverColor
+																}
+																onChange={(
+																	value
+																) =>
+																	setAttributes(
+																		{
+																			iconHoverColor:
+																				value,
+																		}
+																	)
+																}
+															/>
+															<ColorControl
+																label={__(
+																	'Icon Border Color',
+																	'zolo-blocks'
+																)}
+																color={
+																	iconBorderHoverColor
+																}
+																onChange={(
+																	value
+																) =>
+																	setAttributes(
+																		{
+																			iconBorderHoverColor:
+																				value,
+																		}
+																	)
+																}
+															/>
+															<ColorControl
+																label={__(
+																	'Icon Background',
+																	'zolo-blocks'
+																)}
+																color={
+																	iconHoverBg
+																}
+																onChange={(
+																	value
+																) =>
+																	setAttributes(
+																		{
+																			iconHoverBg:
+																				value,
+																		}
+																	)
+																}
+															/>
+															<BoxShadowControl
+																controlName={
+																	ICON_HOVER_BOX_SHADOW
+																}
+																resRequiredProps={
+																	resRequiredProps
+																}
+																enableTransition={
+																	false
+																}
+															/>
+															<CardDivider />
+															<ColorControl
+																label={__(
+																	'Border Color',
+																	'zolo-blocks'
+																)}
+																color={
+																	borderHoverColor
+																}
+																onChange={(
+																	value
+																) =>
+																	setAttributes(
+																		{
+																			borderHoverColor:
+																				value,
+																		}
+																	)
+																}
+															/>
+															<BoxShadowControl
+																controlName={
+																	BUTTON_HOVER_BOX_SHADOW
+																}
+																resRequiredProps={
+																	resRequiredProps
+																}
+																enableTransition={
+																	true
+																}
+															/>
+														</>
+													);
+												}
+											}}
+										</TabPanel>
+										{/* <TabPanelControl
 											normalComponents={
 												<>
 													<ColorControl
@@ -772,7 +976,7 @@ function Inspector(props) {
 													/>
 												</>
 											}
-										/>
+										/> */}
 									</PanelBody>
 									<PanelBody
 										title={__('Background', 'zolo-blocks')}

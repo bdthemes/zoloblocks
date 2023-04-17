@@ -85,8 +85,8 @@ const Save = ({ attributes }) => {
 													'_blank'
 												}
 											>
-												<i
-													className={`fa-brands fa-facebook`}
+												<DisplayIcon
+													icon={profile.icon}
 												/>
 											</a>
 										);

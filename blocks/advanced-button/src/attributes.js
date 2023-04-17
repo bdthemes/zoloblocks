@@ -1,3 +1,6 @@
+/**
+ * Internal dependencies
+ */
 const {
 	generateResAlignmentAttributies,
 	generateResRangeAttributies,
@@ -68,6 +71,7 @@ const attributes = {
 	//Block specific Attributes
 	preset: {
 		type: 'string',
+		default: '',
 	},
 	presetOneStyles: {
 		type: 'object',

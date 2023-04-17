@@ -106,7 +106,18 @@ const attributes = {
 	},
 	socialProfiles: {
 		type: 'array',
-		default: [],
+		default: [
+			{
+				icon: {
+					facebook: {
+						name: 'facebook',
+						source: 'dashicon',
+						type: '',
+					},
+				},
+				link: '#',
+			},
+		],
 	},
 	socialProfilesLinkTarget: {
 		type: 'boolean',
