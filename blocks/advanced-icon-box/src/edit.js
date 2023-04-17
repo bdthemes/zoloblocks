@@ -56,6 +56,7 @@ export default function Edit( props ) {
 		iconBoxDescription,
 		buttonText,
 		buttonLink,
+		globalLink,
 		presetOneStyles,
 		presetThreeStyles,
 	} = attributes;
@@ -382,6 +383,7 @@ export default function Edit( props ) {
 				<div
 					className={ `zolo-block-advanced-icon-box ${ uniqueId } zolo-block-advanced-icon-box-style-1 ${ preset }` }
 				>
+					{ globalLink == true && <a href={ buttonLink }>Button</a> }
 					<div className="zolo-block-item">
 						<div className={ `zolo-block-icon-wrap` }>
 							{ iconType == 'icon' && (
