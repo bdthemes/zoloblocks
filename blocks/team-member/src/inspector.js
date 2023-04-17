@@ -18,20 +18,23 @@ import {
 	Button,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 
 /**
  * Internal depencencies
  */
-import ResAlignmentControl from '../../../src/controls/res-alignment-control';
-import ResRangeControl from '../../../src/controls/res-range-control';
-import ColorControl from '../../../src/controls/color-control';
-import BorderControl from '../../../src/controls/border-control';
-import ResDimensionsControl from '../../../src/controls/dimensions-control';
-import TypographyDropdown from '../../../src/controls/typography-control';
-import TabPanelControl from '../../../src/controls/tabpanel-control';
-import BackgroundControl from '../../../src/controls/background-control';
-import BoxShadowControl from '../../../src/controls/boxshadow-control';
+const {
+	ResAlignmentControl,
+	ResRangeControl,
+	ColorControl,
+	BorderControl,
+	ResDimensionsControl,
+	TypographyDropdown,
+	TabPanelControl,
+	BackgroundControl,
+	BoxShadowControl,
+	ImageAvatar,
+	IconPicker,
+} = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
@@ -50,7 +53,6 @@ import {
 	ICONS_BORDER,
 	ICONS_BORDER_RADIUS,
 	ICONS_PADDING,
-	ICONS_MARGIN,
 	ICONS_BOX_SHADOW,
 	ICONS_HOVER_BOX_SHADOW,
 } from './constants';
@@ -61,10 +63,6 @@ import {
 	TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
 } from './constants/typoPrefixConstants';
 
-import ImageAvatar from '../../../src/controls/image-avatar';
-import IconPicker from '../../../src/controls/icon-picker';
-import DisplayIcon from '../../../src/controls/icon-picker/DisplayIcon';
-
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
 	const {
@@ -73,6 +71,7 @@ function Inspector(props) {
 		preset,
 		memberPhoto,
 		memberName,
+		showDesignation,
 		memberDesignation,
 		enableMemberDetailsPage,
 		memberDetailPageLink,
@@ -91,26 +90,35 @@ function Inspector(props) {
 		iconHoverBgColor,
 		iconHoverBorderColor,
 		teamSocialIcon,
-		myicons,
 	} = attributes;
 
-	// const changePreset = (selected) => {
-	// 	setAttributes({ preset: selected });
-	// 	switch (selected) {
-	// 		case 'preset-1':
-	// 			//Write code here
-	// 			setAttributes({
-	// 				bgColor: '#551ef7',
-	// 				textColor: '#ffffff',
-	// 			});
-	// 			break;
-	// 		case 'preset-2':
-	// 			//Write code here
-	// 			break;
-	// 		default:
-	// 			return false;
-	// 	}
-	// };
+	/**
+	 * Preset
+	 */
+	const changePremade = (selected) => {
+		setAttributes({ preset: selected });
+		switch (selected) {
+			case 'default':
+				setAttributes({
+					showShortBio: false,
+					showSocialProfiles: true,
+					enableMemberDetailsPage: true,
+					showDesignation: true,
+					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
+				});
+				break;
+			case 'style-1':
+				setAttributes({
+					showShortBio: false,
+					showSocialProfiles: true,
+					enableMemberDetailsPage: false,
+					showDesignation: false,
+					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'center',
+				});
+			default:
+				return false;
+		}
+	};
 
 	const resRequiredProps = {
 		attributes,
@@ -118,12 +126,6 @@ function Inspector(props) {
 		resMode,
 		objAttributes,
 	};
-
-	// console.log(teamSocialIcon);
-	// console.log('Selected Icon', zoloIcon && zoloIcon.zoloIcon['']);
-
-	console.log(socialProfiles);
-	// console.log(socialProfiles && socialProfiles[0].icon);
 
 	return (
 		<InspectorControls key="controls">
@@ -165,10 +167,8 @@ function Inspector(props) {
 											)}
 											value={preset}
 											options={PRESETS}
-											onChange={(value) =>
-												setAttributes({
-													preset: value,
-												})
+											onChange={(selected) =>
+												changePremade(selected)
 											}
 										/>
 										<ToggleControl
@@ -184,15 +184,31 @@ function Inspector(props) {
 												})
 											}
 										/>
+										{preset !== 'style-1' && (
+											<ToggleControl
+												label={__(
+													'Show Short Bio',
+													'zolo-blocks'
+												)}
+												checked={showShortBio}
+												onChange={() =>
+													setAttributes({
+														showShortBio:
+															!showShortBio,
+													})
+												}
+											/>
+										)}
 										<ToggleControl
 											label={__(
-												'Show Short Bio',
+												'Show Designation',
 												'zolo-blocks'
 											)}
-											checked={showShortBio}
+											checked={showDesignation}
 											onChange={() =>
 												setAttributes({
-													showShortBio: !showShortBio,
+													showDesignation:
+														!showDesignation,
 												})
 											}
 										/>
@@ -277,22 +293,24 @@ function Inspector(props) {
 												'zolo-blocks'
 											)}
 										/>
-										<TextControl
-											label={__(
-												'Designation',
-												'zolo-blocks'
-											)}
-											onChange={(d) =>
-												setAttributes({
-													memberDesignation: d,
-												})
-											}
-											value={memberDesignation}
-											placeholder={__(
-												'Designation..',
-												'zolo-blocks'
-											)}
-										/>
+										{showDesignation && (
+											<TextControl
+												label={__(
+													'Designation',
+													'zolo-blocks'
+												)}
+												onChange={(d) =>
+													setAttributes({
+														memberDesignation: d,
+													})
+												}
+												value={memberDesignation}
+												placeholder={__(
+													'Designation..',
+													'zolo-blocks'
+												)}
+											/>
+										)}
 										{showShortBio && (
 											<TextareaControl
 												label={__(
@@ -367,7 +385,6 @@ function Inspector(props) {
 													'zolo-blocks'
 												)}
 											</Button>
-											{console.log(teamSocialIcon)}
 											{socialProfiles &&
 												socialProfiles.map(
 													(profile, index) => {
@@ -575,204 +592,264 @@ function Inspector(props) {
 											resRequiredProps={resRequiredProps}
 										/>
 									</PanelBody>
-									<PanelBody
-										title={__('Designation', 'zolo-blocks')}
-										initialOpen={false}
-									>
-										<TypographyDropdown
-											label={__(
-												'Typography',
+									{showDesignation && (
+										<PanelBody
+											title={__(
+												'Designation',
 												'zolo-blocks'
 											)}
-											typoPrefixConstant={
-												TEAM_MEMBER_DESIGNATION_TYPOGRAPHY
-											}
-											resRequiredProps={resRequiredProps}
-										/>
-										<ColorControl
-											label={__('Color', 'zolo-blocks')}
-											color={designationColor}
-											onChange={(color) =>
-												setAttributes({
-													designationColor: color,
-												})
-											}
-										/>
-										<ResDimensionsControl
-											label={__('Margin', 'zolo-blocks')}
-											controlName={
-												TEAM_DESIGNATION_MARGIN
-											}
-											resRequiredProps={resRequiredProps}
-										/>
-									</PanelBody>
-									<PanelBody
-										title={__('Short Bio', 'zolo-blocks')}
-										initialOpen={false}
-									>
-										<TypographyDropdown
-											label={__(
-												'Typography',
+											initialOpen={false}
+										>
+											<TypographyDropdown
+												label={__(
+													'Typography',
+													'zolo-blocks'
+												)}
+												typoPrefixConstant={
+													TEAM_MEMBER_DESIGNATION_TYPOGRAPHY
+												}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
+											<ColorControl
+												label={__(
+													'Color',
+													'zolo-blocks'
+												)}
+												color={designationColor}
+												onChange={(color) =>
+													setAttributes({
+														designationColor: color,
+													})
+												}
+											/>
+											<ResDimensionsControl
+												label={__(
+													'Margin',
+													'zolo-blocks'
+												)}
+												controlName={
+													TEAM_DESIGNATION_MARGIN
+												}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
+										</PanelBody>
+									)}
+									{showShortBio && (
+										<PanelBody
+											title={__(
+												'Short Bio',
 												'zolo-blocks'
 											)}
-											typoPrefixConstant={
-												TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY
-											}
-											resRequiredProps={resRequiredProps}
-										/>
-										<ColorControl
-											label={__('Color', 'zolo-blocks')}
-											color={shortBioColor}
-											onChange={(color) =>
-												setAttributes({
-													shortBioColor: color,
-												})
-											}
-										/>
-										<ResDimensionsControl
-											label={__('Margin', 'zolo-blocks')}
-											controlName={TEAM_SHORT_BIO_MARGIN}
-											resRequiredProps={resRequiredProps}
-										/>
-									</PanelBody>
-									<PanelBody
-										title={__(
-											'Social Profiles',
-											'zolo-blocks'
-										)}
-										initialOpen={false}
-									>
-										<ResRangeControl
-											label={__(
-												'Icon Size',
+											initialOpen={false}
+										>
+											<TypographyDropdown
+												label={__(
+													'Typography',
+													'zolo-blocks'
+												)}
+												typoPrefixConstant={
+													TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY
+												}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
+											<ColorControl
+												label={__(
+													'Color',
+													'zolo-blocks'
+												)}
+												color={shortBioColor}
+												onChange={(color) =>
+													setAttributes({
+														shortBioColor: color,
+													})
+												}
+											/>
+											<ResDimensionsControl
+												label={__(
+													'Margin',
+													'zolo-blocks'
+												)}
+												controlName={
+													TEAM_SHORT_BIO_MARGIN
+												}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
+										</PanelBody>
+									)}
+									{showSocialProfiles && (
+										<PanelBody
+											title={__(
+												'Social Profiles',
 												'zolo-blocks'
 											)}
-											controlName={ICONS_SIZE}
-											resRequiredProps={resRequiredProps}
-										/>
-										<ResRangeControl
-											label={__(
-												'Icon Spacing',
-												'zolo-blocks'
-											)}
-											controlName={ICONS_SPACING}
-											resRequiredProps={resRequiredProps}
-										/>
-										<BorderControl
-											label={__('Border', 'zolo-blocks')}
-											controlName={ICONS_BORDER}
-											resRequiredProps={resRequiredProps}
-										/>
-										<ResDimensionsControl
-											label={__(
-												'Border Radius',
-												'zolo-blocks'
-											)}
-											controlName={ICONS_BORDER_RADIUS}
-											resRequiredProps={resRequiredProps}
-										/>
-										<ResDimensionsControl
-											label={__('Padding', 'zolo-blocks')}
-											controlName={ICONS_PADDING}
-											resRequiredProps={resRequiredProps}
-										/>
-										<TabPanelControl
-											normalComponents={
-												<>
-													<ColorControl
-														label={__(
-															'Color',
-															'zolo-blocks'
-														)}
-														color={iconColor}
-														onChange={(color) =>
-															setAttributes({
-																iconColor:
-																	color,
-															})
-														}
-													/>
-													<ColorControl
-														label={__(
-															'Background',
-															'zolo-blocks'
-														)}
-														color={iconBgColor}
-														onChange={(color) =>
-															setAttributes({
-																iconBgColor:
-																	color,
-															})
-														}
-													/>
-													<BoxShadowControl
-														controlName={
-															ICONS_BOX_SHADOW
-														}
-														resRequiredProps={
-															resRequiredProps
-														}
-														enableTransition={false}
-													/>
-												</>
-											}
-											hoverComponents={
-												<>
-													<ColorControl
-														label={__(
-															'Color',
-															'zolo-blocks'
-														)}
-														color={iconHoverColor}
-														onChange={(color) =>
-															setAttributes({
-																iconHoverColor:
-																	color,
-															})
-														}
-													/>
+											initialOpen={false}
+										>
+											<ResRangeControl
+												label={__(
+													'Icon Size',
+													'zolo-blocks'
+												)}
+												controlName={ICONS_SIZE}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
+											<ResRangeControl
+												label={__(
+													'Icon Spacing',
+													'zolo-blocks'
+												)}
+												controlName={ICONS_SPACING}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
+											<BorderControl
+												label={__(
+													'Border',
+													'zolo-blocks'
+												)}
+												controlName={ICONS_BORDER}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
+											<ResDimensionsControl
+												label={__(
+													'Border Radius',
+													'zolo-blocks'
+												)}
+												controlName={
+													ICONS_BORDER_RADIUS
+												}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
+											<ResDimensionsControl
+												label={__(
+													'Padding',
+													'zolo-blocks'
+												)}
+												controlName={ICONS_PADDING}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
+											<TabPanelControl
+												normalComponents={
+													<>
+														<ColorControl
+															label={__(
+																'Color',
+																'zolo-blocks'
+															)}
+															color={iconColor}
+															onChange={(color) =>
+																setAttributes({
+																	iconColor:
+																		color,
+																})
+															}
+														/>
+														<ColorControl
+															label={__(
+																'Background',
+																'zolo-blocks'
+															)}
+															color={iconBgColor}
+															onChange={(color) =>
+																setAttributes({
+																	iconBgColor:
+																		color,
+																})
+															}
+														/>
+														<BoxShadowControl
+															controlName={
+																ICONS_BOX_SHADOW
+															}
+															resRequiredProps={
+																resRequiredProps
+															}
+															enableTransition={
+																false
+															}
+														/>
+													</>
+												}
+												hoverComponents={
+													<>
+														<ColorControl
+															label={__(
+																'Color',
+																'zolo-blocks'
+															)}
+															color={
+																iconHoverColor
+															}
+															onChange={(color) =>
+																setAttributes({
+																	iconHoverColor:
+																		color,
+																})
+															}
+														/>
 
-													<ColorControl
-														label={__(
-															'Background',
-															'zolo-blocks'
-														)}
-														color={iconHoverBgColor}
-														onChange={(color) =>
-															setAttributes({
-																iconHoverBgColor:
-																	color,
-															})
-														}
-													/>
-													<ColorControl
-														label={__(
-															'Border Color',
-															'zolo-blocks'
-														)}
-														color={
-															iconHoverBorderColor
-														}
-														onChange={(color) =>
-															setAttributes({
-																iconHoverBorderColor:
-																	color,
-															})
-														}
-													/>
-													<BoxShadowControl
-														controlName={
-															ICONS_HOVER_BOX_SHADOW
-														}
-														resRequiredProps={
-															resRequiredProps
-														}
-														enableTransition={false}
-													/>
-												</>
-											}
-										/>
-									</PanelBody>
+														<ColorControl
+															label={__(
+																'Background',
+																'zolo-blocks'
+															)}
+															color={
+																iconHoverBgColor
+															}
+															onChange={(color) =>
+																setAttributes({
+																	iconHoverBgColor:
+																		color,
+																})
+															}
+														/>
+														<ColorControl
+															label={__(
+																'Border Color',
+																'zolo-blocks'
+															)}
+															color={
+																iconHoverBorderColor
+															}
+															onChange={(color) =>
+																setAttributes({
+																	iconHoverBorderColor:
+																		color,
+																})
+															}
+														/>
+														<BoxShadowControl
+															controlName={
+																ICONS_HOVER_BOX_SHADOW
+															}
+															resRequiredProps={
+																resRequiredProps
+															}
+															enableTransition={
+																false
+															}
+														/>
+													</>
+												}
+											/>
+										</PanelBody>
+									)}
 								</>
 							)}
 

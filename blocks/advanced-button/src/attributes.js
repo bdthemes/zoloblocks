@@ -1,10 +1,12 @@
-import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
-import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
-import { generateBorderAttributies } from '../../../src/helpers/border-helper';
-import { generateDimensionAttributes } from '../../../src/helpers/dimension-helper';
-import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHelpers';
-import { generateBoxShadowAttributies } from '../../../src/helpers/boxshadow-helper';
-import { generateTypographyAttributes } from '../../../src/helpers/typoHelpers';
+const {
+	generateResAlignmentAttributies,
+	generateResRangeAttributies,
+	generateBorderAttributies,
+	generateDimensionAttributes,
+	generateBackgroundAttributes,
+	generateBoxShadowAttributies,
+	generateTypographyAttributes,
+} = window.zoloModule;
 
 import {
 	BUTTON_ALIGNMENT,

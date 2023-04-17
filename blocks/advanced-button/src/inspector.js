@@ -20,25 +20,17 @@ import { Fragment } from '@wordpress/element';
 /**
  * Internal depencencies
  */
-import ResAlignmentControl from '../../../src/controls/res-alignment-control';
-import ResRangeControl from '../../../src/controls/res-range-control';
-import ColorControl from '../../../src/controls/color-control';
-import BorderControl from '../../../src/controls/border-control';
-import ResDimensionsControl from '../../../src/controls/dimensions-control';
-import TypographyDropdown from '../../../src/controls/typography-control';
-import TabPanelControl from '../../../src/controls/tabpanel-control';
-import BackgroundControl from '../../../src/controls/background-control';
-import BoxShadowControl from '../../../src/controls/boxshadow-control';
-
-// const {
-// 	BackgroundControl,
-// 	BorderControl,
-// 	BoxShadowControl,
-// 	ColorControl,
-// 	ResDimensionsControl,
-// 	ResAlignmentControl,
-// 	TypographyDropdown,
-// } = window.zoloModule;
+const {
+	ResAlignmentControl,
+	ResRangeControl,
+	ColorControl,
+	BorderControl,
+	ResDimensionsControl,
+	TypographyDropdown,
+	TabPanelControl,
+	BackgroundControl,
+	BoxShadowControl,
+} = window.zoloModule;
 
 // import { PRESETS } from "../../../src/global/constants";
 import objAttributes from './attributes';

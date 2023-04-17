@@ -1,10 +1,14 @@
-import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
-import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
-import { generateBorderAttributies } from '../../../src/helpers/border-helper';
-import { generateDimensionAttributes } from '../../../src/helpers/dimension-helper';
-// import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHelpers';
-import { generateBoxShadowAttributies } from '../../../src/helpers/boxshadow-helper';
-import { generateTypographyAttributes } from '../../../src/helpers/typoHelpers';
+/**
+ * Internal dependencies
+ */
+const {
+	generateResAlignmentAttributies,
+	generateResRangeAttributies,
+	generateBorderAttributies,
+	generateDimensionAttributes,
+	generateBoxShadowAttributies,
+	generateTypographyAttributes,
+} = window.zoloModule;
 
 import {
 	CONTENT_ALIGNMENT,
@@ -14,6 +18,7 @@ import {
 	TEAM_PHOTO_MARGIN,
 	TEAM_PHOTO_PADDING,
 	TEAM_NAME_MARGIN,
+	TEAM_DESIGNATION_MARGIN,
 	TEAM_SHORT_BIO_MARGIN,
 	ICONS_SIZE,
 	ICONS_SPACING,
@@ -40,7 +45,7 @@ const attributes = {
 	},
 	preset: {
 		type: 'string',
-		default: 'preset-1',
+		default: 'default',
 	},
 	// Generators
 	...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
@@ -51,15 +56,13 @@ const attributes = {
 	...generateDimensionAttributes(TEAM_PHOTO_MARGIN),
 	...generateDimensionAttributes(TEAM_PHOTO_PADDING),
 	...generateBoxShadowAttributies(TEAM_PHOTO_BOX_SHADOW),
-
+	...generateDimensionAttributes(TEAM_DESIGNATION_MARGIN),
 	...generateDimensionAttributes(TEAM_NAME_MARGIN),
-	...generateDimensionAttributes(ICONS_BORDER),
+	...generateBorderAttributies(ICONS_BORDER),
 	...generateDimensionAttributes(ICONS_BORDER_RADIUS),
 	...generateDimensionAttributes(ICONS_PADDING),
 	...generateDimensionAttributes(TEAM_SHORT_BIO_MARGIN),
-	...generateResRangeAttributies(ICONS_SIZE, {
-		default: 20,
-	}),
+	...generateResRangeAttributies(ICONS_SIZE, {}),
 	...generateResRangeAttributies(ICONS_SPACING, {}),
 	...generateBoxShadowAttributies(ICONS_BOX_SHADOW),
 	...generateBoxShadowAttributies(ICONS_HOVER_BOX_SHADOW),
@@ -78,6 +81,14 @@ const attributes = {
 	},
 	memberDetailPageLink: {
 		type: 'object',
+		default: {
+			url: '#',
+			opensInNewTab: false,
+		},
+	},
+	showDesignation: {
+		type: 'boolean',
+		default: true,
 	},
 	memberDesignation: {
 		type: 'string',
@@ -93,22 +104,9 @@ const attributes = {
 		type: 'boolean',
 		default: true,
 	},
-	// socialProfiles: {
-	// 	type: 'array',
-	// 	items: {
-	// 		type: 'object',
-	// 		properties: {
-	// 			icon: {
-	// 				type: 'object',
-	// 			},
-	// 			link: {
-	// 				type: 'string',
-	// 			},
-	// 		},
-	// 	},
-	// },
 	socialProfiles: {
 		type: 'array',
+		default: [],
 	},
 	socialProfilesLinkTarget: {
 		type: 'boolean',
@@ -142,9 +140,6 @@ const attributes = {
 	},
 	iconHoverBorderColor: {
 		type: 'string',
-	},
-	teamSocialIcon: {
-		type: 'object',
 	},
 };
 

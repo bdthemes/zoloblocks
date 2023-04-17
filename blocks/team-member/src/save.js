@@ -4,11 +4,11 @@ const Save = ({ attributes }) => {
 	const {
 		uniqueId,
 		preset,
-		blockStyle,
 		memberPhoto,
 		memberName,
 		enableMemberDetailsPage,
 		memberDetailPageLink,
+		showDesignation,
 		memberDesignation,
 		showShortBio,
 		memberShortBio,
@@ -20,7 +20,7 @@ const Save = ({ attributes }) => {
 	return (
 		<div
 			{...useBlockProps.save({
-				className: uniqueId,
+				className: uniqueId + ` ${preset ? preset : ''}`,
 			})}
 		>
 			<div className="zolo-item">
@@ -59,11 +59,14 @@ const Save = ({ attributes }) => {
 								className="zolo-name"
 							/>
 						)}
-						<RichText.Content
-							tagName="div"
-							value={memberDesignation}
-							className="zolo-designation"
-						/>
+
+						{showDesignation && (
+							<RichText.Content
+								tagName="div"
+								value={memberDesignation}
+								className="zolo-designation"
+							/>
+						)}
 						{showSocialProfiles && (
 							<div className="zolo-social-share">
 								{socialProfiles &&
@@ -82,7 +85,7 @@ const Save = ({ attributes }) => {
 												}
 											>
 												<i
-													className={`fa-brands fa-${profile.icon}`}
+													className={`fa-brands fa-facebook`}
 												/>
 											</a>
 										);
@@ -139,9 +142,11 @@ const Save = ({ attributes }) => {
 								<RichText.Content value={memberName} />
 							)}
 						</div>
-						<div className="zolo-designation">
-							<RichText.Content value={memberDesignation} />
-						</div>
+						{showDesignation && (
+							<div className="zolo-designation">
+								<RichText.Content value={memberDesignation} />
+							</div>
+						)}
 						{showShortBio && (
 							<div className="zolo-desc">
 								<RichText.Content value={memberShortBio} />

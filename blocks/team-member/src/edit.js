@@ -21,26 +21,29 @@ import {
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+import classnames from 'classnames';
+
 /**
  * Internal depencencies
  */
-import classnames from 'classnames';
-import {
+const {
 	handleUniqueId,
 	softMinifyCssStrings,
-} from '../../../src/helpers/helper';
-
-import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-helper';
-import { generateBorderStyle } from '../../../src/helpers/border-helper';
-import { generateDimensionStyle } from '../../../src/helpers/dimension-helper';
-import { generateTypographyStyles } from '../../../src/helpers/typoHelpers';
-import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
+	generateResAlignmentStyle,
+	generateBorderStyle,
+	generateDimensionStyle,
+	generateTypographyStyles,
+	generateResRangeStyle,
+	generateBoxShadowStyles,
+} = window.zoloModule;
 
 import {
 	BLOCK_PREFIX,
 	CONTENT_ALIGNMENT,
 	ICONS_BORDER,
 	ICONS_BORDER_RADIUS,
+	ICONS_BOX_SHADOW,
+	ICONS_HOVER_BOX_SHADOW,
 	ICONS_PADDING,
 	ICONS_SIZE,
 	ICONS_SPACING,
@@ -48,6 +51,7 @@ import {
 	TEAM_NAME_MARGIN,
 	TEAM_PHOTO_BORDER,
 	TEAM_PHOTO_BORDER_RADIUS,
+	TEAM_PHOTO_BOX_SHADOW,
 	TEAM_PHOTO_MARGIN,
 	TEAM_PHOTO_PADDING,
 	TEAM_SHORT_BIO_MARGIN,
@@ -72,6 +76,7 @@ export default function Edit(props) {
 		memberName,
 		enableMemberDetailsPage,
 		memberDetailPageLink,
+		showDesignation,
 		memberDesignation,
 		showShortBio,
 		memberShortBio,
@@ -82,6 +87,11 @@ export default function Edit(props) {
 		nameColor,
 		designationColor,
 		shortBioColor,
+		iconColor,
+		iconHoverColor,
+		iconHoverBorderColor,
+		iconBgColor,
+		iconHoverBgColor,
 	} = attributes;
 
 	const [popoverVisible, setPopoverVisible] = useState(false);
@@ -97,7 +107,7 @@ export default function Edit(props) {
 	}, []);
 
 	const blockProps = useBlockProps({
-		className: classnames(className, `${uniqueId}`),
+		className: classnames(className, `${uniqueId} ${preset ? preset : ''}`),
 	});
 
 	// content alignment
@@ -175,6 +185,11 @@ export default function Edit(props) {
 		controlName: TEAM_PHOTO_BORDER_RADIUS,
 		styleFor: 'border-radius',
 		attributes,
+	});
+
+	const { boxShadowStyle: teamPhotoBoxShadow } = generateBoxShadowStyles({
+		attributes,
+		controlName: TEAM_PHOTO_BOX_SHADOW,
 	});
 
 	const {
@@ -310,6 +325,18 @@ export default function Edit(props) {
 		attributes,
 	});
 
+	const { boxShadowStyle: socialIconNormalBoxShadow } =
+		generateBoxShadowStyles({
+			attributes,
+			controlName: ICONS_BOX_SHADOW,
+		});
+
+	const { boxShadowStyle: socialIconHoverBoxShadow } =
+		generateBoxShadowStyles({
+			attributes,
+			controlName: ICONS_HOVER_BOX_SHADOW,
+		});
+
 	/**
 	 * All Style Combination
 	 */
@@ -332,6 +359,7 @@ export default function Edit(props) {
 			${photoDeskBorderRadius}
 			${photoDeskPadding}
 			${photoDeskMargin}
+			${teamPhotoBoxShadow}
 		}
 
 		.${uniqueId} .zolo-name {
@@ -364,6 +392,24 @@ export default function Edit(props) {
 			${socialIconDeskBorderStyle}
 			${socialIconsBorderRadiusDesk}
 			${socialIconsPaddingDesk}
+			${socialIconNormalBoxShadow}
+			${iconColor && iconColor !== '' ? `color: ${iconColor};` : ''}
+			${iconBgColor && iconBgColor !== '' ? `background: ${iconBgColor};` : ''}
+		}
+
+		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a:hover {
+			${socialIconHoverBoxShadow}
+			${iconHoverColor && iconHoverColor !== '' ? `color: ${iconHoverColor};` : ''}
+			${
+				iconHoverBorderColor && iconHoverBorderColor !== ''
+					? `border-color: ${iconHoverBorderColor};`
+					: ''
+			}
+			${
+				iconHoverBgColor && iconHoverBgColor !== ''
+					? `background: ${iconHoverBgColor};`
+					: ''
+			}
 		}
 
 		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
@@ -398,6 +444,13 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-social-share {
 			${socialIconsGapTab}
 		}
+
+		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a {
+			${socialIconTabBorderStyle}
+			${socialIconsBorderRadiusTab}
+			${socialIconsPaddingTab}
+		}
+
 		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
 			${socialIconTab}
 		}
@@ -431,6 +484,13 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-social-share {
 			${socialIconsGapMob}
 		}
+
+		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a {
+			${socialIconMobBorderStyle}
+			${socialIconsBorderRadiusMob}
+			${socialIconsPaddingMob}
+		}
+		
 		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
 			${socialIconMob}
 		}
@@ -505,12 +565,14 @@ export default function Edit(props) {
 						</ToolbarGroup>
 					</Fragment>
 				)}
-				<ToolbarGroup>
-					<ToolbarButton
-						icon="admin-links"
-						onClick={() => setPopoverVisible(!popoverVisible)}
-					/>
-				</ToolbarGroup>
+				{enableMemberDetailsPage && (
+					<ToolbarGroup>
+						<ToolbarButton
+							icon="admin-links"
+							onClick={() => setPopoverVisible(!popoverVisible)}
+						/>
+					</ToolbarGroup>
+				)}
 				{popoverVisible && (
 					<Popover
 						position="bottom right"
@@ -568,20 +630,26 @@ export default function Edit(props) {
 								placeholder={__('Name...', 'zolo-blocks')}
 								allowedFormats={['core/bold', 'core/italic']}
 							/>
-							<RichText
-								className="zolo-designation"
-								value={memberDesignation}
-								onChange={(designation) =>
-									setAttributes({
-										memberDesignation: designation,
-									})
-								}
-								placeholder={__(
-									'Designation...',
-									'zolo-blocks'
-								)}
-								allowedFormats={['core/bold', 'core/italic']}
-							/>
+							{showDesignation && (
+								<RichText
+									className="zolo-designation"
+									value={memberDesignation}
+									onChange={(designation) =>
+										setAttributes({
+											memberDesignation: designation,
+										})
+									}
+									placeholder={__(
+										'Designation...',
+										'zolo-blocks'
+									)}
+									allowedFormats={[
+										'core/bold',
+										'core/italic',
+									]}
+								/>
+							)}
+
 							{showSocialProfiles && (
 								<div className="zolo-social-share">
 									{socialProfiles &&
@@ -595,10 +663,10 @@ export default function Edit(props) {
 														'noreferer'
 													}
 												>
-													{/* <i
+													<i
 														className={`fa-brands fa-facebook`}
-													/> */}
-													<Dashicon icon="insert" />
+													/>
+													{/* <Dashicon icon="insert" /> */}
 												</a>
 											);
 										})}
@@ -639,20 +707,25 @@ export default function Edit(props) {
 								placeholder={__('Name...', 'zolo-blocks')}
 								allowedFormats={['core/bold', 'core/italic']}
 							/>
-							<RichText
-								className="zolo-designation"
-								value={memberDesignation}
-								onChange={(designation) =>
-									setAttributes({
-										memberDesignation: designation,
-									})
-								}
-								placeholder={__(
-									'Designation...',
-									'zolo-blocks'
-								)}
-								allowedFormats={['core/bold', 'core/italic']}
-							/>
+							{showDesignation && (
+								<RichText
+									className="zolo-designation"
+									value={memberDesignation}
+									onChange={(designation) =>
+										setAttributes({
+											memberDesignation: designation,
+										})
+									}
+									placeholder={__(
+										'Designation...',
+										'zolo-blocks'
+									)}
+									allowedFormats={[
+										'core/bold',
+										'core/italic',
+									]}
+								/>
+							)}
 							{showShortBio && (
 								<RichText
 									className="zolo-desc"
