@@ -142,6 +142,14 @@ const attributes = {
 			buttonIconPosition: 'row-reverse',
 		},
 	},
+	presetTwoStyles: {
+		type: 'object',
+		default: {
+			iconPosition: 'top',
+			buttonPosition: 'left',
+			buttonIconPosition: 'row-reverse',
+		},
+	},
 	presetThreeStyles: {
 		type: 'object',
 		default: {

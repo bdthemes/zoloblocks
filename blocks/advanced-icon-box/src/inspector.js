@@ -39,6 +39,7 @@ import {
 	ICON_POSITIONS,
 	BUTTON_POSITIONS,
 	TOP_ICON_POSITIONS,
+	SIDE_ICON_POSITIONS,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
 	ICON_TYPOGRAPHY,
@@ -57,9 +58,6 @@ function Inspector( props ) {
 		showIcon,
 		iconColor,
 		iconHoverColor,
-		iconPosition,
-		topIconPosition,
-		buttonPosition,
 		textColor,
 		textHoverColor,
 		descColor,
@@ -69,6 +67,7 @@ function Inspector( props ) {
 		buttonLink,
 		globalLink,
 		presetOneStyles,
+		presetTwoStyles,
 		presetThreeStyles,
 	} = attributes;
 
@@ -203,7 +202,6 @@ function Inspector( props ) {
 												<br />
 
 												{ preset !== '' &&
-													preset !== 'style-2' &&
 													preset == 'style-1' && (
 														<SelectControl
 															label={ __(
@@ -230,14 +228,38 @@ function Inspector( props ) {
 															}
 														/>
 													) }
-												{ preset == 'style-3' && (
+												{ preset == 'style-2' && (
 													<SelectControl
 														label={ __(
-															'Position 3',
+															'Position',
 															'zolo-blocks'
 														) }
 														options={
-															TOP_ICON_POSITIONS
+															SIDE_ICON_POSITIONS
+														}
+														onChange={ ( value ) =>
+															setAttributes( {
+																presetTwoStyles:
+																	{
+																		...presetTwoStyles,
+																		iconPosition:
+																			value,
+																	},
+															} )
+														}
+														value={
+															presetTwoStyles.iconPosition
+														}
+													/>
+												) }
+												{ preset == 'style-3' && (
+													<SelectControl
+														label={ __(
+															'Position',
+															'zolo-blocks'
+														) }
+														options={
+															SIDE_ICON_POSITIONS
 														}
 														onChange={ ( value ) =>
 															setAttributes( {
@@ -420,24 +442,69 @@ function Inspector( props ) {
 												} )
 											}
 										/>
-										<SelectControl
-											label={ __(
-												'Button Position',
-												'zolo-blocks'
-											) }
-											options={ BUTTON_POSITIONS }
-											onChange={ ( value ) =>
-												setAttributes( {
-													presetOneStyles: {
-														...presetOneStyles,
-														buttonPosition: value,
-													},
-												} )
-											}
-											value={
-												presetOneStyles.buttonPosition
-											}
-										/>
+										{ preset === 'style-1' && (
+											<SelectControl
+												label={ __(
+													'Button Position',
+													'zolo-blocks'
+												) }
+												options={ BUTTON_POSITIONS }
+												onChange={ ( value ) =>
+													setAttributes( {
+														presetOneStyles: {
+															...presetOneStyles,
+															buttonPosition:
+																value,
+														},
+													} )
+												}
+												value={
+													presetOneStyles.buttonPosition
+												}
+											/>
+										) }
+										{ preset === 'style-2' && (
+											<SelectControl
+												label={ __(
+													'Button Position',
+													'zolo-blocks'
+												) }
+												options={ BUTTON_POSITIONS }
+												onChange={ ( value ) =>
+													setAttributes( {
+														presetTwoStyles: {
+															...presetTwoStyles,
+															buttonPosition:
+																value,
+														},
+													} )
+												}
+												value={
+													presetTwoStyles.buttonPosition
+												}
+											/>
+										) }
+										{ preset === 'style-3' && (
+											<SelectControl
+												label={ __(
+													'Button Position',
+													'zolo-blocks'
+												) }
+												options={ BUTTON_POSITIONS }
+												onChange={ ( value ) =>
+													setAttributes( {
+														presetThreeStyles: {
+															...presetThreeStyles,
+															buttonPosition:
+																value,
+														},
+													} )
+												}
+												value={
+													presetThreeStyles.buttonPosition
+												}
+											/>
+										) }
 										<ToggleControl
 											label={ __(
 												'Enable Icon',
@@ -455,25 +522,84 @@ function Inspector( props ) {
 												<p>
 													<strong>Icon Picker</strong>
 												</p>
-												<SelectControl
-													label={ __(
-														'Position',
-														'zolo-blocks'
-													) }
-													options={ ICON_POSITIONS }
-													onChange={ ( position ) => {
-														setAttributes( {
-															presetOneStyles: {
-																...presetOneStyles,
-																buttonIconPosition:
-																	position,
-															},
-														} );
-													} }
-													value={
-														presetOneStyles.buttonIconPosition
-													}
-												/>
+												{ preset === 'style-1' && (
+													<SelectControl
+														label={ __(
+															'Position',
+															'zolo-blocks'
+														) }
+														options={
+															ICON_POSITIONS
+														}
+														onChange={ (
+															position
+														) => {
+															setAttributes( {
+																presetOneStyles:
+																	{
+																		...presetOneStyles,
+																		buttonIconPosition:
+																			position,
+																	},
+															} );
+														} }
+														value={
+															presetOneStyles.buttonIconPosition
+														}
+													/>
+												) }
+												{ preset === 'style-2' && (
+													<SelectControl
+														label={ __(
+															'Position',
+															'zolo-blocks'
+														) }
+														options={
+															ICON_POSITIONS
+														}
+														onChange={ (
+															position
+														) => {
+															setAttributes( {
+																presetTwoStyles:
+																	{
+																		...presetTwoStyles,
+																		buttonIconPosition:
+																			position,
+																	},
+															} );
+														} }
+														value={
+															presetTwoStyles.buttonIconPosition
+														}
+													/>
+												) }
+												{ preset === 'style-3' && (
+													<SelectControl
+														label={ __(
+															'Position',
+															'zolo-blocks'
+														) }
+														options={
+															ICON_POSITIONS
+														}
+														onChange={ (
+															position
+														) => {
+															setAttributes( {
+																presetThreeStyles:
+																	{
+																		...presetThreeStyles,
+																		buttonIconPosition:
+																			position,
+																	},
+															} );
+														} }
+														value={
+															presetThreeStyles.buttonIconPosition
+														}
+													/>
+												) }
 												<ResRangeControl
 													label={ __(
 														'Icon Size',

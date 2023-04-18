@@ -58,6 +58,7 @@ export default function Edit( props ) {
 		buttonLink,
 		globalLink,
 		presetOneStyles,
+		presetTwoStyles,
 		presetThreeStyles,
 	} = attributes;
 
@@ -193,7 +194,6 @@ export default function Edit( props ) {
 	switch ( preset ) {
 		case 'style-1':
 			presetStyles = `
-				.${ uniqueId }
 				.zolo-block-icon-wrap{
 					justify-content: ${ presetOneStyles && presetOneStyles.iconPosition };
 				}	
@@ -207,12 +207,30 @@ export default function Edit( props ) {
 			`;
 			break;
 		case 'style-2':
+			presetStyles = `
+				.zolo-block-icon-wrap{
+					align-items: ${ presetTwoStyles && presetTwoStyles.iconPosition };
+				}					
+				.zolo-block-link-btn{
+					justify-content: ${ presetTwoStyles && presetTwoStyles.buttonPosition };
+				}		
+				.zolo-box-button{
+					flex-direction: ${ presetTwoStyles && presetTwoStyles.buttonIconPosition };
+				}		
+			
+			`;
 			break;
 		case 'style-3':
 			presetStyles = `
 				.${ uniqueId }
 				.zolo-block-icon-wrap{
-					justify-content: ${ presetThreeStyles && presetThreeStyles.iconPosition };
+					align-items: ${ presetThreeStyles && presetThreeStyles.iconPosition };
+				}						
+				.zolo-block-link-btn{
+					justify-content: ${ presetThreeStyles && presetThreeStyles.buttonPosition };
+				}		
+				.zolo-box-button{
+					flex-direction: ${ presetThreeStyles && presetThreeStyles.buttonIconPosition };
 				}				
 			
 			`;
@@ -381,9 +399,8 @@ export default function Edit( props ) {
 			<style>{ ` ${ softMinifyCssStrings( allStyle ) }` }</style>
 			<div { ...blockProps }>
 				<div
-					className={ `zolo-block-advanced-icon-box ${ uniqueId } zolo-block-advanced-icon-box-style-1 ${ preset }` }
+					className={ `zolo-block-advanced-icon-box ${ uniqueId } zolo-block-advanced-icon-box-${ preset }` }
 				>
-					{ globalLink == true && <a href={ buttonLink }>Button</a> }
 					<div className="zolo-block-item">
 						<div className={ `zolo-block-icon-wrap` }>
 							{ iconType == 'icon' && (
