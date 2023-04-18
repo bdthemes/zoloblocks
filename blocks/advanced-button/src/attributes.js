@@ -159,7 +159,7 @@ const attributes = {
 		default: false,
 	},
 	icon: {
-		type: 'string',
+		type: 'object',
 	},
 	iconPosition: {
 		type: 'string',

@@ -30,6 +30,7 @@ const {
 	TabPanelControl,
 	BackgroundControl,
 	BoxShadowControl,
+	IconPicker
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -224,9 +225,21 @@ function Inspector(props) {
 										/>
 										{showIcon && (
 											<Fragment>
-												<p>
-													<strong>Icon Picker</strong>
-												</p>
+												<IconPicker
+													value={
+														icon
+													}
+													onChange={(
+														value
+													) =>
+														setAttributes({
+															icon: value
+														})
+													}
+													showHeading={
+														true
+													}
+												/>
 												<SelectControl
 													label={__(
 														'Position',
