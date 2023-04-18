@@ -17,6 +17,7 @@ export { default as TextStrokeControl } from "./controls/textstroke-control";
 export { default as TypographyDropdown } from "./controls/typography-control";
 export { default as IconPicker } from "./controls/icon-picker";
 export { default as DisplayIcon } from "./controls/icon-picker/DisplayIcon";
+export { default as TabPanelControl } from "./controls/tabpanel-control";
 
 //Export Helpers
 export {

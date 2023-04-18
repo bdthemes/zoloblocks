@@ -19,8 +19,6 @@ import {
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { NORMAL_HOVER } from '../../../src/global/constants';
-
 /**
  * Internal depencencies
  */
@@ -32,10 +30,10 @@ const {
 	ResDimensionsControl,
 	TypographyDropdown,
 	BackgroundControl,
-	TabPanelControl,
 	BoxShadowControl,
 	ImageAvatar,
 	IconPicker,
+	TabPanelControl
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -143,7 +141,6 @@ function Inspector(props) {
 				<TabPanel
 					className="zolo-parent-tab-panel"
 					activeClass="active-tab"
-					// onSelect={onSelect}
 					tabs={[
 						{
 							name: 'settings',
@@ -497,6 +494,7 @@ function Inspector(props) {
 
 							{tab.name === 'design' && (
 								<>
+									
 									<PanelBody
 										title={__('General', 'zolo-blocks')}
 										initialOpen={true}
@@ -759,22 +757,9 @@ function Inspector(props) {
 													resRequiredProps
 												}
 											/>
-
-											<TabPanel
-												className="zolo-tab-panel"
-												activeClass="active-tab"
-												tabs={NORMAL_HOVER.map(
-													({ value, label }) => ({
-														name: value,
-														title: label,
-														className: `zolo-tab ${value}`,
-													})
-												)}
-											>
-												{(tab) => {
-													if ('normal' === tab.name) {
-														return (
-															<>
+											<TabPanelControl 
+												normalComponents={
+													<>
 																<ColorControl
 																	label={__(
 																		'Color',
@@ -825,10 +810,9 @@ function Inspector(props) {
 																	}
 																/>
 															</>
-														);
-													} else {
-														return (
-															<>
+												}
+												hoverComponents={
+													<>
 																<ColorControl
 																	label={__(
 																		'Color',
@@ -899,115 +883,9 @@ function Inspector(props) {
 																	}
 																/>
 															</>
-														);
-													}
-												}}
-											</TabPanel>
-
-											{/* <TabPanelControl
-												normalComponents={
-													<>
-														<ColorControl
-															label={__(
-																'Color',
-																'zolo-blocks'
-															)}
-															color={iconColor}
-															onChange={(color) =>
-																setAttributes({
-																	iconColor:
-																		color,
-																})
-															}
-														/>
-														<ColorControl
-															label={__(
-																'Background',
-																'zolo-blocks'
-															)}
-															color={iconBgColor}
-															onChange={(color) =>
-																setAttributes({
-																	iconBgColor:
-																		color,
-																})
-															}
-														/>
-														<BoxShadowControl
-															controlName={
-																ICONS_BOX_SHADOW
-															}
-															resRequiredProps={
-																resRequiredProps
-															}
-															enableTransition={
-																false
-															}
-														/>
-													</>
 												}
-												hoverComponents={
-													<>
-														<ColorControl
-															label={__(
-																'Color',
-																'zolo-blocks'
-															)}
-															color={
-																iconHoverColor
-															}
-															onChange={(color) =>
-																setAttributes({
-																	iconHoverColor:
-																		color,
-																})
-															}
-														/>
-
-														<ColorControl
-															label={__(
-																'Background',
-																'zolo-blocks'
-															)}
-															color={
-																iconHoverBgColor
-															}
-															onChange={(color) =>
-																setAttributes({
-																	iconHoverBgColor:
-																		color,
-																})
-															}
-														/>
-														<ColorControl
-															label={__(
-																'Border Color',
-																'zolo-blocks'
-															)}
-															color={
-																iconHoverBorderColor
-															}
-															onChange={(color) =>
-																setAttributes({
-																	iconHoverBorderColor:
-																		color,
-																})
-															}
-														/>
-														<BoxShadowControl
-															controlName={
-																ICONS_HOVER_BOX_SHADOW
-															}
-															resRequiredProps={
-																resRequiredProps
-															}
-															enableTransition={
-																false
-															}
-														/>
-													</>
-												}
-											/> */}
+											/>
+											
 										</PanelBody>
 									)}
 								</>
