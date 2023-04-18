@@ -124,6 +124,10 @@ const attributes = {
 		default: true,
 	},
 	// block style
+	contentBg: {
+		type: 'string',
+		default: '#ffffff',
+	},
 	photoBgColor: {
 		type: 'string',
 	},
@@ -137,6 +141,10 @@ const attributes = {
 		type: 'string',
 	},
 	// social icons
+	separatorColor: {
+		type: "string",
+		default: "#ddd"
+	},
 	iconColor: {
 		type: 'string',
 	},

@@ -84,10 +84,12 @@ export default function Edit(props) {
 		showSocialProfiles,
 		socialProfiles,
 		socialProfilesLinkTarget,
+		contentBg,
 		photoBgColor,
 		nameColor,
 		designationColor,
 		shortBioColor,
+		separatorColor,
 		iconColor,
 		iconHoverColor,
 		iconHoverBorderColor,
@@ -345,8 +347,16 @@ export default function Edit(props) {
 			${teamDeskAlignStyle}
 		}
 
+		.${uniqueId} .zolo-item .zolo-info-wrap, .${uniqueId} .zolo-item .zolo-hover-content {
+			background-color: ${contentBg}
+		}
+
 		.${uniqueId} .zolo-social-share {
 			${socialDeskAlignStyle}
+		}
+
+		.${uniqueId} .zolo-item .zolo-hover-content .zolo-social-share {
+			border-top-color: ${separatorColor};
 		}
 
 		.${uniqueId} .zolo-image-wrap img {

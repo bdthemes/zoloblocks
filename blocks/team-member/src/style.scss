@@ -117,7 +117,10 @@
 	// 		border-radius: 50%;
 	// 	}
 	// }
-
+	.zolo-social-share {
+		border-top-width: 1px;
+		border-top-style: solid;
+	}
 	/*
     * Styles
     */
@@ -125,7 +128,6 @@
 		.zolo-item {
 			position: relative;
 			.zolo-hover-content {
-				background-color: #fff;
 				-webkit-box-shadow: 0px 10px 60px 0px rgba(0, 32, 110, 0.07);
 				box-shadow: 0px 10px 60px 0px rgba(0, 32, 110, 0.07);
 				padding: 30px 40px;
@@ -148,7 +150,6 @@
 				.zolo-social-share {
 					padding-top: 25px;
 					margin-top: 25px;
-					border-top: 1px solid #ddd;
 					a {
 						width: 35px;
 						height: 35px;

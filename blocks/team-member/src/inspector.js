@@ -80,10 +80,12 @@ function Inspector(props) {
 		showShortBio,
 		memberShortBio,
 		socialProfilesLinkTarget,
+		contentBg,
 		photoBgColor,
 		nameColor,
 		designationColor,
 		shortBioColor,
+		separatorColor,
 		iconColor,
 		iconHoverColor,
 		iconBgColor,
@@ -497,7 +499,7 @@ function Inspector(props) {
 									
 									<PanelBody
 										title={__('General', 'zolo-blocks')}
-										initialOpen={true}
+										initialOpen={false}
 									>
 										<ResAlignmentControl
 											label={__(
@@ -524,6 +526,18 @@ function Inspector(props) {
 													value: 'justify',
 												},
 											]}
+										/>
+										<ColorControl
+											label={__(
+												'Content Background',
+												'zolo-blocks'
+											)}
+											color={contentBg}
+											onChange={(color) =>
+												setAttributes({
+													contentBg: color,
+												})
+											}
 										/>
 									</PanelBody>
 									<PanelBody
@@ -723,6 +737,18 @@ function Inspector(props) {
 												controlName={ICONS_SPACING}
 												resRequiredProps={
 													resRequiredProps
+												}
+											/>
+											<ColorControl
+												label={__(
+													'Separator Color',
+													'zolo-blocks'
+												)}
+												color={separatorColor}
+												onChange={(color) =>
+													setAttributes({
+														separatorColor: color,
+													})
 												}
 											/>
 											<BorderControl
