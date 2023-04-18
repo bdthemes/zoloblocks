@@ -176,6 +176,8 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	console.log( iconSize );
+
 	// Spacing between icon and text
 	const {
 		desktopRangeStyle: gap,
@@ -202,7 +204,8 @@ export default function Edit( props ) {
 				}		
 				.zolo-box-button{
 					flex-direction: ${ presetOneStyles && presetOneStyles.buttonIconPosition };
-				}				
+				}			
+								
 			
 			`;
 			break;
@@ -276,8 +279,11 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-content:hover {
 			color: ${ textHoverColor ? textHoverColor : 'inherit' };
 		}
-		.${ uniqueId } .zolo-icon-icon {
+		.${ uniqueId } .zolo-button-icon {
 			${ iconSize }
+		}
+		.${ uniqueId } .zolo-box-button {
+			${ gap }
 		}
 		${ presetStyles }		
   	`;
@@ -297,9 +303,13 @@ export default function Edit( props ) {
 			${ gapTab }
 			${ tabAlign }
 		}
-		.${ uniqueId } .zolo-icon-icon {
+		.${ uniqueId } .zolo-button-icon {
 			${ iconSizeTab }
 		}
+		.${ uniqueId } .zolo-box-button {
+			${ gapTab }
+		}
+		${ presetStyles }
 	`;
 
 	const mobileAllStyle = `
@@ -317,9 +327,13 @@ export default function Edit( props ) {
 			${ gapMob }
 			${ mobAlign }
 		}
-		.${ uniqueId } .zolo-icon-icon {
+		.${ uniqueId } .zolo-button-icon {
 			${ iconSizeMob }
 		}
+		.${ uniqueId } .zolo-box-button {
+			${ gapMob }
+		}
+		${ presetStyles }
   	`;
 
 	const allStyle = `
