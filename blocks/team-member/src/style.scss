@@ -52,6 +52,8 @@
 		border-top-style: solid;
 		border-top-color: #ddd;
 		a {
+			width: 35px;
+			height: 35px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -143,8 +145,6 @@
 					padding-top: 25px;
 					margin-top: 25px;
 					a {
-						width: 35px;
-						height: 35px;
 						font-size: 14px;
 						padding: 10px;
 						background-size: 200% auto;

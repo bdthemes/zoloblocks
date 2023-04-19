@@ -743,18 +743,21 @@ function Inspector(props) {
 													resRequiredProps
 												}
 											/>
-											<ColorControl
-												label={__(
-													'Separator Color',
-													'zolo-blocks'
-												)}
-												color={separatorColor}
-												onChange={(color) =>
-													setAttributes({
-														separatorColor: color,
-													})
-												}
-											/>
+											{
+												preset !== 'style-1' && 
+												<ColorControl
+													label={__(
+														'Separator Color',
+														'zolo-blocks'
+													)}
+													color={separatorColor}
+													onChange={(color) =>
+														setAttributes({
+															separatorColor: color,
+														})
+													}
+												/>
+											}
 											<BorderControl
 												label={__(
 													'Border',
