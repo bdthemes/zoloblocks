@@ -160,6 +160,18 @@ const attributes = {
 	iconHoverBorderColor: {
 		type: 'string',
 	},
+	detailPageIconColor: {
+		type: 'string'
+	},
+	detailPageIconHoverColor: {
+		type: 'string'
+	},
+	detailPageLinkBgColor: {
+		type: 'string'
+	},
+	detailPageLinkBgHoverColor: {
+		type: 'string'
+	}
 };
 
 export default attributes;

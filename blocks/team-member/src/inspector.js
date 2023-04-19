@@ -91,6 +91,10 @@ function Inspector(props) {
 		iconBgColor,
 		iconHoverBgColor,
 		iconHoverBorderColor,
+		detailPageIconColor,
+		detailPageIconHoverColor,
+		detailPageLinkBgColor,
+		detailPageLinkBgHoverColor
 	} = attributes;
 
 	const resRequiredProps = {
@@ -914,6 +918,72 @@ function Inspector(props) {
 											
 										</PanelBody>
 									)}
+									{
+										enableMemberDetailsPage && (
+											<PanelBody
+												title={__('Details Page Link', 'zolo-blocks')}
+											>
+												<TabPanelControl
+													normalComponents={
+														<>
+															<ColorControl
+																label={__(
+																	'Icon Color',
+																	'zolo-blocks'
+																)}
+																color={detailPageIconColor}
+																onChange={(color) =>
+																	setAttributes({
+																		detailPageIconColor: color,
+																	})
+																}
+															/>	
+															<ColorControl
+																label={__(
+																	'Icon Background',
+																	'zolo-blocks'
+																)}
+																color={detailPageLinkBgColor}
+																onChange={(color) =>
+																	setAttributes({
+																		detailPageLinkBgColor: color,
+																	})
+																}
+															/>	
+														</>
+													}
+													hoverComponents={
+														<>
+															<ColorControl
+																label={__(
+																	'Icon Color',
+																	'zolo-blocks'
+																)}
+																color={detailPageIconHoverColor}
+																onChange={(color) =>
+																	setAttributes({
+																		detailPageIconHoverColor: color,
+																	})
+																}
+															/>	
+															<ColorControl
+																label={__(
+																	'Icon Background',
+																	'zolo-blocks'
+																)}
+																color={detailPageLinkBgHoverColor}
+																onChange={(color) =>
+																	setAttributes({
+																		detailPageLinkBgHoverColor: color,
+																	})
+																}
+															/>	
+														</>
+													}
+												/>
+											</PanelBody>
+										)
+									}
 								</>
 							)}
 

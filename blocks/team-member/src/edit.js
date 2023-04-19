@@ -95,6 +95,10 @@ export default function Edit(props) {
 		iconHoverBorderColor,
 		iconBgColor,
 		iconHoverBgColor,
+		detailPageIconColor,
+		detailPageIconHoverColor,
+		detailPageLinkBgColor,
+		detailPageLinkBgHoverColor
 	} = attributes;
 	const [popoverVisible, setPopoverVisible] = useState(false);
 
@@ -424,6 +428,16 @@ export default function Edit(props) {
 
 		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
 			${socialIconDesk}
+		}
+
+		.${uniqueId} .zolo-link-btn a {
+			background-color: ${detailPageLinkBgColor};
+			color: ${detailPageIconColor};
+		}
+
+		.${uniqueId} .zolo-link-btn a:hover {
+			color: ${detailPageIconHoverColor};
+			background-color: ${detailPageLinkBgHoverColor};
 		}
 	`;
 	const tabletAllStyle = `
