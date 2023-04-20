@@ -54,7 +54,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @since 0.0.1
          * @return void
          */
-        public function block_assets_loader() {
+        public function block_assets_loader()
+        {
             wp_enqueue_style(
                 'zolo-block-common-style',
                 ZOLO_ADMIN_URL . 'dist/style.css',
@@ -65,7 +66,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // enqueue fontawesome icons
             wp_enqueue_style(
                 'zolo-block-fontawesome',
-                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
+                ZOLO_ADMIN_URL . 'assets/css/fontawesome/css/fontawesome.min.css',
                 array(),
                 ZOLO_VERSION
             );

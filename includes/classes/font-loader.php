@@ -76,12 +76,12 @@ class ZB_Font_Loader
 					);
 
 					wp_register_style(
-						'eb-block-fonts',
+						'zolo-block-fonts',
 						add_query_arg($query_args, '//fonts.googleapis.com/css'),
 						array()
 					);
 
-					wp_enqueue_style('eb-block-fonts');
+					wp_enqueue_style('zolo-block-fonts');
 				}
 
 				// Reset.

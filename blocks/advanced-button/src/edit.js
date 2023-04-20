@@ -8,24 +8,25 @@ import {
 	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import { useEffect, useState } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup, Popover } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import classnames from 'classnames';
 
 /**
  * Internal depencencies
  */
-import classnames from 'classnames';
-import {
+const {
 	handleUniqueId,
 	softMinifyCssStrings,
-} from '../../../src/helpers/helper';
-import { generateResAlignmentStyle } from '../../../src/helpers/res-alignment-helper';
-import { generateResRangeStyle } from '../../../src/helpers/res-range-helper';
-import { generateBorderStyle } from '../../../src/helpers/border-helper';
-import { generateDimensionStyle } from '../../../src/helpers/dimension-helper';
-import { generateBackgroundControlStyles } from '../../../src/helpers/backgroundHelpers';
-import { generateBoxShadowStyles } from '../../../src/helpers/boxshadow-helper';
-import { generateTypographyStyles } from '../../../src/helpers/typoHelpers';
+	generateResAlignmentStyle,
+	generateResRangeStyle,
+	generateBorderStyle,
+	generateDimensionStyle,
+	generateBackgroundControlStyles,
+	generateBoxShadowStyles,
+	generateTypographyStyles,
+	DisplayIcon
+} = window.zoloModule;
 
 import {
 	BLOCK_PREFIX,
@@ -61,6 +62,7 @@ export default function Edit( props ) {
 		blockStyle,
 		isPopoverVisible,
 		showIcon,
+		icon,
 		iconPosition,
 		iconColor,
 		iconHoverColor,
@@ -166,7 +168,7 @@ export default function Edit( props ) {
 		mobRangeStyle: iconSizeMob,
 	} = generateResRangeStyle( {
 		controlName: ICON_SIZE,
-		property: 'width',
+		property: 'font-size',
 		attributes,
 	} );
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Zolo Blocks
  * Plugin URI: https://bdthemes.com/
@@ -21,14 +22,16 @@ if (!defined('ABSPATH')) {
 /**
  * Final Class for ZOLO Blocks
  */
-final class Zolo_Blocks {
+final class Zolo_Blocks
+{
 
     private static $instance;
 
     /**
      * Zolo_Blocks Instance
      */
-    public static function get_instance() {
+    public static function get_instance()
+    {
         if (!isset(self::$instance)) {
             self::$instance = new self();
         }
@@ -38,14 +41,15 @@ final class Zolo_Blocks {
     /**
      * Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->define_constants();
-        if( ! version_compare( ZOLO_WP_VERSION, '5.8', '>=' ) ) {
-            add_action( 'admin_notices', [ $this, 'zolo_check_wp_version' ] );
-        } elseif( ! version_compare( ZOLO_PHP_VERSION, '5.6', '>=' ) ) {
-            add_action( 'admin_notices', [ $this, 'zolo_check_php_version' ] );
-        } elseif ( ! function_exists( 'register_block_type' ) ) {
-            add_action( 'admin_notices', [ $this, 'zolo_gutenberg_unavailable_notice' ] );
+        if (!version_compare(ZOLO_WP_VERSION, '5.8', '>=')) {
+            add_action('admin_notices', [$this, 'zolo_check_wp_version']);
+        } elseif (!version_compare(ZOLO_PHP_VERSION, '5.6', '>=')) {
+            add_action('admin_notices', [$this, 'zolo_check_php_version']);
+        } elseif (!function_exists('register_block_type')) {
+            add_action('admin_notices', [$this, 'zolo_gutenberg_unavailable_notice']);
         } else {
             $this->includes();
         }
@@ -54,7 +58,8 @@ final class Zolo_Blocks {
     /**
      * Define Constants
      */
-    public function define_constants() {
+    public function define_constants()
+    {
         define('ZOLO_NAME', 'zolo-blocks');
         define('ZOLO_SLUG', 'zolo-blocks');
         define('ZOLO_VERSION', '0.0.1');
@@ -68,14 +73,16 @@ final class Zolo_Blocks {
     /**
      * Include required files
      */
-    public function includes() {
+    public function includes()
+    {
         require_once ZOLO_DIR_PATH . 'includes/zolo-blocks-loader.php';
     }
 
     /**
      * PHP Version Related Admin Notice
      */
-    public function zolo_check_php_version() {
+    public function zolo_check_php_version()
+    {
         $message = sprintf(
             esc_html__('Zolo Blocks requires minimum PHP version %s where your current PHP version is %2s. Please update your PHP version to enable Zolo Blocks features. ', 'zolo-blocks'),
             '5.6',
@@ -88,7 +95,8 @@ final class Zolo_Blocks {
     /**
      * WordPress Version Related Admin Notice
      */
-    public function zolo_check_wp_version() {
+    public function zolo_check_wp_version()
+    {
         $message = sprintf(
             esc_html__('Zolo Blocks requires minimum WordPress version %s where your current WordPress version is %2s. Please update your WordPress version to enable Zolo Blocks features. ', 'zolo-blocks'),
             '5.8',
@@ -101,7 +109,8 @@ final class Zolo_Blocks {
     /**
      * Gutenberg Plugin Activation Related Admin Notice
      */
-    public function zolo_gutenberg_unavailable_notice() {
+    public function zolo_gutenberg_unavailable_notice()
+    {
 
         if (!current_user_can('install_plugins')) {
             return;
@@ -127,7 +136,8 @@ final class Zolo_Blocks {
 /**
  * Initialize the Zolo_Blocks
  */
-function zolo_blocks() {
+function zolo_blocks()
+{
     return Zolo_Blocks::get_instance();
 }
 
