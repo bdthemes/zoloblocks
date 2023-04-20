@@ -105,6 +105,22 @@ export const BUTTON_POSITIONS = [
 	},
 ];
 
+// side icon positions
+export const SIDE_ICON_POSITIONS = [
+	{
+		label: 'Top',
+		value: 'left',
+	},
+	{
+		label: 'Center',
+		value: 'center',
+	},
+	{
+		label: 'Bottom',
+		value: 'end',
+	},
+];
+
 // top icon positions
 export const TOP_ICON_POSITIONS = [
 	{
