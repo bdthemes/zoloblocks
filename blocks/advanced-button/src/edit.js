@@ -400,21 +400,23 @@ export default function Edit( props ) {
 			color: ${ textHoverColor ? textHoverColor : '' };
 		}
 
-		.zolo-advanced-button.${ uniqueId } .zolo-button-icon {
+		.zolo-advanced-button.${ uniqueId } .zolo-button i, .zolo-advanced-button.${ uniqueId } .zolo-button span.dashicon {
 			${ iconSize }
 			${ iconBorderDesktop }
 			${ iconBorderRadiusDesktop }
 			${ iconNormalBoxShadow }
 			${ iconPaddingDesktop }
-			fill: ${ iconColor ? iconColor : '' };
+			color: ${ iconColor ? iconColor : '' };
 			background: ${ iconBg ? iconBg : '' };
 		}
-		.zolo-advanced-button.${ uniqueId }:hover .zolo-button-icon{
+		
+		.zolo-advanced-button.${ uniqueId }:hover .zolo-button i, .zolo-advanced-button.${ uniqueId }:hover .zolo-button span.dashicon {
 			${ iconHoverBoxShadow }
-			fill: ${ iconHoverColor ? iconHoverColor : '' };
+			color: ${ iconHoverColor ? iconHoverColor : '' };
 			background: ${ iconHoverBg ? iconHoverBg : '' };
 			border-color: ${ iconBorderHoverColor ? iconBorderHoverColor : '' };
 		}
+
 		${ presetStyles }
 		${ presetHoverStyles }
   	`;
