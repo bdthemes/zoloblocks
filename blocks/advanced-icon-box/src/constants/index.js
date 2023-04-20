@@ -7,10 +7,46 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'advanced-icon-box';
 // Presets
 export const PRESETS = [
-	{ label: __('Default', 'zolo-blocks'), value: 'style-0' },
-	{ label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-	{ label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
-	{ label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
+	{ label: __( 'Default', 'zolo-blocks' ), value: 'style-0' },
+	{ label: __( 'Preset 1', 'zolo-blocks' ), value: 'style-1' },
+	{ label: __( 'Preset 2', 'zolo-blocks' ), value: 'style-2' },
+	{ label: __( 'Preset 3', 'zolo-blocks' ), value: 'style-3' },
+];
+
+// title tag
+export const TITLE_TAG = [
+	{
+		label: 'H1',
+		value: 'h1',
+	},
+	{
+		label: 'H2',
+		value: 'h2',
+	},
+	{
+		label: 'H3',
+		value: 'h3',
+	},
+	{
+		label: 'H4',
+		value: 'h4',
+	},
+	{
+		label: 'H5',
+		value: 'h5',
+	},
+	{
+		label: 'H6',
+		value: 'h6',
+	},
+	{
+		label: 'Span',
+		value: 'span',
+	},
+	{
+		label: 'P',
+		value: 'p',
+	},
 ];
 
 // icon positions
@@ -37,19 +73,67 @@ export const ICON_BOX_POSITIONS = [
 export const ICON_POSITIONS = [
 	{
 		label: 'Left',
+		value: 'row-reverse',
+	},
+	{
+		label: 'Right',
+		value: 'row',
+	},
+	{
+		label: 'Top',
+		value: 'column-reverse',
+	},
+	{
+		label: 'Bottom',
+		value: 'column',
+	},
+];
+
+// button positions
+export const BUTTON_POSITIONS = [
+	{
+		label: 'Left',
 		value: 'left',
+	},
+	{
+		label: 'Center',
+		value: 'center',
 	},
 	{
 		label: 'Right',
 		value: 'right',
 	},
+];
+
+// side icon positions
+export const SIDE_ICON_POSITIONS = [
 	{
 		label: 'Top',
-		value: 'top',
+		value: 'left',
+	},
+	{
+		label: 'Center',
+		value: 'center',
 	},
 	{
 		label: 'Bottom',
-		value: 'bottom',
+		value: 'end',
+	},
+];
+
+// top icon positions
+export const TOP_ICON_POSITIONS = [
+	{
+		label: 'Left',
+		value: 'left',
+	},
+	{
+		label: 'Center',
+		value: 'center',
+	},
+	{
+		label: 'Right',
+		value: 'right',
 	},
 ];
 // Icon BG
@@ -71,6 +155,7 @@ export const ICON_BORDER = 'iconBorder';
 export const ICON_SIZE = 'iconSize';
 // icon and text spacing
 export const ICON_TEXT_SPACING = 'iconTextSpacing';
-
-// Title Alignment
+// title Alignment
 export const TITLE_ALIGNMENT = 'titleAlignment';
+// description Alignment
+export const DESC_ALIGNMENT = 'descAlignment';
