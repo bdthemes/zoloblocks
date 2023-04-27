@@ -22,13 +22,16 @@ import { Fragment } from '@wordpress/element';
 /**
  * Internal depencencies
  */
-import ResAlignmentControl from '../../../src/controls/res-alignment-control';
-import ResRangeControl from '../../../src/controls/res-range-control';
-import ColorControl from '../../../src/controls/color-control';
-import BorderControl from '../../../src/controls/border-control';
-import ResDimensionsControl from '../../../src/controls/dimensions-control';
-import TypographyDropdown from '../../../src/controls/typography-control';
-import TabPanelControl from '../../../src/controls/tabpanel-control';
+const {
+	ResAlignmentControl,
+	ResRangeControl,
+	ColorControl,
+	BorderControl,
+	ResDimensionsControl,
+	TypographyDropdown,
+	TabPanelControl,
+	IconPicker,
+} = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
@@ -56,6 +59,7 @@ function Inspector( props ) {
 		titleTag,
 		resMode,
 		showIcon,
+		mainIcon,
 		iconColor,
 		iconHoverColor,
 		textColor,
@@ -152,52 +156,14 @@ function Inspector( props ) {
 
 										{ iconType == 'icon' && (
 											<Fragment>
-												<strong>
-													{ __(
-														'Icon Picker',
-														'zolo-blocks'
-													) }
-												</strong>
-												<br />
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
-													width="24"
-													height="24"
-													viewBox="0 0 24 24"
-													fill="none"
-													stroke="#000000"
-													stroke-width="2"
-													stroke-linecap="round"
-													stroke-linejoin="round"
-												>
-													<circle
-														cx="18"
-														cy="5"
-														r="3"
-													></circle>
-													<circle
-														cx="6"
-														cy="12"
-														r="3"
-													></circle>
-													<circle
-														cx="18"
-														cy="19"
-														r="3"
-													></circle>
-													<line
-														x1="8.59"
-														y1="13.51"
-														x2="15.42"
-														y2="17.49"
-													></line>
-													<line
-														x1="15.41"
-														y1="6.51"
-														x2="8.59"
-														y2="10.49"
-													></line>
-												</svg>
+												<IconPicker
+													value={ mainIcon }
+													onChange={ ( value ) =>
+														setAttributes( {
+															mainIcon: value,
+														} )
+													}
+												/>
 												<br />
 												<br />
 

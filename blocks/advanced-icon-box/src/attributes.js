@@ -108,6 +108,9 @@ const attributes = {
 		type: 'string',
 		default: 'icon',
 	},
+	mainIcon: {
+		type: 'object',
+	},
 	iconColor: {
 		type: 'string',
 	},
