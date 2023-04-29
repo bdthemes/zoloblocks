@@ -30,6 +30,7 @@ import {
 	DESC_ALIGNMENT,
 	ICON_BORDER,
 	ICON_SIZE,
+	ICON_SPACING,
 	ICON_TEXT_SPACING,
 } from './constants';
 
@@ -174,12 +175,29 @@ export default function Edit( props ) {
 		mobRangeStyle: iconSizeMob,
 	} = generateResRangeStyle( {
 		controlName: ICON_SIZE,
-		property: 'width',
+		property: 'font-size',
 		attributes,
 	} );
-
-	console.log( iconSize );
-
+	// generate icon height
+	const {
+		desktopRangeStyle: iconHeight,
+		tabRangeStyle: iconHeightTab,
+		mobRangeStyle: iconHeightMob,
+	} = generateResRangeStyle( {
+		controlName: ICON_SIZE,
+		property: 'height',
+		attributes,
+	} );
+	// generate icon spacing
+	const {
+		desktopRangeStyle: iconSpacing,
+		tabRangeStyle: iconSpacingTab,
+		mobRangeStyle: iconSpacingMob,
+	} = generateResRangeStyle( {
+		controlName: ICON_SPACING,
+		property: 'margin',
+		attributes,
+	} );
 	// Spacing between icon and text
 	const {
 		desktopRangeStyle: gap,
@@ -281,8 +299,11 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-content:hover {
 			color: ${ textHoverColor ? textHoverColor : 'inherit' };
 		}
-		.${ uniqueId } .zolo-button-icon {
+		.${ uniqueId } .zolo-block-icon-wrap span {
 			${ iconSize }
+			${ iconHeight }
+			${ iconSpacing }
+			
 		}
 		.${ uniqueId } .zolo-box-button {
 			${ gap }
@@ -305,8 +326,10 @@ export default function Edit( props ) {
 			${ gapTab }
 			${ tabAlign }
 		}
-		.${ uniqueId } .zolo-button-icon {
+		.${ uniqueId } .zolo-block-icon-wrap span {
 			${ iconSizeTab }
+			${ iconHeightTab }
+			${ iconSpacingTab }
 		}
 		.${ uniqueId } .zolo-box-button {
 			${ gapTab }
@@ -329,8 +352,10 @@ export default function Edit( props ) {
 			${ gapMob }
 			${ mobAlign }
 		}
-		.${ uniqueId } .zolo-button-icon {
+		.${ uniqueId } .zolo-block-icon-wrap span {
 			${ iconSizeMob }
+			${ iconHeightMob }
+			${ iconSpacingMob }
 		}
 		.${ uniqueId } .zolo-box-button {
 			${ gapMob }

@@ -11,6 +11,7 @@ import {
 	ICON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
+	ICON_SPACING,
 } from './constants';
 
 const attributes = {
@@ -43,6 +44,9 @@ const attributes = {
 		default: 16,
 	} ),
 	...generateResRangeAttributies( ICON_TEXT_SPACING, {
+		default: 5,
+	} ),
+	...generateResRangeAttributies( ICON_SPACING, {
 		default: 5,
 	} ),
 	//Block specific Attributes
@@ -110,6 +114,13 @@ const attributes = {
 	},
 	mainIcon: {
 		type: 'object',
+		default: {
+			'admin-generic': {
+				name: 'admin generic',
+				source: 'dashicon',
+				type: '',
+			},
+		},
 	},
 	iconColor: {
 		type: 'string',

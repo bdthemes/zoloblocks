@@ -45,6 +45,7 @@ import {
 	SIDE_ICON_POSITIONS,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
+	ICON_SPACING,
 	ICON_TYPOGRAPHY,
 	ICON_BORDER,
 	ICON_PADDING,
@@ -164,9 +165,6 @@ function Inspector( props ) {
 														} )
 													}
 												/>
-												<br />
-												<br />
-
 												{ preset !== '' &&
 													preset == 'style-1' && (
 														<SelectControl
@@ -263,9 +261,7 @@ function Inspector( props ) {
 														'Gap',
 														'zolo-blocks'
 													) }
-													controlName={
-														ICON_TEXT_SPACING
-													}
+													controlName={ ICON_SPACING }
 													resRequiredProps={
 														resRequiredProps
 													}
