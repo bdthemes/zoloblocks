@@ -44,6 +44,7 @@ import {
 	TOP_ICON_POSITIONS,
 	SIDE_ICON_POSITIONS,
 	ICON_SIZE,
+	BUTTON_ICON_SIZE,
 	ICON_TEXT_SPACING,
 	ICON_SPACING,
 	ICON_TYPOGRAPHY,
@@ -61,6 +62,7 @@ function Inspector( props ) {
 		resMode,
 		showIcon,
 		mainIcon,
+		buttonIcon,
 		iconColor,
 		iconHoverColor,
 		textColor,
@@ -481,9 +483,14 @@ function Inspector( props ) {
 										/>
 										{ showIcon && (
 											<Fragment>
-												<p>
-													<strong>Icon Picker</strong>
-												</p>
+												<IconPicker
+													value={ buttonIcon }
+													onChange={ ( value ) =>
+														setAttributes( {
+															buttonIcon: value,
+														} )
+													}
+												/>
 												{ preset === 'style-1' && (
 													<SelectControl
 														label={ __(
@@ -567,7 +574,9 @@ function Inspector( props ) {
 														'Icon Size',
 														'zolo-blocks'
 													) }
-													controlName={ ICON_SIZE }
+													controlName={
+														BUTTON_ICON_SIZE
+													}
 													resRequiredProps={
 														resRequiredProps
 													}

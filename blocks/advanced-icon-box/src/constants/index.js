@@ -153,6 +153,8 @@ export const ICON_BOX_ALIGNMENT = 'iconBoxAlignment';
 export const ICON_BORDER = 'iconBorder';
 // Icon Size
 export const ICON_SIZE = 'iconSize';
+// Button Icon Size
+export const BUTTON_ICON_SIZE = 'buttonIconSize';
 // icon and spacing
 export const ICON_SPACING = 'iconSpacing';
 // icon and text spacing

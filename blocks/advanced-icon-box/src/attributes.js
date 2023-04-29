@@ -10,6 +10,7 @@ import {
 	ICON_HOVER_BG_COLOR,
 	ICON_BORDER,
 	ICON_SIZE,
+	BUTTON_ICON_SIZE,
 	ICON_TEXT_SPACING,
 	ICON_SPACING,
 } from './constants';
@@ -41,6 +42,9 @@ const attributes = {
 	// border attributes
 	...generateBorderAttributies( ICON_BORDER ),
 	...generateResRangeAttributies( ICON_SIZE, {
+		default: 16,
+	} ),
+	...generateResRangeAttributies( BUTTON_ICON_SIZE, {
 		default: 16,
 	} ),
 	...generateResRangeAttributies( ICON_TEXT_SPACING, {
@@ -113,6 +117,16 @@ const attributes = {
 		default: 'icon',
 	},
 	mainIcon: {
+		type: 'object',
+		default: {
+			'admin-generic': {
+				name: 'admin generic',
+				source: 'dashicon',
+				type: '',
+			},
+		},
+	},
+	buttonIcon: {
 		type: 'object',
 		default: {
 			'admin-generic': {
