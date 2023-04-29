@@ -76,14 +76,14 @@ const attributes = {
 	presetOneStyles: {
 		type: 'object',
 		default: {
-			shadowColor: '',
+			shadowColor: '#000000',
 		},
 	},
 	presetTwoStyles: {
 		type: 'object',
 		default: {
-			bgColor: '',
-			hoverBgColor: '',
+			bgColor: '#d5edf6',
+			hoverBgColor: '#6dcff6',
 		},
 	},
 	presetThreeStyles: {

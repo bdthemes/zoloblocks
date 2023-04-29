@@ -58,7 +58,11 @@
 	}
 
 	.zolo-button {
-		padding: 12px 40px;
+		padding: 12px 40px; 
+		gap: 8px;
+		i, span.dashicon {
+			color: #fff;
+		}
 	}
 
 	/*

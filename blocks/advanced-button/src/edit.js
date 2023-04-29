@@ -79,7 +79,7 @@ export default function Edit( props ) {
 		presetFiveStyles,
 		presetSevenStyles,
 		presetEightStyles,
-		presetTenStyles,
+		presetTenStyles, 
 		presetElevenStyles,
 		presetTwelveStyles,
 	} = attributes;
@@ -524,7 +524,7 @@ export default function Edit( props ) {
 						}
 					/>
 				</ToolbarGroup>
-				{ isPopoverVisible && (
+				{ popoverVisible && (
 					<Popover
 						position="bottom right"
 						onFocusOutside={ () => setPopoverVisible( false ) }
