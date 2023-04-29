@@ -75,7 +75,8 @@ export default function Edit(props) {
 		blockStyle,
 		memberPhoto,
 		memberName,
-		enableMemberDetailsPage,
+		addDetailPageLink,
+		showDetailPageIcon,
 		memberDetailPageLink,
 		showDesignation,
 		memberDesignation,
@@ -98,7 +99,7 @@ export default function Edit(props) {
 		detailPageIconColor,
 		detailPageIconHoverColor,
 		detailPageLinkBgColor,
-		detailPageLinkBgHoverColor
+		detailPageLinkBgHoverColor,
 	} = attributes;
 	const [popoverVisible, setPopoverVisible] = useState(false);
 
@@ -351,7 +352,10 @@ export default function Edit(props) {
 			${teamDeskAlignStyle}
 		}
 
-		.${uniqueId} .zolo-item .zolo-info-wrap, .${uniqueId} .zolo-item .zolo-hover-content {
+		.${uniqueId}.default .zolo-item .zolo-info-wrap,
+		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap, 
+		.${uniqueId}.default .zolo-item .zolo-hover-content,
+		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
 			background-color: ${contentBg}
 		}
 
@@ -589,7 +593,7 @@ export default function Edit(props) {
 						</ToolbarGroup>
 					</Fragment>
 				)}
-				{enableMemberDetailsPage && (
+				{showDetailPageIcon && (
 					<ToolbarGroup>
 						<ToolbarButton
 							icon="admin-links"
@@ -695,7 +699,7 @@ export default function Edit(props) {
 										})}
 								</div>
 							)}
-							{enableMemberDetailsPage && (
+							{showDetailPageIcon && preset !== 'style-2' && (
 								<div className="zolo-link-btn">
 									<a
 										href={
@@ -769,7 +773,7 @@ export default function Edit(props) {
 								/>
 							)}
 						</div>
-						{enableMemberDetailsPage && (
+						{showDetailPageIcon && (
 							<div className="zolo-link-btn">
 								<a href="#">
 									<i className="fa-solid fa-arrow-right" />

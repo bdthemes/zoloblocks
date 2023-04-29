@@ -75,9 +75,13 @@ const attributes = {
 	memberName: {
 		type: 'string',
 	},
-	enableMemberDetailsPage: {
+	addDetailPageLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
+	},
+	showDetailPageIcon: {
+		type: 'boolean',
+		default: true,
 	},
 	memberDetailPageLink: {
 		type: 'object',
@@ -142,8 +146,8 @@ const attributes = {
 	},
 	// social icons
 	separatorColor: {
-		type: "string",
-		default: "#ddd"
+		type: 'string',
+		default: '#ddd',
 	},
 	iconColor: {
 		type: 'string',
@@ -161,17 +165,17 @@ const attributes = {
 		type: 'string',
 	},
 	detailPageIconColor: {
-		type: 'string'
+		type: 'string',
 	},
 	detailPageIconHoverColor: {
-		type: 'string'
+		type: 'string',
 	},
 	detailPageLinkBgColor: {
-		type: 'string'
+		type: 'string',
 	},
 	detailPageLinkBgHoverColor: {
-		type: 'string'
-	}
+		type: 'string',
+	},
 };
 
 export default attributes;
