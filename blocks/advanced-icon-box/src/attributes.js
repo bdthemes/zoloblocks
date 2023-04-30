@@ -1,6 +1,9 @@
-import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
-import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
-import { generateBorderAttributies } from '../../../src/helpers/border-helper';
+const {
+	generateResAlignmentAttributies,
+	generateResRangeAttributies,
+	generateBorderAttributies,
+	generateDimensionAttributes,
+} = window.zoloModule;
 
 import {
 	ICON_BOX_ALIGNMENT,
@@ -9,6 +12,7 @@ import {
 	ICON_BG_COLOR,
 	ICON_HOVER_BG_COLOR,
 	ICON_BORDER,
+	ICON_BORDER_RADIUS,
 	ICON_SIZE,
 	BUTTON_ICON_SIZE,
 	ICON_TEXT_SPACING,
@@ -53,6 +57,7 @@ const attributes = {
 	...generateResRangeAttributies( ICON_SPACING, {
 		default: 5,
 	} ),
+	...generateDimensionAttributes( ICON_BORDER_RADIUS ),
 	//Block specific Attributes
 	preset: {
 		type: 'string',
@@ -140,6 +145,12 @@ const attributes = {
 		type: 'string',
 	},
 	iconHoverColor: {
+		type: 'string',
+	},
+	iconBackgroundColor: {
+		type: 'string',
+	},
+	iconBackgroundHoverColor: {
 		type: 'string',
 	},
 	iconTypeImage: {

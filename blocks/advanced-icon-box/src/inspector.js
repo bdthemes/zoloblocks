@@ -49,6 +49,7 @@ import {
 	ICON_SPACING,
 	ICON_TYPOGRAPHY,
 	ICON_BORDER,
+	ICON_BORDER_RADIUS,
 	ICON_PADDING,
 	ICON_MARGIN,
 } from './constants';
@@ -65,6 +66,8 @@ function Inspector( props ) {
 		buttonIcon,
 		iconColor,
 		iconHoverColor,
+		iconBackgroundColor,
+		iconBackgroundHoverColor,
 		textColor,
 		textHoverColor,
 		descColor,
@@ -657,6 +660,88 @@ function Inspector( props ) {
 														}
 													/>
 												</>
+											}
+										/>
+
+										<TabPanelControl
+											normalComponents={
+												<>
+													<ColorControl
+														label={ __(
+															'Background Color',
+															'zolo-blocks'
+														) }
+														color={
+															iconBackgroundColor
+														}
+														onChange={ ( value ) =>
+															setAttributes( {
+																iconBackgroundColor:
+																	value,
+															} )
+														}
+													/>
+												</>
+											}
+											hoverComponents={
+												<>
+													<ColorControl
+														label={ __(
+															'Background Hover Color',
+															'zolo-blocks'
+														) }
+														color={
+															iconBackgroundHoverColor
+														}
+														onChange={ ( value ) =>
+															setAttributes( {
+																iconBackgroundHoverColor:
+																	value,
+															} )
+														}
+													/>
+												</>
+											}
+										/>
+										<BorderControl
+											label={ __(
+												'Icon Border',
+												'zolo-blocks'
+											) }
+											controlName={ ICON_BORDER }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Border Radius',
+												'zolo-blocks'
+											) }
+											controlName={ ICON_BORDER_RADIUS }
+											resRequiredProps={
+												resRequiredProps
+											}
+											forBorderRadius={ true }
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Padding',
+												'zolo-blocks'
+											) }
+											controlName={ ICON_PADDING }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Margin',
+												'zolo-blocks'
+											) }
+											controlName={ ICON_MARGIN }
+											resRequiredProps={
+												resRequiredProps
 											}
 										/>
 									</PanelBody>

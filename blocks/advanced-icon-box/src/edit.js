@@ -20,6 +20,7 @@ const {
 	generateResAlignmentStyle,
 	generateResRangeStyle,
 	generateBorderStyle,
+	generateDimensionStyle,
 	DisplayIcon,
 } = window.zoloModule;
 
@@ -29,6 +30,7 @@ import {
 	TITLE_ALIGNMENT,
 	DESC_ALIGNMENT,
 	ICON_BORDER,
+	ICON_BORDER_RADIUS,
 	ICON_SIZE,
 	BUTTON_ICON_SIZE,
 	ICON_SPACING,
@@ -56,6 +58,8 @@ export default function Edit( props ) {
 		iconPosition,
 		iconColor,
 		iconHoverColor,
+		iconBackgroundColor,
+		iconBackgroundHoverColor,
 		iconType,
 		iconBoxTitle,
 		iconBoxDescription,
@@ -89,6 +93,17 @@ export default function Edit( props ) {
 	} = generateResAlignmentStyle( {
 		controlName: ICON_BOX_ALIGNMENT,
 		property: 'text-align',
+		attributes,
+	} );
+
+	// generate icon border radius
+	const {
+		dimensionStylesDesktop: iconBorderRadiusDesktop,
+		dimensionStylesTab: iconBorderRadiusTab,
+		dimensionStylesMobile: iconBorderRadiusMob,
+	} = generateDimensionStyle( {
+		controlName: ICON_BORDER_RADIUS,
+		styleFor: 'border-radius',
 		attributes,
 	} );
 
@@ -319,14 +334,22 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-block-desc:hover{
 			color: ${ descHoverColor ? descHoverColor : '' };
 		}
-		.${ uniqueId } .zolo-block-icon-wrap svg{
-			fill: ${ iconColor ? iconColor : '' };
-		}
-		.${ uniqueId } .zolo-block-icon-wrap svg:hover{
-			fill: ${ iconHoverColor ? iconHoverColor : '' };
-		}
-		.${ uniqueId } .zolo-content {
+		.${ uniqueId } .zolo-block-icon-wrap span{
+			display: table;
+			${ iconSize }
+			${ iconHeight }
+			${ iconSpacing }
 			${ borderStyles }
+			${ iconBorderRadiusDesktop }
+			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
+			color: ${ iconColor ? iconColor : '' };			
+		}
+		.${ uniqueId } .zolo-block-icon-wrap span:hover{
+			display: table;
+			background: ${ iconBackgroundHoverColor ? iconBackgroundHoverColor : '' };
+			color: ${ iconHoverColor ? iconHoverColor : '' };
+		}
+		.${ uniqueId } .zolo-content {			
 			${ gap }
 			${ deskAlign }
 			color: ${ textColor ? textColor : 'inherit' };
@@ -334,12 +357,7 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-content:hover {
 			color: ${ textHoverColor ? textHoverColor : 'inherit' };
 		}
-		.${ uniqueId } .zolo-block-icon-wrap span {
-			${ iconSize }
-			${ iconHeight }
-			${ iconSpacing }
-			
-		}
+		
 		.${ uniqueId } .zolo-box-button span{
 			${ buttonIconSize }			
 			${ buttonIconHeight }			

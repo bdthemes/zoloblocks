@@ -151,6 +151,8 @@ export const ICON_MARGIN = 'iconMargin';
 export const ICON_BOX_ALIGNMENT = 'iconBoxAlignment';
 // Icon Border
 export const ICON_BORDER = 'iconBorder';
+// Icon Border Radius
+export const ICON_BORDER_RADIUS = 'iconBorderRadius';
 // Icon Size
 export const ICON_SIZE = 'iconSize';
 // Button Icon Size
