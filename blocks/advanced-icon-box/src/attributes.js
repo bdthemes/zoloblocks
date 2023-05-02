@@ -8,6 +8,7 @@ const {
 import {
 	ICON_BOX_ALIGNMENT,
 	TITLE_ALIGNMENT,
+	TITLE_MARGIN,
 	DESC_ALIGNMENT,
 	ICON_BG_COLOR,
 	ICON_HOVER_BG_COLOR,
@@ -17,6 +18,8 @@ import {
 	BUTTON_ICON_SIZE,
 	ICON_TEXT_SPACING,
 	ICON_SPACING,
+	ICON_PADDING,
+	ICON_MARGIN,
 } from './constants';
 
 const attributes = {
@@ -45,19 +48,30 @@ const attributes = {
 	} ),
 	// border attributes
 	...generateBorderAttributies( ICON_BORDER ),
+	//icon size
 	...generateResRangeAttributies( ICON_SIZE, {
 		default: 16,
 	} ),
+	//button icon size
 	...generateResRangeAttributies( BUTTON_ICON_SIZE, {
 		default: 16,
 	} ),
+	//icon text spacing
 	...generateResRangeAttributies( ICON_TEXT_SPACING, {
 		default: 5,
 	} ),
+	//icon spacing
 	...generateResRangeAttributies( ICON_SPACING, {
 		default: 5,
 	} ),
+	//icon border radius
 	...generateDimensionAttributes( ICON_BORDER_RADIUS ),
+	//icon padding
+	...generateDimensionAttributes( ICON_PADDING ),
+	//icon margin
+	...generateDimensionAttributes( ICON_MARGIN ),
+	//title margin
+	...generateDimensionAttributes( TITLE_MARGIN ),
 	//Block specific Attributes
 	preset: {
 		type: 'string',

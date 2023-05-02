@@ -37,6 +37,7 @@ import objAttributes from './attributes';
 import {
 	TITLE_ALIGNMENT,
 	TITLE_TAG,
+	TITLE_MARGIN,
 	DESC_ALIGNMENT,
 	PRESETS,
 	ICON_POSITIONS,
@@ -53,6 +54,12 @@ import {
 	ICON_PADDING,
 	ICON_MARGIN,
 } from './constants';
+
+import {
+	SUBTITLE_TYPOGRAPHY,
+	TITLE_TYPOGRAPHY,
+	DESCRIPTION_TYPOGRAPHY,
+} from './constants/typoPrefixConstant';
 
 function Inspector( props ) {
 	const { attributes, setAttributes } = props;
@@ -624,7 +631,7 @@ function Inspector( props ) {
 								<>
 									<PanelBody
 										title={ __( 'Icon', 'zolo-blocks' ) }
-										initialOpen={ true }
+										initialOpen={ false }
 									>
 										<TabPanelControl
 											normalComponents={
@@ -747,7 +754,7 @@ function Inspector( props ) {
 									</PanelBody>
 									<PanelBody
 										title={ __( 'Text', 'zolo-blocks' ) }
-										initialOpen={ false }
+										initialOpen={ true }
 									>
 										<TypographyDropdown
 											label={ __(
@@ -755,7 +762,7 @@ function Inspector( props ) {
 												'zolo-blocks'
 											) }
 											typoPrefixConstant={
-												ICON_TYPOGRAPHY
+												TITLE_TYPOGRAPHY
 											}
 											resRequiredProps={
 												resRequiredProps
@@ -795,6 +802,16 @@ function Inspector( props ) {
 														}
 													/>
 												</>
+											}
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Margin',
+												'zolo-blocks'
+											) }
+											controlName={ TITLE_MARGIN }
+											resRequiredProps={
+												resRequiredProps
 											}
 										/>
 									</PanelBody>

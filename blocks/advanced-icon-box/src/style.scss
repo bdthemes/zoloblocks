@@ -37,15 +37,17 @@
 			background: rgba(147, 255, 170, 0.15);
 
 			.zolo-block-icon-wrap {
-				display: flex;
+				display: inline-block;
+				span {
+					display: table;
+				}
 			}
+
 			.zolo-block-body-content {
 				z-index: 1;
 				position: relative;
 
 				& .zolo-block-title {
-					margin: 0 0 12px 0;
-
 					font-weight: 700;
 					text-transform: capitalize;
 				}

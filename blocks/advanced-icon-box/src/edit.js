@@ -21,6 +21,7 @@ const {
 	generateResRangeStyle,
 	generateBorderStyle,
 	generateDimensionStyle,
+	generateTypographyStyles,
 	DisplayIcon,
 } = window.zoloModule;
 
@@ -28,14 +29,23 @@ import {
 	BLOCK_PREFIX,
 	ICON_BOX_ALIGNMENT,
 	TITLE_ALIGNMENT,
+	TITLE_MARGIN,
 	DESC_ALIGNMENT,
 	ICON_BORDER,
 	ICON_BORDER_RADIUS,
 	ICON_SIZE,
+	ICON_PADDING,
+	ICON_MARGIN,
 	BUTTON_ICON_SIZE,
 	ICON_SPACING,
 	ICON_TEXT_SPACING,
 } from './constants';
+
+import {
+	SUBTITLE_TYPOGRAPHY,
+	TITLE_TYPOGRAPHY,
+	DESCRIPTION_TYPOGRAPHY,
+} from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
 
@@ -107,6 +117,39 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	// Generate Icon Padding
+	const {
+		dimensionStylesDesktop: iconPaddingDesktop,
+		dimensionStylesTab: iconPaddingTab,
+		dimensionStylesMobile: iconPaddingMob,
+	} = generateDimensionStyle( {
+		controlName: ICON_PADDING,
+		styleFor: 'padding',
+		attributes,
+	} );
+
+	// Generate Icon Margin
+	const {
+		dimensionStylesDesktop: iconMarginDesktop,
+		dimensionStylesTab: iconMarginTab,
+		dimensionStylesMobile: iconMarginMob,
+	} = generateDimensionStyle( {
+		controlName: ICON_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	} );
+
+	//title typography
+	const {
+		typoStylesDesktop: titleTypoDesktop,
+		typoStylesTab: titleTypoTab,
+		typoStylesMobile: titleTypoMobile,
+	} = generateTypographyStyles( {
+		prefixConstant: TITLE_TYPOGRAPHY,
+		defaultFontSize: 25,
+		attributes,
+	} );
+
 	// title alignment
 	const {
 		desktopAlignStyle: textAlignmentDesktop,
@@ -115,6 +158,17 @@ export default function Edit( props ) {
 	} = generateResAlignmentStyle( {
 		controlName: TITLE_ALIGNMENT,
 		property: 'text-align',
+		attributes,
+	} );
+
+	// Generate Title Margin
+	const {
+		dimensionStylesDesktop: titleMarginDesktop,
+		dimensionStylesTab: titleMarginTab,
+		dimensionStylesMobile: titleMarginMob,
+	} = generateDimensionStyle( {
+		controlName: TITLE_MARGIN,
+		styleFor: 'margin',
 		attributes,
 	} );
 
@@ -322,6 +376,7 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-title{
 			${ textAlignmentDesktop }
+			${ titleMarginDesktop ? titleMarginDesktop : '0 0 12px 0' }
 			color: ${ textColor ? textColor : '' };
 		}
 		.${ uniqueId } .zolo-block-title:hover{
@@ -334,18 +389,18 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-block-desc:hover{
 			color: ${ descHoverColor ? descHoverColor : '' };
 		}
-		.${ uniqueId } .zolo-block-icon-wrap span{
-			display: table;
+		.${ uniqueId } .zolo-block-icon-wrap  {			
 			${ iconSize }
 			${ iconHeight }
 			${ iconSpacing }
 			${ borderStyles }
 			${ iconBorderRadiusDesktop }
+			${ iconPaddingDesktop }
+			${ iconMarginDesktop }
 			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
 			color: ${ iconColor ? iconColor : '' };			
 		}
-		.${ uniqueId } .zolo-block-icon-wrap span:hover{
-			display: table;
+		.${ uniqueId } .zolo-block-icon-wrap span:hover{			
 			background: ${ iconBackgroundHoverColor ? iconBackgroundHoverColor : '' };
 			color: ${ iconHoverColor ? iconHoverColor : '' };
 		}
@@ -375,6 +430,7 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-title{
 			${ textAlignmentTab }
+			${ titleMarginTab }
 		}		
 		.${ uniqueId } .zolo-block-desc{
 			${ descAlignmentTab }
@@ -388,6 +444,12 @@ export default function Edit( props ) {
 			${ iconSizeTab }
 			${ iconHeightTab }
 			${ iconSpacingTab }
+			${ borderStylesTab }
+			${ iconBorderRadiusTab }
+			${ iconPaddingTab }
+			${ iconMarginTab }
+			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
+			color: ${ iconColor ? iconColor : '' };	
 		}
 		.${ uniqueId } .zolo-box-button {
 			${ gapTab }
@@ -401,6 +463,7 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-title{
 			${ textAlignmentMob }
+			${ titleMarginMob }
 		}		
 		.${ uniqueId } .zolo-block-desc{
 			${ descAlignmentMob }
@@ -414,6 +477,10 @@ export default function Edit( props ) {
 			${ iconSizeMob }
 			${ iconHeightMob }
 			${ iconSpacingMob }
+			${ borderStylesMob }
+			${ iconBorderRadiusMob }
+			${ iconPaddingMob }
+			${ iconMarginMob }
 		}
 		.${ uniqueId } .zolo-box-button {
 			${ gapMob }
