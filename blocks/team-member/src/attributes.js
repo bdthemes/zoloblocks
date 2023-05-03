@@ -113,8 +113,8 @@ const attributes = {
 		default: [
 			{
 				icon: {
-					facebook: {
-						name: 'facebook',
+					twitter: {
+						name: 'twitter',
 						source: 'dashicon',
 						type: '',
 					},
@@ -130,7 +130,6 @@ const attributes = {
 	// block style
 	contentBg: {
 		type: 'string',
-		default: '#ffffff',
 	},
 	photoBgColor: {
 		type: 'string',
@@ -147,7 +146,6 @@ const attributes = {
 	// social icons
 	separatorColor: {
 		type: 'string',
-		default: '#ddd',
 	},
 	iconColor: {
 		type: 'string',

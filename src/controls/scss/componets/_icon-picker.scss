@@ -22,9 +22,14 @@
 }
 
 .zolo-parent-tab-panel {
-	.zolo-tab {
+	.zolo-icon-tab {
 		height: 30px;
 		color: #9f9d9d;
+		margin-bottom: 8px;
+	}
+
+	.zolo-icon-tab,
+	.zolo-tab {
 		&.active-tab {
 			border-bottom: 2px solid #3c434a;
 			color: #3c434a;

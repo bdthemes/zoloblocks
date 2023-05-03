@@ -94,7 +94,7 @@ const Save = ({ attributes }) => {
 									})}
 							</div>
 						)}
-						{showDetailPageIcon && (
+						{addDetailPageLink && showDetailPageIcon && (
 							<div className="zolo-link-btn">
 								<a
 									href={
@@ -155,7 +155,7 @@ const Save = ({ attributes }) => {
 							</div>
 						)}
 					</div>
-					{showDetailPageIcon && (
+					{addDetailPageLink && showDetailPageIcon && (
 						<div className="zolo-link-btn">
 							<a
 								href={

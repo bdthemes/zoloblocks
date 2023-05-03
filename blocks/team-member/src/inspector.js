@@ -139,12 +139,19 @@ function Inspector(props) {
 					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
 				});
 				break;
+			case 'style-3':
+				setAttributes({
+					showShortBio: false,
+					showSocialProfiles: true,
+					showDetailPageIcon: true,
+					showDesignation: true,
+					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
+				});
+				break;
 			default:
 				return false;
 		}
 	};
-
-	console.log(`${CONTENT_ALIGNMENT}ZRPAlign`);
 
 	const setProfileIcon = (value, index) => {
 		let profile = [...socialProfiles];
@@ -227,21 +234,22 @@ function Inspector(props) {
 											/>
 										)}
 
-										{preset !== 'style-1' && (
-											<ToggleControl
-												label={__(
-													'Show Short Bio',
-													'zolo-blocks'
-												)}
-												checked={showShortBio}
-												onChange={() =>
-													setAttributes({
-														showShortBio:
-															!showShortBio,
-													})
-												}
-											/>
-										)}
+										{preset !== 'style-1' &&
+											preset !== 'style-3' && (
+												<ToggleControl
+													label={__(
+														'Show Short Bio',
+														'zolo-blocks'
+													)}
+													checked={showShortBio}
+													onChange={() =>
+														setAttributes({
+															showShortBio:
+																!showShortBio,
+														})
+													}
+												/>
+											)}
 										<ToggleControl
 											label={__(
 												'Show Designation',
@@ -354,24 +362,26 @@ function Inspector(props) {
 												)}
 											/>
 										)}
-										{showShortBio && (
-											<TextareaControl
-												label={__(
-													'Short Bio',
-													'zolo-blocks'
-												)}
-												value={memberShortBio}
-												onChange={(bio) =>
-													setAttributes({
-														memberShortBio: bio,
-													})
-												}
-												placeholder={__(
-													'Short Bio..',
-													'zolo-blocks'
-												)}
-											/>
-										)}
+										{showShortBio &&
+											preset !== 'style-1' &&
+											preset !== 'style-3' && (
+												<TextareaControl
+													label={__(
+														'Short Bio',
+														'zolo-blocks'
+													)}
+													value={memberShortBio}
+													onChange={(bio) =>
+														setAttributes({
+															memberShortBio: bio,
+														})
+													}
+													placeholder={__(
+														'Short Bio..',
+														'zolo-blocks'
+													)}
+												/>
+											)}
 										{addDetailPageLink && (
 											<BaseControl
 												label={__(
@@ -772,7 +782,7 @@ function Inspector(props) {
 													resRequiredProps
 												}
 											/>
-											{preset !== 'style-1' && (
+											{preset === 'default' && (
 												<ColorControl
 													label={__(
 														'Separator Color',
@@ -931,6 +941,7 @@ function Inspector(props) {
 												'Details Page Link',
 												'zolo-blocks'
 											)}
+											initialOpen={false}
 										>
 											<TabPanelControl
 												normalComponents={
