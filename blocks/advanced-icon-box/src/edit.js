@@ -30,6 +30,7 @@ import {
 	ICON_BOX_ALIGNMENT,
 	TITLE_ALIGNMENT,
 	TITLE_MARGIN,
+	DESCRIPTION_MARGIN,
 	DESC_ALIGNMENT,
 	ICON_BORDER,
 	ICON_BORDER_RADIUS,
@@ -180,6 +181,28 @@ export default function Edit( props ) {
 	} = generateResAlignmentStyle( {
 		controlName: DESC_ALIGNMENT,
 		property: 'text-align',
+		attributes,
+	} );
+
+	//descrtiption typography
+	const {
+		typoStylesDesktop: descTypoDesktop,
+		typoStylesTab: descTypoTab,
+		typoStylesMobile: descTypoMobile,
+	} = generateTypographyStyles( {
+		prefixConstant: DESCRIPTION_TYPOGRAPHY,
+		defaultFontSize: 25,
+		attributes,
+	} );
+
+	// Generate Title Margin
+	const {
+		dimensionStylesDesktop: descMarginDesktop,
+		dimensionStylesTab: descMarginTab,
+		dimensionStylesMobile: descMarginMob,
+	} = generateDimensionStyle( {
+		controlName: DESCRIPTION_MARGIN,
+		styleFor: 'margin',
 		attributes,
 	} );
 
@@ -376,6 +399,7 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-title{
 			${ textAlignmentDesktop }
+			${ titleTypoDesktop }
 			${ titleMarginDesktop ? titleMarginDesktop : '0 0 12px 0' }
 			color: ${ textColor ? textColor : '' };
 		}
@@ -383,7 +407,9 @@ export default function Edit( props ) {
 			color: ${ textHoverColor ? textHoverColor : '' };
 		}
 		.${ uniqueId } .zolo-block-desc{
+			${ descTypoDesktop }
 			${ descAlignmentDesktop }
+			${ descMarginDesktop }
 			color: ${ descColor ? descColor : '#87878a' };
 		}
 		.${ uniqueId } .zolo-block-desc:hover{
@@ -429,11 +455,13 @@ export default function Edit( props ) {
 			${ iconAlignmentTab }
 		}
 		.${ uniqueId } .zolo-block-title{
+			${ titleTypoTab }
 			${ textAlignmentTab }
 			${ titleMarginTab }
 		}		
 		.${ uniqueId } .zolo-block-desc{
 			${ descAlignmentTab }
+			${ descTypoTab }
 		}
 		.${ uniqueId } .zolo-content {
 			${ borderStylesTab }
@@ -462,11 +490,13 @@ export default function Edit( props ) {
 			${ iconAlignmentMob }
 		}
 		.${ uniqueId } .zolo-block-title{
+			${ titleTypoMobile }
 			${ textAlignmentMob }
 			${ titleMarginMob }
 		}		
 		.${ uniqueId } .zolo-block-desc{
 			${ descAlignmentMob }
+			${ descTypoMobile }
 		}
 		.${ uniqueId } .zolo-content {
 			${ borderStylesMob }

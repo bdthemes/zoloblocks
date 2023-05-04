@@ -3,12 +3,14 @@ const {
 	generateResRangeAttributies,
 	generateBorderAttributies,
 	generateDimensionAttributes,
+	generateTypographyAttributes,
 } = window.zoloModule;
 
 import {
 	ICON_BOX_ALIGNMENT,
 	TITLE_ALIGNMENT,
 	TITLE_MARGIN,
+	DESCRIPTION_MARGIN,
 	DESC_ALIGNMENT,
 	ICON_BG_COLOR,
 	ICON_HOVER_BG_COLOR,
@@ -21,7 +23,7 @@ import {
 	ICON_PADDING,
 	ICON_MARGIN,
 } from './constants';
-
+import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
 	//Common Attributes
 	uniqueId: {
@@ -72,6 +74,10 @@ const attributes = {
 	...generateDimensionAttributes( ICON_MARGIN ),
 	//title margin
 	...generateDimensionAttributes( TITLE_MARGIN ),
+	//description margin
+	...generateDimensionAttributes( DESCRIPTION_MARGIN ),
+	//typography
+	...generateTypographyAttributes( Object.values( typographyObjs ) ),
 	//Block specific Attributes
 	preset: {
 		type: 'string',

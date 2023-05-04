@@ -38,6 +38,7 @@ import {
 	TITLE_ALIGNMENT,
 	TITLE_TAG,
 	TITLE_MARGIN,
+	DESCRIPTION_MARGIN,
 	DESC_ALIGNMENT,
 	PRESETS,
 	ICON_POSITIONS,
@@ -733,16 +734,6 @@ function Inspector( props ) {
 										/>
 										<ResDimensionsControl
 											label={ __(
-												'Padding',
-												'zolo-blocks'
-											) }
-											controlName={ ICON_PADDING }
-											resRequiredProps={
-												resRequiredProps
-											}
-										/>
-										<ResDimensionsControl
-											label={ __(
 												'Margin',
 												'zolo-blocks'
 											) }
@@ -751,9 +742,19 @@ function Inspector( props ) {
 												resRequiredProps
 											}
 										/>
+										<ResDimensionsControl
+											label={ __(
+												'Padding',
+												'zolo-blocks'
+											) }
+											controlName={ ICON_PADDING }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
 									</PanelBody>
 									<PanelBody
-										title={ __( 'Text', 'zolo-blocks' ) }
+										title={ __( 'Heading', 'zolo-blocks' ) }
 										initialOpen={ true }
 									>
 										<TypographyDropdown
@@ -828,7 +829,7 @@ function Inspector( props ) {
 												'zolo-blocks'
 											) }
 											typoPrefixConstant={
-												ICON_TYPOGRAPHY
+												DESCRIPTION_TYPOGRAPHY
 											}
 											resRequiredProps={
 												resRequiredProps
@@ -870,17 +871,12 @@ function Inspector( props ) {
 												</>
 											}
 										/>
-									</PanelBody>
-									<PanelBody
-										title={ __( 'Border', 'zolo-blocks' ) }
-										initialOpen={ false }
-									>
-										<BorderControl
+										<ResDimensionsControl
 											label={ __(
-												'Border',
+												'Margin',
 												'zolo-blocks'
 											) }
-											controlName={ ICON_BORDER }
+											controlName={ DESCRIPTION_MARGIN }
 											resRequiredProps={
 												resRequiredProps
 											}

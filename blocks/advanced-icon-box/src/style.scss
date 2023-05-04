@@ -1,8 +1,18 @@
 .wp-block-zolo-advanced-icon-box {
+	.zolo-block-title {
+		font-size: 25px;
+		font-weight: 700;
+		text-transform: capitalize;
+	}
+
+	.zolo-block-desc {
+		font-size: 16px;
+		line-height: 1.6;
+	}
 	/* icon box style 1 */
 	& .zolo-block-advanced-icon-box-style-1 {
 		.zolo-block-icon-wrap {
-			margin-bottom: 20px;
+			display: flex;
 		}
 	}
 	/* icon box style 2 */
@@ -37,7 +47,7 @@
 			background: rgba(147, 255, 170, 0.15);
 
 			.zolo-block-icon-wrap {
-				display: inline-block;
+				display: flex;
 				span {
 					display: table;
 				}
@@ -46,19 +56,6 @@
 			.zolo-block-body-content {
 				z-index: 1;
 				position: relative;
-
-				& .zolo-block-title {
-					font-weight: 700;
-					text-transform: capitalize;
-				}
-				h2.zolo-block-title {
-					font-size: 25px;
-				}
-
-				& .zolo-block-desc {
-					font-size: 16px;
-					line-height: 1.6;
-				}
 
 				& .zolo-block-link-btn {
 					margin-top: 22px;

@@ -165,5 +165,7 @@ export const ICON_TEXT_SPACING = 'iconTextSpacing';
 export const TITLE_ALIGNMENT = 'titleAlignment';
 // title margin
 export const TITLE_MARGIN = 'titleMargin';
+// description margin
+export const DESCRIPTION_MARGIN = 'descMargin';
 // description Alignment
 export const DESC_ALIGNMENT = 'descAlignment';
