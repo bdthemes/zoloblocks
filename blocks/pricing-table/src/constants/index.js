@@ -34,34 +34,6 @@ export const FEATURE_ALIGN = [
   { label: __(<Dashicon icon={"editor-alignright"} />), value: "right" },
 ];
 
-export const CURRENCY_SYMBOL = [
-  { value: '', label: __('None', 'zolo-blocks') },
-  { value: 'dollar', label: '&#36;' + __('Dollar', 'zolo-blocks') },
-  { value: 'euro', label: '&#128; ' + __('Euro', 'zolo-blocks') },
-  { value: 'baht', label: '&#3647; ' + __('Baht', 'zolo-blocks') },
-  { value: 'franc', label: '&#8355; ' + __('Franc', 'zolo-blocks') },
-  { value: 'guilder', label: '&fnof; ' + __('Guilder', 'zolo-blocks') },
-  { value: 'krona', label: 'kr ' + __('Krona', 'zolo-blocks') },
-  { value: 'lira', label: '&#8356; ' + __('Lira', 'zolo-blocks') },
-  { value: 'peseta', label: '&#8359 ' + __('Peseta', 'zolo-blocks') },
-  { value: 'peso', label: '&#8369; ' + __('Peso', 'zolo-blocks') },
-  { value: 'pound', label: '&#163; ' + __('Pound Sterling', 'zolo-blocks') },
-  { value: 'real', label: 'R$ ' + __('Real', 'zolo-blocks') },
-  { value: 'ruble', label: '&#8381; ' + __('Ruble', 'zolo-blocks') },
-  { value: 'rupee', label: '&#8360; ' + __('Rupee', 'zolo-blocks') },
-  { value: 'indian_rupee', label: '&#8377; ' + __('Rupee (Indian)', 'zolo-blocks') },
-  { value: 'shekel', label: '&#8362; ' + __('Shekel', 'zolo-blocks') },
-  { value: 'yen', label: '&#165; ' + __('Yen/Yuan', 'zolo-blocks') },
-  { value: 'bdt', label: '&#2547; ' + __('Taka', 'zolo-blocks') },
-  { value: 'won', label: '&#8361; ' + __('Won', 'zolo-blocks') },
-  { value: 'custom', label: __('Custom', 'zolo-blocks') },
-]
-
-export const CURRENCY_FORMAT = [
-  { label: '1,234.56 (Default)', value: '' },
-  { label: '1.234,56', value: ',' },
-];
-
 export const TPT_ROTATE_ORIGIN = [
   { label: 'Default', value: '' },
   { label: 'Top Left', value: 'top-left' },

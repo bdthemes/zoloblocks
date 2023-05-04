@@ -1,11 +1,13 @@
 //WordPress dependencies
-import { useBlockProps } from '@wordpress/block-editor';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 //external dependencies
 import classnames from 'classnames';
 //internal dependencies
 import Inspector from './inspector';
 import './style.scss';
+
 
 //block constants
 import {
@@ -43,17 +45,28 @@ const Edit = (props) => {
     blockStyle,
     //layout
     styles,
+    //header
+    titleText,
+    titleTagName,
+    descText,
     //features
     showFeatureHeading,
     featureTitle,
     featureDesc,
     features,
+
+    //buttons
+    buttonText,
+    showChatBtn,
+    chatBtnText,
+
     //ribbon
     showRibbon,
     ribbonTitle,
     ribbonXPosition,
     ribbonYPosition,
     ribbonRotate,
+
 
 
   } = attributes;
@@ -261,7 +274,6 @@ const Edit = (props) => {
 `;
 
 
-
   const desktopAllStyle = `
 		${wrapperStylesDesktop}
     ${featuresStylesDesktop}
@@ -316,17 +328,6 @@ const Edit = (props) => {
     }
   }
 
-  const FeatureHeading = ({ title, desc }) => {
-    return (
-      <>
-        {title && <div className="zolo-features-title">Features</div>}
-        {desc && <div className="zolo-features-desc">Everything in our free plan</div>}
-      </>
-    )
-  }
-
-
-
 
   return (
     <>
@@ -342,12 +343,19 @@ const Edit = (props) => {
       <div {...blockProps}>
         <div className="zolo-item">
           <div className="zolo-head-content">
-            <h2 className="zolo-package-title">basic plan</h2>
+
+            <RichText
+              tagName={titleTagName}
+              className="zolo-package-title"
+              value={titleText}
+              onChange={(titleText) => setAttributes({ titleText })}
+              placeholder={__('Add service name', 'zolo-blocks')}
+              allowedFormats={["bold", "italic", "strikethrough"]}
+            />
 
             {(showRibbon && ribbonTitle) && (
               <div className="zolo-ribbon-btn">{ribbonTitle}</div>
             )}
-
 
             <div className="zolo-price-info">
               <div className="zolo-price">$20</div>
@@ -357,20 +365,69 @@ const Edit = (props) => {
               </div>
             </div>
 
-            <div className="zolo-package-desc">Basic features for up to 10 user</div>
+            <RichText
+              tagName="div"
+              className="zolo-package-desc"
+              value={descText}
+              onChange={(descText) => setAttributes({ descText })}
+              placeholder={__('Add description', 'zolo-blocks')}
+              allowedFormats={["bold", "italic", "strikethrough"]}
+            />
 
             <div className="zolo-link-btn">
-              <a className="zolo-buy-btn" href="#">get started</a>
-              <a className="zolo-chat-btn" href="#">chat to sales</a>
+              <RichText
+                tagName="a"
+                className="zolo-buy-btn"
+                value={buttonText}
+                onChange={(text) => setAttributes({ buttonText: text })}
+                placeholder={__('Button Text', 'zolo-blocks')}
+                allowedFormats={[]}
+              />
+              {showChatBtn && (
+                <RichText
+                  tagName="a"
+                  className="zolo-chat-btn"
+                  value={chatBtnText}
+                  onChange={(text) => setAttributes({ chatBtnText: text })}
+                  placeholder={__('Button Text', 'zolo-blocks')}
+                  allowedFormats={[]}
+                />
+              )}
             </div>
-
           </div>
 
           <div className="zolo-features-info">
             {showFeatureHeading && (
-              <FeatureHeading title={featureTitle} desc={featureDesc} />
+              <>
+                <RichText
+                  tagName="div"
+                  className="zolo-features-title"
+                  value={featureTitle}
+                  onChange={(featureTitle) => setAttributes({ featureTitle })}
+                  placeholder={__('Add feature title', 'zolo-blocks')}
+                  allowedFormats={["bold", "italic", "strikethrough"]}
+                />
+                <RichText
+                  tagName="div"
+                  className="zolo-features-desc"
+                  value={featureDesc}
+                  onChange={(featureDesc) => setAttributes({ featureDesc })}
+                  placeholder={__('Add feature description', 'zolo-blocks')}
+                  allowedFormats={["bold", "italic", "strikethrough"]}
+                />
+              </>
             )}
-            <FeaturesList features={features} />
+
+            {features.length !== 0 && (
+              <ul className="features">
+                {features.map((item, index) => (
+                  <li key={index}>
+                    {item.icon && <span className="zolo-check-icon"><DisplayIcon icon={item.icon} /></span>}
+                    <span className="zolo-list-text">{item.text}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>

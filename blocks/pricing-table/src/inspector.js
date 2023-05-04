@@ -12,7 +12,6 @@ import { applyFilters } from "@wordpress/hooks";
 import { __ } from '@wordpress/i18n';
 import SortableFeatures from './sortable-features';
 
-
 const {
   BackgroundControl,
   BorderControl,
@@ -35,8 +34,6 @@ import objAttributes from './attributes';
 
 //block constants
 import {
-  CURRENCY_FORMAT,
-  CURRENCY_SYMBOL,
   FEATURE_ALIGN,
   STYLES,
   TITLE_TAG,
@@ -46,8 +43,6 @@ import {
   WRAPPER_PADDING,
   WRAPPER_SHADOW
 } from './constants';
-
-
 
 const Inspector = ({ attributes, setAttributes }) => {
 
@@ -60,13 +55,12 @@ const Inspector = ({ attributes, setAttributes }) => {
     //header
     titleText,
     titleTagName,
-    subTitleText,
+    descText,
 
     //price
-    currencySymbol,
-    customSymbol,
+    pricePrefix,
     price,
-    currencyFormat,
+    priceSuffix,
     sale,
     orginalPrice,
     period,
@@ -79,6 +73,11 @@ const Inspector = ({ attributes, setAttributes }) => {
     //footer
     buttonText,
     buttonLink,
+    buttonOpenNewTab,
+    showChatBtn,
+    chatBtnText,
+    chatBtnLink,
+    chatBtnOpenNewTab,
 
     //ribbon
     showRibbon,
@@ -193,26 +192,21 @@ const Inspector = ({ attributes, setAttributes }) => {
                       onChange={(selected) => setAttributes({ titleTagName: selected })}
                     />
                     <TextControl
-                      label={__('Sub Title', 'zolo-blocks')}
-                      value={subTitleText}
-                      onChange={(subTitleText) => setAttributes({ subTitleText })}
+                      label={__('Description', 'zolo-blocks')}
+                      value={descText}
+                      onChange={(descText) => setAttributes({ descText })}
                     />
                   </PanelBody>
 
                   <PanelBody title={__('Price', 'zolo-blocks')} initialOpen={false}>
-                    <SelectControl
-                      label={__("Currency Symbol", "zolo-blocks")}
-                      value={currencySymbol}
-                      options={CURRENCY_SYMBOL}
-                      onChange={(val) => setAttributes({ currencySymbol: val })}
+
+                    <TextControl
+                      label={__('Prefix', 'zolo-blocks')}
+                      value={pricePrefix}
+                      onChange={(pricePrefix) => setAttributes({ pricePrefix })}
+                      placeholder={__('$', 'zolo-blocks')}
                     />
-                    {currencySymbol == 'custom' && (
-                      <TextControl
-                        label={__('Custom Symbol', 'zolo-blocks')}
-                        value={customSymbol}
-                        onChange={(customSymbol) => setAttributes({ customSymbol })}
-                      />
-                    )}
+
 
                     <TextControl
                       label={__('Price', 'zolo-blocks')}
@@ -220,11 +214,10 @@ const Inspector = ({ attributes, setAttributes }) => {
                       onChange={(price) => setAttributes({ price })}
                     />
 
-                    <SelectControl
-                      label={__("Currency Format", "zolo-blocks")}
-                      value={currencyFormat}
-                      options={CURRENCY_FORMAT}
-                      onChange={(val) => setAttributes({ currencyFormat: val })}
+                    <TextControl
+                      label={__('Suffix', 'zolo-blocks')}
+                      value={priceSuffix}
+                      onChange={(priceSuffix) => setAttributes({ priceSuffix })}
                     />
 
                     <ToggleControl
@@ -265,7 +258,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                           onChange={(featureTitle) => setAttributes({ featureTitle })}
                         />
                         <TextControl
-                          label={__('Description', 'zolo-blocks')}
+                          label={__('DescText', 'zolo-blocks')}
                           value={featureDesc}
                           onChange={(featureDesc) => setAttributes({ featureDesc })}
                         />
@@ -301,7 +294,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 
                   </PanelBody>
 
-                  <PanelBody title={__('Footer', 'zolo-blocks')} initialOpen={false}>
+                  <PanelBody title={__('Buttons', 'zolo-blocks')} initialOpen={false}>
                     <TextControl
                       label={__('Button Text', 'zolo-blocks')}
                       value={buttonText}
@@ -313,6 +306,38 @@ const Inspector = ({ attributes, setAttributes }) => {
                       onChange={(buttonLink) => setAttributes({ buttonLink })}
                       help={__('http://your-link.com', 'zolo-blocks')}
                     />
+                    <ToggleControl
+                      label={__('Open in new tab', 'zolo-blocks')}
+                      checked={buttonOpenNewTab}
+                      onChange={(buttonOpenNewTab) => setAttributes({ buttonOpenNewTab })}
+                    />
+
+                    <ToggleControl
+                      label={__('Show Chat Button', 'zolo-blocks')}
+                      checked={showChatBtn}
+                      onChange={(showChatBtn) => setAttributes({ showChatBtn })}
+                    />
+                    {showChatBtn && (
+                      <>
+                        <TextControl
+                          label={__('Button Text', 'zolo-blocks')}
+                          value={chatBtnText}
+                          onChange={(chatBtnText) => setAttributes({ chatBtnText })}
+                        />
+                        <TextControl
+                          label={__('Link', 'zolo-blocks')}
+                          value={chatBtnLink}
+                          onChange={(chatBtnLink) => setAttributes({ chatBtnLink })}
+                          help={__('http://your-link.com', 'zolo-blocks')}
+                        />
+                        <ToggleControl
+                          label={__('Open in new tab', 'zolo-blocks')}
+                          checked={chatBtnOpenNewTab}
+                          onChange={(chatBtnOpenNewTab) => setAttributes({ chatBtnOpenNewTab })}
+                        />
+                      </>
+                    )}
+
                   </PanelBody>
 
                   <PanelBody title={__('Ribbon', 'zolo-blocks')} initialOpen={false}>

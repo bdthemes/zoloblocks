@@ -62,17 +62,13 @@ const attributes = {
     default: "h3",
   },
 
-  subTitleText: {
+  descText: {
     type: 'string',
-    default: "Service sub title",
+    default: "Basic features for up to 10 user",
   },
 
   //price
-  currencySymbol: {
-    type: 'string',
-    default: "dollar",
-  },
-  customSymbol: {
+  pricePrefix: {
     type: 'string',
     default: "",
   },
@@ -80,7 +76,7 @@ const attributes = {
     type: 'string',
     default: "49.99",
   },
-  currencyFormat: {
+  priceSuffix: {
     type: 'string',
     default: "",
   },
@@ -204,11 +200,31 @@ const attributes = {
   //footer
   buttonText: {
     type: 'string',
-    default: "Select Plan",
+    default: "Get Started",
   },
   buttonLink: {
     type: "string",
     default: "#",
+  },
+  buttonOpenNewTab: {
+    type: 'boolean',
+    default: true,
+  },
+  showChatBtn: {
+    type: 'boolean',
+    default: true,
+  },
+  chatBtnText: {
+    type: 'string',
+    default: "Chat To Sales",
+  },
+  chatBtnLink: {
+    type: "string",
+    default: "#",
+  },
+  chatBtnOpenNewTab: {
+    type: 'boolean',
+    default: true,
   },
 
   //ribbon
