@@ -9,6 +9,10 @@
 		font-size: 16px;
 		line-height: 1.6;
 	}
+
+	.zolo-box-button {
+		border: 1px solid #32de23;
+	}
 	/* icon box style 1 */
 	& .zolo-block-advanced-icon-box-style-1 {
 		.zolo-block-icon-wrap {
@@ -68,7 +72,6 @@
 						text-align: center;
 						text-decoration: none;
 						font-size: 14px;
-						border: 1px solid #32de23;
 						padding: 10px 15px;
 						border-radius: 30px;
 						text-transform: capitalize;
@@ -76,6 +79,9 @@
 						& .zolo-button-icon {
 							padding: 3px 5px;
 							display: block;
+						}
+						& p {
+							margin: 0px;
 						}
 					}
 				}
@@ -90,13 +96,11 @@
 		border-color: #32de23;
 	}
 
-	.zolo-block-advanced-icon-box
-		.zolo-block-item:hover
-		.zolo-block-link-btn
-		.zolo-box-button {
-		color: #fff;
-		background-color: #32de23;
-	}
+	// .zolo-block-advanced-icon-box
+	// 	.zolo-block-link-btn
+	// 	.zolo-box-button {
+	// 	color: #fff;
+	// }
 }
 
 .zb-res-device-btns {

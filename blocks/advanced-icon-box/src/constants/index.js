@@ -151,12 +151,19 @@ export const ICON_MARGIN = 'iconMargin';
 export const ICON_BOX_ALIGNMENT = 'iconBoxAlignment';
 // Icon Border
 export const ICON_BORDER = 'iconBorder';
+// Icon Box Shadow
+export const ICON_HOVER_BOX_SHADOW = 'iconHoverBoxShadow';
 // Icon Border Radius
 export const ICON_BORDER_RADIUS = 'iconBorderRadius';
 // Icon Size
 export const ICON_SIZE = 'iconSize';
 // Button Icon Size
 export const BUTTON_ICON_SIZE = 'buttonIconSize';
+// Button
+export const BUTTON_BORDER = 'buttonBorder';
+export const BUTTON_BORDER_RADIUS = 'buttonBorderRadius';
+export const BUTTON_MARGIN = 'buttonMargin';
+export const BUTTON_PADDING = 'buttonPadding';
 // icon and spacing
 export const ICON_SPACING = 'iconSpacing';
 // icon and text spacing
@@ -169,3 +176,6 @@ export const TITLE_MARGIN = 'titleMargin';
 export const DESCRIPTION_MARGIN = 'descMargin';
 // description Alignment
 export const DESC_ALIGNMENT = 'descAlignment';
+// title controls
+export const TITLE_TEXT_SHADOW = 'titleTextShadow';
+export const TITLE_TEXT_STROKE = 'titleTextStroke';

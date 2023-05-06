@@ -121,7 +121,10 @@ const Save = ( { attributes } ) => {
 									className={ `zolo-box-button ${ iconPosition }` }
 									href={ buttonLink }
 								>
-									<RichText.Content value={ buttonText } />
+									<RichText.Content
+										tagName="p"
+										value={ buttonText }
+									/>
 									{ showIcon && (
 										<DisplayIcon icon={ buttonIcon } />
 									) }

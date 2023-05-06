@@ -22,6 +22,9 @@ const {
 	generateBorderStyle,
 	generateDimensionStyle,
 	generateTypographyStyles,
+	generateBoxShadowStyles,
+	generateTextShadowStyles,
+	generateTextStrokeStyles,
 	DisplayIcon,
 } = window.zoloModule;
 
@@ -30,6 +33,8 @@ import {
 	ICON_BOX_ALIGNMENT,
 	TITLE_ALIGNMENT,
 	TITLE_MARGIN,
+	TITLE_TEXT_SHADOW,
+	TITLE_TEXT_STROKE,
 	DESCRIPTION_MARGIN,
 	DESC_ALIGNMENT,
 	ICON_BORDER,
@@ -38,8 +43,13 @@ import {
 	ICON_PADDING,
 	ICON_MARGIN,
 	BUTTON_ICON_SIZE,
+	BUTTON_BORDER,
+	ICON_HOVER_BOX_SHADOW,
 	ICON_SPACING,
 	ICON_TEXT_SPACING,
+	BUTTON_BORDER_RADIUS,
+	BUTTON_MARGIN,
+	BUTTON_PADDING,
 } from './constants';
 
 import {
@@ -75,13 +85,16 @@ export default function Edit( props ) {
 		iconBoxTitle,
 		iconBoxDescription,
 		buttonText,
+		btnColor,
+		btnHoverColor,
+		btnBgColor,
+		btnBgHoverColor,
 		buttonLink,
 		globalLink,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
 	} = attributes;
-
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect( () => {
 		handleUniqueId( {
@@ -116,6 +129,12 @@ export default function Edit( props ) {
 		controlName: ICON_BORDER_RADIUS,
 		styleFor: 'border-radius',
 		attributes,
+	} );
+
+	// Generate Hover Box Shadow
+	const { boxShadowStyle: hoverBoxShadowStyle } = generateBoxShadowStyles( {
+		attributes,
+		controlName: ICON_HOVER_BOX_SHADOW,
 	} );
 
 	// Generate Icon Padding
@@ -171,6 +190,24 @@ export default function Edit( props ) {
 		controlName: TITLE_MARGIN,
 		styleFor: 'margin',
 		attributes,
+	} );
+
+	// Generate Title Text Shadow
+	const { textShadowStyle: titleTextShadowStyle } = generateTextShadowStyles(
+		{
+			attributes,
+			controlName: TITLE_TEXT_SHADOW,
+		}
+	);
+
+	// Generate Title Text Stroke
+	const {
+		desktopTextStrokeStyle: titleTextStrokeStyle,
+		tabTextStrokeStyle: tabTitleTextStrokeStyle,
+		mobTextStrokeStyle: mobTitleTextStrokeStyle,
+	} = generateTextStrokeStyles( {
+		attributes,
+		controlName: TITLE_TEXT_STROKE,
 	} );
 
 	// description alignment
@@ -336,6 +373,16 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	// generate button style
+	const {
+		desktopBorderStyle: buttonBorderStyles,
+		tabBorderStyle: buttonBorderStylesTab,
+		mobBorderStyle: buttonBorderStylesMob,
+	} = generateBorderStyle( {
+		controlName: BUTTON_BORDER,
+		attributes,
+	} );
+
 	/**
 	 * Presets Based Styles
 	 */
@@ -400,6 +447,8 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-block-title{
 			${ textAlignmentDesktop }
 			${ titleTypoDesktop }
+			${ titleTextShadowStyle }
+        	${ titleTextStrokeStyle }
 			${ titleMarginDesktop ? titleMarginDesktop : '0 0 12px 0' }
 			color: ${ textColor ? textColor : '' };
 		}
@@ -446,6 +495,17 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-box-button {			
 			${ gap }
+			background: ${ btnBgColor ? btnBgColor : 'inherit' };
+			${ buttonBorderStyles }
+		}
+		.${ uniqueId } .zolo-box-button:hover {			
+			background: ${ btnBgHoverColor ? btnBgHoverColor : 'inherit' };
+		}
+		.${ uniqueId } .zolo-box-button p{			
+			color: ${ btnColor ? btnColor : 'inherit' };			
+		}
+		.${ uniqueId } .zolo-box-button:hover p{			
+			color: ${ btnHoverColor ? btnHoverColor : 'inherit' };			
 		}
 		${ presetStyles }		
   	`;
@@ -481,6 +541,7 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-box-button {
 			${ gapTab }
+			${ buttonBorderStylesTab }
 		}
 		${ presetStyles }
 	`;
@@ -514,6 +575,7 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-box-button {
 			${ gapMob }
+			${ buttonBorderStylesMob }
 		}
 		${ presetStyles }
   	`;

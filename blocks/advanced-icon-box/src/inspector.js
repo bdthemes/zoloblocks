@@ -28,9 +28,13 @@ const {
 	ColorControl,
 	BorderControl,
 	ResDimensionsControl,
+	TextShadowControl,
+	TextStrokeControl,
 	TypographyDropdown,
 	TabPanelControl,
 	IconPicker,
+	ICON_HOVER_BOX_SHADOW,
+	BoxShadowControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -49,11 +53,16 @@ import {
 	BUTTON_ICON_SIZE,
 	ICON_TEXT_SPACING,
 	ICON_SPACING,
-	ICON_TYPOGRAPHY,
+	TITLE_TEXT_SHADOW,
+	TITLE_TEXT_STROKE,
 	ICON_BORDER,
 	ICON_BORDER_RADIUS,
 	ICON_PADDING,
 	ICON_MARGIN,
+	BUTTON_BORDER,
+	BUTTON_BORDER_RADIUS,
+	BUTTON_MARGIN,
+	BUTTON_PADDING,
 } from './constants';
 
 import {
@@ -82,6 +91,10 @@ function Inspector( props ) {
 		descHoverColor,
 		iconType,
 		iconTypeImage,
+		btnColor,
+		btnHoverColor,
+		btnBgColor,
+		btnBgHoverColor,
 		buttonLink,
 		globalLink,
 		presetOneStyles,
@@ -632,7 +645,7 @@ function Inspector( props ) {
 								<>
 									<PanelBody
 										title={ __( 'Icon', 'zolo-blocks' ) }
-										initialOpen={ false }
+										initialOpen={ true }
 									>
 										<TabPanelControl
 											normalComponents={
@@ -665,6 +678,17 @@ function Inspector( props ) {
 																iconHoverColor:
 																	value,
 															} )
+														}
+													/>
+													<BoxShadowControl
+														controlName={
+															ICON_HOVER_BOX_SHADOW
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+														enableTransition={
+															false
 														}
 													/>
 												</>
@@ -755,7 +779,7 @@ function Inspector( props ) {
 									</PanelBody>
 									<PanelBody
 										title={ __( 'Heading', 'zolo-blocks' ) }
-										initialOpen={ true }
+										initialOpen={ false }
 									>
 										<TypographyDropdown
 											label={ __(
@@ -814,6 +838,21 @@ function Inspector( props ) {
 											resRequiredProps={
 												resRequiredProps
 											}
+										/>
+										<TextShadowControl
+											controlName={ TITLE_TEXT_SHADOW }
+											resRequiredProps={
+												resRequiredProps
+											}
+											enableTransition={ false }
+										/>
+
+										<TextStrokeControl
+											controlName={ TITLE_TEXT_STROKE }
+											resRequiredProps={
+												resRequiredProps
+											}
+											enableTransition={ false }
 										/>
 									</PanelBody>
 									<PanelBody
@@ -877,6 +916,125 @@ function Inspector( props ) {
 												'zolo-blocks'
 											) }
 											controlName={ DESCRIPTION_MARGIN }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={ __( 'Button', 'zolo-blocks' ) }
+										initialOpen={ false }
+									>
+										<TabPanelControl
+											normalComponents={
+												<>
+													<ColorControl
+														label={ __(
+															'Color',
+															'zolo-blocks'
+														) }
+														color={ btnColor }
+														onChange={ ( value ) =>
+															setAttributes( {
+																btnColor: value,
+															} )
+														}
+													/>
+												</>
+											}
+											hoverComponents={
+												<>
+													<ColorControl
+														label={ __(
+															'Color',
+															'zolo-blocks'
+														) }
+														color={ btnHoverColor }
+														onChange={ ( value ) =>
+															setAttributes( {
+																btnHoverColor:
+																	value,
+															} )
+														}
+													/>
+												</>
+											}
+										/>
+										<TabPanelControl
+											normalComponents={
+												<>
+													<ColorControl
+														label={ __(
+															'Background Color',
+															'zolo-blocks'
+														) }
+														color={ btnBgColor }
+														onChange={ ( value ) =>
+															setAttributes( {
+																btnBgColor:
+																	value,
+															} )
+														}
+													/>
+												</>
+											}
+											hoverComponents={
+												<>
+													<ColorControl
+														label={ __(
+															'Background Hover Color',
+															'zolo-blocks'
+														) }
+														color={
+															btnBgHoverColor
+														}
+														onChange={ ( value ) =>
+															setAttributes( {
+																btnBgHoverColor:
+																	value,
+															} )
+														}
+													/>
+												</>
+											}
+										/>
+										<BorderControl
+											label={ __(
+												'Button Border',
+												'zolo-blocks'
+											) }
+											controlName={ BUTTON_BORDER }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Border Radius',
+												'zolo-blocks'
+											) }
+											controlName={ BUTTON_BORDER_RADIUS }
+											resRequiredProps={
+												resRequiredProps
+											}
+											forBorderRadius={ true }
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Margin',
+												'zolo-blocks'
+											) }
+											controlName={ BUTTON_MARGIN }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Padding',
+												'zolo-blocks'
+											) }
+											controlName={ BUTTON_PADDING }
 											resRequiredProps={
 												resRequiredProps
 											}

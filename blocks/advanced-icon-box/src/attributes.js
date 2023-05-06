@@ -4,24 +4,32 @@ const {
 	generateBorderAttributies,
 	generateDimensionAttributes,
 	generateTypographyAttributes,
+	generateBoxShadowAttributies,
+	generateTextShadowAttributies,
+	generateTextStrokeAttributies,
 } = window.zoloModule;
 
 import {
 	ICON_BOX_ALIGNMENT,
 	TITLE_ALIGNMENT,
 	TITLE_MARGIN,
+	TITLE_TEXT_SHADOW,
+	TITLE_TEXT_STROKE,
 	DESCRIPTION_MARGIN,
 	DESC_ALIGNMENT,
-	ICON_BG_COLOR,
-	ICON_HOVER_BG_COLOR,
 	ICON_BORDER,
+	ICON_HOVER_BOX_SHADOW,
 	ICON_BORDER_RADIUS,
 	ICON_SIZE,
 	BUTTON_ICON_SIZE,
+	BUTTON_BORDER,
 	ICON_TEXT_SPACING,
 	ICON_SPACING,
 	ICON_PADDING,
 	ICON_MARGIN,
+	BUTTON_BORDER_RADIUS,
+	BUTTON_MARGIN,
+	BUTTON_PADDING,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
@@ -50,14 +58,19 @@ const attributes = {
 	} ),
 	// border attributes
 	...generateBorderAttributies( ICON_BORDER ),
+	// button border
+	...generateBorderAttributies( BUTTON_BORDER ),
 	//icon size
 	...generateResRangeAttributies( ICON_SIZE, {
 		default: 16,
 	} ),
-	//button icon size
+	//button
 	...generateResRangeAttributies( BUTTON_ICON_SIZE, {
 		default: 16,
 	} ),
+	...generateDimensionAttributes( BUTTON_BORDER_RADIUS ),
+	...generateDimensionAttributes( BUTTON_PADDING ),
+	...generateDimensionAttributes( BUTTON_MARGIN ),
 	//icon text spacing
 	...generateResRangeAttributies( ICON_TEXT_SPACING, {
 		default: 5,
@@ -72,8 +85,12 @@ const attributes = {
 	...generateDimensionAttributes( ICON_PADDING ),
 	//icon margin
 	...generateDimensionAttributes( ICON_MARGIN ),
+	//icon boxshadow
+	...generateBoxShadowAttributies( ICON_HOVER_BOX_SHADOW ),
 	//title margin
 	...generateDimensionAttributes( TITLE_MARGIN ),
+	...generateTextShadowAttributies( TITLE_TEXT_SHADOW ),
+	...generateTextStrokeAttributies( TITLE_TEXT_STROKE ),
 	//description margin
 	...generateDimensionAttributes( DESCRIPTION_MARGIN ),
 	//typography
@@ -192,6 +209,18 @@ const attributes = {
 	buttonLink: {
 		type: 'string',
 		default: '#',
+	},
+	btnColor: {
+		type: 'string',
+	},
+	btnHoverColor: {
+		type: 'string',
+	},
+	btnBgColor: {
+		type: 'string',
+	},
+	btnBgHoverColor: {
+		type: 'string',
 	},
 	presetOneStyles: {
 		type: 'object',
