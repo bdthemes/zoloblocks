@@ -53,7 +53,6 @@ import {
 } from './constants';
 
 import {
-	SUBTITLE_TYPOGRAPHY,
 	TITLE_TYPOGRAPHY,
 	DESCRIPTION_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
@@ -89,8 +88,6 @@ export default function Edit( props ) {
 		btnHoverColor,
 		btnBgColor,
 		btnBgHoverColor,
-		buttonLink,
-		globalLink,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
@@ -147,6 +144,16 @@ export default function Edit( props ) {
 		styleFor: 'padding',
 		attributes,
 	} );
+	// Generate Button Padding
+	const {
+		dimensionStylesDesktop: buttonPaddingDesktop,
+		dimensionStylesTab: buttonPaddingTab,
+		dimensionStylesMobile: buttonPaddingMob,
+	} = generateDimensionStyle( {
+		controlName: BUTTON_PADDING,
+		styleFor: 'padding',
+		attributes,
+	} );
 
 	// Generate Icon Margin
 	const {
@@ -155,6 +162,17 @@ export default function Edit( props ) {
 		dimensionStylesMobile: iconMarginMob,
 	} = generateDimensionStyle( {
 		controlName: ICON_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	} );
+
+	// Generate Button Margin
+	const {
+		dimensionStylesDesktop: buttonMarginDesktop,
+		dimensionStylesTab: buttonMarginTab,
+		dimensionStylesMobile: buttonMarginMob,
+	} = generateDimensionStyle( {
+		controlName: BUTTON_MARGIN,
 		styleFor: 'margin',
 		attributes,
 	} );
@@ -228,7 +246,7 @@ export default function Edit( props ) {
 		typoStylesMobile: descTypoMobile,
 	} = generateTypographyStyles( {
 		prefixConstant: DESCRIPTION_TYPOGRAPHY,
-		defaultFontSize: 25,
+		defaultFontSize: 16,
 		attributes,
 	} );
 
@@ -383,6 +401,17 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	// generate button border radius
+	const {
+		dimensionStylesDesktop: buttonBorderRadiusDesktop,
+		dimensionStylesTab: buttonBorderRadiusTab,
+		dimensionStylesMobile: buttonBorderRadiusMob,
+	} = generateDimensionStyle( {
+		controlName: BUTTON_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	} );
+
 	/**
 	 * Presets Based Styles
 	 */
@@ -497,6 +526,9 @@ export default function Edit( props ) {
 			${ gap }
 			background: ${ btnBgColor ? btnBgColor : 'inherit' };
 			${ buttonBorderStyles }
+			${ buttonBorderRadiusDesktop }
+			${ buttonPaddingDesktop }
+			${ buttonMarginDesktop }
 		}
 		.${ uniqueId } .zolo-box-button:hover {			
 			background: ${ btnBgHoverColor ? btnBgHoverColor : 'inherit' };
@@ -516,11 +548,13 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoTab }
+			${ tabTitleTextStrokeStyle }
 			${ textAlignmentTab }
 			${ titleMarginTab }
 		}		
 		.${ uniqueId } .zolo-block-desc{
 			${ descAlignmentTab }
+			${ descMarginTab }
 			${ descTypoTab }
 		}
 		.${ uniqueId } .zolo-content {
@@ -539,9 +573,17 @@ export default function Edit( props ) {
 			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
 			color: ${ iconColor ? iconColor : '' };	
 		}
+		.${ uniqueId } .zolo-box-button span{
+			${ buttonIconSizeTab }			
+			${ buttonIconHeightTab }			
+			${ buttonIconWidthTab }			
+		}
 		.${ uniqueId } .zolo-box-button {
 			${ gapTab }
 			${ buttonBorderStylesTab }
+			${ buttonBorderRadiusTab }
+			${ buttonPaddingTab }
+			${ buttonMarginTab }
 		}
 		${ presetStyles }
 	`;
@@ -552,11 +594,13 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoMobile }
+			${ mobTitleTextStrokeStyle }
 			${ textAlignmentMob }
 			${ titleMarginMob }
 		}		
 		.${ uniqueId } .zolo-block-desc{
 			${ descAlignmentMob }
+			${ descMarginMob }
 			${ descTypoMobile }
 		}
 		.${ uniqueId } .zolo-content {
@@ -573,9 +617,17 @@ export default function Edit( props ) {
 			${ iconPaddingMob }
 			${ iconMarginMob }
 		}
+		.${ uniqueId } .zolo-box-button span{
+			${ buttonIconSizeMob }			
+			${ buttonIconHeightMob }			
+			${ buttonIconWidthMob }			
+		}
 		.${ uniqueId } .zolo-box-button {
 			${ gapMob }
 			${ buttonBorderStylesMob }
+			${ buttonBorderRadiusMob }
+			${ buttonPaddingMob }
+			${ buttonMarginMob }
 		}
 		${ presetStyles }
   	`;
