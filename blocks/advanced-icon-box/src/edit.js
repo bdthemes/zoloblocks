@@ -5,6 +5,8 @@ import {
 	useBlockProps,
 	RichText,
 	BlockControls,
+	MediaUpload,
+	MediaPlaceholder,
 	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
@@ -81,6 +83,7 @@ export default function Edit( props ) {
 		iconBackgroundColor,
 		iconBackgroundHoverColor,
 		iconType,
+		iconTypeImage,
 		iconBoxTitle,
 		iconBoxDescription,
 		buttonText,
@@ -705,6 +708,42 @@ export default function Edit( props ) {
 						) }
 					/>
 				</ToolbarGroup>
+				{ iconTypeImage && (
+					<Fragment>
+						<ToolbarGroup>
+							<MediaUpload
+								onSelect={ ( media ) => {
+									setAttributes( {
+										iconTypeImage: media,
+									} );
+								} }
+								allowedTypes={ [ 'image' ] }
+								value={ iconTypeImage && iconTypeImage.id }
+								render={ ( { open } ) => (
+									<ToolbarButton
+										className="components-toolbar__control"
+										label={ __(
+											'Replace Photo',
+											'zolo-blocks'
+										) }
+										icon="update"
+										onClick={ open }
+									/>
+								) }
+							/>
+							<ToolbarButton
+								className="components-toolbar__control"
+								label={ __( 'Remove Photo', 'zolo-blocks' ) }
+								icon="trash"
+								onClick={ () => {
+									setAttributes( {
+										iconTypeImage: null,
+									} );
+								} }
+							/>
+						</ToolbarGroup>
+					</Fragment>
+				) }
 			</BlockControls>
 			<style>{ ` ${ softMinifyCssStrings( allStyle ) }` }</style>
 			<div { ...blockProps }>
@@ -715,6 +754,28 @@ export default function Edit( props ) {
 						<div className={ `zolo-block-icon-wrap` }>
 							{ iconType == 'icon' && (
 								<DisplayIcon icon={ mainIcon } />
+							) }
+
+							{ iconTypeImage ? (
+								<img
+									src={ iconTypeImage.url }
+									alt={ iconTypeImage.alt || 'Team Member' }
+								/>
+							) : (
+								<MediaPlaceholder
+									icon="format-image"
+									labels={ {
+										title: __( 'Add Photo', 'zolo-blocks' ),
+										instructions: '',
+									} }
+									onSelect={ ( media ) => {
+										setAttributes( {
+											iconTypeImage: media,
+										} );
+									} }
+									accept="image/*"
+									allowedTypes={ [ 'image' ] }
+								/>
 							) }
 						</div>
 
