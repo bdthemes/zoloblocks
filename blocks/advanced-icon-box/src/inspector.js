@@ -298,49 +298,85 @@ function Inspector( props ) {
 											</Fragment>
 										) }
 
-										{ iconType == 'image' &&
-											( iconTypeImage ? (
-												<img
-													src={ iconTypeImage.url }
-													alt={
-														iconTypeImage.alt
-															? iconTypeImage.alt
-															: 'image alt text'
-													}
-												/>
-											) : (
-												<MediaUploadCheck>
-													<MediaUpload
-														onSelect={ ( media ) =>
+										{ iconType == 'image' && (
+											<Fragment>
+												{ preset !== '' &&
+													preset == 'style-1' && (
+														<SelectControl
+															label={ __(
+																'Position',
+																'zolo-blocks'
+															) }
+															options={
+																TOP_ICON_POSITIONS
+															}
+															onChange={ (
+																value
+															) =>
+																setAttributes( {
+																	presetOneStyles:
+																		{
+																			...presetOneStyles,
+																			iconPosition:
+																				value,
+																		},
+																} )
+															}
+															value={
+																presetOneStyles.iconPosition
+															}
+														/>
+													) }
+												{ preset == 'style-2' && (
+													<SelectControl
+														label={ __(
+															'Position',
+															'zolo-blocks'
+														) }
+														options={
+															SIDE_ICON_POSITIONS
+														}
+														onChange={ ( value ) =>
 															setAttributes( {
-																iconTypeImage:
-																	media,
+																presetTwoStyles:
+																	{
+																		...presetTwoStyles,
+																		iconPosition:
+																			value,
+																	},
 															} )
 														}
-														allowedTypes={ [
-															'image',
-														] }
 														value={
-															iconTypeImage &&
-															iconTypeImage.id
+															presetTwoStyles.iconPosition
 														}
-														render={ ( {
-															open,
-														} ) => (
-															<Button
-																onClick={ open }
-																icon="upload"
-																variant="secondary"
-															>
-																{ __(
-																	'Add Image',
-																	'zolo-blocks'
-																) }
-															</Button>
-														) }
 													/>
-												</MediaUploadCheck>
-											) ) }
+												) }
+												{ preset == 'style-3' && (
+													<SelectControl
+														label={ __(
+															'Position',
+															'zolo-blocks'
+														) }
+														options={
+															SIDE_ICON_POSITIONS
+														}
+														onChange={ ( value ) =>
+															setAttributes( {
+																presetThreeStyles:
+																	{
+																		...presetThreeStyles,
+																		iconPosition:
+																			value,
+																	},
+															} )
+														}
+														value={
+															presetThreeStyles.iconPosition
+														}
+													/>
+												) }
+											</Fragment>
+										) }
 
 										<CardDivider />
 										<SelectControl
@@ -737,7 +773,7 @@ function Inspector( props ) {
 										/>
 										<BorderControl
 											label={ __(
-												'Icon Border',
+												'Border',
 												'zolo-blocks'
 											) }
 											controlName={ ICON_BORDER }

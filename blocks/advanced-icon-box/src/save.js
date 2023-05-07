@@ -14,6 +14,7 @@ const Save = ( { attributes } ) => {
 		iconPosition,
 		buttonPosition,
 		iconType,
+		iconTypeImage,
 		iconBoxTitle,
 		iconBoxDescription,
 		buttonText,
@@ -98,8 +99,17 @@ const Save = ( { attributes } ) => {
 				>
 					<div className="zolo-block-item">
 						<div className={ `zolo-block-icon-wrap` }>
-							{ iconType == 'icon' && (
+							{ iconType == 'icon' ? (
 								<DisplayIcon icon={ mainIcon } />
+							) : (
+								iconTypeImage && (
+									<img
+										src={ iconTypeImage.url }
+										alt={
+											iconTypeImage.alt || iconBoxTitle
+										}
+									/>
+								)
 							) }
 						</div>
 

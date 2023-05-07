@@ -752,11 +752,9 @@ export default function Edit( props ) {
 				>
 					<div className="zolo-block-item">
 						<div className={ `zolo-block-icon-wrap` }>
-							{ iconType == 'icon' && (
+							{ iconType == 'icon' ? (
 								<DisplayIcon icon={ mainIcon } />
-							) }
-
-							{ iconTypeImage ? (
+							) : iconTypeImage ? (
 								<img
 									src={ iconTypeImage.url }
 									alt={ iconTypeImage.alt || 'Team Member' }
@@ -777,6 +775,8 @@ export default function Edit( props ) {
 									allowedTypes={ [ 'image' ] }
 								/>
 							) }
+
+							{  }
 						</div>
 
 						<div className="zolo-block-body-content">
