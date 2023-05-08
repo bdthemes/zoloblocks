@@ -18,6 +18,7 @@ import {
 	DESCRIPTION_MARGIN,
 	DESC_ALIGNMENT,
 	ICON_BORDER,
+	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
 	ICON_BORDER_RADIUS,
 	ICON_SIZE,
@@ -86,6 +87,8 @@ const attributes = {
 	//icon margin
 	...generateDimensionAttributes( ICON_MARGIN ),
 	//icon boxshadow
+	...generateBoxShadowAttributies( ICON_BOX_SHADOW ),
+	//icon hover boxshadow
 	...generateBoxShadowAttributies( ICON_HOVER_BOX_SHADOW ),
 	//title margin
 	...generateDimensionAttributes( TITLE_MARGIN ),

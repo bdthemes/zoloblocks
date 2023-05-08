@@ -46,6 +46,7 @@ import {
 	ICON_MARGIN,
 	BUTTON_ICON_SIZE,
 	BUTTON_BORDER,
+	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
 	ICON_SPACING,
 	ICON_TEXT_SPACING,
@@ -131,8 +132,14 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
-	// Generate Hover Box Shadow
-	const { boxShadowStyle: hoverBoxShadowStyle } = generateBoxShadowStyles( {
+	// Generate Icon Box Shadow
+	const { boxShadowStyle: iconBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: ICON_BOX_SHADOW,
+	} );
+
+	// Generate Icon Hover Box Shadow
+	const { boxShadowStyle: iconHoverBoxShadow } = generateBoxShadowStyles( {
 		attributes,
 		controlName: ICON_HOVER_BOX_SHADOW,
 	} );
@@ -497,19 +504,23 @@ export default function Edit( props ) {
 			color: ${ descHoverColor ? descHoverColor : '' };
 		}
 		.${ uniqueId } .zolo-block-icon-wrap  {			
+			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
+			color: ${ iconColor ? iconColor : '' };			
+		}
+		.${ uniqueId } .zolo-block-icon-wrap span {
 			${ iconSize }
-			${ iconHeight }
+			${ iconHeight }	
 			${ iconSpacing }
 			${ borderStyles }
 			${ iconBorderRadiusDesktop }
 			${ iconPaddingDesktop }
 			${ iconMarginDesktop }
-			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
-			color: ${ iconColor ? iconColor : '' };			
-		}
+			${ iconBoxShadow }
+			}
 		.${ uniqueId } .zolo-block-icon-wrap span:hover{			
 			background: ${ iconBackgroundHoverColor ? iconBackgroundHoverColor : '' };
 			color: ${ iconHoverColor ? iconHoverColor : '' };
+			${ iconHoverBoxShadow }
 		}
 		.${ uniqueId } .zolo-content {			
 			${ gap }

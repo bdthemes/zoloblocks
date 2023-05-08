@@ -33,7 +33,6 @@ const {
 	TypographyDropdown,
 	TabPanelControl,
 	IconPicker,
-	ICON_HOVER_BOX_SHADOW,
 	BoxShadowControl,
 } = window.zoloModule;
 
@@ -55,6 +54,8 @@ import {
 	ICON_SPACING,
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
+	ICON_BOX_SHADOW,
+	ICON_HOVER_BOX_SHADOW,
 	ICON_BORDER,
 	ICON_BORDER_RADIUS,
 	ICON_PADDING,
@@ -697,6 +698,17 @@ function Inspector( props ) {
 																iconColor:
 																	value,
 															} )
+														}
+													/>
+													<BoxShadowControl
+														controlName={
+															ICON_BOX_SHADOW
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+														enableTransition={
+															false
 														}
 													/>
 												</>
