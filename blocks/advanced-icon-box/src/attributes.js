@@ -20,6 +20,8 @@ import {
 	ICON_BORDER,
 	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
+	BUTTON_BOX_SHADOW,
+	BUTTON_HOVER_BOX_SHADOW,
 	ICON_BORDER_RADIUS,
 	ICON_SIZE,
 	BUTTON_ICON_SIZE,
@@ -90,6 +92,10 @@ const attributes = {
 	...generateBoxShadowAttributies( ICON_BOX_SHADOW ),
 	//icon hover boxshadow
 	...generateBoxShadowAttributies( ICON_HOVER_BOX_SHADOW ),
+	//button boxshadow
+	...generateBoxShadowAttributies( BUTTON_BOX_SHADOW ),
+	//button hover boxshadow
+	...generateBoxShadowAttributies( BUTTON_HOVER_BOX_SHADOW ),
 	//title margin
 	...generateDimensionAttributes( TITLE_MARGIN ),
 	...generateTextShadowAttributies( TITLE_TEXT_SHADOW ),

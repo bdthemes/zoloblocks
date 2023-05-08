@@ -56,6 +56,8 @@ import {
 	TITLE_TEXT_STROKE,
 	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
+	BUTTON_BOX_SHADOW,
+	BUTTON_HOVER_BOX_SHADOW,
 	ICON_BORDER,
 	ICON_BORDER_RADIUS,
 	ICON_PADDING,
@@ -67,7 +69,7 @@ import {
 } from './constants';
 
 import {
-	SUBTITLE_TYPOGRAPHY,
+	BUTTON_TYPOGRAPHY,
 	TITLE_TYPOGRAPHY,
 	DESCRIPTION_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
@@ -973,6 +975,18 @@ function Inspector( props ) {
 										title={ __( 'Button', 'zolo-blocks' ) }
 										initialOpen={ false }
 									>
+										<TypographyDropdown
+											label={ __(
+												'Typography',
+												'zolo-blocks'
+											) }
+											typoPrefixConstant={
+												BUTTON_TYPOGRAPHY
+											}
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
 										<TabPanelControl
 											normalComponents={
 												<>
@@ -986,6 +1000,17 @@ function Inspector( props ) {
 															setAttributes( {
 																btnColor: value,
 															} )
+														}
+													/>
+													<BoxShadowControl
+														controlName={
+															BUTTON_BOX_SHADOW
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+														enableTransition={
+															false
 														}
 													/>
 												</>
@@ -1003,6 +1028,17 @@ function Inspector( props ) {
 																btnHoverColor:
 																	value,
 															} )
+														}
+													/>
+													<BoxShadowControl
+														controlName={
+															BUTTON_HOVER_BOX_SHADOW
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+														enableTransition={
+															false
 														}
 													/>
 												</>

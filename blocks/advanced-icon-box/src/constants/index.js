@@ -155,6 +155,10 @@ export const ICON_BORDER = 'iconBorder';
 export const ICON_BOX_SHADOW = 'iconBoxShadow';
 // Icon Hover Box Shadow
 export const ICON_HOVER_BOX_SHADOW = 'iconHoverBoxShadow';
+// Button Box Shadow
+export const BUTTON_BOX_SHADOW = 'buttonBoxShadow';
+// Button Hover Box Shadow
+export const BUTTON_HOVER_BOX_SHADOW = 'buttonHoverBoxShadow';
 // Icon Border Radius
 export const ICON_BORDER_RADIUS = 'iconBorderRadius';
 // Icon Size

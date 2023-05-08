@@ -48,6 +48,8 @@ import {
 	BUTTON_BORDER,
 	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
+	BUTTON_BOX_SHADOW,
+	BUTTON_HOVER_BOX_SHADOW,
 	ICON_SPACING,
 	ICON_TEXT_SPACING,
 	BUTTON_BORDER_RADIUS,
@@ -58,6 +60,7 @@ import {
 import {
 	TITLE_TYPOGRAPHY,
 	DESCRIPTION_TYPOGRAPHY,
+	BUTTON_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
@@ -142,6 +145,18 @@ export default function Edit( props ) {
 	const { boxShadowStyle: iconHoverBoxShadow } = generateBoxShadowStyles( {
 		attributes,
 		controlName: ICON_HOVER_BOX_SHADOW,
+	} );
+
+	// Generate Button Box Shadow
+	const { boxShadowStyle: buttonBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: BUTTON_BOX_SHADOW,
+	} );
+
+	// Generate Icon Hover Box Shadow
+	const { boxShadowStyle: buttonHoverBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: BUTTON_HOVER_BOX_SHADOW,
 	} );
 
 	// Generate Icon Padding
@@ -249,7 +264,7 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
-	//descrtiption typography
+	// descrtiption typography
 	const {
 		typoStylesDesktop: descTypoDesktop,
 		typoStylesTab: descTypoTab,
@@ -257,6 +272,17 @@ export default function Edit( props ) {
 	} = generateTypographyStyles( {
 		prefixConstant: DESCRIPTION_TYPOGRAPHY,
 		defaultFontSize: 16,
+		attributes,
+	} );
+
+	// button typography
+	const {
+		typoStylesDesktop: btnTypoDesktop,
+		typoStylesTab: btnTypoTab,
+		typoStylesMobile: btnTypoMobile,
+	} = generateTypographyStyles( {
+		prefixConstant: BUTTON_TYPOGRAPHY,
+		defaultFontSize: 14,
 		attributes,
 	} );
 
@@ -538,20 +564,25 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-box-button {			
 			${ gap }
-			background: ${ btnBgColor ? btnBgColor : 'inherit' };
+			background: ${ btnBgColor ? btnBgColor : '' };			
 			${ buttonBorderStyles }
 			${ buttonBorderRadiusDesktop }
 			${ buttonPaddingDesktop }
 			${ buttonMarginDesktop }
+			${ buttonBoxShadow }
+		}
+		.${ uniqueId } .zolo-box-button p{
+			${ btnTypoDesktop }
 		}
 		.${ uniqueId } .zolo-box-button:hover {			
-			background: ${ btnBgHoverColor ? btnBgHoverColor : 'inherit' };
+			background: ${ btnBgHoverColor ? btnBgHoverColor : '#32DE23' };
+			${ buttonHoverBoxShadow }
 		}
 		.${ uniqueId } .zolo-box-button p{			
-			color: ${ btnColor ? btnColor : 'inherit' };			
+			color: ${ btnColor ? btnColor : '' };			
 		}
 		.${ uniqueId } .zolo-box-button:hover p{			
-			color: ${ btnHoverColor ? btnHoverColor : 'inherit' };			
+			color: ${ btnHoverColor ? btnHoverColor : '#fff' };			
 		}
 		${ presetStyles }		
   	`;
@@ -599,6 +630,9 @@ export default function Edit( props ) {
 			${ buttonPaddingTab }
 			${ buttonMarginTab }
 		}
+		.${ uniqueId } .zolo-box-button p{
+			${ btnTypoTab }
+		}
 		${ presetStyles }
 	`;
 
@@ -637,11 +671,14 @@ export default function Edit( props ) {
 			${ buttonIconWidthMob }			
 		}
 		.${ uniqueId } .zolo-box-button {
-			${ gapMob }
+			${ gapMob }			
 			${ buttonBorderStylesMob }
 			${ buttonBorderRadiusMob }
 			${ buttonPaddingMob }
 			${ buttonMarginMob }
+		}
+		.${ uniqueId } .zolo-box-button p{
+			${ btnTypoMobile }
 		}
 		${ presetStyles }
   	`;
