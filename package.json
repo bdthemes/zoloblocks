@@ -15,6 +15,7 @@
 		"classnames": "^2.3.1",
 		"rc-switch": "^3.2.2",
 		"react-multi-select-component": "^4.3.4",
+		"react-rater": "^6.0.5",
 		"react-select": "^5.2.1",
 		"striptags": "^3.2.0"
 	},

@@ -624,13 +624,13 @@ function Inspector(props) {
 											label={__('Padding', 'zolo-blocks')}
 											controlName={TEAM_PHOTO_PADDING}
 											resRequiredProps={resRequiredProps}
-											forBorderRadius={true}
+											forBorderRadius={false}
 										/>
 										<ResDimensionsControl
 											label={__('Margin', 'zolo-blocks')}
 											controlName={TEAM_PHOTO_MARGIN}
 											resRequiredProps={resRequiredProps}
-											forBorderRadius={true}
+											forBorderRadius={false}
 										/>
 									</PanelBody>
 									<PanelBody

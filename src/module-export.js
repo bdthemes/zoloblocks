@@ -18,6 +18,7 @@ export { default as TypographyDropdown } from './controls/typography-control';
 export { default as IconPicker } from './controls/icon-picker';
 export { default as DisplayIcon } from './controls/icon-picker/DisplayIcon';
 export { default as TabPanelControl } from './controls/tabpanel-control';
+export { default as StarRating } from './controls/star-rating';
 
 //Export Helpers
 export {

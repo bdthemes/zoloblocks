@@ -9,3 +9,4 @@ import '../blocks/social-icon/index.js';
 import '../blocks/advanced-icon-box/index.js';
 import '../blocks/team-member/index.js';
 import '../blocks/team-grid/index.js';
+import '../blocks/review/index.js';

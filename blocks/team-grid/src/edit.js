@@ -29,17 +29,28 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, softMinifyCssStrings, generateResRangeStyle } =
-	window.zoloModule;
+const {
+	handleUniqueId,
+	softMinifyCssStrings,
+	generateResRangeStyle,
+	generateDimensionStyle,
+} = window.zoloModule;
 
-import { BLOCK_PREFIX, COLUMNS_GAP, GRID_COLUMNS, ROWS_GAP } from './constants';
+import {
+	BLOCK_PREFIX,
+	COLUMNS_GAP,
+	GRID_COLUMNS,
+	ROWS_GAP,
+	CONTAINER_MARGIN,
+	CONTAINER_PADDING,
+} from './constants';
 
 import Inspector from './inspector';
 
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
 		props;
-	const { uniqueId, blockStyle } = attributes;
+	const { uniqueId, blockStyle, containerBg } = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -88,16 +99,50 @@ export default function Edit(props) {
 		attributes,
 	});
 
-	console.log('deskColumns', deskColumns);
-	console.log('deskColumnsGap', deskColumnsGap);
-	console.log('deskRowsGap', deskRowsGap);
+	// Container Margin
+	const {
+		dimensionStylesDesktop: containerDeskMargin,
+		dimensionStylesTab: containerTabMargin,
+		dimensionStylesMobile: containerMobMargin,
+	} = generateDimensionStyle({
+		controlName: CONTAINER_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	});
+
+	// Container Padding
+	const {
+		dimensionStylesDesktop: containerDeskPadding,
+		dimensionStylesTab: containerTabPadding,
+		dimensionStylesMobile: containerMobPadding,
+	} = generateDimensionStyle({
+		controlName: CONTAINER_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
 
 	/**
 	 * All Style Combination
 	 */
-	const desktopAllStyle = ``;
-	const tabletAllStyle = ``;
-	const mobileAllStyle = ``;
+	const desktopAllStyle = `
+		.${uniqueId} {
+			background-color: ${containerBg};
+			${containerDeskMargin}
+			${containerDeskPadding}
+		}
+	`;
+	const tabletAllStyle = `
+		.${uniqueId} {
+			${containerTabMargin}
+			${containerTabPadding}
+		}
+	`;
+	const mobileAllStyle = `
+		.${uniqueId} {
+			${containerMobMargin}
+			${containerMobPadding}
+		}
+	`;
 
 	const allStyle = `
 		${desktopAllStyle}
@@ -157,6 +202,17 @@ export default function Edit(props) {
 					template={[['zolo/team-member', {}]]}
 					renderAppender={false}
 				/>
+				<div className="appender-btn">
+					<Button
+						className="components-button"
+						label={__('Add Team Member', 'zolo-blocks')}
+						icon="insert"
+						variant="primary"
+						onClick={() => appendBlock()}
+					>
+						{__('Add Team Member', 'zolo-blocks')}
+					</Button>
+				</div>
 			</div>
 		</>
 	);

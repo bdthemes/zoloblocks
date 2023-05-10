@@ -70,6 +70,9 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 array(),
                 ZOLO_VERSION
             );
+
+            wp_enqueue_script( 'react', 'https://unpkg.com/react/umd/react.production.min.js', array(), false, true );
+            wp_enqueue_script( 'react-dom', 'https://unpkg.com/react-dom/umd/react-dom.production.min.js', array(), false, true );
         }
 
         /**

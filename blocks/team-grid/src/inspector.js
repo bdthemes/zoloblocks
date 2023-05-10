@@ -28,11 +28,12 @@ import {
 	CONTAINER_PADDING,
 } from './constants';
 
-const { ResRangeControl, ResDimensionsControl } = window.zoloModule;
+const { ResRangeControl, ResDimensionsControl, ColorControl } =
+	window.zoloModule;
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
-	const { uniqueId, resMode } = attributes;
+	const { uniqueId, resMode, containerBg } = attributes;
 
 	const resRequiredProps = {
 		resMode,
@@ -105,7 +106,27 @@ function Inspector(props) {
 								</>
 							)}
 
-							{tab.name === 'design' && <>Design</>}
+							{tab.name === 'design' && (
+								<>
+									<PanelBody
+										title={__('Container', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<ColorControl
+											label={__(
+												'Background',
+												'zolo-blocks'
+											)}
+											color={containerBg}
+											onChange={(color) =>
+												setAttributes({
+													containerBg: color,
+												})
+											}
+										/>
+									</PanelBody>
+								</>
+							)}
 
 							{tab.name === 'advanced' && (
 								<>
