@@ -3,25 +3,13 @@
  */
 import {
 	useBlockProps,
-	RichText,
 	BlockControls,
-	__experimentalLinkControl as LinkControl,
-	MediaPlaceholder,
-	MediaUpload,
 	InnerBlocks,
 } from '@wordpress/block-editor';
 
-import { Fragment, useState, useEffect } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 
-import {
-	ToolbarButton,
-	ToolbarGroup,
-	Dropdown,
-	Button,
-	Popover,
-	Dashicon,
-	withFilters,
-} from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import classnames from 'classnames';
@@ -125,20 +113,20 @@ export default function Edit(props) {
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
-		.${uniqueId}.wp-block-zolo-team-grid {
+		.${uniqueId}.wp-block-zolo-review-grid {
 			background-color: ${containerBg};
 			${containerDeskMargin}
 			${containerDeskPadding}
 		}
 	`;
 	const tabletAllStyle = `
-		.${uniqueId}.wp-block-zolo-team-grid {
+		.${uniqueId}.wp-block-zolo-review-grid {
 			${containerTabMargin}
 			${containerTabPadding}
 		}
 	`;
 	const mobileAllStyle = `
-		.${uniqueId}.wp-block-zolo-team-grid {
+		.${uniqueId}.wp-block-zolo-review-grid {
 			${containerMobMargin}
 			${containerMobPadding}
 		}
@@ -171,7 +159,7 @@ export default function Edit(props) {
 	 */
 	const childBlocks = wp.data.select('core/block-editor').getBlocks(clientId);
 	const appendBlock = () => {
-		const newBlock = wp.blocks.createBlock('zolo/team-member', {});
+		const newBlock = wp.blocks.createBlock('zolo/review', {});
 		wp.data
 			.dispatch('core/block-editor')
 			.insertBlock(newBlock, childBlocks.length, clientId);
@@ -190,7 +178,7 @@ export default function Edit(props) {
 				<ToolbarGroup>
 					<ToolbarButton
 						className="components-toolbar__control"
-						label={__('Add Team Member', 'zolo-blocks')}
+						label={__('Add Review', 'zolo-blocks')}
 						icon="insert"
 						onClick={() => appendBlock()}
 					/>
@@ -198,19 +186,19 @@ export default function Edit(props) {
 			</BlockControls>
 			<div {...blockProps}>
 				<InnerBlocks
-					allowedBlocks={['zolo/team-member']}
-					template={[['zolo/team-member', {}]]}
+					allowedBlocks={['zolo/review']}
+					template={[['zolo/review', {}]]}
 					renderAppender={false}
 				/>
 				<div className="appender-btn">
 					<Button
 						className="components-button"
-						label={__('Add Team Member', 'zolo-blocks')}
+						label={__('Add Review', 'zolo-blocks')}
 						icon="insert"
 						variant="primary"
 						onClick={() => appendBlock()}
 					>
-						{__('Add Team Member', 'zolo-blocks')}
+						{__('Add Review', 'zolo-blocks')}
 					</Button>
 				</div>
 			</div>
