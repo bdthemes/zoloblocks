@@ -7,8 +7,8 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'social-icon';
 // Presets
 export const PRESETS = [
-	{ label: __('Default', 'zolo-blocks'), value: 'preset-1' },
-	{ label: __('Preset 1', 'zolo-blocks'), value: 'preset-2' },
+	{ label: __( 'Default', 'zolo-blocks' ), value: 'preset-1' },
+	{ label: __( 'Preset 1', 'zolo-blocks' ), value: 'preset-2' },
 ];
 
 // button icon positions
@@ -30,29 +30,29 @@ export const ICON_POSITIONS = [
 		value: 'bottom',
 	},
 ];
-export const SOCIAL_TEXT =[
+export const SOCIAL_TEXT = [
 	{
-		label: 'icon & text', 
-		value:'icon & text',
+		label: 'Icon & Text',
+		value: 'icontext',
 	},
 	{
-		label: 'icon', 
-		value:'icon',
+		label: 'Icon',
+		value: 'icon',
 	},
-	
+
 	{
-		label: 'text',
-		value:'text',
-	}
-]
+		label: 'Text',
+		value: 'text',
+	},
+];
 //columns Number
-export const COLUMNS_NUMBER = "columns";
-export const COLUMNS_GAP = "columnsGap";
-export const ROW_GAP ="rowGap";
+export const COLUMNS_NUMBER = 'columns';
+export const COLUMNS_GAP = 'columnsGap';
+export const ROW_GAP = 'rowGap';
 //button size
-export const BUTTON_SIZE = "btnSize";
-export const BUTTON_ICON_SIZE = "buttonIconSize";
-export const BUTTON_HEIGHT = "buttonHeight";
+export const BUTTON_SIZE = 'btnSize';
+export const BUTTON_ICON_SIZE = 'buttonIconSize';
+export const BUTTON_HEIGHT = 'buttonHeight';
 
 // Button BG
 export const BUTTON_BG_COLOR = 'buttonNormal';

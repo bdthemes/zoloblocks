@@ -10,12 +10,11 @@ import {
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
 	COLUMNS_NUMBER,
-	COLUMNS_GAP ,
+	COLUMNS_GAP,
 	ROW_GAP,
 	BUTTON_SIZE,
 	BUTTON_ICON_SIZE,
-	BUTTON_HEIGHT
-	
+	BUTTON_HEIGHT,
 } from './constants';
 
 const attributes = {
@@ -31,33 +30,33 @@ const attributes = {
 		type: 'object',
 	},
 	//alignment attributes
-	...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
+	...generateResAlignmentAttributies( BUTTON_ALIGNMENT, {
 		defaultAlign: 'left',
-	}),
+	} ),
 
 	// border attributes
-	...generateBorderAttributies(BUTTON_BORDER),
-	...generateResRangeAttributies(ICON_SIZE, {
+	...generateBorderAttributies( BUTTON_BORDER ),
+	...generateResRangeAttributies( ICON_SIZE, {
 		default: 16,
-	}),
+	} ),
 	//columns Number
-	...generateResRangeAttributies(COLUMNS_NUMBER),
+	...generateResRangeAttributies( COLUMNS_NUMBER ),
 	//columns gaps
-	...generateResRangeAttributies(COLUMNS_GAP),
+	...generateResRangeAttributies( COLUMNS_GAP ),
 	//row gaps
-	...generateResRangeAttributies(ROW_GAP),
-	
+	...generateResRangeAttributies( ROW_GAP ),
+
 	//button size
-	...generateResRangeAttributies(BUTTON_SIZE),
+	...generateResRangeAttributies( BUTTON_SIZE ),
 	//button icon size
-	...generateResRangeAttributies(BUTTON_ICON_SIZE),
+	...generateResRangeAttributies( BUTTON_ICON_SIZE ),
 	//button height
-	...generateResRangeAttributies(BUTTON_HEIGHT),
-	
+	...generateResRangeAttributies( BUTTON_HEIGHT ),
+
 	//icon spacing
-	...generateResRangeAttributies(ICON_TEXT_SPACING, {
+	...generateResRangeAttributies( ICON_TEXT_SPACING, {
 		default: 5,
-	}),
+	} ),
 	//Block specific Attributes
 	preset: {
 		type: 'string',
@@ -66,9 +65,19 @@ const attributes = {
 	label: {
 		type: 'string',
 	},
-	socialRepeat:{
-		type:"array",
-		default:[]
+	mainIcon: {
+		type: 'object',
+		default: {
+			'admin-generic': {
+				name: 'admin generic',
+				source: 'dashicon',
+				type: '',
+			},
+		},
+	},
+	socialRepeat: {
+		type: 'array',
+		default: [],
 	},
 	link: {
 		type: 'object',
@@ -87,19 +96,19 @@ const attributes = {
 		default: false,
 	},
 	socialText: {
-		type:"string"
+		type: 'string',
 	},
-    socialStyle:{
-		type:"string"
+	socialStyle: {
+		type: 'string',
 	},
-	targetPage:{
-		type:"string"
+	targetPage: {
+		type: 'string',
 	},
-	customLink:{
-		type:"string"
+	customLink: {
+		type: 'string',
 	},
-	columnsNumber:{
-		type:"string"
+	columnsNumber: {
+		type: 'string',
 	},
 	showIcon: {
 		type: 'boolean',
