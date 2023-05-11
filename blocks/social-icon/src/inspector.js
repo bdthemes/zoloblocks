@@ -43,15 +43,11 @@ function Inspector( props ) {
 		uniqueId,
 		preset,
 		resMode,
-		resDevice,
 		socialText,
 		socialProfiles,
 		socialProfilesLinkTarget,
-		targetPage,
-		customLink,
 		socialStyle,
 		socialProfileColumns,
-		socialRepeat,
 	} = attributes;
 	const resRequiredProps = {
 		attributes,
@@ -168,37 +164,6 @@ function Inspector( props ) {
 											max={ 100 }
 											step={ 1 }
 										/>
-
-										<SelectControl
-											value={ targetPage }
-											options={ [
-												{
-													label: 'Custom',
-													value: 'Custom',
-												},
-												{
-													label: 'Current page',
-													value: 'Current page',
-												},
-											] }
-											onChange={ ( page ) => {
-												setAttributes( {
-													targetPage: page,
-												} );
-											} }
-										/>
-
-										{ 'Custom' === targetPage && (
-											<TextControl
-												label="CUSTOM LINK"
-												value={ customLink }
-												onChange={ ( custom ) =>
-													setAttributes( {
-														customLink: custom,
-													} )
-												}
-											/>
-										) }
 									</PanelBody>
 									<PanelBody
 										title={ __(

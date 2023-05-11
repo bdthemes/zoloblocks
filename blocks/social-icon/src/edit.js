@@ -29,10 +29,9 @@ const {
 import {
 	BLOCK_PREFIX,
 	BUTTON_ALIGNMENT,
-	BUTTON_TEXT_COLOR,
-	BUTTON_BG_COLOR,
-	BUTTON_HOVER_BG_COLOR,
 	BUTTON_BORDER,
+	COLUMNS_GAP,
+	ROW_GAP,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
 } from './constants';
@@ -45,10 +44,8 @@ export default function Edit( props ) {
 	const {
 		uniqueId,
 		preset,
-		label,
 		link,
 		blockStyle,
-		showIcon,
 		textColor,
 		textHoverColor,
 		iconPosition,
@@ -79,6 +76,28 @@ export default function Edit( props ) {
 	} = generateResAlignmentStyle( {
 		controlName: BUTTON_ALIGNMENT,
 		property: 'text-align',
+		attributes,
+	} );
+
+	// column gap
+	const {
+		desktopRangeStyle: colGapDeskstyle,
+		tabRangeStyle: colGapTabStyle,
+		mobRangeStyle: colGapMobStyle,
+	} = generateResRangeStyle( {
+		controlName: COLUMNS_GAP,
+		property: 'column-gap',
+		attributes,
+	} );
+
+	// row gap
+	const {
+		desktopRangeStyle: rowGapDeskstyle,
+		tabRangeStyle: rowGapTabStyle,
+		mobRangeStyle: rowGapMobStyle,
+	} = generateResRangeStyle( {
+		controlName: ROW_GAP,
+		property: 'row-gap',
 		attributes,
 	} );
 
@@ -149,6 +168,10 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-button-icon {
 			${ iconSize }
+		}
+		.${ uniqueId }.zolo-advanced-social-share {
+			${ colGapDeskstyle }
+			${ rowGapDeskstyle }
 		}				 
 		.${ uniqueId }.zolo-advanced-social-1, .zolo-advanced-social-3 {
 			grid-template-columns:repeat(${ socialProfileColumns }, 1fr);
@@ -166,6 +189,10 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-button-icon {
 			${ iconSizeTab }
 		}
+		.${ uniqueId }.zolo-advanced-social-share {
+			${ colGapTabStyle }
+			${ rowGapTabStyle }
+		}	
 	`;
 
 	const mobileAllStyle = `
@@ -179,7 +206,11 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-button-icon {
 			${ iconSizeMob }
-		}
+		}		
+		.${ uniqueId }.zolo-advanced-social-share {
+			${ colGapMobStyle }
+			${ rowGapMobStyle }
+		}	
   	`;
 
 	const allStyle = `

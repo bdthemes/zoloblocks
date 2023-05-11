@@ -9,7 +9,6 @@ import {
 	BUTTON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
-	COLUMNS_NUMBER,
 	COLUMNS_GAP,
 	ROW_GAP,
 	BUTTON_SIZE,
@@ -39,8 +38,6 @@ const attributes = {
 	...generateResRangeAttributies( ICON_SIZE, {
 		default: 16,
 	} ),
-	//columns Number
-	...generateResRangeAttributies( COLUMNS_NUMBER ),
 	//columns gaps
 	...generateResRangeAttributies( COLUMNS_GAP ),
 	//row gaps
@@ -61,22 +58,6 @@ const attributes = {
 	preset: {
 		type: 'string',
 		default: 'preset-1',
-	},
-	link: {
-		type: 'object',
-		default: {
-			url: '#',
-			opensInNewTab: false,
-			addNoFollow: false,
-		},
-	},
-	openInNewTab: {
-		type: 'boolean',
-		default: false,
-	},
-	addNoFollow: {
-		type: 'boolean',
-		default: false,
 	},
 	socialText: {
 		type: 'string',
@@ -112,9 +93,6 @@ const attributes = {
 		type: 'string',
 	},
 	customLink: {
-		type: 'string',
-	},
-	columnsNumber: {
 		type: 'string',
 	},
 	showIcon: {
