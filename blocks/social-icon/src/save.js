@@ -19,6 +19,8 @@ const Save = ( { attributes } ) => {
 		preset,
 		label,
 		link,
+		socialProfiles,
+		socialProfilesLinkTarget,
 		showIcon,
 		mainIcon,
 		iconPosition,
@@ -28,22 +30,29 @@ const Save = ( { attributes } ) => {
 
 	let linkRel = link && link.opensInNewTab ? 'noopener noreferrer' : '';
 	const rel = link && link.addNoFollow ? `${ linkRel } nofollow` : linkRel;
-
 	return (
 		<div { ...useBlockProps.save() }>
 			<div
 				class={ `zolo-advanced-social-share zolo-advanced-social-1 ${ uniqueId } ${ BLOCK_PREFIX } ${ preset }` }
 			>
-				<a href="#" class="zolo-social-item zolo-fb">
-					<span>
-						<DisplayIcon icon={ mainIcon } />
-					</span>
-					<RichText.Content
-						className={ `zolo-social-text` }
-						tagName="span"
-						value={ label }
-					/>
-				</a>
+				{ socialProfiles &&
+					socialProfiles.map( ( profile, index ) => {
+						return (
+							<a
+								href={ profile.link }
+								key={ index }
+								rel={ socialProfilesLinkTarget && 'noreferer' }
+								className="zolo-social-item"
+							>
+								<span>
+									<DisplayIcon icon={ profile.icon } />
+								</span>
+								<span className="zolo-social-text">
+									{ profile.text }
+								</span>
+							</a>
+						);
+					} ) }
 			</div>
 		</div>
 	);

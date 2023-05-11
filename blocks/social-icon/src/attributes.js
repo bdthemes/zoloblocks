@@ -62,23 +62,6 @@ const attributes = {
 		type: 'string',
 		default: 'preset-1',
 	},
-	label: {
-		type: 'string',
-	},
-	mainIcon: {
-		type: 'object',
-		default: {
-			'admin-generic': {
-				name: 'admin generic',
-				source: 'dashicon',
-				type: '',
-			},
-		},
-	},
-	socialRepeat: {
-		type: 'array',
-		default: [],
-	},
 	link: {
 		type: 'object',
 		default: {
@@ -97,6 +80,30 @@ const attributes = {
 	},
 	socialText: {
 		type: 'string',
+	},
+	socialProfiles: {
+		type: 'array',
+		default: [
+			{
+				icon: {
+					facebook: {
+						name: 'facebook',
+						source: 'dashicon',
+						type: '',
+					},
+				},
+				link: '#',
+				text: 'Facebook',
+			},
+		],
+	},
+	socialProfilesLinkTarget: {
+		type: 'boolean',
+		default: true,
+	},
+	socialProfileColumns: {
+		type: 'number',
+		default: 4,
 	},
 	socialStyle: {
 		type: 'string',

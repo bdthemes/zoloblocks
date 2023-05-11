@@ -18,6 +18,7 @@ import {
 	TabPanel,
 	TextControl,
 	ToggleControl,
+	Button,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
@@ -33,6 +34,7 @@ import {
 	BUTTON_ICON_SIZE,
 	BUTTON_HEIGHT,
 } from './constants';
+
 import { useEffect } from 'react';
 
 function Inspector( props ) {
@@ -40,22 +42,32 @@ function Inspector( props ) {
 	const {
 		uniqueId,
 		preset,
-		mainIcon,
 		resMode,
 		resDevice,
 		socialText,
+		socialProfiles,
+		socialProfilesLinkTarget,
 		targetPage,
 		customLink,
 		socialStyle,
-		columnsNumber,
+		socialProfileColumns,
 		socialRepeat,
 	} = attributes;
-
 	const resRequiredProps = {
 		attributes,
 		setAttributes,
 		resMode,
 		objAttributes,
+	};
+
+	//social profile icon set
+	const setProfileIcon = ( value, index ) => {
+		let profile = [ ...socialProfiles ];
+		profile[ index ] = {
+			...profile[ index ],
+			icon: { ...value },
+		};
+		setAttributes( { socialProfiles: [ ...profile ] } );
 	};
 
 	return (
@@ -87,8 +99,8 @@ function Inspector( props ) {
 							{ tab.name === 'Content' && (
 								<>
 									<PanelBody
-										title={ __( 'Content', 'zolo-blocks' ) }
-										initialOpen={ true }
+										title={ __( 'General', 'zolo-blocks' ) }
+										initialOpen={ false }
 									>
 										<SelectControl
 											label={ __(
@@ -104,25 +116,16 @@ function Inspector( props ) {
 											}
 										/>
 
-										<IconPicker
-											value={ mainIcon }
-											onChange={ ( value ) =>
-												setAttributes( {
-													mainIcon: value,
-												} )
-											}
-										/>
-										<br />
 										<SelectControl
 											label={ __(
 												'columns',
 												'zolo-blocks'
 											) }
-											value={ columnsNumber }
+											value={ socialProfileColumns }
 											options={ [
 												{
 													label: 'Auto',
-													value: 'Auto',
+													value: '5',
 												},
 												{ label: '1', value: '1' },
 												{ label: '2', value: '2' },
@@ -133,7 +136,7 @@ function Inspector( props ) {
 											] }
 											onChange={ ( size ) => {
 												setAttributes( {
-													columnsNumber: size,
+													socialProfileColumns: size,
 												} );
 											} }
 										/>
@@ -196,6 +199,164 @@ function Inspector( props ) {
 												}
 											/>
 										) }
+									</PanelBody>
+									<PanelBody
+										title={ __(
+											'Social Profiles',
+											'zolo-blocks'
+										) }
+										initialOpen={ true }
+									>
+										<Button
+											variant="primary"
+											onClick={ () =>
+												setAttributes( {
+													socialProfiles: [
+														...socialProfiles,
+														{
+															icon: {
+																facebook: {
+																	name: 'facebook',
+																	source: 'dashicon',
+																	type: '',
+																},
+															},
+															link: '#',
+															text: 'Facebook',
+														},
+													],
+												} )
+											}
+										>
+											{ __(
+												'Add a Profile',
+												'zolo-blocks'
+											) }
+										</Button>
+										{ socialProfiles &&
+											socialProfiles.map(
+												( profile, index ) => {
+													return (
+														<div
+															className="zolo-social-profile"
+															key={ index }
+														>
+															<IconPicker
+																value={
+																	profile.icon
+																}
+																onChange={ (
+																	value
+																) =>
+																	setProfileIcon(
+																		value,
+																		index
+																	)
+																}
+																showHeading={
+																	false
+																}
+															/>
+															<div className="profile-text">
+																<TextControl
+																	value={
+																		profile.text
+																	}
+																	onChange={ (
+																		v
+																	) =>
+																		setAttributes(
+																			{
+																				socialProfiles:
+																					socialProfiles.map(
+																						(
+																							profile,
+																							i
+																						) => {
+																							if (
+																								index ===
+																								i
+																							) {
+																								profile.text =
+																									v;
+																							}
+																							return profile;
+																						}
+																					),
+																			}
+																		)
+																	}
+																/>
+															</div>
+															<div className="profile-link">
+																<TextControl
+																	value={
+																		profile.link
+																	}
+																	onChange={ (
+																		v
+																	) =>
+																		setAttributes(
+																			{
+																				socialProfiles:
+																					socialProfiles.map(
+																						(
+																							profile,
+																							i
+																						) => {
+																							if (
+																								index ===
+																								i
+																							) {
+																								profile.link =
+																									v;
+																							}
+																							return profile;
+																						}
+																					),
+																			}
+																		)
+																	}
+																/>
+															</div>
+															<Button
+																className="remove-profile"
+																onClick={ () =>
+																	setAttributes(
+																		{
+																			socialProfiles:
+																				socialProfiles.filter(
+																					(
+																						profile,
+																						i
+																					) =>
+																						index !==
+																						i
+																				),
+																		}
+																	)
+																}
+															>
+																<i className="fas fa-times"></i>
+															</Button>
+														</div>
+													);
+												}
+											) }
+										<CardDivider />
+										<ToggleControl
+											label={ __(
+												'Open links in new tab',
+												'zolo-blocks'
+											) }
+											checked={ socialProfilesLinkTarget }
+											onChange={ () =>
+												setAttributes( {
+													socialProfilesLinkTarget:
+														! socialProfilesLinkTarget,
+												} )
+											}
+										/>
 									</PanelBody>
 								</>
 							) }

@@ -52,8 +52,9 @@ export default function Edit( props ) {
 		textColor,
 		textHoverColor,
 		iconPosition,
-		socialText,
-		mainIcon,
+		socialProfiles,
+		socialProfilesLinkTarget,
+		socialProfileColumns,
 	} = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -148,6 +149,9 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-button-icon {
 			${ iconSize }
+		}				 
+		.${ uniqueId }.zolo-advanced-social-1, .zolo-advanced-social-3 {
+			grid-template-columns:repeat(${ socialProfileColumns }, 1fr);
 		}
   	`;
 	const tabletAllStyle = `
@@ -257,21 +261,26 @@ export default function Edit( props ) {
 				<div
 					class={ `zolo-advanced-social-share zolo-advanced-social-1 ${ uniqueId } ${ BLOCK_PREFIX } ${ preset }` }
 				>
-					<a href="#" class="zolo-social-item zolo-fb">
-						<span>
-							<DisplayIcon icon={ mainIcon } />
-						</span>
-						<RichText
-							className={ `zolo-social-text` }
-							tagName="span"
-							value={ label }
-							onChange={ ( text ) =>
-								setAttributes( { label: text } )
-							}
-							placeholder={ __( 'Social Text', 'zolo-blocks' ) }
-							allowedFormats={ [] }
-						/>
-					</a>
+					{ socialProfiles &&
+						socialProfiles.map( ( profile, index ) => {
+							return (
+								<a
+									href={ profile.link }
+									key={ index }
+									rel={
+										socialProfilesLinkTarget && 'noreferer'
+									}
+									className="zolo-social-item"
+								>
+									<span>
+										<DisplayIcon icon={ profile.icon } />
+									</span>
+									<span className="zolo-social-text">
+										{ profile.text }
+									</span>
+								</a>
+							);
+						} ) }
 				</div>
 			</div>
 		</>
