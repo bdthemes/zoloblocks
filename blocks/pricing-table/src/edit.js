@@ -48,7 +48,15 @@ const Edit = (props) => {
     //header
     titleText,
     titleTagName,
+    showDesc,
     descText,
+    //price
+    orginalPrice,
+    pricePrefix,
+    priceSuffix,
+    price,
+    sale,
+    period,
     //features
     showFeatureHeading,
     featureTitle,
@@ -313,21 +321,7 @@ const Edit = (props) => {
   }, [attributes]);
 
 
-  const FeaturesList = ({ features }) => {
-    if (features.length !== 0) {
-      return (
-        <ul className="features">
-          {features.map((item, index) => (
-            <li key={index}>
-              {item.icon && <span className="zolo-check-icon"><DisplayIcon icon={item.icon} /></span>}
-              <span className="zolo-list-text">{item.text}</span>
-            </li>
-          ))}
-        </ul>
-      )
-    }
-  }
-
+  const pricingPeriod = period.length !== 0 && period.split(",");
 
   return (
     <>
@@ -358,21 +352,41 @@ const Edit = (props) => {
             )}
 
             <div className="zolo-price-info">
-              <div className="zolo-price">$20</div>
-              <div className="zolo-user-month">
-                <span className="zolo-user-text">per user</span>
-                <span className="zolo-time-text">per month</span>
-              </div>
+              {(orginalPrice && sale) && (
+                <span className="zolo-orginal-price">
+                  {pricePrefix && <span className="currency">{pricePrefix}</span>}
+                  <span className='price'>{orginalPrice}</span>
+                </span>
+              )}
+
+              {price && (
+                <span className="zolo-price">
+                  {pricePrefix && <span className="currency">{pricePrefix}</span>}
+                  <span className='price'>{price}</span>
+                  {priceSuffix && <span className="fractional">{priceSuffix}</span>}
+                </span>
+              )}
+
+              {pricingPeriod.length !== 0 && (
+                <div className="zolo-user-month">
+                  {pricingPeriod.map((name, index) => (
+                    <span className={`zolo-period text-${index}`} key={index}>{name}</span>
+                  ))}
+                </div>
+              )}
+
             </div>
 
-            <RichText
-              tagName="div"
-              className="zolo-package-desc"
-              value={descText}
-              onChange={(descText) => setAttributes({ descText })}
-              placeholder={__('Add description', 'zolo-blocks')}
-              allowedFormats={["bold", "italic", "strikethrough"]}
-            />
+            {showDesc && (
+              <RichText
+                tagName="div"
+                className="zolo-package-desc"
+                value={descText}
+                onChange={(descText) => setAttributes({ descText })}
+                placeholder={__('Add description', 'zolo-blocks')}
+                allowedFormats={["bold", "italic", "strikethrough"]}
+              />
+            )}
 
             <div className="zolo-link-btn">
               <RichText
@@ -431,7 +445,6 @@ const Edit = (props) => {
           </div>
         </div>
       </div>
-
     </>
   )
 }

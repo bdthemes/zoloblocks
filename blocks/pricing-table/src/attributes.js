@@ -14,17 +14,19 @@ const {
 
 //block constants
 import {
-  SEPARATOR_HEIGHT, SEPARATOR_SPACING, SEPARATOR_WIDTH, SUBTITLE_MARGIN,
-  SUBTITLE_TEXT_SHADOW,
-  SUBTITLE_TEXT_STROKE,
+  BTN_BORDER,
+  BTN_HOVER_BG,
+  BTN_HOVER_BORDER,
+  BTN_MARGIN,
+  BTN_NORMAL_BG,
+  BTN_PADDING,
+  BTN_SHADOW,
+  DESC_MARGIN,
   TEST_NORMAL_BG,
   TITLE_BORDER,
   TITLE_BORDER_RADIUS,
   TITLE_MARGIN, TITLE_PADDING,
-  TITLE_SHADOW,
   TITLE_TEXT_SHADOW,
-  TITLE_TEXT_STROKE,
-  TPT_ALIGNMENT,
   TPT_BORDER,
   TPT_BORDER_RADIUS,
   TPT_MARGIN,
@@ -61,7 +63,10 @@ const attributes = {
     type: "string",
     default: "h3",
   },
-
+  showDesc: {
+    type: 'boolean',
+    default: false,
+  },
   descText: {
     type: 'string',
     default: "Basic features for up to 10 user",
@@ -70,11 +75,11 @@ const attributes = {
   //price
   pricePrefix: {
     type: 'string',
-    default: "",
+    default: "$",
   },
   price: {
     type: 'string',
-    default: "49.99",
+    default: "49",
   },
   priceSuffix: {
     type: 'string',
@@ -90,7 +95,7 @@ const attributes = {
   },
   period: {
     type: 'string',
-    default: "Monthly",
+    default: "per user,per month",
   },
 
   //features
@@ -197,7 +202,7 @@ const attributes = {
     ]
   },
 
-  //footer
+  //Buttons
   buttonText: {
     type: 'string',
     default: "Get Started",
@@ -249,10 +254,7 @@ const attributes = {
     default: 0,
   },
 
-
-  ...generateResAlignmentAttributies(TPT_ALIGNMENT),
-
-  //design tab attributes
+  //header style
   titleColor: {
     type: 'string',
     default: '',
@@ -261,43 +263,73 @@ const attributes = {
     type: 'string',
     default: '',
   },
-
-  subTitleColor: {
+  descColor: {
     type: 'string',
     default: '',
-  },
-  tptColor: {
-    type: 'string',
-    default: '',
-  },
-  tptBgColor: {
-    type: 'string',
-    default: '',
-  },
-  tptOpacity: {
-    type: 'number',
-    default: 0.14,
   },
 
-  separatorColor: {
+  //price style
+
+  //features style
+  featureTitleColor: {
     type: 'string',
     default: '',
   },
-  ...generateResRangeAttributies(SEPARATOR_WIDTH, {
-    defaultRange: 70
-  }),
-  ...generateResRangeAttributies(SEPARATOR_HEIGHT, {
-    defaultRange: 3
-  }),
-  ...generateResRangeAttributies(SEPARATOR_SPACING),
+  featureDescColor: {
+    type: 'string',
+    default: '',
+  },
+  featureColor: {
+    type: 'string',
+    default: '',
+  },
+  featureIconColor: {
+    type: 'string',
+    default: '',
+  },
+  //buttons style
+  btnTextColor: {
+    type: 'string',
+    default: '',
+  },
+  btnHoverTextColor: {
+    type: 'string',
+    default: '',
+  },
+  btnBgHoverType: {
+    type: 'string',
+    default: 'normal',
+  },
+
+  //ribbon style
+  ribbonColor: {
+    type: 'string',
+    default: '',
+  },
+  ribbonBgColor: {
+    type: 'string',
+    default: '',
+  },
 
   ...generateDimensionAttributes(TITLE_MARGIN),
   ...generateDimensionAttributes(TITLE_PADDING),
   ...generateBorderAttributies(TITLE_BORDER),
   ...generateDimensionAttributes(TITLE_BORDER_RADIUS),
-  ...generateBoxShadowAttributies(TITLE_SHADOW),
   ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
-  ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
+
+  //button style
+  ...generateDimensionAttributes(BTN_MARGIN),
+  ...generateDimensionAttributes(BTN_PADDING),
+  ...generateNormalBGAttributes(BTN_NORMAL_BG, {
+    defaultBgGradient: "linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)",
+  }),
+  ...generateNormalBGAttributes(BTN_HOVER_BG, {
+    defaultBgGradient: "linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)",
+  }),
+  ...generateBorderAttributies(BTN_BORDER),
+  ...generateBorderAttributies(BTN_HOVER_BORDER),
+  ...generateBoxShadowAttributies(BTN_SHADOW),
+
 
   ...generateDimensionAttributes(TPT_MARGIN),
   ...generateDimensionAttributes(TPT_PADDING),
@@ -307,9 +339,9 @@ const attributes = {
   ...generateTextShadowAttributies(TPT_TEXT_SHADOW),
   ...generateTextStrokeAttributies(TPT_TEXT_STROKE),
 
-  ...generateDimensionAttributes(SUBTITLE_MARGIN),
-  ...generateTextShadowAttributies(SUBTITLE_TEXT_SHADOW),
-  ...generateTextStrokeAttributies(SUBTITLE_TEXT_STROKE),
+  ...generateDimensionAttributes(DESC_MARGIN),
+
+
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
   //advance tab attributes
