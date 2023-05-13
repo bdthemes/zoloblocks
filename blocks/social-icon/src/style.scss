@@ -13,19 +13,19 @@
 		transition: color 0.3s ease;
 	}
 
-	.zolo-advanced-social-4 {
+	.zolo-advanced-social-preset-4 {
 		grid-template-columns: repeat(2, 1fr);
 	}
 
-	.zolo-advanced-social-2,
-	.zolo-advanced-social-5 {
+	.zolo-advanced-social-preset-2,
+	.zolo-advanced-social-preset-5 {
 		grid-template-columns: repeat(6, 1fr);
 	}
 
-	.zolo-advanced-social-1 .zolo-social-item,
-	.zolo-advanced-social-2 .zolo-social-item,
-	.zolo-advanced-social-3 .zolo-social-item,
-	.zolo-advanced-social-5 .zolo-social-item {
+	.zolo-advanced-social-preset-1 .zolo-social-item,
+	.zolo-advanced-social-preset-2 .zolo-social-item,
+	.zolo-advanced-social-preset-3 .zolo-social-item,
+	.zolo-advanced-social-preset-5 .zolo-social-item {
 		padding: 12px;
 		display: flex;
 		align-items: center;
@@ -33,17 +33,17 @@
 		gap: 10px;
 	}
 
-	.zolo-advanced-social-1 .zolo-social-item,
-	.zolo-advanced-social-2 .zolo-social-item,
-	.zolo-advanced-social-5 .zolo-social-item {
+	.zolo-advanced-social-preset-1 .zolo-social-item,
+	.zolo-advanced-social-preset-2 .zolo-social-item,
+	.zolo-advanced-social-preset-5 .zolo-social-item {
 		color: #36354f;
 		background-color: #f5f5f5;
 		border: 1px solid #f5f5f5;
 	}
 
-	.zolo-advanced-social-1 .zolo-social-item:hover,
-	.zolo-advanced-social-2 .zolo-social-item:hover,
-	.zolo-advanced-social-2 .zolo-social-item:hover {
+	.zolo-advanced-social-preset-1 .zolo-social-item:hover,
+	.zolo-advanced-social-preset-2 .zolo-social-item:hover,
+	.zolo-advanced-social-preset-2 .zolo-social-item:hover {
 		color: #2196f3;
 	}
 
@@ -51,10 +51,10 @@
 		z-index: 1;
 	}
 
-	.zolo-advanced-social-1 .zolo-social-item:before,
-	.zolo-advanced-social-2 .zolo-social-item:before,
-	.zolo-advanced-social-3 .zolo-social-item:before,
-	.zolo-advanced-social-5 .zolo-social-item:before {
+	.zolo-advanced-social-preset-1 .zolo-social-item:before,
+	.zolo-advanced-social-preset-2 .zolo-social-item:before,
+	.zolo-advanced-social-preset-3 .zolo-social-item:before,
+	.zolo-advanced-social-preset-5 .zolo-social-item:before {
 		content: "";
 		position: absolute;
 		bottom: -50%;
@@ -67,58 +67,58 @@
 		transform: skewY(9.3deg) scaleY(0);
 	}
 
-	.zolo-advanced-social-1 .zolo-social-item:hover:before,
-	.zolo-advanced-social-2 .zolo-social-item:hover:before,
-	.zolo-advanced-social-3 .zolo-social-item:hover:before,
-	.zolo-advanced-social-5 .zolo-social-item:hover:before {
+	.zolo-advanced-social-preset-1 .zolo-social-item:hover:before,
+	.zolo-advanced-social-preset-2 .zolo-social-item:hover:before,
+	.zolo-advanced-social-preset-3 .zolo-social-item:hover:before,
+	.zolo-advanced-social-preset-5 .zolo-social-item:hover:before {
 		transform-origin: bottom center;
 		transform: skewY(9.3deg) scaleY(2);
 	}
 
-	.zolo-advanced-social-2 .zolo-social-item .zolo-social-text,
-	.zolo-advanced-social-5 .zolo-social-item .zolo-social-text {
+	.zolo-advanced-social-preset-2 .zolo-social-item .zolo-social-text,
+	.zolo-advanced-social-preset-5 .zolo-social-item .zolo-social-text {
 		display: none;
 	}
 
-	.zolo-advanced-social-3 .zolo-social-item.zolo-ins {
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-ins {
 		color: rgba(252, 70, 107, 1);
 		border: 1px solid rgba(252, 70, 107, 1);
 	}
 
-	.zolo-advanced-social-3 .zolo-social-item:hover {
+	.zolo-advanced-social-preset-3 .zolo-social-item:hover {
 		color: #fff;
 	}
 
-	.zolo-advanced-social-4 .zolo-social-item {
+	.zolo-advanced-social-preset-4 .zolo-social-item {
 		display: flex;
 	}
 
-	.zolo-advanced-social-4 .zolo-social-item span {
+	.zolo-advanced-social-preset-4 .zolo-social-item span {
 		padding: 10px 12px;
 	}
 
-	.zolo-advanced-social-4 .zolo-social-item .zolo-social-icon {
+	.zolo-advanced-social-preset-4 .zolo-social-item .zolo-social-icon {
 		color: #fff;
 	}
 
-	.zolo-advanced-social-5 .zolo-social-item {
+	.zolo-advanced-social-preset-5 .zolo-social-item {
 		clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 	}
 
-	.zolo-advanced-social-5 .zolo-social-item:before {
+	.zolo-advanced-social-preset-5 .zolo-social-item:before {
 		background-color: #000;
 	}
 
-	.zolo-advanced-social-5 .zolo-social-item:hover {
+	.zolo-advanced-social-preset-5 .zolo-social-item:hover {
 		color: #fff;
 	}
 
 	@media (min-width: 768px) {
-		.zolo-advanced-social-2,
-		.zolo-advanced-social-5 {
+		.zolo-advanced-social-preset-2,
+		.zolo-advanced-social-preset-5 {
 			grid-template-columns: repeat(11, 1fr);
 		}
-		.zolo-advanced-social-4 {
+		.zolo-advanced-social-preset-4 {
 			grid-template-columns: repeat(4, 1fr);
 		}
 	}

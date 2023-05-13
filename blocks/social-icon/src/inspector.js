@@ -27,6 +27,7 @@ import objAttributes from './attributes';
 import { controls } from '@wordpress/data';
 import { set } from 'lodash';
 import {
+	PRESETS,
 	SOCIAL_TEXT,
 	COLUMNS_GAP,
 	ROW_GAP,
@@ -96,6 +97,27 @@ function Inspector( props ) {
 								<>
 									<PanelBody
 										title={ __( 'General', 'zolo-blocks' ) }
+										initialOpen={ true }
+									>
+										<SelectControl
+											label={ __(
+												'Preset Designs',
+												'zolo-blocks'
+											) }
+											value={ preset }
+											options={ PRESETS }
+											onChange={ ( value ) =>
+												setAttributes( {
+													preset: value,
+												} )
+											}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={ __(
+											'Settings',
+											'zolo-blocks'
+										) }
 										initialOpen={ false }
 									>
 										<SelectControl
@@ -170,7 +192,7 @@ function Inspector( props ) {
 											'Social Profiles',
 											'zolo-blocks'
 										) }
-										initialOpen={ true }
+										initialOpen={ false }
 									>
 										<Button
 											variant="primary"

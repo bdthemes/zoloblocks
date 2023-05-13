@@ -21,6 +21,7 @@ const Save = ( { attributes } ) => {
 		link,
 		socialProfiles,
 		socialProfilesLinkTarget,
+		socialText,
 		showIcon,
 		mainIcon,
 		iconPosition,
@@ -33,7 +34,7 @@ const Save = ( { attributes } ) => {
 	return (
 		<div { ...useBlockProps.save() }>
 			<div
-				class={ `zolo-advanced-social-share zolo-advanced-social-1 ${ uniqueId } ${ BLOCK_PREFIX } ${ preset }` }
+				class={ `zolo-advanced-social-share zolo-advanced-social-${ preset } ${ uniqueId } ${ BLOCK_PREFIX } ` }
 			>
 				{ socialProfiles &&
 					socialProfiles.map( ( profile, index ) => {
@@ -44,12 +45,15 @@ const Save = ( { attributes } ) => {
 								rel={ socialProfilesLinkTarget && 'noreferer' }
 								className="zolo-social-item"
 							>
-								<span>
+								{ ( socialText == 'icon' ||
+									socialText == 'icontext' ) && (
 									<DisplayIcon icon={ profile.icon } />
-								</span>
-								<span className="zolo-social-text">
-									{ profile.text }
-								</span>
+								) }
+								{ socialText != 'icon' && (
+									<span className="zolo-social-text">
+										{ profile.text }
+									</span>
+								) }
 							</a>
 						);
 					} ) }

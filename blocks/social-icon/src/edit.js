@@ -48,12 +48,12 @@ export default function Edit( props ) {
 		blockStyle,
 		textColor,
 		textHoverColor,
+		socialText,
 		iconPosition,
 		socialProfiles,
 		socialProfilesLinkTarget,
 		socialProfileColumns,
 	} = attributes;
-
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect( () => {
 		handleUniqueId( {
@@ -173,7 +173,7 @@ export default function Edit( props ) {
 			${ colGapDeskstyle }
 			${ rowGapDeskstyle }
 		}				 
-		.${ uniqueId }.zolo-advanced-social-1, .zolo-advanced-social-3 {
+		.${ uniqueId }.zolo-advanced-social-preset-1, .zolo-advanced-social-preset-3 {
 			grid-template-columns:repeat(${ socialProfileColumns }, 1fr);
 		}
   	`;
@@ -290,7 +290,7 @@ export default function Edit( props ) {
 			<style>{ ` ${ softMinifyCssStrings( allStyle ) }` }</style>
 			<div { ...blockProps }>
 				<div
-					class={ `zolo-advanced-social-share zolo-advanced-social-1 ${ uniqueId } ${ BLOCK_PREFIX } ${ preset }` }
+					class={ `zolo-advanced-social-share zolo-advanced-social-${ preset } ${ uniqueId } ${ BLOCK_PREFIX } ` }
 				>
 					{ socialProfiles &&
 						socialProfiles.map( ( profile, index ) => {
@@ -303,12 +303,15 @@ export default function Edit( props ) {
 									}
 									className="zolo-social-item"
 								>
-									<span>
+									{ ( socialText == 'icon' ||
+										socialText == 'icontext' ) && (
 										<DisplayIcon icon={ profile.icon } />
-									</span>
-									<span className="zolo-social-text">
-										{ profile.text }
-									</span>
+									) }
+									{ socialText != 'icon' && (
+										<span className="zolo-social-text">
+											{ profile.text }
+										</span>
+									) }
 								</a>
 							);
 						} ) }

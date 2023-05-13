@@ -61,6 +61,7 @@ const attributes = {
 	},
 	socialText: {
 		type: 'string',
+		default: 'icontext',
 	},
 	socialProfiles: {
 		type: 'array',
