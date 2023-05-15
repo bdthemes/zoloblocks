@@ -22,7 +22,6 @@ import {
   BTN_PADDING,
   BTN_SHADOW,
   DESC_MARGIN,
-  TEST_NORMAL_BG,
   TITLE_BORDER,
   TITLE_BORDER_RADIUS,
   TITLE_MARGIN, TITLE_PADDING,
@@ -300,6 +299,10 @@ const attributes = {
     type: 'string',
     default: 'normal',
   },
+  btnBorderHoverType: {
+    type: 'string',
+    default: 'normal',
+  },
 
   //ribbon style
   ribbonColor: {
@@ -352,10 +355,6 @@ const attributes = {
   }),
   ...generateBorderAttributies(WRAPPER_BORDER),
   ...generateBoxShadowAttributies(WRAPPER_SHADOW),
-
-  ...generateNormalBGAttributes(TEST_NORMAL_BG, {
-    defaultBgGradient: "linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)",
-  })
 
 }
 export default attributes;

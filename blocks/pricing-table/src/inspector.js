@@ -890,11 +890,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                       label={__('Color', 'zolo-blocks')}
                       color={ribbonColor}
                       onChange={(val) => setAttributes({
-                        titleColor: val,
+                        ribbonColor: val,
                       })}
                     />
                     <ColorControl
-                      label={__('Background Color', 'zolo-blocks')}
+                      label={__('Background', 'zolo-blocks')}
                       color={ribbonBgColor}
                       onChange={(val) => setAttributes({
                         ribbonBgColor: val,
