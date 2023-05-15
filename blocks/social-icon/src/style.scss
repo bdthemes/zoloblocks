@@ -4,6 +4,20 @@
 		grid-gap: 10px;
 	}
 
+	:root {
+		--facebook: #3b5998;
+		--instagram: radial-gradient(
+			circle,
+			rgba(63, 94, 251, 1) 0%,
+			rgba(252, 70, 107, 1) 100%
+		);
+		--twitter: #00acee;
+		--linkedin: #0072b1;
+		--behance: #053eff;
+		--pinterest: #c8232c;
+		--dribbble: #ea4c89;
+	}
+
 	.zolo-advanced-social-share .zolo-social-item {
 		text-decoration: none;
 		border-radius: 3px;
@@ -80,9 +94,67 @@
 		display: none;
 	}
 
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-ins {
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-facebook {
+		color: #3b5998;
+		border: 1px solid #3b5998;
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-facebook:before {
+		background-color: #3b5998;
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-instagram {
 		color: rgba(252, 70, 107, 1);
 		border: 1px solid rgba(252, 70, 107, 1);
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-instagram:before {
+		background: rgba(252, 70, 107, 1);
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-twitter {
+		color: #00acee;
+		border: 1px solid #00acee;
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-twitter:before {
+		background: #00acee;
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-linkedin {
+		color: #0072b1;
+		border: 1px solid #0072b1;
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-linkedin:before {
+		background: #0072b1;
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-fa-behance {
+		color: #053eff;
+		border: 1px solid #053eff;
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-fa-behance:before {
+		background: #053eff;
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-pinterest {
+		color: #c8232c;
+		border: 1px solid #c8232c;
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-pinterest:before {
+		background: #c8232c;
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-fa-dribbble {
+		color: #ea4c89;
+		border: 1px solid #ea4c89;
+	}
+
+	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-fa-dribbble:before {
+		background: #ea4c89;
 	}
 
 	.zolo-advanced-social-preset-3 .zolo-social-item:hover {
@@ -93,12 +165,86 @@
 		display: flex;
 	}
 
-	.zolo-advanced-social-preset-4 .zolo-social-item span {
+	.zolo-advanced-social-preset-4 .zolo-social-item .zolo-social-icon {
+		padding: 10px 12px;
+	}
+	.zolo-advanced-social-preset-4 .zolo-social-item .zolo-social-text {
 		padding: 10px 12px;
 	}
 
 	.zolo-advanced-social-preset-4 .zolo-social-item .zolo-social-icon {
 		color: #fff;
+	}
+
+	.zolo-advanced-social-preset-4 .zolo-social-item .zolo-social-text {
+		color: blue;
+	}
+
+	.zolo-advanced-social-preset-4 .zolo-facebook .zolo-social-icon {
+		background-color: #3b5998;
+	}
+
+	.zolo-advanced-social-preset-4 .zolo-facebook {
+		border: 1px solid #3b5998;
+	}
+	.zolo-advanced-social-preset-4 .zolo-instagram {
+		border: 1px solid rgba(252, 70, 107, 1);
+	}
+
+	.zolo-advanced-social-preset-4 .zolo-linkedin {
+		border: 1px solid #0072b1;
+	}
+
+	.zolo-advanced-social-preset-4 .zolo-twitter {
+		border: 1px solid #00acee;
+	}
+
+	.zolo-advanced-social-preset-4 .zolo-fa-behance {
+		border: 1px solid #053eff;
+	}
+
+	.zolo-advanced-social-preset-4 .zolo-pinterest {
+		border: 1px solid #c8232c;
+	}
+
+	.zolo-advanced-social-preset-4 .zolo-fa-dribbble {
+		border: 1px solid #ea4c89;
+	}
+
+	.zolo-advanced-social-preset-4
+		.zolo-social-item.zolo-instagram
+		.zolo-social-icon {
+		background: rgba(252, 70, 107, 1);
+	}
+
+	.zolo-advanced-social-preset-4
+		.zolo-social-item.zolo-twitter
+		.zolo-social-icon {
+		background-color: #00acee;
+	}
+
+	.zolo-advanced-social-preset-4
+		.zolo-social-item.zolo-linkedin
+		.zolo-social-icon {
+		background-color: #0072b1;
+	}
+
+	.zolo-advanced-social-preset-4
+		.zolo-social-item.zolo-pinterest
+		.zolo-social-icon {
+		background-color: #c8232c;
+	}
+
+	.zolo-advanced-social-preset-4
+		.zolo-social-item.zolo-fa-behance
+		.zolo-social-icon {
+		background-color: #053eff;
+	}
+
+	.zolo-advanced-social-preset-4
+		.zolo-social-item.zolo-fa-dribbble
+		.zolo-social-icon {
+		background-color: #ea4c89;
 	}
 
 	.zolo-advanced-social-preset-5 .zolo-social-item {

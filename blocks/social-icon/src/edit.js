@@ -288,12 +288,14 @@ export default function Edit( props ) {
 				</ToolbarGroup>
 			</BlockControls>
 			<style>{ ` ${ softMinifyCssStrings( allStyle ) }` }</style>
+
 			<div { ...blockProps }>
 				<div
 					class={ `zolo-advanced-social-share zolo-advanced-social-${ preset } ${ uniqueId } ${ BLOCK_PREFIX } ` }
 				>
 					{ socialProfiles &&
 						socialProfiles.map( ( profile, index ) => {
+							let socialName = Object.keys( profile.icon )[ 0 ];
 							return (
 								<a
 									href={ profile.link }
@@ -301,11 +303,15 @@ export default function Edit( props ) {
 									rel={
 										socialProfilesLinkTarget && 'noreferer'
 									}
-									className="zolo-social-item"
+									className={ `zolo-social-item zolo-${ socialName }` }
 								>
 									{ ( socialText == 'icon' ||
 										socialText == 'icontext' ) && (
-										<DisplayIcon icon={ profile.icon } />
+										<span className="zolo-social-icon">
+											<DisplayIcon
+												icon={ profile.icon }
+											/>
+										</span>
 									) }
 									{ socialText != 'icon' && (
 										<span className="zolo-social-text">

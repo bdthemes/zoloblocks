@@ -38,16 +38,19 @@ const Save = ( { attributes } ) => {
 			>
 				{ socialProfiles &&
 					socialProfiles.map( ( profile, index ) => {
+						let socialName = Object.keys( profile.icon )[ 0 ];
 						return (
 							<a
 								href={ profile.link }
 								key={ index }
 								rel={ socialProfilesLinkTarget && 'noreferer' }
-								className="zolo-social-item"
+								className={ `zolo-social-item zolo-${ socialName }` }
 							>
 								{ ( socialText == 'icon' ||
 									socialText == 'icontext' ) && (
-									<DisplayIcon icon={ profile.icon } />
+									<span className="zolo-social-icon">
+										<DisplayIcon icon={ profile.icon } />
+									</span>
 								) }
 								{ socialText != 'icon' && (
 									<span className="zolo-social-text">
