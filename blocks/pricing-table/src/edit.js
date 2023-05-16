@@ -12,6 +12,13 @@ import './style.scss';
 //block constants
 import {
   BLOCK_PREFIX,
+  BTN_BORDER,
+  BTN_HOVER_BG,
+  BTN_HOVER_BORDER,
+  BTN_MARGIN,
+  BTN_NORMAL_BG,
+  BTN_PADDING,
+  BTN_SHADOW,
   FEATURE_ALIGN,
   WRAPPER_BG,
   WRAPPER_BORDER,
@@ -19,6 +26,7 @@ import {
   WRAPPER_PADDING,
   WRAPPER_SHADOW
 } from './constants';
+import { BTN_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const {
   handleUniqueId,
@@ -48,7 +56,15 @@ const Edit = (props) => {
     //header
     titleText,
     titleTagName,
+    showDesc,
     descText,
+    //price
+    orginalPrice,
+    pricePrefix,
+    priceSuffix,
+    price,
+    sale,
+    period,
     //features
     showFeatureHeading,
     featureTitle,
@@ -66,6 +82,13 @@ const Edit = (props) => {
     ribbonXPosition,
     ribbonYPosition,
     ribbonRotate,
+    //style
+
+    btnTextColor,
+    btnHoverTextColor,
+
+    ribbonBgColor,
+    ribbonColor,
 
 
 
@@ -114,8 +137,82 @@ const Edit = (props) => {
     property: "text-align",
     attributes,
   });
-  //ribbon style
+  //button style
+  const {
+    dimensionStylesDesktop: btnMarginDesktop,
+    dimensionStylesTab: btnMarginTab,
+    dimensionStylesMobile: btnMarginMobile,
+  } = generateDimensionStyle({
+    controlName: BTN_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: btnPaddingDesktop,
+    dimensionStylesTab: btnPaddingTab,
+    dimensionStylesMobile: btnPaddingMobile,
+  } = generateDimensionStyle({
+    controlName: BTN_PADDING,
+    styleFor: 'padding',
+    attributes,
+  });
+  const {
+    typoStylesDesktop: btnTypoDesktop,
+    typoStylesTab: btnTypoTab,
+    typoStylesMobile: btnTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: BTN_TYPOGRAPHY,
+    attributes,
+  })
+  const {
+    backgroundStylesDesktop: btnBgDesktop,
+    backgroundStylesTab: btnBgTab,
+    backgroundStylesMobile: btnBgMob
+  } = generateNormalBGControlStyles({
+    attributes,
+    controlName: BTN_NORMAL_BG,
+  });
+  const {
+    backgroundStylesDesktop: btnHoverBgDesktop,
+    backgroundStylesTab: btnHoverBgTab,
+    backgroundStylesMobile: btnHoverBgMob
+  } = generateNormalBGControlStyles({
+    attributes,
+    controlName: BTN_HOVER_BG,
+  });
+  const {
+    desktopBorderStyle: btnBorderDesktop,
+    tabBorderStyle: btnBorderTab,
+    mobBorderStyle: btnBorderMob
+  } = generateBorderStyle({
+    attributes,
+    controlName: BTN_BORDER,
+  });
+  const {
+    desktopBorderStyle: btnHoverBorderDesktop,
+    tabBorderStyle: btnHoverBorderTab,
+    mobBorderStyle: btnHoverBorderMob
+  } = generateBorderStyle({
+    attributes,
+    controlName: BTN_HOVER_BORDER,
+  });
 
+  const {
+    boxShadowStyle: btnShadow,
+  } = generateBoxShadowStyles({
+    attributes,
+    controlName: BTN_SHADOW,
+  });
+
+  //ribbon style
+  const {
+    typoStylesDesktop: ribbonTypoDesktop,
+    typoStylesTab: ribbonTypoTab,
+    typoStylesMobile: ribbonTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: RIBBON_TYPOGRAPHY,
+    attributes,
+  })
 
   //wrapper style
   const {
@@ -256,38 +353,90 @@ const Edit = (props) => {
     }
   `;
 
+  const buttonStylesDesktop = `
+    .${uniqueId} .zolo-link-btn a{
+      ${btnTextColor ? `color: ${btnTextColor};` : ''}
+      ${btnMarginDesktop}
+      ${btnPaddingDesktop}
+      ${btnTypoDesktop}
+      ${btnBgDesktop}
+      ${btnBorderDesktop}
+      ${btnShadow}
+    }
+    .${uniqueId} .zolo-link-btn a:hover{
+      ${btnHoverTextColor ? `color: ${btnHoverTextColor};` : ''}
+      ${btnHoverBgDesktop}
+      ${btnHoverBorderDesktop}
+    }
+  `;
+
+  const buttonStylesTab = `
+    .${uniqueId} .zolo-link-btn a{
+      ${btnMarginTab}
+      ${btnPaddingTab}
+      ${btnTypoTab}
+      ${btnBgTab}
+      ${btnBorderTab}
+    }
+    .${uniqueId} .zolo-link-btn a:hover{
+      ${btnHoverBgTab}
+      ${btnHoverBorderTab}
+    }
+  `;
+
+  const buttonStylesMob = `
+    .${uniqueId} .zolo-link-btn a{
+      ${btnMarginMobile}
+      ${btnPaddingMobile}
+      ${btnTypoMobile}
+      ${btnBgMob}
+      ${btnBorderMob}
+    }
+    .${uniqueId} .zolo-link-btn a:hover{
+      ${btnHoverBgMob}
+      ${btnHoverBorderMob}
+    }
+  `;
+
   const ribbonStylesDesktop = `
   .${uniqueId} .zolo-ribbon-btn{
+    ${ribbonColor ? `color: ${ribbonColor};` : ''}
+    ${ribbonBgColor ? `background-color: ${ribbonBgColor};` : ''}
+    ${ribbonTypoDesktop}
     -webkit-transform: translate(var(--zolo-ribbon-xposition, 0), var(--zolo-ribbon-yposition, 0)) rotate(var(--zolo-ribbon-rotate, 0));
     transform: translate(var(--zolo-ribbon-xposition, 0), var(--zolo-ribbon-yposition, 0)) rotate(var(--zolo-ribbon-rotate, 0));
   }
 `;
   const ribbonStylesTab = `
   .${uniqueId} .zolo-ribbon-btn{
-
+   ${ribbonTypoTab}
   }
 `;
   const ribbonStylesMobile = `
   .${uniqueId} .zolo-ribbon-btn{
-
+    ${ribbonTypoMobile}
   }
 `;
-
 
   const desktopAllStyle = `
 		${wrapperStylesDesktop}
     ${featuresStylesDesktop}
     ${ribbonStylesDesktop}
+    ${buttonStylesDesktop}
 	`;
 
   const tabletAllStyle = `
 		${wrapperStylesTab}
     ${featuresStylesTab}
+    ${ribbonStylesTab}
+    ${buttonStylesTab}
 	`;
 
   const mobileAllStyle = `
 		${wrapperStylesMobile}
     ${featuresStylesMobile}
+    ${ribbonStylesMobile}
+    ${buttonStylesMob}
 	`;
 
   const allStyle = `
@@ -313,21 +462,7 @@ const Edit = (props) => {
   }, [attributes]);
 
 
-  const FeaturesList = ({ features }) => {
-    if (features.length !== 0) {
-      return (
-        <ul className="features">
-          {features.map((item, index) => (
-            <li key={index}>
-              {item.icon && <span className="zolo-check-icon"><DisplayIcon icon={item.icon} /></span>}
-              <span className="zolo-list-text">{item.text}</span>
-            </li>
-          ))}
-        </ul>
-      )
-    }
-  }
-
+  const pricingPeriod = period.length !== 0 && period.split(",");
 
   return (
     <>
@@ -358,21 +493,41 @@ const Edit = (props) => {
             )}
 
             <div className="zolo-price-info">
-              <div className="zolo-price">$20</div>
-              <div className="zolo-user-month">
-                <span className="zolo-user-text">per user</span>
-                <span className="zolo-time-text">per month</span>
-              </div>
+              {(orginalPrice && sale) && (
+                <span className="zolo-orginal-price">
+                  {pricePrefix && <span className="currency">{pricePrefix}</span>}
+                  <span className='price'>{orginalPrice}</span>
+                </span>
+              )}
+
+              {price && (
+                <span className="zolo-price">
+                  {pricePrefix && <span className="currency">{pricePrefix}</span>}
+                  <span className='price'>{price}</span>
+                  {priceSuffix && <span className="fractional">{priceSuffix}</span>}
+                </span>
+              )}
+
+              {pricingPeriod.length !== 0 && (
+                <div className="zolo-user-month">
+                  {pricingPeriod.map((name, index) => (
+                    <span className={`zolo-period text-${index}`} key={index}>{name}</span>
+                  ))}
+                </div>
+              )}
+
             </div>
 
-            <RichText
-              tagName="div"
-              className="zolo-package-desc"
-              value={descText}
-              onChange={(descText) => setAttributes({ descText })}
-              placeholder={__('Add description', 'zolo-blocks')}
-              allowedFormats={["bold", "italic", "strikethrough"]}
-            />
+            {showDesc && (
+              <RichText
+                tagName="div"
+                className="zolo-package-desc"
+                value={descText}
+                onChange={(descText) => setAttributes({ descText })}
+                placeholder={__('Add description', 'zolo-blocks')}
+                allowedFormats={["bold", "italic", "strikethrough"]}
+              />
+            )}
 
             <div className="zolo-link-btn">
               <RichText
@@ -431,7 +586,6 @@ const Edit = (props) => {
           </div>
         </div>
       </div>
-
     </>
   )
 }

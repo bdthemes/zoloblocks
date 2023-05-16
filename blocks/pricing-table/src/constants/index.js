@@ -1,6 +1,10 @@
 import { Dashicon } from "@wordpress/components";
 import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = "pricing-table";
+export const NORMAL_HOVER = [
+  { label: __('Normal', 'zolo-blocks'), value: 'normal' },
+  { label: __('Hover', 'zolo-blocks'), value: 'hover' },
+];
 
 //settings tab
 export const STYLES = [
@@ -34,32 +38,38 @@ export const FEATURE_ALIGN = [
   { label: __(<Dashicon icon={"editor-alignright"} />), value: "right" },
 ];
 
-export const TPT_ROTATE_ORIGIN = [
-  { label: 'Default', value: '' },
-  { label: 'Top Left', value: 'top-left' },
-  { label: 'Top Center', value: 'top-center' },
-  { label: 'Top Right', value: 'top-right' },
-  { label: 'Center', value: 'center' },
-  { label: 'Center Left', value: 'center-left' },
-  { label: 'Center Right', value: 'center-right' },
-  { label: 'Bottom Left', value: 'bottom-left' },
-  { label: 'Bottom Center', value: 'bottom-center' },
-  { label: 'Bottom Right', value: 'bottom-right' }
-];
 
-export const TPT_ALIGNMENT = 'tpAlign'
-//style tab
+//header style
 export const TITLE_MARGIN = 'titleMargin';
 export const TITLE_BORDER = 'titleBorder';
 export const TITLE_BORDER_RADIUS = 'titleBorderRadius';
 export const TITLE_PADDING = 'titlePadding';
-export const TITLE_SHADOW = 'titleShadow';
 export const TITLE_TEXT_SHADOW = 'titleTextShadow';
-export const TITLE_TEXT_STROKE = 'titleTextStroke';
+export const DESC_MARGIN = 'descMargin';
 
-export const SUBTITLE_MARGIN = 'subTitleMargin';
-export const SUBTITLE_TEXT_SHADOW = 'subTitleTextShadow';
-export const SUBTITLE_TEXT_STROKE = 'subTitleTextStroke';
+
+//price style
+
+//features style
+export const FEATURE_DESC_MARGIN = 'featureDescMargin'
+export const FEATURE_ICON_GAP = 'featureIconGap';
+export const FEATURE_ICON_SIZE = 'featureIconSize';
+export const FEATURE_MARGIN = 'featureMargin';
+export const FEATURE_PADDING = 'featurePadding';
+export const FEATURE_ITEM_GAP = 'featureItemGap';
+
+//buttons style
+export const BTN_MARGIN = 'btnMargin';
+export const BTN_PADDING = 'btnPadding';
+export const BTN_NORMAL_BG = 'btnBg';
+export const BTN_HOVER_BG = 'btnHoverBg';
+export const BTN_BORDER = 'btnBorder';
+export const BTN_HOVER_BORDER = 'btnHoverBorder';
+export const BTN_SHADOW = 'btnShadow';
+
+//ribbon style
+
+
 export const SEPARATOR_WIDTH = 'separatorWidth';
 export const SEPARATOR_SPACING = 'separatorSpacing';
 export const SEPARATOR_HEIGHT = 'separatorHeight';
@@ -78,6 +88,4 @@ export const WRAPPER_PADDING = 'wrapPadding';
 export const WRAPPER_BG = 'wrapBg';
 export const WRAPPER_BORDER = 'wrapBorder';
 export const WRAPPER_SHADOW = 'wrapShadow';
-
-export const TEST_NORMAL_BG = 'testBg';
 
