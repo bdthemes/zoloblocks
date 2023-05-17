@@ -21,18 +21,19 @@ import {
   BTN_NORMAL_BG,
   BTN_PADDING,
   BTN_SHADOW,
-  DESC_MARGIN,
+  FEATURE_DESC_MARGIN,
+  FEATURE_ICON_GAP,
+  FEATURE_ICON_SIZE,
+  FEATURE_ITEM_GAP,
+  FEATURE_MARGIN,
+  FEATURE_PADDING,
+  ORGINAL_PRICE_MARGIN,
+  PERIOD_MARGIN,
+  PRICE_MARGIN,
   TITLE_BORDER,
   TITLE_BORDER_RADIUS,
   TITLE_MARGIN, TITLE_PADDING,
   TITLE_TEXT_SHADOW,
-  TPT_BORDER,
-  TPT_BORDER_RADIUS,
-  TPT_MARGIN,
-  TPT_PADDING,
-  TPT_SHADOW,
-  TPT_TEXT_SHADOW,
-  TPT_TEXT_STROKE,
   WRAPPER_BG, WRAPPER_BORDER, WRAPPER_MARGIN, WRAPPER_PADDING, WRAPPER_SHADOW
 } from './constants';
 import * as typographyObjs from "./constants/typoPrefixConstant";
@@ -268,6 +269,30 @@ const attributes = {
   },
 
   //price style
+  prefixPosition: {
+    type: 'number',
+  },
+  suffixPosition: {
+    type: 'number',
+  },
+  prefixSize: {
+    type: 'number',
+  },
+  suffixSize: {
+    type: 'number',
+  },
+  priceColor: {
+    type: 'string',
+    default: '',
+  },
+  orginalPriceColor: {
+    type: 'string',
+    default: '',
+  },
+  periodColor: {
+    type: 'string',
+    default: '',
+  },
 
   //features style
   featureTitleColor: {
@@ -283,6 +308,10 @@ const attributes = {
     default: '',
   },
   featureIconColor: {
+    type: 'string',
+    default: '',
+  },
+  featureIconBgColor: {
     type: 'string',
     default: '',
   },
@@ -320,7 +349,20 @@ const attributes = {
   ...generateDimensionAttributes(TITLE_BORDER_RADIUS),
   ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
 
-  //button style
+  //price
+  ...generateDimensionAttributes(PRICE_MARGIN),
+  ...generateDimensionAttributes(ORGINAL_PRICE_MARGIN),
+  ...generateDimensionAttributes(PERIOD_MARGIN),
+
+  //feature
+  ...generateDimensionAttributes(FEATURE_DESC_MARGIN),
+  ...generateResRangeAttributies(FEATURE_ITEM_GAP),
+  ...generateDimensionAttributes(FEATURE_MARGIN),
+  ...generateDimensionAttributes(FEATURE_PADDING),
+  ...generateResRangeAttributies(FEATURE_ICON_GAP),
+  ...generateResRangeAttributies(FEATURE_ICON_SIZE),
+
+  //button
   ...generateDimensionAttributes(BTN_MARGIN),
   ...generateDimensionAttributes(BTN_PADDING),
   ...generateNormalBGAttributes(BTN_NORMAL_BG, {
@@ -333,18 +375,7 @@ const attributes = {
   ...generateBorderAttributies(BTN_HOVER_BORDER),
   ...generateBoxShadowAttributies(BTN_SHADOW),
 
-
-  ...generateDimensionAttributes(TPT_MARGIN),
-  ...generateDimensionAttributes(TPT_PADDING),
-  ...generateBorderAttributies(TPT_BORDER),
-  ...generateDimensionAttributes(TPT_BORDER_RADIUS),
-  ...generateBoxShadowAttributies(TPT_SHADOW),
-  ...generateTextShadowAttributies(TPT_TEXT_SHADOW),
-  ...generateTextStrokeAttributies(TPT_TEXT_STROKE),
-
-  ...generateDimensionAttributes(DESC_MARGIN),
-
-
+  //all typography
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
   //advance tab attributes
