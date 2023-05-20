@@ -150,7 +150,6 @@ const Inspector = ({ attributes, setAttributes }) => {
   const changePremade = (selected) => {
     setAttributes({ styles: selected });
     switch (selected) {
-
       case 'style-1':
         setAttributes({
           showFeatureHeading: true,
@@ -172,7 +171,6 @@ const Inspector = ({ attributes, setAttributes }) => {
           showDesc: false
         });
         break;
-
       default:
         return false;
     }
