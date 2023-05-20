@@ -86,16 +86,13 @@ const Inspector = ({ attributes, setAttributes }) => {
 
   const {
     resMode,
-
     //layout
     styles,
-
     //header
     titleText,
     titleTagName,
     showDesc,
     descText,
-
     //price
     pricePrefix,
     price,
@@ -108,7 +105,6 @@ const Inspector = ({ attributes, setAttributes }) => {
     featureTitle,
     featureDesc,
     features,
-
     //button
     buttonText,
     buttonLink,
@@ -117,39 +113,31 @@ const Inspector = ({ attributes, setAttributes }) => {
     chatBtnText,
     chatBtnLink,
     chatBtnOpenNewTab,
-
     //ribbon
     showRibbon,
     ribbonTitle,
-
     //header style
     titleColor,
     titleBgColor,
     descColor,
-
     //price style
     priceColor,
     orginalPriceColor,
     periodColor,
-
     //feature style
     featureTitleColor,
     featureDescColor,
     featureColor,
     featureIconColor,
     featureIconBgColor,
-
     //button style
     btnTextColor,
     btnHoverTextColor,
     btnBgHoverType,
     btnBorderHoverType,
-
     //ribbon style
     ribbonColor,
-    ribbonBgColor,
-
-    //advanced
+    ribbonBgColor
   } = attributes;
 
   const resRequiredProps = {

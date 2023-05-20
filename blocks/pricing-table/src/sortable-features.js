@@ -108,8 +108,6 @@ const SortableItem = SortableElement(
 
           </div>
         )}
-
-
       </li>
     )
   }
@@ -135,7 +133,6 @@ const SortableList = SortableContainer(
     )
   }
 );
-
 
 class SortableFeatures extends Component {
 

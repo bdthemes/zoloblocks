@@ -38,7 +38,6 @@ export const FEATURE_ALIGN = [
   { label: __(<Dashicon icon={"editor-alignright"} />), value: "right" },
 ];
 
-
 //header style
 export const TITLE_MARGIN = 'titleMargin';
 export const TITLE_BORDER = 'titleBorder';
@@ -69,11 +68,9 @@ export const BTN_BORDER = 'btnBorder';
 export const BTN_HOVER_BORDER = 'btnHoverBorder';
 export const BTN_SHADOW = 'btnShadow';
 
-
 //advance tab
 export const WRAPPER_MARGIN = 'wrapMargin';
 export const WRAPPER_PADDING = 'wrapPadding';
 export const WRAPPER_BG = 'wrapBg';
 export const WRAPPER_BORDER = 'wrapBorder';
 export const WRAPPER_SHADOW = 'wrapShadow';
-

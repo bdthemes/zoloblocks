@@ -21,6 +21,7 @@ import {
   BTN_NORMAL_BG,
   BTN_PADDING,
   BTN_SHADOW,
+  DESC_MARGIN,
   FEATURE_DESC_MARGIN,
   FEATURE_ICON_GAP,
   FEATURE_ICON_SIZE,
@@ -65,7 +66,7 @@ const attributes = {
   },
   showDesc: {
     type: 'boolean',
-    default: false,
+    default: true,
   },
   descText: {
     type: 'string',
@@ -348,6 +349,7 @@ const attributes = {
   ...generateBorderAttributies(TITLE_BORDER),
   ...generateDimensionAttributes(TITLE_BORDER_RADIUS),
   ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
+  ...generateDimensionAttributes(DESC_MARGIN),
 
   //price
   ...generateDimensionAttributes(PRICE_MARGIN),

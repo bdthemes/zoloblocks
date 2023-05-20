@@ -19,6 +19,7 @@ import {
   BTN_NORMAL_BG,
   BTN_PADDING,
   BTN_SHADOW,
+  DESC_MARGIN,
   FEATURE_ALIGN,
   FEATURE_DESC_MARGIN,
   FEATURE_ICON_GAP,
@@ -29,13 +30,18 @@ import {
   ORGINAL_PRICE_MARGIN,
   PERIOD_MARGIN,
   PRICE_MARGIN,
+  TITLE_BORDER,
+  TITLE_BORDER_RADIUS,
+  TITLE_MARGIN,
+  TITLE_PADDING,
+  TITLE_TEXT_SHADOW,
   WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_MARGIN,
   WRAPPER_PADDING,
   WRAPPER_SHADOW
 } from './constants';
-import { BTN_TYPOGRAPHY, FEATURE_DESC_TYPOGRAPHY, FEATURE_TITLE_TYPOGRAPHY, FEATURE_TYPOGRAPHY, ORGINAL_PRICE_TYPOGRAPHY, PERIOD_TYPOGRAPHY, PRICE_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { BTN_TYPOGRAPHY, DESC_TYPOGRAPHY, FEATURE_DESC_TYPOGRAPHY, FEATURE_TITLE_TYPOGRAPHY, FEATURE_TYPOGRAPHY, ORGINAL_PRICE_TYPOGRAPHY, PERIOD_TYPOGRAPHY, PRICE_TYPOGRAPHY, RIBBON_TYPOGRAPHY, TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const {
   handleUniqueId,
@@ -92,6 +98,9 @@ const Edit = (props) => {
     ribbonYPosition,
     ribbonRotate,
     //style
+    titleColor,
+    titleBgColor,
+    descColor,
     priceColor,
     prefixSize,
     suffixSize,
@@ -104,15 +113,10 @@ const Edit = (props) => {
     featureColor,
     featureIconColor,
     featureIconBgColor,
-
     btnTextColor,
     btnHoverTextColor,
-
     ribbonBgColor,
     ribbonColor,
-
-
-
   } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -136,6 +140,73 @@ const Edit = (props) => {
   //css generate
 
   //header style
+  const {
+    typoStylesDesktop: titleTypoDesktop,
+    typoStylesTab: titleTypoTab,
+    typoStylesMobile: titleTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: TITLE_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: titleMarginDesktop,
+    dimensionStylesTab: titleMarginTab,
+    dimensionStylesMobile: titleMarginMobile,
+  } = generateDimensionStyle({
+    controlName: TITLE_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: titlePaddingDesktop,
+    dimensionStylesTab: titlePaddingTab,
+    dimensionStylesMobile: titlePaddingMobile,
+  } = generateDimensionStyle({
+    controlName: TITLE_PADDING,
+    styleFor: 'padding',
+    attributes,
+  });
+  const {
+    desktopBorderStyle: titleBorderDesktop,
+    tabBorderStyle: titleBorderTab,
+    mobBorderStyle: titleBorderMob
+  } = generateBorderStyle({
+    attributes,
+    controlName: TITLE_BORDER,
+  });
+  const {
+    dimensionStylesDesktop: titleBorderRadiusDesktop,
+    dimensionStylesTab: titleBorderRadiusTab,
+    dimensionStylesMobile: titleBorderRadiusMob,
+  } = generateDimensionStyle({
+    controlName: TITLE_BORDER_RADIUS,
+    styleFor: 'border-radius',
+    attributes,
+  });
+  const {
+    textShadowStyle: titleTextShadowStyle
+  } = generateTextShadowStyles({
+    attributes,
+    controlName: TITLE_TEXT_SHADOW,
+  });
+
+  const {
+    typoStylesDesktop: descTypoDesktop,
+    typoStylesTab: descTypoTab,
+    typoStylesMobile: descTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: DESC_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: descMarginDesktop,
+    dimensionStylesTab: descMarginTab,
+    dimensionStylesMobile: descMarginMobile,
+  } = generateDimensionStyle({
+    controlName: DESC_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
 
   //price style
   const {
@@ -483,6 +554,50 @@ const Edit = (props) => {
 		}
 	`;
 
+  const headerStylesDesktop = `
+    .${uniqueId} .zolo-package-title{
+      ${titleTypoDesktop}
+      ${titleMarginDesktop}
+      ${titlePaddingDesktop}
+      ${titleBorderDesktop}
+      ${titleBorderRadiusDesktop}
+      ${titleTextShadowStyle}
+      ${titleColor ? `color: ${titleColor};` : ''}
+      ${titleBgColor ? `background-color: ${titleBgColor};` : ''}
+    }
+    .${uniqueId} .zolo-package-desc{
+      ${descTypoDesktop}
+      ${descMarginDesktop}
+      ${descColor ? `color: ${descColor};` : ''}
+    }
+  `;
+  const headerStylesTab = `
+    .${uniqueId} .zolo-package-title{
+      ${titleTypoTab}
+      ${titleMarginTab}
+      ${titlePaddingTab}
+      ${titleBorderTab}
+      ${titleBorderRadiusTab}
+    }
+    .${uniqueId} .zolo-package-desc{
+      ${descTypoTab}
+      ${descMarginTab}
+    }
+  `;
+  const headerStylesMob = `
+    .${uniqueId} .zolo-package-title{
+      ${titleTypoMobile}
+      ${titleBorderMob}
+      ${titleMarginMobile}
+      ${titlePaddingMobile}
+      ${titleBorderRadiusMob}
+    }
+    .${uniqueId} .zolo-package-desc{
+      ${descTypoMobile}
+      ${descMarginMobile}
+    }
+  `;
+
   const priceStylesDesktop = `
     .${uniqueId} .zolo-price-info{
       ${priceMarginDesktop}
@@ -693,14 +808,17 @@ const Edit = (props) => {
 
   const desktopAllStyle = `
 		${wrapperStylesDesktop}
+    ${headerStylesDesktop}
     ${priceStylesDesktop}
     ${featuresStylesDesktop}
     ${ribbonStylesDesktop}
     ${buttonStylesDesktop}
+
 	`;
 
   const tabletAllStyle = `
 		${wrapperStylesTab}
+    ${headerStylesTab}
     ${priceStylesTab}
     ${featuresStylesTab}
     ${ribbonStylesTab}
@@ -709,6 +827,7 @@ const Edit = (props) => {
 
   const mobileAllStyle = `
 		${wrapperStylesMobile}
+    ${headerStylesMob}
     ${priceStylesMob}
     ${featuresStylesMobile}
     ${ribbonStylesMobile}
