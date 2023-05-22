@@ -35,7 +35,6 @@ const {
 
 import objAttributes from './attributes';
 import {
-	PRESETS,
 	CONTENT_ALIGNMENT,
 	CONTAINER_PADDING,
 	CONTAINER_MARGIN,
@@ -91,38 +90,6 @@ function Inspector(props) {
 		objAttributes,
 	};
 
-	/**
-	 * Preset
-	 */
-	console.log(preset);
-	const changePremade = (selected) => {
-		setAttributes({ preset: selected });
-		switch (selected) {
-			case 'default':
-				setAttributes({
-					showTestimonialMessage: false,
-					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
-				});
-				break;
-			case 'style-1':
-				setAttributes({
-					showTestimonialMessage: false,
-				});
-				break;
-			case 'style-2':
-				setAttributes({
-					showTestimonialMessage: false,
-				});
-				break;
-			default:
-				setAttributes({
-					showTestimonialMessage: false,
-					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
-				});
-				break;
-		}
-	};
-
 	return (
 		<InspectorControls key="controls">
 			<div className="zolo-panel-control">
@@ -151,73 +118,6 @@ function Inspector(props) {
 						<div className={'zolo-tab-controls' + tab.name}>
 							{tab.name === 'settings' && (
 								<>
-									<PanelBody
-										title={__('General', 'zolo-blocks')}
-										initialOpen={false}
-									>
-										<SelectControl
-											label={__(
-												'Preset Designs',
-												'zolo-blocks'
-											)}
-											value={preset}
-											options={PRESETS}
-											onChange={(selected) =>
-												changePremade(selected)
-											}
-										/>
-										<ToggleControl
-											label={__(
-												'Add Reviewer Website Link',
-												'zolo-blocks'
-											)}
-											checked={addReviewerWebsiteLink}
-											onChange={() =>
-												setAttributes({
-													addReviewerWebsiteLink:
-														!addReviewerWebsiteLink,
-												})
-											}
-										/>
-										<ToggleControl
-											label={__(
-												'Show Designation',
-												'zolo-blocks'
-											)}
-											checked={showDesignation}
-											onChange={() =>
-												setAttributes({
-													showDesignation:
-														!showDesignation,
-												})
-											}
-										/>
-										<ToggleControl
-											label={__(
-												'Show Testimonial Message',
-												'zolo-blocks'
-											)}
-											checked={showTestimonialMessage}
-											onChange={() =>
-												setAttributes({
-													showTestimonialMessage:
-														!showTestimonialMessage,
-												})
-											}
-										/>
-										<ToggleControl
-											label={__(
-												'Show Rating',
-												'zolo-blocks'
-											)}
-											checked={showRating}
-											onChange={() =>
-												setAttributes({
-													showRating: !showRating,
-												})
-											}
-										/>
-									</PanelBody>
 									<PanelBody
 										title={__('Content', 'zolo-blocks')}
 										initialOpen={false}
@@ -285,7 +185,7 @@ function Inspector(props) {
 												'zolo-blocks'
 											)}
 										/>
-										{showDesignation && (
+										{/* {showDesignation && (
 											<TextControl
 												label={__(
 													'Designation',
@@ -302,7 +202,7 @@ function Inspector(props) {
 													'zolo-blocks'
 												)}
 											/>
-										)}
+										)} */}
 										{showTestimonialMessage && (
 											<TextareaControl
 												label={__(

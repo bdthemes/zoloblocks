@@ -20,7 +20,7 @@ const Save = ({ attributes }) => {
 	return (
 		<div
 			{...useBlockProps.save({
-				className: uniqueId + ` ${preset ? preset : ''}`,
+				className: uniqueId + `${preset ? ' ' + preset : ''}`,
 			})}
 		>
 			<div className="zolo-item">

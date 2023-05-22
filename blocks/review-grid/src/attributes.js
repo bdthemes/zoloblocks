@@ -45,6 +45,18 @@ const attributes = {
 	}),
 	...generateDimensionAttributes(CONTAINER_MARGIN),
 	...generateDimensionAttributes(CONTAINER_PADDING),
+	preset: {
+		type: 'string',
+		default: 'style-1',
+	},
+	showDesignation: {
+		type: 'boolean',
+		default: true,
+	},
+	showTestimonialMessage: {
+		type: 'boolean',
+		default: true,
+	},
 };
 
 export default attributes;

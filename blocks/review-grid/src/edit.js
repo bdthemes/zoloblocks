@@ -35,6 +35,9 @@ import {
 
 import Inspector from './inspector';
 
+// import review-child
+import '../../review-child';
+
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
 		props;
@@ -159,7 +162,7 @@ export default function Edit(props) {
 	 */
 	const childBlocks = wp.data.select('core/block-editor').getBlocks(clientId);
 	const appendBlock = () => {
-		const newBlock = wp.blocks.createBlock('zolo/review', {});
+		const newBlock = wp.blocks.createBlock('zolo/review-child', {});
 		wp.data
 			.dispatch('core/block-editor')
 			.insertBlock(newBlock, childBlocks.length, clientId);
@@ -186,8 +189,8 @@ export default function Edit(props) {
 			</BlockControls>
 			<div {...blockProps}>
 				<InnerBlocks
-					allowedBlocks={['zolo/review']}
-					template={[['zolo/review', {}]]}
+					allowedBlocks={['zolo/review-child']}
+					template={[['zolo/review-child', {}]]}
 					renderAppender={false}
 				/>
 				<div className="appender-btn">

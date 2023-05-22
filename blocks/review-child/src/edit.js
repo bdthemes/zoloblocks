@@ -57,15 +57,21 @@ import {
 } from './constants/typoPrefixConstants';
 
 import Inspector from './inspector';
+import { use } from '@wordpress/data';
 
 export default function Edit(props) {
-	const { attributes, setAttributes, className, clientId, isSelected } =
-		props;
+	const {
+		attributes,
+		setAttributes,
+		className,
+		clientId,
+		isSelected,
+		context,
+	} = props;
 	const {
 		uniqueId,
 		preset,
 		blockStyle,
-		resMode,
 		memberPhoto,
 		memberName,
 		showDesignation,
@@ -97,8 +103,19 @@ export default function Edit(props) {
 	}, []);
 
 	const blockProps = useBlockProps({
-		className: classnames(className, `${uniqueId} ${preset ? preset : ''}`),
+		className: classnames(className, `${uniqueId} ${preset}`),
 	});
+
+	/**
+	 * context
+	 */
+	useEffect(() => {
+		setAttributes({
+			showDesignation: context['zolo/showDesignation'],
+			showTestimonialMessage: context['zolo/showTestimonialMessage'],
+			preset: context['zolo/preset'],
+		});
+	}, [context]);
 
 	// content align
 	const {

@@ -21,6 +21,7 @@ import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
 import {
+	PRESETS,
 	GRID_COLUMNS,
 	COLUMNS_GAP,
 	ROWS_GAP,
@@ -33,13 +34,50 @@ const { ResRangeControl, ResDimensionsControl, ColorControl } =
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
-	const { uniqueId, resMode, containerBg } = attributes;
+	const {
+		uniqueId,
+		preset,
+		resMode,
+		containerBg,
+		showDesignation,
+		showTestimonialMessage,
+	} = attributes;
 
 	const resRequiredProps = {
 		resMode,
 		setAttributes,
 		attributes,
 		objAttributes,
+	};
+
+	/**
+	 * Preset
+	 */
+	console.log(preset);
+	const changePremade = (selected) => {
+		setAttributes({ preset: selected });
+		switch (selected) {
+			case 'default':
+				setAttributes({
+					showTestimonialMessage: false,
+				});
+				break;
+			case 'style-1':
+				setAttributes({
+					showTestimonialMessage: false,
+				});
+				break;
+			case 'style-2':
+				setAttributes({
+					showTestimonialMessage: false,
+				});
+				break;
+			default:
+				setAttributes({
+					showTestimonialMessage: false,
+				});
+				break;
+		}
 	};
 
 	return (
@@ -74,6 +112,43 @@ function Inspector(props) {
 										title={__('General', 'zolo-blocks')}
 										initialOpen={false}
 									>
+										<SelectControl
+											label={__(
+												'Preset Designs',
+												'zolo-blocks'
+											)}
+											value={preset}
+											options={PRESETS}
+											onChange={(selected) =>
+												changePremade(selected)
+											}
+										/>
+										<ToggleControl
+											label={__(
+												'Show Designation',
+												'zolo-blocks'
+											)}
+											checked={showDesignation}
+											onChange={() =>
+												setAttributes({
+													showDesignation:
+														!showDesignation,
+												})
+											}
+										/>
+										<ToggleControl
+											label={__(
+												'Show Testimonial Message',
+												'zolo-blocks'
+											)}
+											checked={showTestimonialMessage}
+											onChange={() =>
+												setAttributes({
+													showTestimonialMessage:
+														!showTestimonialMessage,
+												})
+											}
+										/>
 										<ResRangeControl
 											label={__(
 												'Grid Columns',
