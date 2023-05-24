@@ -351,40 +351,46 @@ function Inspector( props ) {
 							{ tab.name === 'Style' && (
 								<>
 									<PanelBody initialOpen={ true }>
-										<SelectControl
-											label={ __(
-												'Style',
-												'zolo-blocks'
-											) }
-											value={ socialStyle }
-											options={ [
-												{
-													label: 'Flat',
-													value: 'Flat',
-												},
-												{
-													label: 'Framed',
-													value: 'Framed',
-												},
-												{
-													label: 'Gradiant',
-													value: 'Gradiant',
-												},
-												{
-													label: 'Minimal',
-													value: 'Minimal',
-												},
-												{
-													label: 'Boxed Icon',
-													value: 'Boxed Icon',
-												},
-											] }
-											onChange={ ( style ) => {
-												setAttributes( {
-													socialStyle: style,
-												} );
-											} }
-										/>
+										{ preset === 'preset-1' && (
+											<SelectControl
+												label={ __(
+													'Style',
+													'zolo-blocks'
+												) }
+												value={ socialStyle }
+												options={ [
+													{
+														label: 'Default',
+														value: 'default',
+													},
+													{
+														label: 'Flat',
+														value: 'Flat',
+													},
+													{
+														label: 'Framed',
+														value: 'Framed',
+													},
+													{
+														label: 'Gradiant',
+														value: 'Gradiant',
+													},
+													{
+														label: 'Minimal',
+														value: 'Minimal',
+													},
+													{
+														label: 'Boxed Icon',
+														value: 'Boxed Icon',
+													},
+												] }
+												onChange={ ( style ) => {
+													setAttributes( {
+														socialStyle: style,
+													} );
+												} }
+											/>
+										) }
 
 										<ResRangeControl
 											label={ __(

@@ -33,6 +33,8 @@ import {
 	COLUMNS_GAP,
 	ROW_GAP,
 	ICON_SIZE,
+	BUTTON_SIZE,
+	BUTTON_ICON_SIZE,
 	ICON_TEXT_SPACING,
 } from './constants';
 
@@ -150,6 +152,28 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	// generate button size
+	const {
+		desktopRangeStyle: buttonSize,
+		tabRangeStyle: buttonSizeTab,
+		mobRangeStyle: buttonSizeMob,
+	} = generateResRangeStyle( {
+		controlName: BUTTON_SIZE,
+		property: 'padding',
+		attributes,
+	} );
+
+	// generate button size
+	const {
+		desktopRangeStyle: buttonIconSize,
+		tabRangeStyle: buttonIconSizeTab,
+		mobRangeStyle: buttonIconSizeMob,
+	} = generateResRangeStyle( {
+		controlName: BUTTON_ICON_SIZE,
+		property: 'font-size',
+		attributes,
+	} );
+
 	/**
 	 * All Style Combination
 	 */
@@ -173,9 +197,16 @@ export default function Edit( props ) {
 			${ colGapDeskstyle }
 			${ rowGapDeskstyle }
 		}				 
-		.${ uniqueId }.zolo-advanced-social-preset-1, .zolo-advanced-social-preset-3 {
+		.${ uniqueId } .zolo-advanced-social-preset-1, .zolo-advanced-social-preset-3 {
 			grid-template-columns:repeat(${ socialProfileColumns }, 1fr);
+		}				 
+		.${ uniqueId } .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
+			${ buttonSize }
+		}		
+		.${ uniqueId } .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
+			${ buttonIconSize }
 		}
+		
   	`;
 	const tabletAllStyle = `
 		.${ uniqueId }{
@@ -189,10 +220,16 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-button-icon {
 			${ iconSizeTab }
 		}
-		.${ uniqueId }.zolo-advanced-social-share {
+		.${ uniqueId } .zolo-advanced-social-share {
 			${ colGapTabStyle }
 			${ rowGapTabStyle }
-		}	
+		}						 
+		.${ uniqueId } .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
+			${ buttonSizeTab }
+		}				
+		.${ uniqueId } .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
+			${ buttonIconSizeTab }
+		}
 	`;
 
 	const mobileAllStyle = `
@@ -207,10 +244,17 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-button-icon {
 			${ iconSizeMob }
 		}		
-		.${ uniqueId }.zolo-advanced-social-share {
+		.${ uniqueId } .zolo-advanced-social-share {
 			${ colGapMobStyle }
 			${ rowGapMobStyle }
-		}	
+		}							 
+		.${ uniqueId } .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
+			${ buttonSizeMob }
+		}
+						
+		.${ uniqueId } .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
+			${ buttonIconSizeMob }
+		}
   	`;
 
 	const allStyle = `

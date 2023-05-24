@@ -89,6 +89,7 @@ const attributes = {
 	},
 	socialStyle: {
 		type: 'string',
+		default: 'default',
 	},
 	targetPage: {
 		type: 'string',
