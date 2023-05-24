@@ -44,7 +44,6 @@
 	box-sizing: border-box;
 	cursor: pointer;
 	text-align: center;
-	padding: 12px 40px;
 	border-radius: 4px;
 	background-color: var(--primary-color);
 	position: relative;
@@ -56,6 +55,14 @@
 	}
 	.zolo-button-icon {
 		fill: var(--secondary-color);
+	}
+
+	.zolo-button {
+		padding: 12px 40px; 
+		gap: 8px;
+		i, span.dashicon {
+			color: #fff;
+		}
 	}
 
 	/*
@@ -161,7 +168,8 @@
 				var(--color-bg5) 5%,
 				var(--color-bg4) 5%
 			);
-			text-shadow: -3px -3px 0px var(--color-bg6), 3px 3px 0px var(--color-bg5);
+			text-shadow: -3px -3px 0px var(--color-bg6),
+				3px 3px 0px var(--color-bg5);
 			clip-path: var(--slice-0);
 		}
 		&:hover {
@@ -446,8 +454,12 @@
 	* Button Style: 14
 	*/
 	&.button-14 {
-
-		background: linear-gradient(90deg, var(--color-2) 33%, var(--color-bg-12), var(--color-2) 67%)
+		background: linear-gradient(
+					90deg,
+					var(--color-2) 33%,
+					var(--color-bg-12),
+					var(--color-2) 67%
+				)
 				var(--_p, 100%) / 300% no-repeat,
 			var(--color-bg-13);
 		color: var(--color-2);

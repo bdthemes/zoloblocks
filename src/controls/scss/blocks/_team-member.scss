@@ -33,4 +33,25 @@
 	.profile-link {
 		width: 100%;
 	}
+
+	.profile-icon .components-panel__row {
+		display: none;
+	}
+
+	.profile-icon #zoloIcon {
+		margin: 0 !important;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		.dashicon,
+		i {
+			font-size: 20px !important;
+			margin: 0 !important;
+		}
+	}
+
+	.profile-icon {
+		width: 40px;
+	}
 }

@@ -16,7 +16,7 @@ const TabPanelControl = ({ normalComponents, hoverComponents }) => {
 					}))}
 				>
 					{(tab) => {
-						if (tab.name === 'normal') {
+						if ('normal' === tab.name) {
 							return <>{normalComponents}</>;
 						} else {
 							return <>{hoverComponents}</>;

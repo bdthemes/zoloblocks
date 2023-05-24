@@ -1,10 +1,15 @@
-import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
-import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
-import { generateBorderAttributies } from '../../../src/helpers/border-helper';
-import { generateDimensionAttributes } from '../../../src/helpers/dimension-helper';
-import { generateBackgroundAttributes } from '../../../src/helpers/backgroundHelpers';
-import { generateBoxShadowAttributies } from '../../../src/helpers/boxshadow-helper';
-import { generateTypographyAttributes } from '../../../src/helpers/typoHelpers';
+/**
+ * Internal dependencies
+ */
+const {
+	generateResAlignmentAttributies,
+	generateResRangeAttributies,
+	generateBorderAttributies,
+	generateDimensionAttributes,
+	generateBackgroundAttributes,
+	generateBoxShadowAttributies,
+	generateTypographyAttributes,
+} = window.zoloModule;
 
 import {
 	BUTTON_ALIGNMENT,
@@ -66,18 +71,19 @@ const attributes = {
 	//Block specific Attributes
 	preset: {
 		type: 'string',
+		default: '',
 	},
 	presetOneStyles: {
 		type: 'object',
 		default: {
-			shadowColor: '',
+			shadowColor: '#000000',
 		},
 	},
 	presetTwoStyles: {
 		type: 'object',
 		default: {
-			bgColor: '',
-			hoverBgColor: '',
+			bgColor: '#d5edf6',
+			hoverBgColor: '#6dcff6',
 		},
 	},
 	presetThreeStyles: {
@@ -153,7 +159,7 @@ const attributes = {
 		default: false,
 	},
 	icon: {
-		type: 'string',
+		type: 'object',
 	},
 	iconPosition: {
 		type: 'string',

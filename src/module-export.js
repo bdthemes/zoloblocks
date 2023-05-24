@@ -1,5 +1,5 @@
 //Import controls css
-import "./controls/scss/controls.scss";
+import './controls/scss/controls.scss';
 
 //Export Controls
 export { default as BackgroundControl } from "./controls/background-control";
@@ -19,6 +19,9 @@ export { default as ResetControl } from "./controls/reset-control";
 export { default as TextShadowControl } from './controls/textshadow-control';
 export { default as TextStrokeControl } from "./controls/textstroke-control";
 export { default as TypographyDropdown } from "./controls/typography-control";
+export { default as TabPanelControl } from './controls/tabpanel-control';
+export { default as StarRating } from './controls/star-rating';
+
 //Export Helpers
 export {
   generateBackgroundAttributes,
@@ -71,5 +74,3 @@ export {
   generateTypographyAttributes,
   generateTypographyStyles
 } from "./helpers/typoHelpers";
-
-
