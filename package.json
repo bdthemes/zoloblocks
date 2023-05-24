@@ -18,7 +18,7 @@
         "react-select": "^5.2.1",
         "react-sortable-hoc": "^2.0.0",
         "striptags": "^3.2.0",
-		"react-rater": "^6.0.5"
+        "react-rater": "^6.0.5"
     },
     "devDependencies": {
         "@babel/core": "^7.16.5",

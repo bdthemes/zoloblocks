@@ -242,9 +242,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         initialOpen={true}
                                     >
                                         <IconPicker
-                                            attrName='headingIcon'
-                                            attrValue={headingIcon}
-                                            setValue={setAttributes}
+                                            value={headingIcon}
+                                            onChange={(value) => setAttributes({ headingIcon: value })}
                                         />
 
                                         <PanelBody title={__('Test Background', 'zolo-blocks')} initialOpen={false}>
