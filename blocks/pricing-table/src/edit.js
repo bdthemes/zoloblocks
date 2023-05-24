@@ -19,14 +19,29 @@ import {
   BTN_NORMAL_BG,
   BTN_PADDING,
   BTN_SHADOW,
+  DESC_MARGIN,
   FEATURE_ALIGN,
+  FEATURE_DESC_MARGIN,
+  FEATURE_ICON_GAP,
+  FEATURE_ICON_SIZE,
+  FEATURE_ITEM_GAP,
+  FEATURE_MARGIN,
+  FEATURE_PADDING,
+  ORGINAL_PRICE_MARGIN,
+  PERIOD_MARGIN,
+  PRICE_MARGIN,
+  TITLE_BORDER,
+  TITLE_BORDER_RADIUS,
+  TITLE_MARGIN,
+  TITLE_PADDING,
+  TITLE_TEXT_SHADOW,
   WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_MARGIN,
   WRAPPER_PADDING,
   WRAPPER_SHADOW
 } from './constants';
-import { BTN_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { BTN_TYPOGRAPHY, DESC_TYPOGRAPHY, FEATURE_DESC_TYPOGRAPHY, FEATURE_TITLE_TYPOGRAPHY, FEATURE_TYPOGRAPHY, ORGINAL_PRICE_TYPOGRAPHY, PERIOD_TYPOGRAPHY, PRICE_TYPOGRAPHY, RIBBON_TYPOGRAPHY, TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const {
   handleUniqueId,
@@ -83,15 +98,25 @@ const Edit = (props) => {
     ribbonYPosition,
     ribbonRotate,
     //style
-
+    titleColor,
+    titleBgColor,
+    descColor,
+    priceColor,
+    prefixSize,
+    suffixSize,
+    prefixPosition,
+    suffixPosition,
+    orginalPriceColor,
+    periodColor,
+    featureTitleColor,
+    featureDescColor,
+    featureColor,
+    featureIconColor,
+    featureIconBgColor,
     btnTextColor,
     btnHoverTextColor,
-
     ribbonBgColor,
     ribbonColor,
-
-
-
   } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -115,10 +140,211 @@ const Edit = (props) => {
   //css generate
 
   //header style
+  const {
+    typoStylesDesktop: titleTypoDesktop,
+    typoStylesTab: titleTypoTab,
+    typoStylesMobile: titleTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: TITLE_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: titleMarginDesktop,
+    dimensionStylesTab: titleMarginTab,
+    dimensionStylesMobile: titleMarginMobile,
+  } = generateDimensionStyle({
+    controlName: TITLE_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: titlePaddingDesktop,
+    dimensionStylesTab: titlePaddingTab,
+    dimensionStylesMobile: titlePaddingMobile,
+  } = generateDimensionStyle({
+    controlName: TITLE_PADDING,
+    styleFor: 'padding',
+    attributes,
+  });
+  const {
+    desktopBorderStyle: titleBorderDesktop,
+    tabBorderStyle: titleBorderTab,
+    mobBorderStyle: titleBorderMob
+  } = generateBorderStyle({
+    attributes,
+    controlName: TITLE_BORDER,
+  });
+  const {
+    dimensionStylesDesktop: titleBorderRadiusDesktop,
+    dimensionStylesTab: titleBorderRadiusTab,
+    dimensionStylesMobile: titleBorderRadiusMob,
+  } = generateDimensionStyle({
+    controlName: TITLE_BORDER_RADIUS,
+    styleFor: 'border-radius',
+    attributes,
+  });
+  const {
+    textShadowStyle: titleTextShadowStyle
+  } = generateTextShadowStyles({
+    attributes,
+    controlName: TITLE_TEXT_SHADOW,
+  });
+
+  const {
+    typoStylesDesktop: descTypoDesktop,
+    typoStylesTab: descTypoTab,
+    typoStylesMobile: descTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: DESC_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: descMarginDesktop,
+    dimensionStylesTab: descMarginTab,
+    dimensionStylesMobile: descMarginMobile,
+  } = generateDimensionStyle({
+    controlName: DESC_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
 
   //price style
+  const {
+    typoStylesDesktop: priceTypoDesktop,
+    typoStylesTab: priceTypoTab,
+    typoStylesMobile: priceTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: PRICE_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: priceMarginDesktop,
+    dimensionStylesTab: priceMarginTab,
+    dimensionStylesMobile: priceMarginMobile,
+  } = generateDimensionStyle({
+    controlName: PRICE_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+  const {
+    typoStylesDesktop: orginalPriceTypoDesktop,
+    typoStylesTab: orginalPriceTypoTab,
+    typoStylesMobile: orginalPriceTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: ORGINAL_PRICE_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: orginalPriceMarginDesktop,
+    dimensionStylesTab: orginalPriceMarginTab,
+    dimensionStylesMobile: orginalPriceMarginMobile,
+  } = generateDimensionStyle({
+    controlName: ORGINAL_PRICE_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+  const {
+    typoStylesDesktop: periodTypoDesktop,
+    typoStylesTab: periodTypoTab,
+    typoStylesMobile: periodTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: PERIOD_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: periodMarginDesktop,
+    dimensionStylesTab: periodMarginTab,
+    dimensionStylesMobile: periodMarginMobile,
+  } = generateDimensionStyle({
+    controlName: PERIOD_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
 
   //feature style
+  const {
+    typoStylesDesktop: featureTitleTypoDesktop,
+    typoStylesTab: featureTitleTypoTab,
+    typoStylesMobile: featureTitleTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: FEATURE_TITLE_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    typoStylesDesktop: featureDescTypoDesktop,
+    typoStylesTab: featureDescTypoTab,
+    typoStylesMobile: featureDescTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: FEATURE_DESC_TYPOGRAPHY,
+    attributes,
+  });
+
+  const {
+    dimensionStylesDesktop: featureDescMarginDesktop,
+    dimensionStylesTab: featureDescMarginTab,
+    dimensionStylesMobile: featureDescMarginMobile,
+  } = generateDimensionStyle({
+    controlName: FEATURE_DESC_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+  //list
+  const {
+    typoStylesDesktop: featureTypoDesktop,
+    typoStylesTab: featureTypoTab,
+    typoStylesMobile: featureTypoMobile,
+  } = generateTypographyStyles({
+    prefixConstant: FEATURE_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    desktopRangeStyle: featureItemGapDesktop,
+    tabRangeStyle: featureItemGapTab,
+    mobRangeStyle: featureItemGapMob,
+  } = generateResRangeStyle({
+    controlName: FEATURE_ITEM_GAP,
+    property: 'gap',
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: featureMarginDesktop,
+    dimensionStylesTab: featureMarginTab,
+    dimensionStylesMobile: featureMarginMobile,
+  } = generateDimensionStyle({
+    controlName: FEATURE_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: featurePaddingDesktop,
+    dimensionStylesTab: featurePaddingTab,
+    dimensionStylesMobile: featurePaddingMobile,
+  } = generateDimensionStyle({
+    controlName: FEATURE_PADDING,
+    styleFor: 'padding',
+    attributes,
+  });
+
+  //icon
+  const {
+    desktopRangeStyle: featureIconSizeDesktop,
+    tabRangeStyle: featureIconSizeTab,
+    mobRangeStyle: featureIconSizeMob,
+  } = generateResRangeStyle({
+    controlName: FEATURE_ICON_SIZE,
+    property: 'font-size',
+    attributes,
+  });
+  const {
+    desktopRangeStyle: featureIconGapDesktop,
+    tabRangeStyle: featureIconGapTab,
+    mobRangeStyle: featureIconGapMob,
+  } = generateResRangeStyle({
+    controlName: FEATURE_ICON_GAP,
+    property: 'gap',
+    attributes,
+  });
+
   const {
     desktopAlignStyle: featureAlignDesktop,
     tabAlignStyle: featureAlignTab,
@@ -163,7 +389,7 @@ const Edit = (props) => {
   } = generateTypographyStyles({
     prefixConstant: BTN_TYPOGRAPHY,
     attributes,
-  })
+  });
   const {
     backgroundStylesDesktop: btnBgDesktop,
     backgroundStylesTab: btnBgTab,
@@ -328,28 +554,190 @@ const Edit = (props) => {
 		}
 	`;
 
+  const headerStylesDesktop = `
+    .${uniqueId} .zolo-package-title{
+      ${titleTypoDesktop}
+      ${titleMarginDesktop}
+      ${titlePaddingDesktop}
+      ${titleBorderDesktop}
+      ${titleBorderRadiusDesktop}
+      ${titleTextShadowStyle}
+      ${titleColor ? `color: ${titleColor};` : ''}
+      ${titleBgColor ? `background-color: ${titleBgColor};` : ''}
+    }
+    .${uniqueId} .zolo-package-desc{
+      ${descTypoDesktop}
+      ${descMarginDesktop}
+      ${descColor ? `color: ${descColor};` : ''}
+    }
+  `;
+  const headerStylesTab = `
+    .${uniqueId} .zolo-package-title{
+      ${titleTypoTab}
+      ${titleMarginTab}
+      ${titlePaddingTab}
+      ${titleBorderTab}
+      ${titleBorderRadiusTab}
+    }
+    .${uniqueId} .zolo-package-desc{
+      ${descTypoTab}
+      ${descMarginTab}
+    }
+  `;
+  const headerStylesMob = `
+    .${uniqueId} .zolo-package-title{
+      ${titleTypoMobile}
+      ${titleBorderMob}
+      ${titleMarginMobile}
+      ${titlePaddingMobile}
+      ${titleBorderRadiusMob}
+    }
+    .${uniqueId} .zolo-package-desc{
+      ${descTypoMobile}
+      ${descMarginMobile}
+    }
+  `;
+
+  const priceStylesDesktop = `
+    .${uniqueId} .zolo-price-info{
+      ${priceMarginDesktop}
+    }
+    .${uniqueId} .zolo-price{
+      ${priceTypoDesktop}
+      ${priceColor ? `color: ${priceColor};` : ''}
+    }
+    .${uniqueId} .zolo-price .currency{
+      ${prefixSize ? ` font-size: ${prefixSize}px;` : ''}
+      ${prefixPosition ? ` top: ${prefixPosition}px;` : ''}
+    }
+    .${uniqueId} .zolo-price .fractional{
+      ${suffixSize ? ` font-size: ${suffixSize}px;` : ''}
+      ${suffixPosition ? ` top: ${suffixPosition}px;` : ''}
+    }
+
+    .${uniqueId} .zolo-orginal-price{
+      ${orginalPriceTypoDesktop}
+      ${orginalPriceColor ? `color: ${orginalPriceColor};` : ''}
+      ${orginalPriceMarginDesktop}
+    }
+    .${uniqueId} .zolo-user-month{
+      ${periodTypoDesktop}
+      ${periodColor ? `color: ${periodColor};` : ''}
+      ${periodMarginDesktop}
+    }
+  `;
+  const priceStylesTab = `
+    .${uniqueId} .zolo-price-info{
+      ${priceMarginTab}
+    }
+    .${uniqueId} .zolo-price{
+      ${priceTypoTab}
+    }
+    .${uniqueId} .zolo-orginal-price{
+      ${orginalPriceTypoTab}
+      ${orginalPriceMarginTab}
+    }
+    .${uniqueId} .zolo-user-month{
+      ${periodTypoTab}
+      ${periodMarginTab}
+    }
+  `;
+  const priceStylesMob = `
+    .${uniqueId} .zolo-price-info{
+      ${priceMarginMobile}
+    }
+    .${uniqueId} .zolo-price{
+      ${priceTypoMobile}
+    }
+    .${uniqueId} .zolo-orginal-price{
+      ${orginalPriceTypoMobile}
+      ${orginalPriceMarginMobile}
+    }
+    .${uniqueId} .zolo-user-month{
+      ${periodTypoMobile}
+      ${periodMarginMobile}
+    }
+  `;
   const featuresStylesDesktop = `
+    .${uniqueId} .zolo-features-title{
+      ${featureTitleTypoDesktop}
+      ${featureTitleColor ? `color: ${featureTitleColor};` : ''}
+    }
+    .${uniqueId} .zolo-features-desc{
+      ${featureDescTypoDesktop}
+      ${featureDescMarginDesktop}
+      ${featureDescColor ? `color: ${featureDescColor};` : ''}
+    }
+
     .${uniqueId} .zolo-features-info{
       ${featureInfoAlignDesktop}
     }
+    .${uniqueId} .zolo-features-info .features{
+      ${featureTypoDesktop}
+      ${featureItemGapDesktop}
+      ${featureMarginDesktop}
+      ${featurePaddingDesktop}
+    }
+    .${uniqueId} .zolo-features-info .zolo-check-icon{
+      ${featureIconColor ? `color: ${featureIconColor};` : ''}
+      ${featureIconBgColor ? `background-color: ${featureIconBgColor};` : ''}
+      ${featureIconSizeDesktop}
+    }
+
     .${uniqueId} .zolo-features-info .features li{
       ${featureAlignDesktop}
+      ${featureIconGapDesktop}
+      ${featureColor ? `color: ${featureColor};` : ''}
     }
   `;
   const featuresStylesTab = `
+    .${uniqueId} .zolo-features-title{
+      ${featureTitleTypoTab}
+    }
+   .${uniqueId} .zolo-features-desc{
+      ${featureDescTypoTab}
+      ${featureDescMarginTab}
+    }
     .${uniqueId} .zolo-features-info{
       ${featureInfoAlignTab}
     }
+    .${uniqueId} .zolo-features-info .features{
+      ${featureTypoTab}
+      ${featureItemGapTab}
+      ${featureMarginTab}
+      ${featurePaddingTab}
+    }
+    .${uniqueId} .zolo-features-info .zolo-check-icon{
+      ${featureIconSizeTab}
+    }
     .${uniqueId} .zolo-features-info .features li{
       ${featureAlignTab}
+      ${featureIconGapTab}
     }
   `;
   const featuresStylesMobile = `
+    .${uniqueId} .zolo-features-title{
+        ${featureTitleTypoMobile}
+    }
+   .${uniqueId} .zolo-features-desc{
+      ${featureDescTypoMobile}
+      ${featureDescMarginMobile}
+    }
     .${uniqueId} .zolo-features-info{
       ${featureInfoAlignMob}
     }
+    .${uniqueId} .zolo-features-info .features{
+      ${featureTypoMobile}
+      ${featureItemGapMob}
+      ${featureMarginMobile}
+      ${featurePaddingMobile}
+    }
+    .${uniqueId} .zolo-features-info .zolo-check-icon{
+      ${featureIconSizeMob}
+    }
     .${uniqueId} .zolo-features-info .features li{
       ${featureAlignMob}
+      ${featureIconGapMob}
     }
   `;
 
@@ -420,13 +808,18 @@ const Edit = (props) => {
 
   const desktopAllStyle = `
 		${wrapperStylesDesktop}
+    ${headerStylesDesktop}
+    ${priceStylesDesktop}
     ${featuresStylesDesktop}
     ${ribbonStylesDesktop}
     ${buttonStylesDesktop}
+
 	`;
 
   const tabletAllStyle = `
 		${wrapperStylesTab}
+    ${headerStylesTab}
+    ${priceStylesTab}
     ${featuresStylesTab}
     ${ribbonStylesTab}
     ${buttonStylesTab}
@@ -434,6 +827,8 @@ const Edit = (props) => {
 
   const mobileAllStyle = `
 		${wrapperStylesMobile}
+    ${headerStylesMob}
+    ${priceStylesMob}
     ${featuresStylesMobile}
     ${ribbonStylesMobile}
     ${buttonStylesMob}

@@ -53,6 +53,9 @@ import {
   FEATURE_MARGIN,
   FEATURE_PADDING,
   NORMAL_HOVER,
+  ORGINAL_PRICE_MARGIN,
+  PERIOD_MARGIN,
+  PRICE_MARGIN,
   STYLES,
   TITLE_BORDER,
   TITLE_BORDER_RADIUS,
@@ -72,6 +75,9 @@ import {
   FEATURE_DESC_TYPOGRAPHY,
   FEATURE_TITLE_TYPOGRAPHY,
   FEATURE_TYPOGRAPHY,
+  ORGINAL_PRICE_TYPOGRAPHY,
+  PERIOD_TYPOGRAPHY,
+  PRICE_TYPOGRAPHY,
   RIBBON_TYPOGRAPHY,
   TITLE_TYPOGRAPHY
 } from './constants/typoPrefixConstant';
@@ -80,16 +86,13 @@ const Inspector = ({ attributes, setAttributes }) => {
 
   const {
     resMode,
-
     //layout
     styles,
-
     //header
     titleText,
     titleTagName,
     showDesc,
     descText,
-
     //price
     pricePrefix,
     price,
@@ -102,8 +105,7 @@ const Inspector = ({ attributes, setAttributes }) => {
     featureTitle,
     featureDesc,
     features,
-
-    //footer
+    //button
     buttonText,
     buttonLink,
     buttonOpenNewTab,
@@ -111,33 +113,31 @@ const Inspector = ({ attributes, setAttributes }) => {
     chatBtnText,
     chatBtnLink,
     chatBtnOpenNewTab,
-
     //ribbon
     showRibbon,
     ribbonTitle,
-
     //header style
     titleColor,
     titleBgColor,
     descColor,
-
+    //price style
+    priceColor,
+    orginalPriceColor,
+    periodColor,
     //feature style
     featureTitleColor,
     featureDescColor,
     featureColor,
     featureIconColor,
-
+    featureIconBgColor,
     //button style
     btnTextColor,
     btnHoverTextColor,
     btnBgHoverType,
     btnBorderHoverType,
-
     //ribbon style
     ribbonColor,
-    ribbonBgColor,
-
-    //advanced
+    ribbonBgColor
   } = attributes;
 
   const resRequiredProps = {
@@ -150,7 +150,6 @@ const Inspector = ({ attributes, setAttributes }) => {
   const changePremade = (selected) => {
     setAttributes({ styles: selected });
     switch (selected) {
-
       case 'style-1':
         setAttributes({
           showFeatureHeading: true,
@@ -172,7 +171,6 @@ const Inspector = ({ attributes, setAttributes }) => {
           showDesc: false
         });
         break;
-
       default:
         return false;
     }
@@ -554,58 +552,22 @@ const Inspector = ({ attributes, setAttributes }) => {
                   <PanelBody title={__('Pricing', 'zolo-blocks')} initialOpen={false}>
                     <TypographyDropdown
                       label="Typography"
-                      typoPrefixConstant={TITLE_TYPOGRAPHY}
+                      typoPrefixConstant={PRICE_TYPOGRAPHY}
                       resRequiredProps={resRequiredProps}
                     />
 
                     <ColorControl
                       label={__('Color', 'zolo-blocks')}
-                      color={titleColor}
+                      color={priceColor}
                       onChange={(val) => setAttributes({
-                        titleColor: val,
+                        priceColor: val,
                       })}
-                    />
-
-                    <ColorControl
-                      label={__('Background', 'zolo-blocks')}
-                      color={titleBgColor}
-                      onChange={(val) => setAttributes({
-                        titleBgColor: val,
-                      })}
-                    />
-
-                    <ResDimensionsControl
-                      label={__('Padding', 'zolo-blocks')}
-                      controlName={TITLE_PADDING}
-                      resRequiredProps={resRequiredProps}
                     />
 
                     <ResDimensionsControl
                       label={__('Margin', 'zolo-blocks')}
-                      controlName={TITLE_MARGIN}
+                      controlName={PRICE_MARGIN}
                       resRequiredProps={resRequiredProps}
-                    />
-
-                    <BorderControl
-                      label={__('Border', 'zolo-blocks')}
-                      controlName={TITLE_BORDER}
-                      resRequiredProps={resRequiredProps}
-                    />
-
-                    <ResDimensionsControl
-                      label={__(
-                        'Border Radius',
-                        'zolo-blocks'
-                      )}
-                      controlName={TITLE_BORDER_RADIUS}
-                      resRequiredProps={resRequiredProps}
-                      forBorderRadius={true}
-                    />
-
-                    <TextShadowControl
-                      controlName={TITLE_TEXT_SHADOW}
-                      resRequiredProps={resRequiredProps}
-                      enableTransition={false}
                     />
 
                     {pricePrefix && (
@@ -616,16 +578,24 @@ const Inspector = ({ attributes, setAttributes }) => {
                         </BaseControl>
                         <RangeResetControl
                           label={__('Size', 'zolo-blocks')}
-                          controlName={'ribbonXPosition'}
+                          controlName={'prefixSize'}
                           resRequiredProps={resRequiredProps}
                           min={0}
+                          max={100}
+                          step={1}
+                        />
+                        <RangeResetControl
+                          label={__('Position', 'zolo-blocks')}
+                          controlName={'prefixPosition'}
+                          resRequiredProps={resRequiredProps}
+                          min={-100}
                           max={100}
                           step={1}
                         />
                       </>
                     )}
 
-                    {pricePrefix && (
+                    {priceSuffix && (
                       <>
                         <Divider />
                         <BaseControl>
@@ -633,9 +603,17 @@ const Inspector = ({ attributes, setAttributes }) => {
                         </BaseControl>
                         <RangeResetControl
                           label={__('Size', 'zolo-blocks')}
-                          controlName={'ribbonXPosition'}
+                          controlName={'suffixSize'}
                           resRequiredProps={resRequiredProps}
                           min={0}
+                          max={100}
+                          step={1}
+                        />
+                        <RangeResetControl
+                          label={__('Position', 'zolo-blocks')}
+                          controlName={'suffixPosition'}
+                          resRequiredProps={resRequiredProps}
+                          min={-100}
                           max={100}
                           step={1}
                         />
@@ -648,18 +626,52 @@ const Inspector = ({ attributes, setAttributes }) => {
                         <BaseControl>
                           <h3 className="zolo-devider-title"> {__("Orginal Price ", "zolo-blocks")} </h3>
                         </BaseControl>
+
                         <TypographyDropdown
                           label="Typography"
-                          typoPrefixConstant={TITLE_TYPOGRAPHY}
+                          typoPrefixConstant={ORGINAL_PRICE_TYPOGRAPHY}
                           resRequiredProps={resRequiredProps}
                         />
 
                         <ColorControl
                           label={__('Color', 'zolo-blocks')}
-                          color={titleColor}
+                          color={orginalPriceColor}
                           onChange={(val) => setAttributes({
-                            titleColor: val,
+                            orginalPriceColor: val,
                           })}
+                        />
+                        <ResDimensionsControl
+                          label={__('Margin', 'zolo-blocks')}
+                          controlName={ORGINAL_PRICE_MARGIN}
+                          resRequiredProps={resRequiredProps}
+                        />
+                      </>
+                    )}
+
+                    {period && (
+                      <>
+                        <Divider />
+                        <BaseControl>
+                          <h3 className="zolo-devider-title"> {__("Period", "zolo-blocks")} </h3>
+                        </BaseControl>
+
+                        <TypographyDropdown
+                          label="Typography"
+                          typoPrefixConstant={PERIOD_TYPOGRAPHY}
+                          resRequiredProps={resRequiredProps}
+                        />
+
+                        <ColorControl
+                          label={__('Color', 'zolo-blocks')}
+                          color={periodColor}
+                          onChange={(val) => setAttributes({
+                            periodColor: val,
+                          })}
+                        />
+                        <ResDimensionsControl
+                          label={__('Margin', 'zolo-blocks')}
+                          controlName={PERIOD_MARGIN}
+                          resRequiredProps={resRequiredProps}
                         />
                       </>
                     )}
@@ -680,7 +692,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                           label={__('Title Color', 'zolo-blocks')}
                           color={featureTitleColor}
                           onChange={(val) => setAttributes({
-                            featureColor: val,
+                            featureTitleColor: val,
                           })}
                         />
 
@@ -699,7 +711,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                           label={__('Color', 'zolo-blocks')}
                           color={featureDescColor}
                           onChange={(val) => setAttributes({
-                            featureColor: val,
+                            featureDescColor: val,
                           })}
                         />
                         <ResDimensionsControl
@@ -759,7 +771,14 @@ const Inspector = ({ attributes, setAttributes }) => {
                       label={__('Icon Color', 'zolo-blocks')}
                       color={featureIconColor}
                       onChange={(val) => setAttributes({
-                        titleColor: val,
+                        featureIconColor: val,
+                      })}
+                    />
+                    <ColorControl
+                      label={__('Icon Background', 'zolo-blocks')}
+                      color={featureIconBgColor}
+                      onChange={(val) => setAttributes({
+                        featureIconBgColor: val,
                       })}
                     />
                     <ResRangeControl

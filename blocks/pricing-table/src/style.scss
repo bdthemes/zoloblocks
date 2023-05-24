@@ -55,6 +55,11 @@
 	font-size: 40px;
 	font-weight: 700;
 	color: #17171a;
+
+	.currency,
+	.fractional {
+		position: relative;
+	}
 }
 
 .zolo-orginal-price {

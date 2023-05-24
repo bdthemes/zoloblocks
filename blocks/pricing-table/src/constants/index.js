@@ -38,7 +38,6 @@ export const FEATURE_ALIGN = [
   { label: __(<Dashicon icon={"editor-alignright"} />), value: "right" },
 ];
 
-
 //header style
 export const TITLE_MARGIN = 'titleMargin';
 export const TITLE_BORDER = 'titleBorder';
@@ -47,8 +46,10 @@ export const TITLE_PADDING = 'titlePadding';
 export const TITLE_TEXT_SHADOW = 'titleTextShadow';
 export const DESC_MARGIN = 'descMargin';
 
-
 //price style
+export const PRICE_MARGIN = 'priceMargin'
+export const ORGINAL_PRICE_MARGIN = 'orginalPriceMargin'
+export const PERIOD_MARGIN = 'periodMargin'
 
 //features style
 export const FEATURE_DESC_MARGIN = 'featureDescMargin'
@@ -67,25 +68,9 @@ export const BTN_BORDER = 'btnBorder';
 export const BTN_HOVER_BORDER = 'btnHoverBorder';
 export const BTN_SHADOW = 'btnShadow';
 
-//ribbon style
-
-
-export const SEPARATOR_WIDTH = 'separatorWidth';
-export const SEPARATOR_SPACING = 'separatorSpacing';
-export const SEPARATOR_HEIGHT = 'separatorHeight';
-
-export const TPT_MARGIN = 'TPTMargin';
-export const TPT_BORDER = 'TPTBorder';
-export const TPT_BORDER_RADIUS = 'TPTBorderRadius';
-export const TPT_PADDING = 'TPTPadding';
-export const TPT_SHADOW = 'TPTShadow';
-export const TPT_TEXT_SHADOW = 'TPTTextShadow';
-export const TPT_TEXT_STROKE = 'TPTTextStroke';
-
 //advance tab
 export const WRAPPER_MARGIN = 'wrapMargin';
 export const WRAPPER_PADDING = 'wrapPadding';
 export const WRAPPER_BG = 'wrapBg';
 export const WRAPPER_BORDER = 'wrapBorder';
 export const WRAPPER_SHADOW = 'wrapShadow';
-

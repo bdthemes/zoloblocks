@@ -6,3 +6,6 @@ export const BTN_TYPOGRAPHY = "btn";
 export const FEATURE_TYPOGRAPHY = "feature";
 export const FEATURE_DESC_TYPOGRAPHY = 'featureDesc';
 export const FEATURE_TITLE_TYPOGRAPHY = 'featureTitle';
+export const PRICE_TYPOGRAPHY = 'price';
+export const PERIOD_TYPOGRAPHY = 'period';
+export const ORGINAL_PRICE_TYPOGRAPHY = 'orginalPrice';
