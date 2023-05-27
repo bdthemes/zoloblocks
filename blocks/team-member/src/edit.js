@@ -416,7 +416,7 @@ export default function Edit(props) {
 		}
 
 		.${uniqueId}.default .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap, 
+		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,
 		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
 			background-color: ${contentBg}
@@ -441,7 +441,7 @@ export default function Edit(props) {
 			${photoDeskPadding}
 			${photoDeskMargin}
 			${teamPhotoBoxShadow}
-			${preset === 'style-3' && `width: calc(100% - ${totalDeskWidth}px );`}
+			${preset === 'style-3' ? `width: calc(100% - ${totalDeskWidth}px );` : ''}
 		}
 
 		.${uniqueId} .zolo-name {
@@ -588,7 +588,7 @@ export default function Edit(props) {
 			${socialIconsBorderRadiusMob}
 			${socialIconsPaddingMob}
 		}
-		
+
 		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
 			${socialIconMob}
 		}

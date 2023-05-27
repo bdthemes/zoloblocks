@@ -1,6 +1,9 @@
 import { Dashicon } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+//Attribute Prefix
+export const prefix = "zolo_";
+
 export const UNIT_TYPES = [
 	{ label: 'px', value: 'px' },
 	{ label: '%', value: '%' },

@@ -1,5 +1,6 @@
 import UnitBtn from '../unit-btn';
 import DimensionControl from './dimension';
+import { prefix } from '../../global/constants';
 
 const ResDimensionsControl = ({
 	label,
@@ -11,25 +12,25 @@ const ResDimensionsControl = ({
 	const { attributes, setAttributes, resMode } = resRequiredProps;
 
 	const {
-		[`${controlName}ZRPUnit`]: dimensionUnit,
-		[`${controlName}ZRPTop`]: dimensionTop,
-		[`${controlName}ZRPRight`]: dimensionRight,
-		[`${controlName}ZRPBottom`]: dimensionBottom,
-		[`${controlName}ZRPLeft`]: dimensionLeft,
+		[`${prefix}${controlName}Unit`]: dimensionUnit,
+		[`${prefix}${controlName}Top`]: dimensionTop,
+		[`${prefix}${controlName}Right`]: dimensionRight,
+		[`${prefix}${controlName}Bottom`]: dimensionBottom,
+		[`${prefix}${controlName}Left`]: dimensionLeft,
 
-		[`TAB${controlName}ZRPUnit`]: TABdimensionUnit,
-		[`TAB${controlName}ZRPTop`]: TABdimensionTop,
-		[`TAB${controlName}ZRPRight`]: TABdimensionRight,
-		[`TAB${controlName}ZRPBottom`]: TABdimensionBottom,
-		[`TAB${controlName}ZRPLeft`]: TABdimensionLeft,
+		[`${prefix}TAB${controlName}Unit`]: TABdimensionUnit,
+		[`${prefix}TAB${controlName}Top`]: TABdimensionTop,
+		[`${prefix}TAB${controlName}Right`]: TABdimensionRight,
+		[`${prefix}TAB${controlName}Bottom`]: TABdimensionBottom,
+		[`${prefix}TAB${controlName}Left`]: TABdimensionLeft,
 
-		[`MOB${controlName}ZRPUnit`]: MOBdimensionUnit,
-		[`MOB${controlName}ZRPTop`]: MOBdimensionTop,
-		[`MOB${controlName}ZRPRight`]: MOBdimensionRight,
-		[`MOB${controlName}ZRPBottom`]: MOBdimensionBottom,
-		[`MOB${controlName}ZRPLeft`]: MOBdimensionLeft,
+		[`${prefix}MOB${controlName}Unit`]: MOBdimensionUnit,
+		[`${prefix}MOB${controlName}Top`]: MOBdimensionTop,
+		[`${prefix}MOB${controlName}Right`]: MOBdimensionRight,
+		[`${prefix}MOB${controlName}Bottom`]: MOBdimensionBottom,
+		[`${prefix}MOB${controlName}Left`]: MOBdimensionLeft,
 
-		[`${controlName}ZRPIsLinked`]: dimensionIsLinked,
+		[`${prefix}${controlName}IsLinked`]: dimensionIsLinked,
 	} = attributes;
 
 	const defaultUnits = [
@@ -57,7 +58,7 @@ const ResDimensionsControl = ({
 						unitTypes={units || defaultUnits}
 						onClick={(dimensionUnit) =>
 							setAttributes({
-								[`${controlName}ZRPUnit`]: dimensionUnit,
+								[`${prefix}${controlName}Unit`]: dimensionUnit,
 							})
 						}
 					/>
@@ -69,10 +70,10 @@ const ResDimensionsControl = ({
 						neededProps={neededProps}
 						onChange={({ top, right, bottom, left }) => {
 							setAttributes({
-								[`${controlName}ZRPTop`]: top,
-								[`${controlName}ZRPRight`]: right,
-								[`${controlName}ZRPBottom`]: bottom,
-								[`${controlName}ZRPLeft`]: left,
+								[`${prefix}${controlName}Top`]: top,
+								[`${prefix}${controlName}Right`]: right,
+								[`${prefix}${controlName}Bottom`]: bottom,
+								[`${prefix}${controlName}Left`]: left,
 							});
 						}}
 					/>
@@ -86,7 +87,7 @@ const ResDimensionsControl = ({
 						unitTypes={units || defaultUnits}
 						onClick={(TABdimensionUnit) =>
 							setAttributes({
-								[`TAB${controlName}ZRPUnit`]: TABdimensionUnit,
+								[`${prefix}TAB${controlName}Unit`]: TABdimensionUnit,
 							})
 						}
 					/>
@@ -99,10 +100,10 @@ const ResDimensionsControl = ({
 						neededProps={neededProps}
 						onChange={({ top, right, bottom, left }) =>
 							setAttributes({
-								[`TAB${controlName}ZRPTop`]: top,
-								[`TAB${controlName}ZRPRight`]: right,
-								[`TAB${controlName}ZRPBottom`]: bottom,
-								[`TAB${controlName}ZRPLeft`]: left,
+								[`${prefix}TAB${controlName}Top`]: top,
+								[`${prefix}TAB${controlName}Right`]: right,
+								[`${prefix}TAB${controlName}Bottom`]: bottom,
+								[`${prefix}TAB${controlName}Left`]: left,
 							})
 						}
 					/>
@@ -116,7 +117,7 @@ const ResDimensionsControl = ({
 						unitTypes={units || defaultUnits}
 						onClick={(MOBdimensionUnit) =>
 							setAttributes({
-								[`MOB${controlName}ZRPUnit`]: MOBdimensionUnit,
+								[`${prefix}MOB${controlName}Unit`]: MOBdimensionUnit,
 							})
 						}
 					/>
@@ -129,10 +130,10 @@ const ResDimensionsControl = ({
 						neededProps={neededProps}
 						onChange={({ top, right, bottom, left }) =>
 							setAttributes({
-								[`MOB${controlName}ZRPTop`]: top,
-								[`MOB${controlName}ZRPRight`]: right,
-								[`MOB${controlName}ZRPBottom`]: bottom,
-								[`MOB${controlName}ZRPLeft`]: left,
+								[`${prefix}MOB${controlName}Top`]: top,
+								[`${prefix}MOB${controlName}Right`]: right,
+								[`${prefix}MOB${controlName}Bottom`]: bottom,
+								[`${prefix}MOB${controlName}Left`]: left,
 							})
 						}
 					/>
