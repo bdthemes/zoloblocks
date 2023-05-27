@@ -1,79 +1,77 @@
 import { RichText, useBlockProps } from "@wordpress/block-editor";
 const {
-    DynamicTag,
-    DisplayIcon
+  DynamicTag,
 } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const {
-        uniqueId,
-        //settings
-        headingIcon,
-        titleText,
-        titleLink,
-        titleTagName,
-        subTitleText,
-        showSubTitle,
-        subTitlePosition,
-        showSeparator,
-        separatorPosition,
-        showTransparentTitle,
-        transparentTitleText,
-        transparentTitleRotateOrigin,
-        //styles
-        styles
-    } = attributes;
+  const {
+    uniqueId,
+    //settings
+    titleText,
+    titleLink,
+    titleTagName,
+    subTitleText,
+    showSubTitle,
+    subTitlePosition,
+    showSeparator,
+    separatorPosition,
+    showTransparentTitle,
+    transparentTitleText,
+    transparentTitleRotateOrigin,
+    //styles
+    styles
+  } = attributes;
 
-    return (
-        <div {...useBlockProps.save()}>
+  return (
+    <div {...useBlockProps.save()}>
 
-            <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
-                <DisplayIcon icon={headingIcon} />
-                {showTransparentTitle &&
-                    <div className='zolo-transparent-heading-wrap'>
-                        <h3 className={`zolo-transparent-heading zolo-transform-origin-${transparentTitleRotateOrigin}`}>{transparentTitleText}</h3>
-                    </div>
-                }
+      <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
 
-                {showSeparator && separatorPosition === "top" && (
-                    <div className="zolo-ah-separator"></div>
-                )}
+        {showTransparentTitle &&
+          <div className='zolo-transparent-heading-wrap'>
+            <h3 className={`zolo-transparent-heading zolo-transform-origin-${transparentTitleRotateOrigin}`}>{transparentTitleText}</h3>
+          </div>
+        }
 
-                {(showSubTitle && subTitlePosition == 'top') && (
-                    <RichText.Content
-                        tagName={'h4'}
-                        className="zolo-ah-subtitle"
-                        value={subTitleText}
-                        formattingControl={["bold", "italic"]}
-                    />
-                )}
+        {showSeparator && separatorPosition === "top" && (
+          <div className="zolo-ah-separator"></div>
+        )}
 
-                <DynamicTag tagName={titleTagName} className='zolo-ah-title'>
-                    <RichText.Content
-                        tagName={titleLink ? 'a' : 'span'}
-                        className="zolo-ah-main-title"
-                        value={titleText}
-                        formattingControl={["bold", "italic"]}
-                        {...(titleLink ? { href: titleLink } : {})}
-                    />
-                </DynamicTag>
+        {(showSubTitle && subTitlePosition == 'top') && (
+          <RichText.Content
+            tagName={'h4'}
+            className="zolo-ah-subtitle"
+            value={subTitleText}
+            formattingControl={["bold", "italic"]}
+          />
+        )}
 
-                {(showSubTitle && subTitlePosition == 'bottom') && (
-                    <RichText.Content
-                        tagName={'h4'}
-                        className="zolo-ah-subtitle"
-                        value={subTitleText}
-                        formattingControl={["bold", "italic"]}
-                    />
-                )}
+        <DynamicTag tagName={titleTagName} className='zolo-ah-title'>
+          <RichText.Content
+            tagName={titleLink ? 'a' : 'span'}
+            className="zolo-ah-main-title"
+            value={titleText}
+            formattingControl={["bold", "italic"]}
+            {...(titleLink ? { href: titleLink } : {})}
+          />
+        </DynamicTag>
 
-                {showSeparator && separatorPosition === "bottom" && (
-                    <div className="zolo-ah-separator"></div>
-                )}
+        {(showSubTitle && subTitlePosition == 'bottom') && (
+          <RichText.Content
+            tagName={'h4'}
+            className="zolo-ah-subtitle"
+            value={subTitleText}
+            formattingControl={["bold", "italic"]}
+          />
+        )}
 
-            </div>
-        </div>
-    )
+        {showSeparator && separatorPosition === "bottom" && (
+          <div className="zolo-ah-separator"></div>
+        )}
+
+      </div>
+    </div>
+  )
 }
 
 export default Save;
