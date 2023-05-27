@@ -36,6 +36,7 @@ import {
 	BUTTON_SIZE,
 	BUTTON_ICON_SIZE,
 	ICON_TEXT_SPACING,
+	BUTTON_HEIGHT,
 } from './constants';
 
 import Inspector from './inspector';
@@ -159,7 +160,18 @@ export default function Edit( props ) {
 		mobRangeStyle: buttonSizeMob,
 	} = generateResRangeStyle( {
 		controlName: BUTTON_SIZE,
-		property: 'padding',
+		property: 'font-size',
+		attributes,
+	} );
+
+	// generate button height
+	const {
+		desktopRangeStyle: buttonHeight,
+		tabRangeStyle: buttonHeightTab,
+		mobRangeStyle: buttonHeightMob,
+	} = generateResRangeStyle( {
+		controlName: BUTTON_HEIGHT,
+		property: 'height',
 		attributes,
 	} );
 
@@ -197,7 +209,7 @@ export default function Edit( props ) {
 			${ colGapDeskstyle }
 			${ rowGapDeskstyle }
 		}				 
-		.${ uniqueId } .zolo-advanced-social-preset-1, .zolo-advanced-social-preset-3 {
+		.${ uniqueId }.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
 			grid-template-columns:repeat(${ socialProfileColumns }, 1fr);
 		}				 
 		.${ uniqueId } .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
@@ -205,6 +217,9 @@ export default function Edit( props ) {
 		}		
 		.${ uniqueId } .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
 			${ buttonIconSize }
+		}		
+		.${ uniqueId } .zolo-social-item {
+			${ buttonHeight }
 		}
 		
   	`;
@@ -229,6 +244,9 @@ export default function Edit( props ) {
 		}				
 		.${ uniqueId } .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
 			${ buttonIconSizeTab }
+		}				
+		.${ uniqueId } .zolo-social-item {
+			${ buttonHeightTab }
 		}
 	`;
 
@@ -254,6 +272,9 @@ export default function Edit( props ) {
 						
 		.${ uniqueId } .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
 			${ buttonIconSizeMob }
+		}
+		.${ uniqueId } .zolo-social-item {
+			${ buttonHeightMob }
 		}
   	`;
 

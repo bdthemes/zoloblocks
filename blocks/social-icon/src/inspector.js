@@ -351,60 +351,21 @@ function Inspector( props ) {
 							{ tab.name === 'Style' && (
 								<>
 									<PanelBody initialOpen={ true }>
-										{ preset === 'preset-1' && (
-											<SelectControl
+										{ preset !== 'preset-2' && (
+											<ResRangeControl
 												label={ __(
-													'Style',
+													'Button Size',
 													'zolo-blocks'
 												) }
-												value={ socialStyle }
-												options={ [
-													{
-														label: 'Default',
-														value: 'default',
-													},
-													{
-														label: 'Flat',
-														value: 'Flat',
-													},
-													{
-														label: 'Framed',
-														value: 'Framed',
-													},
-													{
-														label: 'Gradiant',
-														value: 'Gradiant',
-													},
-													{
-														label: 'Minimal',
-														value: 'Minimal',
-													},
-													{
-														label: 'Boxed Icon',
-														value: 'Boxed Icon',
-													},
-												] }
-												onChange={ ( style ) => {
-													setAttributes( {
-														socialStyle: style,
-													} );
-												} }
+												controlName={ BUTTON_SIZE }
+												resRequiredProps={
+													resRequiredProps
+												}
+												min={ 0 }
+												max={ 100 }
+												step={ 1 }
 											/>
 										) }
-
-										<ResRangeControl
-											label={ __(
-												'Button Size',
-												'zolo-blocks'
-											) }
-											controlName={ BUTTON_SIZE }
-											resRequiredProps={
-												resRequiredProps
-											}
-											min={ 0 }
-											max={ 100 }
-											step={ 1 }
-										/>
 
 										<ResRangeControl
 											label={ __(

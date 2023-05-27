@@ -27,10 +27,6 @@
 		transition: color 0.3s ease;
 	}
 
-	.zolo-advanced-social-preset-4 {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
 	.zolo-advanced-social-preset-2,
 	.zolo-advanced-social-preset-5 {
 		grid-template-columns: repeat(6, 1fr);
@@ -263,9 +259,6 @@
 		.zolo-advanced-social-preset-2,
 		.zolo-advanced-social-preset-5 {
 			grid-template-columns: repeat(11, 1fr);
-		}
-		.zolo-advanced-social-preset-4 {
-			grid-template-columns: repeat(4, 1fr);
 		}
 	}
 }
