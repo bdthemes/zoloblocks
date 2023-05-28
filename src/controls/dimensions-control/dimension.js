@@ -4,6 +4,7 @@ import {
 	onMobileBtnClick,
 	onTabletBtnClick,
 } from '../../helpers/preview-btns-helper';
+import { prefix } from '../../global/constants';
 
 const DimensionControl = ({
 	top,
@@ -42,6 +43,7 @@ const DimensionControl = ({
 			});
 		} else {
 			setDimensions({
+                ...dimensions,
 				[name]: value,
 			});
 		}
@@ -57,7 +59,7 @@ const DimensionControl = ({
 
 	useEffect(() => {
 		setAttributes({
-			[`${controlName}ZRPIsLinked`]: isLinked,
+			[`${prefix}${controlName}IsLinked`]: isLinked,
 		});
 	}, [isLinked]);
 

@@ -192,7 +192,7 @@ function Inspector(props) {
 								<>
 									<PanelBody
 										title={__('General', 'zolo-blocks')}
-										initialOpen={false}
+										initialOpen={true}
 									>
 										<SelectControl
 											label={__(
@@ -542,7 +542,7 @@ function Inspector(props) {
 								<>
 									<PanelBody
 										title={__('General', 'zolo-blocks')}
-										initialOpen={false}
+										initialOpen={true}
 									>
 										<ResAlignmentControl
 											label={__(

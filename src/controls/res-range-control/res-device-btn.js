@@ -4,6 +4,8 @@ import {
 	onTabletBtnClick,
 } from '../../helpers/preview-btns-helper';
 
+import { prefix } from '../../global/constants';
+
 const WithResDeviceBtn = ({
 	label,
 	resRequiredProps,
@@ -17,51 +19,51 @@ const WithResDeviceBtn = ({
 		if (noUnits) {
 			resMode == 'Desktop'
 				? setAttributes({
-						[`${controlName}ZRPRange`]:
-							objAttributes[`${controlName}ZRPRange`].default,
+						[`${prefix}${controlName}Range`]:
+							objAttributes[`${prefix}${controlName}Range`].default,
 				  })
 				: '';
 
 			resMode == 'Tablet'
 				? setAttributes({
-						[`TAB${controlName}ZRPRange`]:
-							objAttributes[`TAB${controlName}ZRPRange`].default,
+						[`${prefix}TAB${controlName}Range`]:
+							objAttributes[`${prefix}TAB${controlName}Range`].default,
 				  })
 				: '';
 
 			resMode == 'Mobile'
 				? setAttributes({
-						[`MOB${controlName}ZRPRange`]:
-							objAttributes[`MOB${controlName}ZRPRange`].default,
+						[`${prefix}MOB${controlName}Range`]:
+							objAttributes[`${prefix}MOB${controlName}Range`].default,
 				  })
 				: '';
 		} else {
 			resMode == 'Desktop'
 				? setAttributes({
-						[`${controlName}ZRPRange`]:
-							objAttributes[`${controlName}ZRPRange`].default,
-						[`${controlName}ZRPUnit`]:
-							objAttributes[`${controlName}ZRPUnit`].default ||
+						[`${prefix}${controlName}Range`]:
+							objAttributes[`${prefix}${controlName}Range`].default,
+						[`${prefix}${controlName}Unit`]:
+							objAttributes[`${prefix}${controlName}Unit`].default ||
 							'px',
 				  })
 				: '';
 
 			resMode == 'Tablet'
 				? setAttributes({
-						[`TAB${controlName}ZRPRange`]:
-							objAttributes[`TAB${controlName}ZRPRange`].default,
-						[`TAB${controlName}ZRPUnit`]:
-							objAttributes[`TAB${controlName}ZRPUnit`].default ||
+						[`${prefix}TAB${controlName}Range`]:
+							objAttributes[`${prefix}TAB${controlName}Range`].default,
+						[`${prefix}TAB${controlName}Unit`]:
+							objAttributes[`${prefix}TAB${controlName}Unit`].default ||
 							'px',
 				  })
 				: '';
 
 			resMode == 'Mobile'
 				? setAttributes({
-						[`MOB${controlName}ZRPRange`]:
-							objAttributes[`MOB${controlName}ZRPRange`].default,
-						[`MOB${controlName}ZRPUnit`]:
-							objAttributes[`MOB${controlName}ZRPUnit`].default ||
+						[`${prefix}MOB${controlName}Range`]:
+							objAttributes[`${prefix}MOB${controlName}Range`].default,
+						[`${prefix}MOB${controlName}Unit`]:
+							objAttributes[`${prefix}MOB${controlName}Unit`].default ||
 							'px',
 				  })
 				: '';
