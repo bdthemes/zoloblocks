@@ -1,14 +1,8 @@
 /**
  * Internal dependencies
  */
-const {
-	generateResAlignmentAttributies,
-	generateResRangeAttributies,
-	generateBorderAttributies,
-	generateDimensionAttributes,
-	generateBoxShadowAttributies,
-	generateTypographyAttributes,
-} = window.zoloModule;
+const { generateResRangeAttributies, generateDimensionAttributes } =
+	window.zoloModule;
 
 import {
 	GRID_COLUMNS,
