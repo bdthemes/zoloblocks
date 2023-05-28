@@ -56,6 +56,10 @@ export default function Edit( props ) {
 		socialProfiles,
 		socialProfilesLinkTarget,
 		socialProfileColumns,
+		socialBgColor,
+		socialBgHoverColor,
+		socialTextColor,
+		socialTextHoverColor,
 	} = attributes;
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect( () => {

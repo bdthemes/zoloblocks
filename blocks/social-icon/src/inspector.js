@@ -1,7 +1,10 @@
 /**
  * Internal depencencies
  */
-const { ResRangeControl, IconPicker } = window.zoloModule;
+
+const { ResRangeControl, ColorControl, TabPanelControl, IconPicker } =
+	window.zoloModule;
+
 /**
  * WordPress depencencies
  */
@@ -34,6 +37,7 @@ import {
 	BUTTON_SIZE,
 	BUTTON_ICON_SIZE,
 	BUTTON_HEIGHT,
+	SOCIAL_ICON_COLOR,
 } from './constants';
 
 import { useEffect } from 'react';
@@ -48,8 +52,16 @@ function Inspector( props ) {
 		socialProfiles,
 		socialProfilesLinkTarget,
 		socialStyle,
+		socialColor,
+		socialTextColor,
+		socialTextHoverColor,
+		socialBgColor,
+		socialBgHoverColor,
+		iconColor,
+		iconHoverColor,
 		socialProfileColumns,
 	} = attributes;
+
 	const resRequiredProps = {
 		attributes,
 		setAttributes,
@@ -366,7 +378,6 @@ function Inspector( props ) {
 												step={ 1 }
 											/>
 										) }
-
 										<ResRangeControl
 											label={ __(
 												'Button Icon Size',
@@ -380,7 +391,6 @@ function Inspector( props ) {
 											max={ 100 }
 											step={ 1 }
 										/>
-
 										<ResRangeControl
 											label={ __(
 												'Button Height',
@@ -394,6 +404,120 @@ function Inspector( props ) {
 											max={ 100 }
 											step={ 1 }
 										/>
+										<SelectControl
+											label={ __(
+												'Social Color',
+												'zolo-blocks'
+											) }
+											value={ socialColor }
+											options={ SOCIAL_ICON_COLOR }
+											onChange={ ( iconType ) =>
+												setAttributes( {
+													socialColor: iconType,
+												} )
+											}
+										/>
+
+										{ socialColor === 'icon' && (
+											<>
+												<TabPanelControl
+													normalComponents={
+														<>
+															<ColorControl
+																label={ __(
+																	'Color',
+																	'zolo-blocks'
+																) }
+																color={
+																	socialTextColor
+																}
+																onChange={ (
+																	value
+																) =>
+																	setAttributes(
+																		{
+																			socialTextColor:
+																				value,
+																		}
+																	)
+																}
+															/>
+														</>
+													}
+													hoverComponents={
+														<>
+															<ColorControl
+																label={ __(
+																	'Color',
+																	'zolo-blocks'
+																) }
+																color={
+																	socialTextHoverColor
+																}
+																onChange={ (
+																	value
+																) =>
+																	setAttributes(
+																		{
+																			socialTextHoverColor:
+																				value,
+																		}
+																	)
+																}
+															/>
+														</>
+													}
+												/>
+												<TabPanelControl
+													normalComponents={
+														<>
+															<ColorControl
+																label={ __(
+																	'Background',
+																	'zolo-blocks'
+																) }
+																color={
+																	socialBgColor
+																}
+																onChange={ (
+																	value
+																) =>
+																	setAttributes(
+																		{
+																			socialBgColor:
+																				value,
+																		}
+																	)
+																}
+															/>
+														</>
+													}
+													hoverComponents={
+														<>
+															<ColorControl
+																label={ __(
+																	'Background',
+																	'zolo-blocks'
+																) }
+																color={
+																	socialBgHoverColor
+																}
+																onChange={ (
+																	value
+																) =>
+																	setAttributes(
+																		{
+																			socialBgHoverColor:
+																				value,
+																		}
+																	)
+																}
+															/>
+														</>
+													}
+												/>
+											</>
+										) }
 									</PanelBody>
 								</>
 							) }

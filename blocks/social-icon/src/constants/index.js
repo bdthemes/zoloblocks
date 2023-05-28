@@ -33,6 +33,7 @@ export const ICON_POSITIONS = [
 		value: 'bottom',
 	},
 ];
+// social icon text
 export const SOCIAL_TEXT = [
 	{
 		label: 'Icon & Text',
@@ -46,6 +47,17 @@ export const SOCIAL_TEXT = [
 	{
 		label: 'Text',
 		value: 'text',
+	},
+];
+// social icon color
+export const SOCIAL_ICON_COLOR = [
+	{
+		label: 'Original Color',
+		value: 'original',
+	},
+	{
+		label: 'Custom Color',
+		value: 'icon',
 	},
 ];
 //columns Number

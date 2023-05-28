@@ -97,6 +97,21 @@ const attributes = {
 	customLink: {
 		type: 'string',
 	},
+	socialColor: {
+		type: 'string',
+	},
+	socialTextColor: {
+		type: 'string',
+	},
+	socialTextHoverColor: {
+		type: 'string',
+	},
+	socialBgColor: {
+		type: 'string',
+	},
+	socialBgHoverColor: {
+		type: 'string',
+	},
 	showIcon: {
 		type: 'boolean',
 		default: false,
