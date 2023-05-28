@@ -29,7 +29,7 @@ const {
 	BorderControl,
 	ResDimensionsControl,
 	TypographyDropdown,
-	BackgroundControl,
+	NormalBGControl,
 	BoxShadowControl,
 	ImageAvatar,
 	IconPicker,
@@ -40,6 +40,7 @@ import objAttributes from './attributes';
 import {
 	PRESETS,
 	CONTENT_ALIGNMENT,
+	PHOTO_BG,
 	TEAM_PHOTO_BORDER,
 	TEAM_PHOTO_BORDER_RADIUS,
 	TEAM_PHOTO_BOX_SHADOW,
@@ -55,6 +56,7 @@ import {
 	ICONS_PADDING,
 	ICONS_BOX_SHADOW,
 	ICONS_HOVER_BOX_SHADOW,
+	CONTAINER_BG,
 } from './constants';
 
 import {
@@ -66,7 +68,6 @@ import {
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
 	const {
-		uniqueId,
 		resMode,
 		preset,
 		memberPhoto,
@@ -81,8 +82,6 @@ function Inspector(props) {
 		showShortBio,
 		memberShortBio,
 		socialProfilesLinkTarget,
-		contentBg,
-		photoBgColor,
 		nameColor,
 		designationColor,
 		shortBioColor,
@@ -570,34 +569,20 @@ function Inspector(props) {
 												},
 											]}
 										/>
-										<ColorControl
-											label={__(
-												'Content Background',
-												'zolo-blocks'
-											)}
-											color={contentBg}
-											onChange={(color) =>
-												setAttributes({
-													contentBg: color,
-												})
-											}
+										<NormalBGControl
+											resRequiredProps={resRequiredProps}
+											controlName={CONTAINER_BG}
+											noMainBGImg={false}
 										/>
 									</PanelBody>
 									<PanelBody
 										title={__('Photo', 'zolo-blocks')}
 										initialOpen={false}
 									>
-										<ColorControl
-											label={__(
-												'Background Color',
-												'zolo-blocks'
-											)}
-											color={photoBgColor}
-											onChange={(color) =>
-												setAttributes({
-													photoBgColor: color,
-												})
-											}
+										<NormalBGControl
+											resRequiredProps={resRequiredProps}
+											controlName={PHOTO_BG}
+											noMainBGImg={true}
 										/>
 										<BorderControl
 											label={__('Border', 'zolo-blocks')}

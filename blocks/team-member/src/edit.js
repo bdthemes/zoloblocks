@@ -11,14 +11,7 @@ import {
 } from '@wordpress/block-editor';
 import { Fragment, useState, useEffect } from '@wordpress/element';
 
-import {
-	ToolbarButton,
-	ToolbarGroup,
-	Dropdown,
-	Button,
-	Popover,
-	Dashicon,
-} from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup, Popover } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import classnames from 'classnames';
@@ -36,10 +29,12 @@ const {
 	generateResRangeStyle,
 	generateBoxShadowStyles,
 	DisplayIcon,
+	generateNormalBGControlStyles,
 } = window.zoloModule;
 
 import {
 	BLOCK_PREFIX,
+	CONTAINER_BG,
 	CONTENT_ALIGNMENT,
 	ICONS_BORDER,
 	ICONS_BORDER_RADIUS,
@@ -50,6 +45,7 @@ import {
 	ICONS_SPACING,
 	TEAM_DESIGNATION_MARGIN,
 	TEAM_NAME_MARGIN,
+	PHOTO_BG,
 	TEAM_PHOTO_BORDER,
 	TEAM_PHOTO_BORDER_RADIUS,
 	TEAM_PHOTO_BOX_SHADOW,
@@ -85,8 +81,6 @@ export default function Edit(props) {
 		showSocialProfiles,
 		socialProfiles,
 		socialProfilesLinkTarget,
-		contentBg,
-		photoBgColor,
 		nameColor,
 		designationColor,
 		shortBioColor,
@@ -115,6 +109,28 @@ export default function Edit(props) {
 
 	const blockProps = useBlockProps({
 		className: classnames(className, `${uniqueId} ${preset ? preset : ''}`),
+	});
+
+	// Container
+	const {
+		backgroundStylesDesktop: containerDeskBGStyle,
+		backgroundStylesTab: containerTabBGStyle,
+		backgroundStylesMobile: containerMobBGStyle,
+	} = generateNormalBGControlStyles({
+		controlName: CONTAINER_BG,
+		attributes,
+		noMainBGImg: false,
+	});
+
+	// Photo
+	const {
+		backgroundStylesDesktop: photoDeskBGStyle,
+		backgroundStylesTab: photoTabBGStyle,
+		backgroundStylesMobile: photoMobBGStyle,
+	} = generateNormalBGControlStyles({
+		controlName: PHOTO_BG,
+		attributes,
+		noMainBGImg: true,
 	});
 
 	// content alignment
@@ -419,7 +435,7 @@ export default function Edit(props) {
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,
 		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
-			background-color: ${contentBg}
+			${containerDeskBGStyle}
 		}
 
 		.${uniqueId} .zolo-social-share {
@@ -431,11 +447,7 @@ export default function Edit(props) {
 		}
 
 		.${uniqueId} .zolo-image-wrap img {
-			${
-				photoBgColor && photoBgColor !== ''
-					? `background-color: ${photoBgColor};`
-					: ''
-			}
+			${photoDeskBGStyle}
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
 			${photoDeskPadding}
@@ -444,7 +456,7 @@ export default function Edit(props) {
 			${preset === 'style-3' ? `width: calc(100% - ${totalDeskWidth}px );` : ''}
 		}
 
-		.${uniqueId} .zolo-name {
+		.${uniqueId} .zolo-name, .${uniqueId} .zolo-name a {
 			${nameColor && nameColor !== '' ? `color: ${nameColor};` : ''}
 			${nameTypoDesk}
 			${nameDeskMargin}
@@ -511,6 +523,12 @@ export default function Edit(props) {
 		}
 	`;
 	const tabletAllStyle = `
+		.${uniqueId}.default .zolo-item .zolo-info-wrap,
+		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
+		.${uniqueId}.default .zolo-item .zolo-hover-content,
+		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
+			${containerTabBGStyle}
+		}
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
 			${teamTabAlignStyle}
 		}
@@ -518,6 +536,7 @@ export default function Edit(props) {
 			${socialTabAlignStyle}
 		}
 		.${uniqueId} .zolo-image-wrap img {
+			${photoTabBGStyle}
 			${photoTabBorderStyle}
 			${photoTabBorderRadius}
 			${photoTabPadding}
@@ -553,6 +572,12 @@ export default function Edit(props) {
 	`;
 
 	const mobileAllStyle = `
+		.${uniqueId}.default .zolo-item .zolo-info-wrap,
+		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
+		.${uniqueId}.default .zolo-item .zolo-hover-content,
+		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
+			${containerMobBGStyle}
+		}
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
 			${teamMobAlignStyle}
 		}
@@ -560,6 +585,7 @@ export default function Edit(props) {
 			${socialMobAlignStyle}
 		}
 		.${uniqueId} .zolo-image-wrap img {
+			${photoMobBGStyle}
 			${photoMobBorderStyle}
 			${photoMobBorderRadius}
 			${photoMobPadding}

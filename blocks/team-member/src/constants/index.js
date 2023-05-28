@@ -14,6 +14,12 @@ export const PRESETS = [
 	{ label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
 ];
 
+// Container
+export const CONTAINER_BG = 'teamContainerBg';
+
+// photo bg
+export const PHOTO_BG = 'teamPhotoBg';
+
 // content alignment
 export const CONTENT_ALIGNMENT = 'teamContentAlignment';
 

@@ -8,10 +8,13 @@ const {
 	generateDimensionAttributes,
 	generateBoxShadowAttributies,
 	generateTypographyAttributes,
+	generateNormalBGAttributes,
 } = window.zoloModule;
 
 import {
+	CONTAINER_BG,
 	CONTENT_ALIGNMENT,
+	PHOTO_BG,
 	TEAM_PHOTO_BORDER,
 	TEAM_PHOTO_BORDER_RADIUS,
 	TEAM_PHOTO_BOX_SHADOW,
@@ -48,9 +51,11 @@ const attributes = {
 		default: 'default',
 	},
 	// Generators
+	...generateNormalBGAttributes(CONTAINER_BG),
 	...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
 		defaultAlign: 'left',
 	}),
+	...generateNormalBGAttributes(PHOTO_BG),
 	...generateBorderAttributies(TEAM_PHOTO_BORDER),
 	...generateDimensionAttributes(TEAM_PHOTO_BORDER_RADIUS),
 	...generateDimensionAttributes(TEAM_PHOTO_MARGIN),
@@ -127,13 +132,7 @@ const attributes = {
 		type: 'boolean',
 		default: true,
 	},
-	// block style
-	contentBg: {
-		type: 'string',
-	},
-	photoBgColor: {
-		type: 'string',
-	},
+	// block styles
 	nameColor: {
 		type: 'string',
 	},
