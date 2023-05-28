@@ -1,41 +1,41 @@
 export const generateBorderAttributies = (controlName, defaults = {}) => {
-	const { defaultBorder } = defaults;
-	const desktopBorder = defaultBorder
-		? {
-			[`${controlName}Border`]: {
-				type: 'object',
-				default: defaultBorder,
-			},
-		}
-		: {
-			[`${controlName}Border`]: {
-				type: 'object',
-			},
-		};
+  const { defaultBorder } = defaults;
+  const desktopBorder = defaultBorder
+    ? {
+      [`${controlName}Border`]: {
+        type: 'object',
+        default: defaultBorder,
+      },
+    }
+    : {
+      [`${controlName}Border`]: {
+        type: 'object',
+      },
+    };
 
-	return {
-		...desktopBorder,
-		[`TAB${controlName}Border`]: {
-			type: 'object',
-		},
-		[`MOB${controlName}Border`]: {
-			type: 'object',
-		},
-	};
+  return {
+    ...desktopBorder,
+    [`TAB${controlName}Border`]: {
+      type: 'object',
+    },
+    [`MOB${controlName}Border`]: {
+      type: 'object',
+    },
+  };
 };
 
 //generate border style
 export const generateBorderStyle = ({
-	controlName,
-	attributes,
+  controlName,
+  attributes,
 }) => {
-	const {
-		[`${controlName}Border`]: desktopBorder,
-		[`TAB${controlName}Border`]: tabBorder,
-		[`MOB${controlName}Border`]: mobBorder,
-	} = attributes;
+  const {
+    [`${controlName}Border`]: desktopBorder,
+    [`TAB${controlName}Border`]: tabBorder,
+    [`MOB${controlName}Border`]: mobBorder,
+  } = attributes;
 
-	const desktopBorderStyle = desktopBorder ? `
+  const desktopBorderStyle = desktopBorder ? `
 		${desktopBorder?.width && desktopBorder?.width != undefined ? 'border-width:' + desktopBorder?.width + ';' : ''}
 		${desktopBorder?.color && desktopBorder?.color != undefined ? 'border-color:' + desktopBorder?.color + ';' : ''}
 		${desktopBorder?.style && desktopBorder?.style != undefined ? 'border-style:' + desktopBorder?.style + ';' : ''}
@@ -53,7 +53,7 @@ export const generateBorderStyle = ({
 		${desktopBorder?.right?.style && desktopBorder?.right?.style != undefined ? 'border-right-style:' + desktopBorder?.right?.style + ';' : ''}
 	`: '';
 
-	const tabBorderStyle = tabBorder ? `
+  const tabBorderStyle = tabBorder ? `
 		${tabBorder?.width && tabBorder?.width != undefined ? 'border-width:' + tabBorder?.width + ';' : ''}
 		${tabBorder?.color && tabBorder?.color != undefined ? 'border-color:' + tabBorder?.color + ';' : ''}
 		${tabBorder?.style && tabBorder?.style != undefined ? 'border-style:' + tabBorder?.style + ';' : ''}
@@ -71,7 +71,7 @@ export const generateBorderStyle = ({
 		${tabBorder?.right?.style && tabBorder?.right?.style != undefined ? 'border-right-style:' + tabBorder?.right?.style + ';' : ''}
 	`: '';
 
-	const mobBorderStyle = mobBorder ? `
+  const mobBorderStyle = mobBorder ? `
 	${mobBorder?.width && mobBorder?.width != undefined ? 'border-width:' + mobBorder?.width + ';' : ''}
 	${mobBorder?.color && mobBorder?.color != undefined ? 'border-color:' + mobBorder?.color + ';' : ''}
 	${mobBorder?.style && mobBorder?.style != undefined ? 'border-style:' + mobBorder?.style + ';' : ''}
@@ -89,6 +89,6 @@ export const generateBorderStyle = ({
 	${mobBorder?.right?.style && mobBorder?.right?.style != undefined ? 'border-right-style:' + mobBorder?.right?.style + ';' : ''}
 `: '';
 
-	return { desktopBorderStyle, tabBorderStyle, mobBorderStyle };
+  return { desktopBorderStyle, tabBorderStyle, mobBorderStyle };
 };
 

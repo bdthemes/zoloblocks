@@ -10,7 +10,7 @@ const BorderControl = ({
 }) => {
 
   const { attributes, setAttributes, resMode } = resRequiredProps;
-  const borderAttr = `${resMode === 'Desktop' ? '' : resMode.toUpperCase()}${controlName}Border`;
+  const borderAttr = `${resMode === 'Desktop' ? '' : resMode.slice(0, 3).toUpperCase()}${controlName}Border`;
   const borderVal = attributes[borderAttr];
 
   const setSettings = (val) => {
