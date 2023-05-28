@@ -9,6 +9,7 @@ const {
   generateResAlignmentAttributies,
   generateTextShadowAttributies,
   generateTextStrokeAttributies,
+  generateNormalBGAttributes
 } = window.zoloModule;
 
 //block constants
@@ -16,6 +17,7 @@ import {
   SEPARATOR_HEIGHT, SEPARATOR_SPACING, SEPARATOR_WIDTH, SUBTITLE_MARGIN,
   SUBTITLE_TEXT_SHADOW,
   SUBTITLE_TEXT_STROKE,
+  TEST_NORMAL_BG,
   TITLE_BORDER,
   TITLE_BORDER_RADIUS,
   TITLE_MARGIN, TITLE_PADDING,
@@ -39,10 +41,7 @@ const attributes = {
   uniqueId: {
     type: "string",
   },
-  resDevice: {
-    type: "string",
-    default: "Desktop",
-  },
+
   blockStyle: {
     type: "object"
   },
@@ -190,6 +189,10 @@ const attributes = {
   }),
   ...generateBorderAttributies(WRAPPER_BORDER),
   ...generateBoxShadowAttributies(WRAPPER_SHADOW),
+
+  ...generateNormalBGAttributes(TEST_NORMAL_BG, {
+    defaultBgGradient: "linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)",
+  })
 
 }
 export default attributes;
