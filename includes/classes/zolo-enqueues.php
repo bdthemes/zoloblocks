@@ -46,6 +46,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             add_action('enqueue_block_editor_assets', array($this, 'editor_assets_loader'));
 
             // enqueue style for both editor and frontend
+            // add_action('admin_init', array($this, 'block_assets_loader'));
             add_action('enqueue_block_assets', array($this, 'block_assets_loader'));
         }
 
@@ -65,7 +66,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             // enqueue fontawesome icons
             wp_enqueue_style(
-                'zolo-block-fontawesome',
+                'zolo-fontawesome',
                 ZOLO_ADMIN_URL . 'assets/css/fontawesome/css/fontawesome.min.css',
                 array(),
                 ZOLO_VERSION
