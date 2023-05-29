@@ -48,6 +48,8 @@ export const TEAM_DESIGNATION_MARGIN = 'teamDesignationMargin';
 export const TEAM_SHORT_BIO_MARGIN = 'teamShortBioMargin';
 
 // social icons
+export const ICONS_BG = 'teamIconsBg';
+export const ICONS_HOVER_BG = 'teamIconsHoverBg';
 export const ICONS_SIZE = 'teamIconsSize';
 export const ICONS_SPACING = 'teamIconsSpacing';
 
@@ -58,3 +60,7 @@ export const ICONS_PADDING = 'teamIconsPadding';
 
 export const ICONS_BOX_SHADOW = 'teamIconsBoxShadow';
 export const ICONS_HOVER_BOX_SHADOW = 'teamIconsHoverBoxShadow';
+
+// detailPageLink
+export const DETAIL_PAGE_LINK_BG = 'teamDetailPageLinkBg';
+export const DETAIL_PAGE_LINK_HOVER_BG = 'teamDetailPageLinkHoverBg';

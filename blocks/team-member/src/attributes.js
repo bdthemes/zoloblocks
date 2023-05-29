@@ -30,6 +30,10 @@ import {
 	ICONS_PADDING,
 	ICONS_BOX_SHADOW,
 	ICONS_HOVER_BOX_SHADOW,
+	ICONS_BG,
+	ICONS_HOVER_BG,
+	DETAIL_PAGE_LINK_BG,
+	DETAIL_PAGE_LINK_HOVER_BG,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -63,6 +67,9 @@ const attributes = {
 	...generateBoxShadowAttributies(TEAM_PHOTO_BOX_SHADOW),
 	...generateDimensionAttributes(TEAM_DESIGNATION_MARGIN),
 	...generateDimensionAttributes(TEAM_NAME_MARGIN),
+
+	...generateNormalBGAttributes(ICONS_BG),
+	...generateNormalBGAttributes(ICONS_HOVER_BG),
 	...generateBorderAttributies(ICONS_BORDER),
 	...generateDimensionAttributes(ICONS_BORDER_RADIUS),
 	...generateDimensionAttributes(ICONS_PADDING),
@@ -71,6 +78,9 @@ const attributes = {
 	...generateResRangeAttributies(ICONS_SPACING, {}),
 	...generateBoxShadowAttributies(ICONS_BOX_SHADOW),
 	...generateBoxShadowAttributies(ICONS_HOVER_BOX_SHADOW),
+
+	...generateNormalBGAttributes(DETAIL_PAGE_LINK_BG),
+	...generateNormalBGAttributes(DETAIL_PAGE_LINK_HOVER_BG),
 	// typography
 	...generateTypographyAttributes(Object.values(typographyObjs)),
 	//Block Specific Attributes
@@ -152,12 +162,6 @@ const attributes = {
 	iconHoverColor: {
 		type: 'string',
 	},
-	iconBgColor: {
-		type: 'string',
-	},
-	iconHoverBgColor: {
-		type: 'string',
-	},
 	iconHoverBorderColor: {
 		type: 'string',
 	},
@@ -165,12 +169,6 @@ const attributes = {
 		type: 'string',
 	},
 	detailPageIconHoverColor: {
-		type: 'string',
-	},
-	detailPageLinkBgColor: {
-		type: 'string',
-	},
-	detailPageLinkBgHoverColor: {
 		type: 'string',
 	},
 };

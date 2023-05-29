@@ -36,6 +36,8 @@ import {
 	BLOCK_PREFIX,
 	CONTAINER_BG,
 	CONTENT_ALIGNMENT,
+	ICONS_BG,
+	ICONS_HOVER_BG,
 	ICONS_BORDER,
 	ICONS_BORDER_RADIUS,
 	ICONS_BOX_SHADOW,
@@ -52,6 +54,8 @@ import {
 	TEAM_PHOTO_MARGIN,
 	TEAM_PHOTO_PADDING,
 	TEAM_SHORT_BIO_MARGIN,
+	DETAIL_PAGE_LINK_BG,
+	DETAIL_PAGE_LINK_HOVER_BG,
 } from './constants';
 
 import {
@@ -88,12 +92,8 @@ export default function Edit(props) {
 		iconColor,
 		iconHoverColor,
 		iconHoverBorderColor,
-		iconBgColor,
-		iconHoverBgColor,
 		detailPageIconColor,
 		detailPageIconHoverColor,
-		detailPageLinkBgColor,
-		detailPageLinkBgHoverColor,
 	} = attributes;
 	const [popoverVisible, setPopoverVisible] = useState(false);
 
@@ -300,6 +300,26 @@ export default function Edit(props) {
 
 	// Social Icons
 	const {
+		backgroundStylesDesktop: iconsNormalDeskBG,
+		backgroundStylesTab: iconsNormalTabBG,
+		backgroundStylesMobile: iconsNormalMobBG,
+	} = generateNormalBGControlStyles({
+		controlName: ICONS_BG,
+		attributes,
+		noMainBGImg: true,
+	});
+
+	const {
+		backgroundStylesDesktop: iconsHoverDeskBG,
+		backgroundStylesTab: iconsHoverTabBG,
+		backgroundStylesMobile: iconsHoverMobBG,
+	} = generateNormalBGControlStyles({
+		controlName: ICONS_HOVER_BG,
+		attributes,
+		noMainBGImg: true,
+	});
+
+	const {
 		desktopRangeStyle: socialIconDesk,
 		tabRangeStyle: socialIconTab,
 		mobRangeStyle: socialIconMob,
@@ -380,6 +400,27 @@ export default function Edit(props) {
 			controlName: ICONS_HOVER_BOX_SHADOW,
 		});
 
+	// detail page
+	const {
+		backgroundStylesDesktop: detailPageNormalDeskBG,
+		backgroundStylesTab: detailPageNormalTabBG,
+		backgroundStylesMobile: detailPageNormalMobBG,
+	} = generateNormalBGControlStyles({
+		controlName: DETAIL_PAGE_LINK_BG,
+		attributes,
+		noMainBGImg: true,
+	});
+
+	const {
+		backgroundStylesDesktop: detailPageHoverDeskBG,
+		backgroundStylesTab: detailPageHoverTabBG,
+		backgroundStylesMobile: detailPageHoverMobBG,
+	} = generateNormalBGControlStyles({
+		controlName: DETAIL_PAGE_LINK_HOVER_BG,
+		attributes,
+		noMainBGImg: true,
+	});
+
 	/**
 	 * Image Width Calculation for Style-4(Preset-3)
 	 */
@@ -421,6 +462,24 @@ export default function Edit(props) {
 	const totalTabWidth =
 		tpNumber + twNumber + tbNumber !== 0
 			? tpNumber * 2 + twNumber + tbNumber * 2
+			: 45;
+
+	// mobile
+	const mobPadding = socialIconsPaddingMob || 'padding: 0px';
+	const mobMatch = paddingRegex.exec(mobPadding);
+	const mpNumber = mobMatch ? parseInt(mobMatch[1]) : 8;
+
+	const mobWidth = socialIconContainerWidthMob || 'width: 0px';
+	const mobMatch2 = widthRegex.exec(mobWidth);
+	const mwNumber = mobMatch2 ? parseInt(mobMatch2[1]) : 18;
+
+	const mobBorderWidth = socialIconMobBorderStyle || 'border-width: 0px';
+	const mobMatch3 = borderWidthRegex.exec(mobBorderWidth);
+	const mbNumber = mobMatch3 ? parseInt(mobMatch3[1]) : 1;
+
+	const totalMobWidth =
+		mpNumber + mwNumber + mbNumber !== 0
+			? mpNumber * 2 + mwNumber + mbNumber * 2
 			: 45;
 
 	/**
@@ -490,7 +549,7 @@ export default function Edit(props) {
 			${socialIconsPaddingDesk}
 			${socialIconNormalBoxShadow}
 			${iconColor && iconColor !== '' ? `color: ${iconColor};` : ''}
-			${iconBgColor && iconBgColor !== '' ? `background: ${iconBgColor};` : ''}
+			${iconsNormalDeskBG}
 		}
 
 		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a:hover {
@@ -501,27 +560,24 @@ export default function Edit(props) {
 					? `border-color: ${iconHoverBorderColor};`
 					: ''
 			}
-			${
-				iconHoverBgColor && iconHoverBgColor !== ''
-					? `background: ${iconHoverBgColor};`
-					: ''
-			}
+			${iconsHoverDeskBG}
 		}
 
 		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
 			${socialIconDesk}
 		}
 
-		.${uniqueId} .zolo-link-btn a {
-			background: ${detailPageLinkBgColor} !important;
-			color: ${detailPageIconColor} !important;
+		.${uniqueId}.wp-block-zolo-team-member .zolo-link-btn a {
+			${detailPageNormalDeskBG}
+			color: ${detailPageIconColor};
 		}
 
-		.${uniqueId} .zolo-link-btn a:hover {
-			color: ${detailPageIconHoverColor} !important;
-			background: ${detailPageLinkBgHoverColor} !important;
+		.${uniqueId}.wp-block-zolo-team-member .zolo-link-btn a:hover {
+			color: ${detailPageIconHoverColor};
+			${detailPageHoverDeskBG}
 		}
 	`;
+
 	const tabletAllStyle = `
 		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
@@ -564,10 +620,23 @@ export default function Edit(props) {
 			${socialIconTabBorderStyle}
 			${socialIconsBorderRadiusTab}
 			${socialIconsPaddingTab}
+			${iconsNormalTabBG}
+		}
+
+		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a:hover {
+			${iconsHoverTabBG}
 		}
 
 		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
 			${socialIconTab}
+		}
+
+		.${uniqueId} .zolo-link-btn a {
+			${detailPageNormalTabBG}
+		}
+
+		.${uniqueId} .zolo-link-btn a:hover {
+			${detailPageHoverTabBG}
 		}
 	`;
 
@@ -613,10 +682,23 @@ export default function Edit(props) {
 			${socialIconMobBorderStyle}
 			${socialIconsBorderRadiusMob}
 			${socialIconsPaddingMob}
+			${iconsNormalMobBG}
+		}
+
+		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a:hover {
+			${iconsHoverMobBG}
 		}
 
 		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
 			${socialIconMob}
+		}
+
+		.${uniqueId} .zolo-link-btn a {
+			${detailPageNormalMobBG}
+		}
+
+		.${uniqueId} .zolo-link-btn a:hover {
+			${detailPageHoverMobBG}
 		}
 	`;
 

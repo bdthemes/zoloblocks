@@ -39,6 +39,7 @@ const {
 import objAttributes from './attributes';
 import {
 	PRESETS,
+	CONTAINER_BG,
 	CONTENT_ALIGNMENT,
 	PHOTO_BG,
 	TEAM_PHOTO_BORDER,
@@ -49,6 +50,8 @@ import {
 	TEAM_NAME_MARGIN,
 	TEAM_DESIGNATION_MARGIN,
 	TEAM_SHORT_BIO_MARGIN,
+	ICONS_BG,
+	ICONS_HOVER_BG,
 	ICONS_SIZE,
 	ICONS_SPACING,
 	ICONS_BORDER,
@@ -56,7 +59,8 @@ import {
 	ICONS_PADDING,
 	ICONS_BOX_SHADOW,
 	ICONS_HOVER_BOX_SHADOW,
-	CONTAINER_BG,
+	DETAIL_PAGE_LINK_BG,
+	DETAIL_PAGE_LINK_HOVER_BG,
 } from './constants';
 
 import {
@@ -88,13 +92,9 @@ function Inspector(props) {
 		separatorColor,
 		iconColor,
 		iconHoverColor,
-		iconBgColor,
-		iconHoverBgColor,
 		iconHoverBorderColor,
 		detailPageIconColor,
 		detailPageIconHoverColor,
-		detailPageLinkBgColor,
-		detailPageLinkBgHoverColor,
 	} = attributes;
 
 	const resRequiredProps = {
@@ -830,18 +830,14 @@ function Inspector(props) {
 																})
 															}
 														/>
-														<ColorControl
-															label={__(
-																'Background',
-																'zolo-blocks'
-															)}
-															color={iconBgColor}
-															onChange={(color) =>
-																setAttributes({
-																	iconBgColor:
-																		color,
-																})
+														<NormalBGControl
+															resRequiredProps={
+																resRequiredProps
 															}
+															controlName={
+																ICONS_BG
+															}
+															noMainBGImg={true}
 														/>
 														<BoxShadowControl
 															controlName={
@@ -874,20 +870,14 @@ function Inspector(props) {
 															}
 														/>
 
-														<ColorControl
-															label={__(
-																'Background',
-																'zolo-blocks'
-															)}
-															color={
-																iconHoverBgColor
+														<NormalBGControl
+															resRequiredProps={
+																resRequiredProps
 															}
-															onChange={(color) =>
-																setAttributes({
-																	iconHoverBgColor:
-																		color,
-																})
+															controlName={
+																ICONS_HOVER_BG
 															}
+															noMainBGImg={true}
 														/>
 														<ColorControl
 															label={__(
@@ -946,20 +936,14 @@ function Inspector(props) {
 																})
 															}
 														/>
-														<ColorControl
-															label={__(
-																'Icon Background',
-																'zolo-blocks'
-															)}
-															color={
-																detailPageLinkBgColor
+														<NormalBGControl
+															resRequiredProps={
+																resRequiredProps
 															}
-															onChange={(color) =>
-																setAttributes({
-																	detailPageLinkBgColor:
-																		color,
-																})
+															controlName={
+																DETAIL_PAGE_LINK_BG
 															}
+															noMainBGImg={true}
 														/>
 													</>
 												}
@@ -980,20 +964,14 @@ function Inspector(props) {
 																})
 															}
 														/>
-														<ColorControl
-															label={__(
-																'Icon Background',
-																'zolo-blocks'
-															)}
-															color={
-																detailPageLinkBgHoverColor
+														<NormalBGControl
+															resRequiredProps={
+																resRequiredProps
 															}
-															onChange={(color) =>
-																setAttributes({
-																	detailPageLinkBgHoverColor:
-																		color,
-																})
+															controlName={
+																DETAIL_PAGE_LINK_HOVER_BG
 															}
+															noMainBGImg={true}
 														/>
 													</>
 												}
