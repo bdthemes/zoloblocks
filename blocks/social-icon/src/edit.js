@@ -57,6 +57,7 @@ export default function Edit( props ) {
 		socialProfilesLinkTarget,
 		socialProfileColumns,
 		socialBgColor,
+		socialColor,
 		socialBgHoverColor,
 		socialTextColor,
 		socialTextHoverColor,
@@ -224,7 +225,24 @@ export default function Edit( props ) {
 		}		
 		.${ uniqueId } .zolo-social-item {
 			${ buttonHeight }
+		}		
+		${
+			socialColor === 'custom'
+				? `.zolo-advanced-social-share.zolo-advanced-social-preset-1.${ uniqueId }.social-icon .zolo-social-item{
+					color:${ socialTextColor };
+					background:${ socialBgColor };
+				}`
+				: ' '
 		}
+		${
+			socialColor === 'custom'
+				? `.zolo-advanced-social-share.zolo-advanced-social-preset-1.${ uniqueId }.social-icon .zolo-social-item:hover{
+					color:${ socialTextHoverColor };
+					background:${ socialBgHoverColor };
+				}`
+				: ' '
+		}
+		
 		
   	`;
 	const tabletAllStyle = `

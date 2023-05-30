@@ -78,7 +78,8 @@ function Inspector( props ) {
 		};
 		setAttributes( { socialProfiles: [ ...profile ] } );
 	};
-
+	console.log( socialText );
+	console.log( preset );
 	return (
 		<InspectorControls key="controls">
 			<div className="zolo-panel-control">
@@ -132,19 +133,23 @@ function Inspector( props ) {
 										) }
 										initialOpen={ false }
 									>
-										<SelectControl
-											label={ __(
-												'Social Icon Type',
-												'zolo-blocks'
+										{ preset !== 'preset-2' &&
+											preset !== 'preset-5' && (
+												<SelectControl
+													label={ __(
+														'Social Icon Type',
+														'zolo-blocks'
+													) }
+													value={ socialText }
+													options={ SOCIAL_TEXT }
+													onChange={ ( iconType ) =>
+														setAttributes( {
+															socialText:
+																iconType,
+														} )
+													}
+												/>
 											) }
-											value={ socialText }
-											options={ SOCIAL_TEXT }
-											onChange={ ( iconType ) =>
-												setAttributes( {
-													socialText: iconType,
-												} )
-											}
-										/>
 
 										<SelectControl
 											label={ __(
@@ -418,7 +423,7 @@ function Inspector( props ) {
 											}
 										/>
 
-										{ socialColor === 'icon' && (
+										{ socialColor === 'custom' && (
 											<>
 												<TabPanelControl
 													normalComponents={

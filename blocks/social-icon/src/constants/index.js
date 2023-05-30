@@ -8,10 +8,10 @@ export const BLOCK_PREFIX = 'social-icon';
 // Presets
 export const PRESETS = [
 	{ label: __( 'Default', 'zolo-blocks' ), value: 'preset-1' },
-	{ label: __( 'Preset 1', 'zolo-blocks' ), value: 'preset-2' },
-	{ label: __( 'Preset 2', 'zolo-blocks' ), value: 'preset-3' },
-	{ label: __( 'Preset 3', 'zolo-blocks' ), value: 'preset-4' },
-	{ label: __( 'Preset 4', 'zolo-blocks' ), value: 'preset-5' },
+	{ label: __( 'Style 1', 'zolo-blocks' ), value: 'preset-2' },
+	{ label: __( 'Style 2', 'zolo-blocks' ), value: 'preset-3' },
+	{ label: __( 'Style 3', 'zolo-blocks' ), value: 'preset-4' },
+	{ label: __( 'Style 4', 'zolo-blocks' ), value: 'preset-5' },
 ];
 
 // button icon positions
@@ -57,7 +57,7 @@ export const SOCIAL_ICON_COLOR = [
 	},
 	{
 		label: 'Custom Color',
-		value: 'icon',
+		value: 'custom',
 	},
 ];
 //columns Number
