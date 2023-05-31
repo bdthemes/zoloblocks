@@ -387,8 +387,8 @@ export default function Edit( props ) {
 								<a
 									href={ profile.link }
 									key={ index }
-									rel={
-										socialProfilesLinkTarget && 'noreferer'
+									target={
+										socialProfilesLinkTarget && '_blank'
 									}
 									className={ `zolo-social-item zolo-${ socialName }` }
 								>

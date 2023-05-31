@@ -62,6 +62,8 @@ function Inspector( props ) {
 		socialProfileColumns,
 	} = attributes;
 
+	console.log( socialProfilesLinkTarget );
+
 	const resRequiredProps = {
 		attributes,
 		setAttributes,
@@ -78,8 +80,6 @@ function Inspector( props ) {
 		};
 		setAttributes( { socialProfiles: [ ...profile ] } );
 	};
-	console.log( socialText );
-	console.log( preset );
 	return (
 		<InspectorControls key="controls">
 			<div className="zolo-panel-control">
