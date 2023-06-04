@@ -356,11 +356,9 @@ export default function Edit(props) {
 			${containerBoxShadow}
 			${containerDeskBGStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating {
 			${ratingIconDeskAlignStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-image-wrap .zolo-img {
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
@@ -369,37 +367,30 @@ export default function Edit(props) {
 			${photoDeskPadding}
 			${photoDeskBGStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-name {
 			${nameTypoDesk}
 			${nameDeskMargin}
-			color: ${nameColor};
+			${nameColor ? `color: ${nameColor};` : ''}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-designation {
 			${designationTypoDesk}
 			${designationDeskMargin}
-			color: ${designationColor};
+			${designationColor ? `color: ${designationColor};` : ''}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-desc {
 			${testimonialMessageTypoDesk}
 			${testimonialMessageDeskMargin}
-			color: ${testimonialMessageColor};
+			${testimonialMessageColor ? `color: ${testimonialMessageColor};` : ''}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating svg {
 			${ratingIconWidthDesk}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating .filled-star, .${uniqueId}.wp-block-zolo-review .zolo-star-rating .fraction-star {
-			fill: ${activeRatingColor};
+			${activeRatingColor ? `fill: ${activeRatingColor};` : ''}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating .empty-star {
-			fill: ${inactiveRatingColor};
+			${inactiveRatingColor ? `fill: ${inactiveRatingColor};` : ''}
 		}
-
 	`;
 
 	const tabletAllStyle = `
@@ -411,11 +402,9 @@ export default function Edit(props) {
 			${containerTabBorderRadius}
 			${containerTabBGStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating {
 			${ratingIconTabAlignStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-image-wrap .zolo-img {
 			${photoTabBorderStyle}
 			${photoTabBorderRadius}
@@ -423,22 +412,18 @@ export default function Edit(props) {
 			${photoTabPadding}
 			${photoTabBGStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-name {
 			${nameTypoTab}
 			${nameTabMargin}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-designation {
 			${designationTypoTab}
 			${designationTabMargin}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-desc {
 			${testimonialMessageTypoTab}
 			${testimonialMessageTabMargin}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating svg {
 			${ratingIconWidthTab}
 		}
@@ -453,11 +438,9 @@ export default function Edit(props) {
 			${containerMobBorderRadius}
 			${containerMobBGStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating {
 			${ratingIconMobAlignStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-image-wrap .zolo-img {
 			${photoMobBorderStyle}
 			${photoMobBorderRadius}
@@ -465,22 +448,18 @@ export default function Edit(props) {
 			${photoMobPadding}
 			${photoMobBGStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-name {
 			${nameTypoMob}
 			${nameMobMargin}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-designation {
 			${designationTypoMob}
 			${designationMobMargin}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-desc {
 			${testimonialMessageTypoMob}
 			${testimonialMessageMobMargin}
 		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating svg {
 			${ratingIconWidthMob}
 		}
@@ -678,7 +657,6 @@ export default function Edit(props) {
 									/>
 								</div>
 							)}
-
 							{showTestimonialMessage && (
 								<div className="zolo-desc">
 									<RichText

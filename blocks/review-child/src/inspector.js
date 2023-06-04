@@ -8,11 +8,9 @@ import {
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
-	SelectControl,
 	TabPanel,
 	TextControl,
 	TextareaControl,
-	ToggleControl,
 	BaseControl,
 	Button,
 	RangeControl,
@@ -64,9 +62,7 @@ import {
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
 	const {
-		uniqueId,
 		resMode,
-		preset,
 		memberPhoto,
 		memberName,
 		showDesignation,
@@ -77,7 +73,6 @@ function Inspector(props) {
 		reviewerWebsiteLink,
 		showRating,
 		rating,
-		photoBgColor,
 		nameColor,
 		designationColor,
 		testimonialMessageColor,
@@ -187,7 +182,7 @@ function Inspector(props) {
 												'zolo-blocks'
 											)}
 										/>
-										{/* {showDesignation && (
+										{showDesignation && (
 											<TextControl
 												label={__(
 													'Designation',
@@ -204,7 +199,7 @@ function Inspector(props) {
 													'zolo-blocks'
 												)}
 											/>
-										)} */}
+										)}
 										{showTestimonialMessage && (
 											<TextareaControl
 												label={__(
@@ -549,7 +544,6 @@ function Inspector(props) {
 									)}
 								</>
 							)}
-
 							{tab.name === 'advanced' && (
 								<>
 									<PanelBody
@@ -578,5 +572,4 @@ function Inspector(props) {
 		</InspectorControls>
 	);
 }
-
 export default Inspector;

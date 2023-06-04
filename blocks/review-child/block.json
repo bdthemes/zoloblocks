@@ -4,6 +4,7 @@
 	"icon": "thumbs-up",
 	"name": "zolo/review-child",
 	"category": "zolo-blocks",
+	"parent": ["zolo/review-grid"],
 	"keywords": ["Rating", "Review"],
 	"description": "Single review block",
 	"apiVersion": 2,

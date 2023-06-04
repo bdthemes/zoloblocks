@@ -397,11 +397,9 @@ export default function Edit(props) {
 			${hoverDeskBGStyle}
 			border-color: ${borderHoverColor ? borderHoverColor : ''};
 		}
-
 		.zolo-advanced-button.${uniqueId} .zolo-button {
 			${gap}
 		}
-
 		.zolo-advanced-button.${uniqueId} .zolo-button-content {
 			${btnTypoDesktop}
 			color: ${textColor ? textColor : ''};
@@ -409,7 +407,6 @@ export default function Edit(props) {
 		.zolo-advanced-button.${uniqueId}:hover .zolo-button-content {
 			color: ${textHoverColor ? textHoverColor : ''};
 		}
-
 		.zolo-advanced-button.${uniqueId} .zolo-button i, .zolo-advanced-button.${uniqueId} .zolo-button span.dashicon {
 			${iconSize}
 			${iconBorderDesktop}
@@ -419,14 +416,12 @@ export default function Edit(props) {
 			color: ${iconColor ? iconColor : ''};
 			background: ${iconBg ? iconBg : ''};
 		}
-		
 		.zolo-advanced-button.${uniqueId}:hover .zolo-button i, .zolo-advanced-button.${uniqueId}:hover .zolo-button span.dashicon {
 			${iconHoverBoxShadow}
 			color: ${iconHoverColor ? iconHoverColor : ''};
 			background: ${iconHoverBg ? iconHoverBg : ''};
 			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''};
 		}
-
 		${presetStyles}
 		${presetHoverStyles}
   	`;
@@ -445,15 +440,12 @@ export default function Edit(props) {
 		.zolo-advanced-button.${uniqueId}:hover{
 			${hoverTabBGStyle}
 		}
-
 		.zolo-advanced-button.${uniqueId} .zolo-button {
 			${gapTab}
 		}
-
 		.zolo-advanced-button.${uniqueId} .zolo-button-content {
 			${btnTypoTab}
 		}
-
 		.zolo-advanced-button.${uniqueId} .zolo-button-icon {
 			${iconSizeTab}
 			${iconBorderTab}
@@ -477,15 +469,12 @@ export default function Edit(props) {
 		.zolo-advanced-button.${uniqueId}:hover{
 			${hoverMobBGStyle}
 		}
-
 		.zolo-advanced-button.${uniqueId} .zolo-button {
 			${gapMob}
 		}
-
 		.zolo-advanced-button.${uniqueId} .zolo-button-content {
 			${btnTypoMob}
 		}
-
 		.zolo-advanced-button.${uniqueId} .zolo-button-icon {
 			${iconSizeMob}
 			${iconBorderMob}

@@ -1,26 +1,13 @@
 /**
  * WordPress dependencies
  */
-import {
-	InspectorControls,
-	__experimentalLinkControl as LinkControl,
-	MediaUpload,
-} from '@wordpress/block-editor';
-import {
-	CardDivider,
-	PanelBody,
-	SelectControl,
-	TabPanel,
-	TextControl,
-	TextareaControl,
-	ToggleControl,
-	BaseControl,
-	Button,
-} from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, TabPanel } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
 import {
+	TEAM_GRID_BG,
 	GRID_COLUMNS,
 	COLUMNS_GAP,
 	ROWS_GAP,
@@ -28,12 +15,12 @@ import {
 	CONTAINER_PADDING,
 } from './constants';
 
-const { ResRangeControl, ResDimensionsControl, ColorControl } =
+const { ResRangeControl, ResDimensionsControl, NormalBGControl } =
 	window.zoloModule;
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
-	const { uniqueId, resMode, containerBg } = attributes;
+	const { resMode } = attributes;
 
 	const resRequiredProps = {
 		resMode,
@@ -112,17 +99,10 @@ function Inspector(props) {
 										title={__('Container', 'zolo-blocks')}
 										initialOpen={false}
 									>
-										<ColorControl
-											label={__(
-												'Background',
-												'zolo-blocks'
-											)}
-											color={containerBg}
-											onChange={(color) =>
-												setAttributes({
-													containerBg: color,
-												})
-											}
+										<NormalBGControl
+											resRequiredProps={resRequiredProps}
+											controlName={TEAM_GRID_BG}
+											noMainBGImg={false}
 										/>
 									</PanelBody>
 								</>
