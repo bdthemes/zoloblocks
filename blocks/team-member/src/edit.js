@@ -56,6 +56,8 @@ import {
 	TEAM_SHORT_BIO_MARGIN,
 	DETAIL_PAGE_LINK_BG,
 	DETAIL_PAGE_LINK_HOVER_BG,
+	TEAM_MEMBER_CONTAINER_PADDING,
+	TEAM_MEMBER_CONTAINER_MARGIN,
 } from './constants';
 
 import {
@@ -109,6 +111,27 @@ export default function Edit(props) {
 
 	const blockProps = useBlockProps({
 		className: classnames(className, `${uniqueId} ${preset ? preset : ''}`),
+	});
+
+	// Container padding + margin
+	const {
+		dimensionStylesDesktop: teamMemberContainerDeskPadding,
+		dimensionStylesTab: teamMemberContainerTabPadding,
+		dimensionStylesMobile: teamMemberContainerMobPadding,
+	} = generateDimensionStyle({
+		controlName: TEAM_MEMBER_CONTAINER_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: teamMemberContainerDeskMargin,
+		dimensionStylesTab: teamMemberContainerTabMargin,
+		dimensionStylesMobile: teamMemberContainerMobMargin,
+	} = generateDimensionStyle({
+		controlName: TEAM_MEMBER_CONTAINER_MARGIN,
+		styleFor: 'margin',
+		attributes,
 	});
 
 	// Container
@@ -486,6 +509,10 @@ export default function Edit(props) {
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
+		.${uniqueId} {
+			${teamMemberContainerDeskPadding}
+			${teamMemberContainerDeskMargin}
+		}
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
 			${teamDeskAlignStyle}
 		}
@@ -558,6 +585,10 @@ export default function Edit(props) {
 	`;
 
 	const tabletAllStyle = `
+		.${uniqueId} {
+			${teamMemberContainerTabPadding}
+			${teamMemberContainerTabMargin}
+		}
 		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,
@@ -616,6 +647,10 @@ export default function Edit(props) {
 	`;
 
 	const mobileAllStyle = `
+		.${uniqueId} {
+			${teamMemberContainerMobPadding}
+			${teamMemberContainerMobMargin}
+		}
 		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,

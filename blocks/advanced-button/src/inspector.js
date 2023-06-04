@@ -33,6 +33,8 @@ const {
 	IconPicker,
 } = window.zoloModule;
 
+import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
+
 import objAttributes from './attributes';
 import {
 	BUTTON_ALIGNMENT,
@@ -149,24 +151,7 @@ function Inspector(props) {
 											)}
 											controlName={BUTTON_ALIGNMENT}
 											resRequiredProps={resRequiredProps}
-											alignOptions={[
-												{
-													label: 'Left',
-													value: 'left',
-												},
-												{
-													label: 'Center',
-													value: 'center',
-												},
-												{
-													label: 'Right',
-													value: 'right',
-												},
-												{
-													label: 'Justify',
-													value: 'justify',
-												},
-											]}
+											alignOptions={TEXT_ALIGN_OPTIONS}
 										/>
 									</PanelBody>
 									<PanelBody

@@ -86,7 +86,7 @@ export default function Edit(props) {
 	} = attributes;
 
 	const [popoverVisible, setPopoverVisible] = useState(false);
-	// this useEffect is for creating a unique id for each block's unique className by a random unique number
+	// unique ID
 	useEffect(() => {
 		handleUniqueId({
 			BLOCK_PREFIX,

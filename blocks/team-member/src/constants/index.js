@@ -64,3 +64,7 @@ export const ICONS_HOVER_BOX_SHADOW = 'teamIconsHoverBoxShadow';
 // detailPageLink
 export const DETAIL_PAGE_LINK_BG = 'teamDetailPageLinkBg';
 export const DETAIL_PAGE_LINK_HOVER_BG = 'teamDetailPageLinkHoverBg';
+
+// container
+export const TEAM_MEMBER_CONTAINER_PADDING = 'teamMemberContainerPadding';
+export const TEAM_MEMBER_CONTAINER_MARGIN = 'teamMemberContainerMargin';

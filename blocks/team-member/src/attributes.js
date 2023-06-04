@@ -34,6 +34,8 @@ import {
 	ICONS_HOVER_BG,
 	DETAIL_PAGE_LINK_BG,
 	DETAIL_PAGE_LINK_HOVER_BG,
+	TEAM_MEMBER_CONTAINER_PADDING,
+	TEAM_MEMBER_CONTAINER_MARGIN,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -55,6 +57,8 @@ const attributes = {
 		default: 'default',
 	},
 	// Generators
+	...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_PADDING),
+	...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_MARGIN),
 	...generateNormalBGAttributes(CONTAINER_BG),
 	...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
 		defaultAlign: 'left',

@@ -61,6 +61,8 @@ import {
 	ICONS_HOVER_BOX_SHADOW,
 	DETAIL_PAGE_LINK_BG,
 	DETAIL_PAGE_LINK_HOVER_BG,
+	TEAM_MEMBER_CONTAINER_PADDING,
+	TEAM_MEMBER_CONTAINER_MARGIN,
 } from './constants';
 
 import {
@@ -541,7 +543,7 @@ function Inspector(props) {
 								<>
 									<PanelBody
 										title={__('General', 'zolo-blocks')}
-										initialOpen={true}
+										initialOpen={false}
 									>
 										<ResAlignmentControl
 											label={__(
@@ -981,7 +983,31 @@ function Inspector(props) {
 								</>
 							)}
 
-							{tab.name === 'advanced' && <>advanced</>}
+							{tab.name === 'advanced' && (
+								<>
+									<PanelBody
+										title={__('Spacing', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<ResDimensionsControl
+											label={__('Padding', 'zolo-blocks')}
+											controlName={
+												TEAM_MEMBER_CONTAINER_PADDING
+											}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
+										/>
+										<ResDimensionsControl
+											label={__('Margin', 'zolo-blocks')}
+											controlName={
+												TEAM_MEMBER_CONTAINER_MARGIN
+											}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
+										/>
+									</PanelBody>
+								</>
+							)}
 						</div>
 					)}
 				</TabPanel>
