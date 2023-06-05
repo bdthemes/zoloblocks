@@ -28,6 +28,10 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
+	preset: {
+		type: 'string',
+		default: 'default',
+	},
 	...generateNormalBGAttributes(TEAM_GRID_BG),
 	...generateResRangeAttributies(GRID_COLUMNS, {
 		defaultRange: 3,
