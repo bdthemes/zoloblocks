@@ -17,11 +17,13 @@ export const PRESETS = [
 export const CONTENT_ALIGNMENT = 'reviewContentAlignment';
 
 // container
+export const CONTAINER_BACKGROUND = 'reviewContainerBackground';
 export const CONTAINER_BORDER = 'reviewContainerBorder';
 export const CONTAINER_BORDER_RADIUS = 'reviewContainerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'reviewContainerBoxShadow';
 
 // review photo
+export const REVIEWER_PHOTO_BG = 'reviewPhotoBackground';
 export const REVIEWER_PHOTO_BORDER = 'reviewPhotoBorder';
 export const REVIEWER_PHOTO_BORDER_RADIUS = 'reviewPhotoBorderRadius';
 export const REVIEWER_PHOTO_BOX_SHADOW = 'reviewPhotoBoxShadow';

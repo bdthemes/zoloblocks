@@ -22,6 +22,7 @@ const {
 	softMinifyCssStrings,
 	generateResRangeStyle,
 	generateDimensionStyle,
+	generateNormalBGControlStyles,
 } = window.zoloModule;
 
 import {
@@ -29,8 +30,9 @@ import {
 	COLUMNS_GAP,
 	GRID_COLUMNS,
 	ROWS_GAP,
-	CONTAINER_MARGIN,
-	CONTAINER_PADDING,
+	REVIEW_GRID_BG,
+	REVIEW_GRID_MARGIN,
+	REVIEW_GRID_PADDING,
 } from './constants';
 
 import Inspector from './inspector';
@@ -41,7 +43,7 @@ import '../../review-child';
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
 		props;
-	const { uniqueId, blockStyle, containerBg } = attributes;
+	const { uniqueId, blockStyle } = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -90,24 +92,33 @@ export default function Edit(props) {
 		attributes,
 	});
 
-	// Container Margin
+	// Container
+	const {
+		backgroundStylesDesktop: reviewGridDeskBGStyle,
+		backgroundStylesTab: reviewGridTabBGStyle,
+		backgroundStylesMobile: reviewGridMobBGStyle,
+	} = generateNormalBGControlStyles({
+		controlName: REVIEW_GRID_BG,
+		attributes,
+		noMainBGImg: false,
+	});
+
 	const {
 		dimensionStylesDesktop: containerDeskMargin,
 		dimensionStylesTab: containerTabMargin,
 		dimensionStylesMobile: containerMobMargin,
 	} = generateDimensionStyle({
-		controlName: CONTAINER_MARGIN,
+		controlName: REVIEW_GRID_MARGIN,
 		styleFor: 'margin',
 		attributes,
 	});
 
-	// Container Padding
 	const {
 		dimensionStylesDesktop: containerDeskPadding,
 		dimensionStylesTab: containerTabPadding,
 		dimensionStylesMobile: containerMobPadding,
 	} = generateDimensionStyle({
-		controlName: CONTAINER_PADDING,
+		controlName: REVIEW_GRID_PADDING,
 		styleFor: 'padding',
 		attributes,
 	});
@@ -117,19 +128,21 @@ export default function Edit(props) {
 	 */
 	const desktopAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-grid {
-			background-color: ${containerBg};
+			${reviewGridDeskBGStyle}
 			${containerDeskMargin}
 			${containerDeskPadding}
 		}
 	`;
 	const tabletAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-grid {
+			${reviewGridTabBGStyle}
 			${containerTabMargin}
 			${containerTabPadding}
 		}
 	`;
 	const mobileAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-grid {
+			${reviewGridMobBGStyle}
 			${containerMobMargin}
 			${containerMobPadding}
 		}

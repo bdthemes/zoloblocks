@@ -38,6 +38,7 @@
 	position: relative;
 	z-index: 1;
 }
+
 .zolo-advanced-button {
 	white-space: nowrap;
 	transition: 0.2s ease-in;
@@ -58,9 +59,10 @@
 	}
 
 	.zolo-button {
-		padding: 12px 40px; 
+		padding: 12px 40px;
 		gap: 8px;
-		i, span.dashicon {
+		i,
+		span.dashicon {
 			color: #fff;
 		}
 	}
@@ -498,20 +500,6 @@
 	.zolo-button-icon {
 		width: 20px;
 		display: block;
-	}
-}
-
-// tablet view
-@media (max-width: 1024px) {
-	.zolo-advanced-button {
-		// code here
-	}
-}
-
-// mobile view
-@media (max-width: 767px) {
-	.zolo-advanced-button {
-		// code here
 	}
 }
 

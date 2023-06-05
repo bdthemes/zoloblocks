@@ -6,6 +6,9 @@ import { __ } from '@wordpress/i18n';
 // Block Prefix
 export const BLOCK_PREFIX = 'team-grid';
 
+// Grid Background
+export const TEAM_GRID_BG = 'teamGridBg';
+
 // Grid Columns
 export const GRID_COLUMNS = 'gridColumns';
 

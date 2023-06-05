@@ -10,10 +10,12 @@ import {
 	MediaUpload,
 } from '@wordpress/block-editor';
 import { Fragment, useState, useEffect } from '@wordpress/element';
-
 import { ToolbarButton, ToolbarGroup, Popover } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+/**
+ * External dependencies
+ */
 import classnames from 'classnames';
 
 /**
@@ -29,6 +31,7 @@ const {
 	generateTypographyStyles,
 	generateResRangeStyle,
 	generateBoxShadowStyles,
+	generateNormalBGControlStyles,
 } = window.zoloModule;
 
 import {
@@ -48,6 +51,8 @@ import {
 	REVIEWER_PHOTO_PADDING,
 	REVIEWER_TESTIMONIAL_MARGIN,
 	ICONS_SIZE,
+	CONTAINER_BACKGROUND,
+	REVIEWER_PHOTO_BG,
 } from './constants';
 
 import {
@@ -57,7 +62,6 @@ import {
 } from './constants/typoPrefixConstants';
 
 import Inspector from './inspector';
-import { use } from '@wordpress/data';
 
 export default function Edit(props) {
 	const {
@@ -82,8 +86,6 @@ export default function Edit(props) {
 		reviewerWebsiteLink,
 		showRating,
 		rating,
-		containerBg,
-		photoBgColor,
 		nameColor,
 		designationColor,
 		testimonialMessageColor,
@@ -176,6 +178,16 @@ export default function Edit(props) {
 
 	// Container
 	const {
+		backgroundStylesDesktop: containerDeskBGStyle,
+		backgroundStylesTab: containerTabBGStyle,
+		backgroundStylesMobile: containerMobBGStyle,
+	} = generateNormalBGControlStyles({
+		controlName: CONTAINER_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
+	});
+
+	const {
 		desktopBorderStyle: containerDeskBorderStyle,
 		tabBorderStyle: containerTabBorderStyle,
 		mobBorderStyle: containerMobBorderStyle,
@@ -199,7 +211,37 @@ export default function Edit(props) {
 		controlName: CONTAINER_BOX_SHADOW,
 	});
 
+	const {
+		dimensionStylesDesktop: containerDeskMargin,
+		dimensionStylesTab: containerTabMargin,
+		dimensionStylesMobile: containerMobMargin,
+	} = generateDimensionStyle({
+		controlName: CONTAINER_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: containerDeskPadding,
+		dimensionStylesTab: containerTabPadding,
+		dimensionStylesMobile: containerMobPadding,
+	} = generateDimensionStyle({
+		controlName: CONTAINER_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
+
 	// Photo
+	const {
+		backgroundStylesDesktop: photoDeskBGStyle,
+		backgroundStylesTab: photoTabBGStyle,
+		backgroundStylesMobile: photoMobBGStyle,
+	} = generateNormalBGControlStyles({
+		controlName: REVIEWER_PHOTO_BG,
+		attributes,
+		noMainBGImg: true,
+	});
+
 	const {
 		desktopBorderStyle: photoDeskBorderStyle,
 		tabBorderStyle: photoTabBorderStyle,
@@ -318,27 +360,6 @@ export default function Edit(props) {
 		attributes,
 	});
 
-	// container
-	const {
-		dimensionStylesDesktop: containerDeskMargin,
-		dimensionStylesTab: containerTabMargin,
-		dimensionStylesMobile: containerMobMargin,
-	} = generateDimensionStyle({
-		controlName: CONTAINER_MARGIN,
-		styleFor: 'margin',
-		attributes,
-	});
-
-	const {
-		dimensionStylesDesktop: containerDeskPadding,
-		dimensionStylesTab: containerTabPadding,
-		dimensionStylesMobile: containerMobPadding,
-	} = generateDimensionStyle({
-		controlName: CONTAINER_PADDING,
-		styleFor: 'padding',
-		attributes,
-	});
-
 	/**
 	 * All Style Combination
 	 */
@@ -350,52 +371,43 @@ export default function Edit(props) {
 			${containerDeskBorderStyle}
 			${containerDeskBorderRadius}
 			${containerBoxShadow}
-			background-color: ${containerBg};
+			${containerDeskBGStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating {
 			${ratingIconDeskAlignStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-image-wrap .zolo-img {
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
 			${photoBoxShadow}
 			${photoDeskMargin}
 			${photoDeskPadding}
-			background-color: ${photoBgColor};
+			${photoDeskBGStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-name {
 			${nameTypoDesk}
 			${nameDeskMargin}
-			color: ${nameColor};
+			${nameColor ? `color: ${nameColor};` : ''}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-designation {
 			${designationTypoDesk}
 			${designationDeskMargin}
-			color: ${designationColor};
+			${designationColor ? `color: ${designationColor};` : ''}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-desc {
 			${testimonialMessageTypoDesk}
 			${testimonialMessageDeskMargin}
-			color: ${testimonialMessageColor};
+			${testimonialMessageColor ? `color: ${testimonialMessageColor};` : ''}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
 			${ratingIconWidthDesk}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .filled-star, .${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .fraction-star {
-			fill: ${activeRatingColor};
+			${activeRatingColor ? `fill: ${activeRatingColor};` : ''}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .empty-star {
-			fill: ${inactiveRatingColor};
+			${inactiveRatingColor ? `fill: ${inactiveRatingColor};` : ''}
 		}
-
 	`;
 
 	const tabletAllStyle = `
@@ -405,34 +417,30 @@ export default function Edit(props) {
 			${reviewContentTabAlignStyle}
 			${containerTabBorderStyle}
 			${containerTabBorderRadius}
+			${containerTabBGStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating {
 			${ratingIconTabAlignStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-image-wrap .zolo-img {
 			${photoTabBorderStyle}
 			${photoTabBorderRadius}
 			${photoTabMargin}
 			${photoTabPadding}
+			${photoTabBGStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-name {
 			${nameTypoTab}
 			${nameTabMargin}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-designation {
 			${designationTypoTab}
 			${designationTabMargin}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-desc {
 			${testimonialMessageTypoTab}
 			${testimonialMessageTabMargin}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
 			${ratingIconWidthTab}
 		}
@@ -445,34 +453,30 @@ export default function Edit(props) {
 			${reviewContentMobAlignStyle}
 			${containerMobBorderStyle}
 			${containerMobBorderRadius}
+			${containerMobBGStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating {
 			${ratingIconMobAlignStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-image-wrap .zolo-img {
 			${photoMobBorderStyle}
 			${photoMobBorderRadius}
 			${photoMobMargin}
 			${photoMobPadding}
+			${photoMobBGStyle}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-name {
 			${nameTypoMob}
 			${nameMobMargin}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-designation {
 			${designationTypoMob}
 			${designationMobMargin}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-desc {
 			${testimonialMessageTypoMob}
 			${testimonialMessageMobMargin}
 		}
-
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
 			${ratingIconWidthMob}
 		}
@@ -509,7 +513,6 @@ export default function Edit(props) {
 				/>
 			)}
 			<style>{`${softMinifyCssStrings(allStyle)}`}</style>
-
 			<BlockControls>
 				{memberPhoto && (
 					<Fragment>
@@ -577,7 +580,6 @@ export default function Edit(props) {
 					</Popover>
 				)}
 			</BlockControls>
-
 			<div {...blockProps}>
 				<div className="zolo-item">
 					<div className="zolo-image-wrap">
@@ -670,7 +672,6 @@ export default function Edit(props) {
 									/>
 								</div>
 							)}
-
 							{showTestimonialMessage && (
 								<div className="zolo-desc">
 									<RichText

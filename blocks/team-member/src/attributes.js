@@ -8,10 +8,13 @@ const {
 	generateDimensionAttributes,
 	generateBoxShadowAttributies,
 	generateTypographyAttributes,
+	generateNormalBGAttributes,
 } = window.zoloModule;
 
 import {
+	CONTAINER_BG,
 	CONTENT_ALIGNMENT,
+	PHOTO_BG,
 	TEAM_PHOTO_BORDER,
 	TEAM_PHOTO_BORDER_RADIUS,
 	TEAM_PHOTO_BOX_SHADOW,
@@ -27,6 +30,12 @@ import {
 	ICONS_PADDING,
 	ICONS_BOX_SHADOW,
 	ICONS_HOVER_BOX_SHADOW,
+	ICONS_BG,
+	ICONS_HOVER_BG,
+	DETAIL_PAGE_LINK_BG,
+	DETAIL_PAGE_LINK_HOVER_BG,
+	TEAM_MEMBER_CONTAINER_PADDING,
+	TEAM_MEMBER_CONTAINER_MARGIN,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -48,9 +57,13 @@ const attributes = {
 		default: 'default',
 	},
 	// Generators
+	...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_PADDING),
+	...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_MARGIN),
+	...generateNormalBGAttributes(CONTAINER_BG),
 	...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
 		defaultAlign: 'left',
 	}),
+	...generateNormalBGAttributes(PHOTO_BG),
 	...generateBorderAttributies(TEAM_PHOTO_BORDER),
 	...generateDimensionAttributes(TEAM_PHOTO_BORDER_RADIUS),
 	...generateDimensionAttributes(TEAM_PHOTO_MARGIN),
@@ -58,6 +71,9 @@ const attributes = {
 	...generateBoxShadowAttributies(TEAM_PHOTO_BOX_SHADOW),
 	...generateDimensionAttributes(TEAM_DESIGNATION_MARGIN),
 	...generateDimensionAttributes(TEAM_NAME_MARGIN),
+
+	...generateNormalBGAttributes(ICONS_BG),
+	...generateNormalBGAttributes(ICONS_HOVER_BG),
 	...generateBorderAttributies(ICONS_BORDER),
 	...generateDimensionAttributes(ICONS_BORDER_RADIUS),
 	...generateDimensionAttributes(ICONS_PADDING),
@@ -66,6 +82,9 @@ const attributes = {
 	...generateResRangeAttributies(ICONS_SPACING, {}),
 	...generateBoxShadowAttributies(ICONS_BOX_SHADOW),
 	...generateBoxShadowAttributies(ICONS_HOVER_BOX_SHADOW),
+
+	...generateNormalBGAttributes(DETAIL_PAGE_LINK_BG),
+	...generateNormalBGAttributes(DETAIL_PAGE_LINK_HOVER_BG),
 	// typography
 	...generateTypographyAttributes(Object.values(typographyObjs)),
 	//Block Specific Attributes
@@ -127,13 +146,7 @@ const attributes = {
 		type: 'boolean',
 		default: true,
 	},
-	// block style
-	contentBg: {
-		type: 'string',
-	},
-	photoBgColor: {
-		type: 'string',
-	},
+	// block styles
 	nameColor: {
 		type: 'string',
 	},
@@ -153,12 +166,6 @@ const attributes = {
 	iconHoverColor: {
 		type: 'string',
 	},
-	iconBgColor: {
-		type: 'string',
-	},
-	iconHoverBgColor: {
-		type: 'string',
-	},
 	iconHoverBorderColor: {
 		type: 'string',
 	},
@@ -166,12 +173,6 @@ const attributes = {
 		type: 'string',
 	},
 	detailPageIconHoverColor: {
-		type: 'string',
-	},
-	detailPageLinkBgColor: {
-		type: 'string',
-	},
-	detailPageLinkBgHoverColor: {
 		type: 'string',
 	},
 };

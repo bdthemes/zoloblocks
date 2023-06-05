@@ -2,15 +2,13 @@
  * Internal dependencies
  */
 const {
-	generateResAlignmentAttributies,
 	generateResRangeAttributies,
-	generateBorderAttributies,
 	generateDimensionAttributes,
-	generateBoxShadowAttributies,
-	generateTypographyAttributes,
+	generateNormalBGAttributes,
 } = window.zoloModule;
 
 import {
+	TEAM_GRID_BG,
 	GRID_COLUMNS,
 	COLUMNS_GAP,
 	ROWS_GAP,
@@ -30,9 +28,7 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
-	containerBg: {
-		type: 'string',
-	},
+	...generateNormalBGAttributes(TEAM_GRID_BG),
 	...generateResRangeAttributies(GRID_COLUMNS, {
 		defaultRange: 3,
 		noUnits: true,

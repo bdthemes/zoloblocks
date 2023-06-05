@@ -1,400 +1,354 @@
 import { hasVal } from './helper';
+import { prefix } from '../global/constants';
 
 export const generateDimensionAttributes = (controlName, defaults = {}) => {
-	const { top, bottom, left, right, isLinked = true } = defaults;
+    const { top, bottom, left, right, isLinked = true } = defaults;
 
-	const desktopTop = hasVal(top)
-		? {
-				[`${controlName}ZRPTop`]: {
-					type: 'string',
-					default: `${top}`,
-				},
-		  }
-		: {
-				[`${controlName}ZRPTop`]: {
-					type: 'string',
-				},
-		  };
+    const desktopTop = hasVal(top)
+        ? {
+            [`${prefix}${controlName}Top`]: {
+                type: 'string',
+                default: `${top}`,
+            },
+        }
+        : {
+            [`${prefix}${controlName}Top`]: {
+                type: 'string',
+            },
+        };
 
-	const desktopRight = hasVal(right)
-		? {
-				[`${controlName}ZRPRight`]: {
-					type: 'string',
-					default: `${right}`,
-				},
-		  }
-		: {
-				[`${controlName}ZRPRight`]: {
-					type: 'string',
-				},
-		  };
+    const desktopRight = hasVal(right)
+        ? {
+            [`${prefix}${controlName}Right`]: {
+                type: 'string',
+                default: `${right}`,
+            },
+        }
+        : {
+            [`${prefix}${controlName}Right`]: {
+                type: 'string',
+            },
+        };
 
-	const desktopBottom = hasVal(bottom)
-		? {
-				[`${controlName}ZRPBottom`]: {
-					type: 'string',
-					default: `${bottom}`,
-				},
-		  }
-		: {
-				[`${controlName}ZRPBottom`]: {
-					type: 'string',
-				},
-		  };
+    const desktopBottom = hasVal(bottom)
+        ? {
+            [`${prefix}${controlName}Bottom`]: {
+                type: 'string',
+                default: `${bottom}`,
+            },
+        }
+        : {
+            [`${prefix}${controlName}Bottom`]: {
+                type: 'string',
+            },
+        };
 
-	const desktopLeft = hasVal(left)
-		? {
-				[`${controlName}ZRPLeft`]: {
-					type: 'string',
-					default: `${left}`,
-				},
-		  }
-		: {
-				[`${controlName}ZRPLeft`]: {
-					type: 'string',
-				},
-		  };
-	return {
-		...desktopTop,
-		...desktopRight,
-		...desktopBottom,
-		...desktopLeft,
+    const desktopLeft = hasVal(left)
+        ? {
+            [`${prefix}${controlName}Left`]: {
+                type: 'string',
+                default: `${left}`,
+            },
+        }
+        : {
+            [`${prefix}${controlName}Left`]: {
+                type: 'string',
+            },
+        };
+    return {
+        ...desktopTop,
+        ...desktopRight,
+        ...desktopBottom,
+        ...desktopLeft,
 
-		[`TAB${controlName}ZRPTop`]: {
-			type: 'string',
-		},
-		[`TAB${controlName}ZRPRight`]: {
-			type: 'string',
-		},
-		[`TAB${controlName}ZRPBottom`]: {
-			type: 'string',
-		},
-		[`TAB${controlName}ZRPLeft`]: {
-			type: 'string',
-		},
+        [`${prefix}TAB${controlName}Top`]: {
+            type: 'string',
+        },
+        [`${prefix}TAB${controlName}Right`]: {
+            type: 'string',
+        },
+        [`${prefix}TAB${controlName}Bottom`]: {
+            type: 'string',
+        },
+        [`${prefix}TAB${controlName}Left`]: {
+            type: 'string',
+        },
 
-		[`MOB${controlName}ZRPTop`]: {
-			type: 'string',
-		},
-		[`MOB${controlName}ZRPRight`]: {
-			type: 'string',
-		},
-		[`MOB${controlName}ZRPBottom`]: {
-			type: 'string',
-		},
-		[`MOB${controlName}ZRPLeft`]: {
-			type: 'string',
-		},
+        [`${prefix}MOB${controlName}Top`]: {
+            type: 'string',
+        },
+        [`${prefix}MOB${controlName}Right`]: {
+            type: 'string',
+        },
+        [`${prefix}MOB${controlName}Bottom`]: {
+            type: 'string',
+        },
+        [`${prefix}MOB${controlName}Left`]: {
+            type: 'string',
+        },
 
-		[`${controlName}ZRPIsLinked`]: {
-			type: 'string',
-			default: isLinked,
-		},
+        [`${prefix}${controlName}IsLinked`]: {
+            type: 'boolean',
+            default: isLinked,
+        },
 
-		[`${controlName}ZRPUnit`]: {
-			type: 'string',
-			default: 'px',
-		},
-		[`TAB${controlName}ZRPUnit`]: {
-			type: 'string',
-			default: 'px',
-		},
-		[`MOB${controlName}ZRPUnit`]: {
-			type: 'string',
-			default: 'px',
-		},
-	};
+        [`${prefix}${controlName}Unit`]: {
+            type: 'string',
+            default: 'px',
+        },
+        [`${prefix}TAB${controlName}Unit`]: {
+            type: 'string',
+            default: 'px',
+        },
+        [`${prefix}MOB${controlName}Unit`]: {
+            type: 'string',
+            default: 'px',
+        },
+    };
 };
 
+/**
+ * Function Name: generateDimensionStyle
+ * @param {*} param0
+ * @returns string
+ */
 export const generateDimensionStyle = ({
-	controlName,
-	styleFor,
-	attributes,
+    controlName,
+    styleFor,
+    attributes,
 }) => {
-	const {
-		[`${controlName}ZRPUnit`]: dimensionUnit,
-		[`${controlName}ZRPTop`]: dimensionTop,
-		[`${controlName}ZRPRight`]: dimensionRight,
-		[`${controlName}ZRPBottom`]: dimensionBottom,
-		[`${controlName}ZRPLeft`]: dimensionLeft,
+    const {
+        [`${prefix}${controlName}Unit`]: dimensionUnit,
+        [`${prefix}${controlName}Top`]: dimensionTop,
+        [`${prefix}${controlName}Right`]: dimensionRight,
+        [`${prefix}${controlName}Bottom`]: dimensionBottom,
+        [`${prefix}${controlName}Left`]: dimensionLeft,
 
-		[`TAB${controlName}ZRPUnit`]: TABdimensionUnit,
-		[`TAB${controlName}ZRPTop`]: TABdimensionTop,
-		[`TAB${controlName}ZRPRight`]: TABdimensionRight,
-		[`TAB${controlName}ZRPBottom`]: TABdimensionBottom,
-		[`TAB${controlName}ZRPLeft`]: TABdimensionLeft,
+        [`${prefix}TAB${controlName}Unit`]: TABdimensionUnit,
+        [`${prefix}TAB${controlName}Top`]: TABdimensionTop,
+        [`${prefix}TAB${controlName}Right`]: TABdimensionRight,
+        [`${prefix}TAB${controlName}Bottom`]: TABdimensionBottom,
+        [`${prefix}TAB${controlName}Left`]: TABdimensionLeft,
 
-		[`MOB${controlName}ZRPUnit`]: MOBdimensionUnit,
-		[`MOB${controlName}ZRPTop`]: MOBdimensionTop,
-		[`MOB${controlName}ZRPRight`]: MOBdimensionRight,
-		[`MOB${controlName}ZRPBottom`]: MOBdimensionBottom,
-		[`MOB${controlName}ZRPLeft`]: MOBdimensionLeft,
+        [`${prefix}MOB${controlName}Unit`]: MOBdimensionUnit,
+        [`${prefix}MOB${controlName}Top`]: MOBdimensionTop,
+        [`${prefix}MOB${controlName}Right`]: MOBdimensionRight,
+        [`${prefix}MOB${controlName}Bottom`]: MOBdimensionBottom,
+        [`${prefix}MOB${controlName}Left`]: MOBdimensionLeft,
 
-		[`${controlName}ZRPIsLinked`]: isLinked,
-	} = attributes;
+        [`${prefix}${controlName}IsLinked`]: isLinked,
+    } = attributes;
 
-	let dimensionStylesDesktop = ' ';
-	let dimensionStylesTab = ' ';
-	let dimensionStylesMobile = ' ';
+    let dimensionStylesDesktop = ' ';
+    let dimensionStylesTab = ' ';
+    let dimensionStylesMobile = ' ';
 
-	if (isLinked === true) {
-		if (styleFor === 'border-radius') {
-			dimensionStylesDesktop = `${
-				dimensionTop
-					? `border-radius: ${parseFloat(
-							dimensionTop
-					  )}${dimensionUnit};`
-					: ' '
-			}
-    	`;
+    if (isLinked === true) {
+        if (styleFor === 'border-radius') {
+            dimensionStylesDesktop = `
+                ${dimensionTop ?
+                    `border-radius: ${parseFloat(dimensionTop)}${dimensionUnit};` : ''}
+    	    `;
 
-			dimensionStylesTab = ` ${
-				TABdimensionTop
-					? `border-radius: ${parseFloat(
-							TABdimensionTop
-					  )}${TABdimensionUnit};`
-					: ' '
-			}
-   		 `;
+            dimensionStylesTab = `
+                ${TABdimensionTop ?
+                    `border-radius: ${parseFloat(TABdimensionTop)}${TABdimensionUnit};` : ''}
+   		    `;
 
-			dimensionStylesMobile = `
-        ${
-			MOBdimensionTop
-				? `border-radius: ${parseFloat(
-						MOBdimensionTop
-				  )}${MOBdimensionUnit};`
-				: ' '
-		}
-    `;
-		} else {
-			dimensionStylesDesktop = `
-        ${
-			dimensionTop
-				? `${styleFor}: ${parseFloat(dimensionTop)}${dimensionUnit};`
-				: ' '
-		}
-        `;
-
-			dimensionStylesTab = `
-            ${
-				TABdimensionTop
-					? `${styleFor}: ${parseFloat(
-							TABdimensionTop
-					  )}${TABdimensionUnit};`
-					: ' '
-			}
-
-        `;
-
-			dimensionStylesMobile = `
-            ${
-				MOBdimensionTop
-					? `${styleFor}: ${parseFloat(
-							MOBdimensionTop
-					  )}${MOBdimensionUnit};`
-					: ' '
-			}
-
-        `;
-		}
-	} else {
-		if (styleFor === 'border-radius') {
-			dimensionStylesDesktop = `
-                ${
-					dimensionTop
-						? `border-top-left-radius: ${parseFloat(
-								dimensionTop
-						  )}${dimensionUnit};`
-						: ' '
-				}
-                ${
-					dimensionRight
-						? `border-top-right-radius: ${parseFloat(
-								dimensionRight
-						  )}${dimensionUnit};`
-						: ' '
-				}
-                ${
-					dimensionLeft
-						? `border-bottom-left-radius: ${parseFloat(
-								dimensionLeft
-						  )}${dimensionUnit};`
-						: ' '
-				}
-                ${
-					dimensionBottom
-						? `border-bottom-right-radius: ${parseFloat(
-								dimensionBottom
-						  )}${dimensionUnit};`
-						: ' '
-				}
-        
+            dimensionStylesMobile = `
+                ${MOBdimensionTop ?
+                    `border-radius: ${parseFloat(MOBdimensionTop)}${MOBdimensionUnit};` : ''}
+            `;
+        }
+        else {
+            dimensionStylesDesktop = `
+                ${dimensionTop
+                    ? `${styleFor}: ${parseFloat(dimensionTop)}${dimensionUnit};` : ' '
+                }
             `;
 
-			dimensionStylesTab = `
-                ${
-					TABdimensionTop
-						? `border-top-left-radius: ${parseFloat(
-								TABdimensionTop
-						  )}${TABdimensionUnit};`
-						: ' '
-				}
-                ${
-					TABdimensionRight
-						? `border-top-right-radius: ${parseFloat(
-								TABdimensionRight
-						  )}${TABdimensionUnit};`
-						: ' '
-				}
-                ${
-					TABdimensionLeft
-						? `border-bottom-left-radius: ${parseFloat(
-								TABdimensionLeft
-						  )}${TABdimensionUnit};`
-						: ' '
-				}
-                ${
-					TABdimensionBottom
-						? `border-bottom-right-radius: ${parseFloat(
-								TABdimensionBottom
-						  )}${TABdimensionUnit};`
-						: ' '
-				}
-    
+            dimensionStylesTab = `
+                ${TABdimensionTop ? `${styleFor}: ${parseFloat(TABdimensionTop)}${TABdimensionUnit};` : ''}
             `;
 
-			dimensionStylesMobile = `
-                ${
-					MOBdimensionTop
-						? `border-top-left-radius: ${parseFloat(
-								MOBdimensionTop
-						  )}${MOBdimensionUnit};`
-						: ' '
-				}
-                ${
-					MOBdimensionRight
-						? `border-top-right-radius: ${parseFloat(
-								MOBdimensionRight
-						  )}${MOBdimensionUnit};`
-						: ' '
-				}
-                ${
-					MOBdimensionLeft
-						? `border-bottom-left-radius: ${parseFloat(
-								MOBdimensionLeft
-						  )}${MOBdimensionUnit};`
-						: ' '
-				}
-                ${
-					MOBdimensionBottom
-						? `border-bottom-right-radius: ${parseFloat(
-								MOBdimensionBottom
-						  )}${MOBdimensionUnit};`
-						: ' '
-				}
-    
+            dimensionStylesMobile = `
+                ${MOBdimensionTop
+                    ? `${styleFor}: ${parseFloat(MOBdimensionTop)}${MOBdimensionUnit};` : ' '
+                }
+             `;
+        }
+    }
+    else {
+        if (styleFor === 'border-radius') {
+            dimensionStylesDesktop = `
+                ${dimensionTop
+                    ? `border-top-left-radius: ${parseFloat(dimensionTop)}${dimensionUnit};` : ''
+                }
+                ${dimensionRight
+                    ? `border-top-right-radius: ${parseFloat(
+                        dimensionRight
+                    )}${dimensionUnit};`
+                    : ' '
+                }
+                ${dimensionLeft
+                    ? `border-bottom-left-radius: ${parseFloat(
+                        dimensionLeft
+                    )}${dimensionUnit};`
+                    : ' '
+                }
+                ${dimensionBottom
+                    ? `border-bottom-right-radius: ${parseFloat(
+                        dimensionBottom
+                    )}${dimensionUnit};`
+                    : ' '
+                }
+
             `;
-		} else {
-			dimensionStylesDesktop = `
-            ${
-				dimensionTop
-					? `${styleFor}-top: ${parseFloat(
-							dimensionTop
-					  )}${dimensionUnit};`
-					: ' '
-			}
-            ${
-				dimensionRight
-					? `${styleFor}-right: ${parseFloat(
-							dimensionRight
-					  )}${dimensionUnit};`
-					: ' '
-			}
-            ${
-				dimensionLeft
-					? `${styleFor}-left: ${parseFloat(
-							dimensionLeft
-					  )}${dimensionUnit};`
-					: ' '
-			}
-            ${
-				dimensionBottom
-					? `${styleFor}-bottom: ${parseFloat(
-							dimensionBottom
-					  )}${dimensionUnit};`
-					: ' '
-			}
-        
+
+            dimensionStylesTab = `
+                ${TABdimensionTop
+                    ? `border-top-left-radius: ${parseFloat(
+                        TABdimensionTop
+                    )}${TABdimensionUnit};`
+                    : ' '
+                }
+                ${TABdimensionRight
+                    ? `border-top-right-radius: ${parseFloat(
+                        TABdimensionRight
+                    )}${TABdimensionUnit};`
+                    : ' '
+                }
+                ${TABdimensionLeft
+                    ? `border-bottom-left-radius: ${parseFloat(
+                        TABdimensionLeft
+                    )}${TABdimensionUnit};`
+                    : ' '
+                }
+                ${TABdimensionBottom
+                    ? `border-bottom-right-radius: ${parseFloat(
+                        TABdimensionBottom
+                    )}${TABdimensionUnit};`
+                    : ' '
+                }
+
+            `;
+
+            dimensionStylesMobile = `
+                ${MOBdimensionTop
+                    ? `border-top-left-radius: ${parseFloat(
+                        MOBdimensionTop
+                    )}${MOBdimensionUnit};`
+                    : ' '
+                }
+                ${MOBdimensionRight
+                    ? `border-top-right-radius: ${parseFloat(
+                        MOBdimensionRight
+                    )}${MOBdimensionUnit};`
+                    : ' '
+                }
+                ${MOBdimensionLeft
+                    ? `border-bottom-left-radius: ${parseFloat(
+                        MOBdimensionLeft
+                    )}${MOBdimensionUnit};`
+                    : ' '
+                }
+                ${MOBdimensionBottom
+                    ? `border-bottom-right-radius: ${parseFloat(
+                        MOBdimensionBottom
+                    )}${MOBdimensionUnit};`
+                    : ' '
+                }
+
+            `;
+        } else {
+            dimensionStylesDesktop = `
+            ${dimensionTop
+                    ? `${styleFor}-top: ${parseFloat(
+                        dimensionTop
+                    )}${dimensionUnit};`
+                    : ' '
+                }
+            ${dimensionRight
+                    ? `${styleFor}-right: ${parseFloat(
+                        dimensionRight
+                    )}${dimensionUnit};`
+                    : ' '
+                }
+            ${dimensionLeft
+                    ? `${styleFor}-left: ${parseFloat(
+                        dimensionLeft
+                    )}${dimensionUnit};`
+                    : ' '
+                }
+            ${dimensionBottom
+                    ? `${styleFor}-bottom: ${parseFloat(
+                        dimensionBottom
+                    )}${dimensionUnit};`
+                    : ' '
+                }
+
         `;
 
-			dimensionStylesTab = `
-            ${
-				TABdimensionTop
-					? `${styleFor}-top: ${parseFloat(
-							TABdimensionTop
-					  )}${TABdimensionUnit};`
-					: ' '
-			}
-            ${
-				TABdimensionRight
-					? `${styleFor}-right: ${parseFloat(
-							TABdimensionRight
-					  )}${TABdimensionUnit};`
-					: ' '
-			}
-            ${
-				TABdimensionLeft
-					? `${styleFor}-left: ${parseFloat(
-							TABdimensionLeft
-					  )}${TABdimensionUnit};`
-					: ' '
-			}
-            ${
-				TABdimensionBottom
-					? `${styleFor}-bottom: ${parseFloat(
-							TABdimensionBottom
-					  )}${TABdimensionUnit};`
-					: ' '
-			}
-    
+            dimensionStylesTab = `
+            ${TABdimensionTop
+                    ? `${styleFor}-top: ${parseFloat(
+                        TABdimensionTop
+                    )}${TABdimensionUnit};`
+                    : ' '
+                }
+            ${TABdimensionRight
+                    ? `${styleFor}-right: ${parseFloat(
+                        TABdimensionRight
+                    )}${TABdimensionUnit};`
+                    : ' '
+                }
+            ${TABdimensionLeft
+                    ? `${styleFor}-left: ${parseFloat(
+                        TABdimensionLeft
+                    )}${TABdimensionUnit};`
+                    : ' '
+                }
+            ${TABdimensionBottom
+                    ? `${styleFor}-bottom: ${parseFloat(
+                        TABdimensionBottom
+                    )}${TABdimensionUnit};`
+                    : ' '
+                }
+
         `;
 
-			dimensionStylesMobile = `
-        ${
-			MOBdimensionTop
-				? `${styleFor}-top: ${parseFloat(
-						MOBdimensionTop
-				  )}${MOBdimensionUnit};`
-				: ' '
-		}
-        ${
-			MOBdimensionRight
-				? `${styleFor}-right: ${parseFloat(
-						MOBdimensionRight
-				  )}${MOBdimensionUnit};`
-				: ' '
-		}
-        ${
-			MOBdimensionLeft
-				? `${styleFor}-left: ${parseFloat(
-						MOBdimensionLeft
-				  )}${MOBdimensionUnit};`
-				: ' '
-		}
-        ${
-			MOBdimensionBottom
-				? `${styleFor}-bottom: ${parseFloat(
-						MOBdimensionBottom
-				  )}${MOBdimensionUnit};`
-				: ' '
-		}
+            dimensionStylesMobile = `
+        ${MOBdimensionTop
+                    ? `${styleFor}-top: ${parseFloat(
+                        MOBdimensionTop
+                    )}${MOBdimensionUnit};`
+                    : ' '
+                }
+        ${MOBdimensionRight
+                    ? `${styleFor}-right: ${parseFloat(
+                        MOBdimensionRight
+                    )}${MOBdimensionUnit};`
+                    : ' '
+                }
+        ${MOBdimensionLeft
+                    ? `${styleFor}-left: ${parseFloat(
+                        MOBdimensionLeft
+                    )}${MOBdimensionUnit};`
+                    : ' '
+                }
+        ${MOBdimensionBottom
+                    ? `${styleFor}-bottom: ${parseFloat(
+                        MOBdimensionBottom
+                    )}${MOBdimensionUnit};`
+                    : ' '
+                }
         `;
-		}
-	}
+        }
+    }
 
-	return {
-		dimensionStylesDesktop,
-		dimensionStylesTab,
-		dimensionStylesMobile,
-	};
+    return {
+        dimensionStylesDesktop,
+        dimensionStylesTab,
+        dimensionStylesMobile,
+    };
 };

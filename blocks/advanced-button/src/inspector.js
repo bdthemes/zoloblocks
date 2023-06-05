@@ -28,10 +28,12 @@ const {
 	ResDimensionsControl,
 	TypographyDropdown,
 	TabPanelControl,
-	BackgroundControl,
+	NormalBGControl,
 	BoxShadowControl,
-	IconPicker
+	IconPicker,
 } = window.zoloModule;
+
+import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 import objAttributes from './attributes';
 import {
@@ -43,6 +45,7 @@ import {
 	BUTTON_PADDING,
 	BUTTON_MARGIN,
 	BUTTON_BG,
+	BUTTON_HOVER_BG_COLOR,
 	BUTTON_BOX_SHADOW,
 	BUTTON_HOVER_BOX_SHADOW,
 	ICON_SIZE,
@@ -55,7 +58,6 @@ import {
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { NORMAL_HOVER } from '../../../src/global/constants';
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
@@ -149,24 +151,7 @@ function Inspector(props) {
 											)}
 											controlName={BUTTON_ALIGNMENT}
 											resRequiredProps={resRequiredProps}
-											alignOptions={[
-												{
-													label: 'Left',
-													value: 'left',
-												},
-												{
-													label: 'Center',
-													value: 'center',
-												},
-												{
-													label: 'Right',
-													value: 'right',
-												},
-												{
-													label: 'Justify',
-													value: 'justify',
-												},
-											]}
+											alignOptions={TEXT_ALIGN_OPTIONS}
 										/>
 									</PanelBody>
 									<PanelBody
@@ -226,19 +211,13 @@ function Inspector(props) {
 										{showIcon && (
 											<Fragment>
 												<IconPicker
-													value={
-														icon
-													}
-													onChange={(
-														value
-													) =>
+													value={icon}
+													onChange={(value) =>
 														setAttributes({
-															icon: value
+															icon: value,
 														})
 													}
-													showHeading={
-														true
-													}
+													showHeading={true}
 												/>
 												<SelectControl
 													label={__(
@@ -606,16 +585,18 @@ function Inspector(props) {
 										title={__('General', 'zolo-blocks')}
 										initialOpen={false}
 									>
-										<TypographyDropdown
-											label="Typography"
-											typoPrefixConstant={
-												BUTTON_TYPOGRAPHY
-											}
-											resRequiredProps={resRequiredProps}
-										/>
 										<TabPanelControl
 											normalComponents={
 												<>
+													<TypographyDropdown
+														label="Typography"
+														typoPrefixConstant={
+															BUTTON_TYPOGRAPHY
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+													/>
 													<ColorControl
 														label={__(
 															'Text Color',
@@ -629,7 +610,13 @@ function Inspector(props) {
 															})
 														}
 													/>
-													<CardDivider />
+													<NormalBGControl
+														resRequiredProps={
+															resRequiredProps
+														}
+														controlName={BUTTON_BG}
+														noMainBGImg={false}
+													/>
 													<ColorControl
 														label={__(
 															'Icon Color',
@@ -691,7 +678,15 @@ function Inspector(props) {
 															})
 														}
 													/>
-													<CardDivider />
+													<NormalBGControl
+														resRequiredProps={
+															resRequiredProps
+														}
+														controlName={
+															BUTTON_HOVER_BG_COLOR
+														}
+														noMainBGImg={false}
+													/>
 													<ColorControl
 														label={__(
 															'Icon Color',
@@ -767,16 +762,6 @@ function Inspector(props) {
 													/>
 												</>
 											}
-										/>
-									</PanelBody>
-									<PanelBody
-										title={__('Background', 'zolo-blocks')}
-										initialOpen={false}
-									>
-										<BackgroundControl
-											resRequiredProps={resRequiredProps}
-											controlName={BUTTON_BG}
-											noOverlay={true}
 										/>
 									</PanelBody>
 									<PanelBody

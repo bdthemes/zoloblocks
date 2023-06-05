@@ -6,7 +6,7 @@ const {
 	generateResRangeAttributies,
 	generateBorderAttributies,
 	generateDimensionAttributes,
-	generateBackgroundAttributes,
+	generateNormalBGAttributes,
 	generateBoxShadowAttributies,
 	generateTypographyAttributes,
 } = window.zoloModule;
@@ -56,7 +56,8 @@ const attributes = {
 		default: 5,
 	}),
 	...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
-	...generateBackgroundAttributes(BUTTON_BG),
+	...generateNormalBGAttributes(BUTTON_BG),
+	...generateNormalBGAttributes(BUTTON_HOVER_BG_COLOR),
 	...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
 	...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
 	...generateTypographyAttributes(Object.values(typographyObjs)),
@@ -147,10 +148,6 @@ const attributes = {
 		},
 	},
 	openInNewTab: {
-		type: 'boolean',
-		default: false,
-	},
-	addNoFollow: {
 		type: 'boolean',
 		default: false,
 	},

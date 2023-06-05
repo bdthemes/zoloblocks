@@ -1,6 +1,9 @@
 import { Dashicon } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+//Attribute Prefix
+export const prefix = 'zolo_';
+
 export const UNIT_TYPES = [
 	{ label: 'px', value: 'px' },
 	{ label: '%', value: '%' },
@@ -16,6 +19,40 @@ export const TEXT_ALIGN = [
 	{ label: __(<Dashicon icon={'editor-alignleft'} />), value: 'left' },
 	{ label: __(<Dashicon icon={'editor-aligncenter'} />), value: 'center' },
 	{ label: __(<Dashicon icon={'editor-alignright'} />), value: 'right' },
+];
+
+export const TEXT_ALIGN_OPTIONS = [
+	{
+		label: 'Left',
+		value: 'left',
+	},
+	{
+		label: 'Center',
+		value: 'center',
+	},
+	{
+		label: 'Right',
+		value: 'right',
+	},
+	{
+		label: 'Justify',
+		value: 'justify',
+	},
+];
+
+export const FLEX_ALIGN_OPTIONS = [
+	{
+		label: 'Top',
+		value: 'flex-start',
+	},
+	{
+		label: 'Center',
+		value: 'center',
+	},
+	{
+		label: 'Bottom',
+		value: 'flex-end',
+	},
 ];
 
 export const HEADING = [

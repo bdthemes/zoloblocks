@@ -1,6 +1,7 @@
 import { RangeControl } from '@wordpress/components';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from './res-device-btn';
+import {prefix} from "../../global/constants"
 
 const ResRangeControl = ({
 	label,
@@ -14,9 +15,9 @@ const ResRangeControl = ({
 }) => {
 	const { attributes, setAttributes, resMode } = resRequiredProps;
 	const {
-		[`${controlName}ZRPRange`]: desktopRange,
-		[`TAB${controlName}ZRPRange`]: tabRange,
-		[`MOB${controlName}ZRPRange`]: mobRange,
+		[`${prefix}${controlName}Range`]: desktopRange,
+		[`${prefix}TAB${controlName}Range`]: tabRange,
+		[`${prefix}MOB${controlName}Range`]: mobRange,
 	} = attributes;
 	let sizeUnit;
 	let TABsizeUnit;
@@ -24,9 +25,9 @@ const ResRangeControl = ({
 	let defaultUnits;
 
 	if (!noUnits) {
-		sizeUnit = attributes[`${controlName}ZRPUnit`];
-		TABsizeUnit = attributes[`TAB${controlName}ZRPUnit`];
-		MOBsizeUnit = attributes[`MOB${controlName}ZRPUnit`];
+		sizeUnit = attributes[`${prefix}${controlName}Unit`];
+		TABsizeUnit = attributes[`${prefix}TAB${controlName}Unit`];
+		MOBsizeUnit = attributes[`${prefix}MOB${controlName}Unit`];
 		defaultUnits = [
 			{ label: 'px', value: 'px' },
 			{ label: 'em', value: 'em' },
@@ -48,7 +49,7 @@ const ResRangeControl = ({
 								value={desktopRange}
 								onChange={(val) =>
 									setAttributes({
-										[`${controlName}ZRPRange`]: val,
+										[`${prefix}${controlName}Range`]: val,
 									})
 								}
 								min={min || 0}
@@ -68,7 +69,7 @@ const ResRangeControl = ({
 								value={tabRange}
 								onChange={(val) =>
 									setAttributes({
-										[`TAB${controlName}ZRPRange`]: val,
+										[`${prefix}TAB${controlName}Range`]: val,
 									})
 								}
 								min={min || 0}
@@ -88,7 +89,7 @@ const ResRangeControl = ({
 								value={mobRange}
 								onChange={(val) =>
 									setAttributes({
-										[`MOB${controlName}ZRPRange`]: val,
+										[`${prefix}MOB${controlName}Range`]: val,
 									})
 								}
 								min={min || 0}
@@ -107,7 +108,7 @@ const ResRangeControl = ({
 								unitTypes={units || defaultUnits}
 								onClick={(sizeUnit) =>
 									setAttributes({
-										[`${controlName}ZRPUnit`]: sizeUnit,
+										[`${prefix}${controlName}Unit`]: sizeUnit,
 									})
 								}
 							/>
@@ -121,7 +122,7 @@ const ResRangeControl = ({
 									value={desktopRange}
 									onChange={(val) =>
 										setAttributes({
-											[`${controlName}ZRPRange`]: val,
+											[`${prefix}${controlName}Range`]: val,
 										})
 									}
 									min={min || 0}
@@ -139,7 +140,7 @@ const ResRangeControl = ({
 								unitTypes={units || defaultUnits}
 								onClick={(TABsizeUnit) =>
 									setAttributes({
-										[`TAB${controlName}ZRPUnit`]:
+										[`${prefix}TAB${controlName}Unit`]:
 											TABsizeUnit,
 									})
 								}
@@ -153,7 +154,7 @@ const ResRangeControl = ({
 									value={tabRange}
 									onChange={(val) =>
 										setAttributes({
-											[`TAB${controlName}ZRPRange`]: val,
+											[`${prefix}TAB${controlName}Range`]: val,
 										})
 									}
 									min={min || 0}
@@ -171,7 +172,7 @@ const ResRangeControl = ({
 								unitTypes={units || defaultUnits}
 								onClick={(MOBsizeUnit) =>
 									setAttributes({
-										[`MOB${controlName}ZRPUnit`]:
+										[`${prefix}MOB${controlName}Unit`]:
 											MOBsizeUnit,
 									})
 								}
@@ -185,7 +186,7 @@ const ResRangeControl = ({
 									value={mobRange}
 									onChange={(val) =>
 										setAttributes({
-											[`MOB${controlName}ZRPRange`]: val,
+											[`${prefix}MOB${controlName}Range`]: val,
 										})
 									}
 									min={min || 0}
