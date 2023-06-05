@@ -2,7 +2,12 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TabPanel } from '@wordpress/components';
+import {
+	PanelBody,
+	TabPanel,
+	SelectControl,
+	ToggleControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -13,6 +18,7 @@ import {
 	ROWS_GAP,
 	CONTAINER_MARGIN,
 	CONTAINER_PADDING,
+	PRESETS,
 } from './constants';
 
 const { ResRangeControl, ResDimensionsControl, NormalBGControl } =
@@ -20,13 +26,69 @@ const { ResRangeControl, ResDimensionsControl, NormalBGControl } =
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
-	const { resMode } = attributes;
+	const {
+		resMode,
+		preset,
+		addDetailPageLink,
+		showDetailPageIcon,
+		showDesignation,
+		showShortBio,
+		showSocialProfiles,
+	} = attributes;
 
 	const resRequiredProps = {
 		resMode,
 		setAttributes,
 		attributes,
 		objAttributes,
+	};
+
+	/**
+	 * Preset
+	 */
+	const changePremade = (selected) => {
+		setAttributes({ preset: selected });
+		switch (selected) {
+			case 'default':
+				setAttributes({
+					showShortBio: false,
+					showSocialProfiles: true,
+					showDetailPageIcon: true,
+					showDesignation: true,
+					addDetailPageLink: true,
+					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
+				});
+				break;
+			case 'style-1':
+				setAttributes({
+					showShortBio: false,
+					showSocialProfiles: true,
+					showDetailPageIcon: false,
+					showDesignation: false,
+					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'center',
+				});
+				break;
+			case 'style-2':
+				setAttributes({
+					showShortBio: true,
+					showSocialProfiles: true,
+					showDetailPageIcon: false,
+					showDesignation: true,
+					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
+				});
+				break;
+			case 'style-3':
+				setAttributes({
+					showShortBio: false,
+					showSocialProfiles: true,
+					showDetailPageIcon: true,
+					showDesignation: true,
+					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
+				});
+				break;
+			default:
+				return false;
+		}
 	};
 
 	return (
@@ -59,6 +121,96 @@ function Inspector(props) {
 								<>
 									<PanelBody
 										title={__('General', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<SelectControl
+											label={__(
+												'Preset Designs',
+												'zolo-blocks'
+											)}
+											value={preset}
+											options={PRESETS}
+											onChange={(selected) =>
+												changePremade(selected)
+											}
+										/>
+										<ToggleControl
+											label={__(
+												'Add Detail Page Link',
+												'zolo-blocks'
+											)}
+											checked={addDetailPageLink}
+											onChange={() =>
+												setAttributes({
+													addDetailPageLink:
+														!addDetailPageLink,
+												})
+											}
+										/>
+										{addDetailPageLink && (
+											<ToggleControl
+												label={__(
+													'Show Detail Page Link Icon',
+													'zolo-blocks'
+												)}
+												checked={showDetailPageIcon}
+												onChange={() =>
+													setAttributes({
+														showDetailPageIcon:
+															!showDetailPageIcon,
+													})
+												}
+											/>
+										)}
+
+										{preset !== 'style-1' &&
+											preset !== 'style-3' && (
+												<ToggleControl
+													label={__(
+														'Show Short Bio',
+														'zolo-blocks'
+													)}
+													checked={showShortBio}
+													onChange={() =>
+														setAttributes({
+															showShortBio:
+																!showShortBio,
+														})
+													}
+												/>
+											)}
+										<ToggleControl
+											label={__(
+												'Show Designation',
+												'zolo-blocks'
+											)}
+											checked={showDesignation}
+											onChange={() =>
+												setAttributes({
+													showDesignation:
+														!showDesignation,
+												})
+											}
+										/>
+										<ToggleControl
+											label={__(
+												'Show Social Profiles',
+												'zolo-blocks'
+											)}
+											checked={showSocialProfiles}
+											onChange={() =>
+												setAttributes({
+													showSocialProfiles:
+														!showSocialProfiles,
+												})
+											}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__(
+											'Grid Settings',
+											'zolo-blocks'
+										)}
 										initialOpen={false}
 									>
 										<ResRangeControl

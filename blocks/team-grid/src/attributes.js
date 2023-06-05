@@ -32,6 +32,26 @@ const attributes = {
 		type: 'string',
 		default: 'default',
 	},
+	addDetailPageLink: {
+		type: 'boolean',
+		default: true,
+	},
+	showDetailPageIcon: {
+		type: 'boolean',
+		default: true,
+	},
+	showDesignation: {
+		type: 'boolean',
+		default: true,
+	},
+	showShortBio: {
+		type: 'boolean',
+		default: true,
+	},
+	showSocialProfiles: {
+		type: 'boolean',
+		default: true,
+	},
 	...generateNormalBGAttributes(TEAM_GRID_BG),
 	...generateResRangeAttributies(GRID_COLUMNS, {
 		defaultRange: 3,

@@ -133,6 +133,14 @@ function Inspector(props) {
 												})
 											}
 										/>
+									</PanelBody>
+									<PanelBody
+										title={__(
+											'Grid Settings',
+											'zolo-blocks'
+										)}
+										initialOpen={false}
+									>
 										<ResRangeControl
 											label={__(
 												'Grid Columns',

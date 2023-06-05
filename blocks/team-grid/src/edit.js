@@ -37,6 +37,9 @@ import {
 
 import Inspector from './inspector';
 
+// child block
+import '../team-child';
+
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
 		props;
@@ -173,7 +176,7 @@ export default function Edit(props) {
 	 */
 	const childBlocks = wp.data.select('core/block-editor').getBlocks(clientId);
 	const appendBlock = () => {
-		const newBlock = wp.blocks.createBlock('zolo/team-member', {});
+		const newBlock = wp.blocks.createBlock('zolo/team-child', {});
 		wp.data
 			.dispatch('core/block-editor')
 			.insertBlock(newBlock, childBlocks.length, clientId);
@@ -200,8 +203,8 @@ export default function Edit(props) {
 			</BlockControls>
 			<div {...blockProps}>
 				<InnerBlocks
-					allowedBlocks={['zolo/team-member']}
-					template={[['zolo/team-member', {}]]}
+					allowedBlocks={['zolo/team-child']}
+					template={[['zolo/team-child', {}]]}
 					renderAppender={false}
 				/>
 				<div className="appender-btn">

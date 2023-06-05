@@ -38,7 +38,7 @@ import {
 import Inspector from './inspector';
 
 // import review-child
-import '../../review-child';
+import '../review-child';
 
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
