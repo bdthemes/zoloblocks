@@ -1,18 +1,40 @@
-import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
-import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
-import { generateBorderAttributies } from '../../../src/helpers/border-helper';
+const {
+	generateResAlignmentAttributies,
+	generateResRangeAttributies,
+	generateBorderAttributies,
+	generateDimensionAttributes,
+	generateTypographyAttributes,
+	generateBoxShadowAttributies,
+	generateTextShadowAttributies,
+	generateTextStrokeAttributies,
+} = window.zoloModule;
 
 import {
 	ICON_BOX_ALIGNMENT,
 	TITLE_ALIGNMENT,
+	TITLE_MARGIN,
+	TITLE_TEXT_SHADOW,
+	TITLE_TEXT_STROKE,
+	DESCRIPTION_MARGIN,
 	DESC_ALIGNMENT,
-	ICON_BG_COLOR,
-	ICON_HOVER_BG_COLOR,
 	ICON_BORDER,
+	ICON_BOX_SHADOW,
+	ICON_HOVER_BOX_SHADOW,
+	BUTTON_BOX_SHADOW,
+	BUTTON_HOVER_BOX_SHADOW,
+	ICON_BORDER_RADIUS,
 	ICON_SIZE,
+	BUTTON_ICON_SIZE,
+	BUTTON_BORDER,
 	ICON_TEXT_SPACING,
+	ICON_SPACING,
+	ICON_PADDING,
+	ICON_MARGIN,
+	BUTTON_BORDER_RADIUS,
+	BUTTON_MARGIN,
+	BUTTON_PADDING,
 } from './constants';
-
+import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
 	//Common Attributes
 	uniqueId: {
@@ -39,12 +61,49 @@ const attributes = {
 	} ),
 	// border attributes
 	...generateBorderAttributies( ICON_BORDER ),
+	// button border
+	...generateBorderAttributies( BUTTON_BORDER ),
+	//icon size
 	...generateResRangeAttributies( ICON_SIZE, {
 		default: 16,
 	} ),
+	//button
+	...generateResRangeAttributies( BUTTON_ICON_SIZE, {
+		default: 16,
+	} ),
+	...generateDimensionAttributes( BUTTON_BORDER_RADIUS ),
+	...generateDimensionAttributes( BUTTON_PADDING ),
+	...generateDimensionAttributes( BUTTON_MARGIN ),
+	//icon text spacing
 	...generateResRangeAttributies( ICON_TEXT_SPACING, {
 		default: 5,
 	} ),
+	//icon spacing
+	...generateResRangeAttributies( ICON_SPACING, {
+		default: 5,
+	} ),
+	//icon border radius
+	...generateDimensionAttributes( ICON_BORDER_RADIUS ),
+	//icon padding
+	...generateDimensionAttributes( ICON_PADDING ),
+	//icon margin
+	...generateDimensionAttributes( ICON_MARGIN ),
+	//icon boxshadow
+	...generateBoxShadowAttributies( ICON_BOX_SHADOW ),
+	//icon hover boxshadow
+	...generateBoxShadowAttributies( ICON_HOVER_BOX_SHADOW ),
+	//button boxshadow
+	...generateBoxShadowAttributies( BUTTON_BOX_SHADOW ),
+	//button hover boxshadow
+	...generateBoxShadowAttributies( BUTTON_HOVER_BOX_SHADOW ),
+	//title margin
+	...generateDimensionAttributes( TITLE_MARGIN ),
+	...generateTextShadowAttributies( TITLE_TEXT_SHADOW ),
+	...generateTextStrokeAttributies( TITLE_TEXT_STROKE ),
+	//description margin
+	...generateDimensionAttributes( DESCRIPTION_MARGIN ),
+	//typography
+	...generateTypographyAttributes( Object.values( typographyObjs ) ),
 	//Block specific Attributes
 	preset: {
 		type: 'string',
@@ -108,10 +167,36 @@ const attributes = {
 		type: 'string',
 		default: 'icon',
 	},
+	mainIcon: {
+		type: 'object',
+		default: {
+			'admin-generic': {
+				name: 'admin generic',
+				source: 'dashicon',
+				type: '',
+			},
+		},
+	},
+	buttonIcon: {
+		type: 'object',
+		default: {
+			'admin-generic': {
+				name: 'admin generic',
+				source: 'dashicon',
+				type: '',
+			},
+		},
+	},
 	iconColor: {
 		type: 'string',
 	},
 	iconHoverColor: {
+		type: 'string',
+	},
+	iconBackgroundColor: {
+		type: 'string',
+	},
+	iconBackgroundHoverColor: {
 		type: 'string',
 	},
 	iconTypeImage: {
@@ -133,6 +218,18 @@ const attributes = {
 	buttonLink: {
 		type: 'string',
 		default: '#',
+	},
+	btnColor: {
+		type: 'string',
+	},
+	btnHoverColor: {
+		type: 'string',
+	},
+	btnBgColor: {
+		type: 'string',
+	},
+	btnBgHoverColor: {
+		type: 'string',
 	},
 	presetOneStyles: {
 		type: 'object',

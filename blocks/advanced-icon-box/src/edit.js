@@ -5,6 +5,8 @@ import {
 	useBlockProps,
 	RichText,
 	BlockControls,
+	MediaUpload,
+	MediaPlaceholder,
 	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
@@ -20,17 +22,46 @@ const {
 	generateResAlignmentStyle,
 	generateResRangeStyle,
 	generateBorderStyle,
+	generateDimensionStyle,
+	generateTypographyStyles,
+	generateBoxShadowStyles,
+	generateTextShadowStyles,
+	generateTextStrokeStyles,
+	DisplayIcon,
 } = window.zoloModule;
 
 import {
 	BLOCK_PREFIX,
 	ICON_BOX_ALIGNMENT,
 	TITLE_ALIGNMENT,
+	TITLE_MARGIN,
+	TITLE_TEXT_SHADOW,
+	TITLE_TEXT_STROKE,
+	DESCRIPTION_MARGIN,
 	DESC_ALIGNMENT,
 	ICON_BORDER,
+	ICON_BORDER_RADIUS,
 	ICON_SIZE,
+	ICON_PADDING,
+	ICON_MARGIN,
+	BUTTON_ICON_SIZE,
+	BUTTON_BORDER,
+	ICON_BOX_SHADOW,
+	ICON_HOVER_BOX_SHADOW,
+	BUTTON_BOX_SHADOW,
+	BUTTON_HOVER_BOX_SHADOW,
+	ICON_SPACING,
 	ICON_TEXT_SPACING,
+	BUTTON_BORDER_RADIUS,
+	BUTTON_MARGIN,
+	BUTTON_PADDING,
 } from './constants';
+
+import {
+	TITLE_TYPOGRAPHY,
+	DESCRIPTION_TYPOGRAPHY,
+	BUTTON_TYPOGRAPHY,
+} from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
 
@@ -44,6 +75,8 @@ export default function Edit( props ) {
 		link,
 		blockStyle,
 		showIcon,
+		mainIcon,
+		buttonIcon,
 		textColor,
 		textHoverColor,
 		descColor,
@@ -51,17 +84,21 @@ export default function Edit( props ) {
 		iconPosition,
 		iconColor,
 		iconHoverColor,
+		iconBackgroundColor,
+		iconBackgroundHoverColor,
 		iconType,
+		iconTypeImage,
 		iconBoxTitle,
 		iconBoxDescription,
 		buttonText,
-		buttonLink,
-		globalLink,
+		btnColor,
+		btnHoverColor,
+		btnBgColor,
+		btnBgHoverColor,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
 	} = attributes;
-
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect( () => {
 		handleUniqueId( {
@@ -87,6 +124,95 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	// generate icon border radius
+	const {
+		dimensionStylesDesktop: iconBorderRadiusDesktop,
+		dimensionStylesTab: iconBorderRadiusTab,
+		dimensionStylesMobile: iconBorderRadiusMob,
+	} = generateDimensionStyle( {
+		controlName: ICON_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	} );
+
+	// Generate Icon Box Shadow
+	const { boxShadowStyle: iconBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: ICON_BOX_SHADOW,
+	} );
+
+	// Generate Icon Hover Box Shadow
+	const { boxShadowStyle: iconHoverBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: ICON_HOVER_BOX_SHADOW,
+	} );
+
+	// Generate Button Box Shadow
+	const { boxShadowStyle: buttonBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: BUTTON_BOX_SHADOW,
+	} );
+
+	// Generate Icon Hover Box Shadow
+	const { boxShadowStyle: buttonHoverBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: BUTTON_HOVER_BOX_SHADOW,
+	} );
+
+	// Generate Icon Padding
+	const {
+		dimensionStylesDesktop: iconPaddingDesktop,
+		dimensionStylesTab: iconPaddingTab,
+		dimensionStylesMobile: iconPaddingMob,
+	} = generateDimensionStyle( {
+		controlName: ICON_PADDING,
+		styleFor: 'padding',
+		attributes,
+	} );
+	// Generate Button Padding
+	const {
+		dimensionStylesDesktop: buttonPaddingDesktop,
+		dimensionStylesTab: buttonPaddingTab,
+		dimensionStylesMobile: buttonPaddingMob,
+	} = generateDimensionStyle( {
+		controlName: BUTTON_PADDING,
+		styleFor: 'padding',
+		attributes,
+	} );
+
+	// Generate Icon Margin
+	const {
+		dimensionStylesDesktop: iconMarginDesktop,
+		dimensionStylesTab: iconMarginTab,
+		dimensionStylesMobile: iconMarginMob,
+	} = generateDimensionStyle( {
+		controlName: ICON_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	} );
+
+	// Generate Button Margin
+	const {
+		dimensionStylesDesktop: buttonMarginDesktop,
+		dimensionStylesTab: buttonMarginTab,
+		dimensionStylesMobile: buttonMarginMob,
+	} = generateDimensionStyle( {
+		controlName: BUTTON_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	} );
+
+	//title typography
+	const {
+		typoStylesDesktop: titleTypoDesktop,
+		typoStylesTab: titleTypoTab,
+		typoStylesMobile: titleTypoMobile,
+	} = generateTypographyStyles( {
+		prefixConstant: TITLE_TYPOGRAPHY,
+		defaultFontSize: 25,
+		attributes,
+	} );
+
 	// title alignment
 	const {
 		desktopAlignStyle: textAlignmentDesktop,
@@ -98,6 +224,35 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	// Generate Title Margin
+	const {
+		dimensionStylesDesktop: titleMarginDesktop,
+		dimensionStylesTab: titleMarginTab,
+		dimensionStylesMobile: titleMarginMob,
+	} = generateDimensionStyle( {
+		controlName: TITLE_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	} );
+
+	// Generate Title Text Shadow
+	const { textShadowStyle: titleTextShadowStyle } = generateTextShadowStyles(
+		{
+			attributes,
+			controlName: TITLE_TEXT_SHADOW,
+		}
+	);
+
+	// Generate Title Text Stroke
+	const {
+		desktopTextStrokeStyle: titleTextStrokeStyle,
+		tabTextStrokeStyle: tabTitleTextStrokeStyle,
+		mobTextStrokeStyle: mobTitleTextStrokeStyle,
+	} = generateTextStrokeStyles( {
+		attributes,
+		controlName: TITLE_TEXT_STROKE,
+	} );
+
 	// description alignment
 	const {
 		desktopAlignStyle: descAlignmentDesktop,
@@ -106,6 +261,39 @@ export default function Edit( props ) {
 	} = generateResAlignmentStyle( {
 		controlName: DESC_ALIGNMENT,
 		property: 'text-align',
+		attributes,
+	} );
+
+	// descrtiption typography
+	const {
+		typoStylesDesktop: descTypoDesktop,
+		typoStylesTab: descTypoTab,
+		typoStylesMobile: descTypoMobile,
+	} = generateTypographyStyles( {
+		prefixConstant: DESCRIPTION_TYPOGRAPHY,
+		defaultFontSize: 16,
+		attributes,
+	} );
+
+	// button typography
+	const {
+		typoStylesDesktop: btnTypoDesktop,
+		typoStylesTab: btnTypoTab,
+		typoStylesMobile: btnTypoMobile,
+	} = generateTypographyStyles( {
+		prefixConstant: BUTTON_TYPOGRAPHY,
+		defaultFontSize: 14,
+		attributes,
+	} );
+
+	// Generate Title Margin
+	const {
+		dimensionStylesDesktop: descMarginDesktop,
+		dimensionStylesTab: descMarginTab,
+		dimensionStylesMobile: descMarginMob,
+	} = generateDimensionStyle( {
+		controlName: DESCRIPTION_MARGIN,
+		styleFor: 'margin',
 		attributes,
 	} );
 
@@ -172,12 +360,29 @@ export default function Edit( props ) {
 		mobRangeStyle: iconSizeMob,
 	} = generateResRangeStyle( {
 		controlName: ICON_SIZE,
-		property: 'width',
+		property: 'font-size',
 		attributes,
 	} );
-
-	console.log( iconSize );
-
+	// generate icon height
+	const {
+		desktopRangeStyle: iconHeight,
+		tabRangeStyle: iconHeightTab,
+		mobRangeStyle: iconHeightMob,
+	} = generateResRangeStyle( {
+		controlName: ICON_SIZE,
+		property: 'height',
+		attributes,
+	} );
+	// generate icon spacing
+	const {
+		desktopRangeStyle: iconSpacing,
+		tabRangeStyle: iconSpacingTab,
+		mobRangeStyle: iconSpacingMob,
+	} = generateResRangeStyle( {
+		controlName: ICON_SPACING,
+		property: 'margin',
+		attributes,
+	} );
 	// Spacing between icon and text
 	const {
 		desktopRangeStyle: gap,
@@ -186,6 +391,60 @@ export default function Edit( props ) {
 	} = generateResRangeStyle( {
 		controlName: ICON_TEXT_SPACING,
 		property: 'gap',
+		attributes,
+	} );
+
+	// generate button icon size
+	const {
+		desktopRangeStyle: buttonIconSize,
+		tabRangeStyle: buttonIconSizeTab,
+		mobRangeStyle: buttonIconSizeMob,
+	} = generateResRangeStyle( {
+		controlName: BUTTON_ICON_SIZE,
+		property: 'font-size',
+		attributes,
+	} );
+
+	// generate button icon height
+	const {
+		desktopRangeStyle: buttonIconHeight,
+		tabRangeStyle: buttonIconHeightTab,
+		mobRangeStyle: buttonIconHeightMob,
+	} = generateResRangeStyle( {
+		controlName: BUTTON_ICON_SIZE,
+		property: 'height',
+		attributes,
+	} );
+
+	// generate button icon width
+	const {
+		desktopRangeStyle: buttonIconWidth,
+		tabRangeStyle: buttonIconWidthTab,
+		mobRangeStyle: buttonIconWidthMob,
+	} = generateResRangeStyle( {
+		controlName: BUTTON_ICON_SIZE,
+		property: 'width',
+		attributes,
+	} );
+
+	// generate button style
+	const {
+		desktopBorderStyle: buttonBorderStyles,
+		tabBorderStyle: buttonBorderStylesTab,
+		mobBorderStyle: buttonBorderStylesMob,
+	} = generateBorderStyle( {
+		controlName: BUTTON_BORDER,
+		attributes,
+	} );
+
+	// generate button border radius
+	const {
+		dimensionStylesDesktop: buttonBorderRadiusDesktop,
+		dimensionStylesTab: buttonBorderRadiusTab,
+		dimensionStylesMobile: buttonBorderRadiusMob,
+	} = generateDimensionStyle( {
+		controlName: BUTTON_BORDER_RADIUS,
+		styleFor: 'border-radius',
 		attributes,
 	} );
 
@@ -252,26 +511,44 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-title{
 			${ textAlignmentDesktop }
+			${ titleTypoDesktop }
+			${ titleTextShadowStyle }
+        	${ titleTextStrokeStyle }
+			${ titleMarginDesktop ? titleMarginDesktop : '0 0 12px 0' }
 			color: ${ textColor ? textColor : '' };
 		}
 		.${ uniqueId } .zolo-block-title:hover{
 			color: ${ textHoverColor ? textHoverColor : '' };
 		}
 		.${ uniqueId } .zolo-block-desc{
+			${ descTypoDesktop }
 			${ descAlignmentDesktop }
+			${ descMarginDesktop }
 			color: ${ descColor ? descColor : '#87878a' };
 		}
 		.${ uniqueId } .zolo-block-desc:hover{
 			color: ${ descHoverColor ? descHoverColor : '' };
 		}
-		.${ uniqueId } .zolo-block-icon-wrap svg{
-			fill: ${ iconColor ? iconColor : '' };
+		.${ uniqueId } .zolo-block-icon-wrap  {			
+			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
+			color: ${ iconColor ? iconColor : '' };			
 		}
-		.${ uniqueId } .zolo-block-icon-wrap svg:hover{
-			fill: ${ iconHoverColor ? iconHoverColor : '' };
-		}
-		.${ uniqueId } .zolo-content {
+		.${ uniqueId } .zolo-block-icon-wrap span {
+			${ iconSize }
+			${ iconHeight }	
+			${ iconSpacing }
 			${ borderStyles }
+			${ iconBorderRadiusDesktop }
+			${ iconPaddingDesktop }
+			${ iconMarginDesktop }
+			${ iconBoxShadow }
+			}
+		.${ uniqueId } .zolo-block-icon-wrap span:hover{			
+			background: ${ iconBackgroundHoverColor ? iconBackgroundHoverColor : '' };
+			color: ${ iconHoverColor ? iconHoverColor : '' };
+			${ iconHoverBoxShadow }
+		}
+		.${ uniqueId } .zolo-content {			
 			${ gap }
 			${ deskAlign }
 			color: ${ textColor ? textColor : 'inherit' };
@@ -279,11 +556,33 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-content:hover {
 			color: ${ textHoverColor ? textHoverColor : 'inherit' };
 		}
-		.${ uniqueId } .zolo-button-icon {
-			${ iconSize }
+		
+		.${ uniqueId } .zolo-box-button span{
+			${ buttonIconSize }			
+			${ buttonIconHeight }			
+			${ buttonIconWidth }			
 		}
-		.${ uniqueId } .zolo-box-button {
+		.${ uniqueId } .zolo-box-button {			
 			${ gap }
+			background: ${ btnBgColor ? btnBgColor : '' };			
+			${ buttonBorderStyles }
+			${ buttonBorderRadiusDesktop }
+			${ buttonPaddingDesktop }
+			${ buttonMarginDesktop }
+			${ buttonBoxShadow }
+		}
+		.${ uniqueId } .zolo-box-button p{
+			${ btnTypoDesktop }
+		}
+		.${ uniqueId } .zolo-box-button:hover {			
+			background: ${ btnBgHoverColor ? btnBgHoverColor : '#32DE23' };
+			${ buttonHoverBoxShadow }
+		}
+		.${ uniqueId } .zolo-box-button p{			
+			color: ${ btnColor ? btnColor : '' };			
+		}
+		.${ uniqueId } .zolo-box-button:hover p{			
+			color: ${ btnHoverColor ? btnHoverColor : '#fff' };			
 		}
 		${ presetStyles }		
   	`;
@@ -293,21 +592,46 @@ export default function Edit( props ) {
 			${ iconAlignmentTab }
 		}
 		.${ uniqueId } .zolo-block-title{
+			${ titleTypoTab }
+			${ tabTitleTextStrokeStyle }
 			${ textAlignmentTab }
+			${ titleMarginTab }
 		}		
 		.${ uniqueId } .zolo-block-desc{
 			${ descAlignmentTab }
+			${ descMarginTab }
+			${ descTypoTab }
 		}
 		.${ uniqueId } .zolo-content {
 			${ borderStylesTab }
 			${ gapTab }
 			${ tabAlign }
 		}
-		.${ uniqueId } .zolo-button-icon {
+		.${ uniqueId } .zolo-block-icon-wrap span {
 			${ iconSizeTab }
+			${ iconHeightTab }
+			${ iconSpacingTab }
+			${ borderStylesTab }
+			${ iconBorderRadiusTab }
+			${ iconPaddingTab }
+			${ iconMarginTab }
+			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
+			color: ${ iconColor ? iconColor : '' };	
+		}
+		.${ uniqueId } .zolo-box-button span{
+			${ buttonIconSizeTab }			
+			${ buttonIconHeightTab }			
+			${ buttonIconWidthTab }			
 		}
 		.${ uniqueId } .zolo-box-button {
 			${ gapTab }
+			${ buttonBorderStylesTab }
+			${ buttonBorderRadiusTab }
+			${ buttonPaddingTab }
+			${ buttonMarginTab }
+		}
+		.${ uniqueId } .zolo-box-button p{
+			${ btnTypoTab }
 		}
 		${ presetStyles }
 	`;
@@ -317,21 +641,44 @@ export default function Edit( props ) {
 			${ iconAlignmentMob }
 		}
 		.${ uniqueId } .zolo-block-title{
+			${ titleTypoMobile }
+			${ mobTitleTextStrokeStyle }
 			${ textAlignmentMob }
+			${ titleMarginMob }
 		}		
 		.${ uniqueId } .zolo-block-desc{
 			${ descAlignmentMob }
+			${ descMarginMob }
+			${ descTypoMobile }
 		}
 		.${ uniqueId } .zolo-content {
 			${ borderStylesMob }
 			${ gapMob }
 			${ mobAlign }
 		}
-		.${ uniqueId } .zolo-button-icon {
+		.${ uniqueId } .zolo-block-icon-wrap span {
 			${ iconSizeMob }
+			${ iconHeightMob }
+			${ iconSpacingMob }
+			${ borderStylesMob }
+			${ iconBorderRadiusMob }
+			${ iconPaddingMob }
+			${ iconMarginMob }
+		}
+		.${ uniqueId } .zolo-box-button span{
+			${ buttonIconSizeMob }			
+			${ buttonIconHeightMob }			
+			${ buttonIconWidthMob }			
 		}
 		.${ uniqueId } .zolo-box-button {
-			${ gapMob }
+			${ gapMob }			
+			${ buttonBorderStylesMob }
+			${ buttonBorderRadiusMob }
+			${ buttonPaddingMob }
+			${ buttonMarginMob }
+		}
+		.${ uniqueId } .zolo-box-button p{
+			${ btnTypoMobile }
 		}
 		${ presetStyles }
   	`;
@@ -409,6 +756,42 @@ export default function Edit( props ) {
 						) }
 					/>
 				</ToolbarGroup>
+				{ iconTypeImage && (
+					<Fragment>
+						<ToolbarGroup>
+							<MediaUpload
+								onSelect={ ( media ) => {
+									setAttributes( {
+										iconTypeImage: media,
+									} );
+								} }
+								allowedTypes={ [ 'image' ] }
+								value={ iconTypeImage && iconTypeImage.id }
+								render={ ( { open } ) => (
+									<ToolbarButton
+										className="components-toolbar__control"
+										label={ __(
+											'Replace Photo',
+											'zolo-blocks'
+										) }
+										icon="update"
+										onClick={ open }
+									/>
+								) }
+							/>
+							<ToolbarButton
+								className="components-toolbar__control"
+								label={ __( 'Remove Photo', 'zolo-blocks' ) }
+								icon="trash"
+								onClick={ () => {
+									setAttributes( {
+										iconTypeImage: null,
+									} );
+								} }
+							/>
+						</ToolbarGroup>
+					</Fragment>
+				) }
 			</BlockControls>
 			<style>{ ` ${ softMinifyCssStrings( allStyle ) }` }</style>
 			<div { ...blockProps }>
@@ -417,19 +800,31 @@ export default function Edit( props ) {
 				>
 					<div className="zolo-block-item">
 						<div className={ `zolo-block-icon-wrap` }>
-							{ iconType == 'icon' && (
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="32"
-									height="32"
-									fill="currentColor"
-									className="bi bi-gear"
-									viewBox="0 0 16 16"
-								>
-									<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path>
-									<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path>
-								</svg>
+							{ iconType == 'icon' ? (
+								<DisplayIcon icon={ mainIcon } />
+							) : iconTypeImage ? (
+								<img
+									src={ iconTypeImage.url }
+									alt={ iconTypeImage.alt || 'Team Member' }
+								/>
+							) : (
+								<MediaPlaceholder
+									icon="format-image"
+									labels={ {
+										title: __( 'Add Photo', 'zolo-blocks' ),
+										instructions: '',
+									} }
+									onSelect={ ( media ) => {
+										setAttributes( {
+											iconTypeImage: media,
+										} );
+									} }
+									accept="image/*"
+									allowedTypes={ [ 'image' ] }
+								/>
 							) }
+
+							{  }
 						</div>
 
 						<div className="zolo-block-body-content">
@@ -469,7 +864,7 @@ export default function Edit( props ) {
 								<a className={ `zolo-box-button` }>
 									<RichText
 										value={ buttonText }
-										tagName="span"
+										tagName="p"
 										onChange={ ( text ) =>
 											setAttributes( {
 												buttonText: text,
@@ -481,37 +876,14 @@ export default function Edit( props ) {
 										) }
 									/>
 									{ showIcon && (
-										<svg
-											clipRule="evenodd"
-											fillRule="evenodd"
-											strokeLinejoin="round"
-											strokeMiterlimit="2"
-											viewBox="0 0 24 24"
-											xmlns="http://www.w3.org/2000/svg"
-											className="zolo-button-icon"
-										>
-											<path
-												d="m14.523 18.787s4.501-4.505 6.255-6.26c.146-.146.219-.338.219-.53s-.073-.383-.219-.53c-1.753-1.754-6.255-6.258-6.255-6.258-.144-.145-.334-.217-.524-.217-.193 0-.385.074-.532.221-.293.292-.295.766-.004 1.056l4.978 4.978h-14.692c-.414 0-.75.336-.75.75s.336.75.75.75h14.692l-4.979 4.979c-.289.289-.286.762.006 1.054.148.148.341.222.533.222.19 0 .378-.072.522-.215z"
-												fill-rule="nonzero"
-											/>
-										</svg>
+										<DisplayIcon icon={ buttonIcon } />
 									) }
 								</a>
 							</div>
 						</div>
 
 						<div className="zolo-block-hover-icon">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="16"
-								height="16"
-								fill="currentColor"
-								className="bi bi-gear"
-								viewBox="0 0 16 16"
-							>
-								<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path>
-								<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path>
-							</svg>
+							<DisplayIcon icon={ mainIcon } />
 						</div>
 					</div>
 				</div>

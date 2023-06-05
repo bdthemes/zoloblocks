@@ -151,11 +151,37 @@ export const ICON_MARGIN = 'iconMargin';
 export const ICON_BOX_ALIGNMENT = 'iconBoxAlignment';
 // Icon Border
 export const ICON_BORDER = 'iconBorder';
+// Icon Box Shadow
+export const ICON_BOX_SHADOW = 'iconBoxShadow';
+// Icon Hover Box Shadow
+export const ICON_HOVER_BOX_SHADOW = 'iconHoverBoxShadow';
+// Button Box Shadow
+export const BUTTON_BOX_SHADOW = 'buttonBoxShadow';
+// Button Hover Box Shadow
+export const BUTTON_HOVER_BOX_SHADOW = 'buttonHoverBoxShadow';
+// Icon Border Radius
+export const ICON_BORDER_RADIUS = 'iconBorderRadius';
 // Icon Size
 export const ICON_SIZE = 'iconSize';
+// Button Icon Size
+export const BUTTON_ICON_SIZE = 'buttonIconSize';
+// Button
+export const BUTTON_BORDER = 'buttonBorder';
+export const BUTTON_BORDER_RADIUS = 'buttonBorderRadius';
+export const BUTTON_MARGIN = 'buttonMargin';
+export const BUTTON_PADDING = 'buttonPadding';
+// icon and spacing
+export const ICON_SPACING = 'iconSpacing';
 // icon and text spacing
 export const ICON_TEXT_SPACING = 'iconTextSpacing';
 // title Alignment
 export const TITLE_ALIGNMENT = 'titleAlignment';
+// title margin
+export const TITLE_MARGIN = 'titleMargin';
+// description margin
+export const DESCRIPTION_MARGIN = 'descMargin';
 // description Alignment
 export const DESC_ALIGNMENT = 'descAlignment';
+// title controls
+export const TITLE_TEXT_SHADOW = 'titleTextShadow';
+export const TITLE_TEXT_STROKE = 'titleTextStroke';
