@@ -9,13 +9,11 @@ import {
 	BUTTON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
-	COLUMNS_NUMBER,
-	COLUMNS_GAP ,
+	COLUMNS_GAP,
 	ROW_GAP,
 	BUTTON_SIZE,
 	BUTTON_ICON_SIZE,
-	BUTTON_HEIGHT
-	
+	BUTTON_HEIGHT,
 } from './constants';
 
 const attributes = {
@@ -31,75 +29,88 @@ const attributes = {
 		type: 'object',
 	},
 	//alignment attributes
-	...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
+	...generateResAlignmentAttributies( BUTTON_ALIGNMENT, {
 		defaultAlign: 'left',
-	}),
+	} ),
 
 	// border attributes
-	...generateBorderAttributies(BUTTON_BORDER),
-	...generateResRangeAttributies(ICON_SIZE, {
+	...generateBorderAttributies( BUTTON_BORDER ),
+	...generateResRangeAttributies( ICON_SIZE, {
 		default: 16,
-	}),
-	//columns Number
-	...generateResRangeAttributies(COLUMNS_NUMBER),
+	} ),
 	//columns gaps
-	...generateResRangeAttributies(COLUMNS_GAP),
+	...generateResRangeAttributies( COLUMNS_GAP ),
 	//row gaps
-	...generateResRangeAttributies(ROW_GAP),
-	
+	...generateResRangeAttributies( ROW_GAP ),
+
 	//button size
-	...generateResRangeAttributies(BUTTON_SIZE),
+	...generateResRangeAttributies( BUTTON_SIZE ),
 	//button icon size
-	...generateResRangeAttributies(BUTTON_ICON_SIZE),
+	...generateResRangeAttributies( BUTTON_ICON_SIZE ),
 	//button height
-	...generateResRangeAttributies(BUTTON_HEIGHT),
-	
+	...generateResRangeAttributies( BUTTON_HEIGHT ),
+
 	//icon spacing
-	...generateResRangeAttributies(ICON_TEXT_SPACING, {
+	...generateResRangeAttributies( ICON_TEXT_SPACING, {
 		default: 5,
-	}),
+	} ),
 	//Block specific Attributes
 	preset: {
 		type: 'string',
 		default: 'preset-1',
 	},
-	label: {
+	socialText: {
+		type: 'string',
+		default: 'icontext',
+	},
+	socialProfiles: {
+		type: 'array',
+		default: [
+			{
+				icon: {
+					facebook: {
+						name: 'facebook',
+						source: 'dashicon',
+						type: '',
+					},
+				},
+				link: '#',
+				text: 'Facebook',
+			},
+		],
+	},
+	socialProfilesLinkTarget: {
+		type: 'boolean',
+		default: true,
+	},
+	socialProfileColumns: {
+		type: 'number',
+		default: 4,
+	},
+	socialStyle: {
+		type: 'string',
+		default: 'default',
+	},
+	targetPage: {
 		type: 'string',
 	},
-	socialRepeat:{
-		type:"array",
-		default:[]
+	customLink: {
+		type: 'string',
 	},
-	link: {
-		type: 'object',
-		default: {
-			url: '#',
-			opensInNewTab: false,
-			addNoFollow: false,
-		},
+	socialColor: {
+		type: 'string',
 	},
-	openInNewTab: {
-		type: 'boolean',
-		default: false,
+	socialTextColor: {
+		type: 'string',
 	},
-	addNoFollow: {
-		type: 'boolean',
-		default: false,
+	socialTextHoverColor: {
+		type: 'string',
 	},
-	socialText: {
-		type:"string"
+	socialBgColor: {
+		type: 'string',
 	},
-    socialStyle:{
-		type:"string"
-	},
-	targetPage:{
-		type:"string"
-	},
-	customLink:{
-		type:"string"
-	},
-	columnsNumber:{
-		type:"string"
+	socialBgHoverColor: {
+		type: 'string',
 	},
 	showIcon: {
 		type: 'boolean',
