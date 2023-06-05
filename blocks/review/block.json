@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"title": "Review",
+	"icon": "thumbs-up",
+	"name": "zolo/review",
+	"category": "zolo-blocks",
+	"keywords": ["Rating", "Review"],
+	"description": "Single review block",
+	"apiVersion": 2,
+	"textdomain": "zolo-blocks",
+	"supports": {
+		"anchor": true
+	},
+	"editorScript": ""
+}

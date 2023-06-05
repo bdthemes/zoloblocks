@@ -1,6 +1,25 @@
+.zb-reset-control-container {
+	display: flex;
+	align-items: center;
+
+	.components-range-control {
+		flex-grow: 1;
+	}
+}
+
 .zb-reset-button {
-  .dashicon {
-    color: #62626f;
-    font-size: 14px;
-  }
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	cursor: pointer;
+	height: 26px;
+	margin-left: 2px;
+	outline: none;
+	padding: 0;
+	width: 20px;
+
+	.dashicon {
+		color: #62626f;
+		font-size: 14px;
+	}
 }

@@ -75,9 +75,13 @@ const attributes = {
 	memberName: {
 		type: 'string',
 	},
-	enableMemberDetailsPage: {
+	addDetailPageLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
+	},
+	showDetailPageIcon: {
+		type: 'boolean',
+		default: true,
 	},
 	memberDetailPageLink: {
 		type: 'object',
@@ -109,8 +113,8 @@ const attributes = {
 		default: [
 			{
 				icon: {
-					facebook: {
-						name: 'facebook',
+					twitter: {
+						name: 'twitter',
 						source: 'dashicon',
 						type: '',
 					},
@@ -126,7 +130,6 @@ const attributes = {
 	// block style
 	contentBg: {
 		type: 'string',
-		default: '#ffffff',
 	},
 	photoBgColor: {
 		type: 'string',
@@ -142,8 +145,7 @@ const attributes = {
 	},
 	// social icons
 	separatorColor: {
-		type: "string",
-		default: "#ddd"
+		type: 'string',
 	},
 	iconColor: {
 		type: 'string',
@@ -161,17 +163,17 @@ const attributes = {
 		type: 'string',
 	},
 	detailPageIconColor: {
-		type: 'string'
+		type: 'string',
 	},
 	detailPageIconHoverColor: {
-		type: 'string'
+		type: 'string',
 	},
 	detailPageLinkBgColor: {
-		type: 'string'
+		type: 'string',
 	},
 	detailPageLinkBgHoverColor: {
-		type: 'string'
-	}
+		type: 'string',
+	},
 };
 
 export default attributes;

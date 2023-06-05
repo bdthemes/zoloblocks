@@ -7,7 +7,8 @@ const Save = ({ attributes }) => {
 		preset,
 		memberPhoto,
 		memberName,
-		enableMemberDetailsPage,
+		addDetailPageLink,
+		showDetailPageIcon,
 		memberDetailPageLink,
 		showDesignation,
 		memberDesignation,
@@ -33,7 +34,7 @@ const Save = ({ attributes }) => {
 						/>
 					)}
 					<div className="zolo-hover-content">
-						{enableMemberDetailsPage ? (
+						{addDetailPageLink ? (
 							<a
 								href={
 									memberDetailPageLink &&
@@ -93,7 +94,7 @@ const Save = ({ attributes }) => {
 									})}
 							</div>
 						)}
-						{enableMemberDetailsPage && (
+						{addDetailPageLink && showDetailPageIcon && (
 							<div className="zolo-link-btn">
 								<a
 									href={
@@ -120,7 +121,7 @@ const Save = ({ attributes }) => {
 				<div className="zolo-info-wrap">
 					<div className="zolo-content">
 						<div className="zolo-name">
-							{enableMemberDetailsPage ? (
+							{showDetailPageIcon ? (
 								<a
 									href={
 										memberDetailPageLink &&
@@ -154,7 +155,7 @@ const Save = ({ attributes }) => {
 							</div>
 						)}
 					</div>
-					{enableMemberDetailsPage && (
+					{addDetailPageLink && showDetailPageIcon && (
 						<div className="zolo-link-btn">
 							<a
 								href={

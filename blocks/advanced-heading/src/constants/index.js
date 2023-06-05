@@ -90,3 +90,5 @@ export const WRAPPER_BG = 'wrapBg';
 export const WRAPPER_BORDER = 'wrapBorder';
 export const WRAPPER_SHADOW = 'wrapShadow';
 
+export const TEST_NORMAL_BG = 'testBg';
+
