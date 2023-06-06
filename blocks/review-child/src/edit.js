@@ -63,7 +63,7 @@ import {
 
 import Inspector from './inspector';
 
-export default function Edit(props) {
+export default function Edit( props ) {
 	const {
 		attributes,
 		setAttributes,
@@ -92,47 +92,47 @@ export default function Edit(props) {
 		activeRatingColor,
 		inactiveRatingColor,
 	} = attributes;
-	const [popoverVisible, setPopoverVisible] = useState(false);
+	const [ popoverVisible, setPopoverVisible ] = useState( false );
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
-	useEffect(() => {
-		handleUniqueId({
+	useEffect( () => {
+		handleUniqueId( {
 			BLOCK_PREFIX,
 			uniqueId,
 			setAttributes,
 			clientId,
-		});
-	}, []);
+		} );
+	}, [] );
 
-	const blockProps = useBlockProps({
-		className: classnames(className, `${uniqueId} ${preset}`),
-	});
+	const blockProps = useBlockProps( {
+		className: classnames( className, `${ uniqueId } ${ preset }` ),
+	} );
 
 	/**
 	 * context
 	 */
-	useEffect(() => {
-		setAttributes({
-			showDesignation: context['zolo/showDesignation'],
-			showTestimonialMessage: context['zolo/showTestimonialMessage'],
-			preset: context['zolo/preset'],
-		});
-	}, [context]);
+	useEffect( () => {
+		setAttributes( {
+			showDesignation: context[ 'zolo/showDesignation' ],
+			showTestimonialMessage: context[ 'zolo/showTestimonialMessage' ],
+			preset: context[ 'zolo/preset' ],
+		} );
+	}, [ context ] );
 
 	// content align
 	const {
 		desktopAlignStyle: reviewContentDeskAlignStyle,
 		tabAlignStyle: reviewContentTabAlignStyle,
 		mobAlignStyle: reviewContentMobAlignStyle,
-	} = generateResAlignmentStyle({
+	} = generateResAlignmentStyle( {
 		controlName: CONTENT_ALIGNMENT,
 		property: 'text-align',
 		attributes,
-	});
+	} );
 
 	// rating icon align
 	let ratingIconDeskAlignStyle;
-	switch (reviewContentDeskAlignStyle) {
+	switch ( reviewContentDeskAlignStyle ) {
 		case 'text-align:left;':
 			ratingIconDeskAlignStyle = 'justify-content: flex-start;';
 			break;
@@ -147,7 +147,7 @@ export default function Edit(props) {
 	}
 
 	let ratingIconTabAlignStyle;
-	switch (reviewContentTabAlignStyle) {
+	switch ( reviewContentTabAlignStyle ) {
 		case 'text-align:left;':
 			ratingIconTabAlignStyle = 'justify-content: flex-start;';
 			break;
@@ -162,7 +162,7 @@ export default function Edit(props) {
 	}
 
 	let ratingIconMobAlignStyle;
-	switch (reviewContentMobAlignStyle) {
+	switch ( reviewContentMobAlignStyle ) {
 		case 'text-align:left;':
 			ratingIconMobAlignStyle = 'justify-content: flex-start;';
 			break;
@@ -181,431 +181,436 @@ export default function Edit(props) {
 		backgroundStylesDesktop: containerDeskBGStyle,
 		backgroundStylesTab: containerTabBGStyle,
 		backgroundStylesMobile: containerMobBGStyle,
-	} = generateNormalBGControlStyles({
+	} = generateNormalBGControlStyles( {
 		controlName: CONTAINER_BACKGROUND,
 		attributes,
 		noMainBGImg: false,
-	});
+	} );
 
 	const {
 		desktopBorderStyle: containerDeskBorderStyle,
 		tabBorderStyle: containerTabBorderStyle,
 		mobBorderStyle: containerMobBorderStyle,
-	} = generateBorderStyle({
+	} = generateBorderStyle( {
 		controlName: CONTAINER_BORDER,
 		attributes,
-	});
+	} );
 
 	const {
 		dimensionStylesDesktop: containerDeskBorderRadius,
 		dimensionStylesTab: containerTabBorderRadius,
 		dimensionStylesMobile: containerMobBorderRadius,
-	} = generateDimensionStyle({
+	} = generateDimensionStyle( {
 		controlName: CONTAINER_BORDER_RADIUS,
 		styleFor: 'border-radius',
 		attributes,
-	});
+	} );
 
-	const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
+	const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles( {
 		attributes,
 		controlName: CONTAINER_BOX_SHADOW,
-	});
+	} );
 
 	const {
 		dimensionStylesDesktop: containerDeskMargin,
 		dimensionStylesTab: containerTabMargin,
 		dimensionStylesMobile: containerMobMargin,
-	} = generateDimensionStyle({
+	} = generateDimensionStyle( {
 		controlName: CONTAINER_MARGIN,
 		styleFor: 'margin',
 		attributes,
-	});
+	} );
 
 	const {
 		dimensionStylesDesktop: containerDeskPadding,
 		dimensionStylesTab: containerTabPadding,
 		dimensionStylesMobile: containerMobPadding,
-	} = generateDimensionStyle({
+	} = generateDimensionStyle( {
 		controlName: CONTAINER_PADDING,
 		styleFor: 'padding',
 		attributes,
-	});
+	} );
 
 	// Photo
 	const {
 		backgroundStylesDesktop: photoDeskBGStyle,
 		backgroundStylesTab: photoTabBGStyle,
 		backgroundStylesMobile: photoMobBGStyle,
-	} = generateNormalBGControlStyles({
+	} = generateNormalBGControlStyles( {
 		controlName: REVIEWER_PHOTO_BG,
 		attributes,
 		noMainBGImg: true,
-	});
+	} );
 
 	const {
 		desktopBorderStyle: photoDeskBorderStyle,
 		tabBorderStyle: photoTabBorderStyle,
 		mobBorderStyle: photoMobBorderStyle,
-	} = generateBorderStyle({
+	} = generateBorderStyle( {
 		controlName: REVIEWER_PHOTO_BORDER,
 		attributes,
-	});
+	} );
 
 	const {
 		dimensionStylesDesktop: photoDeskBorderRadius,
 		dimensionStylesTab: photoTabBorderRadius,
 		dimensionStylesMobile: photoMobBorderRadius,
-	} = generateDimensionStyle({
+	} = generateDimensionStyle( {
 		controlName: REVIEWER_PHOTO_BORDER_RADIUS,
 		styleFor: 'border-radius',
 		attributes,
-	});
+	} );
 
-	const { boxShadowStyle: photoBoxShadow } = generateBoxShadowStyles({
+	const { boxShadowStyle: photoBoxShadow } = generateBoxShadowStyles( {
 		attributes,
 		controlName: REVIEWER_PHOTO_BOX_SHADOW,
-	});
+	} );
 
 	const {
 		dimensionStylesDesktop: photoDeskMargin,
 		dimensionStylesTab: photoTabMargin,
 		dimensionStylesMobile: photoMobMargin,
-	} = generateDimensionStyle({
+	} = generateDimensionStyle( {
 		controlName: REVIEWER_PHOTO_MARGIN,
 		styleFor: 'margin',
 		attributes,
-	});
+	} );
 
 	const {
 		dimensionStylesDesktop: photoDeskPadding,
 		dimensionStylesTab: photoTabPadding,
 		dimensionStylesMobile: photoMobPadding,
-	} = generateDimensionStyle({
+	} = generateDimensionStyle( {
 		controlName: REVIEWER_PHOTO_PADDING,
 		styleFor: 'padding',
 		attributes,
-	});
+	} );
 
 	// Name
 	const {
 		typoStylesDesktop: nameTypoDesk,
 		typoStylesTab: nameTypoTab,
 		typoStylesMobile: nameTypoMob,
-	} = generateTypographyStyles({
+	} = generateTypographyStyles( {
 		prefixConstant: REVIEWER_NAME_TYPOGRAPHY,
 		defaultFontSize: 20,
 		attributes,
-	});
+	} );
 
 	const {
 		dimensionStylesDesktop: nameDeskMargin,
 		dimensionStylesTab: nameTabMargin,
 		dimensionStylesMobile: nameMobMargin,
-	} = generateDimensionStyle({
+	} = generateDimensionStyle( {
 		controlName: REVIEWER_NAME_MARGIN,
 		styleFor: 'margin',
 		attributes,
-	});
+	} );
 
 	// Designation
 	const {
 		typoStylesDesktop: designationTypoDesk,
 		typoStylesTab: designationTypoTab,
 		typoStylesMobile: designationTypoMob,
-	} = generateTypographyStyles({
+	} = generateTypographyStyles( {
 		prefixConstant: REVIEWER_DESIGNATION_TYPOGRAPHY,
 		defaultFontSize: 16,
 		attributes,
-	});
+	} );
 
 	const {
 		dimensionStylesDesktop: designationDeskMargin,
 		dimensionStylesTab: designationTabMargin,
 		dimensionStylesMobile: designationMobMargin,
-	} = generateDimensionStyle({
+	} = generateDimensionStyle( {
 		controlName: REVIEWER_DESIGNATION_MARGIN,
 		styleFor: 'margin',
 		attributes,
-	});
+	} );
 
 	// Testimonial Message
 	const {
 		typoStylesDesktop: testimonialMessageTypoDesk,
 		typoStylesTab: testimonialMessageTypoTab,
 		typoStylesMobile: testimonialMessageTypoMob,
-	} = generateTypographyStyles({
+	} = generateTypographyStyles( {
 		prefixConstant: REVIEWER_MESSAGE_TYPOGRAPHY,
 		defaultFontSize: 16,
 		attributes,
-	});
+	} );
 
 	const {
 		dimensionStylesDesktop: testimonialMessageDeskMargin,
 		dimensionStylesTab: testimonialMessageTabMargin,
 		dimensionStylesMobile: testimonialMessageMobMargin,
-	} = generateDimensionStyle({
+	} = generateDimensionStyle( {
 		controlName: REVIEWER_TESTIMONIAL_MARGIN,
 		styleFor: 'margin',
 		attributes,
-	});
+	} );
 
 	// review icons
 	const {
 		desktopRangeStyle: ratingIconWidthDesk,
 		tabRangeStyle: ratingIconWidthTab,
 		mobRangeStyle: ratingIconWidthMob,
-	} = generateResRangeStyle({
+	} = generateResRangeStyle( {
 		controlName: ICONS_SIZE,
 		property: 'width',
 		attributes,
-	});
+	} );
 
 	/**
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-child .zolo-item {
-			${containerDeskMargin}
-			${containerDeskPadding}
-			${reviewContentDeskAlignStyle}
-			${containerDeskBorderStyle}
-			${containerDeskBorderRadius}
-			${containerBoxShadow}
-			${containerDeskBGStyle}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-item {
+			${ containerDeskMargin }
+			${ containerDeskPadding }
+			${ reviewContentDeskAlignStyle }
+			${ containerDeskBorderStyle }
+			${ containerDeskBorderRadius }
+			${ containerBoxShadow }
+			${ containerDeskBGStyle }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating {
-			${ratingIconDeskAlignStyle}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-star-rating {
+			${ ratingIconDeskAlignStyle }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-image-wrap .zolo-img {
-			${photoDeskBorderStyle}
-			${photoDeskBorderRadius}
-			${photoBoxShadow}
-			${photoDeskMargin}
-			${photoDeskPadding}
-			${photoDeskBGStyle}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-image-wrap .zolo-img {
+			${ photoDeskBorderStyle }
+			${ photoDeskBorderRadius }
+			${ photoBoxShadow }
+			${ photoDeskMargin }
+			${ photoDeskPadding }
+			${ photoDeskBGStyle }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-name {
-			${nameTypoDesk}
-			${nameDeskMargin}
-			${nameColor ? `color: ${nameColor};` : ''}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-meta-content .zolo-name {
+			${ nameTypoDesk }
+			${ nameDeskMargin }
+			${ nameColor ? `color: ${ nameColor };` : '' }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-designation {
-			${designationTypoDesk}
-			${designationDeskMargin}
-			${designationColor ? `color: ${designationColor};` : ''}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-meta-content .zolo-designation {
+			${ designationTypoDesk }
+			${ designationDeskMargin }
+			${ designationColor ? `color: ${ designationColor };` : '' }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-desc {
-			${testimonialMessageTypoDesk}
-			${testimonialMessageDeskMargin}
-			${testimonialMessageColor ? `color: ${testimonialMessageColor};` : ''}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-meta-content .zolo-desc {
+			${ testimonialMessageTypoDesk }
+			${ testimonialMessageDeskMargin }
+			${ testimonialMessageColor ? `color: ${ testimonialMessageColor };` : '' }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
-			${ratingIconWidthDesk}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-star-rating svg {
+			${ ratingIconWidthDesk }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .filled-star, .${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .fraction-star {
-			${activeRatingColor ? `fill: ${activeRatingColor};` : ''}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-star-rating .filled-star, .${ uniqueId }.wp-block-zolo-review-child .zolo-star-rating .fraction-star {
+			${ activeRatingColor ? `fill: ${ activeRatingColor };` : '' }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .empty-star {
-			${inactiveRatingColor ? `fill: ${inactiveRatingColor};` : ''}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-star-rating .empty-star {
+			${ inactiveRatingColor ? `fill: ${ inactiveRatingColor };` : '' }
 		}
 	`;
 
 	const tabletAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-child .zolo-item {
-			${containerTabMargin}
-			${containerTabPadding}
-			${reviewContentTabAlignStyle}
-			${containerTabBorderStyle}
-			${containerTabBorderRadius}
-			${containerTabBGStyle}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-item {
+			${ containerTabMargin }
+			${ containerTabPadding }
+			${ reviewContentTabAlignStyle }
+			${ containerTabBorderStyle }
+			${ containerTabBorderRadius }
+			${ containerTabBGStyle }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating {
-			${ratingIconTabAlignStyle}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-star-rating {
+			${ ratingIconTabAlignStyle }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-image-wrap .zolo-img {
-			${photoTabBorderStyle}
-			${photoTabBorderRadius}
-			${photoTabMargin}
-			${photoTabPadding}
-			${photoTabBGStyle}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-image-wrap .zolo-img {
+			${ photoTabBorderStyle }
+			${ photoTabBorderRadius }
+			${ photoTabMargin }
+			${ photoTabPadding }
+			${ photoTabBGStyle }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-name {
-			${nameTypoTab}
-			${nameTabMargin}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-meta-content .zolo-name {
+			${ nameTypoTab }
+			${ nameTabMargin }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-designation {
-			${designationTypoTab}
-			${designationTabMargin}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-meta-content .zolo-designation {
+			${ designationTypoTab }
+			${ designationTabMargin }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-desc {
-			${testimonialMessageTypoTab}
-			${testimonialMessageTabMargin}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-meta-content .zolo-desc {
+			${ testimonialMessageTypoTab }
+			${ testimonialMessageTabMargin }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
-			${ratingIconWidthTab}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-star-rating svg {
+			${ ratingIconWidthTab }
 		}
 	`;
 
 	const mobileAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-child .zolo-item {
-			${containerMobMargin}
-			${containerMobPadding}
-			${reviewContentMobAlignStyle}
-			${containerMobBorderStyle}
-			${containerMobBorderRadius}
-			${containerMobBGStyle}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-item {
+			${ containerMobMargin }
+			${ containerMobPadding }
+			${ reviewContentMobAlignStyle }
+			${ containerMobBorderStyle }
+			${ containerMobBorderRadius }
+			${ containerMobBGStyle }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating {
-			${ratingIconMobAlignStyle}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-star-rating {
+			${ ratingIconMobAlignStyle }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-image-wrap .zolo-img {
-			${photoMobBorderStyle}
-			${photoMobBorderRadius}
-			${photoMobMargin}
-			${photoMobPadding}
-			${photoMobBGStyle}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-image-wrap .zolo-img {
+			${ photoMobBorderStyle }
+			${ photoMobBorderRadius }
+			${ photoMobMargin }
+			${ photoMobPadding }
+			${ photoMobBGStyle }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-name {
-			${nameTypoMob}
-			${nameMobMargin}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-meta-content .zolo-name {
+			${ nameTypoMob }
+			${ nameMobMargin }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-designation {
-			${designationTypoMob}
-			${designationMobMargin}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-meta-content .zolo-designation {
+			${ designationTypoMob }
+			${ designationMobMargin }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-desc {
-			${testimonialMessageTypoMob}
-			${testimonialMessageMobMargin}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-meta-content .zolo-desc {
+			${ testimonialMessageTypoMob }
+			${ testimonialMessageMobMargin }
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
-			${ratingIconWidthMob}
+		.${ uniqueId }.wp-block-zolo-review-child .zolo-star-rating svg {
+			${ ratingIconWidthMob }
 		}
 	`;
 
 	const allStyle = `
-		${desktopAllStyle}
+		${ desktopAllStyle }
 		@media all and (max-width: 1024px) {
-			${tabletAllStyle}
+			${ tabletAllStyle }
 		}
 		@media all and (max-width: 767px) {
-			${mobileAllStyle}
+			${ mobileAllStyle }
 		}
 	`;
 
 	// Set All Style in "blockStyle" Attribute
-	useEffect(() => {
+	useEffect( () => {
 		const styles = {
 			desktop: desktopAllStyle,
 			tablet: tabletAllStyle,
 			mobile: mobileAllStyle,
 		};
-		if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-			setAttributes({ blockStyle: styles });
+		if ( JSON.stringify( blockStyle ) != JSON.stringify( styles ) ) {
+			setAttributes( { blockStyle: styles } );
 		}
-	}, [attributes]);
+	}, [ attributes ] );
 
 	return (
 		<>
-			{isSelected && (
+			{ isSelected && (
 				<Inspector
-					attributes={attributes}
-					setAttributes={setAttributes}
+					attributes={ attributes }
+					setAttributes={ setAttributes }
 				/>
-			)}
-			<style>{`${softMinifyCssStrings(allStyle)}`}</style>
+			) }
+			<style>{ `${ softMinifyCssStrings( allStyle ) }` }</style>
 			<BlockControls>
-				{memberPhoto && (
+				{ memberPhoto && (
 					<Fragment>
 						<ToolbarGroup>
 							<MediaUpload
-								onSelect={(media) => {
-									setAttributes({
+								onSelect={ ( media ) => {
+									setAttributes( {
 										memberPhoto: media,
-									});
-								}}
-								allowedTypes={['image']}
-								value={memberPhoto && memberPhoto.id}
-								render={({ open }) => (
+									} );
+								} }
+								allowedTypes={ [ 'image' ] }
+								value={ memberPhoto && memberPhoto.id }
+								render={ ( { open } ) => (
 									<ToolbarButton
 										className="components-toolbar__control"
-										label={__(
+										label={ __(
 											'Replace Photo',
 											'zolo-blocks'
-										)}
+										) }
 										icon="update"
-										onClick={open}
+										onClick={ open }
 									/>
-								)}
+								) }
 							/>
 							<ToolbarButton
 								className="components-toolbar__control"
-								label={__('Remove Photo', 'zolo-blocks')}
+								label={ __( 'Remove Photo', 'zolo-blocks' ) }
 								icon="trash"
-								onClick={() => {
-									setAttributes({
+								onClick={ () => {
+									setAttributes( {
 										memberPhoto: null,
-									});
-								}}
+									} );
+								} }
 							/>
 						</ToolbarGroup>
 					</Fragment>
-				)}
-				{addReviewerWebsiteLink && (
+				) }
+				{ addReviewerWebsiteLink && (
 					<ToolbarGroup>
 						<ToolbarButton
 							icon="admin-links"
-							onClick={() => setPopoverVisible(!popoverVisible)}
+							onClick={ () =>
+								setPopoverVisible( ! popoverVisible )
+							}
 						/>
 					</ToolbarGroup>
-				)}
-				{popoverVisible && (
+				) }
+				{ popoverVisible && (
 					<Popover
 						position="bottom right"
-						onFocusOutside={() => setPopoverVisible(false)}
-						offset={10}
+						onFocusOutside={ () => setPopoverVisible( false ) }
+						offset={ 10 }
 					>
 						<LinkControl
 							searchInputPlaceholder="Search here..."
-							value={reviewerWebsiteLink}
-							settings={[
+							value={ reviewerWebsiteLink }
+							settings={ [
 								{
 									id: 'opensInNewTab',
-									title: __('Open in new tab', 'zolo-blocks'),
+									title: __(
+										'Open in new tab',
+										'zolo-blocks'
+									),
 								},
-							]}
-							onChange={(data) =>
-								setAttributes({ reviewerWebsiteLink: data })
+							] }
+							onChange={ ( data ) =>
+								setAttributes( { reviewerWebsiteLink: data } )
 							}
 						/>
 					</Popover>
-				)}
+				) }
 			</BlockControls>
-			<div {...blockProps}>
+			<div { ...blockProps }>
 				<div className="zolo-item">
 					<div className="zolo-image-wrap">
-						{memberPhoto ? (
+						{ memberPhoto ? (
 							<img
-								src={memberPhoto.url}
-								alt={memberPhoto.alt || 'Reviewer'}
+								src={ memberPhoto.url }
+								alt={ memberPhoto.alt || 'Reviewer' }
 								className="zolo-img"
 							/>
 						) : (
 							<MediaPlaceholder
 								icon="format-image"
-								labels={{
-									title: __('Add Photo', 'zolo-blocks'),
+								labels={ {
+									title: __( 'Add Photo', 'zolo-blocks' ),
 									instructions: '',
-								}}
-								onSelect={(media) => {
-									setAttributes({
+								} }
+								onSelect={ ( media ) => {
+									setAttributes( {
 										memberPhoto: media,
-									});
-								}}
+									} );
+								} }
 								accept="image/*"
-								allowedTypes={['image']}
+								allowedTypes={ [ 'image' ] }
 							/>
-						)}
-						{addReviewerWebsiteLink && (
+						) }
+						{ addReviewerWebsiteLink && (
 							<div className="zolo-link-btn">
 								<a
 									href={
@@ -638,62 +643,62 @@ export default function Edit(props) {
 									</svg>
 								</a>
 							</div>
-						)}
+						) }
 					</div>
 					<div className="zolo-info-wrap">
 						<div className="zolo-meta-content">
 							<div className="zolo-name">
 								<RichText
-									value={memberName}
-									onChange={(content) =>
-										setAttributes({
+									value={ memberName }
+									onChange={ ( content ) =>
+										setAttributes( {
 											memberName: content,
-										})
+										} )
 									}
-									placeholder={__(
+									placeholder={ __(
 										'Reviewer name',
 										'zolo-blocks'
-									)}
+									) }
 								/>
 							</div>
-							{showDesignation && (
+							{ showDesignation && (
 								<div className="zolo-designation">
 									<RichText
-										value={memberDesignation}
-										onChange={(content) =>
-											setAttributes({
+										value={ memberDesignation }
+										onChange={ ( content ) =>
+											setAttributes( {
 												memberDesignation: content,
-											})
+											} )
 										}
-										placeholder={__(
+										placeholder={ __(
 											'Reviewer designation',
 											'zolo-blocks'
-										)}
+										) }
 									/>
 								</div>
-							)}
-							{showTestimonialMessage && (
+							) }
+							{ showTestimonialMessage && (
 								<div className="zolo-desc">
 									<RichText
-										value={testimonialMessage}
-										onChange={(content) =>
-											setAttributes({
+										value={ testimonialMessage }
+										onChange={ ( content ) =>
+											setAttributes( {
 												testimonialMessage: content,
-											})
+											} )
 										}
-										placeholder={__(
+										placeholder={ __(
 											'Reviewer testimonial message',
 											'zolo-blocks'
-										)}
+										) }
 									/>
 								</div>
-							)}
+							) }
 						</div>
-						{showRating && (
+						{ showRating && (
 							<div className="zolo-review-icon">
-								<StarRating rating={rating} total={5} />
+								<StarRating rating={ rating } total={ 5 } />
 							</div>
-						)}
+						) }
 					</div>
 				</div>
 			</div>
