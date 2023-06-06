@@ -56,7 +56,6 @@ function Inspector(props) {
 					showDetailPageIcon: true,
 					showDesignation: true,
 					addDetailPageLink: true,
-					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
 				});
 				break;
 			case 'style-1':
@@ -65,7 +64,6 @@ function Inspector(props) {
 					showSocialProfiles: true,
 					showDetailPageIcon: false,
 					showDesignation: false,
-					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'center',
 				});
 				break;
 			case 'style-2':
@@ -74,7 +72,6 @@ function Inspector(props) {
 					showSocialProfiles: true,
 					showDetailPageIcon: false,
 					showDesignation: true,
-					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
 				});
 				break;
 			case 'style-3':
@@ -83,13 +80,15 @@ function Inspector(props) {
 					showSocialProfiles: true,
 					showDetailPageIcon: true,
 					showDesignation: true,
-					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
 				});
 				break;
 			default:
 				return false;
 		}
 	};
+
+	// console attributes
+	console.log(attributes);
 
 	return (
 		<InspectorControls key="controls">

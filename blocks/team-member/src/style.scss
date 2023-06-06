@@ -1,6 +1,9 @@
 .wp-block-zolo-team-member {
-	* {
-		box-sizing: border-box;
+	box-sizing: border-box;
+
+	// item
+	.zolo-item {
+		background: transparent;
 	}
 
 	// image wrapper
@@ -89,7 +92,6 @@
 
 	// Info Content
 	.zolo-info-wrap {
-		background-color: #fff;
 		position: relative;
 	}
 
@@ -124,6 +126,9 @@
 	&.default,
 	&.style-1,
 	&.style-2 {
+		.zolo-info-wrap {
+			background-color: #fff;
+		}
 		.zolo-social-share {
 			border-top-width: 1px;
 			border-top-style: solid;
@@ -266,7 +271,6 @@
 	&.style-2 {
 		.zolo-item {
 			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-			background-color: #fff;
 		}
 		.zolo-image-wrap {
 			overflow: hidden;

@@ -13,6 +13,7 @@ const {
 
 import {
 	CONTAINER_BG,
+	CONTENT_BG,
 	CONTENT_ALIGNMENT,
 	PHOTO_BG,
 	TEAM_PHOTO_BORDER,
@@ -60,6 +61,7 @@ const attributes = {
 	...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_PADDING),
 	...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_MARGIN),
 	...generateNormalBGAttributes(CONTAINER_BG),
+	...generateNormalBGAttributes(CONTENT_BG),
 	...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
 		defaultAlign: 'left',
 	}),

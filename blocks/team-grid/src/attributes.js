@@ -46,7 +46,7 @@ const attributes = {
 	},
 	showShortBio: {
 		type: 'boolean',
-		default: true,
+		default: false,
 	},
 	showSocialProfiles: {
 		type: 'boolean',

@@ -118,7 +118,7 @@ const attributes = {
 	},
 	showShortBio: {
 		type: 'boolean',
-		default: true,
+		default: false,
 	},
 	memberShortBio: {
 		type: 'string',

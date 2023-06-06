@@ -40,6 +40,7 @@ import objAttributes from './attributes';
 import {
 	PRESETS,
 	CONTAINER_BG,
+	CONTENT_BG,
 	CONTENT_ALIGNMENT,
 	PHOTO_BG,
 	TEAM_PHOTO_BORDER,
@@ -542,41 +543,57 @@ function Inspector(props) {
 							{tab.name === 'design' && (
 								<>
 									<PanelBody
-										title={__('General', 'zolo-blocks')}
+										title={__('Container', 'zolo-blocks')}
 										initialOpen={false}
 									>
-										<ResAlignmentControl
-											label={__(
-												'Content Alignmet',
-												'zolo-blocks'
-											)}
-											controlName={CONTENT_ALIGNMENT}
-											resRequiredProps={resRequiredProps}
-											alignOptions={[
-												{
-													label: 'Left',
-													value: 'left',
-												},
-												{
-													label: 'Center',
-													value: 'center',
-												},
-												{
-													label: 'Right',
-													value: 'right',
-												},
-												{
-													label: 'Justify',
-													value: 'justify',
-												},
-											]}
-										/>
 										<NormalBGControl
 											resRequiredProps={resRequiredProps}
 											controlName={CONTAINER_BG}
 											noMainBGImg={false}
 										/>
 									</PanelBody>
+									{preset !== 'style-3' && (
+										<PanelBody
+											title={__('Content', 'zolo-blocks')}
+											initialOpen={false}
+										>
+											<ResAlignmentControl
+												label={__(
+													'Content Alignmet',
+													'zolo-blocks'
+												)}
+												controlName={CONTENT_ALIGNMENT}
+												resRequiredProps={
+													resRequiredProps
+												}
+												alignOptions={[
+													{
+														label: 'Left',
+														value: 'left',
+													},
+													{
+														label: 'Center',
+														value: 'center',
+													},
+													{
+														label: 'Right',
+														value: 'right',
+													},
+													{
+														label: 'Justify',
+														value: 'justify',
+													},
+												]}
+											/>
+											<NormalBGControl
+												resRequiredProps={
+													resRequiredProps
+												}
+												controlName={CONTENT_BG}
+												noMainBGImg={false}
+											/>
+										</PanelBody>
+									)}
 									<PanelBody
 										title={__('Photo', 'zolo-blocks')}
 										initialOpen={false}

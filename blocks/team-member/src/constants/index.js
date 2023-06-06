@@ -16,6 +16,7 @@ export const PRESETS = [
 
 // Container
 export const CONTAINER_BG = 'teamContainerBg';
+export const CONTENT_BG = 'teamContentBg';
 
 // photo bg
 export const PHOTO_BG = 'teamPhotoBg';

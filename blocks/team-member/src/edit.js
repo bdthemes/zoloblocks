@@ -35,6 +35,7 @@ const {
 import {
 	BLOCK_PREFIX,
 	CONTAINER_BG,
+	CONTENT_BG,
 	CONTENT_ALIGNMENT,
 	ICONS_BG,
 	ICONS_HOVER_BG,
@@ -141,6 +142,17 @@ export default function Edit(props) {
 		backgroundStylesMobile: containerMobBGStyle,
 	} = generateNormalBGControlStyles({
 		controlName: CONTAINER_BG,
+		attributes,
+		noMainBGImg: false,
+	});
+
+	// content
+	const {
+		backgroundStylesDesktop: contentDeskBGStyle,
+		backgroundStylesTab: contentTabBGStyle,
+		backgroundStylesMobile: contentMobBGStyle,
+	} = generateNormalBGControlStyles({
+		controlName: CONTENT_BG,
 		attributes,
 		noMainBGImg: false,
 	});
@@ -512,15 +524,17 @@ export default function Edit(props) {
 		.${uniqueId} {
 			${teamMemberContainerDeskPadding}
 			${teamMemberContainerDeskMargin}
+			${containerDeskBGStyle}
 		}
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
 			${teamDeskAlignStyle}
 		}
-		.${uniqueId}.default .zolo-item .zolo-info-wrap,
+		.${uniqueId}.default .zolo-item .zolo-info-wrap, 
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
+		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,
 		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
-			${containerDeskBGStyle}
+			${contentDeskBGStyle}
 		}
 		.${uniqueId} .zolo-social-share {
 			${socialDeskAlignStyle}
@@ -588,12 +602,13 @@ export default function Edit(props) {
 		.${uniqueId} {
 			${teamMemberContainerTabPadding}
 			${teamMemberContainerTabMargin}
+			${containerTabBGStyle}
 		}
 		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,
 		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
-			${containerTabBGStyle}
+			${contentTabBGStyle}
 		}
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
 			${teamTabAlignStyle}
@@ -650,12 +665,13 @@ export default function Edit(props) {
 		.${uniqueId} {
 			${teamMemberContainerMobPadding}
 			${teamMemberContainerMobMargin}
+			${containerMobBGStyle}
 		}
 		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,
 		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
-			${containerMobBGStyle}
+			${contentMobBGStyle}
 		}
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
 			${teamMobAlignStyle}
