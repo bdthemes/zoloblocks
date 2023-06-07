@@ -6,6 +6,7 @@ import {
 	__experimentalLinkControl as LinkControl,
 	MediaUpload,
 	MediaUploadCheck,
+	MediaPlaceholder,
 } from '@wordpress/block-editor';
 import {
 	CardDivider,
@@ -14,6 +15,7 @@ import {
 	TabPanel,
 	TextControl,
 	ToggleControl,
+	BaseControl,
 	Button,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -34,24 +36,18 @@ const {
 	TabPanelControl,
 	IconPicker,
 	BoxShadowControl,
+	ImageAvatar,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
-	TITLE_ALIGNMENT,
-	TITLE_TAG,
 	TITLE_MARGIN,
 	DESCRIPTION_MARGIN,
-	DESC_ALIGNMENT,
 	PRESETS,
 	ICON_POSITIONS,
 	BUTTON_POSITIONS,
-	TOP_ICON_POSITIONS,
-	SIDE_ICON_POSITIONS,
-	ICON_SIZE,
 	BUTTON_ICON_SIZE,
 	ICON_TEXT_SPACING,
-	ICON_SPACING,
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
 	ICON_BOX_SHADOW,
@@ -79,10 +75,11 @@ function Inspector( props ) {
 	const {
 		uniqueId,
 		preset,
-		titleTag,
+		brandPhoto,
+		brandName,
+		brandDetailPageLink,
 		resMode,
 		showIcon,
-		mainIcon,
 		buttonIcon,
 		iconColor,
 		iconHoverColor,
@@ -161,521 +158,102 @@ function Inspector( props ) {
 										title={ __( 'Content', 'zolo-blocks' ) }
 										initialOpen={ false }
 									>
-										<SelectControl
+										<BaseControl
 											label={ __(
-												'Select Icon Type',
+												'Photo',
 												'zolo-blocks'
 											) }
-											value={ iconType }
-											options={ [
-												{
-													label: 'Icon',
-													value: 'icon',
-												},
-												{
-													label: 'Image',
-													value: 'image',
-												},
-											] }
-											onChange={ ( value ) =>
-												setAttributes( {
-													iconType: value,
-												} )
-											}
-										/>
-
-										{ iconType == 'icon' && (
-											<Fragment>
-												<IconPicker
-													value={ mainIcon }
-													onChange={ ( value ) =>
+										>
+											{ brandPhoto ? (
+												<ImageAvatar
+													imageUrl={
+														brandPhoto &&
+														brandPhoto.url
+													}
+													onDeleteImage={ () =>
 														setAttributes( {
-															mainIcon: value,
+															brandPhoto: null,
 														} )
 													}
 												/>
-												{ preset !== '' &&
-													preset == 'style-1' && (
-														<SelectControl
-															label={ __(
-																'Position',
+											) : (
+												<MediaUpload
+													onSelect={ ( media ) => {
+														setAttributes( {
+															brandPhoto: media,
+														} );
+													} }
+													allowedTypes={ [ 'image' ] }
+													value={
+														brandPhoto &&
+														brandPhoto.id
+													}
+													render={ ( { open } ) => (
+														<Button
+															className="zolo-image-upload-btn"
+															onClick={ open }
+														>
+															<svg
+																width="24"
+																height="24"
+																xmlns="http://www.w3.org/2000/svg"
+																fillRule="evenodd"
+																clipRule="evenodd"
+															>
+																<path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
+															</svg>
+															{ __(
+																' Upload Photo',
 																'zolo-blocks'
 															) }
-															options={
-																TOP_ICON_POSITIONS
-															}
-															onChange={ (
-																value
-															) =>
-																setAttributes( {
-																	presetOneStyles:
-																		{
-																			...presetOneStyles,
-																			iconPosition:
-																				value,
-																		},
-																} )
-															}
-															value={
-																presetOneStyles.iconPosition
-															}
-														/>
+														</Button>
 													) }
-												{ preset == 'style-2' && (
-													<SelectControl
-														label={ __(
-															'Position',
-															'zolo-blocks'
-														) }
-														options={
-															SIDE_ICON_POSITIONS
-														}
-														onChange={ ( value ) =>
-															setAttributes( {
-																presetTwoStyles:
-																	{
-																		...presetTwoStyles,
-																		iconPosition:
-																			value,
-																	},
-															} )
-														}
-														value={
-															presetTwoStyles.iconPosition
-														}
-													/>
-												) }
-												{ preset == 'style-3' && (
-													<SelectControl
-														label={ __(
-															'Position',
-															'zolo-blocks'
-														) }
-														options={
-															SIDE_ICON_POSITIONS
-														}
-														onChange={ ( value ) =>
-															setAttributes( {
-																presetThreeStyles:
-																	{
-																		...presetThreeStyles,
-																		iconPosition:
-																			value,
-																	},
-															} )
-														}
-														value={
-															presetThreeStyles.iconPosition
-														}
-													/>
-												) }
-
-												<br />
-
-												<ResRangeControl
-													label={ __(
-														'Icon Size',
-														'zolo-blocks'
-													) }
-													controlName={ ICON_SIZE }
-													resRequiredProps={
-														resRequiredProps
-													}
-													min={ 0 }
-													max={ 100 }
-													step={ 1 }
 												/>
-												<ResRangeControl
-													label={ __(
-														'Gap',
-														'zolo-blocks'
-													) }
-													controlName={ ICON_SPACING }
-													resRequiredProps={
-														resRequiredProps
-													}
-													min={ 0 }
-													max={ 100 }
-													step={ 1 }
-												/>
-											</Fragment>
-										) }
-
-										{ iconType == 'image' && (
-											<Fragment>
-												{ preset !== '' &&
-													preset == 'style-1' && (
-														<SelectControl
-															label={ __(
-																'Position',
-																'zolo-blocks'
-															) }
-															options={
-																TOP_ICON_POSITIONS
-															}
-															onChange={ (
-																value
-															) =>
-																setAttributes( {
-																	presetOneStyles:
-																		{
-																			...presetOneStyles,
-																			iconPosition:
-																				value,
-																		},
-																} )
-															}
-															value={
-																presetOneStyles.iconPosition
-															}
-														/>
-													) }
-												{ preset == 'style-2' && (
-													<SelectControl
-														label={ __(
-															'Position',
-															'zolo-blocks'
-														) }
-														options={
-															SIDE_ICON_POSITIONS
-														}
-														onChange={ ( value ) =>
-															setAttributes( {
-																presetTwoStyles:
-																	{
-																		...presetTwoStyles,
-																		iconPosition:
-																			value,
-																	},
-															} )
-														}
-														value={
-															presetTwoStyles.iconPosition
-														}
-													/>
-												) }
-												{ preset == 'style-3' && (
-													<SelectControl
-														label={ __(
-															'Position',
-															'zolo-blocks'
-														) }
-														options={
-															SIDE_ICON_POSITIONS
-														}
-														onChange={ ( value ) =>
-															setAttributes( {
-																presetThreeStyles:
-																	{
-																		...presetThreeStyles,
-																		iconPosition:
-																			value,
-																	},
-															} )
-														}
-														value={
-															presetThreeStyles.iconPosition
-														}
-													/>
-												) }
-											</Fragment>
-										) }
-
-										<CardDivider />
-										<SelectControl
-											label={ __(
-												'Title Tag',
-												'zolo-blocks'
 											) }
-											options={ TITLE_TAG }
-											onChange={ ( tag ) => {
-												setAttributes( {
-													titleTag: tag,
-												} );
-											} }
-											value={ titleTag }
-										/>
-										<ResAlignmentControl
-											label={ __(
-												'Title Alignment',
-												'zolo-blocks'
-											) }
-											controlName={ TITLE_ALIGNMENT }
-											resRequiredProps={
-												resRequiredProps
-											}
-											alignOptions={ [
-												{
-													label: 'Left',
-													value: 'left',
-												},
-												{
-													label: 'Center',
-													value: 'center',
-												},
-												{
-													label: 'Right',
-													value: 'right',
-												},
-												{
-													label: 'Justify',
-													value: 'justify',
-												},
-											] }
-										/>
-										<br />
-										<ResAlignmentControl
-											label={ __(
-												'Description Alignment',
-												'zolo-blocks'
-											) }
-											controlName={ DESC_ALIGNMENT }
-											resRequiredProps={
-												resRequiredProps
-											}
-											alignOptions={ [
-												{
-													label: 'Left',
-													value: 'left',
-												},
-												{
-													label: 'Center',
-													value: 'center',
-												},
-												{
-													label: 'Right',
-													value: 'right',
-												},
-												{
-													label: 'Justify',
-													value: 'justify',
-												},
-											] }
-										/>
-									</PanelBody>
-									<PanelBody
-										title={ __( 'Button', 'zolo-blocks' ) }
-										initialOpen={ false }
-									>
+										</BaseControl>
 										<TextControl
 											label={ __(
-												'Button URL',
+												'Name',
 												'zolo-blocks'
 											) }
-											value={ buttonLink }
-											onChange={ ( link ) =>
+											onChange={ ( name ) =>
 												setAttributes( {
-													buttonLink: link,
+													brandName: name,
 												} )
 											}
+											value={ brandName }
+											placeholder={ __(
+												'Name..',
+												'zolo-blocks'
+											) }
 										/>
-										{ preset === 'style-1' && (
-											<SelectControl
-												label={ __(
-													'Button Position',
-													'zolo-blocks'
-												) }
-												options={ BUTTON_POSITIONS }
-												onChange={ ( value ) =>
-													setAttributes( {
-														presetOneStyles: {
-															...presetOneStyles,
-															buttonPosition:
-																value,
-														},
-													} )
-												}
-												value={
-													presetOneStyles.buttonPosition
-												}
-											/>
-										) }
-										{ preset === 'style-2' && (
-											<SelectControl
-												label={ __(
-													'Button Position',
-													'zolo-blocks'
-												) }
-												options={ BUTTON_POSITIONS }
-												onChange={ ( value ) =>
-													setAttributes( {
-														presetTwoStyles: {
-															...presetTwoStyles,
-															buttonPosition:
-																value,
-														},
-													} )
-												}
-												value={
-													presetTwoStyles.buttonPosition
-												}
-											/>
-										) }
-										{ preset === 'style-3' && (
-											<SelectControl
-												label={ __(
-													'Button Position',
-													'zolo-blocks'
-												) }
-												options={ BUTTON_POSITIONS }
-												onChange={ ( value ) =>
-													setAttributes( {
-														presetThreeStyles: {
-															...presetThreeStyles,
-															buttonPosition:
-																value,
-														},
-													} )
-												}
-												value={
-													presetThreeStyles.buttonPosition
-												}
-											/>
-										) }
-										<ToggleControl
+
+										<BaseControl
 											label={ __(
-												'Enable Icon',
+												'Brand Details Link',
 												'zolo-blocks'
 											) }
-											checked={ showIcon }
-											onChange={ () =>
-												setAttributes( {
-													showIcon: ! showIcon,
-												} )
-											}
-										/>
-										{ showIcon && (
-											<Fragment>
-												<IconPicker
-													value={ buttonIcon }
-													onChange={ ( value ) =>
-														setAttributes( {
-															buttonIcon: value,
-														} )
-													}
-												/>
-												{ preset === 'style-1' && (
-													<SelectControl
-														label={ __(
-															'Position',
+										>
+											<LinkControl
+												//searchInputPlaceholder="Search here..."
+												value={ brandDetailPageLink }
+												settings={ [
+													{
+														id: 'opensInNewTab',
+														title: __(
+															'Open in new tab',
 															'zolo-blocks'
-														) }
-														options={
-															ICON_POSITIONS
-														}
-														onChange={ (
-															position
-														) => {
-															setAttributes( {
-																presetOneStyles:
-																	{
-																		...presetOneStyles,
-																		buttonIconPosition:
-																			position,
-																	},
-															} );
-														} }
-														value={
-															presetOneStyles.buttonIconPosition
-														}
-													/>
-												) }
-												{ preset === 'style-2' && (
-													<SelectControl
-														label={ __(
-															'Position',
-															'zolo-blocks'
-														) }
-														options={
-															ICON_POSITIONS
-														}
-														onChange={ (
-															position
-														) => {
-															setAttributes( {
-																presetTwoStyles:
-																	{
-																		...presetTwoStyles,
-																		buttonIconPosition:
-																			position,
-																	},
-															} );
-														} }
-														value={
-															presetTwoStyles.buttonIconPosition
-														}
-													/>
-												) }
-												{ preset === 'style-3' && (
-													<SelectControl
-														label={ __(
-															'Position',
-															'zolo-blocks'
-														) }
-														options={
-															ICON_POSITIONS
-														}
-														onChange={ (
-															position
-														) => {
-															setAttributes( {
-																presetThreeStyles:
-																	{
-																		...presetThreeStyles,
-																		buttonIconPosition:
-																			position,
-																	},
-															} );
-														} }
-														value={
-															presetThreeStyles.buttonIconPosition
-														}
-													/>
-												) }
-												<ResRangeControl
-													label={ __(
-														'Icon Size',
-														'zolo-blocks'
-													) }
-													controlName={
-														BUTTON_ICON_SIZE
-													}
-													resRequiredProps={
-														resRequiredProps
-													}
-													min={ 0 }
-													max={ 100 }
-													step={ 1 }
-												/>
-												<ResRangeControl
-													label={ __(
-														'Gap',
-														'zolo-blocks'
-													) }
-													controlName={
-														ICON_TEXT_SPACING
-													}
-													resRequiredProps={
-														resRequiredProps
-													}
-													min={ 0 }
-													max={ 100 }
-													step={ 1 }
-												/>
-											</Fragment>
-										) }
-										<ToggleControl
-											label={ __(
-												'Use as Global Link',
-												'zolo-blocks'
-											) }
-											checked={ globalLink }
-											onChange={ () =>
-												setAttributes( {
-													globalLink: ! globalLink,
-												} )
-											}
-										/>
+														),
+													},
+												] }
+												onChange={ ( data ) =>
+													setAttributes( {
+														brandDetailPageLink:
+															data,
+													} )
+												}
+											/>
+										</BaseControl>
 									</PanelBody>
 								</>
 							) }

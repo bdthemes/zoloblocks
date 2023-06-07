@@ -71,26 +71,20 @@ export default function Edit( props ) {
 	const {
 		uniqueId,
 		preset,
-		titleTag,
+		brandPhoto,
+		brandName,
+		brandDetailPageLink,
 		link,
 		blockStyle,
-		showIcon,
-		mainIcon,
-		buttonIcon,
 		textColor,
 		textHoverColor,
 		descColor,
 		descHoverColor,
-		iconPosition,
 		iconColor,
 		iconHoverColor,
 		iconBackgroundColor,
 		iconBackgroundHoverColor,
-		iconType,
 		iconTypeImage,
-		iconBoxTitle,
-		iconBoxDescription,
-		buttonText,
 		btnColor,
 		btnHoverColor,
 		btnBgColor,
@@ -298,7 +292,7 @@ export default function Edit( props ) {
 	} );
 
 	/**
-	 * Generate Title Alignment Class
+	 * Generate Title Alignment className
 	 */
 	const deskTitleAlign = `display: ${
 		textAlignmentDesktop === 'text-align:left;' ? 'flex' : 'inline-flex'
@@ -313,7 +307,7 @@ export default function Edit( props ) {
 	};`;
 
 	/**
-	 * Generate Description Alignment Class
+	 * Generate Description Alignment className
 	 */
 
 	const deskDescAlign = `display: ${
@@ -329,7 +323,7 @@ export default function Edit( props ) {
 	};`;
 
 	/**
-	 * Generate Icon Alignment Class
+	 * Generate Icon Alignment className
 	 */
 	const deskAlign = `display: ${
 		iconAlignmentDesktop === 'text-align:justify;' ? 'flex' : 'inline-flex'
@@ -716,7 +710,7 @@ export default function Edit( props ) {
 			<BlockControls>
 				<ToolbarGroup>
 					<Dropdown
-						className="my-container-class-name"
+						className="my-container-className-name"
 						contentClassName="my-popover-content-classname"
 						popoverProps={ { placement: 'bottom-start' } }
 						renderToggle={ ( { isOpen, onToggle } ) => (
@@ -798,85 +792,114 @@ export default function Edit( props ) {
 				<div
 					className={ `zb-brand-grid-wrap zb-brand-style-1 ${ uniqueId } ${ preset }` }
 				>
-					<div class="zb-brand-item">
-						<div class="zb-brand-image">
-							<img
-								src="https://dragwp.com/wp-content/uploads/2023/06/zolando.png"
-								alt=""
-							/>
+					<div className="zb-brand-item">
+						<div className="zb-brand-image">
+							{ brandPhoto && (
+								<img
+									src={ brandPhoto.url }
+									alt={ brandPhoto.alt || 'Reviewer' }
+									className="zolo-img"
+								/>
+							) }
 						</div>
-						<div class="zb-brand-content">
-							<div class="zb-brand-icon">
+						<div className="zb-brand-content">
+							<div className="zb-brand-icon">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="16"
 									height="16"
 									fill="currentColor"
-									class="bi bi-plus"
+									className="bi bi-plus"
 									viewBox="0 0 16 16"
 								>
 									<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
 								</svg>
 							</div>
-							<div class="zb-brand-inner-content">
-								<div class="zb-brand-title">zalando</div>
-								<a class="zb-brand-link" href="#">
+							<div className="zb-brand-inner-content">
+								<RichText
+									className="zb-brand-title"
+									value={ brandName }
+									onChange={ ( name ) =>
+										setAttributes( { brandName: name } )
+									}
+									placeholder={ __(
+										'Brand Name...',
+										'zolo-blocks'
+									) }
+								/>
+								<a
+									className="zb-brand-link"
+									href={
+										brandDetailPageLink &&
+										brandDetailPageLink.url
+									}
+									rel={
+										brandDetailPageLink &&
+										brandDetailPageLink.newTab &&
+										'noreferer'
+									}
+									target={
+										brandDetailPageLink &&
+										brandDetailPageLink.newTab &&
+										'_blank'
+									}
+								>
 									www.zalando.com
 								</a>
 							</div>
 						</div>
 					</div>
-					<div class="zb-brand-item">
-						<div class="zb-brand-image">
+					<div className="zb-brand-item">
+						<div className="zb-brand-image">
 							<img
 								src="https://dragwp.com/wp-content/uploads/2023/06/flixbus.png"
 								alt=""
 							/>
 						</div>
-						<div class="zb-brand-content">
-							<div class="zb-brand-icon">
+						<div className="zb-brand-content">
+							<div className="zb-brand-icon">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="16"
 									height="16"
 									fill="currentColor"
-									class="bi bi-plus"
+									className="bi bi-plus"
 									viewBox="0 0 16 16"
 								>
 									<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
 								</svg>
 							</div>
-							<div class="zb-brand-inner-content">
-								<div class="zb-brand-title">Flixbus</div>
-								<a class="zb-brand-link" href="#">
+							<div className="zb-brand-inner-content">
+								<div className="zb-brand-title">Flixbus</div>
+								<a className="zb-brand-link" href="#">
 									www.flixbus.com
 								</a>
 							</div>
 						</div>
 					</div>
-					<div class="zb-brand-item">
-						<div class="zb-brand-image">
+					<div className="zb-brand-item">
+						<div className="zb-brand-image">
 							<img
 								src="https://dragwp.com/wp-content/uploads/2023/06/indeed.png"
 								alt=""
 							/>
 						</div>
-						<div class="zb-brand-content">
-							<div class="zb-brand-icon">
+						<div className="zb-brand-content">
+							<div className="zb-brand-icon">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="16"
 									height="16"
 									fill="currentColor"
-									class="bi bi-plus"
+									className="bi bi-plus"
 									viewBox="0 0 16 16"
 								>
 									<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
 								</svg>
 							</div>
-							<div class="zb-brand-inner-content">
-								<div class="zb-brand-title">Indeed</div>
-								<a class="zb-brand-link" href="#">
+							<div className="zb-brand-inner-content">
+								<div className="zb-brand-title">Indeed</div>
+								<a className="zb-brand-link" href="#">
 									www.indeed.com
 								</a>
 							</div>

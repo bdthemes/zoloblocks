@@ -109,128 +109,20 @@ const attributes = {
 		type: 'string',
 		default: 'style-1',
 	},
-	label: {
+	brandPhoto: {
+		type: 'object',
+	},
+	brandName: {
 		type: 'string',
 	},
-	titleTag: {
-		type: 'string',
-		default: 'h2',
-	},
-	link: {
+	brandDetailPageLink: {
 		type: 'object',
 		default: {
 			url: '#',
 			opensInNewTab: false,
-			addNoFollow: false,
 		},
 	},
-	openInNewTab: {
-		type: 'boolean',
-		default: false,
-	},
-	addNoFollow: {
-		type: 'boolean',
-		default: false,
-	},
-	showIcon: {
-		type: 'boolean',
-		default: false,
-	},
-	globalLink: {
-		type: 'boolean',
-		default: false,
-	},
-	icon: {
-		type: 'string',
-	},
-	iconPosition: {
-		type: 'string',
-		default: 'right',
-	},
-	topIconPosition: {
-		type: 'string',
-		default: 'left',
-	},
-	textColor: {
-		type: 'string',
-	},
-	textHoverColor: {
-		type: 'string',
-	},
-	descColor: {
-		type: 'string',
-	},
-	descHoverColor: {
-		type: 'string',
-	},
-	iconType: {
-		type: 'string',
-		default: 'icon',
-	},
-	mainIcon: {
-		type: 'object',
-		default: {
-			'admin-generic': {
-				name: 'admin generic',
-				source: 'dashicon',
-				type: '',
-			},
-		},
-	},
-	buttonIcon: {
-		type: 'object',
-		default: {
-			'admin-generic': {
-				name: 'admin generic',
-				source: 'dashicon',
-				type: '',
-			},
-		},
-	},
-	iconColor: {
-		type: 'string',
-	},
-	iconHoverColor: {
-		type: 'string',
-	},
-	iconBackgroundColor: {
-		type: 'string',
-	},
-	iconBackgroundHoverColor: {
-		type: 'string',
-	},
-	iconTypeImage: {
-		type: 'object',
-	},
-	iconBoxTitle: {
-		type: 'string',
-		default: 'The Theme Settings',
-	},
-	iconBoxDescription: {
-		type: 'string',
-		default:
-			'The Theme Setting is a website that provides users with a range of tools to customize their web experience.',
-	},
-	buttonText: {
-		type: 'string',
-		default: 'Read More',
-	},
-	buttonLink: {
-		type: 'string',
-		default: '#',
-	},
-	btnColor: {
-		type: 'string',
-	},
-	btnHoverColor: {
-		type: 'string',
-	},
-	btnBgColor: {
-		type: 'string',
-	},
-	btnBgHoverColor: {
-		type: 'string',
-	},
+
 	presetOneStyles: {
 		type: 'object',
 		default: {
