@@ -1,4 +1,4 @@
-.zb-typography-component-panel {
+.zolo-typography-component-panel {
 	.components-base-control {
 		.components-input-control__backdrop {
 			border-color: #ddd;
@@ -12,7 +12,7 @@
 		}
 	}
 }
-.zb-typography-component-panel {
+.zolo-typography-component-panel {
 	min-width: 240px;
 	background-color: #fff;
 	display: flex;
@@ -36,7 +36,7 @@
 		outline: none;
 	}
 
-	.zb-reset-button {
+	.zolo-reset-button {
 		display: inline-flex;
 		align-items: center;
 		justify-content: flex-end;
@@ -57,22 +57,22 @@
 		}
 	}
 
-	.zb-res-device-btn-wrapper {
+	.zolo-res-device-btn-wrapper {
 		position: relative;
 
-		.zb-res-device-btns {
+		.zolo-res-device-btns {
 			position: absolute;
 			left: 70px;
 		}
 
-		&.zb-letter-spacing {
-			.zb-res-device-btns {
+		&.zolo-letter-spacing {
+			.zolo-res-device-btns {
 				left: 95px;
 			}
 		}
 	}
 
-	.zb-range-controller-container {
+	.zolo-range-controller-container {
 		align-items: flex-start;
 		display: flex;
 
@@ -81,7 +81,7 @@
 		}
 	}
 
-	.zb-range-reset-button {
+	.zolo-range-reset-button {
 		background: transparent;
 		border: none;
 		box-shadow: none;

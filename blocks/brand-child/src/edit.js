@@ -734,13 +734,6 @@ export default function Edit( props ) {
 												'zolo-blocks'
 											),
 										},
-										{
-											id: 'addNoFollow',
-											title: __(
-												'Add nofollow to link',
-												'zolo-blocks'
-											),
-										},
 									] }
 									onChange={ ( data ) =>
 										setAttributes( { link: data } )

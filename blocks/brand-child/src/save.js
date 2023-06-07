@@ -3,8 +3,14 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 const { DisplayIcon } = window.zoloModule;
 
 const Save = ( { attributes } ) => {
-	const { uniqueId, preset, brandPhoto, brandName, brandDetailPageLink } =
-		attributes;
+	const {
+		uniqueId,
+		preset,
+		brandPhoto,
+		brandName,
+		brandDetailPageLink,
+		link,
+	} = attributes;
 
 	let linkRel = link && link.opensInNewTab ? 'noopener noreferrer' : '';
 	const rel = link && link.addNoFollow ? `${ linkRel } nofollow` : linkRel;
