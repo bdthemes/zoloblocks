@@ -77,6 +77,7 @@ function Inspector( props ) {
 		preset,
 		brandPhoto,
 		brandName,
+		brandAnchorText,
 		brandDetailPageLink,
 		link,
 		resMode,
@@ -214,7 +215,7 @@ function Inspector( props ) {
 										</BaseControl>
 										<TextControl
 											label={ __(
-												'Name',
+												'Brand Name',
 												'zolo-blocks'
 											) }
 											onChange={ ( name ) =>
@@ -223,6 +224,22 @@ function Inspector( props ) {
 												} )
 											}
 											value={ brandName }
+											placeholder={ __(
+												'Name..',
+												'zolo-blocks'
+											) }
+										/>
+										<TextControl
+											label={ __(
+												'Anchor Text',
+												'zolo-blocks'
+											) }
+											onChange={ ( name ) =>
+												setAttributes( {
+													brandAnchorText: name,
+												} )
+											}
+											value={ brandAnchorText }
 											placeholder={ __(
 												'Name..',
 												'zolo-blocks'

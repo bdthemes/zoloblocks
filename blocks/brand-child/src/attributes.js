@@ -115,6 +115,9 @@ const attributes = {
 	brandName: {
 		type: 'string',
 	},
+	brandAnchorText: {
+		type: 'string',
+	},
 	brandDetailPageLink: {
 		type: 'object',
 		default: {

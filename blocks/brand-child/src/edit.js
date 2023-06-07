@@ -74,6 +74,7 @@ export default function Edit( props ) {
 		brandPhoto,
 		brandName,
 		brandDetailPageLink,
+		brandAnchorText,
 		link,
 		blockStyle,
 		textColor,
@@ -785,6 +786,7 @@ export default function Edit( props ) {
 				<div
 					className={ `zb-brand-grid-wrap zb-brand-style-1 ${ uniqueId } ${ preset }` }
 				>
+					{ ' ' }
 					<div className="zb-brand-item">
 						<div className="zb-brand-image">
 							{ brandPhoto && (
@@ -828,16 +830,16 @@ export default function Edit( props ) {
 									}
 									rel={
 										brandDetailPageLink &&
-										brandDetailPageLink.newTab &&
+										brandDetailPageLink.opensInNewTab &&
 										'noreferer'
 									}
 									target={
 										brandDetailPageLink &&
-										brandDetailPageLink.newTab &&
+										brandDetailPageLink.opensInNewTab &&
 										'_blank'
 									}
 								>
-									www.zalando.com
+									{ brandAnchorText && brandAnchorText }
 								</a>
 							</div>
 						</div>

@@ -8,6 +8,7 @@ import {
 	MediaUpload,
 	MediaPlaceholder,
 	__experimentalLinkControl as LinkControl,
+	InnerBlocks,
 } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
@@ -796,96 +797,13 @@ export default function Edit( props ) {
 			<style>{ ` ${ softMinifyCssStrings( allStyle ) }` }</style>
 			<div { ...blockProps }>
 				<div
-					className={ `zolo-block-advanced-icon-box ${ uniqueId } zolo-block-advanced-icon-box-${ preset }` }
+					className={ `zb-brand-grid-wrap zb-brand-style-1 ${ uniqueId } ${ preset }` }
 				>
-					<div className="zolo-block-item">
-						<div className={ `zolo-block-icon-wrap` }>
-							{ iconType == 'icon' ? (
-								<DisplayIcon icon={ mainIcon } />
-							) : iconTypeImage ? (
-								<img
-									src={ iconTypeImage.url }
-									alt={ iconTypeImage.alt || 'Team Member' }
-								/>
-							) : (
-								<MediaPlaceholder
-									icon="format-image"
-									labels={ {
-										title: __( 'Add Photo', 'zolo-blocks' ),
-										instructions: '',
-									} }
-									onSelect={ ( media ) => {
-										setAttributes( {
-											iconTypeImage: media,
-										} );
-									} }
-									accept="image/*"
-									allowedTypes={ [ 'image' ] }
-								/>
-							) }
-
-							{  }
-						</div>
-
-						<div className="zolo-block-body-content">
-							<RichText
-								className={ `zolo-block-title` }
-								tagName={ titleTag }
-								value={ iconBoxTitle }
-								onChange={ ( text ) =>
-									setAttributes( {
-										iconBoxTitle: text,
-									} )
-								}
-								placeholder={ __(
-									'The Theme Setting',
-									'zolo-blocks'
-								) }
-								allowedFormats={ [] }
-							/>
-
-							<RichText
-								className={ `zolo-block-desc` }
-								tagName="div"
-								value={ iconBoxDescription }
-								onChange={ ( text ) =>
-									setAttributes( {
-										iconBoxDescription: text,
-									} )
-								}
-								placeholder={ __(
-									'The Theme Setting is a website that provides users with a range of tools to customize their web experience.',
-									'zolo-blocks'
-								) }
-								allowedFormats={ [] }
-							/>
-
-							<div className={ `zolo-block-link-btn` }>
-								<a className={ `zolo-box-button` }>
-									<RichText
-										value={ buttonText }
-										tagName="p"
-										onChange={ ( text ) =>
-											setAttributes( {
-												buttonText: text,
-											} )
-										}
-										placeholder={ __(
-											'Read More',
-											'zolo-blocks'
-										) }
-									/>
-									{ showIcon && (
-										<DisplayIcon icon={ buttonIcon } />
-									) }
-								</a>
-							</div>
-						</div>
-
-						<div className="zolo-block-hover-icon">
-							<DisplayIcon icon={ mainIcon } />
-						</div>
-					</div>
+					<InnerBlocks
+						allowedBlocks={ [ 'zolo/brand-child' ] }
+						template={ [ [ 'zolo/brand-child', {} ] ] }
+						renderAppender={ false }
+					/>
 				</div>
 			</div>
 		</>

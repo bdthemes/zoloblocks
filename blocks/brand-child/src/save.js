@@ -9,6 +9,7 @@ const Save = ( { attributes } ) => {
 		brandPhoto,
 		brandName,
 		brandDetailPageLink,
+		brandAnchorText,
 		link,
 	} = attributes;
 
@@ -45,6 +46,7 @@ const Save = ( { attributes } ) => {
 						</div>
 						<div className="zb-brand-inner-content">
 							<RichText.Content
+								tagName="div"
 								className="zb-brand-title"
 								value={ brandName }
 							/>
@@ -56,16 +58,16 @@ const Save = ( { attributes } ) => {
 								}
 								rel={
 									brandDetailPageLink &&
-									brandDetailPageLink.newTab &&
+									brandDetailPageLink.opensInNewTab &&
 									'noreferer'
 								}
 								target={
 									brandDetailPageLink &&
-									brandDetailPageLink.newTab &&
+									brandDetailPageLink.opensInNewTab &&
 									'_blank'
 								}
 							>
-								www.zalando.com
+								{ brandAnchorText && brandAnchorText }
 							</a>
 						</div>
 					</div>
