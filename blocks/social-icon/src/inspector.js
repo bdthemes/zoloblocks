@@ -62,8 +62,6 @@ function Inspector( props ) {
 		socialProfileColumns,
 	} = attributes;
 
-	console.log( socialProfilesLinkTarget );
-
 	const resRequiredProps = {
 		attributes,
 		setAttributes,

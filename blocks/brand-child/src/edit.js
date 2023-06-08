@@ -75,6 +75,7 @@ export default function Edit( props ) {
 		brandName,
 		brandDetailPageLink,
 		brandAnchorText,
+		showWebsiteLink,
 		link,
 		blockStyle,
 		textColor,
@@ -784,9 +785,8 @@ export default function Edit( props ) {
 			<style>{ ` ${ softMinifyCssStrings( allStyle ) }` }</style>
 			<div { ...blockProps }>
 				<div
-					className={ `zb-brand-grid-wrap zb-brand-style-1 ${ uniqueId } ${ preset }` }
+					className={ `zb-brand-grid-wrap zb-brand-${ preset } ${ uniqueId }` }
 				>
-					{ ' ' }
 					<div className="zb-brand-item">
 						<div className="zb-brand-image">
 							{ brandPhoto && (
@@ -822,38 +822,40 @@ export default function Edit( props ) {
 										'zolo-blocks'
 									) }
 								/>
-								<a
-									className="zb-brand-link"
-									href={
-										brandDetailPageLink &&
-										brandDetailPageLink.url
-									}
-									rel={
-										brandDetailPageLink &&
-										brandDetailPageLink.opensInNewTab &&
-										'noreferer'
-									}
-									target={
-										brandDetailPageLink &&
-										brandDetailPageLink.opensInNewTab &&
-										'_blank'
-									}
-								>
-									{
-										<RichText
-											value={ brandAnchorText }
-											onChange={ ( name ) =>
-												setAttributes( {
-													brandAnchorText: name,
-												} )
-											}
-											placeholder={ __(
-												'www.zalando.com',
-												'zolo-blocks'
-											) }
-										/>
-									}
-								</a>
+								{ showWebsiteLink && (
+									<a
+										className="zb-brand-link"
+										href={
+											brandDetailPageLink &&
+											brandDetailPageLink.url
+										}
+										rel={
+											brandDetailPageLink &&
+											brandDetailPageLink.opensInNewTab &&
+											'noreferer'
+										}
+										target={
+											brandDetailPageLink &&
+											brandDetailPageLink.opensInNewTab &&
+											'_blank'
+										}
+									>
+										{
+											<RichText
+												value={ brandAnchorText }
+												onChange={ ( name ) =>
+													setAttributes( {
+														brandAnchorText: name,
+													} )
+												}
+												placeholder={ __(
+													'www.zalando.com',
+													'zolo-blocks'
+												) }
+											/>
+										}
+									</a>
+								) }
 							</div>
 						</div>
 					</div>

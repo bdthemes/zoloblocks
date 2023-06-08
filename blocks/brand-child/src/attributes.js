@@ -125,6 +125,10 @@ const attributes = {
 			opensInNewTab: false,
 		},
 	},
+	showWebsiteLink: {
+		type: 'boolean',
+		default: true,
+	},
 	titleTag: {
 		type: 'string',
 		default: 'h2',

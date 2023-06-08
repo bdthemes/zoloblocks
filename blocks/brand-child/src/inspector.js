@@ -79,10 +79,9 @@ function Inspector( props ) {
 		brandName,
 		brandAnchorText,
 		brandDetailPageLink,
+		showWebsiteLink,
 		link,
 		resMode,
-		showIcon,
-		buttonIcon,
 		iconColor,
 		iconHoverColor,
 		iconBackgroundColor,
@@ -91,18 +90,13 @@ function Inspector( props ) {
 		textHoverColor,
 		descColor,
 		descHoverColor,
-		iconType,
-		iconTypeImage,
 		btnColor,
 		btnHoverColor,
 		btnBgColor,
 		btnBgHoverColor,
-		buttonLink,
-		globalLink,
-		presetOneStyles,
-		presetTwoStyles,
-		presetThreeStyles,
 	} = attributes;
+
+	console.log( showWebsiteLink );
 
 	const resRequiredProps = {
 		attributes,
@@ -152,6 +146,19 @@ function Inspector( props ) {
 											onChange={ ( value ) =>
 												setAttributes( {
 													preset: value,
+												} )
+											}
+										/>
+										<ToggleControl
+											label={ __(
+												'Show Website Link',
+												'zolo-blocks'
+											) }
+											checked={ showWebsiteLink }
+											onChange={ () =>
+												setAttributes( {
+													showWebsiteLink:
+														! showWebsiteLink,
 												} )
 											}
 										/>
@@ -229,49 +236,56 @@ function Inspector( props ) {
 												'zolo-blocks'
 											) }
 										/>
-										<TextControl
-											label={ __(
-												'Anchor Text',
-												'zolo-blocks'
-											) }
-											onChange={ ( name ) =>
-												setAttributes( {
-													brandAnchorText: name,
-												} )
-											}
-											value={ brandAnchorText }
-											placeholder={ __(
-												'Name..',
-												'zolo-blocks'
-											) }
-										/>
 
-										<BaseControl
-											label={ __(
-												'Brand Details Link',
-												'zolo-blocks'
-											) }
-										>
-											<LinkControl
-												searchInputPlaceholder="Search here..."
-												value={ brandDetailPageLink }
-												settings={ [
-													{
-														id: 'opensInNewTab',
-														title: __(
-															'Open in new tab',
-															'zolo-blocks'
-														),
-													},
-												] }
-												onChange={ ( data ) =>
-													setAttributes( {
-														brandDetailPageLink:
-															data,
-													} )
-												}
-											/>
-										</BaseControl>
+										{ showWebsiteLink && (
+											<>
+												<TextControl
+													label={ __(
+														'Anchor Text',
+														'zolo-blocks'
+													) }
+													onChange={ ( name ) =>
+														setAttributes( {
+															brandAnchorText:
+																name,
+														} )
+													}
+													value={ brandAnchorText }
+													placeholder={ __(
+														'Name..',
+														'zolo-blocks'
+													) }
+												/>
+												<BaseControl
+													label={ __(
+														'Brand Details Link',
+														'zolo-blocks'
+													) }
+												>
+													<LinkControl
+														searchInputPlaceholder="Search here..."
+														value={
+															brandDetailPageLink
+														}
+														settings={ [
+															{
+																id: 'opensInNewTab',
+																title: __(
+																	'Open in new tab',
+																	'zolo-blocks'
+																),
+															},
+														] }
+														onChange={ ( data ) =>
+															setAttributes( {
+																brandDetailPageLink:
+																	data,
+															} )
+														}
+													/>
+												</BaseControl>
+											</>
+										) }
 									</PanelBody>
 								</>
 							) }
