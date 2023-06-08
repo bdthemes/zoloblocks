@@ -1,13 +1,13 @@
-.wp-block-zolo-brand-child {
+.wp-block-zolo-brand-grid {
 	$background-color_1: #f1f1f1;
 	$background-color_2: #fff;
 	$color-1: #3c4356;
 	$color-2: #3c4;
 	$color-3: #3b414f;
 
-	.wp-block-zolo-brand-child {
+	.zb-brand-grid-wrap.zb-brand-style-1 {
 		display: grid;
-		grid-template-columns: repeat(1, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 		grid-gap: 20px;
 	}
 

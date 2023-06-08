@@ -4,7 +4,7 @@
 import { __ } from '@wordpress/i18n';
 
 // Block Prefix
-export const BLOCK_PREFIX = 'advanced-icon-box';
+export const BLOCK_PREFIX = 'brand-grid';
 // Presets
 export const PRESETS = [
 	{ label: __( 'Default', 'zolo-blocks' ), value: 'style-0' },

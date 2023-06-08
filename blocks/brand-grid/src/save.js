@@ -27,7 +27,11 @@ const Save = ( { attributes } ) => {
 
 	return (
 		<div { ...useBlockProps.save() }>
-			<InnerBlocks.Content />
+			<div
+				className={ `zb-brand-grid-wrap zb-brand-style-1 ${ uniqueId } ${ preset }` }
+			>
+				<InnerBlocks.Content />
+			</div>
 		</div>
 	);
 };
