@@ -190,3 +190,6 @@ export const DESC_ALIGNMENT = 'descAlignment';
 // title controls
 export const TITLE_TEXT_SHADOW = 'titleTextShadow';
 export const TITLE_TEXT_STROKE = 'titleTextStroke';
+
+// content alignment
+export const CONTENT_ALIGNMENT = 'reviewContentAlignment';

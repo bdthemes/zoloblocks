@@ -32,6 +32,7 @@ const {
 
 import {
 	BLOCK_PREFIX,
+	CONTENT_ALIGNMENT,
 	ICON_BOX_ALIGNMENT,
 	TITLE_ALIGNMENT,
 	TITLE_MARGIN,
@@ -75,6 +76,7 @@ export default function Edit( props ) {
 		brandName,
 		brandDetailPageLink,
 		brandAnchorText,
+		showBrandName,
 		showWebsiteLink,
 		link,
 		blockStyle,
@@ -109,14 +111,14 @@ export default function Edit( props ) {
 		className: classnames( className, `` ),
 	} );
 
-	// icon alignment
+	// content align
 	const {
-		desktopAlignStyle: iconAlignmentDesktop,
-		tabAlignStyle: iconAlignmentTab,
-		mobAlignStyle: iconAlignmentMob,
+		desktopAlignStyle: brandContentDeskAlignStyle,
+		tabAlignStyle: brandContentTabAlignStyle,
+		mobAlignStyle: brandContentMobAlignStyle,
 	} = generateResAlignmentStyle( {
-		controlName: ICON_BOX_ALIGNMENT,
-		property: 'text-align',
+		controlName: CONTENT_ALIGNMENT,
+		property: 'align-items',
 		attributes,
 	} );
 
@@ -327,17 +329,6 @@ export default function Edit( props ) {
 	/**
 	 * Generate Icon Alignment className
 	 */
-	const deskAlign = `display: ${
-		iconAlignmentDesktop === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const tabAlign = `display: ${
-		iconAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const mobAlign = `display: ${
-		iconAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
 
 	// generate border style
 	const {
@@ -502,180 +493,32 @@ export default function Edit( props ) {
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
-		.${ uniqueId }{
-			${ iconAlignmentDesktop }
-		}
-		.${ uniqueId } .zolo-block-title{
-			${ textAlignmentDesktop }
-			${ titleTypoDesktop }
-			${ titleTextShadowStyle }
-        	${ titleTextStrokeStyle }
-			${ titleMarginDesktop ? titleMarginDesktop : '0 0 12px 0' }
-			color: ${ textColor ? textColor : '' };
-		}
-		.${ uniqueId } .zolo-block-title:hover{
-			color: ${ textHoverColor ? textHoverColor : '' };
-		}
-		.${ uniqueId } .zolo-block-desc{
-			${ descTypoDesktop }
-			${ descAlignmentDesktop }
-			${ descMarginDesktop }
-			color: ${ descColor ? descColor : '#87878a' };
-		}
-		.${ uniqueId } .zolo-block-desc:hover{
-			color: ${ descHoverColor ? descHoverColor : '' };
-		}
-		.${ uniqueId } .zolo-block-icon-wrap  {			
-			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
-			color: ${ iconColor ? iconColor : '' };			
-		}
-		.${ uniqueId } .zolo-block-icon-wrap span {
-			${ iconSize }
-			${ iconHeight }	
-			${ iconSpacing }
-			${ borderStyles }
-			${ iconBorderRadiusDesktop }
-			${ iconPaddingDesktop }
-			${ iconMarginDesktop }
-			${ iconBoxShadow }
-			}
-		.${ uniqueId } .zolo-block-icon-wrap span:hover{			
-			background: ${ iconBackgroundHoverColor ? iconBackgroundHoverColor : '' };
-			color: ${ iconHoverColor ? iconHoverColor : '' };
-			${ iconHoverBoxShadow }
-		}
-		.${ uniqueId } .zolo-content {			
-			${ gap }
-			${ deskAlign }
-			color: ${ textColor ? textColor : 'inherit' };
-		}
-		.${ uniqueId } .zolo-content:hover {
-			color: ${ textHoverColor ? textHoverColor : 'inherit' };
-		}
-		
-		.${ uniqueId } .zolo-box-button span{
-			${ buttonIconSize }			
-			${ buttonIconHeight }			
-			${ buttonIconWidth }			
-		}
-		.${ uniqueId } .zolo-box-button {			
-			${ gap }
-			background: ${ btnBgColor ? btnBgColor : '' };			
-			${ buttonBorderStyles }
-			${ buttonBorderRadiusDesktop }
-			${ buttonPaddingDesktop }
-			${ buttonMarginDesktop }
-			${ buttonBoxShadow }
-		}
-		.${ uniqueId } .zolo-box-button p{
-			${ btnTypoDesktop }
-		}
-		.${ uniqueId } .zolo-box-button:hover {			
-			background: ${ btnBgHoverColor ? btnBgHoverColor : '#32DE23' };
-			${ buttonHoverBoxShadow }
-		}
-		.${ uniqueId } .zolo-box-button p{			
-			color: ${ btnColor ? btnColor : '' };			
-		}
-		.${ uniqueId } .zolo-box-button:hover p{			
-			color: ${ btnHoverColor ? btnHoverColor : '#fff' };			
+		.${ uniqueId } .wp-block-zolo-brand-child .zb-brand-style-1 .zb-brand-content, .wp-block-zolo-brand-child .zb-brand-style-2 .zb-brand-content{
+			${ brandContentDeskAlignStyle }
 		}
 		${ presetStyles }		
   	`;
 
 	const tabletAllStyle = `
-		.${ uniqueId }{
-			${ iconAlignmentTab }
-		}
+		
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoTab }
 			${ tabTitleTextStrokeStyle }
 			${ textAlignmentTab }
 			${ titleMarginTab }
-		}		
-		.${ uniqueId } .zolo-block-desc{
-			${ descAlignmentTab }
-			${ descMarginTab }
-			${ descTypoTab }
-		}
-		.${ uniqueId } .zolo-content {
-			${ borderStylesTab }
-			${ gapTab }
-			${ tabAlign }
-		}
-		.${ uniqueId } .zolo-block-icon-wrap span {
-			${ iconSizeTab }
-			${ iconHeightTab }
-			${ iconSpacingTab }
-			${ borderStylesTab }
-			${ iconBorderRadiusTab }
-			${ iconPaddingTab }
-			${ iconMarginTab }
-			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
-			color: ${ iconColor ? iconColor : '' };	
-		}
-		.${ uniqueId } .zolo-box-button span{
-			${ buttonIconSizeTab }			
-			${ buttonIconHeightTab }			
-			${ buttonIconWidthTab }			
-		}
-		.${ uniqueId } .zolo-box-button {
-			${ gapTab }
-			${ buttonBorderStylesTab }
-			${ buttonBorderRadiusTab }
-			${ buttonPaddingTab }
-			${ buttonMarginTab }
-		}
-		.${ uniqueId } .zolo-box-button p{
-			${ btnTypoTab }
-		}
+		}	
 		${ presetStyles }
 	`;
 
 	const mobileAllStyle = `
-		.${ uniqueId }{
-			${ iconAlignmentMob }
-		}
+		
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoMobile }
 			${ mobTitleTextStrokeStyle }
 			${ textAlignmentMob }
 			${ titleMarginMob }
-		}		
-		.${ uniqueId } .zolo-block-desc{
-			${ descAlignmentMob }
-			${ descMarginMob }
-			${ descTypoMobile }
 		}
-		.${ uniqueId } .zolo-content {
-			${ borderStylesMob }
-			${ gapMob }
-			${ mobAlign }
-		}
-		.${ uniqueId } .zolo-block-icon-wrap span {
-			${ iconSizeMob }
-			${ iconHeightMob }
-			${ iconSpacingMob }
-			${ borderStylesMob }
-			${ iconBorderRadiusMob }
-			${ iconPaddingMob }
-			${ iconMarginMob }
-		}
-		.${ uniqueId } .zolo-box-button span{
-			${ buttonIconSizeMob }			
-			${ buttonIconHeightMob }			
-			${ buttonIconWidthMob }			
-		}
-		.${ uniqueId } .zolo-box-button {
-			${ gapMob }			
-			${ buttonBorderStylesMob }
-			${ buttonBorderRadiusMob }
-			${ buttonPaddingMob }
-			${ buttonMarginMob }
-		}
-		.${ uniqueId } .zolo-box-button p{
-			${ btnTypoMobile }
-		}
+		
 		${ presetStyles }
   	`;
 
@@ -811,17 +654,20 @@ export default function Edit( props ) {
 								</svg>
 							</div>
 							<div className="zb-brand-inner-content">
-								<RichText
-									className="zb-brand-title"
-									value={ brandName }
-									onChange={ ( name ) =>
-										setAttributes( { brandName: name } )
-									}
-									placeholder={ __(
-										'Brand Name...',
-										'zolo-blocks'
-									) }
-								/>
+								{ showBrandName && (
+									<RichText
+										className="zb-brand-title"
+										value={ brandName }
+										onChange={ ( name ) =>
+											setAttributes( { brandName: name } )
+										}
+										placeholder={ __(
+											'Brand Name...',
+											'zolo-blocks'
+										) }
+									/>
+								) }
+
 								{ showWebsiteLink && (
 									<a
 										className="zb-brand-link"

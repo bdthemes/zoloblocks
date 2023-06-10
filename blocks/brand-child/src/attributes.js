@@ -125,6 +125,10 @@ const attributes = {
 			opensInNewTab: false,
 		},
 	},
+	showBrandName: {
+		type: 'boolean',
+		default: true,
+	},
 	showWebsiteLink: {
 		type: 'boolean',
 		default: true,

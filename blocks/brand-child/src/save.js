@@ -11,6 +11,7 @@ const Save = ( { attributes } ) => {
 		brandDetailPageLink,
 		brandAnchorText,
 		link,
+		showBrandName,
 		showWebsiteLink,
 	} = attributes;
 
@@ -46,11 +47,14 @@ const Save = ( { attributes } ) => {
 							</svg>
 						</div>
 						<div className="zb-brand-inner-content">
-							<RichText.Content
-								tagName="div"
-								className="zb-brand-title"
-								value={ brandName }
-							/>
+							{ showBrandName && (
+								<RichText.Content
+									tagName="div"
+									className="zb-brand-title"
+									value={ brandName }
+								/>
+							) }
+
 							{ showWebsiteLink && (
 								<a
 									className="zb-brand-link"
