@@ -71,8 +71,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            wp_enqueue_script( 'react', 'https://unpkg.com/react/umd/react.production.min.js', array(), false, true );
-            wp_enqueue_script( 'react-dom', 'https://unpkg.com/react-dom/umd/react-dom.production.min.js', array(), false, true );
+            wp_enqueue_script('react', 'https://unpkg.com/react/umd/react.production.min.js', array(), false, true);
+            wp_enqueue_script('react-dom', 'https://unpkg.com/react-dom/umd/react-dom.production.min.js', array(), false, true);
         }
 
         /**
@@ -157,6 +157,15 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 array('wp-edit-blocks'),
                 ZOLO_VERSION
             );
+
+            //this file use for js
+            wp_localize_script('zolo-block-editor', 'zoloParams', [
+                'ajaxurl'    => admin_url('admin-ajax.php'),
+                'post_types' => Zolo_Helpers::get_post_types(),
+                'get_users' => Zolo_Helpers::get_all_users(),
+                'all_taxonomy' => Zolo_Helpers::get_related_taxonomy(),
+                'all_term_list'  => Zolo_Helpers::get_all_taxonomy(),
+            ]);
         }
     }
 }

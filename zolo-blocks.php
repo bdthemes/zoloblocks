@@ -18,6 +18,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Zolo\Blocks\BlockControl;
 
 /**
  * Final Class for ZOLO Blocks
@@ -52,6 +55,7 @@ final class Zolo_Blocks
             add_action('admin_notices', [$this, 'zolo_gutenberg_unavailable_notice']);
         } else {
             $this->includes();
+            BlockControl::getInstance();
         }
     }
 
