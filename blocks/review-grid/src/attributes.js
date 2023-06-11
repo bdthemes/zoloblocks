@@ -1,15 +1,19 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateDimensionAttributes } =
-	window.zoloModule;
+const {
+	generateResRangeAttributies,
+	generateDimensionAttributes,
+	generateNormalBGAttributes,
+} = window.zoloModule;
 
 import {
 	GRID_COLUMNS,
 	COLUMNS_GAP,
 	ROWS_GAP,
-	CONTAINER_MARGIN,
-	CONTAINER_PADDING,
+	REVIEW_GRID_BG,
+	REVIEW_GRID_PADDING,
+	REVIEW_GRID_MARGIN,
 } from './constants';
 
 const attributes = {
@@ -24,9 +28,19 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
-	containerBg: {
+	preset: {
 		type: 'string',
+		default: 'default',
 	},
+	showDesignation: {
+		type: 'boolean',
+		default: true,
+	},
+	showTestimonialMessage: {
+		type: 'boolean',
+		default: true,
+	},
+	...generateNormalBGAttributes(REVIEW_GRID_BG),
 	...generateResRangeAttributies(GRID_COLUMNS, {
 		defaultRange: 3,
 		noUnits: true,
@@ -37,20 +51,8 @@ const attributes = {
 	...generateResRangeAttributies(ROWS_GAP, {
 		defaultRange: 30,
 	}),
-	...generateDimensionAttributes(CONTAINER_MARGIN),
-	...generateDimensionAttributes(CONTAINER_PADDING),
-	preset: {
-		type: 'string',
-		default: 'style-1',
-	},
-	showDesignation: {
-		type: 'boolean',
-		default: true,
-	},
-	showTestimonialMessage: {
-		type: 'boolean',
-		default: true,
-	},
+	...generateDimensionAttributes(REVIEW_GRID_MARGIN),
+	...generateDimensionAttributes(REVIEW_GRID_PADDING),
 };
 
 export default attributes;

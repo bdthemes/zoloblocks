@@ -31,17 +31,20 @@ const {
 	TypographyDropdown,
 	BoxShadowControl,
 	ImageAvatar,
+	NormalBGControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
 	PRESETS,
+	CONTAINER_BACKGROUND,
 	CONTENT_ALIGNMENT,
 	CONTAINER_PADDING,
 	CONTAINER_MARGIN,
 	CONTAINER_BORDER,
 	CONTAINER_BORDER_RADIUS,
 	CONTAINER_BOX_SHADOW,
+	REVIEWER_PHOTO_BG,
 	REVIEWER_PHOTO_BORDER,
 	REVIEWER_PHOTO_BORDER_RADIUS,
 	REVIEWER_PHOTO_BOX_SHADOW,
@@ -62,7 +65,6 @@ import {
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
 	const {
-		uniqueId,
 		resMode,
 		preset,
 		memberPhoto,
@@ -75,8 +77,6 @@ function Inspector(props) {
 		reviewerWebsiteLink,
 		showRating,
 		rating,
-		containerBg,
-		photoBgColor,
 		nameColor,
 		designationColor,
 		testimonialMessageColor,
@@ -94,7 +94,6 @@ function Inspector(props) {
 	/**
 	 * Preset
 	 */
-	console.log(preset);
 	const changePremade = (selected) => {
 		setAttributes({ preset: selected });
 		switch (selected) {
@@ -428,17 +427,11 @@ function Inspector(props) {
 											resRequiredProps={resRequiredProps}
 											enableTransition={false}
 										/>
-										<ColorControl
-											label={__(
-												'Background',
-												'zolo-blocks'
-											)}
-											color={containerBg}
-											onChange={(color) =>
-												setAttributes({
-													containerBg: color,
-												})
-											}
+
+										<NormalBGControl
+											resRequiredProps={resRequiredProps}
+											controlName={CONTAINER_BACKGROUND}
+											noMainBGImg={false}
 										/>
 									</PanelBody>
 									<PanelBody
@@ -468,17 +461,10 @@ function Inspector(props) {
 											resRequiredProps={resRequiredProps}
 											enableTransition={false}
 										/>
-										<ColorControl
-											label={__(
-												'Background Color',
-												'zolo-blocks'
-											)}
-											color={photoBgColor}
-											onChange={(color) =>
-												setAttributes({
-													photoBgColor: color,
-												})
-											}
+										<NormalBGControl
+											resRequiredProps={resRequiredProps}
+											controlName={REVIEWER_PHOTO_BG}
+											noMainBGImg={true}
 										/>
 										<ResDimensionsControl
 											label={__('Padding', 'zolo-blocks')}

@@ -9,6 +9,8 @@ import '../blocks/advanced-image-gallery/index.js';
 import '../blocks/pricing-table/index.js';
 import '../blocks/social-icon/index.js';
 import '../blocks/team-member/index.js';
+import '../blocks/brand-grid/index.js';
 import '../blocks/team-grid/index.js';
 import '../blocks/review/index.js';
 import '../blocks/review-grid/index.js';
+import '../blocks/profile-card/index.js';

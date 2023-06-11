@@ -1,11 +1,11 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"title": "Review Child",
-	"icon": "thumbs-up",
-	"name": "zolo/review-child",
+	"title": "Profile Card",
+	"icon": "id",
+	"name": "zolo/profile-card",
 	"category": "zolo-blocks",
-	"keywords": ["Rating", "Review"],
-	"description": "Single review block",
+	"keywords": ["Profile", "Card"],
+	"description": "Profile Card",
 	"apiVersion": 2,
 	"textdomain": "zolo-blocks",
 	"supports": {

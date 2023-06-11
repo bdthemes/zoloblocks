@@ -1,21 +1,12 @@
 /**
  * WordPress dependencies
  */
+import { InspectorControls } from '@wordpress/block-editor';
 import {
-	InspectorControls,
-	__experimentalLinkControl as LinkControl,
-	MediaUpload,
-} from '@wordpress/block-editor';
-import {
-	CardDivider,
 	PanelBody,
 	SelectControl,
 	TabPanel,
-	TextControl,
-	TextareaControl,
 	ToggleControl,
-	BaseControl,
-	Button,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -25,23 +16,18 @@ import {
 	GRID_COLUMNS,
 	COLUMNS_GAP,
 	ROWS_GAP,
-	CONTAINER_MARGIN,
-	CONTAINER_PADDING,
+	REVIEW_GRID_BG,
+	REVIEW_GRID_MARGIN,
+	REVIEW_GRID_PADDING,
 } from './constants';
 
-const { ResRangeControl, ResDimensionsControl, ColorControl } =
+const { ResRangeControl, ResDimensionsControl, NormalBGControl } =
 	window.zoloModule;
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
-	const {
-		uniqueId,
-		preset,
-		resMode,
-		containerBg,
-		showDesignation,
-		showTestimonialMessage,
-	} = attributes;
+	const { preset, resMode, showDesignation, showTestimonialMessage } =
+		attributes;
 
 	const resRequiredProps = {
 		resMode,
@@ -49,11 +35,9 @@ function Inspector(props) {
 		attributes,
 		objAttributes,
 	};
-
 	/**
 	 * Preset
 	 */
-	console.log(preset);
 	const changePremade = (selected) => {
 		setAttributes({ preset: selected });
 		switch (selected) {
@@ -149,6 +133,14 @@ function Inspector(props) {
 												})
 											}
 										/>
+									</PanelBody>
+									<PanelBody
+										title={__(
+											'Grid Settings',
+											'zolo-blocks'
+										)}
+										initialOpen={false}
+									>
 										<ResRangeControl
 											label={__(
 												'Grid Columns',
@@ -187,17 +179,10 @@ function Inspector(props) {
 										title={__('Container', 'zolo-blocks')}
 										initialOpen={false}
 									>
-										<ColorControl
-											label={__(
-												'Background',
-												'zolo-blocks'
-											)}
-											color={containerBg}
-											onChange={(color) =>
-												setAttributes({
-													containerBg: color,
-												})
-											}
+										<NormalBGControl
+											resRequiredProps={resRequiredProps}
+											controlName={REVIEW_GRID_BG}
+											noMainBGImg={false}
 										/>
 									</PanelBody>
 								</>
@@ -211,12 +196,12 @@ function Inspector(props) {
 									>
 										<ResDimensionsControl
 											label={__('Margin', 'zolo-blocks')}
-											controlName={CONTAINER_MARGIN}
+											controlName={REVIEW_GRID_MARGIN}
 											resRequiredProps={resRequiredProps}
 										/>
 										<ResDimensionsControl
 											label={__('Padding', 'zolo-blocks')}
-											controlName={CONTAINER_PADDING}
+											controlName={REVIEW_GRID_PADDING}
 											resRequiredProps={resRequiredProps}
 										/>
 									</PanelBody>

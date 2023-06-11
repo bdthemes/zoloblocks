@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"title": "Brand Grid",
+	"icon": "tide",
+	"name": "zolo/brand-grid",
+	"category": "zolo-blocks",
+	"keywords": [ "grid", "brand" ],
+	"description": "Brand grid block description",
+	"apiVersion": 2,
+	"textdomain": "zolo-blocks",
+	"supports": {
+		"anchor": true
+	},
+	"editorScript": ""
+}

@@ -3,25 +3,13 @@
  */
 import {
 	useBlockProps,
-	RichText,
 	BlockControls,
-	__experimentalLinkControl as LinkControl,
-	MediaPlaceholder,
-	MediaUpload,
 	InnerBlocks,
 } from '@wordpress/block-editor';
 
-import { Fragment, useState, useEffect } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 
-import {
-	ToolbarButton,
-	ToolbarGroup,
-	Dropdown,
-	Button,
-	Popover,
-	Dashicon,
-	withFilters,
-} from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import classnames from 'classnames';
@@ -34,10 +22,12 @@ const {
 	softMinifyCssStrings,
 	generateResRangeStyle,
 	generateDimensionStyle,
+	generateNormalBGControlStyles,
 } = window.zoloModule;
 
 import {
 	BLOCK_PREFIX,
+	TEAM_GRID_BG,
 	COLUMNS_GAP,
 	GRID_COLUMNS,
 	ROWS_GAP,
@@ -46,6 +36,9 @@ import {
 } from './constants';
 
 import Inspector from './inspector';
+
+// child block
+import '../team-child';
 
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
@@ -64,6 +57,16 @@ export default function Edit(props) {
 
 	const blockProps = useBlockProps({
 		className: classnames(className, `${uniqueId}`),
+	});
+
+	const {
+		backgroundStylesDesktop: normalDeskBGStyle,
+		backgroundStylesTab: normalTabBGStyle,
+		backgroundStylesMobile: normalMobBGStyle,
+	} = generateNormalBGControlStyles({
+		controlName: TEAM_GRID_BG,
+		attributes,
+		noMainBGImg: false,
 	});
 
 	// Grid Columns
@@ -126,19 +129,21 @@ export default function Edit(props) {
 	 */
 	const desktopAllStyle = `
 		.${uniqueId}.wp-block-zolo-team-grid {
-			background-color: ${containerBg};
+			${normalDeskBGStyle}
 			${containerDeskMargin}
 			${containerDeskPadding}
 		}
 	`;
 	const tabletAllStyle = `
 		.${uniqueId}.wp-block-zolo-team-grid {
+			${normalTabBGStyle}
 			${containerTabMargin}
 			${containerTabPadding}
 		}
 	`;
 	const mobileAllStyle = `
 		.${uniqueId}.wp-block-zolo-team-grid {
+			${normalMobBGStyle}
 			${containerMobMargin}
 			${containerMobPadding}
 		}
@@ -171,7 +176,7 @@ export default function Edit(props) {
 	 */
 	const childBlocks = wp.data.select('core/block-editor').getBlocks(clientId);
 	const appendBlock = () => {
-		const newBlock = wp.blocks.createBlock('zolo/team-member', {});
+		const newBlock = wp.blocks.createBlock('zolo/team-child', {});
 		wp.data
 			.dispatch('core/block-editor')
 			.insertBlock(newBlock, childBlocks.length, clientId);
@@ -198,8 +203,8 @@ export default function Edit(props) {
 			</BlockControls>
 			<div {...blockProps}>
 				<InnerBlocks
-					allowedBlocks={['zolo/team-member']}
-					template={[['zolo/team-member', {}]]}
+					allowedBlocks={['zolo/team-child']}
+					template={[['zolo/team-child', {}]]}
 					renderAppender={false}
 				/>
 				<div className="appender-btn">
