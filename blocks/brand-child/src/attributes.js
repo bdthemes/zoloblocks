@@ -18,7 +18,6 @@ import {
 	DESCRIPTION_MARGIN,
 	DESC_ALIGNMENT,
 	ICON_BORDER,
-	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
 	BUTTON_BOX_SHADOW,
 	BUTTON_HOVER_BOX_SHADOW,
@@ -94,7 +93,7 @@ const attributes = {
 	//icon margin
 	...generateDimensionAttributes( ICON_MARGIN ),
 	//icon boxshadow
-	...generateBoxShadowAttributies( ICON_BOX_SHADOW ),
+	...generateBoxShadowAttributies( TITLE_TEXT_SHADOW ),
 	//icon hover boxshadow
 	...generateBoxShadowAttributies( ICON_HOVER_BOX_SHADOW ),
 	//button boxshadow
@@ -178,9 +177,6 @@ const attributes = {
 		default: 'left',
 	},
 	textColor: {
-		type: 'string',
-	},
-	textHoverColor: {
 		type: 'string',
 	},
 	descColor: {

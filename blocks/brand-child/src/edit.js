@@ -30,7 +30,13 @@ const {
 	DisplayIcon,
 } = window.zoloModule;
 
-import { BLOCK_PREFIX, CONTENT_ALIGNMENT, TITLE_MARGIN } from './constants';
+import {
+	BLOCK_PREFIX,
+	CONTENT_ALIGNMENT,
+	TITLE_MARGIN,
+	TITLE_TEXT_SHADOW,
+	TITLE_TEXT_STROKE,
+} from './constants';
 
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
@@ -104,6 +110,22 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	// Title Text Shadow
+	const { boxShadowStyle: titleTextShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: TITLE_TEXT_SHADOW,
+	} );
+
+	// Title Text Stroke
+	const {
+		desktopTextStrokeStyle: titleTextStrokeDesk,
+		tabTextStrokeStyle: titleTextStrokeTab,
+		mobTextStrokeStyle: titleTextStrokeMob,
+	} = generateTextStrokeStyles( {
+		attributes,
+		controlName: TITLE_TEXT_STROKE,
+	} );
+
 	/**
 	 * Presets Based Styles
 	 */
@@ -168,6 +190,8 @@ export default function Edit( props ) {
 		.${ uniqueId } .zb-brand-title{
 			${ titleTypoDesk }
 			${ titleMarginDesk }
+			${ titleTextShadow }
+			${ titleTextStrokeDesk }
 			color:${ textColor };
 		}
 		${ presetStyles }		
@@ -178,6 +202,7 @@ export default function Edit( props ) {
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoTab }
 		${ titleMarginTab }
+		${ titleTextStrokeTab }
 	}
 		${ presetStyles }
 	`;
@@ -187,6 +212,7 @@ export default function Edit( props ) {
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoMob }
 		${ titleMarginMob }
+		${ titleTextStrokeMob }
 	}
 		
 	${ presetStyles }

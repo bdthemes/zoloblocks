@@ -157,7 +157,7 @@ export const ICON_BOX_ALIGNMENT = 'iconBoxAlignment';
 // Icon Border
 export const ICON_BORDER = 'iconBorder';
 // Icon Box Shadow
-export const ICON_BOX_SHADOW = 'iconBoxShadow';
+export const TITLE_BOX_SHADOW = 'titleBoxShadow';
 // Icon Hover Box Shadow
 export const ICON_HOVER_BOX_SHADOW = 'iconHoverBoxShadow';
 // Button Box Shadow

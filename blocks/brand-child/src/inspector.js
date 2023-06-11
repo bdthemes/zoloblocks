@@ -45,7 +45,6 @@ import {
 	TITLE_MARGIN,
 	DESCRIPTION_MARGIN,
 	PRESETS,
-	ICON_POSITIONS,
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
 	ICON_PADDING,
@@ -53,7 +52,6 @@ import {
 } from './constants';
 
 import {
-	BUTTON_TYPOGRAPHY,
 	TITLE_TYPOGRAPHY,
 	DESCRIPTION_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
