@@ -30,39 +30,9 @@ const {
 	DisplayIcon,
 } = window.zoloModule;
 
-import {
-	BLOCK_PREFIX,
-	CONTENT_ALIGNMENT,
-	ICON_BOX_ALIGNMENT,
-	TITLE_ALIGNMENT,
-	TITLE_MARGIN,
-	TITLE_TEXT_SHADOW,
-	TITLE_TEXT_STROKE,
-	DESCRIPTION_MARGIN,
-	DESC_ALIGNMENT,
-	ICON_BORDER,
-	ICON_BORDER_RADIUS,
-	ICON_SIZE,
-	ICON_PADDING,
-	ICON_MARGIN,
-	BUTTON_ICON_SIZE,
-	BUTTON_BORDER,
-	ICON_BOX_SHADOW,
-	ICON_HOVER_BOX_SHADOW,
-	BUTTON_BOX_SHADOW,
-	BUTTON_HOVER_BOX_SHADOW,
-	ICON_SPACING,
-	ICON_TEXT_SPACING,
-	BUTTON_BORDER_RADIUS,
-	BUTTON_MARGIN,
-	BUTTON_PADDING,
-} from './constants';
+import { BLOCK_PREFIX, CONTENT_ALIGNMENT, TITLE_MARGIN } from './constants';
 
-import {
-	TITLE_TYPOGRAPHY,
-	DESCRIPTION_TYPOGRAPHY,
-	BUTTON_TYPOGRAPHY,
-} from './constants/typoPrefixConstant';
+import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
 
@@ -80,7 +50,6 @@ export default function Edit( props ) {
 		showWebsiteLink,
 		link,
 		textColor,
-		textHoverColor,
 		blockStyle,
 		iconTypeImage,
 		presetOneStyles,
@@ -101,7 +70,7 @@ export default function Edit( props ) {
 		className: classnames( className, `` ),
 	} );
 
-	// content align
+	// Content Align
 	const {
 		desktopAlignStyle: brandContentDeskAlignStyle,
 		tabAlignStyle: brandContentTabAlignStyle,
@@ -120,6 +89,18 @@ export default function Edit( props ) {
 	} = generateTypographyStyles( {
 		prefixConstant: TITLE_TYPOGRAPHY,
 		defaultFontSize: 16,
+		attributes,
+	} );
+
+	// Title Margin
+
+	const {
+		dimensionStylesDesktop: titleMarginDesk,
+		dimensionStylesTab: titleMarginTab,
+		dimensionStylesMobile: titleMarginMob,
+	} = generateDimensionStyle( {
+		controlName: TITLE_MARGIN,
+		styleFor: 'margin',
 		attributes,
 	} );
 
@@ -186,10 +167,8 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zb-brand-title{
 			${ titleTypoDesk }
+			${ titleMarginDesk }
 			color:${ textColor };
-		}
-		.${ uniqueId } .zb-brand-item:hover .zb-brand-title{
-			color:${ textHoverColor };
 		}
 		${ presetStyles }		
   	`;
@@ -198,6 +177,7 @@ export default function Edit( props ) {
 		
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoTab }
+		${ titleMarginTab }
 	}
 		${ presetStyles }
 	`;
@@ -206,9 +186,11 @@ export default function Edit( props ) {
 		
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoMob }
+		${ titleMarginMob }
 	}
 		
-		${ presetStyles }
+	${ presetStyles }
+
   	`;
 
 	const allStyle = `

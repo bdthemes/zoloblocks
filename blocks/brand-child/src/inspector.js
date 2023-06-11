@@ -71,18 +71,9 @@ function Inspector( props ) {
 		showWebsiteLink,
 		link,
 		resMode,
-		iconColor,
-		iconHoverColor,
-		iconBackgroundColor,
-		iconBackgroundHoverColor,
 		textColor,
-		textHoverColor,
 		descColor,
 		descHoverColor,
-		btnColor,
-		btnHoverColor,
-		btnBgColor,
-		btnBgHoverColor,
 	} = attributes;
 
 	const resRequiredProps = {
@@ -343,40 +334,16 @@ function Inspector( props ) {
 												resRequiredProps
 											}
 										/>
-										<TabPanelControl
-											normalComponents={
-												<>
-													<ColorControl
-														label={ __(
-															'Color',
-															'zolo-blocks'
-														) }
-														color={ textColor }
-														onChange={ ( value ) =>
-															setAttributes( {
-																textColor:
-																	value,
-															} )
-														}
-													/>
-												</>
-											}
-											hoverComponents={
-												<>
-													<ColorControl
-														label={ __(
-															'Color',
-															'zolo-blocks'
-														) }
-														color={ textHoverColor }
-														onChange={ ( value ) =>
-															setAttributes( {
-																textHoverColor:
-																	value,
-															} )
-														}
-													/>
-												</>
+										<ColorControl
+											label={ __(
+												'Color',
+												'zolo-blocks'
+											) }
+											color={ textColor }
+											onChange={ ( value ) =>
+												setAttributes( {
+													textColor: value,
+												} )
 											}
 										/>
 										<ResDimensionsControl
