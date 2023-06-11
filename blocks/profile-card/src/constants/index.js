@@ -14,6 +14,7 @@ export const PRESETS = [
 
 // Container
 export const CONTAINER_BG = 'profileCardContainerBg';
+export const CONTENT_BG = 'profileCardContentBg';
 
 // Header Area
 export const HEADER_AREA_BORDER_RADIUS = 'profileCardHeaderAreaBorderRadius';

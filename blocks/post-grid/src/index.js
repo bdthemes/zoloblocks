@@ -1,8 +1,8 @@
 import { registerBlockType } from '@wordpress/blocks';
-import metadata from './block.json';
-import attributes from './src/attributes';
-import Edit from './src/edit';
-import './src/style.scss';
+import metadata from '../block.json';
+import attributes from './attributes';
+import Edit from './edit';
+import './style.scss';
 
 registerBlockType(metadata, {
   attributes,
