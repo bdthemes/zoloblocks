@@ -33,6 +33,7 @@ import {
 	BUTTON_BORDER_RADIUS,
 	BUTTON_MARGIN,
 	BUTTON_PADDING,
+	CONTENT_ALIGNMENT,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
@@ -47,6 +48,10 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
+	// content alignment
+	...generateResAlignmentAttributies( CONTENT_ALIGNMENT, {
+		defaultAlign: 'left',
+	} ),
 	//alignment attributes
 	...generateResAlignmentAttributies( ICON_BOX_ALIGNMENT, {
 		defaultAlign: 'left',

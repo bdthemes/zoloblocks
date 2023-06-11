@@ -79,20 +79,10 @@ export default function Edit( props ) {
 		showBrandName,
 		showWebsiteLink,
 		link,
-		blockStyle,
 		textColor,
 		textHoverColor,
-		descColor,
-		descHoverColor,
-		iconColor,
-		iconHoverColor,
-		iconBackgroundColor,
-		iconBackgroundHoverColor,
+		blockStyle,
 		iconTypeImage,
-		btnColor,
-		btnHoverColor,
-		btnBgColor,
-		btnBgHoverColor,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
@@ -122,316 +112,14 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
-	// generate icon border radius
+	// Title Typography
 	const {
-		dimensionStylesDesktop: iconBorderRadiusDesktop,
-		dimensionStylesTab: iconBorderRadiusTab,
-		dimensionStylesMobile: iconBorderRadiusMob,
-	} = generateDimensionStyle( {
-		controlName: ICON_BORDER_RADIUS,
-		styleFor: 'border-radius',
-		attributes,
-	} );
-
-	// Generate Icon Box Shadow
-	const { boxShadowStyle: iconBoxShadow } = generateBoxShadowStyles( {
-		attributes,
-		controlName: ICON_BOX_SHADOW,
-	} );
-
-	// Generate Icon Hover Box Shadow
-	const { boxShadowStyle: iconHoverBoxShadow } = generateBoxShadowStyles( {
-		attributes,
-		controlName: ICON_HOVER_BOX_SHADOW,
-	} );
-
-	// Generate Button Box Shadow
-	const { boxShadowStyle: buttonBoxShadow } = generateBoxShadowStyles( {
-		attributes,
-		controlName: BUTTON_BOX_SHADOW,
-	} );
-
-	// Generate Icon Hover Box Shadow
-	const { boxShadowStyle: buttonHoverBoxShadow } = generateBoxShadowStyles( {
-		attributes,
-		controlName: BUTTON_HOVER_BOX_SHADOW,
-	} );
-
-	// Generate Icon Padding
-	const {
-		dimensionStylesDesktop: iconPaddingDesktop,
-		dimensionStylesTab: iconPaddingTab,
-		dimensionStylesMobile: iconPaddingMob,
-	} = generateDimensionStyle( {
-		controlName: ICON_PADDING,
-		styleFor: 'padding',
-		attributes,
-	} );
-	// Generate Button Padding
-	const {
-		dimensionStylesDesktop: buttonPaddingDesktop,
-		dimensionStylesTab: buttonPaddingTab,
-		dimensionStylesMobile: buttonPaddingMob,
-	} = generateDimensionStyle( {
-		controlName: BUTTON_PADDING,
-		styleFor: 'padding',
-		attributes,
-	} );
-
-	// Generate Icon Margin
-	const {
-		dimensionStylesDesktop: iconMarginDesktop,
-		dimensionStylesTab: iconMarginTab,
-		dimensionStylesMobile: iconMarginMob,
-	} = generateDimensionStyle( {
-		controlName: ICON_MARGIN,
-		styleFor: 'margin',
-		attributes,
-	} );
-
-	// Generate Button Margin
-	const {
-		dimensionStylesDesktop: buttonMarginDesktop,
-		dimensionStylesTab: buttonMarginTab,
-		dimensionStylesMobile: buttonMarginMob,
-	} = generateDimensionStyle( {
-		controlName: BUTTON_MARGIN,
-		styleFor: 'margin',
-		attributes,
-	} );
-
-	//title typography
-	const {
-		typoStylesDesktop: titleTypoDesktop,
+		typoStylesDesktop: titleTypoDesk,
 		typoStylesTab: titleTypoTab,
-		typoStylesMobile: titleTypoMobile,
+		typoStylesMobile: titleTypoMob,
 	} = generateTypographyStyles( {
 		prefixConstant: TITLE_TYPOGRAPHY,
-		defaultFontSize: 25,
-		attributes,
-	} );
-
-	// title alignment
-	const {
-		desktopAlignStyle: textAlignmentDesktop,
-		tabAlignStyle: textAlignmentTab,
-		mobAlignStyle: textAlignmentMob,
-	} = generateResAlignmentStyle( {
-		controlName: TITLE_ALIGNMENT,
-		property: 'text-align',
-		attributes,
-	} );
-
-	// Generate Title Margin
-	const {
-		dimensionStylesDesktop: titleMarginDesktop,
-		dimensionStylesTab: titleMarginTab,
-		dimensionStylesMobile: titleMarginMob,
-	} = generateDimensionStyle( {
-		controlName: TITLE_MARGIN,
-		styleFor: 'margin',
-		attributes,
-	} );
-
-	// Generate Title Text Shadow
-	const { textShadowStyle: titleTextShadowStyle } = generateTextShadowStyles(
-		{
-			attributes,
-			controlName: TITLE_TEXT_SHADOW,
-		}
-	);
-
-	// Generate Title Text Stroke
-	const {
-		desktopTextStrokeStyle: titleTextStrokeStyle,
-		tabTextStrokeStyle: tabTitleTextStrokeStyle,
-		mobTextStrokeStyle: mobTitleTextStrokeStyle,
-	} = generateTextStrokeStyles( {
-		attributes,
-		controlName: TITLE_TEXT_STROKE,
-	} );
-
-	// description alignment
-	const {
-		desktopAlignStyle: descAlignmentDesktop,
-		tabAlignStyle: descAlignmentTab,
-		mobAlignStyle: descAlignmentMob,
-	} = generateResAlignmentStyle( {
-		controlName: DESC_ALIGNMENT,
-		property: 'text-align',
-		attributes,
-	} );
-
-	// descrtiption typography
-	const {
-		typoStylesDesktop: descTypoDesktop,
-		typoStylesTab: descTypoTab,
-		typoStylesMobile: descTypoMobile,
-	} = generateTypographyStyles( {
-		prefixConstant: DESCRIPTION_TYPOGRAPHY,
 		defaultFontSize: 16,
-		attributes,
-	} );
-
-	// button typography
-	const {
-		typoStylesDesktop: btnTypoDesktop,
-		typoStylesTab: btnTypoTab,
-		typoStylesMobile: btnTypoMobile,
-	} = generateTypographyStyles( {
-		prefixConstant: BUTTON_TYPOGRAPHY,
-		defaultFontSize: 14,
-		attributes,
-	} );
-
-	// Generate Title Margin
-	const {
-		dimensionStylesDesktop: descMarginDesktop,
-		dimensionStylesTab: descMarginTab,
-		dimensionStylesMobile: descMarginMob,
-	} = generateDimensionStyle( {
-		controlName: DESCRIPTION_MARGIN,
-		styleFor: 'margin',
-		attributes,
-	} );
-
-	/**
-	 * Generate Title Alignment className
-	 */
-	const deskTitleAlign = `display: ${
-		textAlignmentDesktop === 'text-align:left;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const tabTitleAlign = `display: ${
-		textAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const mobTitleAlign = `display: ${
-		textAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	/**
-	 * Generate Description Alignment className
-	 */
-
-	const deskDescAlign = `display: ${
-		descAlignmentDesktop === 'text-align:left;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const tabDescAlign = `display: ${
-		descAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const mobDescAlign = `display: ${
-		descAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	/**
-	 * Generate Icon Alignment className
-	 */
-
-	// generate border style
-	const {
-		desktopBorderStyle: borderStyles,
-		tabBorderStyle: borderStylesTab,
-		mobBorderStyle: borderStylesMob,
-	} = generateBorderStyle( {
-		controlName: ICON_BORDER,
-		attributes,
-	} );
-
-	// generate icon size
-	const {
-		desktopRangeStyle: iconSize,
-		tabRangeStyle: iconSizeTab,
-		mobRangeStyle: iconSizeMob,
-	} = generateResRangeStyle( {
-		controlName: ICON_SIZE,
-		property: 'font-size',
-		attributes,
-	} );
-	// generate icon height
-	const {
-		desktopRangeStyle: iconHeight,
-		tabRangeStyle: iconHeightTab,
-		mobRangeStyle: iconHeightMob,
-	} = generateResRangeStyle( {
-		controlName: ICON_SIZE,
-		property: 'height',
-		attributes,
-	} );
-	// generate icon spacing
-	const {
-		desktopRangeStyle: iconSpacing,
-		tabRangeStyle: iconSpacingTab,
-		mobRangeStyle: iconSpacingMob,
-	} = generateResRangeStyle( {
-		controlName: ICON_SPACING,
-		property: 'margin',
-		attributes,
-	} );
-	// Spacing between icon and text
-	const {
-		desktopRangeStyle: gap,
-		tabRangeStyle: gapTab,
-		mobRangeStyle: gapMob,
-	} = generateResRangeStyle( {
-		controlName: ICON_TEXT_SPACING,
-		property: 'gap',
-		attributes,
-	} );
-
-	// generate button icon size
-	const {
-		desktopRangeStyle: buttonIconSize,
-		tabRangeStyle: buttonIconSizeTab,
-		mobRangeStyle: buttonIconSizeMob,
-	} = generateResRangeStyle( {
-		controlName: BUTTON_ICON_SIZE,
-		property: 'font-size',
-		attributes,
-	} );
-
-	// generate button icon height
-	const {
-		desktopRangeStyle: buttonIconHeight,
-		tabRangeStyle: buttonIconHeightTab,
-		mobRangeStyle: buttonIconHeightMob,
-	} = generateResRangeStyle( {
-		controlName: BUTTON_ICON_SIZE,
-		property: 'height',
-		attributes,
-	} );
-
-	// generate button icon width
-	const {
-		desktopRangeStyle: buttonIconWidth,
-		tabRangeStyle: buttonIconWidthTab,
-		mobRangeStyle: buttonIconWidthMob,
-	} = generateResRangeStyle( {
-		controlName: BUTTON_ICON_SIZE,
-		property: 'width',
-		attributes,
-	} );
-
-	// generate button style
-	const {
-		desktopBorderStyle: buttonBorderStyles,
-		tabBorderStyle: buttonBorderStylesTab,
-		mobBorderStyle: buttonBorderStylesMob,
-	} = generateBorderStyle( {
-		controlName: BUTTON_BORDER,
-		attributes,
-	} );
-
-	// generate button border radius
-	const {
-		dimensionStylesDesktop: buttonBorderRadiusDesktop,
-		dimensionStylesTab: buttonBorderRadiusTab,
-		dimensionStylesMobile: buttonBorderRadiusMob,
-	} = generateDimensionStyle( {
-		controlName: BUTTON_BORDER_RADIUS,
-		styleFor: 'border-radius',
 		attributes,
 	} );
 
@@ -493,31 +181,32 @@ export default function Edit( props ) {
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
-		.${ uniqueId } .wp-block-zolo-brand-child .zb-brand-style-1 .zb-brand-content, .wp-block-zolo-brand-child .zb-brand-style-2 .zb-brand-content{
+		.${ uniqueId } .zb-brand-style-1 .zb-brand-content, .zb-brand-style-2 .zb-brand-content{
 			${ brandContentDeskAlignStyle }
+		}
+		.${ uniqueId } .zb-brand-title{
+			${ titleTypoDesk }
+			color:${ textColor };
+		}
+		.${ uniqueId } .zb-brand-item:hover .zb-brand-title{
+			color:${ textHoverColor };
 		}
 		${ presetStyles }		
   	`;
 
 	const tabletAllStyle = `
 		
-		.${ uniqueId } .zolo-block-title{
-			${ titleTypoTab }
-			${ tabTitleTextStrokeStyle }
-			${ textAlignmentTab }
-			${ titleMarginTab }
-		}	
+	.${ uniqueId } .zb-brand-title{
+		${ titleTypoTab }
+	}
 		${ presetStyles }
 	`;
 
 	const mobileAllStyle = `
 		
-		.${ uniqueId } .zolo-block-title{
-			${ titleTypoMobile }
-			${ mobTitleTextStrokeStyle }
-			${ textAlignmentMob }
-			${ titleMarginMob }
-		}
+	.${ uniqueId } .zb-brand-title{
+		${ titleTypoMob }
+	}
 		
 		${ presetStyles }
   	`;
