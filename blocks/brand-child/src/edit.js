@@ -6,7 +6,6 @@ import {
 	RichText,
 	BlockControls,
 	MediaUpload,
-	MediaPlaceholder,
 	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
@@ -20,14 +19,10 @@ const {
 	handleUniqueId,
 	softMinifyCssStrings,
 	generateResAlignmentStyle,
-	generateResRangeStyle,
-	generateBorderStyle,
 	generateDimensionStyle,
 	generateTypographyStyles,
-	generateBoxShadowStyles,
 	generateTextShadowStyles,
 	generateTextStrokeStyles,
-	DisplayIcon,
 } = window.zoloModule;
 
 import {
@@ -36,9 +31,13 @@ import {
 	TITLE_MARGIN,
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
+	LINK_MARGIN,
 } from './constants';
 
-import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import {
+	TITLE_TYPOGRAPHY,
+	LINK_TYPOGRAPHY,
+} from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
 
@@ -56,6 +55,8 @@ export default function Edit( props ) {
 		showWebsiteLink,
 		link,
 		textColor,
+		linkColor,
+		linkHoverColor,
 		blockStyle,
 		iconTypeImage,
 		presetOneStyles,
@@ -94,12 +95,22 @@ export default function Edit( props ) {
 		typoStylesMobile: titleTypoMob,
 	} = generateTypographyStyles( {
 		prefixConstant: TITLE_TYPOGRAPHY,
+		defaultFontSize: 48,
+		attributes,
+	} );
+
+	// Link Typography
+	const {
+		typoStylesDesktop: linkTypoDesk,
+		typoStylesTab: linkTypoTab,
+		typoStylesMobile: linkTypoMob,
+	} = generateTypographyStyles( {
+		prefixConstant: LINK_TYPOGRAPHY,
 		defaultFontSize: 16,
 		attributes,
 	} );
 
 	// Title Margin
-
 	const {
 		dimensionStylesDesktop: titleMarginDesk,
 		dimensionStylesTab: titleMarginTab,
@@ -110,8 +121,19 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	// Link Margin
+	const {
+		dimensionStylesDesktop: linkMarginDesk,
+		dimensionStylesTab: linkMarginTab,
+		dimensionStylesMobile: linkMarginMob,
+	} = generateDimensionStyle( {
+		controlName: LINK_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	} );
+
 	// Title Text Shadow
-	const { boxShadowStyle: titleTextShadow } = generateBoxShadowStyles( {
+	const { textShadowStyle: titleTextShadow } = generateTextShadowStyles( {
 		attributes,
 		controlName: TITLE_TEXT_SHADOW,
 	} );
@@ -194,27 +216,47 @@ export default function Edit( props ) {
 			${ titleTextStrokeDesk }
 			color:${ textColor };
 		}
+		.${ uniqueId } .zb-brand-link{
+			${ linkTypoDesk }
+			${ linkMarginDesk }
+			color:${ linkColor };
+		}
+		.${ uniqueId } .zb-brand-link:hover{
+			color:${ linkHoverColor };
+		}
 		${ presetStyles }		
   	`;
 
 	const tabletAllStyle = `
-		
+	.${ uniqueId } .zb-brand-style-1 .zb-brand-content, .zb-brand-style-2 .zb-brand-content{
+		${ brandContentTabAlignStyle }
+	}		
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoTab }
 		${ titleMarginTab }
 		${ titleTextStrokeTab }
 	}
+	.${ uniqueId } .zb-brand-link{
+		${ linkTypoTab }
+		${ linkMarginTab }
+		
+	}
 		${ presetStyles }
 	`;
 
-	const mobileAllStyle = `
-		
+	const mobileAllStyle = `		
+	.${ uniqueId } .zb-brand-style-1 .zb-brand-content, .zb-brand-style-2 .zb-brand-content{
+		${ brandContentMobAlignStyle }
+	}
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoMob }
 		${ titleMarginMob }
 		${ titleTextStrokeMob }
+	}		
+	.${ uniqueId } .zb-brand-link{
+		${ linkTypoMob }
+		${ linkMarginMob }
 	}
-		
 	${ presetStyles }
 
   	`;
@@ -367,7 +409,7 @@ export default function Edit( props ) {
 
 								{ showWebsiteLink && (
 									<a
-										className="zb-brand-link"
+										className="zb-brand-link-editor"
 										href={
 											brandDetailPageLink &&
 											brandDetailPageLink.url
@@ -385,6 +427,7 @@ export default function Edit( props ) {
 									>
 										{
 											<RichText
+												className="zb-brand-link"
 												value={ brandAnchorText }
 												onChange={ ( name ) =>
 													setAttributes( {

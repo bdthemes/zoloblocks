@@ -5,11 +5,8 @@ import {
 	InspectorControls,
 	__experimentalLinkControl as LinkControl,
 	MediaUpload,
-	MediaUploadCheck,
-	MediaPlaceholder,
 } from '@wordpress/block-editor';
 import {
-	CardDivider,
 	PanelBody,
 	SelectControl,
 	TabPanel,
@@ -19,41 +16,34 @@ import {
 	Button,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 
 /**
  * Internal depencencies
  */
 const {
 	ResAlignmentControl,
-	ResRangeControl,
 	ColorControl,
-	BorderControl,
 	ResDimensionsControl,
 	TextShadowControl,
 	TextStrokeControl,
 	TypographyDropdown,
 	TabPanelControl,
-	IconPicker,
-	BoxShadowControl,
 	ImageAvatar,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
 	CONTENT_ALIGNMENT,
-	TITLE_MARGIN,
-	DESCRIPTION_MARGIN,
 	PRESETS,
+	TITLE_MARGIN,
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
-	ICON_PADDING,
-	ICON_MARGIN,
+	LINK_MARGIN,
 } from './constants';
 
 import {
 	TITLE_TYPOGRAPHY,
-	DESCRIPTION_TYPOGRAPHY,
+	LINK_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
 function Inspector( props ) {
@@ -67,11 +57,10 @@ function Inspector( props ) {
 		brandDetailPageLink,
 		showBrandName,
 		showWebsiteLink,
-		link,
 		resMode,
 		textColor,
-		descColor,
-		descHoverColor,
+		linkColor,
+		linkHoverColor,
 	} = attributes;
 
 	const resRequiredProps = {
@@ -299,7 +288,7 @@ function Inspector( props ) {
 											alignOptions={ [
 												{
 													label: 'Left',
-													value: 'left',
+													value: 'flex-start',
 												},
 												{
 													label: 'Center',
@@ -307,11 +296,7 @@ function Inspector( props ) {
 												},
 												{
 													label: 'Right',
-													value: 'right',
-												},
-												{
-													label: 'Justify',
-													value: 'justify',
+													value: 'flex-end',
 												},
 											] }
 										/>
@@ -380,12 +365,13 @@ function Inspector( props ) {
 												'zolo-blocks'
 											) }
 											typoPrefixConstant={
-												DESCRIPTION_TYPOGRAPHY
+												LINK_TYPOGRAPHY
 											}
 											resRequiredProps={
 												resRequiredProps
 											}
 										/>
+
 										<TabPanelControl
 											normalComponents={
 												<>
@@ -394,10 +380,10 @@ function Inspector( props ) {
 															'Color',
 															'zolo-blocks'
 														) }
-														color={ descColor }
+														color={ linkColor }
 														onChange={ ( value ) =>
 															setAttributes( {
-																descColor:
+																linkColor:
 																	value,
 															} )
 														}
@@ -411,10 +397,10 @@ function Inspector( props ) {
 															'Color',
 															'zolo-blocks'
 														) }
-														color={ descHoverColor }
+														color={ linkHoverColor }
 														onChange={ ( value ) =>
 															setAttributes( {
-																descHoverColor:
+																linkHoverColor:
 																	value,
 															} )
 														}
@@ -427,7 +413,7 @@ function Inspector( props ) {
 												'Margin',
 												'zolo-blocks'
 											) }
-											controlName={ DESCRIPTION_MARGIN }
+											controlName={ LINK_MARGIN }
 											resRequiredProps={
 												resRequiredProps
 											}
@@ -442,28 +428,7 @@ function Inspector( props ) {
 									<PanelBody
 										title={ __( 'Spacing', 'zolo-blocks' ) }
 										initialOpen={ false }
-									>
-										<ResDimensionsControl
-											label={ __(
-												'Padding',
-												'zolo-blocks'
-											) }
-											controlName={ ICON_PADDING }
-											resRequiredProps={
-												resRequiredProps
-											}
-										/>
-										<ResDimensionsControl
-											label={ __(
-												'Margin',
-												'zolo-blocks'
-											) }
-											controlName={ ICON_MARGIN }
-											resRequiredProps={
-												resRequiredProps
-											}
-										/>
-									</PanelBody>
+									></PanelBody>
 								</>
 							) }
 						</div>
