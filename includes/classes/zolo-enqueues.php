@@ -6,6 +6,8 @@
  * @package Zolo
  */
 
+ use Zolo\Helpers\ZoloHelpers;
+
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
     exit;
@@ -162,10 +164,10 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             //this file use for js
             wp_localize_script('zolo-block-editor', 'zoloParams', [
                 'ajaxurl'    => admin_url('admin-ajax.php'),
-                'post_types' => Zolo_Helpers::get_post_types(),
-                'get_users' => Zolo_Helpers::get_all_users(),
-                'all_taxonomy' => Zolo_Helpers::get_related_taxonomy(),
-                'all_term_list'  => Zolo_Helpers::get_all_taxonomy(),
+                'post_types' => ZoloHelpers::get_post_types(),
+                'get_users' => ZoloHelpers::get_all_users(),
+                'all_taxonomy' => ZoloHelpers::get_related_taxonomy(),
+                'all_term_list'  => ZoloHelpers::get_all_taxonomy(),
             ]);
         }
     }

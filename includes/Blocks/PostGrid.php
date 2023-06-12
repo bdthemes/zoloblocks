@@ -3,7 +3,7 @@
 namespace Zolo\Blocks;
 
 use Zolo\Blocks\BlockBase;
-use Zolo_Helpers;
+use Zolo\Helpers\ZoloHelpers;
 use Zolo\API\GetPostsV1;
 
 class PostGrid extends BlockBase
@@ -40,7 +40,7 @@ class PostGrid extends BlockBase
         $post_results = apply_filters('zolo_post_grid_results', GetPostsV1::zolo_posts_query($attributes));
 
         ob_start();
-        Zolo_Helpers::views('post-grid',  [
+        ZoloHelpers::views('post-grid',  [
             'settings' => $attributes,
             'className'     => '',
             'posts'         => $post_results,

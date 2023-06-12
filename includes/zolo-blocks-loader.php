@@ -6,13 +6,16 @@
  * @package Zolo
  */
 
+use Zolo\Blocks\BlockControl;
+use Zolo\Helpers\ZoloHelpers;
+use Zolo\Traits\SingletonTrait;
+use Zolo\Classes\StyleGenerator;
+use Zolo\Classes\Registration;
+
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-
-use Zolo\Blocks\BlockControl;
-use Zolo\Traits\SingletonTrait;
 
 class Zolo_Blocks_Loader {
     use SingletonTrait;
@@ -22,32 +25,9 @@ class Zolo_Blocks_Loader {
      */
     public function __construct() {
 
-        $this->loader();
-
-        add_action( 'plugins_loaded', [$this, 'load_plugin'] );
+        add_action( 'plugins_loaded', [$this, 'plugins_loaded'] );
 
         add_action( 'init', [$this, 'init_actions'] );
-
-        //Generate Style on block render
-        add_filter( 'render_block', [$this, 'generate_style_on_render_block'], 10, 2 );
-
-        //Register Block Category
-        add_filter( 'block_categories_all', [$this, 'register_block_category'], 99999, 2 );
-    }
-
-    /**
-     * Loads Other files.
-     *
-     * @since 0.0.1
-     *
-     * @return void
-     */
-    public function loader() {
-        BlockControl::getInstance();
-        require_once ZOLO_DIR_PATH . 'includes/classes/zolo-ajax.php';
-        require_once ZOLO_DIR_PATH . 'includes/classes/zolo-enqueues.php';
-        require_once ZOLO_DIR_PATH . '/includes/classes/font-loader.php';
-        require_once ZOLO_DIR_PATH . '/includes/classes/post-meta.php';
     }
 
     /**
@@ -57,8 +37,15 @@ class Zolo_Blocks_Loader {
      *
      * @return void
      */
-    public function load_plugin() {
-        require_once ZOLO_DIR_PATH . 'includes/helpers/zolo-helpers.php';
+    public function plugins_loaded() {
+        BlockControl::getInstance();
+        ZoloHelpers::getInstance();
+        StyleGenerator::getInstance();
+        Registration::getInstance();
+        require_once ZOLO_DIR_PATH . 'includes/classes/zolo-ajax.php';
+        require_once ZOLO_DIR_PATH . 'includes/classes/zolo-enqueues.php';
+        require_once ZOLO_DIR_PATH . '/includes/classes/font-loader.php';
+        require_once ZOLO_DIR_PATH . '/includes/classes/post-meta.php';
 
         if ( is_admin() ) {
             //Load Admin required files
@@ -85,46 +72,6 @@ class Zolo_Blocks_Loader {
         if ( 'astra' === $theme_folder ) {
             // require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-astra-compatibility.php';
         }
-    }
-
-    /**
-     * Register Block Category
-     *
-     * @since 0.0.1
-     *
-     * @return array
-     */
-    public function register_block_category( $categories, $post ) {
-        $updatedCat  = [];
-        $eb_category = [
-            'slug'  => 'zolo-blocks',
-            'title' => __( 'Zolo Blocks', 'zolo-blocks' )
-        ];
-        $updatedCat[0] = $eb_category;
-        $updatedCat    = array_merge( $updatedCat, $categories );
-        return $updatedCat;
-    }
-
-    /**
-     * Hanlde Block Style
-     *
-     * @since 0.0.1
-     *
-     * @return array
-     */
-    public function generate_style_on_render_block( $block_content, $block ) {
-        if ( isset( $block['blockName'] ) && str_contains( $block['blockName'], 'zolo/' ) ) {
-            if ( isset( $block['attrs']['blockStyle'] ) ) {
-                $style         = Zolo_Helpers::zolo_generate_style( $block['attrs']['blockStyle'] );
-                $block_content = sprintf(
-                    '<style>%1$s</style>%2$s',
-                    $style,
-                    $block_content
-                );
-            }
-        }
-
-        return $block_content;
     }
 }
 
