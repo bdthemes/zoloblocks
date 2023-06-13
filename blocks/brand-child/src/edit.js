@@ -36,6 +36,11 @@ import {
 	LINK_MARGIN,
 	LINK_TEXT_SHADOW,
 	LINK_TEXT_STROKE,
+	BRAND_PHOTO_BORDER_RADIUS,
+	BRAND_PHOTO_BOX_SHADOW,
+	BRAND_PHOTO_BG,
+	BRAND_PHOTO_PADDING,
+	BRAND_PHOTO_MARGIN,
 	CONTAINER_BORDER_RADIUS,
 	CONTAINER_BOX_SHADOW,
 	CONTAINER_BACKGROUND,
@@ -123,6 +128,56 @@ export default function Edit( props ) {
 		controlName: CONTAINER_BACKGROUND,
 		attributes,
 		noMainBGImg: false,
+	} );
+
+	const {
+		backgroundStylesDesktop: brandPhotoDeskBGStyle,
+		backgroundStylesTab: brandPhotoTabBGStyle,
+		backgroundStylesMobile: brandPhotoMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: BRAND_PHOTO_BG,
+		attributes,
+		noMainBGImg: false,
+	} );
+
+	// Photo Border Radius
+	const {
+		dimensionStylesDesktop: brandPhotoBorderRadiusDesk,
+		dimensionStylesTab: brandPhotoBorderRadiusTab,
+		dimensionStylesMobile: brandPhotoBorderRadiusMob,
+	} = generateDimensionStyle( {
+		controlName: BRAND_PHOTO_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	} );
+
+	// Photo Box Shadow
+
+	const { boxShadowStyle: brandPhotoBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: BRAND_PHOTO_BOX_SHADOW,
+	} );
+
+	// Brand Photo Padding
+	const {
+		dimensionStylesDesktop: brandPhotoPaddingDesk,
+		dimensionStylesTab: brandPhotoPaddingTab,
+		dimensionStylesMobile: brandPhotoPaddingMob,
+	} = generateDimensionStyle( {
+		controlName: BRAND_PHOTO_PADDING,
+		styleFor: 'padding',
+		attributes,
+	} );
+
+	// Brand Photo Margin
+	const {
+		dimensionStylesDesktop: brandPhotoMaringDesk,
+		dimensionStylesTab: brandPhotoMarginTab,
+		dimensionStylesMobile: brandPhotoMarginMob,
+	} = generateDimensionStyle( {
+		controlName: BRAND_PHOTO_PADDING,
+		styleFor: 'padding',
+		attributes,
 	} );
 
 	// Title Typography
@@ -262,6 +317,15 @@ export default function Edit( props ) {
 			${ containerDeskBorderRadius }
 			${ containerBoxShadow }
 			${ containerDeskBGStyle }
+		}		
+		.${ uniqueId } .zb-brand-image img{
+			${ brandPhotoBorderRadiusDesk }
+			${ brandPhotoBoxShadow }
+			${ brandPhotoDeskBGStyle }
+			${ brandPhotoPaddingDesk }			
+		}
+		.${ uniqueId } .zb-brand-image{
+			${ brandPhotoMaringDesk }
 		}
 		.${ uniqueId } .zb-brand-title{
 			${ titleTypoDesk }
@@ -291,6 +355,14 @@ export default function Edit( props ) {
 		${ containerTabBorderRadius }
 		${ containerTabBGStyle }
 	}
+	.${ uniqueId } .zb-brand-image{
+		${ brandPhotoMarginTab }
+	}
+	.${ uniqueId } .zb-brand-image img{
+		${ brandPhotoBorderRadiusTab }
+		${ brandPhotoTabBGStyle }
+		${ brandPhotoPaddingTab }		
+	}
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoTab }
 		${ titleMarginTab }
@@ -311,6 +383,14 @@ export default function Edit( props ) {
 	.${ uniqueId } .zb-brand-item{
 		${ containerMobBorderRadius }
 		${ containerMobBGStyle }
+	}
+	.${ uniqueId } .zb-brand-image{
+		${ brandPhotoMarginMob }
+	}
+	.${ uniqueId } .zb-brand-image img{
+		${ brandPhotoBorderRadiusMob }
+		${ brandPhotoMobBGStyle }
+		${ brandPhotoPaddingMob }		
 	}
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoMob }

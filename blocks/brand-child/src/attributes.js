@@ -21,6 +21,11 @@ import {
 	CONTAINER_BACKGROUND,
 	CONTAINER_BOX_SHADOW,
 	CONTAINER_BORDER_RADIUS,
+	BRAND_PHOTO_BORDER_RADIUS,
+	BRAND_PHOTO_BOX_SHADOW,
+	BRAND_PHOTO_BG,
+	BRAND_PHOTO_PADDING,
+	BRAND_PHOTO_MARGIN,
 	CONTAINER_BORDER,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -47,15 +52,20 @@ const attributes = {
 	...generateDimensionAttributes( CONTAINER_BORDER_RADIUS ),
 	...generateBoxShadowAttributies( CONTAINER_BOX_SHADOW ),
 
-	//title alignment attributes
-	...generateResAlignmentAttributies( TITLE_ALIGNMENT, {
-		defaultAlign: '',
-	} ),
+	// photo
+	...generateDimensionAttributes( BRAND_PHOTO_BORDER_RADIUS ),
+	...generateBoxShadowAttributies( BRAND_PHOTO_BOX_SHADOW ),
+	...generateNormalBGAttributes( BRAND_PHOTO_BG ),
+	...generateDimensionAttributes( BRAND_PHOTO_PADDING ),
+	...generateDimensionAttributes( BRAND_PHOTO_MARGIN ),
 
-	//title margin
+	//title
 	...generateDimensionAttributes( TITLE_MARGIN ),
 	...generateTextShadowAttributies( TITLE_TEXT_SHADOW ),
 	...generateTextStrokeAttributies( TITLE_TEXT_STROKE ),
+	...generateResAlignmentAttributies( TITLE_ALIGNMENT, {
+		defaultAlign: '',
+	} ),
 
 	//link margin
 	...generateDimensionAttributes( LINK_MARGIN ),

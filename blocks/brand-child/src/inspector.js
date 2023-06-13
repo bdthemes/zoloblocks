@@ -48,6 +48,12 @@ import {
 	CONTAINER_BOX_SHADOW,
 	CONTAINER_BORDER_RADIUS,
 	CONTAINER_BORDER,
+	BRAND_PHOTO_BORDER,
+	BRAND_PHOTO_BORDER_RADIUS,
+	BRAND_PHOTO_BOX_SHADOW,
+	BRAND_PHOTO_BG,
+	BRAND_PHOTO_PADDING,
+	BRAND_PHOTO_MARGIN,
 } from './constants';
 
 import {
@@ -354,6 +360,72 @@ function Inspector( props ) {
 											}
 											controlName={ CONTAINER_BACKGROUND }
 											noMainBGImg={ false }
+										/>
+									</PanelBody>
+									<PanelBody
+										title={ __( 'Photo', 'zolo-blocks' ) }
+										initialOpen={ false }
+									>
+										<BorderControl
+											label={ __(
+												'Border',
+												'zolo-blocks'
+											) }
+											controlName={ BRAND_PHOTO_BORDER }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Border Radius',
+												'zolo-blocks'
+											) }
+											controlName={
+												BRAND_PHOTO_BORDER_RADIUS
+											}
+											resRequiredProps={
+												resRequiredProps
+											}
+											forBorderRadius={ true }
+										/>
+										<BoxShadowControl
+											controlName={
+												BRAND_PHOTO_BOX_SHADOW
+											}
+											resRequiredProps={
+												resRequiredProps
+											}
+											enableTransition={ false }
+										/>
+										<NormalBGControl
+											resRequiredProps={
+												resRequiredProps
+											}
+											controlName={ BRAND_PHOTO_BG }
+											noMainBGImg={ false }
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Padding',
+												'zolo-blocks'
+											) }
+											controlName={ BRAND_PHOTO_PADDING }
+											resRequiredProps={
+												resRequiredProps
+											}
+											forBorderRadius={ false }
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Margin',
+												'zolo-blocks'
+											) }
+											controlName={ BRAND_PHOTO_MARGIN }
+											resRequiredProps={
+												resRequiredProps
+											}
+											forBorderRadius={ false }
 										/>
 									</PanelBody>
 									<PanelBody

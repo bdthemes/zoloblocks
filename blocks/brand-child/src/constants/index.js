@@ -60,19 +60,24 @@ export const CONTAINER_BORDER = 'brandContainerBorder';
 export const CONTAINER_BORDER_RADIUS = 'brandContainerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'brandContainerBoxShadow';
 
-// title Alignment
+// brand photo
+export const BRAND_PHOTO_BG = 'brandPhotoBackground';
+export const BRAND_PHOTO_BORDER = 'brandPhotoBorder';
+export const BRAND_PHOTO_BORDER_RADIUS = 'brandPhotoBorderRadius';
+export const BRAND_PHOTO_BOX_SHADOW = 'brandPhotoBoxShadow';
+export const BRAND_PHOTO_MARGIN = 'brandPhotoMargin';
+export const BRAND_PHOTO_PADDING = 'brandPhotoPadding';
+
+// title
 export const TITLE_ALIGNMENT = 'titleAlignment';
-// title margin
 export const TITLE_MARGIN = 'titleMargin';
-// link margin
-export const LINK_MARGIN = 'linkMargin';
-// title text shadow
 export const TITLE_TEXT_SHADOW = 'titleTextShadow';
-// title text stroke
 export const TITLE_TEXT_STROKE = 'titleTextStroke';
-// content alignment
+
+// content
 export const CONTENT_ALIGNMENT = 'brandContentAlignment';
-// link text shadow
+
+// link
 export const LINK_TEXT_SHADOW = 'linkTextShadow';
-// link text stroke
+export const LINK_MARGIN = 'linkMargin';
 export const LINK_TEXT_STROKE = 'linkTextStroke';
