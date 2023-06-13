@@ -120,6 +120,26 @@
 		}
 	}
 
+	.components-form-toggle.is-checked {
+		.components-form-toggle__track {
+			background-color: #001FEB;
+		}
+	} 
+
+	.components-form-toggle .components-form-toggle__input:focus+.components-form-toggle__track {
+        box-shadow: none;
+	}
+
+	.components-form-toggle .components-form-toggle__track {
+		background-color: #D8D8E5;
+		border: none;
+	}
+
+	.components-form-toggle .components-form-toggle__thumb {
+		background-color: #fff;
+		border: 5px solid #fff;
+	}
+
 	.components-flex.components-h-stack {
 		height: auto !important;
 	}
