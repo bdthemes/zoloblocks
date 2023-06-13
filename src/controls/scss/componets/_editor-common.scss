@@ -1,4 +1,50 @@
 .zolo-parent-tab-panel {
+	.components-tab-panel__tabs {
+		justify-content: space-between;
+		.zolo-tab.active-tab {
+			color: #001FEB;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			border: 1px solid #ddd !important;
+			border-bottom: 1px solid #fff !important;
+		}
+	}
+
+	.components-tab-panel__tabs-item {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		height: 40px;
+		line-height: 50px;
+		border-bottom: 1px solid #ddd;
+		&::before {
+			font-size: 20px;
+			color: #f41313;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			position: absolute;
+		}
+		&.settings {
+			&::before {
+				content: '\f522';
+			}
+		}
+		&.design {
+			&::before {
+				content: '\f522';
+			}
+		}
+		&.advanced {
+			&::before {
+				content: '\f522';
+			}
+		}
+	}
+
+
 	.block-editor-link-control {
 		min-width: auto;
 	}
@@ -30,7 +76,54 @@
 			margin-bottom: 5px;
 		}
 	}
+
+	.zb-res-device-btns {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		.res-btn.active {
+			color: #001FEB !important;
+		}
+		.res-btn {
+			width: 25px;
+			height: 25px;
+			line-height: 25px;
+			margin: 0;
+			background-color: #EBEBF5;
+		}
+		.res-btn-label {
+			margin: 0;
+		}
+	}
+
+	.zb-unit-control-btn-group {
+		.zb-unit-control-btn.zb-unit-active {
+			color: #001FEB!important;
+		}
+	}
+
+	.zb-dimension-container {
+		margin: 0 0 20px;
+	}
+
+	.input-container {
+		gap: 5px;
+		.input-wrap {
+				input {
+					border-left-width: 1px;
+					min-height: 40px;
+					border-radius: 4px;
+					&:nth-child(1) {
+						border-radius: 4px;
+					}
+				}
+		}
+	}
+
 	.components-flex.components-h-stack {
 		height: auto !important;
 	}
+
+
 }
+
