@@ -23,6 +23,8 @@ const {
 	generateTypographyStyles,
 	generateTextShadowStyles,
 	generateTextStrokeStyles,
+	generateBoxShadowStyles,
+	generateNormalBGControlStyles,
 } = window.zoloModule;
 
 import {
@@ -32,6 +34,11 @@ import {
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
 	LINK_MARGIN,
+	LINK_TEXT_SHADOW,
+	LINK_TEXT_STROKE,
+	CONTAINER_BORDER_RADIUS,
+	CONTAINER_BOX_SHADOW,
+	CONTAINER_BACKGROUND,
 } from './constants';
 
 import {
@@ -86,6 +93,36 @@ export default function Edit( props ) {
 		controlName: CONTENT_ALIGNMENT,
 		property: 'align-items',
 		attributes,
+	} );
+
+	// Container Border Radius
+	const {
+		dimensionStylesDesktop: containerDeskBorderRadius,
+		dimensionStylesTab: containerTabBorderRadius,
+		dimensionStylesMobile: containerMobBorderRadius,
+	} = generateDimensionStyle( {
+		controlName: CONTAINER_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	} );
+
+	// Container Box Shadow
+
+	const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: CONTAINER_BOX_SHADOW,
+	} );
+
+	// Container Background
+
+	const {
+		backgroundStylesDesktop: containerDeskBGStyle,
+		backgroundStylesTab: containerTabBGStyle,
+		backgroundStylesMobile: containerMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: CONTAINER_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
 	} );
 
 	// Title Typography
@@ -148,6 +185,22 @@ export default function Edit( props ) {
 		controlName: TITLE_TEXT_STROKE,
 	} );
 
+	// Link Text Shadow
+	const { textShadowStyle: linkTextShadow } = generateTextShadowStyles( {
+		attributes,
+		controlName: LINK_TEXT_SHADOW,
+	} );
+
+	// Link Text Stroke
+	const {
+		desktopTextStrokeStyle: linkTextStrokeDesk,
+		tabTextStrokeStyle: linkTextStrokeTab,
+		mobTextStrokeStyle: linkTextStrokeMob,
+	} = generateTextStrokeStyles( {
+		attributes,
+		controlName: LINK_TEXT_STROKE,
+	} );
+
 	/**
 	 * Presets Based Styles
 	 */
@@ -163,9 +216,7 @@ export default function Edit( props ) {
 				}		
 				.zolo-box-button{
 					flex-direction: ${ presetOneStyles && presetOneStyles.buttonIconPosition };
-				}			
-								
-			
+				}				
 			`;
 			break;
 		case 'style-2':
@@ -178,8 +229,7 @@ export default function Edit( props ) {
 				}		
 				.zolo-box-button{
 					flex-direction: ${ presetTwoStyles && presetTwoStyles.buttonIconPosition };
-				}		
-			
+				}	
 			`;
 			break;
 		case 'style-3':
@@ -194,7 +244,6 @@ export default function Edit( props ) {
 				.zolo-box-button{
 					flex-direction: ${ presetThreeStyles && presetThreeStyles.buttonIconPosition };
 				}				
-			
 			`;
 			break;
 		case 'style-4':
@@ -209,6 +258,11 @@ export default function Edit( props ) {
 		.${ uniqueId } .zb-brand-style-1 .zb-brand-content, .zb-brand-style-2 .zb-brand-content{
 			${ brandContentDeskAlignStyle }
 		}
+		.${ uniqueId } .zb-brand-item{
+			${ containerDeskBorderRadius }
+			${ containerBoxShadow }
+			${ containerDeskBGStyle }
+		}
 		.${ uniqueId } .zb-brand-title{
 			${ titleTypoDesk }
 			${ titleMarginDesk }
@@ -219,6 +273,8 @@ export default function Edit( props ) {
 		.${ uniqueId } .zb-brand-link{
 			${ linkTypoDesk }
 			${ linkMarginDesk }
+			${ linkTextShadow }
+			${ linkTextStrokeDesk }
 			color:${ linkColor };
 		}
 		.${ uniqueId } .zb-brand-link:hover{
@@ -230,7 +286,11 @@ export default function Edit( props ) {
 	const tabletAllStyle = `
 	.${ uniqueId } .zb-brand-style-1 .zb-brand-content, .zb-brand-style-2 .zb-brand-content{
 		${ brandContentTabAlignStyle }
-	}		
+	}
+	.${ uniqueId } .zb-brand-item{
+		${ containerTabBorderRadius }
+		${ containerTabBGStyle }
+	}
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoTab }
 		${ titleMarginTab }
@@ -239,7 +299,7 @@ export default function Edit( props ) {
 	.${ uniqueId } .zb-brand-link{
 		${ linkTypoTab }
 		${ linkMarginTab }
-		
+		${ linkTextStrokeTab }
 	}
 		${ presetStyles }
 	`;
@@ -247,6 +307,10 @@ export default function Edit( props ) {
 	const mobileAllStyle = `		
 	.${ uniqueId } .zb-brand-style-1 .zb-brand-content, .zb-brand-style-2 .zb-brand-content{
 		${ brandContentMobAlignStyle }
+	}
+	.${ uniqueId } .zb-brand-item{
+		${ containerMobBorderRadius }
+		${ containerMobBGStyle }
 	}
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoMob }
@@ -256,6 +320,7 @@ export default function Edit( props ) {
 	.${ uniqueId } .zb-brand-link{
 		${ linkTypoMob }
 		${ linkMarginMob }
+		${ linkTextStrokeMob }
 	}
 	${ presetStyles }
 

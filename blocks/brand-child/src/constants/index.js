@@ -54,15 +54,25 @@ export const TITLE_TAG = [
 	},
 ];
 
+// container
+export const CONTAINER_BACKGROUND = 'brandContainerBackground';
+export const CONTAINER_BORDER = 'brandContainerBorder';
+export const CONTAINER_BORDER_RADIUS = 'brandContainerBorderRadius';
+export const CONTAINER_BOX_SHADOW = 'brandContainerBoxShadow';
+
 // title Alignment
 export const TITLE_ALIGNMENT = 'titleAlignment';
 // title margin
 export const TITLE_MARGIN = 'titleMargin';
 // link margin
 export const LINK_MARGIN = 'linkMargin';
-// title controls
+// title text shadow
 export const TITLE_TEXT_SHADOW = 'titleTextShadow';
-// title controls
+// title text stroke
 export const TITLE_TEXT_STROKE = 'titleTextStroke';
 // content alignment
 export const CONTENT_ALIGNMENT = 'brandContentAlignment';
+// link text shadow
+export const LINK_TEXT_SHADOW = 'linkTextShadow';
+// link text stroke
+export const LINK_TEXT_STROKE = 'linkTextStroke';

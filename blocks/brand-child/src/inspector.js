@@ -22,6 +22,9 @@ import { __ } from '@wordpress/i18n';
  */
 const {
 	ResAlignmentControl,
+	BorderControl,
+	BoxShadowControl,
+	NormalBGControl,
 	ColorControl,
 	ResDimensionsControl,
 	TextShadowControl,
@@ -38,7 +41,13 @@ import {
 	TITLE_MARGIN,
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
+	LINK_TEXT_SHADOW,
+	LINK_TEXT_STROKE,
 	LINK_MARGIN,
+	CONTAINER_BACKGROUND,
+	CONTAINER_BOX_SHADOW,
+	CONTAINER_BORDER_RADIUS,
+	CONTAINER_BORDER,
 } from './constants';
 
 import {
@@ -302,6 +311,52 @@ function Inspector( props ) {
 										/>
 									</PanelBody>
 									<PanelBody
+										title={ __(
+											'Container',
+											'zolo-blocks'
+										) }
+										initialOpen={ false }
+									>
+										<BorderControl
+											label={ __(
+												'Border',
+												'zolo-blocks'
+											) }
+											controlName={ CONTAINER_BORDER }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Border Radius',
+												'zolo-blocks'
+											) }
+											controlName={
+												CONTAINER_BORDER_RADIUS
+											}
+											resRequiredProps={
+												resRequiredProps
+											}
+											forBorderRadius={ true }
+										/>
+										<BoxShadowControl
+											controlName={ CONTAINER_BOX_SHADOW }
+											resRequiredProps={
+												resRequiredProps
+											}
+											enableTransition={ false }
+										/>
+
+										<NormalBGControl
+											resRequiredProps={
+												resRequiredProps
+											}
+											controlName={ CONTAINER_BACKGROUND }
+											noMainBGImg={ false }
+										/>
+									</PanelBody>
+									<PanelBody
 										title={ __( 'Heading', 'zolo-blocks' ) }
 										initialOpen={ false }
 									>
@@ -417,6 +472,20 @@ function Inspector( props ) {
 											resRequiredProps={
 												resRequiredProps
 											}
+										/>
+										<TextShadowControl
+											controlName={ LINK_TEXT_SHADOW }
+											resRequiredProps={
+												resRequiredProps
+											}
+											enableTransition={ false }
+										/>
+										<TextStrokeControl
+											controlName={ LINK_TEXT_STROKE }
+											resRequiredProps={
+												resRequiredProps
+											}
+											enableTransition={ false }
 										/>
 									</PanelBody>
 								</>

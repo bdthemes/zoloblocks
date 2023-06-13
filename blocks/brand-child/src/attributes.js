@@ -4,6 +4,9 @@ const {
 	generateTypographyAttributes,
 	generateTextShadowAttributies,
 	generateTextStrokeAttributies,
+	generateNormalBGAttributes,
+	generateBorderAttributies,
+	generateBoxShadowAttributies,
 } = window.zoloModule;
 
 import {
@@ -11,8 +14,14 @@ import {
 	TITLE_MARGIN,
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
+	LINK_TEXT_SHADOW,
+	LINK_TEXT_STROKE,
 	CONTENT_ALIGNMENT,
 	LINK_MARGIN,
+	CONTAINER_BACKGROUND,
+	CONTAINER_BOX_SHADOW,
+	CONTAINER_BORDER_RADIUS,
+	CONTAINER_BORDER,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
@@ -32,6 +41,12 @@ const attributes = {
 		defaultAlign: 'left',
 	} ),
 
+	// container
+	...generateNormalBGAttributes( CONTAINER_BACKGROUND ),
+	...generateBorderAttributies( CONTAINER_BORDER ),
+	...generateDimensionAttributes( CONTAINER_BORDER_RADIUS ),
+	...generateBoxShadowAttributies( CONTAINER_BOX_SHADOW ),
+
 	//title alignment attributes
 	...generateResAlignmentAttributies( TITLE_ALIGNMENT, {
 		defaultAlign: '',
@@ -41,8 +56,11 @@ const attributes = {
 	...generateDimensionAttributes( TITLE_MARGIN ),
 	...generateTextShadowAttributies( TITLE_TEXT_SHADOW ),
 	...generateTextStrokeAttributies( TITLE_TEXT_STROKE ),
+
 	//link margin
 	...generateDimensionAttributes( LINK_MARGIN ),
+	...generateTextShadowAttributies( LINK_TEXT_SHADOW ),
+	...generateTextStrokeAttributies( LINK_TEXT_STROKE ),
 	//typography
 	...generateTypographyAttributes( Object.values( typographyObjs ) ),
 	//Block specific Attributes
