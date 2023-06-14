@@ -175,8 +175,8 @@ export default function Edit( props ) {
 		dimensionStylesTab: brandPhotoMarginTab,
 		dimensionStylesMobile: brandPhotoMarginMob,
 	} = generateDimensionStyle( {
-		controlName: BRAND_PHOTO_PADDING,
-		styleFor: 'padding',
+		controlName: BRAND_PHOTO_MARGIN,
+		styleFor: 'margin',
 		attributes,
 	} );
 
@@ -322,11 +322,10 @@ export default function Edit( props ) {
 			${ brandPhotoBorderRadiusDesk }
 			${ brandPhotoBoxShadow }
 			${ brandPhotoDeskBGStyle }
-			${ brandPhotoPaddingDesk }			
+			${ brandPhotoPaddingDesk }	
+			${ brandPhotoMaringDesk }		
 		}
-		.${ uniqueId } .zb-brand-image{
-			${ brandPhotoMaringDesk }
-		}
+		
 		.${ uniqueId } .zb-brand-title{
 			${ titleTypoDesk }
 			${ titleMarginDesk }
@@ -354,14 +353,12 @@ export default function Edit( props ) {
 	.${ uniqueId } .zb-brand-item{
 		${ containerTabBorderRadius }
 		${ containerTabBGStyle }
-	}
-	.${ uniqueId } .zb-brand-image{
-		${ brandPhotoMarginTab }
-	}
+	}	
 	.${ uniqueId } .zb-brand-image img{
 		${ brandPhotoBorderRadiusTab }
 		${ brandPhotoTabBGStyle }
-		${ brandPhotoPaddingTab }		
+		${ brandPhotoPaddingTab }
+		${ brandPhotoMarginTab }		
 	}
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoTab }
@@ -384,13 +381,11 @@ export default function Edit( props ) {
 		${ containerMobBorderRadius }
 		${ containerMobBGStyle }
 	}
-	.${ uniqueId } .zb-brand-image{
-		${ brandPhotoMarginMob }
-	}
 	.${ uniqueId } .zb-brand-image img{
 		${ brandPhotoBorderRadiusMob }
 		${ brandPhotoMobBGStyle }
-		${ brandPhotoPaddingMob }		
+		${ brandPhotoPaddingMob }
+		${ brandPhotoMarginMob }	
 	}
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoMob }

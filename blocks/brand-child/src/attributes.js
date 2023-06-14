@@ -126,21 +126,6 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
-	globalLink: {
-		type: 'boolean',
-		default: false,
-	},
-	icon: {
-		type: 'string',
-	},
-	iconPosition: {
-		type: 'string',
-		default: 'right',
-	},
-	topIconPosition: {
-		type: 'string',
-		default: 'left',
-	},
 	textColor: {
 		type: 'string',
 	},
