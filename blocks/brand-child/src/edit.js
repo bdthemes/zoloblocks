@@ -537,8 +537,10 @@ export default function Edit( props ) {
 									<RichText
 										className="zb-brand-title"
 										value={ brandName }
-										onChange={ ( name ) =>
-											setAttributes( { brandName: name } )
+										onChange={ ( bName ) =>
+											setAttributes( {
+												brandName: bName,
+											} )
 										}
 										placeholder={ __(
 											'Brand Name...',

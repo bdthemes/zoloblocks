@@ -5,15 +5,21 @@
 	$color-2: #3c4;
 	$color-3: #3b414f;
 
-	// .zb-brand-grid-wrap.zb-brand-style-1 {
+	// .zb-brand-grid-wrap.zb-brand-style-1
+	// 	.block-editor-inner-blocks
+	// 	.block-editor-block-list__layout {
 	// 	display: grid;
 	// 	grid-template-columns: repeat(3, 1fr);
 	// 	grid-gap: 20px;
 	// }
 
-	.zb-brand-grid-wrap.zb-brand-style-1
-		.block-editor-inner-blocks
-		.block-editor-block-list__layout {
+	.zb-brand-grid-back .block-editor-block-list__layout {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 20px;
+	}
+
+	.zb-brand-grid-front {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		grid-gap: 20px;
@@ -225,14 +231,8 @@
 	}
 
 	@media (min-width: 768px) {
-		.zb-brand-grid-wrap {
-			grid-template-columns: repeat(2, 1fr);
-		}
 	}
 
 	@media (min-width: 1024px) {
-		.zb-brand-grid-wrap {
-			grid-template-columns: repeat(3, 1fr);
-		}
 	}
 }

@@ -219,9 +219,9 @@ function Inspector( props ) {
 													'Brand Name',
 													'zolo-blocks'
 												) }
-												onChange={ ( name ) =>
+												onChange={ ( bName ) =>
 													setAttributes( {
-														brandName: name,
+														brandName: bName,
 													} )
 												}
 												value={ brandName }
