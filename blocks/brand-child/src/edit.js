@@ -63,8 +63,6 @@ export default function Edit( props ) {
 		brandName,
 		brandDetailPageLink,
 		brandAnchorText,
-		showBrandName,
-		showWebsiteLink,
 		link,
 		textColor,
 		linkColor,
@@ -539,57 +537,53 @@ export default function Edit( props ) {
 								</svg>
 							</div>
 							<div className="zb-brand-inner-content">
-								{ showBrandName && (
-									<RichText
-										className="zb-brand-title"
-										value={ brandName }
-										onChange={ ( bName ) =>
-											setAttributes( {
-												brandName: bName,
-											} )
-										}
-										placeholder={ __(
-											'Brand Name...',
-											'zolo-blocks'
-										) }
-									/>
-								) }
+								<RichText
+									className="zb-brand-title"
+									value={ brandName }
+									onChange={ ( bName ) =>
+										setAttributes( {
+											brandName: bName,
+										} )
+									}
+									placeholder={ __(
+										'Brand Name...',
+										'zolo-blocks'
+									) }
+								/>
 
-								{ showWebsiteLink && (
-									<a
-										className="zb-brand-link-editor"
-										href={
-											brandDetailPageLink &&
-											brandDetailPageLink.url
-										}
-										rel={
-											brandDetailPageLink &&
-											brandDetailPageLink.opensInNewTab &&
-											'noreferer'
-										}
-										target={
-											brandDetailPageLink &&
-											brandDetailPageLink.opensInNewTab &&
-											'_blank'
-										}
-									>
-										{
-											<RichText
-												className="zb-brand-link"
-												value={ brandAnchorText }
-												onChange={ ( name ) =>
-													setAttributes( {
-														brandAnchorText: name,
-													} )
-												}
-												placeholder={ __(
-													'www.zalando.com',
-													'zolo-blocks'
-												) }
-											/>
-										}
-									</a>
-								) }
+								<a
+									className="zb-brand-link-editor"
+									href={
+										brandDetailPageLink &&
+										brandDetailPageLink.url
+									}
+									rel={
+										brandDetailPageLink &&
+										brandDetailPageLink.opensInNewTab &&
+										'noreferer'
+									}
+									target={
+										brandDetailPageLink &&
+										brandDetailPageLink.opensInNewTab &&
+										'_blank'
+									}
+								>
+									{
+										<RichText
+											className="zb-brand-link"
+											value={ brandAnchorText }
+											onChange={ ( name ) =>
+												setAttributes( {
+													brandAnchorText: name,
+												} )
+											}
+											placeholder={ __(
+												'www.zalando.com',
+												'zolo-blocks'
+											) }
+										/>
+									}
+								</a>
 							</div>
 						</div>
 					</div>

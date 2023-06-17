@@ -74,10 +74,6 @@ const attributes = {
 	//typography
 	...generateTypographyAttributes( Object.values( typographyObjs ) ),
 	//Block specific Attributes
-	preset: {
-		type: 'string',
-		default: 'style-1',
-	},
 	brandPhoto: {
 		type: 'object',
 	},
@@ -93,14 +89,6 @@ const attributes = {
 			url: '#',
 			opensInNewTab: false,
 		},
-	},
-	showBrandName: {
-		type: 'boolean',
-		default: true,
-	},
-	showWebsiteLink: {
-		type: 'boolean',
-		default: true,
 	},
 	titleTag: {
 		type: 'string',

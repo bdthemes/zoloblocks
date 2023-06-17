@@ -6,7 +6,6 @@ const attributes = {
 	uniqueId: {
 		type: 'string',
 	},
-
 	//Block specific Attributes
 	preset: {
 		type: 'string',

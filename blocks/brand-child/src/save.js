@@ -47,35 +47,31 @@ const Save = ( { attributes } ) => {
 							</svg>
 						</div>
 						<div className="zb-brand-inner-content">
-							{ showBrandName && (
-								<RichText.Content
-									tagName="div"
-									className="zb-brand-title"
-									value={ brandName }
-								/>
-							) }
+							<RichText.Content
+								tagName="div"
+								className="zb-brand-title"
+								value={ brandName }
+							/>
 
-							{ showWebsiteLink && (
-								<a
-									className="zb-brand-link"
-									href={
-										brandDetailPageLink &&
-										brandDetailPageLink.url
-									}
-									rel={
-										brandDetailPageLink &&
-										brandDetailPageLink.opensInNewTab &&
-										'noreferer'
-									}
-									target={
-										brandDetailPageLink &&
-										brandDetailPageLink.opensInNewTab &&
-										'_blank'
-									}
-								>
-									{ brandAnchorText && brandAnchorText }
-								</a>
-							) }
+							<a
+								className="zb-brand-link"
+								href={
+									brandDetailPageLink &&
+									brandDetailPageLink.url
+								}
+								rel={
+									brandDetailPageLink &&
+									brandDetailPageLink.opensInNewTab &&
+									'noreferer'
+								}
+								target={
+									brandDetailPageLink &&
+									brandDetailPageLink.opensInNewTab &&
+									'_blank'
+								}
+							>
+								{ brandAnchorText && brandAnchorText }
+							</a>
 						</div>
 					</div>
 				</div>

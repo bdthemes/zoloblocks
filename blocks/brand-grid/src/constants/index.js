@@ -7,10 +7,15 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'brand-grid';
 // Presets
 export const PRESETS = [
-	{ label: __( 'Default', 'zolo-blocks' ), value: 'style-0' },
-	{ label: __( 'Preset 1', 'zolo-blocks' ), value: 'style-1' },
-	{ label: __( 'Preset 2', 'zolo-blocks' ), value: 'style-2' },
-	{ label: __( 'Preset 3', 'zolo-blocks' ), value: 'style-3' },
+	{ label: __( 'Default', 'zolo-blocks' ), value: 'style-1' },
+	{ label: __( 'Style 1', 'zolo-blocks' ), value: 'style-1' },
+	{ label: __( 'Style 2', 'zolo-blocks' ), value: 'style-2' },
+	{ label: __( 'Style 3', 'zolo-blocks' ), value: 'style-3' },
+	{ label: __( 'Style 4', 'zolo-blocks' ), value: 'style-4' },
+	{ label: __( 'Style 5', 'zolo-blocks' ), value: 'style-5' },
+	{ label: __( 'Style 6', 'zolo-blocks' ), value: 'style-6' },
+	{ label: __( 'Style 7', 'zolo-blocks' ), value: 'style-7' },
+	{ label: __( 'Style 8', 'zolo-blocks' ), value: 'style-8' },
 ];
 
 // title tag
