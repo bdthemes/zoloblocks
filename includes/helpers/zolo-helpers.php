@@ -129,33 +129,20 @@ class Zolo_Helpers
 
     public static function get_post_types()
     {
-
         $post_types = get_post_types(
-            array(
-                'public'       => true,
-                'show_in_rest' => true,
-            ),
+            [
+                'public'            => true,
+                'show_in_nav_menus' => true,
+            ],
             'objects'
         );
-
-        $options = array();
-
-        foreach ($post_types as $post_type) {
-            if ('product' === $post_type->name) {
-                continue;
-            }
-
-            if ('attachment' === $post_type->name) {
-                continue;
-            }
-
-            $options[] = array(
-                'value' => $post_type->name,
-                'label' => $post_type->label,
-            );
-        }
-
-        return apply_filters('zolo_loop_post_types', $options);
+        $post_types = wp_list_pluck($post_types, 'label', 'name');
+        $excluded_types = apply_filters('zolo_exclude_post_type', [
+            'attachment' => 'Attachment',
+            'elementor_library' => 'Elementor Library',
+            'e-landing-page' => 'Landing Page',
+        ]);
+        return array_diff_key($post_types, $excluded_types);
     }
 
     public static function get_all_users()
@@ -170,68 +157,22 @@ class Zolo_Helpers
         return $users;
     }
 
-    public static function get_related_taxonomy()
-    {
-
-        $post_types = self::get_post_types();
-
-        $return_array = array();
-
-        foreach ($post_types as $key => $value) {
-            $post_type = $value['value'];
-
-            $taxonomies = get_object_taxonomies($post_type, 'objects');
-            $data       = array();
-
-            foreach ($taxonomies as $tax_slug => $tax) {
-                if (!$tax->public || !$tax->show_ui || !$tax->show_in_rest) {
-                    continue;
-                }
-
-                $data[$tax_slug] = $tax;
-
-                $terms = get_terms($tax_slug);
-
-                $related_tax = array();
-
-                if (!empty($terms)) {
-                    foreach ($terms as $t_index => $t_obj) {
-                        $related_tax[] = array(
-                            'id'    => $t_obj->term_id,
-                            'name'  => $t_obj->name,
-                            'child' => get_term_children($t_obj->term_id, $tax_slug),
-                        );
-                    }
-                    $return_array[$post_type]['terms'][$tax_slug] = $related_tax;
-                }
-            }
-
-            $return_array[$post_type]['taxonomy'] = $data;
-        }
-
-        return apply_filters('zolo_post_loop_taxonomies', $return_array);
-    }
-
     public static function get_all_taxonomy()
     {
-        $post_types     = self::get_post_types_for_taxonomy();
+        $post_types     = Zolo_Helpers::get_post_types();
         $taxonomies     = get_taxonomies([], 'objects');
         $all_taxonomies = [];
         foreach ($taxonomies as $taxonomy => $object) {
-            if (!isset($object->object_type[0]) || !in_array($object->object_type[0], array_keys($post_types)) || in_array($taxonomy, self::get_excluded_taxonomy())) {
+            if (
+                !isset($object->object_type[0]) || !in_array($object->object_type[0], array_keys($post_types))
+                || in_array($taxonomy, Zolo_Helpers::get_excluded_taxonomy())
+            ) {
                 continue;
             }
-            $all_taxonomies[$taxonomy] = self::get_terms_by_texonomy($taxonomy);
+            $all_taxonomies[$taxonomy] = Zolo_Helpers::get_terms_by_texonomy($taxonomy);
         }
 
         return $all_taxonomies;
-    }
-
-    public static function get_post_types_for_taxonomy()
-    {
-        $post_types = get_post_types(['public' => true, 'show_in_nav_menus' => true], 'objects');
-        $post_types = wp_list_pluck($post_types, 'label', 'name');
-        return array_diff_key($post_types, ['elementor_library', 'attachment']);
     }
 
     public static function get_excluded_taxonomy()
@@ -246,10 +187,11 @@ class Zolo_Helpers
             'elementor_library_category',
             'product_visibility',
             'product_shipping_class',
+            'product_type'
         ];
     }
 
-    public static function get_terms_by_texonomy($cat)
+    public static function get_terms_by_texonomy($cat = 'category')
     {
         $terms = get_terms([
             'taxonomy'   => $cat,
@@ -262,6 +204,7 @@ class Zolo_Helpers
                 $options[$term->term_id] = $term->name;
             }
         }
+
         return $options;
     }
 }

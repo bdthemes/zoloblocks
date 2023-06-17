@@ -44,6 +44,10 @@ const attributes = {
     default: {}
   },
 
+  postQuery: {
+    type: 'object'
+  },
+
   ...generateDimensionAttributes(CONTAINER_MARGIN),
   ...generateDimensionAttributes(CONTAINER_PADDING),
   preset: {

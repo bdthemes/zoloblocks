@@ -158,12 +158,18 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
+            $get_tax_object = get_taxonomies([], 'objects');
+            $exclude_tax    = Zolo_Helpers::get_excluded_taxonomy();
+            foreach ($exclude_tax as $_tax) {
+                unset($get_tax_object[$_tax]);
+            }
+
             //this file use for js
             wp_localize_script('zolo-block-editor', 'zoloParams', [
                 'ajaxurl'    => admin_url('admin-ajax.php'),
                 'post_types' => Zolo_Helpers::get_post_types(),
                 'get_users' => Zolo_Helpers::get_all_users(),
-                'all_taxonomy' => Zolo_Helpers::get_related_taxonomy(),
+                'get_taxonomies' => $get_tax_object,
                 'all_term_list'  => Zolo_Helpers::get_all_taxonomy(),
             ]);
         }

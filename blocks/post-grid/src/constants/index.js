@@ -19,10 +19,19 @@ export const CONTAINER_MARGIN = 'postContainerMargin';
 export const CONTAINER_PADDING = 'postContainerPadding';
 
 
+const PostType = [];
+let getPostType = zoloParams.post_types;
+for (let p in getPostType) {
+  PostType.push({ value: p, label: __(getPostType[p], 'zolo-blocks') })
+}
+export const POSTS_TYPE = PostType;
+
+
 export const POST_TYPE = [
   { label: __("Posts", "zolo-blocks"), value: "post" },
-  // { label: __("Pages", "zolo-blocks"), value: "page" },
+  { label: __("Pages", "zolo-blocks"), value: "page" },
 ]
+
 
 export const TEXONOMY_RELATION = [
   { label: __("OR", "zolo-blocks"), value: "OR" },

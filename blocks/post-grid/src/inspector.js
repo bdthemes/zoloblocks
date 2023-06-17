@@ -1,31 +1,26 @@
-/**
- * WordPress dependencies
- */
 import {
   InspectorControls
 } from '@wordpress/block-editor';
 import {
   BaseControl,
-  __experimentalNumberControl as NumberControl,
   PanelBody,
   SelectControl,
   TabPanel,
-  TextControl
+  TextControl,
+  __experimentalNumberControl as NumberControl
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import Select2 from "react-select";
-
+import Select2 from 'react-select';
 import objAttributes from './attributes';
-
 import {
+  POSTS_TYPE,
+  SORT_ORDER,
+  ORDER_BY,
   AUTHOR_LISTS,
   CONTAINER_MARGIN,
   CONTAINER_PADDING,
-  ORDER_BY,
-  POST_TYPE,
   PRESETS,
-  PRINT_TAXONOMY,
-  SORT_ORDER
+  PRINT_TAXONOMY
 } from './constants';
 
 const {
@@ -35,24 +30,12 @@ const {
 } = window.zoloModule;
 
 
-function Inspector({ attributes, setAttributes, changeQuery }) {
+function Inspector({ attributes, setAttributes }) {
 
   const {
     preset,
     resMode,
-
-    postType,
-    postInclude,
-    postExclude,
-    postPerPage,
-    postOffset,
-    postKeyword,
-    postTaxnomyRelation,
-    postOrderBy,
-    postSortOrder,
-    postStatus,
-    postAuthors,
-    postTaxonomies,
+    postQuery
   } = attributes;
 
   const resRequiredProps = {
@@ -62,9 +45,6 @@ function Inspector({ attributes, setAttributes, changeQuery }) {
     objAttributes,
   };
 
-  /**
-   * Preset
-   */
   const changePremade = (selected) => {
     setAttributes({ preset: selected });
     // switch (selected) {
@@ -91,22 +71,36 @@ function Inspector({ attributes, setAttributes, changeQuery }) {
     // }
   };
 
-  const taxonomyListOptions = [
-    { value: 'category', label: 'Categories' },
-    { value: 'post_tag', label: 'Tags' }
-  ];
-
   const changeTaxonomy = (terms, name) => {
-    let postTaxonomiesObj = {
-      ...postTaxonomies,
+    let postTaxonomies = {
+      ...postQuery.postTaxonomies,
       [name]: {
         'name': name,
         'options': terms,
       }
     }
-    setAttributes({ postTaxonomies: postTaxonomiesObj });
+    setAttributes({ postQuery: { ...postQuery, postTaxonomies } });
   }
+
+
   const allTermList = zoloParams.all_term_list;
+  const allTaxonomyList = zoloParams.get_taxonomies;
+
+  // const taxonomyListOptions = [
+  //   { value: 'category', label: 'Categories' },
+  //   { value: 'post_tag', label: 'Tags' }
+  // ];
+
+  let tpgAllTaxonomies = new Set();
+  for (let tax in allTaxonomyList) {
+    let value = allTaxonomyList[tax];
+    if (value.object_type[0] === postQuery.postType) {
+      tpgAllTaxonomies.add({
+        value: value.name, name: value.label
+      });
+    }
+  }
+  tpgAllTaxonomies = [...tpgAllTaxonomies];
 
   return (
     <InspectorControls key="controls">
@@ -139,22 +133,20 @@ function Inspector({ attributes, setAttributes, changeQuery }) {
                   <PanelBody title={__('Query', 'zolo-blocks')} initialOpen={true} >
                     <SelectControl
                       label={__('Source', 'zolo-blocks')}
-                      value={postType}
-                      options={POST_TYPE}
-                      onChange={(value) => {
-                        setAttributes({ postType: value }),
-                          changeQuery()
-                      }}
+                      value={postQuery.postType}
+                      options={POSTS_TYPE}
+                      onChange={(postType) =>
+                        setAttributes({ postQuery: { ...postQuery, postType } })
+                      }
                     />
 
                     <BaseControl label={__('By Author', 'zolo-block')}>
                       <Select2
                         options={AUTHOR_LISTS}
-                        value={postAuthors}
-                        onChange={(value) => {
-                          setAttributes({ postAuthors: value }),
-                            changeQuery()
-                        }}
+                        value={postQuery.postAuthors}
+                        onChange={(postAuthors) =>
+                          setAttributes({ postQuery: { ...postQuery, postAuthors } })
+                        }
                         isMulti={true}
                         closeMenuOnSelect={false}
                       />
@@ -162,34 +154,30 @@ function Inspector({ attributes, setAttributes, changeQuery }) {
 
                     <TextControl
                       label={__("Include Only", "zolo-blocks")}
-                      value={postInclude}
-                      onChange={(postInclude) => {
-                        setAttributes({ postInclude }),
-                          changeQuery()
-                      }}
+                      value={postQuery.postInclude}
+                      onChange={(postInclude) =>
+                        setAttributes({ postQuery: { ...postQuery, postInclude } })
+                      }
                       autocomplete="off"
                     />
 
                     <TextControl
                       label={__("Exclude", "zolo-blocks")}
                       autocomplete="off"
-                      value={postExclude}
+                      value={postQuery.postExclude}
                       onChange={(postExclude) => {
-                        setAttributes({ postExclude }),
-                          changeQuery()
+                        setAttributes({ postQuery: { ...postQuery, postExclude } })
                       }}
                     />
 
-                    {/* Advanced Filter */}
-                    {taxonomyListOptions.map((tax, index) => (
-                      <BaseControl label={__('By ', 'zolo-blocks') + tax.label} key={index}>
+                    {tpgAllTaxonomies.map((tax, index) => (
+                      <BaseControl label={__('By ', 'zolo-blocks') + tax.name} key={index}>
                         <Select2
                           options={PRINT_TAXONOMY(allTermList[tax.value])}
-                          value={Object.keys(postTaxonomies).length > 0 ? postTaxonomies[tax.value] !== undefined ? postTaxonomies[tax.value].options : [] : []}
-                          onChange={(value) => {
-                            changeTaxonomy(value, tax.value),
-                              changeQuery()
-                          }}
+                          value={Object.keys(postQuery.postTaxonomies).length > 0 ? postQuery.postTaxonomies[tax.value] !== undefined ? postQuery.postTaxonomies[tax.value].options : [] : []}
+                          onChange={(value) =>
+                            changeTaxonomy(value, tax.value)
+                          }
                           isMulti={true}
                           closeMenuOnSelect={false}
                         />
@@ -201,50 +189,46 @@ function Inspector({ attributes, setAttributes, changeQuery }) {
                       label={__("Post Per Page", "zolo-blocks")}
                       max={100}
                       min={-1}
-                      value={postPerPage}
+                      value={postQuery.postPerPage}
                       onChange={(postPerPage) => {
-                        setAttributes({ postPerPage })
-                        changeQuery()
+                        setAttributes({ postQuery: { ...postQuery, postPerPage } })
                       }}
-                      //placeholder={__("Eg. 10", "zolo-blocks")}
                       shiftStep={10}
                       step={1}
                     />
-
 
                     <NumberControl
                       isShiftStepEnabled
                       label={__("Offset", "zolo-blocks")}
                       max={100}
                       min={0}
-                      value={postOffset}
+                      value={postQuery.postOffset}
                       onChange={(postOffset) => {
-                        setAttributes({ postOffset })
-                        changeQuery()
+                        setAttributes({ postQuery: { ...postQuery, postOffset } })
                       }}
                       shiftStep={10}
                       step={1}
                     />
 
+
                     <SelectControl
                       label={__('Order By', 'zolo-blocks')}
-                      value={postOrderBy}
-                      onChange={(value) => {
-                        setAttributes({ postOrderBy: value }),
-                          changeQuery()
+                      value={postQuery.postOrderby}
+                      onChange={(postOrderby) => {
+                        setAttributes({ postQuery: { ...postQuery, postOrderby } })
                       }}
                       options={ORDER_BY}
                     />
 
                     <SelectControl
                       label={__('Sort Order', 'zolo-blocks')}
-                      value={postSortOrder}
-                      onChange={(value) => {
-                        setAttributes({ postSortOrder: value }),
-                          changeQuery()
+                      value={postQuery.postOrder}
+                      onChange={(postOrder) => {
+                        setAttributes({ postQuery: { ...postQuery, postOrder } })
                       }}
                       options={SORT_ORDER}
                     />
+
                   </PanelBody>
 
                   <PanelBody
