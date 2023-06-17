@@ -317,12 +317,14 @@ export default function Edit( props ) {
 			${ containerDeskBorderRadius }
 			${ containerBoxShadow }
 			${ containerDeskBGStyle }
-		}		
+		}
+		.${ uniqueId } .zb-brand-image{
+			${ brandPhotoPaddingDesk }	
+		}	
 		.${ uniqueId } .zb-brand-image img{
 			${ brandPhotoBorderRadiusDesk }
 			${ brandPhotoBoxShadow }
-			${ brandPhotoDeskBGStyle }
-			${ brandPhotoPaddingDesk }	
+			${ brandPhotoDeskBGStyle }			
 			${ brandPhotoMaringDesk }		
 		}
 		
@@ -353,11 +355,13 @@ export default function Edit( props ) {
 	.${ uniqueId } .zb-brand-item{
 		${ containerTabBorderRadius }
 		${ containerTabBGStyle }
-	}	
+	}
+	.${ uniqueId } .zb-brand-image{
+		${ brandPhotoPaddingTab }
+	}
 	.${ uniqueId } .zb-brand-image img{
 		${ brandPhotoBorderRadiusTab }
-		${ brandPhotoTabBGStyle }
-		${ brandPhotoPaddingTab }
+		${ brandPhotoTabBGStyle }		
 		${ brandPhotoMarginTab }		
 	}
 	.${ uniqueId } .zb-brand-title{
@@ -381,10 +385,12 @@ export default function Edit( props ) {
 		${ containerMobBorderRadius }
 		${ containerMobBGStyle }
 	}
+	.${ uniqueId } .zb-brand-image{
+		${ brandPhotoPaddingMob }
+	}
 	.${ uniqueId } .zb-brand-image img{
 		${ brandPhotoBorderRadiusMob }
-		${ brandPhotoMobBGStyle }
-		${ brandPhotoPaddingMob }
+		${ brandPhotoMobBGStyle }		
 		${ brandPhotoMarginMob }	
 	}
 	.${ uniqueId } .zb-brand-title{

@@ -2,7 +2,12 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TabPanel } from '@wordpress/components';
+import {
+	PanelBody,
+	SelectControl,
+	TabPanel,
+	ToggleControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -39,6 +44,8 @@ function Inspector( props ) {
 		iconHoverColor,
 		iconBackgroundColor,
 		iconBackgroundHoverColor,
+		showBrandName,
+		showWebsiteLink,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
@@ -92,6 +99,32 @@ function Inspector( props ) {
 											onChange={ ( value ) =>
 												setAttributes( {
 													preset: value,
+												} )
+											}
+										/>
+										<ToggleControl
+											label={ __(
+												'Show Brand Name',
+												'zolo-blocks'
+											) }
+											checked={ showBrandName }
+											onChange={ () =>
+												setAttributes( {
+													showBrandName:
+														! showBrandName,
+												} )
+											}
+										/>
+										<ToggleControl
+											label={ __(
+												'Show Website Link',
+												'zolo-blocks'
+											) }
+											checked={ showWebsiteLink }
+											onChange={ () =>
+												setAttributes( {
+													showWebsiteLink:
+														! showWebsiteLink,
 												} )
 											}
 										/>

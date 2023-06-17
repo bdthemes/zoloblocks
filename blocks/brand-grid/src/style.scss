@@ -5,14 +5,6 @@
 	$color-2: #3c4;
 	$color-3: #3b414f;
 
-	// .zb-brand-grid-wrap.zb-brand-style-1
-	// 	.block-editor-inner-blocks
-	// 	.block-editor-block-list__layout {
-	// 	display: grid;
-	// 	grid-template-columns: repeat(3, 1fr);
-	// 	grid-gap: 20px;
-	// }
-
 	.zb-brand-grid-back .block-editor-block-list__layout {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
@@ -37,7 +29,7 @@
 		justify-content: center;
 		height: 100%;
 		img {
-			display: block;
+			display: inline-block;
 			width: 250px;
 			height: 100%;
 			vertical-align: middle;
@@ -228,6 +220,10 @@
 				}
 			}
 		}
+	}
+
+	.appender-btn {
+		margin-top: 30px;
 	}
 
 	@media (min-width: 768px) {

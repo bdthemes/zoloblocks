@@ -8,7 +8,12 @@ import {
 	InnerBlocks,
 } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
+import {
+	ToolbarButton,
+	ToolbarGroup,
+	Dropdown,
+	Button,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 /**
@@ -148,6 +153,19 @@ export default function Edit( props ) {
 		}
 	}, [ attributes ] );
 
+	/**
+	 * Custom Append Button for InnerBlocks
+	 */
+	const childBlocks = wp.data
+		.select( 'core/block-editor' )
+		.getBlocks( clientId );
+	const appendBlock = () => {
+		const newBlock = wp.blocks.createBlock( 'zolo/brand-child', {} );
+		wp.data
+			.dispatch( 'core/block-editor' )
+			.insertBlock( newBlock, childBlocks.length, clientId );
+	};
+
 	return (
 		<>
 			{ isSelected && (
@@ -166,6 +184,17 @@ export default function Edit( props ) {
 						template={ [ [ 'zolo/brand-child', {} ] ] }
 						renderAppender={ false }
 					/>
+					<div className="appender-btn">
+						<Button
+							className="components-button"
+							label={ __( 'Add Brand', 'zolo-blocks' ) }
+							icon="insert"
+							variant="primary"
+							onClick={ () => appendBlock() }
+						>
+							{ __( 'Add Brand', 'zolo-blocks' ) }
+						</Button>
+					</div>
 				</div>
 			</div>
 		</>

@@ -12,6 +12,14 @@ const attributes = {
 		type: 'string',
 		default: 'style-1',
 	},
+	showBrandName: {
+		type: 'boolean',
+		default: true,
+	},
+	showWebsiteLink: {
+		type: 'boolean',
+		default: true,
+	},
 	presetOneStyles: {
 		type: 'object',
 		default: {
