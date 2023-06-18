@@ -157,6 +157,16 @@ class Zolo_Helpers
         return $users;
     }
 
+    public static function get_taxonomies()
+    {
+        $get_tax_object = get_taxonomies([], 'objects');
+        $exclude_tax    = Zolo_Helpers::get_excluded_taxonomy();
+        foreach ($exclude_tax as $_tax) {
+            unset($get_tax_object[$_tax]);
+        }
+        return $get_tax_object;
+    }
+
     public static function get_all_taxonomy()
     {
         $post_types     = Zolo_Helpers::get_post_types();
@@ -177,7 +187,7 @@ class Zolo_Helpers
 
     public static function get_excluded_taxonomy()
     {
-        return [
+        return apply_filters('zolo_exclude_taxonomy', [
             'post_format',
             'nav_menu',
             'link_category',
@@ -188,7 +198,7 @@ class Zolo_Helpers
             'product_visibility',
             'product_shipping_class',
             'product_type'
-        ];
+        ]);
     }
 
     public static function get_terms_by_texonomy($cat = 'category')

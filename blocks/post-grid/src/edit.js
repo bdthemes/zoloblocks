@@ -2,6 +2,7 @@ import {
   useBlockProps
 } from '@wordpress/block-editor';
 import { useEffect, useState } from '@wordpress/element';
+import apiFetch from "@wordpress/api-fetch";
 import classnames from 'classnames';
 import {
   BLOCK_PREFIX
@@ -61,6 +62,43 @@ export default function Edit(props) {
     }
   }, []);
 
+  const [postResults, setPostResults] = useState([]);
+  const [dataSuccess, setDataSuccess] = useState([]);
+  const [pageTotal, setPageTotal] = useState(0);
+
+  useEffect(() => {
+    let paginationLimit = 0;
+    paginationLimit = postQuery?.postPerPage;
+
+    const apiData = {
+      zolo_nonce: zoloParams.zolo_nonce,
+      attributes: attributes,
+      postQuery: postQuery
+    }
+
+    apiFetch({
+      path: '/zolo/v1/posts',
+      method: 'POST',
+      data: apiData,
+    }).then((response) => {
+      if (response.success) {
+        setPostResults([...response.data.posts]);
+        setPageTotal(response.data.total_page);
+        setDataSuccess(response.success);
+      } else {
+        setPostResults([]);
+        setPageTotal(0);
+        setDataSuccess(response.success);
+      }
+    })
+      .catch((error) => console.log(error));;
+  }, [postQuery]);
+
+  console.log({
+    postResults,
+    dataSuccess,
+    pageTotal,
+  })
 
 
   return (

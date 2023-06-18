@@ -53,3 +53,38 @@ export const BACKGROUND_TYPES = [
     icon: 'art',
   },
 ];
+
+//for post block
+const PostType = [];
+// let getPostType = zoloParams.post_types;
+// for (let p in getPostType) {
+//   PostType.push({ value: p, label: __(getPostType[p], 'zolo-blocks') })
+// }
+export const POSTS_TYPE = PostType;
+
+export const TEXONOMY_RELATION = [
+  { label: __("OR", "zolo-blocks"), value: "OR" },
+  { label: __("AND", "zolo-blocks"), value: "AND" },
+]
+export const ORDER_BY = [
+  { label: __("Date", "zolo-blocks"), value: "date" },
+  { label: __("Author", "zolo-blocks"), value: "author" },
+  { label: __("Title", "zolo-blocks"), value: "title" },
+  { label: __("Last modified date", "zolo-blocks"), value: "modified" },
+  { label: __("Post parent ID", "zolo-blocks"), value: "parent" },
+]
+
+export const SORT_ORDER = [
+  { label: __("ASC", "zolo-blocks"), value: "asc" },
+  { label: __("DESC", "zolo-blocks"), value: "desc" },
+]
+
+export const AUTHOR_LISTS = [];// zoloParams.get_users;
+
+export const PRINT_TAXONOMY = (taxonomy) => {
+  let allTax = [];
+  for (let tax in taxonomy) {
+    allTax.push({ value: tax, label: __(taxonomy[tax], 'zolo-blocks') })
+  }
+  return allTax;
+}
