@@ -51,6 +51,7 @@ export const generateResRangeStyle = ({
   attributes,
   noUnits,
   unitCustomTxt,
+  noproperty = false
 }) => {
   const {
     [`${prefix}${controlName}Range`]: desktopRange,

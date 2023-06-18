@@ -5,8 +5,6 @@
  *
  * @package Zolo
  */
-
-use Zolo\Blocks\BlockControl;
 use Zolo\Helpers\ZoloHelpers;
 use Zolo\Traits\SingletonTrait;
 use Zolo\Classes\StyleGenerator;
@@ -38,7 +36,6 @@ class Zolo_Blocks_Loader {
      * @return void
      */
     public function plugins_loaded() {
-        BlockControl::getInstance();
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
