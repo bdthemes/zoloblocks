@@ -89,17 +89,6 @@ export default function Edit( props ) {
 		className: classnames( className, `` ),
 	} );
 
-	/**
-	 * context
-	 */
-	useEffect( () => {
-		setAttributes( {
-			showDesignation: context[ 'zolo/showBrandName' ],
-			showTestimonialMessage: context[ 'zolo/showBrandLink' ],
-			preset: context[ 'zolo/preset' ],
-		} );
-	}, [ context ] );
-
 	// Content Align
 	const {
 		desktopAlignStyle: brandContentDeskAlignStyle,
