@@ -1,19 +1,9 @@
 /**
  * WordPress dependencies
  */
-import {
-	useBlockProps,
-	BlockControls,
-	__experimentalLinkControl as LinkControl,
-	InnerBlocks,
-} from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
-import {
-	ToolbarButton,
-	ToolbarGroup,
-	Dropdown,
-	Button,
-} from '@wordpress/components';
+import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 /**
@@ -27,12 +17,17 @@ import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
 
+// import brand-child
+import '../../brand-child';
+
 export default function Edit( props ) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
 		props;
 	const {
 		uniqueId,
 		preset,
+		showBrandName,
+		showWebsiteLink,
 		link,
 		blockStyle,
 		presetOneStyles,

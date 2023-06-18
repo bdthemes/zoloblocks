@@ -3,6 +3,7 @@
 	"title": "Brand",
 	"icon": "shield-alt",
 	"name": "zolo/brand-child",
+	"parent": [ "zolo/brand-grid" ],
 	"category": "zolo-blocks",
 	"keywords": [ "child", "brand" ],
 	"description": "Brand child block description",
