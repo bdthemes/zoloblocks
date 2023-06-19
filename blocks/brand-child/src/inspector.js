@@ -109,7 +109,7 @@ function Inspector( props ) {
 								<>
 									<PanelBody
 										title={ __( 'Content', 'zolo-blocks' ) }
-										initialOpen={ false }
+										initialOpen={ true }
 									>
 										<BaseControl
 											label={ __(
