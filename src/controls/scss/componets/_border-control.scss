@@ -3,3 +3,91 @@
 	padding: 10px 0px;
 	gap: 5px;
 }
+.zolo-panel-control {
+	.zolo-tab-controlssettings {
+		.components-base-control {
+			input,
+			select {
+				height: 40px;
+				border: 1px solid #ddd;
+				outline: none;
+			}
+		}
+		.components-input-control__backdrop {
+			border: none !important;
+		}
+	}	
+
+	 .components-tab-panel__tabs {
+		border: none;
+	   .zolo-tab.active-tab {
+			background: transparent;
+			border-bottom: 1px solid #fff;
+		}
+	}
+
+	.zolo-tab.normal {
+		border-left: 0 !important;
+	}
+
+	.components-button {
+		color: #5f5f5f;
+		box-shadow: none;
+	}
+
+	.zb-res-device-btn-wrapper {
+		.zb-component-wrapper {
+			align-items: center;
+			gap: 5px;
+		}
+	} 
+
+	.zb-res-alignment-control-wrapper {
+		.zb-align-control-btn-group {
+			padding: 4px;
+			border-radius: 4px;
+			background-color: #EBEBF5;
+		}
+		.components-button-group {
+			.components-button {
+				&.is-primary {
+					background: #fff;
+					box-shadow: none !important;
+					color: #001FEB;
+					border-radius: 4px !important;
+				}
+				&:hover {
+					box-shadow: none !important;
+				}
+			}
+		} 
+
+		.zb-res-device-btns {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			.res-btn.active {
+				color: #001FEB !important;
+			}
+			.res-btn {
+				width: 25px;
+				height: 25px;
+				line-height: 25px;
+				margin: 0;
+				background-color: #EBEBF5;
+			}
+			.res-btn-label {
+				margin: 0;
+			}
+		}
+
+		.zb-reset-button {
+			height: 40px;
+			width: 40px;
+			padding: 10px;
+			border-radius: 4px;
+			background-color: #EBEBF5;
+		}
+	}
+}
+
