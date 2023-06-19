@@ -17,6 +17,7 @@ import {
 	BaseControl,
 	Button,
 	Dropdown,
+	Panel,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -43,11 +44,22 @@ import {
 	PRESETS,
 	CONTAINER_BG,
 	HEADER_AREA_BORDER_RADIUS,
+	HEADER_AREA_PADDING,
+	HEADER_BADGE_BORDER,
+	BADGE_BG,
+	BADGE_BORDER_RADIUS,
+	CONTENT_BORDER_RADIUS,
 	CONTENT_BG,
-	CONTENT_ALIGNMENT,
-	PHOTO_BG,
-	TEAM_PHOTO_BORDER,
-	TEAM_PHOTO_BORDER_RADIUS,
+	CONTENT_BORDER,
+	CONTENT_PADDING,
+	CONTENT_MARGIN,
+	PHOTO_SIZE,
+	PHOTO_BORDER,
+	PHOTO_BORDER_RADIUS,
+	NAME_MARGIN,
+	USERNAME_MARGIN,
+	EMAIL_MARGIN,
+	BIO_MARGIN,
 	TEAM_PHOTO_BOX_SHADOW,
 	TEAM_PHOTO_MARGIN,
 	TEAM_PHOTO_PADDING,
@@ -67,12 +79,17 @@ import {
 	DETAIL_PAGE_LINK_HOVER_BG,
 	TEAM_MEMBER_CONTAINER_PADDING,
 	TEAM_MEMBER_CONTAINER_MARGIN,
+	STATUS_MARGIN,
 } from './constants';
 
 import {
-	TEAM_MEMBER_NAME_TYPOGRAPHY,
-	TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
-	TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
+	BADGE_TYPO,
+	BIO_TYPO,
+	EMAIL_TYPO,
+	LABEL_TYPO,
+	NUMBER_TYPO,
+	PROFILE_NAME,
+	PROFILE_USERNAME,
 } from './constants/typoPrefixConstants';
 import { Fragment } from 'react';
 
@@ -102,7 +119,13 @@ function Inspector(props) {
 		socialProfiles,
 		socialProfilesLinkTarget,
 		headerAreaBG,
+		badgeColor,
 		nameColor,
+		usernameColor,
+		emailColor,
+		bioColor,
+		labelColor,
+		numberColor,
 		designationColor,
 		shortBioColor,
 		separatorColor,
@@ -180,7 +203,7 @@ function Inspector(props) {
 								<>
 									<PanelBody
 										title={__('General', 'zolo-blocks')}
-										initialOpen={true}
+										initialOpen={false}
 									>
 										<SelectControl
 											label={__(
@@ -733,6 +756,287 @@ function Inspector(props) {
 											}
 											resRequiredProps={resRequiredProps}
 											forBorderRadius={true}
+										/>
+										<ResRangeControl
+											label={__('Padding', 'zolo-blocks')}
+											controlName={HEADER_AREA_PADDING}
+											resRequiredProps={resRequiredProps}
+											min={0}
+											max={250}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__(
+											'Header Badge',
+											'zolo-blocks'
+										)}
+										initialOpen={false}
+									>
+										<TypographyDropdown
+											label={__(
+												'Typography',
+												'zolo-blocks'
+											)}
+											typoPrefixConstant={BADGE_TYPO}
+											resRequiredProps={resRequiredProps}
+										/>
+										<BorderControl
+											label={__('Border', 'zolo-blocks')}
+											controlName={HEADER_BADGE_BORDER}
+											resRequiredProps={resRequiredProps}
+										/>
+										<ResDimensionsControl
+											label={__(
+												'Border Radius',
+												'zolo-blocks'
+											)}
+											controlName={BADGE_BORDER_RADIUS}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={true}
+										/>
+										<ColorControl
+											label={__('Color', 'zolo-blocks')}
+											color={badgeColor}
+											onChange={(color) =>
+												setAttributes({
+													badgeColor: color,
+												})
+											}
+										/>
+										<NormalBGControl
+											resRequiredProps={resRequiredProps}
+											controlName={BADGE_BG}
+											noMainBGImg={true}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__(
+											'Content Area',
+											'zolo-blocks'
+										)}
+										initialOpen={false}
+									>
+										<NormalBGControl
+											resRequiredProps={resRequiredProps}
+											controlName={CONTENT_BG}
+											noMainBGImg={false}
+										/>
+										<BorderControl
+											label={__('Border', 'zolo-blocks')}
+											controlName={CONTENT_BORDER}
+											resRequiredProps={resRequiredProps}
+										/>
+										<ResDimensionsControl
+											label={__(
+												'Border Radius',
+												'zolo-blocks'
+											)}
+											controlName={CONTENT_BORDER_RADIUS}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={true}
+										/>
+										<ResDimensionsControl
+											label={__('Padding', 'zolo-blocks')}
+											controlName={CONTENT_PADDING}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
+										/>
+										<ResDimensionsControl
+											label={__('Margin', 'zolo-blocks')}
+											controlName={CONTENT_MARGIN}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Photo', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<ResRangeControl
+											label={__('Size', 'zolo-blocks')}
+											controlName={PHOTO_SIZE}
+											resRequiredProps={resRequiredProps}
+										/>
+										<BorderControl
+											label={__('Border', 'zolo-blocks')}
+											controlName={PHOTO_BORDER}
+											resRequiredProps={resRequiredProps}
+										/>
+										<ResDimensionsControl
+											label={__(
+												'Border Radius',
+												'zolo-blocks'
+											)}
+											controlName={PHOTO_BORDER_RADIUS}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={true}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Name', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<ColorControl
+											label={__('Color', 'zolo-blocks')}
+											color={nameColor}
+											onChange={(color) =>
+												setAttributes({
+													nameColor: color,
+												})
+											}
+										/>
+										<TypographyDropdown
+											label={__(
+												'Typography',
+												'zolo-blocks'
+											)}
+											typoPrefixConstant={PROFILE_NAME}
+											resRequiredProps={resRequiredProps}
+										/>
+										<ResDimensionsControl
+											label={__('Margin', 'zolo-blocks')}
+											controlName={NAME_MARGIN}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Username', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<ColorControl
+											label={__('Color', 'zolo-blocks')}
+											color={usernameColor}
+											onChange={(color) =>
+												setAttributes({
+													usernameColor: color,
+												})
+											}
+										/>
+										<TypographyDropdown
+											label={__(
+												'Typography',
+												'zolo-blocks'
+											)}
+											typoPrefixConstant={
+												PROFILE_USERNAME
+											}
+											resRequiredProps={resRequiredProps}
+										/>
+										<ResDimensionsControl
+											label={__('Margin', 'zolo-blocks')}
+											controlName={USERNAME_MARGIN}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Email', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<ColorControl
+											label={__('Color', 'zolo-blocks')}
+											color={emailColor}
+											onChange={(color) =>
+												setAttributes({
+													emailColor: color,
+												})
+											}
+										/>
+										<TypographyDropdown
+											label={__(
+												'Typography',
+												'zolo-blocks'
+											)}
+											typoPrefixConstant={EMAIL_TYPO}
+											resRequiredProps={resRequiredProps}
+										/>
+										<ResDimensionsControl
+											label={__('Margin', 'zolo-blocks')}
+											controlName={EMAIL_MARGIN}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Bio', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<ColorControl
+											label={__('Color', 'zolo-blocks')}
+											color={bioColor}
+											onChange={(color) =>
+												setAttributes({
+													bioColor: color,
+												})
+											}
+										/>
+										<TypographyDropdown
+											label={__(
+												'Typography',
+												'zolo-blocks'
+											)}
+											typoPrefixConstant={BIO_TYPO}
+											resRequiredProps={resRequiredProps}
+										/>
+										<ResDimensionsControl
+											label={__('Margin', 'zolo-blocks')}
+											controlName={BIO_MARGIN}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={__('Status', 'zolo-blocks')}
+										initialOpen={false}
+									>
+										<ColorControl
+											label={__(
+												'Number Color',
+												'zolo-blocks'
+											)}
+											color={numberColor}
+											onChange={(color) =>
+												setAttributes({
+													numberColor: color,
+												})
+											}
+										/>
+										<TypographyDropdown
+											label={__(
+												'Number Typography',
+												'zolo-blocks'
+											)}
+											typoPrefixConstant={NUMBER_TYPO}
+											resRequiredProps={resRequiredProps}
+										/>
+										<CardDivider />
+										<ColorControl
+											label={__(
+												'Label Color',
+												'zolo-blocks'
+											)}
+											color={labelColor}
+											onChange={(color) =>
+												setAttributes({
+													labelColor: color,
+												})
+											}
+										/>
+										<TypographyDropdown
+											label={__(
+												'Label Typography',
+												'zolo-blocks'
+											)}
+											typoPrefixConstant={LABEL_TYPO}
+											resRequiredProps={resRequiredProps}
+										/>
+										<CardDivider />
+										<ResDimensionsControl
+											label={__('Margin', 'zolo-blocks')}
+											controlName={STATUS_MARGIN}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
 										/>
 									</PanelBody>
 									{/* {preset !== 'style-3' && (

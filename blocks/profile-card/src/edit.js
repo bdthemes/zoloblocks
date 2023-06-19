@@ -40,37 +40,33 @@ const {
 import {
 	BLOCK_PREFIX,
 	HEADER_AREA_BORDER_RADIUS,
-	CONTAINER_BG,
+	HEADER_AREA_PADDING,
+	HEADER_BADGE_BORDER,
+	BADGE_BG,
+	BADGE_BORDER_RADIUS,
+	CONTENT_BORDER,
+	CONTENT_PADDING,
+	CONTENT_MARGIN,
 	CONTENT_BG,
-	CONTENT_ALIGNMENT,
-	ICONS_BG,
-	ICONS_HOVER_BG,
-	ICONS_BORDER,
-	ICONS_BORDER_RADIUS,
-	ICONS_BOX_SHADOW,
-	ICONS_HOVER_BOX_SHADOW,
-	ICONS_PADDING,
-	ICONS_SIZE,
-	ICONS_SPACING,
-	TEAM_DESIGNATION_MARGIN,
-	TEAM_NAME_MARGIN,
-	PHOTO_BG,
-	TEAM_PHOTO_BORDER,
-	TEAM_PHOTO_BORDER_RADIUS,
-	TEAM_PHOTO_BOX_SHADOW,
-	TEAM_PHOTO_MARGIN,
-	TEAM_PHOTO_PADDING,
-	TEAM_SHORT_BIO_MARGIN,
-	DETAIL_PAGE_LINK_BG,
-	DETAIL_PAGE_LINK_HOVER_BG,
-	TEAM_MEMBER_CONTAINER_PADDING,
-	TEAM_MEMBER_CONTAINER_MARGIN,
+	CONTENT_BORDER_RADIUS,
+	PHOTO_SIZE,
+	PHOTO_BORDER,
+	PHOTO_BORDER_RADIUS,
+	NAME_MARGIN,
+	USERNAME_MARGIN,
+	EMAIL_MARGIN,
+	BIO_MARGIN,
+	STATUS_MARGIN,
 } from './constants';
 
 import {
-	TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
-	TEAM_MEMBER_NAME_TYPOGRAPHY,
-	TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
+	BADGE_TYPO,
+	BIO_TYPO,
+	EMAIL_TYPO,
+	LABEL_TYPO,
+	NUMBER_TYPO,
+	PROFILE_NAME,
+	PROFILE_USERNAME,
 } from './constants/typoPrefixConstants';
 
 import Inspector from './inspector';
@@ -104,15 +100,13 @@ export default function Edit(props) {
 		showSocialProfiles,
 		socialProfiles,
 		socialProfilesLinkTarget,
+		badgeColor,
 		nameColor,
-		designationColor,
-		shortBioColor,
-		separatorColor,
-		iconColor,
-		iconHoverColor,
-		iconHoverBorderColor,
-		detailPageIconColor,
-		detailPageIconHoverColor,
+		usernameColor,
+		emailColor,
+		bioColor,
+		numberColor,
+		labelColor,
 	} = attributes;
 	const [popoverVisible, setPopoverVisible] = useState(false);
 
@@ -130,48 +124,16 @@ export default function Edit(props) {
 		className: classnames(className, `${uniqueId} ${preset ? preset : ''}`),
 	});
 
-	// Container padding + margin
-	const {
-		dimensionStylesDesktop: teamMemberContainerDeskPadding,
-		dimensionStylesTab: teamMemberContainerTabPadding,
-		dimensionStylesMobile: teamMemberContainerMobPadding,
-	} = generateDimensionStyle({
-		controlName: TEAM_MEMBER_CONTAINER_PADDING,
-		styleFor: 'padding',
-		attributes,
-	});
-
-	const {
-		dimensionStylesDesktop: teamMemberContainerDeskMargin,
-		dimensionStylesTab: teamMemberContainerTabMargin,
-		dimensionStylesMobile: teamMemberContainerMobMargin,
-	} = generateDimensionStyle({
-		controlName: TEAM_MEMBER_CONTAINER_MARGIN,
-		styleFor: 'margin',
-		attributes,
-	});
-
 	// Container
-	const {
-		backgroundStylesDesktop: containerDeskBGStyle,
-		backgroundStylesTab: containerTabBGStyle,
-		backgroundStylesMobile: containerMobBGStyle,
-	} = generateNormalBGControlStyles({
-		controlName: CONTAINER_BG,
-		attributes,
-		noMainBGImg: false,
-	});
-
-	// content
-	const {
-		backgroundStylesDesktop: contentDeskBGStyle,
-		backgroundStylesTab: contentTabBGStyle,
-		backgroundStylesMobile: contentMobBGStyle,
-	} = generateNormalBGControlStyles({
-		controlName: CONTENT_BG,
-		attributes,
-		noMainBGImg: false,
-	});
+	// const {
+	// 	backgroundStylesDesktop: containerDeskBGStyle,
+	// 	backgroundStylesTab: containerTabBGStyle,
+	// 	backgroundStylesMobile: containerMobBGStyle,
+	// } = generateNormalBGControlStyles({
+	// 	controlName: CONTAINER_BG,
+	// 	attributes,
+	// 	noMainBGImg: false,
+	// });
 
 	// header area part
 	const {
@@ -184,81 +146,133 @@ export default function Edit(props) {
 		attributes,
 	});
 
-	// Photo
 	const {
-		backgroundStylesDesktop: photoDeskBGStyle,
-		backgroundStylesTab: photoTabBGStyle,
-		backgroundStylesMobile: photoMobBGStyle,
+		desktopRangeStyle: headerAreaDeskPadding,
+		tabRangeStyle: headerAreaTabPadding,
+		mobRangeStyle: headerAreaMobPadding,
+	} = generateResRangeStyle({
+		controlName: HEADER_AREA_PADDING,
+		property: 'padding-bottom',
+		attributes,
+	});
+
+	// header badge
+	const {
+		desktopBorderStyle: headerBadgeDeskBorderStyle,
+		tabBorderStyle: headerBadgeTabBorderStyle,
+		mobBorderStyle: headerBadgeMobBorderStyle,
+	} = generateBorderStyle({
+		controlName: HEADER_BADGE_BORDER,
+		attributes,
+	});
+
+	const {
+		backgroundStylesDesktop: headerBadgeBgDeskStyle,
+		backgroundStylesTab: headerBadgeBgTabStyle,
+		backgroundStylesMobile: headerBadgeBgMobStyle,
 	} = generateNormalBGControlStyles({
-		controlName: PHOTO_BG,
+		controlName: BADGE_BG,
 		attributes,
 		noMainBGImg: true,
 	});
 
-	// content alignment
 	const {
-		desktopAlignStyle: teamDeskAlignStyle,
-		tabAlignStyle: teamTabAlignStyle,
-		mobAlignStyle: teamMobAlignStyle,
-	} = generateResAlignmentStyle({
-		controlName: CONTENT_ALIGNMENT,
-		property: 'text-align',
+		dimensionStylesDesktop: headerBadgeDeskBorderRadius,
+		dimensionStylesTab: headerBadgeTabBorderRadius,
+		dimensionStylesMobile: headerBadgeMobBorderRadius,
+	} = generateDimensionStyle({
+		controlName: BADGE_BORDER_RADIUS,
+		styleFor: 'border-radius',
 		attributes,
 	});
 
-	// social icons alignment
-	let socialDeskAlignStyle;
-	switch (teamDeskAlignStyle) {
-		case 'text-align:left;':
-			socialDeskAlignStyle = 'justify-content: flex-start;';
-			break;
-		case 'text-align:center;':
-			socialDeskAlignStyle = 'justify-content: center;';
-			break;
-		case 'text-align:right;':
-			socialDeskAlignStyle = 'justify-content: flex-end;';
-			break;
-		default:
-			socialDeskAlignStyle = 'justify-content: flex-start;';
-	}
+	const {
+		typoStylesDesktop: badgeTypoDesk,
+		typoStylesTab: badgeTypoTab,
+		typoStylesMobile: badgeTypoMob,
+	} = generateTypographyStyles({
+		prefixConstant: BADGE_TYPO,
+		defaultFontSize: 11,
+		attributes,
+	});
 
-	let socialTabAlignStyle;
-	switch (teamTabAlignStyle) {
-		case 'text-align:left;':
-			socialTabAlignStyle = 'justify-content: flex-start;';
-			break;
-		case 'text-align:center;':
-			socialTabAlignStyle = 'justify-content: center;';
-			break;
-		case 'text-align:right;':
-			socialTabAlignStyle = 'justify-content: flex-end;';
-			break;
-		default:
-			socialTabAlignStyle = 'justify-content: flex-start;';
-	}
+	// Content area
+	const {
+		backgroundStylesDesktop: contentDeskBGStyle,
+		backgroundStylesTab: contentTabBGStyle,
+		backgroundStylesMobile: contentMobBGStyle,
+	} = generateNormalBGControlStyles({
+		controlName: CONTENT_BG,
+		attributes,
+		noMainBGImg: false,
+	});
 
-	let socialMobAlignStyle;
-	switch (teamMobAlignStyle) {
-		case 'text-align:left;':
-			socialMobAlignStyle = 'justify-content: flex-start;';
-			break;
-		case 'text-align:center;':
-			socialMobAlignStyle = 'justify-content: center;';
-			break;
-		case 'text-align:right;':
-			socialMobAlignStyle = 'justify-content: flex-end;';
-			break;
-		default:
-			socialMobAlignStyle = 'justify-content: flex-start;';
-	}
+	const {
+		desktopBorderStyle: contentBorderStyleDesk,
+		tabBorderStyle: contentBorderStyleTab,
+		mobBorderStyle: contentBorderStyleMob,
+	} = generateBorderStyle({
+		controlName: CONTENT_BORDER,
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: contentBorderRadiusDesk,
+		dimensionStylesTab: contentBorderRadiusTab,
+		dimensionStylesMobile: contentBorderRadiusMob,
+	} = generateDimensionStyle({
+		controlName: CONTENT_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: contentPaddingDesk,
+		dimensionStylesTab: contentPaddingTab,
+		dimensionStylesMobile: contentPaddingMob,
+	} = generateDimensionStyle({
+		controlName: CONTENT_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: contentMarginDesk,
+		dimensionStylesTab: contentMarginTab,
+		dimensionStylesMobile: contentMarginMob,
+	} = generateDimensionStyle({
+		controlName: CONTENT_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	});
 
 	// Photo
+	const {
+		desktopRangeStyle: photoDeskWidth,
+		tabRangeStyle: photoTabWidth,
+		mobRangeStyle: photoMobWidth,
+	} = generateResRangeStyle({
+		controlName: PHOTO_SIZE,
+		property: 'width',
+		attributes,
+	});
+
+	const {
+		desktopRangeStyle: photoDeskHeight,
+		tabRangeStyle: photoTabHeight,
+		mobRangeStyle: photoMobHeight,
+	} = generateResRangeStyle({
+		controlName: PHOTO_SIZE,
+		property: 'height',
+		attributes,
+	});
+
 	const {
 		desktopBorderStyle: photoDeskBorderStyle,
 		tabBorderStyle: photoTabBorderStyle,
 		mobBorderStyle: photoMobBorderStyle,
 	} = generateBorderStyle({
-		controlName: TEAM_PHOTO_BORDER,
+		controlName: PHOTO_BORDER,
 		attributes,
 	});
 
@@ -267,44 +281,19 @@ export default function Edit(props) {
 		dimensionStylesTab: photoTabBorderRadius,
 		dimensionStylesMobile: photoMobBorderRadius,
 	} = generateDimensionStyle({
-		controlName: TEAM_PHOTO_BORDER_RADIUS,
+		controlName: PHOTO_BORDER_RADIUS,
 		styleFor: 'border-radius',
 		attributes,
 	});
 
-	const { boxShadowStyle: teamPhotoBoxShadow } = generateBoxShadowStyles({
-		attributes,
-		controlName: TEAM_PHOTO_BOX_SHADOW,
-	});
-
-	const {
-		dimensionStylesDesktop: photoDeskPadding,
-		dimensionStylesTab: photoTabPadding,
-		dimensionStylesMobile: photoMobPadding,
-	} = generateDimensionStyle({
-		controlName: TEAM_PHOTO_PADDING,
-		styleFor: 'padding',
-		attributes,
-	});
-
-	const {
-		dimensionStylesDesktop: photoDeskMargin,
-		dimensionStylesTab: photoTabMargin,
-		dimensionStylesMobile: photoMobMargin,
-	} = generateDimensionStyle({
-		controlName: TEAM_PHOTO_MARGIN,
-		styleFor: 'margin',
-		attributes,
-	});
-
-	// Name
+	// name
 	const {
 		typoStylesDesktop: nameTypoDesk,
 		typoStylesTab: nameTypoTab,
 		typoStylesMobile: nameTypoMob,
 	} = generateTypographyStyles({
-		prefixConstant: TEAM_MEMBER_NAME_TYPOGRAPHY,
-		defaultFontSize: 23,
+		prefixConstant: PROFILE_NAME,
+		defaultFontSize: 28,
 		attributes,
 	});
 
@@ -313,471 +302,568 @@ export default function Edit(props) {
 		dimensionStylesTab: nameTabMargin,
 		dimensionStylesMobile: nameMobMargin,
 	} = generateDimensionStyle({
-		controlName: TEAM_NAME_MARGIN,
+		controlName: NAME_MARGIN,
 		styleFor: 'margin',
 		attributes,
 	});
 
-	// Designation
+	// username
 	const {
-		typoStylesDesktop: designationTypoDesk,
-		typoStylesTab: designationTypoTab,
-		typoStylesMobile: designationTypoMob,
+		typoStylesDesktop: userNameTypoDesk,
+		typoStylesTab: userNameTypoTab,
+		typoStylesMobile: userNameTypoMob,
 	} = generateTypographyStyles({
-		prefixConstant: TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
-		defaultFontSize: 16,
+		prefixConstant: PROFILE_USERNAME,
+		defaultFontSize: 18,
 		attributes,
 	});
 
 	const {
-		dimensionStylesDesktop: designationDeskMargin,
-		dimensionStylesTab: designationTabMargin,
-		dimensionStylesMobile: designationMobMargin,
+		dimensionStylesDesktop: userNameDeskMargin,
+		dimensionStylesTab: userNameTabMargin,
+		dimensionStylesMobile: userNameMobMargin,
 	} = generateDimensionStyle({
-		controlName: TEAM_DESIGNATION_MARGIN,
+		controlName: USERNAME_MARGIN,
 		styleFor: 'margin',
 		attributes,
 	});
 
-	// Short bio
+	// email
 	const {
-		typoStylesDesktop: shortBioTypoDesk,
-		typoStylesTab: shortBioTypoTab,
-		typoStylesMobile: shortBioTypoMob,
+		typoStylesDesktop: emailTypoDesk,
+		typoStylesTab: emailTypoTab,
+		typoStylesMobile: emailTypoMob,
 	} = generateTypographyStyles({
-		prefixConstant: TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
-		defaultFontSize: 16,
+		prefixConstant: EMAIL_TYPO,
+		defaultFontSize: 18,
 		attributes,
 	});
 
 	const {
-		dimensionStylesDesktop: shortBioDeskMargin,
-		dimensionStylesTab: shortBioTabMargin,
-		dimensionStylesMobile: shortBioMobMargin,
+		dimensionStylesDesktop: emailDeskMargin,
+		dimensionStylesTab: emailTabMargin,
+		dimensionStylesMobile: emailMobMargin,
 	} = generateDimensionStyle({
-		controlName: TEAM_SHORT_BIO_MARGIN,
+		controlName: EMAIL_MARGIN,
 		styleFor: 'margin',
 		attributes,
 	});
 
-	// Social Icons
+	// bio
 	const {
-		backgroundStylesDesktop: iconsNormalDeskBG,
-		backgroundStylesTab: iconsNormalTabBG,
-		backgroundStylesMobile: iconsNormalMobBG,
-	} = generateNormalBGControlStyles({
-		controlName: ICONS_BG,
-		attributes,
-		noMainBGImg: true,
-	});
-
-	const {
-		backgroundStylesDesktop: iconsHoverDeskBG,
-		backgroundStylesTab: iconsHoverTabBG,
-		backgroundStylesMobile: iconsHoverMobBG,
-	} = generateNormalBGControlStyles({
-		controlName: ICONS_HOVER_BG,
-		attributes,
-		noMainBGImg: true,
-	});
-
-	const {
-		desktopRangeStyle: socialIconDesk,
-		tabRangeStyle: socialIconTab,
-		mobRangeStyle: socialIconMob,
-	} = generateResRangeStyle({
-		controlName: ICONS_SIZE,
-		property: 'font-size',
+		typoStylesDesktop: bioTypoDesk,
+		typoStylesTab: bioTypoTab,
+		typoStylesMobile: bioTypoMob,
+	} = generateTypographyStyles({
+		prefixConstant: BIO_TYPO,
+		defaultFontSize: 18,
 		attributes,
 	});
 
 	const {
-		desktopRangeStyle: socialIconContainerHeightDesk,
-		tabRangeStyle: socialIconContainerHeightTab,
-		mobRangeStyle: socialIconContainerHeightMob,
-	} = generateResRangeStyle({
-		controlName: ICONS_SIZE,
-		property: 'height',
-		attributes,
-	});
-
-	const {
-		desktopRangeStyle: socialIconContainerWidthDesk,
-		tabRangeStyle: socialIconContainerWidthTab,
-		mobRangeStyle: socialIconContainerWidthMob,
-	} = generateResRangeStyle({
-		controlName: ICONS_SIZE,
-		property: 'width',
-		attributes,
-	});
-
-	const {
-		desktopRangeStyle: socialIconsGapDesk,
-		tabRangeStyle: socialIconsGapTab,
-		mobRangeStyle: socialIconsGapMob,
-	} = generateResRangeStyle({
-		controlName: ICONS_SPACING,
-		property: 'gap',
-		attributes,
-	});
-
-	const {
-		desktopBorderStyle: socialIconDeskBorderStyle,
-		tabBorderStyle: socialIconTabBorderStyle,
-		mobBorderStyle: socialIconMobBorderStyle,
-	} = generateBorderStyle({
-		controlName: ICONS_BORDER,
-		attributes,
-	});
-
-	const {
-		dimensionStylesDesktop: socialIconsBorderRadiusDesk,
-		dimensionStylesTab: socialIconsBorderRadiusTab,
-		dimensionStylesMobile: socialIconsBorderRadiusMob,
+		dimensionStylesDesktop: bioDeskMargin,
+		dimensionStylesTab: bioTabMargin,
+		dimensionStylesMobile: bioMobMargin,
 	} = generateDimensionStyle({
-		controlName: ICONS_BORDER_RADIUS,
-		styleFor: 'border-radius',
+		controlName: BIO_MARGIN,
+		styleFor: 'margin',
 		attributes,
 	});
 
+	// status: Number
 	const {
-		dimensionStylesDesktop: socialIconsPaddingDesk,
-		dimensionStylesTab: socialIconsPaddingTab,
-		dimensionStylesMobile: socialIconsPaddingMob,
+		typoStylesDesktop: counterTypoDesk,
+		typoStylesTab: counterTypoTab,
+		typoStylesMobile: counterTypoMob,
+	} = generateTypographyStyles({
+		prefixConstant: NUMBER_TYPO,
+		defaultFontSize: 18,
+		attributes,
+	});
+
+	// status: Label
+	const {
+		typoStylesDesktop: labelTypoDesk,
+		typoStylesTab: labelTypoTab,
+		typoStylesMobile: labelTypoMob,
+	} = generateTypographyStyles({
+		prefixConstant: LABEL_TYPO,
+		defaultFontSize: 14,
+		attributes,
+	});
+
+	// status container
+	const {
+		dimensionStylesDesktop: statusDeskMargin,
+		dimensionStylesTab: statusTabMargin,
+		dimensionStylesMobile: statusMobMargin,
 	} = generateDimensionStyle({
-		controlName: ICONS_PADDING,
-		styleFor: 'padding',
+		controlName: STATUS_MARGIN,
+		styleFor: 'margin',
 		attributes,
 	});
 
-	const { boxShadowStyle: socialIconNormalBoxShadow } =
-		generateBoxShadowStyles({
-			attributes,
-			controlName: ICONS_BOX_SHADOW,
-		});
+	// // social icons alignment
+	// let socialDeskAlignStyle;
+	// switch (teamDeskAlignStyle) {
+	// 	case 'text-align:left;':
+	// 		socialDeskAlignStyle = 'justify-content: flex-start;';
+	// 		break;
+	// 	case 'text-align:center;':
+	// 		socialDeskAlignStyle = 'justify-content: center;';
+	// 		break;
+	// 	case 'text-align:right;':
+	// 		socialDeskAlignStyle = 'justify-content: flex-end;';
+	// 		break;
+	// 	default:
+	// 		socialDeskAlignStyle = 'justify-content: flex-start;';
+	// }
 
-	const { boxShadowStyle: socialIconHoverBoxShadow } =
-		generateBoxShadowStyles({
-			attributes,
-			controlName: ICONS_HOVER_BOX_SHADOW,
-		});
+	// let socialTabAlignStyle;
+	// switch (teamTabAlignStyle) {
+	// 	case 'text-align:left;':
+	// 		socialTabAlignStyle = 'justify-content: flex-start;';
+	// 		break;
+	// 	case 'text-align:center;':
+	// 		socialTabAlignStyle = 'justify-content: center;';
+	// 		break;
+	// 	case 'text-align:right;':
+	// 		socialTabAlignStyle = 'justify-content: flex-end;';
+	// 		break;
+	// 	default:
+	// 		socialTabAlignStyle = 'justify-content: flex-start;';
+	// }
 
-	// detail page
-	const {
-		backgroundStylesDesktop: detailPageNormalDeskBG,
-		backgroundStylesTab: detailPageNormalTabBG,
-		backgroundStylesMobile: detailPageNormalMobBG,
-	} = generateNormalBGControlStyles({
-		controlName: DETAIL_PAGE_LINK_BG,
-		attributes,
-		noMainBGImg: true,
-	});
+	// let socialMobAlignStyle;
+	// switch (teamMobAlignStyle) {
+	// 	case 'text-align:left;':
+	// 		socialMobAlignStyle = 'justify-content: flex-start;';
+	// 		break;
+	// 	case 'text-align:center;':
+	// 		socialMobAlignStyle = 'justify-content: center;';
+	// 		break;
+	// 	case 'text-align:right;':
+	// 		socialMobAlignStyle = 'justify-content: flex-end;';
+	// 		break;
+	// 	default:
+	// 		socialMobAlignStyle = 'justify-content: flex-start;';
+	// }
 
-	const {
-		backgroundStylesDesktop: detailPageHoverDeskBG,
-		backgroundStylesTab: detailPageHoverTabBG,
-		backgroundStylesMobile: detailPageHoverMobBG,
-	} = generateNormalBGControlStyles({
-		controlName: DETAIL_PAGE_LINK_HOVER_BG,
-		attributes,
-		noMainBGImg: true,
-	});
+	// // Photo
+	// const {
+	// 	desktopBorderStyle: photoDeskBorderStyle,
+	// 	tabBorderStyle: photoTabBorderStyle,
+	// 	mobBorderStyle: photoMobBorderStyle,
+	// } = generateBorderStyle({
+	// 	controlName: TEAM_PHOTO_BORDER,
+	// 	attributes,
+	// });
 
-	/**
-	 * Image Width Calculation for Style-4(Preset-3)
-	 */
+	// const {
+	// 	dimensionStylesDesktop: photoDeskBorderRadius,
+	// 	dimensionStylesTab: photoTabBorderRadius,
+	// 	dimensionStylesMobile: photoMobBorderRadius,
+	// } = generateDimensionStyle({
+	// 	controlName: TEAM_PHOTO_BORDER_RADIUS,
+	// 	styleFor: 'border-radius',
+	// 	attributes,
+	// });
 
-	const paddingRegex = /padding:\s*(\d+)/;
-	const widthRegex = /width:\s*(\d+)/;
-	const borderWidthRegex = /border-width:\s*(\d+)/;
+	// const { boxShadowStyle: teamPhotoBoxShadow } = generateBoxShadowStyles({
+	// 	attributes,
+	// 	controlName: TEAM_PHOTO_BOX_SHADOW,
+	// });
 
-	const deskPadding = socialIconsPaddingDesk || 'padding: 8px';
-	const deskMatch = paddingRegex.exec(deskPadding);
-	const dpNumber = deskMatch ? parseInt(deskMatch[1]) : 8;
+	// const {
+	// 	dimensionStylesDesktop: photoDeskPadding,
+	// 	dimensionStylesTab: photoTabPadding,
+	// 	dimensionStylesMobile: photoMobPadding,
+	// } = generateDimensionStyle({
+	// 	controlName: TEAM_PHOTO_PADDING,
+	// 	styleFor: 'padding',
+	// 	attributes,
+	// });
 
-	const deskWidth = socialIconContainerWidthDesk || 'width: 18px';
-	const deskMatch2 = widthRegex.exec(deskWidth);
-	const dwNumber = deskMatch2 ? parseInt(deskMatch2[1]) : 18;
+	// const {
+	// 	dimensionStylesDesktop: photoDeskMargin,
+	// 	dimensionStylesTab: photoTabMargin,
+	// 	dimensionStylesMobile: photoMobMargin,
+	// } = generateDimensionStyle({
+	// 	controlName: TEAM_PHOTO_MARGIN,
+	// 	styleFor: 'margin',
+	// 	attributes,
+	// });
 
-	const deskBorderWidth = socialIconDeskBorderStyle || 'border-width: 1px';
-	const deskMatch3 = borderWidthRegex.exec(deskBorderWidth);
-	const dbNumber = deskMatch3 ? parseInt(deskMatch3[1]) : 1;
+	// // Name
+	// const {
+	// 	typoStylesDesktop: nameTypoDesk,
+	// 	typoStylesTab: nameTypoTab,
+	// 	typoStylesMobile: nameTypoMob,
+	// } = generateTypographyStyles({
+	// 	prefixConstant: TEAM_MEMBER_NAME_TYPOGRAPHY,
+	// 	defaultFontSize: 23,
+	// 	attributes,
+	// });
 
-	const totalDeskWidth =
-		dpNumber + dwNumber + dbNumber !== 0
-			? dpNumber * 2 + dwNumber + dbNumber * 2
-			: 45;
+	// const {
+	// 	dimensionStylesDesktop: nameDeskMargin,
+	// 	dimensionStylesTab: nameTabMargin,
+	// 	dimensionStylesMobile: nameMobMargin,
+	// } = generateDimensionStyle({
+	// 	controlName: TEAM_NAME_MARGIN,
+	// 	styleFor: 'margin',
+	// 	attributes,
+	// });
 
-	// tablet
-	const tabPadding = socialIconsPaddingTab || 'padding: 0px';
-	const tabMatch = paddingRegex.exec(tabPadding);
-	const tpNumber = tabMatch ? parseInt(tabMatch[1]) : 8;
+	// // Designation
+	// const {
+	// 	typoStylesDesktop: designationTypoDesk,
+	// 	typoStylesTab: designationTypoTab,
+	// 	typoStylesMobile: designationTypoMob,
+	// } = generateTypographyStyles({
+	// 	prefixConstant: TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
+	// 	defaultFontSize: 16,
+	// 	attributes,
+	// });
 
-	const tabWidth = socialIconContainerWidthTab || 'width: 0px';
-	const tabMatch2 = widthRegex.exec(tabWidth);
-	const twNumber = tabMatch2 ? parseInt(tabMatch2[1]) : 18;
+	// const {
+	// 	dimensionStylesDesktop: designationDeskMargin,
+	// 	dimensionStylesTab: designationTabMargin,
+	// 	dimensionStylesMobile: designationMobMargin,
+	// } = generateDimensionStyle({
+	// 	controlName: TEAM_DESIGNATION_MARGIN,
+	// 	styleFor: 'margin',
+	// 	attributes,
+	// });
 
-	const tabBorderWidth = socialIconTabBorderStyle || 'border-width: 0px';
-	const tabMatch3 = borderWidthRegex.exec(tabBorderWidth);
-	const tbNumber = tabMatch3 ? parseInt(tabMatch3[1]) : 1;
+	// // Short bio
+	// const {
+	// 	typoStylesDesktop: shortBioTypoDesk,
+	// 	typoStylesTab: shortBioTypoTab,
+	// 	typoStylesMobile: shortBioTypoMob,
+	// } = generateTypographyStyles({
+	// 	prefixConstant: TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
+	// 	defaultFontSize: 16,
+	// 	attributes,
+	// });
 
-	const totalTabWidth =
-		tpNumber + twNumber + tbNumber !== 0
-			? tpNumber * 2 + twNumber + tbNumber * 2
-			: 45;
+	// const {
+	// 	dimensionStylesDesktop: shortBioDeskMargin,
+	// 	dimensionStylesTab: shortBioTabMargin,
+	// 	dimensionStylesMobile: shortBioMobMargin,
+	// } = generateDimensionStyle({
+	// 	controlName: TEAM_SHORT_BIO_MARGIN,
+	// 	styleFor: 'margin',
+	// 	attributes,
+	// });
 
-	// mobile
-	const mobPadding = socialIconsPaddingMob || 'padding: 0px';
-	const mobMatch = paddingRegex.exec(mobPadding);
-	const mpNumber = mobMatch ? parseInt(mobMatch[1]) : 8;
+	// // Social Icons
+	// const {
+	// 	backgroundStylesDesktop: iconsNormalDeskBG,
+	// 	backgroundStylesTab: iconsNormalTabBG,
+	// 	backgroundStylesMobile: iconsNormalMobBG,
+	// } = generateNormalBGControlStyles({
+	// 	controlName: ICONS_BG,
+	// 	attributes,
+	// 	noMainBGImg: true,
+	// });
 
-	const mobWidth = socialIconContainerWidthMob || 'width: 0px';
-	const mobMatch2 = widthRegex.exec(mobWidth);
-	const mwNumber = mobMatch2 ? parseInt(mobMatch2[1]) : 18;
+	// const {
+	// 	backgroundStylesDesktop: iconsHoverDeskBG,
+	// 	backgroundStylesTab: iconsHoverTabBG,
+	// 	backgroundStylesMobile: iconsHoverMobBG,
+	// } = generateNormalBGControlStyles({
+	// 	controlName: ICONS_HOVER_BG,
+	// 	attributes,
+	// 	noMainBGImg: true,
+	// });
 
-	const mobBorderWidth = socialIconMobBorderStyle || 'border-width: 0px';
-	const mobMatch3 = borderWidthRegex.exec(mobBorderWidth);
-	const mbNumber = mobMatch3 ? parseInt(mobMatch3[1]) : 1;
+	// const {
+	// 	desktopRangeStyle: socialIconDesk,
+	// 	tabRangeStyle: socialIconTab,
+	// 	mobRangeStyle: socialIconMob,
+	// } = generateResRangeStyle({
+	// 	controlName: ICONS_SIZE,
+	// 	property: 'font-size',
+	// 	attributes,
+	// });
 
-	const totalMobWidth =
-		mpNumber + mwNumber + mbNumber !== 0
-			? mpNumber * 2 + mwNumber + mbNumber * 2
-			: 45;
+	// const {
+	// 	desktopRangeStyle: socialIconContainerHeightDesk,
+	// 	tabRangeStyle: socialIconContainerHeightTab,
+	// 	mobRangeStyle: socialIconContainerHeightMob,
+	// } = generateResRangeStyle({
+	// 	controlName: ICONS_SIZE,
+	// 	property: 'height',
+	// 	attributes,
+	// });
+
+	// const {
+	// 	desktopRangeStyle: socialIconContainerWidthDesk,
+	// 	tabRangeStyle: socialIconContainerWidthTab,
+	// 	mobRangeStyle: socialIconContainerWidthMob,
+	// } = generateResRangeStyle({
+	// 	controlName: ICONS_SIZE,
+	// 	property: 'width',
+	// 	attributes,
+	// });
+
+	// const {
+	// 	desktopRangeStyle: socialIconsGapDesk,
+	// 	tabRangeStyle: socialIconsGapTab,
+	// 	mobRangeStyle: socialIconsGapMob,
+	// } = generateResRangeStyle({
+	// 	controlName: ICONS_SPACING,
+	// 	property: 'gap',
+	// 	attributes,
+	// });
+
+	// const {
+	// 	desktopBorderStyle: socialIconDeskBorderStyle,
+	// 	tabBorderStyle: socialIconTabBorderStyle,
+	// 	mobBorderStyle: socialIconMobBorderStyle,
+	// } = generateBorderStyle({
+	// 	controlName: ICONS_BORDER,
+	// 	attributes,
+	// });
+
+	// const {
+	// 	dimensionStylesDesktop: socialIconsBorderRadiusDesk,
+	// 	dimensionStylesTab: socialIconsBorderRadiusTab,
+	// 	dimensionStylesMobile: socialIconsBorderRadiusMob,
+	// } = generateDimensionStyle({
+	// 	controlName: ICONS_BORDER_RADIUS,
+	// 	styleFor: 'border-radius',
+	// 	attributes,
+	// });
+
+	// const {
+	// 	dimensionStylesDesktop: socialIconsPaddingDesk,
+	// 	dimensionStylesTab: socialIconsPaddingTab,
+	// 	dimensionStylesMobile: socialIconsPaddingMob,
+	// } = generateDimensionStyle({
+	// 	controlName: ICONS_PADDING,
+	// 	styleFor: 'padding',
+	// 	attributes,
+	// });
+
+	// const { boxShadowStyle: socialIconNormalBoxShadow } =
+	// 	generateBoxShadowStyles({
+	// 		attributes,
+	// 		controlName: ICONS_BOX_SHADOW,
+	// 	});
+
+	// const { boxShadowStyle: socialIconHoverBoxShadow } =
+	// 	generateBoxShadowStyles({
+	// 		attributes,
+	// 		controlName: ICONS_HOVER_BOX_SHADOW,
+	// 	});
+
+	// // detail page
+	// const {
+	// 	backgroundStylesDesktop: detailPageNormalDeskBG,
+	// 	backgroundStylesTab: detailPageNormalTabBG,
+	// 	backgroundStylesMobile: detailPageNormalMobBG,
+	// } = generateNormalBGControlStyles({
+	// 	controlName: DETAIL_PAGE_LINK_BG,
+	// 	attributes,
+	// 	noMainBGImg: true,
+	// });
+
+	// const {
+	// 	backgroundStylesDesktop: detailPageHoverDeskBG,
+	// 	backgroundStylesTab: detailPageHoverTabBG,
+	// 	backgroundStylesMobile: detailPageHoverMobBG,
+	// } = generateNormalBGControlStyles({
+	// 	controlName: DETAIL_PAGE_LINK_HOVER_BG,
+	// 	attributes,
+	// 	noMainBGImg: true,
+	// });
 
 	/**
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
-		.${uniqueId} {
-			${teamMemberContainerDeskPadding}
-			${teamMemberContainerDeskMargin}
-			${containerDeskBGStyle}
-		}
-
 		.${uniqueId} .zb-profile-header-content {
 			background: ${headerAreaBG ? headerAreaBG : ''}; 
-		}
-
-		.${uniqueId} .zb-profile-item {
+			${headerAreaDeskPadding}
 			${headerAreaDeskBorderRadius}
 		}
-
-		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
-			${teamDeskAlignStyle}
+		.${uniqueId} .zb-profile-badge {
+			color: ${badgeColor ? badgeColor : ''};
+			${headerBadgeDeskBorderStyle}
+			${headerBadgeBgDeskStyle}
+			${headerBadgeDeskBorderRadius}
+			${badgeTypoDesk}
 		}
-		.${uniqueId}.default .zolo-item .zolo-info-wrap, 
-		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.default .zolo-item .zolo-hover-content,
-		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
-			${contentDeskBGStyle}
-		}
-		.${uniqueId} .zolo-social-share {
-			${socialDeskAlignStyle}
-		}
-		.${uniqueId} .zolo-item .zolo-hover-content .zolo-social-share {
-			${separatorColor ? `border-top-color: ${separatorColor};` : ''}
-		}
-		.${uniqueId} .zolo-image-wrap img {
-			${photoDeskBGStyle}
-			${photoDeskBorderStyle}
-			${photoDeskBorderRadius}
-			${photoDeskPadding}
-			${photoDeskMargin}
-			${teamPhotoBoxShadow}
-			${preset === 'style-3' ? `width: calc(100% - ${totalDeskWidth}px );` : ''}
-		}
-		.${uniqueId} .zolo-name, .${uniqueId} .zolo-name a {
-			${nameColor ? `color: ${nameColor};` : ''}
+		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-name {
+			color: ${nameColor ? nameColor : ''};
 			${nameTypoDesk}
 			${nameDeskMargin}
 		}
-		.${uniqueId} .zolo-designation {
-			${designationColor ? `color: ${designationColor};` : ''}
-			${designationTypoDesk}
-			${designationDeskMargin}
+		.${uniqueId} .zb-profile-username{
+			color: ${usernameColor ? usernameColor : ''};
+			${userNameTypoDesk}
+			${userNameDeskMargin}
 		}
-		.${uniqueId} .zolo-desc {
-			${shortBioColor && shortBioColor !== '' ? `color: ${shortBioColor};` : ''}
-			${shortBioTypoDesk}
-			${shortBioDeskMargin}
+		.${uniqueId} .zb-profile-email {
+			color: ${emailColor ? emailColor : ''};
+			${emailTypoDesk}
+			${emailDeskMargin}
 		}
-		.${uniqueId} .zolo-social-share {
-			${socialIconsGapDesk}
+		.${uniqueId} .zb-profile-card-bio {
+			color: ${bioColor ? bioColor : ''};
+			${bioTypoDesk}
+			${bioDeskMargin}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a {
-			${socialIconContainerHeightDesk}
-			${socialIconContainerWidthDesk}
-			${socialIconDeskBorderStyle}
-			${socialIconsBorderRadiusDesk}
-			${socialIconsPaddingDesk}
-			${socialIconNormalBoxShadow}
-			${iconColor ? `color: ${iconColor};` : ''}
-			${iconsNormalDeskBG}
+		.${uniqueId} .zb-profile-status-count {
+			color: ${numberColor ? numberColor : ''};
+			${counterTypoDesk}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a:hover {
-			${socialIconHoverBoxShadow}
-			${iconHoverColor ? `color: ${iconHoverColor};` : ''}
-			${iconHoverBorderColor ? `border-color: ${iconHoverBorderColor};` : ''}
-			${iconsHoverDeskBG}
+		.${uniqueId} .zb-profile-status-text {
+			color: ${labelColor ? labelColor : ''};
+			${labelTypoDesk}
 		}
-		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
-			${socialIconDesk}
+		.${uniqueId} .zb-profile-status {
+			${statusDeskMargin}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-link-btn a {
-			${detailPageNormalDeskBG}
-			${detailPageIconColor ? `color: ${detailPageIconColor};` : ''}
+		.${uniqueId} .zb-profile-image img {
+			${photoDeskWidth}
+			${photoDeskHeight}
+			${photoDeskBorderRadius}
+			${photoDeskBorderStyle}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-link-btn a:hover {
-			${detailPageIconHoverColor ? `color: ${detailPageIconHoverColor};` : ''}
-			${detailPageHoverDeskBG}
+		.${uniqueId} .zb-profile-bottom-content {
+			${contentDeskBGStyle}
+			${contentBorderRadiusDesk}
+			${contentBorderStyleDesk}
+			${contentPaddingDesk}
+			${contentMarginDesk}
 		}
 	`;
 
 	const tabletAllStyle = `
-		.${uniqueId} {
-			${teamMemberContainerTabPadding}
-			${teamMemberContainerTabMargin}
-			${containerTabBGStyle}
-		}
-
-		.${uniqueId} .zb-profile-item {
+		.${uniqueId} .zb-profile-header-content {
+			${headerAreaTabPadding}
 			${headerAreaTabBorderRadius}
 		}
 
-		.${uniqueId}.default .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.default .zolo-item .zolo-hover-content,
-		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
+		.${uniqueId} .zb-profile-badge {
+			${headerBadgeTabBorderStyle}
+			${headerBadgeBgTabStyle}
+			${headerBadgeTabBorderRadius}
+			${badgeTypoTab}
+		}
+
+		.${uniqueId} .zb-profile-bottom-content {
 			${contentTabBGStyle}
+			${contentBorderRadiusTab}
+			${contentBorderStyleTab}
+			${contentPaddingTab}
+			${contentMarginTab}
 		}
-		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
-			${teamTabAlignStyle}
-		}
-		.${uniqueId} .zolo-social-share {
-			${socialTabAlignStyle}
-		}
-		.${uniqueId} .zolo-image-wrap img {
-			${photoTabBGStyle}
-			${photoTabBorderStyle}
-			${photoTabBorderRadius}
-			${photoTabPadding}
-			${photoTabMargin}
-			${preset === 'style-3' ? `width: calc(100% - ${totalTabWidth}px );` : ''}
-		}
-		.${uniqueId} .zolo-name {
+		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-name {
 			${nameTypoTab}
 			${nameTabMargin}
 		}
-		.${uniqueId} .zolo-designation {
-			${designationTypoTab}
-			${designationTabMargin}
+		.${uniqueId} .zb-profile-username{
+			${userNameTypoTab}
+			${userNameTabMargin}
 		}
-		.${uniqueId} .zolo-desc {
-			${shortBioTypoTab}
-			${shortBioTabMargin}
+		.${uniqueId} .zb-profile-email {
+			${emailTypoTab}
+			${emailTabMargin}
 		}
-		.${uniqueId} .zolo-social-share {
-			${socialIconsGapTab}
+		.${uniqueId} .zb-profile-card-bio {
+			${bioTypoTab}
+			${bioTabMargin}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a {
-			${socialIconContainerHeightTab}
-			${socialIconContainerWidthTab}
-			${socialIconTabBorderStyle}
-			${socialIconsBorderRadiusTab}
-			${socialIconsPaddingTab}
-			${iconsNormalTabBG}
+		.${uniqueId} .zb-profile-status {
+			${statusTabMargin}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a:hover {
-			${iconsHoverTabBG}
+		.${uniqueId} .zb-profile-status-count {
+			${counterTypoTab}
 		}
-		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
-			${socialIconTab}
+		.${uniqueId} .zb-profile-status-text {
+			${labelTypoTab}
 		}
-		.${uniqueId} .zolo-link-btn a {
-			${detailPageNormalTabBG}
+		.${uniqueId} .zb-profile-image img {
+			${photoTabWidth}
+			${photoTabHeight}
+			${photoTabBorderRadius}
+			${photoTabBorderStyle}
 		}
-		.${uniqueId} .zolo-link-btn a:hover {
-			${detailPageHoverTabBG}
+		.${uniqueId} .zb-profile-bottom-content {
+			${contentTabBGStyle}
+			${contentBorderRadiusTab}
+			${contentBorderStyleTab}
+			${contentPaddingTab}
+			${contentMarginTab}
 		}
 	`;
 
 	const mobileAllStyle = `
-		.${uniqueId} {
-			${teamMemberContainerMobPadding}
-			${teamMemberContainerMobMargin}
-			${containerMobBGStyle}
-		}
-
-		.${uniqueId} .zb-profile-item {
+		.${uniqueId} .zb-profile-header-content {
+			${headerAreaMobPadding}
 			${headerAreaMobBorderRadius}
 		}
-
-		.${uniqueId}.default .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.default .zolo-item .zolo-hover-content,
-		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
+		.${uniqueId} .zb-profile-badge {
+			${headerBadgeMobBorderStyle}
+			${headerBadgeBgMobStyle}
+			${headerBadgeMobBorderRadius}
+			${badgeTypoMob}
+		}
+		.${uniqueId} .zb-profile-bottom-content {
 			${contentMobBGStyle}
+			${contentBorderRadiusMob}
+			${contentBorderStyleMob}
+			${contentPaddingMob}
+			${contentMarginMob}
 		}
-		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
-			${teamMobAlignStyle}
-		}
-		.${uniqueId} .zolo-social-share {
-			${socialMobAlignStyle}
-		}
-		.${uniqueId} .zolo-image-wrap img {
-			${photoMobBGStyle}
-			${photoMobBorderStyle}
-			${photoMobBorderRadius}
-			${photoMobPadding}
-			${photoMobMargin}
-			${preset === 'style-3' ? `width: calc(100% - ${totalMobWidth}px );` : ''}
-		}
-		.${uniqueId} .zolo-name {
+		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-name {
 			${nameTypoMob}
 			${nameMobMargin}
 		}
-		.${uniqueId} .zolo-designation {
-			${designationTypoMob}
-			${designationMobMargin}
+		.${uniqueId} .zb-profile-username{
+			${userNameTypoMob}
+			${userNameMobMargin}
 		}
-		.${uniqueId} .zolo-desc {
-			${shortBioTypoMob}
-			${shortBioMobMargin}
+		.${uniqueId} .zb-profile-email {
+			${emailTypoMob}
+			${emailMobMargin}
 		}
-		.${uniqueId} .zolo-social-share {
-			${socialIconsGapMob}
+		.${uniqueId} .zb-profile-card-bio {
+			${bioTypoMob}
+			${bioMobMargin}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a {
-			${socialIconContainerHeightMob}
-			${socialIconContainerWidthMob}
-			${socialIconMobBorderStyle}
-			${socialIconsBorderRadiusMob}
-			${socialIconsPaddingMob}
-			${iconsNormalMobBG}
+		.${uniqueId} .zb-profile-status {
+			${statusMobMargin}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a:hover {
-			${iconsHoverMobBG}
+		.${uniqueId} .zb-profile-status-count {
+			${counterTypoMob}
 		}
-		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
-			${socialIconMob}
+		.${uniqueId} .zb-profile-status-text {
+			${labelTypoMob}
 		}
-		.${uniqueId} .zolo-link-btn a {
-			${detailPageNormalMobBG}
+		.${uniqueId} .zb-profile-image img {
+			${photoMobWidth}
+			${photoMobHeight}
+			${photoMobBorderRadius}
+			${photoMobBorderStyle}
 		}
-		.${uniqueId} .zolo-link-btn a:hover {
-			${detailPageHoverMobBG}
+		.${uniqueId} .zb-profile-bottom-content {
+			${contentMobBGStyle}
+			${contentBorderRadiusMob}
+			${contentBorderStyleMob}
+			${contentPaddingMob}
+			${contentMarginMob}
 		}
 	`;
 
 	const allStyle = `
 		${desktopAllStyle}
-		@media all and (max-width: 1024px) {
-			${tabletAllStyle}
-		}
-		@media all and (max-width: 767px) {
-			${mobileAllStyle}
-		}
+		${tabletAllStyle}
+		${mobileAllStyle}
 	`;
 
 	// Set All Style in "blockStyle" Attribute
@@ -965,7 +1051,7 @@ export default function Edit(props) {
 							</div>
 						</div>
 						{showBio && (
-							<div className="bdt-profile-card-bio">
+							<div className="zb-profile-card-bio">
 								<RichText
 									tagName="p"
 									value={bio}
