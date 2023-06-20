@@ -63,8 +63,8 @@ export default function Edit( props ) {
 		showWebsiteLink,
 		brandPhoto,
 		brandName,
+		brandLabel,
 		brandDetailPageLink,
-		link,
 		textColor,
 		linkColor,
 		linkHoverColor,
@@ -571,8 +571,7 @@ export default function Edit( props ) {
 										'_blank'
 									}
 								>
-									{ brandDetailPageLink &&
-										brandDetailPageLink.url }
+									{ brandLabel && brandLabel }
 								</a>
 							</div>
 						</div>

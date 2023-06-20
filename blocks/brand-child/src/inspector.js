@@ -65,6 +65,7 @@ function Inspector( props ) {
 		uniqueId,
 		brandPhoto,
 		brandName,
+		brandLabel,
 		brandDetailPageLink,
 		resMode,
 		textColor,
@@ -181,32 +182,52 @@ function Inspector( props ) {
 											) }
 										/>
 
-										<BaseControl
-											label={ __(
-												'Brand Details Link',
-												'zolo-blocks'
-											) }
-										>
-											<LinkControl
-												searchInputPlaceholder="Search here..."
-												value={ brandDetailPageLink }
-												settings={ [
-													{
-														id: 'opensInNewTab',
-														title: __(
-															'Open in new tab',
-															'zolo-blocks'
-														),
-													},
-												] }
-												onChange={ ( data ) =>
+										<>
+											<TextControl
+												label={ __(
+													'Label',
+													'zolo-blocks'
+												) }
+												onChange={ ( name ) =>
 													setAttributes( {
-														brandDetailPageLink:
-															data,
+														brandLabel: name,
 													} )
 												}
+												value={ brandLabel }
+												placeholder={ __(
+													'Name..',
+													'zolo-blocks'
+												) }
 											/>
-										</BaseControl>
+											<BaseControl
+												label={ __(
+													'Brand Details Link',
+													'zolo-blocks'
+												) }
+											>
+												<LinkControl
+													searchInputPlaceholder="Search here..."
+													value={
+														brandDetailPageLink
+													}
+													settings={ [
+														{
+															id: 'opensInNewTab',
+															title: __(
+																'Open in new tab',
+																'zolo-blocks'
+															),
+														},
+													] }
+													onChange={ ( data ) =>
+														setAttributes( {
+															brandDetailPageLink:
+																data,
+														} )
+													}
+												/>
+											</BaseControl>
+										</>
 									</PanelBody>
 								</>
 							) }

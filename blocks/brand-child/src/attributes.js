@@ -92,8 +92,9 @@ const attributes = {
 	brandName: {
 		type: 'string',
 	},
-	brandAnchorText: {
+	brandLabel: {
 		type: 'string',
+		default: 'www.zalando.com',
 	},
 	brandDetailPageLink: {
 		type: 'object',
