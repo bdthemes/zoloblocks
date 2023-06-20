@@ -454,7 +454,7 @@ export default function Edit( props ) {
 							<div className="zolo-dropdown-link">
 								<LinkControl
 									searchInputPlaceholder="Search here..."
-									value={ link }
+									value={ brandDetailPageLink }
 									settings={ [
 										{
 											id: 'opensInNewTab',
@@ -465,7 +465,9 @@ export default function Edit( props ) {
 										},
 									] }
 									onChange={ ( data ) =>
-										setAttributes( { link: data } )
+										setAttributes( {
+											brandDetailPageLink: data,
+										} )
 									}
 								></LinkControl>
 							</div>
