@@ -1,0 +1,1 @@
+!function(){"use strict";var e=window.wp.element;const{StarRating:t}=window.zoloModule;(0,e.render)((0,e.createElement)((()=>(0,e.createElement)(t,{rating:2,total:5})),null),document.getElementById("zolo-rating"))}();
