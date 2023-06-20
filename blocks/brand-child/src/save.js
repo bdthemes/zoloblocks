@@ -9,7 +9,6 @@ const Save = ( { attributes } ) => {
 		brandPhoto,
 		brandName,
 		brandDetailPageLink,
-		brandAnchorText,
 		link,
 		showBrandName,
 		showWebsiteLink,
@@ -70,7 +69,8 @@ const Save = ( { attributes } ) => {
 									'_blank'
 								}
 							>
-								{ brandAnchorText && brandAnchorText }
+								{ brandDetailPageLink &&
+									brandDetailPageLink.url }
 							</a>
 						</div>
 					</div>

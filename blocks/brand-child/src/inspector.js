@@ -65,7 +65,6 @@ function Inspector( props ) {
 		uniqueId,
 		brandPhoto,
 		brandName,
-		brandAnchorText,
 		brandDetailPageLink,
 		resMode,
 		textColor,
@@ -182,52 +181,32 @@ function Inspector( props ) {
 											) }
 										/>
 
-										<>
-											<TextControl
-												label={ __(
-													'Anchor Text',
-													'zolo-blocks'
-												) }
-												onChange={ ( name ) =>
+										<BaseControl
+											label={ __(
+												'Brand Details Link',
+												'zolo-blocks'
+											) }
+										>
+											<LinkControl
+												searchInputPlaceholder="Search here..."
+												value={ brandDetailPageLink }
+												settings={ [
+													{
+														id: 'opensInNewTab',
+														title: __(
+															'Open in new tab',
+															'zolo-blocks'
+														),
+													},
+												] }
+												onChange={ ( data ) =>
 													setAttributes( {
-														brandAnchorText: name,
+														brandDetailPageLink:
+															data,
 													} )
 												}
-												value={ brandAnchorText }
-												placeholder={ __(
-													'Name..',
-													'zolo-blocks'
-												) }
 											/>
-											<BaseControl
-												label={ __(
-													'Brand Details Link',
-													'zolo-blocks'
-												) }
-											>
-												<LinkControl
-													searchInputPlaceholder="Search here..."
-													value={
-														brandDetailPageLink
-													}
-													settings={ [
-														{
-															id: 'opensInNewTab',
-															title: __(
-																'Open in new tab',
-																'zolo-blocks'
-															),
-														},
-													] }
-													onChange={ ( data ) =>
-														setAttributes( {
-															brandDetailPageLink:
-																data,
-														} )
-													}
-												/>
-											</BaseControl>
-										</>
+										</BaseControl>
 									</PanelBody>
 								</>
 							) }

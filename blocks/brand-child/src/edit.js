@@ -64,7 +64,6 @@ export default function Edit( props ) {
 		brandPhoto,
 		brandName,
 		brandDetailPageLink,
-		brandAnchorText,
 		link,
 		textColor,
 		linkColor,
@@ -570,21 +569,8 @@ export default function Edit( props ) {
 										'_blank'
 									}
 								>
-									{
-										<RichText
-											className="zb-brand-link"
-											value={ brandAnchorText }
-											onChange={ ( name ) =>
-												setAttributes( {
-													brandAnchorText: name,
-												} )
-											}
-											placeholder={ __(
-												'www.zalando.com',
-												'zolo-blocks'
-											) }
-										/>
-									}
+									{ brandDetailPageLink &&
+										brandDetailPageLink.url }
 								</a>
 							</div>
 						</div>
