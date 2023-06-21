@@ -24,6 +24,11 @@ export const CONTAINER_BORDER = 'brandContainerBorder';
 export const CONTAINER_BORDER_RADIUS = 'brandContainerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'brandContainerBoxShadow';
 
+// hover
+export const CONTAINER_HOVER_BACKGROUND = 'brandContainerHoverBackground';
+export const CONTAINER_HOVER_BOX_SHADOW = 'brandContainerHoverBoxShadow';
+export const CONTAINER_HOVER_BORDER = 'brandContainerHoverBorder';
+
 // brand photo
 export const BRAND_PHOTO_BG = 'brandPhotoBackground';
 export const BRAND_PHOTO_BORDER = 'brandPhotoBorder';
@@ -46,11 +51,11 @@ export const LINK_TEXT_SHADOW = 'linkTextShadow';
 export const LINK_MARGIN = 'linkMargin';
 export const LINK_TEXT_STROKE = 'linkTextStroke';
 
-// Grid Columns
+// image
+export const IMAGE_HEIGHT = 'imageHeight';
+export const IMAGE_WIDTH = 'imageWidth';
+
+// Grid
 export const GRID_COLUMNS = 'gridColumns';
-
-// Columns Gap
 export const COLUMNS_GAP = 'columnsGap';
-
-// Rows Gap
 export const ROWS_GAP = 'rowsGap';

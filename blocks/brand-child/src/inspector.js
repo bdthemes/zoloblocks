@@ -46,7 +46,10 @@ import {
 	LINK_TEXT_STROKE,
 	LINK_MARGIN,
 	CONTAINER_BACKGROUND,
+	CONTAINER_HOVER_BACKGROUND,
+	CONTAINER_HOVER_BORDER,
 	CONTAINER_BOX_SHADOW,
+	CONTAINER_HOVER_BOX_SHADOW,
 	CONTAINER_BORDER_RADIUS,
 	CONTAINER_BORDER,
 	BRAND_PHOTO_BORDER,
@@ -58,6 +61,8 @@ import {
 	GRID_COLUMNS,
 	COLUMNS_GAP,
 	ROWS_GAP,
+	IMAGE_HEIGHT,
+	IMAGE_WIDTH,
 } from './constants';
 
 import {
@@ -196,7 +201,7 @@ function Inspector( props ) {
 									</PanelBody>
 									<PanelBody
 										title={ __( 'Content', 'zolo-blocks' ) }
-										initialOpen={ true }
+										initialOpen={ false }
 									>
 										<BaseControl
 											label={ __(
@@ -319,7 +324,28 @@ function Inspector( props ) {
 													'Image Size',
 													'zolo-blocks'
 												) }
-											></BaseControl>
+											>
+												<ResRangeControl
+													label={ __(
+														'Image Height',
+														'zolo-blocks'
+													) }
+													controlName={ IMAGE_HEIGHT }
+													resRequiredProps={
+														resRequiredProps
+													}
+												/>
+												<ResRangeControl
+													label={ __(
+														'Image Width',
+														'zolo-blocks'
+													) }
+													controlName={ IMAGE_WIDTH }
+													resRequiredProps={
+														resRequiredProps
+													}
+												/>
+											</BaseControl>
 										</>
 									</PanelBody>
 								</>
@@ -400,6 +426,44 @@ function Inspector( props ) {
 											}
 											controlName={ CONTAINER_BACKGROUND }
 											noMainBGImg={ false }
+										/>
+									</PanelBody>
+									<PanelBody
+										title={ __(
+											'Container Hover',
+											'zolo-blocks'
+										) }
+										initialOpen={ false }
+									>
+										<NormalBGControl
+											resRequiredProps={
+												resRequiredProps
+											}
+											controlName={
+												CONTAINER_HOVER_BACKGROUND
+											}
+											noMainBGImg={ false }
+										/>
+										<BorderControl
+											label={ __(
+												'Border',
+												'zolo-blocks'
+											) }
+											controlName={
+												CONTAINER_HOVER_BORDER
+											}
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+										<BoxShadowControl
+											controlName={
+												CONTAINER_HOVER_BOX_SHADOW
+											}
+											resRequiredProps={
+												resRequiredProps
+											}
+											enableTransition={ false }
 										/>
 									</PanelBody>
 									<PanelBody

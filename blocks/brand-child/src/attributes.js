@@ -20,13 +20,17 @@ import {
 	CONTENT_ALIGNMENT,
 	LINK_MARGIN,
 	CONTAINER_BACKGROUND,
+	CONTAINER_HOVER_BACKGROUND,
 	CONTAINER_BOX_SHADOW,
+	CONTAINER_HOVER_BOX_SHADOW,
 	CONTAINER_BORDER_RADIUS,
 	BRAND_PHOTO_BORDER_RADIUS,
 	BRAND_PHOTO_BOX_SHADOW,
 	BRAND_PHOTO_BG,
 	BRAND_PHOTO_PADDING,
 	BRAND_PHOTO_MARGIN,
+	IMAGE_HEIGHT,
+	IMAGE_WIDTH,
 	CONTAINER_BORDER,
 	GRID_COLUMNS,
 	COLUMNS_GAP,
@@ -55,6 +59,10 @@ const attributes = {
 	...generateBorderAttributies( CONTAINER_BORDER ),
 	...generateDimensionAttributes( CONTAINER_BORDER_RADIUS ),
 	...generateBoxShadowAttributies( CONTAINER_BOX_SHADOW ),
+
+	// hover
+	...generateNormalBGAttributes( CONTAINER_HOVER_BACKGROUND ),
+	...generateBoxShadowAttributies( CONTAINER_HOVER_BOX_SHADOW ),
 
 	// photo
 	...generateDimensionAttributes( BRAND_PHOTO_BORDER_RADIUS ),
@@ -86,6 +94,15 @@ const attributes = {
 	} ),
 	...generateResRangeAttributies( ROWS_GAP, {
 		defaultRange: 30,
+	} ),
+
+	// image
+	...generateResRangeAttributies( IMAGE_HEIGHT, {
+		defaultRange: 100,
+	} ),
+
+	...generateResRangeAttributies( IMAGE_WIDTH, {
+		defaultRange: 100,
 	} ),
 	//typography
 	...generateTypographyAttributes( Object.values( typographyObjs ) ),

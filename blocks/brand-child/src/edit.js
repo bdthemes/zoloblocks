@@ -25,6 +25,7 @@ const {
 	generateTextStrokeStyles,
 	generateBoxShadowStyles,
 	generateNormalBGControlStyles,
+	generateResRangeStyle,
 } = window.zoloModule;
 
 import {
@@ -43,7 +44,14 @@ import {
 	BRAND_PHOTO_MARGIN,
 	CONTAINER_BORDER_RADIUS,
 	CONTAINER_BOX_SHADOW,
+	CONTAINER_HOVER_BOX_SHADOW,
 	CONTAINER_BACKGROUND,
+	CONTAINER_HOVER_BACKGROUND,
+	ROWS_GAP,
+	COLUMNS_GAP,
+	GRID_COLUMNS,
+	IMAGE_HEIGHT,
+	IMAGE_WIDTH,
 } from './constants';
 
 import {
@@ -110,6 +118,61 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	// Grid Columns
+	const {
+		desktopRangeStyle: deskColumns,
+		tabRangeStyle: tabColumns,
+		mobRangeStyle: mobColumns,
+	} = generateResRangeStyle( {
+		controlName: GRID_COLUMNS,
+		property: 'grid-template-columns',
+		attributes,
+	} );
+
+	// Grid Columns Gap
+	const {
+		desktopRangeStyle: deskColumnsGap,
+		tabRangeStyle: tabColumnsGap,
+		mobRangeStyle: mobColumnsGap,
+	} = generateResRangeStyle( {
+		controlName: COLUMNS_GAP,
+		property: 'column-gap',
+		attributes,
+	} );
+
+	// Grid Rows Gap
+	const {
+		desktopRangeStyle: deskRowsGap,
+		tabRangeStyle: tabRowsGap,
+		mobRangeStyle: mobRowsGap,
+	} = generateResRangeStyle( {
+		controlName: ROWS_GAP,
+		property: 'row-gap',
+		attributes,
+	} );
+
+	// Image Height
+	const {
+		desktopRangeStyle: deskImageHeight,
+		tabRangeStyle: tabImageHeight,
+		mobRangeStyle: mobImageHeight,
+	} = generateResRangeStyle( {
+		controlName: IMAGE_HEIGHT,
+		property: 'height',
+		attributes,
+	} );
+
+	// Image Height
+	const {
+		desktopRangeStyle: deskImageWidth,
+		tabRangeStyle: tabImageWidth,
+		mobRangeStyle: mobImageWidth,
+	} = generateResRangeStyle( {
+		controlName: IMAGE_WIDTH,
+		property: 'width',
+		attributes,
+	} );
+
 	// Container Box Shadow
 
 	const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles( {
@@ -138,6 +201,24 @@ export default function Edit( props ) {
 		attributes,
 		noMainBGImg: false,
 	} );
+
+	// Container Hover
+	const {
+		backgroundStylesDesktop: containerHoverDeskBGStyle,
+		backgroundStylesTab: containerHoverTabBGStyle,
+		backgroundStylesMobile: containerHoverMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: CONTAINER_HOVER_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
+	} );
+
+	// Container Hover Box Shadow
+	const { boxShadowStyle: brandContainerHoverBoxShadow } =
+		generateBoxShadowStyles( {
+			attributes,
+			controlName: CONTAINER_HOVER_BOX_SHADOW,
+		} );
 
 	// Photo Border Radius
 	const {
