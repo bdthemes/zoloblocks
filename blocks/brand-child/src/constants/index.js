@@ -45,3 +45,12 @@ export const CONTENT_ALIGNMENT = 'brandContentAlignment';
 export const LINK_TEXT_SHADOW = 'linkTextShadow';
 export const LINK_MARGIN = 'linkMargin';
 export const LINK_TEXT_STROKE = 'linkTextStroke';
+
+// Grid Columns
+export const GRID_COLUMNS = 'gridColumns';
+
+// Columns Gap
+export const COLUMNS_GAP = 'columnsGap';
+
+// Rows Gap
+export const ROWS_GAP = 'rowsGap';

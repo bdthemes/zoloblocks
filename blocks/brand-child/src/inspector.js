@@ -12,6 +12,8 @@ import {
 	TextControl,
 	BaseControl,
 	Button,
+	SelectControl,
+	ToggleControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -30,6 +32,7 @@ const {
 	TypographyDropdown,
 	TabPanelControl,
 	ImageAvatar,
+	ResRangeControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -52,6 +55,9 @@ import {
 	BRAND_PHOTO_BG,
 	BRAND_PHOTO_PADDING,
 	BRAND_PHOTO_MARGIN,
+	GRID_COLUMNS,
+	COLUMNS_GAP,
+	ROWS_GAP,
 } from './constants';
 
 import {
@@ -63,10 +69,13 @@ function Inspector( props ) {
 	const { attributes, setAttributes } = props;
 	const {
 		uniqueId,
+		preset,
 		brandPhoto,
 		brandName,
 		brandLabel,
 		brandDetailPageLink,
+		showBrandName,
+		showWebsiteLink,
 		resMode,
 		textColor,
 		linkColor,
@@ -107,6 +116,84 @@ function Inspector( props ) {
 						<div className={ 'zolo-tab-controls' + tab.name }>
 							{ tab.name === 'settings' && (
 								<>
+									<PanelBody
+										title={ __( 'General', 'zolo-blocks' ) }
+										initialOpen={ true }
+									>
+										<SelectControl
+											label={ __(
+												'Preset Designs',
+												'zolo-blocks'
+											) }
+											value={ preset }
+											options={ PRESETS }
+											onChange={ ( value ) =>
+												setAttributes( {
+													preset: value,
+												} )
+											}
+										/>
+										<ToggleControl
+											label={ __(
+												'Show Brand Name',
+												'zolo-blocks'
+											) }
+											checked={ showBrandName }
+											onChange={ () =>
+												setAttributes( {
+													showBrandName:
+														! showBrandName,
+												} )
+											}
+										/>
+										<ToggleControl
+											label={ __(
+												'Show Website Link',
+												'zolo-blocks'
+											) }
+											checked={ showWebsiteLink }
+											onChange={ () =>
+												setAttributes( {
+													showWebsiteLink:
+														! showWebsiteLink,
+												} )
+											}
+										/>
+										<ResRangeControl
+											label={ __(
+												'Grid Columns',
+												'zolo-blocks'
+											) }
+											controlName={ GRID_COLUMNS }
+											resRequiredProps={
+												resRequiredProps
+											}
+											max={ 4 }
+											min={ 1 }
+											step={ 1 }
+											noUnits={ true }
+										/>
+										<ResRangeControl
+											label={ __(
+												'Columns Gap',
+												'zolo-blocks'
+											) }
+											controlName={ COLUMNS_GAP }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+										<ResRangeControl
+											label={ __(
+												'Rows Gap',
+												'zolo-blocks'
+											) }
+											controlName={ ROWS_GAP }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+									</PanelBody>
 									<PanelBody
 										title={ __( 'Content', 'zolo-blocks' ) }
 										initialOpen={ true }
@@ -227,6 +314,12 @@ function Inspector( props ) {
 													}
 												/>
 											</BaseControl>
+											<BaseControl
+												label={ __(
+													'Image Size',
+													'zolo-blocks'
+												) }
+											></BaseControl>
 										</>
 									</PanelBody>
 								</>
