@@ -6,3 +6,4 @@ export const EMAIL_TYPO = 'EmailTypo';
 export const BIO_TYPO = 'BioTypo';
 export const NUMBER_TYPO = 'NumberTypo';
 export const LABEL_TYPO = 'LabelTypo';
+export const BTN_TYPO = 'BtnTypo';

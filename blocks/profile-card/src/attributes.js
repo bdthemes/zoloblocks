@@ -30,6 +30,22 @@ import {
 	EMAIL_MARGIN,
 	BIO_MARGIN,
 	STATUS_MARGIN,
+	FBTN_BG,
+	FBTN_BOX_SHADOW,
+	FBTN_BORDER,
+	FBTN_BORDER_RADIUS,
+	FBTN_PADDING,
+	FBTN_MARGIN,
+	FBTN_HOVER_BG,
+	FBTN_HOVER_BOX_SHADOW,
+	ICONS_SIZE,
+	ICONS_SPACING,
+	ICONS_BORDER,
+	ICONS_BORDER_RADIUS,
+	ICONS_PADDING,
+	ICONS_MARGIN,
+	ICONS_BG,
+	ICONS_HOVER_BG,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -51,6 +67,9 @@ const attributes = {
 		default: 'default',
 	},
 	//Block Specific Attributes
+	headerAreaBG: {
+		type: 'string',
+	},
 	showBadge: {
 		type: 'boolean',
 		default: true,
@@ -175,10 +194,16 @@ const attributes = {
 	labelColor: {
 		type: 'string',
 	},
-	// social icons
-	separatorColor: {
+	btnColor: {
 		type: 'string',
 	},
+	btnHoverColor: {
+		type: 'string',
+	},
+	btnHoverBorderColor: {
+		type: 'string',
+	},
+	// social icons
 	iconColor: {
 		type: 'string',
 	},
@@ -186,16 +211,6 @@ const attributes = {
 		type: 'string',
 	},
 	iconHoverBorderColor: {
-		type: 'string',
-	},
-	detailPageIconColor: {
-		type: 'string',
-	},
-	detailPageIconHoverColor: {
-		type: 'string',
-	},
-	// style
-	headerAreaBG: {
 		type: 'string',
 	},
 	// Generators
@@ -221,6 +236,25 @@ const attributes = {
 	...generateDimensionAttributes(BIO_MARGIN),
 
 	...generateDimensionAttributes(STATUS_MARGIN),
+
+	...generateNormalBGAttributes(FBTN_BG),
+	...generateBoxShadowAttributies(FBTN_BOX_SHADOW),
+	...generateBorderAttributies(FBTN_BORDER),
+	...generateDimensionAttributes(FBTN_BORDER_RADIUS),
+	...generateDimensionAttributes(FBTN_PADDING),
+	...generateDimensionAttributes(FBTN_MARGIN),
+
+	...generateNormalBGAttributes(FBTN_HOVER_BG),
+	...generateBoxShadowAttributies(FBTN_HOVER_BOX_SHADOW),
+
+	...generateNormalBGAttributes(ICONS_BG),
+	...generateNormalBGAttributes(ICONS_HOVER_BG),
+	...generateBorderAttributies(ICONS_BORDER),
+	...generateDimensionAttributes(ICONS_BORDER_RADIUS),
+	...generateDimensionAttributes(ICONS_PADDING),
+	...generateDimensionAttributes(ICONS_MARGIN),
+	...generateResRangeAttributies(ICONS_SIZE, {}),
+	...generateResRangeAttributies(ICONS_SPACING, {}),
 
 	// typography
 	...generateTypographyAttributes(Object.values(typographyObjs)),

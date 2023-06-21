@@ -57,11 +57,28 @@ import {
 	EMAIL_MARGIN,
 	BIO_MARGIN,
 	STATUS_MARGIN,
+	FBTN_BG,
+	FBTN_BOX_SHADOW,
+	FBTN_HOVER_BOX_SHADOW,
+	FBTN_BORDER,
+	FBTN_HOVER_BG,
+	FBTN_BORDER_RADIUS,
+	FBTN_MARGIN,
+	FBTN_PADDING,
+	ICONS_BG,
+	ICONS_HOVER_BG,
+	ICONS_BORDER,
+	ICONS_BORDER_RADIUS,
+	ICONS_PADDING,
+	ICONS_MARGIN,
+	ICONS_SIZE,
+	ICONS_SPACING,
 } from './constants';
 
 import {
 	BADGE_TYPO,
 	BIO_TYPO,
+	BTN_TYPO,
 	EMAIL_TYPO,
 	LABEL_TYPO,
 	NUMBER_TYPO,
@@ -107,6 +124,12 @@ export default function Edit(props) {
 		bioColor,
 		numberColor,
 		labelColor,
+		btnColor,
+		btnHoverColor,
+		btnHoverBorderColor,
+		iconColor,
+		iconHoverColor,
+		iconHoverBorderColor,
 	} = attributes;
 	const [popoverVisible, setPopoverVisible] = useState(false);
 
@@ -403,6 +426,86 @@ export default function Edit(props) {
 		attributes,
 	});
 
+	// Follow Button
+	const {
+		typoStylesDesktop: btnTypoDesk,
+		typoStylesTab: btnTypoTab,
+		typoStylesMobile: btnTypoMob,
+	} = generateTypographyStyles({
+		prefixConstant: BTN_TYPO,
+		defaultFontSize: 12,
+		attributes,
+	});
+
+	const {
+		backgroundStylesDesktop: btnDeskBGStyle,
+		backgroundStylesTab: btnTabBGStyle,
+		backgroundStylesMobile: btnMobBGStyle,
+	} = generateNormalBGControlStyles({
+		controlName: FBTN_BG,
+		attributes,
+		noMainBGImg: false,
+	});
+
+	const {
+		backgroundStylesDesktop: btnHoverDeskBGStyle,
+		backgroundStylesTab: btnHoverTabBGStyle,
+		backgroundStylesMobile: btnHoverMobBGStyle,
+	} = generateNormalBGControlStyles({
+		controlName: FBTN_HOVER_BG,
+		attributes,
+		noMainBGImg: false,
+	});
+
+	const { boxShadowStyle: btnBoxShadow } = generateBoxShadowStyles({
+		attributes,
+		controlName: FBTN_BOX_SHADOW,
+	});
+
+	const { boxShadowStyle: btnHoverBoxShadow } = generateBoxShadowStyles({
+		attributes,
+		controlName: FBTN_HOVER_BOX_SHADOW,
+	});
+
+	const {
+		desktopBorderStyle: btnDeskBorderStyle,
+		tabBorderStyle: btnTabBorderStyle,
+		mobBorderStyle: btnMobBorderStyle,
+	} = generateBorderStyle({
+		controlName: FBTN_BORDER,
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: btnDeskBorderRadius,
+		dimensionStylesTab: btnTabBorderRadius,
+		dimensionStylesMobile: btnMobBorderRadius,
+	} = generateDimensionStyle({
+		controlName: FBTN_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: btnDeskPadding,
+		dimensionStylesTab: btnTabPadding,
+		dimensionStylesMobile: btnMobPadding,
+	} = generateDimensionStyle({
+		controlName: FBTN_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: btnDeskMargin,
+		dimensionStylesTab: btnTabMargin,
+		dimensionStylesMobile: btnMobMargin,
+	} = generateDimensionStyle({
+		controlName: FBTN_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	});
+
 	// // social icons alignment
 	// let socialDeskAlignStyle;
 	// switch (teamDeskAlignStyle) {
@@ -557,95 +660,105 @@ export default function Edit(props) {
 	// 	attributes,
 	// });
 
-	// // Social Icons
-	// const {
-	// 	backgroundStylesDesktop: iconsNormalDeskBG,
-	// 	backgroundStylesTab: iconsNormalTabBG,
-	// 	backgroundStylesMobile: iconsNormalMobBG,
-	// } = generateNormalBGControlStyles({
-	// 	controlName: ICONS_BG,
-	// 	attributes,
-	// 	noMainBGImg: true,
-	// });
+	// Social Icons
+	const {
+		backgroundStylesDesktop: iconsNormalDeskBG,
+		backgroundStylesTab: iconsNormalTabBG,
+		backgroundStylesMobile: iconsNormalMobBG,
+	} = generateNormalBGControlStyles({
+		controlName: ICONS_BG,
+		attributes,
+		noMainBGImg: true,
+	});
 
-	// const {
-	// 	backgroundStylesDesktop: iconsHoverDeskBG,
-	// 	backgroundStylesTab: iconsHoverTabBG,
-	// 	backgroundStylesMobile: iconsHoverMobBG,
-	// } = generateNormalBGControlStyles({
-	// 	controlName: ICONS_HOVER_BG,
-	// 	attributes,
-	// 	noMainBGImg: true,
-	// });
+	const {
+		backgroundStylesDesktop: iconsHoverDeskBG,
+		backgroundStylesTab: iconsHoverTabBG,
+		backgroundStylesMobile: iconsHoverMobBG,
+	} = generateNormalBGControlStyles({
+		controlName: ICONS_HOVER_BG,
+		attributes,
+		noMainBGImg: true,
+	});
 
-	// const {
-	// 	desktopRangeStyle: socialIconDesk,
-	// 	tabRangeStyle: socialIconTab,
-	// 	mobRangeStyle: socialIconMob,
-	// } = generateResRangeStyle({
-	// 	controlName: ICONS_SIZE,
-	// 	property: 'font-size',
-	// 	attributes,
-	// });
+	const {
+		desktopRangeStyle: socialIconDesk,
+		tabRangeStyle: socialIconTab,
+		mobRangeStyle: socialIconMob,
+	} = generateResRangeStyle({
+		controlName: ICONS_SIZE,
+		property: 'font-size',
+		attributes,
+	});
 
-	// const {
-	// 	desktopRangeStyle: socialIconContainerHeightDesk,
-	// 	tabRangeStyle: socialIconContainerHeightTab,
-	// 	mobRangeStyle: socialIconContainerHeightMob,
-	// } = generateResRangeStyle({
-	// 	controlName: ICONS_SIZE,
-	// 	property: 'height',
-	// 	attributes,
-	// });
+	const {
+		desktopRangeStyle: socialIconContainerHeightDesk,
+		tabRangeStyle: socialIconContainerHeightTab,
+		mobRangeStyle: socialIconContainerHeightMob,
+	} = generateResRangeStyle({
+		controlName: ICONS_SIZE,
+		property: 'height',
+		attributes,
+	});
 
-	// const {
-	// 	desktopRangeStyle: socialIconContainerWidthDesk,
-	// 	tabRangeStyle: socialIconContainerWidthTab,
-	// 	mobRangeStyle: socialIconContainerWidthMob,
-	// } = generateResRangeStyle({
-	// 	controlName: ICONS_SIZE,
-	// 	property: 'width',
-	// 	attributes,
-	// });
+	const {
+		desktopRangeStyle: socialIconContainerWidthDesk,
+		tabRangeStyle: socialIconContainerWidthTab,
+		mobRangeStyle: socialIconContainerWidthMob,
+	} = generateResRangeStyle({
+		controlName: ICONS_SIZE,
+		property: 'width',
+		attributes,
+	});
 
-	// const {
-	// 	desktopRangeStyle: socialIconsGapDesk,
-	// 	tabRangeStyle: socialIconsGapTab,
-	// 	mobRangeStyle: socialIconsGapMob,
-	// } = generateResRangeStyle({
-	// 	controlName: ICONS_SPACING,
-	// 	property: 'gap',
-	// 	attributes,
-	// });
+	const {
+		desktopRangeStyle: socialIconsGapDesk,
+		tabRangeStyle: socialIconsGapTab,
+		mobRangeStyle: socialIconsGapMob,
+	} = generateResRangeStyle({
+		controlName: ICONS_SPACING,
+		property: 'gap',
+		attributes,
+	});
 
-	// const {
-	// 	desktopBorderStyle: socialIconDeskBorderStyle,
-	// 	tabBorderStyle: socialIconTabBorderStyle,
-	// 	mobBorderStyle: socialIconMobBorderStyle,
-	// } = generateBorderStyle({
-	// 	controlName: ICONS_BORDER,
-	// 	attributes,
-	// });
+	const {
+		desktopBorderStyle: socialIconDeskBorderStyle,
+		tabBorderStyle: socialIconTabBorderStyle,
+		mobBorderStyle: socialIconMobBorderStyle,
+	} = generateBorderStyle({
+		controlName: ICONS_BORDER,
+		attributes,
+	});
 
-	// const {
-	// 	dimensionStylesDesktop: socialIconsBorderRadiusDesk,
-	// 	dimensionStylesTab: socialIconsBorderRadiusTab,
-	// 	dimensionStylesMobile: socialIconsBorderRadiusMob,
-	// } = generateDimensionStyle({
-	// 	controlName: ICONS_BORDER_RADIUS,
-	// 	styleFor: 'border-radius',
-	// 	attributes,
-	// });
+	const {
+		dimensionStylesDesktop: socialIconsBorderRadiusDesk,
+		dimensionStylesTab: socialIconsBorderRadiusTab,
+		dimensionStylesMobile: socialIconsBorderRadiusMob,
+	} = generateDimensionStyle({
+		controlName: ICONS_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	});
 
-	// const {
-	// 	dimensionStylesDesktop: socialIconsPaddingDesk,
-	// 	dimensionStylesTab: socialIconsPaddingTab,
-	// 	dimensionStylesMobile: socialIconsPaddingMob,
-	// } = generateDimensionStyle({
-	// 	controlName: ICONS_PADDING,
-	// 	styleFor: 'padding',
-	// 	attributes,
-	// });
+	const {
+		dimensionStylesDesktop: socialIconsPaddingDesk,
+		dimensionStylesTab: socialIconsPaddingTab,
+		dimensionStylesMobile: socialIconsPaddingMob,
+	} = generateDimensionStyle({
+		controlName: ICONS_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: socialIconsMarginDesk,
+		dimensionStylesTab: socialIconsMarginTab,
+		dimensionStylesMobile: socialIconsMarginMob,
+	} = generateDimensionStyle({
+		controlName: ICONS_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	});
 
 	// const { boxShadowStyle: socialIconNormalBoxShadow } =
 	// 	generateBoxShadowStyles({
@@ -724,6 +837,43 @@ export default function Edit(props) {
 			color: ${labelColor ? labelColor : ''};
 			${labelTypoDesk}
 		}
+		.${uniqueId} .zb-profile-fllow-btn {
+			color: ${btnColor ? btnColor : ''};
+			${btnTypoDesk}
+			${btnDeskBGStyle}
+			${btnDeskBorderRadius}
+			${btnDeskBorderStyle}
+			${btnDeskPadding}
+			${btnDeskMargin}
+			${btnBoxShadow}
+		}
+		.${uniqueId} .zb-profile-fllow-btn:hover {
+			color: ${btnHoverColor ? btnHoverColor : ''};
+			border-color: ${btnHoverBorderColor ? btnHoverBorderColor : ''};
+			${btnHoverDeskBGStyle}
+			${btnHoverBoxShadow}
+		}
+		.${uniqueId} .zb-profile-socail-share a {
+			${socialIconContainerHeightDesk}
+			${socialIconContainerWidthDesk}
+			${socialIconDeskBorderStyle}
+			${socialIconsBorderRadiusDesk}
+			${socialIconsPaddingDesk}
+			${iconColor ? `color: ${iconColor};` : ''}
+			${iconsNormalDeskBG}
+		}
+		.${uniqueId} .zb-profile-socail-share a:hover {
+			${iconHoverColor ? `color: ${iconHoverColor};` : ''}
+			${iconHoverBorderColor ? `border-color: ${iconHoverBorderColor};` : ''}
+			${iconsHoverDeskBG}
+		}
+		.${uniqueId} .zb-profile-socail-share {
+			${socialIconsGapDesk}
+			${socialIconsMarginDesk}
+		}
+		.${uniqueId} .zb-profile-socail-share i, .${uniqueId} .zb-profile-socail-share .dashicon {
+			${socialIconDesk}
+		}
 		.${uniqueId} .zb-profile-status {
 			${statusDeskMargin}
 		}
@@ -747,14 +897,12 @@ export default function Edit(props) {
 			${headerAreaTabPadding}
 			${headerAreaTabBorderRadius}
 		}
-
 		.${uniqueId} .zb-profile-badge {
 			${headerBadgeTabBorderStyle}
 			${headerBadgeBgTabStyle}
 			${headerBadgeTabBorderRadius}
 			${badgeTypoTab}
 		}
-
 		.${uniqueId} .zb-profile-bottom-content {
 			${contentTabBGStyle}
 			${contentBorderRadiusTab}
@@ -778,6 +926,17 @@ export default function Edit(props) {
 			${bioTypoTab}
 			${bioTabMargin}
 		}
+		.${uniqueId} .zb-profile-fllow-btn {
+			${btnTypoTab}
+			${btnTabBGStyle}
+			${btnTabBorderRadius}
+			${btnTabBorderStyle}
+			${btnTabPadding}
+			${btnTabMargin}
+		}
+		.${uniqueId} .zb-profile-fllow-btn:hover {
+			${btnHoverTabBGStyle}
+		}
 		.${uniqueId} .zb-profile-status {
 			${statusTabMargin}
 		}
@@ -786,6 +945,21 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zb-profile-status-text {
 			${labelTypoTab}
+		}
+		.${uniqueId} .zb-profile-socail-share a {
+			${socialIconContainerHeightTab}
+			${socialIconContainerWidthTab}
+			${socialIconTabBorderStyle}
+			${socialIconsBorderRadiusTab}
+			${socialIconsPaddingTab}
+			${iconsNormalTabBG}
+		}
+		.${uniqueId} .zb-profile-socail-share a:hover {
+			${iconsHoverTabBG}
+		}
+		.${uniqueId} .zb-profile-socail-share {
+			${socialIconsGapTab}
+			${socialIconsMarginTab}
 		}
 		.${uniqueId} .zb-profile-image img {
 			${photoTabWidth}
@@ -836,6 +1010,17 @@ export default function Edit(props) {
 			${bioTypoMob}
 			${bioMobMargin}
 		}
+		.${uniqueId} .zb-profile-fllow-btn {
+			${btnTypoMob}
+			${btnMobBGStyle}
+			${btnMobBorderRadius}
+			${btnMobBorderStyle}
+			${btnMobPadding}
+			${btnMobMargin}
+		}
+		.${uniqueId} .zb-profile-fllow-btn:hover {
+			${btnHoverTabBGStyle}
+		}
 		.${uniqueId} .zb-profile-status {
 			${statusMobMargin}
 		}
@@ -844,6 +1029,21 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zb-profile-status-text {
 			${labelTypoMob}
+		}
+		.${uniqueId} .zb-profile-socail-share a {
+			${socialIconContainerHeightMob}
+			${socialIconContainerWidthMob}
+			${socialIconMobBorderStyle}
+			${socialIconsBorderRadiusMob}
+			${socialIconsPaddingMob}
+			${iconsNormalMobBG}
+		}
+		.${uniqueId} .zb-profile-socail-share a:hover {
+			${iconsHoverMobBG}
+		}
+		.${uniqueId} .zb-profile-socail-share {
+			${socialIconsGapMob}
+			${socialIconsMarginMob}
 		}
 		.${uniqueId} .zb-profile-image img {
 			${photoMobWidth}

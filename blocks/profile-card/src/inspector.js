@@ -60,12 +60,6 @@ import {
 	USERNAME_MARGIN,
 	EMAIL_MARGIN,
 	BIO_MARGIN,
-	TEAM_PHOTO_BOX_SHADOW,
-	TEAM_PHOTO_MARGIN,
-	TEAM_PHOTO_PADDING,
-	TEAM_NAME_MARGIN,
-	TEAM_DESIGNATION_MARGIN,
-	TEAM_SHORT_BIO_MARGIN,
 	ICONS_BG,
 	ICONS_HOVER_BG,
 	ICONS_SIZE,
@@ -73,13 +67,16 @@ import {
 	ICONS_BORDER,
 	ICONS_BORDER_RADIUS,
 	ICONS_PADDING,
-	ICONS_BOX_SHADOW,
-	ICONS_HOVER_BOX_SHADOW,
-	DETAIL_PAGE_LINK_BG,
-	DETAIL_PAGE_LINK_HOVER_BG,
-	TEAM_MEMBER_CONTAINER_PADDING,
-	TEAM_MEMBER_CONTAINER_MARGIN,
+	ICONS_MARGIN,
 	STATUS_MARGIN,
+	FBTN_BG,
+	FBTN_BORDER,
+	FBTN_BOX_SHADOW,
+	FBTN_BORDER_RADIUS,
+	FBTN_PADDING,
+	FBTN_MARGIN,
+	FBTN_HOVER_BG,
+	FBTN_HOVER_BOX_SHADOW,
 } from './constants';
 
 import {
@@ -90,6 +87,7 @@ import {
 	NUMBER_TYPO,
 	PROFILE_NAME,
 	PROFILE_USERNAME,
+	BTN_TYPO,
 } from './constants/typoPrefixConstants';
 import { Fragment } from 'react';
 
@@ -126,14 +124,12 @@ function Inspector(props) {
 		bioColor,
 		labelColor,
 		numberColor,
-		designationColor,
-		shortBioColor,
-		separatorColor,
+		btnColor,
+		btnHoverColor,
+		btnHoverBorderColor,
 		iconColor,
 		iconHoverColor,
 		iconHoverBorderColor,
-		detailPageIconColor,
-		detailPageIconHoverColor,
 	} = attributes;
 
 	const resRequiredProps = {
@@ -1039,93 +1035,11 @@ function Inspector(props) {
 											forBorderRadius={false}
 										/>
 									</PanelBody>
-									{/* {preset !== 'style-3' && (
-										<PanelBody
-											title={__('Content', 'zolo-blocks')}
-											initialOpen={false}
-										>
-											<ResAlignmentControl
-												label={__(
-													'Content Alignmet',
-													'zolo-blocks'
-												)}
-												controlName={CONTENT_ALIGNMENT}
-												resRequiredProps={
-													resRequiredProps
-												}
-												alignOptions={[
-													{
-														label: 'Left',
-														value: 'left',
-													},
-													{
-														label: 'Center',
-														value: 'center',
-													},
-													{
-														label: 'Right',
-														value: 'right',
-													},
-													{
-														label: 'Justify',
-														value: 'justify',
-													},
-												]}
-											/>
-											<NormalBGControl
-												resRequiredProps={
-													resRequiredProps
-												}
-												controlName={CONTENT_BG}
-												noMainBGImg={false}
-											/>
-										</PanelBody>
-									)}
 									<PanelBody
-										title={__('Photo', 'zolo-blocks')}
-										initialOpen={false}
-									>
-										<NormalBGControl
-											resRequiredProps={resRequiredProps}
-											controlName={PHOTO_BG}
-											noMainBGImg={true}
-										/>
-										<BorderControl
-											label={__('Border', 'zolo-blocks')}
-											controlName={TEAM_PHOTO_BORDER}
-											resRequiredProps={resRequiredProps}
-										/>
-										<ResDimensionsControl
-											label={__(
-												'Border Radius',
-												'zolo-blocks'
-											)}
-											controlName={
-												TEAM_PHOTO_BORDER_RADIUS
-											}
-											resRequiredProps={resRequiredProps}
-											forBorderRadius={true}
-										/>
-										<BoxShadowControl
-											controlName={TEAM_PHOTO_BOX_SHADOW}
-											resRequiredProps={resRequiredProps}
-											enableTransition={false}
-										/>
-										<ResDimensionsControl
-											label={__('Padding', 'zolo-blocks')}
-											controlName={TEAM_PHOTO_PADDING}
-											resRequiredProps={resRequiredProps}
-											forBorderRadius={false}
-										/>
-										<ResDimensionsControl
-											label={__('Margin', 'zolo-blocks')}
-											controlName={TEAM_PHOTO_MARGIN}
-											resRequiredProps={resRequiredProps}
-											forBorderRadius={false}
-										/>
-									</PanelBody>
-									<PanelBody
-										title={__('Name', 'zolo-blocks')}
+										title={__(
+											'Follow Button',
+											'zolo-blocks'
+										)}
 										initialOpen={false}
 									>
 										<TypographyDropdown
@@ -1133,118 +1047,131 @@ function Inspector(props) {
 												'Typography',
 												'zolo-blocks'
 											)}
-											typoPrefixConstant={
-												TEAM_MEMBER_NAME_TYPOGRAPHY
-											}
+											typoPrefixConstant={BTN_TYPO}
 											resRequiredProps={resRequiredProps}
 										/>
-										<ColorControl
-											label={__('Color', 'zolo-blocks')}
-											color={nameColor}
-											onChange={(color) =>
-												setAttributes({
-													nameColor: color,
-												})
+										<TabPanelControl
+											normalComponents={
+												<>
+													<ColorControl
+														label={__(
+															'Color',
+															'zolo-blocks'
+														)}
+														color={btnColor}
+														onChange={(color) =>
+															setAttributes({
+																btnColor: color,
+															})
+														}
+													/>
+													<NormalBGControl
+														resRequiredProps={
+															resRequiredProps
+														}
+														controlName={FBTN_BG}
+														noMainBGImg={false}
+													/>
+													<BorderControl
+														label={__(
+															'Border',
+															'zolo-blocks'
+														)}
+														controlName={
+															FBTN_BORDER
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+													/>
+													<ResDimensionsControl
+														label={__(
+															'Border Radius',
+															'zolo-blocks'
+														)}
+														controlName={
+															FBTN_BORDER_RADIUS
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+														forBorderRadius={true}
+													/>
+													<BoxShadowControl
+														controlName={
+															FBTN_BOX_SHADOW
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+														enableTransition={false}
+													/>
+												</>
+											}
+											hoverComponents={
+												<>
+													<ColorControl
+														label={__(
+															'Color',
+															'zolo-blocks'
+														)}
+														color={btnHoverColor}
+														onChange={(color) =>
+															setAttributes({
+																btnHoverColor:
+																	color,
+															})
+														}
+													/>
+													<ColorControl
+														label={__(
+															'Border Color',
+															'zolo-blocks'
+														)}
+														color={
+															btnHoverBorderColor
+														}
+														onChange={(color) =>
+															setAttributes({
+																btnHoverBorderColor:
+																	color,
+															})
+														}
+													/>
+													<NormalBGControl
+														resRequiredProps={
+															resRequiredProps
+														}
+														controlName={
+															FBTN_HOVER_BG
+														}
+														noMainBGImg={false}
+													/>
+													<BoxShadowControl
+														controlName={
+															FBTN_HOVER_BOX_SHADOW
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+														enableTransition={false}
+													/>
+												</>
 											}
 										/>
 										<ResDimensionsControl
-											label={__('Margin', 'zolo-blocks')}
-											controlName={TEAM_NAME_MARGIN}
+											label={__('Padding', 'zolo-blocks')}
+											controlName={FBTN_PADDING}
 											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
+										/>
+										<ResDimensionsControl
+											label={__('Margin', 'zolo-blocks')}
+											controlName={FBTN_MARGIN}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
 										/>
 									</PanelBody>
-									{showDesignation && (
-										<PanelBody
-											title={__(
-												'Designation',
-												'zolo-blocks'
-											)}
-											initialOpen={false}
-										>
-											<TypographyDropdown
-												label={__(
-													'Typography',
-													'zolo-blocks'
-												)}
-												typoPrefixConstant={
-													TEAM_MEMBER_DESIGNATION_TYPOGRAPHY
-												}
-												resRequiredProps={
-													resRequiredProps
-												}
-											/>
-											<ColorControl
-												label={__(
-													'Color',
-													'zolo-blocks'
-												)}
-												color={designationColor}
-												onChange={(color) =>
-													setAttributes({
-														designationColor: color,
-													})
-												}
-											/>
-											<ResDimensionsControl
-												label={__(
-													'Margin',
-													'zolo-blocks'
-												)}
-												controlName={
-													TEAM_DESIGNATION_MARGIN
-												}
-												resRequiredProps={
-													resRequiredProps
-												}
-											/>
-										</PanelBody>
-									)}
-									{showShortBio && (
-										<PanelBody
-											title={__(
-												'Short Bio',
-												'zolo-blocks'
-											)}
-											initialOpen={false}
-										>
-											<TypographyDropdown
-												label={__(
-													'Typography',
-													'zolo-blocks'
-												)}
-												typoPrefixConstant={
-													TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY
-												}
-												resRequiredProps={
-													resRequiredProps
-												}
-											/>
-											<ColorControl
-												label={__(
-													'Color',
-													'zolo-blocks'
-												)}
-												color={shortBioColor}
-												onChange={(color) =>
-													setAttributes({
-														shortBioColor: color,
-													})
-												}
-											/>
-											<ResDimensionsControl
-												label={__(
-													'Margin',
-													'zolo-blocks'
-												)}
-												controlName={
-													TEAM_SHORT_BIO_MARGIN
-												}
-												resRequiredProps={
-													resRequiredProps
-												}
-											/>
-										</PanelBody>
-									)}
 									{showSocialProfiles && (
 										<PanelBody
 											title={__(
@@ -1273,21 +1200,6 @@ function Inspector(props) {
 													resRequiredProps
 												}
 											/>
-											{preset === 'default' && (
-												<ColorControl
-													label={__(
-														'Separator Color',
-														'zolo-blocks'
-													)}
-													color={separatorColor}
-													onChange={(color) =>
-														setAttributes({
-															separatorColor:
-																color,
-														})
-													}
-												/>
-											)}
 											<BorderControl
 												label={__(
 													'Border',
@@ -1320,6 +1232,16 @@ function Inspector(props) {
 													resRequiredProps
 												}
 											/>
+											<ResDimensionsControl
+												label={__(
+													'Margin',
+													'zolo-blocks'
+												)}
+												controlName={ICONS_MARGIN}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
 											<TabPanelControl
 												normalComponents={
 													<>
@@ -1344,17 +1266,6 @@ function Inspector(props) {
 																ICONS_BG
 															}
 															noMainBGImg={true}
-														/>
-														<BoxShadowControl
-															controlName={
-																ICONS_BOX_SHADOW
-															}
-															resRequiredProps={
-																resRequiredProps
-															}
-															enableTransition={
-																false
-															}
 														/>
 													</>
 												}
@@ -1400,90 +1311,11 @@ function Inspector(props) {
 																})
 															}
 														/>
-														<BoxShadowControl
-															controlName={
-																ICONS_HOVER_BOX_SHADOW
-															}
-															resRequiredProps={
-																resRequiredProps
-															}
-															enableTransition={
-																false
-															}
-														/>
 													</>
 												}
 											/>
 										</PanelBody>
 									)}
-									{showDetailPageIcon && (
-										<PanelBody
-											title={__(
-												'Details Page Link',
-												'zolo-blocks'
-											)}
-											initialOpen={false}
-										>
-											<TabPanelControl
-												normalComponents={
-													<>
-														<ColorControl
-															label={__(
-																'Icon Color',
-																'zolo-blocks'
-															)}
-															color={
-																detailPageIconColor
-															}
-															onChange={(color) =>
-																setAttributes({
-																	detailPageIconColor:
-																		color,
-																})
-															}
-														/>
-														<NormalBGControl
-															resRequiredProps={
-																resRequiredProps
-															}
-															controlName={
-																DETAIL_PAGE_LINK_BG
-															}
-															noMainBGImg={true}
-														/>
-													</>
-												}
-												hoverComponents={
-													<>
-														<ColorControl
-															label={__(
-																'Icon Color',
-																'zolo-blocks'
-															)}
-															color={
-																detailPageIconHoverColor
-															}
-															onChange={(color) =>
-																setAttributes({
-																	detailPageIconHoverColor:
-																		color,
-																})
-															}
-														/>
-														<NormalBGControl
-															resRequiredProps={
-																resRequiredProps
-															}
-															controlName={
-																DETAIL_PAGE_LINK_HOVER_BG
-															}
-															noMainBGImg={true}
-														/>
-													</>
-												}
-											/>
-										</PanelBody>
-									)} */}
 								</>
 							)}
 
