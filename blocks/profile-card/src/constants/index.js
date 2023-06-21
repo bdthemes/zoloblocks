@@ -51,3 +51,27 @@ export const BIO_MARGIN = 'BioMargin';
 
 // status
 export const STATUS_MARGIN = 'StatusMargin';
+
+// follow button
+export const FBTN_BG = 'fbtnBg';
+export const FBTN_BOX_SHADOW = 'fbtnBoxShadow';
+export const FBTN_BORDER = 'fbtnBorder';
+export const FBTN_BORDER_RADIUS = 'fbtnBorderRadius';
+export const FBTN_PADDING = 'fbtnPadding';
+export const FBTN_MARGIN = 'fbtnMargin';
+
+// hover style
+export const FBTN_HOVER_BG = 'fbtnHoverBg';
+export const FBTN_HOVER_BOX_SHADOW = 'fbtnHoverBoxShadow';
+
+// social icons
+export const ICONS_BG = 'IconsBg';
+export const ICONS_HOVER_BG = 'IconsHoverBg';
+export const ICONS_SIZE = 'IconsSize';
+export const ICONS_SPACING = 'IconsSpacing';
+
+export const ICONS_BORDER = 'IconsBorder';
+export const ICONS_BORDER_RADIUS = 'IconsBorderRadius';
+
+export const ICONS_PADDING = 'IconsPadding';
+export const ICONS_MARGIN = 'IconsMargin';
