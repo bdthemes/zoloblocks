@@ -123,7 +123,7 @@ function Inspector( props ) {
 								<>
 									<PanelBody
 										title={ __( 'General', 'zolo-blocks' ) }
-										initialOpen={ true }
+										initialOpen={ false }
 									>
 										<SelectControl
 											label={ __(
@@ -262,9 +262,9 @@ function Inspector( props ) {
 												'Brand Name',
 												'zolo-blocks'
 											) }
-											onChange={ ( bName ) =>
+											onChange={ ( name ) =>
 												setAttributes( {
-													brandName: bName,
+													brandName: name,
 												} )
 											}
 											value={ brandName }

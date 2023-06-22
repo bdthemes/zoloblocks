@@ -174,7 +174,6 @@ export default function Edit( props ) {
 	} );
 
 	// Container Box Shadow
-
 	const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles( {
 		attributes,
 		controlName: CONTAINER_BOX_SHADOW,
@@ -389,6 +388,7 @@ export default function Edit( props ) {
 	/**
 	 * All Style Combination
 	 */
+
 	const desktopAllStyle = `
 		.${ uniqueId } .zb-brand-style-1 .zb-brand-content, .zb-brand-style-2 .zb-brand-content{
 			${ brandContentDeskAlignStyle }
@@ -397,6 +397,9 @@ export default function Edit( props ) {
 			${ containerDeskBorderRadius }
 			${ containerBoxShadow }
 			${ containerDeskBGStyle }
+		}		
+		.${ uniqueId } .zb-brand-item:hover{
+			${ brandContainerHoverBoxShadow }
 		}
 		.${ uniqueId } .zb-brand-image{
 			${ brandPhotoPaddingDesk }	
@@ -407,7 +410,9 @@ export default function Edit( props ) {
 			${ brandPhotoDeskBGStyle }			
 			${ brandPhotoMaringDesk }		
 		}
-		
+		.${ uniqueId } .zb-brand-content{
+			${ containerHoverDeskBGStyle }
+		}		
 		.${ uniqueId } .zb-brand-title{
 			${ titleTypoDesk }
 			${ titleMarginDesk }
@@ -444,6 +449,9 @@ export default function Edit( props ) {
 		${ brandPhotoTabBGStyle }		
 		${ brandPhotoMarginTab }		
 	}
+	.${ uniqueId } .zb-brand-content{
+		${ containerHoverTabBGStyle }
+	}
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoTab }
 		${ titleMarginTab }
@@ -472,6 +480,9 @@ export default function Edit( props ) {
 		${ brandPhotoBorderRadiusMob }
 		${ brandPhotoMobBGStyle }		
 		${ brandPhotoMarginMob }	
+	}
+	.${ uniqueId } .zb-brand-content{
+		${ containerHoverMobBGStyle }
 	}
 	.${ uniqueId } .zb-brand-title{
 		${ titleTypoMob }
