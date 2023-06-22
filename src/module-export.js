@@ -21,6 +21,7 @@ export { default as TextStrokeControl } from "./controls/textstroke-control";
 export { default as TypographyDropdown } from "./controls/typography-control";
 export { default as TabPanelControl } from './controls/tabpanel-control';
 export { default as StarRating } from './controls/star-rating';
+export { default as QueryControl } from './controls/query-control';
 
 //Export Helpers
 export {

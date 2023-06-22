@@ -87,3 +87,25 @@ export const BACKGROUND_TYPES = [
     icon: 'art',
   },
 ];
+
+
+export const ORDER_BY = [
+  { label: __("Date", "zolo-blocks"), value: "date" },
+  { label: __("Author", "zolo-blocks"), value: "author" },
+  { label: __("Title", "zolo-blocks"), value: "title" },
+  { label: __("Last modified date", "zolo-blocks"), value: "modified" },
+  { label: __("Post parent ID", "zolo-blocks"), value: "parent" },
+]
+
+export const SORT_ORDER = [
+  { label: __("ASC", "zolo-blocks"), value: "asc" },
+  { label: __("DESC", "zolo-blocks"), value: "desc" },
+]
+
+export const PRINT_TAXONOMY = (taxonomy) => {
+  let allTax = [];
+  for (let tax in taxonomy) {
+    allTax.push({ value: tax, label: __(taxonomy[tax], 'zolo-blocks') })
+  }
+  return allTax;
+}
