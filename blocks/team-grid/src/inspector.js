@@ -87,9 +87,6 @@ function Inspector(props) {
 		}
 	};
 
-	// console attributes
-	console.log(attributes);
-
 	return (
 		<InspectorControls key="controls">
 			<div className="zolo-panel-control">
@@ -266,13 +263,13 @@ function Inspector(props) {
 										initialOpen={false}
 									>
 										<ResDimensionsControl
-											label={__('Margin', 'zolo-blocks')}
-											controlName={CONTAINER_MARGIN}
+											label={__('Padding', 'zolo-blocks')}
+											controlName={CONTAINER_PADDING}
 											resRequiredProps={resRequiredProps}
 										/>
 										<ResDimensionsControl
-											label={__('Padding', 'zolo-blocks')}
-											controlName={CONTAINER_PADDING}
+											label={__('Margin', 'zolo-blocks')}
+											controlName={CONTAINER_MARGIN}
 											resRequiredProps={resRequiredProps}
 										/>
 									</PanelBody>
