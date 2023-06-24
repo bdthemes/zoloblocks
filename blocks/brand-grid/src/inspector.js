@@ -19,6 +19,7 @@ const {
 	ResDimensionsControl,
 	TabPanelControl,
 	BoxShadowControl,
+	ResRangeControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -30,6 +31,9 @@ import {
 	ICON_BORDER_RADIUS,
 	ICON_PADDING,
 	ICON_MARGIN,
+	GRID_COLUMNS,
+	COLUMNS_GAP,
+	ROWS_GAP,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -87,7 +91,7 @@ function Inspector( props ) {
 								<>
 									<PanelBody
 										title={ __( 'General', 'zolo-blocks' ) }
-										initialOpen={ true }
+										initialOpen={ false }
 									>
 										<SelectControl
 											label={ __(
@@ -126,6 +130,40 @@ function Inspector( props ) {
 													showWebsiteLink:
 														! showWebsiteLink,
 												} )
+											}
+										/>
+										<ResRangeControl
+											label={ __(
+												'Grid Columns',
+												'zolo-blocks'
+											) }
+											controlName={ GRID_COLUMNS }
+											resRequiredProps={
+												resRequiredProps
+											}
+											max={ 4 }
+											min={ 1 }
+											step={ 1 }
+											noUnits={ true }
+										/>
+										<ResRangeControl
+											label={ __(
+												'Columns Gap',
+												'zolo-blocks'
+											) }
+											controlName={ COLUMNS_GAP }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+										<ResRangeControl
+											label={ __(
+												'Rows Gap',
+												'zolo-blocks'
+											) }
+											controlName={ ROWS_GAP }
+											resRequiredProps={
+												resRequiredProps
 											}
 										/>
 									</PanelBody>

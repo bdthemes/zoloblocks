@@ -141,6 +141,12 @@ export const TOP_ICON_POSITIONS = [
 		value: 'right',
 	},
 ];
+
+// Grid
+export const GRID_COLUMNS = 'gridColumns';
+export const COLUMNS_GAP = 'columnsGap';
+export const ROWS_GAP = 'rowsGap';
+
 // Icon BG
 export const ICON_BG_COLOR = 'iconNormal';
 // Icon Hover BG

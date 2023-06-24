@@ -1,11 +1,24 @@
-const { generateResAlignmentAttributies } = window.zoloModule;
+const { generateResRangeAttributies } = window.zoloModule;
 
-import { ICON_BOX_ALIGNMENT } from './constants';
+import { GRID_COLUMNS, COLUMNS_GAP, ROWS_GAP } from './constants';
 const attributes = {
 	//Common Attributes
 	uniqueId: {
 		type: 'string',
 	},
+
+	//grid system
+	...generateResRangeAttributies( GRID_COLUMNS, {
+		defaultRange: 3,
+		noUnits: true,
+	} ),
+	...generateResRangeAttributies( COLUMNS_GAP, {
+		defaultRange: 30,
+	} ),
+	...generateResRangeAttributies( ROWS_GAP, {
+		defaultRange: 30,
+	} ),
+
 	//Block specific Attributes
 	preset: {
 		type: 'string',
