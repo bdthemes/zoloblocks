@@ -195,13 +195,13 @@ function Inspector(props) {
 										initialOpen={false}
 									>
 										<ResDimensionsControl
-											label={__('Margin', 'zolo-blocks')}
-											controlName={REVIEW_GRID_MARGIN}
+											label={__('Padding', 'zolo-blocks')}
+											controlName={REVIEW_GRID_PADDING}
 											resRequiredProps={resRequiredProps}
 										/>
 										<ResDimensionsControl
-											label={__('Padding', 'zolo-blocks')}
-											controlName={REVIEW_GRID_PADDING}
+											label={__('Margin', 'zolo-blocks')}
+											controlName={REVIEW_GRID_MARGIN}
 											resRequiredProps={resRequiredProps}
 										/>
 									</PanelBody>

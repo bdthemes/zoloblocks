@@ -43,7 +43,7 @@ import '../team-child';
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
 		props;
-	const { uniqueId, blockStyle, containerBg } = attributes;
+	const { uniqueId, blockStyle } = attributes;
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -76,8 +76,10 @@ export default function Edit(props) {
 		mobRangeStyle: mobColumns,
 	} = generateResRangeStyle({
 		controlName: GRID_COLUMNS,
-		property: 'grid-template-columns',
 		attributes,
+		noUnits: false,
+		noProperty: true,
+		unitCustomTxt: '',
 	});
 
 	// Grid Columns Gap
@@ -87,7 +89,7 @@ export default function Edit(props) {
 		mobRangeStyle: mobColumnsGap,
 	} = generateResRangeStyle({
 		controlName: COLUMNS_GAP,
-		property: 'column-gap',
+		property: 'grid-column-gap',
 		attributes,
 	});
 
@@ -98,7 +100,7 @@ export default function Edit(props) {
 		mobRangeStyle: mobRowsGap,
 	} = generateResRangeStyle({
 		controlName: ROWS_GAP,
-		property: 'row-gap',
+		property: 'grid-row-gap',
 		attributes,
 	});
 
@@ -132,6 +134,9 @@ export default function Edit(props) {
 			${normalDeskBGStyle}
 			${containerDeskMargin}
 			${containerDeskPadding}
+			grid-template-columns: repeat(${deskColumns}, 1fr);
+			${deskColumnsGap};
+			${deskRowsGap};
 		}
 	`;
 	const tabletAllStyle = `
@@ -139,6 +144,9 @@ export default function Edit(props) {
 			${normalTabBGStyle}
 			${containerTabMargin}
 			${containerTabPadding}
+			grid-template-columns: repeat(${tabColumns}, 1fr);
+			${tabColumnsGap};
+			${tabRowsGap};
 		}
 	`;
 	const mobileAllStyle = `
@@ -146,6 +154,9 @@ export default function Edit(props) {
 			${normalMobBGStyle}
 			${containerMobMargin}
 			${containerMobPadding}
+			grid-template-columns: repeat(${mobColumns}, 1fr);
+			${mobColumnsGap};
+			${mobRowsGap};
 		}
 	`;
 
@@ -190,7 +201,32 @@ export default function Edit(props) {
 					setAttributes={setAttributes}
 				/>
 			)}
-			<style>{`${softMinifyCssStrings(allStyle)}`}</style>
+			<style>{`
+				.${uniqueId}.wp-block-zolo-team-grid {
+					display: block;
+				}
+				.${uniqueId}.wp-block-zolo-team-grid .block-editor-block-list__layout {
+					display: grid;
+					grid-template-columns: repeat(${deskColumns}, 1fr);
+					${deskColumnsGap};
+					${deskRowsGap};
+				}
+				@media all and (max-width: 1024px) {
+					.${uniqueId}.wp-block-zolo-team-grid .block-editor-block-list__layout {
+						grid-template-columns: repeat(${tabColumns}, 1fr);
+						${tabColumnsGap};
+						${tabRowsGap};
+					}
+				}
+				@media all and (max-width: 767px) {
+					.${uniqueId}.wp-block-zolo-team-grid .block-editor-block-list__layout {
+						grid-template-columns: repeat(${mobColumns}, 1fr);
+						${mobColumnsGap};
+						${mobRowsGap};
+					}
+				}
+				${softMinifyCssStrings(allStyle)}
+			`}</style>
 			<BlockControls>
 				<ToolbarGroup>
 					<ToolbarButton

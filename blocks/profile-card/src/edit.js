@@ -506,160 +506,6 @@ export default function Edit(props) {
 		attributes,
 	});
 
-	// // social icons alignment
-	// let socialDeskAlignStyle;
-	// switch (teamDeskAlignStyle) {
-	// 	case 'text-align:left;':
-	// 		socialDeskAlignStyle = 'justify-content: flex-start;';
-	// 		break;
-	// 	case 'text-align:center;':
-	// 		socialDeskAlignStyle = 'justify-content: center;';
-	// 		break;
-	// 	case 'text-align:right;':
-	// 		socialDeskAlignStyle = 'justify-content: flex-end;';
-	// 		break;
-	// 	default:
-	// 		socialDeskAlignStyle = 'justify-content: flex-start;';
-	// }
-
-	// let socialTabAlignStyle;
-	// switch (teamTabAlignStyle) {
-	// 	case 'text-align:left;':
-	// 		socialTabAlignStyle = 'justify-content: flex-start;';
-	// 		break;
-	// 	case 'text-align:center;':
-	// 		socialTabAlignStyle = 'justify-content: center;';
-	// 		break;
-	// 	case 'text-align:right;':
-	// 		socialTabAlignStyle = 'justify-content: flex-end;';
-	// 		break;
-	// 	default:
-	// 		socialTabAlignStyle = 'justify-content: flex-start;';
-	// }
-
-	// let socialMobAlignStyle;
-	// switch (teamMobAlignStyle) {
-	// 	case 'text-align:left;':
-	// 		socialMobAlignStyle = 'justify-content: flex-start;';
-	// 		break;
-	// 	case 'text-align:center;':
-	// 		socialMobAlignStyle = 'justify-content: center;';
-	// 		break;
-	// 	case 'text-align:right;':
-	// 		socialMobAlignStyle = 'justify-content: flex-end;';
-	// 		break;
-	// 	default:
-	// 		socialMobAlignStyle = 'justify-content: flex-start;';
-	// }
-
-	// // Photo
-	// const {
-	// 	desktopBorderStyle: photoDeskBorderStyle,
-	// 	tabBorderStyle: photoTabBorderStyle,
-	// 	mobBorderStyle: photoMobBorderStyle,
-	// } = generateBorderStyle({
-	// 	controlName: TEAM_PHOTO_BORDER,
-	// 	attributes,
-	// });
-
-	// const {
-	// 	dimensionStylesDesktop: photoDeskBorderRadius,
-	// 	dimensionStylesTab: photoTabBorderRadius,
-	// 	dimensionStylesMobile: photoMobBorderRadius,
-	// } = generateDimensionStyle({
-	// 	controlName: TEAM_PHOTO_BORDER_RADIUS,
-	// 	styleFor: 'border-radius',
-	// 	attributes,
-	// });
-
-	// const { boxShadowStyle: teamPhotoBoxShadow } = generateBoxShadowStyles({
-	// 	attributes,
-	// 	controlName: TEAM_PHOTO_BOX_SHADOW,
-	// });
-
-	// const {
-	// 	dimensionStylesDesktop: photoDeskPadding,
-	// 	dimensionStylesTab: photoTabPadding,
-	// 	dimensionStylesMobile: photoMobPadding,
-	// } = generateDimensionStyle({
-	// 	controlName: TEAM_PHOTO_PADDING,
-	// 	styleFor: 'padding',
-	// 	attributes,
-	// });
-
-	// const {
-	// 	dimensionStylesDesktop: photoDeskMargin,
-	// 	dimensionStylesTab: photoTabMargin,
-	// 	dimensionStylesMobile: photoMobMargin,
-	// } = generateDimensionStyle({
-	// 	controlName: TEAM_PHOTO_MARGIN,
-	// 	styleFor: 'margin',
-	// 	attributes,
-	// });
-
-	// // Name
-	// const {
-	// 	typoStylesDesktop: nameTypoDesk,
-	// 	typoStylesTab: nameTypoTab,
-	// 	typoStylesMobile: nameTypoMob,
-	// } = generateTypographyStyles({
-	// 	prefixConstant: TEAM_MEMBER_NAME_TYPOGRAPHY,
-	// 	defaultFontSize: 23,
-	// 	attributes,
-	// });
-
-	// const {
-	// 	dimensionStylesDesktop: nameDeskMargin,
-	// 	dimensionStylesTab: nameTabMargin,
-	// 	dimensionStylesMobile: nameMobMargin,
-	// } = generateDimensionStyle({
-	// 	controlName: TEAM_NAME_MARGIN,
-	// 	styleFor: 'margin',
-	// 	attributes,
-	// });
-
-	// // Designation
-	// const {
-	// 	typoStylesDesktop: designationTypoDesk,
-	// 	typoStylesTab: designationTypoTab,
-	// 	typoStylesMobile: designationTypoMob,
-	// } = generateTypographyStyles({
-	// 	prefixConstant: TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
-	// 	defaultFontSize: 16,
-	// 	attributes,
-	// });
-
-	// const {
-	// 	dimensionStylesDesktop: designationDeskMargin,
-	// 	dimensionStylesTab: designationTabMargin,
-	// 	dimensionStylesMobile: designationMobMargin,
-	// } = generateDimensionStyle({
-	// 	controlName: TEAM_DESIGNATION_MARGIN,
-	// 	styleFor: 'margin',
-	// 	attributes,
-	// });
-
-	// // Short bio
-	// const {
-	// 	typoStylesDesktop: shortBioTypoDesk,
-	// 	typoStylesTab: shortBioTypoTab,
-	// 	typoStylesMobile: shortBioTypoMob,
-	// } = generateTypographyStyles({
-	// 	prefixConstant: TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
-	// 	defaultFontSize: 16,
-	// 	attributes,
-	// });
-
-	// const {
-	// 	dimensionStylesDesktop: shortBioDeskMargin,
-	// 	dimensionStylesTab: shortBioTabMargin,
-	// 	dimensionStylesMobile: shortBioMobMargin,
-	// } = generateDimensionStyle({
-	// 	controlName: TEAM_SHORT_BIO_MARGIN,
-	// 	styleFor: 'margin',
-	// 	attributes,
-	// });
-
 	// Social Icons
 	const {
 		backgroundStylesDesktop: iconsNormalDeskBG,
@@ -759,39 +605,6 @@ export default function Edit(props) {
 		styleFor: 'margin',
 		attributes,
 	});
-
-	// const { boxShadowStyle: socialIconNormalBoxShadow } =
-	// 	generateBoxShadowStyles({
-	// 		attributes,
-	// 		controlName: ICONS_BOX_SHADOW,
-	// 	});
-
-	// const { boxShadowStyle: socialIconHoverBoxShadow } =
-	// 	generateBoxShadowStyles({
-	// 		attributes,
-	// 		controlName: ICONS_HOVER_BOX_SHADOW,
-	// 	});
-
-	// // detail page
-	// const {
-	// 	backgroundStylesDesktop: detailPageNormalDeskBG,
-	// 	backgroundStylesTab: detailPageNormalTabBG,
-	// 	backgroundStylesMobile: detailPageNormalMobBG,
-	// } = generateNormalBGControlStyles({
-	// 	controlName: DETAIL_PAGE_LINK_BG,
-	// 	attributes,
-	// 	noMainBGImg: true,
-	// });
-
-	// const {
-	// 	backgroundStylesDesktop: detailPageHoverDeskBG,
-	// 	backgroundStylesTab: detailPageHoverTabBG,
-	// 	backgroundStylesMobile: detailPageHoverMobBG,
-	// } = generateNormalBGControlStyles({
-	// 	controlName: DETAIL_PAGE_LINK_HOVER_BG,
-	// 	attributes,
-	// 	noMainBGImg: true,
-	// });
 
 	/**
 	 * All Style Combination
@@ -961,6 +774,9 @@ export default function Edit(props) {
 			${socialIconsGapTab}
 			${socialIconsMarginTab}
 		}
+		.${uniqueId} .zb-profile-socail-share i, .${uniqueId} .zb-profile-socail-share .dashicon {
+			${socialIconTab}
+		}
 		.${uniqueId} .zb-profile-image img {
 			${photoTabWidth}
 			${photoTabHeight}
@@ -1044,6 +860,9 @@ export default function Edit(props) {
 		.${uniqueId} .zb-profile-socail-share {
 			${socialIconsGapMob}
 			${socialIconsMarginMob}
+		}
+		.${uniqueId} .zb-profile-socail-share i, .${uniqueId} .zb-profile-socail-share .dashicon {
+			${socialIconMob}
 		}
 		.${uniqueId} .zb-profile-image img {
 			${photoMobWidth}

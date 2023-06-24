@@ -66,8 +66,10 @@ export default function Edit(props) {
 		mobRangeStyle: mobColumns,
 	} = generateResRangeStyle({
 		controlName: GRID_COLUMNS,
-		property: 'grid-template-columns',
 		attributes,
+		noProperty: true,
+		noUnits: false,
+		unitCustomTxt: '',
 	});
 
 	// Grid Columns Gap
@@ -77,7 +79,7 @@ export default function Edit(props) {
 		mobRangeStyle: mobColumnsGap,
 	} = generateResRangeStyle({
 		controlName: COLUMNS_GAP,
-		property: 'column-gap',
+		property: 'grid-column-gap',
 		attributes,
 	});
 
@@ -88,7 +90,7 @@ export default function Edit(props) {
 		mobRangeStyle: mobRowsGap,
 	} = generateResRangeStyle({
 		controlName: ROWS_GAP,
-		property: 'row-gap',
+		property: 'grid-row-gap',
 		attributes,
 	});
 
@@ -131,6 +133,9 @@ export default function Edit(props) {
 			${reviewGridDeskBGStyle}
 			${containerDeskMargin}
 			${containerDeskPadding}
+			grid-template-columns: repeat(${deskColumns}, 1fr);
+			${deskColumnsGap}
+			${deskRowsGap}
 		}
 	`;
 	const tabletAllStyle = `
@@ -189,7 +194,18 @@ export default function Edit(props) {
 					setAttributes={setAttributes}
 				/>
 			)}
-			<style>{`${softMinifyCssStrings(allStyle)}`}</style>
+			<style>{`
+					.${uniqueId}.wp-block-zolo-review-grid {
+						display: block;
+					}
+					.${uniqueId}.wp-block-zolo-review-grid .block-editor-block-list__layout {
+						display: grid;
+						grid-template-columns: repeat(${deskColumns}, 1fr);
+						${deskColumnsGap}
+						${deskRowsGap}
+					}
+					${softMinifyCssStrings(allStyle)}
+				`}</style>
 			<BlockControls>
 				<ToolbarGroup>
 					<ToolbarButton
