@@ -29,6 +29,18 @@ const attributes = {
   blockStyle: {
     type: 'object',
   },
+
+  preset: {
+    type: 'string',
+    default: 'style-1',
+  },
+
+  titleTag: {
+    type: 'string',
+    default: 'h2',
+  },
+
+
   showPagination: {
     type: 'boolean',
     default: false
