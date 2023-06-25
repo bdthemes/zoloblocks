@@ -610,6 +610,19 @@ export default function Edit(props) {
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
+		.${uniqueId} .zb-profile-image img {
+			${photoDeskWidth}
+			${photoDeskHeight}
+			${photoDeskBorderRadius}
+			${photoDeskBorderStyle}
+		}
+		.${uniqueId} .zb-profile-bottom-content {
+			${contentDeskBGStyle}
+			${contentBorderRadiusDesk}
+			${contentBorderStyleDesk}
+			${contentPaddingDesk}
+			${contentMarginDesk}
+		}
 		.${uniqueId} .zb-profile-header-content {
 			background: ${headerAreaBG ? headerAreaBG : ''}; 
 			${headerAreaDeskPadding}
@@ -689,19 +702,6 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zb-profile-status {
 			${statusDeskMargin}
-		}
-		.${uniqueId} .zb-profile-image img {
-			${photoDeskWidth}
-			${photoDeskHeight}
-			${photoDeskBorderRadius}
-			${photoDeskBorderStyle}
-		}
-		.${uniqueId} .zb-profile-bottom-content {
-			${contentDeskBGStyle}
-			${contentBorderRadiusDesk}
-			${contentBorderStyleDesk}
-			${contentPaddingDesk}
-			${contentMarginDesk}
 		}
 	`;
 
