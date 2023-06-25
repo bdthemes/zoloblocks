@@ -54,9 +54,13 @@ export const hasVal = (val) => val || val === 0;
 
 // softMinifyCssStrings is for minifying the css which is in the style tag as a string  for view.js
 export const softMinifyCssStrings = (cssString = ' ') =>
-	cssString
-		.replace(/\s+/g, ' ')
-		.replace(/\.zb\-[\w\-\s\.\,\:\>\(\)\d\+\[\]\#\>]+\{[\s]+\}/g, '');
+    cssString
+    .replace(/[^{}]+{\s*}/g, '') //Remove empty curly braces selectors
+    .replace(/\n\s+/g, '')  // Remove newlines and preceding spaces
+    .replace(/\s+{/g, '{')  // Remove spaces before opening curly braces
+    .replace(/\s+}/g, '}')  // Remove spaces before closing curly braces
+    .replace(/:\s+/g, ':')  // Remove spaces after colons
+    .replace(/;\s+/g, ';'); // Remove spaces after semicolons;
 
 //Dynamic Tag
 export const DynamicTag = (props) => {
