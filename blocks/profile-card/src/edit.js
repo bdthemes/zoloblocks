@@ -879,12 +879,6 @@ export default function Edit(props) {
 		}
 	`;
 
-	const allStyle = `
-		${desktopAllStyle}
-		${tabletAllStyle}
-		${mobileAllStyle}
-	`;
-
 	// Set All Style in "blockStyle" Attribute
 	useEffect(() => {
 		const styles = {
@@ -905,7 +899,26 @@ export default function Edit(props) {
 					setAttributes={setAttributes}
 				/>
 			)}
-			<style>{`${softMinifyCssStrings(allStyle)}`}</style>
+
+			<style>
+				{`
+					/* desktopcssStart */
+					${softMinifyCssStrings(desktopAllStyle)}
+					/* desktopcssEnd */
+
+					@media all and (max-width: 1024px) {
+						/* tabcssStart */
+						${softMinifyCssStrings(tabletAllStyle)}
+						/* tabcssEnd */
+					}
+
+					@media all and (max-width: 767px) {
+						/* mobcssStart */
+						${softMinifyCssStrings(mobileAllStyle)}
+						/* mobcssEnd */
+					}
+				`}
+			</style>
 
 			<BlockControls>
 				{photo && (
