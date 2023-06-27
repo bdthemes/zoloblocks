@@ -1,7 +1,3 @@
-const Context = {
-	'zolo/preset': 'preset',
-	'zolo/showBrandName': 'showBrandName',
-	'zolo/showBrandLink': 'showBrandLink',
-};
+const Context = [ 'zolo/preset', 'zolo/showBrandName', 'zolo/showBrandLink' ];
 
 export default Context;

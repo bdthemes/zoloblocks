@@ -79,8 +79,6 @@ function Inspector( props ) {
 		brandName,
 		brandLabel,
 		brandDetailPageLink,
-		showBrandName,
-		showWebsiteLink,
 		resMode,
 		textColor,
 		linkColor,

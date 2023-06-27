@@ -7,9 +7,9 @@ import Context from './src/context';
 
 import './src/style.scss';
 
-registerBlockType(metadata, {
+registerBlockType( metadata, {
 	usesContext: Context,
 	attributes,
 	edit: Edit,
 	save: Save,
-});
+} );

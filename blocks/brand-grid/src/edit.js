@@ -13,8 +13,6 @@ const { handleUniqueId, softMinifyCssStrings } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 
-import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
-
 import Inspector from './inspector';
 
 // import brand-child
@@ -26,9 +24,6 @@ export default function Edit( props ) {
 	const {
 		uniqueId,
 		preset,
-		showBrandName,
-		showWebsiteLink,
-		link,
 		blockStyle,
 		presetOneStyles,
 		presetTwoStyles,

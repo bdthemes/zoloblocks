@@ -49,7 +49,7 @@ function Inspector( props ) {
 		iconBackgroundColor,
 		iconBackgroundHoverColor,
 		showBrandName,
-		showWebsiteLink,
+		showBrandLink,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
@@ -124,11 +124,11 @@ function Inspector( props ) {
 												'Show Website Link',
 												'zolo-blocks'
 											) }
-											checked={ showWebsiteLink }
+											checked={ showBrandLink }
 											onChange={ () =>
 												setAttributes( {
-													showWebsiteLink:
-														! showWebsiteLink,
+													showBrandLink:
+														! showBrandLink,
 												} )
 											}
 										/>

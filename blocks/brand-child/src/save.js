@@ -12,7 +12,7 @@ const Save = ( { attributes } ) => {
 		brandLabel,
 		link,
 		showBrandName,
-		showWebsiteLink,
+		showBrandLink,
 	} = attributes;
 
 	let linkRel = link && link.opensInNewTab ? 'noopener noreferrer' : '';
@@ -55,7 +55,7 @@ const Save = ( { attributes } ) => {
 								/>
 							) }
 
-							{ showWebsiteLink && (
+							{ showBrandLink && (
 								<a
 									className="zb-brand-link"
 									href={

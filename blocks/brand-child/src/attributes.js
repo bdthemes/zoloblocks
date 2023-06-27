@@ -115,7 +115,7 @@ const attributes = {
 		type: 'boolean',
 		default: true,
 	},
-	showWebsiteLink: {
+	showBrandLink: {
 		type: 'boolean',
 		default: true,
 	},

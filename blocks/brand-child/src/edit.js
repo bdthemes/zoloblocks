@@ -62,13 +62,19 @@ import {
 import Inspector from './inspector';
 
 export default function Edit( props ) {
-	const { attributes, setAttributes, className, clientId, isSelected } =
-		props;
+	const {
+		attributes,
+		setAttributes,
+		className,
+		clientId,
+		isSelected,
+		context,
+	} = props;
 	const {
 		uniqueId,
 		preset,
 		showBrandName,
-		showWebsiteLink,
+		showBrandLink,
 		brandPhoto,
 		brandName,
 		brandLabel,
@@ -92,6 +98,18 @@ export default function Edit( props ) {
 		} );
 	}, [] );
 
+	/**
+	 * context
+	 */
+	useEffect( () => {
+		setAttributes( {
+			showBrandName: context[ 'zolo/showBrandName' ],
+			showBrandLink: context[ 'zolo/showBrandLink' ],
+			preset: context[ 'zolo/preset' ],
+		} );
+	}, [ context ] );
+
+	// block props
 	const blockProps = useBlockProps( {
 		className: classnames( className, `` ),
 	} );
@@ -647,7 +665,7 @@ export default function Edit( props ) {
 										) }
 									/>
 								) }
-								{ showWebsiteLink && (
+								{ showBrandLink && (
 									<a
 										className="zb-brand-link-editor"
 										href={
