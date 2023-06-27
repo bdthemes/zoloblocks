@@ -1,7 +1,5 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 
-const { DisplayIcon } = window.zoloModule;
-
 const Save = ( { attributes } ) => {
 	const {
 		uniqueId,

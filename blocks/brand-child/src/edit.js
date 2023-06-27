@@ -423,6 +423,8 @@ export default function Edit( props ) {
 			${ brandPhotoPaddingDesk }	
 		}	
 		.${ uniqueId } .zb-brand-image img{
+			${ deskImageHeight }
+			${ deskImageWidth }
 			${ brandPhotoBorderRadiusDesk }
 			${ brandPhotoBoxShadow }
 			${ brandPhotoDeskBGStyle }			
@@ -463,6 +465,8 @@ export default function Edit( props ) {
 		${ brandPhotoPaddingTab }
 	}
 	.${ uniqueId } .zb-brand-image img{
+		${ tabImageHeight }
+		${ tabImageWidth }
 		${ brandPhotoBorderRadiusTab }
 		${ brandPhotoTabBGStyle }		
 		${ brandPhotoMarginTab }		
@@ -495,6 +499,8 @@ export default function Edit( props ) {
 		${ brandPhotoPaddingMob }
 	}
 	.${ uniqueId } .zb-brand-image img{
+		${ mobImageHeight }
+		${ mobImageWidth }
 		${ brandPhotoBorderRadiusMob }
 		${ brandPhotoMobBGStyle }		
 		${ brandPhotoMarginMob }	
