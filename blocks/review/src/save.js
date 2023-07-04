@@ -105,10 +105,12 @@ const Save = ({ attributes }) => {
 						)}
 					</div>
 					{showRating && (
-						<div
-							className="zolo-review-icon"
-							id="zolo-rating"
-						></div>
+						<div className="zolo-review-icon">
+							<div
+								className="zolo-rating"
+								data-rating={rating}
+							></div>
+						</div>
 					)}
 				</div>
 			</div>

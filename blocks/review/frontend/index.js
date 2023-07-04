@@ -229,13 +229,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const Frontend = () => {
+const ReviewFrontend = _ref => {
+  let {
+    rating
+  } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_src_controls_star_rating__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    rating: 2,
+    rating: rating,
     total: 5
   });
 };
-(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Frontend, null), document.getElementById('zolo-rating'));
+
+// render on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const reviewItems = document.querySelectorAll('.zolo-rating');
+  if (reviewItems.length) {
+    reviewItems.forEach(item => {
+      const ratingValue = item.dataset.rating;
+      (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ReviewFrontend, {
+        rating: ratingValue
+      }), item);
+    });
+  }
+});
 }();
 /******/ })()
 ;

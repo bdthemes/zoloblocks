@@ -616,12 +616,8 @@ export default function Edit(props) {
 			${photoDeskBorderRadius}
 			${photoDeskBorderStyle}
 		}
-		.${uniqueId} .zb-profile-bottom-content {
-			${contentDeskBGStyle}
-			${contentBorderRadiusDesk}
-			${contentBorderStyleDesk}
-			${contentPaddingDesk}
-			${contentMarginDesk}
+		.${uniqueId} .zb-profile-header-content {
+			background: ${headerAreaBG ? headerAreaBG : ''};
 		}
 		.${uniqueId} .zb-profile-header-content {
 			background: ${headerAreaBG ? headerAreaBG : ''}; 
