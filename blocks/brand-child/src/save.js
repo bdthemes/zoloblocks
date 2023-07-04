@@ -4,6 +4,7 @@ const Save = ( { attributes } ) => {
 	const {
 		uniqueId,
 		preset,
+		heading,
 		brandPhoto,
 		brandName,
 		brandDetailPageLink,
@@ -47,7 +48,7 @@ const Save = ( { attributes } ) => {
 						<div className="zb-brand-inner-content">
 							{ showBrandName && (
 								<RichText.Content
-									tagName="div"
+									tagName={ heading }
 									className="zb-brand-title"
 									value={ brandName }
 								/>

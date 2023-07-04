@@ -73,6 +73,7 @@ export default function Edit( props ) {
 	const {
 		uniqueId,
 		preset,
+		heading,
 		showBrandName,
 		showBrandLink,
 		brandPhoto,
@@ -103,9 +104,10 @@ export default function Edit( props ) {
 	 */
 	useEffect( () => {
 		setAttributes( {
+			preset: context[ 'zolo/preset' ],
+			heading: context[ 'zolo/heading' ],
 			showBrandName: context[ 'zolo/showBrandName' ],
 			showBrandLink: context[ 'zolo/showBrandLink' ],
-			preset: context[ 'zolo/preset' ],
 		} );
 	}, [ context ] );
 
@@ -658,6 +660,7 @@ export default function Edit( props ) {
 							<div className="zb-brand-inner-content">
 								{ showBrandName && (
 									<RichText
+										tagName={ heading }
 										className="zb-brand-title"
 										value={ brandName }
 										onChange={ ( name ) =>

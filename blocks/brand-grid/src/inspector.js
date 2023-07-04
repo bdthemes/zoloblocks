@@ -25,6 +25,7 @@ const {
 import objAttributes from './attributes';
 import {
 	PRESETS,
+	TITLE_TAG,
 	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
 	ICON_BORDER,
@@ -36,13 +37,12 @@ import {
 	ROWS_GAP,
 } from './constants';
 
-import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
-
 function Inspector( props ) {
 	const { attributes, setAttributes } = props;
 	const {
 		uniqueId,
 		preset,
+		heading,
 		resMode,
 		iconColor,
 		iconHoverColor,
@@ -50,9 +50,6 @@ function Inspector( props ) {
 		iconBackgroundHoverColor,
 		showBrandName,
 		showBrandLink,
-		presetOneStyles,
-		presetTwoStyles,
-		presetThreeStyles,
 	} = attributes;
 
 	const resRequiredProps = {
@@ -103,6 +100,19 @@ function Inspector( props ) {
 											onChange={ ( value ) =>
 												setAttributes( {
 													preset: value,
+												} )
+											}
+										/>
+										<SelectControl
+											label={ __(
+												'Heading',
+												'zolo-blocks'
+											) }
+											value={ heading }
+											options={ TITLE_TAG }
+											onChange={ ( value ) =>
+												setAttributes( {
+													heading: value,
 												} )
 											}
 										/>

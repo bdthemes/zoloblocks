@@ -1,3 +1,8 @@
-const Context = [ 'zolo/preset', 'zolo/showBrandName', 'zolo/showBrandLink' ];
+const Context = [
+	'zolo/preset',
+	'zolo/heading',
+	'zolo/showBrandName',
+	'zolo/showBrandLink',
+];
 
 export default Context;

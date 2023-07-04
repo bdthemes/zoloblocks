@@ -24,6 +24,10 @@ const attributes = {
 		type: 'string',
 		default: 'style-1',
 	},
+	heading: {
+		type: 'string',
+		default: 'h1',
+	},
 	showBrandName: {
 		type: 'boolean',
 		default: true,
