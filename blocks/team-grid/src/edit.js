@@ -37,9 +37,6 @@ import {
 
 import Inspector from './inspector';
 
-// child block
-import '../team-child';
-
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
 		props;
