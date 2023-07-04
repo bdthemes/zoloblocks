@@ -28,6 +28,12 @@ const attributes = {
 		type: 'string',
 		default: 'h1',
 	},
+	containerBackgroundColor: {
+		type: 'string',
+	},
+	containerBackgroundHoverColor: {
+		type: 'string',
+	},
 	showBrandName: {
 		type: 'boolean',
 		default: true,

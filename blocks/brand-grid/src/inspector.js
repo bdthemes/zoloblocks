@@ -27,7 +27,6 @@ import {
 	PRESETS,
 	TITLE_TAG,
 	ICON_BOX_SHADOW,
-	ICON_HOVER_BOX_SHADOW,
 	ICON_BORDER,
 	ICON_BORDER_RADIUS,
 	ICON_PADDING,
@@ -44,10 +43,8 @@ function Inspector( props ) {
 		preset,
 		heading,
 		resMode,
-		iconColor,
-		iconHoverColor,
-		iconBackgroundColor,
-		iconBackgroundHoverColor,
+		containerBackgroundColor,
+		containerBackgroundHoverColor,
 		showBrandName,
 		showBrandLink,
 	} = attributes;
@@ -194,74 +191,15 @@ function Inspector( props ) {
 												<>
 													<ColorControl
 														label={ __(
-															'Color',
-															'zolo-blocks'
-														) }
-														color={ iconColor }
-														onChange={ ( value ) =>
-															setAttributes( {
-																iconColor:
-																	value,
-															} )
-														}
-													/>
-													<BoxShadowControl
-														controlName={
-															ICON_BOX_SHADOW
-														}
-														resRequiredProps={
-															resRequiredProps
-														}
-														enableTransition={
-															false
-														}
-													/>
-												</>
-											}
-											hoverComponents={
-												<>
-													<ColorControl
-														label={ __(
-															'Color',
-															'zolo-blocks'
-														) }
-														color={ iconHoverColor }
-														onChange={ ( value ) =>
-															setAttributes( {
-																iconHoverColor:
-																	value,
-															} )
-														}
-													/>
-													<BoxShadowControl
-														controlName={
-															ICON_HOVER_BOX_SHADOW
-														}
-														resRequiredProps={
-															resRequiredProps
-														}
-														enableTransition={
-															false
-														}
-													/>
-												</>
-											}
-										/>
-
-										<TabPanelControl
-											normalComponents={
-												<>
-													<ColorControl
-														label={ __(
 															'Background Color',
 															'zolo-blocks'
 														) }
 														color={
-															iconBackgroundColor
+															containerBackgroundColor
 														}
 														onChange={ ( value ) =>
 															setAttributes( {
-																iconBackgroundColor:
+																containerBackgroundColor:
 																	value,
 															} )
 														}
@@ -276,11 +214,11 @@ function Inspector( props ) {
 															'zolo-blocks'
 														) }
 														color={
-															iconBackgroundHoverColor
+															containerBackgroundHoverColor
 														}
 														onChange={ ( value ) =>
 															setAttributes( {
-																iconBackgroundHoverColor:
+																containerBackgroundHoverColor:
 																	value,
 															} )
 														}
@@ -288,6 +226,7 @@ function Inspector( props ) {
 												</>
 											}
 										/>
+
 										<BorderControl
 											label={ __(
 												'Border',
@@ -309,16 +248,7 @@ function Inspector( props ) {
 											}
 											forBorderRadius={ true }
 										/>
-										<ResDimensionsControl
-											label={ __(
-												'Margin',
-												'zolo-blocks'
-											) }
-											controlName={ ICON_MARGIN }
-											resRequiredProps={
-												resRequiredProps
-											}
-										/>
+
 										<ResDimensionsControl
 											label={ __(
 												'Padding',
@@ -328,6 +258,13 @@ function Inspector( props ) {
 											resRequiredProps={
 												resRequiredProps
 											}
+										/>
+										<BoxShadowControl
+											controlName={ ICON_BOX_SHADOW }
+											resRequiredProps={
+												resRequiredProps
+											}
+											enableTransition={ false }
 										/>
 									</PanelBody>
 								</>

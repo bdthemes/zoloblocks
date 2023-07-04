@@ -25,6 +25,8 @@ export default function Edit( props ) {
 		uniqueId,
 		preset,
 		blockStyle,
+		containerBackgroundColor,
+		containerBackgroundHoverColor,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
@@ -101,8 +103,11 @@ export default function Edit( props ) {
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
-		.${ uniqueId }{
-			
+		.${ uniqueId }.zb-brand-grid-back{
+			background:${ containerBackgroundColor };			
+		}
+		.${ uniqueId } .wp-block-zolo-brand-grid{
+			background:${ containerBackgroundColor };
 		}
 		${ presetStyles }		
   	`;
@@ -167,7 +172,7 @@ export default function Edit( props ) {
 			<style>{ ` ${ softMinifyCssStrings( allStyle ) }` }</style>
 			<div { ...blockProps }>
 				<div
-					className={ `zb-brand-grid-back zb-brand-style-1 ${ uniqueId } ${ preset }` }
+					className={ `zb-brand-grid-back zb-brand-${ preset } ${ uniqueId } ` }
 				>
 					<InnerBlocks
 						allowedBlocks={ [ 'zolo/brand-child' ] }

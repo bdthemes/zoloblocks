@@ -286,7 +286,6 @@ export default function Edit( props ) {
 		typoStylesMobile: titleTypoMob,
 	} = generateTypographyStyles( {
 		prefixConstant: TITLE_TYPOGRAPHY,
-		defaultFontSize: 48,
 		attributes,
 	} );
 
