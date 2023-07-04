@@ -623,6 +623,19 @@ export default function Edit(props) {
 			${contentPaddingDesk}
 			${contentMarginDesk}
 		}
+		.${uniqueId} .zb-profile-image img {
+			${photoDeskWidth}
+			${photoDeskHeight}
+			${photoDeskBorderRadius}
+			${photoDeskBorderStyle}
+		}
+		.${uniqueId} .zb-profile-bottom-content {
+			${contentDeskBGStyle}
+			${contentBorderRadiusDesk}
+			${contentBorderStyleDesk}
+			${contentPaddingDesk}
+			${contentMarginDesk}
+		}
 		.${uniqueId} .zb-profile-header-content {
 			background: ${headerAreaBG ? headerAreaBG : ''}; 
 			${headerAreaDeskPadding}
@@ -702,19 +715,6 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zb-profile-status {
 			${statusDeskMargin}
-		}
-		.${uniqueId} .zb-profile-image img {
-			${photoDeskWidth}
-			${photoDeskHeight}
-			${photoDeskBorderRadius}
-			${photoDeskBorderStyle}
-		}
-		.${uniqueId} .zb-profile-bottom-content {
-			${contentDeskBGStyle}
-			${contentBorderRadiusDesk}
-			${contentBorderStyleDesk}
-			${contentPaddingDesk}
-			${contentMarginDesk}
 		}
 	`;
 
@@ -892,11 +892,11 @@ export default function Edit(props) {
 		}
 	`;
 
-	// const allStyle = `
-	// 	${desktopAllStyle}
-	// 	${tabletAllStyle}
-	// 	${mobileAllStyle}
-	// `;
+	const allStyle = `
+		${desktopAllStyle}
+		${tabletAllStyle}
+		${mobileAllStyle}
+	`;
 
 	// Set All Style in "blockStyle" Attribute
 	useEffect(() => {
@@ -918,25 +918,7 @@ export default function Edit(props) {
 					setAttributes={setAttributes}
 				/>
 			)}
-			<style>
-				{`
-					/* desktopcssStart */
-					${softMinifyCssStrings(desktopAllStyle)}
-					/* desktopcssEnd */
-
-					@media all and (max-width: 1024px) {
-						/* tabcssStart */
-						${softMinifyCssStrings(tabletAllStyle)}
-						/* tabcssEnd */
-					}
-
-					@media all and (max-width: 767px) {
-						/* mobcssStart */
-						${softMinifyCssStrings(mobileAllStyle)}
-						/* mobcssEnd */
-					}
-				`}
-			</style>
+			<style>{`${softMinifyCssStrings(allStyle)}`}</style>
 
 			<BlockControls>
 				{photo && (
