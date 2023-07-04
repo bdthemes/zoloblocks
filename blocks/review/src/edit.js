@@ -465,15 +465,15 @@ export default function Edit(props) {
 		}
 	`;
 
-	const allStyle = `
-		${desktopAllStyle}
-		@media all and (max-width: 1024px) {
-			${tabletAllStyle}
-		}
-		@media all and (max-width: 767px) {
-			${mobileAllStyle}
-		}
-	`;
+	// const allStyle = `
+	// 	${desktopAllStyle}
+	// 	@media all and (max-width: 1024px) {
+	// 		${tabletAllStyle}
+	// 	}
+	// 	@media all and (max-width: 767px) {
+	// 		${mobileAllStyle}
+	// 	}
+	// `;
 
 	// Set All Style in "blockStyle" Attribute
 	useEffect(() => {
@@ -495,7 +495,25 @@ export default function Edit(props) {
 					setAttributes={setAttributes}
 				/>
 			)}
-			<style>{`${softMinifyCssStrings(allStyle)}`}</style>
+			<style>
+				{`
+					/* desktopcssStart */
+					${softMinifyCssStrings(desktopAllStyle)}
+					/* desktopcssEnd */
+
+					@media all and (max-width: 1024px) {
+						/* tabcssStart */
+						${softMinifyCssStrings(tabletAllStyle)}
+						/* tabcssEnd */
+					}
+
+					@media all and (max-width: 767px) {
+						/* mobcssStart */
+						${softMinifyCssStrings(mobileAllStyle)}
+						/* mobcssEnd */
+					}
+				`}
+			</style>
 
 			<BlockControls>
 				{memberPhoto && (
