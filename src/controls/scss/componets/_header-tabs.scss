@@ -1,0 +1,15 @@
+.zolo-panel-control {
+	.zolo-tab-group {
+		display: flex;
+	}
+	.zolo-tab {
+		flex-direction: column;
+		gap: 10px;
+		height: auto;
+		width: 100%;
+		.zolo-tab-label {
+			margin: 0;
+			padding: 0;
+		}
+	}
+}
