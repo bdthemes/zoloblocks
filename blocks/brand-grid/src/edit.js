@@ -104,10 +104,10 @@ export default function Edit( props ) {
 	 */
 	const desktopAllStyle = `
 		.${ uniqueId }.zb-brand-grid-back{
-			background:${ containerBackgroundColor };			
+			background: ${ containerBackgroundColor };			
 		}
 		.${ uniqueId } .wp-block-zolo-brand-grid{
-			background:${ containerBackgroundColor };
+			background: ${ containerBackgroundColor };
 		}
 		${ presetStyles }		
   	`;
