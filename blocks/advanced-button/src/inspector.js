@@ -9,13 +9,9 @@ import {
 	CardDivider,
 	PanelBody,
 	SelectControl,
-	TabPanel,
 	TextControl,
 	ToggleControl,
 	BaseControl,
-	ButtonGroup,
-	Button,
-	Icon,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment, useState } from '@wordpress/element';
