@@ -19,6 +19,10 @@ export const PRESETS = [
 	{ label: __( 'Style 8', 'zolo-blocks' ), value: 'style-8' },
 ];
 
+// container
+export const CONTAINER_BACKGROUND = 'brandContainerBackground';
+export const CONTAINER_HOVER_BACKGROUND = 'brandHoverContainerBackground';
+
 // title tag
 export const TITLE_TAG = [
 	{

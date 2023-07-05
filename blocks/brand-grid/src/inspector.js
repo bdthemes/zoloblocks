@@ -15,6 +15,7 @@ import { __ } from '@wordpress/i18n';
  */
 const {
 	ColorControl,
+	NormalBGControl,
 	BorderControl,
 	ResDimensionsControl,
 	TabPanelControl,
@@ -34,6 +35,8 @@ import {
 	GRID_COLUMNS,
 	COLUMNS_GAP,
 	ROWS_GAP,
+	CONTAINER_BACKGROUND,
+	CONTAINER_HOVER_BACKGROUND,
 } from './constants';
 
 function Inspector( props ) {
@@ -189,39 +192,27 @@ function Inspector( props ) {
 										<TabPanelControl
 											normalComponents={
 												<>
-													<ColorControl
-														label={ __(
-															'Background Color',
-															'zolo-blocks'
-														) }
-														color={
-															containerBackgroundColor
+													<NormalBGControl
+														resRequiredProps={
+															resRequiredProps
 														}
-														onChange={ ( value ) =>
-															setAttributes( {
-																containerBackgroundColor:
-																	value,
-															} )
+														controlName={
+															CONTAINER_BACKGROUND
 														}
+														noMainBGImg={ false }
 													/>
 												</>
 											}
 											hoverComponents={
 												<>
-													<ColorControl
-														label={ __(
-															'Background Hover Color',
-															'zolo-blocks'
-														) }
-														color={
-															containerBackgroundHoverColor
+													<NormalBGControl
+														resRequiredProps={
+															resRequiredProps
 														}
-														onChange={ ( value ) =>
-															setAttributes( {
-																containerBackgroundHoverColor:
-																	value,
-															} )
+														controlName={
+															CONTAINER_HOVER_BACKGROUND
 														}
+														noMainBGImg={ false }
 													/>
 												</>
 											}

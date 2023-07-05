@@ -1,12 +1,22 @@
-const { generateResRangeAttributies } = window.zoloModule;
+const { generateResRangeAttributies, generateNormalBGAttributes } =
+	window.zoloModule;
 
-import { GRID_COLUMNS, COLUMNS_GAP, ROWS_GAP } from './constants';
+import {
+	GRID_COLUMNS,
+	COLUMNS_GAP,
+	ROWS_GAP,
+	CONTAINER_BACKGROUND,
+} from './constants';
 const attributes = {
 	//Common Attributes
 	uniqueId: {
 		type: 'string',
 	},
-
+	blockStyle: {
+		type: 'object',
+	},
+	// container
+	...generateNormalBGAttributes( CONTAINER_BACKGROUND ),
 	//grid system
 	...generateResRangeAttributies( GRID_COLUMNS, {
 		defaultRange: 3,

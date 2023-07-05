@@ -128,6 +128,7 @@ const attributes = {
 	},
 	brandName: {
 		type: 'string',
+		default: 'Zalando',
 	},
 	brandLabel: {
 		type: 'string',

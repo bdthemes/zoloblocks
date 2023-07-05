@@ -9,9 +9,10 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, softMinifyCssStrings } = window.zoloModule;
+const { handleUniqueId, softMinifyCssStrings, generateNormalBGControlStyles } =
+	window.zoloModule;
 
-import { BLOCK_PREFIX } from './constants';
+import { BLOCK_PREFIX, CONTAINER_BACKGROUND } from './constants';
 
 import Inspector from './inspector';
 
@@ -25,8 +26,6 @@ export default function Edit( props ) {
 		uniqueId,
 		preset,
 		blockStyle,
-		containerBackgroundColor,
-		containerBackgroundHoverColor,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
@@ -43,6 +42,16 @@ export default function Edit( props ) {
 
 	const blockProps = useBlockProps( {
 		className: classnames( className, `` ),
+	} );
+
+	const {
+		backgroundStylesDesktop: containerDeskBGStyle,
+		backgroundStylesTab: containerTabBGStyle,
+		backgroundStylesMobile: containerMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: CONTAINER_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
 	} );
 
 	/**
@@ -104,24 +113,30 @@ export default function Edit( props ) {
 	 */
 	const desktopAllStyle = `
 		.${ uniqueId }.zb-brand-grid-back{
-			background: ${ containerBackgroundColor };			
+			${ containerDeskBGStyle }		
 		}
-		.${ uniqueId } .wp-block-zolo-brand-grid{
-			background: ${ containerBackgroundColor };
+		.${ uniqueId }.zb-brand-grid-front{
+			${ containerDeskBGStyle }
 		}
 		${ presetStyles }		
   	`;
 
 	const tabletAllStyle = `
-		.${ uniqueId }{
-			
+		.${ uniqueId }.zb-brand-grid-back{
+			${ containerTabBGStyle }		
+		}
+		.${ uniqueId }.zb-brand-grid-front{
+			${ containerTabBGStyle }
 		}
 		${ presetStyles }
 	`;
 
 	const mobileAllStyle = `
-		.${ uniqueId }{
-			
+		.${ uniqueId }.zb-brand-grid-back{
+			${ containerMobBGStyle }		
+		}
+		.${ uniqueId }.zb-brand-grid-front{
+			${ containerMobBGStyle }
 		}
 		${ presetStyles }
   	`;
