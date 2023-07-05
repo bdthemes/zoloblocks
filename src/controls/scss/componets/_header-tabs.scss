@@ -1,7 +1,135 @@
 .zolo-panel-control {
 	.zolo-tab-group {
 		display: flex;
+		position: relative;
+		background: #f2f4f5;
+		z-index: 9;
+
+		button {
+			flex-grow: 1;
+			flex-basis: 0;
+			display: inline-flex;
+			flex-direction: column;
+			height: 65px;
+			align-items: center;
+			justify-content: center;
+			border: none;
+			position: relative;
+			// border-radius: 10px;
+			background: #f2f4f5;
+			cursor: pointer;
+
+			&:focus {
+				outline: none;
+			}
+
+			&.active__tab {
+				background: #fff;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+				border-top: 2px solid #f00;
+			}
+			&:first-child {
+				border-bottom-left-radius: 0;
+			}
+			&.active__tab+& {
+				border-bottom-right-radius: 0;
+				border-bottom-left-radius: 10px;
+			}
+			&.active__tab+&+& {
+				border-bottom-left-radius: 0;
+			}
+			
+			&:last-child {
+				border-bottom-right-radius: 0;
+			}
+
+			&:first-child::before,
+			&:first-child::after {
+				left: -1px;
+			}
+
+			&.active__tab::before {
+				border-color: #d6d9dd;
+			}
+
+			&::after,
+			&::before {
+				z-index: 1;
+				content: "";
+				position: absolute;
+				top: 0;
+				left: -0.5px;
+				right: -0.5px;
+				bottom: 50%;
+				border: 1px solid transparent;
+				border-bottom: none;
+				border-top-left-radius: 0;
+				border-top-right-radius: 0;
+				pointer-events: none;
+			}
+
+			&::after {
+				// top: 50%;
+				bottom: 0;
+				border-color: #d6d9dd;
+				border-bottom: 1px solid #d6d9dd;
+				border-top: none;
+				border-radius: 0 0 10px 10px;
+			}
+
+			&:first-child.active__tab::after {
+				border-left-color: #d6d9dd;
+			}
+			
+			&:first-child::after {
+				border-bottom-left-radius: 0;
+				border-left-color: transparent;
+			}
+
+			&.active__tab::after {
+				border-color: transparent;
+			}
+
+			&:last-child::before, 
+			&:last-child::after {
+				right: 0;
+			}
+			&:last-child::after {
+				border-bottom-right-radius: 0;
+				border-right-color: transparent;
+			}
+			
+			&:not(.active__tab)::after {
+				background: #f2f4f5;
+			}
+		}
+
+		button:first-child+button::after {
+			border-bottom-left-radius: 0;
+			border-left-color: transparent;
+		}
+
+		button.active__tab+button+button::after {
+			border-bottom-left-radius: 0;
+			border-left-color: transparent;
+		}
 	}
+
+	.components-button:focus:not(:disabled) {
+		box-shadow: none !important; 
+		outline: none !important; 
+	}
+	.components-button-group .components-button+.components-button {
+		margin-left: 0 !important
+	}
+
+	.components-button-group .components-button:first-child {
+		border-radius: 0 !important;
+	}
+
+
+
 	.zolo-tab {
 		flex-direction: column;
 		gap: 10px;
