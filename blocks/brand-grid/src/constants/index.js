@@ -155,6 +155,7 @@ export const ROWS_GAP = 'rowsGap';
 // Container
 export const CONTAINER_PADDING = 'containerPadding';
 export const CONTAINER_BORDER = 'containerBorder';
+export const CONTAINER_BORDER_HOVER = 'containerBorderHover';
 export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
 export const CONTAINER_BOX_SHADOW_HOVER = 'containerBoxShadowHover';

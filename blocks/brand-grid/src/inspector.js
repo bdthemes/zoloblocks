@@ -30,6 +30,7 @@ import {
 	CONTAINER_BOX_SHADOW,
 	CONTAINER_BOX_SHADOW_HOVER,
 	CONTAINER_BORDER,
+	CONTAINER_BORDER_HOVER,
 	CONTAINER_BORDER_RADIUS,
 	CONTAINER_PADDING,
 	GRID_COLUMNS,
@@ -201,6 +202,43 @@ function Inspector( props ) {
 														}
 														noMainBGImg={ false }
 													/>
+													<BorderControl
+														label={ __(
+															'Border',
+															'zolo-blocks'
+														) }
+														controlName={
+															CONTAINER_BORDER
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+													/>
+													<ResDimensionsControl
+														label={ __(
+															'Border Radius',
+															'zolo-blocks'
+														) }
+														controlName={
+															CONTAINER_BORDER_RADIUS
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+														forBorderRadius={ true }
+													/>
+													<ResDimensionsControl
+														label={ __(
+															'Padding',
+															'zolo-blocks'
+														) }
+														controlName={
+															CONTAINER_PADDING
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+													/>
 													<BoxShadowControl
 														controlName={
 															CONTAINER_BOX_SHADOW
@@ -225,6 +263,18 @@ function Inspector( props ) {
 														}
 														noMainBGImg={ false }
 													/>
+													<BorderControl
+														label={ __(
+															'Border',
+															'zolo-blocks'
+														) }
+														controlName={
+															CONTAINER_BORDER_HOVER
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+													/>
 													<BoxShadowControl
 														controlName={
 															CONTAINER_BOX_SHADOW_HOVER
@@ -237,41 +287,6 @@ function Inspector( props ) {
 														}
 													/>
 												</>
-											}
-										/>
-
-										<BorderControl
-											label={ __(
-												'Border',
-												'zolo-blocks'
-											) }
-											controlName={ CONTAINER_BORDER }
-											resRequiredProps={
-												resRequiredProps
-											}
-										/>
-										<ResDimensionsControl
-											label={ __(
-												'Border Radius',
-												'zolo-blocks'
-											) }
-											controlName={
-												CONTAINER_BORDER_RADIUS
-											}
-											resRequiredProps={
-												resRequiredProps
-											}
-											forBorderRadius={ true }
-										/>
-
-										<ResDimensionsControl
-											label={ __(
-												'Padding',
-												'zolo-blocks'
-											) }
-											controlName={ CONTAINER_PADDING }
-											resRequiredProps={
-												resRequiredProps
 											}
 										/>
 									</PanelBody>

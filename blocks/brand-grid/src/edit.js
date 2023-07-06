@@ -15,6 +15,7 @@ const {
 	generateNormalBGControlStyles,
 	generateDimensionStyle,
 	generateBoxShadowStyles,
+	generateBorderStyle,
 } = window.zoloModule;
 
 import {
@@ -22,6 +23,8 @@ import {
 	CONTAINER_BACKGROUND,
 	CONTAINER_HOVER_BACKGROUND,
 	CONTAINER_BORDER_RADIUS,
+	CONTAINER_BORDER,
+	CONTAINER_BORDER_HOVER,
 	CONTAINER_PADDING,
 	CONTAINER_BOX_SHADOW,
 	CONTAINER_BOX_SHADOW_HOVER,
@@ -75,6 +78,24 @@ export default function Edit( props ) {
 		controlName: CONTAINER_HOVER_BACKGROUND,
 		attributes,
 		noMainBGImg: false,
+	} );
+
+	const {
+		desktopBorderStyle: containerDeskBorderStyle,
+		tabBorderStyle: containerTabBorderStyle,
+		mobBorderStyle: containerMobBorderStyle,
+	} = generateBorderStyle( {
+		controlName: CONTAINER_BORDER,
+		attributes,
+	} );
+
+	const {
+		desktopBorderStyle: containerDeskBorderHoverStyle,
+		tabBorderStyle: containerTabBorderHoverStyle,
+		mobBorderStyle: containerMobBorderHoverStyle,
+	} = generateBorderStyle( {
+		controlName: CONTAINER_BORDER_HOVER,
+		attributes,
 	} );
 
 	const {
@@ -172,12 +193,14 @@ export default function Edit( props ) {
 			${ containerBorderRadiusDesk }		
 			${ containerPaddingDesk }		
 			${ containerBoxShadow }		
+			${ containerDeskBorderStyle }		
 		}
 		.${ uniqueId }.zb-brand-grid-front{
 			${ containerDeskBGStyle }
 			${ containerBorderRadiusDesk }
 			${ containerPaddingDesk }
 			${ containerBoxShadow }
+			${ containerDeskBorderStyle }
 		}
 		.${ uniqueId }.zb-brand-grid-back:hover{
 			${ containerHoverDeskBGStyle }		
