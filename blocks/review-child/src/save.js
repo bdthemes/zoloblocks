@@ -106,8 +106,10 @@ const Save = ({ attributes }) => {
 					</div>
 					{showRating && (
 						<div className="zolo-review-icon">
-							rating goes here
-							{/* <StarRating rating={rating} total={5} /> */}
+							<div
+								className="zolo-rating-child"
+								data-rating={rating}
+							></div>
 						</div>
 					)}
 				</div>

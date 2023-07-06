@@ -219,9 +219,9 @@ module.exports = window["wp"]["element"];
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 !function() {
-/*!***************************************!*\
-  !*** ./blocks/review/src/frontend.js ***!
-  \***************************************/
+/*!*********************************************!*\
+  !*** ./blocks/review-child/src/frontend.js ***!
+  \*********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
@@ -241,7 +241,7 @@ const ReviewFrontend = _ref => {
 
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
-  const reviewItems = document.querySelectorAll('.zolo-rating');
+  const reviewItems = document.querySelectorAll('.zolo-rating-child');
   if (reviewItems.length) {
     reviewItems.forEach(item => {
       const ratingValue = item.dataset.rating;

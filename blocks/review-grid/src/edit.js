@@ -140,6 +140,9 @@ export default function Edit(props) {
 			${reviewGridTabBGStyle}
 			${containerTabMargin}
 			${containerTabPadding}
+			grid-template-columns: repeat(${tabColumns}, 1fr);
+			${tabColumnsGap}
+			${tabRowsGap}
 		}
 	`;
 	const mobileAllStyle = `
@@ -147,6 +150,9 @@ export default function Edit(props) {
 			${reviewGridMobBGStyle}
 			${containerMobMargin}
 			${containerMobPadding}
+			grid-template-columns: repeat(${mobColumns}, 1fr);
+			${mobColumnsGap}
+			${mobRowsGap}
 		}
 	`;
 
@@ -219,13 +225,21 @@ export default function Edit(props) {
 					template={[['zolo/review-child', {}]]}
 					renderAppender={false}
 				/>
-				<div className="appender-btn">
+				<div
+					className="appender-btn"
+					style={{
+						marginTop: '30px',
+					}}
+				>
 					<Button
 						className="components-button"
 						label={__('Add Review', 'zolo-blocks')}
 						icon="insert"
 						variant="primary"
 						onClick={() => appendBlock()}
+						style={{
+							padding: '6px 12px',
+						}}
 					>
 						{__('Add Review', 'zolo-blocks')}
 					</Button>

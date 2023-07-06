@@ -240,13 +240,21 @@ export default function Edit(props) {
 					template={[['zolo/team-child', {}]]}
 					renderAppender={false}
 				/>
-				<div className="appender-btn">
+				<div
+					className="appender-btn"
+					style={{
+						marginTop: '30px',
+					}}
+				>
 					<Button
 						className="components-button"
 						label={__('Add Team Member', 'zolo-blocks')}
 						icon="insert"
 						variant="primary"
 						onClick={() => appendBlock()}
+						style={{
+							padding: '6px 12px',
+						}}
 					>
 						{__('Add Team Member', 'zolo-blocks')}
 					</Button>
