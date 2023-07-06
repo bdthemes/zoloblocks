@@ -27,11 +27,11 @@ import objAttributes from './attributes';
 import {
 	PRESETS,
 	TITLE_TAG,
-	ICON_BOX_SHADOW,
+	CONTAINER_BOX_SHADOW,
+	CONTAINER_BOX_SHADOW_HOVER,
 	CONTAINER_BORDER,
 	CONTAINER_BORDER_RADIUS,
 	CONTAINER_PADDING,
-	ICON_MARGIN,
 	GRID_COLUMNS,
 	COLUMNS_GAP,
 	ROWS_GAP,
@@ -201,6 +201,17 @@ function Inspector( props ) {
 														}
 														noMainBGImg={ false }
 													/>
+													<BoxShadowControl
+														controlName={
+															CONTAINER_BOX_SHADOW
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+														enableTransition={
+															false
+														}
+													/>
 												</>
 											}
 											hoverComponents={
@@ -213,6 +224,17 @@ function Inspector( props ) {
 															CONTAINER_HOVER_BACKGROUND
 														}
 														noMainBGImg={ false }
+													/>
+													<BoxShadowControl
+														controlName={
+															CONTAINER_BOX_SHADOW_HOVER
+														}
+														resRequiredProps={
+															resRequiredProps
+														}
+														enableTransition={
+															false
+														}
 													/>
 												</>
 											}
@@ -251,13 +273,6 @@ function Inspector( props ) {
 											resRequiredProps={
 												resRequiredProps
 											}
-										/>
-										<BoxShadowControl
-											controlName={ ICON_BOX_SHADOW }
-											resRequiredProps={
-												resRequiredProps
-											}
-											enableTransition={ false }
 										/>
 									</PanelBody>
 								</>

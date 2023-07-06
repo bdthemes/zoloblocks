@@ -14,6 +14,7 @@ const {
 	softMinifyCssStrings,
 	generateNormalBGControlStyles,
 	generateDimensionStyle,
+	generateBoxShadowStyles,
 } = window.zoloModule;
 
 import {
@@ -22,6 +23,8 @@ import {
 	CONTAINER_HOVER_BACKGROUND,
 	CONTAINER_BORDER_RADIUS,
 	CONTAINER_PADDING,
+	CONTAINER_BOX_SHADOW,
+	CONTAINER_BOX_SHADOW_HOVER,
 } from './constants';
 
 import Inspector from './inspector';
@@ -94,6 +97,18 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: CONTAINER_BOX_SHADOW,
+	} );
+
+	const { boxShadowStyle: containerBoxShadowHover } = generateBoxShadowStyles(
+		{
+			attributes,
+			controlName: CONTAINER_BOX_SHADOW_HOVER,
+		}
+	);
+
 	/**
 	 * Presets Based Styles
 	 */
@@ -156,17 +171,21 @@ export default function Edit( props ) {
 			${ containerDeskBGStyle }		
 			${ containerBorderRadiusDesk }		
 			${ containerPaddingDesk }		
+			${ containerBoxShadow }		
 		}
 		.${ uniqueId }.zb-brand-grid-front{
 			${ containerDeskBGStyle }
 			${ containerBorderRadiusDesk }
 			${ containerPaddingDesk }
+			${ containerBoxShadow }
 		}
 		.${ uniqueId }.zb-brand-grid-back:hover{
 			${ containerHoverDeskBGStyle }		
+			${ containerBoxShadowHover }		
 		}
 		.${ uniqueId }.zb-brand-grid-front:hover{
 			${ containerHoverDeskBGStyle }
+			${ containerBoxShadowHover }
 		}
 		${ presetStyles }		
   	`;

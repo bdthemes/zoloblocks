@@ -3,6 +3,7 @@ const {
 	generateNormalBGAttributes,
 	generateBorderAttributies,
 	generateDimensionAttributes,
+	generateBoxShadowAttributies,
 } = window.zoloModule;
 
 import {
@@ -14,6 +15,8 @@ import {
 	CONTAINER_BORDER,
 	CONTAINER_BORDER_RADIUS,
 	CONTAINER_PADDING,
+	CONTAINER_BOX_SHADOW,
+	CONTAINER_BOX_SHADOW_HOVER,
 } from './constants';
 const attributes = {
 	//Common Attributes
@@ -29,6 +32,8 @@ const attributes = {
 	...generateBorderAttributies( CONTAINER_BORDER ),
 	...generateDimensionAttributes( CONTAINER_BORDER_RADIUS ),
 	...generateDimensionAttributes( CONTAINER_PADDING ),
+	...generateBoxShadowAttributies( CONTAINER_BOX_SHADOW ),
+	...generateBoxShadowAttributies( CONTAINER_BOX_SHADOW_HOVER ),
 	//grid system
 	...generateResRangeAttributies( GRID_COLUMNS, {
 		defaultRange: 3,
