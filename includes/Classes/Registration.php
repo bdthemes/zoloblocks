@@ -42,9 +42,9 @@ class Registration {
 
                 //Register Frontend Scripts
                 $frontend_script_path = trailingslashit( ZOLO_DIR_PATH ) . 'blocks/' . $block['name'] . '/frontend/index.js';
-                $frontend_script_deps = trailingslashit( ZOLO_DIR_PATH ) . 'blocks/' . $block['name'] . '/frontend/index.assets.php';
+                $frontend_script_deps = trailingslashit( ZOLO_DIR_PATH ) . 'blocks/' . $block['name'] . '/frontend/index.asset.php';
                 if ( file_exists( $frontend_script_path ) ) {
-                    $args = file_exists( $frontend_script_deps ) ? include file_exists( $frontend_script_deps ) : [
+                    $args = file_exists( $frontend_script_deps ) ? include $frontend_script_deps : [
                         'dependencies' => [],
                         'version'      => ZOLO_VERSION
                     ];
