@@ -28,9 +28,9 @@ import {
 	PRESETS,
 	TITLE_TAG,
 	ICON_BOX_SHADOW,
-	ICON_BORDER,
-	ICON_BORDER_RADIUS,
-	ICON_PADDING,
+	CONTAINER_BORDER,
+	CONTAINER_BORDER_RADIUS,
+	CONTAINER_PADDING,
 	ICON_MARGIN,
 	GRID_COLUMNS,
 	COLUMNS_GAP,
@@ -223,7 +223,7 @@ function Inspector( props ) {
 												'Border',
 												'zolo-blocks'
 											) }
-											controlName={ ICON_BORDER }
+											controlName={ CONTAINER_BORDER }
 											resRequiredProps={
 												resRequiredProps
 											}
@@ -233,7 +233,9 @@ function Inspector( props ) {
 												'Border Radius',
 												'zolo-blocks'
 											) }
-											controlName={ ICON_BORDER_RADIUS }
+											controlName={
+												CONTAINER_BORDER_RADIUS
+											}
 											resRequiredProps={
 												resRequiredProps
 											}
@@ -245,7 +247,7 @@ function Inspector( props ) {
 												'Padding',
 												'zolo-blocks'
 											) }
-											controlName={ ICON_PADDING }
+											controlName={ CONTAINER_PADDING }
 											resRequiredProps={
 												resRequiredProps
 											}
@@ -273,17 +275,7 @@ function Inspector( props ) {
 												'Padding',
 												'zolo-blocks'
 											) }
-											controlName={ ICON_PADDING }
-											resRequiredProps={
-												resRequiredProps
-											}
-										/>
-										<ResDimensionsControl
-											label={ __(
-												'Margin',
-												'zolo-blocks'
-											) }
-											controlName={ ICON_MARGIN }
+											controlName={ CONTAINER_PADDING }
 											resRequiredProps={
 												resRequiredProps
 											}

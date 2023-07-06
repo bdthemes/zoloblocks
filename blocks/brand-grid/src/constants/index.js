@@ -160,13 +160,11 @@ export const ICON_HOVER_BG_COLOR = 'iconHover';
 export const ICON_TYPOGRAPHY = 'iconTypography';
 
 // Icon Padding
-export const ICON_PADDING = 'iconPadding';
-// Icon Margin
-export const ICON_MARGIN = 'iconMargin';
+export const CONTAINER_PADDING = 'containerPadding';
 // Icon Alignment
 export const ICON_BOX_ALIGNMENT = 'iconBoxAlignment';
 // Icon Border
-export const ICON_BORDER = 'iconBorder';
+export const CONTAINER_BORDER = 'containerBorder';
 // Icon Box Shadow
 export const ICON_BOX_SHADOW = 'iconBoxShadow';
 // Icon Hover Box Shadow
@@ -176,7 +174,7 @@ export const BUTTON_BOX_SHADOW = 'buttonBoxShadow';
 // Button Hover Box Shadow
 export const BUTTON_HOVER_BOX_SHADOW = 'buttonHoverBoxShadow';
 // Icon Border Radius
-export const ICON_BORDER_RADIUS = 'iconBorderRadius';
+export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
 // Icon Size
 export const ICON_SIZE = 'iconSize';
 // Button Icon Size

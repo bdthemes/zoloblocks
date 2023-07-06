@@ -1,11 +1,19 @@
-const { generateResRangeAttributies, generateNormalBGAttributes } =
-	window.zoloModule;
+const {
+	generateResRangeAttributies,
+	generateNormalBGAttributes,
+	generateBorderAttributies,
+	generateDimensionAttributes,
+} = window.zoloModule;
 
 import {
 	GRID_COLUMNS,
 	COLUMNS_GAP,
 	ROWS_GAP,
 	CONTAINER_BACKGROUND,
+	CONTAINER_HOVER_BACKGROUND,
+	CONTAINER_BORDER,
+	CONTAINER_BORDER_RADIUS,
+	CONTAINER_PADDING,
 } from './constants';
 const attributes = {
 	//Common Attributes
@@ -17,6 +25,10 @@ const attributes = {
 	},
 	// container
 	...generateNormalBGAttributes( CONTAINER_BACKGROUND ),
+	...generateNormalBGAttributes( CONTAINER_HOVER_BACKGROUND ),
+	...generateBorderAttributies( CONTAINER_BORDER ),
+	...generateDimensionAttributes( CONTAINER_BORDER_RADIUS ),
+	...generateDimensionAttributes( CONTAINER_PADDING ),
 	//grid system
 	...generateResRangeAttributies( GRID_COLUMNS, {
 		defaultRange: 3,

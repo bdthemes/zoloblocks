@@ -9,10 +9,20 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, softMinifyCssStrings, generateNormalBGControlStyles } =
-	window.zoloModule;
+const {
+	handleUniqueId,
+	softMinifyCssStrings,
+	generateNormalBGControlStyles,
+	generateDimensionStyle,
+} = window.zoloModule;
 
-import { BLOCK_PREFIX, CONTAINER_BACKGROUND } from './constants';
+import {
+	BLOCK_PREFIX,
+	CONTAINER_BACKGROUND,
+	CONTAINER_HOVER_BACKGROUND,
+	CONTAINER_BORDER_RADIUS,
+	CONTAINER_PADDING,
+} from './constants';
 
 import Inspector from './inspector';
 
@@ -52,6 +62,36 @@ export default function Edit( props ) {
 		controlName: CONTAINER_BACKGROUND,
 		attributes,
 		noMainBGImg: false,
+	} );
+
+	const {
+		backgroundStylesDesktop: containerHoverDeskBGStyle,
+		backgroundStylesTab: containerHoverTabBGStyle,
+		backgroundStylesMobile: containerHoverMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: CONTAINER_HOVER_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
+	} );
+
+	const {
+		dimensionStylesDesktop: containerBorderRadiusDesk,
+		dimensionStylesTab: containerBorderRadiusTab,
+		dimensionStylesMobile: containerBorderRadiusMob,
+	} = generateDimensionStyle( {
+		controlName: CONTAINER_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	} );
+
+	const {
+		dimensionStylesDesktop: containerPaddingDesk,
+		dimensionStylesTab: containerPaddingTab,
+		dimensionStylesMobile: containerPaddingMob,
+	} = generateDimensionStyle( {
+		controlName: CONTAINER_PADDING,
+		styleFor: 'padding',
+		attributes,
 	} );
 
 	/**
@@ -114,9 +154,19 @@ export default function Edit( props ) {
 	const desktopAllStyle = `
 		.${ uniqueId }.zb-brand-grid-back{
 			${ containerDeskBGStyle }		
+			${ containerBorderRadiusDesk }		
+			${ containerPaddingDesk }		
 		}
 		.${ uniqueId }.zb-brand-grid-front{
 			${ containerDeskBGStyle }
+			${ containerBorderRadiusDesk }
+			${ containerPaddingDesk }
+		}
+		.${ uniqueId }.zb-brand-grid-back:hover{
+			${ containerHoverDeskBGStyle }		
+		}
+		.${ uniqueId }.zb-brand-grid-front:hover{
+			${ containerHoverDeskBGStyle }
 		}
 		${ presetStyles }		
   	`;
@@ -124,9 +174,19 @@ export default function Edit( props ) {
 	const tabletAllStyle = `
 		.${ uniqueId }.zb-brand-grid-back{
 			${ containerTabBGStyle }		
+			${ containerBorderRadiusTab }		
+			${ containerPaddingTab }		
 		}
 		.${ uniqueId }.zb-brand-grid-front{
 			${ containerTabBGStyle }
+			${ containerBorderRadiusTab }
+			${ containerPaddingTab }
+		}
+		.${ uniqueId }.zb-brand-grid-back:hover{
+			${ containerHoverTabBGStyle }		
+		}
+		.${ uniqueId }.zb-brand-grid-front:hover{
+			${ containerHoverTabBGStyle }
 		}
 		${ presetStyles }
 	`;
@@ -134,9 +194,19 @@ export default function Edit( props ) {
 	const mobileAllStyle = `
 		.${ uniqueId }.zb-brand-grid-back{
 			${ containerMobBGStyle }		
+			${ containerBorderRadiusMob }		
+			${ containerPaddingMob }		
 		}
 		.${ uniqueId }.zb-brand-grid-front{
 			${ containerMobBGStyle }
+			${ containerBorderRadiusMob }
+			${ containerPaddingMob }
+		}
+		.${ uniqueId }.zb-brand-grid-back:hover{
+			${ containerHoverMobBGStyle }		
+		}
+		.${ uniqueId }.zb-brand-grid-front:hover{
+			${ containerHoverMobBGStyle }
 		}
 		${ presetStyles }
   	`;
