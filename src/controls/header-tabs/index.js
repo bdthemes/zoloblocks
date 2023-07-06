@@ -14,7 +14,7 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab }) => {
 				<Button
 					className={`zolo-tab ${
 						tab === 'general' ? 'active__tab' : ''
-					}`}
+					}${tab === 'style' ? 'prev__tab' : ''}`}
 					onClick={() => setTab('general')}
 				>
 					<svg
@@ -45,6 +45,8 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab }) => {
 				<Button
 					className={`zolo-tab ${
 						tab === 'style' ? 'active__tab' : ''
+					}${tab === 'general' ? 'next__tab' : ''}${
+						tab === 'advanced' ? 'sup_prev__tab' : ''
 					}`}
 					onClick={() => setTab('style')}
 				>
@@ -76,7 +78,7 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab }) => {
 				<Button
 					className={`zolo-tab ${
 						tab === 'advanced' ? 'active__tab' : ''
-					}`}
+					}${tab === 'style' ? 'next__tab' : ''}`}
 					onClick={() => setTab('advanced')}
 				>
 					<svg
