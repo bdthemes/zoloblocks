@@ -14,7 +14,6 @@ import { __ } from '@wordpress/i18n';
  * Internal depencencies
  */
 const {
-	ColorControl,
 	NormalBGControl,
 	BorderControl,
 	ResDimensionsControl,
@@ -42,16 +41,8 @@ import {
 
 function Inspector( props ) {
 	const { attributes, setAttributes } = props;
-	const {
-		uniqueId,
-		preset,
-		heading,
-		resMode,
-		containerBackgroundColor,
-		containerBackgroundHoverColor,
-		showBrandName,
-		showBrandLink,
-	} = attributes;
+	const { uniqueId, preset, heading, resMode, showBrandName, showBrandLink } =
+		attributes;
 
 	const resRequiredProps = {
 		attributes,
@@ -299,18 +290,7 @@ function Inspector( props ) {
 									<PanelBody
 										title={ __( 'Spacing', 'zolo-blocks' ) }
 										initialOpen={ false }
-									>
-										<ResDimensionsControl
-											label={ __(
-												'Padding',
-												'zolo-blocks'
-											) }
-											controlName={ CONTAINER_PADDING }
-											resRequiredProps={
-												resRequiredProps
-											}
-										/>
-									</PanelBody>
+									></PanelBody>
 								</>
 							) }
 						</div>

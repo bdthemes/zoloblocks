@@ -12,8 +12,6 @@ import {
 	TextControl,
 	BaseControl,
 	Button,
-	SelectControl,
-	ToggleControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -38,7 +36,6 @@ const {
 import objAttributes from './attributes';
 import {
 	CONTENT_ALIGNMENT,
-	PRESETS,
 	TITLE_MARGIN,
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
@@ -71,7 +68,6 @@ function Inspector( props ) {
 	const { attributes, setAttributes } = props;
 	const {
 		uniqueId,
-		preset,
 		brandPhoto,
 		brandName,
 		brandLabel,
@@ -276,7 +272,7 @@ function Inspector( props ) {
 									>
 										<ResAlignmentControl
 											label={ __(
-												'Content Alignmet',
+												'Content Alignment',
 												'zolo-blocks'
 											) }
 											controlName={ CONTENT_ALIGNMENT }

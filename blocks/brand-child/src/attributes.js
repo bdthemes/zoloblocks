@@ -32,9 +32,6 @@ import {
 	IMAGE_HEIGHT,
 	IMAGE_WIDTH,
 	CONTAINER_BORDER,
-	GRID_COLUMNS,
-	COLUMNS_GAP,
-	ROWS_GAP,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
@@ -83,18 +80,6 @@ const attributes = {
 	...generateDimensionAttributes( LINK_MARGIN ),
 	...generateTextShadowAttributies( LINK_TEXT_SHADOW ),
 	...generateTextStrokeAttributies( LINK_TEXT_STROKE ),
-
-	//grid system
-	...generateResRangeAttributies( GRID_COLUMNS, {
-		defaultRange: 3,
-		noUnits: true,
-	} ),
-	...generateResRangeAttributies( COLUMNS_GAP, {
-		defaultRange: 30,
-	} ),
-	...generateResRangeAttributies( ROWS_GAP, {
-		defaultRange: 30,
-	} ),
 
 	// image
 	...generateResRangeAttributies( IMAGE_HEIGHT, {

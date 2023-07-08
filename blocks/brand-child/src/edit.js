@@ -47,9 +47,6 @@ import {
 	CONTAINER_HOVER_BOX_SHADOW,
 	CONTAINER_BACKGROUND,
 	CONTAINER_HOVER_BACKGROUND,
-	ROWS_GAP,
-	COLUMNS_GAP,
-	GRID_COLUMNS,
 	IMAGE_HEIGHT,
 	IMAGE_WIDTH,
 } from './constants';
@@ -135,39 +132,6 @@ export default function Edit( props ) {
 	} = generateDimensionStyle( {
 		controlName: CONTAINER_BORDER_RADIUS,
 		styleFor: 'border-radius',
-		attributes,
-	} );
-
-	// Grid Columns
-	const {
-		desktopRangeStyle: deskColumns,
-		tabRangeStyle: tabColumns,
-		mobRangeStyle: mobColumns,
-	} = generateResRangeStyle( {
-		controlName: GRID_COLUMNS,
-		property: 'grid-template-columns',
-		attributes,
-	} );
-
-	// Grid Columns Gap
-	const {
-		desktopRangeStyle: deskColumnsGap,
-		tabRangeStyle: tabColumnsGap,
-		mobRangeStyle: mobColumnsGap,
-	} = generateResRangeStyle( {
-		controlName: COLUMNS_GAP,
-		property: 'column-gap',
-		attributes,
-	} );
-
-	// Grid Rows Gap
-	const {
-		desktopRangeStyle: deskRowsGap,
-		tabRangeStyle: tabRowsGap,
-		mobRangeStyle: mobRowsGap,
-	} = generateResRangeStyle( {
-		controlName: ROWS_GAP,
-		property: 'row-gap',
 		attributes,
 	} );
 
