@@ -5,6 +5,10 @@
 		font-size  : 13px;
 		box-shadow : none;
 	}
+	.components-truncate.components-text {
+		font-size: 13px !important;
+		text-transform: capitalize !important;
+	}
 	.zolo-tab-controls {
 		.components-base-control {
 			input,
