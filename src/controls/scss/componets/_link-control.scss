@@ -1,0 +1,48 @@
+.zb-link-flex {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	.components-base-control,
+	.components-base-control__field {
+		margin-bottom: 0;
+	}
+
+	.components-base-control {
+		flex: 1;
+	}
+
+	.zb-link-extra-btn {
+		padding: 6px;
+		border: 1px solid #b3b3b3;
+		border-radius: 6px;
+		&.zb-extra-active {
+			border-color: #001feb;
+			svg path {
+				stroke: #001feb;
+			}
+		}
+		svg {
+			width: 24px;
+		}
+	}
+
+	.components-text-control__input {
+		height: 36px;
+		border: 1px solid #b3b3b3;
+		border-radius: 6px;
+	}
+}
+
+// link extra popover
+.zb-link-popover {
+	width: 250px;
+	padding: 15px;
+	box-sizing: border-box;
+	.components-flex {
+		flex-direction: row-reverse;
+	}
+	.components-base-control {
+		margin-bottom: 0;
+	}
+}

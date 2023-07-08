@@ -143,8 +143,7 @@ const attributes = {
 		type: 'object',
 		default: {
 			url: '#',
-			opensInNewTab: false,
-			addNoFollow: false,
+			isNewTab: false,
 		},
 	},
 	openInNewTab: {

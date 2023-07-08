@@ -3,7 +3,7 @@
  */
 import {
 	InspectorControls,
-	__experimentalLinkControl as LinkControl,
+	// __experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import {
 	CardDivider,
@@ -31,6 +31,7 @@ const {
 	NormalBGControl,
 	BoxShadowControl,
 	IconPicker,
+	LinkControl,
 } = window.zoloModule;
 
 import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
@@ -98,6 +99,8 @@ function Inspector(props) {
 		objAttributes,
 	};
 
+	console.log('attribute:', link);
+
 	return (
 		<InspectorControls key="controls">
 			<HeaderTabs
@@ -126,36 +129,23 @@ function Inspector(props) {
 						</PanelBody>
 						<PanelBody
 							title={__('Content', 'zolo-blocks')}
-							initialOpen={false}
+							initialOpen={true}
 						>
 							<TextControl
-								label={__('Label', 'zolo-blocks')}
+								label={__('Button Text', 'zolo-blocks')}
 								onChange={(value) =>
 									setAttributes({ label: value })
 								}
 								value={label}
-								placeholder={__('label', 'zolo-blocks')}
+								placeholder={__('add text..', 'zolo-blocks')}
 							/>
-							<BaseControl label={__('Link', 'zolo-blocks')}>
-								<LinkControl
-									searchInputPlaceholder="Search here..."
-									value={link}
-									settings={[
-										{
-											id: 'opensInNewTab',
-											title: __(
-												'Open in new tab',
-												'zolo-blocks'
-											),
-										},
-									]}
-									onChange={(data) =>
-										setAttributes({
-											link: data,
-										})
-									}
-								/>
-							</BaseControl>
+							<LinkControl
+								label={__('Button URL', 'zolo-blocks')}
+								value={link}
+								onChange={(value) =>
+									setAttributes({ link: value })
+								}
+							/>
 						</PanelBody>
 						<PanelBody
 							title={__('Icon', 'zolo-blocks')}
