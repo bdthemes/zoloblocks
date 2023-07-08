@@ -1,4 +1,5 @@
 @import "./utils/variables";
+@import "./componets/header-tabs";
 @import "./componets/res-range-control";
 @import "./componets/res-device-btn";
 @import "./componets/unit-btn";
@@ -13,8 +14,8 @@
 @import "./componets/tabpanel-control";
 @import "./componets/star-rating";
 @import "./componets/editor-common";
-@import './componets/sortable-reapter';
-@import './componets/border-control';
+@import "./componets/sortable-reapter";
+@import "./componets/border-control";
 
 // blocks editor style
 @import "./blocks/social-icon";

@@ -13,7 +13,7 @@ const {
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import { BLOCK_PREFIX } from './constants';
 
-const Save = ( { attributes } ) => {
+const Save = ({ attributes }) => {
 	const {
 		uniqueId,
 		preset,
@@ -30,36 +30,41 @@ const Save = ( { attributes } ) => {
 	} = attributes;
 
 	let linkRel = link && link.opensInNewTab ? 'noopener noreferrer' : '';
-	const rel = link && link.addNoFollow ? `${ linkRel } nofollow` : linkRel;
+	const rel = link && link.addNoFollow ? `${linkRel} nofollow` : linkRel;
 	return (
-		<div { ...useBlockProps.save() }>
+		<div {...useBlockProps.save()}>
 			<div
-				class={ `zolo-advanced-social-share zolo-advanced-social-${ preset } ${ uniqueId } ${ BLOCK_PREFIX } ` }
+				class={`zolo-advanced-social-share zolo-advanced-social-${preset} ${uniqueId} ${BLOCK_PREFIX} `}
 			>
-				{ socialProfiles &&
-					socialProfiles.map( ( profile, index ) => {
-						let socialName = Object.keys( profile.icon )[ 0 ];
+				{socialProfiles &&
+					socialProfiles.map((profile, index) => {
+						let socialName = Object.keys(profile.icon)[0];
 						return (
 							<a
-								href={ profile.link }
-								key={ index }
-								target={ socialProfilesLinkTarget && '_blank' }
-								className={ `zolo-social-item zolo-${ socialName }` }
+								href={profile.link}
+								key={index}
+								target={socialProfilesLinkTarget && '_blank'}
+								rel={
+									socialProfilesLinkTarget
+										? 'noopener noreferrer'
+										: 'noopener'
+								}
+								className={`zolo-social-item zolo-${socialName}`}
 							>
-								{ ( socialText == 'icon' ||
-									socialText == 'icontext' ) && (
+								{(socialText == 'icon' ||
+									socialText == 'icontext') && (
 									<span className="zolo-social-icon">
-										<DisplayIcon icon={ profile.icon } />
+										<DisplayIcon icon={profile.icon} />
 									</span>
-								) }
-								{ socialText != 'icon' && (
+								)}
+								{socialText != 'icon' && (
 									<span className="zolo-social-text">
-										{ profile.text }
+										{profile.text}
 									</span>
-								) }
+								)}
 							</a>
 						);
-					} ) }
+					})}
 			</div>
 		</div>
 	);
