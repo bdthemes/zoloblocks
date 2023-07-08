@@ -1,149 +1,57 @@
-.zolo-parent-tab-panel {
-	.components-tab-panel__tabs {
-		justify-content: space-between;
-		.zolo-tab.active-tab {
-			color: #001FEB;
-			border-top-left-radius: 10px;
-			border-top-right-radius: 10px;
-			border: 1px solid #ddd !important;
-			border-bottom: 1px solid #fff !important;
-		}
+.zolo-panel-control {
+	.components-button {
+		color      : #050505;
+		font-weight: 400;
+		font-size  : 13px;
+		box-shadow : none;
 	}
-
-	.components-tab-panel__tabs-item {
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		position: relative;
-		height: 40px;
-		line-height: 50px;
-		border-bottom: 1px solid #ddd;
-		&::before {
-			font-size: 20px;
-			color: #f41313;
-			top: 0;
-			left: 50%;
-			transform: translateX(-50%);
-			position: absolute;
-		}
-		&.settings {
-			&::before {
-				content: '\f522';
-			}
-		}
-		&.design {
-			&::before {
-				content: '\f522';
-			}
-		}
-		&.advanced {
-			&::before {
-				content: '\f522';
-			}
-		}
+	.components-truncate.components-text {
+		font-size: 13px !important;
+		text-transform: capitalize !important;
 	}
-
-
-	.block-editor-link-control {
-		min-width: auto;
-	}
-	.block-editor-url-input {
-		margin: 0 0 16px;
-	}
-	.block-editor-link-control__search-item.is-current,
-	.block-editor-link-control__tools {
-		padding: 16px 5px;
-	}
-	.components-button.has-icon {
-		width: 20px;
-		min-width: auto;
-		padding: 0px;
-	}
-	.zb-bg-control-img-btn {
-		width: 100% !important;
-		display: flex;
-		align-items: center !important;
-		justify-content: center !important;
-		min-height: 160px;
-		border: 1px solid #ddd;
-		border-radius: 3px;
-		flex-direction: column;
-		&:hover {
-			cursor: crosshair;
-		}
-		.dashicon {
-			margin-bottom: 5px;
-		}
-	}
-
-	.zb-res-device-btns {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		.res-btn.active {
-			color: #001FEB !important;
-		}
-		.res-btn {
-			width: 25px;
-			height: 25px;
-			line-height: 25px;
-			margin: 0;
-			background-color: #EBEBF5;
-		}
-		.res-btn-label {
-			margin: 0;
-		}
-	}
-
-	.zb-unit-control-btn-group {
-		.zb-unit-control-btn.zb-unit-active {
-			color: #001FEB!important;
-		}
-	}
-
-	.zb-dimension-container {
-		margin: 0 0 20px;
-	}
-
-	.input-container {
-		gap: 5px;
-		.input-wrap {
-				input {
-					border-left-width: 1px;
-					min-height: 40px;
-					border-radius: 4px;
-					&:nth-child(1) {
-						border-radius: 4px;
-					}
+	.zolo-tab-controls {
+		.components-base-control {
+			input,
+			select {
+				height       : 40px !important;
+				border       : 1px solid #ddd;
+				outline      : none !important;
+				border-radius: 6px;
+				padding      : 0 12px;
+				&:focus {
+					border-color: #001FEB;
+					box-shadow  : none !important;
 				}
+			}
+		}
+		.components-input-control__backdrop {
+			border    : none !important;
+			box-shadow: none !important;
 		}
 	}
-
-	.components-form-toggle.is-checked {
-		.components-form-toggle__track {
-			background-color: #001FEB;
-		}
-	} 
-
-	.components-form-toggle .components-form-toggle__input:focus+.components-form-toggle__track {
-        box-shadow: none;
-	}
-
-	.components-form-toggle .components-form-toggle__track {
-		background-color: #D8D8E5;
-		border: none;
-	}
-
-	.components-form-toggle .components-form-toggle__thumb {
-		background-color: #fff;
-		border: 5px solid #fff;
-	}
-
-	.components-flex.components-h-stack {
-		height: auto !important;
-	}
-
 
 }
 
+.components-form-toggle.is-checked {
+	.components-form-toggle__track {
+		background-color: #001FEB;
+	}
+} 
+
+.components-form-toggle .components-form-toggle__input:focus+.components-form-toggle__track {
+	box-shadow: none;
+}
+
+.components-form-toggle .components-form-toggle__track {
+	background-color: #D8D8E5;
+	border          : none;
+}
+
+.components-form-toggle .components-form-toggle__thumb {
+	background-color: #fff;
+	border          : 5px solid #fff;
+}
+
+.components-flex.components-h-stack {
+	height: auto !important;
+}
