@@ -5,8 +5,10 @@
 		font-size  : 13px;
 		box-shadow : none;
 	}
-	.components-truncate.components-text {
+	.components-base-control__label,
+	.components-input-control__label {
 		font-size: 13px !important;
+		font-weight: 400 !important;
 		text-transform: capitalize !important;
 	}
 	.zolo-tab-controls {
@@ -30,6 +32,21 @@
 		}
 	}
 
+	.components-range-control__root {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
+
+	.components-range-control__track {
+		background: #230aed;
+	}
+	.components-range-control__thumb-wrapper {
+		background: #230aed;
+		span {
+			background: #230aed;
+		}
+	}
 }
 
 .components-form-toggle.is-checked {
