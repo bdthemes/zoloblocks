@@ -99,8 +99,6 @@ function Inspector(props) {
 		objAttributes,
 	};
 
-	console.log('attribute:', link);
-
 	return (
 		<InspectorControls key="controls">
 			<HeaderTabs
