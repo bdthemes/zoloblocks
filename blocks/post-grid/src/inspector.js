@@ -5,24 +5,47 @@ import {
   PanelBody,
   SelectControl,
   TabPanel,
+  TextControl,
+  ToggleControl
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import {
+  PRESETS,
+  GRID_COLUMNS,
+  COLUMNS_GAP,
+  THUMBNAIL_HEIGHT,
   CONTAINER_MARGIN,
   CONTAINER_PADDING,
-  PRESETS,
 } from './constants';
+
+import {
+  HEADING,
+  THUMBNAIL_SIZE
+} from '../../../src/global/constants';
 
 const {
   ResDimensionsControl,
-  QueryControl
+  QueryControl,
+  ResRangeControl,
+  RangeResetControl
 } = window.zoloModule;
 
 function Inspector({ attributes, setAttributes }) {
   const {
     preset,
     resMode,
+    showThumbnail,
+    thumbnailSize,
+    showTitle,
+    titleTag,
+    showExcerpt,
+    excerptindicator,
+    showReadMore,
+    readMoreBtnText,
+    showCategory,
+    showAuthor,
+    showMeta
   } = attributes;
 
   const resRequiredProps = {
@@ -93,20 +116,113 @@ function Inspector({ attributes, setAttributes }) {
                     />
                   </PanelBody>
 
-                  <PanelBody
-                    title={__('Layout Style', 'zolo-blocks')}
-                    initialOpen={false}
-                  >
+                  <PanelBody title={__('Layout Style', 'zolo-blocks')} initialOpen={false}>
                     <SelectControl
-                      label={__(
-                        'Preset Designs',
-                        'zolo-blocks'
-                      )}
+                      label={__('Preset Designs', 'zolo-blocks')}
                       value={preset}
                       options={PRESETS}
                       onChange={(selected) =>
                         changePremade(selected)
                       }
+                    />
+                    <ResRangeControl
+                      label={__('Columns', 'zolo-blocks')}
+                      controlName={GRID_COLUMNS}
+                      resRequiredProps={resRequiredProps}
+                      max={4}
+                      min={1}
+                      step={1}
+                      noUnits={true}
+                    />
+                    <ResRangeControl
+                      label={__('Columns Gap', 'zolo-blocks')}
+                      controlName={COLUMNS_GAP}
+                      resRequiredProps={resRequiredProps}
+                    />
+
+                    <ToggleControl
+                      label={__('Show Thumbnail', 'zolo-blocks')}
+                      checked={showThumbnail}
+                      onChange={(showThumbnail) => setAttributes({ showThumbnail })}
+                    />
+                    <ResRangeControl
+                      label={__('Thumbnail Height', 'zolo-blocks')}
+                      controlName={THUMBNAIL_HEIGHT}
+                      resRequiredProps={resRequiredProps}
+                    />
+                    <SelectControl
+                      label={__('Thumbnail Image Size', 'zolo-blocks')}
+                      value={thumbnailSize}
+                      options={THUMBNAIL_SIZE}
+                      onChange={(selected) => changePremade(selected)}
+                    />
+
+                    <ToggleControl
+                      label={__('Show Title', 'zolo-blocks')}
+                      checked={showTitle}
+                      onChange={(showTitle) => setAttributes({ showTitle })}
+                    />
+                    <SelectControl
+                      label={__('Title Tag', 'zolo-blocks')}
+                      value={titleTag}
+                      options={HEADING}
+                      onChange={(titleTag) => setAttributes({ titleTag })}
+                    />
+                    <RangeResetControl
+                      label={__('Title Words', 'zolo-blocks')}
+                      controlName={'titleWords'}
+                      resRequiredProps={resRequiredProps}
+                      min={1}
+                      max={100}
+                      step={1}
+                    />
+
+                    <ToggleControl
+                      label={__('Show Excerpt', 'zolo-blocks')}
+                      checked={showExcerpt}
+                      onChange={(showExcerpt) => setAttributes({ showExcerpt })}
+                    />
+                    <RangeResetControl
+                      label={__('Excerpt Words', 'zolo-blocks')}
+                      controlName={'excerptWords'}
+                      resRequiredProps={resRequiredProps}
+                      min={1}
+                      max={100}
+                      step={1}
+                    />
+                    <TextControl
+                      label={__(' Expansion Indicator', 'zolo-blocks')}
+                      value={excerptindicator}
+                      onChange={(excerptindicator) => setAttributes({ excerptindicator })}
+                    />
+
+                    <ToggleControl
+                      label={__('Show Read More Button', 'zolo-blocks')}
+                      checked={showReadMore}
+                      onChange={(showReadMore) => setAttributes({ showReadMore })}
+                    />
+                    {showReadMore && (
+                      <TextControl
+                        label={__('Button Text', 'zolo-blocks')}
+                        value={readMoreBtnText}
+                        onChange={(readMoreBtnText) => setAttributes({ readMoreBtnText })}
+                      />
+                    )}
+
+                    <ToggleControl
+                      label={__('Show Category', 'zolo-blocks')}
+                      checked={showCategory}
+                      onChange={(showCategory) => setAttributes({ showCategory })}
+                    />
+                    <ToggleControl
+                      label={__('Show Author', 'zolo-blocks')}
+                      checked={showAuthor}
+                      onChange={(showAuthor) => setAttributes({ showAuthor })}
+                    />
+                    <ToggleControl
+                      label={__('Show Meta', 'zolo-blocks')}
+                      checked={showMeta}
+                      onChange={(showMeta) => setAttributes({ showMeta })}
                     />
 
                   </PanelBody>

@@ -1,77 +1,111 @@
+import { __ } from '@wordpress/i18n';
 const {
   DynamicTag,
 } = window.zoloModule;
 function RenderView({ attributes, setAttributes, postResults }) {
-  const { titleTag } = attributes;
+
+  const {
+    preset,
+    showThumbnail,
+    showTitle,
+    titleWords,
+    titleTag,
+    showExcerpt,
+    excerptWords,
+    excerptindicator,
+    showReadMore,
+    readMoreBtnText,
+    showCategory,
+    showAuthor,
+    showMeta
+  } = attributes;
+  console.log(postResults);
   return [
     postResults.length > 0 && (
       postResults.map((post) => {
+
+        const titleLimitWords = titleWords > 0 ? post.title.trim().split(' ', titleWords).join(' ') : post.title;
+        const excerptLimitWords = excerptWords > 0 ? post.excerpt.trim().split(' ', excerptWords).join(' ') : post.excerpt;
+
+        const categoriesHtml = post.categories.length > 0 ? (
+          <ul className="zolo-post-category">{post.categories.map((item) => (
+            <li dangerouslySetInnerHTML={{ __html: item }} />
+          ))}</ul>) : "";
+
+        const avatar = <a dangerouslySetInnerHTML={{ __html: post.avatar }} />
+        const author = <div className="zolo-post-meta-content"
+          dangerouslySetInnerHTML={{ __html: __('<span>posted by</span>') + (post.author_link) }}
+        />
+        const date = <div className="zolo-post-date">{post.date}</div>
+        const readingTime = <div cclassName="zolo-post-estimate">{post.reading_time}</div>
+
+        const authorInfoHtml = <div className="zolo-post-meta-box">{avatar}{author}</div>
+        const dateRTimeHtml = <div className="zolo-post-secount-dateTime">{date}<span>,</span>{readingTime}</div>
+
 
         return (
           <div className="zolo-post-item">
 
             <div className="zolo-post-image">
-              <a href="#">
-                <img className="zolo-img" src="blog-2.jpg" alt="" />
-              </a>
+              {showThumbnail && (<>
+                {post.thumbnail && (
+                  <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>
+                )}
+                {!post.thumbnail && (
+                  <a href={post.permalink}>
+                    <img src="https://via.placeholder.com/380x440.png" alt="No Image Available" />
+                  </a>
+                )}
+              </>)}
 
-              <div className="zolo-post-secount-dateTime">
-                <div className="zolo-post-date">August 5, 2020</div>
-                <span>,</span>
-                <span className="zolo-post-estimate">9 min read</span>
-              </div>
+              {(showMeta && preset == 'style-5') && (
+                dateRTimeHtml
+              )}
 
-              <div className="zolo-post-meta-box">
-                <a href="#">
-                  <img src="https://lh3.googleusercontent.com/a/AEdFTp4UHZDwTB1QD7TYOXe6x2_IadB8aAeSEj3U7vLg=s288-p-rw-no" alt="" />
-                </a>
-                <div className="zolo-post-meta-content">
-                  <span>posted by</span>
-                  <a href="#">muhammad asik</a>
-                </div>
-              </div>
-
+              {showAuthor && (
+                authorInfoHtml
+              )}
             </div>
+
 
             <div className="zolo-post-content">
+              {(showMeta && preset != 'style-5') && (
+                dateRTimeHtml
+              )}
 
-              <div className="zolo-post-dateTime">
-                <div className="zolo-post-date">August 5, 2020</div>
-                <span>,</span>
-                <span className="zolo-post-estimate">9 min read</span>
-              </div>
+              {showTitle && (
+                <DynamicTag tagName={titleTag} className="zolo-post-title">
+                  <a href={post.permalink}>{titleLimitWords}</a>
+                </DynamicTag>
+              )}
 
-              <DynamicTag tagName={titleTag} className="zolo-post-title">
-                <a href={post.permalink}>{post.title}</a>
-              </DynamicTag>
+              {showExcerpt && (
+                <div className="zolo-post-desc">
+                  <p>{excerptLimitWords}{excerptindicator}</p>
+                </div>
+              )}
 
-              <div className="zolo-post-desc">
-                <p>Using a Query A CSS pseudo-class is a keyword.</p>
-              </div>
-
-              <div className="zolo-post-category">
-                <a href="#">digital</a>
-                <a href="#">marketing</a>
-              </div>
-
+              {showCategory && (
+                categoriesHtml
+              )}
             </div>
 
-            <div className="zolo-post-link-btn">
-              <a href="#">
-                <span>read more</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
-                </svg>
-              </a>
-            </div>
+            {showReadMore && (
+              <div className="zolo-post-link-btn">
+                <a href={post.permalink}>
+                  {__(readMoreBtnText)}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                  </svg>
+                </a>
+              </div>
+            )}
 
           </div>
         )
-
       })
     )
   ]
-
 }
 
 export default RenderView;

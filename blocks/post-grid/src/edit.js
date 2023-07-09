@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 import {
   useBlockProps
 } from '@wordpress/block-editor';
@@ -6,7 +7,7 @@ import apiFetch from "@wordpress/api-fetch";
 import { Spinner } from '@wordpress/components';
 import classnames from 'classnames';
 import {
-  BLOCK_PREFIX
+  BLOCK_PREFIX,
 } from './constants';
 import Inspector from './inspector';
 import styles from './styles';

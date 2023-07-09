@@ -22,37 +22,37 @@ export const TEXT_ALIGN = [
 ];
 
 export const TEXT_ALIGN_OPTIONS = [
-	{
-		label: 'Left',
-		value: 'left',
-	},
-	{
-		label: 'Center',
-		value: 'center',
-	},
-	{
-		label: 'Right',
-		value: 'right',
-	},
-	{
-		label: 'Justify',
-		value: 'justify',
-	},
+  {
+    label: 'Left',
+    value: 'left',
+  },
+  {
+    label: 'Center',
+    value: 'center',
+  },
+  {
+    label: 'Right',
+    value: 'right',
+  },
+  {
+    label: 'Justify',
+    value: 'justify',
+  },
 ];
 
 export const FLEX_ALIGN_OPTIONS = [
-	{
-		label: 'Top',
-		value: 'flex-start',
-	},
-	{
-		label: 'Center',
-		value: 'center',
-	},
-	{
-		label: 'Bottom',
-		value: 'flex-end',
-	},
+  {
+    label: 'Top',
+    value: 'flex-start',
+  },
+  {
+    label: 'Center',
+    value: 'center',
+  },
+  {
+    label: 'Bottom',
+    value: 'flex-end',
+  },
 ];
 
 export const HEADING = [
@@ -109,3 +109,10 @@ export const PRINT_TAXONOMY = (taxonomy) => {
   }
   return allTax;
 }
+export const THUMBNAIL_SIZE = [
+  { label: __('Default', 'zolo-blocks'), value: '' },
+  { label: __('Thumbnail', 'zolo-blocks'), value: 'thumbnail' },
+  { label: __('Medium', 'zolo-blocks'), value: 'medium' },
+  { label: __('Large', 'zolo-blocks'), value: 'large' },
+  { label: __('Full', 'zolo-blocks'), value: 'full' },
+];

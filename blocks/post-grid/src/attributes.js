@@ -11,6 +11,9 @@ const {
 } = window.zoloModule;
 
 import {
+  GRID_COLUMNS,
+  COLUMNS_GAP,
+  THUMBNAIL_HEIGHT,
   CONTAINER_MARGIN,
   CONTAINER_PADDING
 } from './constants';
@@ -35,12 +38,6 @@ const attributes = {
     default: 'style-1',
   },
 
-  titleTag: {
-    type: 'string',
-    default: 'h2',
-  },
-
-
   showPagination: {
     type: 'boolean',
     default: false
@@ -60,12 +57,73 @@ const attributes = {
     type: 'object'
   },
 
-  ...generateDimensionAttributes(CONTAINER_MARGIN),
-  ...generateDimensionAttributes(CONTAINER_PADDING),
+  //layout
   preset: {
     type: 'string',
     default: 'style-1',
   },
+  ...generateResRangeAttributies(GRID_COLUMNS, {
+    defaultRange: 3,
+    noUnits: true,
+  }),
+  ...generateResRangeAttributies(COLUMNS_GAP, {
+    defaultRange: 30,
+  }),
+  showThumbnail: {
+    type: 'boolean',
+    default: true,
+  },
+  thumbnailSize: {
+    type: 'boolean',
+  },
+  ...generateResRangeAttributies(THUMBNAIL_HEIGHT, {
+    defaultRange: 200,
+  }),
+  showTitle: {
+    type: 'boolean',
+    default: true,
+  },
+  titleTag: {
+    type: 'string',
+    default: 'h2',
+  },
+  titleWords: {
+    type: 'number',
+  },
+  showExcerpt: {
+    type: 'boolean',
+    default: true,
+  },
+  excerptWords: {
+    type: 'number',
+    default: 15
+  },
+  excerptindicator: {
+    type: 'string',
+    default: '...',
+  },
+  showReadMore: {
+    type: 'boolean',
+    default: true,
+  },
+  readMoreBtnText: {
+    type: 'string',
+    default: 'Button Text',
+  },
+  showCategory: {
+    type: 'boolean',
+    default: true,
+  },
+  showAuthor: {
+    type: 'boolean',
+    default: true,
+  },
+  showMeta: {
+    type: 'boolean',
+    default: true,
+  },
+  ...generateDimensionAttributes(CONTAINER_MARGIN),
+  ...generateDimensionAttributes(CONTAINER_PADDING),
 
 };
 

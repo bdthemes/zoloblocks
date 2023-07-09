@@ -115,18 +115,29 @@ class GetPostsV1
 
             while ($loop->have_posts()) {
                 $loop->the_post();
-
-                $post = [];
                 $post_id  = get_the_ID();
 
+                // $category_terms_list = get_the_terms($post_id, 'category');
+                // $tag_terms_list      = get_the_terms($post_id, 'post_tag');
+                // $category_terms      = wp_list_pluck($category_terms_list, 'name');
+                // $tag_terms           = wp_list_pluck($tag_terms_list, 'name');
+
+                $content  = get_post_field('post_content', get_the_ID());
+
+                $post = [];
                 $post['id']               = $post_id;
                 $post['title']            = get_the_title();
                 $post["thumbnail"]        = get_the_post_thumbnail($post_id);
                 $post['permalink']        = get_permalink();
                 $post['excerpt']          = strip_tags(get_the_content());
                 $post['excerpt_full']     = strip_tags(get_the_excerpt());
-                $post['time']             = get_the_date();
-
+                $post['date']             = get_the_date();
+                $post['reading_time']     = self::content_reading_time($content);
+                $post['categories']       = self::zolo_get_terms($post_id, 'category');
+                $post['tags']             = self::zolo_get_terms($post_id, 'post_tag');
+                $post["author"]           = get_the_author();
+                $post["author_link"]      = get_the_author_link();
+                $post["avatar"]           = get_avatar(get_the_author(), 50, '', 'avatar');
 
                 $results[] = $post;
             }
@@ -138,5 +149,36 @@ class GetPostsV1
             "total_page" => $loop->max_num_pages,
             'posts' => $results
         ];
+    }
+
+    public static function zolo_get_terms($post_id, $taxnomy_name)
+    {
+        $terms = [];
+        $taxTerms = wp_get_object_terms($post_id, $taxnomy_name);
+        if (!empty($taxTerms)) {
+            foreach ($taxTerms as $taxTerm) {
+                $terms[] = sprintf('<a  href="%s">%s</a>', get_term_link($taxTerm), $taxTerm->name);
+            }
+        }
+        return $terms;
+    }
+
+    public static function content_reading_time($content)
+    {
+        // Set the average reading speed in words per minute
+        $reading_speed = 200;
+
+        // Calculate the word count of the content
+        $word_count = str_word_count(strip_tags($content));
+
+        // Calculate the reading time in minutes
+        $reading_time = round($word_count / $reading_speed);
+
+        // Set a minimum reading time of 1 minute
+        if ($reading_time < 1) {
+            $reading_time = 1;
+        }
+
+        return $reading_time;
     }
 }
