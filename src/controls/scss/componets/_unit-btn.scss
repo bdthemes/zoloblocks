@@ -4,30 +4,25 @@
 	top: 0;
 	display: flex;
 	align-items: center;
+	gap: 8px;
 }
 
 .zb-units-switchers {
 	position: relative;
-	width: 24px;
-	height: 24px;
+	width: 26px;
+	height: 26px;
 }
 
 .zb-units-switchers-wrap {
-	position: absolute;
-	width: 100%;
-	top: 1px;
-	color: #e0e1e3;
-	z-index: 44;
+    background: #E1E0E0;
+    border-radius: 2px;
+    z-index: 11;
+    position: relative;
 }
 
 .zb-unit-switchers-open {
-	.zb-units-switchers-wrap {
-		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
-		background: #ffffff;
-		border-radius: 2px;
-	}
 	.zb-unit-switcher {
-		height: 24px;
+		height: 26px;
 		transform: scale(1);
 		opacity: 1;
 		position: relative;
@@ -39,7 +34,7 @@
 }
 
 .zb-unit-switcher {
-	color: gray;
+	color: #121212 !important;
 	display: inline-flex;
 	text-align: center;
 	width: 100%;
@@ -52,13 +47,14 @@
 	transform: scale(0);
 	opacity: 0;
 	transition: 0.15s;
-	font-size: 12px;
+	font-size: 11px !important;
+	line-height: 0;
 	&.active {
-		height: 24px;
+		height: 26px;
 		transform: scale(1);
 		opacity: 1;
-		color: #0066ff !important;
-		background: #eee;
+		color: #230aed !important;
+		background: #E1E0E0;
 		border-radius: 50% !important;
 	}
 }

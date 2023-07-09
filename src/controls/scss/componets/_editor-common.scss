@@ -38,11 +38,16 @@
 		gap: 15px;
 	}
 
+	.e1epgpqk10,
+	.components-range-control__track {
+		height: 2px;
+	}
 	.components-range-control__track {
 		background: #230aed;
 	}
 	.components-range-control__thumb-wrapper {
 		background: #230aed;
+		margin-top: 8px !important;
 		span {
 			background: #230aed;
 		}
