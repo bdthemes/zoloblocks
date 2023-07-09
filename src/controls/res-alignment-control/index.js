@@ -1,5 +1,5 @@
 import { Button, ButtonGroup } from '@wordpress/components';
-import WithResDeviceBtn from './res-device-btn';
+import WithResDeviceBtn from '../with-res-device-btn';
 
 const ResAlignmentControl = ({
 	label,
