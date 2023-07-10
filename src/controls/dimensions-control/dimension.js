@@ -1,10 +1,7 @@
 import { useEffect, useState } from '@wordpress/element';
-import {
-	onDesktopBtnClick,
-	onMobileBtnClick,
-	onTabletBtnClick,
-} from '../../helpers/preview-btns-helper';
 import { prefix } from '../../global/constants';
+
+import WithResDeviceBtn from '../with-res-device-btn';
 
 const DimensionControl = ({
 	top,
@@ -21,6 +18,7 @@ const DimensionControl = ({
 		dimensionIsLinked,
 		forBorderRadius,
 		controlName,
+		isLinked,
 	} = neededProps;
 
 	const [dimensions, setDimensions] = useState({
@@ -29,8 +27,6 @@ const DimensionControl = ({
 		bottom,
 		left,
 	});
-
-	const [isLinked, setIsLinked] = useState(dimensionIsLinked);
 
 	const onInputChange = (e) => {
 		const { name, value } = e.target;
@@ -43,14 +39,10 @@ const DimensionControl = ({
 			});
 		} else {
 			setDimensions({
-                ...dimensions,
+				...dimensions,
 				[name]: value,
 			});
 		}
-	};
-
-	const onButtonClick = () => {
-		setIsLinked(!isLinked);
 	};
 
 	useEffect(() => {
@@ -65,7 +57,63 @@ const DimensionControl = ({
 
 	return (
 		<div className="zb-dimension-container">
-			<div className="zb-res-device-btns">
+			<WithResDeviceBtn
+				label={label}
+				resRequiredProps={neededProps}
+				controlName={controlName}
+				noRestBtn={true}
+			>
+				<div className="input-container">
+					<div className="input-wrap">
+						<input
+							type="number"
+							name="top"
+							value={dimensions.top}
+							onChange={onInputChange}
+						/>
+						<label className="input-label">
+							{forBorderRadius ? ' ' : 'Top'}
+						</label>
+					</div>
+
+					<div className="input-wrap">
+						<input
+							type="number"
+							name="right"
+							value={dimensions.right}
+							onChange={onInputChange}
+						/>
+						<label className="input-label">
+							{forBorderRadius ? ' ' : 'Right'}
+						</label>
+					</div>
+
+					<div className="input-wrap">
+						<input
+							type="number"
+							name="bottom"
+							value={dimensions.bottom}
+							onChange={onInputChange}
+						/>
+						<label className="input-label">
+							{forBorderRadius ? ' ' : 'Bottom'}
+						</label>
+					</div>
+
+					<div className="input-wrap">
+						<input
+							type="number"
+							name="left"
+							value={dimensions.left}
+							onChange={onInputChange}
+						/>
+						<label className="input-label">
+							{forBorderRadius ? ' ' : 'Left'}
+						</label>
+					</div>
+				</div>
+			</WithResDeviceBtn>
+			{/* <div className="zb-res-device-btns">
 				<span className="res-btn-label">{label}</span>
 				<span
 					className={`res-btn dashicons dashicons-desktop ${
@@ -87,66 +135,7 @@ const DimensionControl = ({
 					}`}
 					onClick={() => onMobileBtnClick({ setAttributes })}
 				></span>
-			</div>
-
-			<div className="input-container">
-				<div className="input-wrap">
-					<input
-						type="number"
-						name="top"
-						value={dimensions.top}
-						onChange={onInputChange}
-					/>
-					<label className="input-label">
-						{forBorderRadius ? ' ' : 'Top'}
-					</label>
-				</div>
-
-				<div className="input-wrap">
-					<input
-						type="number"
-						name="right"
-						value={dimensions.right}
-						onChange={onInputChange}
-					/>
-					<label className="input-label">
-						{forBorderRadius ? ' ' : 'Right'}
-					</label>
-				</div>
-
-				<div className="input-wrap">
-					<input
-						type="number"
-						name="bottom"
-						value={dimensions.bottom}
-						onChange={onInputChange}
-					/>
-					<label className="input-label">
-						{forBorderRadius ? ' ' : 'Bottom'}
-					</label>
-				</div>
-
-				<div className="input-wrap">
-					<input
-						type="number"
-						name="left"
-						value={dimensions.left}
-						onChange={onInputChange}
-					/>
-					<label className="input-label">
-						{forBorderRadius ? ' ' : 'Left'}
-					</label>
-				</div>
-
-				<button
-					className={`zb-linked-btn components-button is-button dashicons dashicons-${
-						isLinked
-							? 'admin-links is-primary'
-							: 'editor-unlink is-default'
-					}`}
-					onClick={onButtonClick}
-				/>
-			</div>
+			</div> */}
 		</div>
 	);
 };

@@ -422,8 +422,8 @@ export default function Edit(props) {
 			background: ${iconHoverBg ? iconHoverBg : ''};
 			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''};
 		}
-		${presetStyles}
-		${presetHoverStyles}
+		${presetStyles ? presetStyles : ''}
+		${presetHoverStyles ? presetHoverStyles : ''}
   	`;
 	const tabletAllStyle = `
 		.wp-block-zolo-advanced-button {
