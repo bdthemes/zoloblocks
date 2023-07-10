@@ -1,9 +1,9 @@
 .zolo-panel-control {
 	.components-button {
-		color      : #050505;
+		color: #050505;
 		font-weight: 400;
-		font-size  : 13px;
-		box-shadow : none;
+		font-size: 13px;
+		box-shadow: none;
 	}
 	.components-base-control__label,
 	.components-input-control__label {
@@ -15,19 +15,19 @@
 		.components-base-control {
 			input,
 			select {
-				height       : 40px !important;
-				border       : 1px solid #ddd;
-				outline      : none !important;
+				height: 40px !important;
+				border: 1px solid #ddd;
+				outline: none !important;
 				border-radius: 6px;
-				padding      : 0 12px;
+				padding: 0 12px;
 				&:focus {
-					border-color: #001FEB;
-					box-shadow  : none !important;
+					border-color: #001feb;
+					box-shadow: none !important;
 				}
 			}
 		}
 		.components-input-control__backdrop {
-			border    : none !important;
+			border: none !important;
 			box-shadow: none !important;
 		}
 	}
@@ -38,37 +38,44 @@
 		gap: 15px;
 	}
 
+	.e1epgpqk10,
+	.components-range-control__track {
+		height: 2px;
+	}
 	.components-range-control__track {
 		background: #230aed;
 	}
 	.components-range-control__thumb-wrapper {
 		background: #230aed;
+		margin-top: 8px !important;
 		span {
 			background: #230aed;
 		}
 	}
-}
 
-.components-form-toggle.is-checked {
-	.components-form-toggle__track {
-		background-color: #001FEB;
+	.components-form-toggle.is-checked {
+		.components-form-toggle__track {
+			background-color: #001feb;
+		}
 	}
-} 
 
-.components-form-toggle .components-form-toggle__input:focus+.components-form-toggle__track {
-	box-shadow: none;
-}
+	.components-form-toggle
+		.components-form-toggle__input:focus
+		+ .components-form-toggle__track {
+		box-shadow: none;
+	}
 
-.components-form-toggle .components-form-toggle__track {
-	background-color: #D8D8E5;
-	border          : none;
-}
+	.components-form-toggle .components-form-toggle__track {
+		background-color: #d8d8e5;
+		border: none;
+	}
 
-.components-form-toggle .components-form-toggle__thumb {
-	background-color: #fff;
-	border          : 5px solid #fff;
-}
+	.components-form-toggle .components-form-toggle__thumb {
+		background-color: #fff;
+		border: 5px solid #fff;
+	}
 
-.components-flex.components-h-stack {
-	height: auto !important;
+	.components-flex.components-h-stack {
+		height: auto !important;
+	}
 }

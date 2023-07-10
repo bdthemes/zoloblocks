@@ -3,9 +3,8 @@ import UnitBtn from '../unit-btn';
 // import WithResDeviceBtn from './res-device-btn';
 
 import WithResDeviceBtn from '../with-res-device-btn';
-
 import UnitsBtn from '../units-btn';
-
+import ResetBtn from '../reset-btn';
 import { prefix } from '../../global/constants';
 
 const ResRangeControl = ({
@@ -45,23 +44,38 @@ const ResRangeControl = ({
 			{noUnits ? (
 				<>
 					{resMode == 'Desktop' && (
-						<WithResDeviceBtn
-							label={label}
-							resRequiredProps={resRequiredProps}
-							controlName={controlName}
-						>
-							<RangeControl
-								value={desktopRange}
-								onChange={(val) =>
-									setAttributes({
-										[`${prefix}${controlName}Range`]: val,
-									})
-								}
-								min={min || 0}
-								max={max || 100}
-								step={step || 1}
-							/>
-						</WithResDeviceBtn>
+						<>
+							<div className="zb-units-wrapper">
+								<ResetBtn
+									onReset={() => {
+										setAttributes({
+											[`${prefix}${controlName}Range`]:
+												'',
+										});
+									}}
+								/>
+							</div>
+
+							<WithResDeviceBtn
+								label={label}
+								resRequiredProps={resRequiredProps}
+								controlName={controlName}
+								noRestBtn={true}
+							>
+								<RangeControl
+									value={desktopRange}
+									onChange={(val) =>
+										setAttributes({
+											[`${prefix}${controlName}Range`]:
+												val,
+										})
+									}
+									min={min || 0}
+									max={max || 100}
+									step={step || 1}
+								/>
+							</WithResDeviceBtn>
+						</>
 					)}
 
 					{resMode == 'Tablet' && (
@@ -120,10 +134,8 @@ const ResRangeControl = ({
 									})
 								}
 							>
-								<Button
-									className="zb-rest-btn"
-									icon="image-rotate"
-									onClick={() => {
+								<ResetBtn
+									onReset={() => {
 										setAttributes({
 											[`${prefix}${controlName}Range`]:
 												'',
@@ -166,10 +178,8 @@ const ResRangeControl = ({
 									})
 								}
 							>
-								<Button
-									className="zb-rest-btn"
-									icon="image-rotate"
-									onClick={() => {
+								<ResetBtn
+									onReset={() => {
 										setAttributes({
 											[`${prefix}TAB${controlName}Range`]:
 												'',
@@ -210,10 +220,8 @@ const ResRangeControl = ({
 									})
 								}
 							>
-								<Button
-									className="zb-rest-btn"
-									icon="image-rotate"
-									onClick={() => {
+								<ResetBtn
+									onReset={() => {
 										setAttributes({
 											[`${prefix}MOB${controlName}Range`]:
 												'',

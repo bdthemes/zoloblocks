@@ -1,46 +1,21 @@
-import useClickOutside from './use-click-outside';
-
+/**
+ * WordPress dependencies
+ */
 import { useState, useRef, useCallback } from '@wordpress/element';
-import { dispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
-import { ButtonGroup, Button } from '@wordpress/components';
+import { Button } from '@wordpress/components';
+
+/**
+ * Internal dependencies
+ */
+import useClickOutside from './use-click-outside';
 
 const UnitsBtn = ({ selectedUnit = 'px', unitTypes, onClick, children }) => {
 	const [switcherIsOpen, setSwitcherIsOpen] = useState(false);
 	const unitsRef = useRef();
 	const closeUnits = useCallback(() => setSwitcherIsOpen(false), []);
 
-	// const onClickHandler = (_device) => {
-	// 	setAttributes({ resMode: _device });
-	// 	setDevice(_device);
-	// 	dispatch('core/edit-post').__experimentalSetPreviewDeviceType(_device);
-	// 	setSwitcherIsOpen(() => !switcherIsOpen);
-	// };
-
 	useClickOutside(unitsRef, closeUnits);
-
-	// const onReset = () => {
-	// 	resMode == 'Desktop'
-	// 		? setAttributes({
-	// 				[`${controlName}ZRPAlign`]:
-	// 					objAttributes[`${controlName}ZRPAlign`].default,
-	// 		  })
-	// 		: '';
-
-	// 	resMode == 'Tablet'
-	// 		? setAttributes({
-	// 				[`TAB${controlName}ZRPAlign`]:
-	// 					objAttributes[`TAB${controlName}ZRPAlign`].default,
-	// 		  })
-	// 		: '';
-
-	// 	resMode == 'Mobile'
-	// 		? setAttributes({
-	// 				[`MOB${controlName}ZRPAlign`]:
-	// 					objAttributes[`MOB${controlName}ZRPAlign`].default,
-	// 		  })
-	// 		: '';
-	// };
 
 	return (
 		<div className={`zb-units-wrapper`}>
