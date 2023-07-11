@@ -1,6 +1,11 @@
 .zolo-panel-control {
+
+	.zb-typography-control-wrapper {
+		margin-bottom: 12px !important;
+	}
+
 	.components-button {
-		color: #050505;
+		color: #000;
 		font-weight: 400;
 		font-size: 13px;
 		box-shadow: none;
@@ -19,7 +24,7 @@
 				border: 1px solid #ddd;
 				outline: none !important;
 				border-radius: 6px;
-				padding: 0 12px;
+				padding: 0 12px !important;
 				&:focus {
 					border-color: #001feb;
 					box-shadow: none !important;
