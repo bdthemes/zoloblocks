@@ -4,7 +4,7 @@
 	top: 0;
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 5px;
 }
 
 .zb-units-switchers {
@@ -14,7 +14,7 @@
 }
 
 .zb-units-switchers-wrap {
-	background: #e1e0e0;
+	background: #EEE;
 	border-radius: 2px;
 	z-index: 11;
 	position: relative;
@@ -46,15 +46,16 @@
 	height: 0;
 	transform: scale(0);
 	opacity: 0;
-	transition: 0.15s;
+	transition: all .3s;
 	font-size: 11px !important;
 	line-height: 0;
+	height: 26px;
 	&.active {
-		height: 26px;
+		
 		transform: scale(1);
 		opacity: 1;
 		color: #230aed !important;
-		background: #e1e0e0;
+		background: #EEE;
 		border-radius: 50% !important;
 	}
 }
