@@ -60,7 +60,7 @@ const ResRangeControl = ({
 								label={label}
 								resRequiredProps={resRequiredProps}
 								controlName={controlName}
-								noRestBtn={true}
+								noResetBtn={true}
 							>
 								<RangeControl
 									value={desktopRange}
@@ -148,7 +148,7 @@ const ResRangeControl = ({
 								label={label}
 								resRequiredProps={resRequiredProps}
 								controlName={controlName}
-								noRestBtn={true}
+								noResetBtn={true}
 							>
 								<RangeControl
 									value={desktopRange}

@@ -1,6 +1,4 @@
-export const generateBoxShadowAttributies = (controlName, defaults = {}) => {
-	const { enableTransition = false } = defaults;
-
+export const generateBoxShadowAttributies = (controlName) => {
 	const shdAttrs = {
 		// shadow attributes  ⬇
 		[`${controlName}hOffset`]: {
@@ -18,25 +16,19 @@ export const generateBoxShadowAttributies = (controlName, defaults = {}) => {
 		[`${controlName}shadowColor`]: {
 			type: 'string',
 		},
-		[`${controlName}inset`]: {
-			type: 'boolean',
-			default: false,
+		[`${controlName}shadowType`]: {
+			type: 'string',
+			default: 'none',
+		},
+		[`${controlName}shadowUnit`]: {
+			type: 'string',
+			default: 'px',
 		},
 	};
 
-	if (enableTransition) {
-		return {
-			...shdAttrs,
-		};
-	} else {
-		return {
-			...shdAttrs,
-			[`${controlName}shadowTransition`]: {
-				type: 'number',
-				default: 0.5,
-			},
-		};
-	}
+	return {
+		...shdAttrs,
+	};
 };
 
 export const generateBoxShadowStyles = ({ controlName, attributes }) => {
@@ -46,23 +38,20 @@ export const generateBoxShadowStyles = ({ controlName, attributes }) => {
 		[`${controlName}vOffset`]: vOffset = 0,
 		[`${controlName}blur`]: blur = 0,
 		[`${controlName}spread`]: spread = 0,
-		[`${controlName}inset`]: inset,
-		[`${controlName}shadowTransition`]: shadowTransition,
+		[`${controlName}shadowType`]: type = 'none',
+		[`${controlName}shadowUnit`]: unit = 'px',
 	} = attributes;
 
 	const boxShadowStyle = `${
 		shadowColor
-			? `box-shadow: ${shadowColor} ${hOffset}px ${vOffset}px ${blur}px ${spread}px ${
-					inset ? 'inset' : ''
+			? `box-shadow: ${shadowColor} ${hOffset}${unit} ${vOffset}${unit} ${blur}${unit} ${spread}${unit} ${
+					type === 'inset' ? 'inset' : ''
 			  };`
 			: ' '
 	}
 	`;
 
-	const transitionStyle = `box-shadow ${shadowTransition || 0}s `;
-
 	return {
 		boxShadowStyle,
-		transitionStyle,
 	};
 };

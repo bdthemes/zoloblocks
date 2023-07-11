@@ -9,7 +9,7 @@ const WithResDeviceBtn = ({
 	resRequiredProps,
 	children,
 	controlName,
-	noRestBtn = false,
+	noResetBtn = false,
 }) => {
 	const { resMode, objAttributes, setAttributes } = resRequiredProps;
 	const [switcherIsOpen, setSwitcherIsOpen] = useState(false);
@@ -54,45 +54,49 @@ const WithResDeviceBtn = ({
 			<div className="zb-label-header">
 				<div className="zb-device-label-area">
 					{label && <span className="res-btn-label">{label}</span>}
-					<div
-						ref={devicesRef}
-						className={`zb-device-switchers active-${device} ${
-							switcherIsOpen ? 'zb-device-switchers-open' : ''
-						} `}
-						onClick={() => setSwitcherIsOpen(() => !switcherIsOpen)}
-					>
-						<div className="zb-device-switchers-wrap">
-							<a
-								className={`zb-device-switcher zb-device-switcher-desktop ${
-									device === 'Desktop' ? 'active' : ''
-								}`}
-								onClick={() => onClickHandler('Desktop')}
-								data-tooltip={__('Desktop')}
-							>
-								<i className="dashicons dashicons-desktop" />
-							</a>
-							<a
-								className={`zb-device-switcher zb-device-switcher-laptop ${
-									device === 'Tablet' ? 'active' : ''
-								}`}
-								onClick={() => onClickHandler('Tablet')}
-								data-tooltip={__('Tablet')}
-							>
-								<i className="dashicons dashicons-tablet" />
-							</a>
-							<a
-								className={`zb-device-switcher zb-device-switcher-tablet ${
-									device === 'Mobile' ? 'active' : ' '
-								}`}
-								onClick={() => onClickHandler('Mobile')}
-								data-tooltip={__('Mobile')}
-							>
-								<i className="dashicons dashicons-smartphone" />
-							</a>
+					{!noResetBtn && (
+						<div
+							ref={devicesRef}
+							className={`zb-device-switchers active-${device} ${
+								switcherIsOpen ? 'zb-device-switchers-open' : ''
+							} `}
+							onClick={() =>
+								setSwitcherIsOpen(() => !switcherIsOpen)
+							}
+						>
+							<div className="zb-device-switchers-wrap">
+								<a
+									className={`zb-device-switcher zb-device-switcher-desktop ${
+										device === 'Desktop' ? 'active' : ''
+									}`}
+									onClick={() => onClickHandler('Desktop')}
+									data-tooltip={__('Desktop')}
+								>
+									<i className="dashicons dashicons-desktop" />
+								</a>
+								<a
+									className={`zb-device-switcher zb-device-switcher-laptop ${
+										device === 'Tablet' ? 'active' : ''
+									}`}
+									onClick={() => onClickHandler('Tablet')}
+									data-tooltip={__('Tablet')}
+								>
+									<i className="dashicons dashicons-tablet" />
+								</a>
+								<a
+									className={`zb-device-switcher zb-device-switcher-tablet ${
+										device === 'Mobile' ? 'active' : ' '
+									}`}
+									onClick={() => onClickHandler('Mobile')}
+									data-tooltip={__('Mobile')}
+								>
+									<i className="dashicons dashicons-smartphone" />
+								</a>
+							</div>
 						</div>
-					</div>
+					)}
 				</div>
-				{!noRestBtn && (
+				{!noResetBtn && (
 					<div className="zb-reset-btn">
 						<button className="zb-reset-button" onClick={onReset}>
 							<svg
