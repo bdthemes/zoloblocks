@@ -1,13 +1,14 @@
 .zb-reset-button,
 .zb-rest-btn,
 .zb-linked-btn  {
-	height: 26px;
-	width: 26px;
+	height: 26px !important;
+	width: 26px !important;
 	background-color: #EEE;
 	border-radius: 50%;
 	border: 0;
-	cursor: pointer;
+	cursor: pointer !important;
 	min-width: auto !important;
+	opacity: 1 !important;
 	.dashicon {
 		color: #000;
 		font-size: 12px;
