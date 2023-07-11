@@ -6,6 +6,7 @@ import {
 	Tooltip,
 } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
+import ResetBtn from '../reset-btn';
 
 const colorBallStyles = {
 	padding: 2,
@@ -65,7 +66,6 @@ const ColorControl = ({ label, defaultColor, color, onChange }) => {
 						/>
 					)}
 				/>
-
 				<Button
 					isSmall
 					className="zb-reset-button"

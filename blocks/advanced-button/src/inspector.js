@@ -108,6 +108,10 @@ function Inspector(props) {
 							title={__('General', 'zolo-blocks')}
 							initialOpen={true}
 						>
+							<BoxShadowControl
+								controlName={BUTTON_BOX_SHADOW}
+								resRequiredProps={resRequiredProps}
+							/>
 							<SelectControl
 								label={__('Preset Designs', 'zolo-blocks')}
 								value={preset}
@@ -543,13 +547,11 @@ function Inspector(props) {
 										<BoxShadowControl
 											controlName={ICON_BOX_SHADOW}
 											resRequiredProps={resRequiredProps}
-											enableTransition={false}
 										/>
 										<CardDivider />
 										<BoxShadowControl
 											controlName={BUTTON_BOX_SHADOW}
 											resRequiredProps={resRequiredProps}
-											enableTransition={false}
 										/>
 									</>
 								}
@@ -611,7 +613,6 @@ function Inspector(props) {
 										<BoxShadowControl
 											controlName={ICON_HOVER_BOX_SHADOW}
 											resRequiredProps={resRequiredProps}
-											enableTransition={false}
 										/>
 										<CardDivider />
 										<ColorControl

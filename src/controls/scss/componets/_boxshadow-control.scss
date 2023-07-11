@@ -1,56 +1,59 @@
-.zb-boxshadow-control-wrap {
-	.components-base-control__field {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+.zolo-box-shadow {
+	position: relative;
+	margin-bottom: 24px;
+	.color-ball-btn {
+		background: none;
+		border: none;
+		box-shadow: none;
+		cursor: pointer;
+		margin: 0;
+		padding: 0;
+		height: auto;
+		.component-color-indicator.color-ball {
+			background-image: linear-gradient(45deg, #ddd 25%, transparent 0),
+				linear-gradient(-45deg, #ddd 25%, transparent 0),
+				linear-gradient(45deg, transparent 75%, #ddd 0),
+				linear-gradient(-45deg, transparent 75%, #ddd 0);
+			background-position: 0 0, 0 5px, 5px -5px, -5px 0;
+			background-size: 10px 10px;
+			border-radius: 50%;
+			border: none !important;
+		}
 	}
-}
 
-//dropdown content
-.zb-boxshadow-content-wrap {
-	background-color: #f7f7f7;
+	.shadow-style-btn-group {
+		display: flex;
+		align-items: stretch;
+		background: #e0e0e0;
+		margin: 8px 0;
 
-	.components-base-control__field {
-		.components-button-group {
-			display: flex;
-
-			.components-button {
-				align-items: center;
-				display: flex;
-				flex: 1;
-				justify-content: center;
-				padding-bottom: 6px;
-				padding-top: 6px;
+		.shadow-style-btn {
+			width: 100%;
+			justify-content: center;
+			margin: 2px;
+			border-radius: 4px;
+			&.active {
+				background: #fff;
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+				border-radius: 4px;
 			}
 		}
 	}
 
-	.zb-control-container {
+	.zolo-box-shadow-options {
 		display: flex;
-		align-items: flex-start;
-
-		.components-range-control {
-			flex: 1;
-			margin-bottom: 8px;
+		align-items: stretch;
+		justify-content: space-between;
+		gap: 5px;
+		.single-shadow-input {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			gap: 5px;
+			align-items: center;
+			.components-number-control {
+				margin: 0;
+			}
 		}
-
-		.zb-reset-button {
-			background: transparent;
-			border: none;
-			box-shadow: none;
-			cursor: pointer;
-			height: 26px;
-			margin-left: 2px;
-			margin-top: 20px;
-			outline: none;
-			padding: 0;
-			width: 20px;
-		}
-	}
-
-	.components-base-control__label {
-		font-size: 13px;
-		text-transform: capitalize !important;
-		color: $control_primary_color;
 	}
 }

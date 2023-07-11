@@ -87,3 +87,18 @@ export const BACKGROUND_TYPES = [
 		icon: 'art',
 	},
 ];
+
+export const BOX_SHADOW_TYPES = [
+	{
+		label: __('None', 'zolo-blocks'),
+		value: 'none',
+	},
+	{
+		label: __('Inner', 'zolo-blocks'),
+		value: 'inset',
+	},
+	{
+		label: __('Outer', 'zolo-blocks'),
+		value: 'outset',
+	},
+];

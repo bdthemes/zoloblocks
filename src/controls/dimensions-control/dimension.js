@@ -61,7 +61,7 @@ const DimensionControl = ({
 				label={label}
 				resRequiredProps={neededProps}
 				controlName={controlName}
-				noRestBtn={true}
+				noResetBtn={true}
 			>
 				<div className="input-container">
 					<div className="input-wrap">
