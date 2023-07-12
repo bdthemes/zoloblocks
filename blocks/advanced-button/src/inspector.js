@@ -108,10 +108,6 @@ function Inspector(props) {
 							title={__('General', 'zolo-blocks')}
 							initialOpen={true}
 						>
-							<BoxShadowControl
-								controlName={BUTTON_BOX_SHADOW}
-								resRequiredProps={resRequiredProps}
-							/>
 							<SelectControl
 								label={__('Preset Designs', 'zolo-blocks')}
 								value={preset}
@@ -131,7 +127,7 @@ function Inspector(props) {
 						</PanelBody>
 						<PanelBody
 							title={__('Content', 'zolo-blocks')}
-							initialOpen={true}
+							initialOpen={false}
 						>
 							<TextControl
 								label={__('Button Text', 'zolo-blocks')}
@@ -545,6 +541,10 @@ function Inspector(props) {
 											}
 										/>
 										<BoxShadowControl
+											label={__(
+												'Icon Box Shadow',
+												'zolo-blocks'
+											)}
 											controlName={ICON_BOX_SHADOW}
 											resRequiredProps={resRequiredProps}
 										/>

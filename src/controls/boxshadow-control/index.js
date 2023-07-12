@@ -164,6 +164,7 @@ const BoxShadowControl = ({ label = '', controlName, resRequiredProps }) => {
 										})
 									}
 									value={blur}
+									min={0}
 								/>
 								<div className="input-label">
 									{__('Blur', 'zolo-blocks')}
@@ -178,6 +179,7 @@ const BoxShadowControl = ({ label = '', controlName, resRequiredProps }) => {
 										})
 									}
 									value={spread}
+									min={0}
 								/>
 								<div className="input-label">
 									{__('Spread', 'zolo-blocks')}
