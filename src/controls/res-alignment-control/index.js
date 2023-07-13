@@ -1,12 +1,13 @@
-import { Button, ButtonGroup } from '@wordpress/components';
 import WithResDeviceBtn from '../with-res-device-btn';
+import IconicBtnGroup from '../iconic-btn-group';
+
+import { DEFAULT_ALIGNS } from '../../global/constants';
 
 const ResAlignmentControl = ({
 	label,
 	controlName,
 	resRequiredProps,
 	alignOptions,
-	alignText,
 }) => {
 	const { attributes, setAttributes, resMode } = resRequiredProps;
 
@@ -19,11 +20,7 @@ const ResAlignmentControl = ({
 	const defaultAlign =
 		alignOptions && Array.isArray(alignOptions)
 			? alignOptions
-			: [
-					{ label: 'Left', value: 'left' },
-					{ label: 'Center', value: 'center' },
-					{ label: 'Right', value: 'right' },
-			  ];
+			: DEFAULT_ALIGNS;
 	return (
 		<div className="zb-res-alignment-control-wrapper">
 			{resMode == 'Desktop' && (
@@ -32,42 +29,15 @@ const ResAlignmentControl = ({
 					resRequiredProps={resRequiredProps}
 					controlName={controlName}
 				>
-					<ButtonGroup className="zb-align-control-btn-group">
-						{defaultAlign.map((alignItem, index) => {
-							return (
-								<Button
-									onClick={() =>
-										setAttributes({
-											[`${controlName}ZRPAlign`]:
-												alignItem.value,
-										})
-									}
-									className={`rb-button ${
-										desktopAlignment == alignItem.value
-											? 'active'
-											: ''
-									}`}
-									variant={
-										desktopAlignment === alignItem.value
-											? 'primary'
-											: 'secondary'
-									}
-								>
-									{alignText ? (
-										<span>{alignItem.label}</span>
-									) : (
-										<span
-											className={`dashicon dashicons dashicons-editor-${
-												alignItem.value == 'justify'
-													? alignItem.value
-													: 'align' + alignItem.value
-											}`}
-										></span>
-									)}
-								</Button>
-							);
-						})}
-					</ButtonGroup>
+					<IconicBtnGroup
+						onChange={(newAlign) => {
+							setAttributes({
+								[`${controlName}ZRPAlign`]: newAlign,
+							});
+						}}
+						value={desktopAlignment}
+						options={defaultAlign}
+					/>
 				</WithResDeviceBtn>
 			)}
 
@@ -77,42 +47,15 @@ const ResAlignmentControl = ({
 					resRequiredProps={resRequiredProps}
 					controlName={controlName}
 				>
-					<ButtonGroup className="zb-align-control-btn-group">
-						{defaultAlign.map((alignItem, index) => {
-							return (
-								<Button
-									onClick={() =>
-										setAttributes({
-											[`TAB${controlName}ZRPAlign`]:
-												alignItem.value,
-										})
-									}
-									className={`rb-button ${
-										tabletAlignment == alignItem.value
-											? 'active'
-											: ''
-									}`}
-									variant={
-										tabletAlignment === alignItem.value
-											? 'primary'
-											: 'secondary'
-									}
-								>
-									{alignText ? (
-										<span>{alignItem.label}</span>
-									) : (
-										<span
-											className={`dashicon dashicons dashicons-editor-${
-												alignItem.value == 'justify'
-													? alignItem.value
-													: 'align' + alignItem.value
-											}`}
-										></span>
-									)}
-								</Button>
-							);
-						})}
-					</ButtonGroup>
+					<IconicBtnGroup
+						onChange={(newAlign) => {
+							setAttributes({
+								[`TAB${controlName}ZRPAlign`]: newAlign,
+							});
+						}}
+						value={tabletAlignment}
+						options={defaultAlign}
+					/>
 				</WithResDeviceBtn>
 			)}
 
@@ -122,44 +65,15 @@ const ResAlignmentControl = ({
 					resRequiredProps={resRequiredProps}
 					controlName={controlName}
 				>
-					<ButtonGroup className="zb-align-control-btn-group">
-						{defaultAlign.map((alignItem, index) => {
-							return (
-								<Button
-									onClick={() =>
-										setAttributes({
-											[`MOB${controlName}ZRPAlign`]:
-												alignItem.value,
-										})
-									}
-									className={`rb-button ${
-										mobileAlignment == alignItem.value
-											? 'active'
-											: ''
-									}`}
-									variant={
-										mobileAlignment === alignItem.value
-											? 'primary'
-											: 'secondary'
-									}
-								>
-									{alignText ? (
-										<span className="align-text">
-											{alignItem.label}
-										</span>
-									) : (
-										<span
-											className={`align-icon dashicon dashicons dashicons-editor-${
-												alignItem.value == 'justify'
-													? alignItem.value
-													: 'align' + alignItem.value
-											}`}
-										></span>
-									)}
-								</Button>
-							);
-						})}
-					</ButtonGroup>
+					<IconicBtnGroup
+						onChange={(newAlign) => {
+							setAttributes({
+								[`MOB${controlName}ZRPAlign`]: newAlign,
+							});
+						}}
+						value={mobileAlignment}
+						options={defaultAlign}
+					/>
 				</WithResDeviceBtn>
 			)}
 		</div>

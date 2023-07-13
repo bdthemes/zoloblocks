@@ -32,9 +32,10 @@ const {
 	BoxShadowControl,
 	IconPicker,
 	LinkControl,
+	IconicBtnGroup,
 } = window.zoloModule;
 
-import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
+import { TEXT_ALIGN_OPTIONS, POSITIONS } from '../../../src/global/constants';
 
 import objAttributes from './attributes';
 import {
@@ -169,16 +170,18 @@ function Inspector(props) {
 										}
 										showHeading={true}
 									/>
-									<SelectControl
+
+									<IconicBtnGroup
 										label={__('Position', 'zolo-blocks')}
-										options={ICON_POSITIONS}
-										onChange={(position) => {
-											setAttributes({
-												iconPosition: position,
-											});
-										}}
 										value={iconPosition}
+										onChange={(value) =>
+											setAttributes({
+												iconPosition: value,
+											})
+										}
+										options={POSITIONS}
 									/>
+
 									<ResRangeControl
 										label={__('Icon Size', 'zolo-blocks')}
 										controlName={ICON_SIZE}

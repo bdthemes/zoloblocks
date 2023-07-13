@@ -1,0 +1,33 @@
+/**
+ * WordPress dependencies
+ */
+import { ButtonGroup, Button } from '@wordpress/components';
+
+const IconicBtnGroup = ({ label = '', value, onChange, options }) => {
+	return (
+		<div className="zolo-iconic-btn-group">
+			{label && (
+				<label htmlFor="iconic-btn-group" className="iconic-btn-label">
+					{label}
+				</label>
+			)}
+			<ButtonGroup className="zb-iconic-btn-group">
+				{options &&
+					options.map((option, index) => {
+						return (
+							<Button
+								onClick={() => onChange(option.value)}
+								className={`iconic-btn ${
+									value == option.value ? 'active' : ''
+								}`}
+							>
+								{option.icon ? option.icon : icon.label}
+							</Button>
+						);
+					})}
+			</ButtonGroup>
+		</div>
+	);
+};
+
+export default IconicBtnGroup;
