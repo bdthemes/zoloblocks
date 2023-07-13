@@ -1,0 +1,31 @@
+.zolo-iconic-btn-group {
+	.zb-iconic-btn-group {
+		display: flex;
+		width: 100%;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+	}
+
+	.iconic-btn svg {
+		width: 100%;
+		height: 100%;
+	}
+
+	.iconic-btn-label {
+		margin-bottom: 8px;
+		display: block;
+	}
+
+	.iconic-btn {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.iconic-btn.active {
+		background: #000;
+	}
+
+	.iconic-btn.active svg path {
+		fill: #fff !important;
+	}
+}

@@ -24,25 +24,6 @@ export const PRESETS = [
 	{ label: __('Preset 14', 'zolo-blocks'), value: 'button-14' },
 ];
 
-// button icon positions
-export const ICON_POSITIONS = [
-	{
-		label: 'Left',
-		value: 'left',
-	},
-	{
-		label: 'Right',
-		value: 'right',
-	},
-	{
-		label: 'Top',
-		value: 'top',
-	},
-	{
-		label: 'Bottom',
-		value: 'bottom',
-	},
-];
 /**
  * Button
  */
