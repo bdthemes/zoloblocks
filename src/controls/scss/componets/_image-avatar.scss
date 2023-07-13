@@ -1,8 +1,18 @@
 .zb-image-avatar-control {
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 200px;
-	margin-bottom: 8px;
-	padding: 2px;
-	width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 130px;
+    margin-bottom: 16px;
+    padding: 2px;
+    width: 100%;
+    border-radius: 6px;
+    background-position: center;
+}
+
+.zb-bg-control-img-btn {
+    height: 130px;
+    width: 100%;
+    border-radius: 6px;
+    background-color: #f6f6f8;
+    border: 1px solid #ddd;
 }
