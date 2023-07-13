@@ -195,8 +195,8 @@ export default function Edit(props) {
 
 	// Generate Box Shadow
 	const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
-		attributes,
 		controlName: BUTTON_BOX_SHADOW,
+		attributes,
 	});
 
 	// Generate Hover Box Shadow

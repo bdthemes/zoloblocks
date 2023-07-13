@@ -65,8 +65,13 @@ export const HEADING = [
 	{ label: __('P', 'zolo-blocks'), value: 'p' },
 ];
 
-export const SEPERATOR_STYLES = [
+export const BORDER_TYPES = [
+	{ label: __('None', 'zolo-blocks'), value: 'none' },
 	{ label: __('Solid', 'zolo-blocks'), value: 'solid' },
+	{ label: __('Custom', 'zolo-blocks'), value: 'custom' },
+];
+
+export const SEPERATOR_STYLES = [
 	{ label: __('Dashed', 'zolo-blocks'), value: 'dashed' },
 	{ label: __('Dotted', 'zolo-blocks'), value: 'dotted' },
 	{ label: __('Double', 'zolo-blocks'), value: 'double' },

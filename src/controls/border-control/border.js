@@ -3,25 +3,18 @@ import { prefix } from '../../global/constants';
 import WithResDeviceBtn from '../with-res-device-btn';
 import { __ } from '@wordpress/i18n';
 
-const DimensionControl = ({
+const Borders = ({
 	top,
 	right,
 	bottom,
 	left,
 	onChange,
 	neededProps,
+	children,
 }) => {
-	const {
-		label,
-		resMode,
-		setAttributes,
-		dimensionIsLinked,
-		forBorderRadius,
-		controlName,
-		isLinked,
-	} = neededProps;
+	const { label, setAttributes, controlName, isLinked } = neededProps;
 
-	const [dimensions, setDimensions] = useState({
+	const [borders, setBorders] = useState({
 		top,
 		right,
 		bottom,
@@ -31,23 +24,23 @@ const DimensionControl = ({
 	const onInputChange = (e) => {
 		const { name, value } = e.target;
 		if (isLinked) {
-			setDimensions({
+			setBorders({
 				top: value,
 				bottom: value,
 				left: value,
 				right: value,
 			});
 		} else {
-			setDimensions({
-				...dimensions,
+			setBorders({
+				...borders,
 				[name]: value,
 			});
 		}
 	};
 
 	useEffect(() => {
-		onChange(dimensions);
-	}, [dimensions]);
+		onChange(borders);
+	}, [borders]);
 
 	useEffect(() => {
 		setAttributes({
@@ -62,19 +55,18 @@ const DimensionControl = ({
 				resRequiredProps={neededProps}
 				controlName={controlName}
 			>
+				{children}
 				<div className="input-container">
 					<div className="input-wrap">
 						<input
 							type="number"
 							name="top"
-							value={dimensions.top}
+							value={borders.top}
 							onChange={onInputChange}
 						/>
 
 						<label className="input-label">
-							{forBorderRadius
-								? __('TLeft', 'zolo-blocks')
-								: __('Top', 'zolo-blocks')}
+							{__('Top', 'zolo-blocks')}
 						</label>
 					</div>
 
@@ -82,13 +74,11 @@ const DimensionControl = ({
 						<input
 							type="number"
 							name="right"
-							value={dimensions.right}
+							value={borders.right}
 							onChange={onInputChange}
 						/>
 						<label className="input-label">
-							{forBorderRadius
-								? __('TRight', 'zolo-blocks')
-								: __('Right', 'zolo-blocks')}
+							{__('Right', 'zolo-blocks')}
 						</label>
 					</div>
 
@@ -96,13 +86,11 @@ const DimensionControl = ({
 						<input
 							type="number"
 							name="bottom"
-							value={dimensions.bottom}
+							value={borders.bottom}
 							onChange={onInputChange}
 						/>
 						<label className="input-label">
-							{forBorderRadius
-								? __('BRight', 'zolo-blocks')
-								: __('Bottom', 'zolo-blocks')}
+							{__('Bottom', 'zolo-blocks')}
 						</label>
 					</div>
 
@@ -110,13 +98,11 @@ const DimensionControl = ({
 						<input
 							type="number"
 							name="left"
-							value={dimensions.left}
+							value={borders.left}
 							onChange={onInputChange}
 						/>
 						<label className="input-label">
-							{forBorderRadius
-								? __('BLeft', 'zolo-blocks')
-								: __('Left', 'zolo-blocks')}
+							{__('Left', 'zolo-blocks')}
 						</label>
 					</div>
 				</div>
@@ -125,4 +111,4 @@ const DimensionControl = ({
 	);
 };
 
-export default DimensionControl;
+export default Borders;

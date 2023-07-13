@@ -81,6 +81,7 @@ const ResDimensionsControl = ({
 						/>
 						<ResetBtn
 							onReset={() => {
+								console.log('reset');
 								setAttributes({
 									[`${prefix}${controlName}Top`]: '',
 									[`${prefix}${controlName}Right`]: '',

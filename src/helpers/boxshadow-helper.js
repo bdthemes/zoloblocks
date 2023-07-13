@@ -1,6 +1,6 @@
 export const generateBoxShadowAttributies = (controlName) => {
 	const shdAttrs = {
-		// shadow attributes  ⬇
+		// shadow attributes
 		[`${controlName}hOffset`]: {
 			type: 'number',
 		},

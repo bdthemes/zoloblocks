@@ -1,1 +1,22 @@
+.zolo-border-control {
+	.components-base-control {
+		margin-bottom: 8px !important;
+	}
+	.border-styles-group {
+		width: 100%;
+		background: #e0e0e0;
+		margin-bottom: 8px;
+		display: flex;
+	}
 
+	.border-style-btn {
+		width: 100%;
+		justify-content: center;
+		margin: 4px;
+	}
+
+	.border-style-btn.active {
+		background: #fff;
+		border-radius: 4px !important;
+	}
+}
