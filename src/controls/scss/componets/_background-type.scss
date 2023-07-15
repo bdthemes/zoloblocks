@@ -1,0 +1,46 @@
+.zb-gradient-control-wrap {
+	.zb-gradient-head {
+		margin-bottom: 10px;
+	}
+	.components-custom-gradient-picker__gradient-bar {
+		border-radius: 6px !important;
+	}
+	.components-flex {
+		width: 100%;
+		flex-direction: column;
+		.components-flex-item {
+			width: 100%;
+		}
+	}
+	.components-angle-picker-control {
+		.components-input-control__suffix {
+			position: absolute;
+			top: 20%;
+			left: 12%;
+			.components-truncate {
+				color: #000 !important;
+			}
+		}
+	}
+
+	.components-circular-option-picker {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+	}
+	
+	.components-circular-option-picker__custom-clear-wrapper {
+		margin: 0 !important;
+	}
+	.components-circular-option-picker__clear {
+		border: 1px solid #ddd;
+		border-radius: 6px;
+		box-shadow: none;
+		&:hover {
+			color: #230aed;
+			border-color: #230aed;
+			box-shadow: none !important;
+		}
+	}
+}
