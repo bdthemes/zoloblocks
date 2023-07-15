@@ -52,19 +52,19 @@ export const TITLE_TAG = [
 // icon positions
 export const ICON_BOX_POSITIONS = [
 	{
-		label: 'Left',
+		label: __('Left', 'zolo-blocks'),
 		value: 'left',
 	},
 	{
-		label: 'Right',
+		label: __('Right', 'zolo-blocks'),
 		value: 'right',
 	},
 	{
-		label: 'Top',
+		label: __('Top', 'zolo-blocks'),
 		value: 'top',
 	},
 	{
-		label: 'Bottom',
+		label: __('Bottom', 'zolo-blocks'),
 		value: 'bottom',
 	},
 ];
@@ -72,19 +72,19 @@ export const ICON_BOX_POSITIONS = [
 // icon positions
 export const ICON_POSITIONS = [
 	{
-		label: 'Left',
+		label: __('Left', 'zolo-blocks'),
 		value: 'row-reverse',
 	},
 	{
-		label: 'Right',
+		label: __('Right', 'zolo-blocks'),
 		value: 'row',
 	},
 	{
-		label: 'Top',
+		label: __('Top', 'zolo-blocks'),
 		value: 'column-reverse',
 	},
 	{
-		label: 'Bottom',
+		label: __('Bottom', 'zolo-blocks'),
 		value: 'column',
 	},
 ];
@@ -92,15 +92,15 @@ export const ICON_POSITIONS = [
 // button positions
 export const BUTTON_POSITIONS = [
 	{
-		label: 'Left',
+		label: __('Left', 'zolo-blocks'),
 		value: 'left',
 	},
 	{
-		label: 'Center',
+		label: __('Center', 'zolo-blocks'),
 		value: 'center',
 	},
 	{
-		label: 'Right',
+		label: __('Right', 'zolo-blocks'),
 		value: 'right',
 	},
 ];
@@ -108,15 +108,15 @@ export const BUTTON_POSITIONS = [
 // side icon positions
 export const SIDE_ICON_POSITIONS = [
 	{
-		label: 'Top',
+		label: __('Top', 'zolo-blocks'),
 		value: 'left',
 	},
 	{
-		label: 'Center',
+		label: __('Center', 'zolo-blocks'),
 		value: 'center',
 	},
 	{
-		label: 'Bottom',
+		label: __('Bottom', 'zolo-blocks'),
 		value: 'end',
 	},
 ];
@@ -124,7 +124,7 @@ export const SIDE_ICON_POSITIONS = [
 // top icon positions
 export const TOP_ICON_POSITIONS = [
 	{
-		label: 'Left',
+		label: __('Left', 'zolo-blocks'),
 		value: 'left',
 		icon: (
 			<svg
@@ -150,7 +150,7 @@ export const TOP_ICON_POSITIONS = [
 		),
 	},
 	{
-		label: 'Center',
+		label: __('Center', 'zolo-blocks'),
 		value: 'center',
 		icon: (
 			<svg
@@ -179,7 +179,7 @@ export const TOP_ICON_POSITIONS = [
 		),
 	},
 	{
-		label: 'Right',
+		label: __('Right', 'zolo-blocks'),
 		value: 'right',
 		icon: (
 			<svg

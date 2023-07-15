@@ -138,16 +138,6 @@ function Inspector(props) {
 							title={__('Content', 'zolo-blocks')}
 							initialOpen={false}
 						>
-							{/* <SelectControl
-								label={__('Select Icon Type', 'zolo-blocks')}
-								value={iconType}
-								options={}
-								onChange={(value) =>
-									setAttributes({
-										iconType: value,
-									})
-								}
-							/> */}
 							<IconicBtnGroup
 								label={__('Select Icon Type', 'zolo-blocks')}
 								value={iconType}
@@ -199,12 +189,12 @@ function Inspector(props) {
 										/>
 									)}
 									{preset == 'style-2' && (
-										<SelectControl
+										<IconicBtnGroup
 											label={__(
 												'Position',
 												'zolo-blocks'
 											)}
-											options={SIDE_ICON_POSITIONS}
+											value={presetTwoStyles.iconPosition}
 											onChange={(value) =>
 												setAttributes({
 													presetTwoStyles: {
@@ -213,16 +203,18 @@ function Inspector(props) {
 													},
 												})
 											}
-											value={presetTwoStyles.iconPosition}
+											options={SIDE_ICON_POSITIONS}
 										/>
 									)}
 									{preset == 'style-3' && (
-										<SelectControl
+										<IconicBtnGroup
 											label={__(
 												'Position',
 												'zolo-blocks'
 											)}
-											options={SIDE_ICON_POSITIONS}
+											value={
+												presetThreeStyles.iconPosition
+											}
 											onChange={(value) =>
 												setAttributes({
 													presetThreeStyles: {
@@ -231,14 +223,9 @@ function Inspector(props) {
 													},
 												})
 											}
-											value={
-												presetThreeStyles.iconPosition
-											}
+											options={SIDE_ICON_POSITIONS}
 										/>
 									)}
-
-									<br />
-
 									<ResRangeControl
 										label={__('Icon Size', 'zolo-blocks')}
 										controlName={ICON_SIZE}
