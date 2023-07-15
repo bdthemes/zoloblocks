@@ -6,37 +6,9 @@
     margin-bottom: 14px;
   }
 }
+
 .zb-res-alignment-control-wrapper {
-  .zb-align-control-btn-group {
-      display: inline-flex;
-      padding: 4px;
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      width: 100%;
+  .zolo-iconic-btn-group {
+    margin-bottom: 0;
   }
-  .components-button-group {
-    .components-button {
-      color: #000;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      &:hover {
-        color: #001FEB;
-      }
-      span {
-        font-size: 16px;
-        width    : 16px;
-        height   : 16px;
-      }
-      &.is-primary {
-        background   : #000;
-        box-shadow   : none !important;
-        color        : #fff;
-        border-radius: 6px !important;
-      }
-      &:hover {
-        box-shadow: none !important;
-      }
-    }
-  } 
 }
