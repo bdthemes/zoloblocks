@@ -1,4 +1,5 @@
 .zb-gradient-control-wrap {
+	margin-bottom: 24px;
 	.zb-gradient-head {
 		margin-bottom: 10px;
 	}
@@ -38,7 +39,7 @@
 		border-radius: 6px;
 		box-shadow: none;
 		&:hover {
-			color: #230aed;
+			color: #230aed !important;
 			border-color: #230aed;
 			box-shadow: none !important;
 		}

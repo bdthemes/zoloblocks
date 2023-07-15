@@ -21,6 +21,9 @@
 			&.active {
 				background: #000;
 				color: #fff;
+				&:hover {
+					color: #fff !important;
+				}
 			}
 		}
 	}
