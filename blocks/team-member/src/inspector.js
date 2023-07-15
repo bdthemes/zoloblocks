@@ -73,6 +73,8 @@ import {
 	TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
 } from './constants/typoPrefixConstants';
 
+import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
+
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
 	const {
@@ -485,24 +487,7 @@ function Inspector(props) {
 									)}
 									controlName={CONTENT_ALIGNMENT}
 									resRequiredProps={resRequiredProps}
-									alignOptions={[
-										{
-											label: 'Left',
-											value: 'left',
-										},
-										{
-											label: 'Center',
-											value: 'center',
-										},
-										{
-											label: 'Right',
-											value: 'right',
-										},
-										{
-											label: 'Justify',
-											value: 'justify',
-										},
-									]}
+									alignOptions={TEXT_ALIGN_OPTIONS}
 								/>
 								<NormalBGControl
 									resRequiredProps={resRequiredProps}

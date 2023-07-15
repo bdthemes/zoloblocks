@@ -12,8 +12,8 @@
 	}
 
 	.iconic-btn svg {
-		width: 22px !important;
-		height: 22px !important;
+		width: 20px !important;
+		height: 20px !important;
 	}
 
 	.iconic-btn-label {
@@ -28,10 +28,10 @@
 
 	.iconic-btn.active {
 		background: #000;
+		color: #fff;
 	}
 
 	.iconic-btn.active svg path {
 		fill: #fff !important;
 	}
 }
-

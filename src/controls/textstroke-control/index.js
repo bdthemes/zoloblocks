@@ -51,6 +51,8 @@ function TextShadowControl({ label = '', controlName, resRequiredProps }) {
 							onReset={() => {
 								setAttributes({
 									[strokeUnitAttr]: 'px',
+									[`${controlName}strokeColor`]: '',
+									[strokeWidthAttr]: '',
 								});
 							}}
 						/>

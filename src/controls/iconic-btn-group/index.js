@@ -21,7 +21,9 @@ const IconicBtnGroup = ({ label = '', value, onChange, options }) => {
 									value == option.value ? 'active' : ''
 								}`}
 							>
-								{option.icon ? option.icon : icon.label}
+								{option.icon && option.icon !== ''
+									? option.icon
+									: option.label}
 							</Button>
 						);
 					})}

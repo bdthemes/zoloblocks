@@ -35,6 +35,7 @@ const {
 	IconPicker,
 	BoxShadowControl,
 	HeaderTabs,
+	IconicBtnGroup,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -74,6 +75,7 @@ import {
 	TITLE_TYPOGRAPHY,
 	DESCRIPTION_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
+import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
@@ -136,24 +138,36 @@ function Inspector(props) {
 							title={__('Content', 'zolo-blocks')}
 							initialOpen={false}
 						>
-							<SelectControl
+							{/* <SelectControl
 								label={__('Select Icon Type', 'zolo-blocks')}
 								value={iconType}
-								options={[
-									{
-										label: 'Icon',
-										value: 'icon',
-									},
-									{
-										label: 'Image',
-										value: 'image',
-									},
-								]}
+								options={}
 								onChange={(value) =>
 									setAttributes({
 										iconType: value,
 									})
 								}
+							/> */}
+							<IconicBtnGroup
+								label={__('Select Icon Type', 'zolo-blocks')}
+								value={iconType}
+								onChange={(value) =>
+									setAttributes({
+										iconType: value,
+									})
+								}
+								options={[
+									{
+										label: __('Icon', 'zolo-blocks'),
+										value: 'icon',
+										icon: '',
+									},
+									{
+										label: __('Image', 'zolo-blocks'),
+										value: 'image',
+										icon: '',
+									},
+								]}
 							/>
 
 							{iconType == 'icon' && (
@@ -167,12 +181,12 @@ function Inspector(props) {
 										}
 									/>
 									{preset !== '' && preset == 'style-1' && (
-										<SelectControl
+										<IconicBtnGroup
 											label={__(
 												'Position',
 												'zolo-blocks'
 											)}
-											options={TOP_ICON_POSITIONS}
+											value={presetOneStyles.iconPosition}
 											onChange={(value) =>
 												setAttributes({
 													presetOneStyles: {
@@ -181,7 +195,7 @@ function Inspector(props) {
 													},
 												})
 											}
-											value={presetOneStyles.iconPosition}
+											options={TOP_ICON_POSITIONS}
 										/>
 									)}
 									{preset == 'style-2' && (
@@ -320,24 +334,7 @@ function Inspector(props) {
 								label={__('Title Alignment', 'zolo-blocks')}
 								controlName={TITLE_ALIGNMENT}
 								resRequiredProps={resRequiredProps}
-								alignOptions={[
-									{
-										label: 'Left',
-										value: 'left',
-									},
-									{
-										label: 'Center',
-										value: 'center',
-									},
-									{
-										label: 'Right',
-										value: 'right',
-									},
-									{
-										label: 'Justify',
-										value: 'justify',
-									},
-								]}
+								alignOptions={TEXT_ALIGN_OPTIONS}
 							/>
 							<ResAlignmentControl
 								label={__(
@@ -346,24 +343,7 @@ function Inspector(props) {
 								)}
 								controlName={DESC_ALIGNMENT}
 								resRequiredProps={resRequiredProps}
-								alignOptions={[
-									{
-										label: 'Left',
-										value: 'left',
-									},
-									{
-										label: 'Center',
-										value: 'center',
-									},
-									{
-										label: 'Right',
-										value: 'right',
-									},
-									{
-										label: 'Justify',
-										value: 'justify',
-									},
-								]}
+								alignOptions={TEXT_ALIGN_OPTIONS}
 							/>
 						</PanelBody>
 						<PanelBody
