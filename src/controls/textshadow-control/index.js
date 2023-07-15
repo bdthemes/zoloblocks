@@ -1,149 +1,123 @@
-import {
-  BaseControl,
-  Button,
-  Dropdown,
-  RangeControl
-} from '@wordpress/components';
+import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import ColorControl from '../color-control';
-import ResetControl from '../reset-control';
 
-function TextShadowControl({ controlName, resRequiredProps, enableTransition }) {
-  const { setAttributes, attributes, objAttributes } = resRequiredProps;
+/**
+ * Internal dependencies
+ */
+import UnitsBtn from '../units-btn';
+import ResetBtn from '../reset-btn';
+import WithResDeviceBtn from '../with-res-device-btn';
+import ColorBtn from '../color-btn';
 
-  const {
-    [`${controlName}shadowColor`]: shadowColor,
-    [`${controlName}hShadow`]: hShadow,
-    [`${controlName}vShadow`]: vShadow,
-    [`${controlName}blur`]: blur,
-    [`${controlName}shadowTransition`]: shadowTransition,
-  } = attributes;
+function TextShadowControl({ label = '', controlName, resRequiredProps }) {
+	const { setAttributes, attributes } = resRequiredProps;
 
-  return (
-    <BaseControl
-      label={__('Text Shadow', 'zolo-blocks')}
-      className="zb-textshadow-control-wrap"
-    >
-      <Dropdown
-        className="zb-textshadow-control-dropdown"
-        contentClassName="zb-popover-content-area"
-        position="bottom right"
-        renderToggle={({ isOpen, onToggle }) => (
-          <Button isSmall onClick={onToggle} aria-expanded={isOpen}>
-            <span className="dashicons dashicons-edit"></span>
-          </Button>
-        )}
-        renderContent={() => (
-          <>
-            <div
-              className="zb-textshadow-content-wrap"
-              style={{
-                minWidth: '230px',
-                padding: '10px',
-              }}
-            >
-              <ColorControl
-                defaultColor={(objAttributes[`${controlName}shadowColor`] || {}).default}
-                label={__('Color', 'zolo-blocks')}
-                color={shadowColor}
-                onChange={(shadowColor) =>
-                  setAttributes({
-                    [`${controlName}shadowColor`]:
-                      shadowColor,
-                  })
-                }
-              />
+	const {
+		[`${controlName}shadowColor`]: shadowColor,
+		[`${controlName}shadowUnit`]: shadowUnit,
+		[`${controlName}hShadow`]: hShadow,
+		[`${controlName}vShadow`]: vShadow,
+		[`${controlName}blur`]: blur,
+	} = attributes;
 
-              <ResetControl
-                onReset={() =>
-                  setAttributes({
-                    [`${controlName}blur`]: undefined,
-                  })
-                }
-              >
-                <RangeControl
-                  label={__('Blur', 'zolo-blocks')}
-                  value={blur}
-                  onChange={(blur) =>
-                    setAttributes({
-                      [`${controlName}blur`]: blur,
-                    })
-                  }
-                  min={0}
-                  max={100}
-                />
-              </ResetControl>
+	const defaultUnits = [
+		{ label: 'px', value: 'px' },
+		{ label: 'em', value: 'em' },
+	];
 
-              <ResetControl
-                onReset={() =>
-                  setAttributes({
-                    [`${controlName}hShadow`]: undefined,
-                  })
-                }
-              >
-                <RangeControl
-                  label={__(
-                    'Horizontal',
-                    'zolo-blocks'
-                  )}
-                  value={hShadow}
-                  onChange={(hShadow) =>
-                    setAttributes({
-                      [`${controlName}hShadow`]: hShadow,
-                    })
-                  }
-                  min={0}
-                  max={100}
-                />
-              </ResetControl>
-
-              <ResetControl
-                onReset={() =>
-                  setAttributes({
-                    [`${controlName}vShadow`]: undefined,
-                  })
-                }
-              >
-                <RangeControl
-                  label={__(
-                    'Vertical',
-                    'zolo-blocks'
-                  )}
-                  value={vShadow}
-                  onChange={(vShadow) =>
-                    setAttributes({
-                      [`${controlName}vShadow`]: vShadow,
-                    })
-                  }
-                  min={0}
-                  max={100}
-                />
-              </ResetControl>
-
-              {enableTransition && (
-                <RangeControl
-                  label={__(
-                    'Shadow Transition',
-                    'zolo-blocks'
-                  )}
-                  value={shadowTransition}
-                  onChange={(shadowTransition) =>
-                    setAttributes({
-                      [`${controlName}shadowTransition`]:
-                        shadowTransition,
-                    })
-                  }
-                  step={0.01}
-                  min={0}
-                  max={5}
-                />
-              )}
-            </div>
-          </>
-        )}
-      />
-    </BaseControl>
-  );
+	return (
+		<div className="zolo-box-shadow">
+			<div className="zolo-label-area">
+				<UnitsBtn
+					selectedUnit={shadowUnit}
+					unitTypes={defaultUnits}
+					onClick={(sizeUnit) =>
+						setAttributes({
+							[`${controlName}shadowUnit`]: sizeUnit,
+						})
+					}
+				>
+					<ResetBtn
+						onReset={() => {
+							setAttributes({
+								[`${controlName}shadowUnit`]: 'px',
+								[`${controlName}shadowColor`]: '',
+								[`${controlName}hShadow`]: '',
+								[`${controlName}vShadow`]: '',
+								[`${controlName}blur`]: '',
+							});
+						}}
+					/>
+					<ColorBtn
+						color={shadowColor}
+						onChange={(value) =>
+							setAttributes({
+								[`${controlName}shadowColor`]: value,
+							})
+						}
+					/>
+				</UnitsBtn>
+				<WithResDeviceBtn
+					label={label || __('Text Shadow', 'zolo-blocks')}
+					resRequiredProps={resRequiredProps}
+					controlName={controlName}
+					noResetBtn={true}
+					noResponsive={true}
+				>
+					<div className="zolo-box-shadow-options">
+						<div className="single-shadow-input">
+							<NumberControl
+								isShiftStepEnabled={true}
+								onChange={(hShadow) =>
+									setAttributes({
+										[`${controlName}hShadow`]:
+											parseInt(hShadow),
+									})
+								}
+								value={hShadow}
+								type="number"
+							/>
+							<div className="input-label">
+								{__('X', 'zolo-blocks')}
+							</div>
+						</div>
+						<div className="single-shadow-input">
+							<NumberControl
+								isShiftStepEnabled={true}
+								onChange={(vShadow) =>
+									setAttributes({
+										[`${controlName}vShadow`]:
+											parseInt(vShadow),
+									})
+								}
+								value={vShadow}
+								type="number"
+							/>
+							<div className="input-label">
+								{__('Y', 'zolo-blocks')}
+							</div>
+						</div>
+						<div className="single-shadow-input">
+							<NumberControl
+								isShiftStepEnabled={true}
+								onChange={(blur) =>
+									setAttributes({
+										[`${controlName}blur`]: parseInt(blur),
+									})
+								}
+								value={blur}
+								min={0}
+								type="number"
+							/>
+							<div className="input-label">
+								{__('Blur', 'zolo-blocks')}
+							</div>
+						</div>
+					</div>
+				</WithResDeviceBtn>
+			</div>
+		</div>
+	);
 }
 
 export default TextShadowControl;

@@ -81,6 +81,7 @@ const BoxShadowControl = ({ label = '', controlName, resRequiredProps }) => {
 					resRequiredProps={resRequiredProps}
 					controlName={controlName}
 					noResetBtn={true}
+					noResponsive={true}
 				>
 					<ButtonGroup className="shadow-style-btn-group">
 						{BOX_SHADOW_TYPES &&

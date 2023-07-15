@@ -10,6 +10,7 @@ const WithResDeviceBtn = ({
 	children,
 	controlName,
 	noResetBtn = false,
+	noResponsive = false,
 }) => {
 	const { resMode, objAttributes, setAttributes } = resRequiredProps;
 	const [switcherIsOpen, setSwitcherIsOpen] = useState(false);
@@ -54,7 +55,7 @@ const WithResDeviceBtn = ({
 			<div className="zb-label-header">
 				<div className="zb-device-label-area">
 					{label && <span className="res-btn-label">{label}</span>}
-					{!noResetBtn && (
+					{!noResponsive && (
 						<div
 							ref={devicesRef}
 							className={`zb-device-switchers active-${device} ${
