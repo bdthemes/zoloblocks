@@ -1,19 +1,44 @@
 import { useEffect } from '@wordpress/element';
 import {
+  GRID_COLUMNS,
+  COLUMNS_GAP,
   CONTAINER_MARGIN,
   CONTAINER_PADDING
 } from './constants';
 
 const {
   generateDimensionStyle,
+  generateResRangeStyle
 } = window.zoloModule;
 
 function styles({ attributes, setAttributes }) {
   const {
     uniqueId,
     blockStyle,
-    containerBg
   } = attributes;
+
+  const {
+    desktopRangeStyle: deskColumns,
+    tabRangeStyle: tabColumns,
+    mobRangeStyle: mobColumns,
+  } = generateResRangeStyle({
+    controlName: GRID_COLUMNS,
+    property: 'grid-template-columns',
+    attributes,
+    noProperty: true,
+    noUnits: false,
+    unitCustomTxt: '',
+  });
+
+  const {
+    desktopRangeStyle: deskColumnsGap,
+    tabRangeStyle: tabColumnsGap,
+    mobRangeStyle: mobColumnsGap,
+  } = generateResRangeStyle({
+    controlName: COLUMNS_GAP,
+    property: 'grid-gap',
+    attributes,
+  });
 
   // Container Margin
   const {
@@ -42,9 +67,12 @@ function styles({ attributes, setAttributes }) {
    */
   const desktopAllStyle = `
       .${uniqueId}.wp-block-zolo-post-grid {
-        background-color: ${containerBg};
         ${containerDeskMargin}
         ${containerDeskPadding}
+      }
+      .${uniqueId}.wp-block-zolo-post-grid.zolo-post-wrap{
+        ${deskColumns}
+        ${deskColumnsGap}
       }
     `;
   const tabletAllStyle = `
@@ -52,11 +80,19 @@ function styles({ attributes, setAttributes }) {
         ${containerTabMargin}
         ${containerTabPadding}
       }
+      .${uniqueId}.wp-block-zolo-post-grid.zolo-post-wrap{
+        ${tabColumns}
+        ${tabColumnsGap}
+      }
     `;
   const mobileAllStyle = `
       .${uniqueId}.wp-block-zolo-post-grid {
         ${containerMobMargin}
         ${containerMobPadding}
+      }
+      .${uniqueId}.wp-block-zolo-post-grid.zolo-post-wrap{
+        ${mobColumns}
+        ${mobColumnsGap}
       }
     `;
 
