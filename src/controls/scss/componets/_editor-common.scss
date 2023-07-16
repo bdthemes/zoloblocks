@@ -94,7 +94,6 @@
 			align-items: center;
 			justify-content: space-between;
 			border: 1px solid #ddd;
-			padding: 4px;
 			border-radius: 6px;
 	
 			.components-button {
@@ -104,6 +103,7 @@
 				align-items: center;
 				justify-content: center;
 				border-radius: 6px !important;
+				margin: 4px;
 				&:hover {
 					color: #001feb;
 				}
@@ -111,6 +111,9 @@
 			.is-primary {
 				background-color: #000 !important;
 				color: #fff !important;
+				&:hover {
+					color: #fff;
+				}
 			}
 		}
 	}
