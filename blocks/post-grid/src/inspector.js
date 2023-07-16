@@ -15,6 +15,11 @@ import {
   GRID_COLUMNS,
   COLUMNS_GAP,
   THUMBNAIL_HEIGHT,
+  COLUMN_PADDING,
+  COLUMN_BG,
+  COLUMN_BORDER,
+  COLUMN_BORDER_RADIUS,
+  COLUMN_SHADOW,
   CONTAINER_MARGIN,
   CONTAINER_PADDING,
 } from './constants';
@@ -28,7 +33,10 @@ const {
   ResDimensionsControl,
   QueryControl,
   ResRangeControl,
-  RangeResetControl
+  RangeResetControl,
+  NormalBGControl,
+  BorderControl,
+  BoxShadowControl
 } = window.zoloModule;
 
 function Inspector({ attributes, setAttributes }) {
@@ -231,11 +239,43 @@ function Inspector({ attributes, setAttributes }) {
 
               {tab.name === 'design' && (
                 <>
-                  <PanelBody
-                    title={__('Container', 'zolo-blocks')}
-                    initialOpen={false}
-                  >
-
+                  <PanelBody title={__('Grid Columns', 'zolo-blocks')} initialOpen={true}>
+                    <ResDimensionsControl
+                      label={__('Padding', 'zolo-blocks')}
+                      controlName={COLUMN_PADDING}
+                      resRequiredProps={resRequiredProps}
+                    />
+                    <NormalBGControl
+                      resRequiredProps={resRequiredProps}
+                      controlName={COLUMN_BG}
+                      noMainBGImg={true}
+                    />
+                    <BorderControl
+                      label={__('Border', 'zolo-blocks')}
+                      controlName={COLUMN_BORDER}
+                      resRequiredProps={resRequiredProps}
+                    />
+                    <ResDimensionsControl
+                      label={__(
+                        'Border Radius',
+                        'zolo-blocks'
+                      )}
+                      controlName={COLUMN_BORDER_RADIUS}
+                      resRequiredProps={resRequiredProps}
+                      forBorderRadius={true}
+                    />
+                    <BoxShadowControl
+                      controlName={COLUMN_SHADOW}
+                      resRequiredProps={resRequiredProps}
+                    />
+                  </PanelBody>
+                  <PanelBody title={__('Image', 'zolo-blocks')} initialOpen={false}>
+                  </PanelBody>
+                  <PanelBody title={__('Title', 'zolo-blocks')} initialOpen={false}>
+                  </PanelBody>
+                  <PanelBody title={__('Excerpt', 'zolo-blocks')} initialOpen={false}>
+                  </PanelBody>
+                  <PanelBody title={__('Meta', 'zolo-blocks')} initialOpen={false}>
                   </PanelBody>
                 </>
               )}

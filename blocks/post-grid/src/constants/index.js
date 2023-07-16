@@ -15,6 +15,13 @@ export const GRID_COLUMNS = 'gridColumns';
 export const COLUMNS_GAP = 'columnsGap';
 export const THUMBNAIL_HEIGHT = 'thumbHeight';
 
+//desing
+export const COLUMN_PADDING = 'columnPadding';
+export const COLUMN_BG = 'columnBg';
+export const COLUMN_BORDER = 'columnBorder';
+export const COLUMN_BORDER_RADIUS = 'columnBRadius';
+export const COLUMN_SHADOW = 'columnShadow';
+
 // conatainer spacing
 export const CONTAINER_MARGIN = 'postContainerMargin';
 export const CONTAINER_PADDING = 'postContainerPadding';

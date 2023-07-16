@@ -8,14 +8,20 @@ const {
   generateDimensionAttributes,
   generateBoxShadowAttributies,
   generateTypographyAttributes,
+  generateNormalBGAttributes
 } = window.zoloModule;
 
 import {
   GRID_COLUMNS,
   COLUMNS_GAP,
   THUMBNAIL_HEIGHT,
+  COLUMN_PADDING,
+  COLUMN_BG,
+  COLUMN_BORDER,
+  COLUMN_BORDER_RADIUS,
+  COLUMN_SHADOW,
   CONTAINER_MARGIN,
-  CONTAINER_PADDING
+  CONTAINER_PADDING,
 } from './constants';
 
 const attributes = {
@@ -122,6 +128,12 @@ const attributes = {
     type: 'boolean',
     default: true,
   },
+  ...generateDimensionAttributes(COLUMN_PADDING),
+  ...generateNormalBGAttributes(COLUMN_BG),
+  ...generateBorderAttributies(COLUMN_BORDER),
+  ...generateDimensionAttributes(COLUMN_BORDER_RADIUS),
+  ...generateBoxShadowAttributies(COLUMN_SHADOW),
+
   ...generateDimensionAttributes(CONTAINER_MARGIN),
   ...generateDimensionAttributes(CONTAINER_PADDING),
 

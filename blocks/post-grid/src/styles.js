@@ -2,13 +2,21 @@ import { useEffect } from '@wordpress/element';
 import {
   GRID_COLUMNS,
   COLUMNS_GAP,
+  COLUMN_PADDING,
+  COLUMN_BG,
+  COLUMN_BORDER,
+  COLUMN_BORDER_RADIUS,
+  COLUMN_SHADOW,
   CONTAINER_MARGIN,
   CONTAINER_PADDING
 } from './constants';
 
 const {
   generateDimensionStyle,
-  generateResRangeStyle
+  generateResRangeStyle,
+  generateNormalBGControlStyles,
+  generateBorderStyle,
+  generateBoxShadowStyles
 } = window.zoloModule;
 
 function styles({ attributes, setAttributes }) {
@@ -39,6 +47,51 @@ function styles({ attributes, setAttributes }) {
     property: 'grid-gap',
     attributes,
   });
+
+  //column
+  const {
+    dimensionStylesDesktop: columnDeskPadding,
+    dimensionStylesTab: columnTabPadding,
+    dimensionStylesMobile: columnMobPadding,
+  } = generateDimensionStyle({
+    controlName: COLUMN_PADDING,
+    styleFor: 'padding',
+    attributes,
+  });
+  const {
+    backgroundStylesDesktop: columnDeskBGStyle,
+    backgroundStylesTab: columnTabBGStyle,
+    backgroundStylesMobile: columnMobBGStyle,
+  } = generateNormalBGControlStyles({
+    controlName: COLUMN_BG,
+    attributes,
+    noMainBGImg: true,
+  });
+
+  const {
+    desktopBorderStyle: columnDeskBorderStyle,
+    tabBorderStyle: columnTabBorderStyle,
+    mobBorderStyle: columnMobBorderStyle,
+  } = generateBorderStyle({
+    controlName: COLUMN_BORDER,
+    attributes,
+  });
+
+  const {
+    dimensionStylesDesktop: columnDeskBorderRadius,
+    dimensionStylesTab: columnTabBorderRadius,
+    dimensionStylesMobile: columnMobBorderRadius,
+  } = generateDimensionStyle({
+    controlName: COLUMN_BORDER_RADIUS,
+    styleFor: 'border-radius',
+    attributes,
+  });
+
+  const { boxShadowStyle: columnBoxShadow } = generateBoxShadowStyles({
+    attributes,
+    controlName: COLUMN_SHADOW,
+  });
+
 
   // Container Margin
   const {
@@ -74,6 +127,13 @@ function styles({ attributes, setAttributes }) {
         ${deskColumns}
         ${deskColumnsGap}
       }
+      .${uniqueId}.wp-block-zolo-post-grid .zolo-post-item{
+        ${columnDeskPadding}
+        ${columnDeskBGStyle}
+        ${columnDeskBorderStyle}
+        ${columnDeskBorderRadius}
+        ${columnBoxShadow}
+      }
     `;
   const tabletAllStyle = `
       .${uniqueId}.wp-block-zolo-post-grid {
@@ -94,6 +154,7 @@ function styles({ attributes, setAttributes }) {
         ${mobColumns}
         ${mobColumnsGap}
       }
+
     `;
 
 
