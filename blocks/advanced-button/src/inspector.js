@@ -151,7 +151,7 @@ function Inspector(props) {
 							initialOpen={false}
 						>
 							<ToggleControl
-								label={__('Enable Icon', 'zolo-blocks')}
+								label={__('Show Icon', 'zolo-blocks')}
 								checked={showIcon}
 								onChange={() =>
 									setAttributes({

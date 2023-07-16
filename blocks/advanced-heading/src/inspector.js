@@ -27,6 +27,8 @@ const {
 	RangeResetControl,
 	NormalBGControl,
 	HeaderTabs,
+	LinkControl,
+	IconicBtnGroup,
 } = window.zoloModule;
 
 //block attributes
@@ -72,6 +74,11 @@ import {
 	TITLE_TYPOGRAPHY,
 	TRANSPARENT_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
+
+import {
+	TEXT_ALIGN_OPTIONS,
+	DEFAULT_ALIGNS,
+} from '../../../src/global/constants';
 
 const Inspector = ({ attributes, setAttributes }) => {
 	const {
@@ -237,38 +244,22 @@ const Inspector = ({ attributes, setAttributes }) => {
 									setAttributes({ titleText })
 								}
 							/>
-
-							<TextControl
+							<LinkControl
 								label={__('Link', 'zolo-blocks')}
 								value={titleLink}
-								onChange={(titleLink) =>
-									setAttributes({ titleLink })
+								onChange={(value) =>
+									setAttributes({ titleLink: value })
 								}
 								help={__('http://your-link.com', 'zolo-blocks')}
 							/>
-
-							<BaseControl label={__('HTML Tag', 'zolo-blocks')}>
-								<ButtonGroup>
-									{HEADING_TAG.map((item, key) => (
-										<Button
-											key={key}
-											variant={
-												titleTagName === item.value
-													? 'primary'
-													: 'secondary'
-											}
-											onClick={() =>
-												setAttributes({
-													titleTagName: item.value,
-												})
-											}
-										>
-											{item.label}
-										</Button>
-									))}
-								</ButtonGroup>
-							</BaseControl>
-
+							<SelectControl
+								label={__('Heading Tag', 'zolo-blocks')}
+								options={HEADING_TAG}
+								onChange={(value) =>
+									setAttributes({ titleTagName: value })
+								}
+								value={titleTagName}
+							/>
 							<ToggleControl
 								label={__('Show Sub Heading', 'zolo-blocks')}
 								checked={showSubTitle}
@@ -286,35 +277,19 @@ const Inspector = ({ attributes, setAttributes }) => {
 											setAttributes({ subTitleText })
 										}
 									/>
-
-									<BaseControl
+									<IconicBtnGroup
 										label={__(
 											'Sub Heading Position',
 											'zolo-blocks'
 										)}
-									>
-										<ButtonGroup>
-											{ST_POSITION.map((item, key) => (
-												<Button
-													key={key}
-													variant={
-														subTitlePosition ===
-														item.value
-															? 'primary'
-															: 'secondary'
-													}
-													onClick={() =>
-														setAttributes({
-															subTitlePosition:
-																item.value,
-														})
-													}
-												>
-													{item.label}
-												</Button>
-											))}
-										</ButtonGroup>
-									</BaseControl>
+										value={subTitlePosition}
+										onChange={(value) =>
+											setAttributes({
+												subTitlePosition: value,
+											})
+										}
+										options={ST_POSITION}
+									/>
 								</>
 							)}
 
@@ -327,59 +302,31 @@ const Inspector = ({ attributes, setAttributes }) => {
 							/>
 
 							{showSeparator && (
-								<>
-									<BaseControl
-										label={__(
-											'Separator Position',
-											'zolo-blocks'
-										)}
-									>
-										<ButtonGroup>
-											{ST_POSITION.map((item, key) => (
-												<Button
-													key={key}
-													variant={
-														separatorPosition ===
-														item.value
-															? 'primary'
-															: 'secondary'
-													}
-													onClick={() =>
-														setAttributes({
-															separatorPosition:
-																item.value,
-														})
-													}
-												>
-													{item.label}
-												</Button>
-											))}
-										</ButtonGroup>
-									</BaseControl>
-								</>
+								<IconicBtnGroup
+									label={__(
+										'Separator Position',
+										'zolo-blocks'
+									)}
+									value={separatorPosition}
+									onChange={(value) =>
+										setAttributes({
+											separatorPosition: value,
+										})
+									}
+									options={ST_POSITION}
+								/>
 							)}
 
-							<BaseControl label={__('Alignment', 'zolo-blocks')}>
-								<ButtonGroup className="zolo-alignment-button">
-									{TEXT_ALIGN.map((item, key) => (
-										<Button
-											key={key}
-											variant={
-												align === item.value
-													? 'primary'
-													: 'secondary'
-											}
-											onClick={() =>
-												setAttributes({
-													align: item.value,
-												})
-											}
-										>
-											{item.label}
-										</Button>
-									))}
-								</ButtonGroup>
-							</BaseControl>
+							<IconicBtnGroup
+								label={__('Alignment', 'zolo-blocks')}
+								value={align}
+								onChange={(value) =>
+									setAttributes({
+										align: value,
+									})
+								}
+								options={TEXT_ALIGN_OPTIONS}
+							/>
 
 							<ToggleControl
 								label={__(
@@ -400,10 +347,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 								}
 							>
 								<TextControl
-									label={__(
-										'Advanced Heading Text',
-										'zolo-blocks'
-									)}
+									label={__('Text', 'zolo-blocks')}
 									value={transparentTitleText}
 									onChange={(transparentTitleText) =>
 										setAttributes({
@@ -420,14 +364,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 									label={__('Alignmet', 'zolo-blocks')}
 									controlName={TPT_ALIGNMENT}
 									resRequiredProps={resRequiredProps}
-									alignOptions={[
-										{ label: 'Left', value: 'left' },
-										{
-											label: 'Center',
-											value: 'center',
-										},
-										{ label: 'Right', value: 'right' },
-									]}
+									alignOptions={DEFAULT_ALIGNS}
 								/>
 
 								<RangeResetControl

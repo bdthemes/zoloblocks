@@ -182,6 +182,26 @@ export default function Edit(props) {
 		attributes,
 	});
 
+	const {
+		desktopRangeStyle: iconHeight,
+		tabRangeStyle: iconHeightTab,
+		mobRangeStyle: iconHeightMob,
+	} = generateResRangeStyle({
+		controlName: ICON_SIZE,
+		property: 'height',
+		attributes,
+	});
+
+	const {
+		desktopRangeStyle: iconWidth,
+		tabRangeStyle: iconWidthTab,
+		mobRangeStyle: iconWidthMob,
+	} = generateResRangeStyle({
+		controlName: ICON_SIZE,
+		property: 'width',
+		attributes,
+	});
+
 	// Spacing between icon and text
 	const {
 		desktopRangeStyle: gap,
@@ -409,6 +429,8 @@ export default function Edit(props) {
 		}
 		.zolo-advanced-button.${uniqueId} .zolo-button i, .zolo-advanced-button.${uniqueId} .zolo-button span.dashicon {
 			${iconSize}
+			${iconHeight}
+			${iconWidth}
 			${iconBorderDesktop}
 			${iconBorderRadiusDesktop}
 			${iconNormalBoxShadow}
@@ -448,6 +470,8 @@ export default function Edit(props) {
 		}
 		.zolo-advanced-button.${uniqueId} .zolo-button-icon {
 			${iconSizeTab}
+			${iconHeightTab}
+			${iconWidthTab}
 			${iconBorderTab}
 			${iconBorderRadiusTab}
 			${iconPaddingTab}
@@ -477,6 +501,8 @@ export default function Edit(props) {
 		}
 		.zolo-advanced-button.${uniqueId} .zolo-button-icon {
 			${iconSizeMob}
+			${iconHeightMob}
+			${iconWidthMob}
 			${iconBorderMob}
 			${iconBorderRadiusMob}
 			${iconPaddingMob}
