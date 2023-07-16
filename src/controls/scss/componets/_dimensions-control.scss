@@ -1,6 +1,9 @@
 .zolo-dimensions-control-wraper {
 	position: relative;
 	margin-bottom: 24px;
+	&:nth-last-child(1) {
+		margin-bottom: 0 !important;
+	}
 	.zb-dimension-container {
 		.input-container {
 			display: flex;
