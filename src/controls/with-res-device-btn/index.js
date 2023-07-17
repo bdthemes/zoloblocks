@@ -27,28 +27,7 @@ const WithResDeviceBtn = ({
 
 	useClickOutside(devicesRef, closeDevices);
 
-	const onReset = () => {
-		resMode == 'Desktop'
-			? setAttributes({
-					[`${controlName}ZRPAlign`]:
-						objAttributes[`${controlName}ZRPAlign`].default,
-			  })
-			: '';
-
-		resMode == 'Tablet'
-			? setAttributes({
-					[`TAB${controlName}ZRPAlign`]:
-						objAttributes[`TAB${controlName}ZRPAlign`].default,
-			  })
-			: '';
-
-		resMode == 'Mobile'
-			? setAttributes({
-					[`MOB${controlName}ZRPAlign`]:
-						objAttributes[`MOB${controlName}ZRPAlign`].default,
-			  })
-			: '';
-	};
+	// const onReset =
 
 	return (
 		<div className={`zb-deive-wrapper`}>
@@ -99,7 +78,37 @@ const WithResDeviceBtn = ({
 				</div>
 				{!noResetBtn && (
 					<div className="zb-reset-btn">
-						<button className="zb-reset-button" onClick={onReset}>
+						<button
+							className="zb-reset-button"
+							onClick={() => {
+								resMode == 'Desktop'
+									? setAttributes({
+											[`${controlName}ZRPAlign`]:
+												objAttributes[
+													`${controlName}ZRPAlign`
+												].default,
+									  })
+									: '';
+
+								resMode == 'Tablet'
+									? setAttributes({
+											[`TAB${controlName}ZRPAlign`]:
+												objAttributes[
+													`TAB${controlName}ZRPAlign`
+												].default,
+									  })
+									: '';
+
+								resMode == 'Mobile'
+									? setAttributes({
+											[`MOB${controlName}ZRPAlign`]:
+												objAttributes[
+													`MOB${controlName}ZRPAlign`
+												].default,
+									  })
+									: '';
+							}}
+						>
 							<svg
 								id="Layer_1"
 								data-name="Layer 1"

@@ -3,9 +3,7 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 /**
  * Internal Dependencies
  */
-const {
-	DisplayIcon
-} = window.zoloModule;
+const { DisplayIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
 	const { uniqueId, preset, label, link, showIcon, iconPosition, icon } =
@@ -26,11 +24,7 @@ const Save = ({ attributes }) => {
 						className={`zolo-button-content`}
 						value={label}
 					/>
-					{showIcon && (
-						<DisplayIcon 
-							icon={ icon }
-						/>
-					)}
+					{showIcon && <DisplayIcon icon={icon} />}
 				</a>
 			</div>
 		</div>
