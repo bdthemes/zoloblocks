@@ -93,7 +93,7 @@ function Inspector( props ) {
 												<ImageAvatar
 													imageUrl={
 														brandPhoto &&
-														brandPhoto.url
+														brandPhoto[ 0 ].url
 													}
 													onDeleteImage={ () =>
 														setAttributes( {
