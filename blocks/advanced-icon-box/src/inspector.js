@@ -3,7 +3,6 @@
  */
 import {
 	InspectorControls,
-	__experimentalLinkControl as LinkControl,
 	MediaUpload,
 	MediaUploadCheck,
 } from '@wordpress/block-editor';
@@ -36,6 +35,7 @@ const {
 	BoxShadowControl,
 	HeaderTabs,
 	IconicBtnGroup,
+	LinkControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -75,7 +75,10 @@ import {
 	TITLE_TYPOGRAPHY,
 	DESCRIPTION_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
-import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
+import {
+	TEXT_ALIGN_OPTIONS,
+	DEFAULT_ALIGNS,
+} from '../../../src/global/constants';
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
@@ -248,12 +251,12 @@ function Inspector(props) {
 							{iconType == 'image' && (
 								<Fragment>
 									{preset !== '' && preset == 'style-1' && (
-										<SelectControl
+										<IconicBtnGroup
 											label={__(
 												'Position',
 												'zolo-blocks'
 											)}
-											options={TOP_ICON_POSITIONS}
+											value={presetOneStyles.iconPosition}
 											onChange={(value) =>
 												setAttributes({
 													presetOneStyles: {
@@ -262,16 +265,16 @@ function Inspector(props) {
 													},
 												})
 											}
-											value={presetOneStyles.iconPosition}
+											options={TOP_ICON_POSITIONS}
 										/>
 									)}
 									{preset == 'style-2' && (
-										<SelectControl
+										<IconicBtnGroup
 											label={__(
 												'Position',
 												'zolo-blocks'
 											)}
-											options={SIDE_ICON_POSITIONS}
+											value={presetTwoStyles.iconPosition}
 											onChange={(value) =>
 												setAttributes({
 													presetTwoStyles: {
@@ -280,16 +283,18 @@ function Inspector(props) {
 													},
 												})
 											}
-											value={presetTwoStyles.iconPosition}
+											options={SIDE_ICON_POSITIONS}
 										/>
 									)}
 									{preset == 'style-3' && (
-										<SelectControl
+										<IconicBtnGroup
 											label={__(
 												'Position',
 												'zolo-blocks'
 											)}
-											options={SIDE_ICON_POSITIONS}
+											value={
+												presetThreeStyles.iconPosition
+											}
 											onChange={(value) =>
 												setAttributes({
 													presetThreeStyles: {
@@ -298,9 +303,7 @@ function Inspector(props) {
 													},
 												})
 											}
-											value={
-												presetThreeStyles.iconPosition
-											}
+											options={SIDE_ICON_POSITIONS}
 										/>
 									)}
 								</Fragment>
@@ -337,19 +340,19 @@ function Inspector(props) {
 							title={__('Button', 'zolo-blocks')}
 							initialOpen={false}
 						>
-							<TextControl
+							<LinkControl
 								label={__('Button URL', 'zolo-blocks')}
 								value={buttonLink}
-								onChange={(link) =>
+								onChange={(value) =>
 									setAttributes({
-										buttonLink: link,
+										buttonLink: value,
 									})
 								}
 							/>
 							{preset === 'style-1' && (
-								<SelectControl
+								<IconicBtnGroup
 									label={__('Button Position', 'zolo-blocks')}
-									options={BUTTON_POSITIONS}
+									value={presetOneStyles.buttonPosition}
 									onChange={(value) =>
 										setAttributes({
 											presetOneStyles: {
@@ -358,13 +361,13 @@ function Inspector(props) {
 											},
 										})
 									}
-									value={presetOneStyles.buttonPosition}
+									options={DEFAULT_ALIGNS}
 								/>
 							)}
 							{preset === 'style-2' && (
-								<SelectControl
+								<IconicBtnGroup
 									label={__('Button Position', 'zolo-blocks')}
-									options={BUTTON_POSITIONS}
+									value={presetTwoStyles.buttonPosition}
 									onChange={(value) =>
 										setAttributes({
 											presetTwoStyles: {
@@ -373,13 +376,13 @@ function Inspector(props) {
 											},
 										})
 									}
-									value={presetTwoStyles.buttonPosition}
+									options={DEFAULT_ALIGNS}
 								/>
 							)}
 							{preset === 'style-3' && (
-								<SelectControl
+								<IconicBtnGroup
 									label={__('Button Position', 'zolo-blocks')}
-									options={BUTTON_POSITIONS}
+									value={presetThreeStyles.buttonPosition}
 									onChange={(value) =>
 										setAttributes({
 											presetThreeStyles: {
@@ -388,11 +391,11 @@ function Inspector(props) {
 											},
 										})
 									}
-									value={presetThreeStyles.buttonPosition}
+									options={DEFAULT_ALIGNS}
 								/>
 							)}
 							<ToggleControl
-								label={__('Enable Icon', 'zolo-blocks')}
+								label={__('Show Icon', 'zolo-blocks')}
 								checked={showIcon}
 								onChange={() =>
 									setAttributes({

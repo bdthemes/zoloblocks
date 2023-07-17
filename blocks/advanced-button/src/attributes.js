@@ -9,6 +9,7 @@ const {
 	generateNormalBGAttributes,
 	generateBoxShadowAttributies,
 	generateTypographyAttributes,
+	generateLinkControlAttributes,
 } = window.zoloModule;
 
 import {
@@ -143,7 +144,7 @@ const attributes = {
 		type: 'object',
 		default: {
 			url: '#',
-			isNewTab: false,
+			openInNewTab: false,
 		},
 	},
 	openInNewTab: {

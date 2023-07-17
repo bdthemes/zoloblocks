@@ -213,8 +213,11 @@ const attributes = {
 		default: 'Read More',
 	},
 	buttonLink: {
-		type: 'string',
-		default: '#',
+		type: 'object',
+		default: {
+			url: '#',
+			openInNewTab: false,
+		},
 	},
 	btnColor: {
 		type: 'string',

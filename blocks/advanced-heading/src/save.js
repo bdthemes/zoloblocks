@@ -59,10 +59,10 @@ const Save = ({ attributes }) => {
 						{...(titleLink
 							? {
 									href: titleLink.url,
-									target: titleLink.isNewTab
+									target: titleLink.openInNewTab
 										? '_blank'
 										: '_self',
-									rel: titleLink.isNewTab
+									rel: titleLink.openInNewTab
 										? 'noopener noreferrer'
 										: 'noopener',
 							  }

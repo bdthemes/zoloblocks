@@ -7,7 +7,6 @@ import {
 	BlockControls,
 	MediaUpload,
 	MediaPlaceholder,
-	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
@@ -859,7 +858,7 @@ export default function Edit(props) {
 							/>
 
 							<div className={`zolo-block-link-btn`}>
-								<a className={`zolo-box-button`}>
+								<div className={`zolo-box-button`}>
 									<RichText
 										value={buttonText}
 										tagName="p"
@@ -876,7 +875,7 @@ export default function Edit(props) {
 									{showIcon && (
 										<DisplayIcon icon={buttonIcon} />
 									)}
-								</a>
+								</div>
 							</div>
 						</div>
 

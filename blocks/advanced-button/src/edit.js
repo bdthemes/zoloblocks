@@ -46,11 +46,13 @@ import {
 	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
 	ICON_PADDING,
+	LINK,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
+import { generateLinkControlAttributes } from '../../../src/module-export';
 
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
@@ -59,7 +61,6 @@ export default function Edit(props) {
 		uniqueId,
 		preset,
 		label,
-		link,
 		blockStyle,
 		isPopoverVisible,
 		showIcon,

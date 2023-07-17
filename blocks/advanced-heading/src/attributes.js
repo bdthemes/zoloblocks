@@ -68,7 +68,7 @@ const attributes = {
 		type: 'object',
 		default: {
 			url: '#',
-			isNewTab: false,
+			openInNewTab: false,
 		},
 	},
 	titleTagName: {
