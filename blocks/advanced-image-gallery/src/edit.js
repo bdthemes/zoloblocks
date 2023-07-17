@@ -3,7 +3,6 @@
  */
 import {
 	useBlockProps,
-	RichText,
 	BlockControls,
 	MediaUpload,
 	__experimentalLinkControl as LinkControl,
@@ -57,6 +56,7 @@ import {
 } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
+import ImageAvatar from './../../../src/controls/image-avatar/index';
 
 export default function Edit( props ) {
 	const {
@@ -70,18 +70,12 @@ export default function Edit( props ) {
 	const {
 		uniqueId,
 		preset,
-		heading,
-		showBrandName,
-		showBrandLink,
-		brandPhoto,
-		brandName,
-		brandLabel,
 		brandDetailPageLink,
 		textColor,
 		linkColor,
 		linkHoverColor,
 		blockStyle,
-		iconTypeImage,
+		brandPhoto,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
@@ -95,18 +89,6 @@ export default function Edit( props ) {
 			clientId,
 		} );
 	}, [] );
-
-	/**
-	 * context
-	 */
-	useEffect( () => {
-		setAttributes( {
-			preset: context[ 'zolo/preset' ],
-			heading: context[ 'zolo/heading' ],
-			showBrandName: context[ 'zolo/showBrandName' ],
-			showBrandLink: context[ 'zolo/showBrandLink' ],
-		} );
-	}, [ context ] );
 
 	// block props
 	const blockProps = useBlockProps( {
@@ -555,139 +537,50 @@ export default function Edit( props ) {
 						) }
 					/>
 				</ToolbarGroup>
-				{ iconTypeImage && (
-					<Fragment>
-						<ToolbarGroup>
-							<MediaUpload
-								onSelect={ ( media ) => {
-									setAttributes( {
-										iconTypeImage: media,
-									} );
-								} }
-								allowedTypes={ [ 'image' ] }
-								value={ iconTypeImage && iconTypeImage.id }
-								render={ ( { open } ) => (
-									<ToolbarButton
-										className="components-toolbar__control"
-										label={ __(
-											'Replace Photo',
-											'zolo-blocks'
-										) }
-										icon="update"
-										onClick={ open }
-									/>
-								) }
-							/>
-							<ToolbarButton
-								className="components-toolbar__control"
-								label={ __( 'Remove Photo', 'zolo-blocks' ) }
-								icon="trash"
-								onClick={ () => {
-									setAttributes( {
-										iconTypeImage: null,
-									} );
-								} }
-							/>
-						</ToolbarGroup>
-					</Fragment>
-				) }
 			</BlockControls>
 			<style>{ ` ${ softMinifyCssStrings( allStyle ) }` }</style>
+
 			<div { ...blockProps }>
-				<div
-					className="zolo-image-gallery zolo-img-gallery-style-1"
-					style={ { marginBottom: 50 + 'px' } }
-				>
-					<div className="zolo-item">
-						<div className="zolo-image-wrap">
-							<img
-								src="http://localhost:10011/wp-content/uploads/2023/07/natural-product.jpg"
-								alt=""
-							/>
-						</div>
-						<a href="#" className="zolo-icon-wrap">
-							<span className="zolo-icon">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									fill="currentColor"
-									className="bi bi-plus-lg"
-									viewBox="0 0 16 16"
-								>
-									<path
-										fill-rule="evenodd"
-										d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
-									></path>
-								</svg>
-							</span>
-							<span className="zolo-icon-text">zoom</span>
-						</a>
-						<div className="zolo-title">
-							This Is A Natural Products
-						</div>
+				{ brandPhoto && (
+					<div
+						className="zolo-image-gallery zolo-img-gallery-style-1"
+						style={ { marginBottom: 50 + 'px' } }
+					>
+						{ brandPhoto &&
+							brandPhoto.map( ( image, index ) => {
+								return (
+									<div className="zolo-item" key={ index }>
+										<div className="zolo-image-wrap">
+											<img src={ image.url } alt="" />
+										</div>
+										<a href="#" className="zolo-icon-wrap">
+											<span className="zolo-icon">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="16"
+													height="16"
+													fill="currentColor"
+													className="bi bi-plus-lg"
+													viewBox="0 0 16 16"
+												>
+													<path
+														fill-rule="evenodd"
+														d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+													></path>
+												</svg>
+											</span>
+											<span className="zolo-icon-text">
+												zoom
+											</span>
+										</a>
+										<div className="zolo-title">
+											{ image.caption }
+										</div>
+									</div>
+								);
+							} ) }
 					</div>
-
-					<div className="zolo-item">
-						<div className="zolo-image-wrap">
-							<img
-								src="http://localhost:10011/wp-content/uploads/2023/07/natural-cream.jpg"
-								alt=""
-							/>
-						</div>
-						<a href="#" className="zolo-icon-wrap">
-							<span className="zolo-icon">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									fill="currentColor"
-									className="bi bi-plus-lg"
-									viewBox="0 0 16 16"
-								>
-									<path
-										fill-rule="evenodd"
-										d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
-									></path>
-								</svg>
-							</span>
-							<span className="zolo-icon-text">zoom</span>
-						</a>
-						<div className="zolo-title">
-							This Is A Natural Products
-						</div>
-					</div>
-
-					<div className="zolo-item">
-						<div className="zolo-image-wrap">
-							<img
-								src="http://localhost:10011/wp-content/uploads/2023/07/facial-cream.jpg"
-								alt=""
-							/>
-						</div>
-						<a href="#" className="zolo-icon-wrap">
-							<span className="zolo-icon">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									fill="currentColor"
-									className="bi bi-plus-lg"
-									viewBox="0 0 16 16"
-								>
-									<path
-										fill-rule="evenodd"
-										d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
-									></path>
-								</svg>
-							</span>
-							<span className="zolo-icon-text">zoom</span>
-						</a>
-						<div className="zolo-title">
-							This Is A Natural Products
-						</div>
-					</div>
-				</div>
+				) }
 			</div>
 		</>
 	);

@@ -23,25 +23,13 @@ const {
 	BorderControl,
 	BoxShadowControl,
 	NormalBGControl,
-	ColorControl,
 	ResDimensionsControl,
-	TextShadowControl,
-	TextStrokeControl,
-	TypographyDropdown,
 	TabPanelControl,
 	ImageAvatar,
-	ResRangeControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
-	CONTENT_ALIGNMENT,
-	TITLE_MARGIN,
-	TITLE_TEXT_SHADOW,
-	TITLE_TEXT_STROKE,
-	LINK_TEXT_SHADOW,
-	LINK_TEXT_STROKE,
-	LINK_MARGIN,
 	CONTAINER_BACKGROUND,
 	CONTAINER_HOVER_BACKGROUND,
 	CONTAINER_HOVER_BORDER,
@@ -49,34 +37,13 @@ import {
 	CONTAINER_HOVER_BOX_SHADOW,
 	CONTAINER_BORDER_RADIUS,
 	CONTAINER_BORDER,
-	BRAND_PHOTO_BORDER,
-	BRAND_PHOTO_BORDER_RADIUS,
-	BRAND_PHOTO_BOX_SHADOW,
-	BRAND_PHOTO_BG,
-	BRAND_PHOTO_PADDING,
-	BRAND_PHOTO_MARGIN,
-	IMAGE_HEIGHT,
-	IMAGE_WIDTH,
 } from './constants';
 
-import {
-	TITLE_TYPOGRAPHY,
-	LINK_TYPOGRAPHY,
-} from './constants/typoPrefixConstant';
+import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector( props ) {
 	const { attributes, setAttributes } = props;
-	const {
-		uniqueId,
-		brandPhoto,
-		brandName,
-		brandLabel,
-		brandDetailPageLink,
-		resMode,
-		textColor,
-		linkColor,
-		linkHoverColor,
-	} = attributes;
+	const { uniqueId, brandPhoto, resMode } = attributes;
 
 	const resRequiredProps = {
 		attributes,
@@ -130,7 +97,7 @@ function Inspector( props ) {
 													}
 													onDeleteImage={ () =>
 														setAttributes( {
-															brandPhoto: null,
+															brandPhoto: '',
 														} )
 													}
 												/>
@@ -141,10 +108,16 @@ function Inspector( props ) {
 															brandPhoto: media,
 														} );
 													} }
+													multiple={ true }
+													gallery={ true }
+													addToGallery={ true }
 													allowedTypes={ [ 'image' ] }
 													value={
 														brandPhoto &&
-														brandPhoto.id
+														brandPhoto.map(
+															( image ) =>
+																image.id
+														)
 													}
 													render={ ( { open } ) => (
 														<Button
@@ -169,97 +142,6 @@ function Inspector( props ) {
 												/>
 											) }
 										</BaseControl>
-
-										<TextControl
-											label={ __(
-												'Brand Name',
-												'zolo-blocks'
-											) }
-											onChange={ ( name ) =>
-												setAttributes( {
-													brandName: name,
-												} )
-											}
-											value={ brandName }
-											placeholder={ __(
-												'Name..',
-												'zolo-blocks'
-											) }
-										/>
-
-										<>
-											<TextControl
-												label={ __(
-													'Label',
-													'zolo-blocks'
-												) }
-												onChange={ ( name ) =>
-													setAttributes( {
-														brandLabel: name,
-													} )
-												}
-												value={ brandLabel }
-												placeholder={ __(
-													'Name..',
-													'zolo-blocks'
-												) }
-											/>
-											<BaseControl
-												label={ __(
-													'Brand Details Link',
-													'zolo-blocks'
-												) }
-											>
-												<LinkControl
-													searchInputPlaceholder="Search here..."
-													value={
-														brandDetailPageLink
-													}
-													settings={ [
-														{
-															id: 'opensInNewTab',
-															title: __(
-																'Open in new tab',
-																'zolo-blocks'
-															),
-														},
-													] }
-													onChange={ ( data ) =>
-														setAttributes( {
-															brandDetailPageLink:
-																data,
-														} )
-													}
-												/>
-											</BaseControl>
-											<BaseControl
-												label={ __(
-													'Image Size',
-													'zolo-blocks'
-												) }
-											>
-												<ResRangeControl
-													label={ __(
-														'Image Height',
-														'zolo-blocks'
-													) }
-													controlName={ IMAGE_HEIGHT }
-													resRequiredProps={
-														resRequiredProps
-													}
-												/>
-												<ResRangeControl
-													label={ __(
-														'Image Width',
-														'zolo-blocks'
-													) }
-													controlName={ IMAGE_WIDTH }
-													resRequiredProps={
-														resRequiredProps
-													}
-												/>
-											</BaseControl>
-										</>
 									</PanelBody>
 								</>
 							) }
@@ -269,32 +151,7 @@ function Inspector( props ) {
 									<PanelBody
 										title={ __( 'General', 'zolo-blocks' ) }
 										initialOpen={ false }
-									>
-										<ResAlignmentControl
-											label={ __(
-												'Content Alignment',
-												'zolo-blocks'
-											) }
-											controlName={ CONTENT_ALIGNMENT }
-											resRequiredProps={
-												resRequiredProps
-											}
-											alignOptions={ [
-												{
-													label: 'Left',
-													value: 'flex-start',
-												},
-												{
-													label: 'Center',
-													value: 'center',
-												},
-												{
-													label: 'Right',
-													value: 'flex-end',
-												},
-											] }
-										/>
-									</PanelBody>
+									></PanelBody>
 									<PanelBody
 										title={ __(
 											'Container',
@@ -389,205 +246,6 @@ function Inspector( props ) {
 													/>
 												</>
 											}
-										/>
-									</PanelBody>
-
-									<PanelBody
-										title={ __( 'Photo', 'zolo-blocks' ) }
-										initialOpen={ false }
-									>
-										<BorderControl
-											label={ __(
-												'Border',
-												'zolo-blocks'
-											) }
-											controlName={ BRAND_PHOTO_BORDER }
-											resRequiredProps={
-												resRequiredProps
-											}
-										/>
-										<ResDimensionsControl
-											label={ __(
-												'Border Radius',
-												'zolo-blocks'
-											) }
-											controlName={
-												BRAND_PHOTO_BORDER_RADIUS
-											}
-											resRequiredProps={
-												resRequiredProps
-											}
-											forBorderRadius={ true }
-										/>
-										<BoxShadowControl
-											controlName={
-												BRAND_PHOTO_BOX_SHADOW
-											}
-											resRequiredProps={
-												resRequiredProps
-											}
-											enableTransition={ false }
-										/>
-										<NormalBGControl
-											resRequiredProps={
-												resRequiredProps
-											}
-											controlName={ BRAND_PHOTO_BG }
-											noMainBGImg={ false }
-										/>
-										<ResDimensionsControl
-											label={ __(
-												'Padding',
-												'zolo-blocks'
-											) }
-											controlName={ BRAND_PHOTO_PADDING }
-											resRequiredProps={
-												resRequiredProps
-											}
-											forBorderRadius={ false }
-										/>
-										<ResDimensionsControl
-											label={ __(
-												'Margin',
-												'zolo-blocks'
-											) }
-											controlName={ BRAND_PHOTO_MARGIN }
-											resRequiredProps={
-												resRequiredProps
-											}
-											forBorderRadius={ false }
-										/>
-									</PanelBody>
-									<PanelBody
-										title={ __( 'Heading', 'zolo-blocks' ) }
-										initialOpen={ false }
-									>
-										<TypographyDropdown
-											label={ __(
-												'Typography',
-												'zolo-blocks'
-											) }
-											typoPrefixConstant={
-												TITLE_TYPOGRAPHY
-											}
-											resRequiredProps={
-												resRequiredProps
-											}
-										/>
-										<ColorControl
-											label={ __(
-												'Color',
-												'zolo-blocks'
-											) }
-											color={ textColor }
-											onChange={ ( value ) =>
-												setAttributes( {
-													textColor: value,
-												} )
-											}
-										/>
-										<ResDimensionsControl
-											label={ __(
-												'Margin',
-												'zolo-blocks'
-											) }
-											controlName={ TITLE_MARGIN }
-											resRequiredProps={
-												resRequiredProps
-											}
-										/>
-										<TextShadowControl
-											controlName={ TITLE_TEXT_SHADOW }
-											resRequiredProps={
-												resRequiredProps
-											}
-											enableTransition={ false }
-										/>
-
-										<TextStrokeControl
-											controlName={ TITLE_TEXT_STROKE }
-											resRequiredProps={
-												resRequiredProps
-											}
-											enableTransition={ false }
-										/>
-									</PanelBody>
-									<PanelBody
-										title={ __( 'Link', 'zolo-blocks' ) }
-										initialOpen={ false }
-									>
-										<TypographyDropdown
-											label={ __(
-												'Typography',
-												'zolo-blocks'
-											) }
-											typoPrefixConstant={
-												LINK_TYPOGRAPHY
-											}
-											resRequiredProps={
-												resRequiredProps
-											}
-										/>
-
-										<TabPanelControl
-											normalComponents={
-												<>
-													<ColorControl
-														label={ __(
-															'Color',
-															'zolo-blocks'
-														) }
-														color={ linkColor }
-														onChange={ ( value ) =>
-															setAttributes( {
-																linkColor:
-																	value,
-															} )
-														}
-													/>
-												</>
-											}
-											hoverComponents={
-												<>
-													<ColorControl
-														label={ __(
-															'Color',
-															'zolo-blocks'
-														) }
-														color={ linkHoverColor }
-														onChange={ ( value ) =>
-															setAttributes( {
-																linkHoverColor:
-																	value,
-															} )
-														}
-													/>
-												</>
-											}
-										/>
-										<ResDimensionsControl
-											label={ __(
-												'Margin',
-												'zolo-blocks'
-											) }
-											controlName={ LINK_MARGIN }
-											resRequiredProps={
-												resRequiredProps
-											}
-										/>
-										<TextShadowControl
-											controlName={ LINK_TEXT_SHADOW }
-											resRequiredProps={
-												resRequiredProps
-											}
-											enableTransition={ false }
-										/>
-										<TextStrokeControl
-											controlName={ LINK_TEXT_STROKE }
-											resRequiredProps={
-												resRequiredProps
-											}
-											enableTransition={ false }
 										/>
 									</PanelBody>
 								</>

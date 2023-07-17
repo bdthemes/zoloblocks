@@ -81,7 +81,6 @@ export default function Edit( props ) {
 		linkColor,
 		linkHoverColor,
 		blockStyle,
-		iconTypeImage,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
@@ -555,17 +554,17 @@ export default function Edit( props ) {
 						) }
 					/>
 				</ToolbarGroup>
-				{ iconTypeImage && (
+				{ brandPhoto && (
 					<Fragment>
 						<ToolbarGroup>
 							<MediaUpload
 								onSelect={ ( media ) => {
 									setAttributes( {
-										iconTypeImage: media,
+										brandPhoto: media,
 									} );
 								} }
 								allowedTypes={ [ 'image' ] }
-								value={ iconTypeImage && iconTypeImage.id }
+								value={ brandPhoto && brandPhoto.id }
 								render={ ( { open } ) => (
 									<ToolbarButton
 										className="components-toolbar__control"
@@ -584,7 +583,7 @@ export default function Edit( props ) {
 								icon="trash"
 								onClick={ () => {
 									setAttributes( {
-										iconTypeImage: null,
+										brandPhoto: null,
 									} );
 								} }
 							/>
