@@ -201,10 +201,19 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 										<>
 											<ImageAvatar
 												imageUrl={bgImageURL}
+												imageId={bgImageID}
 												onDeleteImage={() =>
 													setAttributes({
 														[`${controlName}bgImageURL`]:
 															null,
+													})
+												}
+												onEditImage={(url, id) =>
+													setAttributes({
+														[`${controlName}bgImageURL`]:
+															url,
+														[`${controlName}bgImageID`]:
+															id,
 													})
 												}
 											/>

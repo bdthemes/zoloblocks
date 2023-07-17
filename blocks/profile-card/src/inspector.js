@@ -285,9 +285,18 @@ function Inspector(props) {
 									{photo ? (
 										<ImageAvatar
 											imageUrl={photo && photo.url}
+											imageId={photo && photo.id}
 											onDeleteImage={() =>
 												setAttributes({
 													photo: null,
+												})
+											}
+											onEditImage={(url, id) =>
+												setAttributes({
+													photo: {
+														url,
+														id,
+													},
 												})
 											}
 										/>

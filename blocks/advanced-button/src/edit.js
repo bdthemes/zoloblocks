@@ -5,7 +5,6 @@ import {
 	useBlockProps,
 	RichText,
 	BlockControls,
-	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import { useEffect, useState } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup, Popover } from '@wordpress/components';
@@ -26,6 +25,7 @@ const {
 	generateBoxShadowStyles,
 	generateTypographyStyles,
 	DisplayIcon,
+	LinkControl,
 } = window.zoloModule;
 
 import {
@@ -62,6 +62,7 @@ export default function Edit(props) {
 		preset,
 		label,
 		blockStyle,
+		link,
 		isPopoverVisible,
 		showIcon,
 		icon,
@@ -554,17 +555,15 @@ export default function Edit(props) {
 						onFocusOutside={() => setPopoverVisible(false)}
 						offset={10}
 					>
-						<LinkControl
-							searchInputPlaceholder="Search here..."
-							value={link}
-							settings={[
-								{
-									id: 'opensInNewTab',
-									title: __('Open in new tab', 'zolo-blocks'),
-								},
-							]}
-							onChange={(data) => setAttributes({ link: data })}
-						/>
+						<div className="zb-link-block-control-wrapper">
+							<LinkControl
+								label={__('Button URL', 'zolo-blocks')}
+								value={link}
+								onChange={(value) =>
+									setAttributes({ link: value })
+								}
+							/>
+						</div>
 					</Popover>
 				)}
 			</BlockControls>

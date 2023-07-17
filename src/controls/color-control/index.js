@@ -66,18 +66,11 @@ const ColorControl = ({ label, defaultColor, color, onChange }) => {
 						/>
 					)}
 				/>
-				<Button
-					isSmall
-					className="zb-reset-button"
-					icon="image-rotate"
-					style={{
-						transform: 'scaleX(-1) rotate(90deg)',
-					}}
-					onClick={() => {
+				<ResetBtn
+					onReset={() => {
 						setBgColor(defaultColor);
 					}}
-					disabled={!bgColor}
-				></Button>
+				/>
 			</BaseControl>
 		</div>
 	);

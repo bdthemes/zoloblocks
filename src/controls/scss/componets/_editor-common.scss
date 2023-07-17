@@ -1,9 +1,7 @@
 .zolo-panel-control {
-
 	.zb-typography-control-wrapper {
 		margin-bottom: 12px !important;
 	}
-
 	.components-button {
 		color: #000;
 		font-weight: 400;
@@ -93,8 +91,8 @@
 			margin-bottom: 0 !important;
 		}
 	}
-
 }
+
 .zolo-tab-panel,
 .zolo-tab-controls {
 	.components-button-group {
@@ -105,7 +103,7 @@
 		border-radius: 6px;
 
 		.components-button {
-			box-shadow: none !IMPORTANT;
+			box-shadow: none !important;
 			width: 100%;
 			display: flex;
 			align-items: center;

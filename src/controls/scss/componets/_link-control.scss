@@ -34,9 +34,12 @@
 	}
 }
 
+.zb-link-control-popover {
+	left: 3px !important;
+}
 // link extra popover
 .zb-link-popover {
-	width: 250px;
+	width: 245px;
 	padding: 15px;
 	box-sizing: border-box;
 	.components-flex {
@@ -71,4 +74,10 @@
 	.components-flex.components-h-stack {
 		height: auto !important;
 	}
+}
+
+.zb-link-block-control-wrapper {
+	width: 250px;
+	padding: 10px;
+	box-sizing: border-box;
 }

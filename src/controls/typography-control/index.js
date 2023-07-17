@@ -102,10 +102,20 @@ const TypographyDropdown = ({
 						className="zb-typography-dropdown-btn"
 					>
 						<svg
+							id="Layer_1"
+							data-name="Layer 1"
 							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 24 24"
+							viewBox="0 0 100 100"
 						>
-							<path d="M13 6V21H11V6H5V4H19V6H13Z"></path>
+							<rect
+								width={100}
+								height={100}
+								style={{ fill: 'none' }}
+							/>
+							<path
+								d="M79.56,14.91H20.44a3.5,3.5,0,0,0-3.5,3.5V31.09a3.5,3.5,0,0,0,7,0V21.91H46.06V78.09H38.32a3.5,3.5,0,1,0,0,7H61.68a3.5,3.5,0,1,0,0-7H53.06V21.91h23v8.83a3.5,3.5,0,1,0,7,0V18.41A3.5,3.5,0,0,0,79.56,14.91Z"
+								style={{ fill: '#39394d' }}
+							/>
 						</svg>
 					</Button>
 				)}
