@@ -15,10 +15,18 @@
     background-position: center;
 }
 
-.zb-bg-control-img-btn {
+.zb-bg-control-img-btn,
+.zolo-image-upload-btn {
     height: 130px;
     width: 100%;
     border-radius: 6px;
-    background-color: #f6f6f8;
-    border: 1px solid #ddd;
+    background-color: #eee;
+}
+
+.zolo-image-upload-btn {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
 }

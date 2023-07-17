@@ -16,12 +16,13 @@
 		font-weight: 400 !important;
 		text-transform: capitalize !important;
 	}
-	.zolo-tab-controls {
+	// .zolo-tab-controls {
 		.components-base-control {
 			input,
-			select {
+			select,
+			.components-textarea-control__input {
 				height: 40px !important;
-				border: 1px solid #ddd;
+				border: 1px solid #ddd !important;
 				outline: none !important;
 				border-radius: 6px;
 				padding: 0 12px !important;
@@ -29,6 +30,10 @@
 					border-color: #001feb;
 					box-shadow: none !important;
 				}
+			}
+			.components-textarea-control__input {
+				height: auto !important;
+				padding: 12px !important;
 			}
 		}
 		.components-input-control__backdrop {
@@ -39,7 +44,7 @@
 			position: unset !important;
 			margin: 0;
 		}
-	}
+	// }
 
 	.components-range-control__root {
 		display: flex;
