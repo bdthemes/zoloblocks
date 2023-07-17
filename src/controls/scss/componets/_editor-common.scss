@@ -88,32 +88,39 @@
 		height: auto !important;
 	}
 
-	.zolo-tab-panel{
-		.components-button-group {
+	.components-base-control__field {
+		&:nth-last-child(1) {
+			margin-bottom: 0 !important;
+		}
+	}
+
+}
+.zolo-tab-panel,
+.zolo-tab-controls {
+	.components-button-group {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border: 1px solid #ddd;
+		border-radius: 6px;
+
+		.components-button {
+			box-shadow: none !IMPORTANT;
+			width: 100%;
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
-			border: 1px solid #ddd;
-			border-radius: 6px;
-	
-			.components-button {
-				box-shadow: none !IMPORTANT;
-				width: 100%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				border-radius: 6px !important;
-				margin: 4px;
-				&:hover {
-					color: #001feb;
-				}
+			justify-content: center;
+			border-radius: 6px !important;
+			margin: 4px;
+			&:hover {
+				color: #001feb;
 			}
-			.is-primary {
-				background-color: #000 !important;
-				color: #fff !important;
-				&:hover {
-					color: #fff;
-				}
+		}
+		.is-primary {
+			background-color: #000 !important;
+			color: #fff !important;
+			&:hover {
+				color: #fff;
 			}
 		}
 	}
