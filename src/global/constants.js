@@ -27,24 +27,18 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'left',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
+				width={16}
+				height={16}
+				fill="currentColor"
+				className="bi bi-align-start"
+				viewBox="0 0 16 16"
 			>
-				<rect
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
-				/>
 				<path
-					d="M72.53,24h-44V17.38a5,5,0,0,0-10,0V83.62a5,5,0,0,0,10,0V77H52.65c4.73,0,8.57-3.57,8.57-8V61.77c0-4.39-3.84-8-8.57-8H28.5V47.19h44c4.72,0,8.57-3.57,8.57-8V32C81.1,27.57,77.25,24,72.53,24ZM52,63v4.81H28.5V63ZM71.9,38H28.5V33.19H71.9Z"
-					style={{
-						fill: '#39394d',
-					}}
+					fillRule="evenodd"
+					d="M1.5 1a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5z"
 				/>
+				<path d="M3 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7z" />
 			</svg>
 		),
 	},
@@ -53,27 +47,14 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'center',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100.08 100.08"
+				width={16}
+				height={16}
+				fill="currentColor"
+				className="bi bi-align-center"
+				viewBox="0 0 16 16"
 			>
-				<path
-					d="M71.75,23.93H55V18.51a5,5,0,0,0-10,0v5.42H28.25a8.3,8.3,0,0,0-8.52,8v7.28a8.3,8.3,0,0,0,8.52,8H45v5.43H34.65a8.29,8.29,0,0,0-8.52,8V68a8.29,8.29,0,0,0,8.52,8H45v6.42a5,5,0,1,0,10,0V76.07H65.35a8.29,8.29,0,0,0,8.52-8V60.76a8.29,8.29,0,0,0-8.52-8H55V47.29H71.75a8.3,8.3,0,0,0,8.52-8V32A8.3,8.3,0,0,0,71.75,23.93ZM64.51,62.07v4.65h-29V62.07Zm6.4-24.14H29.09V33.29H70.91Z"
-					transform="translate(0.04 -0.46)"
-					style={{
-						fill: '#39394d',
-					}}
-				/>
-				<rect
-					x="0.04"
-					y="0.04"
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
-				/>
+				<path d="M8 1a.5.5 0 0 1 .5.5V6h-1V1.5A.5.5 0 0 1 8 1zm0 14a.5.5 0 0 1-.5-.5V10h1v4.5a.5.5 0 0 1-.5.5zM2 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7z" />
 			</svg>
 		),
 	},
@@ -82,24 +63,18 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'right',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
+				width={16}
+				height={16}
+				fill="currentColor"
+				className="bi bi-align-end"
+				viewBox="0 0 16 16"
 			>
-				<rect
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
-				/>
 				<path
-					d="M76.35,11.8a5,5,0,0,0-5,5v6.67H27.22c-4.73,0-8.57,3.57-8.57,8V38.7c0,4.39,3.84,7.95,8.57,7.95H71.35v6.7H47.14c-4.73,0-8.57,3.56-8.57,7.95v7.28c0,4.38,3.84,8,8.57,8H71.35V83.2a5,5,0,1,0,10,0V16.8A5,5,0,0,0,76.35,11.8Zm-5,55.55H47.75V62.53h23.6Zm0-29.88H27.83V32.65H71.35Z"
-					style={{
-						fill: '#39394d',
-					}}
+					fillRule="evenodd"
+					d="M14.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5z"
 				/>
+				<path d="M13 7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7z" />
 			</svg>
 		),
 	},

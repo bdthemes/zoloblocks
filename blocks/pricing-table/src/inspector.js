@@ -9,6 +9,7 @@ import {
 	SelectControl,
 	TabPanel,
 	TextControl,
+	TextareaControl,
 	ToggleControl,
 } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
@@ -244,7 +245,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 							/>
 
 							{showDesc && (
-								<TextControl
+								<TextareaControl
 									label={__('Description', 'zolo-blocks')}
 									value={descText}
 									onChange={(descText) =>
@@ -329,7 +330,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 											setAttributes({ featureTitle })
 										}
 									/>
-									<TextControl
+									<TextareaControl
 										label={__('Description', 'zolo-blocks')}
 										value={featureDesc}
 										onChange={(featureDesc) =>
