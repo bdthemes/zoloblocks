@@ -2,10 +2,10 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"title": "Advanced Image Gallery",
 	"icon": "format-gallery",
-	"name": "zolo/advanced-image-gallery-child",
+	"name": "zolo/advanced-image-gallery",
 	"category": "zolo-blocks",
-	"keywords": [ "child", "image gallery" ],
-	"description": "Advanced Image Gallery Child Block Description",
+	"keywords": [ "advanced", "image gallery" ],
+	"description": "Advanced Image Gallery Block",
 	"apiVersion": 2,
 	"textdomain": "zolo-blocks",
 	"supports": {

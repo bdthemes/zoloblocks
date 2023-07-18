@@ -1,15 +1,10 @@
 /**
  * WordPress dependencies
  */
-import {
-	InspectorControls,
-	__experimentalLinkControl as LinkControl,
-	MediaUpload,
-} from '@wordpress/block-editor';
+import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
 	PanelBody,
 	TabPanel,
-	TextControl,
 	BaseControl,
 	Button,
 } from '@wordpress/components';
@@ -19,7 +14,6 @@ import { __ } from '@wordpress/i18n';
  * Internal depencencies
  */
 const {
-	ResAlignmentControl,
 	BorderControl,
 	BoxShadowControl,
 	NormalBGControl,
@@ -43,7 +37,7 @@ import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector( props ) {
 	const { attributes, setAttributes } = props;
-	const { uniqueId, brandPhoto, resMode } = attributes;
+	const { uniqueId, advancedGallery, resMode } = attributes;
 
 	const resRequiredProps = {
 		attributes,
@@ -89,15 +83,15 @@ function Inspector( props ) {
 												'zolo-blocks'
 											) }
 										>
-											{ brandPhoto ? (
+											{ advancedGallery ? (
 												<ImageAvatar
 													imageUrl={
-														brandPhoto &&
-														brandPhoto[ 0 ].url
+														advancedGallery &&
+														advancedGallery[ 0 ].url
 													}
 													onDeleteImage={ () =>
 														setAttributes( {
-															brandPhoto: '',
+															advancedGallery: '',
 														} )
 													}
 												/>
@@ -105,7 +99,8 @@ function Inspector( props ) {
 												<MediaUpload
 													onSelect={ ( media ) => {
 														setAttributes( {
-															brandPhoto: media,
+															advancedGallery:
+																media,
 														} );
 													} }
 													multiple={ true }
@@ -113,8 +108,8 @@ function Inspector( props ) {
 													addToGallery={ true }
 													allowedTypes={ [ 'image' ] }
 													value={
-														brandPhoto &&
-														brandPhoto.map(
+														advancedGallery &&
+														advancedGallery.map(
 															( image ) =>
 																image.id
 														)
