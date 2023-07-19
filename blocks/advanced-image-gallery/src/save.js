@@ -5,7 +5,9 @@ const Save = ( { attributes } ) => {
 
 	return (
 		<div { ...useBlockProps.save() }>
-			<div className="zolo-image-gallery zolo-img-gallery-style-1">
+			<div
+				className={ `zolo-image-gallery ${ uniqueId } zolo-img-gallery-${ preset }` }
+			>
 				{ advancedGallery &&
 					advancedGallery.map( ( image, index ) => {
 						return (

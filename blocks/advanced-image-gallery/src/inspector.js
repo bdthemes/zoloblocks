@@ -7,6 +7,7 @@ import {
 	TabPanel,
 	BaseControl,
 	Button,
+	SelectControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -20,24 +21,17 @@ const {
 	ResDimensionsControl,
 	TabPanelControl,
 	ImageAvatar,
+	ResRangeControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
-import {
-	CONTAINER_BACKGROUND,
-	CONTAINER_HOVER_BACKGROUND,
-	CONTAINER_HOVER_BORDER,
-	CONTAINER_BOX_SHADOW,
-	CONTAINER_HOVER_BOX_SHADOW,
-	CONTAINER_BORDER_RADIUS,
-	CONTAINER_BORDER,
-} from './constants';
+import { PRESETS, ROWS_GAP, COLUMNS_GAP, GRID_COLUMNS } from './constants';
 
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector( props ) {
 	const { attributes, setAttributes } = props;
-	const { uniqueId, advancedGallery, resMode } = attributes;
+	const { uniqueId, advancedGallery, preset, resMode } = attributes;
 
 	const resRequiredProps = {
 		attributes,
@@ -74,8 +68,60 @@ function Inspector( props ) {
 							{ tab.name === 'settings' && (
 								<>
 									<PanelBody
-										title={ __( 'Content', 'zolo-blocks' ) }
+										title={ __( 'General', 'zolo-blocks' ) }
 										initialOpen={ false }
+									>
+										<SelectControl
+											label={ __(
+												'Preset Designs',
+												'zolo-blocks'
+											) }
+											value={ preset }
+											options={ PRESETS }
+											onChange={ ( value ) =>
+												setAttributes( {
+													preset: value,
+												} )
+											}
+										/>
+										<ResRangeControl
+											label={ __(
+												'Grid Columns',
+												'zolo-blocks'
+											) }
+											controlName={ GRID_COLUMNS }
+											resRequiredProps={
+												resRequiredProps
+											}
+											max={ 4 }
+											min={ 1 }
+											step={ 1 }
+											noUnits={ true }
+										/>
+										<ResRangeControl
+											label={ __(
+												'Columns Gap',
+												'zolo-blocks'
+											) }
+											controlName={ COLUMNS_GAP }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+										<ResRangeControl
+											label={ __(
+												'Rows Gap',
+												'zolo-blocks'
+											) }
+											controlName={ ROWS_GAP }
+											resRequiredProps={
+												resRequiredProps
+											}
+										/>
+									</PanelBody>
+									<PanelBody
+										title={ __( 'Content', 'zolo-blocks' ) }
+										initialOpen={ true }
 									>
 										<BaseControl
 											label={ __(

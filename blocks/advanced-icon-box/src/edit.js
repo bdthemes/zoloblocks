@@ -81,7 +81,6 @@ export default function Edit( props ) {
 		textHoverColor,
 		descColor,
 		descHoverColor,
-		iconPosition,
 		iconColor,
 		iconHoverColor,
 		iconBackgroundColor,

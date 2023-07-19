@@ -1,7 +1,10 @@
-const { generateTypographyAttributes } = window.zoloModule;
+const { generateTypographyAttributes, generateResRangeAttributies } =
+	window.zoloModule;
 
-import { TITLE_ALIGNMENT } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
+
+import { GRID_COLUMNS, COLUMNS_GAP, ROWS_GAP } from './constants';
+
 const attributes = {
 	//Common Attributes
 	uniqueId: {
@@ -14,6 +17,17 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
+
+	...generateResRangeAttributies( GRID_COLUMNS, {
+		defaultRange: 3,
+		noUnits: true,
+	} ),
+	...generateResRangeAttributies( COLUMNS_GAP, {
+		defaultRange: 30,
+	} ),
+	...generateResRangeAttributies( ROWS_GAP, {
+		defaultRange: 30,
+	} ),
 
 	//typography
 	...generateTypographyAttributes( Object.values( typographyObjs ) ),
