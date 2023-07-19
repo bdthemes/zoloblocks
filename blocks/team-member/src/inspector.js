@@ -35,6 +35,8 @@ const {
 	IconPicker,
 	TabPanelControl,
 	HeaderTabs,
+	SortableItem,
+	SortableControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -166,6 +168,8 @@ function Inspector(props) {
 		};
 		setAttributes({ socialProfiles: [...profile] });
 	};
+
+	console.log(socialProfiles);
 
 	return (
 		<InspectorControls key="controls">
@@ -366,6 +370,122 @@ function Inspector(props) {
 								title={__('Social Profiles', 'zolo-blocks')}
 								initialOpen={false}
 							>
+								<SortableControl
+									defaultItems={socialProfiles}
+									attributeName="socialProfiles"
+									setAttributes={setAttributes}
+								>
+									{socialProfiles &&
+										socialProfiles.map((profile, index) => {
+											return (
+												<div
+													className="dnd-container"
+													key={index}
+												>
+													<Button
+														className="dnd-trash"
+														icon="trash"
+														onClick={() => {
+															const newItems = [
+																...socialProfiles,
+															];
+															newItems.splice(
+																index,
+																1
+															);
+															setAttributes({
+																socialProfiles:
+																	newItems,
+															});
+														}}
+													/>
+
+													<SortableItem
+														key={profile.id}
+														id={profile.id}
+													>
+														<PanelBody
+															title={
+																profile.title
+															}
+															initialOpen={false}
+														>
+															<TextControl
+																label={__(
+																	'Title',
+																	'zolo-blocks'
+																)}
+																value={
+																	profile.title
+																}
+																onChange={(
+																	value
+																) => {
+																	const newItems =
+																		[
+																			...socialProfiles,
+																		];
+																	newItems[
+																		index
+																	].title =
+																		value;
+																	setAttributes(
+																		{
+																			socialProfiles:
+																				newItems,
+																		}
+																	);
+																}}
+															/>
+															<IconPicker
+																value={
+																	profile.icon
+																}
+																onChange={(
+																	value
+																) =>
+																	setProfileIcon(
+																		value,
+																		index
+																	)
+																}
+																showHeading={
+																	false
+																}
+															/>
+															<TextControl
+																value={
+																	profile.link
+																}
+																onChange={(v) =>
+																	setAttributes(
+																		{
+																			socialProfiles:
+																				socialProfiles.map(
+																					(
+																						profile,
+																						i
+																					) => {
+																						if (
+																							index ===
+																							i
+																						) {
+																							profile.link =
+																								v;
+																						}
+																						return profile;
+																					}
+																				),
+																		}
+																	)
+																}
+															/>
+														</PanelBody>
+													</SortableItem>
+												</div>
+											);
+										})}
+								</SortableControl>
 								<Button
 									variant="primary"
 									onClick={() =>
@@ -373,7 +493,17 @@ function Inspector(props) {
 											socialProfiles: [
 												...socialProfiles,
 												{
-													icon: '',
+													id:
+														socialProfiles.length +
+														1,
+													title: 'Title',
+													icon: {
+														facebook: {
+															name: 'facebook',
+															source: 'dashicon',
+															type: '',
+														},
+													},
 													link: '#',
 												},
 											],
@@ -382,69 +512,6 @@ function Inspector(props) {
 								>
 									{__('Add a Profile', 'zolo-blocks')}
 								</Button>
-								{socialProfiles &&
-									socialProfiles.map((profile, index) => {
-										return (
-											<div
-												className="zolo-social-profile"
-												key={index}
-											>
-												<IconPicker
-													value={profile.icon}
-													onChange={(value) =>
-														setProfileIcon(
-															value,
-															index
-														)
-													}
-													showHeading={false}
-												/>
-												<div className="profile-link">
-													<TextControl
-														value={profile.link}
-														onChange={(v) =>
-															setAttributes({
-																socialProfiles:
-																	socialProfiles.map(
-																		(
-																			profile,
-																			i
-																		) => {
-																			if (
-																				index ===
-																				i
-																			) {
-																				profile.link =
-																					v;
-																			}
-																			return profile;
-																		}
-																	),
-															})
-														}
-													/>
-												</div>
-												<Button
-													className="remove-profile"
-													onClick={() =>
-														setAttributes({
-															socialProfiles:
-																socialProfiles.filter(
-																	(
-																		profile,
-																		i
-																	) =>
-																		index !==
-																		i
-																),
-														})
-													}
-												>
-													<i className="fas fa-times"></i>
-												</Button>
-											</div>
-										);
-									})}
 								<CardDivider />
 								<ToggleControl
 									label={__(

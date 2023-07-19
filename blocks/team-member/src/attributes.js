@@ -131,18 +131,7 @@ const attributes = {
 	},
 	socialProfiles: {
 		type: 'array',
-		default: [
-			{
-				icon: {
-					twitter: {
-						name: 'twitter',
-						source: 'dashicon',
-						type: '',
-					},
-				},
-				link: '#',
-			},
-		],
+		default: [],
 	},
 	socialProfilesLinkTarget: {
 		type: 'boolean',

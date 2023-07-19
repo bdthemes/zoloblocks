@@ -1,0 +1,47 @@
+.dnd-container {
+	border: 1px solid #e0e0e0;
+	margin-bottom: 10px;
+	position: relative;
+
+	.dnd-trash {
+		position: absolute;
+		top: 5px;
+		left: 0;
+		z-index: 99;
+		color: #e0e0e0;
+		&:hover {
+			color: #f44336;
+		}
+		span {
+			font-size: 18px;
+		}
+	}
+
+	.dnd-fields-wrapper {
+		.components-panel__body-toggle {
+			padding: 14px 10px 14px 35px;
+		}
+		.components-panel__body.is-opened {
+			.components-panel__body-toggle {
+				border-bottom: 1px solid #e0e0e0;
+			}
+		}
+	}
+
+	.float-btn {
+		background: none;
+		border: none;
+		position: absolute;
+		top: 10px;
+		right: 40px;
+		z-index: 99;
+		cursor: pointer;
+		svg {
+			width: 20px;
+			height: 20px;
+		}
+		&:hover svg {
+			fill: #068d1e;
+		}
+	}
+}
