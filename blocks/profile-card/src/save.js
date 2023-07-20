@@ -122,12 +122,12 @@ const Save = ({ attributes }) => {
 								}
 								target={
 									followButtonLink &&
-									followButtonLink.opensInNewTab &&
+									followButtonLink.openInNewTab &&
 									'_blank'
 								}
 								rel={
 									followButtonLink &&
-									followButtonLink.opensInNewTab &&
+									followButtonLink.openInNewTab &&
 									'noopener noreferrer'
 								}
 							>
@@ -140,11 +140,18 @@ const Save = ({ attributes }) => {
 									socialProfiles.map((profile, index) => {
 										return (
 											<a
-												href={profile.link}
+												href={
+													profile.link &&
+													profile.link.url
+												}
 												key={index}
 												rel={
-													socialProfilesLinkTarget &&
+													profile.link.openInNewTab &&
 													'noopener noreferer'
+												}
+												target={
+													profile.link.openInNewTab &&
+													'_blank'
 												}
 											>
 												<DisplayIcon

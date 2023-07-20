@@ -1,11 +1,7 @@
 /**
  * WordPress dependencies
  */
-import {
-	InspectorControls,
-	__experimentalLinkControl as LinkControl,
-	MediaUpload,
-} from '@wordpress/block-editor';
+import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
 	CardDivider,
 	PanelBody,
@@ -38,6 +34,9 @@ const {
 	TabPanelControl,
 	GradientControl,
 	HeaderTabs,
+	LinkControl,
+	SortableItem,
+	SortableControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -169,6 +168,8 @@ function Inspector(props) {
 		};
 		setAttributes({ socialProfiles: [...profile] });
 	};
+
+	console.log(socialProfiles);
 
 	return (
 		<InspectorControls key="controls">
@@ -384,89 +385,112 @@ function Inspector(props) {
 									placeholder={__('Bio..', 'zolo-blocks')}
 								/>
 							)}
-							{showStatus && (
-								<div className="status-list">
-									<BaseControl
-										id="profile-card-status"
-										label={__('Status', 'zolo-blocks')}
-									/>
+						</PanelBody>
+						{showStatus && (
+							<PanelBody
+								title={__('Status', 'zolo-blocks')}
+								initialOpen={false}
+							>
+								<SortableControl
+									defaultItems={statusItems}
+									attributeName="statusItems"
+									setAttributes={setAttributes}
+								>
 									{statusItems &&
 										statusItems.map((item, index) => {
 											return (
 												<div
-													className="single-item"
+													className="dnd-container no-trash"
 													key={index}
 												>
-													<TextControl
-														label={
-															__(
-																'Counter Number #',
-																'zolo-blocks'
-															) +
-															(index + 1)
-														}
-														value={
-															item && item.number
-														}
-														onChange={(value) => {
-															let newStatusItems =
-																[
-																	...statusItems,
-																];
-															newStatusItems[
-																index
-															].number = value;
-															setAttributes({
-																statusItems:
-																	newStatusItems,
-															});
-														}}
-														placeholder={__(
-															'Counter Number..',
-															'zolo-blocks'
-														)}
-													/>
-													<TextControl
-														label={
-															__(
-																'Counter Label #',
-																'zolo-blocks'
-															) +
-															(index + 1)
-														}
-														value={
-															item && item.label
-														}
-														onChange={(value) => {
-															let newStatusItems =
-																[
-																	...statusItems,
-																];
-															newStatusItems[
-																index
-															].label = value;
-															setAttributes({
-																statusItems:
-																	newStatusItems,
-															});
-														}}
-														placeholder={__(
-															'Counter Label..',
-															'zolo-blocks'
-														)}
-													/>
+													<SortableItem
+														key={item.id}
+														id={item.id}
+													>
+														<PanelBody
+															title={item.label}
+															initialOpen={false}
+														>
+															<TextControl
+																label={__(
+																	'Number',
+																	'zolo-blocks'
+																)}
+																value={
+																	item &&
+																	item.number
+																}
+																onChange={(
+																	value
+																) => {
+																	let newStatusItems =
+																		[
+																			...statusItems,
+																		];
+																	newStatusItems[
+																		index
+																	].number =
+																		value;
+																	setAttributes(
+																		{
+																			statusItems:
+																				newStatusItems,
+																		}
+																	);
+																}}
+																placeholder={__(
+																	'Counter Number..',
+																	'zolo-blocks'
+																)}
+															/>
+															<TextControl
+																label={__(
+																	'Label',
+																	'zolo-blocks'
+																)}
+																value={
+																	item &&
+																	item.label
+																}
+																onChange={(
+																	value
+																) => {
+																	let newStatusItems =
+																		[
+																			...statusItems,
+																		];
+																	newStatusItems[
+																		index
+																	].label =
+																		value;
+																	setAttributes(
+																		{
+																			statusItems:
+																				newStatusItems,
+																		}
+																	);
+																}}
+																placeholder={__(
+																	'Counter Label..',
+																	'zolo-blocks'
+																)}
+															/>
+														</PanelBody>
+													</SortableItem>
 												</div>
 											);
 										})}
-								</div>
-							)}
+								</SortableControl>
+							</PanelBody>
+						)}
+						<PanelBody
+							title={__('Follow Button', 'zolo-blocks')}
+							initialOpen={false}
+						>
 							{showFollowButton && (
 								<Fragment>
 									<TextControl
-										label={__(
-											'Follow Button Text',
-											'zolo-blocks'
-										)}
+										label={__('Text', 'zolo-blocks')}
 										onChange={(v) =>
 											setAttributes({
 												followButtonText: v,
@@ -474,35 +498,19 @@ function Inspector(props) {
 										}
 										value={followButtonText}
 										placeholder={__(
-											'Button Text..',
+											'text..',
 											'zolo-blocks'
 										)}
 									/>
-									<BaseControl
-										label={__(
-											'Follow Button Link',
-											'zolo-blocks'
-										)}
-									>
-										<LinkControl
-											searchInputPlaceholder="Search here..."
-											value={followButtonLink}
-											settings={[
-												{
-													id: 'opensInNewTab',
-													title: __(
-														'Open in new tab',
-														'zolo-blocks'
-													),
-												},
-											]}
-											onChange={(data) =>
-												setAttributes({
-													followButtonLink: data,
-												})
-											}
-										/>
-									</BaseControl>
+									<LinkControl
+										label={__('URL', 'zolo-blocks')}
+										value={followButtonLink}
+										onChange={(value) =>
+											setAttributes({
+												followButtonLink: value,
+											})
+										}
+									/>
 								</Fragment>
 							)}
 						</PanelBody>
@@ -511,6 +519,123 @@ function Inspector(props) {
 								title={__('Social Profiles', 'zolo-blocks')}
 								initialOpen={false}
 							>
+								<SortableControl
+									defaultItems={socialProfiles}
+									attributeName="socialProfiles"
+									setAttributes={setAttributes}
+								>
+									{socialProfiles &&
+										socialProfiles.map((profile, index) => {
+											return (
+												<div
+													className="dnd-container"
+													key={index}
+												>
+													<Button
+														className="dnd-trash"
+														icon="trash"
+														onClick={() => {
+															const newItems = [
+																...socialProfiles,
+															];
+															newItems.splice(
+																index,
+																1
+															);
+															setAttributes({
+																socialProfiles:
+																	newItems,
+															});
+														}}
+													/>
+
+													<SortableItem
+														key={profile.id}
+														id={profile.id}
+													>
+														<PanelBody
+															title={
+																profile.title
+															}
+															initialOpen={false}
+														>
+															<TextControl
+																label={__(
+																	'Title',
+																	'zolo-blocks'
+																)}
+																value={
+																	profile.title
+																}
+																onChange={(
+																	value
+																) => {
+																	const newItems =
+																		[
+																			...socialProfiles,
+																		];
+																	newItems[
+																		index
+																	].title =
+																		value;
+																	setAttributes(
+																		{
+																			socialProfiles:
+																				newItems,
+																		}
+																	);
+																}}
+															/>
+															<IconPicker
+																value={
+																	profile.icon
+																}
+																onChange={(
+																	value
+																) =>
+																	setProfileIcon(
+																		value,
+																		index
+																	)
+																}
+																showHeading={
+																	false
+																}
+															/>
+															<LinkControl
+																label={__(
+																	'Link',
+																	'zolo-blocks'
+																)}
+																value={
+																	profile.link
+																}
+																onChange={(
+																	value
+																) => {
+																	const newItems =
+																		[
+																			...socialProfiles,
+																		];
+																	newItems[
+																		index
+																	].link = {
+																		...value,
+																	};
+																	setAttributes(
+																		{
+																			socialProfiles:
+																				newItems,
+																		}
+																	);
+																}}
+															/>
+														</PanelBody>
+													</SortableItem>
+												</div>
+											);
+										})}
+								</SortableControl>
 								<Button
 									variant="primary"
 									onClick={() =>
@@ -518,8 +643,21 @@ function Inspector(props) {
 											socialProfiles: [
 												...socialProfiles,
 												{
-													icon: '',
-													link: '#',
+													id:
+														socialProfiles.length +
+														1,
+													title: 'Facebook',
+													icon: {
+														facebook: {
+															name: 'facebook',
+															source: 'dashicon',
+															type: '',
+														},
+													},
+													link: {
+														url: '#',
+														openInNewTab: false,
+													},
 												},
 											],
 										})
@@ -527,83 +665,6 @@ function Inspector(props) {
 								>
 									{__('Add a Profile', 'zolo-blocks')}
 								</Button>
-								{socialProfiles &&
-									socialProfiles.map((profile, index) => {
-										return (
-											<div
-												className="zolo-social-profile"
-												key={index}
-											>
-												<IconPicker
-													value={profile.icon}
-													onChange={(value) =>
-														setProfileIcon(
-															value,
-															index
-														)
-													}
-													showHeading={false}
-												/>
-												<div className="profile-link">
-													<TextControl
-														value={profile.link}
-														onChange={(v) =>
-															setAttributes({
-																socialProfiles:
-																	socialProfiles.map(
-																		(
-																			profile,
-																			i
-																		) => {
-																			if (
-																				index ===
-																				i
-																			) {
-																				profile.link =
-																					v;
-																			}
-																			return profile;
-																		}
-																	),
-															})
-														}
-													/>
-												</div>
-												<Button
-													className="remove-profile"
-													onClick={() =>
-														setAttributes({
-															socialProfiles:
-																socialProfiles.filter(
-																	(
-																		profile,
-																		i
-																	) =>
-																		index !==
-																		i
-																),
-														})
-													}
-												>
-													<i className="fas fa-times"></i>
-												</Button>
-											</div>
-										);
-									})}
-								<CardDivider />
-								<ToggleControl
-									label={__(
-										'Open links in new tab',
-										'zolo-blocks'
-									)}
-									checked={socialProfilesLinkTarget}
-									onChange={() =>
-										setAttributes({
-											socialProfilesLinkTarget:
-												!socialProfilesLinkTarget,
-										})
-									}
-								/>
 							</PanelBody>
 						)}
 					</>

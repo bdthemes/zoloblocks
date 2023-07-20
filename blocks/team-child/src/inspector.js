@@ -1,19 +1,11 @@
 /**
  * WordPress dependencies
  */
+import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
-	InspectorControls,
-	__experimentalLinkControl as LinkControl,
-	MediaUpload,
-} from '@wordpress/block-editor';
-import {
-	CardDivider,
 	PanelBody,
-	SelectControl,
-	TabPanel,
 	TextControl,
 	TextareaControl,
-	ToggleControl,
 	BaseControl,
 	Button,
 } from '@wordpress/components';
@@ -35,6 +27,9 @@ const {
 	IconPicker,
 	TabPanelControl,
 	HeaderTabs,
+	LinkControl,
+	SortableItem,
+	SortableControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -88,7 +83,6 @@ function Inspector(props) {
 		socialProfiles,
 		showShortBio,
 		memberShortBio,
-		socialProfilesLinkTarget,
 		nameColor,
 		designationColor,
 		shortBioColor,
@@ -136,6 +130,15 @@ function Inspector(props) {
 												memberPhoto: null,
 											})
 										}
+										imageId={memberPhoto && memberPhoto.id}
+										onEditImage={(url, id) => {
+											setAttributes({
+												memberPhoto: {
+													url,
+													id,
+												},
+											});
+										}}
 									/>
 								) : (
 									<MediaUpload
@@ -212,31 +215,18 @@ function Inspector(props) {
 									/>
 								)}
 							{addDetailPageLink && (
-								<BaseControl
+								<LinkControl
 									label={__(
 										'Detail Page Link',
 										'zolo-blocks'
 									)}
-								>
-									<LinkControl
-										searchInputPlaceholder="Search here..."
-										value={memberDetailPageLink}
-										settings={[
-											{
-												id: 'opensInNewTab',
-												title: __(
-													'Open in new tab',
-													'zolo-blocks'
-												),
-											},
-										]}
-										onChange={(data) =>
-											setAttributes({
-												memberDetailPageLink: data,
-											})
-										}
-									/>
-								</BaseControl>
+									value={memberDetailPageLink}
+									onChange={(link) =>
+										setAttributes({
+											memberDetailPageLink: link,
+										})
+									}
+								/>
 							)}
 						</PanelBody>
 						{showSocialProfiles && (
@@ -244,6 +234,122 @@ function Inspector(props) {
 								title={__('Social Profiles', 'zolo-blocks')}
 								initialOpen={false}
 							>
+								<SortableControl
+									defaultItems={socialProfiles}
+									attributeName="socialProfiles"
+									setAttributes={setAttributes}
+								>
+									{socialProfiles &&
+										socialProfiles.map((profile, index) => {
+											return (
+												<div
+													className="dnd-container"
+													key={index}
+												>
+													<Button
+														className="dnd-trash"
+														icon="trash"
+														onClick={() => {
+															const newItems = [
+																...socialProfiles,
+															];
+															newItems.splice(
+																index,
+																1
+															);
+															setAttributes({
+																socialProfiles:
+																	newItems,
+															});
+														}}
+													/>
+
+													<SortableItem
+														key={profile.id}
+														id={profile.id}
+													>
+														<PanelBody
+															title={
+																profile.title
+															}
+															initialOpen={false}
+														>
+															<TextControl
+																label={__(
+																	'Title',
+																	'zolo-blocks'
+																)}
+																value={
+																	profile.title
+																}
+																onChange={(
+																	value
+																) => {
+																	const newItems =
+																		[
+																			...socialProfiles,
+																		];
+																	newItems[
+																		index
+																	].title =
+																		value;
+																	setAttributes(
+																		{
+																			socialProfiles:
+																				newItems,
+																		}
+																	);
+																}}
+															/>
+															<IconPicker
+																value={
+																	profile.icon
+																}
+																onChange={(
+																	value
+																) =>
+																	setProfileIcon(
+																		value,
+																		index
+																	)
+																}
+																showHeading={
+																	false
+																}
+															/>
+															<LinkControl
+																label={__(
+																	'Link',
+																	'zolo-blocks'
+																)}
+																value={
+																	profile.link
+																}
+																onChange={(
+																	value
+																) => {
+																	const newItems =
+																		[
+																			...socialProfiles,
+																		];
+																	newItems[
+																		index
+																	].link =
+																		value;
+																	setAttributes(
+																		{
+																			socialProfiles:
+																				newItems,
+																		}
+																	);
+																}}
+															/>
+														</PanelBody>
+													</SortableItem>
+												</div>
+											);
+										})}
+								</SortableControl>
 								<Button
 									variant="primary"
 									onClick={() =>
@@ -251,8 +357,21 @@ function Inspector(props) {
 											socialProfiles: [
 												...socialProfiles,
 												{
-													icon: '',
-													link: '#',
+													id:
+														socialProfiles.length +
+														1,
+													title: 'Facebook',
+													icon: {
+														facebook: {
+															name: 'facebook',
+															source: 'dashicon',
+															type: '',
+														},
+													},
+													link: {
+														url: '#',
+														openInNewTab: false,
+													},
 												},
 											],
 										})
@@ -260,83 +379,6 @@ function Inspector(props) {
 								>
 									{__('Add a Profile', 'zolo-blocks')}
 								</Button>
-								{socialProfiles &&
-									socialProfiles.map((profile, index) => {
-										return (
-											<div
-												className="zolo-social-profile"
-												key={index}
-											>
-												<IconPicker
-													value={profile.icon}
-													onChange={(value) =>
-														setProfileIcon(
-															value,
-															index
-														)
-													}
-													showHeading={false}
-												/>
-												<div className="profile-link">
-													<TextControl
-														value={profile.link}
-														onChange={(v) =>
-															setAttributes({
-																socialProfiles:
-																	socialProfiles.map(
-																		(
-																			profile,
-																			i
-																		) => {
-																			if (
-																				index ===
-																				i
-																			) {
-																				profile.link =
-																					v;
-																			}
-																			return profile;
-																		}
-																	),
-															})
-														}
-													/>
-												</div>
-												<Button
-													className="remove-profile"
-													onClick={() =>
-														setAttributes({
-															socialProfiles:
-																socialProfiles.filter(
-																	(
-																		profile,
-																		i
-																	) =>
-																		index !==
-																		i
-																),
-														})
-													}
-												>
-													<i className="fas fa-times"></i>
-												</Button>
-											</div>
-										);
-									})}
-								<CardDivider />
-								<ToggleControl
-									label={__(
-										'Open links in new tab',
-										'zolo-blocks'
-									)}
-									checked={socialProfilesLinkTarget}
-									onChange={() =>
-										setAttributes({
-											socialProfilesLinkTarget:
-												!socialProfilesLinkTarget,
-										})
-									}
-								/>
 							</PanelBody>
 						)}
 					</>

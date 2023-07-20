@@ -147,10 +147,6 @@ const attributes = {
 			openInNewTab: false,
 		},
 	},
-	openInNewTab: {
-		type: 'boolean',
-		default: false,
-	},
 	showIcon: {
 		type: 'boolean',
 		default: false,

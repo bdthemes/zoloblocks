@@ -121,14 +121,17 @@ const attributes = {
 		type: 'array',
 		default: [
 			{
+				id: 1,
 				number: '210',
 				label: 'Posts',
 			},
 			{
+				id: 2,
 				number: '430',
 				label: 'Followers',
 			},
 			{
+				id: 3,
 				number: '210',
 				label: 'Following',
 			},
@@ -146,7 +149,7 @@ const attributes = {
 		type: 'object',
 		default: {
 			url: '#',
-			opensInNewTab: false,
+			openInNewTab: false,
 		},
 	},
 	showSocialProfiles: {
@@ -157,20 +160,21 @@ const attributes = {
 		type: 'array',
 		default: [
 			{
+				id: 1,
+				title: 'Facebook',
 				icon: {
 					twitter: {
-						name: 'twitter',
+						name: 'facebook',
 						source: 'dashicon',
 						type: '',
 					},
 				},
-				link: '#',
+				link: {
+					url: '#',
+					openInNewTab: false,
+				},
 			},
 		],
-	},
-	socialProfilesLinkTarget: {
-		type: 'boolean',
-		default: true,
 	},
 	// block styles
 	badgeColor: {

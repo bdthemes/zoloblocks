@@ -17,10 +17,15 @@
 		}
 	}
 
-	.dnd-fields-wrapper {
-		.components-panel__body-toggle {
-			padding: 14px 10px 14px 35px;
+	&:not(.no-trash) {
+		.dnd-fields-wrapper {
+			.components-panel__body-toggle {
+				padding: 14px 10px 14px 35px;
+			}
 		}
+	}
+
+	.dnd-fields-wrapper {
 		.components-panel__body.is-opened {
 			.components-panel__body-toggle {
 				border-bottom: 1px solid #e0e0e0;

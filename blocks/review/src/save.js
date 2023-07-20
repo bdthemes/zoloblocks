@@ -28,7 +28,7 @@ const Save = ({ attributes }) => {
 					{memberPhoto && (
 						<img
 							src={memberPhoto.url}
-							alt={memberPhoto.alt || 'Reviewer'}
+							alt={memberPhoto.alt || memberName}
 							className="zolo-img"
 						/>
 					)}
@@ -41,12 +41,12 @@ const Save = ({ attributes }) => {
 								}
 								rel={
 									reviewerWebsiteLink &&
-									reviewerWebsiteLink.opensInNewTab &&
+									reviewerWebsiteLink.openInNewTab &&
 									'noreferer noopener'
 								}
 								target={
 									reviewerWebsiteLink &&
-									reviewerWebsiteLink.opensInNewTab &&
+									reviewerWebsiteLink.openInNewTab &&
 									'_blank'
 								}
 							>
@@ -77,12 +77,12 @@ const Save = ({ attributes }) => {
 								}
 								rel={
 									reviewerWebsiteLink &&
-									reviewerWebsiteLink.newTab &&
+									reviewerWebsiteLink.openInNewTab &&
 									'noreferer noopener'
 								}
 								target={
 									reviewerWebsiteLink &&
-									reviewerWebsiteLink.newTab &&
+									reviewerWebsiteLink.openInNewTab &&
 									'_blank'
 								}
 								className="zolo-name"

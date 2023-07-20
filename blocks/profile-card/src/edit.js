@@ -5,7 +5,6 @@ import {
 	useBlockProps,
 	RichText,
 	BlockControls,
-	__experimentalLinkControl as LinkControl,
 	MediaUpload,
 } from '@wordpress/block-editor';
 import { Fragment, useState, useEffect } from '@wordpress/element';
@@ -27,7 +26,6 @@ import classnames from 'classnames';
 const {
 	handleUniqueId,
 	softMinifyCssStrings,
-	generateResAlignmentStyle,
 	generateBorderStyle,
 	generateDimensionStyle,
 	generateTypographyStyles,
@@ -112,11 +110,8 @@ export default function Edit(props) {
 		showFollowButton,
 		followButtonText,
 		headerAreaBG,
-		showDetailPageIcon,
-		memberDetailPageLink,
 		showSocialProfiles,
 		socialProfiles,
-		socialProfilesLinkTarget,
 		badgeColor,
 		nameColor,
 		usernameColor,
@@ -131,7 +126,6 @@ export default function Edit(props) {
 		iconHoverColor,
 		iconHoverBorderColor,
 	} = attributes;
-	const [popoverVisible, setPopoverVisible] = useState(false);
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -971,35 +965,6 @@ export default function Edit(props) {
 						</ToolbarGroup>
 					</Fragment>
 				)}
-				{showDetailPageIcon && (
-					<ToolbarGroup>
-						<ToolbarButton
-							icon="admin-links"
-							onClick={() => setPopoverVisible(!popoverVisible)}
-						/>
-					</ToolbarGroup>
-				)}
-				{popoverVisible && (
-					<Popover
-						position="bottom right"
-						onFocusOutside={() => setPopoverVisible(false)}
-						offset={10}
-					>
-						<LinkControl
-							searchInputPlaceholder="Search here..."
-							value={memberDetailPageLink}
-							settings={[
-								{
-									id: 'opensInNewTab',
-									title: __('Open in new tab', 'zolo-blocks'),
-								},
-							]}
-							onChange={(data) =>
-								setAttributes({ memberDetailPageLink: data })
-							}
-						/>
-					</Popover>
-				)}
 			</BlockControls>
 
 			<div {...blockProps}>
@@ -1194,11 +1159,20 @@ export default function Edit(props) {
 										socialProfiles.map((profile, index) => {
 											return (
 												<a
-													href={profile.link}
+													href={
+														profile.link &&
+														profile.link.url
+													}
 													key={index}
 													rel={
-														socialProfilesLinkTarget &&
+														profile.link
+															.openInNewTab &&
 														'noopener noreferer'
+													}
+													target={
+														profile.link
+															.openInNewTab &&
+														'_blank'
 													}
 												>
 													<DisplayIcon

@@ -1,10 +1,7 @@
 /**
  * WordPress dependencies
  */
-import {
-	InspectorControls,
-	// __experimentalLinkControl as LinkControl,
-} from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/block-editor';
 import {
 	CardDivider,
 	PanelBody,
@@ -131,15 +128,15 @@ function Inspector(props) {
 							initialOpen={false}
 						>
 							<TextControl
-								label={__('Button Text', 'zolo-blocks')}
+								label={__('Text', 'zolo-blocks')}
 								onChange={(value) =>
 									setAttributes({ label: value })
 								}
 								value={label}
-								placeholder={__('add text..', 'zolo-blocks')}
+								placeholder={__('label..', 'zolo-blocks')}
 							/>
 							<LinkControl
-								label={__('Button URL', 'zolo-blocks')}
+								label={__('URL', 'zolo-blocks')}
 								value={link}
 								onChange={(value) =>
 									setAttributes({ link: value })

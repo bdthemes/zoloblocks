@@ -108,7 +108,7 @@ const attributes = {
 		type: 'object',
 		default: {
 			url: '#',
-			opensInNewTab: false,
+			openInNewTab: false,
 		},
 	},
 	showDesignation: {
@@ -131,7 +131,23 @@ const attributes = {
 	},
 	socialProfiles: {
 		type: 'array',
-		default: [],
+		default: [
+			{
+				id: 1,
+				title: 'Facebook',
+				icon: {
+					twitter: {
+						name: 'facebook',
+						source: 'dashicon',
+						type: '',
+					},
+				},
+				link: {
+					url: '#',
+					openInNewTab: false,
+				},
+			},
+		],
 	},
 	socialProfilesLinkTarget: {
 		type: 'boolean',

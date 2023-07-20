@@ -34,50 +34,63 @@
 	}
 }
 
-.zb-link-control-popover {
-	left: 3px !important;
-}
-// link extra popover
 .zb-link-popover {
-	width: 245px;
+	width: 100%;
 	padding: 15px;
+	margin-top: -15px;
 	box-sizing: border-box;
-	.components-flex {
-		flex-direction: row-reverse;
-	}
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 	.components-base-control {
-		margin-bottom: 0;
-	}
-
-	.components-form-toggle.is-checked {
-		.components-form-toggle__track {
-			background-color: #001feb;
-		}
-	}
-
-	.components-form-toggle
-		.components-form-toggle__input:focus
-		+ .components-form-toggle__track {
-		box-shadow: none;
-	}
-
-	.components-form-toggle .components-form-toggle__track {
-		background-color: #d8d8e5;
-		border: none;
-	}
-
-	.components-form-toggle .components-form-toggle__thumb {
-		background-color: #fff;
-		border: 5px solid #fff;
-	}
-
-	.components-flex.components-h-stack {
-		height: auto !important;
+		margin-bottom: 0 !important;
 	}
 }
 
-.zb-link-block-control-wrapper {
-	width: 250px;
-	padding: 10px;
-	box-sizing: border-box;
-}
+// .zb-link-control-popover {
+// 	left: 3px !important;
+// }
+// // link extra popover
+// .zb-link-popover {
+// 	width: 245px;
+// 	padding: 15px;
+// 	box-sizing: border-box;
+// 	.components-flex {
+// 		flex-direction: row-reverse;
+// 	}
+// 	.components-base-control {
+// 		margin-bottom: 0;
+// 	}
+
+// 	.components-form-toggle.is-checked {
+// 		.components-form-toggle__track {
+// 			background-color: #001feb;
+// 		}
+// 	}
+
+// 	.components-form-toggle
+// 		.components-form-toggle__input:focus
+// 		+ .components-form-toggle__track {
+// 		box-shadow: none;
+// 	}
+
+// 	.components-form-toggle .components-form-toggle__track {
+// 		background-color: #d8d8e5;
+// 		border: none;
+// 	}
+
+// 	.components-form-toggle .components-form-toggle__thumb {
+// 		background-color: #fff;
+// 		border: 5px solid #fff;
+// 	}
+
+// 	.components-flex.components-h-stack {
+// 		height: auto !important;
+// 	}
+// }
+
+// .zb-link-block-control-wrapper {
+// 	width: 250px;
+// 	padding: 10px;
+// 	box-sizing: border-box;
+// }

@@ -1,11 +1,7 @@
 /**
  * WordPress dependencies
  */
-import {
-	InspectorControls,
-	__experimentalLinkControl as LinkControl,
-	MediaUpload,
-} from '@wordpress/block-editor';
+import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
 	PanelBody,
 	SelectControl,
@@ -31,6 +27,7 @@ const {
 	TypographyDropdown,
 	BoxShadowControl,
 	ImageAvatar,
+	LinkControl,
 	NormalBGControl,
 	HeaderTabs,
 } = window.zoloModule;
@@ -62,6 +59,8 @@ import {
 	REVIEWER_DESIGNATION_TYPOGRAPHY,
 	REVIEWER_MESSAGE_TYPOGRAPHY,
 } from './constants/typoPrefixConstants';
+
+import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
@@ -198,6 +197,15 @@ function Inspector(props) {
 												memberPhoto: null,
 											})
 										}
+										imageId={memberPhoto && memberPhoto.id}
+										onEditImage={(url, id) => {
+											setAttributes({
+												memberPhoto: {
+													url: url,
+													id: id,
+												},
+											});
+										}}
 									/>
 								) : (
 									<MediaUpload
@@ -289,31 +297,15 @@ function Inspector(props) {
 								/>
 							)}
 							{addReviewerWebsiteLink && (
-								<BaseControl
-									label={__(
-										'Reviewer Website Link',
-										'zolo-blocks'
-									)}
-								>
-									<LinkControl
-										searchInputPlaceholder="Search here..."
-										value={reviewerWebsiteLink}
-										settings={[
-											{
-												id: 'opensInNewTab',
-												title: __(
-													'Open in new tab',
-													'zolo-blocks'
-												),
-											},
-										]}
-										onChange={(data) =>
-											setAttributes({
-												reviewerWebsiteLink: data,
-											})
-										}
-									/>
-								</BaseControl>
+								<LinkControl
+									label={__('Website Link', 'zolo-blocks')}
+									value={reviewerWebsiteLink}
+									onChange={(link) =>
+										setAttributes({
+											reviewerWebsiteLink: link,
+										})
+									}
+								/>
 							)}
 						</PanelBody>
 					</>
@@ -328,24 +320,7 @@ function Inspector(props) {
 								label={__('Content Alignmet', 'zolo-blocks')}
 								controlName={CONTENT_ALIGNMENT}
 								resRequiredProps={resRequiredProps}
-								alignOptions={[
-									{
-										label: 'Left',
-										value: 'left',
-									},
-									{
-										label: 'Center',
-										value: 'center',
-									},
-									{
-										label: 'Right',
-										value: 'right',
-									},
-									{
-										label: 'Justify',
-										value: 'justify',
-									},
-								]}
+								alignOptions={DEFAULT_ALIGNS}
 							/>
 						</PanelBody>
 						<PanelBody

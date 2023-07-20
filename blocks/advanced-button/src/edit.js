@@ -541,32 +541,6 @@ export default function Edit(props) {
 					setAttributes={setAttributes}
 				/>
 			)}
-			<BlockControls>
-				<ToolbarGroup>
-					<ToolbarButton
-						icon="admin-links"
-						label={__('Link', 'zolo-blocks')}
-						onClick={() => setPopoverVisible(!isPopoverVisible)}
-					/>
-				</ToolbarGroup>
-				{popoverVisible && (
-					<Popover
-						position="bottom right"
-						onFocusOutside={() => setPopoverVisible(false)}
-						offset={10}
-					>
-						<div className="zb-link-block-control-wrapper">
-							<LinkControl
-								label={__('Button URL', 'zolo-blocks')}
-								value={link}
-								onChange={(value) =>
-									setAttributes({ link: value })
-								}
-							/>
-						</div>
-					</Popover>
-				)}
-			</BlockControls>
 			<style>{` ${softMinifyCssStrings(allStyle)}`}</style>
 			<div {...blockProps}>
 				<div

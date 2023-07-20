@@ -1,11 +1,7 @@
 /**
  * WordPress dependencies
  */
-import {
-	InspectorControls,
-	__experimentalLinkControl as LinkControl,
-	MediaUpload,
-} from '@wordpress/block-editor';
+import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
 	CardDivider,
 	PanelBody,
@@ -35,6 +31,7 @@ const {
 	IconPicker,
 	TabPanelControl,
 	HeaderTabs,
+	LinkControl,
 	SortableItem,
 	SortableControl,
 } = window.zoloModule;
@@ -93,7 +90,6 @@ function Inspector(props) {
 		socialProfiles,
 		showShortBio,
 		memberShortBio,
-		socialProfilesLinkTarget,
 		nameColor,
 		designationColor,
 		shortBioColor,
@@ -262,6 +258,15 @@ function Inspector(props) {
 												memberPhoto: null,
 											})
 										}
+										imageId={memberPhoto && memberPhoto.id}
+										onEditImage={(url, id) => {
+											setAttributes({
+												memberPhoto: {
+													url,
+													id,
+												},
+											});
+										}}
 									/>
 								) : (
 									<MediaUpload
@@ -338,31 +343,18 @@ function Inspector(props) {
 									/>
 								)}
 							{addDetailPageLink && (
-								<BaseControl
+								<LinkControl
 									label={__(
 										'Detail Page Link',
 										'zolo-blocks'
 									)}
-								>
-									<LinkControl
-										searchInputPlaceholder="Search here..."
-										value={memberDetailPageLink}
-										settings={[
-											{
-												id: 'opensInNewTab',
-												title: __(
-													'Open in new tab',
-													'zolo-blocks'
-												),
-											},
-										]}
-										onChange={(data) =>
-											setAttributes({
-												memberDetailPageLink: data,
-											})
-										}
-									/>
-								</BaseControl>
+									value={memberDetailPageLink}
+									onChange={(link) =>
+										setAttributes({
+											memberDetailPageLink: link,
+										})
+									}
+								/>
 							)}
 						</PanelBody>
 						{showSocialProfiles && (
@@ -453,32 +445,32 @@ function Inspector(props) {
 																	false
 																}
 															/>
-															<TextControl
+															<LinkControl
+																label={__(
+																	'Link',
+																	'zolo-blocks'
+																)}
 																value={
 																	profile.link
 																}
-																onChange={(v) =>
+																onChange={(
+																	value
+																) => {
+																	const newItems =
+																		[
+																			...socialProfiles,
+																		];
+																	newItems[
+																		index
+																	].link =
+																		value;
 																	setAttributes(
 																		{
 																			socialProfiles:
-																				socialProfiles.map(
-																					(
-																						profile,
-																						i
-																					) => {
-																						if (
-																							index ===
-																							i
-																						) {
-																							profile.link =
-																								v;
-																						}
-																						return profile;
-																					}
-																				),
+																				newItems,
 																		}
-																	)
-																}
+																	);
+																}}
 															/>
 														</PanelBody>
 													</SortableItem>
@@ -496,7 +488,7 @@ function Inspector(props) {
 													id:
 														socialProfiles.length +
 														1,
-													title: 'Title',
+													title: 'Facebook',
 													icon: {
 														facebook: {
 															name: 'facebook',
@@ -504,7 +496,10 @@ function Inspector(props) {
 															type: '',
 														},
 													},
-													link: '#',
+													link: {
+														url: '#',
+														openInNewTab: false,
+													},
 												},
 											],
 										})
@@ -512,20 +507,6 @@ function Inspector(props) {
 								>
 									{__('Add a Profile', 'zolo-blocks')}
 								</Button>
-								<CardDivider />
-								<ToggleControl
-									label={__(
-										'Open links in new tab',
-										'zolo-blocks'
-									)}
-									checked={socialProfilesLinkTarget}
-									onChange={() =>
-										setAttributes({
-											socialProfilesLinkTarget:
-												!socialProfilesLinkTarget,
-										})
-									}
-								/>
 							</PanelBody>
 						)}
 					</>
