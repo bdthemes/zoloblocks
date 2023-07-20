@@ -19,9 +19,30 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, softMinifyCssStrings } = window.zoloModule;
+const {
+	handleUniqueId,
+	softMinifyCssStrings,
+	generateNormalBGControlStyles,
+	generateDimensionStyle,
+	generateBoxShadowStyles,
+} = window.zoloModule;
 
-import { BLOCK_PREFIX } from './constants';
+import {
+	BLOCK_PREFIX,
+	CONTAINER_BACKGROUND,
+	CONTAINER_HOVER_BACKGROUND,
+	CONTAINER_BORDER_RADIUS,
+	CONTAINER_HOVER_BORDER_RADIUS,
+	CONTAINER_BOX_SHADOW,
+	CONTAINER_HOVER_BOX_SHADOW,
+	IMAGE_BORDER_RADIUS,
+	IMAGE_BOX_SHADOW,
+	IMAGE_BACKGROUND,
+	IMAGE_HOVER_BORDER,
+	IMAGE_HOVER_BORDER_RADIUS,
+	IMAGE_HOVER_BOX_SHADOW,
+	IMAGE_HOVER_BACKGROUND,
+} from './constants';
 
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
@@ -53,6 +74,86 @@ export default function Edit( props ) {
 		className: classnames( className, `` ),
 	} );
 
+	// Container Styles
+	const {
+		backgroundStylesDesktop: containerDeskBGStyle,
+		backgroundStylesTab: containerTabBGStyle,
+		backgroundStylesMobile: containerMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: CONTAINER_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
+	} );
+
+	const {
+		backgroundStylesDesktop: containerHoverDeskBGStyle,
+		backgroundStylesTab: containerHoverTabBGStyle,
+		backgroundStylesMobile: containerHoverMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: CONTAINER_HOVER_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
+	} );
+
+	const {
+		dimensionStylesDesktop: containerBorderRadiusDesk,
+		dimensionStylesTab: containerBorderRadiusTab,
+		dimensionStylesMobile: containerBorderRadiusMob,
+	} = generateDimensionStyle( {
+		controlName: CONTAINER_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	} );
+
+	const {
+		dimensionStylesDesktop: containerHoverBorderRadiusDesk,
+		dimensionStylesTab: containerHoverBorderRadiusTab,
+		dimensionStylesMobile: containerHoverBorderRadiusMob,
+	} = generateDimensionStyle( {
+		controlName: CONTAINER_HOVER_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	} );
+
+	const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: CONTAINER_BOX_SHADOW,
+	} );
+
+	const { boxShadowStyle: containerBoxShadowHover } = generateBoxShadowStyles(
+		{
+			attributes,
+			controlName: CONTAINER_HOVER_BOX_SHADOW,
+		}
+	);
+
+	// Image
+
+	const {
+		backgroundStylesDesktop: imageDeskBGStyle,
+		backgroundStylesTab: imageTabBGStyle,
+		backgroundStylesMobile: imageMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: IMAGE_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
+	} );
+
+	const {
+		dimensionStylesDesktop: imageBorderRadiusDesk,
+		dimensionStylesTab: imageBorderRadiusTab,
+		dimensionStylesMobile: imageBorderRadiusMob,
+	} = generateDimensionStyle( {
+		controlName: IMAGE_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	} );
+
+	const { boxShadowStyle: imageBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: IMAGE_BOX_SHADOW,
+	} );
+
 	/**
 	 * Presets Based Styles
 	 */
@@ -72,14 +173,6 @@ export default function Edit( props ) {
 				}
 			`;
 			break;
-		case 'style-3':
-			presetStyles = `
-				.${ uniqueId }
-				.zolo-block-icon-wrap{
-					align-items: ${ presetThreeStyles && presetThreeStyles.iconPosition };
-				}			
-			`;
-			break;
 		case 'style-4':
 			break;
 		default:
@@ -90,17 +183,54 @@ export default function Edit( props ) {
 	 */
 
 	const desktopAllStyle = `
-		.${ uniqueId } .zb-brand-style-1 {}	
+		.${ uniqueId }.zolo-img-gallery-${ preset } {
+			${ containerDeskBGStyle }
+			${ containerBorderRadiusDesk }
+			${ containerBoxShadow }
+			overflow:hidden;
+		}	
+		.${ uniqueId }.zolo-img-gallery-${ preset }:hover {
+			${ containerHoverDeskBGStyle }
+			${ containerHoverBorderRadiusDesk }
+			${ containerBoxShadowHover }
+		}	
+		.${ uniqueId } .zolo-image-wrap {
+			${ imageDeskBGStyle }
+			${ imageBorderRadiusDesk }
+			${ imageBoxShadow }
+		}	
 		${ presetStyles }		
   	`;
 
 	const tabletAllStyle = `
-	.${ uniqueId } .zb-brand-style-1 {}
+	.${ uniqueId }.zolo-img-gallery-${ preset } {
+		${ containerTabBGStyle }
+		${ containerBorderRadiusTab }
+	}		
+	.${ uniqueId }.zolo-img-gallery-${ preset }:hover {
+		${ containerHoverTabBGStyle }
+		${ containerHoverBorderRadiusTab }
+	}	
+	.${ uniqueId } .zolo-image-wrap {
+		${ imageTabBGStyle }
+		${ imageBorderRadiusTab }
+	}	
 		${ presetStyles }
 	`;
 
 	const mobileAllStyle = `		
-	.${ uniqueId } .zb-brand-style-1{}
+	.${ uniqueId }.zolo-img-gallery-${ preset }{
+		${ containerMobBGStyle }
+		${ containerBorderRadiusMob }
+	}		
+	.${ uniqueId }.zolo-img-gallery-${ preset }:hover {
+		${ containerHoverMobBGStyle }
+		${ containerHoverBorderRadiusMob }
+	}	
+	.${ uniqueId } .zolo-image-wrap {
+		${ imageMobBGStyle }
+		${ imageBorderRadiusMob }
+	}
 	${ presetStyles }
   	`;
 

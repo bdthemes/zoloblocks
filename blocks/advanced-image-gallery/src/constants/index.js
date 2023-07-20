@@ -17,5 +17,22 @@ export const GRID_COLUMNS = 'gridColumns';
 export const COLUMNS_GAP = 'columnsGap';
 export const ROWS_GAP = 'rowsGap';
 
-// Content
-export const CONTENT_ALIGNMENT = 'brandContentAlignment';
+// Container
+export const CONTAINER_BORDER = 'containerBorder';
+export const CONTAINER_HOVER_BORDER = 'containerHoverBorder';
+export const CONTAINER_BACKGROUND = 'containerBackground';
+export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
+export const CONTAINER_HOVER_BORDER_RADIUS = 'containerHoverBorderRadius';
+export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
+export const CONTAINER_HOVER_BOX_SHADOW = 'containerHoverBoxShadow';
+export const CONTAINER_HOVER_BACKGROUND = 'container_hover_background';
+
+// Image
+export const IMAGE_BORDER = 'imageBorder';
+export const IMAGE_BORDER_RADIUS = 'imageBorderRadius';
+export const IMAGE_BOX_SHADOW = 'imageBoxShadow';
+export const IMAGE_BACKGROUND = 'imageBackground';
+export const IMAGE_HOVER_BORDER = 'imageHoverBorder';
+export const IMAGE_HOVER_BORDER_RADIUS = 'imageHoverBoxShadow';
+export const IMAGE_HOVER_BOX_SHADOW = 'imageHoverBoxShadow';
+export const IMAGE_HOVER_BACKGROUND = 'imageHoverBackground';
