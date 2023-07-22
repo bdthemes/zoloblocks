@@ -42,6 +42,8 @@ import {
 	IMAGE_HOVER_BORDER_RADIUS,
 	IMAGE_HOVER_BOX_SHADOW,
 	IMAGE_HOVER_BACKGROUND,
+	IMAGE_PADDING,
+	IMAGE_MARGIN,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -140,6 +142,16 @@ export default function Edit( props ) {
 	} );
 
 	const {
+		backgroundStylesDesktop: imageHoverDeskBGStyle,
+		backgroundStylesTab: imageHoverTabBGStyle,
+		backgroundStylesMobile: imageHoverMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: IMAGE_HOVER_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
+	} );
+
+	const {
 		dimensionStylesDesktop: imageBorderRadiusDesk,
 		dimensionStylesTab: imageBorderRadiusTab,
 		dimensionStylesMobile: imageBorderRadiusMob,
@@ -149,9 +161,44 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	const {
+		dimensionStylesDesktop: imageHoverBorderRadiusDesk,
+		dimensionStylesTab: imageHoverBorderRadiusTab,
+		dimensionStylesMobile: imageHoverBorderRadiusMob,
+	} = generateDimensionStyle( {
+		controlName: IMAGE_HOVER_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	} );
+
+	const {
+		dimensionStylesDesktop: imagePaddingDesk,
+		dimensionStylesTab: imagePaddingTab,
+		dimensionStylesMobile: imagePaddingMob,
+	} = generateDimensionStyle( {
+		controlName: IMAGE_PADDING,
+		styleFor: 'padding',
+		attributes,
+	} );
+
+	const {
+		dimensionStylesDesktop: imageMarginDesk,
+		dimensionStylesTab: imageMarginTab,
+		dimensionStylesMobile: imageMarginMob,
+	} = generateDimensionStyle( {
+		controlName: IMAGE_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	} );
+
 	const { boxShadowStyle: imageBoxShadow } = generateBoxShadowStyles( {
 		attributes,
 		controlName: IMAGE_BOX_SHADOW,
+	} );
+
+	const { boxShadowStyle: imageHoverBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: IMAGE_HOVER_BOX_SHADOW,
 	} );
 
 	/**
@@ -198,6 +245,13 @@ export default function Edit( props ) {
 			${ imageDeskBGStyle }
 			${ imageBorderRadiusDesk }
 			${ imageBoxShadow }
+			${ imageMarginDesk }
+			${ imagePaddingDesk }
+		}		
+		.${ uniqueId } .zolo-image-wrap:hover {
+			${ imageHoverDeskBGStyle }
+			${ imageHoverBorderRadiusDesk }
+			${ imageHoverBoxShadow }
 		}	
 		${ presetStyles }		
   	`;
@@ -214,7 +268,13 @@ export default function Edit( props ) {
 	.${ uniqueId } .zolo-image-wrap {
 		${ imageTabBGStyle }
 		${ imageBorderRadiusTab }
-	}	
+		${ imageMarginTab }
+		${ imagePaddingTab }
+	}
+	.${ uniqueId } .zolo-image-wrap:hover {
+		${ imageHoverTabBGStyle }
+		${ imageHoverBorderRadiusTab }
+	}
 		${ presetStyles }
 	`;
 
@@ -230,6 +290,12 @@ export default function Edit( props ) {
 	.${ uniqueId } .zolo-image-wrap {
 		${ imageMobBGStyle }
 		${ imageBorderRadiusMob }
+		${ imageMarginMob }
+		${ imagePaddingMob }
+	}
+	.${ uniqueId } .zolo-image-wrap:hover {
+		${ imageHoverMobBGStyle }
+		${ imageHoverBorderRadiusMob }
 	}
 	${ presetStyles }
   	`;

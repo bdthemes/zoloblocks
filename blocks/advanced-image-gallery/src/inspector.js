@@ -46,6 +46,8 @@ import {
 	IMAGE_HOVER_BORDER_RADIUS,
 	IMAGE_HOVER_BOX_SHADOW,
 	IMAGE_HOVER_BACKGROUND,
+	IMAGE_PADDING,
+	IMAGE_MARGIN,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -320,7 +322,7 @@ function Inspector( props ) {
 										/>
 									</PanelBody>
 									<PanelBody
-										title={ __( 'Content', 'zolo-blocks' ) }
+										title={ __( 'Image', 'zolo-blocks' ) }
 										initialOpen={ false }
 									>
 										<TabPanelControl
@@ -423,6 +425,28 @@ function Inspector( props ) {
 													/>
 												</>
 											}
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Padding',
+												'zolo-blocks'
+											) }
+											controlName={ IMAGE_PADDING }
+											resRequiredProps={
+												resRequiredProps
+											}
+											forBorderRadius={ false }
+										/>
+										<ResDimensionsControl
+											label={ __(
+												'Margin',
+												'zolo-blocks'
+											) }
+											controlName={ IMAGE_MARGIN }
+											resRequiredProps={
+												resRequiredProps
+											}
+											forBorderRadius={ false }
 										/>
 									</PanelBody>
 								</>

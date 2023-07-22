@@ -24,6 +24,8 @@ import {
 	IMAGE_HOVER_BORDER_RADIUS,
 	IMAGE_HOVER_BOX_SHADOW,
 	IMAGE_HOVER_BACKGROUND,
+	IMAGE_PADDING,
+	IMAGE_MARGIN,
 } from './constants';
 
 const attributes = {
@@ -54,6 +56,8 @@ const attributes = {
 	...generateDimensionAttributes( IMAGE_HOVER_BORDER_RADIUS ),
 	...generateBoxShadowAttributies( IMAGE_BOX_SHADOW ),
 	...generateBoxShadowAttributies( IMAGE_HOVER_BOX_SHADOW ),
+	...generateDimensionAttributes( IMAGE_PADDING ),
+	...generateDimensionAttributes( IMAGE_MARGIN ),
 
 	...generateResRangeAttributies( GRID_COLUMNS, {
 		defaultRange: 3,

@@ -36,3 +36,5 @@ export const IMAGE_HOVER_BORDER = 'imageHoverBorder';
 export const IMAGE_HOVER_BORDER_RADIUS = 'imageHoverBoxShadow';
 export const IMAGE_HOVER_BOX_SHADOW = 'imageHoverBoxShadow';
 export const IMAGE_HOVER_BACKGROUND = 'imageHoverBackground';
+export const IMAGE_PADDING = 'imagePadding';
+export const IMAGE_MARGIN = 'imageMargin';
