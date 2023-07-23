@@ -35,7 +35,7 @@
 			transform: scale(1);
 			opacity: 1;
 			color: #230aed;
-			background: #EEE;
+			background: #f2f2f2;
 			border-radius: 50%;
 		}
 	}
@@ -46,7 +46,7 @@
 		height: 26px;
 		&-open {
 			.zb-device-switchers-wrap {
-				background: #EEE;
+				background: #f2f2f2;
 				border-radius: 2px;
 				z-index: 11;
 				position: relative;

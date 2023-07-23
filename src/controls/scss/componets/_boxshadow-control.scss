@@ -13,7 +13,7 @@
 	.shadow-style-btn-group {
 		display: flex;
 		align-items: stretch;
-		border: 1px solid #ddd;
+		border: 1px solid #e9e9e9;
 		margin: 8px 0;
 		border-radius: 6px;
 		.shadow-style-btn {
@@ -22,10 +22,11 @@
 			margin: 4px;
 			border-radius: 6px;
 			&.active {
-				background: #000;
-				color: #fff;
+				background-color: #fff !important;
+				color: #001feb !important;
+				border-color: #e8e8ea !important;
 				&:hover {
-					color: #fff !important;
+					color: #001feb !important;
 				}
 			}
 		}

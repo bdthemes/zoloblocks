@@ -8,6 +8,10 @@
 }
 
 .zb-res-alignment-control-wrapper {
+  margin-bottom: 24px;
+  &:nth-last-child(1) {
+    margin-bottom: 0 !important;
+  }
   .zolo-iconic-btn-group {
     margin-bottom: 0;
   }

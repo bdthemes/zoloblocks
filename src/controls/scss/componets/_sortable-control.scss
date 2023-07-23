@@ -1,8 +1,9 @@
 .dnd-container {
-	border: 1px solid #e0e0e0;
+	border: 1px solid #ebe9e9;
 	margin-bottom: 10px;
 	position: relative;
-
+	border-radius: 6px;
+	overflow: hidden;
 	.dnd-trash {
 		position: absolute;
 		top: 5px;
@@ -30,6 +31,9 @@
 			.components-panel__body-toggle {
 				border-bottom: 1px solid #e0e0e0;
 			}
+		}
+		.components-button {
+			background-color: #f2f2f2;
 		}
 	}
 
