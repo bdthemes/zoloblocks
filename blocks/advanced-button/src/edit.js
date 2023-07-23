@@ -62,9 +62,7 @@ export default function Edit(props) {
 		preset,
 		label,
 		blockStyle,
-		link,
-		isPopoverVisible,
-		showIcon,
+		iconType,
 		icon,
 		iconPosition,
 		iconColor,
@@ -547,15 +545,19 @@ export default function Edit(props) {
 					className={`zolo-block-wrapper zolo-advanced-button ${uniqueId} ${preset}`}
 				>
 					<div className={`zolo-button ${iconPosition}`}>
-						<RichText
-							tagName="span"
-							className={`zolo-button-content`}
-							value={label}
-							onChange={(text) => setAttributes({ label: text })}
-							placeholder={__('Button Text', 'zolo-blocks')}
-							allowedFormats={[]}
-						/>
-						{showIcon && <DisplayIcon icon={icon} />}
+						{iconType !== 'iconOnly' && (
+							<RichText
+								tagName="span"
+								className={`zolo-button-content`}
+								value={label}
+								onChange={(text) =>
+									setAttributes({ label: text })
+								}
+								placeholder={__('Button Text', 'zolo-blocks')}
+								allowedFormats={[]}
+							/>
+						)}
+						{iconType !== 'none' && <DisplayIcon icon={icon} />}
 					</div>
 				</div>
 			</div>

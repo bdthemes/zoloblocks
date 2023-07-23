@@ -147,6 +147,10 @@ const attributes = {
 			openInNewTab: false,
 		},
 	},
+	iconType: {
+		type: 'string',
+		default: 'none',
+	},
 	showIcon: {
 		type: 'boolean',
 		default: false,

@@ -6,16 +6,16 @@ import { __ } from '@wordpress/i18n';
 import { Button, ButtonGroup } from '@wordpress/components';
 
 const HeaderTabs = ({ generalTab, styleTab, advancedTab }) => {
-	const [tab, setTab] = useState('general');
+	const [tab, setTab] = useState('basic');
 
 	return (
 		<div className="zolo-panel-control">
 			<ButtonGroup className="zolo-tab-group">
 				<Button
 					className={`zolo-tab ${
-						tab === 'general' ? 'active__tab' : ''
+						tab === 'basic' ? 'active__tab' : ''
 					}${tab === 'style' ? 'prev__tab' : ''}`}
-					onClick={() => setTab('general')}
+					onClick={() => setTab('basic')}
 				>
 					<svg
 						id="Layer_1"
@@ -39,14 +39,14 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab }) => {
 					</svg>
 
 					<h5 className="zolo-tab-label">
-						{__('General', 'zolo-blocks')}
+						{__('Basic', 'zolo-blocks')}
 					</h5>
 				</Button>
 				<Button
 					className={`zolo-tab ${
 						tab === 'style' ? 'active__tab' : ''
-					}${tab === 'general' ? 'next__tab' : ''}${
-						tab === 'advanced' ? 'sup_prev__tab' : ''
+					}${tab === 'basic' ? 'next__tab' : ''}${
+						tab === 'extra' ? 'sup_prev__tab' : ''
 					}`}
 					onClick={() => setTab('style')}
 				>
@@ -77,9 +77,9 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab }) => {
 				</Button>
 				<Button
 					className={`zolo-tab ${
-						tab === 'advanced' ? 'active__tab' : ''
+						tab === 'extra' ? 'active__tab' : ''
 					}${tab === 'style' ? 'next__tab' : ''}`}
-					onClick={() => setTab('advanced')}
+					onClick={() => setTab('extra')}
 				>
 					<svg
 						id="Layer_1"
@@ -102,14 +102,14 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab }) => {
 						/>
 					</svg>
 					<h5 className="zolo-tab-label">
-						{__('Advanced', 'zolo-blocks')}
+						{__('Extra', 'zolo-blocks')}
 					</h5>
 				</Button>
 			</ButtonGroup>
 			<div className="zolo-tab-controls">
-				{tab === 'general' && <Fragment>{generalTab}</Fragment>}
+				{tab === 'basic' && <Fragment>{generalTab}</Fragment>}
 				{tab === 'style' && <Fragment>{styleTab}</Fragment>}
-				{tab === 'advanced' && <Fragment>{advancedTab}</Fragment>}
+				{tab === 'extra' && <Fragment>{advancedTab}</Fragment>}
 			</div>
 		</div>
 	);

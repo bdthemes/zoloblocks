@@ -1,18 +1,18 @@
 .zolo-panel-control {
-  .zb-label-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
-  }
+	.zb-label-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 16px;
+	}
 }
 
 .zb-res-alignment-control-wrapper {
-  margin-bottom: 24px;
-  &:nth-last-child(1) {
-    margin-bottom: 0 !important;
-  }
-  .zolo-iconic-btn-group {
-    margin-bottom: 0;
-  }
+	margin-bottom: 24px;
+	&:nth-last-child(1) {
+		margin-bottom: 0 !important;
+	}
+	.zolo-iconic-btn-group {
+		margin-bottom: 0;
+	}
 }
