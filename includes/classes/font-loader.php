@@ -15,7 +15,7 @@ class ZB_Font_Loader
 	private static $instance;
 
 	/**
-	 * Registers the plugin.
+	 * Registers the plugin
 	 */
 	public static function register()
 	{
@@ -24,6 +24,8 @@ class ZB_Font_Loader
 		}
 	}
 
+    private static $all_fonts = [];
+
 	/**
 	 * The Constructor.
 	 */
@@ -31,7 +33,19 @@ class ZB_Font_Loader
 	{
 		add_action('wp_enqueue_scripts', array($this, 'fonts_loader'));
 		add_action('admin_enqueue_scripts', array($this, 'fonts_loader'));
+		add_action('zolo_block_render_block', array($this, 'font_generator'));
 	}
+
+    public function font_generator($block) {
+        if (isset($block['attrs']) && is_array($block['attrs'])) {
+            $attributes = $block['attrs'];
+            foreach ($attributes as $key => $value) {
+                if (!empty($value) && strpos($key, 'zolo_') === 0 && strpos($key, 'FontFamily') !== false) {
+                    self::$all_fonts[] = $value;
+                }
+            }
+        }
+    }
 
 	/**
 	 * Load fonts.
@@ -40,15 +54,11 @@ class ZB_Font_Loader
 	 */
 	public function fonts_loader()
 	{
-		global $post;
+		if (is_array(self::$all_fonts) && count(self::$all_fonts) > 0) {
 
-		if ($post && isset($post->ID)) {
-
-			$fonts = get_post_meta($post->ID, '_zb_attr', true);
+			$fonts = array_filter(array_unique(self::$all_fonts));
 
 			if (!empty($fonts)) {
-
-				$fonts = array_unique(explode(',', $fonts));
 
 				$system = array(
 					'Arial',
