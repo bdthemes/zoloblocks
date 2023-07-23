@@ -22,6 +22,7 @@ const {
 	TabPanelControl,
 	ImageAvatar,
 	ResRangeControl,
+	ColorControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -48,13 +49,18 @@ import {
 	IMAGE_HOVER_BACKGROUND,
 	IMAGE_PADDING,
 	IMAGE_MARGIN,
+	HEADING_BACKGROUND,
+	HEADING_BORDER_RADIUS,
+	HEADING_BOX_SHADOW,
+	HEADING_HOVER_BACKGROUND,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector( props ) {
 	const { attributes, setAttributes } = props;
-	const { uniqueId, advancedGallery, preset, resMode } = attributes;
+	const { uniqueId, advancedGallery, preset, resMode, headingColor } =
+		attributes;
 
 	const resRequiredProps = {
 		attributes,
@@ -448,6 +454,56 @@ function Inspector( props ) {
 											}
 											forBorderRadius={ false }
 										/>
+									</PanelBody>
+									<PanelBody
+										title={ __( 'Heading', 'zolo-blocks' ) }
+										initialOpen={ false }
+									>
+										<>
+											<NormalBGControl
+												resRequiredProps={
+													resRequiredProps
+												}
+												controlName={
+													HEADING_BACKGROUND
+												}
+												noMainBGImg={ false }
+											/>
+											<ColorControl
+												label={ __(
+													'Color',
+													'zolo-blocks'
+												) }
+												color={ headingColor }
+												onChange={ ( value ) =>
+													setAttributes( {
+														headingColor: value,
+													} )
+												}
+											/>
+											<ResDimensionsControl
+												label={ __(
+													'Border Radius',
+													'zolo-blocks'
+												) }
+												controlName={
+													HEADING_BORDER_RADIUS
+												}
+												resRequiredProps={
+													resRequiredProps
+												}
+												forBorderRadius={ true }
+											/>
+											<BoxShadowControl
+												controlName={
+													HEADING_BOX_SHADOW
+												}
+												resRequiredProps={
+													resRequiredProps
+												}
+												enableTransition={ false }
+											/>
+										</>
 									</PanelBody>
 								</>
 							) }

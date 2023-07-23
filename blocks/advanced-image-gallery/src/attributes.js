@@ -26,6 +26,9 @@ import {
 	IMAGE_HOVER_BACKGROUND,
 	IMAGE_PADDING,
 	IMAGE_MARGIN,
+	HEADING_BACKGROUND,
+	HEADING_BORDER_RADIUS,
+	HEADING_BOX_SHADOW,
 } from './constants';
 
 const attributes = {
@@ -39,6 +42,10 @@ const attributes = {
 	},
 	blockStyle: {
 		type: 'object',
+	},
+
+	headingColor: {
+		type: 'string',
 	},
 
 	// Container
@@ -58,6 +65,11 @@ const attributes = {
 	...generateBoxShadowAttributies( IMAGE_HOVER_BOX_SHADOW ),
 	...generateDimensionAttributes( IMAGE_PADDING ),
 	...generateDimensionAttributes( IMAGE_MARGIN ),
+
+	// Heading
+	...generateNormalBGAttributes( HEADING_BACKGROUND ),
+	...generateDimensionAttributes( HEADING_BORDER_RADIUS ),
+	...generateBoxShadowAttributies( HEADING_BOX_SHADOW ),
 
 	...generateResRangeAttributies( GRID_COLUMNS, {
 		defaultRange: 3,

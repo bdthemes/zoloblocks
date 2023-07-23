@@ -38,12 +38,15 @@ import {
 	IMAGE_BORDER_RADIUS,
 	IMAGE_BOX_SHADOW,
 	IMAGE_BACKGROUND,
-	IMAGE_HOVER_BORDER,
 	IMAGE_HOVER_BORDER_RADIUS,
 	IMAGE_HOVER_BOX_SHADOW,
 	IMAGE_HOVER_BACKGROUND,
 	IMAGE_PADDING,
 	IMAGE_MARGIN,
+	HEADING_BACKGROUND,
+	HEADING_HOVER_BACKGROUND,
+	HEADING_BORDER_RADIUS,
+	HEADING_BOX_SHADOW,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -58,6 +61,7 @@ export default function Edit( props ) {
 		preset,
 		blockStyle,
 		advancedGallery,
+		headingColor,
 		presetOneStyles,
 		presetTwoStyles,
 	} = attributes;
@@ -201,6 +205,33 @@ export default function Edit( props ) {
 		controlName: IMAGE_HOVER_BOX_SHADOW,
 	} );
 
+	// Heading
+
+	const {
+		backgroundStylesDesktop: headingDeskBGStyle,
+		backgroundStylesTab: headingTabBGStyle,
+		backgroundStylesMobile: headingMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: HEADING_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
+	} );
+
+	const {
+		dimensionStylesDesktop: headingBorderRadiusDesk,
+		dimensionStylesTab: headingBorderRadiusTab,
+		dimensionStylesMobile: headingBorderRadiusMob,
+	} = generateDimensionStyle( {
+		controlName: HEADING_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	} );
+
+	const { boxShadowStyle: headingBoxShadow } = generateBoxShadowStyles( {
+		attributes,
+		controlName: HEADING_BOX_SHADOW,
+	} );
+
 	/**
 	 * Presets Based Styles
 	 */
@@ -252,7 +283,14 @@ export default function Edit( props ) {
 			${ imageHoverDeskBGStyle }
 			${ imageHoverBorderRadiusDesk }
 			${ imageHoverBoxShadow }
-		}	
+		}		
+		.${ uniqueId } .zolo-title {
+			color: ${ headingColor };
+			${ headingDeskBGStyle }
+			${ headingBorderRadiusDesk }
+			${ headingBoxShadow }
+			
+		}
 		${ presetStyles }		
   	`;
 
@@ -274,8 +312,12 @@ export default function Edit( props ) {
 	.${ uniqueId } .zolo-image-wrap:hover {
 		${ imageHoverTabBGStyle }
 		${ imageHoverBorderRadiusTab }
+	}			
+	.${ uniqueId } .zolo-title {
+		${ headingTabBGStyle }
+		${ headingBorderRadiusTab }
 	}
-		${ presetStyles }
+	${ presetStyles }
 	`;
 
 	const mobileAllStyle = `		
@@ -296,6 +338,10 @@ export default function Edit( props ) {
 	.${ uniqueId } .zolo-image-wrap:hover {
 		${ imageHoverMobBGStyle }
 		${ imageHoverBorderRadiusMob }
+	}			
+	.${ uniqueId } .zolo-title {
+		${ headingMobBGStyle }
+		${ headingBorderRadiusMob }
 	}
 	${ presetStyles }
   	`;
