@@ -1,7 +1,7 @@
 .zb-typography-component-panel {
 	.components-base-control {
 		.components-input-control__backdrop {
-			border-color: #ddd;
+			border-color: #e9e9e9;
 			border-radius: 3px;
 			box-shadow: none;
 		}
@@ -36,42 +36,6 @@
 		outline: none;
 	}
 
-	.zb-reset-button {
-		display: inline-flex;
-		align-items: center;
-		justify-content: flex-end;
-		width: 100%;
-		background-color: transparent;
-		border: 0;
-		padding: 0;
-
-		.dashicon {
-			color: #3d3d40;
-			font-size: 10px;
-			height: 30px;
-			width: 30px;
-			line-height: 30px;
-			border: 1px solid #ddd;
-			cursor: pointer;
-			border-radius: 3px;
-		}
-	}
-
-	.zb-res-device-btn-wrapper {
-		position: relative;
-
-		.zb-res-device-btns {
-			position: absolute;
-			left: 70px;
-		}
-
-		&.zb-letter-spacing {
-			.zb-res-device-btns {
-				left: 95px;
-			}
-		}
-	}
-
 	.zb-range-controller-container {
 		align-items: flex-start;
 		display: flex;
@@ -80,28 +44,16 @@
 			flex: 1;
 		}
 	}
-
-	.zb-range-reset-button {
-		background: transparent;
-		border: none;
-		box-shadow: none;
-		cursor: pointer;
-		height: 26px;
-		margin-left: 2px;
-		margin-top: 20px;
-		outline: none;
-		padding: 0;
-		width: 20px;
-
-		.dashicon {
-			align-items: center;
-			color: #62626f;
-			display: flex;
-			font-size: 14px;
-			justify-content: center;
-			transform: scaleX(-1) rotate(90deg);
-			width: 20px;
-		}
+}
+.zb-typography-dropdown-btn {
+	background: #f2f2f2;
+    border-radius: 50%;
+    padding: 12px 6px;
+    height: 0;
+	svg {
+		width: 13px;
+		height: 13px;
+		display: block;
 	}
 }
 

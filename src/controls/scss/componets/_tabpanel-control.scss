@@ -3,9 +3,19 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border: 1px solid #ddd;
+		gap: 20px;
 		margin-bottom: 16px;
-		border-radius: 3px;
+		position: relative;
+		&::before {
+			position: absolute;
+			content: "";
+			bottom: 0;
+			left: -16px;
+			right: 0px;
+			width: 113%;
+			height: 1px;
+			background-color: #e9e9e9;
+		}
 	}
 
 	.zolo-tab {
@@ -13,17 +23,19 @@
 		text-align: center;
 		align-items: center;
 		justify-content: center;
-		padding: 8px;
-		height: auto;
+		background-color: #f2f2f2;
+		color: #000;
+		height: 40px;
 		line-height: 1;
-	}
-
-	.zolo-tab.normal {
-		border-right: 1px solid #ddd;
+		border-top-left-radius: 6px;
+		border-top-right-radius: 6px;
 	}
 
 	.zolo-tab.active-tab {
-		background: #ddd;
+		color: #001feb;
+		background-color: transparent;
+		border: 1px solid #e9e9e9;
+		border-bottom-color: #fff;
 	}
 
 	.components-tab-panel__tabs-item:focus:not(:disabled) {

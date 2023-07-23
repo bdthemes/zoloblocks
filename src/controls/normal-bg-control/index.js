@@ -101,10 +101,10 @@ const NormalBGControl = ({
 					{noMainBGImg === false && (
 						<>
 							<MediaUpload
-								onSelect={({ url, id }) =>
+								onSelect={(media) =>
 									setAttributes({
-										[`${controlName}bgImageURL`]: url,
-										[`${controlName}bgImageID`]: id,
+										[`${controlName}bgImageURL`]: media.url,
+										[`${controlName}bgImageID`]: media.id,
 									})
 								}
 								type="image"
@@ -136,10 +136,18 @@ const NormalBGControl = ({
 								<>
 									<ImageAvatar
 										imageUrl={bgImageURL}
+										imageId={bgImageID}
 										onDeleteImage={() =>
 											setAttributes({
 												[`${controlName}bgImageURL`]:
 													null,
+											})
+										}
+										onEditImage={(url, id) =>
+											setAttributes({
+												[`${controlName}bgImageURL`]:
+													url,
+												[`${controlName}bgImageID`]: id,
 											})
 										}
 									/>
@@ -1484,7 +1492,7 @@ const NormalBGControl = ({
 
 			{backgroundType === 'gradient' && (
 				<GradientControl
-					label={'Gradient Color'}
+					label={__('Gradient Color', 'zolo-blocks')}
 					value={gradientColor}
 					onChange={(newVal) =>
 						setAttributes({

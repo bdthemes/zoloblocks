@@ -1,54 +1,68 @@
-.zb-res-device-btns {
-  .res-btn-label {
-    display: inline-block;
-    color: $control_primary_color !important;
-    font-size: 12px !important;
-    font-weight: 500 !important;
-    line-height: 16px !important;
-    min-height: auto;
-    text-transform: capitalize !important;
-    margin-right: 8px;
-  }
-  .res-btn {
-    background-color: #e8e8e8;
-    border-radius: 3px;
-    color: $control_primary_color;
-    cursor: pointer;
-    font-size: 11px;
-    height: 18px;
-    line-height: 18px;
-    margin: 0 8px 5px 0;
-    position: relative;
-    text-align: center;
-    width: 18px;
-    &.active {
-      color: $control_active_color !important;
-    }
-  }
+.zb-device-label-area {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+
+	[data-tooltip]:before {
+		padding: 2px 7px !important;
+		font-size: 11px !important;
+	}
 }
 
-.zb-res-device-btn-wrapper {
-  .zb-component-wrapper {
-    display: flex;
-    .zb-reset-button {
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      cursor: pointer;
-      height: 26px;
-      margin-left: 2px;
-      outline: none;
-      padding: 0;
-      width: 20px;
-      .dashicon {
-        align-items: center;
-        color: #62626f;
-        display: flex;
-        font-size: 14px;
-        justify-content: center;
-        transform: scaleX(-1) rotate(90deg);
-        width: 20px;
-      }
-    }
-  }
+.zb-device {
+	&-switcher {
+		color: gray;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		z-index: 2;
+		cursor: pointer;
+		height: 0;
+		transform: scale(0);
+		opacity: 0;
+		transition: 0.15s;
+
+		i {
+		    font-size: 14px;
+			width: 14px;
+			height: 14px;
+		}
+
+		&.active {
+			height: 26px;
+			width: 26px;
+			transform: scale(1);
+			opacity: 1;
+			color: #230aed;
+			background: #f2f2f2;
+			border-radius: 50%;
+		}
+	}
+
+	&-switchers {
+		position: relative;
+		width: 26px;
+		height: 26px;
+		&-open {
+			.zb-device-switchers-wrap {
+				background: #f2f2f2;
+				border-radius: 2px;
+				z-index: 11;
+				position: relative;
+			}
+			.zb-device-switcher {
+				height: 24px;
+				transform: scale(1);
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.zb-deive-wrapper {
+    margin-bottom: 24px;
+	&:nth-last-child(1) {
+		margin-bottom: 0 !important;
+	}
 }

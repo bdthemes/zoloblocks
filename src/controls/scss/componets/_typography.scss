@@ -5,3 +5,14 @@
 		justify-content: space-between;
 	}
 }
+
+.zb-typography-component-panel {
+	#react-select-2-listbox {
+		z-index: 99;
+	}
+	#react-select-2-input {
+		width: 150px !important;
+		padding: 0 !important;
+		border: 0 !important;
+	}
+}

@@ -1,0 +1,114 @@
+import { useEffect, useState } from '@wordpress/element';
+import { prefix } from '../../global/constants';
+import WithResDeviceBtn from '../with-res-device-btn';
+import { __ } from '@wordpress/i18n';
+
+const Borders = ({
+	top,
+	right,
+	bottom,
+	left,
+	onChange,
+	neededProps,
+	children,
+}) => {
+	const { label, setAttributes, controlName, isLinked } = neededProps;
+
+	const [borders, setBorders] = useState({
+		top,
+		right,
+		bottom,
+		left,
+	});
+
+	const onInputChange = (e) => {
+		const { name, value } = e.target;
+		if (isLinked) {
+			setBorders({
+				top: value,
+				bottom: value,
+				left: value,
+				right: value,
+			});
+		} else {
+			setBorders({
+				...borders,
+				[name]: value,
+			});
+		}
+	};
+
+	useEffect(() => {
+		onChange(borders);
+	}, [borders]);
+
+	useEffect(() => {
+		setAttributes({
+			[`${prefix}${controlName}IsLinked`]: isLinked,
+		});
+	}, [isLinked]);
+
+	return (
+		<div className="zb-dimension-container">
+			<WithResDeviceBtn
+				label={label}
+				resRequiredProps={neededProps}
+				controlName={controlName}
+			>
+				{children}
+				<div className="input-container">
+					<div className="input-wrap">
+						<input
+							type="number"
+							name="top"
+							value={borders.top}
+							onChange={onInputChange}
+						/>
+
+						<label className="input-label">
+							{__('Top', 'zolo-blocks')}
+						</label>
+					</div>
+
+					<div className="input-wrap">
+						<input
+							type="number"
+							name="right"
+							value={borders.right}
+							onChange={onInputChange}
+						/>
+						<label className="input-label">
+							{__('Right', 'zolo-blocks')}
+						</label>
+					</div>
+
+					<div className="input-wrap">
+						<input
+							type="number"
+							name="bottom"
+							value={borders.bottom}
+							onChange={onInputChange}
+						/>
+						<label className="input-label">
+							{__('Bottom', 'zolo-blocks')}
+						</label>
+					</div>
+
+					<div className="input-wrap">
+						<input
+							type="number"
+							name="left"
+							value={borders.left}
+							onChange={onInputChange}
+						/>
+						<label className="input-label">
+							{__('Left', 'zolo-blocks')}
+						</label>
+					</div>
+				</div>
+			</WithResDeviceBtn>
+		</div>
+	);
+};
+
+export default Borders;

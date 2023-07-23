@@ -1,0 +1,40 @@
+.zolo-iconic-btn-group {
+	margin-bottom: 18px;
+	.zb-iconic-btn-group {
+		display: flex;
+		width: 100%;
+		border: 0;
+		border-radius: 6px;
+		background-color: #f2f2f2;
+
+		.components-button {
+			border-radius: 6px !important;
+			border: 1px solid #f2f2f2;
+		}
+	}
+
+	.iconic-btn svg {
+		width: 24px !important;
+		height: 24px !important;
+	}
+
+	.iconic-btn-label {
+		margin-bottom: 8px;
+		display: block;
+	}
+
+	.iconic-btn {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.iconic-btn.active {
+		background: #fff;
+		color: #001feb;
+		border-color: #e8e8ea !important;
+	}
+
+	.iconic-btn.active svg path {
+		fill: #001feb !important;
+	}
+}

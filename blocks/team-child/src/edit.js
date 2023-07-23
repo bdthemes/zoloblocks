@@ -92,7 +92,6 @@ export default function Edit(props) {
 		memberShortBio,
 		showSocialProfiles,
 		socialProfiles,
-		socialProfilesLinkTarget,
 		nameColor,
 		designationColor,
 		shortBioColor,
@@ -797,35 +796,6 @@ export default function Edit(props) {
 						</ToolbarGroup>
 					</Fragment>
 				)}
-				{showDetailPageIcon && (
-					<ToolbarGroup>
-						<ToolbarButton
-							icon="admin-links"
-							onClick={() => setPopoverVisible(!popoverVisible)}
-						/>
-					</ToolbarGroup>
-				)}
-				{popoverVisible && (
-					<Popover
-						position="bottom right"
-						onFocusOutside={() => setPopoverVisible(false)}
-						offset={10}
-					>
-						<LinkControl
-							searchInputPlaceholder="Search here..."
-							value={memberDetailPageLink}
-							settings={[
-								{
-									id: 'opensInNewTab',
-									title: __('Open in new tab', 'zolo-blocks'),
-								},
-							]}
-							onChange={(data) =>
-								setAttributes({ memberDetailPageLink: data })
-							}
-						/>
-					</Popover>
-				)}
 			</BlockControls>
 
 			<div {...blockProps}>
@@ -834,7 +804,7 @@ export default function Edit(props) {
 						{memberPhoto ? (
 							<img
 								src={memberPhoto.url}
-								alt={memberPhoto.alt || 'Team Member'}
+								alt={memberPhoto.alt || memberName}
 							/>
 						) : (
 							<MediaPlaceholder
@@ -887,11 +857,22 @@ export default function Edit(props) {
 										socialProfiles.map((profile, index) => {
 											return (
 												<a
-													href={profile.link}
+													href={
+														profile.link &&
+														profile.link.url
+													}
 													key={index}
 													rel={
-														socialProfilesLinkTarget &&
-														'noreferer'
+														profile.link &&
+														profile.link
+															.openInNewTab &&
+														'noreferer noopener'
+													}
+													target={
+														profile.link &&
+														profile.link
+															.openInNewTab &&
+														'_blank'
 													}
 												>
 													<DisplayIcon
@@ -911,12 +892,12 @@ export default function Edit(props) {
 										}
 										rel={
 											memberDetailPageLink &&
-											memberDetailPageLink.newTab &&
+											memberDetailPageLink.openInNewTab &&
 											'noreferer'
 										}
 										target={
 											memberDetailPageLink &&
-											memberDetailPageLink.newTab &&
+											memberDetailPageLink.openInNewTab &&
 											'_blank'
 										}
 									>
@@ -978,7 +959,22 @@ export default function Edit(props) {
 						</div>
 						{addDetailPageLink && showDetailPageIcon && (
 							<div className="zolo-link-btn">
-								<a href="#">
+								<a
+									href={
+										memberDetailPageLink &&
+										memberDetailPageLink.url
+									}
+									rel={
+										memberDetailPageLink &&
+										memberDetailPageLink.openInNewTab &&
+										'noreferer'
+									}
+									target={
+										memberDetailPageLink &&
+										memberDetailPageLink.openInNewTab &&
+										'_blank'
+									}
+								>
 									<i className="fa-solid fa-arrow-right" />
 								</a>
 							</div>

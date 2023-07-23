@@ -5,7 +5,6 @@ import {
 	useBlockProps,
 	RichText,
 	BlockControls,
-	__experimentalLinkControl as LinkControl,
 	MediaPlaceholder,
 	MediaUpload,
 } from '@wordpress/block-editor';
@@ -550,35 +549,6 @@ export default function Edit(props) {
 						</ToolbarGroup>
 					</Fragment>
 				)}
-				{addReviewerWebsiteLink && (
-					<ToolbarGroup>
-						<ToolbarButton
-							icon="admin-links"
-							onClick={() => setPopoverVisible(!popoverVisible)}
-						/>
-					</ToolbarGroup>
-				)}
-				{popoverVisible && (
-					<Popover
-						position="bottom right"
-						onFocusOutside={() => setPopoverVisible(false)}
-						offset={10}
-					>
-						<LinkControl
-							searchInputPlaceholder="Search here..."
-							value={reviewerWebsiteLink}
-							settings={[
-								{
-									id: 'opensInNewTab',
-									title: __('Open in new tab', 'zolo-blocks'),
-								},
-							]}
-							onChange={(data) =>
-								setAttributes({ reviewerWebsiteLink: data })
-							}
-						/>
-					</Popover>
-				)}
 			</BlockControls>
 			<div {...blockProps}>
 				<div className="zolo-item">
@@ -586,7 +556,7 @@ export default function Edit(props) {
 						{memberPhoto ? (
 							<img
 								src={memberPhoto.url}
-								alt={memberPhoto.alt || 'Reviewer'}
+								alt={memberPhoto.alt || memberName}
 								className="zolo-img"
 							/>
 						) : (
@@ -614,12 +584,12 @@ export default function Edit(props) {
 									}
 									rel={
 										reviewerWebsiteLink &&
-										reviewerWebsiteLink.opensInNewTab &&
+										reviewerWebsiteLink.openInNewTab &&
 										'noreferer noopener'
 									}
 									target={
 										reviewerWebsiteLink &&
-										reviewerWebsiteLink.opensInNewTab &&
+										reviewerWebsiteLink.openInNewTab &&
 										'_blank'
 									}
 								>

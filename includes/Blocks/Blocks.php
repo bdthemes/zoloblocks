@@ -49,14 +49,20 @@ return apply_filters( 'zolo_blocks_list_data', [
     'review' => [
         'name'             => 'review',
         'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/review/block.json',
-        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => ['zolo-review-frontend']
+    ],
+    'review-child' => [
+        'name'             => 'review-child',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/review-child/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-review-child-frontend']
     ],
     'review-grid' => [
         'name'             => 'review-grid',
         'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/review-grid/block.json',
-        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
-        'frontend-scripts' => true
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
     ],
     'social-icon' => [
         'name'             => 'social-icon',

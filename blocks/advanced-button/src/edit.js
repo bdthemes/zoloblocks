@@ -5,7 +5,6 @@ import {
 	useBlockProps,
 	RichText,
 	BlockControls,
-	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import { useEffect, useState } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup, Popover } from '@wordpress/components';
@@ -26,6 +25,7 @@ const {
 	generateBoxShadowStyles,
 	generateTypographyStyles,
 	DisplayIcon,
+	LinkControl,
 } = window.zoloModule;
 
 import {
@@ -46,11 +46,13 @@ import {
 	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
 	ICON_PADDING,
+	LINK,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
+import { generateLinkControlAttributes } from '../../../src/module-export';
 
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
@@ -59,10 +61,8 @@ export default function Edit(props) {
 		uniqueId,
 		preset,
 		label,
-		link,
 		blockStyle,
-		isPopoverVisible,
-		showIcon,
+		iconType,
 		icon,
 		iconPosition,
 		iconColor,
@@ -182,6 +182,26 @@ export default function Edit(props) {
 		attributes,
 	});
 
+	const {
+		desktopRangeStyle: iconHeight,
+		tabRangeStyle: iconHeightTab,
+		mobRangeStyle: iconHeightMob,
+	} = generateResRangeStyle({
+		controlName: ICON_SIZE,
+		property: 'height',
+		attributes,
+	});
+
+	const {
+		desktopRangeStyle: iconWidth,
+		tabRangeStyle: iconWidthTab,
+		mobRangeStyle: iconWidthMob,
+	} = generateResRangeStyle({
+		controlName: ICON_SIZE,
+		property: 'width',
+		attributes,
+	});
+
 	// Spacing between icon and text
 	const {
 		desktopRangeStyle: gap,
@@ -195,8 +215,8 @@ export default function Edit(props) {
 
 	// Generate Box Shadow
 	const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
-		attributes,
 		controlName: BUTTON_BOX_SHADOW,
+		attributes,
 	});
 
 	// Generate Hover Box Shadow
@@ -409,6 +429,8 @@ export default function Edit(props) {
 		}
 		.zolo-advanced-button.${uniqueId} .zolo-button i, .zolo-advanced-button.${uniqueId} .zolo-button span.dashicon {
 			${iconSize}
+			${iconHeight}
+			${iconWidth}
 			${iconBorderDesktop}
 			${iconBorderRadiusDesktop}
 			${iconNormalBoxShadow}
@@ -422,8 +444,8 @@ export default function Edit(props) {
 			background: ${iconHoverBg ? iconHoverBg : ''};
 			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''};
 		}
-		${presetStyles}
-		${presetHoverStyles}
+		${presetStyles ? presetStyles : ''}
+		${presetHoverStyles ? presetHoverStyles : ''}
   	`;
 	const tabletAllStyle = `
 		.wp-block-zolo-advanced-button {
@@ -448,6 +470,8 @@ export default function Edit(props) {
 		}
 		.zolo-advanced-button.${uniqueId} .zolo-button-icon {
 			${iconSizeTab}
+			${iconHeightTab}
+			${iconWidthTab}
 			${iconBorderTab}
 			${iconBorderRadiusTab}
 			${iconPaddingTab}
@@ -477,6 +501,8 @@ export default function Edit(props) {
 		}
 		.zolo-advanced-button.${uniqueId} .zolo-button-icon {
 			${iconSizeMob}
+			${iconHeightMob}
+			${iconWidthMob}
 			${iconBorderMob}
 			${iconBorderRadiusMob}
 			${iconPaddingMob}
@@ -513,49 +539,25 @@ export default function Edit(props) {
 					setAttributes={setAttributes}
 				/>
 			)}
-			<BlockControls>
-				<ToolbarGroup>
-					<ToolbarButton
-						icon="admin-links"
-						label={__('Link', 'zolo-blocks')}
-						onClick={() => setPopoverVisible(!isPopoverVisible)}
-					/>
-				</ToolbarGroup>
-				{popoverVisible && (
-					<Popover
-						position="bottom right"
-						onFocusOutside={() => setPopoverVisible(false)}
-						offset={10}
-					>
-						<LinkControl
-							searchInputPlaceholder="Search here..."
-							value={link}
-							settings={[
-								{
-									id: 'opensInNewTab',
-									title: __('Open in new tab', 'zolo-blocks'),
-								},
-							]}
-							onChange={(data) => setAttributes({ link: data })}
-						/>
-					</Popover>
-				)}
-			</BlockControls>
 			<style>{` ${softMinifyCssStrings(allStyle)}`}</style>
 			<div {...blockProps}>
 				<div
 					className={`zolo-block-wrapper zolo-advanced-button ${uniqueId} ${preset}`}
 				>
 					<div className={`zolo-button ${iconPosition}`}>
-						<RichText
-							tagName="span"
-							className={`zolo-button-content`}
-							value={label}
-							onChange={(text) => setAttributes({ label: text })}
-							placeholder={__('Button Text', 'zolo-blocks')}
-							allowedFormats={[]}
-						/>
-						{showIcon && <DisplayIcon icon={icon} />}
+						{iconType !== 'iconOnly' && (
+							<RichText
+								tagName="span"
+								className={`zolo-button-content`}
+								value={label}
+								onChange={(text) =>
+									setAttributes({ label: text })
+								}
+								placeholder={__('Button Text', 'zolo-blocks')}
+								allowedFormats={[]}
+							/>
+						)}
+						{iconType !== 'none' && <DisplayIcon icon={icon} />}
 					</div>
 				</div>
 			</div>

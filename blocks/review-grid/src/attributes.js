@@ -49,7 +49,7 @@ const attributes = {
 		defaultRange: 30,
 	}),
 	...generateResRangeAttributies(ROWS_GAP, {
-		defaultRange: 30,
+		defaultRange: 50,
 	}),
 	...generateDimensionAttributes(REVIEW_GRID_MARGIN),
 	...generateDimensionAttributes(REVIEW_GRID_PADDING),

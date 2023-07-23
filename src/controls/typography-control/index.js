@@ -4,7 +4,7 @@ import {
 	Button,
 	Dropdown,
 	RangeControl,
-	SelectControl
+	SelectControl,
 } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -12,16 +12,23 @@ import { __ } from '@wordpress/i18n';
 //internal dependencies control
 import ResetControl from '../reset-control';
 import UnitBtn from '../unit-btn';
+import UnitsBtn from '../units-btn';
+import ResetBtn from '../reset-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
-import FontPicker from "./fontPicker";
+import FontPicker from './fontPicker';
 
 //block constant
 import {
-	fontStyleOptions, fontWeightOptions, LHLS_UNITS, sizeUnitTypes, textDecorationOptions, textTransformOptions
+	fontStyleOptions,
+	fontWeightOptions,
+	LHLS_UNITS,
+	sizeUnitTypes,
+	textDecorationOptions,
+	textTransformOptions,
 } from './constant';
 
 //googlefonts
-import { googleFonts } from "./fontPicker/googleFonts";
+import { googleFonts } from './fontPicker/googleFonts';
 
 const TypographyDropdown = ({
 	label,
@@ -29,7 +36,8 @@ const TypographyDropdown = ({
 	resRequiredProps,
 	defaultFontSize,
 }) => {
-	const { attributes, setAttributes, resMode, objAttributes } = resRequiredProps;
+	const { attributes, setAttributes, resMode, objAttributes } =
+		resRequiredProps;
 
 	const {
 		[`${typoPrefixConstant}ZRPFontFamily`]: fontFamily,
@@ -37,7 +45,8 @@ const TypographyDropdown = ({
 		[`${typoPrefixConstant}ZRPFontStyle`]: fontStyle,
 		[`${typoPrefixConstant}ZRPTextTransform`]: textTransform,
 		[`${typoPrefixConstant}ZRPTextDecoration`]: textDecoration,
-		[`${typoPrefixConstant}ZRPFontSize`]: fontSize = defaultFontSize || undefined,
+		[`${typoPrefixConstant}ZRPFontSize`]: fontSize = defaultFontSize ||
+			undefined,
 		[`${typoPrefixConstant}ZRPSizeUnit`]: sizeUnit,
 		[`${typoPrefixConstant}ZRPLetterSpacing`]: letterSpacing,
 		[`${typoPrefixConstant}ZRPLetterSpacingUnit`]: letterSpacingUnit,
@@ -63,7 +72,7 @@ const TypographyDropdown = ({
 	const [zbFontWeight, setZbFontWeight] = useState(fontWeightOptions);
 
 	useEffect(() => {
-		const fontFamilyKey = (fontFamily || "").replace(/\s+/g, "-");
+		const fontFamilyKey = (fontFamily || '').replace(/\s+/g, '-');
 		let googleFontWeight = googleFonts[fontFamilyKey]
 			? googleFonts[fontFamilyKey].variants
 			: [];
@@ -72,63 +81,91 @@ const TypographyDropdown = ({
 			value: item,
 		}));
 		const fontWeightwithDefault = [
-			{ label: "Default", value: "" },
+			{ label: 'Default', value: '' },
 			...fontWeightVal,
 		];
 		setZbFontWeight(fontWeightwithDefault);
 	}, [fontFamily]);
 
 	return (
-		<BaseControl label={__(label)} className="zb-typography-control-wrapper">
+		<BaseControl
+			label={__(label)}
+			className="zb-typography-control-wrapper"
+		>
 			<Dropdown
 				className="zb-typography-dropdown"
-				contentClassName="my-popover-content-classname"
 				position="bottom right"
 				renderToggle={({ isOpen, onToggle }) => (
-					<Button isSmall onClick={onToggle} aria-expanded={isOpen}>
-						<span className="dashicons dashicons-edit"></span>
+					<Button
+						onClick={onToggle}
+						aria-expanded={isOpen}
+						className="zb-typography-dropdown-btn"
+					>
+						<svg
+							id="Layer_1"
+							data-name="Layer 1"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 100 100"
+						>
+							<rect
+								width={100}
+								height={100}
+								style={{ fill: 'none' }}
+							/>
+							<path
+								d="M79.56,14.91H20.44a3.5,3.5,0,0,0-3.5,3.5V31.09a3.5,3.5,0,0,0,7,0V21.91H46.06V78.09H38.32a3.5,3.5,0,1,0,0,7H61.68a3.5,3.5,0,1,0,0-7H53.06V21.91h23v8.83a3.5,3.5,0,1,0,7,0V18.41A3.5,3.5,0,0,0,79.56,14.91Z"
+								style={{ fill: '#39394d' }}
+							/>
+						</svg>
 					</Button>
 				)}
 				renderContent={() => (
-					<div className="zb-panel-control zb-typography-component-panel">
-
+					<div className="zolo-panel-control zb-typography-component-panel">
 						<FontPicker
 							className="zb-fontpicker-fontfamily"
-							label={__("Font Family", "zolo-blocks")}
+							label={__('Font Family', 'zolo-blocks')}
 							value={fontFamily}
 							onChange={(FontFamily) => {
-								setAttributes({ [`${typoPrefixConstant}ZRPFontFamily`]: FontFamily });
+								setAttributes({
+									[`${typoPrefixConstant}ZRPFontFamily`]:
+										FontFamily,
+								});
 							}}
 						/>
-
-						<WithResDeviceBtn
-							className="zb-font-size"
-							resRequiredProps={resRequiredProps}>
-
-							{resMode === "Desktop" && (
+						<div className="zb-res-range-control-wrapper">
+							{resMode == 'Desktop' && (
 								<>
-									<UnitBtn
+									<UnitsBtn
 										selectedUnit={sizeUnit}
 										unitTypes={sizeUnitTypes}
 										onClick={(sizeUnit) =>
 											setAttributes({
-												[`${typoPrefixConstant}ZRPSizeUnit`]: sizeUnit,
+												[`${typoPrefixConstant}ZRPSizeUnit`]:
+													sizeUnit,
 											})
 										}
-									/>
-									<ResetControl
-										onReset={() =>
-											setAttributes({
-												[`${typoPrefixConstant}ZRPFontSize`]: defaultFontSize ||
-													(
-														objAttributes[
-														`${typoPrefixConstant}ZRPFontSize`
-														] || {}
-													).default,
-											})
-										}>
+									>
+										<ResetBtn
+											onReset={() => {
+												setAttributes({
+													[`${typoPrefixConstant}ZRPFontSize`]:
+														defaultFontSize ||
+														(
+															objAttributes[
+																`${typoPrefixConstant}ZRPFontSize`
+															] || {}
+														).default,
+												});
+											}}
+										/>
+									</UnitsBtn>
+
+									<WithResDeviceBtn
+										label={__('Font Size', 'zolo-blocks')}
+										resRequiredProps={resRequiredProps}
+										noResetBtn={true}
+									>
 										<RangeControl
-											label={__("Font Size", "zolo-blocks")}
 											value={fontSize}
 											onChange={(FontSize) =>
 												setAttributes({
@@ -136,17 +173,16 @@ const TypographyDropdown = ({
 														FontSize,
 												})
 											}
-											step={sizeUnit === "em" ? 0.1 : 1}
+											step={sizeUnit === 'em' ? 0.1 : 1}
 											min={0}
-											max={sizeUnit === "em" ? 10 : 200}
+											max={sizeUnit === 'em' ? 10 : 200}
 										/>
-									</ResetControl>
+									</WithResDeviceBtn>
 								</>
 							)}
-
-							{resMode === "Tablet" && (
+							{resMode == 'Tablet' && (
 								<>
-									<UnitBtn
+									<UnitsBtn
 										selectedUnit={TABsizeUnit}
 										unitTypes={sizeUnitTypes}
 										onClick={(TABsizeUnit) =>
@@ -155,21 +191,27 @@ const TypographyDropdown = ({
 													TABsizeUnit,
 											})
 										}
-									/>
+									>
+										<ResetBtn
+											onReset={() =>
+												setAttributes({
+													[`TAB${typoPrefixConstant}ZRPFontSize`]:
+														(
+															objAttributes[
+																`TAB${typoPrefixConstant}ZRPFontSize`
+															] || {}
+														).default,
+												})
+											}
+										/>
+									</UnitsBtn>
 
-									<ResetControl
-										onReset={() =>
-											setAttributes({
-												[`TAB${typoPrefixConstant}ZRPFontSize`]:
-													(
-														objAttributes[
-														`TAB${typoPrefixConstant}ZRPFontSize`
-														] || {}
-													).default,
-											})
-										}>
+									<WithResDeviceBtn
+										label={__('Font Size', 'zolo-blocks')}
+										resRequiredProps={resRequiredProps}
+										noResetBtn={true}
+									>
 										<RangeControl
-											label={__("Font Size", "zolo-blocks")}
 											value={TABfontSize}
 											onChange={(FontSize) =>
 												setAttributes({
@@ -177,18 +219,20 @@ const TypographyDropdown = ({
 														FontSize,
 												})
 											}
-											step={TABsizeUnit === "em" ? 0.1 : 1
+											step={
+												TABsizeUnit === 'em' ? 0.1 : 1
 											}
 											min={0}
-											max={TABsizeUnit === "em" ? 10 : 200}
+											max={
+												TABsizeUnit === 'em' ? 10 : 200
+											}
 										/>
-									</ResetControl>
+									</WithResDeviceBtn>
 								</>
 							)}
-
-							{resMode === "Mobile" && (
+							{resMode == 'Mobile' && (
 								<>
-									<UnitBtn
+									<UnitsBtn
 										selectedUnit={MOBsizeUnit}
 										unitTypes={sizeUnitTypes}
 										onClick={(MOBsizeUnit) =>
@@ -197,21 +241,27 @@ const TypographyDropdown = ({
 													MOBsizeUnit,
 											})
 										}
-									/>
+									>
+										<ResetBtn
+											onReset={() =>
+												setAttributes({
+													[`MOB${typoPrefixConstant}ZRPFontSize`]:
+														(
+															objAttributes[
+																`MOB${typoPrefixConstant}ZRPFontSize`
+															] || {}
+														).default,
+												})
+											}
+										/>
+									</UnitsBtn>
 
-									<ResetControl
-										onReset={() =>
-											setAttributes({
-												[`MOB${typoPrefixConstant}ZRPFontSize`]:
-													(
-														objAttributes[
-														`MOB${typoPrefixConstant}ZRPFontSize`
-														] || {}
-													).default,
-											})
-										}>
+									<WithResDeviceBtn
+										label={__('Font Size', 'zolo-blocks')}
+										resRequiredProps={resRequiredProps}
+										noResetBtn={true}
+									>
 										<RangeControl
-											label={__("Font Size", "zolo-blocks")}
 											value={MOBfontSize}
 											onChange={(FontSize) =>
 												setAttributes({
@@ -219,18 +269,21 @@ const TypographyDropdown = ({
 														FontSize,
 												})
 											}
-											step={MOBsizeUnit === "em" ? 0.1 : 1}
+											step={
+												MOBsizeUnit === 'em' ? 0.1 : 1
+											}
 											min={0}
-											max={MOBsizeUnit === "em" ? 10 : 200}
+											max={
+												MOBsizeUnit === 'em' ? 10 : 200
+											}
 										/>
-									</ResetControl>
+									</WithResDeviceBtn>
 								</>
 							)}
-
-						</WithResDeviceBtn>
+						</div>
 
 						<SelectControl
-							label={__("Font Weight", "zolo-blocks")}
+							label={__('Font Weight', 'zolo-blocks')}
 							value={fontWeight}
 							options={zbFontWeight}
 							onChange={(FontWeight) =>
@@ -242,7 +295,7 @@ const TypographyDropdown = ({
 						/>
 
 						<SelectControl
-							label={__("Font Style", "zolo-blocks")}
+							label={__('Font Style', 'zolo-blocks')}
 							value={fontStyle}
 							options={fontStyleOptions}
 							onChange={(fontStyle) =>
@@ -254,7 +307,7 @@ const TypographyDropdown = ({
 						/>
 
 						<SelectControl
-							label={__("Text Transform", "zolo-blocks")}
+							label={__('Text Transform', 'zolo-blocks')}
 							value={textTransform}
 							options={textTransformOptions}
 							onChange={(TextTransform) =>
@@ -266,7 +319,7 @@ const TypographyDropdown = ({
 						/>
 
 						<SelectControl
-							label={__("Text Decoration", "zolo-blocks")}
+							label={__('Text Decoration', 'zolo-blocks')}
 							value={textDecoration}
 							options={textDecorationOptions}
 							onChange={(TextDecoration) =>
@@ -276,13 +329,10 @@ const TypographyDropdown = ({
 								})
 							}
 						/>
-
-						<WithResDeviceBtn
-							className="zb-letter-spacing"
-							resRequiredProps={resRequiredProps}>
-							{resMode === "Desktop" && (
+						<div className="zb-res-range-control-wrapper">
+							{resMode == 'Desktop' && (
 								<>
-									<UnitBtn
+									<UnitsBtn
 										selectedUnit={letterSpacingUnit}
 										unitTypes={LHLS_UNITS}
 										onClick={(LetterSpacingUnit) =>
@@ -291,21 +341,30 @@ const TypographyDropdown = ({
 													LetterSpacingUnit,
 											})
 										}
-									/>
+									>
+										<ResetBtn
+											onReset={() =>
+												setAttributes({
+													[`${typoPrefixConstant}ZRPLetterSpacing`]:
+														(
+															objAttributes[
+																`${typoPrefixConstant}ZRPLetterSpacing`
+															] || {}
+														).default,
+												})
+											}
+										/>
+									</UnitsBtn>
 
-									<ResetControl
-										onReset={() =>
-											setAttributes({
-												[`${typoPrefixConstant}ZRPLetterSpacing`]:
-													(
-														objAttributes[
-														`${typoPrefixConstant}ZRPLetterSpacing`
-														] || {}
-													).default,
-											})
-										}>
+									<WithResDeviceBtn
+										label={__(
+											'Letter Spacing',
+											'zolo-blocks'
+										)}
+										resRequiredProps={resRequiredProps}
+										noResetBtn={true}
+									>
 										<RangeControl
-											label={__("Letter Spacing", "zolo-blocks")}
 											value={letterSpacing}
 											onChange={(LetterSpacing) =>
 												setAttributes({
@@ -315,16 +374,22 @@ const TypographyDropdown = ({
 											}
 											min={0}
 											max={
-												letterSpacingUnit === "em" ? 10 : 100}
-											step={letterSpacingUnit === "em" ? 0.1 : 1}
+												letterSpacingUnit === 'em'
+													? 10
+													: 100
+											}
+											step={
+												letterSpacingUnit === 'em'
+													? 0.1
+													: 1
+											}
 										/>
-									</ResetControl>
+									</WithResDeviceBtn>
 								</>
 							)}
-
-							{resMode === "Tablet" && (
+							{resMode == 'Tablet' && (
 								<>
-									<UnitBtn
+									<UnitsBtn
 										selectedUnit={TABletterSpacingUnit}
 										unitTypes={LHLS_UNITS}
 										onClick={(TABletterSpacingUnit) =>
@@ -333,21 +398,30 @@ const TypographyDropdown = ({
 													TABletterSpacingUnit,
 											})
 										}
-									/>
+									>
+										<ResetBtn
+											onReset={() =>
+												setAttributes({
+													[`TAB${typoPrefixConstant}ZRPLetterSpacing`]:
+														(
+															objAttributes[
+																`TAB${typoPrefixConstant}ZRPLetterSpacing`
+															] || {}
+														).default,
+												})
+											}
+										/>
+									</UnitsBtn>
 
-									<ResetControl
-										onReset={() =>
-											setAttributes({
-												[`TAB${typoPrefixConstant}ZRPLetterSpacing`]:
-													(
-														objAttributes[
-														`TAB${typoPrefixConstant}ZRPLetterSpacing`
-														] || {}
-													).default,
-											})
-										}>
+									<WithResDeviceBtn
+										label={__(
+											'Letter Spacing',
+											'zolo-blocks'
+										)}
+										resRequiredProps={resRequiredProps}
+										noResetBtn={true}
+									>
 										<RangeControl
-											label={__("Letter Spacing", "zolo-blocks")}
 											value={TABletterSpacing}
 											onChange={(LetterSpacing) =>
 												setAttributes({
@@ -357,19 +431,22 @@ const TypographyDropdown = ({
 											}
 											min={0}
 											max={
-												TABletterSpacingUnit === "em"
+												TABletterSpacingUnit === 'em'
 													? 10
 													: 100
 											}
-											step={TABletterSpacingUnit === "em" ? 0.1 : 1}
+											step={
+												TABletterSpacingUnit === 'em'
+													? 0.1
+													: 1
+											}
 										/>
-									</ResetControl>
+									</WithResDeviceBtn>
 								</>
 							)}
-
-							{resMode === "Mobile" && (
+							{resMode == 'Mobile' && (
 								<>
-									<UnitBtn
+									<UnitsBtn
 										selectedUnit={MOBletterSpacingUnit}
 										unitTypes={LHLS_UNITS}
 										onClick={(MOBletterSpacingUnit) =>
@@ -378,21 +455,30 @@ const TypographyDropdown = ({
 													MOBletterSpacingUnit,
 											})
 										}
-									/>
+									>
+										<ResetBtn
+											onReset={() =>
+												setAttributes({
+													[`MOB${typoPrefixConstant}ZRPLetterSpacing`]:
+														(
+															objAttributes[
+																`MOB${typoPrefixConstant}ZRPLetterSpacing`
+															] || {}
+														).default,
+												})
+											}
+										/>
+									</UnitsBtn>
 
-									<ResetControl
-										onReset={() =>
-											setAttributes({
-												[`MOB${typoPrefixConstant}ZRPLetterSpacing`]:
-													(
-														objAttributes[
-														`MOB${typoPrefixConstant}ZRPLetterSpacing`
-														] || {}
-													).default,
-											})
-										}>
+									<WithResDeviceBtn
+										label={__(
+											'Letter Spacing',
+											'zolo-blocks'
+										)}
+										resRequiredProps={resRequiredProps}
+										noResetBtn={true}
+									>
 										<RangeControl
-											label={__("Letter Spacing", "zolo-blocks")}
 											value={MOBletterSpacing}
 											onChange={(LetterSpacing) =>
 												setAttributes({
@@ -401,20 +487,25 @@ const TypographyDropdown = ({
 												})
 											}
 											min={0}
-											max={MOBletterSpacingUnit === "em" ? 10 : 100}
-											step={MOBletterSpacingUnit === "em" ? 0.1 : 1}
+											max={
+												MOBletterSpacingUnit === 'em'
+													? 10
+													: 100
+											}
+											step={
+												MOBletterSpacingUnit === 'em'
+													? 0.1
+													: 1
+											}
 										/>
-									</ResetControl>
+									</WithResDeviceBtn>
 								</>
 							)}
-						</WithResDeviceBtn>
-
-						<WithResDeviceBtn
-							className="zb-line-height"
-							resRequiredProps={resRequiredProps}>
-							{resMode === "Desktop" && (
+						</div>
+						<div className="zb-res-range-control-wrapper">
+							{resMode == 'Desktop' && (
 								<>
-									<UnitBtn
+									<UnitsBtn
 										selectedUnit={lineHeightUnit}
 										unitTypes={LHLS_UNITS}
 										onClick={(LineHeightUnit) =>
@@ -423,21 +514,27 @@ const TypographyDropdown = ({
 													LineHeightUnit,
 											})
 										}
-									/>
+									>
+										<ResetBtn
+											onReset={() =>
+												setAttributes({
+													[`${typoPrefixConstant}ZRPLineHeight`]:
+														(
+															objAttributes[
+																`${typoPrefixConstant}ZRPLineHeight`
+															] || {}
+														).default,
+												})
+											}
+										/>
+									</UnitsBtn>
 
-									<ResetControl
-										onReset={() =>
-											setAttributes({
-												[`${typoPrefixConstant}ZRPLineHeight`]:
-													(
-														objAttributes[
-														`${typoPrefixConstant}ZRPLineHeight`
-														] || {}
-													).default,
-											})
-										}>
+									<WithResDeviceBtn
+										label={__('Line Height', 'zolo-blocks')}
+										resRequiredProps={resRequiredProps}
+										noResetBtn={true}
+									>
 										<RangeControl
-											label={__("Line Height", "zolo-blocks")}
 											value={lineHeight}
 											onChange={(LineHeight) =>
 												setAttributes({
@@ -446,16 +543,23 @@ const TypographyDropdown = ({
 												})
 											}
 											min={0}
-											max={lineHeightUnit === "em" ? 10 : 600}
-											step={lineHeightUnit === "em" ? 0.1 : 1}
+											max={
+												lineHeightUnit === 'em'
+													? 10
+													: 600
+											}
+											step={
+												lineHeightUnit === 'em'
+													? 0.1
+													: 1
+											}
 										/>
-									</ResetControl>
+									</WithResDeviceBtn>
 								</>
 							)}
-
-							{resMode === "Tablet" && (
+							{resMode == 'Tablet' && (
 								<>
-									<UnitBtn
+									<UnitsBtn
 										selectedUnit={TABlineHeightUnit}
 										unitTypes={LHLS_UNITS}
 										onClick={(TABlineHeightUnit) =>
@@ -464,21 +568,27 @@ const TypographyDropdown = ({
 													TABlineHeightUnit,
 											})
 										}
-									/>
+									>
+										<ResetBtn
+											onReset={() =>
+												setAttributes({
+													[`TAB${typoPrefixConstant}ZRPLineHeight`]:
+														(
+															objAttributes[
+																`TAB${typoPrefixConstant}ZRPLineHeight`
+															] || {}
+														).default,
+												})
+											}
+										/>
+									</UnitsBtn>
 
-									<ResetControl
-										onReset={() =>
-											setAttributes({
-												[`TAB${typoPrefixConstant}ZRPLineHeight`]:
-													(
-														objAttributes[
-														`TAB${typoPrefixConstant}ZRPLineHeight`
-														] || {}
-													).default,
-											})
-										}>
+									<WithResDeviceBtn
+										label={__('Line Height', 'zolo-blocks')}
+										resRequiredProps={resRequiredProps}
+										noResetBtn={true}
+									>
 										<RangeControl
-											label={__("Line Height", "zolo-blocks")}
 											value={TABlineHeight}
 											onChange={(LineHeight) =>
 												setAttributes({
@@ -487,16 +597,23 @@ const TypographyDropdown = ({
 												})
 											}
 											min={0}
-											max={TABlineHeightUnit === "em" ? 10 : 600}
-											step={TABlineHeightUnit === "em" ? 0.1 : 1}
+											max={
+												TABlineHeightUnit === 'em'
+													? 10
+													: 600
+											}
+											step={
+												TABlineHeightUnit === 'em'
+													? 0.1
+													: 1
+											}
 										/>
-									</ResetControl>
+									</WithResDeviceBtn>
 								</>
 							)}
-
-							{resMode === "Mobile" && (
+							{resMode == 'Mobile' && (
 								<>
-									<UnitBtn
+									<UnitsBtn
 										selectedUnit={MOBlineHeightUnit}
 										unitTypes={LHLS_UNITS}
 										onClick={(MOBlineHeightUnit) =>
@@ -505,21 +622,27 @@ const TypographyDropdown = ({
 													MOBlineHeightUnit,
 											})
 										}
-									/>
+									>
+										<ResetBtn
+											onReset={() =>
+												setAttributes({
+													[`MOB${typoPrefixConstant}ZRPLineHeight`]:
+														(
+															objAttributes[
+																`MOB${typoPrefixConstant}ZRPLineHeight`
+															] || {}
+														).default,
+												})
+											}
+										/>
+									</UnitsBtn>
 
-									<ResetControl
-										onReset={() =>
-											setAttributes({
-												[`MOB${typoPrefixConstant}ZRPLineHeight`]:
-													(
-														objAttributes[
-														`MOB${typoPrefixConstant}ZRPLineHeight`
-														] || {}
-													).default,
-											})
-										}>
+									<WithResDeviceBtn
+										label={__('Line Height', 'zolo-blocks')}
+										resRequiredProps={resRequiredProps}
+										noResetBtn={true}
+									>
 										<RangeControl
-											label={__("Line Height", "zolo-blocks")}
 											value={MOBlineHeight}
 											onChange={(LineHeight) =>
 												setAttributes({
@@ -528,14 +651,21 @@ const TypographyDropdown = ({
 												})
 											}
 											min={0}
-											max={MOBlineHeightUnit === "em" ? 10 : 600}
-											step={MOBlineHeightUnit === "em" ? 0.1 : 1}
+											max={
+												MOBlineHeightUnit === 'em'
+													? 10
+													: 600
+											}
+											step={
+												MOBlineHeightUnit === 'em'
+													? 0.1
+													: 1
+											}
 										/>
-									</ResetControl>
+									</WithResDeviceBtn>
 								</>
 							)}
-						</WithResDeviceBtn>
-
+						</div>
 					</div>
 				)}
 			/>

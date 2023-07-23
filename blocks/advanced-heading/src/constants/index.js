@@ -1,64 +1,107 @@
-import { Dashicon } from "@wordpress/components";
+import { Dashicon } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'zolo-advanced-heading';
 
 //settings tab
 export const STYLES = [
-  { label: __('Default', 'zolo-blocks'), value: 'style-0' },
-  { label: __('Style 1', 'zolo-blocks'), value: 'style-1' },
-  { label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
-  { label: __('Style 3', 'zolo-blocks'), value: 'style-3' },
-  { label: __('Style 4', 'zolo-blocks'), value: 'style-4' },
-  { label: __('Style 5', 'zolo-blocks'), value: 'style-5' },
-  { label: __('Style 6', 'zolo-blocks'), value: 'style-6' },
-  { label: __('Style 7', 'zolo-blocks'), value: 'style-7' },
-  { label: __('Style 8', 'zolo-blocks'), value: 'style-8' },
+	{ label: __('Default', 'zolo-blocks'), value: 'style-0' },
+	{ label: __('Style 1', 'zolo-blocks'), value: 'style-1' },
+	{ label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
+	{ label: __('Style 3', 'zolo-blocks'), value: 'style-3' },
+	{ label: __('Style 4', 'zolo-blocks'), value: 'style-4' },
+	{ label: __('Style 5', 'zolo-blocks'), value: 'style-5' },
+	{ label: __('Style 6', 'zolo-blocks'), value: 'style-6' },
+	{ label: __('Style 7', 'zolo-blocks'), value: 'style-7' },
+	{ label: __('Style 8', 'zolo-blocks'), value: 'style-8' },
 ];
 
 export const ST_POSITION = [
-  { label: 'Top', value: 'top' },
-  { label: 'Bottom', value: 'bottom' }
+	{
+		label: 'Top',
+		value: 'top',
+		icon: (
+			<svg
+				id="Layer_1"
+				data-name="Layer 1"
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 100 100"
+			>
+				<rect
+					width="100"
+					height="100"
+					style={{
+						fill: 'none',
+					}}
+				/>
+				<path
+					d="M14.53,22.09H45c0,.07,0,.13,0,.2v63a5,5,0,1,0,10,0v-63c0-.07,0-.13,0-.2H85.47a5,5,0,0,0,0-10H14.53a5,5,0,0,0,0,10Z"
+					style={{
+						fill: '#39394d',
+					}}
+				/>
+			</svg>
+		),
+	},
+	{
+		label: 'Bottom',
+		value: 'bottom',
+		icon: (
+			<svg
+				id="Layer_1"
+				data-name="Layer 1"
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 100 100"
+			>
+				<rect
+					width="100"
+					height="100"
+					style={{
+						fill: 'none',
+					}}
+				/>
+				<path
+					d="M85.47,80.29H55c0-.07,0-.13,0-.2v-63a5,5,0,0,0-10,0v63c0,.07,0,.13,0,.2H14.53a5,5,0,0,0,0,10H85.47a5,5,0,0,0,0-10Z"
+					style={{
+						fill: '#39394d',
+					}}
+				/>
+			</svg>
+		),
+	},
 ];
 
 export const HEADING_TAG = [
-  { label: __("H1", "zolo-blocks"), value: "h1" },
-  { label: __("H2", "zolo-blocks"), value: "h2" },
-  { label: __("H3", "zolo-blocks"), value: "h3" },
-  { label: __("H4", "zolo-blocks"), value: "h4" },
-  { label: __("H5", "zolo-blocks"), value: "h5" },
-  { label: __("H6", "zolo-blocks"), value: "h6" },
-  { label: __("Div", "zolo-blocks"), value: "div" },
-  { label: __("P", "zolo-blocks"), value: "p" },
-  { label: __("Span", "zolo-blocks"), value: "span" },
-];
-
-export const TEXT_ALIGN = [
-  { label: __(<Dashicon icon={"editor-alignleft"} />), value: "left" },
-  { label: __(<Dashicon icon={"editor-aligncenter"} />), value: "center" },
-  { label: __(<Dashicon icon={"editor-alignright"} />), value: "right" },
-  { label: __(<Dashicon icon={"editor-justify"} />), value: "justify" }
+	{ label: __('H1', 'zolo-blocks'), value: 'h1' },
+	{ label: __('H2', 'zolo-blocks'), value: 'h2' },
+	{ label: __('H3', 'zolo-blocks'), value: 'h3' },
+	{ label: __('H4', 'zolo-blocks'), value: 'h4' },
+	{ label: __('H5', 'zolo-blocks'), value: 'h5' },
+	{ label: __('H6', 'zolo-blocks'), value: 'h6' },
+	{ label: __('Div', 'zolo-blocks'), value: 'div' },
+	{ label: __('P', 'zolo-blocks'), value: 'p' },
+	{ label: __('Span', 'zolo-blocks'), value: 'span' },
 ];
 
 export const TPT_HIDE = [
-  { label: 'Nothing', value: 'nothing' },
-  { label: 'Tablet and Mobile', value: 'tab-mob' },
-  { label: 'Mobile', value: 'mob' }
+	{ label: 'Nothing', value: 'nothing' },
+	{ label: 'Tablet and Mobile', value: 'tab-mob' },
+	{ label: 'Mobile', value: 'mob' },
 ];
 
 export const TPT_ROTATE_ORIGIN = [
-  { label: 'Default', value: '' },
-  { label: 'Top Left', value: 'top-left' },
-  { label: 'Top Center', value: 'top-center' },
-  { label: 'Top Right', value: 'top-right' },
-  { label: 'Center', value: 'center' },
-  { label: 'Center Left', value: 'center-left' },
-  { label: 'Center Right', value: 'center-right' },
-  { label: 'Bottom Left', value: 'bottom-left' },
-  { label: 'Bottom Center', value: 'bottom-center' },
-  { label: 'Bottom Right', value: 'bottom-right' }
+	{ label: 'Default', value: '' },
+	{ label: 'Top Left', value: 'top-left' },
+	{ label: 'Top Center', value: 'top-center' },
+	{ label: 'Top Right', value: 'top-right' },
+	{ label: 'Center', value: 'center' },
+	{ label: 'Center Left', value: 'center-left' },
+	{ label: 'Center Right', value: 'center-right' },
+	{ label: 'Bottom Left', value: 'bottom-left' },
+	{ label: 'Bottom Center', value: 'bottom-center' },
+	{ label: 'Bottom Right', value: 'bottom-right' },
 ];
 
-export const TPT_ALIGNMENT = 'tpAlign'
+export const TPT_ALIGNMENT = 'tpAlign';
 //style tab
 export const TITLE_MARGIN = 'titleMargin';
 export const TITLE_BORDER = 'titleBorder';
@@ -91,4 +134,3 @@ export const WRAPPER_BORDER = 'wrapBorder';
 export const WRAPPER_SHADOW = 'wrapShadow';
 
 export const TEST_NORMAL_BG = 'testBg';
-

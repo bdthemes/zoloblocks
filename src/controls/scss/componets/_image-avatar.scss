@@ -1,8 +1,53 @@
+.zolo-panel-control {
+	.components-panel__row {
+		margin: 0;
+	}
+}
+
 .zb-image-avatar-control {
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 200px;
-	margin-bottom: 8px;
+	height: 130px;
+	margin-bottom: 16px;
 	padding: 2px;
 	width: 100%;
+	border-radius: 6px;
+	background-position: center;
+	position: relative;
+
+	.components-button.zolo-replace-btn {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		display: flex;
+		gap: 10px;
+		justify-content: center;
+		background: #f2f2f2;
+		border-radius: 0 0 6px 6px;
+		transition: 0.3s;
+		&:hover {
+			background: #230aed;
+			color: #fff;
+		}
+		svg {
+			width: 20px;
+		}
+	}
+}
+
+.zb-bg-control-img-btn {
+	height: 130px;
+	width: 100%;
+	border-radius: 6px;
+	background-color: #f6f6f8;
+	border: 1px solid #e9e9e9;
+}
+
+.zolo-image-upload-btn {
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	justify-content: center;
 }
