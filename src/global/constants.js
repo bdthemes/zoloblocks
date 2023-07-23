@@ -63,18 +63,17 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'right',
 		icon: (
 			<svg
+				id="Layer_1"
+				data-name="Layer 1"
 				xmlns="http://www.w3.org/2000/svg"
-				width={16}
-				height={16}
-				fill="currentColor"
-				className="bi bi-align-end"
-				viewBox="0 0 16 16"
+				viewBox="0 0 100 100"
 			>
+				<rect width={100} height={100} style={{ fill: 'none' }} />
 				<path
-					fillRule="evenodd"
-					d="M14.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5z"
+					d="M75.37,12.93a5,5,0,0,0-5,5V32.7H25.11a5,5,0,0,0,0,10H70.37V57.4H43.64a5,5,0,1,0,0,10H70.37V81.35a5,5,0,0,0,10,0V17.93A5,5,0,0,0,75.37,12.93Z"
+					transform="translate(0 0)"
+					style={{ fill: '#39394d' }}
 				/>
-				<path d="M13 7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7z" />
 			</svg>
 		),
 	},
