@@ -73,7 +73,7 @@ const DimensionControl = ({
 
 						<label className="input-label">
 							{forBorderRadius
-								? __('TLeft', 'zolo-blocks')
+								? __('T.Left', 'zolo-blocks')
 								: __('Top', 'zolo-blocks')}
 						</label>
 					</div>
@@ -87,7 +87,7 @@ const DimensionControl = ({
 						/>
 						<label className="input-label">
 							{forBorderRadius
-								? __('TRight', 'zolo-blocks')
+								? __('T.Right', 'zolo-blocks')
 								: __('Right', 'zolo-blocks')}
 						</label>
 					</div>
@@ -101,7 +101,7 @@ const DimensionControl = ({
 						/>
 						<label className="input-label">
 							{forBorderRadius
-								? __('BRight', 'zolo-blocks')
+								? __('B.Right', 'zolo-blocks')
 								: __('Bottom', 'zolo-blocks')}
 						</label>
 					</div>
@@ -115,7 +115,7 @@ const DimensionControl = ({
 						/>
 						<label className="input-label">
 							{forBorderRadius
-								? __('BLeft', 'zolo-blocks')
+								? __('B.Left', 'zolo-blocks')
 								: __('Left', 'zolo-blocks')}
 						</label>
 					</div>

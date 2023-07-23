@@ -8,14 +8,14 @@
 		position: relative;
 		&::before {
 			position: absolute;
-			content: '';
+			content: "";
 			bottom: 0;
 			left: -16px;
 			right: 0px;
 			width: 113%;
 			height: 1px;
 			background-color: #ddd;
-	   }	
+		}
 	}
 
 	.zolo-tab {

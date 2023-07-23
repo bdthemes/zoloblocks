@@ -20,6 +20,8 @@ const IconicBtnGroup = ({ label = '', value, onChange, options }) => {
 								className={`iconic-btn ${
 									value == option.value ? 'active' : ''
 								}`}
+								key={index}
+								title={option.label}
 							>
 								{option.icon && option.icon !== ''
 									? option.icon
