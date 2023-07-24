@@ -29,9 +29,12 @@
 		&:hover {
 			background: #230aed;
 			color: #fff;
+			svg path {
+				stroke: #fff;
+			}
 		}
 		svg {
-			width: 20px;
+			fill: none;
 		}
 	}
 }
