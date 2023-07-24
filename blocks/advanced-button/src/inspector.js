@@ -2,14 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import {
-	CardDivider,
-	PanelBody,
-	SelectControl,
-	TextControl,
-	ToggleControl,
-	BaseControl,
-} from '@wordpress/components';
+import { PanelBody, SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment, useState } from '@wordpress/element';
 
@@ -34,15 +27,13 @@ const {
 
 import {
 	TEXT_ALIGN_OPTIONS,
-	POSITIONS,
-	DEFAULT_ALIGNS,
+	ICON_POSITIONS,
 } from '../../../src/global/constants';
 
 import objAttributes from './attributes';
 import {
 	BUTTON_ALIGNMENT,
 	PRESETS,
-	ICON_POSITIONS,
 	BUTTON_BORDER,
 	BUTTON_BORDER_RADIUS,
 	BUTTON_PADDING,
@@ -66,13 +57,10 @@ import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
 	const {
-		uniqueId,
 		resMode,
-		resDevice,
 		label,
 		link,
 		iconType,
-		showIcon,
 		icon,
 		iconPosition,
 		iconColor,
@@ -180,7 +168,7 @@ function Inspector(props) {
 												iconPosition: value,
 											})
 										}
-										options={POSITIONS}
+										options={ICON_POSITIONS}
 									/>
 
 									<ResRangeControl

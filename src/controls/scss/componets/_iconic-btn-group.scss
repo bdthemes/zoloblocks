@@ -13,28 +13,27 @@
 		}
 	}
 
-	.iconic-btn svg {
-		width: 24px !important;
-		height: 24px !important;
+	.iconic-btn {
+		width: 100%;
+		justify-content: center;
+		svg {
+			fill: none !important;
+		}
+		&.active {
+			background: #fff;
+			color: #001feb;
+			border-color: #e8e8ea !important;
+			svg {
+				rect,
+				path {
+					stroke: #001feb !important;
+				}
+			}
+		}
 	}
 
 	.iconic-btn-label {
 		margin-bottom: 8px;
 		display: block;
-	}
-
-	.iconic-btn {
-		width: 100%;
-		justify-content: center;
-	}
-
-	.iconic-btn.active {
-		background: #fff;
-		color: #001feb;
-		border-color: #e8e8ea !important;
-	}
-
-	.iconic-btn.active svg path {
-		fill: #001feb !important;
 	}
 }

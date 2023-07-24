@@ -4,6 +4,7 @@ import { prefix } from '../../global/constants';
 import { Button } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
+import LinkUnlink from '../link-unlink';
 
 const ResDimensionsControl = ({
 	label,
@@ -76,7 +77,7 @@ const ResDimensionsControl = ({
 							className={`zb-linked-btn ${
 								isLinked ? 'zb-linked-btn-active' : ''
 							}`}
-							icon={isLinked ? 'admin-links' : 'editor-unlink'}
+							icon={<LinkUnlink isLinked={isLinked} />}
 							onClick={onButtonClick}
 						/>
 						<ResetBtn
@@ -126,7 +127,7 @@ const ResDimensionsControl = ({
 							className={`zb-linked-btn ${
 								isLinked ? 'zb-linked-btn-active' : ''
 							}`}
-							icon={isLinked ? 'admin-links' : 'editor-unlink'}
+							icon={<LinkUnlink isLinked={isLinked} />}
 							onClick={onButtonClick}
 						/>
 						<ResetBtn
@@ -175,7 +176,7 @@ const ResDimensionsControl = ({
 							className={`zb-linked-btn ${
 								isLinked ? 'zb-linked-btn-active' : ''
 							}`}
-							icon={isLinked ? 'admin-links' : 'editor-unlink'}
+							icon={<LinkUnlink isLinked={isLinked} />}
 							onClick={onButtonClick}
 						/>
 						<ResetBtn

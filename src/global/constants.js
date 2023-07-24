@@ -27,18 +27,37 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'left',
 		icon: (
 			<svg
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				width={16}
-				height={16}
-				fill="currentColor"
-				className="bi bi-align-start"
-				viewBox="0 0 16 16"
 			>
 				<path
-					fillRule="evenodd"
-					d="M1.5 1a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5z"
+					d="M4 2V22"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
 				/>
-				<path d="M3 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7z" />
+				<rect
+					x={4}
+					y={14}
+					width={10}
+					height={5}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					x={4}
+					y={5}
+					width={16}
+					height={5}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
 			</svg>
 		),
 	},
@@ -47,14 +66,51 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'center',
 		icon: (
 			<svg
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				width={16}
-				height={16}
-				fill="currentColor"
-				className="bi bi-align-center"
-				viewBox="0 0 16 16"
 			>
-				<path d="M8 1a.5.5 0 0 1 .5.5V6h-1V1.5A.5.5 0 0 1 8 1zm0 14a.5.5 0 0 1-.5-.5V10h1v4.5a.5.5 0 0 1-.5.5zM2 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7z" />
+				<rect
+					x={4}
+					y={5}
+					width={16}
+					height={5}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					x={7}
+					y={14}
+					width={10}
+					height={5}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<path
+					d="M12 10L12 14"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<path
+					d="M12 19L12 22"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<path
+					d="M12 2V5"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
 			</svg>
 		),
 	},
@@ -63,16 +119,36 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'right',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
 			>
-				<rect width={100} height={100} style={{ fill: 'none' }} />
 				<path
-					d="M75.37,12.93a5,5,0,0,0-5,5V32.7H25.11a5,5,0,0,0,0,10H70.37V57.4H43.64a5,5,0,1,0,0,10H70.37V81.35a5,5,0,0,0,10,0V17.93A5,5,0,0,0,75.37,12.93Z"
-					transform="translate(0 0)"
-					style={{ fill: '#39394d' }}
+					d="M20 2V22"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<rect
+					x={10}
+					y={14}
+					width={10}
+					height={5}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					x={4}
+					y={5}
+					width={16}
+					height={5}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
 				/>
 			</svg>
 		),
@@ -82,23 +158,43 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'justify',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
 			>
-				<rect
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
+				<path
+					d="M20 2V22"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
 				/>
 				<path
-					d="M76.47,11.88a5,5,0,0,0-5,5v6.64H28.53V16.88a5,5,0,0,0-10,0V83.12a5,5,0,0,0,10,0V76.48H71.47v6.64a5,5,0,0,0,10,0V16.88A5,5,0,0,0,76.47,11.88Zm-5,55.41H28.53V62.48H71.47Zm0-14H28.53V46.71H71.47Zm0-15.77H28.53v-4.8H71.47Z"
-					style={{
-						fill: '#39394d',
-					}}
+					d="M4 2V22"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<rect
+					x={4}
+					y={6}
+					width={5}
+					height={12}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					x={15}
+					y={6}
+					width={5}
+					height={12}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
 				/>
 			</svg>
 		),
@@ -179,23 +275,36 @@ export const DEFAULT_ALIGNS = [
 		value: 'left',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
 			>
 				<path
-					d="M72.53,24.31H27.47a6.5,6.5,0,0,0-1.47.18V16.87a2.5,2.5,0,1,0-5,0V83.12a2.5,2.5,0,0,0,5,0V75.51a6.5,6.5,0,0,0,1.47.18H52.65a6.48,6.48,0,0,0,6.47-6.48V60.6a6.48,6.48,0,0,0-6.47-6.48H27.47A6.5,6.5,0,0,0,26,54.3V45.7a6.5,6.5,0,0,0,1.47.17H72.53A6.47,6.47,0,0,0,79,39.4V30.79A6.48,6.48,0,0,0,72.53,24.31ZM27.47,59.12H52.65a1.48,1.48,0,0,1,1.47,1.48v8.61a1.47,1.47,0,0,1-1.47,1.48H27.47A1.47,1.47,0,0,1,26,69.21V60.6A1.48,1.48,0,0,1,27.47,59.12ZM74,39.4a1.47,1.47,0,0,1-1.47,1.47H27.47A1.47,1.47,0,0,1,26,39.4V30.79a1.47,1.47,0,0,1,1.47-1.48H72.53A1.47,1.47,0,0,1,74,30.79Z"
-					style={{
-						fill: '#39394d',
-					}}
+					d="M4 2V22"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
 				/>
 				<rect
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
+					x={4}
+					y={14}
+					width={10}
+					height={5}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					x={4}
+					y={5}
+					width={16}
+					height={5}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
 				/>
 			</svg>
 		),
@@ -205,23 +314,50 @@ export const DEFAULT_ALIGNS = [
 		value: 'center',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
 			>
-				<path
-					d="M71.75,25.11H52.5V18a2.5,2.5,0,1,0-5,0v7.1H28.25a6.34,6.34,0,0,0-6.34,6.34v8.31a6.34,6.34,0,0,0,6.34,6.34H47.5v7.8H34.65a6.34,6.34,0,0,0-6.34,6.34v8.31a6.34,6.34,0,0,0,6.34,6.34H47.5V82a2.5,2.5,0,1,0,5,0v-7.1H65.35a6.34,6.34,0,0,0,6.34-6.34V60.24a6.34,6.34,0,0,0-6.34-6.34H52.5V46.1H71.75a6.34,6.34,0,0,0,6.34-6.34V31.45A6.34,6.34,0,0,0,71.75,25.11ZM65.35,58.9a1.34,1.34,0,0,1,1.34,1.34v8.31a1.34,1.34,0,0,1-1.34,1.34H34.65a1.34,1.34,0,0,1-1.34-1.34V60.24a1.34,1.34,0,0,1,1.34-1.34Zm7.74-19.14a1.34,1.34,0,0,1-1.34,1.34H28.25a1.34,1.34,0,0,1-1.34-1.34V31.45a1.34,1.34,0,0,1,1.34-1.34h43.5a1.34,1.34,0,0,1,1.34,1.34Z"
-					style={{
-						fill: '#39394d',
-					}}
+				<rect
+					x={4}
+					y={5}
+					width={16}
+					height={5}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
 				/>
 				<rect
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
+					x={7}
+					y={14}
+					width={10}
+					height={5}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<path
+					d="M12 10L12 14"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<path
+					d="M12 19L12 22"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<path
+					d="M12 2V5"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
 				/>
 			</svg>
 		),
@@ -262,23 +398,27 @@ export const POSITIONS = [
 		value: 'left',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
 			>
-				<rect
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
-				/>
 				<path
-					d="M20.9,86.66V56.17l.2,0h63a5,5,0,0,0,0-10h-63l-.2,0V15.72a5,5,0,1,0-10,0V86.66a5,5,0,0,0,10,0Z"
-					style={{
-						fill: '#39394d',
-					}}
+					d="M4 2V22"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<rect
+					x={8}
+					y={8}
+					width={12}
+					height={8}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
 				/>
 			</svg>
 		),
@@ -288,23 +428,27 @@ export const POSITIONS = [
 		value: 'right',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
 			>
-				<rect
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
-				/>
 				<path
-					d="M79.1,15.72V46.21l-.2,0h-63a5,5,0,0,0,0,10h63l.2,0V86.66a5,5,0,0,0,10,0V15.72a5,5,0,1,0-10,0Z"
-					style={{
-						fill: '#39394d',
-					}}
+					d="M20 2V22"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<rect
+					x={4}
+					y={8}
+					width={12}
+					height={8}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
 				/>
 			</svg>
 		),
@@ -314,23 +458,23 @@ export const POSITIONS = [
 		value: 'top',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
 			>
-				<rect
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
+				<path
+					d="M22 4L2 4"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
 				/>
 				<path
-					d="M14.53,22.09H45c0,.07,0,.13,0,.2v63a5,5,0,1,0,10,0v-63c0-.07,0-.13,0-.2H85.47a5,5,0,0,0,0-10H14.53a5,5,0,0,0,0,10Z"
-					style={{
-						fill: '#39394d',
-					}}
+					d="M15 8C15.5523 8 16 8.44772 16 9V19C16 19.5523 15.5523 20 15 20H9C8.44772 20 8 19.5523 8 19L8 9C8 8.44771 8.44772 8 9 8L15 8Z"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
 				/>
 			</svg>
 		),
@@ -340,23 +484,154 @@ export const POSITIONS = [
 		value: 'bottom',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
 			>
-				<rect
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
+				<path
+					d="M22 20L2 20"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
 				/>
 				<path
-					d="M85.47,80.29H55c0-.07,0-.13,0-.2v-63a5,5,0,0,0-10,0v63c0,.07,0,.13,0,.2H14.53a5,5,0,0,0,0,10H85.47a5,5,0,0,0,0-10Z"
-					style={{
-						fill: '#39394d',
-					}}
+					d="M15 4C15.5523 4 16 4.44772 16 5V15C16 15.5523 15.5523 16 15 16H9C8.44772 16 8 15.5523 8 15L8 5C8 4.44771 8.44772 4 9 4L15 4Z"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+			</svg>
+		),
+	},
+];
+// position
+export const ICON_POSITIONS = [
+	{
+		label: 'Left',
+		value: 'left',
+		icon: (
+			<svg
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<rect
+					x={11}
+					y={12}
+					width={11}
+					height="0.01"
+					rx="0.005"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					x={3}
+					y={10}
+					width={4}
+					height={4}
+					rx={2}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+			</svg>
+		),
+	},
+	{
+		label: 'Right',
+		value: 'right',
+		icon: (
+			<svg
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<rect
+					x={3}
+					y={12}
+					width={11}
+					height="0.01"
+					rx="0.005"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					x={18}
+					y={10}
+					width={4}
+					height={4}
+					rx={2}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+			</svg>
+		),
+	},
+	{
+		label: 'Top',
+		value: 'top',
+		icon: (
+			<svg
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<rect
+					x={6}
+					y={16}
+					width={12}
+					height="0.01"
+					rx="0.005"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					x={10}
+					y={8}
+					width={4}
+					height={4}
+					rx={2}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+			</svg>
+		),
+	},
+	{
+		label: 'Bottom',
+		value: 'bottom',
+		icon: (
+			<svg
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<rect
+					x={6}
+					y={8}
+					width={12}
+					height="0.01"
+					rx="0.005"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					x={10}
+					y={12}
+					width={4}
+					height={4}
+					rx={2}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
 				/>
 			</svg>
 		),
