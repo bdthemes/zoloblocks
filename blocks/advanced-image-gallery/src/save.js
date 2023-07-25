@@ -15,7 +15,10 @@ const Save = ( { attributes } ) => {
 								<div className="zolo-image-wrap">
 									<img src={ image.url } alt="" />
 								</div>
-								<a href="#" className="zolo-icon-wrap">
+								<a
+									href={ image.url }
+									className="zolo-icon-wrap"
+								>
 									<span className="zolo-icon">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"

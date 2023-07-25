@@ -71,8 +71,18 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
+            // enqueue magnificpopup icons
+            wp_enqueue_style(
+                'zolo-block-magnificpopup',
+                ZOLO_ADMIN_URL . 'assets/css/magnificpopup/magnific-popup.css',
+                array(),
+                ZOLO_VERSION
+            );
+
             wp_enqueue_script( 'react', 'https://unpkg.com/react/umd/react.production.min.js', array(), false, true );
             wp_enqueue_script( 'react-dom', 'https://unpkg.com/react-dom/umd/react-dom.production.min.js', array(), false, true );
+            wp_enqueue_script( 'magnific-popup', ZOLO_ADMIN_URL . 'assets/js/magnific-popup/jquery.magnific-popup.min.js', array('jquery'), false, true );
+            wp_enqueue_script( 'custom-scripts', ZOLO_ADMIN_URL . 'assets/js/scripts.js', array('jquery','magnific-popup'), false, true );
         }
 
         /**
