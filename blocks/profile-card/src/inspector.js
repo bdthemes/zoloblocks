@@ -519,6 +519,58 @@ function Inspector(props) {
 								title={__('Social Profiles', 'zolo-blocks')}
 								initialOpen={false}
 							>
+								<div className="zb-repeater-flex">
+									<div className="repeater-label">
+										{__('Add a Profile', 'zolo-blocks')}
+									</div>
+									<Button
+										onClick={() =>
+											setAttributes({
+												socialProfiles: [
+													...socialProfiles,
+													{
+														id:
+															socialProfiles.length +
+															1,
+														title: 'Facebook',
+														icon: {
+															facebook: {
+																name: 'facebook',
+																source: 'dashicon',
+																type: '',
+															},
+														},
+														link: {
+															url: '#',
+															openInNewTab: false,
+														},
+													},
+												],
+											})
+										}
+									>
+										<svg
+											width={24}
+											height={24}
+											viewBox="0 0 24 24"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												d="M12 8V16"
+												stroke="#4D4D4D"
+												strokeWidth="1.5"
+												strokeLinecap="round"
+											/>
+											<path
+												d="M16 12H8"
+												stroke="#4D4D4D"
+												strokeWidth="1.5"
+												strokeLinecap="round"
+											/>
+										</svg>
+									</Button>
+								</div>
 								<SortableControl
 									defaultItems={socialProfiles}
 									attributeName="socialProfiles"
@@ -555,7 +607,8 @@ function Inspector(props) {
 													>
 														<PanelBody
 															title={
-																profile.title
+																profile.title ||
+																'Title'
 															}
 															initialOpen={false}
 														>
@@ -636,35 +689,6 @@ function Inspector(props) {
 											);
 										})}
 								</SortableControl>
-								<Button
-									variant="primary"
-									onClick={() =>
-										setAttributes({
-											socialProfiles: [
-												...socialProfiles,
-												{
-													id:
-														socialProfiles.length +
-														1,
-													title: 'Facebook',
-													icon: {
-														facebook: {
-															name: 'facebook',
-															source: 'dashicon',
-															type: '',
-														},
-													},
-													link: {
-														url: '#',
-														openInNewTab: false,
-													},
-												},
-											],
-										})
-									}
-								>
-									{__('Add a Profile', 'zolo-blocks')}
-								</Button>
 							</PanelBody>
 						)}
 					</>
