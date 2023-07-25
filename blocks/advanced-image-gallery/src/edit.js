@@ -7,15 +7,20 @@ import {
 	MediaUpload,
 	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
+
 import { useEffect } from '@wordpress/element';
+
 import {
 	ToolbarButton,
 	ToolbarGroup,
 	Dropdown,
 	Button,
 } from '@wordpress/components';
+
 import { __ } from '@wordpress/i18n';
+
 import classnames from 'classnames';
+
 /**
  * Internal depencencies
  */
@@ -25,6 +30,7 @@ const {
 	generateNormalBGControlStyles,
 	generateDimensionStyle,
 	generateBoxShadowStyles,
+	generateTypographyStyles,
 } = window.zoloModule;
 
 import {
@@ -44,12 +50,11 @@ import {
 	IMAGE_PADDING,
 	IMAGE_MARGIN,
 	HEADING_BACKGROUND,
-	HEADING_HOVER_BACKGROUND,
 	HEADING_BORDER_RADIUS,
 	HEADING_BOX_SHADOW,
 } from './constants';
 
-import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
 
@@ -227,6 +232,15 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	const {
+		typoStylesDesktop: headingTypoDesk,
+		typoStylesTab: headingTypoTab,
+		typoStylesMobile: headingTypoMob,
+	} = generateTypographyStyles( {
+		prefixConstant: HEADING_TYPOGRAPHY,
+		attributes,
+	} );
+
 	const { boxShadowStyle: headingBoxShadow } = generateBoxShadowStyles( {
 		attributes,
 		controlName: HEADING_BOX_SHADOW,
@@ -289,7 +303,7 @@ export default function Edit( props ) {
 			${ headingDeskBGStyle }
 			${ headingBorderRadiusDesk }
 			${ headingBoxShadow }
-			
+			${ headingTypoDesk }			
 		}
 		${ presetStyles }		
   	`;
@@ -316,6 +330,7 @@ export default function Edit( props ) {
 	.${ uniqueId } .zolo-title {
 		${ headingTabBGStyle }
 		${ headingBorderRadiusTab }
+		${ headingTypoTab }
 	}
 	${ presetStyles }
 	`;
@@ -342,6 +357,7 @@ export default function Edit( props ) {
 	.${ uniqueId } .zolo-title {
 		${ headingMobBGStyle }
 		${ headingBorderRadiusMob }
+		${ headingTypoMob }
 	}
 	${ presetStyles }
   	`;

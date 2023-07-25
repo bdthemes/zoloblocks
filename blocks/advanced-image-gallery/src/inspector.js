@@ -23,6 +23,7 @@ const {
 	ImageAvatar,
 	ResRangeControl,
 	ColorControl,
+	TypographyDropdown,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -52,10 +53,9 @@ import {
 	HEADING_BACKGROUND,
 	HEADING_BORDER_RADIUS,
 	HEADING_BOX_SHADOW,
-	HEADING_HOVER_BACKGROUND,
 } from './constants';
 
-import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector( props ) {
 	const { attributes, setAttributes } = props;
@@ -460,6 +460,18 @@ function Inspector( props ) {
 										initialOpen={ false }
 									>
 										<>
+											<TypographyDropdown
+												label={ __(
+													'Typography',
+													'zolo-blocks'
+												) }
+												typoPrefixConstant={
+													HEADING_TYPOGRAPHY
+												}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
 											<NormalBGControl
 												resRequiredProps={
 													resRequiredProps
