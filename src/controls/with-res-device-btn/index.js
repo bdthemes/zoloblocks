@@ -45,7 +45,7 @@ const WithResDeviceBtn = ({
 							}
 						>
 							<div className="zb-device-switchers-wrap">
-								<a
+								<button
 									className={`zb-device-switcher zb-device-switcher-desktop ${
 										device === 'Desktop' ? 'active' : ''
 									}`}
@@ -72,8 +72,8 @@ const WithResDeviceBtn = ({
 											stroke="#1E1E1E"
 										/>
 									</svg>
-								</a>
-								<a
+								</button>
+								<button
 									className={`zb-device-switcher zb-device-switcher-laptop ${
 										device === 'Tablet' ? 'active' : ''
 									}`}
@@ -102,8 +102,8 @@ const WithResDeviceBtn = ({
 											fill="#1E1E1E"
 										/>
 									</svg>
-								</a>
-								<a
+								</button>
+								<button
 									className={`zb-device-switcher zb-device-switcher-tablet ${
 										device === 'Mobile' ? 'active' : ' '
 									}`}
@@ -130,7 +130,7 @@ const WithResDeviceBtn = ({
 											fill="#1E1E1E"
 										/>
 									</svg>
-								</a>
+								</button>
 							</div>
 						</div>
 					)}

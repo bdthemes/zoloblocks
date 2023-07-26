@@ -1,7 +1,7 @@
 .zb-device-label-area {
-    display: flex;
-    gap: 5px;
-    align-items: center;
+	display: flex;
+	gap: 5px;
+	align-items: center;
 
 	[data-tooltip]:before {
 		padding: 2px 7px !important;
@@ -22,9 +22,11 @@
 		transform: scale(0);
 		opacity: 0;
 		transition: 0.15s;
+		border: none !important;
+		width: 100% !important;
 
 		i {
-		    font-size: 14px;
+			font-size: 14px;
 			width: 14px;
 			height: 14px;
 		}
@@ -61,7 +63,7 @@
 }
 
 .zb-deive-wrapper {
-    margin-bottom: 24px;
+	margin-bottom: 24px;
 	&:nth-last-child(1) {
 		margin-bottom: 0 !important;
 	}
