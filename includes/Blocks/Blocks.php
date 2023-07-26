@@ -21,6 +21,12 @@ return apply_filters( 'zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => false
     ],
+    'advanced-image-gallery' => [
+        'name'             => 'advanced-image-gallery',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/advanced-image-gallery/block.json',
+        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
     'brand-grid' => [
         'name'             => 'brand-grid',
         'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/brand-grid/block.json',
