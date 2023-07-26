@@ -7,11 +7,11 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'social-icon';
 // Presets
 export const PRESETS = [
-	{ label: __( 'Default', 'zolo-blocks' ), value: 'preset-1' },
-	{ label: __( 'Style 1', 'zolo-blocks' ), value: 'preset-2' },
-	{ label: __( 'Style 2', 'zolo-blocks' ), value: 'preset-3' },
-	{ label: __( 'Style 3', 'zolo-blocks' ), value: 'preset-4' },
-	{ label: __( 'Style 4', 'zolo-blocks' ), value: 'preset-5' },
+	{ label: __('Default', 'zolo-blocks'), value: 'preset-1' },
+	{ label: __('Style 1', 'zolo-blocks'), value: 'preset-2' },
+	{ label: __('Style 2', 'zolo-blocks'), value: 'preset-3' },
+	{ label: __('Style 3', 'zolo-blocks'), value: 'preset-4' },
+	{ label: __('Style 4', 'zolo-blocks'), value: 'preset-5' },
 ];
 
 // button icon positions
@@ -33,22 +33,7 @@ export const ICON_POSITIONS = [
 		value: 'bottom',
 	},
 ];
-// social icon text
-export const SOCIAL_TEXT = [
-	{
-		label: 'Icon & Text',
-		value: 'icontext',
-	},
-	{
-		label: 'Icon',
-		value: 'icon',
-	},
 
-	{
-		label: 'Text',
-		value: 'text',
-	},
-];
 // social icon color
 export const SOCIAL_ICON_COLOR = [
 	{
@@ -60,6 +45,9 @@ export const SOCIAL_ICON_COLOR = [
 		value: 'custom',
 	},
 ];
+
+// column count
+export const COLUMN_COUNT = 'columnCount';
 //columns Number
 export const COLUMNS_NUMBER = 'columns';
 export const COLUMNS_GAP = 'columnsGap';

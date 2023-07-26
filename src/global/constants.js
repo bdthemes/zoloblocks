@@ -367,24 +367,36 @@ export const DEFAULT_ALIGNS = [
 		value: 'right',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
 			>
 				<path
-					d="M79.05,39.44V16.87a2.5,2.5,0,0,0-5,0V24.5a6.59,6.59,0,0,0-1.48-.18H27.42a6.5,6.5,0,0,0-6.49,6.49v8.63a6.49,6.49,0,0,0,6.49,6.48H72.57a6.58,6.58,0,0,0,1.48-.17v8.63a6.59,6.59,0,0,0-1.48-.18H47.33a6.49,6.49,0,0,0-6.48,6.49v8.63a6.49,6.49,0,0,0,6.48,6.48H72.57a6.58,6.58,0,0,0,1.48-.17v7.63a2.5,2.5,0,0,0,5,0V39.44Zm-5,29.9a1.48,1.48,0,0,1-1.48,1.46H47.33a1.48,1.48,0,0,1-1.48-1.48V60.69a1.49,1.49,0,0,1,1.48-1.49H72.57a1.49,1.49,0,0,1,1.48,1.47Zm0-29.88a1.48,1.48,0,0,1-1.48,1.46H27.42a1.49,1.49,0,0,1-1.49-1.48V30.81a1.49,1.49,0,0,1,1.49-1.49H72.57a1.49,1.49,0,0,1,1.48,1.47Z"
-					transform="translate(0.01 -0.01)"
-					style={{
-						fill: '#39394d',
-					}}
+					d="M20 2V22"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
 				/>
 				<rect
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
+					x={10}
+					y={14}
+					width={10}
+					height={5}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					x={4}
+					y={5}
+					width={16}
+					height={5}
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
 				/>
 			</svg>
 		),
@@ -632,6 +644,105 @@ export const ICON_POSITIONS = [
 					rx={2}
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
+				/>
+			</svg>
+		),
+	},
+];
+
+// social icon text
+export const ICON_STATUS = [
+	{
+		label: __('No Icon', 'zolo-blocks'),
+		value: 'text',
+		icon: (
+			<svg
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<rect
+					width={24}
+					height={24}
+					fill="none"
+					style={{
+						stroke: 'none !important',
+					}}
+				/>
+				<circle
+					cx={12}
+					cy={12}
+					r="9.25"
+					stroke="black"
+					strokeWidth="1.5"
+				/>
+				<path
+					d="M15.5355 8.46446L8.46447 15.5355"
+					stroke="black"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+				/>
+				<path
+					d="M8.46447 8.46446L15.5355 15.5355"
+					stroke="black"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+				/>
+			</svg>
+		),
+	},
+	{
+		label: __('Icon & Text', 'zolo-blocks'),
+		value: 'icontext',
+		icon: (
+			<svg
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<rect width={24} height={24} fill="none" stroke="none" />
+				<path
+					d="M12 10H21M12 14H17.2941"
+					stroke="black"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+				/>
+				<path
+					d="M6.5 19V5M10 5H3M10 19H3"
+					stroke="black"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+				/>
+			</svg>
+		),
+	},
+	{
+		label: __('Only Icon', 'zolo-blocks'),
+		value: 'icon',
+		icon: (
+			<svg
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<circle
+					cx={12}
+					cy={12}
+					r="8.25"
+					stroke="#4d4d4d"
+					strokeWidth="1.5"
+				/>
+				<path
+					d="M12 15V9M14 9H10M14 15H10"
+					stroke="#4d4d4d"
+					strokeWidth="1.5"
+					strokeLinecap="round"
 				/>
 			</svg>
 		),

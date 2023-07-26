@@ -41,13 +41,17 @@ const Save = ({ attributes }) => {
 						let socialName = Object.keys(profile.icon)[0];
 						return (
 							<a
-								href={profile.link}
+								href={profile.link && profile.link.url}
 								key={index}
-								target={socialProfilesLinkTarget && '_blank'}
+								target={
+									profile.link &&
+									profile.link.openInNewTab &&
+									'_blank'
+								}
 								rel={
-									socialProfilesLinkTarget
-										? 'noopener noreferrer'
-										: 'noopener'
+									profile.link &&
+									profile.link.openInNewTab &&
+									'noopener noreferrer'
 								}
 								className={`zolo-social-item zolo-${socialName}`}
 							>

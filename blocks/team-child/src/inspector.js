@@ -32,6 +32,8 @@ const {
 	SortableControl,
 } = window.zoloModule;
 
+import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
+
 import objAttributes from './attributes';
 import {
 	PRESETS,
@@ -417,24 +419,7 @@ function Inspector(props) {
 								label={__('Content Alignmet', 'zolo-blocks')}
 								controlName={CONTENT_ALIGNMENT}
 								resRequiredProps={resRequiredProps}
-								alignOptions={[
-									{
-										label: 'Left',
-										value: 'left',
-									},
-									{
-										label: 'Center',
-										value: 'center',
-									},
-									{
-										label: 'Right',
-										value: 'right',
-									},
-									{
-										label: 'Justify',
-										value: 'justify',
-									},
-								]}
+								alignOptions={TEXT_ALIGN_OPTIONS}
 							/>
 							<NormalBGControl
 								resRequiredProps={resRequiredProps}
