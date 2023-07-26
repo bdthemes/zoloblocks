@@ -1,6 +1,9 @@
-import { generateResAlignmentAttributies } from '../../../src/helpers/res-alignment-helper';
-import { generateResRangeAttributies } from '../../../src/helpers/res-range-helper';
-import { generateBorderAttributies } from '../../../src/helpers/border-helper';
+const {
+	generateResAlignmentAttributies,
+	generateResRangeAttributies,
+	generateBorderAttributies,
+	generateResCounterAttributies,
+} = window.zoloModule;
 
 import {
 	BUTTON_ALIGNMENT,
@@ -9,6 +12,7 @@ import {
 	BUTTON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
+	COLUMN_COUNT,
 	COLUMNS_GAP,
 	ROW_GAP,
 	BUTTON_SIZE,
@@ -29,31 +33,35 @@ const attributes = {
 		type: 'object',
 	},
 	//alignment attributes
-	...generateResAlignmentAttributies( BUTTON_ALIGNMENT, {
+	...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
 		defaultAlign: 'left',
-	} ),
+	}),
 
 	// border attributes
-	...generateBorderAttributies( BUTTON_BORDER ),
-	...generateResRangeAttributies( ICON_SIZE, {
+	...generateBorderAttributies(BUTTON_BORDER),
+	...generateResRangeAttributies(ICON_SIZE, {
 		default: 16,
-	} ),
+	}),
+	// column count
+	...generateResCounterAttributies(COLUMN_COUNT, {
+		defaultRange: 4,
+	}),
 	//columns gaps
-	...generateResRangeAttributies( COLUMNS_GAP ),
+	...generateResRangeAttributies(COLUMNS_GAP),
 	//row gaps
-	...generateResRangeAttributies( ROW_GAP ),
+	...generateResRangeAttributies(ROW_GAP),
 
 	//button size
-	...generateResRangeAttributies( BUTTON_SIZE ),
+	...generateResRangeAttributies(BUTTON_SIZE),
 	//button icon size
-	...generateResRangeAttributies( BUTTON_ICON_SIZE ),
+	...generateResRangeAttributies(BUTTON_ICON_SIZE),
 	//button height
-	...generateResRangeAttributies( BUTTON_HEIGHT ),
+	...generateResRangeAttributies(BUTTON_HEIGHT),
 
 	//icon spacing
-	...generateResRangeAttributies( ICON_TEXT_SPACING, {
+	...generateResRangeAttributies(ICON_TEXT_SPACING, {
 		default: 5,
-	} ),
+	}),
 	//Block specific Attributes
 	preset: {
 		type: 'string',
@@ -67,6 +75,7 @@ const attributes = {
 		type: 'array',
 		default: [
 			{
+				id: 1,
 				icon: {
 					facebook: {
 						name: 'facebook',
@@ -74,7 +83,10 @@ const attributes = {
 						type: '',
 					},
 				},
-				link: '#',
+				link: {
+					url: '#',
+					openInNewTab: false,
+				},
 				text: 'Facebook',
 			},
 		],
@@ -82,10 +94,6 @@ const attributes = {
 	socialProfilesLinkTarget: {
 		type: 'boolean',
 		default: true,
-	},
-	socialProfileColumns: {
-		type: 'number',
-		default: 4,
 	},
 	socialStyle: {
 		type: 'string',

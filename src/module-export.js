@@ -26,6 +26,7 @@ export { default as LinkControl } from './controls/link-control';
 export { default as IconicBtnGroup } from './controls/iconic-btn-group';
 export { default as SortableControl } from './controls/sortable-control';
 export { default as SortableItem } from './controls/sortable-control/sortableitem';
+export { default as ResCounterControl } from './controls/res-counter-control';
 
 //Export Helpers
 export {
@@ -79,3 +80,7 @@ export {
 	generateTypographyAttributes,
 	generateTypographyStyles,
 } from './helpers/typoHelpers';
+export {
+	generateResCounterAttributies,
+	generateResCounterStyle,
+} from './helpers/res-counter-helper';

@@ -3,10 +3,8 @@
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
-	CardDivider,
 	PanelBody,
 	SelectControl,
-	TabPanel,
 	TextControl,
 	TextareaControl,
 	ToggleControl,
