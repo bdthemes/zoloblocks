@@ -36,9 +36,19 @@
 			width: 26px;
 			transform: scale(1);
 			opacity: 1;
-			color: #230aed;
 			background: #f2f2f2;
 			border-radius: 50%;
+
+
+			path {
+				stroke: #230aed;;
+				fill: #230aed;;
+			}
+
+			rect {
+				stroke: #230aed;;
+
+			}
 		}
 	}
 
