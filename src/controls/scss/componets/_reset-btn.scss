@@ -11,9 +11,18 @@
 	cursor: pointer !important;
 	min-width: auto !important;
 	opacity: 1 !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	svg {
 		display: block;
 		fill: none;
+	}
+}
+.zb-rest-btn,
+.zb-linked-btn,
+.zb-typography-dropdown-btn {
+	svg {
 		path {
 			stroke: #000;
 		}

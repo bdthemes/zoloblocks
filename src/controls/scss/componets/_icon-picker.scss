@@ -8,7 +8,7 @@
     margin-bottom: 12px;
     cursor: pointer;
     border: 1px solid #e7e6e9;
-
+	position: relative;
 	.dashicon,
 	i {
 		font-size: 30px;
@@ -18,6 +18,29 @@
 		&:hover {
 			cursor: pointer;
 			color: #230aed;
+		}
+	}
+
+	.zolo-replace-btn {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		display: flex;
+		gap: 10px;
+		justify-content: center;
+		background: #e7e9ee;
+		border-radius: 0 0 6px 6px;
+		transition: 0.3s;
+		&:hover {
+			background: #b6b6b6;
+			color: #fff;
+			svg path {
+				stroke: #fff;
+			}
+		}
+		svg {
+			fill: none;
 		}
 	}
 }
