@@ -1,16 +1,9 @@
 /**
  * WordPress dependencies
  */
-import {
-	useBlockProps,
-	RichText,
-	BlockControls,
-	MediaUpload,
-	MediaPlaceholder,
-	__experimentalLinkControl as LinkControl,
-} from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
+import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 /**
@@ -19,51 +12,28 @@ import classnames from 'classnames';
 const {
 	handleUniqueId,
 	softMinifyCssStrings,
-	generateResAlignmentStyle,
-	generateResRangeStyle,
-	generateBorderStyle,
+	generateNormalBGControlStyles,
 	generateDimensionStyle,
-	generateTypographyStyles,
 	generateBoxShadowStyles,
-	generateTextShadowStyles,
-	generateTextStrokeStyles,
-	DisplayIcon,
+	generateBorderStyle,
 } = window.zoloModule;
 
 import {
 	BLOCK_PREFIX,
-	ICON_BOX_ALIGNMENT,
-	TITLE_ALIGNMENT,
-	TITLE_MARGIN,
-	TITLE_TEXT_SHADOW,
-	TITLE_TEXT_STROKE,
-	DESCRIPTION_MARGIN,
-	DESC_ALIGNMENT,
-	ICON_BORDER,
-	ICON_BORDER_RADIUS,
-	ICON_SIZE,
-	ICON_PADDING,
-	ICON_MARGIN,
-	BUTTON_ICON_SIZE,
-	BUTTON_BORDER,
-	ICON_BOX_SHADOW,
-	ICON_HOVER_BOX_SHADOW,
-	BUTTON_BOX_SHADOW,
-	BUTTON_HOVER_BOX_SHADOW,
-	ICON_SPACING,
-	ICON_TEXT_SPACING,
-	BUTTON_BORDER_RADIUS,
-	BUTTON_MARGIN,
-	BUTTON_PADDING,
+	CONTAINER_BACKGROUND,
+	CONTAINER_HOVER_BACKGROUND,
+	CONTAINER_BORDER_RADIUS,
+	CONTAINER_BORDER,
+	CONTAINER_BORDER_HOVER,
+	CONTAINER_PADDING,
+	CONTAINER_BOX_SHADOW,
+	CONTAINER_BOX_SHADOW_HOVER,
 } from './constants';
 
-import {
-	TITLE_TYPOGRAPHY,
-	DESCRIPTION_TYPOGRAPHY,
-	BUTTON_TYPOGRAPHY,
-} from './constants/typoPrefixConstant';
-
 import Inspector from './inspector';
+
+// import brand-child
+import '../../brand-child';
 
 export default function Edit( props ) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
@@ -71,30 +41,7 @@ export default function Edit( props ) {
 	const {
 		uniqueId,
 		preset,
-		titleTag,
-		link,
 		blockStyle,
-		showIcon,
-		mainIcon,
-		buttonIcon,
-		textColor,
-		textHoverColor,
-		descColor,
-		descHoverColor,
-		iconPosition,
-		iconColor,
-		iconHoverColor,
-		iconBackgroundColor,
-		iconBackgroundHoverColor,
-		iconType,
-		iconTypeImage,
-		iconBoxTitle,
-		iconBoxDescription,
-		buttonText,
-		btnColor,
-		btnHoverColor,
-		btnBgColor,
-		btnBgHoverColor,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
@@ -113,340 +60,75 @@ export default function Edit( props ) {
 		className: classnames( className, `` ),
 	} );
 
-	// icon alignment
 	const {
-		desktopAlignStyle: iconAlignmentDesktop,
-		tabAlignStyle: iconAlignmentTab,
-		mobAlignStyle: iconAlignmentMob,
-	} = generateResAlignmentStyle( {
-		controlName: ICON_BOX_ALIGNMENT,
-		property: 'text-align',
+		backgroundStylesDesktop: containerDeskBGStyle,
+		backgroundStylesTab: containerTabBGStyle,
+		backgroundStylesMobile: containerMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: CONTAINER_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
+	} );
+
+	const {
+		backgroundStylesDesktop: containerHoverDeskBGStyle,
+		backgroundStylesTab: containerHoverTabBGStyle,
+		backgroundStylesMobile: containerHoverMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: CONTAINER_HOVER_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
+	} );
+
+	const {
+		desktopBorderStyle: containerDeskBorderStyle,
+		tabBorderStyle: containerTabBorderStyle,
+		mobBorderStyle: containerMobBorderStyle,
+	} = generateBorderStyle( {
+		controlName: CONTAINER_BORDER,
 		attributes,
 	} );
 
-	// generate icon border radius
 	const {
-		dimensionStylesDesktop: iconBorderRadiusDesktop,
-		dimensionStylesTab: iconBorderRadiusTab,
-		dimensionStylesMobile: iconBorderRadiusMob,
+		desktopBorderStyle: containerDeskBorderHoverStyle,
+		tabBorderStyle: containerTabBorderHoverStyle,
+		mobBorderStyle: containerMobBorderHoverStyle,
+	} = generateBorderStyle( {
+		controlName: CONTAINER_BORDER_HOVER,
+		attributes,
+	} );
+
+	const {
+		dimensionStylesDesktop: containerBorderRadiusDesk,
+		dimensionStylesTab: containerBorderRadiusTab,
+		dimensionStylesMobile: containerBorderRadiusMob,
 	} = generateDimensionStyle( {
-		controlName: ICON_BORDER_RADIUS,
+		controlName: CONTAINER_BORDER_RADIUS,
 		styleFor: 'border-radius',
 		attributes,
 	} );
 
-	// Generate Icon Box Shadow
-	const { boxShadowStyle: iconBoxShadow } = generateBoxShadowStyles( {
-		attributes,
-		controlName: ICON_BOX_SHADOW,
-	} );
-
-	// Generate Icon Hover Box Shadow
-	const { boxShadowStyle: iconHoverBoxShadow } = generateBoxShadowStyles( {
-		attributes,
-		controlName: ICON_HOVER_BOX_SHADOW,
-	} );
-
-	// Generate Button Box Shadow
-	const { boxShadowStyle: buttonBoxShadow } = generateBoxShadowStyles( {
-		attributes,
-		controlName: BUTTON_BOX_SHADOW,
-	} );
-
-	// Generate Icon Hover Box Shadow
-	const { boxShadowStyle: buttonHoverBoxShadow } = generateBoxShadowStyles( {
-		attributes,
-		controlName: BUTTON_HOVER_BOX_SHADOW,
-	} );
-
-	// Generate Icon Padding
 	const {
-		dimensionStylesDesktop: iconPaddingDesktop,
-		dimensionStylesTab: iconPaddingTab,
-		dimensionStylesMobile: iconPaddingMob,
+		dimensionStylesDesktop: containerPaddingDesk,
+		dimensionStylesTab: containerPaddingTab,
+		dimensionStylesMobile: containerPaddingMob,
 	} = generateDimensionStyle( {
-		controlName: ICON_PADDING,
-		styleFor: 'padding',
-		attributes,
-	} );
-	// Generate Button Padding
-	const {
-		dimensionStylesDesktop: buttonPaddingDesktop,
-		dimensionStylesTab: buttonPaddingTab,
-		dimensionStylesMobile: buttonPaddingMob,
-	} = generateDimensionStyle( {
-		controlName: BUTTON_PADDING,
+		controlName: CONTAINER_PADDING,
 		styleFor: 'padding',
 		attributes,
 	} );
 
-	// Generate Icon Margin
-	const {
-		dimensionStylesDesktop: iconMarginDesktop,
-		dimensionStylesTab: iconMarginTab,
-		dimensionStylesMobile: iconMarginMob,
-	} = generateDimensionStyle( {
-		controlName: ICON_MARGIN,
-		styleFor: 'margin',
+	const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles( {
 		attributes,
+		controlName: CONTAINER_BOX_SHADOW,
 	} );
 
-	// Generate Button Margin
-	const {
-		dimensionStylesDesktop: buttonMarginDesktop,
-		dimensionStylesTab: buttonMarginTab,
-		dimensionStylesMobile: buttonMarginMob,
-	} = generateDimensionStyle( {
-		controlName: BUTTON_MARGIN,
-		styleFor: 'margin',
-		attributes,
-	} );
-
-	//title typography
-	const {
-		typoStylesDesktop: titleTypoDesktop,
-		typoStylesTab: titleTypoTab,
-		typoStylesMobile: titleTypoMobile,
-	} = generateTypographyStyles( {
-		prefixConstant: TITLE_TYPOGRAPHY,
-		defaultFontSize: 25,
-		attributes,
-	} );
-
-	// title alignment
-	const {
-		desktopAlignStyle: textAlignmentDesktop,
-		tabAlignStyle: textAlignmentTab,
-		mobAlignStyle: textAlignmentMob,
-	} = generateResAlignmentStyle( {
-		controlName: TITLE_ALIGNMENT,
-		property: 'text-align',
-		attributes,
-	} );
-
-	// Generate Title Margin
-	const {
-		dimensionStylesDesktop: titleMarginDesktop,
-		dimensionStylesTab: titleMarginTab,
-		dimensionStylesMobile: titleMarginMob,
-	} = generateDimensionStyle( {
-		controlName: TITLE_MARGIN,
-		styleFor: 'margin',
-		attributes,
-	} );
-
-	// Generate Title Text Shadow
-	const { textShadowStyle: titleTextShadowStyle } = generateTextShadowStyles(
+	const { boxShadowStyle: containerBoxShadowHover } = generateBoxShadowStyles(
 		{
 			attributes,
-			controlName: TITLE_TEXT_SHADOW,
+			controlName: CONTAINER_BOX_SHADOW_HOVER,
 		}
 	);
-
-	// Generate Title Text Stroke
-	const {
-		desktopTextStrokeStyle: titleTextStrokeStyle,
-		tabTextStrokeStyle: tabTitleTextStrokeStyle,
-		mobTextStrokeStyle: mobTitleTextStrokeStyle,
-	} = generateTextStrokeStyles( {
-		attributes,
-		controlName: TITLE_TEXT_STROKE,
-	} );
-
-	// description alignment
-	const {
-		desktopAlignStyle: descAlignmentDesktop,
-		tabAlignStyle: descAlignmentTab,
-		mobAlignStyle: descAlignmentMob,
-	} = generateResAlignmentStyle( {
-		controlName: DESC_ALIGNMENT,
-		property: 'text-align',
-		attributes,
-	} );
-
-	// descrtiption typography
-	const {
-		typoStylesDesktop: descTypoDesktop,
-		typoStylesTab: descTypoTab,
-		typoStylesMobile: descTypoMobile,
-	} = generateTypographyStyles( {
-		prefixConstant: DESCRIPTION_TYPOGRAPHY,
-		defaultFontSize: 16,
-		attributes,
-	} );
-
-	// button typography
-	const {
-		typoStylesDesktop: btnTypoDesktop,
-		typoStylesTab: btnTypoTab,
-		typoStylesMobile: btnTypoMobile,
-	} = generateTypographyStyles( {
-		prefixConstant: BUTTON_TYPOGRAPHY,
-		defaultFontSize: 14,
-		attributes,
-	} );
-
-	// Generate Title Margin
-	const {
-		dimensionStylesDesktop: descMarginDesktop,
-		dimensionStylesTab: descMarginTab,
-		dimensionStylesMobile: descMarginMob,
-	} = generateDimensionStyle( {
-		controlName: DESCRIPTION_MARGIN,
-		styleFor: 'margin',
-		attributes,
-	} );
-
-	/**
-	 * Generate Title Alignment Class
-	 */
-	const deskTitleAlign = `display: ${
-		textAlignmentDesktop === 'text-align:left;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const tabTitleAlign = `display: ${
-		textAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const mobTitleAlign = `display: ${
-		textAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	/**
-	 * Generate Description Alignment Class
-	 */
-
-	const deskDescAlign = `display: ${
-		descAlignmentDesktop === 'text-align:left;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const tabDescAlign = `display: ${
-		descAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const mobDescAlign = `display: ${
-		descAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	/**
-	 * Generate Icon Alignment Class
-	 */
-	const deskAlign = `display: ${
-		iconAlignmentDesktop === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const tabAlign = `display: ${
-		iconAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const mobAlign = `display: ${
-		iconAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	// generate border style
-	const {
-		desktopBorderStyle: borderStyles,
-		tabBorderStyle: borderStylesTab,
-		mobBorderStyle: borderStylesMob,
-	} = generateBorderStyle( {
-		controlName: ICON_BORDER,
-		attributes,
-	} );
-
-	// generate icon size
-	const {
-		desktopRangeStyle: iconSize,
-		tabRangeStyle: iconSizeTab,
-		mobRangeStyle: iconSizeMob,
-	} = generateResRangeStyle( {
-		controlName: ICON_SIZE,
-		property: 'font-size',
-		attributes,
-	} );
-	// generate icon height
-	const {
-		desktopRangeStyle: iconHeight,
-		tabRangeStyle: iconHeightTab,
-		mobRangeStyle: iconHeightMob,
-	} = generateResRangeStyle( {
-		controlName: ICON_SIZE,
-		property: 'height',
-		attributes,
-	} );
-	// generate icon spacing
-	const {
-		desktopRangeStyle: iconSpacing,
-		tabRangeStyle: iconSpacingTab,
-		mobRangeStyle: iconSpacingMob,
-	} = generateResRangeStyle( {
-		controlName: ICON_SPACING,
-		property: 'margin',
-		attributes,
-	} );
-	// Spacing between icon and text
-	const {
-		desktopRangeStyle: gap,
-		tabRangeStyle: gapTab,
-		mobRangeStyle: gapMob,
-	} = generateResRangeStyle( {
-		controlName: ICON_TEXT_SPACING,
-		property: 'gap',
-		attributes,
-	} );
-
-	// generate button icon size
-	const {
-		desktopRangeStyle: buttonIconSize,
-		tabRangeStyle: buttonIconSizeTab,
-		mobRangeStyle: buttonIconSizeMob,
-	} = generateResRangeStyle( {
-		controlName: BUTTON_ICON_SIZE,
-		property: 'font-size',
-		attributes,
-	} );
-
-	// generate button icon height
-	const {
-		desktopRangeStyle: buttonIconHeight,
-		tabRangeStyle: buttonIconHeightTab,
-		mobRangeStyle: buttonIconHeightMob,
-	} = generateResRangeStyle( {
-		controlName: BUTTON_ICON_SIZE,
-		property: 'height',
-		attributes,
-	} );
-
-	// generate button icon width
-	const {
-		desktopRangeStyle: buttonIconWidth,
-		tabRangeStyle: buttonIconWidthTab,
-		mobRangeStyle: buttonIconWidthMob,
-	} = generateResRangeStyle( {
-		controlName: BUTTON_ICON_SIZE,
-		property: 'width',
-		attributes,
-	} );
-
-	// generate button style
-	const {
-		desktopBorderStyle: buttonBorderStyles,
-		tabBorderStyle: buttonBorderStylesTab,
-		mobBorderStyle: buttonBorderStylesMob,
-	} = generateBorderStyle( {
-		controlName: BUTTON_BORDER,
-		attributes,
-	} );
-
-	// generate button border radius
-	const {
-		dimensionStylesDesktop: buttonBorderRadiusDesktop,
-		dimensionStylesTab: buttonBorderRadiusTab,
-		dimensionStylesMobile: buttonBorderRadiusMob,
-	} = generateDimensionStyle( {
-		controlName: BUTTON_BORDER_RADIUS,
-		styleFor: 'border-radius',
-		attributes,
-	} );
 
 	/**
 	 * Presets Based Styles
@@ -506,179 +188,67 @@ export default function Edit( props ) {
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
-		.${ uniqueId }{
-			${ iconAlignmentDesktop }
+		.${ uniqueId }.zb-brand-grid-back{
+			${ containerDeskBGStyle }		
+			${ containerBorderRadiusDesk }		
+			${ containerPaddingDesk }		
+			${ containerBoxShadow }		
+			${ containerDeskBorderStyle }		
 		}
-		.${ uniqueId } .zolo-block-title{
-			${ textAlignmentDesktop }
-			${ titleTypoDesktop }
-			${ titleTextShadowStyle }
-        	${ titleTextStrokeStyle }
-			${ titleMarginDesktop ? titleMarginDesktop : '0 0 12px 0' }
-			color: ${ textColor ? textColor : '' };
+		.${ uniqueId }.zb-brand-grid-front{
+			${ containerDeskBGStyle }
+			${ containerBorderRadiusDesk }
+			${ containerPaddingDesk }
+			${ containerBoxShadow }
+			${ containerDeskBorderStyle }
 		}
-		.${ uniqueId } .zolo-block-title:hover{
-			color: ${ textHoverColor ? textHoverColor : '' };
+		.${ uniqueId }.zb-brand-grid-back:hover{
+			${ containerHoverDeskBGStyle }		
+			${ containerBoxShadowHover }		
 		}
-		.${ uniqueId } .zolo-block-desc{
-			${ descTypoDesktop }
-			${ descAlignmentDesktop }
-			${ descMarginDesktop }
-			color: ${ descColor ? descColor : '#87878a' };
-		}
-		.${ uniqueId } .zolo-block-desc:hover{
-			color: ${ descHoverColor ? descHoverColor : '' };
-		}
-		.${ uniqueId } .zolo-block-icon-wrap  {			
-			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
-			color: ${ iconColor ? iconColor : '' };			
-		}
-		.${ uniqueId } .zolo-block-icon-wrap span {
-			${ iconSize }
-			${ iconHeight }	
-			${ iconSpacing }
-			${ borderStyles }
-			${ iconBorderRadiusDesktop }
-			${ iconPaddingDesktop }
-			${ iconMarginDesktop }
-			${ iconBoxShadow }
-			}
-		.${ uniqueId } .zolo-block-icon-wrap span:hover{			
-			background: ${ iconBackgroundHoverColor ? iconBackgroundHoverColor : '' };
-			color: ${ iconHoverColor ? iconHoverColor : '' };
-			${ iconHoverBoxShadow }
-		}
-		.${ uniqueId } .zolo-content {			
-			${ gap }
-			${ deskAlign }
-			color: ${ textColor ? textColor : 'inherit' };
-		}
-		.${ uniqueId } .zolo-content:hover {
-			color: ${ textHoverColor ? textHoverColor : 'inherit' };
-		}
-		
-		.${ uniqueId } .zolo-box-button span{
-			${ buttonIconSize }			
-			${ buttonIconHeight }			
-			${ buttonIconWidth }			
-		}
-		.${ uniqueId } .zolo-box-button {			
-			${ gap }
-			background: ${ btnBgColor ? btnBgColor : '' };			
-			${ buttonBorderStyles }
-			${ buttonBorderRadiusDesktop }
-			${ buttonPaddingDesktop }
-			${ buttonMarginDesktop }
-			${ buttonBoxShadow }
-		}
-		.${ uniqueId } .zolo-box-button p{
-			${ btnTypoDesktop }
-		}
-		.${ uniqueId } .zolo-box-button:hover {			
-			background: ${ btnBgHoverColor ? btnBgHoverColor : '#32DE23' };
-			${ buttonHoverBoxShadow }
-		}
-		.${ uniqueId } .zolo-box-button p{			
-			color: ${ btnColor ? btnColor : '' };			
-		}
-		.${ uniqueId } .zolo-box-button:hover p{			
-			color: ${ btnHoverColor ? btnHoverColor : '#fff' };			
+		.${ uniqueId }.zb-brand-grid-front:hover{
+			${ containerHoverDeskBGStyle }
+			${ containerBoxShadowHover }
 		}
 		${ presetStyles }		
   	`;
 
 	const tabletAllStyle = `
-		.${ uniqueId }{
-			${ iconAlignmentTab }
+		.${ uniqueId }.zb-brand-grid-back{
+			${ containerTabBGStyle }		
+			${ containerBorderRadiusTab }		
+			${ containerPaddingTab }		
 		}
-		.${ uniqueId } .zolo-block-title{
-			${ titleTypoTab }
-			${ tabTitleTextStrokeStyle }
-			${ textAlignmentTab }
-			${ titleMarginTab }
-		}		
-		.${ uniqueId } .zolo-block-desc{
-			${ descAlignmentTab }
-			${ descMarginTab }
-			${ descTypoTab }
+		.${ uniqueId }.zb-brand-grid-front{
+			${ containerTabBGStyle }
+			${ containerBorderRadiusTab }
+			${ containerPaddingTab }
 		}
-		.${ uniqueId } .zolo-content {
-			${ borderStylesTab }
-			${ gapTab }
-			${ tabAlign }
+		.${ uniqueId }.zb-brand-grid-back:hover{
+			${ containerHoverTabBGStyle }		
 		}
-		.${ uniqueId } .zolo-block-icon-wrap span {
-			${ iconSizeTab }
-			${ iconHeightTab }
-			${ iconSpacingTab }
-			${ borderStylesTab }
-			${ iconBorderRadiusTab }
-			${ iconPaddingTab }
-			${ iconMarginTab }
-			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
-			color: ${ iconColor ? iconColor : '' };	
-		}
-		.${ uniqueId } .zolo-box-button span{
-			${ buttonIconSizeTab }			
-			${ buttonIconHeightTab }			
-			${ buttonIconWidthTab }			
-		}
-		.${ uniqueId } .zolo-box-button {
-			${ gapTab }
-			${ buttonBorderStylesTab }
-			${ buttonBorderRadiusTab }
-			${ buttonPaddingTab }
-			${ buttonMarginTab }
-		}
-		.${ uniqueId } .zolo-box-button p{
-			${ btnTypoTab }
+		.${ uniqueId }.zb-brand-grid-front:hover{
+			${ containerHoverTabBGStyle }
 		}
 		${ presetStyles }
 	`;
 
 	const mobileAllStyle = `
-		.${ uniqueId }{
-			${ iconAlignmentMob }
+		.${ uniqueId }.zb-brand-grid-back{
+			${ containerMobBGStyle }		
+			${ containerBorderRadiusMob }		
+			${ containerPaddingMob }		
 		}
-		.${ uniqueId } .zolo-block-title{
-			${ titleTypoMobile }
-			${ mobTitleTextStrokeStyle }
-			${ textAlignmentMob }
-			${ titleMarginMob }
-		}		
-		.${ uniqueId } .zolo-block-desc{
-			${ descAlignmentMob }
-			${ descMarginMob }
-			${ descTypoMobile }
+		.${ uniqueId }.zb-brand-grid-front{
+			${ containerMobBGStyle }
+			${ containerBorderRadiusMob }
+			${ containerPaddingMob }
 		}
-		.${ uniqueId } .zolo-content {
-			${ borderStylesMob }
-			${ gapMob }
-			${ mobAlign }
+		.${ uniqueId }.zb-brand-grid-back:hover{
+			${ containerHoverMobBGStyle }		
 		}
-		.${ uniqueId } .zolo-block-icon-wrap span {
-			${ iconSizeMob }
-			${ iconHeightMob }
-			${ iconSpacingMob }
-			${ borderStylesMob }
-			${ iconBorderRadiusMob }
-			${ iconPaddingMob }
-			${ iconMarginMob }
-		}
-		.${ uniqueId } .zolo-box-button span{
-			${ buttonIconSizeMob }			
-			${ buttonIconHeightMob }			
-			${ buttonIconWidthMob }			
-		}
-		.${ uniqueId } .zolo-box-button {
-			${ gapMob }			
-			${ buttonBorderStylesMob }
-			${ buttonBorderRadiusMob }
-			${ buttonPaddingMob }
-			${ buttonMarginMob }
-		}
-		.${ uniqueId } .zolo-box-button p{
-			${ btnTypoMobile }
+		.${ uniqueId }.zb-brand-grid-front:hover{
+			${ containerHoverMobBGStyle }
 		}
 		${ presetStyles }
   	`;
@@ -705,6 +275,19 @@ export default function Edit( props ) {
 		}
 	}, [ attributes ] );
 
+	/**
+	 * Custom Append Button for InnerBlocks
+	 */
+	const childBlocks = wp.data
+		.select( 'core/block-editor' )
+		.getBlocks( clientId );
+	const appendBlock = () => {
+		const newBlock = wp.blocks.createBlock( 'zolo/brand-child', {} );
+		wp.data
+			.dispatch( 'core/block-editor' )
+			.insertBlock( newBlock, childBlocks.length, clientId );
+	};
+
 	return (
 		<>
 			{ isSelected && (
@@ -713,178 +296,26 @@ export default function Edit( props ) {
 					setAttributes={ setAttributes }
 				/>
 			) }
-			<BlockControls>
-				<ToolbarGroup>
-					<Dropdown
-						className="my-container-class-name"
-						contentClassName="my-popover-content-classname"
-						popoverProps={ { placement: 'bottom-start' } }
-						renderToggle={ ( { isOpen, onToggle } ) => (
-							<ToolbarButton
-								icon="admin-links"
-								label={ __( 'Link', 'zolo-blocks' ) }
-								onClick={ onToggle }
-								aria-expanded={ isOpen }
-							/>
-						) }
-						renderContent={ () => (
-							<div className="zolo-dropdown-link">
-								<LinkControl
-									searchInputPlaceholder="Search here..."
-									value={ link }
-									settings={ [
-										{
-											id: 'opensInNewTab',
-											title: __(
-												'Open in new tab',
-												'zolo-blocks'
-											),
-										},
-										{
-											id: 'addNoFollow',
-											title: __(
-												'Add nofollow to link',
-												'zolo-blocks'
-											),
-										},
-									] }
-									onChange={ ( data ) =>
-										setAttributes( { link: data } )
-									}
-								></LinkControl>
-							</div>
-						) }
-					/>
-				</ToolbarGroup>
-				{ iconTypeImage && (
-					<Fragment>
-						<ToolbarGroup>
-							<MediaUpload
-								onSelect={ ( media ) => {
-									setAttributes( {
-										iconTypeImage: media,
-									} );
-								} }
-								allowedTypes={ [ 'image' ] }
-								value={ iconTypeImage && iconTypeImage.id }
-								render={ ( { open } ) => (
-									<ToolbarButton
-										className="components-toolbar__control"
-										label={ __(
-											'Replace Photo',
-											'zolo-blocks'
-										) }
-										icon="update"
-										onClick={ open }
-									/>
-								) }
-							/>
-							<ToolbarButton
-								className="components-toolbar__control"
-								label={ __( 'Remove Photo', 'zolo-blocks' ) }
-								icon="trash"
-								onClick={ () => {
-									setAttributes( {
-										iconTypeImage: null,
-									} );
-								} }
-							/>
-						</ToolbarGroup>
-					</Fragment>
-				) }
-			</BlockControls>
 			<style>{ ` ${ softMinifyCssStrings( allStyle ) }` }</style>
 			<div { ...blockProps }>
 				<div
-					className={ `zolo-block-advanced-icon-box ${ uniqueId } zolo-block-advanced-icon-box-${ preset }` }
+					className={ `zb-brand-grid-back zb-brand-${ preset } ${ uniqueId } ` }
 				>
-					<div className="zolo-block-item">
-						<div className={ `zolo-block-icon-wrap` }>
-							{ iconType == 'icon' ? (
-								<DisplayIcon icon={ mainIcon } />
-							) : iconTypeImage ? (
-								<img
-									src={ iconTypeImage.url }
-									alt={ iconTypeImage.alt || 'Team Member' }
-								/>
-							) : (
-								<MediaPlaceholder
-									icon="format-image"
-									labels={ {
-										title: __( 'Add Photo', 'zolo-blocks' ),
-										instructions: '',
-									} }
-									onSelect={ ( media ) => {
-										setAttributes( {
-											iconTypeImage: media,
-										} );
-									} }
-									accept="image/*"
-									allowedTypes={ [ 'image' ] }
-								/>
-							) }
-
-							{  }
-						</div>
-
-						<div className="zolo-block-body-content">
-							<RichText
-								className={ `zolo-block-title` }
-								tagName={ titleTag }
-								value={ iconBoxTitle }
-								onChange={ ( text ) =>
-									setAttributes( {
-										iconBoxTitle: text,
-									} )
-								}
-								placeholder={ __(
-									'The Theme Setting',
-									'zolo-blocks'
-								) }
-								allowedFormats={ [] }
-							/>
-
-							<RichText
-								className={ `zolo-block-desc` }
-								tagName="div"
-								value={ iconBoxDescription }
-								onChange={ ( text ) =>
-									setAttributes( {
-										iconBoxDescription: text,
-									} )
-								}
-								placeholder={ __(
-									'The Theme Setting is a website that provides users with a range of tools to customize their web experience.',
-									'zolo-blocks'
-								) }
-								allowedFormats={ [] }
-							/>
-
-							<div className={ `zolo-block-link-btn` }>
-								<a className={ `zolo-box-button` }>
-									<RichText
-										value={ buttonText }
-										tagName="p"
-										onChange={ ( text ) =>
-											setAttributes( {
-												buttonText: text,
-											} )
-										}
-										placeholder={ __(
-											'Read More',
-											'zolo-blocks'
-										) }
-									/>
-									{ showIcon && (
-										<DisplayIcon icon={ buttonIcon } />
-									) }
-								</a>
-							</div>
-						</div>
-
-						<div className="zolo-block-hover-icon">
-							<DisplayIcon icon={ mainIcon } />
-						</div>
+					<InnerBlocks
+						allowedBlocks={ [ 'zolo/brand-child' ] }
+						template={ [ [ 'zolo/brand-child', {} ] ] }
+						renderAppender={ false }
+					/>
+					<div className="appender-btn">
+						<Button
+							className="components-button"
+							label={ __( 'Add Brand', 'zolo-blocks' ) }
+							icon="insert"
+							variant="primary"
+							onClick={ () => appendBlock() }
+						>
+							{ __( 'Add Brand', 'zolo-blocks' ) }
+						</Button>
 					</div>
 				</div>
 			</div>

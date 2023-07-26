@@ -1,11 +1,11 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"title": "Brand Grid",
-	"icon": "shield",
-	"name": "zolo/brand-grid",
+	"title": "Brand",
+	"icon": "shield-alt",
+	"name": "zolo/brand-child",
 	"category": "zolo-blocks",
-	"keywords": [ "grid", "brand" ],
-	"description": "Brand grid block description",
+	"keywords": [ "child", "brand" ],
+	"description": "Brand child block description",
 	"apiVersion": 2,
 	"textdomain": "zolo-blocks",
 	"supports": {
