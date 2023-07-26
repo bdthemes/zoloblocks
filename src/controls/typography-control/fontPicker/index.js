@@ -82,6 +82,7 @@ const FontFamilyPicker = ({
 	return (
 		<BaseControl label={label} id={id} help={help} className={className}>
 			<Select2
+				classNamePrefix={'zolo'}
 				name="zb-select-font"
 				value={{
 					value: (value || "").replace(/\s+/g, "-"),
@@ -89,6 +90,7 @@ const FontFamilyPicker = ({
 				}}
 				onChange={onChangeValue}
 				options={fonts}
+				unstyled={true}
 			/>
 		</BaseControl>
 	);
