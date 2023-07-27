@@ -393,43 +393,6 @@ export default function Edit( props ) {
 				/>
 			) }
 			<BlockControls>
-				<ToolbarGroup>
-					<Dropdown
-						className="my-container-className-name"
-						contentClassName="my-popover-content-classname"
-						popoverProps={ { placement: 'bottom-start' } }
-						renderToggle={ ( { isOpen, onToggle } ) => (
-							<ToolbarButton
-								icon="admin-links"
-								label={ __( 'Link', 'zolo-blocks' ) }
-								onClick={ onToggle }
-								aria-expanded={ isOpen }
-							/>
-						) }
-						renderContent={ () => (
-							<div className="zolo-dropdown-link">
-								<LinkControl
-									searchInputPlaceholder="Search here..."
-									value={ brandDetailPageLink }
-									settings={ [
-										{
-											id: 'opensInNewTab',
-											title: __(
-												'Open in new tab',
-												'zolo-blocks'
-											),
-										},
-									] }
-									onChange={ ( data ) =>
-										setAttributes( {
-											brandDetailPageLink: data,
-										} )
-									}
-								></LinkControl>
-							</div>
-						) }
-					/>
-				</ToolbarGroup>
 				{ advancedGallery && (
 					<Fragment>
 						<ToolbarGroup>
@@ -479,8 +442,13 @@ export default function Edit( props ) {
 
 			<div { ...blockProps }>
 				<div
-					className={ `zolo-image-gallery ${ uniqueId } zolo-img-gallery-${ preset }` }
+					className={ `${
+						advancedGallery
+							? 'zolo-image-gallery'
+							: 'zolo-single-image'
+					} ${ uniqueId } zolo-img-gallery-${ preset }` }
 				>
+					{  }
 					{ advancedGallery ? (
 						advancedGallery &&
 						advancedGallery.map( ( image, index ) => {
