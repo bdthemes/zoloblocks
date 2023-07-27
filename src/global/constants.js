@@ -663,32 +663,24 @@ export const ICON_STATUS = [
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<rect
-					width={24}
-					height={24}
-					fill="none"
-					style={{
-						stroke: 'none !important',
-					}}
+				<path
+					d="M9.17157 9.17157L14.8284 14.8284"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+				/>
+				<path
+					d="M14.8284 9.17157L9.17157 14.8284"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
 				/>
 				<circle
 					cx={12}
 					cy={12}
-					r="9.25"
-					stroke="black"
+					r={8}
+					stroke="#4D4D4D"
 					strokeWidth="1.5"
-				/>
-				<path
-					d="M15.5355 8.46446L8.46447 15.5355"
-					stroke="black"
-					strokeWidth="1.5"
-					strokeLinecap="round"
-				/>
-				<path
-					d="M8.46447 8.46446L15.5355 15.5355"
-					stroke="black"
-					strokeWidth="1.5"
-					strokeLinecap="round"
 				/>
 			</svg>
 		),
@@ -704,16 +696,15 @@ export const ICON_STATUS = [
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<rect width={24} height={24} fill="none" stroke="none" />
 				<path
-					d="M12 10H21M12 14H17.2941"
-					stroke="black"
+					d="M7 20V4M10 4H4M10 20H4"
+					stroke="#4D4D4D"
 					strokeWidth="1.5"
 					strokeLinecap="round"
 				/>
 				<path
-					d="M6.5 19V5M10 5H3M10 19H3"
-					stroke="black"
+					d="M12 10H20M12 14H16.7059"
+					stroke="#4D4D4D"
 					strokeWidth="1.5"
 					strokeLinecap="round"
 				/>
@@ -734,13 +725,13 @@ export const ICON_STATUS = [
 				<circle
 					cx={12}
 					cy={12}
-					r="8.25"
-					stroke="#4d4d4d"
+					r={8}
+					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<path
 					d="M12 15V9M14 9H10M14 15H10"
-					stroke="#4d4d4d"
+					stroke="#4D4D4D"
 					strokeWidth="1.5"
 					strokeLinecap="round"
 				/>

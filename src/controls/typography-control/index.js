@@ -88,10 +88,7 @@ const TypographyDropdown = ({
 	}, [fontFamily]);
 
 	return (
-		<BaseControl
-			label={__(label)}
-			className="zb-typography-control-wrapper"
-		>
+		<BaseControl label={label} className="zb-typography-control-wrapper">
 			<Dropdown
 				className="zb-typography-dropdown"
 				position="bottom right"

@@ -94,13 +94,6 @@ function Inspector(props) {
 							title={__('General', 'zolo-blocks')}
 							initialOpen={true}
 						>
-							<ResCounterControl
-								label={__('Counter Column', 'zolo-blocks')}
-								controlName={COLUMN_COUNT}
-								resRequiredProps={resRequiredProps}
-								min={1}
-								max={5}
-							/>
 							<SelectControl
 								label={__('Preset Designs', 'zolo-blocks')}
 								value={preset}
@@ -111,27 +104,9 @@ function Inspector(props) {
 									})
 								}
 							/>
-						</PanelBody>
-						<PanelBody
-							title={__('Settings', 'zolo-blocks')}
-							initialOpen={false}
-						>
 							{preset !== 'preset-2' && preset !== 'preset-5' && (
-								// <SelectControl
-								// 	label={__(
-								// 		'Social Icon Type',
-								// 		'zolo-blocks'
-								// 	)}
-								// 	value={socialText}
-								// 	options={SOCIAL_TEXT}
-								// 	onChange={(iconType) =>
-								// 		setAttributes({
-								// 			socialText: iconType,
-								// 		})
-								// 	}
-								// />
 								<IconicBtnGroup
-									label={__('Icon Type', 'zolo-blocks')}
+									label={__('Type', 'zolo-blocks')}
 									value={socialText}
 									onChange={(value) =>
 										setAttributes({
@@ -141,27 +116,17 @@ function Inspector(props) {
 									options={ICON_STATUS}
 								/>
 							)}
-
-							<SelectControl
-								label={__('columns', 'zolo-blocks')}
-								value={socialProfileColumns}
-								options={[
-									{
-										label: 'Auto',
-										value: '5',
-									},
-									{ label: '1', value: '1' },
-									{ label: '2', value: '2' },
-									{ label: '3', value: '3' },
-									{ label: '4', value: '4' },
-									{ label: '5', value: '5' },
-									{ label: '6', value: '6' },
-								]}
-								onChange={(size) => {
-									setAttributes({
-										socialProfileColumns: size,
-									});
-								}}
+						</PanelBody>
+						<PanelBody
+							title={__('Column Settings', 'zolo-blocks')}
+							initialOpen={false}
+						>
+							<ResCounterControl
+								label={__('Column Number', 'zolo-blocks')}
+								controlName={COLUMN_COUNT}
+								resRequiredProps={resRequiredProps}
+								min={1}
+								max={5}
 							/>
 
 							<ResRangeControl

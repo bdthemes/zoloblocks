@@ -24,18 +24,19 @@ const ResCounterControl = ({
 
 	return (
 		<div className="zb-res-range-control-wrapper">
+			<div className="zb-units-wrapper">
+				<ResetBtn
+					onReset={() => {
+						setAttributes({
+							[`${prefix}${controlName}Range`]: 1,
+							[`${prefix}TAB${controlName}Range`]: 1,
+							[`${prefix}MOB${controlName}Range`]: 1,
+						});
+					}}
+				/>
+			</div>
 			{resMode == 'Desktop' && (
 				<>
-					<div className="zb-units-wrapper">
-						<ResetBtn
-							onReset={() => {
-								setAttributes({
-									[`${prefix}${controlName}Range`]: '',
-								});
-							}}
-						/>
-					</div>
-
 					<WithResDeviceBtn
 						label={label}
 						resRequiredProps={resRequiredProps}
@@ -54,7 +55,20 @@ const ResCounterControl = ({
 									}
 									disabled={desktopRange <= min}
 								>
-									<span className="dashicons dashicons-minus"></span>
+									<svg
+										width={24}
+										height={24}
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M16 12H8"
+											stroke="#4D4D4D"
+											strokeWidth="1.5"
+											strokeLinecap="round"
+										/>
+									</svg>
 								</Button>
 								<InputControl
 									type="number"
@@ -83,11 +97,31 @@ const ResCounterControl = ({
 									}
 									disabled={desktopRange >= max}
 								>
-									<span className="dashicons dashicons-plus"></span>
+									<svg
+										width={24}
+										height={24}
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 8V16"
+											stroke="#4D4D4D"
+											strokeWidth="1.5"
+											strokeLinecap="round"
+										/>
+										<path
+											d="M16 12H8"
+											stroke="#4D4D4D"
+											strokeWidth="1.5"
+											strokeLinecap="round"
+										/>
+									</svg>
 								</Button>
 							</div>
 							<p className="zb-counter-note">
-								{__('Note: maximum ', 'zita-blocks') +
+								<strong>{__('Note: ', 'zita-blocks')}</strong>
+								{__('maximum ', 'zita-blocks') +
 									max +
 									' ' +
 									__('minimum ') +
@@ -116,7 +150,20 @@ const ResCounterControl = ({
 								}
 								disabled={tabRange <= min}
 							>
-								<span className="dashicons dashicons-minus"></span>
+								<svg
+									width={24}
+									height={24}
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M16 12H8"
+										stroke="#4D4D4D"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+									/>
+								</svg>
 							</Button>
 							<InputControl
 								type="number"
@@ -142,11 +189,31 @@ const ResCounterControl = ({
 								}
 								disabled={tabRange >= max}
 							>
-								<span className="dashicons dashicons-plus"></span>
+								<svg
+									width={24}
+									height={24}
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M12 8V16"
+										stroke="#4D4D4D"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+									/>
+									<path
+										d="M16 12H8"
+										stroke="#4D4D4D"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+									/>
+								</svg>
 							</Button>
 						</div>
 						<p className="zb-counter-note">
-							{__('Note: maximum ', 'zita-blocks') +
+							<strong>{__('Note: ', 'zita-blocks')}</strong>
+							{__('maximum ', 'zita-blocks') +
 								max +
 								' ' +
 								__('minimum ') +
@@ -174,7 +241,20 @@ const ResCounterControl = ({
 								}
 								disabled={mobRange <= min}
 							>
-								<span className="dashicons dashicons-minus"></span>
+								<svg
+									width={24}
+									height={24}
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M16 12H8"
+										stroke="#4D4D4D"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+									/>
+								</svg>
 							</Button>
 							<InputControl
 								type="number"
@@ -200,11 +280,31 @@ const ResCounterControl = ({
 								}
 								disabled={mobRange >= max}
 							>
-								<span className="dashicons dashicons-plus"></span>
+								<svg
+									width={24}
+									height={24}
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M12 8V16"
+										stroke="#4D4D4D"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+									/>
+									<path
+										d="M16 12H8"
+										stroke="#4D4D4D"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+									/>
+								</svg>
 							</Button>
 						</div>
 						<p className="zb-counter-note">
-							{__('Note: maximum ', 'zita-blocks') +
+							<strong>{__('Note: ', 'zita-blocks')}</strong>
+							{__('maximum ', 'zita-blocks') +
 								max +
 								' ' +
 								__('minimum ') +
