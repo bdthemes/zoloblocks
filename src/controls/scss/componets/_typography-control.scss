@@ -117,6 +117,17 @@
 	}
 }
 
+.zb-typography-control-wrapper {
+	.components-base-control__field {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.components-base-control__label {
+		margin: 0;
+	}
+}
+
 /* width */
 .components-popover__content {
 	&::-webkit-scrollbar {
