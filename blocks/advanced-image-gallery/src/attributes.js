@@ -3,6 +3,7 @@ const {
 	generateResRangeAttributies,
 	generateNormalBGAttributes,
 	generateDimensionAttributes,
+	generateBorderAttributies,
 	generateBoxShadowAttributies,
 	generateResCounterAttributies,
 } = window.zoloModule;
@@ -16,6 +17,10 @@ import {
 	CONTAINER_BACKGROUND,
 	CONTAINER_HOVER_BACKGROUND,
 	CONTAINER_BORDER_RADIUS,
+	CONTAINER_BORDER,
+	CONTAINER_HOVER_BORDER,
+	IMAGE_BORDER,
+	IMAGE_HOVER_BORDER,
 	CONTAINER_HOVER_BORDER_RADIUS,
 	CONTAINER_BOX_SHADOW,
 	CONTAINER_HOVER_BOX_SHADOW,
@@ -52,6 +57,8 @@ const attributes = {
 	// Container
 	...generateNormalBGAttributes( CONTAINER_BACKGROUND ),
 	...generateNormalBGAttributes( CONTAINER_HOVER_BACKGROUND ),
+	...generateBorderAttributies( CONTAINER_BORDER ),
+	...generateBorderAttributies( CONTAINER_HOVER_BORDER ),
 	...generateDimensionAttributes( CONTAINER_BORDER_RADIUS ),
 	...generateDimensionAttributes( CONTAINER_HOVER_BORDER_RADIUS ),
 	...generateBoxShadowAttributies( CONTAINER_BOX_SHADOW ),
@@ -60,6 +67,8 @@ const attributes = {
 	// Image
 	...generateNormalBGAttributes( IMAGE_BACKGROUND ),
 	...generateNormalBGAttributes( IMAGE_HOVER_BACKGROUND ),
+	...generateBorderAttributies( IMAGE_BORDER ),
+	...generateBorderAttributies( IMAGE_HOVER_BORDER ),
 	...generateDimensionAttributes( IMAGE_BORDER_RADIUS ),
 	...generateDimensionAttributes( IMAGE_HOVER_BORDER_RADIUS ),
 	...generateBoxShadowAttributies( IMAGE_BOX_SHADOW ),

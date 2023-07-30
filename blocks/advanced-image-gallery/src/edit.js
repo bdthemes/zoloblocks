@@ -28,6 +28,7 @@ const {
 	handleUniqueId,
 	softMinifyCssStrings,
 	generateNormalBGControlStyles,
+	generateBorderStyle,
 	generateResCounterStyle,
 	generateResRangeStyle,
 	generateDimensionStyle,
@@ -43,6 +44,10 @@ import {
 	CONTAINER_BACKGROUND,
 	CONTAINER_HOVER_BACKGROUND,
 	CONTAINER_BORDER_RADIUS,
+	CONTAINER_BORDER,
+	CONTAINER_HOVER_BORDER,
+	IMAGE_BORDER,
+	IMAGE_HOVER_BORDER,
 	CONTAINER_HOVER_BORDER_RADIUS,
 	CONTAINER_BOX_SHADOW,
 	CONTAINER_HOVER_BOX_SHADOW,
@@ -145,6 +150,24 @@ export default function Edit( props ) {
 	} );
 
 	const {
+		desktopBorderStyle: containerBorderDesk,
+		tabBorderStyle: containerBorderTab,
+		mobBorderStyle: containerBorderMob,
+	} = generateBorderStyle( {
+		controlName: CONTAINER_BORDER,
+		attributes,
+	} );
+
+	const {
+		desktopBorderStyle: containerHoverBorderDesk,
+		tabBorderStyle: containerHoverBorderTab,
+		mobBorderStyle: containerHoverBorderMob,
+	} = generateBorderStyle( {
+		controlName: CONTAINER_HOVER_BORDER,
+		attributes,
+	} );
+
+	const {
 		dimensionStylesDesktop: containerBorderRadiusDesk,
 		dimensionStylesTab: containerBorderRadiusTab,
 		dimensionStylesMobile: containerBorderRadiusMob,
@@ -177,6 +200,24 @@ export default function Edit( props ) {
 	);
 
 	// Image
+
+	const {
+		desktopBorderStyle: imageBorderDesk,
+		tabBorderStyle: imageBorderTab,
+		mobBorderStyle: imageBorderMob,
+	} = generateBorderStyle( {
+		controlName: IMAGE_BORDER,
+		attributes,
+	} );
+
+	const {
+		desktopBorderStyle: imageHoverBorderDesk,
+		tabBorderStyle: imageHoverBorderTab,
+		mobBorderStyle: imageHoverBorderMob,
+	} = generateBorderStyle( {
+		controlName: IMAGE_HOVER_BORDER,
+		attributes,
+	} );
 
 	const {
 		backgroundStylesDesktop: imageDeskBGStyle,
@@ -315,12 +356,14 @@ export default function Edit( props ) {
 	const desktopAllStyle = `
 		.${ uniqueId }.zolo-img-gallery-${ preset } {
 			${ containerDeskBGStyle }
+			${ containerBorderDesk }
 			${ containerBorderRadiusDesk }
 			${ containerBoxShadow }
 			overflow:hidden;
 		}	
 		.${ uniqueId }.zolo-img-gallery-${ preset }:hover {
 			${ containerHoverDeskBGStyle }
+			${ containerHoverBorderDesk }
 			${ containerHoverBorderRadiusDesk }
 			${ containerBoxShadowHover }
 		}
@@ -331,6 +374,7 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-image-wrap {
 			${ imageDeskBGStyle }
+			${ imageBorderDesk }
 			${ imageBorderRadiusDesk }
 			${ imageBoxShadow }
 			${ imageMarginDesk }
@@ -338,6 +382,7 @@ export default function Edit( props ) {
 		}		
 		.${ uniqueId } .zolo-image-wrap:hover {
 			${ imageHoverDeskBGStyle }
+			${ imageHoverBorderDesk }
 			${ imageHoverBorderRadiusDesk }
 			${ imageHoverBoxShadow }
 		}		
@@ -354,10 +399,12 @@ export default function Edit( props ) {
 	const tabletAllStyle = `
 	.${ uniqueId }.zolo-img-gallery-${ preset } {
 		${ containerTabBGStyle }
+		${ containerBorderTab }
 		${ containerBorderRadiusTab }
 	}		
 	.${ uniqueId }.zolo-img-gallery-${ preset }:hover {
 		${ containerHoverTabBGStyle }
+		${ containerHoverBorderTab }
 		${ containerHoverBorderRadiusTab }
 	}
 	.${ uniqueId }.zolo-img-gallery-${ preset }.zolo-image-gallery {
@@ -367,12 +414,14 @@ export default function Edit( props ) {
 	}
 	.${ uniqueId } .zolo-image-wrap {
 		${ imageTabBGStyle }
+		${ imageBorderTab }
 		${ imageBorderRadiusTab }
 		${ imageMarginTab }
 		${ imagePaddingTab }
 	}
 	.${ uniqueId } .zolo-image-wrap:hover {
 		${ imageHoverTabBGStyle }
+		${ imageHoverBorderTab }
 		${ imageHoverBorderRadiusTab }
 	}			
 	.${ uniqueId } .zolo-title {
@@ -386,10 +435,12 @@ export default function Edit( props ) {
 	const mobileAllStyle = `		
 	.${ uniqueId }.zolo-img-gallery-${ preset }{
 		${ containerMobBGStyle }
+		${ containerBorderMob }
 		${ containerBorderRadiusMob }
 	}		
 	.${ uniqueId }.zolo-img-gallery-${ preset }:hover {
 		${ containerHoverMobBGStyle }
+		${ containerHoverBorderMob }
 		${ containerHoverBorderRadiusMob }
 	}
 	.${ uniqueId }.zolo-img-gallery-${ preset }.zolo-image-gallery {
@@ -399,12 +450,14 @@ export default function Edit( props ) {
 	}
 	.${ uniqueId } .zolo-image-wrap {
 		${ imageMobBGStyle }
+		${ imageBorderMob }
 		${ imageBorderRadiusMob }
 		${ imageMarginMob }
 		${ imagePaddingMob }
 	}
 	.${ uniqueId } .zolo-image-wrap:hover {
 		${ imageHoverMobBGStyle }
+		${ imageHoverBorderMob }
 		${ imageHoverBorderRadiusMob }
 	}			
 	.${ uniqueId } .zolo-title {

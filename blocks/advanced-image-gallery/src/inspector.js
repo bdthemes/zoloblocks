@@ -140,6 +140,7 @@ function Inspector( props ) {
 												resRequiredProps
 											}
 										/>
+
 										<ResDimensionsControl
 											label={ __(
 												'Border Radius',
