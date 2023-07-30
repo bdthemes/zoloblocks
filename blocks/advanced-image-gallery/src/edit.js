@@ -326,6 +326,8 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId }.zolo-img-gallery-${ preset }.zolo-image-gallery {
 			grid-template-columns:repeat(${ columnCountDeskstyle }, 1fr);
+			${ colGapDeskstyle }
+			${ rowGapDeskstyle }
 		}
 		.${ uniqueId } .zolo-image-wrap {
 			${ imageDeskBGStyle }
@@ -357,7 +359,12 @@ export default function Edit( props ) {
 	.${ uniqueId }.zolo-img-gallery-${ preset }:hover {
 		${ containerHoverTabBGStyle }
 		${ containerHoverBorderRadiusTab }
-	}	
+	}
+	.${ uniqueId }.zolo-img-gallery-${ preset }.zolo-image-gallery {
+		grid-template-columns:repeat(${ columnCountTabStyle }, 1fr);
+		${ colGapTabStyle }
+		${ rowGapTabStyle }
+	}
 	.${ uniqueId } .zolo-image-wrap {
 		${ imageTabBGStyle }
 		${ imageBorderRadiusTab }
@@ -384,7 +391,12 @@ export default function Edit( props ) {
 	.${ uniqueId }.zolo-img-gallery-${ preset }:hover {
 		${ containerHoverMobBGStyle }
 		${ containerHoverBorderRadiusMob }
-	}	
+	}
+	.${ uniqueId }.zolo-img-gallery-${ preset }.zolo-image-gallery {
+		grid-template-columns:repeat(${ columnCountMobStyle }, 1fr);
+		${ colGapMobStyle }
+		${ rowGapMobStyle }
+	}
 	.${ uniqueId } .zolo-image-wrap {
 		${ imageMobBGStyle }
 		${ imageBorderRadiusMob }
