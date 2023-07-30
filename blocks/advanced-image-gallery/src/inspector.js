@@ -22,6 +22,7 @@ const {
 	TabPanelControl,
 	ImageAvatar,
 	ResRangeControl,
+	ResCounterControl,
 	ColorControl,
 	TypographyDropdown,
 } = window.zoloModule;
@@ -29,9 +30,9 @@ const {
 import objAttributes from './attributes';
 import {
 	PRESETS,
-	ROWS_GAP,
+	ROW_GAP,
 	COLUMNS_GAP,
-	GRID_COLUMNS,
+	COLUMN_COUNT,
 	CONTAINER_BORDER,
 	CONTAINER_HOVER_BORDER,
 	CONTAINER_BORDER_RADIUS,
@@ -57,7 +58,7 @@ import {
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
-function Inspector(props) {
+function Inspector( props ) {
 	const { attributes, setAttributes } = props;
 	const { uniqueId, advancedGallery, preset, resMode, headingColor } =
 		attributes;
@@ -74,37 +75,48 @@ function Inspector(props) {
 				generalTab={
 					<>
 						<PanelBody
-							title={__('General', 'zolo-blocks')}
-							initialOpen={true}
+							title={ __( 'General', 'zolo-blocks' ) }
+							initialOpen={ true }
 						>
 							<SelectControl
-								label={__('Preset Designs', 'zolo-blocks')}
-								value={preset}
-								options={PRESETS}
-								onChange={(value) =>
-									setAttributes({
+								label={ __( 'Preset Designs', 'zolo-blocks' ) }
+								value={ preset }
+								options={ PRESETS }
+								onChange={ ( value ) =>
+									setAttributes( {
 										preset: value,
-									})
+									} )
 								}
 							/>
-							<ResRangeControl
-								label={__('Grid Columns', 'zolo-blocks')}
-								controlName={GRID_COLUMNS}
-								resRequiredProps={resRequiredProps}
-								max={4}
-								min={1}
-								step={1}
-								noUnits={true}
+						</PanelBody>
+						<PanelBody
+							title={ __( 'Column Settings', 'zolo-blocks' ) }
+							initialOpen={ false }
+						>
+							<ResCounterControl
+								label={ __( 'Column Number', 'zolo-blocks' ) }
+								controlName={ COLUMN_COUNT }
+								resRequiredProps={ resRequiredProps }
+								min={ 1 }
+								max={ 5 }
 							/>
+
 							<ResRangeControl
-								label={__('Columns Gap', 'zolo-blocks')}
-								controlName={COLUMNS_GAP}
-								resRequiredProps={resRequiredProps}
+								label={ __( 'Columns Gap', 'zolo-blocks' ) }
+								controlName={ COLUMNS_GAP }
+								resRequiredProps={ resRequiredProps }
+								min={ 0 }
+								max={ 100 }
+								step={ 1 }
 							/>
+
 							<ResRangeControl
-								label={__('Rows Gap', 'zolo-blocks')}
-								controlName={ROWS_GAP}
-								resRequiredProps={resRequiredProps}
+								label={ __( 'Row Gap', 'zolo-blocks' ) }
+								controlName={ ROW_GAP }
+								resRequiredProps={ resRequiredProps }
+								min={ 0 }
+								max={ 100 }
+								step={ 1 }
 							/>
 						</PanelBody>
 					</>
@@ -112,192 +124,242 @@ function Inspector(props) {
 				styleTab={
 					<>
 						<PanelBody
-							title={__('Container', 'zolo-blocks')}
-							initialOpen={false}
+							title={ __( 'Container', 'zolo-blocks' ) }
+							initialOpen={ false }
 						>
 							<TabPanelControl
 								normalComponents={
 									<>
 										<BorderControl
-											label={__('Border', 'zolo-blocks')}
-											controlName={CONTAINER_BORDER}
-											resRequiredProps={resRequiredProps}
+											label={ __(
+												'Border',
+												'zolo-blocks'
+											) }
+											controlName={ CONTAINER_BORDER }
+											resRequiredProps={
+												resRequiredProps
+											}
 										/>
 										<ResDimensionsControl
-											label={__(
+											label={ __(
 												'Border Radius',
 												'zolo-blocks'
-											)}
+											) }
 											controlName={
 												CONTAINER_BORDER_RADIUS
 											}
-											resRequiredProps={resRequiredProps}
-											forBorderRadius={true}
+											resRequiredProps={
+												resRequiredProps
+											}
+											forBorderRadius={ true }
 										/>
 										<BoxShadowControl
-											controlName={CONTAINER_BOX_SHADOW}
-											resRequiredProps={resRequiredProps}
-											enableTransition={false}
+											controlName={ CONTAINER_BOX_SHADOW }
+											resRequiredProps={
+												resRequiredProps
+											}
+											enableTransition={ false }
 										/>
 
 										<NormalBGControl
-											resRequiredProps={resRequiredProps}
-											controlName={CONTAINER_BACKGROUND}
-											noMainBGImg={false}
+											resRequiredProps={
+												resRequiredProps
+											}
+											controlName={ CONTAINER_BACKGROUND }
+											noMainBGImg={ false }
 										/>
 									</>
 								}
 								hoverComponents={
 									<>
 										<BorderControl
-											label={__('Border', 'zolo-blocks')}
-											controlName={CONTAINER_HOVER_BORDER}
-											resRequiredProps={resRequiredProps}
+											label={ __(
+												'Border',
+												'zolo-blocks'
+											) }
+											controlName={
+												CONTAINER_HOVER_BORDER
+											}
+											resRequiredProps={
+												resRequiredProps
+											}
 										/>
 										<ResDimensionsControl
-											label={__(
+											label={ __(
 												'Border Radius',
 												'zolo-blocks'
-											)}
+											) }
 											controlName={
 												CONTAINER_HOVER_BORDER_RADIUS
 											}
-											resRequiredProps={resRequiredProps}
-											forBorderRadius={true}
+											resRequiredProps={
+												resRequiredProps
+											}
+											forBorderRadius={ true }
 										/>
 										<BoxShadowControl
 											controlName={
 												CONTAINER_HOVER_BOX_SHADOW
 											}
-											resRequiredProps={resRequiredProps}
-											enableTransition={false}
+											resRequiredProps={
+												resRequiredProps
+											}
+											enableTransition={ false }
 										/>
 										<NormalBGControl
-											resRequiredProps={resRequiredProps}
+											resRequiredProps={
+												resRequiredProps
+											}
 											controlName={
 												CONTAINER_HOVER_BACKGROUND
 											}
-											noMainBGImg={false}
+											noMainBGImg={ false }
 										/>
 									</>
 								}
 							/>
 						</PanelBody>
 						<PanelBody
-							title={__('Image', 'zolo-blocks')}
-							initialOpen={false}
+							title={ __( 'Image', 'zolo-blocks' ) }
+							initialOpen={ false }
 						>
 							<TabPanelControl
 								normalComponents={
 									<>
 										<BorderControl
-											label={__(
+											label={ __(
 												'Image Border',
 												'zolo-blocks'
-											)}
-											controlName={IMAGE_BORDER}
-											resRequiredProps={resRequiredProps}
+											) }
+											controlName={ IMAGE_BORDER }
+											resRequiredProps={
+												resRequiredProps
+											}
 										/>
 										<ResDimensionsControl
-											label={__(
+											label={ __(
 												'Border Radius',
 												'zolo-blocks'
-											)}
-											controlName={IMAGE_BORDER_RADIUS}
-											resRequiredProps={resRequiredProps}
-											forBorderRadius={true}
+											) }
+											controlName={ IMAGE_BORDER_RADIUS }
+											resRequiredProps={
+												resRequiredProps
+											}
+											forBorderRadius={ true }
 										/>
 										<BoxShadowControl
-											controlName={IMAGE_BOX_SHADOW}
-											resRequiredProps={resRequiredProps}
-											enableTransition={false}
+											controlName={ IMAGE_BOX_SHADOW }
+											resRequiredProps={
+												resRequiredProps
+											}
+											enableTransition={ false }
 										/>
 
 										<NormalBGControl
-											resRequiredProps={resRequiredProps}
-											controlName={IMAGE_BACKGROUND}
-											noMainBGImg={false}
+											resRequiredProps={
+												resRequiredProps
+											}
+											controlName={ IMAGE_BACKGROUND }
+											noMainBGImg={ false }
 										/>
 									</>
 								}
 								hoverComponents={
 									<>
 										<BorderControl
-											label={__('Border', 'zolo-blocks')}
-											controlName={IMAGE_HOVER_BORDER}
-											resRequiredProps={resRequiredProps}
+											label={ __(
+												'Border',
+												'zolo-blocks'
+											) }
+											controlName={ IMAGE_HOVER_BORDER }
+											resRequiredProps={
+												resRequiredProps
+											}
 										/>
 										<ResDimensionsControl
-											label={__(
+											label={ __(
 												'Border Radius',
 												'zolo-blocks'
-											)}
+											) }
 											controlName={
 												IMAGE_HOVER_BORDER_RADIUS
 											}
-											resRequiredProps={resRequiredProps}
-											forBorderRadius={true}
+											resRequiredProps={
+												resRequiredProps
+											}
+											forBorderRadius={ true }
 										/>
 										<BoxShadowControl
-											controlName={IMAGE_HOVER_BOX_SHADOW}
-											resRequiredProps={resRequiredProps}
-											enableTransition={false}
+											controlName={
+												IMAGE_HOVER_BOX_SHADOW
+											}
+											resRequiredProps={
+												resRequiredProps
+											}
+											enableTransition={ false }
 										/>
 										<NormalBGControl
-											resRequiredProps={resRequiredProps}
-											controlName={IMAGE_HOVER_BACKGROUND}
-											noMainBGImg={false}
+											resRequiredProps={
+												resRequiredProps
+											}
+											controlName={
+												IMAGE_HOVER_BACKGROUND
+											}
+											noMainBGImg={ false }
 										/>
 									</>
 								}
 							/>
 							<ResDimensionsControl
-								label={__('Padding', 'zolo-blocks')}
-								controlName={IMAGE_PADDING}
-								resRequiredProps={resRequiredProps}
-								forBorderRadius={false}
+								label={ __( 'Padding', 'zolo-blocks' ) }
+								controlName={ IMAGE_PADDING }
+								resRequiredProps={ resRequiredProps }
+								forBorderRadius={ false }
 							/>
 							<ResDimensionsControl
-								label={__('Margin', 'zolo-blocks')}
-								controlName={IMAGE_MARGIN}
-								resRequiredProps={resRequiredProps}
-								forBorderRadius={false}
+								label={ __( 'Margin', 'zolo-blocks' ) }
+								controlName={ IMAGE_MARGIN }
+								resRequiredProps={ resRequiredProps }
+								forBorderRadius={ false }
 							/>
 						</PanelBody>
 						<PanelBody
-							title={__('Heading', 'zolo-blocks')}
-							initialOpen={false}
+							title={ __( 'Heading', 'zolo-blocks' ) }
+							initialOpen={ false }
 						>
 							<>
 								<TypographyDropdown
-									label={__('Typography', 'zolo-blocks')}
-									typoPrefixConstant={HEADING_TYPOGRAPHY}
-									resRequiredProps={resRequiredProps}
+									label={ __( 'Typography', 'zolo-blocks' ) }
+									typoPrefixConstant={ HEADING_TYPOGRAPHY }
+									resRequiredProps={ resRequiredProps }
 								/>
 								<NormalBGControl
-									resRequiredProps={resRequiredProps}
-									controlName={HEADING_BACKGROUND}
-									noMainBGImg={false}
+									resRequiredProps={ resRequiredProps }
+									controlName={ HEADING_BACKGROUND }
+									noMainBGImg={ false }
 								/>
 								<ColorControl
-									label={__('Color', 'zolo-blocks')}
-									color={headingColor}
-									onChange={(value) =>
-										setAttributes({
+									label={ __( 'Color', 'zolo-blocks' ) }
+									color={ headingColor }
+									onChange={ ( value ) =>
+										setAttributes( {
 											headingColor: value,
-										})
+										} )
 									}
 								/>
 								<ResDimensionsControl
-									label={__('Border Radius', 'zolo-blocks')}
-									controlName={HEADING_BORDER_RADIUS}
-									resRequiredProps={resRequiredProps}
-									forBorderRadius={true}
+									label={ __(
+										'Border Radius',
+										'zolo-blocks'
+									) }
+									controlName={ HEADING_BORDER_RADIUS }
+									resRequiredProps={ resRequiredProps }
+									forBorderRadius={ true }
 								/>
 								<BoxShadowControl
-									controlName={HEADING_BOX_SHADOW}
-									resRequiredProps={resRequiredProps}
-									enableTransition={false}
+									controlName={ HEADING_BOX_SHADOW }
+									resRequiredProps={ resRequiredProps }
+									enableTransition={ false }
 								/>
 							</>
 						</PanelBody>
@@ -306,8 +368,8 @@ function Inspector(props) {
 				advancedTab={
 					<>
 						<PanelBody
-							title={__('Visibility', 'zolo-blocks')}
-							initialOpen={false}
+							title={ __( 'Visibility', 'zolo-blocks' ) }
+							initialOpen={ false }
 						>
 							<p>Advanced Settings are here..</p>
 						</PanelBody>

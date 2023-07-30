@@ -28,6 +28,8 @@ const {
 	handleUniqueId,
 	softMinifyCssStrings,
 	generateNormalBGControlStyles,
+	generateResCounterStyle,
+	generateResRangeStyle,
 	generateDimensionStyle,
 	generateBoxShadowStyles,
 	generateTypographyStyles,
@@ -35,6 +37,9 @@ const {
 
 import {
 	BLOCK_PREFIX,
+	COLUMN_COUNT,
+	COLUMNS_GAP,
+	ROW_GAP,
 	CONTAINER_BACKGROUND,
 	CONTAINER_HOVER_BACKGROUND,
 	CONTAINER_BORDER_RADIUS,
@@ -83,6 +88,39 @@ export default function Edit( props ) {
 	// block props
 	const blockProps = useBlockProps( {
 		className: classnames( className, `` ),
+	} );
+
+	// column count
+	const {
+		desktopRangeStyle: columnCountDeskstyle,
+		tabRangeStyle: columnCountTabStyle,
+		mobRangeStyle: columnCountMobStyle,
+	} = generateResCounterStyle( {
+		controlName: COLUMN_COUNT,
+		attributes,
+		noProperty: true,
+	} );
+
+	// column gap
+	const {
+		desktopRangeStyle: colGapDeskstyle,
+		tabRangeStyle: colGapTabStyle,
+		mobRangeStyle: colGapMobStyle,
+	} = generateResRangeStyle( {
+		controlName: COLUMNS_GAP,
+		property: 'column-gap',
+		attributes,
+	} );
+
+	// row gap
+	const {
+		desktopRangeStyle: rowGapDeskstyle,
+		tabRangeStyle: rowGapTabStyle,
+		mobRangeStyle: rowGapMobStyle,
+	} = generateResRangeStyle( {
+		controlName: ROW_GAP,
+		property: 'row-gap',
+		attributes,
 	} );
 
 	// Container Styles
@@ -285,7 +323,10 @@ export default function Edit( props ) {
 			${ containerHoverDeskBGStyle }
 			${ containerHoverBorderRadiusDesk }
 			${ containerBoxShadowHover }
-		}	
+		}
+		.${ uniqueId }.zolo-img-gallery-${ preset }.zolo-image-gallery {
+			grid-template-columns:repeat(${ columnCountDeskstyle }, 1fr);
+		}
 		.${ uniqueId } .zolo-image-wrap {
 			${ imageDeskBGStyle }
 			${ imageBorderRadiusDesk }

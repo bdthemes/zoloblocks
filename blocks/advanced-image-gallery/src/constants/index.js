@@ -13,9 +13,9 @@ export const PRESETS = [
 ];
 
 // Grid
-export const GRID_COLUMNS = 'gridColumns';
+export const COLUMN_COUNT = 'columnCount';
 export const COLUMNS_GAP = 'columnsGap';
-export const ROWS_GAP = 'rowsGap';
+export const ROW_GAP = 'rowGap';
 
 // Container
 export const CONTAINER_BORDER = 'containerBorder';

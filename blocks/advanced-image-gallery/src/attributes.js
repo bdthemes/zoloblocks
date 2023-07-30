@@ -4,14 +4,15 @@ const {
 	generateNormalBGAttributes,
 	generateDimensionAttributes,
 	generateBoxShadowAttributies,
+	generateResCounterAttributies,
 } = window.zoloModule;
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
 import {
-	GRID_COLUMNS,
+	COLUMN_COUNT,
 	COLUMNS_GAP,
-	ROWS_GAP,
+	ROW_GAP,
 	CONTAINER_BACKGROUND,
 	CONTAINER_HOVER_BACKGROUND,
 	CONTAINER_BORDER_RADIUS,
@@ -71,16 +72,14 @@ const attributes = {
 	...generateDimensionAttributes( HEADING_BORDER_RADIUS ),
 	...generateBoxShadowAttributies( HEADING_BOX_SHADOW ),
 
-	...generateResRangeAttributies( GRID_COLUMNS, {
+	// column count
+	...generateResCounterAttributies( COLUMN_COUNT, {
 		defaultRange: 3,
-		noUnits: true,
 	} ),
-	...generateResRangeAttributies( COLUMNS_GAP, {
-		defaultRange: 30,
-	} ),
-	...generateResRangeAttributies( ROWS_GAP, {
-		defaultRange: 30,
-	} ),
+	//columns gaps
+	...generateResRangeAttributies( COLUMNS_GAP ),
+	//row gaps
+	...generateResRangeAttributies( ROW_GAP ),
 
 	//typography
 	...generateTypographyAttributes( Object.values( typographyObjs ) ),
