@@ -59,6 +59,7 @@ import {
 	IMAGE_HOVER_BACKGROUND,
 	IMAGE_PADDING,
 	IMAGE_MARGIN,
+	HEADING_BORDER,
 	HEADING_BACKGROUND,
 	HEADING_BORDER_RADIUS,
 	HEADING_BOX_SHADOW,
@@ -292,6 +293,15 @@ export default function Edit( props ) {
 	// Heading
 
 	const {
+		desktopBorderStyle: headingBorderDesk,
+		tabBorderStyle: headingBorderTab,
+		mobBorderStyle: headingBorderMob,
+	} = generateBorderStyle( {
+		controlName: HEADING_BORDER,
+		attributes,
+	} );
+
+	const {
 		backgroundStylesDesktop: headingDeskBGStyle,
 		backgroundStylesTab: headingTabBGStyle,
 		backgroundStylesMobile: headingMobBGStyle,
@@ -387,8 +397,9 @@ export default function Edit( props ) {
 			${ imageHoverBoxShadow }
 		}		
 		.${ uniqueId } .zolo-title {
-			color: ${ headingColor };
+			color: ${ headingColor ? headingColor : '' };
 			${ headingDeskBGStyle }
+			${ headingBorderDesk }
 			${ headingBorderRadiusDesk }
 			${ headingBoxShadow }
 			${ headingTypoDesk }			
@@ -426,6 +437,7 @@ export default function Edit( props ) {
 	}			
 	.${ uniqueId } .zolo-title {
 		${ headingTabBGStyle }
+		${ headingBorderTab }
 		${ headingBorderRadiusTab }
 		${ headingTypoTab }
 	}
@@ -462,6 +474,7 @@ export default function Edit( props ) {
 	}			
 	.${ uniqueId } .zolo-title {
 		${ headingMobBGStyle }
+		${ headingBorderMob }
 		${ headingBorderRadiusMob }
 		${ headingTypoMob }
 	}

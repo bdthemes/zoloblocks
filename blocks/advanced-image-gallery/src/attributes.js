@@ -32,6 +32,7 @@ import {
 	IMAGE_HOVER_BACKGROUND,
 	IMAGE_PADDING,
 	IMAGE_MARGIN,
+	HEADING_BORDER,
 	HEADING_BACKGROUND,
 	HEADING_BORDER_RADIUS,
 	HEADING_BOX_SHADOW,
@@ -77,6 +78,7 @@ const attributes = {
 	...generateDimensionAttributes( IMAGE_MARGIN ),
 
 	// Heading
+	...generateBorderAttributies( HEADING_BORDER ),
 	...generateNormalBGAttributes( HEADING_BACKGROUND ),
 	...generateDimensionAttributes( HEADING_BORDER_RADIUS ),
 	...generateBoxShadowAttributies( HEADING_BOX_SHADOW ),

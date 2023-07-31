@@ -51,6 +51,7 @@ import {
 	IMAGE_HOVER_BACKGROUND,
 	IMAGE_PADDING,
 	IMAGE_MARGIN,
+	HEADING_BORDER,
 	HEADING_BACKGROUND,
 	HEADING_BORDER_RADIUS,
 	HEADING_BOX_SHADOW,
@@ -334,6 +335,23 @@ function Inspector( props ) {
 									typoPrefixConstant={ HEADING_TYPOGRAPHY }
 									resRequiredProps={ resRequiredProps }
 								/>
+								<BorderControl
+									label={ __(
+										'Image Border',
+										'zolo-blocks'
+									) }
+									controlName={ HEADING_BORDER }
+									resRequiredProps={ resRequiredProps }
+								/>
+								<ResDimensionsControl
+									label={ __(
+										'Border Radius',
+										'zolo-blocks'
+									) }
+									controlName={ HEADING_BORDER_RADIUS }
+									resRequiredProps={ resRequiredProps }
+									forBorderRadius={ true }
+								/>
 								<NormalBGControl
 									resRequiredProps={ resRequiredProps }
 									controlName={ HEADING_BACKGROUND }
@@ -348,15 +366,7 @@ function Inspector( props ) {
 										} )
 									}
 								/>
-								<ResDimensionsControl
-									label={ __(
-										'Border Radius',
-										'zolo-blocks'
-									) }
-									controlName={ HEADING_BORDER_RADIUS }
-									resRequiredProps={ resRequiredProps }
-									forBorderRadius={ true }
-								/>
+
 								<BoxShadowControl
 									controlName={ HEADING_BOX_SHADOW }
 									resRequiredProps={ resRequiredProps }

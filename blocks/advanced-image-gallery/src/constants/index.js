@@ -40,6 +40,7 @@ export const IMAGE_PADDING = 'imagePadding';
 export const IMAGE_MARGIN = 'imageMargin';
 
 // Heading
+export const HEADING_BORDER = 'headingBorder';
 export const HEADING_BACKGROUND = 'headingBackground';
 export const HEADING_BORDER_RADIUS = 'headingBorderRadius';
 export const HEADING_BOX_SHADOW = 'headingBoxShadow';
