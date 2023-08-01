@@ -524,7 +524,6 @@ export default function Edit( props ) {
 								allowedTypes={ [ 'image' ] }
 								multiple={ true }
 								gallery={ true }
-								addToGallery={ true }
 								value={
 									advancedGallery &&
 									advancedGallery.map( ( image ) => {
