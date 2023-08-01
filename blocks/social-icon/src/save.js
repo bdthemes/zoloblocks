@@ -55,13 +55,12 @@ const Save = ({ attributes }) => {
 								}
 								className={`zolo-social-item zolo-${socialName}`}
 							>
-								{(socialText == 'icon' ||
-									socialText == 'icontext') && (
+								{socialText !== 'none' && (
 									<span className="zolo-social-icon">
 										<DisplayIcon icon={profile.icon} />
 									</span>
 								)}
-								{socialText != 'icon' && (
+								{socialText !== 'iconOnly' && (
 									<span className="zolo-social-text">
 										{profile.text}
 									</span>

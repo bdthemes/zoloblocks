@@ -28,6 +28,7 @@ const {
 import {
 	TEXT_ALIGN_OPTIONS,
 	ICON_POSITIONS,
+	ICON_STATUS,
 } from '../../../src/global/constants';
 
 import objAttributes from './attributes';
@@ -49,7 +50,6 @@ import {
 	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
 	ICON_PADDING,
-	ICON_TYPES,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -139,14 +139,14 @@ function Inspector(props) {
 								}
 							/>
 							<IconicBtnGroup
-								label={__('Icon', 'zolo-blocks')}
+								label={__('Icon Status', 'zolo-blocks')}
 								value={iconType}
 								onChange={(value) =>
 									setAttributes({
 										iconType: value,
 									})
 								}
-								options={ICON_TYPES}
+								options={ICON_STATUS}
 							/>
 							{iconType !== 'none' && (
 								<Fragment>
@@ -160,33 +160,21 @@ function Inspector(props) {
 										showHeading={true}
 									/>
 
-									<IconicBtnGroup
-										label={__('Position', 'zolo-blocks')}
-										value={iconPosition}
-										onChange={(value) =>
-											setAttributes({
-												iconPosition: value,
-											})
-										}
-										options={ICON_POSITIONS}
-									/>
-
-									<ResRangeControl
-										label={__('Icon Size', 'zolo-blocks')}
-										controlName={ICON_SIZE}
-										resRequiredProps={resRequiredProps}
-										min={0}
-										max={100}
-										step={1}
-									/>
-									<ResRangeControl
-										label={__('Gap', 'zolo-blocks')}
-										controlName={ICON_TEXT_SPACING}
-										resRequiredProps={resRequiredProps}
-										min={0}
-										max={100}
-										step={1}
-									/>
+									{iconType !== 'iconOnly' && (
+										<IconicBtnGroup
+											label={__(
+												'Position',
+												'zolo-blocks'
+											)}
+											value={iconPosition}
+											onChange={(value) =>
+												setAttributes({
+													iconPosition: value,
+												})
+											}
+											options={ICON_POSITIONS}
+										/>
+									)}
 								</Fragment>
 							)}
 						</PanelBody>
@@ -573,6 +561,22 @@ function Inspector(props) {
 								title={__('Icon', 'zolo-blocks')}
 								initialOpen={false}
 							>
+								<ResRangeControl
+									label={__('Icon Size', 'zolo-blocks')}
+									controlName={ICON_SIZE}
+									resRequiredProps={resRequiredProps}
+									min={0}
+									max={100}
+									step={1}
+								/>
+								<ResRangeControl
+									label={__('Gap', 'zolo-blocks')}
+									controlName={ICON_TEXT_SPACING}
+									resRequiredProps={resRequiredProps}
+									min={0}
+									max={100}
+									step={1}
+								/>
 								<BorderControl
 									label={__('Border', 'zolo-blocks')}
 									controlName={ICON_BORDER}

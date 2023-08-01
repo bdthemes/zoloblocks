@@ -69,7 +69,7 @@ const attributes = {
 	},
 	socialText: {
 		type: 'string',
-		default: 'icontext',
+		default: 'iconText',
 	},
 	socialProfiles: {
 		type: 'array',
