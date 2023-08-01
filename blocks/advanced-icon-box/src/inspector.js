@@ -48,7 +48,6 @@ import {
 	PRESETS,
 	ICON_POSITIONS,
 	BUTTON_POSITIONS,
-	TOP_ICON_POSITIONS,
 	SIDE_ICON_POSITIONS,
 	ICON_SIZE,
 	BUTTON_ICON_SIZE,
@@ -188,7 +187,7 @@ function Inspector(props) {
 													},
 												})
 											}
-											options={TOP_ICON_POSITIONS}
+											options={DEFAULT_ALIGNS}
 										/>
 									)}
 									{preset == 'style-2' && (
@@ -265,7 +264,7 @@ function Inspector(props) {
 													},
 												})
 											}
-											options={TOP_ICON_POSITIONS}
+											options={DEFAULT_ALIGNS}
 										/>
 									)}
 									{preset == 'style-2' && (

@@ -23,6 +23,7 @@ const {
 	generateResRangeStyle,
 	generateDimensionStyle,
 	generateNormalBGControlStyles,
+	generateResCounterStyle,
 } = window.zoloModule;
 
 import {
@@ -71,12 +72,10 @@ export default function Edit(props) {
 		desktopRangeStyle: deskColumns,
 		tabRangeStyle: tabColumns,
 		mobRangeStyle: mobColumns,
-	} = generateResRangeStyle({
+	} = generateResCounterStyle({
 		controlName: GRID_COLUMNS,
 		attributes,
-		noUnits: false,
 		noProperty: true,
-		unitCustomTxt: '',
 	});
 
 	// Grid Columns Gap
