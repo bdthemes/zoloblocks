@@ -24,6 +24,7 @@ export const HEADER_BADGE_BORDER = 'HeaderBadgeBorder';
 // Badge
 export const BADGE_BG = 'BadgeBg';
 export const BADGE_BORDER_RADIUS = 'BadgeBorderRadius';
+export const BADGE_PADDING = 'BadgePadding';
 
 // content
 export const CONTENT_BORDER_RADIUS = 'ContentBorderRadius';
@@ -36,6 +37,7 @@ export const CONTENT_MARGIN = 'ContentMargin';
 export const PHOTO_SIZE = 'PhotoSize';
 export const PHOTO_BORDER = 'PhotoBorder';
 export const PHOTO_BORDER_RADIUS = 'PhotoBorderRadius';
+export const PHOTO_VOFFSET = 'PhotoVOffset';
 
 // name
 export const NAME_MARGIN = 'NameMargin';
@@ -51,6 +53,7 @@ export const BIO_MARGIN = 'BioMargin';
 
 // status
 export const STATUS_MARGIN = 'StatusMargin';
+export const STATUS_GAP = 'StatusGap';
 
 // follow button
 export const FBTN_BG = 'fbtnBg';

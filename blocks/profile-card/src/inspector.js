@@ -46,6 +46,7 @@ import {
 	HEADER_AREA_BORDER_RADIUS,
 	HEADER_AREA_PADDING,
 	HEADER_BADGE_BORDER,
+	BADGE_PADDING,
 	BADGE_BG,
 	BADGE_BORDER_RADIUS,
 	CONTENT_BORDER_RADIUS,
@@ -53,6 +54,7 @@ import {
 	CONTENT_BORDER,
 	CONTENT_PADDING,
 	CONTENT_MARGIN,
+	PHOTO_VOFFSET,
 	PHOTO_SIZE,
 	PHOTO_BORDER,
 	PHOTO_BORDER_RADIUS,
@@ -77,6 +79,7 @@ import {
 	FBTN_MARGIN,
 	FBTN_HOVER_BG,
 	FBTN_HOVER_BOX_SHADOW,
+	STATUS_GAP,
 } from './constants';
 
 import {
@@ -142,23 +145,23 @@ function Inspector(props) {
 	/**
 	 * Preset
 	 */
-	const changePremade = (selected) => {
-		setAttributes({ preset: selected });
-		switch (selected) {
-			case 'default':
-				setAttributes({
-					showSocialProfiles: true,
-				});
-				break;
-			case 'style-1':
-				setAttributes({
-					showSocialProfiles: true,
-				});
-				break;
-			default:
-				return false;
-		}
-	};
+	// const changePremade = (selected) => {
+	// 	setAttributes({ preset: selected });
+	// 	switch (selected) {
+	// 		case 'default':
+	// 			setAttributes({
+	// 				showSocialProfiles: true,
+	// 			});
+	// 			break;
+	// 		case 'style-1':
+	// 			setAttributes({
+	// 				showSocialProfiles: true,
+	// 			});
+	// 			break;
+	// 		default:
+	// 			return false;
+	// 	}
+	// };
 
 	const setProfileIcon = (value, index) => {
 		let profile = [...socialProfiles];
@@ -169,8 +172,6 @@ function Inspector(props) {
 		setAttributes({ socialProfiles: [...profile] });
 	};
 
-	console.log(socialProfiles);
-
 	return (
 		<InspectorControls key="controls">
 			<HeaderTabs
@@ -180,12 +181,6 @@ function Inspector(props) {
 							title={__('General', 'zolo-blocks')}
 							initialOpen={false}
 						>
-							<SelectControl
-								label={__('Preset Designs', 'zolo-blocks')}
-								value={preset}
-								options={PRESETS}
-								onChange={(selected) => changePremade(selected)}
-							/>
 							<ToggleControl
 								label={__('Show Badge', 'zolo-blocks')}
 								checked={showBadge}
@@ -714,12 +709,11 @@ function Inspector(props) {
 								resRequiredProps={resRequiredProps}
 								forBorderRadius={true}
 							/>
-							<ResRangeControl
+							<ResDimensionsControl
 								label={__('Padding', 'zolo-blocks')}
 								controlName={HEADER_AREA_PADDING}
 								resRequiredProps={resRequiredProps}
-								min={0}
-								max={250}
+								forBorderRadius={false}
 							/>
 						</PanelBody>
 						<PanelBody
@@ -730,6 +724,12 @@ function Inspector(props) {
 								label={__('Typography', 'zolo-blocks')}
 								typoPrefixConstant={BADGE_TYPO}
 								resRequiredProps={resRequiredProps}
+							/>
+							<ResDimensionsControl
+								label={__('Padding', 'zolo-blocks')}
+								controlName={BADGE_PADDING}
+								resRequiredProps={resRequiredProps}
+								forBorderRadius={false}
 							/>
 							<BorderControl
 								label={__('Border', 'zolo-blocks')}
@@ -798,6 +798,13 @@ function Inspector(props) {
 								label={__('Size', 'zolo-blocks')}
 								controlName={PHOTO_SIZE}
 								resRequiredProps={resRequiredProps}
+							/>
+							<ResRangeControl
+								label={__('Vertical Offset', 'zolo-blocks')}
+								controlName={PHOTO_VOFFSET}
+								resRequiredProps={resRequiredProps}
+								min={-250}
+								max={250}
 							/>
 							<BorderControl
 								label={__('Border', 'zolo-blocks')}
@@ -945,6 +952,11 @@ function Inspector(props) {
 								resRequiredProps={resRequiredProps}
 							/>
 							<CardDivider />
+							<ResRangeControl
+								label={__('Items Gap', 'zolo-blocks')}
+								controlName={STATUS_GAP}
+								resRequiredProps={resRequiredProps}
+							/>
 							<ResDimensionsControl
 								label={__('Margin', 'zolo-blocks')}
 								controlName={STATUS_MARGIN}
