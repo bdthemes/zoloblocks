@@ -2,6 +2,7 @@ import { useEffect, useState } from '@wordpress/element';
 import { prefix } from '../../global/constants';
 import WithResDeviceBtn from '../with-res-device-btn';
 import { __ } from '@wordpress/i18n';
+import { RangeControl } from '@wordpress/components';
 
 const DimensionControl = ({
 	top,
@@ -11,15 +12,8 @@ const DimensionControl = ({
 	onChange,
 	neededProps,
 }) => {
-	const {
-		label,
-		resMode,
-		setAttributes,
-		dimensionIsLinked,
-		forBorderRadius,
-		controlName,
-		isLinked,
-	} = neededProps;
+	const { label, setAttributes, forBorderRadius, controlName, isLinked } =
+		neededProps;
 
 	const [dimensions, setDimensions] = useState({
 		top,
@@ -30,19 +24,20 @@ const DimensionControl = ({
 
 	const onInputChange = (e) => {
 		const { name, value } = e.target;
-		if (isLinked) {
-			setDimensions({
-				top: value,
-				bottom: value,
-				left: value,
-				right: value,
-			});
-		} else {
-			setDimensions({
-				...dimensions,
-				[name]: value,
-			});
-		}
+		setDimensions({
+			...dimensions,
+			[name]: value,
+		});
+	};
+
+	const setLinkedDimensions = (value) => {
+		setDimensions({
+			...dimensions,
+			top: value,
+			bottom: value,
+			left: value,
+			right: value,
+		});
 	};
 
 	useEffect(() => {
@@ -63,62 +58,81 @@ const DimensionControl = ({
 				controlName={controlName}
 			>
 				<div className="input-container">
-					<div className="input-wrap">
-						<input
-							type="number"
-							name="top"
-							value={dimensions.top}
-							onChange={onInputChange}
+					{isLinked && (
+						<RangeControl
+							value={
+								parseInt(dimensions.top) ||
+								parseInt(dimensions.right) ||
+								parseInt(dimensions.bottom) ||
+								parseInt(dimensions.left)
+							}
+							onChange={(value) =>
+								setLinkedDimensions(value.toString())
+							}
+							min={0}
+							max={1000}
 						/>
+					)}
+					{!isLinked && (
+						<>
+							<div className="input-wrap">
+								<input
+									type="number"
+									name="top"
+									value={dimensions.top}
+									onChange={onInputChange}
+								/>
 
-						<label className="input-label">
-							{forBorderRadius
-								? __('T.Left', 'zolo-blocks')
-								: __('Top', 'zolo-blocks')}
-						</label>
-					</div>
+								<label className="input-label">
+									{forBorderRadius
+										? __('T.Left', 'zolo-blocks')
+										: __('Top', 'zolo-blocks')}
+								</label>
+							</div>
 
-					<div className="input-wrap">
-						<input
-							type="number"
-							name="right"
-							value={dimensions.right}
-							onChange={onInputChange}
-						/>
-						<label className="input-label">
-							{forBorderRadius
-								? __('T.Right', 'zolo-blocks')
-								: __('Right', 'zolo-blocks')}
-						</label>
-					</div>
+							<div className="input-wrap">
+								<input
+									type="number"
+									name="right"
+									value={dimensions.right}
+									onChange={onInputChange}
+								/>
+								<label className="input-label">
+									{forBorderRadius
+										? __('T.Right', 'zolo-blocks')
+										: __('Right', 'zolo-blocks')}
+								</label>
+							</div>
 
-					<div className="input-wrap">
-						<input
-							type="number"
-							name="bottom"
-							value={dimensions.bottom}
-							onChange={onInputChange}
-						/>
-						<label className="input-label">
-							{forBorderRadius
-								? __('B.Right', 'zolo-blocks')
-								: __('Bottom', 'zolo-blocks')}
-						</label>
-					</div>
+							<div className="input-wrap">
+								<input
+									type="number"
+									name="bottom"
+									value={dimensions.bottom}
+									onChange={onInputChange}
+								/>
+								<label className="input-label">
+									{forBorderRadius
+										? __('B.Right', 'zolo-blocks')
+										: __('Bottom', 'zolo-blocks')}
+								</label>
+							</div>
 
-					<div className="input-wrap">
-						<input
-							type="number"
-							name="left"
-							value={dimensions.left}
-							onChange={onInputChange}
-						/>
-						<label className="input-label">
-							{forBorderRadius
-								? __('B.Left', 'zolo-blocks')
-								: __('Left', 'zolo-blocks')}
-						</label>
-					</div>
+							<div className="input-wrap">
+								<input
+									type="number"
+									name="left"
+									value={dimensions.left}
+									onChange={onInputChange}
+								/>
+								<label className="input-label">
+									{forBorderRadius
+										? __('B.Left', 'zolo-blocks')
+										: __('Left', 'zolo-blocks')}
+								</label>
+							</div>
+						</>
+					)}
 				</div>
 			</WithResDeviceBtn>
 		</div>

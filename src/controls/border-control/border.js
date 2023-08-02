@@ -2,6 +2,7 @@ import { useEffect, useState } from '@wordpress/element';
 import { prefix } from '../../global/constants';
 import WithResDeviceBtn from '../with-res-device-btn';
 import { __ } from '@wordpress/i18n';
+import { RangeControl } from '@wordpress/components';
 
 const Borders = ({
 	top,
@@ -23,19 +24,20 @@ const Borders = ({
 
 	const onInputChange = (e) => {
 		const { name, value } = e.target;
-		if (isLinked) {
-			setBorders({
-				top: value,
-				bottom: value,
-				left: value,
-				right: value,
-			});
-		} else {
-			setBorders({
-				...borders,
-				[name]: value,
-			});
-		}
+		setBorders({
+			...borders,
+			[name]: value,
+		});
+	};
+
+	const setLinkedBorders = (value) => {
+		setBorders({
+			...borders,
+			top: value,
+			bottom: value,
+			left: value,
+			right: value,
+		});
 	};
 
 	useEffect(() => {
@@ -57,54 +59,73 @@ const Borders = ({
 			>
 				{children}
 				<div className="input-container">
-					<div className="input-wrap">
-						<input
-							type="number"
-							name="top"
-							value={borders.top}
-							onChange={onInputChange}
+					{isLinked && (
+						<RangeControl
+							value={
+								parseInt(borders.top) ||
+								parseInt(borders.right) ||
+								parseInt(borders.bottom) ||
+								parseInt(borders.left)
+							}
+							onChange={(value) =>
+								setLinkedBorders(value.toString())
+							}
+							min={0}
+							max={100}
 						/>
+					)}
+					{!isLinked && (
+						<>
+							<div className="input-wrap">
+								<input
+									type="number"
+									name="top"
+									value={borders.top}
+									onChange={onInputChange}
+								/>
 
-						<label className="input-label">
-							{__('Top', 'zolo-blocks')}
-						</label>
-					</div>
+								<label className="input-label">
+									{__('Top', 'zolo-blocks')}
+								</label>
+							</div>
 
-					<div className="input-wrap">
-						<input
-							type="number"
-							name="right"
-							value={borders.right}
-							onChange={onInputChange}
-						/>
-						<label className="input-label">
-							{__('Right', 'zolo-blocks')}
-						</label>
-					</div>
+							<div className="input-wrap">
+								<input
+									type="number"
+									name="right"
+									value={borders.right}
+									onChange={onInputChange}
+								/>
+								<label className="input-label">
+									{__('Right', 'zolo-blocks')}
+								</label>
+							</div>
 
-					<div className="input-wrap">
-						<input
-							type="number"
-							name="bottom"
-							value={borders.bottom}
-							onChange={onInputChange}
-						/>
-						<label className="input-label">
-							{__('Bottom', 'zolo-blocks')}
-						</label>
-					</div>
+							<div className="input-wrap">
+								<input
+									type="number"
+									name="bottom"
+									value={borders.bottom}
+									onChange={onInputChange}
+								/>
+								<label className="input-label">
+									{__('Bottom', 'zolo-blocks')}
+								</label>
+							</div>
 
-					<div className="input-wrap">
-						<input
-							type="number"
-							name="left"
-							value={borders.left}
-							onChange={onInputChange}
-						/>
-						<label className="input-label">
-							{__('Left', 'zolo-blocks')}
-						</label>
-					</div>
+							<div className="input-wrap">
+								<input
+									type="number"
+									name="left"
+									value={borders.left}
+									onChange={onInputChange}
+								/>
+								<label className="input-label">
+									{__('Left', 'zolo-blocks')}
+								</label>
+							</div>
+						</>
+					)}
 				</div>
 			</WithResDeviceBtn>
 		</div>

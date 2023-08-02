@@ -1,0 +1,29 @@
+.zb-counter-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0 0 16px;
+	.components-base-control {
+		margin: 0;
+		width: 100%;
+	}
+	.components-input-control__input {
+		text-align: center;
+	}
+	.zb-counter-control-btn {
+		background-color: #f2f2f2;
+		border-radius: 6px;
+		padding: 0;
+		margin: 0;
+		height: 40px;
+		width: 85px;
+		display: flex;
+		align-items: center;
+		justify-content: center;	
+	}
+}
+
+.zb-counter-note {
+	font-style: italic;
+}

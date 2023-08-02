@@ -10,6 +10,7 @@ import { BORDER_TYPES, SEPERATOR_STYLES } from '../../global/constants';
 import { __ } from '@wordpress/i18n';
 
 import ColorBtn from '../color-btn';
+import LinkUnlink from '../link-unlink';
 
 const BorderControl = ({ label, controlName, resRequiredProps, units }) => {
 	const { attributes, setAttributes, resMode } = resRequiredProps;
@@ -83,12 +84,11 @@ const BorderControl = ({ label, controlName, resRequiredProps, units }) => {
 							className={`zb-linked-btn ${
 								isLinked ? 'zb-linked-btn-active' : ''
 							}`}
-							icon={isLinked ? 'admin-links' : 'editor-unlink'}
+							icon={<LinkUnlink isLinked={isLinked} />}
 							onClick={onButtonClick}
 						/>
 						<ResetBtn
 							onReset={() => {
-								console.log('reset');
 								setAttributes({
 									[`${prefix}${controlName}BorderType`]:
 										'none',
@@ -182,7 +182,7 @@ const BorderControl = ({ label, controlName, resRequiredProps, units }) => {
 							className={`zb-linked-btn ${
 								isLinked ? 'zb-linked-btn-active' : ''
 							}`}
-							icon={isLinked ? 'admin-links' : 'editor-unlink'}
+							icon={<LinkUnlink isLinked={isLinked} />}
 							onClick={onButtonClick}
 						/>
 						<ResetBtn
@@ -282,7 +282,7 @@ const BorderControl = ({ label, controlName, resRequiredProps, units }) => {
 							className={`zb-linked-btn ${
 								isLinked ? 'zb-linked-btn-active' : ''
 							}`}
-							icon={isLinked ? 'admin-links' : 'editor-unlink'}
+							icon={<LinkUnlink isLinked={isLinked} />}
 							onClick={onButtonClick}
 						/>
 						<ResetBtn

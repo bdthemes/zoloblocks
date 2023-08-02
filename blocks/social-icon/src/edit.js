@@ -24,12 +24,14 @@ const {
 	generateBorderStyle,
 	handleUniqueId,
 	softMinifyCssStrings,
+	generateResCounterStyle,
 } = window.zoloModule;
 
 import {
 	BLOCK_PREFIX,
 	BUTTON_ALIGNMENT,
 	BUTTON_BORDER,
+	COLUMN_COUNT,
 	COLUMNS_GAP,
 	ROW_GAP,
 	ICON_SIZE,
@@ -85,6 +87,17 @@ export default function Edit(props) {
 		controlName: BUTTON_ALIGNMENT,
 		property: 'text-align',
 		attributes,
+	});
+
+	// column count
+	const {
+		desktopRangeStyle: columnCountDeskstyle,
+		tabRangeStyle: columnCountTabStyle,
+		mobRangeStyle: columnCountMobStyle,
+	} = generateResCounterStyle({
+		controlName: COLUMN_COUNT,
+		attributes,
+		noProperty: true,
 	});
 
 	// column gap
@@ -215,7 +228,7 @@ export default function Edit(props) {
 			${rowGapDeskstyle}
 		}				 
 		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
-			grid-template-columns:repeat(${socialProfileColumns}, 1fr);
+			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
 		}				 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSize}
@@ -263,7 +276,10 @@ export default function Edit(props) {
 		}						 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSizeTab}
-		}				
+		}
+		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
+			grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
+		}			
 		.${uniqueId} .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
 			${buttonIconSizeTab}
 		}				
@@ -291,7 +307,9 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSizeMob}
 		}
-						
+		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
+			grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
+		}			
 		.${uniqueId} .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
 			${buttonIconSizeMob}
 		}
@@ -330,50 +348,6 @@ export default function Edit(props) {
 					setAttributes={setAttributes}
 				/>
 			)}
-			<BlockControls>
-				<ToolbarGroup>
-					<Dropdown
-						className="my-container-class-name"
-						contentClassName="my-popover-content-classname"
-						popoverProps={{ placement: 'bottom-start' }}
-						renderToggle={({ isOpen, onToggle }) => (
-							<ToolbarButton
-								icon="admin-links"
-								label={__('Link', 'zolo-blocks')}
-								onClick={onToggle}
-								aria-expanded={isOpen}
-							/>
-						)}
-						renderContent={() => (
-							<div className="zolo-dropdown-link">
-								<LinkControl
-									searchInputPlaceholder="Search here..."
-									value={link}
-									settings={[
-										{
-											id: 'opensInNewTab',
-											title: __(
-												'Open in new tab',
-												'zolo-blocks'
-											),
-										},
-										{
-											id: 'addNoFollow',
-											title: __(
-												'Add nofollow to link',
-												'zolo-blocks'
-											),
-										},
-									]}
-									onChange={(data) =>
-										setAttributes({ link: data })
-									}
-								></LinkControl>
-							</div>
-						)}
-					/>
-				</ToolbarGroup>
-			</BlockControls>
 			<style>{` ${softMinifyCssStrings(allStyle)}`}</style>
 
 			<div {...blockProps}>
@@ -385,15 +359,17 @@ export default function Edit(props) {
 							let socialName = Object.keys(profile.icon)[0];
 							return (
 								<a
-									href={profile.link}
+									href={profile.link && profile.link.url}
 									key={index}
 									target={
-										socialProfilesLinkTarget && '_blank'
+										profile.link &&
+										profile.link.openInNewTab &&
+										'_blank'
 									}
 									rel={
-										socialProfilesLinkTarget
-											? 'noopener noreferrer'
-											: 'noopener'
+										profile.link &&
+										profile.link.openInNewTab &&
+										'noopener noreferrer'
 									}
 									className={`zolo-social-item zolo-${socialName}`}
 								>

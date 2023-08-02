@@ -1,71 +1,42 @@
 /**
  * WordPress dependencies
  */
+import { InspectorControls } from '@wordpress/block-editor';
 import {
-	InspectorControls,
-	__experimentalLinkControl as LinkControl,
-	MediaUpload,
-	MediaUploadCheck,
-} from '@wordpress/block-editor';
-import {
-	CardDivider,
 	PanelBody,
 	SelectControl,
 	TabPanel,
-	TextControl,
 	ToggleControl,
-	Button,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 
 /**
  * Internal depencencies
  */
 const {
-	ResAlignmentControl,
-	ResRangeControl,
-	ColorControl,
+	NormalBGControl,
 	BorderControl,
 	ResDimensionsControl,
-	TextShadowControl,
-	TextStrokeControl,
-	TypographyDropdown,
 	TabPanelControl,
-	IconPicker,
 	BoxShadowControl,
+	ResRangeControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
-	TITLE_ALIGNMENT,
-	TITLE_TAG,
-	TITLE_MARGIN,
-	DESCRIPTION_MARGIN,
-	DESC_ALIGNMENT,
 	PRESETS,
-	ICON_POSITIONS,
-	BUTTON_POSITIONS,
-	TOP_ICON_POSITIONS,
-	SIDE_ICON_POSITIONS,
-	ICON_SIZE,
-	BUTTON_ICON_SIZE,
-	ICON_TEXT_SPACING,
-	ICON_SPACING,
-	TITLE_TEXT_SHADOW,
-	TITLE_TEXT_STROKE,
-	ICON_BOX_SHADOW,
-	ICON_HOVER_BOX_SHADOW,
-	BUTTON_BOX_SHADOW,
-	BUTTON_HOVER_BOX_SHADOW,
-	ICON_BORDER,
-	ICON_BORDER_RADIUS,
-	ICON_PADDING,
-	ICON_MARGIN,
-	BUTTON_BORDER,
-	BUTTON_BORDER_RADIUS,
-	BUTTON_MARGIN,
-	BUTTON_PADDING,
+	TITLE_TAG,
+	CONTAINER_BOX_SHADOW,
+	CONTAINER_BOX_SHADOW_HOVER,
+	CONTAINER_BORDER,
+	CONTAINER_BORDER_HOVER,
+	CONTAINER_BORDER_RADIUS,
+	CONTAINER_PADDING,
+	GRID_COLUMNS,
+	COLUMNS_GAP,
+	ROWS_GAP,
+	CONTAINER_BACKGROUND,
+	CONTAINER_HOVER_BACKGROUND,
 } from './constants';
 
 import {
@@ -76,34 +47,8 @@ import {
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
-	const {
-		uniqueId,
-		preset,
-		titleTag,
-		resMode,
-		showIcon,
-		mainIcon,
-		buttonIcon,
-		iconColor,
-		iconHoverColor,
-		iconBackgroundColor,
-		iconBackgroundHoverColor,
-		textColor,
-		textHoverColor,
-		descColor,
-		descHoverColor,
-		iconType,
-		iconTypeImage,
-		btnColor,
-		btnHoverColor,
-		btnBgColor,
-		btnBgHoverColor,
-		buttonLink,
-		globalLink,
-		presetOneStyles,
-		presetTwoStyles,
-		presetThreeStyles,
-	} = attributes;
+	const { uniqueId, preset, heading, resMode, showBrandName, showBrandLink } =
+		attributes;
 
 	const resRequiredProps = {
 		attributes,
@@ -716,7 +661,7 @@ function Inspector(props) {
 													/>
 													<BoxShadowControl
 														controlName={
-															ICON_HOVER_BOX_SHADOW
+															CONTAINER_BORDER
 														}
 														resRequiredProps={
 															resRequiredProps
@@ -888,6 +833,7 @@ function Inspector(props) {
 																	value,
 															})
 														}
+														forBorderRadius={true}
 													/>
 												</>
 											}
@@ -946,7 +892,7 @@ function Inspector(props) {
 													/>
 													<BoxShadowControl
 														controlName={
-															BUTTON_BOX_SHADOW
+															CONTAINER_BOX_SHADOW
 														}
 														resRequiredProps={
 															resRequiredProps
@@ -972,7 +918,7 @@ function Inspector(props) {
 													/>
 													<BoxShadowControl
 														controlName={
-															BUTTON_HOVER_BOX_SHADOW
+															CONTAINER_BOX_SHADOW_HOVER
 														}
 														resRequiredProps={
 															resRequiredProps

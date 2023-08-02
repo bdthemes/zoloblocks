@@ -54,3 +54,18 @@
 		}
 	}
 }
+
+.zb-repeater-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+	button {
+		padding: 0;
+		margin: 0;
+		height: 26px;
+		width: 26px;
+		background-color: #f2f2f2;
+		border-radius: 50%;
+	}
+}

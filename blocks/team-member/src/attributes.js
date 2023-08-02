@@ -134,10 +134,10 @@ const attributes = {
 		default: [
 			{
 				id: 1,
-				title: 'Facebook',
+				title: 'Twitter',
 				icon: {
 					twitter: {
-						name: 'facebook',
+						name: 'twitter',
 						source: 'dashicon',
 						type: '',
 					},

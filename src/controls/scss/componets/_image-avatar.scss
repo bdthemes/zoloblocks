@@ -26,12 +26,36 @@
 		background: #f2f2f2;
 		border-radius: 0 0 6px 6px;
 		transition: 0.3s;
+
 		&:hover {
-			background: #230aed;
+			background: #b6b6b6;
 			color: #fff;
+			svg path {
+				stroke: #fff;
+			}
 		}
+
 		svg {
-			width: 20px;
+			fill: none;
+		}
+	}
+
+	.zb-image-avatar-delete {
+		padding: 0 !important;
+		margin: 0px 8px !important;
+		position: absolute;
+		right: 0;
+		svg {
+			fill: none;
+			path {
+				stroke: #fef9f8;
+				transition: stroke .3s ease;
+			}
+			&:hover {
+				path {
+					stroke: #f00;
+				}
+			}
 		}
 	}
 }

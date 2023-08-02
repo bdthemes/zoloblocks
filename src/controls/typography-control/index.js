@@ -91,10 +91,7 @@ const TypographyDropdown = ({
 	}, [fontFamily]);
 
 	return (
-		<BaseControl
-			label={__(label)}
-			className="zb-typography-control-wrapper"
-		>
+		<BaseControl label={label} className="zb-typography-control-wrapper">
 			<Dropdown
 				className="zb-typography-dropdown"
 				position="bottom right"
@@ -105,19 +102,25 @@ const TypographyDropdown = ({
 						className="zb-typography-dropdown-btn"
 					>
 						<svg
-							id="Layer_1"
-							data-name="Layer 1"
+							width={24}
+							height={24}
+							viewBox="0 0 24 24"
+							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 100 100"
 						>
-							<rect
-								width={100}
-								height={100}
-								style={{ fill: 'none' }}
+							<path
+								d="M5 20L19 20"
+								stroke="#4D4D4D"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
 							/>
 							<path
-								d="M79.56,14.91H20.44a3.5,3.5,0,0,0-3.5,3.5V31.09a3.5,3.5,0,0,0,7,0V21.91H46.06V78.09H38.32a3.5,3.5,0,1,0,0,7H61.68a3.5,3.5,0,1,0,0-7H53.06V21.91h23v8.83a3.5,3.5,0,1,0,7,0V18.41A3.5,3.5,0,0,0,79.56,14.91Z"
-								style={{ fill: '#39394d' }}
+								d="M14.6158 4.57792C14.9876 4.20789 15.4918 4 16.0176 4C16.2779 4 16.5357 4.05104 16.7762 4.1502C17.0168 4.24936 17.2353 4.3947 17.4194 4.57792C17.6035 4.76115 18.7495 5.97401 18.8491 6.21341C18.9487 6.4528 19 6.70938 19 6.9685C19 7.22762 18.9487 7.4842 18.8491 7.7236C18.7495 7.96299 18.6035 8.18051 18.4194 8.36374L9.73803 17H5L6.5 12.5L14.6158 4.57792Z"
+								stroke="#4D4D4D"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
 							/>
 						</svg>
 					</Button>

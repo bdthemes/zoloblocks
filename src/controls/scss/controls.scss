@@ -9,7 +9,6 @@
 @import "./componets/dimensions-control";
 @import "./componets/typography-control";
 @import "./componets/image-avatar";
-@import "./componets/typography";
 @import "./componets/boxshadow-control";
 @import "./componets/tabpanel-control";
 @import "./componets/star-rating";
@@ -21,7 +20,4 @@
 @import "./componets/iconic-btn-group";
 @import "./componets/background-type";
 @import "./componets/sortable-control";
-
-// blocks editor style
-@import "./blocks/social-icon";
-@import "./blocks/team-member";
+@import "./componets/columns";
