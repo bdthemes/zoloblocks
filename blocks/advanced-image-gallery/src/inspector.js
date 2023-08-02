@@ -336,10 +336,7 @@ function Inspector( props ) {
 									resRequiredProps={ resRequiredProps }
 								/>
 								<BorderControl
-									label={ __(
-										'Image Border',
-										'zolo-blocks'
-									) }
+									label={ __( 'Border', 'zolo-blocks' ) }
 									controlName={ HEADING_BORDER }
 									resRequiredProps={ resRequiredProps }
 								/>

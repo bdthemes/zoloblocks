@@ -366,17 +366,25 @@ export default function Edit( props ) {
 	const desktopAllStyle = `
 		.${ uniqueId }.zolo-img-gallery-${ preset } {
 			${ containerDeskBGStyle }
+			${ containerBorderDesk }
 			${ containerBorderRadiusDesk }
 			${ containerBoxShadow }
 			overflow:hidden;
 		}	
 		.${ uniqueId }.zolo-img-gallery-${ preset }:hover {
 			${ containerHoverDeskBGStyle }
+			${ containerHoverBorderDesk }
 			${ containerHoverBorderRadiusDesk }
 			${ containerBoxShadowHover }
-		}	
+		}
+		.${ uniqueId }.zolo-img-gallery-${ preset }.zolo-image-gallery {
+			grid-template-columns:repeat(${ columnCountDeskstyle }, 1fr);
+			${ colGapDeskstyle }
+			${ rowGapDeskstyle }
+		}
 		.${ uniqueId } .zolo-image-wrap {
 			${ imageDeskBGStyle }
+			${ imageBorderDesk }
 			${ imageBorderRadiusDesk }
 			${ imageBoxShadow }
 			${ imageMarginDesk }
@@ -384,12 +392,14 @@ export default function Edit( props ) {
 		}		
 		.${ uniqueId } .zolo-image-wrap:hover {
 			${ imageHoverDeskBGStyle }
+			${ imageHoverBorderDesk }
 			${ imageHoverBorderRadiusDesk }
 			${ imageHoverBoxShadow }
 		}		
 		.${ uniqueId } .zolo-title {
-			color: ${ headingColor };
+			color: ${ headingColor ? headingColor : '' };
 			${ headingDeskBGStyle }
+			${ headingBorderDesk }
 			${ headingBorderRadiusDesk }
 			${ headingBoxShadow }
 			${ headingTypoDesk }			
@@ -400,24 +410,34 @@ export default function Edit( props ) {
 	const tabletAllStyle = `
 	.${ uniqueId }.zolo-img-gallery-${ preset } {
 		${ containerTabBGStyle }
+		${ containerBorderTab }
 		${ containerBorderRadiusTab }
 	}		
 	.${ uniqueId }.zolo-img-gallery-${ preset }:hover {
 		${ containerHoverTabBGStyle }
+		${ containerHoverBorderTab }
 		${ containerHoverBorderRadiusTab }
-	}	
+	}
+	.${ uniqueId }.zolo-img-gallery-${ preset }.zolo-image-gallery {
+		grid-template-columns:repeat(${ columnCountTabStyle }, 1fr);
+		${ colGapTabStyle }
+		${ rowGapTabStyle }
+	}
 	.${ uniqueId } .zolo-image-wrap {
 		${ imageTabBGStyle }
+		${ imageBorderTab }
 		${ imageBorderRadiusTab }
 		${ imageMarginTab }
 		${ imagePaddingTab }
 	}
 	.${ uniqueId } .zolo-image-wrap:hover {
 		${ imageHoverTabBGStyle }
+		${ imageHoverBorderTab }
 		${ imageHoverBorderRadiusTab }
 	}			
 	.${ uniqueId } .zolo-title {
 		${ headingTabBGStyle }
+		${ headingBorderTab }
 		${ headingBorderRadiusTab }
 		${ headingTypoTab }
 	}
@@ -427,24 +447,34 @@ export default function Edit( props ) {
 	const mobileAllStyle = `		
 	.${ uniqueId }.zolo-img-gallery-${ preset }{
 		${ containerMobBGStyle }
+		${ containerBorderMob }
 		${ containerBorderRadiusMob }
 	}		
 	.${ uniqueId }.zolo-img-gallery-${ preset }:hover {
 		${ containerHoverMobBGStyle }
+		${ containerHoverBorderMob }
 		${ containerHoverBorderRadiusMob }
-	}	
+	}
+	.${ uniqueId }.zolo-img-gallery-${ preset }.zolo-image-gallery {
+		grid-template-columns:repeat(${ columnCountMobStyle }, 1fr);
+		${ colGapMobStyle }
+		${ rowGapMobStyle }
+	}
 	.${ uniqueId } .zolo-image-wrap {
 		${ imageMobBGStyle }
+		${ imageBorderMob }
 		${ imageBorderRadiusMob }
 		${ imageMarginMob }
 		${ imagePaddingMob }
 	}
 	.${ uniqueId } .zolo-image-wrap:hover {
 		${ imageHoverMobBGStyle }
+		${ imageHoverBorderMob }
 		${ imageHoverBorderRadiusMob }
 	}			
 	.${ uniqueId } .zolo-title {
 		${ headingMobBGStyle }
+		${ headingBorderMob }
 		${ headingBorderRadiusMob }
 		${ headingTypoMob }
 	}
@@ -482,43 +512,6 @@ export default function Edit( props ) {
 				/>
 			) }
 			<BlockControls>
-				<ToolbarGroup>
-					<Dropdown
-						className="my-container-className-name"
-						contentClassName="my-popover-content-classname"
-						popoverProps={ { placement: 'bottom-start' } }
-						renderToggle={ ( { isOpen, onToggle } ) => (
-							<ToolbarButton
-								icon="admin-links"
-								label={ __( 'Link', 'zolo-blocks' ) }
-								onClick={ onToggle }
-								aria-expanded={ isOpen }
-							/>
-						) }
-						renderContent={ () => (
-							<div className="zolo-dropdown-link">
-								<LinkControl
-									searchInputPlaceholder="Search here..."
-									value={ brandDetailPageLink }
-									settings={ [
-										{
-											id: 'opensInNewTab',
-											title: __(
-												'Open in new tab',
-												'zolo-blocks'
-											),
-										},
-									] }
-									onChange={ ( data ) =>
-										setAttributes( {
-											brandDetailPageLink: data,
-										} )
-									}
-								></LinkControl>
-							</div>
-						) }
-					/>
-				</ToolbarGroup>
 				{ advancedGallery && (
 					<Fragment>
 						<ToolbarGroup>
@@ -564,8 +557,13 @@ export default function Edit( props ) {
 
 			<div { ...blockProps }>
 				<div
-					className={ `zolo-image-gallery ${ uniqueId } zolo-img-gallery-${ preset }` }
+					className={ `${
+						advancedGallery
+							? 'zolo-image-gallery'
+							: 'zolo-single-image'
+					} ${ uniqueId } zolo-img-gallery-${ preset }` }
 				>
+					{  }
 					{ advancedGallery ? (
 						advancedGallery &&
 						advancedGallery.map( ( image, index ) => {
