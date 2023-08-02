@@ -25,6 +25,7 @@ const {
 	handleUniqueId,
 	softMinifyCssStrings,
 	generateResCounterStyle,
+	generateDimensionStyle,
 } = window.zoloModule;
 
 import {
@@ -35,6 +36,7 @@ import {
 	COLUMNS_GAP,
 	ROW_GAP,
 	ICON_SIZE,
+	BUTTON_PADDING,
 	BUTTON_SIZE,
 	BUTTON_ICON_SIZE,
 	ICON_TEXT_SPACING,
@@ -76,6 +78,38 @@ export default function Edit(props) {
 
 	const blockProps = useBlockProps({
 		className: classnames(className, ``),
+	});
+
+	//  button general settings
+	const {
+		desktopRangeStyle: buttonSize,
+		tabRangeStyle: buttonSizeTab,
+		mobRangeStyle: buttonSizeMob,
+	} = generateResRangeStyle({
+		controlName: BUTTON_SIZE,
+		property: 'font-size',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: paddingDesktop,
+		dimensionStylesTab: paddingTab,
+		dimensionStylesMobile: paddingMob,
+	} = generateDimensionStyle({
+		controlName: BUTTON_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
+
+	// Spacing between icon and text
+	const {
+		desktopRangeStyle: gapDesktop,
+		tabRangeStyle: gapTablet,
+		mobRangeStyle: gapMobile,
+	} = generateResRangeStyle({
+		controlName: ICON_TEXT_SPACING,
+		property: 'gap',
+		attributes,
 	});
 
 	// alignment
@@ -160,50 +194,6 @@ export default function Edit(props) {
 		attributes,
 	});
 
-	// Spacing between icon and text
-	const {
-		desktopRangeStyle: gap,
-		tabRangeStyle: gapTab,
-		mobRangeStyle: gapMob,
-	} = generateResRangeStyle({
-		controlName: ICON_TEXT_SPACING,
-		property: 'gap',
-		attributes,
-	});
-
-	// generate button size
-	const {
-		desktopRangeStyle: buttonSize,
-		tabRangeStyle: buttonSizeTab,
-		mobRangeStyle: buttonSizeMob,
-	} = generateResRangeStyle({
-		controlName: BUTTON_SIZE,
-		property: 'font-size',
-		attributes,
-	});
-
-	// generate button height
-	const {
-		desktopRangeStyle: buttonHeight,
-		tabRangeStyle: buttonHeightTab,
-		mobRangeStyle: buttonHeightMob,
-	} = generateResRangeStyle({
-		controlName: BUTTON_HEIGHT,
-		property: 'height',
-		attributes,
-	});
-
-	// generate button size
-	const {
-		desktopRangeStyle: buttonIconSize,
-		tabRangeStyle: buttonIconSizeTab,
-		mobRangeStyle: buttonIconSizeMob,
-	} = generateResRangeStyle({
-		controlName: BUTTON_ICON_SIZE,
-		property: 'font-size',
-		attributes,
-	});
-
 	/**
 	 * All Style Combination
 	 */
@@ -213,7 +203,6 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zolo-content {
 			${borderStyles}
-			${gap}
 			${deskAlign}
 			color: ${textColor ? textColor : 'inherit'};
 		}
@@ -226,19 +215,17 @@ export default function Edit(props) {
 		.${uniqueId}.zolo-advanced-social-share {
 			${colGapDeskstyle}
 			${rowGapDeskstyle}
-		}				 
+		}
+		.${uniqueId} .zolo-social-item {
+			${paddingDesktop}
+			${gapDesktop}
+		}	 
 		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
 		}				 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSize}
-		}		
-		.${uniqueId} .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
-			${buttonIconSize}
-		}		
-		.${uniqueId} .zolo-social-item {
-			${buttonHeight}
-		}		
+		}			
 		${
 			socialColor === 'custom'
 				? `.zolo-advanced-social-share.zolo-advanced-social-preset-1.${uniqueId}.social-icon .zolo-social-item{
@@ -255,8 +242,6 @@ export default function Edit(props) {
 				}`
 				: ' '
 		}
-		
-		
   	`;
 	const tabletAllStyle = `
 		.${uniqueId}{
@@ -264,7 +249,6 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zolo-content {
 			${borderStylesTab}
-			${gapTab}
 			${tabAlign}
 		}
 		.${uniqueId} .zolo-button-icon {
@@ -273,19 +257,17 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-advanced-social-share {
 			${colGapTabStyle}
 			${rowGapTabStyle}
-		}						 
+		}		
+		.${uniqueId} .zolo-social-item {
+			${paddingTab}
+			${gapTablet}
+		}					 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSizeTab}
 		}
 		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
 			grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
 		}			
-		.${uniqueId} .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
-			${buttonIconSizeTab}
-		}				
-		.${uniqueId} .zolo-social-item {
-			${buttonHeightTab}
-		}
 	`;
 
 	const mobileAllStyle = `
@@ -294,7 +276,6 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zolo-content {
 			${borderStylesMob}
-			${gapMob}
 			${mobAlign}
 		}
 		.${uniqueId} .zolo-button-icon {
@@ -303,19 +284,17 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-advanced-social-share {
 			${colGapMobStyle}
 			${rowGapMobStyle}
-		}							 
+		}		
+		.${uniqueId} .zolo-social-item {
+			${paddingMob}
+			${gapMobile}
+		}					 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSizeMob}
 		}
 		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
 			grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
 		}			
-		.${uniqueId} .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
-			${buttonIconSizeMob}
-		}
-		.${uniqueId} .zolo-social-item {
-			${buttonHeightMob}
-		}
   	`;
 
 	const allStyle = `

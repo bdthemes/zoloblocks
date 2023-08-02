@@ -32,15 +32,18 @@
 		grid-template-columns: repeat(6, 1fr);
 	}
 
+	.zolo-social-item {
+		padding: 12px;
+		gap: 10px;
+	}
+
 	.zolo-advanced-social-preset-1 .zolo-social-item,
 	.zolo-advanced-social-preset-2 .zolo-social-item,
 	.zolo-advanced-social-preset-3 .zolo-social-item,
 	.zolo-advanced-social-preset-5 .zolo-social-item {
-		padding: 12px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 10px;
 	}
 
 	.zolo-advanced-social-preset-1 .zolo-social-item,

@@ -37,24 +37,26 @@ export const ICON_POSITIONS = [
 // social icon color
 export const SOCIAL_ICON_COLOR = [
 	{
-		label: 'Original Color',
+		label: __('Original', 'zolo-blocks'),
 		value: 'original',
 	},
 	{
-		label: 'Custom Color',
+		label: __('Custom', 'zolo-blocks'),
 		value: 'custom',
 	},
 ];
 
 // column count
 export const COLUMN_COUNT = 'columnCount';
+
 //columns Number
 export const COLUMNS_NUMBER = 'columns';
 export const COLUMNS_GAP = 'columnsGap';
 export const ROW_GAP = 'rowGap';
-//button size
+
+//button
+export const BUTTON_PADDING = 'btnPadding';
 export const BUTTON_SIZE = 'btnSize';
-export const BUTTON_ICON_SIZE = 'buttonIconSize';
 export const BUTTON_HEIGHT = 'buttonHeight';
 
 // Button BG
@@ -64,8 +66,6 @@ export const BUTTON_HOVER_BG_COLOR = 'buttonHover';
 // Button Typography
 export const BUTTON_TYPOGRAPHY = 'buttonTypography';
 
-// Button Padding
-export const BUTTON_PADDING = 'buttonPadding';
 // Button Margin
 export const BUTTON_MARGIN = 'buttonMargin';
 // Button Alignment

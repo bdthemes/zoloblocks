@@ -13,6 +13,7 @@ const {
 	LinkControl,
 	IconicBtnGroup,
 	ResCounterControl,
+	ResDimensionsControl,
 } = window.zoloModule;
 
 /**
@@ -36,12 +37,13 @@ import objAttributes from './attributes';
 
 import {
 	PRESETS,
+	BUTTON_PADDING,
 	SOCIAL_TEXT,
 	COLUMN_COUNT,
 	COLUMNS_GAP,
 	ROW_GAP,
 	BUTTON_SIZE,
-	BUTTON_ICON_SIZE,
+	ICON_TEXT_SPACING,
 	BUTTON_HEIGHT,
 	SOCIAL_ICON_COLOR,
 } from './constants';
@@ -315,41 +317,37 @@ function Inspector(props) {
 				styleTab={
 					<>
 						<PanelBody initialOpen={true}>
-							{preset !== 'preset-2' && (
-								<ResRangeControl
-									label={__('Button Size', 'zolo-blocks')}
-									controlName={BUTTON_SIZE}
-									resRequiredProps={resRequiredProps}
-									min={0}
-									max={100}
-									step={1}
-								/>
-							)}
 							<ResRangeControl
-								label={__('Button Icon Size', 'zolo-blocks')}
-								controlName={BUTTON_ICON_SIZE}
+								label={__('Size', 'zolo-blocks')}
+								controlName={BUTTON_SIZE}
 								resRequiredProps={resRequiredProps}
 								min={0}
 								max={100}
 								step={1}
 							/>
 							<ResRangeControl
-								label={__('Button Height', 'zolo-blocks')}
-								controlName={BUTTON_HEIGHT}
+								label={__('Icon Text Gap', 'zolo-blocks')}
+								controlName={ICON_TEXT_SPACING}
 								resRequiredProps={resRequiredProps}
 								min={0}
 								max={100}
 								step={1}
 							/>
-							<SelectControl
-								label={__('Social Color', 'zolo-blocks')}
+							<ResDimensionsControl
+								label={__('Padding', 'zolo-blocks')}
+								controlName={BUTTON_PADDING}
+								resRequiredProps={resRequiredProps}
+								forBorderRadius={false}
+							/>
+							<IconicBtnGroup
+								label={__('Social Color Type', 'zolo-blocks')}
 								value={socialColor}
-								options={SOCIAL_ICON_COLOR}
-								onChange={(iconType) =>
+								onChange={(value) =>
 									setAttributes({
-										socialColor: iconType,
+										socialColor: value,
 									})
 								}
+								options={SOCIAL_ICON_COLOR}
 							/>
 
 							{socialColor === 'custom' && (
@@ -366,6 +364,19 @@ function Inspector(props) {
 													onChange={(value) =>
 														setAttributes({
 															socialTextColor:
+																value,
+														})
+													}
+												/>
+												<ColorControl
+													label={__(
+														'Background',
+														'zolo-blocks'
+													)}
+													color={socialBgColor}
+													onChange={(value) =>
+														setAttributes({
+															socialBgColor:
 																value,
 														})
 													}
@@ -387,29 +398,6 @@ function Inspector(props) {
 														})
 													}
 												/>
-											</>
-										}
-									/>
-									<TabPanelControl
-										normalComponents={
-											<>
-												<ColorControl
-													label={__(
-														'Background',
-														'zolo-blocks'
-													)}
-													color={socialBgColor}
-													onChange={(value) =>
-														setAttributes({
-															socialBgColor:
-																value,
-														})
-													}
-												/>
-											</>
-										}
-										hoverComponents={
-											<>
 												<ColorControl
 													label={__(
 														'Background',

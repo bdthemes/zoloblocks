@@ -3,12 +3,14 @@ const {
 	generateResRangeAttributies,
 	generateBorderAttributies,
 	generateResCounterAttributies,
+	generateDimensionAttributes,
 } = window.zoloModule;
 
 import {
 	BUTTON_ALIGNMENT,
 	BUTTON_BG_COLOR,
 	BUTTON_HOVER_BG_COLOR,
+	BUTTON_PADDING,
 	BUTTON_BORDER,
 	ICON_SIZE,
 	ICON_TEXT_SPACING,
@@ -16,7 +18,6 @@ import {
 	COLUMNS_GAP,
 	ROW_GAP,
 	BUTTON_SIZE,
-	BUTTON_ICON_SIZE,
 	BUTTON_HEIGHT,
 } from './constants';
 
@@ -51,10 +52,9 @@ const attributes = {
 	//row gaps
 	...generateResRangeAttributies(ROW_GAP),
 
-	//button size
+	//button
+	...generateDimensionAttributes(BUTTON_PADDING),
 	...generateResRangeAttributies(BUTTON_SIZE),
-	//button icon size
-	...generateResRangeAttributies(BUTTON_ICON_SIZE),
 	//button height
 	...generateResRangeAttributies(BUTTON_HEIGHT),
 
