@@ -68,6 +68,7 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
                 [],
                 ZOLO_VERSION
             );
+
         }
 
         /**
@@ -154,6 +155,8 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
                 ],
                 ZOLO_VERSION
             );
+
+
 
             //this file use for js
             wp_localize_script( 'zolo-block-editor', 'zoloParams', [

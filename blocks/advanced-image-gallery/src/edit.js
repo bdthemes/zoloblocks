@@ -28,6 +28,9 @@ const {
 	handleUniqueId,
 	softMinifyCssStrings,
 	generateNormalBGControlStyles,
+	generateBorderStyle,
+	generateResCounterStyle,
+	generateResRangeStyle,
 	generateDimensionStyle,
 	generateBoxShadowStyles,
 	generateTypographyStyles,
@@ -35,9 +38,16 @@ const {
 
 import {
 	BLOCK_PREFIX,
+	COLUMN_COUNT,
+	COLUMNS_GAP,
+	ROW_GAP,
 	CONTAINER_BACKGROUND,
 	CONTAINER_HOVER_BACKGROUND,
 	CONTAINER_BORDER_RADIUS,
+	CONTAINER_BORDER,
+	CONTAINER_HOVER_BORDER,
+	IMAGE_BORDER,
+	IMAGE_HOVER_BORDER,
 	CONTAINER_HOVER_BORDER_RADIUS,
 	CONTAINER_BOX_SHADOW,
 	CONTAINER_HOVER_BOX_SHADOW,
@@ -49,6 +59,7 @@ import {
 	IMAGE_HOVER_BACKGROUND,
 	IMAGE_PADDING,
 	IMAGE_MARGIN,
+	HEADING_BORDER,
 	HEADING_BACKGROUND,
 	HEADING_BORDER_RADIUS,
 	HEADING_BOX_SHADOW,
@@ -85,6 +96,39 @@ export default function Edit(props) {
 		className: classnames(className, ``),
 	});
 
+	// column count
+	const {
+		desktopRangeStyle: columnCountDeskstyle,
+		tabRangeStyle: columnCountTabStyle,
+		mobRangeStyle: columnCountMobStyle,
+	} = generateResCounterStyle({
+		controlName: COLUMN_COUNT,
+		attributes,
+		noProperty: true,
+	});
+
+	// column gap
+	const {
+		desktopRangeStyle: colGapDeskstyle,
+		tabRangeStyle: colGapTabStyle,
+		mobRangeStyle: colGapMobStyle,
+	} = generateResRangeStyle({
+		controlName: COLUMNS_GAP,
+		property: 'column-gap',
+		attributes,
+	});
+
+	// row gap
+	const {
+		desktopRangeStyle: rowGapDeskstyle,
+		tabRangeStyle: rowGapTabStyle,
+		mobRangeStyle: rowGapMobStyle,
+	} = generateResRangeStyle({
+		controlName: ROW_GAP,
+		property: 'row-gap',
+		attributes,
+	});
+
 	// Container Styles
 	const {
 		backgroundStylesDesktop: containerDeskBGStyle,
@@ -104,6 +148,24 @@ export default function Edit(props) {
 		controlName: CONTAINER_HOVER_BACKGROUND,
 		attributes,
 		noMainBGImg: false,
+	});
+
+	const {
+		desktopBorderStyle: containerBorderDesk,
+		tabBorderStyle: containerBorderTab,
+		mobBorderStyle: containerBorderMob,
+	} = generateBorderStyle({
+		controlName: CONTAINER_BORDER,
+		attributes,
+	});
+
+	const {
+		desktopBorderStyle: containerHoverBorderDesk,
+		tabBorderStyle: containerHoverBorderTab,
+		mobBorderStyle: containerHoverBorderMob,
+	} = generateBorderStyle({
+		controlName: CONTAINER_HOVER_BORDER,
+		attributes,
 	});
 
 	const {
@@ -139,6 +201,24 @@ export default function Edit(props) {
 	);
 
 	// Image
+
+	const {
+		desktopBorderStyle: imageBorderDesk,
+		tabBorderStyle: imageBorderTab,
+		mobBorderStyle: imageBorderMob,
+	} = generateBorderStyle({
+		controlName: IMAGE_BORDER,
+		attributes,
+	});
+
+	const {
+		desktopBorderStyle: imageHoverBorderDesk,
+		tabBorderStyle: imageHoverBorderTab,
+		mobBorderStyle: imageHoverBorderMob,
+	} = generateBorderStyle({
+		controlName: IMAGE_HOVER_BORDER,
+		attributes,
+	});
 
 	const {
 		backgroundStylesDesktop: imageDeskBGStyle,
@@ -211,6 +291,15 @@ export default function Edit(props) {
 	});
 
 	// Heading
+
+	const {
+		desktopBorderStyle: headingBorderDesk,
+		tabBorderStyle: headingBorderTab,
+		mobBorderStyle: headingBorderMob,
+	} = generateBorderStyle({
+		controlName: HEADING_BORDER,
+		attributes,
+	});
 
 	const {
 		backgroundStylesDesktop: headingDeskBGStyle,
