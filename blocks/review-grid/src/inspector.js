@@ -2,12 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import {
-	PanelBody,
-	SelectControl,
-	TabPanel,
-	ToggleControl,
-} from '@wordpress/components';
+import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -21,8 +16,13 @@ import {
 	REVIEW_GRID_PADDING,
 } from './constants';
 
-const { ResRangeControl, ResDimensionsControl, NormalBGControl, HeaderTabs } =
-	window.zoloModule;
+const {
+	ResRangeControl,
+	ResDimensionsControl,
+	NormalBGControl,
+	HeaderTabs,
+	ResCounterControl,
+} = window.zoloModule;
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
@@ -106,14 +106,12 @@ function Inspector(props) {
 							title={__('Grid Settings', 'zolo-blocks')}
 							initialOpen={false}
 						>
-							<ResRangeControl
+							<ResCounterControl
 								label={__('Grid Columns', 'zolo-blocks')}
 								controlName={GRID_COLUMNS}
 								resRequiredProps={resRequiredProps}
-								max={4}
 								min={1}
-								step={1}
-								noUnits={true}
+								max={5}
 							/>
 							<ResRangeControl
 								label={__('Columns Gap', 'zolo-blocks')}

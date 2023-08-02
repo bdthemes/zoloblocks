@@ -49,22 +49,3 @@ export const ICON_BORDER_RADIUS = 'btnIconBorderRadius';
 export const ICON_BOX_SHADOW = 'btnIconBoxShadow';
 export const ICON_HOVER_BOX_SHADOW = 'btnIconHoverBoxShadow';
 export const ICON_PADDING = 'btnIconPadding';
-
-/**
- * Icon Type
- */
-
-export const ICON_TYPES = [
-	{
-		label: __('No Icon', 'zolo-blocks'),
-		value: 'none',
-	},
-	{
-		label: __('Icon & Text', 'zolo-blocks'),
-		value: 'iconText',
-	},
-	{
-		label: __('Icon Only', 'zolo-blocks'),
-		value: 'iconOnly',
-	},
-];

@@ -459,9 +459,7 @@ export default function Edit(props) {
 				}		
 				.zolo-box-button{
 					flex-direction: ${presetOneStyles && presetOneStyles.buttonIconPosition};
-				}			
-								
-			
+				}
 			`;
 			break;
 		case 'style-2':
@@ -474,8 +472,7 @@ export default function Edit(props) {
 				}		
 				.zolo-box-button{
 					flex-direction: ${presetTwoStyles && presetTwoStyles.buttonIconPosition};
-				}		
-			
+				}
 			`;
 			break;
 		case 'style-3':
@@ -489,8 +486,7 @@ export default function Edit(props) {
 				}		
 				.zolo-box-button{
 					flex-direction: ${presetThreeStyles && presetThreeStyles.buttonIconPosition};
-				}				
-			
+				}
 			`;
 			break;
 		case 'style-4':

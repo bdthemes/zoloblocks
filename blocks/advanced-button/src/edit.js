@@ -448,7 +448,7 @@ export default function Edit(props) {
 		${presetHoverStyles ? presetHoverStyles : ''}
   	`;
 	const tabletAllStyle = `
-		.wp-block-zolo-advanced-button {
+		.wp-block-zolo-advanced-button.${uniqueId} {
 			${buttonAlignmentTab}
 		}
 		.zolo-advanced-button.${uniqueId}{
@@ -479,7 +479,7 @@ export default function Edit(props) {
 	`;
 
 	const mobileAllStyle = `
-		.wp-block-zolo-advanced-button {
+		.wp-block-zolo-advanced-button.${uniqueId} {
 			${buttonAlignmentMob}
 		}
 		.zolo-advanced-button.${uniqueId}{

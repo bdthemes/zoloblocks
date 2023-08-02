@@ -27,33 +27,33 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'left',
 		icon: (
 			<svg
-				width={24}
-				height={24}
-				viewBox="0 0 24 24"
+				width={20}
+				height={20}
+				viewBox="0 0 20 20"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<path
-					d="M4 2V22"
+					d="M3.33331 1.66669V18.3334"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 					strokeLinecap="round"
 					strokeLinejoin="round"
 				/>
 				<rect
-					x={4}
-					y={14}
-					width={10}
-					height={5}
+					x="3.33331"
+					y="11.6667"
+					width="8.33333"
+					height="4.16667"
 					rx={1}
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<rect
-					x={4}
-					y={5}
-					width={16}
-					height={5}
+					x="3.33331"
+					y="4.16669"
+					width="13.3333"
+					height="4.16667"
 					rx={1}
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
@@ -66,46 +66,46 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'center',
 		icon: (
 			<svg
-				width={24}
-				height={24}
-				viewBox="0 0 24 24"
+				width={20}
+				height={20}
+				viewBox="0 0 20 20"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<rect
-					x={4}
-					y={5}
-					width={16}
-					height={5}
+					x="3.33334"
+					y="4.16669"
+					width="13.3333"
+					height="4.16667"
 					rx={1}
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<rect
-					x={7}
-					y={14}
+					x={5}
+					y="11.6667"
 					width={10}
-					height={5}
+					height="4.16667"
 					rx={1}
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<path
-					d="M12 10L12 14"
+					d="M10 8.33331L10 11.6666"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 					strokeLinecap="round"
 					strokeLinejoin="round"
 				/>
 				<path
-					d="M12 19L12 22"
+					d="M10 15.8333L10 18.3333"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 					strokeLinecap="round"
 					strokeLinejoin="round"
 				/>
 				<path
-					d="M12 2V5"
+					d="M10 1.66669V4.16669"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 					strokeLinecap="round"
@@ -119,34 +119,32 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'right',
 		icon: (
 			<svg
-				width={24}
-				height={24}
-				viewBox="0 0 24 24"
+				width={20}
+				height={20}
+				viewBox="0 0 20 20"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<path
-					d="M20 2V22"
+					d="M16.6667 1.66667V18.3333"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 					strokeLinecap="round"
 					strokeLinejoin="round"
 				/>
 				<rect
-					x={10}
-					y={14}
-					width={10}
-					height={5}
+					width="8.33333"
+					height="4.16667"
 					rx={1}
+					transform="matrix(-1 0 0 1 16.6667 11.6667)"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<rect
-					x={4}
-					y={5}
-					width={16}
-					height={5}
+					width="13.3333"
+					height="4.16667"
 					rx={1}
+					transform="matrix(-1 0 0 1 16.6667 4.16667)"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -158,41 +156,173 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'justify',
 		icon: (
 			<svg
-				width={24}
-				height={24}
-				viewBox="0 0 24 24"
+				width={20}
+				height={20}
+				viewBox="0 0 20 20"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<path
-					d="M20 2V22"
+					d="M16.6667 1.66669V18.3334"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 					strokeLinecap="round"
 					strokeLinejoin="round"
 				/>
 				<path
-					d="M4 2V22"
+					d="M3.33334 1.66669V18.3334"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 					strokeLinecap="round"
 					strokeLinejoin="round"
 				/>
 				<rect
-					x={4}
-					y={6}
-					width={5}
-					height={12}
+					x="3.33334"
+					y={5}
+					width="4.16667"
+					height={10}
 					rx={1}
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<rect
-					x={15}
-					y={6}
-					width={5}
-					height={12}
+					x="12.5"
+					y={5}
+					width="4.16667"
+					height={10}
 					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+			</svg>
+		),
+	},
+];
+
+export const DEFAULT_ALIGNS = [
+	{
+		label: 'Left',
+		value: 'left',
+		icon: (
+			<svg
+				width={20}
+				height={20}
+				viewBox="0 0 20 20"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M3.33331 1.66669V18.3334"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<rect
+					x="3.33331"
+					y="11.6667"
+					width="8.33333"
+					height="4.16667"
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					x="3.33331"
+					y="4.16669"
+					width="13.3333"
+					height="4.16667"
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+			</svg>
+		),
+	},
+	{
+		label: 'Center',
+		value: 'center',
+		icon: (
+			<svg
+				width={20}
+				height={20}
+				viewBox="0 0 20 20"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<rect
+					x="3.33334"
+					y="4.16669"
+					width="13.3333"
+					height="4.16667"
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					x={5}
+					y="11.6667"
+					width={10}
+					height="4.16667"
+					rx={1}
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<path
+					d="M10 8.33331L10 11.6666"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<path
+					d="M10 15.8333L10 18.3333"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<path
+					d="M10 1.66669V4.16669"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+			</svg>
+		),
+	},
+	{
+		label: 'Right',
+		value: 'right',
+		icon: (
+			<svg
+				width={20}
+				height={20}
+				viewBox="0 0 20 20"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M16.6667 1.66667V18.3333"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<rect
+					width="8.33333"
+					height="4.16667"
+					rx={1}
+					transform="matrix(-1 0 0 1 16.6667 11.6667)"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+				<rect
+					width="13.3333"
+					height="4.16667"
+					rx={1}
+					transform="matrix(-1 0 0 1 16.6667 4.16667)"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -266,140 +396,6 @@ export const BOX_SHADOW_TYPES = [
 	{
 		label: __('Outer', 'zolo-blocks'),
 		value: 'outset',
-	},
-];
-
-export const DEFAULT_ALIGNS = [
-	{
-		label: 'Left',
-		value: 'left',
-		icon: (
-			<svg
-				width={24}
-				height={24}
-				viewBox="0 0 24 24"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path
-					d="M4 2V22"
-					stroke="#4D4D4D"
-					strokeWidth="1.5"
-					strokeLinecap="round"
-					strokeLinejoin="round"
-				/>
-				<rect
-					x={4}
-					y={14}
-					width={10}
-					height={5}
-					rx={1}
-					stroke="#4D4D4D"
-					strokeWidth="1.5"
-				/>
-				<rect
-					x={4}
-					y={5}
-					width={16}
-					height={5}
-					rx={1}
-					stroke="#4D4D4D"
-					strokeWidth="1.5"
-				/>
-			</svg>
-		),
-	},
-	{
-		label: 'Center',
-		value: 'center',
-		icon: (
-			<svg
-				width={24}
-				height={24}
-				viewBox="0 0 24 24"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<rect
-					x={4}
-					y={5}
-					width={16}
-					height={5}
-					rx={1}
-					stroke="#4D4D4D"
-					strokeWidth="1.5"
-				/>
-				<rect
-					x={7}
-					y={14}
-					width={10}
-					height={5}
-					rx={1}
-					stroke="#4D4D4D"
-					strokeWidth="1.5"
-				/>
-				<path
-					d="M12 10L12 14"
-					stroke="#4D4D4D"
-					strokeWidth="1.5"
-					strokeLinecap="round"
-					strokeLinejoin="round"
-				/>
-				<path
-					d="M12 19L12 22"
-					stroke="#4D4D4D"
-					strokeWidth="1.5"
-					strokeLinecap="round"
-					strokeLinejoin="round"
-				/>
-				<path
-					d="M12 2V5"
-					stroke="#4D4D4D"
-					strokeWidth="1.5"
-					strokeLinecap="round"
-					strokeLinejoin="round"
-				/>
-			</svg>
-		),
-	},
-	{
-		label: 'Right',
-		value: 'right',
-		icon: (
-			<svg
-				width={24}
-				height={24}
-				viewBox="0 0 24 24"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path
-					d="M20 2V22"
-					stroke="#4D4D4D"
-					strokeWidth="1.5"
-					strokeLinecap="round"
-					strokeLinejoin="round"
-				/>
-				<rect
-					x={10}
-					y={14}
-					width={10}
-					height={5}
-					rx={1}
-					stroke="#4D4D4D"
-					strokeWidth="1.5"
-				/>
-				<rect
-					x={4}
-					y={5}
-					width={16}
-					height={5}
-					rx={1}
-					stroke="#4D4D4D"
-					strokeWidth="1.5"
-				/>
-			</svg>
-		),
 	},
 ];
 
@@ -654,7 +650,7 @@ export const ICON_POSITIONS = [
 export const ICON_STATUS = [
 	{
 		label: __('No Icon', 'zolo-blocks'),
-		value: 'text',
+		value: 'none',
 		icon: (
 			<svg
 				width={24}
@@ -687,7 +683,7 @@ export const ICON_STATUS = [
 	},
 	{
 		label: __('Icon & Text', 'zolo-blocks'),
-		value: 'icontext',
+		value: 'iconText',
 		icon: (
 			<svg
 				width={24}
@@ -713,7 +709,7 @@ export const ICON_STATUS = [
 	},
 	{
 		label: __('Only Icon', 'zolo-blocks'),
-		value: 'icon',
+		value: 'iconOnly',
 		icon: (
 			<svg
 				width={24}

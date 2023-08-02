@@ -48,6 +48,7 @@
 	border-radius: 4px;
 	background-color: var(--primary-color);
 	position: relative;
+	padding: 12px 40px;
 	&:hover {
 		background-color: var(--hover-color);
 	}
@@ -59,7 +60,6 @@
 	}
 
 	.zolo-button {
-		padding: 12px 40px;
 		gap: 8px;
 		i,
 		span.dashicon {
