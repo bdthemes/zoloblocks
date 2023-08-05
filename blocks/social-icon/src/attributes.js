@@ -3,12 +3,16 @@ const {
 	generateBorderAttributies,
 	generateResCounterAttributies,
 	generateDimensionAttributes,
+	generateBoxShadowAttributies,
+	generateTypographyAttributes,
 } = window.zoloModule;
 
 import {
 	BUTTON_PADDING,
 	BUTTON_BORDER,
 	BTN_BORDER_RADIUS,
+	BTN_SHADOW,
+	BTN_HOVER_SHADOW,
 	ICON_TEXT_SPACING,
 	COLUMN_COUNT,
 	COLUMNS_GAP,
@@ -16,6 +20,8 @@ import {
 	BUTTON_SIZE,
 	BLOCK_MARGIN,
 } from './constants';
+
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
 	//Common Attributes
@@ -32,6 +38,8 @@ const attributes = {
 	// border attributes
 	...generateBorderAttributies(BUTTON_BORDER),
 	...generateDimensionAttributes(BTN_BORDER_RADIUS),
+	...generateBoxShadowAttributies(BTN_SHADOW),
+	...generateBoxShadowAttributies(BTN_HOVER_SHADOW),
 	// column count
 	...generateResCounterAttributies(COLUMN_COUNT, {
 		defaultRange: 4,
@@ -50,6 +58,7 @@ const attributes = {
 	}),
 	// block margin
 	...generateDimensionAttributes(BLOCK_MARGIN),
+	...generateTypographyAttributes(Object.values(typographyObjs)),
 	//Block specific Attributes
 	preset: {
 		type: 'string',
@@ -123,6 +132,9 @@ const attributes = {
 		type: 'string',
 	},
 	textHoverColor: {
+		type: 'string',
+	},
+	borderHoverColor: {
 		type: 'string',
 	},
 };

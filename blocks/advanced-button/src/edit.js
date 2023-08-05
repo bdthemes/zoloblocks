@@ -24,6 +24,7 @@ const {
 	generateNormalBGControlStyles,
 	generateBoxShadowStyles,
 	generateTypographyStyles,
+	generateLinkControlAttributes,
 	DisplayIcon,
 	LinkControl,
 } = window.zoloModule;
@@ -52,7 +53,6 @@ import {
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
-import { generateLinkControlAttributes } from '../../../src/module-export';
 
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =

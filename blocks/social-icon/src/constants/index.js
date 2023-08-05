@@ -59,6 +59,8 @@ export const BUTTON_PADDING = 'btnPadding';
 export const BUTTON_SIZE = 'btnSize';
 export const BUTTON_BORDER = 'btnBorder';
 export const BTN_BORDER_RADIUS = 'btnBorderRadius';
+export const BTN_SHADOW = 'btnShadow';
+export const BTN_HOVER_SHADOW = 'btnHoverShadow';
 
 // Icon
 export const ICON_TEXT_SPACING = 'iconTextSpacing';

@@ -14,6 +14,8 @@ const {
 	ResCounterControl,
 	ResDimensionsControl,
 	BorderControl,
+	BoxShadowControl,
+	TypographyDropdown,
 } = window.zoloModule;
 
 /**
@@ -43,9 +45,13 @@ import {
 	ICON_TEXT_SPACING,
 	SOCIAL_ICON_COLOR,
 	BLOCK_MARGIN,
+	BTN_SHADOW,
+	BTN_HOVER_SHADOW,
 } from './constants';
 
 import { ICON_STATUS } from '../../../src/global/constants';
+
+import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
@@ -59,6 +65,7 @@ function Inspector(props) {
 		socialTextHoverColor,
 		socialBgColor,
 		socialBgHoverColor,
+		borderHoverColor,
 	} = attributes;
 
 	const resRequiredProps = {
@@ -308,54 +315,85 @@ function Inspector(props) {
 				styleTab={
 					<>
 						<PanelBody initialOpen={true}>
-							<ResRangeControl
-								label={__('Size', 'zolo-blocks')}
-								controlName={BUTTON_SIZE}
-								resRequiredProps={resRequiredProps}
-								min={0}
-								max={100}
-								step={1}
-							/>
-							<ResRangeControl
-								label={__('Icon Text Gap', 'zolo-blocks')}
-								controlName={ICON_TEXT_SPACING}
-								resRequiredProps={resRequiredProps}
-								min={0}
-								max={100}
-								step={1}
-							/>
-							<BorderControl
-								label={__('Border', 'zolo-blocks')}
-								controlName={BUTTON_BORDER}
-								resRequiredProps={resRequiredProps}
-							/>
-							<ResDimensionsControl
-								label={__('Border Radius', 'zolo-blocks')}
-								controlName={BTN_BORDER_RADIUS}
-								resRequiredProps={resRequiredProps}
-								forBorderRadius={true}
-							/>
-							<ResDimensionsControl
-								label={__('Padding', 'zolo-blocks')}
-								controlName={BUTTON_PADDING}
-								resRequiredProps={resRequiredProps}
-								forBorderRadius={false}
-							/>
-							<IconicBtnGroup
-								label={__('Social Color Type', 'zolo-blocks')}
-								value={socialColor}
-								onChange={(value) =>
-									setAttributes({
-										socialColor: value,
-									})
-								}
-								options={SOCIAL_ICON_COLOR}
-							/>
+							<TabPanelControl
+								normalComponents={
+									<>
+										<ResRangeControl
+											label={__('Size', 'zolo-blocks')}
+											controlName={BUTTON_SIZE}
+											resRequiredProps={resRequiredProps}
+											min={0}
+											max={100}
+											step={1}
+										/>
+										{socialText !== 'iconOnly' && (
+											<TypographyDropdown
+												label={__(
+													'Text Typography',
+													'zolo-blocks'
+												)}
+												typoPrefixConstant={
+													TEXT_TYPOGRAPHY
+												}
+												resRequiredProps={
+													resRequiredProps
+												}
+											/>
+										)}
+										{socialText === 'iconText' && (
+											<ResRangeControl
+												label={__(
+													'Icon-Text Gap',
+													'zolo-blocks'
+												)}
+												controlName={ICON_TEXT_SPACING}
+												resRequiredProps={
+													resRequiredProps
+												}
+												min={0}
+												max={100}
+												step={1}
+											/>
+										)}
 
-							{socialColor === 'custom' && (
-								<>
-									<TabPanelControl
-										normalComponents={
+										<BorderControl
+											label={__('Border', 'zolo-blocks')}
+											controlName={BUTTON_BORDER}
+											resRequiredProps={resRequiredProps}
+										/>
+										<ResDimensionsControl
+											label={__(
+												'Border Radius',
+												'zolo-blocks'
+											)}
+											controlName={BTN_BORDER_RADIUS}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={true}
+										/>
+										<BoxShadowControl
+											controlName={BTN_SHADOW}
+											resRequiredProps={resRequiredProps}
+										/>
+										<ResDimensionsControl
+											label={__('Padding', 'zolo-blocks')}
+											controlName={BUTTON_PADDING}
+											resRequiredProps={resRequiredProps}
+											forBorderRadius={false}
+										/>
+										<IconicBtnGroup
+											label={__(
+												'Color Type',
+												'zolo-blocks'
+											)}
+											value={socialColor}
+											onChange={(value) =>
+												setAttributes({
+													socialColor: value,
+												})
+											}
+											options={SOCIAL_ICON_COLOR}
+										/>
+										{socialColor === 'custom' && (
 											<>
 												<ColorControl
 													label={__(
@@ -384,8 +422,12 @@ function Inspector(props) {
 													}
 												/>
 											</>
-										}
-										hoverComponents={
+										)}
+									</>
+								}
+								hoverComponents={
+									<>
+										{socialColor === 'custom' && (
 											<>
 												<ColorControl
 													label={__(
@@ -414,10 +456,26 @@ function Inspector(props) {
 													}
 												/>
 											</>
-										}
-									/>
-								</>
-							)}
+										)}
+										<ColorControl
+											label={__(
+												'Border Color',
+												'zolo-blocks'
+											)}
+											color={borderHoverColor}
+											onChange={(value) =>
+												setAttributes({
+													borderHoverColor: value,
+												})
+											}
+										/>
+										<BoxShadowControl
+											controlName={BTN_HOVER_SHADOW}
+											resRequiredProps={resRequiredProps}
+										/>
+									</>
+								}
+							/>
 						</PanelBody>
 					</>
 				}

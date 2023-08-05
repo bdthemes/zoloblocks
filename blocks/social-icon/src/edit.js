@@ -19,6 +19,8 @@ const {
 	softMinifyCssStrings,
 	generateResCounterStyle,
 	generateDimensionStyle,
+	generateBoxShadowStyles,
+	generateTypographyStyles,
 } = window.zoloModule;
 
 import {
@@ -32,9 +34,13 @@ import {
 	BUTTON_SIZE,
 	ICON_TEXT_SPACING,
 	BLOCK_MARGIN,
+	BTN_SHADOW,
+	BTN_HOVER_SHADOW,
 } from './constants';
 
 import Inspector from './inspector';
+
+import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
@@ -50,6 +56,7 @@ export default function Edit(props) {
 		socialBgHoverColor,
 		socialTextColor,
 		socialTextHoverColor,
+		borderHoverColor,
 	} = attributes;
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -92,6 +99,26 @@ export default function Edit(props) {
 	} = generateDimensionStyle({
 		controlName: BTN_BORDER_RADIUS,
 		styleFor: 'border-radius',
+		attributes,
+	});
+
+	const { boxShadowStyle: normalShadow } = generateBoxShadowStyles({
+		attributes,
+		controlName: BTN_SHADOW,
+	});
+
+	const { boxShadowStyle: hoverShadow } = generateBoxShadowStyles({
+		attributes,
+		controlName: BTN_HOVER_SHADOW,
+	});
+
+	const {
+		typoStylesDesktop: textTypoDesk,
+		typoStylesTab: textTypoTab,
+		typoStylesMobile: textTypoMob,
+	} = generateTypographyStyles({
+		prefixConstant: TEXT_TYPOGRAPHY,
+		defaultFontSize: 14,
 		attributes,
 	});
 
@@ -176,7 +203,15 @@ export default function Edit(props) {
 			${paddingDesktop}
 			${gapDesktop}
 			${btnRadiusDesk}
-		}	 
+			${normalShadow}
+		}
+		.${uniqueId} .zolo-social-item:hover {
+			border-color:${borderHoverColor};
+			${hoverShadow}
+		}
+		.${uniqueId} .zolo-social-text {
+			${textTypoDesk}
+		}
 		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
 		}				 
@@ -213,7 +248,10 @@ export default function Edit(props) {
 			${paddingTab}
 			${gapTablet}
 			${btnRadiusTab}
-		}					 
+		}		
+		.${uniqueId} .zolo-social-text {
+			${textTypoTab}
+		}			 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSizeTab}
 		}
@@ -235,7 +273,10 @@ export default function Edit(props) {
 			${paddingMob}
 			${gapMobile}
 			${btnRadiusMob}
-		}					 
+		}		
+		.${uniqueId} .zolo-social-text {
+			${textTypoMob}
+		}			 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSizeMob}
 		}
