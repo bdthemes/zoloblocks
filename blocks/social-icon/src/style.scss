@@ -28,11 +28,11 @@
 		padding: 12px;
 		gap: 10px;
 		border: 1px solid #f5f5f5;
-	}
-
-	.zolo-advanced-social-preset-2,
-	.zolo-advanced-social-preset-5 {
-		grid-template-columns: repeat(6, 1fr);
+		width: 100%;
+		box-sizing: border-box;
+		span {
+			z-index: 1;
+		}
 	}
 
 	.zolo-advanced-social-preset-1 .zolo-social-item,
@@ -57,10 +57,6 @@
 		color: #2196f3;
 	}
 
-	.zolo-advanced-social-share .zolo-social-item span {
-		z-index: 1;
-	}
-
 	.zolo-advanced-social-preset-1 .zolo-social-item:before,
 	.zolo-advanced-social-preset-2 .zolo-social-item:before,
 	.zolo-advanced-social-preset-3 .zolo-social-item:before,
@@ -83,11 +79,6 @@
 	.zolo-advanced-social-preset-5 .zolo-social-item:hover:before {
 		transform-origin: bottom center;
 		transform: skewY(9.3deg) scaleY(2);
-	}
-
-	.zolo-advanced-social-preset-2 .zolo-social-item .zolo-social-text,
-	.zolo-advanced-social-preset-5 .zolo-social-item .zolo-social-text {
-		display: none;
 	}
 
 	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-facebook {
@@ -253,12 +244,5 @@
 
 	.zolo-advanced-social-preset-5 .zolo-social-item:hover {
 		color: #fff;
-	}
-
-	@media (min-width: 768px) {
-		.zolo-advanced-social-preset-2,
-		.zolo-advanced-social-preset-5 {
-			grid-template-columns: repeat(11, 1fr);
-		}
 	}
 }

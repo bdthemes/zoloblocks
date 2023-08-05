@@ -212,7 +212,7 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-social-text {
 			${textTypoDesk}
 		}
-		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
+		.${uniqueId}.zolo-advanced-social-share {
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
 		}				 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
@@ -239,7 +239,7 @@ export default function Edit(props) {
 		.${uniqueId}{
 			${blockTabMargin}
 		}
-		.${uniqueId} .zolo-advanced-social-share {
+		.${uniqueId}.zolo-advanced-social-share {
 			${colGapTabStyle}
 			${rowGapTabStyle}
 		}		
@@ -264,7 +264,7 @@ export default function Edit(props) {
 		.${uniqueId}{
 			${blockMobMargin}
 		}	
-		.${uniqueId} .zolo-advanced-social-share {
+		.${uniqueId}.zolo-advanced-social-share {
 			${colGapMobStyle}
 			${rowGapMobStyle}
 		}		

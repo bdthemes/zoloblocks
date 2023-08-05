@@ -85,6 +85,36 @@ function Inspector(props) {
 		setAttributes({ socialProfiles: [...profile] });
 	};
 
+	/**
+	 * Preset
+	 */
+	const changePremade = (selected) => {
+		setAttributes({ preset: selected });
+		switch (selected) {
+			case 'preset-1':
+				setAttributes({
+					socialText: 'iconText',
+				});
+				break;
+			case 'preset-2':
+				setAttributes({
+					socialText: 'iconOnly',
+				});
+				break;
+			case 'style-2':
+				setAttributes({
+					showTestimonialMessage: false,
+				});
+				break;
+			default:
+				setAttributes({
+					showTestimonialMessage: false,
+					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
+				});
+				break;
+		}
+	};
+
 	return (
 		<InspectorControls key="controls">
 			<HeaderTabs
@@ -98,24 +128,18 @@ function Inspector(props) {
 								label={__('Preset Designs', 'zolo-blocks')}
 								value={preset}
 								options={PRESETS}
+								onChange={(value) => changePremade(value)}
+							/>
+							<IconicBtnGroup
+								label={__('Type', 'zolo-blocks')}
+								value={socialText}
 								onChange={(value) =>
 									setAttributes({
-										preset: value,
+										socialText: value,
 									})
 								}
+								options={ICON_STATUS}
 							/>
-							{preset !== 'preset-2' && preset !== 'preset-5' && (
-								<IconicBtnGroup
-									label={__('Type', 'zolo-blocks')}
-									value={socialText}
-									onChange={(value) =>
-										setAttributes({
-											socialText: value,
-										})
-									}
-									options={ICON_STATUS}
-								/>
-							)}
 						</PanelBody>
 						<PanelBody
 							title={__('Column Settings', 'zolo-blocks')}
@@ -126,7 +150,7 @@ function Inspector(props) {
 								controlName={COLUMN_COUNT}
 								resRequiredProps={resRequiredProps}
 								min={1}
-								max={5}
+								max={6}
 							/>
 
 							<ResRangeControl
