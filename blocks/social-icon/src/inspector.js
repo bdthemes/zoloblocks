@@ -1,7 +1,6 @@
 /**
  * Internal depencencies
  */
-
 const {
 	ResRangeControl,
 	ColorControl,
