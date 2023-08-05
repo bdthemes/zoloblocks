@@ -2,14 +2,8 @@
  * WordPress dependencies
  */
 
-import {
-	useBlockProps,
-	RichText,
-	BlockControls,
-	__experimentalLinkControl as LinkControl,
-} from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -19,29 +13,34 @@ import classnames from 'classnames';
 
 const {
 	DisplayIcon,
-	generateResAlignmentStyle,
 	generateResRangeStyle,
 	generateBorderStyle,
 	handleUniqueId,
 	softMinifyCssStrings,
 	generateResCounterStyle,
+	generateDimensionStyle,
+	generateBoxShadowStyles,
+	generateTypographyStyles,
 } = window.zoloModule;
 
 import {
 	BLOCK_PREFIX,
-	BUTTON_ALIGNMENT,
 	BUTTON_BORDER,
+	BTN_BORDER_RADIUS,
 	COLUMN_COUNT,
 	COLUMNS_GAP,
 	ROW_GAP,
-	ICON_SIZE,
+	BUTTON_PADDING,
 	BUTTON_SIZE,
-	BUTTON_ICON_SIZE,
 	ICON_TEXT_SPACING,
-	BUTTON_HEIGHT,
+	BLOCK_MARGIN,
+	BTN_SHADOW,
+	BTN_HOVER_SHADOW,
 } from './constants';
 
 import Inspector from './inspector';
+
+import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
@@ -49,20 +48,15 @@ export default function Edit(props) {
 	const {
 		uniqueId,
 		preset,
-		link,
 		blockStyle,
-		textColor,
-		textHoverColor,
 		socialText,
-		iconPosition,
 		socialProfiles,
-		socialProfilesLinkTarget,
-		socialProfileColumns,
 		socialBgColor,
 		socialColor,
 		socialBgHoverColor,
 		socialTextColor,
 		socialTextHoverColor,
+		borderHoverColor,
 	} = attributes;
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -78,14 +72,74 @@ export default function Edit(props) {
 		className: classnames(className, ``),
 	});
 
-	// alignment
+	//  button general settings
 	const {
-		desktopAlignStyle: buttonAlignmentDesktop,
-		tabAlignStyle: buttonAlignmentTab,
-		mobAlignStyle: buttonAlignmentMob,
-	} = generateResAlignmentStyle({
-		controlName: BUTTON_ALIGNMENT,
-		property: 'text-align',
+		desktopRangeStyle: buttonSize,
+		tabRangeStyle: buttonSizeTab,
+		mobRangeStyle: buttonSizeMob,
+	} = generateResRangeStyle({
+		controlName: BUTTON_SIZE,
+		property: 'font-size',
+		attributes,
+	});
+
+	const {
+		desktopBorderStyle: borderStyles,
+		tabBorderStyle: borderStylesTab,
+		mobBorderStyle: borderStylesMob,
+	} = generateBorderStyle({
+		controlName: BUTTON_BORDER,
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: btnRadiusDesk,
+		dimensionStylesTab: btnRadiusTab,
+		dimensionStylesMobile: btnRadiusMob,
+	} = generateDimensionStyle({
+		controlName: BTN_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	});
+
+	const { boxShadowStyle: normalShadow } = generateBoxShadowStyles({
+		attributes,
+		controlName: BTN_SHADOW,
+	});
+
+	const { boxShadowStyle: hoverShadow } = generateBoxShadowStyles({
+		attributes,
+		controlName: BTN_HOVER_SHADOW,
+	});
+
+	const {
+		typoStylesDesktop: textTypoDesk,
+		typoStylesTab: textTypoTab,
+		typoStylesMobile: textTypoMob,
+	} = generateTypographyStyles({
+		prefixConstant: TEXT_TYPOGRAPHY,
+		defaultFontSize: 14,
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: paddingDesktop,
+		dimensionStylesTab: paddingTab,
+		dimensionStylesMobile: paddingMob,
+	} = generateDimensionStyle({
+		controlName: BUTTON_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
+
+	// Spacing between icon and text
+	const {
+		desktopRangeStyle: gapDesktop,
+		tabRangeStyle: gapTablet,
+		mobRangeStyle: gapMobile,
+	} = generateResRangeStyle({
+		controlName: ICON_TEXT_SPACING,
+		property: 'gap',
 		attributes,
 	});
 
@@ -122,85 +176,14 @@ export default function Edit(props) {
 		attributes,
 	});
 
-	/**
-	 * Generate Alignment Class
-	 */
-	const deskAlign = `display: ${
-		buttonAlignmentDesktop === 'text-align:justify;'
-			? 'flex'
-			: 'inline-flex'
-	};`;
-
-	const tabAlign = `display: ${
-		buttonAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const mobAlign = `display: ${
-		buttonAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	// generate border style
+	// block margin
 	const {
-		desktopBorderStyle: borderStyles,
-		tabBorderStyle: borderStylesTab,
-		mobBorderStyle: borderStylesMob,
-	} = generateBorderStyle({
-		controlName: BUTTON_BORDER,
-		attributes,
-	});
-
-	// generate icon size
-	const {
-		desktopRangeStyle: iconSize,
-		tabRangeStyle: iconSizeTab,
-		mobRangeStyle: iconSizeMob,
-	} = generateResRangeStyle({
-		controlName: ICON_SIZE,
-		property: 'width',
-		attributes,
-	});
-
-	// Spacing between icon and text
-	const {
-		desktopRangeStyle: gap,
-		tabRangeStyle: gapTab,
-		mobRangeStyle: gapMob,
-	} = generateResRangeStyle({
-		controlName: ICON_TEXT_SPACING,
-		property: 'gap',
-		attributes,
-	});
-
-	// generate button size
-	const {
-		desktopRangeStyle: buttonSize,
-		tabRangeStyle: buttonSizeTab,
-		mobRangeStyle: buttonSizeMob,
-	} = generateResRangeStyle({
-		controlName: BUTTON_SIZE,
-		property: 'font-size',
-		attributes,
-	});
-
-	// generate button height
-	const {
-		desktopRangeStyle: buttonHeight,
-		tabRangeStyle: buttonHeightTab,
-		mobRangeStyle: buttonHeightMob,
-	} = generateResRangeStyle({
-		controlName: BUTTON_HEIGHT,
-		property: 'height',
-		attributes,
-	});
-
-	// generate button size
-	const {
-		desktopRangeStyle: buttonIconSize,
-		tabRangeStyle: buttonIconSizeTab,
-		mobRangeStyle: buttonIconSizeMob,
-	} = generateResRangeStyle({
-		controlName: BUTTON_ICON_SIZE,
-		property: 'font-size',
+		dimensionStylesDesktop: blockDeskMargin,
+		dimensionStylesTab: blockTabMargin,
+		dimensionStylesMobile: blockMobMargin,
+	} = generateDimensionStyle({
+		controlName: BLOCK_MARGIN,
+		styleFor: 'margin',
 		attributes,
 	});
 
@@ -209,36 +192,32 @@ export default function Edit(props) {
 	 */
 	const desktopAllStyle = `
 		.${uniqueId}{
-			${buttonAlignmentDesktop}
-		}
-		.${uniqueId} .zolo-content {
-			${borderStyles}
-			${gap}
-			${deskAlign}
-			color: ${textColor ? textColor : 'inherit'};
-		}
-		.${uniqueId} .zolo-content:hover {
-			color: ${textHoverColor ? textHoverColor : 'inherit'};
-		}
-		.${uniqueId} .zolo-button-icon {
-			${iconSize}
+			${blockDeskMargin}
 		}
 		.${uniqueId}.zolo-advanced-social-share {
 			${colGapDeskstyle}
 			${rowGapDeskstyle}
-		}				 
+		}
+		.${uniqueId} .zolo-social-item {
+			${borderStyles}
+			${paddingDesktop}
+			${gapDesktop}
+			${btnRadiusDesk}
+			${normalShadow}
+		}
+		.${uniqueId} .zolo-social-item:hover {
+			border-color:${borderHoverColor};
+			${hoverShadow}
+		}
+		.${uniqueId} .zolo-social-text {
+			${textTypoDesk}
+		}
 		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
 		}				 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSize}
-		}		
-		.${uniqueId} .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
-			${buttonIconSize}
-		}		
-		.${uniqueId} .zolo-social-item {
-			${buttonHeight}
-		}		
+		}			
 		${
 			socialColor === 'custom'
 				? `.zolo-advanced-social-share.zolo-advanced-social-preset-1.${uniqueId}.social-icon .zolo-social-item{
@@ -255,67 +234,55 @@ export default function Edit(props) {
 				}`
 				: ' '
 		}
-		
-		
   	`;
 	const tabletAllStyle = `
 		.${uniqueId}{
-			${buttonAlignmentTab}
-		}
-		.${uniqueId} .zolo-content {
-			${borderStylesTab}
-			${gapTab}
-			${tabAlign}
-		}
-		.${uniqueId} .zolo-button-icon {
-			${iconSizeTab}
+			${blockTabMargin}
 		}
 		.${uniqueId} .zolo-advanced-social-share {
 			${colGapTabStyle}
 			${rowGapTabStyle}
-		}						 
+		}		
+		.${uniqueId} .zolo-social-item {
+			${borderStylesTab}
+			${paddingTab}
+			${gapTablet}
+			${btnRadiusTab}
+		}		
+		.${uniqueId} .zolo-social-text {
+			${textTypoTab}
+		}			 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSizeTab}
 		}
 		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
 			grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
 		}			
-		.${uniqueId} .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
-			${buttonIconSizeTab}
-		}				
-		.${uniqueId} .zolo-social-item {
-			${buttonHeightTab}
-		}
 	`;
 
 	const mobileAllStyle = `
 		.${uniqueId}{
-			${buttonAlignmentMob}
-		}
-		.${uniqueId} .zolo-content {
-			${borderStylesMob}
-			${gapMob}
-			${mobAlign}
-		}
-		.${uniqueId} .zolo-button-icon {
-			${iconSizeMob}
-		}		
+			${blockMobMargin}
+		}	
 		.${uniqueId} .zolo-advanced-social-share {
 			${colGapMobStyle}
 			${rowGapMobStyle}
-		}							 
+		}		
+		.${uniqueId} .zolo-social-item {
+			${borderStylesMob}
+			${paddingMob}
+			${gapMobile}
+			${btnRadiusMob}
+		}		
+		.${uniqueId} .zolo-social-text {
+			${textTypoMob}
+		}			 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSizeMob}
 		}
 		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
 			grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
 		}			
-		.${uniqueId} .zolo-social-icon, .zolo-social-icon .dashicon.dashicons {
-			${buttonIconSizeMob}
-		}
-		.${uniqueId} .zolo-social-item {
-			${buttonHeightMob}
-		}
   	`;
 
 	const allStyle = `
@@ -373,13 +340,12 @@ export default function Edit(props) {
 									}
 									className={`zolo-social-item zolo-${socialName}`}
 								>
-									{(socialText == 'icon' ||
-										socialText == 'icontext') && (
+									{socialText !== 'none' && (
 										<span className="zolo-social-icon">
 											<DisplayIcon icon={profile.icon} />
 										</span>
 									)}
-									{socialText != 'icon' && (
+									{socialText !== 'iconOnly' && (
 										<span className="zolo-social-text">
 											{profile.text}
 										</span>

@@ -17,6 +17,11 @@
 	grid-gap: 30px;
 }
 
+.zolo-single-image {
+	grid-template-columns: repeat(1, 1fr);
+	display: grid;
+}
+
 .zolo-image-gallery .zolo-item {
 	position: relative;
 }

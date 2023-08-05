@@ -21,23 +21,23 @@ export const ST_POSITION = [
 		value: 'top',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
 			>
-				<rect
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
+				<path
+					d="M22 4L2 4"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
 				/>
 				<path
-					d="M14.53,22.09H45c0,.07,0,.13,0,.2v63a5,5,0,1,0,10,0v-63c0-.07,0-.13,0-.2H85.47a5,5,0,0,0,0-10H14.53a5,5,0,0,0,0,10Z"
-					style={{
-						fill: '#39394d',
-					}}
+					d="M15 8C15.5523 8 16 8.44772 16 9V19C16 19.5523 15.5523 20 15 20H9C8.44772 20 8 19.5523 8 19L8 9C8 8.44771 8.44772 8 9 8L15 8Z"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
 				/>
 			</svg>
 		),
@@ -47,23 +47,23 @@ export const ST_POSITION = [
 		value: 'bottom',
 		icon: (
 			<svg
-				id="Layer_1"
-				data-name="Layer 1"
+				width={24}
+				height={24}
+				viewBox="0 0 24 24"
+				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 100 100"
 			>
-				<rect
-					width="100"
-					height="100"
-					style={{
-						fill: 'none',
-					}}
+				<path
+					d="M22 20L2 20"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
 				/>
 				<path
-					d="M85.47,80.29H55c0-.07,0-.13,0-.2v-63a5,5,0,0,0-10,0v63c0,.07,0,.13,0,.2H14.53a5,5,0,0,0,0,10H85.47a5,5,0,0,0,0-10Z"
-					style={{
-						fill: '#39394d',
-					}}
+					d="M15 4C15.5523 4 16 4.44772 16 5V15C16 15.5523 15.5523 16 15 16H9C8.44772 16 8 15.5523 8 15L8 5C8 4.44771 8.44772 4 9 4L15 4Z"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
 				/>
 			</svg>
 		),

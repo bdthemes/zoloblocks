@@ -1,13 +1,8 @@
 /**
  * WordPress dependencies
  */
-import {
-	useBlockProps,
-	RichText,
-	BlockControls,
-} from '@wordpress/block-editor';
-import { useEffect, useState } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup, Popover } from '@wordpress/components';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 
@@ -25,7 +20,6 @@ const {
 	generateBoxShadowStyles,
 	generateTypographyStyles,
 	DisplayIcon,
-	LinkControl,
 } = window.zoloModule;
 
 import {
@@ -46,13 +40,11 @@ import {
 	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
 	ICON_PADDING,
-	LINK,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
-import { generateLinkControlAttributes } from '../../../src/module-export';
 
 export default function Edit(props) {
 	const { attributes, setAttributes, className, clientId, isSelected } =
@@ -85,7 +77,6 @@ export default function Edit(props) {
 		presetTwelveStyles,
 	} = attributes;
 
-	const [popoverVisible, setPopoverVisible] = useState(false);
 	// unique ID
 	useEffect(() => {
 		handleUniqueId({
@@ -448,7 +439,7 @@ export default function Edit(props) {
 		${presetHoverStyles ? presetHoverStyles : ''}
   	`;
 	const tabletAllStyle = `
-		.wp-block-zolo-advanced-button {
+		.wp-block-zolo-advanced-button.${uniqueId} {
 			${buttonAlignmentTab}
 		}
 		.zolo-advanced-button.${uniqueId}{
@@ -479,7 +470,7 @@ export default function Edit(props) {
 	`;
 
 	const mobileAllStyle = `
-		.wp-block-zolo-advanced-button {
+		.wp-block-zolo-advanced-button.${uniqueId} {
 			${buttonAlignmentMob}
 		}
 		.zolo-advanced-button.${uniqueId}{

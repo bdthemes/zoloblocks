@@ -64,9 +64,9 @@ const Save = ({ attributes }) => {
 						)}
 						<div className="zb-profile-info">
 							{showName && (
-								<a className="zb-profile-name" href="#">
+								<div className="zb-profile-name">
 									<RichText.Content value={name} />
-								</a>
+								</div>
 							)}
 							{showUsername && (
 								<div className="zb-profile-username">

@@ -8,12 +8,12 @@ import { __ } from "@wordpress/i18n";
 /**
  * External Dependencies
  */
-import Select2 from "react-select";
+import Select2 from 'react-select';
 
 /**
  * Internal dependencies
  */
-import { googleFonts } from "./googleFonts";
+import { googleFonts } from './googleFonts';
 
 const FontFamilyPicker = ({
     label,
@@ -75,5 +75,3 @@ const FontFamilyPicker = ({
 };
 
 export default withInstanceId(FontFamilyPicker);
-
-

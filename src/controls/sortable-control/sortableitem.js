@@ -2,12 +2,14 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 const SortableItem = (props) => {
-	const { attributes, listeners, setNodeRef, transform, transition } =
+	const { attributes, listeners, setNodeRef, transform, transition, isOver } =
 		useSortable({ id: props.id });
 
 	const itemStyle = {
 		transform: CSS.Transform.toString(transform),
 		transition,
+		border: isOver ? '2px solid #4747FF' : undefined,
+		borderRadius: '6px',
 	};
 
 	return (
