@@ -9,15 +9,16 @@
 use Zolo\Helpers\ZoloHelpers;
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     exit;
 }
 
-if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
+if (!class_exists('Zolo_Block_Enqueue')) {
     /**
      * Class Zolo_Block_Enqueue.
      */
-    final class Zolo_Block_Enqueue {
+    final class Zolo_Block_Enqueue
+    {
 
         /**
          * Member Variable
@@ -29,8 +30,9 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
         /**
          *  Initiator
          */
-        public static function get_instance() {
-            if ( ! isset( self::$instance ) ) {
+        public static function get_instance()
+        {
+            if (!isset(self::$instance)) {
                 self::$instance = new self();
             }
             return self::$instance;
@@ -39,13 +41,14 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
         /**
          * Constructor
          */
-        public function __construct() {
+        public function __construct()
+        {
 
-            add_action( 'enqueue_block_editor_assets', [ $this, 'editor_assets_loader' ] );
+            add_action('enqueue_block_editor_assets', [$this, 'editor_assets_loader']);
 
             // enqueue style for both editor and frontend
             // add_action('admin_init', array($this, 'block_assets_loader'));
-            add_action( 'enqueue_block_assets', [ $this, 'block_assets_loader' ] );
+            add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
         }
 
         /**
@@ -53,7 +56,8 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
          * @since 0.0.1
          * @return void
          */
-        public function block_assets_loader() {
+        public function block_assets_loader()
+        {
             wp_register_style(
                 'zolo-block-common-style',
                 ZOLO_ADMIN_URL . 'dist/style.css',
@@ -78,10 +82,11 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
          *
          * @return void
          */
-        public function editor_assets_loader() {
+        public function editor_assets_loader()
+        {
             //Register vendor bundle
             $dependency_path  = ZOLO_DIR_PATH . 'vendor-bundle/index.asset.php';
-            $script_dependecy = file_exists( $dependency_path ) ? include $dependency_path : [
+            $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
             ];
@@ -99,7 +104,7 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
 
             //Register Modules
             $modules_dep_path = ZOLO_DIR_PATH . 'modules/index.asset.php';
-            $script_dependecy = file_exists( $modules_dep_path ) ? include $modules_dep_path : [
+            $script_dependecy = file_exists($modules_dep_path) ? include $modules_dep_path : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
             ];
@@ -116,7 +121,7 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
             );
 
             $dependency_path  = ZOLO_DIR_PATH . 'dist/index.asset.php';
-            $script_dependecy = file_exists( $dependency_path ) ? include $dependency_path : [
+            $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
             ];
@@ -159,13 +164,14 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
 
 
             //this file use for js
-            wp_localize_script( 'zolo-block-editor', 'zoloParams', [
-                'ajaxurl'       => admin_url( 'admin-ajax.php' ),
-                'post_types'    => ZoloHelpers::get_post_types(),
-                'get_users'     => ZoloHelpers::get_all_users(),
-                'all_taxonomy'  => ZoloHelpers::get_related_taxonomy(),
-                'all_term_list' => ZoloHelpers::get_all_taxonomy()
-            ] );
+            wp_localize_script('zolo-block-editor', 'zoloParams', [
+                'ajaxurl'    => admin_url('admin-ajax.php'),
+                'post_types' => ZoloHelpers::get_post_types(),
+                'get_users' => ZoloHelpers::get_all_users(),
+                'get_taxonomies' => ZoloHelpers::get_taxonomies(),
+                'all_term_list'  => ZoloHelpers::get_all_taxonomy(),
+                'zolo_nonce' => wp_create_nonce('zolo-nonce'),
+            ]);
         }
     }
 }
