@@ -57,22 +57,11 @@ export const ROW_GAP = 'rowGap';
 //button
 export const BUTTON_PADDING = 'btnPadding';
 export const BUTTON_SIZE = 'btnSize';
-export const BUTTON_HEIGHT = 'buttonHeight';
+export const BUTTON_BORDER = 'btnBorder';
+export const BTN_BORDER_RADIUS = 'btnBorderRadius';
 
-// Button BG
-export const BUTTON_BG_COLOR = 'buttonNormal';
-// Button Hover BG
-export const BUTTON_HOVER_BG_COLOR = 'buttonHover';
-// Button Typography
-export const BUTTON_TYPOGRAPHY = 'buttonTypography';
-
-// Button Margin
-export const BUTTON_MARGIN = 'buttonMargin';
-// Button Alignment
-export const BUTTON_ALIGNMENT = 'buttonAlignment';
-// Button Border
-export const BUTTON_BORDER = 'buttonBorder';
-// Icon Size
-export const ICON_SIZE = 'iconSize';
-// icon and text spacing
+// Icon
 export const ICON_TEXT_SPACING = 'iconTextSpacing';
+
+// Block Margin
+export const BLOCK_MARGIN = 'blockMargin';

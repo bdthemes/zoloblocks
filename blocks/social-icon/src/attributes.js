@@ -1,5 +1,4 @@
 const {
-	generateResAlignmentAttributies,
 	generateResRangeAttributies,
 	generateBorderAttributies,
 	generateResCounterAttributies,
@@ -7,18 +6,15 @@ const {
 } = window.zoloModule;
 
 import {
-	BUTTON_ALIGNMENT,
-	BUTTON_BG_COLOR,
-	BUTTON_HOVER_BG_COLOR,
 	BUTTON_PADDING,
 	BUTTON_BORDER,
-	ICON_SIZE,
+	BTN_BORDER_RADIUS,
 	ICON_TEXT_SPACING,
 	COLUMN_COUNT,
 	COLUMNS_GAP,
 	ROW_GAP,
 	BUTTON_SIZE,
-	BUTTON_HEIGHT,
+	BLOCK_MARGIN,
 } from './constants';
 
 const attributes = {
@@ -33,16 +29,9 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
-	//alignment attributes
-	...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
-		defaultAlign: 'left',
-	}),
-
 	// border attributes
 	...generateBorderAttributies(BUTTON_BORDER),
-	...generateResRangeAttributies(ICON_SIZE, {
-		default: 16,
-	}),
+	...generateDimensionAttributes(BTN_BORDER_RADIUS),
 	// column count
 	...generateResCounterAttributies(COLUMN_COUNT, {
 		defaultRange: 4,
@@ -55,13 +44,12 @@ const attributes = {
 	//button
 	...generateDimensionAttributes(BUTTON_PADDING),
 	...generateResRangeAttributies(BUTTON_SIZE),
-	//button height
-	...generateResRangeAttributies(BUTTON_HEIGHT),
-
 	//icon spacing
 	...generateResRangeAttributies(ICON_TEXT_SPACING, {
 		default: 5,
 	}),
+	// block margin
+	...generateDimensionAttributes(BLOCK_MARGIN),
 	//Block specific Attributes
 	preset: {
 		type: 'string',

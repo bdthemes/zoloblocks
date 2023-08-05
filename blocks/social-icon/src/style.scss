@@ -18,23 +18,21 @@
 		--dribbble: #ea4c89;
 	}
 
-	.zolo-advanced-social-share .zolo-social-item {
+	.zolo-social-item {
 		text-decoration: none;
 		border-radius: 3px;
 		font-size: 14px;
 		position: relative;
 		overflow: hidden;
 		transition: color 0.3s ease;
+		padding: 12px;
+		gap: 10px;
+		border: 1px solid #f5f5f5;
 	}
 
 	.zolo-advanced-social-preset-2,
 	.zolo-advanced-social-preset-5 {
 		grid-template-columns: repeat(6, 1fr);
-	}
-
-	.zolo-social-item {
-		padding: 12px;
-		gap: 10px;
 	}
 
 	.zolo-advanced-social-preset-1 .zolo-social-item,
@@ -51,7 +49,6 @@
 	.zolo-advanced-social-preset-5 .zolo-social-item {
 		color: #36354f;
 		background-color: #f5f5f5;
-		border: 1px solid #f5f5f5;
 	}
 
 	.zolo-advanced-social-preset-1 .zolo-social-item:hover,

@@ -2,14 +2,8 @@
  * WordPress dependencies
  */
 
-import {
-	useBlockProps,
-	RichText,
-	BlockControls,
-	__experimentalLinkControl as LinkControl,
-} from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -19,7 +13,6 @@ import classnames from 'classnames';
 
 const {
 	DisplayIcon,
-	generateResAlignmentStyle,
 	generateResRangeStyle,
 	generateBorderStyle,
 	handleUniqueId,
@@ -30,17 +23,15 @@ const {
 
 import {
 	BLOCK_PREFIX,
-	BUTTON_ALIGNMENT,
 	BUTTON_BORDER,
+	BTN_BORDER_RADIUS,
 	COLUMN_COUNT,
 	COLUMNS_GAP,
 	ROW_GAP,
-	ICON_SIZE,
 	BUTTON_PADDING,
 	BUTTON_SIZE,
-	BUTTON_ICON_SIZE,
 	ICON_TEXT_SPACING,
-	BUTTON_HEIGHT,
+	BLOCK_MARGIN,
 } from './constants';
 
 import Inspector from './inspector';
@@ -51,15 +42,9 @@ export default function Edit(props) {
 	const {
 		uniqueId,
 		preset,
-		link,
 		blockStyle,
-		textColor,
-		textHoverColor,
 		socialText,
-		iconPosition,
 		socialProfiles,
-		socialProfilesLinkTarget,
-		socialProfileColumns,
 		socialBgColor,
 		socialColor,
 		socialBgHoverColor,
@@ -92,6 +77,25 @@ export default function Edit(props) {
 	});
 
 	const {
+		desktopBorderStyle: borderStyles,
+		tabBorderStyle: borderStylesTab,
+		mobBorderStyle: borderStylesMob,
+	} = generateBorderStyle({
+		controlName: BUTTON_BORDER,
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: btnRadiusDesk,
+		dimensionStylesTab: btnRadiusTab,
+		dimensionStylesMobile: btnRadiusMob,
+	} = generateDimensionStyle({
+		controlName: BTN_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	});
+
+	const {
 		dimensionStylesDesktop: paddingDesktop,
 		dimensionStylesTab: paddingTab,
 		dimensionStylesMobile: paddingMob,
@@ -109,17 +113,6 @@ export default function Edit(props) {
 	} = generateResRangeStyle({
 		controlName: ICON_TEXT_SPACING,
 		property: 'gap',
-		attributes,
-	});
-
-	// alignment
-	const {
-		desktopAlignStyle: buttonAlignmentDesktop,
-		tabAlignStyle: buttonAlignmentTab,
-		mobAlignStyle: buttonAlignmentMob,
-	} = generateResAlignmentStyle({
-		controlName: BUTTON_ALIGNMENT,
-		property: 'text-align',
 		attributes,
 	});
 
@@ -156,41 +149,14 @@ export default function Edit(props) {
 		attributes,
 	});
 
-	/**
-	 * Generate Alignment Class
-	 */
-	const deskAlign = `display: ${
-		buttonAlignmentDesktop === 'text-align:justify;'
-			? 'flex'
-			: 'inline-flex'
-	};`;
-
-	const tabAlign = `display: ${
-		buttonAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const mobAlign = `display: ${
-		buttonAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	// generate border style
+	// block margin
 	const {
-		desktopBorderStyle: borderStyles,
-		tabBorderStyle: borderStylesTab,
-		mobBorderStyle: borderStylesMob,
-	} = generateBorderStyle({
-		controlName: BUTTON_BORDER,
-		attributes,
-	});
-
-	// generate icon size
-	const {
-		desktopRangeStyle: iconSize,
-		tabRangeStyle: iconSizeTab,
-		mobRangeStyle: iconSizeMob,
-	} = generateResRangeStyle({
-		controlName: ICON_SIZE,
-		property: 'width',
+		dimensionStylesDesktop: blockDeskMargin,
+		dimensionStylesTab: blockTabMargin,
+		dimensionStylesMobile: blockMobMargin,
+	} = generateDimensionStyle({
+		controlName: BLOCK_MARGIN,
+		styleFor: 'margin',
 		attributes,
 	});
 
@@ -199,26 +165,17 @@ export default function Edit(props) {
 	 */
 	const desktopAllStyle = `
 		.${uniqueId}{
-			${buttonAlignmentDesktop}
-		}
-		.${uniqueId} .zolo-content {
-			${borderStyles}
-			${deskAlign}
-			color: ${textColor ? textColor : 'inherit'};
-		}
-		.${uniqueId} .zolo-content:hover {
-			color: ${textHoverColor ? textHoverColor : 'inherit'};
-		}
-		.${uniqueId} .zolo-button-icon {
-			${iconSize}
+			${blockDeskMargin}
 		}
 		.${uniqueId}.zolo-advanced-social-share {
 			${colGapDeskstyle}
 			${rowGapDeskstyle}
 		}
 		.${uniqueId} .zolo-social-item {
+			${borderStyles}
 			${paddingDesktop}
 			${gapDesktop}
+			${btnRadiusDesk}
 		}	 
 		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
@@ -245,22 +202,17 @@ export default function Edit(props) {
   	`;
 	const tabletAllStyle = `
 		.${uniqueId}{
-			${buttonAlignmentTab}
-		}
-		.${uniqueId} .zolo-content {
-			${borderStylesTab}
-			${tabAlign}
-		}
-		.${uniqueId} .zolo-button-icon {
-			${iconSizeTab}
+			${blockTabMargin}
 		}
 		.${uniqueId} .zolo-advanced-social-share {
 			${colGapTabStyle}
 			${rowGapTabStyle}
 		}		
 		.${uniqueId} .zolo-social-item {
+			${borderStylesTab}
 			${paddingTab}
 			${gapTablet}
+			${btnRadiusTab}
 		}					 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSizeTab}
@@ -272,22 +224,17 @@ export default function Edit(props) {
 
 	const mobileAllStyle = `
 		.${uniqueId}{
-			${buttonAlignmentMob}
-		}
-		.${uniqueId} .zolo-content {
-			${borderStylesMob}
-			${mobAlign}
-		}
-		.${uniqueId} .zolo-button-icon {
-			${iconSizeMob}
-		}		
+			${blockMobMargin}
+		}	
 		.${uniqueId} .zolo-advanced-social-share {
 			${colGapMobStyle}
 			${rowGapMobStyle}
 		}		
 		.${uniqueId} .zolo-social-item {
+			${borderStylesMob}
 			${paddingMob}
 			${gapMobile}
+			${btnRadiusMob}
 		}					 
 		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSizeMob}

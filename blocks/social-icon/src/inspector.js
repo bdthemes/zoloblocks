@@ -14,6 +14,7 @@ const {
 	IconicBtnGroup,
 	ResCounterControl,
 	ResDimensionsControl,
+	BorderControl,
 } = window.zoloModule;
 
 /**
@@ -22,13 +23,9 @@ const {
 import { InspectorControls } from '@wordpress/block-editor';
 
 import {
-	CardDivider,
-	FlexItem,
 	PanelBody,
 	SelectControl,
-	TabPanel,
 	TextControl,
-	ToggleControl,
 	Button,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -37,15 +34,16 @@ import objAttributes from './attributes';
 
 import {
 	PRESETS,
+	BUTTON_BORDER,
+	BTN_BORDER_RADIUS,
 	BUTTON_PADDING,
-	SOCIAL_TEXT,
 	COLUMN_COUNT,
 	COLUMNS_GAP,
 	ROW_GAP,
 	BUTTON_SIZE,
 	ICON_TEXT_SPACING,
-	BUTTON_HEIGHT,
 	SOCIAL_ICON_COLOR,
+	BLOCK_MARGIN,
 } from './constants';
 
 import { ICON_STATUS } from '../../../src/global/constants';
@@ -53,21 +51,15 @@ import { ICON_STATUS } from '../../../src/global/constants';
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
 	const {
-		uniqueId,
 		preset,
 		resMode,
 		socialText,
 		socialProfiles,
-		socialProfilesLinkTarget,
-		socialStyle,
 		socialColor,
 		socialTextColor,
 		socialTextHoverColor,
 		socialBgColor,
 		socialBgHoverColor,
-		iconColor,
-		iconHoverColor,
-		socialProfileColumns,
 	} = attributes;
 
 	const resRequiredProps = {
@@ -333,6 +325,17 @@ function Inspector(props) {
 								max={100}
 								step={1}
 							/>
+							<BorderControl
+								label={__('Border', 'zolo-blocks')}
+								controlName={BUTTON_BORDER}
+								resRequiredProps={resRequiredProps}
+							/>
+							<ResDimensionsControl
+								label={__('Border Radius', 'zolo-blocks')}
+								controlName={BTN_BORDER_RADIUS}
+								resRequiredProps={resRequiredProps}
+								forBorderRadius={true}
+							/>
 							<ResDimensionsControl
 								label={__('Padding', 'zolo-blocks')}
 								controlName={BUTTON_PADDING}
@@ -419,7 +422,19 @@ function Inspector(props) {
 						</PanelBody>
 					</>
 				}
-				advancedTab={<>{/* Advanced Tab */}</>}
+				advancedTab={
+					<PanelBody
+						title={__('Block', 'zolo-blocks')}
+						initialOpen={false}
+					>
+						<ResDimensionsControl
+							label={__('Margin', 'zolo-blocks')}
+							controlName={BLOCK_MARGIN}
+							resRequiredProps={resRequiredProps}
+							forBorderRadius={false}
+						/>
+					</PanelBody>
+				}
 			/>
 		</InspectorControls>
 	);
