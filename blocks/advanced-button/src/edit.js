@@ -1,13 +1,8 @@
 /**
  * WordPress dependencies
  */
-import {
-	useBlockProps,
-	RichText,
-	BlockControls,
-} from '@wordpress/block-editor';
-import { useEffect, useState } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup, Popover } from '@wordpress/components';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 
@@ -24,9 +19,7 @@ const {
 	generateNormalBGControlStyles,
 	generateBoxShadowStyles,
 	generateTypographyStyles,
-	generateLinkControlAttributes,
 	DisplayIcon,
-	LinkControl,
 } = window.zoloModule;
 
 import {
@@ -47,7 +40,6 @@ import {
 	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
 	ICON_PADDING,
-	LINK,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -85,7 +77,6 @@ export default function Edit(props) {
 		presetTwelveStyles,
 	} = attributes;
 
-	const [popoverVisible, setPopoverVisible] = useState(false);
 	// unique ID
 	useEffect(() => {
 		handleUniqueId({
