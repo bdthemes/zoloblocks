@@ -10,12 +10,7 @@ import {
 
 import { useEffect } from '@wordpress/element';
 
-import {
-	ToolbarButton,
-	ToolbarGroup,
-	Dropdown,
-	Button,
-} from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 
 import { __ } from '@wordpress/i18n';
 
@@ -342,19 +337,15 @@ export default function Edit( props ) {
 	switch ( preset ) {
 		case 'style-1':
 			presetStyles = `
-				.zolo-block-icon-wrap{
-					justify-content: ${ presetOneStyles && presetOneStyles.iconPosition };
-				}			
+						
 			`;
 			break;
 		case 'style-2':
 			presetStyles = `
-				.zolo-block-icon-wrap{
-					align-items: ${ presetTwoStyles && presetTwoStyles.iconPosition };
-				}
+				
 			`;
 			break;
-		case 'style-4':
+		case 'style-3':
 			break;
 		default:
 			presetStyles = '';
