@@ -76,6 +76,7 @@ import {
 import {
 	TEXT_ALIGN_OPTIONS,
 	DEFAULT_ALIGNS,
+	ICON_BOX_OPTIONS,
 } from '../../../src/global/constants';
 
 function Inspector( props ) {
@@ -133,36 +134,21 @@ function Inspector( props ) {
 									} )
 								}
 							/>
-						</PanelBody>
-						<PanelBody
-							title={ __( 'Content', 'zolo-blocks' ) }
-							initialOpen={ false }
-						>
 							<IconicBtnGroup
-								label={ __(
-									'Select Icon Type',
-									'zolo-blocks'
-								) }
+								label={ __( 'Type', 'zolo-blocks' ) }
 								value={ iconType }
 								onChange={ ( value ) =>
 									setAttributes( {
 										iconType: value,
 									} )
 								}
-								options={ [
-									{
-										label: __( 'Icon', 'zolo-blocks' ),
-										value: 'icon',
-										icon: '',
-									},
-									{
-										label: __( 'Image', 'zolo-blocks' ),
-										value: 'image',
-										icon: '',
-									},
-								] }
+								options={ ICON_BOX_OPTIONS }
 							/>
-
+						</PanelBody>
+						<PanelBody
+							title={ __( 'Content', 'zolo-blocks' ) }
+							initialOpen={ false }
+						>
 							{ iconType == 'icon' && (
 								<Fragment>
 									<IconPicker

@@ -16,9 +16,12 @@ export const NORMAL_HOVER = [
 ];
 
 export const TEXT_ALIGN = [
-	{ label: __(<Dashicon icon={'editor-alignleft'} />), value: 'left' },
-	{ label: __(<Dashicon icon={'editor-aligncenter'} />), value: 'center' },
-	{ label: __(<Dashicon icon={'editor-alignright'} />), value: 'right' },
+	{ label: __( <Dashicon icon={ 'editor-alignleft' } /> ), value: 'left' },
+	{
+		label: __( <Dashicon icon={ 'editor-aligncenter' } /> ),
+		value: 'center',
+	},
+	{ label: __( <Dashicon icon={ 'editor-alignright' } /> ), value: 'right' },
 ];
 
 export const TEXT_ALIGN_OPTIONS = [
@@ -27,8 +30,8 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'left',
 		icon: (
 			<svg
-				width={20}
-				height={20}
+				width={ 20 }
+				height={ 20 }
 				viewBox="0 0 20 20"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +48,7 @@ export const TEXT_ALIGN_OPTIONS = [
 					y="11.6667"
 					width="8.33333"
 					height="4.16667"
-					rx={1}
+					rx={ 1 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -54,7 +57,7 @@ export const TEXT_ALIGN_OPTIONS = [
 					y="4.16669"
 					width="13.3333"
 					height="4.16667"
-					rx={1}
+					rx={ 1 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -66,8 +69,8 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'center',
 		icon: (
 			<svg
-				width={20}
-				height={20}
+				width={ 20 }
+				height={ 20 }
 				viewBox="0 0 20 20"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -77,16 +80,16 @@ export const TEXT_ALIGN_OPTIONS = [
 					y="4.16669"
 					width="13.3333"
 					height="4.16667"
-					rx={1}
+					rx={ 1 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<rect
-					x={5}
+					x={ 5 }
 					y="11.6667"
-					width={10}
+					width={ 10 }
 					height="4.16667"
-					rx={1}
+					rx={ 1 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -119,8 +122,8 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'right',
 		icon: (
 			<svg
-				width={20}
-				height={20}
+				width={ 20 }
+				height={ 20 }
 				viewBox="0 0 20 20"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +138,7 @@ export const TEXT_ALIGN_OPTIONS = [
 				<rect
 					width="8.33333"
 					height="4.16667"
-					rx={1}
+					rx={ 1 }
 					transform="matrix(-1 0 0 1 16.6667 11.6667)"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
@@ -143,7 +146,7 @@ export const TEXT_ALIGN_OPTIONS = [
 				<rect
 					width="13.3333"
 					height="4.16667"
-					rx={1}
+					rx={ 1 }
 					transform="matrix(-1 0 0 1 16.6667 4.16667)"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
@@ -156,8 +159,8 @@ export const TEXT_ALIGN_OPTIONS = [
 		value: 'justify',
 		icon: (
 			<svg
-				width={20}
-				height={20}
+				width={ 20 }
+				height={ 20 }
 				viewBox="0 0 20 20"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -178,19 +181,19 @@ export const TEXT_ALIGN_OPTIONS = [
 				/>
 				<rect
 					x="3.33334"
-					y={5}
+					y={ 5 }
 					width="4.16667"
-					height={10}
-					rx={1}
+					height={ 10 }
+					rx={ 1 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<rect
 					x="12.5"
-					y={5}
+					y={ 5 }
 					width="4.16667"
-					height={10}
-					rx={1}
+					height={ 10 }
+					rx={ 1 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -205,8 +208,8 @@ export const DEFAULT_ALIGNS = [
 		value: 'left',
 		icon: (
 			<svg
-				width={20}
-				height={20}
+				width={ 20 }
+				height={ 20 }
 				viewBox="0 0 20 20"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -223,7 +226,7 @@ export const DEFAULT_ALIGNS = [
 					y="11.6667"
 					width="8.33333"
 					height="4.16667"
-					rx={1}
+					rx={ 1 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -232,7 +235,7 @@ export const DEFAULT_ALIGNS = [
 					y="4.16669"
 					width="13.3333"
 					height="4.16667"
-					rx={1}
+					rx={ 1 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -244,8 +247,8 @@ export const DEFAULT_ALIGNS = [
 		value: 'center',
 		icon: (
 			<svg
-				width={20}
-				height={20}
+				width={ 20 }
+				height={ 20 }
 				viewBox="0 0 20 20"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -255,16 +258,16 @@ export const DEFAULT_ALIGNS = [
 					y="4.16669"
 					width="13.3333"
 					height="4.16667"
-					rx={1}
+					rx={ 1 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<rect
-					x={5}
+					x={ 5 }
 					y="11.6667"
-					width={10}
+					width={ 10 }
 					height="4.16667"
-					rx={1}
+					rx={ 1 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -297,8 +300,8 @@ export const DEFAULT_ALIGNS = [
 		value: 'right',
 		icon: (
 			<svg
-				width={20}
-				height={20}
+				width={ 20 }
+				height={ 20 }
 				viewBox="0 0 20 20"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -313,7 +316,7 @@ export const DEFAULT_ALIGNS = [
 				<rect
 					width="8.33333"
 					height="4.16667"
-					rx={1}
+					rx={ 1 }
 					transform="matrix(-1 0 0 1 16.6667 11.6667)"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
@@ -321,7 +324,7 @@ export const DEFAULT_ALIGNS = [
 				<rect
 					width="13.3333"
 					height="4.16667"
-					rx={1}
+					rx={ 1 }
 					transform="matrix(-1 0 0 1 16.6667 4.16667)"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
@@ -347,38 +350,38 @@ export const FLEX_ALIGN_OPTIONS = [
 ];
 
 export const HEADING = [
-	{ label: __('H1', 'zolo-blocks'), value: 'h1' },
-	{ label: __('H2', 'zolo-blocks'), value: 'h2' },
-	{ label: __('H3', 'zolo-blocks'), value: 'h3' },
-	{ label: __('H4', 'zolo-blocks'), value: 'h4' },
-	{ label: __('H5', 'zolo-blocks'), value: 'h5' },
-	{ label: __('H6', 'zolo-blocks'), value: 'h6' },
-	{ label: __('P', 'zolo-blocks'), value: 'p' },
+	{ label: __( 'H1', 'zolo-blocks' ), value: 'h1' },
+	{ label: __( 'H2', 'zolo-blocks' ), value: 'h2' },
+	{ label: __( 'H3', 'zolo-blocks' ), value: 'h3' },
+	{ label: __( 'H4', 'zolo-blocks' ), value: 'h4' },
+	{ label: __( 'H5', 'zolo-blocks' ), value: 'h5' },
+	{ label: __( 'H6', 'zolo-blocks' ), value: 'h6' },
+	{ label: __( 'P', 'zolo-blocks' ), value: 'p' },
 ];
 
 export const BORDER_TYPES = [
-	{ label: __('None', 'zolo-blocks'), value: 'none' },
-	{ label: __('Solid', 'zolo-blocks'), value: 'solid' },
-	{ label: __('Custom', 'zolo-blocks'), value: 'custom' },
+	{ label: __( 'None', 'zolo-blocks' ), value: 'none' },
+	{ label: __( 'Solid', 'zolo-blocks' ), value: 'solid' },
+	{ label: __( 'Custom', 'zolo-blocks' ), value: 'custom' },
 ];
 
 export const SEPERATOR_STYLES = [
-	{ label: __('Dashed', 'zolo-blocks'), value: 'dashed' },
-	{ label: __('Dotted', 'zolo-blocks'), value: 'dotted' },
-	{ label: __('Double', 'zolo-blocks'), value: 'double' },
-	{ label: __('Groove', 'zolo-blocks'), value: 'groove' },
-	{ label: __('Outset', 'zolo-blocks'), value: 'outset' },
-	{ label: __('Ridge', 'zolo-blocks'), value: 'ridge' },
+	{ label: __( 'Dashed', 'zolo-blocks' ), value: 'dashed' },
+	{ label: __( 'Dotted', 'zolo-blocks' ), value: 'dotted' },
+	{ label: __( 'Double', 'zolo-blocks' ), value: 'double' },
+	{ label: __( 'Groove', 'zolo-blocks' ), value: 'groove' },
+	{ label: __( 'Outset', 'zolo-blocks' ), value: 'outset' },
+	{ label: __( 'Ridge', 'zolo-blocks' ), value: 'ridge' },
 ];
 
 export const BACKGROUND_TYPES = [
 	{
-		label: __('Classic', 'zolo-blocks'),
+		label: __( 'Classic', 'zolo-blocks' ),
 		value: 'classic',
 		icon: 'color-picker',
 	},
 	{
-		label: __('Gradient', 'zolo-blocks'),
+		label: __( 'Gradient', 'zolo-blocks' ),
 		value: 'gradient',
 		icon: 'art',
 	},
@@ -386,15 +389,15 @@ export const BACKGROUND_TYPES = [
 
 export const BOX_SHADOW_TYPES = [
 	{
-		label: __('None', 'zolo-blocks'),
+		label: __( 'None', 'zolo-blocks' ),
 		value: 'none',
 	},
 	{
-		label: __('Inner', 'zolo-blocks'),
+		label: __( 'Inner', 'zolo-blocks' ),
 		value: 'inset',
 	},
 	{
-		label: __('Outer', 'zolo-blocks'),
+		label: __( 'Outer', 'zolo-blocks' ),
 		value: 'outset',
 	},
 ];
@@ -406,8 +409,8 @@ export const POSITIONS = [
 		value: 'left',
 		icon: (
 			<svg
-				width={24}
-				height={24}
+				width={ 24 }
+				height={ 24 }
 				viewBox="0 0 24 24"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -420,11 +423,11 @@ export const POSITIONS = [
 					strokeLinejoin="round"
 				/>
 				<rect
-					x={8}
-					y={8}
-					width={12}
-					height={8}
-					rx={1}
+					x={ 8 }
+					y={ 8 }
+					width={ 12 }
+					height={ 8 }
+					rx={ 1 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -436,8 +439,8 @@ export const POSITIONS = [
 		value: 'right',
 		icon: (
 			<svg
-				width={24}
-				height={24}
+				width={ 24 }
+				height={ 24 }
 				viewBox="0 0 24 24"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -450,11 +453,11 @@ export const POSITIONS = [
 					strokeLinejoin="round"
 				/>
 				<rect
-					x={4}
-					y={8}
-					width={12}
-					height={8}
-					rx={1}
+					x={ 4 }
+					y={ 8 }
+					width={ 12 }
+					height={ 8 }
+					rx={ 1 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -466,8 +469,8 @@ export const POSITIONS = [
 		value: 'top',
 		icon: (
 			<svg
-				width={24}
-				height={24}
+				width={ 24 }
+				height={ 24 }
 				viewBox="0 0 24 24"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -492,8 +495,8 @@ export const POSITIONS = [
 		value: 'bottom',
 		icon: (
 			<svg
-				width={24}
-				height={24}
+				width={ 24 }
+				height={ 24 }
 				viewBox="0 0 24 24"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -521,27 +524,27 @@ export const ICON_POSITIONS = [
 		value: 'left',
 		icon: (
 			<svg
-				width={24}
-				height={24}
+				width={ 24 }
+				height={ 24 }
 				viewBox="0 0 24 24"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<rect
-					x={11}
-					y={12}
-					width={11}
+					x={ 11 }
+					y={ 12 }
+					width={ 11 }
 					height="0.01"
 					rx="0.005"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<rect
-					x={3}
-					y={10}
-					width={4}
-					height={4}
-					rx={2}
+					x={ 3 }
+					y={ 10 }
+					width={ 4 }
+					height={ 4 }
+					rx={ 2 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -553,27 +556,27 @@ export const ICON_POSITIONS = [
 		value: 'right',
 		icon: (
 			<svg
-				width={24}
-				height={24}
+				width={ 24 }
+				height={ 24 }
 				viewBox="0 0 24 24"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<rect
-					x={3}
-					y={12}
-					width={11}
+					x={ 3 }
+					y={ 12 }
+					width={ 11 }
 					height="0.01"
 					rx="0.005"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<rect
-					x={18}
-					y={10}
-					width={4}
-					height={4}
-					rx={2}
+					x={ 18 }
+					y={ 10 }
+					width={ 4 }
+					height={ 4 }
+					rx={ 2 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -585,27 +588,27 @@ export const ICON_POSITIONS = [
 		value: 'top',
 		icon: (
 			<svg
-				width={24}
-				height={24}
+				width={ 24 }
+				height={ 24 }
 				viewBox="0 0 24 24"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<rect
-					x={6}
-					y={16}
-					width={12}
+					x={ 6 }
+					y={ 16 }
+					width={ 12 }
 					height="0.01"
 					rx="0.005"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<rect
-					x={10}
-					y={8}
-					width={4}
-					height={4}
-					rx={2}
+					x={ 10 }
+					y={ 8 }
+					width={ 4 }
+					height={ 4 }
+					rx={ 2 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -617,27 +620,27 @@ export const ICON_POSITIONS = [
 		value: 'bottom',
 		icon: (
 			<svg
-				width={24}
-				height={24}
+				width={ 24 }
+				height={ 24 }
 				viewBox="0 0 24 24"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<rect
-					x={6}
-					y={8}
-					width={12}
+					x={ 6 }
+					y={ 8 }
+					width={ 12 }
 					height="0.01"
 					rx="0.005"
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
 				<rect
-					x={10}
-					y={12}
-					width={4}
-					height={4}
-					rx={2}
+					x={ 10 }
+					y={ 12 }
+					width={ 4 }
+					height={ 4 }
+					rx={ 2 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -649,12 +652,12 @@ export const ICON_POSITIONS = [
 // social icon text
 export const ICON_STATUS = [
 	{
-		label: __('No Icon', 'zolo-blocks'),
+		label: __( 'No Icon', 'zolo-blocks' ),
 		value: 'none',
 		icon: (
 			<svg
-				width={24}
-				height={24}
+				width={ 24 }
+				height={ 24 }
 				viewBox="0 0 24 24"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -672,9 +675,9 @@ export const ICON_STATUS = [
 					strokeLinecap="round"
 				/>
 				<circle
-					cx={12}
-					cy={12}
-					r={8}
+					cx={ 12 }
+					cy={ 12 }
+					r={ 8 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -682,12 +685,12 @@ export const ICON_STATUS = [
 		),
 	},
 	{
-		label: __('Icon & Text', 'zolo-blocks'),
+		label: __( 'Icon & Text', 'zolo-blocks' ),
 		value: 'iconText',
 		icon: (
 			<svg
-				width={24}
-				height={24}
+				width={ 24 }
+				height={ 24 }
 				viewBox="0 0 24 24"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -708,20 +711,20 @@ export const ICON_STATUS = [
 		),
 	},
 	{
-		label: __('Only Icon', 'zolo-blocks'),
+		label: __( 'Only Icon', 'zolo-blocks' ),
 		value: 'iconOnly',
 		icon: (
 			<svg
-				width={24}
-				height={24}
+				width={ 24 }
+				height={ 24 }
 				viewBox="0 0 24 24"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<circle
-					cx={12}
-					cy={12}
-					r={8}
+					cx={ 12 }
+					cy={ 12 }
+					r={ 8 }
 					stroke="#4D4D4D"
 					strokeWidth="1.5"
 				/>
@@ -733,5 +736,17 @@ export const ICON_STATUS = [
 				/>
 			</svg>
 		),
+	},
+];
+
+// social icon text
+export const ICON_BOX_OPTIONS = [
+	{
+		label: __( 'Image', 'zolo-blocks' ),
+		value: 'image',
+	},
+	{
+		label: __( 'Icon', 'zolo-blocks' ),
+		value: 'icon',
 	},
 ];
