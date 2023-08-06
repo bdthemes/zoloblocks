@@ -57,6 +57,7 @@ export default function Edit(props) {
 		socialTextColor,
 		socialTextHoverColor,
 		borderHoverColor,
+		presetBgColor,
 	} = attributes;
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -69,7 +70,7 @@ export default function Edit(props) {
 	}, []);
 
 	const blockProps = useBlockProps({
-		className: classnames(className, ``),
+		className: classnames(className, `${preset} ${uniqueId}`),
 	});
 
 	//  button general settings
@@ -191,36 +192,33 @@ export default function Edit(props) {
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
-		.${uniqueId}{
+		.${uniqueId}.wp-block-zolo-social-icon {
 			${blockDeskMargin}
-		}
-		.${uniqueId}.zolo-advanced-social-share {
 			${colGapDeskstyle}
 			${rowGapDeskstyle}
+			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
 		}
-		.${uniqueId} .zolo-social-item {
+		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item {
 			${borderStyles}
 			${paddingDesktop}
 			${gapDesktop}
 			${btnRadiusDesk}
 			${normalShadow}
+			${buttonSize}
 		}
-		.${uniqueId} .zolo-social-item:hover {
+		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item:hover {
 			border-color:${borderHoverColor};
 			${hoverShadow}
 		}
-		.${uniqueId} .zolo-social-text {
-			${textTypoDesk}
+		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item:before {
+			background-color:${presetBgColor};
 		}
-		.${uniqueId}.zolo-advanced-social-share {
-			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
-		}				 
-		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
-			${buttonSize}
+		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-text {
+			${textTypoDesk}
 		}			
 		${
 			socialColor === 'custom'
-				? `.zolo-advanced-social-share.zolo-advanced-social-preset-1.${uniqueId}.social-icon .zolo-social-item{
+				? `.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item{
 					color:${socialTextColor};
 					background:${socialBgColor};
 				}`
@@ -228,7 +226,7 @@ export default function Edit(props) {
 		}
 		${
 			socialColor === 'custom'
-				? `.zolo-advanced-social-share.zolo-advanced-social-preset-1.${uniqueId}.social-icon .zolo-social-item:hover{
+				? `.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item:hover{
 					color:${socialTextHoverColor};
 					background:${socialBgHoverColor};
 				}`
@@ -236,53 +234,41 @@ export default function Edit(props) {
 		}
   	`;
 	const tabletAllStyle = `
-		.${uniqueId}{
+		.${uniqueId}.wp-block-zolo-social-icon{
 			${blockTabMargin}
-		}
-		.${uniqueId}.zolo-advanced-social-share {
 			${colGapTabStyle}
 			${rowGapTabStyle}
+			grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
 		}		
-		.${uniqueId} .zolo-social-item {
+		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item {
 			${borderStylesTab}
 			${paddingTab}
 			${gapTablet}
 			${btnRadiusTab}
-		}		
-		.${uniqueId} .zolo-social-text {
-			${textTypoTab}
-		}			 
-		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSizeTab}
-		}
-		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
-			grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
-		}			
+		}		
+		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-text {
+			${textTypoTab}
+		}			 		
 	`;
 
 	const mobileAllStyle = `
-		.${uniqueId}{
+		.${uniqueId}.wp-block-zolo-social-icon{
 			${blockMobMargin}
-		}	
-		.${uniqueId}.zolo-advanced-social-share {
 			${colGapMobStyle}
 			${rowGapMobStyle}
+			grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
 		}		
-		.${uniqueId} .zolo-social-item {
+		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item {
 			${borderStylesMob}
 			${paddingMob}
 			${gapMobile}
 			${btnRadiusMob}
-		}		
-		.${uniqueId} .zolo-social-text {
-			${textTypoMob}
-		}			 
-		.${uniqueId} .zolo-advanced-social-preset-4.social-icon .zolo-social-item, .zolo-advanced-social-preset-3.social-icon .zolo-social-item, .zolo-advanced-social-preset-1.social-icon .zolo-social-item {
 			${buttonSizeMob}
-		}
-		.${uniqueId}.zolo-advanced-social-preset-1,.zolo-advanced-social-preset-3,.zolo-advanced-social-preset-4 {
-			grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
-		}			
+		}		
+		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-text {
+			${textTypoMob}
+		}		
   	`;
 
 	const allStyle = `
@@ -318,42 +304,38 @@ export default function Edit(props) {
 			<style>{` ${softMinifyCssStrings(allStyle)}`}</style>
 
 			<div {...blockProps}>
-				<div
-					class={`zolo-advanced-social-share zolo-advanced-social-${preset} ${uniqueId} ${BLOCK_PREFIX} `}
-				>
-					{socialProfiles &&
-						socialProfiles.map((profile, index) => {
-							let socialName = Object.keys(profile.icon)[0];
-							return (
-								<a
-									href={profile.link && profile.link.url}
-									key={index}
-									target={
-										profile.link &&
-										profile.link.openInNewTab &&
-										'_blank'
-									}
-									rel={
-										profile.link &&
-										profile.link.openInNewTab &&
-										'noopener noreferrer'
-									}
-									className={`zolo-social-item zolo-${socialName}`}
-								>
-									{socialText !== 'none' && (
-										<span className="zolo-social-icon">
-											<DisplayIcon icon={profile.icon} />
-										</span>
-									)}
-									{socialText !== 'iconOnly' && (
-										<span className="zolo-social-text">
-											{profile.text}
-										</span>
-									)}
-								</a>
-							);
-						})}
-				</div>
+				{socialProfiles &&
+					socialProfiles.map((profile, index) => {
+						let socialName = Object.keys(profile.icon)[0];
+						return (
+							<a
+								href={profile.link && profile.link.url}
+								key={index}
+								target={
+									profile.link &&
+									profile.link.openInNewTab &&
+									'_blank'
+								}
+								rel={
+									profile.link &&
+									profile.link.openInNewTab &&
+									'noopener noreferrer'
+								}
+								className={`zolo-social-item zolo-${socialName} ${socialColor}`}
+							>
+								{socialText !== 'none' && (
+									<span className="zolo-social-icon">
+										<DisplayIcon icon={profile.icon} />
+									</span>
+								)}
+								{socialText !== 'iconOnly' && (
+									<span className="zolo-social-text">
+										{profile.text}
+									</span>
+								)}
+							</a>
+						);
+					})}
 			</div>
 		</>
 	);

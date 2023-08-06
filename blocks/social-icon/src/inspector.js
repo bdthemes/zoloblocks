@@ -66,6 +66,7 @@ function Inspector(props) {
 		socialBgColor,
 		socialBgHoverColor,
 		borderHoverColor,
+		presetBgColor,
 	} = attributes;
 
 	const resRequiredProps = {
@@ -101,15 +102,14 @@ function Inspector(props) {
 					socialText: 'iconOnly',
 				});
 				break;
-			case 'style-2':
+			case 'preset-3':
 				setAttributes({
-					showTestimonialMessage: false,
+					socialText: 'iconText',
 				});
 				break;
 			default:
 				setAttributes({
-					showTestimonialMessage: false,
-					[`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
+					socialText: 'iconText',
 				});
 				break;
 		}
@@ -339,17 +339,34 @@ function Inspector(props) {
 				styleTab={
 					<>
 						<PanelBody initialOpen={true}>
+							<ColorControl
+								label={__('Preset Style Color', 'zolo-blocks')}
+								color={presetBgColor}
+								onChange={(value) =>
+									setAttributes({
+										presetBgColor: value,
+									})
+								}
+							/>
 							<TabPanelControl
 								normalComponents={
 									<>
-										<ResRangeControl
-											label={__('Size', 'zolo-blocks')}
-											controlName={BUTTON_SIZE}
-											resRequiredProps={resRequiredProps}
-											min={0}
-											max={100}
-											step={1}
-										/>
+										{socialText !== 'none' && (
+											<ResRangeControl
+												label={__(
+													'Size',
+													'zolo-blocks'
+												)}
+												controlName={BUTTON_SIZE}
+												resRequiredProps={
+													resRequiredProps
+												}
+												min={0}
+												max={100}
+												step={1}
+											/>
+										)}
+
 										{socialText !== 'iconOnly' && (
 											<TypographyDropdown
 												label={__(
