@@ -5,27 +5,31 @@
  *
  * @package Zolo
  */
+
 use Zolo\Helpers\ZoloHelpers;
 use Zolo\Traits\SingletonTrait;
 use Zolo\Classes\StyleGenerator;
 use Zolo\Classes\Registration;
+use Zolo\API\GetPostsV1;
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     exit;
 }
 
-class Zolo_Blocks_Loader {
+class Zolo_Blocks_Loader
+{
     use SingletonTrait;
 
     /**
      * Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
 
-        add_action( 'plugins_loaded', [$this, 'plugins_loaded'] );
+        add_action('plugins_loaded', [$this, 'plugins_loaded']);
 
-        add_action( 'init', [$this, 'init_actions'] );
+        add_action('init', [$this, 'init_actions']);
     }
 
     /**
@@ -35,7 +39,9 @@ class Zolo_Blocks_Loader {
      *
      * @return void
      */
-    public function plugins_loaded() {
+    public function plugins_loaded()
+    {
+        GetPostsV1::getInstance();
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
@@ -44,7 +50,7 @@ class Zolo_Blocks_Loader {
         require_once ZOLO_DIR_PATH . '/includes/classes/font-loader.php';
         require_once ZOLO_DIR_PATH . '/includes/classes/post-meta.php';
 
-        if ( is_admin() ) {
+        if (is_admin()) {
             //Load Admin required files
         }
     }
@@ -56,23 +62,24 @@ class Zolo_Blocks_Loader {
      *
      * @return void
      */
-    public function init_actions() {
+    public function init_actions()
+    {
 
         $theme_folder = get_template();
 
-        if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
-            if ( 'twentytwentytwo' === $theme_folder ) {
+        if (function_exists('wp_is_block_theme') && wp_is_block_theme()) {
+            if ('twentytwentytwo' === $theme_folder) {
                 // require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-twenty-twenty-two-compatibility.php';
             }
         }
 
-        if ( 'astra' === $theme_folder ) {
+        if ('astra' === $theme_folder) {
             // require_once ZOLO_DIR_PATH . 'compatibility/class-uagb-astra-compatibility.php';
         }
     }
 }
 
 // Zolo_Blocks_Loader Instance
-if ( class_exists( 'Zolo_Blocks_Loader' ) ) {
+if (class_exists('Zolo_Blocks_Loader')) {
     new Zolo_Blocks_Loader();
 }

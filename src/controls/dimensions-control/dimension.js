@@ -22,6 +22,15 @@ const DimensionControl = ({
 		left,
 	});
 
+  useEffect(() => {
+    setDimensions({
+      top,
+      right,
+      bottom,
+      left,
+    })
+  }, [top, left, right, bottom])
+
 	const onInputChange = (e) => {
 		const { name, value } = e.target;
 		setDimensions({

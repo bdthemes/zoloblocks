@@ -17,6 +17,9 @@ import ResetBtn from '../reset-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 import FontPicker from './fontPicker';
 
+
+import { prefix } from '../../global/constants';
+
 //block constant
 import {
 	fontStyleOptions,
@@ -40,32 +43,32 @@ const TypographyDropdown = ({
 		resRequiredProps;
 
 	const {
-		[`${typoPrefixConstant}ZRPFontFamily`]: fontFamily,
-		[`${typoPrefixConstant}ZRPFontWeight`]: fontWeight,
-		[`${typoPrefixConstant}ZRPFontStyle`]: fontStyle,
-		[`${typoPrefixConstant}ZRPTextTransform`]: textTransform,
-		[`${typoPrefixConstant}ZRPTextDecoration`]: textDecoration,
-		[`${typoPrefixConstant}ZRPFontSize`]: fontSize = defaultFontSize ||
+		[`${prefix}${typoPrefixConstant}FontFamily`]: fontFamily,
+		[`${prefix}${typoPrefixConstant}FontWeight`]: fontWeight,
+		[`${prefix}${typoPrefixConstant}FontStyle`]: fontStyle,
+		[`${prefix}${typoPrefixConstant}TextTransform`]: textTransform,
+		[`${prefix}${typoPrefixConstant}TextDecoration`]: textDecoration,
+		[`${prefix}${typoPrefixConstant}FontSize`]: fontSize = defaultFontSize ||
 			undefined,
-		[`${typoPrefixConstant}ZRPSizeUnit`]: sizeUnit,
-		[`${typoPrefixConstant}ZRPLetterSpacing`]: letterSpacing,
-		[`${typoPrefixConstant}ZRPLetterSpacingUnit`]: letterSpacingUnit,
-		[`${typoPrefixConstant}ZRPLineHeight`]: lineHeight,
-		[`${typoPrefixConstant}ZRPLineHeightUnit`]: lineHeightUnit,
+		[`${prefix}${typoPrefixConstant}SizeUnit`]: sizeUnit,
+		[`${prefix}${typoPrefixConstant}LetterSpacing`]: letterSpacing,
+		[`${prefix}${typoPrefixConstant}LetterSpacingUnit`]: letterSpacingUnit,
+		[`${prefix}${typoPrefixConstant}LineHeight`]: lineHeight,
+		[`${prefix}${typoPrefixConstant}LineHeightUnit`]: lineHeightUnit,
 
-		[`TAB${typoPrefixConstant}ZRPSizeUnit`]: TABsizeUnit,
-		[`TAB${typoPrefixConstant}ZRPLetterSpacingUnit`]: TABletterSpacingUnit,
-		[`TAB${typoPrefixConstant}ZRPLineHeightUnit`]: TABlineHeightUnit,
-		[`TAB${typoPrefixConstant}ZRPFontSize`]: TABfontSize,
-		[`TAB${typoPrefixConstant}ZRPLetterSpacing`]: TABletterSpacing,
-		[`TAB${typoPrefixConstant}ZRPLineHeight`]: TABlineHeight,
+		[`${prefix}TAB${typoPrefixConstant}SizeUnit`]: TABsizeUnit,
+		[`${prefix}TAB${typoPrefixConstant}LetterSpacingUnit`]: TABletterSpacingUnit,
+		[`${prefix}TAB${typoPrefixConstant}LineHeightUnit`]: TABlineHeightUnit,
+		[`${prefix}TAB${typoPrefixConstant}FontSize`]: TABfontSize,
+		[`${prefix}TAB${typoPrefixConstant}LetterSpacing`]: TABletterSpacing,
+		[`${prefix}TAB${typoPrefixConstant}LineHeight`]: TABlineHeight,
 
-		[`MOB${typoPrefixConstant}ZRPSizeUnit`]: MOBsizeUnit,
-		[`MOB${typoPrefixConstant}ZRPLetterSpacingUnit`]: MOBletterSpacingUnit,
-		[`MOB${typoPrefixConstant}ZRPLineHeightUnit`]: MOBlineHeightUnit,
-		[`MOB${typoPrefixConstant}ZRPFontSize`]: MOBfontSize,
-		[`MOB${typoPrefixConstant}ZRPLetterSpacing`]: MOBletterSpacing,
-		[`MOB${typoPrefixConstant}ZRPLineHeight`]: MOBlineHeight,
+		[`${prefix}MOB${typoPrefixConstant}SizeUnit`]: MOBsizeUnit,
+		[`${prefix}MOB${typoPrefixConstant}LetterSpacingUnit`]: MOBletterSpacingUnit,
+		[`${prefix}MOB${typoPrefixConstant}LineHeightUnit`]: MOBlineHeightUnit,
+		[`${prefix}MOB${typoPrefixConstant}FontSize`]: MOBfontSize,
+		[`${prefix}MOB${typoPrefixConstant}LetterSpacing`]: MOBletterSpacing,
+		[`${prefix}MOB${typoPrefixConstant}LineHeight`]: MOBlineHeight,
 	} = attributes;
 
 	//Update Font Weight and Font Varient
@@ -130,7 +133,7 @@ const TypographyDropdown = ({
 							value={fontFamily}
 							onChange={(FontFamily) => {
 								setAttributes({
-									[`${typoPrefixConstant}ZRPFontFamily`]:
+									[`${prefix}${typoPrefixConstant}FontFamily`]:
 										FontFamily,
 								});
 							}}
@@ -143,7 +146,7 @@ const TypographyDropdown = ({
 										unitTypes={sizeUnitTypes}
 										onClick={(sizeUnit) =>
 											setAttributes({
-												[`${typoPrefixConstant}ZRPSizeUnit`]:
+												[`${prefix}${typoPrefixConstant}SizeUnit`]:
 													sizeUnit,
 											})
 										}
@@ -151,7 +154,7 @@ const TypographyDropdown = ({
 										<ResetBtn
 											onReset={() => {
 												setAttributes({
-													[`${typoPrefixConstant}ZRPFontSize`]:
+													[`${prefix}${typoPrefixConstant}FontSize`]:
 														defaultFontSize ||
 														(
 															objAttributes[
@@ -172,7 +175,7 @@ const TypographyDropdown = ({
 											value={fontSize}
 											onChange={(FontSize) =>
 												setAttributes({
-													[`${typoPrefixConstant}ZRPFontSize`]:
+													[`${prefix}${typoPrefixConstant}FontSize`]:
 														FontSize,
 												})
 											}
@@ -190,7 +193,7 @@ const TypographyDropdown = ({
 										unitTypes={sizeUnitTypes}
 										onClick={(TABsizeUnit) =>
 											setAttributes({
-												[`TAB${typoPrefixConstant}ZRPSizeUnit`]:
+												[`${prefix}TAB${typoPrefixConstant}SizeUnit`]:
 													TABsizeUnit,
 											})
 										}
@@ -198,7 +201,7 @@ const TypographyDropdown = ({
 										<ResetBtn
 											onReset={() =>
 												setAttributes({
-													[`TAB${typoPrefixConstant}ZRPFontSize`]:
+													[`${prefix}TAB${typoPrefixConstant}FontSize`]:
 														(
 															objAttributes[
 																`TAB${typoPrefixConstant}ZRPFontSize`
@@ -218,7 +221,7 @@ const TypographyDropdown = ({
 											value={TABfontSize}
 											onChange={(FontSize) =>
 												setAttributes({
-													[`TAB${typoPrefixConstant}ZRPFontSize`]:
+													[`${prefix}TAB${typoPrefixConstant}FontSize`]:
 														FontSize,
 												})
 											}
@@ -240,7 +243,7 @@ const TypographyDropdown = ({
 										unitTypes={sizeUnitTypes}
 										onClick={(MOBsizeUnit) =>
 											setAttributes({
-												[`MOB${typoPrefixConstant}ZRPSizeUnit`]:
+												[`${prefix}MOB${typoPrefixConstant}SizeUnit`]:
 													MOBsizeUnit,
 											})
 										}
@@ -248,7 +251,7 @@ const TypographyDropdown = ({
 										<ResetBtn
 											onReset={() =>
 												setAttributes({
-													[`MOB${typoPrefixConstant}ZRPFontSize`]:
+													[`${prefix}MOB${typoPrefixConstant}FontSize`]:
 														(
 															objAttributes[
 																`MOB${typoPrefixConstant}ZRPFontSize`
@@ -268,7 +271,7 @@ const TypographyDropdown = ({
 											value={MOBfontSize}
 											onChange={(FontSize) =>
 												setAttributes({
-													[`MOB${typoPrefixConstant}ZRPFontSize`]:
+													[`${prefix}MOB${typoPrefixConstant}FontSize`]:
 														FontSize,
 												})
 											}
@@ -291,7 +294,7 @@ const TypographyDropdown = ({
 							options={zbFontWeight}
 							onChange={(FontWeight) =>
 								setAttributes({
-									[`${typoPrefixConstant}ZRPFontWeight`]:
+									[`${prefix}${typoPrefixConstant}FontWeight`]:
 										FontWeight,
 								})
 							}
@@ -303,7 +306,7 @@ const TypographyDropdown = ({
 							options={fontStyleOptions}
 							onChange={(fontStyle) =>
 								setAttributes({
-									[`${typoPrefixConstant}ZRPFontStyle`]:
+									[`${prefix}${typoPrefixConstant}FontStyle`]:
 										fontStyle,
 								})
 							}
@@ -315,7 +318,7 @@ const TypographyDropdown = ({
 							options={textTransformOptions}
 							onChange={(TextTransform) =>
 								setAttributes({
-									[`${typoPrefixConstant}ZRPTextTransform`]:
+									[`${prefix}${typoPrefixConstant}TextTransform`]:
 										TextTransform,
 								})
 							}
@@ -327,7 +330,7 @@ const TypographyDropdown = ({
 							options={textDecorationOptions}
 							onChange={(TextDecoration) =>
 								setAttributes({
-									[`${typoPrefixConstant}ZRPTextDecoration`]:
+									[`${prefix}${typoPrefixConstant}TextDecoration`]:
 										TextDecoration,
 								})
 							}
@@ -340,7 +343,7 @@ const TypographyDropdown = ({
 										unitTypes={LHLS_UNITS}
 										onClick={(LetterSpacingUnit) =>
 											setAttributes({
-												[`${typoPrefixConstant}ZRPLetterSpacingUnit`]:
+												[`${prefix}${typoPrefixConstant}LetterSpacingUnit`]:
 													LetterSpacingUnit,
 											})
 										}
@@ -348,7 +351,7 @@ const TypographyDropdown = ({
 										<ResetBtn
 											onReset={() =>
 												setAttributes({
-													[`${typoPrefixConstant}ZRPLetterSpacing`]:
+													[`${prefix}${typoPrefixConstant}LetterSpacing`]:
 														(
 															objAttributes[
 																`${typoPrefixConstant}ZRPLetterSpacing`
@@ -371,7 +374,7 @@ const TypographyDropdown = ({
 											value={letterSpacing}
 											onChange={(LetterSpacing) =>
 												setAttributes({
-													[`${typoPrefixConstant}ZRPLetterSpacing`]:
+													[`${prefix}${typoPrefixConstant}LetterSpacing`]:
 														LetterSpacing,
 												})
 											}
@@ -397,7 +400,7 @@ const TypographyDropdown = ({
 										unitTypes={LHLS_UNITS}
 										onClick={(TABletterSpacingUnit) =>
 											setAttributes({
-												[`TAB${typoPrefixConstant}ZRPLetterSpacingUnit`]:
+												[`${prefix}TAB${typoPrefixConstant}LetterSpacingUnit`]:
 													TABletterSpacingUnit,
 											})
 										}
@@ -405,7 +408,7 @@ const TypographyDropdown = ({
 										<ResetBtn
 											onReset={() =>
 												setAttributes({
-													[`TAB${typoPrefixConstant}ZRPLetterSpacing`]:
+													[`${prefix}TAB${typoPrefixConstant}LetterSpacing`]:
 														(
 															objAttributes[
 																`TAB${typoPrefixConstant}ZRPLetterSpacing`
@@ -428,7 +431,7 @@ const TypographyDropdown = ({
 											value={TABletterSpacing}
 											onChange={(LetterSpacing) =>
 												setAttributes({
-													[`TAB${typoPrefixConstant}ZRPLetterSpacing`]:
+													[`${prefix}TAB${typoPrefixConstant}LetterSpacing`]:
 														LetterSpacing,
 												})
 											}
@@ -454,7 +457,7 @@ const TypographyDropdown = ({
 										unitTypes={LHLS_UNITS}
 										onClick={(MOBletterSpacingUnit) =>
 											setAttributes({
-												[`MOB${typoPrefixConstant}ZRPLetterSpacingUnit`]:
+												[`${prefix}MOB${typoPrefixConstant}LetterSpacingUnit`]:
 													MOBletterSpacingUnit,
 											})
 										}
@@ -462,7 +465,7 @@ const TypographyDropdown = ({
 										<ResetBtn
 											onReset={() =>
 												setAttributes({
-													[`MOB${typoPrefixConstant}ZRPLetterSpacing`]:
+													[`${prefix}MOB${typoPrefixConstant}LetterSpacing`]:
 														(
 															objAttributes[
 																`MOB${typoPrefixConstant}ZRPLetterSpacing`
@@ -485,7 +488,7 @@ const TypographyDropdown = ({
 											value={MOBletterSpacing}
 											onChange={(LetterSpacing) =>
 												setAttributes({
-													[`MOB${typoPrefixConstant}ZRPLetterSpacing`]:
+													[`${prefix}MOB${typoPrefixConstant}LetterSpacing`]:
 														LetterSpacing,
 												})
 											}
@@ -513,7 +516,7 @@ const TypographyDropdown = ({
 										unitTypes={LHLS_UNITS}
 										onClick={(LineHeightUnit) =>
 											setAttributes({
-												[`${typoPrefixConstant}ZRPLineHeightUnit`]:
+												[`${prefix}${typoPrefixConstant}LineHeightUnit`]:
 													LineHeightUnit,
 											})
 										}
@@ -521,7 +524,7 @@ const TypographyDropdown = ({
 										<ResetBtn
 											onReset={() =>
 												setAttributes({
-													[`${typoPrefixConstant}ZRPLineHeight`]:
+													[`${prefix}${typoPrefixConstant}LineHeight`]:
 														(
 															objAttributes[
 																`${typoPrefixConstant}ZRPLineHeight`
@@ -541,7 +544,7 @@ const TypographyDropdown = ({
 											value={lineHeight}
 											onChange={(LineHeight) =>
 												setAttributes({
-													[`${typoPrefixConstant}ZRPLineHeight`]:
+													[`${prefix}${typoPrefixConstant}LineHeight`]:
 														LineHeight,
 												})
 											}
@@ -567,7 +570,7 @@ const TypographyDropdown = ({
 										unitTypes={LHLS_UNITS}
 										onClick={(TABlineHeightUnit) =>
 											setAttributes({
-												[`TAB${typoPrefixConstant}ZRPLineHeightUnit`]:
+												[`${prefix}TAB${typoPrefixConstant}LineHeightUnit`]:
 													TABlineHeightUnit,
 											})
 										}
@@ -575,7 +578,7 @@ const TypographyDropdown = ({
 										<ResetBtn
 											onReset={() =>
 												setAttributes({
-													[`TAB${typoPrefixConstant}ZRPLineHeight`]:
+													[`${prefix}TAB${typoPrefixConstant}LineHeight`]:
 														(
 															objAttributes[
 																`TAB${typoPrefixConstant}ZRPLineHeight`
@@ -595,7 +598,7 @@ const TypographyDropdown = ({
 											value={TABlineHeight}
 											onChange={(LineHeight) =>
 												setAttributes({
-													[`TAB${typoPrefixConstant}ZRPLineHeight`]:
+													[`${prefix}TAB${typoPrefixConstant}LineHeight`]:
 														LineHeight,
 												})
 											}
@@ -621,7 +624,7 @@ const TypographyDropdown = ({
 										unitTypes={LHLS_UNITS}
 										onClick={(MOBlineHeightUnit) =>
 											setAttributes({
-												[`MOB${typoPrefixConstant}ZRPLineHeightUnit`]:
+												[`${prefix}MOB${typoPrefixConstant}LineHeightUnit`]:
 													MOBlineHeightUnit,
 											})
 										}
@@ -629,7 +632,7 @@ const TypographyDropdown = ({
 										<ResetBtn
 											onReset={() =>
 												setAttributes({
-													[`MOB${typoPrefixConstant}ZRPLineHeight`]:
+													[`${prefix}MOB${typoPrefixConstant}LineHeight`]:
 														(
 															objAttributes[
 																`MOB${typoPrefixConstant}ZRPLineHeight`
@@ -649,7 +652,7 @@ const TypographyDropdown = ({
 											value={MOBlineHeight}
 											onChange={(LineHeight) =>
 												setAttributes({
-													[`MOB${typoPrefixConstant}ZRPLineHeight`]:
+													[`${prefix}MOB${typoPrefixConstant}LineHeight`]:
 														LineHeight,
 												})
 											}
