@@ -1,87 +1,88 @@
 import { hasVal } from "./helper";
+import { prefix } from '../global/constants';
 
 // function to generate typography attributes for multiple typography control based on the array of prefix
 export const generateTypographyAttributes = (prefixArray) => {
   const typoAttrs = prefixArray.reduce((total, current) => {
     const result = {
-      [`${current}ZRPFontFamily`]: {
+      [`${prefix}${current}FontFamily`]: {
         type: "string",
       },
-      [`${current}ZRPSizeUnit`]: {
-        type: "string",
-        default: "px",
-      },
-      [`${current}ZRPFontSize`]: {
-        type: "number",
-      },
-      [`${current}ZRPFontWeight`]: {
-        type: "string",
-      },
-      [`${current}ZRPFontStyle`]: {
-        type: "string",
-      },
-      [`${current}ZRPTextTransform`]: {
-        type: "string",
-      },
-      [`${current}ZRPTextDecoration`]: {
-        type: "string",
-      },
-      [`${current}ZRPLetterSpacingUnit`]: {
+      [`${prefix}${current}SizeUnit`]: {
         type: "string",
         default: "px",
       },
-      [`${current}ZRPLetterSpacing`]: {
+      [`${prefix}${current}FontSize`]: {
         type: "number",
       },
-      [`${current}ZRPLineHeightUnit`]: {
+      [`${prefix}${current}FontWeight`]: {
+        type: "string",
+      },
+      [`${prefix}${current}FontStyle`]: {
+        type: "string",
+      },
+      [`${prefix}${current}TextTransform`]: {
+        type: "string",
+      },
+      [`${prefix}${current}TextDecoration`]: {
+        type: "string",
+      },
+      [`${prefix}${current}LetterSpacingUnit`]: {
+        type: "string",
+        default: "px",
+      },
+      [`${prefix}${current}LetterSpacing`]: {
+        type: "number",
+      },
+      [`${prefix}${current}LineHeightUnit`]: {
         type: "string",
         default: "em",
       },
-      [`${current}ZRPLineHeight`]: {
+      [`${prefix}${current}LineHeight`]: {
         type: "number",
       },
 
-      [`TAB${current}ZRPSizeUnit`]: {
+      [`${prefix}TAB${current}SizeUnit`]: {
         type: "string",
         default: "px",
       },
-      [`TAB${current}ZRPFontSize`]: {
+      [`${prefix}TAB${current}FontSize`]: {
         type: "number",
       },
-      [`TAB${current}ZRPLetterSpacingUnit`]: {
+      [`${prefix}TAB${current}LetterSpacingUnit`]: {
         type: "string",
         default: "px",
       },
-      [`TAB${current}ZRPLetterSpacing`]: {
+      [`${prefix}TAB${current}LetterSpacing`]: {
         type: "number",
       },
-      [`TAB${current}ZRPLineHeightUnit`]: {
+      [`${prefix}TAB${current}LineHeightUnit`]: {
         type: "string",
         default: "em",
       },
-      [`TAB${current}ZRPLineHeight`]: {
+      [`${prefix}TAB${current}LineHeight`]: {
         type: "number",
       },
 
-      [`MOB${current}ZRPSizeUnit`]: {
+      [`${prefix}MOB${current}SizeUnit`]: {
         type: "string",
         default: "px",
       },
-      [`MOB${current}ZRPFontSize`]: {
+      [`${prefix}MOB${current}FontSize`]: {
         type: "number",
       },
-      [`MOB${current}ZRPLetterSpacingUnit`]: {
+      [`${prefix}MOB${current}LetterSpacingUnit`]: {
         type: "string",
         default: "px",
       },
-      [`MOB${current}ZRPLetterSpacing`]: {
+      [`${prefix}MOB${current}LetterSpacing`]: {
         type: "number",
       },
-      [`MOB${current}ZRPLineHeightUnit`]: {
+      [`${prefix}MOB${current}LineHeightUnit`]: {
         type: "string",
         default: "em",
       },
-      [`MOB${current}ZRPLineHeight`]: {
+      [`${prefix}MOB${current}LineHeight`]: {
         type: "number",
       },
     };
@@ -100,31 +101,31 @@ export const generateTypographyStyles = ({
   attributes,
 }) => {
   const {
-    [`${prefixConstant}ZRPFontFamily`]: fontFamily,
-    [`${prefixConstant}ZRPFontWeight`]: fontWeight,
-    [`${prefixConstant}ZRPFontStyle`]: fontStyle,
-    [`${prefixConstant}ZRPTextTransform`]: textTransform,
-    [`${prefixConstant}ZRPTextDecoration`]: textDecoration,
-    [`${prefixConstant}ZRPFontSize`]: fontSize = defaultFontSize,
-    [`${prefixConstant}ZRPSizeUnit`]: sizeUnit,
-    [`${prefixConstant}ZRPLetterSpacing`]: letterSpacing,
-    [`${prefixConstant}ZRPLetterSpacingUnit`]: letterSpacingUnit,
-    [`${prefixConstant}ZRPLineHeight`]: lineHeight,
-    [`${prefixConstant}ZRPLineHeightUnit`]: lineHeightUnit,
+    [`${prefix}${prefixConstant}FontFamily`]: fontFamily,
+    [`${prefix}${prefixConstant}FontWeight`]: fontWeight,
+    [`${prefix}${prefixConstant}FontStyle`]: fontStyle,
+    [`${prefix}${prefixConstant}TextTransform`]: textTransform,
+    [`${prefix}${prefixConstant}TextDecoration`]: textDecoration,
+    [`${prefix}${prefixConstant}FontSize`]: fontSize = defaultFontSize,
+    [`${prefix}${prefixConstant}SizeUnit`]: sizeUnit,
+    [`${prefix}${prefixConstant}LetterSpacing`]: letterSpacing,
+    [`${prefix}${prefixConstant}LetterSpacingUnit`]: letterSpacingUnit,
+    [`${prefix}${prefixConstant}LineHeight`]: lineHeight,
+    [`${prefix}${prefixConstant}LineHeightUnit`]: lineHeightUnit,
 
-    [`TAB${prefixConstant}ZRPSizeUnit`]: TABsizeUnit,
-    [`TAB${prefixConstant}ZRPLetterSpacingUnit`]: TABletterSpacingUnit,
-    [`TAB${prefixConstant}ZRPLineHeightUnit`]: TABlineHeightUnit,
-    [`TAB${prefixConstant}ZRPFontSize`]: TABfontSize,
-    [`TAB${prefixConstant}ZRPLetterSpacing`]: TABletterSpacing,
-    [`TAB${prefixConstant}ZRPLineHeight`]: TABlineHeight,
+    [`${prefix}TAB${prefixConstant}SizeUnit`]: TABsizeUnit,
+    [`${prefix}TAB${prefixConstant}LetterSpacingUnit`]: TABletterSpacingUnit,
+    [`${prefix}TAB${prefixConstant}LineHeightUnit`]: TABlineHeightUnit,
+    [`${prefix}TAB${prefixConstant}FontSize`]: TABfontSize,
+    [`${prefix}TAB${prefixConstant}LetterSpacing`]: TABletterSpacing,
+    [`${prefix}TAB${prefixConstant}LineHeight`]: TABlineHeight,
 
-    [`MOB${prefixConstant}ZRPSizeUnit`]: MOBsizeUnit,
-    [`MOB${prefixConstant}ZRPLetterSpacingUnit`]: MOBletterSpacingUnit,
-    [`MOB${prefixConstant}ZRPLineHeightUnit`]: MOBlineHeightUnit,
-    [`MOB${prefixConstant}ZRPFontSize`]: MOBfontSize,
-    [`MOB${prefixConstant}ZRPLetterSpacing`]: MOBletterSpacing,
-    [`MOB${prefixConstant}ZRPLineHeight`]: MOBlineHeight,
+    [`${prefix}MOB${prefixConstant}SizeUnit`]: MOBsizeUnit,
+    [`${prefix}MOB${prefixConstant}LetterSpacingUnit`]: MOBletterSpacingUnit,
+    [`${prefix}MOB${prefixConstant}LineHeightUnit`]: MOBlineHeightUnit,
+    [`${prefix}MOB${prefixConstant}FontSize`]: MOBfontSize,
+    [`${prefix}MOB${prefixConstant}LetterSpacing`]: MOBletterSpacing,
+    [`${prefix}MOB${prefixConstant}LineHeight`]: MOBlineHeight,
   } = attributes;
 
   const typoStylesDesktop = `

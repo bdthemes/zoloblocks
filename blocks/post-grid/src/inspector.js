@@ -1,58 +1,59 @@
-/**
- * WordPress dependencies
- */
 import {
   InspectorControls
 } from '@wordpress/block-editor';
 import {
-  BaseControl,
-  __experimentalNumberControl as NumberControl,
   PanelBody,
   SelectControl,
   TabPanel,
-  TextControl
+  TextControl,
+  ToggleControl
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import Select2 from "react-select";
-
 import objAttributes from './attributes';
-
 import {
-  AUTHOR_LISTS,
+  PRESETS,
+  GRID_COLUMNS,
+  COLUMNS_GAP,
+  THUMBNAIL_HEIGHT,
+  COLUMN_PADDING,
+  COLUMN_BG,
+  COLUMN_BORDER,
+  COLUMN_BORDER_RADIUS,
+  COLUMN_SHADOW,
   CONTAINER_MARGIN,
   CONTAINER_PADDING,
-  ORDER_BY,
-  POST_TYPE,
-  PRESETS,
-  PRINT_TAXONOMY,
-  SORT_ORDER
 } from './constants';
 
+import {
+  HEADING,
+  THUMBNAIL_SIZE
+} from '../../../src/global/constants';
+
 const {
-  ResRangeControl,
   ResDimensionsControl,
-  ColorControl
+  QueryControl,
+  ResRangeControl,
+  RangeResetControl,
+  NormalBGControl,
+  BorderControl,
+  BoxShadowControl
 } = window.zoloModule;
 
-
-function Inspector({ attributes, setAttributes, changeQuery }) {
-
+function Inspector({ attributes, setAttributes }) {
   const {
     preset,
     resMode,
-
-    postType,
-    postInclude,
-    postExclude,
-    postPerPage,
-    postOffset,
-    postKeyword,
-    postTaxnomyRelation,
-    postOrderBy,
-    postSortOrder,
-    postStatus,
-    postAuthors,
-    postTaxonomies,
+    showThumbnail,
+    thumbnailSize,
+    showTitle,
+    titleTag,
+    showExcerpt,
+    excerptindicator,
+    showReadMore,
+    readMoreBtnText,
+    showCategory,
+    showAuthor,
+    showMeta
   } = attributes;
 
   const resRequiredProps = {
@@ -62,9 +63,6 @@ function Inspector({ attributes, setAttributes, changeQuery }) {
     objAttributes,
   };
 
-  /**
-   * Preset
-   */
   const changePremade = (selected) => {
     setAttributes({ preset: selected });
     // switch (selected) {
@@ -90,23 +88,6 @@ function Inspector({ attributes, setAttributes, changeQuery }) {
     // 		break;
     // }
   };
-
-  const taxonomyListOptions = [
-    { value: 'category', label: 'Categories' },
-    { value: 'post_tag', label: 'Tags' }
-  ];
-
-  const changeTaxonomy = (terms, name) => {
-    let postTaxonomiesObj = {
-      ...postTaxonomies,
-      [name]: {
-        'name': name,
-        'options': terms,
-      }
-    }
-    setAttributes({ postTaxonomies: postTaxonomiesObj });
-  }
-  const allTermList = zoloParams.all_term_list;
 
   return (
     <InspectorControls key="controls">
@@ -137,130 +118,119 @@ function Inspector({ attributes, setAttributes, changeQuery }) {
               {tab.name === 'settings' && (
                 <>
                   <PanelBody title={__('Query', 'zolo-blocks')} initialOpen={true} >
-                    <SelectControl
-                      label={__('Source', 'zolo-blocks')}
-                      value={postType}
-                      options={POST_TYPE}
-                      onChange={(value) => {
-                        setAttributes({ postType: value }),
-                          changeQuery()
-                      }}
-                    />
-
-                    <BaseControl label={__('By Author', 'zolo-block')}>
-                      <Select2
-                        options={AUTHOR_LISTS}
-                        value={postAuthors}
-                        onChange={(value) => {
-                          setAttributes({ postAuthors: value }),
-                            changeQuery()
-                        }}
-                        isMulti={true}
-                        closeMenuOnSelect={false}
-                      />
-                    </BaseControl>
-
-                    <TextControl
-                      label={__("Include Only", "zolo-blocks")}
-                      value={postInclude}
-                      onChange={(postInclude) => {
-                        setAttributes({ postInclude }),
-                          changeQuery()
-                      }}
-                      autocomplete="off"
-                    />
-
-                    <TextControl
-                      label={__("Exclude", "zolo-blocks")}
-                      autocomplete="off"
-                      value={postExclude}
-                      onChange={(postExclude) => {
-                        setAttributes({ postExclude }),
-                          changeQuery()
-                      }}
-                    />
-
-                    {/* Advanced Filter */}
-                    {taxonomyListOptions.map((tax, index) => (
-                      <BaseControl label={__('By ', 'zolo-blocks') + tax.label} key={index}>
-                        <Select2
-                          options={PRINT_TAXONOMY(allTermList[tax.value])}
-                          value={Object.keys(postTaxonomies).length > 0 ? postTaxonomies[tax.value] !== undefined ? postTaxonomies[tax.value].options : [] : []}
-                          onChange={(value) => {
-                            changeTaxonomy(value, tax.value),
-                              changeQuery()
-                          }}
-                          isMulti={true}
-                          closeMenuOnSelect={false}
-                        />
-                      </BaseControl>
-                    ))}
-
-                    <NumberControl
-                      isShiftStepEnabled
-                      label={__("Post Per Page", "zolo-blocks")}
-                      max={100}
-                      min={-1}
-                      value={postPerPage}
-                      onChange={(postPerPage) => {
-                        setAttributes({ postPerPage })
-                        changeQuery()
-                      }}
-                      //placeholder={__("Eg. 10", "zolo-blocks")}
-                      shiftStep={10}
-                      step={1}
-                    />
-
-
-                    <NumberControl
-                      isShiftStepEnabled
-                      label={__("Offset", "zolo-blocks")}
-                      max={100}
-                      min={0}
-                      value={postOffset}
-                      onChange={(postOffset) => {
-                        setAttributes({ postOffset })
-                        changeQuery()
-                      }}
-                      shiftStep={10}
-                      step={1}
-                    />
-
-                    <SelectControl
-                      label={__('Order By', 'zolo-blocks')}
-                      value={postOrderBy}
-                      onChange={(value) => {
-                        setAttributes({ postOrderBy: value }),
-                          changeQuery()
-                      }}
-                      options={ORDER_BY}
-                    />
-
-                    <SelectControl
-                      label={__('Sort Order', 'zolo-blocks')}
-                      value={postSortOrder}
-                      onChange={(value) => {
-                        setAttributes({ postSortOrder: value }),
-                          changeQuery()
-                      }}
-                      options={SORT_ORDER}
+                    <QueryControl
+                      attributes={attributes}
+                      setAttributes={setAttributes}
                     />
                   </PanelBody>
 
-                  <PanelBody
-                    title={__('Layout Style', 'zolo-blocks')}
-                    initialOpen={false}
-                  >
+                  <PanelBody title={__('Layout Style', 'zolo-blocks')} initialOpen={false}>
                     <SelectControl
-                      label={__(
-                        'Preset Designs',
-                        'zolo-blocks'
-                      )}
+                      label={__('Preset Designs', 'zolo-blocks')}
                       value={preset}
                       options={PRESETS}
                       onChange={(selected) =>
                         changePremade(selected)
                       }
+                    />
+                    <ResRangeControl
+                      label={__('Columns', 'zolo-blocks')}
+                      controlName={GRID_COLUMNS}
+                      resRequiredProps={resRequiredProps}
+                      max={4}
+                      min={1}
+                      step={1}
+                      noUnits={true}
+                    />
+                    <ResRangeControl
+                      label={__('Columns Gap', 'zolo-blocks')}
+                      controlName={COLUMNS_GAP}
+                      resRequiredProps={resRequiredProps}
+                    />
+
+                    <ToggleControl
+                      label={__('Show Thumbnail', 'zolo-blocks')}
+                      checked={showThumbnail}
+                      onChange={(showThumbnail) => setAttributes({ showThumbnail })}
+                    />
+                    <ResRangeControl
+                      label={__('Thumbnail Height', 'zolo-blocks')}
+                      controlName={THUMBNAIL_HEIGHT}
+                      resRequiredProps={resRequiredProps}
+                    />
+                    <SelectControl
+                      label={__('Thumbnail Image Size', 'zolo-blocks')}
+                      value={thumbnailSize}
+                      options={THUMBNAIL_SIZE}
+                      onChange={(selected) => changePremade(selected)}
+                    />
+
+                    <ToggleControl
+                      label={__('Show Title', 'zolo-blocks')}
+                      checked={showTitle}
+                      onChange={(showTitle) => setAttributes({ showTitle })}
+                    />
+                    <SelectControl
+                      label={__('Title Tag', 'zolo-blocks')}
+                      value={titleTag}
+                      options={HEADING}
+                      onChange={(titleTag) => setAttributes({ titleTag })}
+                    />
+                    <RangeResetControl
+                      label={__('Title Words', 'zolo-blocks')}
+                      controlName={'titleWords'}
+                      resRequiredProps={resRequiredProps}
+                      min={1}
+                      max={100}
+                      step={1}
+                    />
+
+                    <ToggleControl
+                      label={__('Show Excerpt', 'zolo-blocks')}
+                      checked={showExcerpt}
+                      onChange={(showExcerpt) => setAttributes({ showExcerpt })}
+                    />
+                    <RangeResetControl
+                      label={__('Excerpt Words', 'zolo-blocks')}
+                      controlName={'excerptWords'}
+                      resRequiredProps={resRequiredProps}
+                      min={1}
+                      max={100}
+                      step={1}
+                    />
+                    <TextControl
+                      label={__(' Expansion Indicator', 'zolo-blocks')}
+                      value={excerptindicator}
+                      onChange={(excerptindicator) => setAttributes({ excerptindicator })}
+                    />
+
+                    <ToggleControl
+                      label={__('Show Read More Button', 'zolo-blocks')}
+                      checked={showReadMore}
+                      onChange={(showReadMore) => setAttributes({ showReadMore })}
+                    />
+                    {showReadMore && (
+                      <TextControl
+                        label={__('Button Text', 'zolo-blocks')}
+                        value={readMoreBtnText}
+                        onChange={(readMoreBtnText) => setAttributes({ readMoreBtnText })}
+                      />
+                    )}
+
+                    <ToggleControl
+                      label={__('Show Category', 'zolo-blocks')}
+                      checked={showCategory}
+                      onChange={(showCategory) => setAttributes({ showCategory })}
+                    />
+                    <ToggleControl
+                      label={__('Show Author', 'zolo-blocks')}
+                      checked={showAuthor}
+                      onChange={(showAuthor) => setAttributes({ showAuthor })}
+                    />
+                    <ToggleControl
+                      label={__('Show Meta', 'zolo-blocks')}
+                      checked={showMeta}
+                      onChange={(showMeta) => setAttributes({ showMeta })}
                     />
 
                   </PanelBody>
@@ -269,11 +239,43 @@ function Inspector({ attributes, setAttributes, changeQuery }) {
 
               {tab.name === 'design' && (
                 <>
-                  <PanelBody
-                    title={__('Container', 'zolo-blocks')}
-                    initialOpen={false}
-                  >
-
+                  <PanelBody title={__('Grid Columns', 'zolo-blocks')} initialOpen={true}>
+                    <ResDimensionsControl
+                      label={__('Padding', 'zolo-blocks')}
+                      controlName={COLUMN_PADDING}
+                      resRequiredProps={resRequiredProps}
+                    />
+                    <NormalBGControl
+                      resRequiredProps={resRequiredProps}
+                      controlName={COLUMN_BG}
+                      noMainBGImg={true}
+                    />
+                    <BorderControl
+                      label={__('Border', 'zolo-blocks')}
+                      controlName={COLUMN_BORDER}
+                      resRequiredProps={resRequiredProps}
+                    />
+                    <ResDimensionsControl
+                      label={__(
+                        'Border Radius',
+                        'zolo-blocks'
+                      )}
+                      controlName={COLUMN_BORDER_RADIUS}
+                      resRequiredProps={resRequiredProps}
+                      forBorderRadius={true}
+                    />
+                    <BoxShadowControl
+                      controlName={COLUMN_SHADOW}
+                      resRequiredProps={resRequiredProps}
+                    />
+                  </PanelBody>
+                  <PanelBody title={__('Image', 'zolo-blocks')} initialOpen={false}>
+                  </PanelBody>
+                  <PanelBody title={__('Title', 'zolo-blocks')} initialOpen={false}>
+                  </PanelBody>
+                  <PanelBody title={__('Excerpt', 'zolo-blocks')} initialOpen={false}>
+                  </PanelBody>
+                  <PanelBody title={__('Meta', 'zolo-blocks')} initialOpen={false}>
                   </PanelBody>
                 </>
               )}

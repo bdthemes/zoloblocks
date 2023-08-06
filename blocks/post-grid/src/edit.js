@@ -1,33 +1,27 @@
-/**
- * WordPress dependencies
- */
+import { __ } from '@wordpress/i18n';
 import {
   useBlockProps
 } from '@wordpress/block-editor';
 import { useEffect, useState } from '@wordpress/element';
+import apiFetch from "@wordpress/api-fetch";
+import { Spinner } from '@wordpress/components';
 import classnames from 'classnames';
-
-/**
- * Internal depencencies
- */
+import {
+  BLOCK_PREFIX,
+} from './constants';
 import Inspector from './inspector';
+import styles from './styles';
+import RenderView from './render-view';
+import './style.scss';
 
 const {
   handleUniqueId,
   softMinifyCssStrings,
-  generateResRangeStyle,
-  generateDimensionStyle,
 } = window.zoloModule;
-
-import {
-  BLOCK_PREFIX,
-  CONTAINER_MARGIN,
-  CONTAINER_PADDING
-} from './constants';
 
 export default function Edit(props) {
   const { attributes, setAttributes, className, clientId, isSelected } = props;
-  const { uniqueId, blockStyle, containerBg } = attributes;
+  const { uniqueId, postQuery, preset } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
   useEffect(() => {
@@ -40,81 +34,87 @@ export default function Edit(props) {
   }, []);
 
   const blockProps = useBlockProps({
-    className: classnames(className, `${uniqueId} ${'zolo-post-grid-' + styles}`),
+    className: classnames(className, `${uniqueId} zolo-post-wrap zolo-post-${preset}`),
   });
 
-  // Container Margin
-  const {
-    dimensionStylesDesktop: containerDeskMargin,
-    dimensionStylesTab: containerTabMargin,
-    dimensionStylesMobile: containerMobMargin,
-  } = generateDimensionStyle({
-    controlName: CONTAINER_MARGIN,
-    styleFor: 'margin',
+  //generate all style
+  const allStyle = styles({
     attributes,
-  });
+    setAttributes
+  })
 
-  // Container Padding
-  const {
-    dimensionStylesDesktop: containerDeskPadding,
-    dimensionStylesTab: containerTabPadding,
-    dimensionStylesMobile: containerMobPadding,
-  } = generateDimensionStyle({
-    controlName: CONTAINER_PADDING,
-    styleFor: 'padding',
-    attributes,
-  });
 
-  /**
-   * All Style Combination
-   */
-  const desktopAllStyle = `
-		.${uniqueId}.wp-block-zolo-post-grid {
-			background-color: ${containerBg};
-			${containerDeskMargin}
-			${containerDeskPadding}
-		}
-	`;
-  const tabletAllStyle = `
-		.${uniqueId}.wp-block-zolo-post-grid {
-			${containerTabMargin}
-			${containerTabPadding}
-		}
-	`;
-  const mobileAllStyle = `
-		.${uniqueId}.wp-block-zolo-post-grid {
-			${containerMobMargin}
-			${containerMobPadding}
-		}
-	`;
-
-  const allStyle = `
-		${desktopAllStyle}
-		@media all and (max-width: 1024px) {
-			${tabletAllStyle}
-		}
-		@media all and (max-width: 767px) {
-			${mobileAllStyle}
-		}
-	`;
-
-  // Set All Style in "blockStyle" Attribute
   useEffect(() => {
-    const styles = {
-      desktop: desktopAllStyle,
-      tablet: tabletAllStyle,
-      mobile: mobileAllStyle,
-    };
-    if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-      setAttributes({ blockStyle: styles });
+    if (typeof (postQuery) === 'undefined') {
+      setAttributes({
+        postQuery: {
+          postType: 'post',
+          postInclude: '',
+          postExclude: '',
+          postAuthors: [],
+          postTaxonomies: {},
+          postPerPage: 6,
+          postOffset: 0,
+          postOrderby: 'date',
+          postOrder: 'desc',
+        }
+      })
     }
-  }, [attributes]);
+  }, []);
 
-  //query change effect
-  const [queryEffect, setQueryEffect] = useState(false);
-  const changeQuery = () => {
-    setQueryEffect(!queryEffect);
+  const [postResults, setPostResults] = useState([]);
+  const [dataSuccess, setDataSuccess] = useState(true);
+  const [pageTotal, setPageTotal] = useState(0);
+
+  useEffect(() => {
+    let paginationLimit = 0;
+    paginationLimit = postQuery?.postPerPage;
+
+    const apiData = {
+      zolo_nonce: zoloParams.zolo_nonce,
+      attributes: attributes,
+      postQuery: postQuery
+    }
+
+    apiFetch({
+      path: '/zolo/v1/posts',
+      method: 'POST',
+      data: apiData,
+    }).then((response) => {
+      if (response.success) {
+        setPostResults([...response.data.posts]);
+        setPageTotal(response.data.total_page);
+        setDataSuccess(response.success);
+      } else {
+        setPostResults([]);
+        setPageTotal(0);
+        setDataSuccess(response.success);
+      }
+    })
+      .catch((error) => console.log(error));;
+  }, [postQuery]);
+
+
+  if (Array.isArray(postResults) && postResults.length === 0) {
+    return [
+      isSelected && (
+        <Inspector
+          attributes={attributes}
+          setAttributes={setAttributes}
+        />
+      ),
+      dataSuccess ? (<div className="zolo-spinner"><Spinner /></div>) : (
+        <p>{__('No posts found.', 'zolo-blocks')}</p>
+      )
+    ];
   }
+
+  console.log({
+    postResults,
+    dataSuccess,
+    pageTotal,
+  })
+
 
 
   return (
@@ -123,15 +123,15 @@ export default function Edit(props) {
         <Inspector
           attributes={attributes}
           setAttributes={setAttributes}
-          changeQuery={changeQuery}
         />
       )}
       <style>{`${softMinifyCssStrings(allStyle)}`}</style>
-
       <div {...blockProps}>
-
-        <h1>Post Grid</h1>
-
+        <RenderView
+          attributes={attributes}
+          setAttributes={setAttributes}
+          postResults={postResults}
+        />
       </div>
     </>
   );

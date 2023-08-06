@@ -27,6 +27,7 @@ export { default as IconicBtnGroup } from './controls/iconic-btn-group';
 export { default as SortableControl } from './controls/sortable-control';
 export { default as SortableItem } from './controls/sortable-control/sortableitem';
 export { default as ResCounterControl } from './controls/res-counter-control';
+export { default as QueryControl } from './controls/query-control';
 
 //Export Helpers
 export {

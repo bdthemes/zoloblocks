@@ -332,18 +332,18 @@ export const DEFAULT_ALIGNS = [
 ];
 
 export const FLEX_ALIGN_OPTIONS = [
-	{
-		label: 'Top',
-		value: 'flex-start',
-	},
-	{
-		label: 'Center',
-		value: 'center',
-	},
-	{
-		label: 'Bottom',
-		value: 'flex-end',
-	},
+  {
+    label: 'Top',
+    value: 'flex-start',
+  },
+  {
+    label: 'Center',
+    value: 'center',
+  },
+  {
+    label: 'Bottom',
+    value: 'flex-end',
+  },
 ];
 
 export const HEADING = [
@@ -734,4 +734,33 @@ export const ICON_STATUS = [
 			</svg>
 		),
 	},
+];
+
+
+export const ORDER_BY = [
+  { label: __("Date", "zolo-blocks"), value: "date" },
+  { label: __("Author", "zolo-blocks"), value: "author" },
+  { label: __("Title", "zolo-blocks"), value: "title" },
+  { label: __("Last modified date", "zolo-blocks"), value: "modified" },
+  { label: __("Post parent ID", "zolo-blocks"), value: "parent" },
+]
+
+export const SORT_ORDER = [
+  { label: __("ASC", "zolo-blocks"), value: "asc" },
+  { label: __("DESC", "zolo-blocks"), value: "desc" },
+]
+
+export const PRINT_TAXONOMY = (taxonomy) => {
+  let allTax = [];
+  for (let tax in taxonomy) {
+    allTax.push({ value: tax, label: __(taxonomy[tax], 'zolo-blocks') })
+  }
+  return allTax;
+}
+export const THUMBNAIL_SIZE = [
+  { label: __('Default', 'zolo-blocks'), value: '' },
+  { label: __('Thumbnail', 'zolo-blocks'), value: 'thumbnail' },
+  { label: __('Medium', 'zolo-blocks'), value: 'medium' },
+  { label: __('Large', 'zolo-blocks'), value: 'large' },
+  { label: __('Full', 'zolo-blocks'), value: 'full' },
 ];
