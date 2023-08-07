@@ -5,13 +5,12 @@ import {
 	useBlockProps,
 	RichText,
 	BlockControls,
-	__experimentalLinkControl as LinkControl,
 	MediaPlaceholder,
 	MediaUpload,
 } from '@wordpress/block-editor';
-import { Fragment, useState, useEffect } from '@wordpress/element';
+import { Fragment, useEffect } from '@wordpress/element';
 
-import { ToolbarButton, ToolbarGroup, Popover } from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import classnames from 'classnames';
@@ -36,6 +35,11 @@ import {
 	BLOCK_PREFIX,
 	CONTAINER_BG,
 	CONTENT_ALIGNMENT,
+	CONTENT_PADDING,
+	CONTENT_MARGIN,
+	CONTENT_BORDER,
+	CONTENT_BORDER_RADIUS,
+	CONTENT_BOX_SHADOW,
 	ICONS_BG,
 	ICONS_HOVER_BG,
 	ICONS_BORDER,
@@ -56,6 +60,13 @@ import {
 	TEAM_SHORT_BIO_MARGIN,
 	DETAIL_PAGE_LINK_BG,
 	DETAIL_PAGE_LINK_HOVER_BG,
+	DPL_HEIGHT,
+	DPL_WIDTH,
+	DPL_BORDER,
+	DPL_BORDER_RADIUS,
+	DPL_PADDING,
+	DPL_MARGIN,
+	DPL_ICON_SIZE,
 	TEAM_MEMBER_CONTAINER_PADDING,
 	TEAM_MEMBER_CONTAINER_MARGIN,
 } from './constants';
@@ -80,6 +91,8 @@ export default function Edit(props) {
 	const {
 		uniqueId,
 		preset,
+		blurBgColor,
+		blurBgOpacity,
 		blockStyle,
 		memberPhoto,
 		memberName,
@@ -93,6 +106,8 @@ export default function Edit(props) {
 		showSocialProfiles,
 		socialProfiles,
 		nameColor,
+		nameLinkColor,
+		nameHoverColor,
 		designationColor,
 		shortBioColor,
 		separatorColor,
@@ -102,7 +117,6 @@ export default function Edit(props) {
 		detailPageIconColor,
 		detailPageIconHoverColor,
 	} = attributes;
-	const [popoverVisible, setPopoverVisible] = useState(false);
 
 	// this useEffect is for creating a unique id for each block's unique className by a random unique number
 	useEffect(() => {
@@ -164,6 +178,61 @@ export default function Edit(props) {
 		noMainBGImg: false,
 	});
 
+	// content
+	const {
+		desktopAlignStyle: teamDeskAlignStyle,
+		tabAlignStyle: teamTabAlignStyle,
+		mobAlignStyle: teamMobAlignStyle,
+	} = generateResAlignmentStyle({
+		controlName: CONTENT_ALIGNMENT,
+		property: 'text-align',
+		attributes,
+	});
+
+	const {
+		desktopBorderStyle: contentBorderDeskStyle,
+		tabBorderStyle: contentBorderTabStyle,
+		mobBorderStyle: contentBorderMobStyle,
+	} = generateBorderStyle({
+		controlName: CONTENT_BORDER,
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: contentDeskBorderRadius,
+		dimensionStylesTab: contentTabBorderRadius,
+		dimensionStylesMobile: contentMobBorderRadius,
+	} = generateDimensionStyle({
+		controlName: CONTENT_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	});
+
+	const { boxShadowStyle: contentBoxShadow } = generateBoxShadowStyles({
+		attributes,
+		controlName: CONTENT_BOX_SHADOW,
+	});
+
+	const {
+		dimensionStylesDesktop: contentDeskPadding,
+		dimensionStylesTab: contentTabPadding,
+		dimensionStylesMobile: contentMobPadding,
+	} = generateDimensionStyle({
+		controlName: CONTENT_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: contentDeskMargin,
+		dimensionStylesTab: contentTabMargin,
+		dimensionStylesMobile: contentMobMargin,
+	} = generateDimensionStyle({
+		controlName: CONTENT_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	});
+
 	// Photo
 	const {
 		backgroundStylesDesktop: photoDeskBGStyle,
@@ -175,64 +244,6 @@ export default function Edit(props) {
 		noMainBGImg: true,
 	});
 
-	// content alignment
-	const {
-		desktopAlignStyle: teamDeskAlignStyle,
-		tabAlignStyle: teamTabAlignStyle,
-		mobAlignStyle: teamMobAlignStyle,
-	} = generateResAlignmentStyle({
-		controlName: CONTENT_ALIGNMENT,
-		property: 'text-align',
-		attributes,
-	});
-
-	// social icons alignment
-	let socialDeskAlignStyle;
-	switch (teamDeskAlignStyle) {
-		case 'text-align:left;':
-			socialDeskAlignStyle = 'justify-content: flex-start;';
-			break;
-		case 'text-align:center;':
-			socialDeskAlignStyle = 'justify-content: center;';
-			break;
-		case 'text-align:right;':
-			socialDeskAlignStyle = 'justify-content: flex-end;';
-			break;
-		default:
-			socialDeskAlignStyle = 'justify-content: flex-start;';
-	}
-
-	let socialTabAlignStyle;
-	switch (teamTabAlignStyle) {
-		case 'text-align:left;':
-			socialTabAlignStyle = 'justify-content: flex-start;';
-			break;
-		case 'text-align:center;':
-			socialTabAlignStyle = 'justify-content: center;';
-			break;
-		case 'text-align:right;':
-			socialTabAlignStyle = 'justify-content: flex-end;';
-			break;
-		default:
-			socialTabAlignStyle = 'justify-content: flex-start;';
-	}
-
-	let socialMobAlignStyle;
-	switch (teamMobAlignStyle) {
-		case 'text-align:left;':
-			socialMobAlignStyle = 'justify-content: flex-start;';
-			break;
-		case 'text-align:center;':
-			socialMobAlignStyle = 'justify-content: center;';
-			break;
-		case 'text-align:right;':
-			socialMobAlignStyle = 'justify-content: flex-end;';
-			break;
-		default:
-			socialMobAlignStyle = 'justify-content: flex-start;';
-	}
-
-	// Photo
 	const {
 		desktopBorderStyle: photoDeskBorderStyle,
 		tabBorderStyle: photoTabBorderStyle,
@@ -341,6 +352,53 @@ export default function Edit(props) {
 	});
 
 	// Social Icons
+
+	// social icons alignment
+	let socialDeskAlignStyle;
+	switch (teamDeskAlignStyle) {
+		case 'text-align:left;':
+			socialDeskAlignStyle = 'justify-content: flex-start;';
+			break;
+		case 'text-align:center;':
+			socialDeskAlignStyle = 'justify-content: center;';
+			break;
+		case 'text-align:right;':
+			socialDeskAlignStyle = 'justify-content: flex-end;';
+			break;
+		default:
+			socialDeskAlignStyle = 'justify-content: flex-start;';
+	}
+
+	let socialTabAlignStyle;
+	switch (teamTabAlignStyle) {
+		case 'text-align:left;':
+			socialTabAlignStyle = 'justify-content: flex-start;';
+			break;
+		case 'text-align:center;':
+			socialTabAlignStyle = 'justify-content: center;';
+			break;
+		case 'text-align:right;':
+			socialTabAlignStyle = 'justify-content: flex-end;';
+			break;
+		default:
+			socialTabAlignStyle = 'justify-content: flex-start;';
+	}
+
+	let socialMobAlignStyle;
+	switch (teamMobAlignStyle) {
+		case 'text-align:left;':
+			socialMobAlignStyle = 'justify-content: flex-start;';
+			break;
+		case 'text-align:center;':
+			socialMobAlignStyle = 'justify-content: center;';
+			break;
+		case 'text-align:right;':
+			socialMobAlignStyle = 'justify-content: flex-end;';
+			break;
+		default:
+			socialMobAlignStyle = 'justify-content: flex-start;';
+	}
+
 	const {
 		backgroundStylesDesktop: iconsNormalDeskBG,
 		backgroundStylesTab: iconsNormalTabBG,
@@ -463,6 +521,75 @@ export default function Edit(props) {
 		noMainBGImg: true,
 	});
 
+	const {
+		desktopRangeStyle: dplDeskSize,
+		tabRangeStyle: dplTabSize,
+		mobRangeStyle: dplMobSize,
+	} = generateResRangeStyle({
+		controlName: DPL_ICON_SIZE,
+		property: 'font-size',
+		attributes,
+	});
+
+	const {
+		desktopRangeStyle: dplDeskHeight,
+		tabRangeStyle: dplTabHeight,
+		mobRangeStyle: dplMobHeight,
+	} = generateResRangeStyle({
+		controlName: DPL_HEIGHT,
+		property: 'height',
+		attributes,
+	});
+
+	const {
+		desktopRangeStyle: dplDeskWidth,
+		tabRangeStyle: dplTabWidth,
+		mobRangeStyle: dplMobWidth,
+	} = generateResRangeStyle({
+		controlName: DPL_WIDTH,
+		property: 'width',
+		attributes,
+	});
+
+	const {
+		desktopBorderStyle: dplDeskBorderStyle,
+		tabBorderStyle: dplTabBorderStyle,
+		mobBorderStyle: dplMobBorderStyle,
+	} = generateBorderStyle({
+		controlName: DPL_BORDER,
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: dplDeskBorderRadius,
+		dimensionStylesTab: dplTabBorderRadius,
+		dimensionStylesMobile: dplMobBorderRadius,
+	} = generateDimensionStyle({
+		controlName: DPL_BORDER_RADIUS,
+		styleFor: 'border-radius',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: dplDeskPadding,
+		dimensionStylesTab: dplTabPadding,
+		dimensionStylesMobile: dplMobPadding,
+	} = generateDimensionStyle({
+		controlName: DPL_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
+
+	const {
+		dimensionStylesDesktop: dplDeskMargin,
+		dimensionStylesTab: dplTabMargin,
+		dimensionStylesMobile: dplMobMargin,
+	} = generateDimensionStyle({
+		controlName: DPL_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	});
+
 	/**
 	 * Image Width Calculation for Style-4(Preset-3)
 	 */
@@ -535,11 +662,22 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
 			${teamDeskAlignStyle}
 		}
-		.${uniqueId}.default .zolo-item .zolo-info-wrap,
+		.${uniqueId}.default .zolo-item .zolo-info-wrap, 
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
+		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
+		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,
 		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
 			${containerDeskBGStyle}
+			${contentBorderDeskStyle}
+			${contentDeskBorderRadius}
+			${contentDeskPadding}
+			${contentDeskMargin}
+			${contentBoxShadow}
+		}
+		.${uniqueId}.wp-block-zolo-team-child.style-2 .zolo-image-wrap::before {
+			background-color: ${blurBgColor};
+			backdrop-filter: blur(${blurBgOpacity}px);
 		}
 		.${uniqueId} .zolo-social-share {
 			${socialDeskAlignStyle}
@@ -574,7 +712,7 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-social-share {
 			${socialIconsGapDesk}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a {
+		.${uniqueId}.wp-block-zolo-team-child .zolo-social-share a {
 			${socialIconContainerHeightDesk}
 			${socialIconContainerWidthDesk}
 			${socialIconDeskBorderStyle}
@@ -584,7 +722,7 @@ export default function Edit(props) {
 			${iconColor ? `color: ${iconColor};` : ''}
 			${iconsNormalDeskBG}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a:hover {
+		.${uniqueId}.wp-block-zolo-team-child .zolo-social-share a:hover {
 			${socialIconHoverBoxShadow}
 			${iconHoverColor ? `color: ${iconHoverColor};` : ''}
 			${iconHoverBorderColor ? `border-color: ${iconHoverBorderColor};` : ''}
@@ -593,11 +731,18 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
 			${socialIconDesk}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-link-btn a {
+		.${uniqueId}.wp-block-zolo-team-child .zolo-link-btn a {
 			${detailPageNormalDeskBG}
 			${detailPageIconColor ? `color: ${detailPageIconColor};` : ''}
+			${dplDeskBorderStyle}
+			${dplDeskBorderRadius}
+			${dplDeskPadding}
+			${dplDeskMargin}
+			${dplDeskHeight}
+			${dplDeskWidth}
+			${dplDeskSize}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-link-btn a:hover {
+		.${uniqueId}.wp-block-zolo-team-child .zolo-link-btn a:hover {
 			${detailPageIconHoverColor ? `color: ${detailPageIconHoverColor};` : ''}
 			${detailPageHoverDeskBG}
 		}
@@ -608,11 +753,17 @@ export default function Edit(props) {
 			${teamMemberContainerTabPadding}
 			${teamMemberContainerTabMargin}
 		}
-		.${uniqueId}.default .zolo-item .zolo-info-wrap,
+		.${uniqueId}.default .zolo-item .zolo-info-wrap, 
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
+		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
+		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,
 		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
 			${containerTabBGStyle}
+			${contentBorderTabStyle}
+			${contentTabBorderRadius}
+			${contentTabPadding}
+			${contentTabMargin}
 		}
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
 			${teamTabAlignStyle}
@@ -643,7 +794,7 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-social-share {
 			${socialIconsGapTab}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a {
+		.${uniqueId}.wp-block-zolo-team-child .zolo-social-share a {
 			${socialIconContainerHeightTab}
 			${socialIconContainerWidthTab}
 			${socialIconTabBorderStyle}
@@ -651,7 +802,7 @@ export default function Edit(props) {
 			${socialIconsPaddingTab}
 			${iconsNormalTabBG}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a:hover {
+		.${uniqueId}.wp-block-zolo-team-child .zolo-social-share a:hover {
 			${iconsHoverTabBG}
 		}
 		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
@@ -659,6 +810,13 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zolo-link-btn a {
 			${detailPageNormalTabBG}
+			${dplTabBorderStyle}
+			${dplTabBorderRadius}
+			${dplTabPadding}
+			${dplTabMargin}
+			${dplTabHeight}
+			${dplTabWidth}
+			${dplTabSize}
 		}
 		.${uniqueId} .zolo-link-btn a:hover {
 			${detailPageHoverTabBG}
@@ -670,11 +828,18 @@ export default function Edit(props) {
 			${teamMemberContainerMobPadding}
 			${teamMemberContainerMobMargin}
 		}
-		.${uniqueId}.default .zolo-item .zolo-info-wrap,
+		.${uniqueId}.default .zolo-item .zolo-info-wrap, 
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
+		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
+		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,
 		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
 			${containerMobBGStyle}
+			${contentBorderMobStyle}
+			${contentMobBorderRadius}
+			${contentMobPadding}
+			${contentMobMargin}
+			
 		}
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
 			${teamMobAlignStyle}
@@ -705,7 +870,7 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-social-share {
 			${socialIconsGapMob}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a {
+		.${uniqueId}.wp-block-zolo-team-child .zolo-social-share a {
 			${socialIconContainerHeightMob}
 			${socialIconContainerWidthMob}
 			${socialIconMobBorderStyle}
@@ -713,7 +878,7 @@ export default function Edit(props) {
 			${socialIconsPaddingMob}
 			${iconsNormalMobBG}
 		}
-		.${uniqueId}.wp-block-zolo-team-member .zolo-social-share a:hover {
+		.${uniqueId}.wp-block-zolo-team-child .zolo-social-share a:hover {
 			${iconsHoverMobBG}
 		}
 		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
@@ -721,6 +886,13 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zolo-link-btn a {
 			${detailPageNormalMobBG}
+			${dplMobBorderStyle}
+			${dplMobBorderRadius}
+			${dplMobPadding}
+			${dplMobMargin}
+			${dplMobHeight}
+			${dplMobWidth}
+			${dplMobSize}
 		}
 		.${uniqueId} .zolo-link-btn a:hover {
 			${detailPageHoverMobBG}

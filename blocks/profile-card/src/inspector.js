@@ -5,15 +5,11 @@ import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
 	CardDivider,
 	PanelBody,
-	SelectControl,
-	TabPanel,
 	TextControl,
 	TextareaControl,
 	ToggleControl,
 	BaseControl,
 	Button,
-	Dropdown,
-	Panel,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -21,7 +17,6 @@ import { __ } from '@wordpress/i18n';
  * Internal depencencies
  */
 const {
-	ResAlignmentControl,
 	ResRangeControl,
 	ColorControl,
 	BorderControl,
@@ -32,7 +27,6 @@ const {
 	ImageAvatar,
 	IconPicker,
 	TabPanelControl,
-	GradientControl,
 	HeaderTabs,
 	LinkControl,
 	SortableItem,
@@ -41,11 +35,10 @@ const {
 
 import objAttributes from './attributes';
 import {
-	PRESETS,
-	CONTAINER_BG,
 	HEADER_AREA_BORDER_RADIUS,
 	HEADER_AREA_PADDING,
 	HEADER_BADGE_BORDER,
+	HEADER_AREA_BG,
 	BADGE_PADDING,
 	BADGE_BG,
 	BADGE_BORDER_RADIUS,
@@ -98,7 +91,6 @@ function Inspector(props) {
 	const { attributes, setAttributes } = props;
 	const {
 		resMode,
-		preset,
 		showBadge,
 		badgeText,
 		showPhoto,
@@ -118,8 +110,6 @@ function Inspector(props) {
 		followButtonLink,
 		showSocialProfiles,
 		socialProfiles,
-		socialProfilesLinkTarget,
-		headerAreaBG,
 		badgeColor,
 		nameColor,
 		usernameColor,
@@ -141,27 +131,6 @@ function Inspector(props) {
 		attributes,
 		objAttributes,
 	};
-
-	/**
-	 * Preset
-	 */
-	// const changePremade = (selected) => {
-	// 	setAttributes({ preset: selected });
-	// 	switch (selected) {
-	// 		case 'default':
-	// 			setAttributes({
-	// 				showSocialProfiles: true,
-	// 			});
-	// 			break;
-	// 		case 'style-1':
-	// 			setAttributes({
-	// 				showSocialProfiles: true,
-	// 			});
-	// 			break;
-	// 		default:
-	// 			return false;
-	// 	}
-	// };
 
 	const setProfileIcon = (value, index) => {
 		let profile = [...socialProfiles];
@@ -694,15 +663,6 @@ function Inspector(props) {
 							title={__('Header Area', 'zolo-blocks')}
 							initialOpen={false}
 						>
-							<GradientControl
-								label={__('Background', 'zolo-blocks')}
-								value={headerAreaBG}
-								onChange={(value) =>
-									setAttributes({
-										headerAreaBG: value,
-									})
-								}
-							/>
 							<ResDimensionsControl
 								label={__('Border Radius', 'zolo-blocks')}
 								controlName={HEADER_AREA_BORDER_RADIUS}
@@ -714,6 +674,11 @@ function Inspector(props) {
 								controlName={HEADER_AREA_PADDING}
 								resRequiredProps={resRequiredProps}
 								forBorderRadius={false}
+							/>
+							<NormalBGControl
+								resRequiredProps={resRequiredProps}
+								controlName={HEADER_AREA_BG}
+								noMainBGImg={true}
 							/>
 						</PanelBody>
 						<PanelBody

@@ -10,8 +10,10 @@ import {
 	ToggleControl,
 	BaseControl,
 	Button,
+	RangeControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { Fragment } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -40,6 +42,11 @@ import {
 	CONTAINER_BG,
 	CONTENT_BG,
 	CONTENT_ALIGNMENT,
+	CONTENT_PADDING,
+	CONTENT_MARGIN,
+	CONTENT_BORDER,
+	CONTENT_BORDER_RADIUS,
+	CONTENT_BOX_SHADOW,
 	PHOTO_BG,
 	TEAM_PHOTO_BORDER,
 	TEAM_PHOTO_BORDER_RADIUS,
@@ -60,6 +67,13 @@ import {
 	ICONS_HOVER_BOX_SHADOW,
 	DETAIL_PAGE_LINK_BG,
 	DETAIL_PAGE_LINK_HOVER_BG,
+	DPL_HEIGHT,
+	DPL_WIDTH,
+	DPL_BORDER,
+	DPL_BORDER_RADIUS,
+	DPL_PADDING,
+	DPL_MARGIN,
+	DPL_ICON_SIZE,
 	TEAM_MEMBER_CONTAINER_PADDING,
 	TEAM_MEMBER_CONTAINER_MARGIN,
 } from './constants';
@@ -71,12 +85,15 @@ import {
 } from './constants/typoPrefixConstants';
 
 import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
+import { add } from 'lodash';
 
 function Inspector(props) {
 	const { attributes, setAttributes } = props;
 	const {
 		resMode,
 		preset,
+		blurBgColor,
+		blurBgOpacity,
 		memberPhoto,
 		memberName,
 		showDesignation,
@@ -89,6 +106,8 @@ function Inspector(props) {
 		showShortBio,
 		memberShortBio,
 		nameColor,
+		nameLinkColor,
+		nameHoverColor,
 		designationColor,
 		shortBioColor,
 		separatorColor,
@@ -535,6 +554,29 @@ function Inspector(props) {
 				}
 				styleTab={
 					<>
+						{preset === 'style-2' && (
+							<PanelBody
+								title={__('Preset Style', 'zolo-blocks')}
+								initialOpen={false}
+							>
+								<ColorControl
+									label={__('Blur Color', 'zolo-blocks')}
+									color={blurBgColor}
+									onChange={(color) =>
+										setAttributes({ blurBgColor: color })
+									}
+								/>
+								<RangeControl
+									label={__('Blur Strength', 'zolo-blocks')}
+									value={blurBgOpacity}
+									onChange={(v) =>
+										setAttributes({ blurBgOpacity: v })
+									}
+									min={0}
+									max={100}
+								/>
+							</PanelBody>
+						)}
 						<PanelBody
 							title={__('Container', 'zolo-blocks')}
 							initialOpen={false}
@@ -545,11 +587,11 @@ function Inspector(props) {
 								noMainBGImg={false}
 							/>
 						</PanelBody>
-						{preset !== 'style-3' && (
-							<PanelBody
-								title={__('Content', 'zolo-blocks')}
-								initialOpen={false}
-							>
+						<PanelBody
+							title={__('Content', 'zolo-blocks')}
+							initialOpen={false}
+						>
+							{preset !== 'style-3' && (
 								<ResAlignmentControl
 									label={__(
 										'Content Alignmet',
@@ -559,13 +601,41 @@ function Inspector(props) {
 									resRequiredProps={resRequiredProps}
 									alignOptions={TEXT_ALIGN_OPTIONS}
 								/>
-								<NormalBGControl
-									resRequiredProps={resRequiredProps}
-									controlName={CONTENT_BG}
-									noMainBGImg={false}
-								/>
-							</PanelBody>
-						)}
+							)}
+							<BorderControl
+								label={__('Border', 'zolo-blocks')}
+								controlName={CONTENT_BORDER}
+								resRequiredProps={resRequiredProps}
+							/>
+							<ResDimensionsControl
+								label={__('Border Radius', 'zolo-blocks')}
+								controlName={CONTENT_BORDER_RADIUS}
+								resRequiredProps={resRequiredProps}
+								forBorderRadius={true}
+							/>
+							<BoxShadowControl
+								controlName={CONTENT_BOX_SHADOW}
+								resRequiredProps={resRequiredProps}
+								enableTransition={false}
+							/>
+							<ResDimensionsControl
+								label={__('Padding', 'zolo-blocks')}
+								controlName={CONTENT_PADDING}
+								resRequiredProps={resRequiredProps}
+								forBorderRadius={false}
+							/>
+							<ResDimensionsControl
+								label={__('Margin', 'zolo-blocks')}
+								controlName={CONTENT_MARGIN}
+								resRequiredProps={resRequiredProps}
+								forBorderRadius={false}
+							/>
+							<NormalBGControl
+								resRequiredProps={resRequiredProps}
+								controlName={CONTENT_BG}
+								noMainBGImg={false}
+							/>
+						</PanelBody>
 						<PanelBody
 							title={__('Photo', 'zolo-blocks')}
 							initialOpen={false}
@@ -613,20 +683,58 @@ function Inspector(props) {
 								typoPrefixConstant={TEAM_MEMBER_NAME_TYPOGRAPHY}
 								resRequiredProps={resRequiredProps}
 							/>
-							<ColorControl
-								label={__('Color', 'zolo-blocks')}
-								color={nameColor}
-								onChange={(color) =>
-									setAttributes({
-										nameColor: color,
-									})
-								}
-							/>
+							{!addDetailPageLink && (
+								<ColorControl
+									label={__('Color', 'zolo-blocks')}
+									color={nameColor}
+									onChange={(color) =>
+										setAttributes({
+											nameColor: color,
+										})
+									}
+								/>
+							)}
 							<ResDimensionsControl
 								label={__('Margin', 'zolo-blocks')}
 								controlName={TEAM_NAME_MARGIN}
 								resRequiredProps={resRequiredProps}
 							/>
+							{addDetailPageLink && (
+								<TabPanelControl
+									normalComponents={
+										<>
+											<ColorControl
+												label={__(
+													'Link Color',
+													'zolo-blocks'
+												)}
+												color={nameLinkColor}
+												onChange={(color) =>
+													setAttributes({
+														nameLinkColor: color,
+													})
+												}
+											/>
+										</>
+									}
+									hoverComponents={
+										<>
+											<ColorControl
+												label={__(
+													'Link Hover Color',
+													'zolo-blocks'
+												)}
+												color={nameHoverColor}
+												onChange={(color) =>
+													setAttributes({
+														nameHoverColor: color,
+													})
+												}
+											/>
+										</>
+									}
+								/>
+							)}
 						</PanelBody>
 						{showDesignation && (
 							<PanelBody
@@ -813,6 +921,42 @@ function Inspector(props) {
 								title={__('Details Page Link', 'zolo-blocks')}
 								initialOpen={false}
 							>
+								<ResRangeControl
+									label={__('Icon Size', 'zolo-blocks')}
+									controlName={DPL_ICON_SIZE}
+									resRequiredProps={resRequiredProps}
+								/>
+								<ResRangeControl
+									label={__('Height', 'zolo-blocks')}
+									controlName={DPL_HEIGHT}
+									resRequiredProps={resRequiredProps}
+								/>
+								<ResRangeControl
+									label={__('Width', 'zolo-blocks')}
+									controlName={DPL_WIDTH}
+									resRequiredProps={resRequiredProps}
+								/>
+								<BorderControl
+									label={__('Border', 'zolo-blocks')}
+									controlName={DPL_BORDER}
+									resRequiredProps={resRequiredProps}
+								/>
+								<ResDimensionsControl
+									label={__('Border Radius', 'zolo-blocks')}
+									controlName={DPL_BORDER_RADIUS}
+									resRequiredProps={resRequiredProps}
+									forBorderRadius={true}
+								/>
+								<ResDimensionsControl
+									label={__('Padding', 'zolo-blocks')}
+									controlName={DPL_PADDING}
+									resRequiredProps={resRequiredProps}
+								/>
+								<ResDimensionsControl
+									label={__('Margin', 'zolo-blocks')}
+									controlName={DPL_MARGIN}
+									resRequiredProps={resRequiredProps}
+								/>
 								<TabPanelControl
 									normalComponents={
 										<>

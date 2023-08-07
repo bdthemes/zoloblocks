@@ -40,6 +40,7 @@ import {
 	HEADER_AREA_BORDER_RADIUS,
 	HEADER_AREA_PADDING,
 	HEADER_BADGE_BORDER,
+	HEADER_AREA_BG,
 	BADGE_PADDING,
 	BADGE_BG,
 	BADGE_BORDER_RADIUS,
@@ -112,7 +113,6 @@ export default function Edit(props) {
 		statusItems,
 		showFollowButton,
 		followButtonText,
-		headerAreaBG,
 		showSocialProfiles,
 		socialProfiles,
 		badgeColor,
@@ -144,17 +144,6 @@ export default function Edit(props) {
 		className: classnames(className, `${uniqueId} ${preset ? preset : ''}`),
 	});
 
-	// Container
-	// const {
-	// 	backgroundStylesDesktop: containerDeskBGStyle,
-	// 	backgroundStylesTab: containerTabBGStyle,
-	// 	backgroundStylesMobile: containerMobBGStyle,
-	// } = generateNormalBGControlStyles({
-	// 	controlName: CONTAINER_BG,
-	// 	attributes,
-	// 	noMainBGImg: false,
-	// });
-
 	// header area part
 	const {
 		dimensionStylesDesktop: headerAreaDeskBorderRadius,
@@ -174,6 +163,16 @@ export default function Edit(props) {
 		controlName: HEADER_AREA_PADDING,
 		styleFor: 'padding',
 		attributes,
+	});
+
+	const {
+		backgroundStylesDesktop: headerAreaBgDeskStyle,
+		backgroundStylesTab: headerAreaBgTabStyle,
+		backgroundStylesMobile: headerAreaBgMobStyle,
+	} = generateNormalBGControlStyles({
+		controlName: HEADER_AREA_BG,
+		attributes,
+		noMainBGImg: true,
 	});
 
 	// header badge
@@ -647,10 +646,7 @@ export default function Edit(props) {
 			${photoDeskBorderStyle}
 		}
 		.${uniqueId} .zb-profile-header-content {
-			background: ${headerAreaBG ? headerAreaBG : ''};
-		}
-		.${uniqueId} .zb-profile-header-content {
-			background: ${headerAreaBG ? headerAreaBG : ''}; 
+			${headerAreaBgDeskStyle}
 			${headerAreaDeskPadding}
 			${headerAreaDeskBorderRadius}
 		}
@@ -748,6 +744,7 @@ export default function Edit(props) {
 
 	const tabletAllStyle = `
 		.${uniqueId} .zb-profile-header-content {
+			${headerAreaBgTabStyle}
 			${headerAreaTabPadding}
 			${headerAreaTabBorderRadius}
 		}
@@ -840,6 +837,7 @@ export default function Edit(props) {
 
 	const mobileAllStyle = `
 		.${uniqueId} .zb-profile-header-content {
+			${headerAreaBgMobStyle}
 			${headerAreaMobPadding}
 			${headerAreaMobBorderRadius}
 		}
