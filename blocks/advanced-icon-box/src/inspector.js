@@ -40,11 +40,9 @@ const {
 
 import objAttributes from './attributes';
 import {
-	TITLE_ALIGNMENT,
 	TITLE_TAG,
 	TITLE_MARGIN,
 	DESCRIPTION_MARGIN,
-	DESC_ALIGNMENT,
 	PRESETS,
 	ICON_POSITIONS,
 	SIDE_ICON_POSITIONS,
@@ -261,21 +259,6 @@ function Inspector( props ) {
 								} }
 								value={ titleTag }
 							/>
-							<ResAlignmentControl
-								label={ __( 'Title Alignment', 'zolo-blocks' ) }
-								controlName={ TITLE_ALIGNMENT }
-								resRequiredProps={ resRequiredProps }
-								alignOptions={ TEXT_ALIGN_OPTIONS }
-							/>
-							<ResAlignmentControl
-								label={ __(
-									'Description Alignment',
-									'zolo-blocks'
-								) }
-								controlName={ DESC_ALIGNMENT }
-								resRequiredProps={ resRequiredProps }
-								alignOptions={ TEXT_ALIGN_OPTIONS }
-							/>
 						</PanelBody>
 						<PanelBody
 							title={ __( 'Button', 'zolo-blocks' ) }
@@ -474,13 +457,10 @@ function Inspector( props ) {
 										'Content Alignment',
 										'zolo-blocks'
 									) }
-									value={ contentAlignment.iconPosition }
+									value={ contentAlignment }
 									onChange={ ( value ) =>
 										setAttributes( {
-											contentAlignment: {
-												...contentAlignment,
-												iconPosition: value,
-											},
+											contentAlignment: value,
 										} )
 									}
 									options={ DEFAULT_ALIGNS }

@@ -32,12 +32,10 @@ const {
 import {
 	BLOCK_PREFIX,
 	ICON_BOX_ALIGNMENT,
-	TITLE_ALIGNMENT,
 	TITLE_MARGIN,
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
 	DESCRIPTION_MARGIN,
-	DESC_ALIGNMENT,
 	ICON_BORDER,
 	ICON_BORDER_RADIUS,
 	ICON_SIZE,
@@ -212,17 +210,6 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
-	// title alignment
-	const {
-		desktopAlignStyle: textAlignmentDesktop,
-		tabAlignStyle: textAlignmentTab,
-		mobAlignStyle: textAlignmentMob,
-	} = generateResAlignmentStyle( {
-		controlName: TITLE_ALIGNMENT,
-		property: 'text-align',
-		attributes,
-	} );
-
 	// Generate Title Margin
 	const {
 		dimensionStylesDesktop: titleMarginDesktop,
@@ -250,17 +237,6 @@ export default function Edit( props ) {
 	} = generateTextStrokeStyles( {
 		attributes,
 		controlName: TITLE_TEXT_STROKE,
-	} );
-
-	// description alignment
-	const {
-		desktopAlignStyle: descAlignmentDesktop,
-		tabAlignStyle: descAlignmentTab,
-		mobAlignStyle: descAlignmentMob,
-	} = generateResAlignmentStyle( {
-		controlName: DESC_ALIGNMENT,
-		property: 'text-align',
-		attributes,
 	} );
 
 	// descrtiption typography
@@ -295,22 +271,6 @@ export default function Edit( props ) {
 		styleFor: 'margin',
 		attributes,
 	} );
-
-	/**
-	 * Generate Description Alignment Class
-	 */
-
-	const deskDescAlign = `display: ${
-		descAlignmentDesktop === 'text-align:left;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const tabDescAlign = `display: ${
-		descAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const mobDescAlign = `display: ${
-		descAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
 
 	/**
 	 * Generate Icon Alignment Class
@@ -487,10 +447,15 @@ export default function Edit( props ) {
 	 */
 	const desktopAllStyle = `		
 		.${ uniqueId } .zolo-block-icon-wrap{
-			justify-content: ${ contentAlignment && contentAlignment.iconPosition };
+			justify-content: ${ contentAlignment ? contentAlignment : 'left' };
+		}
+		.${ uniqueId } .zolo-block-body-content{
+			text-align: ${ contentAlignment ? contentAlignment : 'left' };
+		}
+		.${ uniqueId } .zolo-block-link-btn{
+			justify-content: ${ contentAlignment ? contentAlignment : 'left' };
 		}
 		.${ uniqueId } .zolo-block-title{
-			${ textAlignmentDesktop }
 			${ titleTypoDesktop }
 			${ titleTextShadowStyle }
         	${ titleTextStrokeStyle }
@@ -502,7 +467,6 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-desc{
 			${ descTypoDesktop }
-			${ descAlignmentDesktop }
 			${ descMarginDesktop }
 			color: ${ descColor ? descColor : '#87878a' };
 		}
@@ -573,11 +537,9 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoTab }
 			${ tabTitleTextStrokeStyle }
-			${ textAlignmentTab }
 			${ titleMarginTab }
 		}		
 		.${ uniqueId } .zolo-block-desc{
-			${ descAlignmentTab }
 			${ descMarginTab }
 			${ descTypoTab }
 		}
@@ -622,11 +584,9 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoMobile }
 			${ mobTitleTextStrokeStyle }
-			${ textAlignmentMob }
 			${ titleMarginMob }
 		}		
 		.${ uniqueId } .zolo-block-desc{
-			${ descAlignmentMob }
 			${ descMarginMob }
 			${ descTypoMobile }
 		}

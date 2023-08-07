@@ -11,12 +11,10 @@ const {
 
 import {
 	ICON_BOX_ALIGNMENT,
-	TITLE_ALIGNMENT,
 	TITLE_MARGIN,
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
 	DESCRIPTION_MARGIN,
-	DESC_ALIGNMENT,
 	ICON_BORDER,
 	ICON_BOX_SHADOW,
 	ICON_HOVER_BOX_SHADOW,
@@ -51,14 +49,7 @@ const attributes = {
 	...generateResAlignmentAttributies( ICON_BOX_ALIGNMENT, {
 		defaultAlign: 'left',
 	} ),
-	//title alignment attributes
-	...generateResAlignmentAttributies( TITLE_ALIGNMENT, {
-		defaultAlign: '',
-	} ),
-	//description alignment attributes
-	...generateResAlignmentAttributies( DESC_ALIGNMENT, {
-		defaultAlign: '',
-	} ),
+
 	// border attributes
 	...generateBorderAttributies( ICON_BORDER ),
 	// button border
@@ -168,12 +159,8 @@ const attributes = {
 		default: 'icon',
 	},
 	contentAlignment: {
-		type: 'object',
-		default: {
-			iconPosition: 'left',
-			buttonPosition: 'left',
-			buttonIconPosition: 'row-reverse',
-		},
+		type: 'string',
+		default: 'left',
 	},
 	contentFlexAlignment: {
 		type: 'object',

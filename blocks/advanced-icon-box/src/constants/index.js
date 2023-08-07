@@ -7,10 +7,10 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'advanced-icon-box';
 // Presets
 export const PRESETS = [
-	{ label: __('Default', 'zolo-blocks'), value: 'style-0' },
-	{ label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-	{ label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
-	{ label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
+	{ label: __( 'Default', 'zolo-blocks' ), value: 'style-0' },
+	{ label: __( 'Preset 1', 'zolo-blocks' ), value: 'style-1' },
+	{ label: __( 'Preset 2', 'zolo-blocks' ), value: 'style-2' },
+	{ label: __( 'Preset 3', 'zolo-blocks' ), value: 'style-3' },
 ];
 
 // title tag
@@ -52,19 +52,19 @@ export const TITLE_TAG = [
 // icon positions
 export const ICON_BOX_POSITIONS = [
 	{
-		label: __('Left', 'zolo-blocks'),
+		label: __( 'Left', 'zolo-blocks' ),
 		value: 'left',
 	},
 	{
-		label: __('Right', 'zolo-blocks'),
+		label: __( 'Right', 'zolo-blocks' ),
 		value: 'right',
 	},
 	{
-		label: __('Top', 'zolo-blocks'),
+		label: __( 'Top', 'zolo-blocks' ),
 		value: 'top',
 	},
 	{
-		label: __('Bottom', 'zolo-blocks'),
+		label: __( 'Bottom', 'zolo-blocks' ),
 		value: 'bottom',
 	},
 ];
@@ -72,19 +72,19 @@ export const ICON_BOX_POSITIONS = [
 // icon positions
 export const ICON_POSITIONS = [
 	{
-		label: __('Left', 'zolo-blocks'),
+		label: __( 'Left', 'zolo-blocks' ),
 		value: 'row-reverse',
 	},
 	{
-		label: __('Right', 'zolo-blocks'),
+		label: __( 'Right', 'zolo-blocks' ),
 		value: 'row',
 	},
 	{
-		label: __('Top', 'zolo-blocks'),
+		label: __( 'Top', 'zolo-blocks' ),
 		value: 'column-reverse',
 	},
 	{
-		label: __('Bottom', 'zolo-blocks'),
+		label: __( 'Bottom', 'zolo-blocks' ),
 		value: 'column',
 	},
 ];
@@ -92,15 +92,15 @@ export const ICON_POSITIONS = [
 // button positions
 export const BUTTON_POSITIONS = [
 	{
-		label: __('Left', 'zolo-blocks'),
+		label: __( 'Left', 'zolo-blocks' ),
 		value: 'left',
 	},
 	{
-		label: __('Center', 'zolo-blocks'),
+		label: __( 'Center', 'zolo-blocks' ),
 		value: 'center',
 	},
 	{
-		label: __('Right', 'zolo-blocks'),
+		label: __( 'Right', 'zolo-blocks' ),
 		value: 'right',
 	},
 ];
@@ -108,15 +108,15 @@ export const BUTTON_POSITIONS = [
 // side icon positions
 export const SIDE_ICON_POSITIONS = [
 	{
-		label: __('Top', 'zolo-blocks'),
+		label: __( 'Top', 'zolo-blocks' ),
 		value: 'left',
 	},
 	{
-		label: __('Center', 'zolo-blocks'),
+		label: __( 'Center', 'zolo-blocks' ),
 		value: 'center',
 	},
 	{
-		label: __('Bottom', 'zolo-blocks'),
+		label: __( 'Bottom', 'zolo-blocks' ),
 		value: 'end',
 	},
 ];
@@ -159,14 +159,10 @@ export const BUTTON_PADDING = 'buttonPadding';
 export const ICON_SPACING = 'iconSpacing';
 // icon and text spacing
 export const ICON_TEXT_SPACING = 'iconTextSpacing';
-// title Alignment
-export const TITLE_ALIGNMENT = 'titleAlignment';
 // title margin
 export const TITLE_MARGIN = 'titleMargin';
 // description margin
 export const DESCRIPTION_MARGIN = 'descMargin';
-// description Alignment
-export const DESC_ALIGNMENT = 'descAlignment';
 // title controls
 export const TITLE_TEXT_SHADOW = 'titleTextShadow';
 export const TITLE_TEXT_STROKE = 'titleTextStroke';
