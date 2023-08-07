@@ -76,6 +76,7 @@ export default function Edit( props ) {
 		showIcon,
 		mainIcon,
 		buttonIcon,
+		contentAlignment,
 		textColor,
 		textHoverColor,
 		descColor,
@@ -484,9 +485,9 @@ export default function Edit( props ) {
 	/**
 	 * All Style Combination
 	 */
-	const desktopAllStyle = `
-		.${ uniqueId }{
-			${ iconAlignmentDesktop }
+	const desktopAllStyle = `		
+		.${ uniqueId } .zolo-block-icon-wrap{
+			justify-content: ${ contentAlignment && contentAlignment.iconPosition };
 		}
 		.${ uniqueId } .zolo-block-title{
 			${ textAlignmentDesktop }
@@ -508,11 +509,10 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-block-desc:hover{
 			color: ${ descHoverColor ? descHoverColor : '' };
 		}
-		.${ uniqueId } .zolo-block-icon-wrap  {			
-			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
-			color: ${ iconColor ? iconColor : '' };			
-		}
+		
 		.${ uniqueId } .zolo-block-icon-wrap span {
+			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
+			color: ${ iconColor ? iconColor : '' };	
 			${ iconSize }
 			${ iconHeight }	
 			${ iconSpacing }

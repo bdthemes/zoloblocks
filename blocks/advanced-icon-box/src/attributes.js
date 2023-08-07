@@ -48,62 +48,62 @@ const attributes = {
 		type: 'object',
 	},
 	//alignment attributes
-	...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT, {
+	...generateResAlignmentAttributies( ICON_BOX_ALIGNMENT, {
 		defaultAlign: 'left',
-	}),
+	} ),
 	//title alignment attributes
-	...generateResAlignmentAttributies(TITLE_ALIGNMENT, {
+	...generateResAlignmentAttributies( TITLE_ALIGNMENT, {
 		defaultAlign: '',
-	}),
+	} ),
 	//description alignment attributes
-	...generateResAlignmentAttributies(DESC_ALIGNMENT, {
+	...generateResAlignmentAttributies( DESC_ALIGNMENT, {
 		defaultAlign: '',
-	}),
+	} ),
 	// border attributes
-	...generateBorderAttributies(ICON_BORDER),
+	...generateBorderAttributies( ICON_BORDER ),
 	// button border
-	...generateBorderAttributies(BUTTON_BORDER),
+	...generateBorderAttributies( BUTTON_BORDER ),
 	//icon size
-	...generateResRangeAttributies(ICON_SIZE, {
+	...generateResRangeAttributies( ICON_SIZE, {
 		default: 16,
-	}),
+	} ),
 	//button
-	...generateResRangeAttributies(BUTTON_ICON_SIZE, {
+	...generateResRangeAttributies( BUTTON_ICON_SIZE, {
 		default: 16,
-	}),
-	...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
-	...generateDimensionAttributes(BUTTON_PADDING),
-	...generateDimensionAttributes(BUTTON_MARGIN),
+	} ),
+	...generateDimensionAttributes( BUTTON_BORDER_RADIUS ),
+	...generateDimensionAttributes( BUTTON_PADDING ),
+	...generateDimensionAttributes( BUTTON_MARGIN ),
 	//icon text spacing
-	...generateResRangeAttributies(ICON_TEXT_SPACING, {
+	...generateResRangeAttributies( ICON_TEXT_SPACING, {
 		default: 5,
-	}),
+	} ),
 	//icon spacing
-	...generateResRangeAttributies(ICON_SPACING, {
+	...generateResRangeAttributies( ICON_SPACING, {
 		default: 5,
-	}),
+	} ),
 	//icon border radius
-	...generateDimensionAttributes(ICON_BORDER_RADIUS),
+	...generateDimensionAttributes( ICON_BORDER_RADIUS ),
 	//icon padding
-	...generateDimensionAttributes(ICON_PADDING),
+	...generateDimensionAttributes( ICON_PADDING ),
 	//icon margin
-	...generateDimensionAttributes(ICON_MARGIN),
+	...generateDimensionAttributes( ICON_MARGIN ),
 	//icon boxshadow
-	...generateBoxShadowAttributies(ICON_BOX_SHADOW),
+	...generateBoxShadowAttributies( ICON_BOX_SHADOW ),
 	//icon hover boxshadow
-	...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
+	...generateBoxShadowAttributies( ICON_HOVER_BOX_SHADOW ),
 	//button boxshadow
-	...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
+	...generateBoxShadowAttributies( BUTTON_BOX_SHADOW ),
 	//button hover boxshadow
-	...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
+	...generateBoxShadowAttributies( BUTTON_HOVER_BOX_SHADOW ),
 	//title margin
-	...generateDimensionAttributes(TITLE_MARGIN),
-	...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
-	...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
+	...generateDimensionAttributes( TITLE_MARGIN ),
+	...generateTextShadowAttributies( TITLE_TEXT_SHADOW ),
+	...generateTextStrokeAttributies( TITLE_TEXT_STROKE ),
 	//description margin
-	...generateDimensionAttributes(DESCRIPTION_MARGIN),
+	...generateDimensionAttributes( DESCRIPTION_MARGIN ),
 	//typography
-	...generateTypographyAttributes(Object.values(typographyObjs)),
+	...generateTypographyAttributes( Object.values( typographyObjs ) ),
 	//Block specific Attributes
 	preset: {
 		type: 'string',
@@ -166,6 +166,22 @@ const attributes = {
 	iconType: {
 		type: 'string',
 		default: 'icon',
+	},
+	contentAlignment: {
+		type: 'object',
+		default: {
+			iconPosition: 'left',
+			buttonPosition: 'left',
+			buttonIconPosition: 'row-reverse',
+		},
+	},
+	contentFlexAlignment: {
+		type: 'object',
+		default: {
+			iconPosition: 'flex-start',
+			buttonPosition: 'left',
+			buttonIconPosition: 'row-reverse',
+		},
 	},
 	mainIcon: {
 		type: 'object',

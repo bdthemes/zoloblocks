@@ -338,14 +338,75 @@ export const FLEX_ALIGN_OPTIONS = [
 	{
 		label: 'Top',
 		value: 'flex-start',
+		icon: (
+			<svg
+				width={ 24 }
+				height={ 24 }
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M22 4L2 4"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<path
+					d="M15 8C15.5523 8 16 8.44772 16 9V19C16 19.5523 15.5523 20 15 20H9C8.44772 20 8 19.5523 8 19L8 9C8 8.44771 8.44772 8 9 8L15 8Z"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+			</svg>
+		),
 	},
 	{
 		label: 'Center',
 		value: 'center',
+		icon: (
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width={ 24 }
+				height={ 24 }
+				viewBox="0 0 24 24"
+				fill="none"
+			>
+				<path
+					d="M10 12L14 12M4 12H5M19 12H20M6 16H9C9.55228 16 10 15.5523 10 15V9C10 8.44772 9.55228 8 9 8H6C5.44772 8 5 8.44772 5 9V15C5 15.5523 5.44772 16 6 16ZM15 18H18C18.5523 18 19 17.5523 19 17V7C19 6.44772 18.5523 6 18 6H15C14.4477 6 14 6.44772 14 7V17C14 17.5523 14.4477 18 15 18Z"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+			</svg>
+		),
 	},
 	{
 		label: 'Bottom',
 		value: 'flex-end',
+		icon: (
+			<svg
+				width={ 24 }
+				height={ 24 }
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M22 20L2 20"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				/>
+				<path
+					d="M15 4C15.5523 4 16 4.44772 16 5V15C16 15.5523 15.5523 16 15 16H9C8.44772 16 8 15.5523 8 15L8 5C8 4.44771 8.44772 4 9 4L15 4Z"
+					stroke="#4D4D4D"
+					strokeWidth="1.5"
+				/>
+			</svg>
+		),
 	},
 ];
 

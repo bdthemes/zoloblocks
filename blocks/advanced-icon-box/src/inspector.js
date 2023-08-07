@@ -77,6 +77,7 @@ import {
 	TEXT_ALIGN_OPTIONS,
 	DEFAULT_ALIGNS,
 	ICON_BOX_OPTIONS,
+	FLEX_ALIGN_OPTIONS,
 } from '../../../src/global/constants';
 
 function Inspector( props ) {
@@ -88,6 +89,8 @@ function Inspector( props ) {
 		resMode,
 		showIcon,
 		mainIcon,
+		contentAlignment,
+		contentFlexAlignment,
 		buttonIcon,
 		iconColor,
 		iconHoverColor,
@@ -134,6 +137,11 @@ function Inspector( props ) {
 									} )
 								}
 							/>
+						</PanelBody>
+						<PanelBody
+							title={ __( 'Content', 'zolo-blocks' ) }
+							initialOpen={ false }
+						>
 							<IconicBtnGroup
 								label={ __( 'Type', 'zolo-blocks' ) }
 								value={ iconType }
@@ -144,11 +152,6 @@ function Inspector( props ) {
 								}
 								options={ ICON_BOX_OPTIONS }
 							/>
-						</PanelBody>
-						<PanelBody
-							title={ __( 'Content', 'zolo-blocks' ) }
-							initialOpen={ false }
-						>
 							{ iconType == 'icon' && (
 								<Fragment>
 									<IconPicker
@@ -159,66 +162,7 @@ function Inspector( props ) {
 											} )
 										}
 									/>
-									{ preset !== '' && preset == 'style-1' && (
-										<IconicBtnGroup
-											label={ __(
-												'Position',
-												'zolo-blocks'
-											) }
-											value={
-												presetOneStyles.iconPosition
-											}
-											onChange={ ( value ) =>
-												setAttributes( {
-													presetOneStyles: {
-														...presetOneStyles,
-														iconPosition: value,
-													},
-												} )
-											}
-											options={ DEFAULT_ALIGNS }
-										/>
-									) }
-									{ preset == 'style-2' && (
-										<IconicBtnGroup
-											label={ __(
-												'Position',
-												'zolo-blocks'
-											) }
-											value={
-												presetTwoStyles.iconPosition
-											}
-											onChange={ ( value ) =>
-												setAttributes( {
-													presetTwoStyles: {
-														...presetTwoStyles,
-														iconPosition: value,
-													},
-												} )
-											}
-											options={ SIDE_ICON_POSITIONS }
-										/>
-									) }
-									{ preset == 'style-3' && (
-										<IconicBtnGroup
-											label={ __(
-												'Position',
-												'zolo-blocks'
-											) }
-											value={
-												presetThreeStyles.iconPosition
-											}
-											onChange={ ( value ) =>
-												setAttributes( {
-													presetThreeStyles: {
-														...presetThreeStyles,
-														iconPosition: value,
-													},
-												} )
-											}
-											options={ SIDE_ICON_POSITIONS }
-										/>
-									) }
+
 									<ResRangeControl
 										label={ __(
 											'Icon Size',
@@ -520,6 +464,45 @@ function Inspector( props ) {
 				}
 				styleTab={
 					<>
+						<PanelBody
+							title={ __( 'General', 'zolo-blocks' ) }
+							initialOpen={ true }
+						>
+							{ preset !== '' && preset == 'style-1' && (
+								<IconicBtnGroup
+									label={ __(
+										'Content Alignment',
+										'zolo-blocks'
+									) }
+									value={ contentAlignment.iconPosition }
+									onChange={ ( value ) =>
+										setAttributes( {
+											contentAlignment: {
+												...contentAlignment,
+												iconPosition: value,
+											},
+										} )
+									}
+									options={ DEFAULT_ALIGNS }
+								/>
+							) }
+
+							{ preset == 'style-3' && (
+								<IconicBtnGroup
+									label={ __( 'Content A', 'zolo-blocks' ) }
+									value={ contentFlexAlignment.iconPosition }
+									onChange={ ( value ) =>
+										setAttributes( {
+											contentFlexAlignment: {
+												...contentFlexAlignment,
+												iconPosition: value,
+											},
+										} )
+									}
+									options={ FLEX_ALIGN_OPTIONS }
+								/>
+							) }
+						</PanelBody>
 						<PanelBody
 							title={ __( 'Icon', 'zolo-blocks' ) }
 							initialOpen={ true }
