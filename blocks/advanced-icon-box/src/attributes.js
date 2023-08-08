@@ -7,6 +7,7 @@ const {
 	generateBoxShadowAttributies,
 	generateTextShadowAttributies,
 	generateTextStrokeAttributies,
+	generateNormalBGAttributes,
 } = window.zoloModule;
 
 import {
@@ -17,7 +18,6 @@ import {
 	DESCRIPTION_MARGIN,
 	ICON_BORDER,
 	ICON_BOX_SHADOW,
-	ICON_HOVER_BOX_SHADOW,
 	BUTTON_BOX_SHADOW,
 	BUTTON_HOVER_BOX_SHADOW,
 	ICON_BORDER_RADIUS,
@@ -25,12 +25,14 @@ import {
 	BUTTON_ICON_SIZE,
 	BUTTON_BORDER,
 	ICON_TEXT_SPACING,
-	ICON_SPACING,
 	ICON_PADDING,
 	ICON_MARGIN,
 	BUTTON_BORDER_RADIUS,
 	BUTTON_MARGIN,
 	BUTTON_PADDING,
+	CONTAINER_BACKGROUND,
+	CONTAINER_MARGIN,
+	CONTAINER_PADDING,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
@@ -45,57 +47,51 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
-	//alignment attributes
+
+	// Item
+	...generateNormalBGAttributes( CONTAINER_BACKGROUND ),
+	...generateDimensionAttributes( CONTAINER_PADDING ),
+	...generateDimensionAttributes( CONTAINER_MARGIN ),
+
+	// Icon
 	...generateResAlignmentAttributies( ICON_BOX_ALIGNMENT, {
 		defaultAlign: 'left',
 	} ),
-
-	// border attributes
 	...generateBorderAttributies( ICON_BORDER ),
-	// button border
-	...generateBorderAttributies( BUTTON_BORDER ),
-	//icon size
 	...generateResRangeAttributies( ICON_SIZE, {
 		default: 16,
 	} ),
-	//button
+	...generateResRangeAttributies( ICON_TEXT_SPACING, {
+		default: 5,
+	} ),
+	...generateDimensionAttributes( ICON_BORDER_RADIUS ),
+	...generateDimensionAttributes( ICON_PADDING ),
+	...generateDimensionAttributes( ICON_MARGIN ),
+	...generateBoxShadowAttributies( ICON_BOX_SHADOW ),
+
+	// Button
+	...generateBorderAttributies( BUTTON_BORDER ),
 	...generateResRangeAttributies( BUTTON_ICON_SIZE, {
 		default: 16,
 	} ),
 	...generateDimensionAttributes( BUTTON_BORDER_RADIUS ),
 	...generateDimensionAttributes( BUTTON_PADDING ),
 	...generateDimensionAttributes( BUTTON_MARGIN ),
-	//icon text spacing
-	...generateResRangeAttributies( ICON_TEXT_SPACING, {
-		default: 5,
-	} ),
-	//icon spacing
-	...generateResRangeAttributies( ICON_SPACING, {
-		default: 5,
-	} ),
-	//icon border radius
-	...generateDimensionAttributes( ICON_BORDER_RADIUS ),
-	//icon padding
-	...generateDimensionAttributes( ICON_PADDING ),
-	//icon margin
-	...generateDimensionAttributes( ICON_MARGIN ),
-	//icon boxshadow
-	...generateBoxShadowAttributies( ICON_BOX_SHADOW ),
-	//icon hover boxshadow
-	...generateBoxShadowAttributies( ICON_HOVER_BOX_SHADOW ),
-	//button boxshadow
 	...generateBoxShadowAttributies( BUTTON_BOX_SHADOW ),
-	//button hover boxshadow
 	...generateBoxShadowAttributies( BUTTON_HOVER_BOX_SHADOW ),
-	//title margin
+
+	// Title
 	...generateDimensionAttributes( TITLE_MARGIN ),
 	...generateTextShadowAttributies( TITLE_TEXT_SHADOW ),
 	...generateTextStrokeAttributies( TITLE_TEXT_STROKE ),
-	//description margin
+
+	// Description
 	...generateDimensionAttributes( DESCRIPTION_MARGIN ),
-	//typography
+
+	// Typography
 	...generateTypographyAttributes( Object.values( typographyObjs ) ),
-	//Block specific Attributes
+
+	//Block Specific Attributes
 	preset: {
 		type: 'string',
 		default: 'style-1',

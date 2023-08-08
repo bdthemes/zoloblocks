@@ -19,6 +19,7 @@ const {
 	handleUniqueId,
 	softMinifyCssStrings,
 	generateResAlignmentStyle,
+	generateNormalBGControlStyles,
 	generateResRangeStyle,
 	generateBorderStyle,
 	generateDimensionStyle,
@@ -31,6 +32,9 @@ const {
 
 import {
 	BLOCK_PREFIX,
+	CONTAINER_BACKGROUND,
+	CONTAINER_MARGIN,
+	CONTAINER_PADDING,
 	ICON_BOX_ALIGNMENT,
 	TITLE_MARGIN,
 	TITLE_TEXT_SHADOW,
@@ -47,7 +51,6 @@ import {
 	ICON_HOVER_BOX_SHADOW,
 	BUTTON_BOX_SHADOW,
 	BUTTON_HOVER_BOX_SHADOW,
-	ICON_SPACING,
 	ICON_TEXT_SPACING,
 	BUTTON_BORDER_RADIUS,
 	BUTTON_MARGIN,
@@ -108,6 +111,39 @@ export default function Edit( props ) {
 
 	const blockProps = useBlockProps( {
 		className: classnames( className, `` ),
+	} );
+
+	// item background
+	const {
+		backgroundStylesDesktop: containerDeskBGStyle,
+		backgroundStylesTab: containerTabBGStyle,
+		backgroundStylesMobile: containerMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: CONTAINER_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
+	} );
+
+	// Generate Container Margin
+	const {
+		dimensionStylesDesktop: containerMarginDesk,
+		dimensionStylesTab: containerMarginTab,
+		dimensionStylesMobile: containerMarginMob,
+	} = generateDimensionStyle( {
+		controlName: CONTAINER_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	} );
+
+	// Generate Container Padding
+	const {
+		dimensionStylesDesktop: containerPaddingDesk,
+		dimensionStylesTab: containerPaddingTab,
+		dimensionStylesMobile: containerPaddingMob,
+	} = generateDimensionStyle( {
+		controlName: CONTAINER_PADDING,
+		styleFor: 'padding',
+		attributes,
 	} );
 
 	// icon alignment
@@ -317,16 +353,6 @@ export default function Edit( props ) {
 		property: 'height',
 		attributes,
 	} );
-	// generate icon spacing
-	const {
-		desktopRangeStyle: iconSpacing,
-		tabRangeStyle: iconSpacingTab,
-		mobRangeStyle: iconSpacingMob,
-	} = generateResRangeStyle( {
-		controlName: ICON_SPACING,
-		property: 'margin',
-		attributes,
-	} );
 	// Spacing between icon and text
 	const {
 		desktopRangeStyle: gap,
@@ -445,7 +471,10 @@ export default function Edit( props ) {
 	/**
 	 * All Style Combination
 	 */
-	const desktopAllStyle = `		
+	const desktopAllStyle = `	
+		.${ uniqueId } .zolo-block-item{
+			${ containerDeskBGStyle }
+		}	
 		.${ uniqueId } .zolo-block-icon-wrap{
 			justify-content: ${ contentAlignment ? contentAlignment : 'left' };
 		}
@@ -454,7 +483,7 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-link-btn{
 			justify-content: ${ contentAlignment ? contentAlignment : 'left' };
-		}
+		}		
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoDesktop }
 			${ titleTextShadowStyle }
@@ -479,7 +508,6 @@ export default function Edit( props ) {
 			color: ${ iconColor ? iconColor : '' };	
 			${ iconSize }
 			${ iconHeight }	
-			${ iconSpacing }
 			${ borderStyles }
 			${ iconBorderRadiusDesktop }
 			${ iconPaddingDesktop }
@@ -534,6 +562,9 @@ export default function Edit( props ) {
 		.${ uniqueId }{
 			${ iconAlignmentTab }
 		}
+		.${ uniqueId } .zolo-block-item{
+			${ containerTabBGStyle }
+		}	
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoTab }
 			${ tabTitleTextStrokeStyle }
@@ -551,7 +582,6 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-block-icon-wrap span {
 			${ iconSizeTab }
 			${ iconHeightTab }
-			${ iconSpacingTab }
 			${ borderStylesTab }
 			${ iconBorderRadiusTab }
 			${ iconPaddingTab }
@@ -581,6 +611,9 @@ export default function Edit( props ) {
 		.${ uniqueId }{
 			${ iconAlignmentMob }
 		}
+		.${ uniqueId } .zolo-block-item{
+			${ containerMobBGStyle }
+		}
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoMobile }
 			${ mobTitleTextStrokeStyle }
@@ -598,7 +631,6 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-block-icon-wrap span {
 			${ iconSizeMob }
 			${ iconHeightMob }
-			${ iconSpacingMob }
 			${ borderStylesMob }
 			${ iconBorderRadiusMob }
 			${ iconPaddingMob }

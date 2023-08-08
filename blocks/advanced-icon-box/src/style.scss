@@ -51,58 +51,58 @@
 	.zolo-block-advanced-icon-box {
 		text-decoration: none;
 		color: inherit;
-		.zolo-block-item {
-			border: 1px solid rgba(247, 247, 247, 0.829);
-			padding: 30px;
-			transition: border 0.3s ease;
-			position: relative;
-			overflow: hidden;
-			border-radius: 10px;
-			background: rgba(147, 255, 170, 0.15);
+	}
+	.zolo-block-item {
+		border: 1px solid rgba(247, 247, 247, 0.829);
+		padding: 30px;
+		transition: border 0.3s ease;
+		position: relative;
+		overflow: hidden;
+		border-radius: 10px;
+		background: rgba(147, 255, 170, 0.15);
 
-			.zolo-block-icon-wrap {
-				display: flex;
-				span {
-					display: table;
-				}
+		.zolo-block-icon-wrap {
+			display: flex;
+			span {
+				display: table;
 			}
+		}
 
-			.zolo-block-body-content {
-				z-index: 1;
-				position: relative;
+		.zolo-block-body-content {
+			z-index: 1;
+			position: relative;
 
-				& .zolo-block-link-btn {
-					margin-top: 22px;
-					display: flex;
-					& .zolo-box-button {
-						display: inline-flex;
-						align-items: center;
-						justify-content: center;
-						cursor: pointer;
-						text-align: center;
-						text-decoration: none;
-						font-size: 14px;
-						text-transform: capitalize;
-						transition: all 0.3s ease;
-						& .zolo-button-icon {
-							padding: 3px 5px;
-							display: block;
-						}
-						& p {
-							margin: 0px;
-						}
+			& .zolo-block-link-btn {
+				margin-top: 22px;
+				display: flex;
+				& .zolo-box-button {
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					cursor: pointer;
+					text-align: center;
+					text-decoration: none;
+					font-size: 14px;
+					text-transform: capitalize;
+					transition: all 0.3s ease;
+					& .zolo-button-icon {
+						padding: 3px 5px;
+						display: block;
+					}
+					& p {
+						margin: 0px;
 					}
 				}
 			}
-			& .zolo-block-hover-icon {
-				display: none;
-			}
+		}
+		& .zolo-block-hover-icon {
+			display: none;
 		}
 	}
+}
 
-	.zolo-block-advanced-icon-box .zolo-block-item:hover {
-		border-color: #32de23;
-	}
+.zolo-block-advanced-icon-box .zolo-block-item:hover {
+	border-color: #32de23;
 }
 
 .zb-res-device-btns {

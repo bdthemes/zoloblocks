@@ -13,7 +13,7 @@ export const PRESETS = [
 	{ label: __( 'Preset 3', 'zolo-blocks' ), value: 'style-3' },
 ];
 
-// title tag
+// Title
 export const TITLE_TAG = [
 	{
 		label: 'H1',
@@ -49,7 +49,7 @@ export const TITLE_TAG = [
 	},
 ];
 
-// icon positions
+// Icon
 export const ICON_BOX_POSITIONS = [
 	{
 		label: __( 'Left', 'zolo-blocks' ),
@@ -69,7 +69,6 @@ export const ICON_BOX_POSITIONS = [
 	},
 ];
 
-// icon positions
 export const ICON_POSITIONS = [
 	{
 		label: __( 'Left', 'zolo-blocks' ),
@@ -89,7 +88,7 @@ export const ICON_POSITIONS = [
 	},
 ];
 
-// button positions
+// Button
 export const BUTTON_POSITIONS = [
 	{
 		label: __( 'Left', 'zolo-blocks' ),
@@ -105,7 +104,7 @@ export const BUTTON_POSITIONS = [
 	},
 ];
 
-// side icon positions
+// Icon
 export const SIDE_ICON_POSITIONS = [
 	{
 		label: __( 'Top', 'zolo-blocks' ),
@@ -121,48 +120,39 @@ export const SIDE_ICON_POSITIONS = [
 	},
 ];
 
-// Icon BG
-export const ICON_BG_COLOR = 'iconNormal';
-// Icon Hover BG
-export const ICON_HOVER_BG_COLOR = 'iconHover';
-// Icon Typography
-export const ICON_TYPOGRAPHY = 'iconTypography';
+// Item
 
-// Icon Padding
+export const CONTAINER_BACKGROUND = 'containerBg';
+export const CONTAINER_MARGIN = 'containerMargin';
+export const CONTAINER_PADDING = 'containerPadding';
+
+// Icon
+export const ICON_BG_COLOR = 'iconNormal';
+export const ICON_HOVER_BG_COLOR = 'iconHover';
+export const ICON_TYPOGRAPHY = 'iconTypography';
 export const ICON_PADDING = 'iconPadding';
-// Icon Margin
 export const ICON_MARGIN = 'iconMargin';
-// Icon Alignment
 export const ICON_BOX_ALIGNMENT = 'iconBoxAlignment';
-// Icon Border
 export const ICON_BORDER = 'iconBorder';
-// Icon Box Shadow
 export const ICON_BOX_SHADOW = 'iconBoxShadow';
-// Icon Hover Box Shadow
 export const ICON_HOVER_BOX_SHADOW = 'iconHoverBoxShadow';
-// Button Box Shadow
-export const BUTTON_BOX_SHADOW = 'buttonBoxShadow';
-// Button Hover Box Shadow
-export const BUTTON_HOVER_BOX_SHADOW = 'buttonHoverBoxShadow';
-// Icon Border Radius
 export const ICON_BORDER_RADIUS = 'iconBorderRadius';
-// Icon Size
 export const ICON_SIZE = 'iconSize';
-// Button Icon Size
-export const BUTTON_ICON_SIZE = 'buttonIconSize';
+export const ICON_TEXT_SPACING = 'iconTextSpacing';
+
 // Button
+export const BUTTON_BOX_SHADOW = 'buttonBoxShadow';
+export const BUTTON_HOVER_BOX_SHADOW = 'buttonHoverBoxShadow';
+export const BUTTON_ICON_SIZE = 'buttonIconSize';
 export const BUTTON_BORDER = 'buttonBorder';
 export const BUTTON_BORDER_RADIUS = 'buttonBorderRadius';
 export const BUTTON_MARGIN = 'buttonMargin';
 export const BUTTON_PADDING = 'buttonPadding';
-// icon and spacing
-export const ICON_SPACING = 'iconSpacing';
-// icon and text spacing
-export const ICON_TEXT_SPACING = 'iconTextSpacing';
-// title margin
+
+// title
 export const TITLE_MARGIN = 'titleMargin';
-// description margin
-export const DESCRIPTION_MARGIN = 'descMargin';
-// title controls
 export const TITLE_TEXT_SHADOW = 'titleTextShadow';
 export const TITLE_TEXT_STROKE = 'titleTextStroke';
+
+// description
+export const DESCRIPTION_MARGIN = 'descMargin';
