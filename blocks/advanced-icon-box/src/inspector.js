@@ -86,6 +86,7 @@ function Inspector( props ) {
 		contentAlignment,
 		contentFlexAlignment,
 		buttonIcon,
+		iconAlignment,
 		iconColor,
 		iconHoverColor,
 		iconBackgroundColor,
@@ -327,37 +328,19 @@ function Inspector( props ) {
 							title={ __( 'General', 'zolo-blocks' ) }
 							initialOpen={ true }
 						>
-							{ preset !== '' && preset == 'style-1' && (
-								<IconicBtnGroup
-									label={ __(
-										'Content Alignment',
-										'zolo-blocks'
-									) }
-									value={ contentAlignment }
-									onChange={ ( value ) =>
-										setAttributes( {
-											contentAlignment: value,
-										} )
-									}
-									options={ DEFAULT_ALIGNS }
-								/>
-							) }
-
-							{ preset == 'style-3' && (
-								<IconicBtnGroup
-									label={ __( 'Content A', 'zolo-blocks' ) }
-									value={ contentFlexAlignment.iconPosition }
-									onChange={ ( value ) =>
-										setAttributes( {
-											contentFlexAlignment: {
-												...contentFlexAlignment,
-												iconPosition: value,
-											},
-										} )
-									}
-									options={ FLEX_ALIGN_OPTIONS }
-								/>
-							) }
+							<IconicBtnGroup
+								label={ __(
+									'Content Alignment',
+									'zolo-blocks'
+								) }
+								value={ contentAlignment }
+								onChange={ ( value ) =>
+									setAttributes( {
+										contentAlignment: value,
+									} )
+								}
+								options={ DEFAULT_ALIGNS }
+							/>
 
 							<NormalBGControl
 								resRequiredProps={ resRequiredProps }
@@ -379,6 +362,22 @@ function Inspector( props ) {
 							title={ __( 'Icon', 'zolo-blocks' ) }
 							initialOpen={ true }
 						>
+							{ ( preset == 'style-2' ||
+								preset == 'style-3' ) && (
+								<IconicBtnGroup
+									label={ __(
+										'Icon Alignment',
+										'zolo-blocks'
+									) }
+									value={ iconAlignment }
+									onChange={ ( value ) =>
+										setAttributes( {
+											iconAlignment: value,
+										} )
+									}
+									options={ FLEX_ALIGN_OPTIONS }
+								/>
+							) }
 							<TabPanelControl
 								normalComponents={
 									<>

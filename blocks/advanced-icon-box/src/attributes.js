@@ -158,6 +158,10 @@ const attributes = {
 		type: 'string',
 		default: 'left',
 	},
+	iconAlignment: {
+		type: 'string',
+		default: 'flex-start',
+	},
 	contentFlexAlignment: {
 		type: 'object',
 		default: {

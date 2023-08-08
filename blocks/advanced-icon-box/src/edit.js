@@ -82,6 +82,7 @@ export default function Edit( props ) {
 		textHoverColor,
 		descColor,
 		descHoverColor,
+		iconAlignment,
 		iconColor,
 		iconHoverColor,
 		iconBackgroundColor,
@@ -474,9 +475,12 @@ export default function Edit( props ) {
 	const desktopAllStyle = `	
 		.${ uniqueId } .zolo-block-item{
 			${ containerDeskBGStyle }
+			${ containerMarginDesk }
+			${ containerPaddingDesk }
 		}	
 		.${ uniqueId } .zolo-block-icon-wrap{
 			justify-content: ${ contentAlignment ? contentAlignment : 'left' };
+			align-items: ${ iconAlignment ? iconAlignment : 'flex-start' };
 		}
 		.${ uniqueId } .zolo-block-body-content{
 			text-align: ${ contentAlignment ? contentAlignment : 'left' };
@@ -564,6 +568,8 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-item{
 			${ containerTabBGStyle }
+			${ containerMarginTab }
+			${ containerPaddingTab }
 		}	
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoTab }
@@ -613,6 +619,8 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-item{
 			${ containerMobBGStyle }
+			${ containerMarginMob }
+			${ containerPaddingMob }
 		}
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoMobile }
