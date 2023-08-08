@@ -8,9 +8,9 @@ export const BLOCK_PREFIX = 'review';
 
 // Presets
 export const PRESETS = [
-	{ label: __('Default', 'zolo-blocks'), value: 'default' },
-	{ label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-	{ label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
+    { label: __('Default', 'zolo-blocks'), value: 'default' },
+    { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
+    { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
 ];
 
 // content alignment
@@ -23,6 +23,7 @@ export const CONTAINER_BORDER_RADIUS = 'reviewContainerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'reviewContainerBoxShadow';
 
 // review photo
+export const REVIEWER_PHOTO_SIZE = 'reviewPhotoSize';
 export const REVIEWER_PHOTO_BG = 'reviewPhotoBackground';
 export const REVIEWER_PHOTO_BORDER = 'reviewPhotoBorder';
 export const REVIEWER_PHOTO_BORDER_RADIUS = 'reviewPhotoBorderRadius';
@@ -45,3 +46,14 @@ export const ICONS_SIZE = 'reviewIconsSize';
 // conatainer spacing
 export const CONTAINER_MARGIN = 'reviewContainerMargin';
 export const CONTAINER_PADDING = 'reviewContainerPadding';
+
+// Review detail page link icon
+export const DPL_BG = 'DPLBg';
+export const DPL_HOVER_BG = 'DPLHoverBg';
+export const DPL_HEIGHT = 'DPLHeight';
+export const DPL_WIDTH = 'DPLWidth';
+export const DPL_BORDER = 'DPLBorder';
+export const DPL_BORDER_RADIUS = 'DPLBorderRadius';
+export const DPL_PADDING = 'DPLPadding';
+export const DPL_MARGIN = 'DPLMargin';
+export const DPL_ICON_SIZE = 'DPLIconSize';
