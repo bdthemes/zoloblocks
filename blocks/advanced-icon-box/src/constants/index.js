@@ -75,8 +75,6 @@ export const CONTAINER_MARGIN = 'containerMargin';
 export const CONTAINER_PADDING = 'containerPadding';
 
 // Icon
-export const ICON_HOVER_BG_COLOR = 'iconHover';
-export const ICON_TYPOGRAPHY = 'iconTypography';
 export const ICON_PADDING = 'iconPadding';
 export const ICON_MARGIN = 'iconMargin';
 export const ICON_BOX_ALIGNMENT = 'iconBoxAlignment';

@@ -560,6 +560,7 @@ function Inspector( props ) {
 									</>
 								}
 							/>
+							<CardDivider />
 							<ResDimensionsControl
 								label={ __( 'Margin', 'zolo-blocks' ) }
 								controlName={ TITLE_MARGIN }
@@ -640,6 +641,18 @@ function Inspector( props ) {
 									<>
 										<ColorControl
 											label={ __(
+												'Background',
+												'zolo-blocks'
+											) }
+											color={ btnBgColor }
+											onChange={ ( value ) =>
+												setAttributes( {
+													btnBgColor: value,
+												} )
+											}
+										/>
+										<ColorControl
+											label={ __(
 												'Color',
 												'zolo-blocks'
 											) }
@@ -661,6 +674,18 @@ function Inspector( props ) {
 								}
 								hoverComponents={
 									<>
+										<ColorControl
+											label={ __(
+												'Background',
+												'zolo-blocks'
+											) }
+											color={ btnBgHoverColor }
+											onChange={ ( value ) =>
+												setAttributes( {
+													btnBgHoverColor: value,
+												} )
+											}
+										/>
 										<ColorControl
 											label={ __(
 												'Color',
@@ -685,42 +710,9 @@ function Inspector( props ) {
 									</>
 								}
 							/>
-							<TabPanelControl
-								normalComponents={
-									<>
-										<ColorControl
-											label={ __(
-												'Background Color',
-												'zolo-blocks'
-											) }
-											color={ btnBgColor }
-											onChange={ ( value ) =>
-												setAttributes( {
-													btnBgColor: value,
-												} )
-											}
-										/>
-									</>
-								}
-								hoverComponents={
-									<>
-										<ColorControl
-											label={ __(
-												'Background Hover Color',
-												'zolo-blocks'
-											) }
-											color={ btnBgHoverColor }
-											onChange={ ( value ) =>
-												setAttributes( {
-													btnBgHoverColor: value,
-												} )
-											}
-										/>
-									</>
-								}
-							/>
+							<CardDivider />
 							<BorderControl
-								label={ __( 'Button Border', 'zolo-blocks' ) }
+								label={ __( 'Border', 'zolo-blocks' ) }
 								controlName={ BUTTON_BORDER }
 								resRequiredProps={ resRequiredProps }
 							/>
