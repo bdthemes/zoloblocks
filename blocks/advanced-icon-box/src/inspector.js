@@ -83,8 +83,6 @@ function Inspector( props ) {
 		resMode,
 		showIcon,
 		mainIcon,
-		contentAlignment,
-		contentFlexAlignment,
 		buttonIcon,
 		iconAlignment,
 		iconColor,
@@ -328,19 +326,62 @@ function Inspector( props ) {
 							title={ __( 'General', 'zolo-blocks' ) }
 							initialOpen={ true }
 						>
-							<IconicBtnGroup
-								label={ __(
-									'Content Alignment',
-									'zolo-blocks'
-								) }
-								value={ contentAlignment }
-								onChange={ ( value ) =>
-									setAttributes( {
-										contentAlignment: value,
-									} )
-								}
-								options={ DEFAULT_ALIGNS }
-							/>
+							{ preset == 'style-1' && (
+								<IconicBtnGroup
+									label={ __(
+										'Content Alignment',
+										'zolo-blocks'
+									) }
+									value={ presetOneStyles.contentPosition }
+									onChange={ ( value ) =>
+										setAttributes( {
+											presetOneStyles: {
+												...presetOneStyles,
+												contentPosition: value,
+											},
+										} )
+									}
+									options={ DEFAULT_ALIGNS }
+								/>
+							) }
+
+							{ preset == 'style-2' && (
+								<IconicBtnGroup
+									label={ __(
+										'Content Alignment',
+										'zolo-blocks'
+									) }
+									value={ presetTwoStyles.contentPosition }
+									onChange={ ( value ) =>
+										setAttributes( {
+											presetTwoStyles: {
+												...presetTwoStyles,
+												contentPosition: value,
+											},
+										} )
+									}
+									options={ DEFAULT_ALIGNS }
+								/>
+							) }
+
+							{ preset == 'style-3' && (
+								<IconicBtnGroup
+									label={ __(
+										'Content Alignment',
+										'zolo-blocks'
+									) }
+									value={ presetThreeStyles.contentPosition }
+									onChange={ ( value ) =>
+										setAttributes( {
+											presetThreeStyles: {
+												...presetThreeStyles,
+												contentPosition: value,
+											},
+										} )
+									}
+									options={ DEFAULT_ALIGNS }
+								/>
+							) }
 
 							<NormalBGControl
 								resRequiredProps={ resRequiredProps }

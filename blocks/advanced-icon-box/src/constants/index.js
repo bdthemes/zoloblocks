@@ -49,26 +49,6 @@ export const TITLE_TAG = [
 	},
 ];
 
-// Icon
-export const ICON_BOX_POSITIONS = [
-	{
-		label: __( 'Left', 'zolo-blocks' ),
-		value: 'left',
-	},
-	{
-		label: __( 'Right', 'zolo-blocks' ),
-		value: 'right',
-	},
-	{
-		label: __( 'Top', 'zolo-blocks' ),
-		value: 'top',
-	},
-	{
-		label: __( 'Bottom', 'zolo-blocks' ),
-		value: 'bottom',
-	},
-];
-
 export const ICON_POSITIONS = [
 	{
 		label: __( 'Left', 'zolo-blocks' ),
@@ -88,38 +68,6 @@ export const ICON_POSITIONS = [
 	},
 ];
 
-// Button
-export const BUTTON_POSITIONS = [
-	{
-		label: __( 'Left', 'zolo-blocks' ),
-		value: 'left',
-	},
-	{
-		label: __( 'Center', 'zolo-blocks' ),
-		value: 'center',
-	},
-	{
-		label: __( 'Right', 'zolo-blocks' ),
-		value: 'right',
-	},
-];
-
-// Icon
-export const SIDE_ICON_POSITIONS = [
-	{
-		label: __( 'Top', 'zolo-blocks' ),
-		value: 'left',
-	},
-	{
-		label: __( 'Center', 'zolo-blocks' ),
-		value: 'center',
-	},
-	{
-		label: __( 'Bottom', 'zolo-blocks' ),
-		value: 'end',
-	},
-];
-
 // Item
 
 export const CONTAINER_BACKGROUND = 'containerBg';
@@ -127,7 +75,6 @@ export const CONTAINER_MARGIN = 'containerMargin';
 export const CONTAINER_PADDING = 'containerPadding';
 
 // Icon
-export const ICON_BG_COLOR = 'iconNormal';
 export const ICON_HOVER_BG_COLOR = 'iconHover';
 export const ICON_TYPOGRAPHY = 'iconTypography';
 export const ICON_PADDING = 'iconPadding';

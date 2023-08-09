@@ -154,21 +154,9 @@ const attributes = {
 		type: 'string',
 		default: 'icon',
 	},
-	contentAlignment: {
-		type: 'string',
-		default: 'left',
-	},
 	iconAlignment: {
 		type: 'string',
 		default: 'flex-start',
-	},
-	contentFlexAlignment: {
-		type: 'object',
-		default: {
-			iconPosition: 'flex-start',
-			buttonPosition: 'left',
-			buttonIconPosition: 'row-reverse',
-		},
 	},
 	mainIcon: {
 		type: 'object',
@@ -237,23 +225,25 @@ const attributes = {
 	presetOneStyles: {
 		type: 'object',
 		default: {
+			contentPosition: 'left',
 			iconPosition: 'left',
-			buttonPosition: 'left',
 			buttonIconPosition: 'row-reverse',
 		},
 	},
 	presetTwoStyles: {
 		type: 'object',
 		default: {
+			contentPosition: 'left',
 			iconPosition: 'top',
-			buttonPosition: 'left',
 			buttonIconPosition: 'row-reverse',
 		},
 	},
 	presetThreeStyles: {
 		type: 'object',
 		default: {
-			iconPosition: 'right',
+			contentPosition: 'right',
+			iconPosition: 'top',
+			buttonIconPosition: 'row-reverse',
 		},
 	},
 };

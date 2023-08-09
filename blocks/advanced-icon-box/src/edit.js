@@ -77,7 +77,6 @@ export default function Edit( props ) {
 		showIcon,
 		mainIcon,
 		buttonIcon,
-		contentAlignment,
 		textColor,
 		textHoverColor,
 		descColor,
@@ -427,40 +426,31 @@ export default function Edit( props ) {
 		case 'style-1':
 			presetStyles = `
 				.zolo-block-icon-wrap{
-					justify-content: ${ presetOneStyles && presetOneStyles.iconPosition };
-				}	
-				.zolo-block-link-btn{
-					justify-content: ${ presetOneStyles && presetOneStyles.buttonPosition };
-				}		
-				.zolo-box-button{
-					flex-direction: ${ presetOneStyles && presetOneStyles.buttonIconPosition };
+					justify-content: ${ presetOneStyles && presetOneStyles.contentPosition };
 				}
 			`;
 			break;
 		case 'style-2':
 			presetStyles = `
-				.zolo-block-icon-wrap{
-					align-items: ${ presetTwoStyles && presetTwoStyles.iconPosition };
-				}					
+			.${ uniqueId } 
+				.zolo-block-body-content{
+					text-align: ${ presetTwoStyles && presetTwoStyles.contentPosition };
+				}
+				.${ uniqueId } 
 				.zolo-block-link-btn{
-					justify-content: ${ presetTwoStyles && presetTwoStyles.buttonPosition };
-				}		
-				.zolo-box-button{
-					flex-direction: ${ presetTwoStyles && presetTwoStyles.buttonIconPosition };
+					justify-content: ${ presetTwoStyles && presetTwoStyles.contentPosition };
 				}
 			`;
 			break;
 		case 'style-3':
 			presetStyles = `
-				.${ uniqueId }
-				.zolo-block-icon-wrap{
-					align-items: ${ presetThreeStyles && presetThreeStyles.iconPosition };
-				}						
+				.${ uniqueId } 
+				.zolo-block-body-content{
+					text-align: ${ presetThreeStyles && presetThreeStyles.contentPosition };
+				}
+				.${ uniqueId } 
 				.zolo-block-link-btn{
-					justify-content: ${ presetThreeStyles && presetThreeStyles.buttonPosition };
-				}		
-				.zolo-box-button{
-					flex-direction: ${ presetThreeStyles && presetThreeStyles.buttonIconPosition };
+					justify-content: ${ presetThreeStyles && presetThreeStyles.contentPosition };
 				}
 			`;
 			break;
@@ -479,14 +469,18 @@ export default function Edit( props ) {
 			${ containerPaddingDesk }
 		}	
 		.${ uniqueId } .zolo-block-icon-wrap{
-			justify-content: ${ contentAlignment ? contentAlignment : 'left' };
+			justify-content: ${
+				presetOneStyles ? presetOneStyles.contentPosition : 'left'
+			};
 			align-items: ${ iconAlignment ? iconAlignment : 'flex-start' };
 		}
 		.${ uniqueId } .zolo-block-body-content{
-			text-align: ${ contentAlignment ? contentAlignment : 'left' };
+			text-align: ${ presetOneStyles ? presetOneStyles.contentPosition : 'left' };
 		}
 		.${ uniqueId } .zolo-block-link-btn{
-			justify-content: ${ contentAlignment ? contentAlignment : 'left' };
+			justify-content: ${
+				presetOneStyles ? presetOneStyles.contentPosition : 'left'
+			};
 		}		
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoDesktop }
