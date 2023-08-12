@@ -226,7 +226,7 @@ const attributes = {
 		type: 'object',
 		default: {
 			contentPosition: 'left',
-			iconPosition: 'left',
+			iconPosition: 'row',
 			buttonIconPosition: 'row-reverse',
 		},
 	},
@@ -234,7 +234,7 @@ const attributes = {
 		type: 'object',
 		default: {
 			contentPosition: 'left',
-			iconPosition: 'top',
+			iconPosition: 'row-reverse',
 			buttonIconPosition: 'row-reverse',
 		},
 	},
@@ -242,7 +242,7 @@ const attributes = {
 		type: 'object',
 		default: {
 			contentPosition: 'right',
-			iconPosition: 'top',
+			iconPosition: 'row-reverse',
 			buttonIconPosition: 'row-reverse',
 		},
 	},

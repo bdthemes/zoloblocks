@@ -467,37 +467,40 @@ export const BOX_SHADOW_TYPES = [
 export const POSITIONS = [
 	{
 		label: 'Left',
-		value: 'left',
+		value: 'row-reverse',
 		icon: (
 			<svg
-				width={ 24 }
-				height={ 24 }
+				width="24"
+				height="24"
 				viewBox="0 0 24 24"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<path
-					d="M4 2V22"
+					d="M2 2V22"
 					stroke="#4D4D4D"
-					strokeWidth="1.5"
-					strokeLinecap="round"
-					strokeLinejoin="round"
-				/>
+					stroke-width="1.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				></path>
 				<rect
-					x={ 8 }
-					y={ 8 }
-					width={ 12 }
-					height={ 8 }
-					rx={ 1 }
+					x="7"
+					y="8"
+					width="12"
+					height="8"
+					rx="1"
+					fill="none"
 					stroke="#4D4D4D"
-					strokeWidth="1.5"
-				/>
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="1"
+				></rect>
 			</svg>
 		),
 	},
 	{
 		label: 'Right',
-		value: 'right',
+		value: 'row',
 		icon: (
 			<svg
 				width={ 24 }
@@ -527,7 +530,7 @@ export const POSITIONS = [
 	},
 	{
 		label: 'Top',
-		value: 'top',
+		value: 'column-reverse',
 		icon: (
 			<svg
 				width={ 24 }
@@ -553,7 +556,7 @@ export const POSITIONS = [
 	},
 	{
 		label: 'Bottom',
-		value: 'bottom',
+		value: 'column',
 		icon: (
 			<svg
 				width={ 24 }

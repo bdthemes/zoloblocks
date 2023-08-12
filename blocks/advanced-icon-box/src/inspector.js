@@ -1,11 +1,7 @@
 /**
  * WordPress dependencies
  */
-import {
-	InspectorControls,
-	MediaUpload,
-	MediaUploadCheck,
-} from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/block-editor';
 import {
 	CardDivider,
 	PanelBody,
@@ -41,7 +37,6 @@ import {
 	TITLE_MARGIN,
 	DESCRIPTION_MARGIN,
 	PRESETS,
-	ICON_POSITIONS,
 	ICON_SIZE,
 	BUTTON_ICON_SIZE,
 	ICON_TEXT_SPACING,
@@ -73,6 +68,7 @@ import {
 	DEFAULT_ALIGNS,
 	ICON_BOX_OPTIONS,
 	FLEX_ALIGN_OPTIONS,
+	POSITIONS,
 } from '../../../src/global/constants';
 
 function Inspector( props ) {
@@ -221,69 +217,7 @@ function Inspector( props ) {
 											} )
 										}
 									/>
-									{ preset === 'style-1' && (
-										<SelectControl
-											label={ __(
-												'Position',
-												'zolo-blocks'
-											) }
-											options={ ICON_POSITIONS }
-											onChange={ ( position ) => {
-												setAttributes( {
-													presetOneStyles: {
-														...presetOneStyles,
-														buttonIconPosition:
-															position,
-													},
-												} );
-											} }
-											value={
-												presetOneStyles.buttonIconPosition
-											}
-										/>
-									) }
-									{ preset === 'style-2' && (
-										<SelectControl
-											label={ __(
-												'Position',
-												'zolo-blocks'
-											) }
-											options={ ICON_POSITIONS }
-											onChange={ ( position ) => {
-												setAttributes( {
-													presetTwoStyles: {
-														...presetTwoStyles,
-														buttonIconPosition:
-															position,
-													},
-												} );
-											} }
-											value={
-												presetTwoStyles.buttonIconPosition
-											}
-										/>
-									) }
-									{ preset === 'style-3' && (
-										<SelectControl
-											label={ __(
-												'Position',
-												'zolo-blocks'
-											) }
-											options={ ICON_POSITIONS }
-											onChange={ ( position ) => {
-												setAttributes( {
-													presetThreeStyles: {
-														...presetThreeStyles,
-														buttonIconPosition:
-															position,
-													},
-												} );
-											} }
-											value={
-												presetThreeStyles.buttonIconPosition
-											}
-										/>
-									) }
+
 									<ResRangeControl
 										label={ __(
 											'Icon Size',
@@ -401,7 +335,7 @@ function Inspector( props ) {
 						</PanelBody>
 						<PanelBody
 							title={ __( 'Icon', 'zolo-blocks' ) }
-							initialOpen={ true }
+							initialOpen={ false }
 						>
 							{ ( preset == 'style-2' ||
 								preset == 'style-3' ) && (
@@ -636,6 +570,51 @@ function Inspector( props ) {
 								typoPrefixConstant={ BUTTON_TYPOGRAPHY }
 								resRequiredProps={ resRequiredProps }
 							/>
+							{ preset === 'style-1' && (
+								<IconicBtnGroup
+									label={ __( 'Position', 'zolo-blocks' ) }
+									value={ presetOneStyles.iconPosition }
+									onChange={ ( value ) =>
+										setAttributes( {
+											presetOneStyles: {
+												...presetOneStyles,
+												iconPosition: value,
+											},
+										} )
+									}
+									options={ POSITIONS }
+								/>
+							) }
+							{ preset === 'style-2' && (
+								<IconicBtnGroup
+									label={ __( 'Position', 'zolo-blocks' ) }
+									value={ presetTwoStyles.iconPosition }
+									onChange={ ( value ) =>
+										setAttributes( {
+											presetTwoStyles: {
+												...presetTwoStyles,
+												iconPosition: value,
+											},
+										} )
+									}
+									options={ POSITIONS }
+								/>
+							) }
+							{ preset === 'style-3' && (
+								<IconicBtnGroup
+									label={ __( 'Position', 'zolo-blocks' ) }
+									value={ presetThreeStyles.iconPosition }
+									onChange={ ( value ) =>
+										setAttributes( {
+											presetThreeStyles: {
+												...presetThreeStyles,
+												iconPosition: value,
+											},
+										} )
+									}
+									options={ POSITIONS }
+								/>
+							) }
 							<TabPanelControl
 								normalComponents={
 									<>

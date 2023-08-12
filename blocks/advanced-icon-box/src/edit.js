@@ -428,6 +428,9 @@ export default function Edit( props ) {
 				.zolo-block-icon-wrap{
 					justify-content: ${ presetOneStyles && presetOneStyles.contentPosition };
 				}
+				.zolo-box-button{
+					flex-direction: ${ presetOneStyles && presetOneStyles.iconPosition };
+				}
 			`;
 			break;
 		case 'style-2':
@@ -440,6 +443,9 @@ export default function Edit( props ) {
 				.zolo-block-link-btn{
 					justify-content: ${ presetTwoStyles && presetTwoStyles.contentPosition };
 				}
+				.zolo-box-button{
+					flex-direction: ${ presetTwoStyles && presetTwoStyles.iconPosition };
+				}
 			`;
 			break;
 		case 'style-3':
@@ -451,6 +457,9 @@ export default function Edit( props ) {
 				.${ uniqueId } 
 				.zolo-block-link-btn{
 					justify-content: ${ presetThreeStyles && presetThreeStyles.contentPosition };
+				}
+				.zolo-box-button{
+					flex-direction: ${ presetThreeStyles && presetThreeStyles.iconPosition };
 				}
 			`;
 			break;

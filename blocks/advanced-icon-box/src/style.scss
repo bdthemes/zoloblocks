@@ -85,6 +85,7 @@
 				display: flex;
 				& .zolo-box-button {
 					display: inline-flex;
+					gap: 15px;
 					align-items: center;
 					justify-content: center;
 					cursor: pointer;
@@ -93,10 +94,6 @@
 					font-size: 14px;
 					text-transform: capitalize;
 					transition: all 0.3s ease;
-					& .zolo-button-icon {
-						padding: 3px 5px;
-						display: block;
-					}
 					& p {
 						margin: 0px;
 					}
