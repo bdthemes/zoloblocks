@@ -96,6 +96,8 @@ function Inspector( props ) {
 		btnBgHoverColor,
 		buttonLink,
 		globalLink,
+		buttonIconColor,
+		buttonIconHoverColor,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
@@ -199,6 +201,23 @@ function Inspector( props ) {
 							/>
 
 							<ToggleControl
+								label={ __(
+									'Use as Global Link',
+									'zolo-blocks'
+								) }
+								checked={ globalLink }
+								onChange={ () =>
+									setAttributes( {
+										globalLink: ! globalLink,
+									} )
+								}
+							/>
+						</PanelBody>
+						<PanelBody
+							title={ __( 'Button Icon', 'zolo-blocks' ) }
+							initialOpen={ false }
+						>
+							<ToggleControl
 								label={ __( 'Show Icon', 'zolo-blocks' ) }
 								checked={ showIcon }
 								onChange={ () =>
@@ -239,18 +258,6 @@ function Inspector( props ) {
 									/>
 								</Fragment>
 							) }
-							<ToggleControl
-								label={ __(
-									'Use as Global Link',
-									'zolo-blocks'
-								) }
-								checked={ globalLink }
-								onChange={ () =>
-									setAttributes( {
-										globalLink: ! globalLink,
-									} )
-								}
-							/>
 						</PanelBody>
 					</>
 				}
@@ -570,51 +577,6 @@ function Inspector( props ) {
 								typoPrefixConstant={ BUTTON_TYPOGRAPHY }
 								resRequiredProps={ resRequiredProps }
 							/>
-							{ preset === 'style-1' && (
-								<IconicBtnGroup
-									label={ __( 'Position', 'zolo-blocks' ) }
-									value={ presetOneStyles.iconPosition }
-									onChange={ ( value ) =>
-										setAttributes( {
-											presetOneStyles: {
-												...presetOneStyles,
-												iconPosition: value,
-											},
-										} )
-									}
-									options={ POSITIONS }
-								/>
-							) }
-							{ preset === 'style-2' && (
-								<IconicBtnGroup
-									label={ __( 'Position', 'zolo-blocks' ) }
-									value={ presetTwoStyles.iconPosition }
-									onChange={ ( value ) =>
-										setAttributes( {
-											presetTwoStyles: {
-												...presetTwoStyles,
-												iconPosition: value,
-											},
-										} )
-									}
-									options={ POSITIONS }
-								/>
-							) }
-							{ preset === 'style-3' && (
-								<IconicBtnGroup
-									label={ __( 'Position', 'zolo-blocks' ) }
-									value={ presetThreeStyles.iconPosition }
-									onChange={ ( value ) =>
-										setAttributes( {
-											presetThreeStyles: {
-												...presetThreeStyles,
-												iconPosition: value,
-											},
-										} )
-									}
-									options={ POSITIONS }
-								/>
-							) }
 							<TabPanelControl
 								normalComponents={
 									<>
@@ -711,6 +673,90 @@ function Inspector( props ) {
 								controlName={ BUTTON_PADDING }
 								resRequiredProps={ resRequiredProps }
 							/>
+						</PanelBody>
+						<PanelBody
+							title={ __( 'Button Icon', 'zolo-blocks' ) }
+							initialOpen={ false }
+						>
+							<TabPanelControl
+								normalComponents={
+									<>
+										<ColorControl
+											label={ __(
+												'Color',
+												'zolo-blocks'
+											) }
+											color={ buttonIconColor }
+											onChange={ ( value ) =>
+												setAttributes( {
+													buttonIconColor: value,
+												} )
+											}
+										/>
+									</>
+								}
+								hoverComponents={
+									<>
+										<ColorControl
+											label={ __(
+												'Color',
+												'zolo-blocks'
+											) }
+											color={ buttonIconHoverColor }
+											onChange={ ( value ) =>
+												setAttributes( {
+													buttonIconHoverColor: value,
+												} )
+											}
+										/>
+									</>
+								}
+							/>
+							{ preset === 'style-1' && (
+								<IconicBtnGroup
+									label={ __( 'Position', 'zolo-blocks' ) }
+									value={ presetOneStyles.iconPosition }
+									onChange={ ( value ) =>
+										setAttributes( {
+											presetOneStyles: {
+												...presetOneStyles,
+												iconPosition: value,
+											},
+										} )
+									}
+									options={ POSITIONS }
+								/>
+							) }
+							{ preset === 'style-2' && (
+								<IconicBtnGroup
+									label={ __( 'Position', 'zolo-blocks' ) }
+									value={ presetTwoStyles.iconPosition }
+									onChange={ ( value ) =>
+										setAttributes( {
+											presetTwoStyles: {
+												...presetTwoStyles,
+												iconPosition: value,
+											},
+										} )
+									}
+									options={ POSITIONS }
+								/>
+							) }
+							{ preset === 'style-3' && (
+								<IconicBtnGroup
+									label={ __( 'Position', 'zolo-blocks' ) }
+									value={ presetThreeStyles.iconPosition }
+									onChange={ ( value ) =>
+										setAttributes( {
+											presetThreeStyles: {
+												...presetThreeStyles,
+												iconPosition: value,
+											},
+										} )
+									}
+									options={ POSITIONS }
+								/>
+							) }
 						</PanelBody>
 					</>
 				}

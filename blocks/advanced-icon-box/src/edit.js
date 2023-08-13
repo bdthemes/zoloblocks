@@ -95,6 +95,8 @@ export default function Edit( props ) {
 		btnHoverColor,
 		btnBgColor,
 		btnBgHoverColor,
+		buttonIconColor,
+		buttonIconHoverColor,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
@@ -353,9 +355,10 @@ export default function Edit( props ) {
 		property: 'height',
 		attributes,
 	} );
+
 	// Spacing between icon and text
 	const {
-		desktopRangeStyle: gap,
+		desktopRangeStyle: gapDesk,
 		tabRangeStyle: gapTab,
 		mobRangeStyle: gapMob,
 	} = generateResRangeStyle( {
@@ -526,36 +529,37 @@ export default function Edit( props ) {
 			color: ${ iconHoverColor ? iconHoverColor : '' };
 			${ iconHoverBoxShadow }
 		}
-		.${ uniqueId } .zolo-content {			
-			${ gap }
-			${ deskAlign }
-			color: ${ textColor ? textColor : 'inherit' };
-		}
-		.${ uniqueId } .zolo-content:hover {
-			color: ${ textHoverColor ? textHoverColor : 'inherit' };
-		}
-		
-		.${ uniqueId } .zolo-box-button span{
-			${ buttonIconSize }			
-			${ buttonIconHeight }			
-			${ buttonIconWidth }			
-		}
-		.${ uniqueId } .zolo-box-button {			
-			${ gap }
-			background: ${ btnBgColor ? btnBgColor : '' };			
+
+		.${ uniqueId } .zolo-block-body-content .zolo-box-button {			
+			background: ${ btnBgColor ? btnBgColor : '' };	
+			${ gapDesk }		
 			${ buttonBorderStyles }
 			${ buttonBorderRadiusDesktop }
 			${ buttonPaddingDesktop }
 			${ buttonMarginDesktop }
 			${ buttonBoxShadow }
 		}
-		.${ uniqueId } .zolo-box-button p{
-			${ btnTypoDesktop }
-		}
+
 		.${ uniqueId } .zolo-box-button:hover {			
 			background: ${ btnBgHoverColor ? btnBgHoverColor : '#32DE23' };
 			${ buttonHoverBoxShadow }
 		}
+		
+		.${ uniqueId } .zolo-box-button span{
+			color: ${ buttonIconColor }	
+			${ buttonIconSize }			
+			${ buttonIconHeight }			
+			${ buttonIconWidth }			
+		}
+
+		.${ uniqueId } .zolo-box-button:hover span{
+			color: ${ buttonIconHoverColor }	
+		}
+		
+		.${ uniqueId } .zolo-box-button p{
+			${ btnTypoDesktop }
+		}
+
 		.${ uniqueId } .zolo-box-button p{			
 			color: ${ btnColor ? btnColor : '' };			
 		}

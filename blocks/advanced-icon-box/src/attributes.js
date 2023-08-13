@@ -222,6 +222,12 @@ const attributes = {
 	btnBgHoverColor: {
 		type: 'string',
 	},
+	buttonIconColor: {
+		type: 'string',
+	},
+	buttonIconHoverColor: {
+		type: 'string',
+	},
 	presetOneStyles: {
 		type: 'object',
 		default: {
