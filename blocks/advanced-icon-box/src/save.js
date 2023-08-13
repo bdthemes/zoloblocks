@@ -103,9 +103,9 @@ const Save = ( { attributes } ) => {
 								tagName="div"
 								className={ `zolo-block-desc` }
 							/>
-							<div>
+							<div className={ `zolo-block-link-btn` }>
 								<a
-									className={ `zolo-box-button` }
+									className={ `zolo-icon-link` }
 									href={ buttonLink && buttonLink.url }
 									target={
 										buttonLink && buttonLink.opensInNewTab
@@ -118,13 +118,15 @@ const Save = ( { attributes } ) => {
 											: 'noopener'
 									}
 								>
-									<RichText.Content
-										tagName="p"
-										value={ buttonText }
-									/>
-									{ showIcon && (
-										<DisplayIcon icon={ buttonIcon } />
-									) }
+									<div className={ `zolo-box-button` }>
+										<RichText.Content
+											tagName="p"
+											value={ buttonText }
+										/>
+										{ showIcon && (
+											<DisplayIcon icon={ buttonIcon } />
+										) }
+									</div>
 								</a>
 							</div>
 						</div>
