@@ -101,3 +101,7 @@ export const TITLE_TEXT_STROKE = 'titleTextStroke';
 
 // description
 export const DESCRIPTION_MARGIN = 'descMargin';
+
+// image
+export const ICON_IMAGE_SIZE = 'iconImageSize';
+export const ICON_IMAGE_BORDER_RADIUS = 'iconImageBorderRadius';

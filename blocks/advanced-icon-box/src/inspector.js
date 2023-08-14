@@ -57,6 +57,8 @@ import {
 	CONTAINER_BACKGROUND,
 	CONTAINER_MARGIN,
 	CONTAINER_PADDING,
+	ICON_IMAGE_SIZE,
+	ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 
 import {
@@ -169,9 +171,24 @@ function Inspector( props ) {
 							) }
 
 							{ iconType == 'image' && (
-								<Fragment>
-									<p>Image Settings</p>
-								</Fragment>
+								<>
+									<ResRangeControl
+										label={ __(
+											'Image Size',
+											'zolo-blocks'
+										) }
+										controlName={ ICON_IMAGE_SIZE }
+										resRequiredProps={ resRequiredProps }
+									/>
+									<ResRangeControl
+										label={ __(
+											'Border Radius',
+											'zolo-blocks'
+										) }
+										controlName={ ICON_IMAGE_BORDER_RADIUS }
+										resRequiredProps={ resRequiredProps }
+									/>
+								</>
 							) }
 
 							<CardDivider />

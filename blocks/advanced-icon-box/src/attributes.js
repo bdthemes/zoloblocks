@@ -33,6 +33,8 @@ import {
 	CONTAINER_BACKGROUND,
 	CONTAINER_MARGIN,
 	CONTAINER_PADDING,
+	ICON_IMAGE_SIZE,
+	ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
@@ -90,6 +92,14 @@ const attributes = {
 
 	// Typography
 	...generateTypographyAttributes( Object.values( typographyObjs ) ),
+
+	// Image
+	...generateResRangeAttributies( ICON_IMAGE_SIZE, {
+		default: 16,
+	} ),
+	...generateResRangeAttributies( ICON_IMAGE_BORDER_RADIUS, {
+		default: 16,
+	} ),
 
 	//Block Specific Attributes
 	preset: {

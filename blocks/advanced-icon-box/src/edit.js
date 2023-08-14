@@ -55,6 +55,8 @@ import {
 	BUTTON_BORDER_RADIUS,
 	BUTTON_MARGIN,
 	BUTTON_PADDING,
+	ICON_IMAGE_SIZE,
+	ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 
 import {
@@ -421,6 +423,27 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	// generate image height
+	const {
+		desktopRangeStyle: iconImageSizeDesk,
+		tabRangeStyle: iconImageSizeTab,
+		mobRangeStyle: iconImageSizeMob,
+	} = generateResRangeStyle( {
+		controlName: ICON_IMAGE_SIZE,
+		property: 'width',
+		attributes,
+	} );
+	// generate image border radius
+	const {
+		desktopRangeStyle: iconImageBorderRadiusDesk,
+		tabRangeStyle: iconImageBorderRadiusTab,
+		mobRangeStyle: iconImageBorderRadiusMob,
+	} = generateResRangeStyle( {
+		controlName: ICON_IMAGE_BORDER_RADIUS,
+		property: 'border-radius',
+		attributes,
+	} );
+
 	/**
 	 * Presets Based Styles
 	 */
@@ -511,8 +534,7 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-desc:hover{
 			color: ${ descHoverColor ? descHoverColor : '' };
-		}
-		
+		}		
 		.${ uniqueId } .zolo-block-icon-wrap span {
 			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
 			color: ${ iconColor ? iconColor : '' };	
@@ -529,7 +551,10 @@ export default function Edit( props ) {
 			color: ${ iconHoverColor ? iconHoverColor : '' };
 			${ iconHoverBoxShadow }
 		}
-
+		.${ uniqueId } .zolo-block-icon-wrap img {
+			${ iconImageSizeDesk }
+			${ iconImageBorderRadiusDesk }
+		}
 		.${ uniqueId } .zolo-block-body-content .zolo-box-button {			
 			background: ${ btnBgColor ? btnBgColor : '' };	
 			${ gapDesk }		
@@ -602,6 +627,10 @@ export default function Edit( props ) {
 			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
 			color: ${ iconColor ? iconColor : '' };	
 		}
+		.${ uniqueId } .zolo-block-icon-wrap img {
+			${ iconImageSizeTab }
+			${ iconImageBorderRadiusTab }
+		}
 		.${ uniqueId } .zolo-box-button span{
 			${ buttonIconSizeTab }			
 			${ buttonIconHeightTab }			
@@ -650,6 +679,10 @@ export default function Edit( props ) {
 			${ iconBorderRadiusMob }
 			${ iconPaddingMob }
 			${ iconMarginMob }
+		}		
+		.${ uniqueId } .zolo-block-icon-wrap img {
+			${ iconImageSizeMob }
+			${ iconImageBorderRadiusMob }
 		}
 		.${ uniqueId } .zolo-box-button span{
 			${ buttonIconSizeMob }			
