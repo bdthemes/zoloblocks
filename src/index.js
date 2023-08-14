@@ -9,6 +9,7 @@ import '../blocks/post-grid/src';
 import '../blocks/pricing-table/src';
 import '../blocks/social-icon/src';
 import '../blocks/team-member/src';
+import '../blocks/brand-child/src';
 import '../blocks/brand-grid/src';
 import '../blocks/team-grid/src';
 import '../blocks/team-child/src';

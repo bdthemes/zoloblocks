@@ -34,6 +34,12 @@ import {
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
+    CONTENT_BACKGROUND,
+    CONTENT_BORDER,
+    CONTENT_BORDER_RADIUS,
+    CONTENT_BOX_SHADOW,
+    CONTENT_MARGIN,
+    CONTENT_PADDING,
     REVIEWER_DESIGNATION_MARGIN,
     REVIEWER_NAME_MARGIN,
     REVIEWER_PHOTO_SIZE,
@@ -65,6 +71,7 @@ export default function Edit(props) {
     const {
         uniqueId,
         preset,
+        blurBgOpacity,
         blockStyle,
         showPhoto,
         memberPhoto,
@@ -103,17 +110,6 @@ export default function Edit(props) {
         className: classnames(className, `${uniqueId} ${preset ? preset : ''}`),
     });
 
-    // container styles
-    const {
-        backgroundStylesDesktop: containerDeskBGStyle,
-        backgroundStylesTab: containerTabBGStyle,
-        backgroundStylesMobile: containerMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTAINER_BACKGROUND,
-        attributes,
-        noMainBGImg: false,
-    });
-
     // content align
     const {
         desktopAlignStyle: reviewContentDeskAlignStyle,
@@ -122,6 +118,60 @@ export default function Edit(props) {
     } = generateResAlignmentStyle({
         controlName: CONTENT_ALIGNMENT,
         property: 'text-align',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: contentDeskBGStyle,
+        backgroundStylesTab: contentTabBGStyle,
+        backgroundStylesMobile: contentMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CONTENT_BACKGROUND,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        desktopBorderStyle: contentDeskBorderStyle,
+        tabBorderStyle: contentTabBorderStyle,
+        mobBorderStyle: contentMobBorderStyle,
+    } = generateBorderStyle({
+        controlName: CONTENT_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: contentDeskBorderRadius,
+        dimensionStylesTab: contentTabBorderRadius,
+        dimensionStylesMobile: contentMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: CONTENT_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: contentBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTENT_BOX_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: contentDeskMargin,
+        dimensionStylesTab: contentTabMargin,
+        dimensionStylesMobile: contentMobMargin,
+    } = generateDimensionStyle({
+        controlName: CONTENT_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: contentDeskPadding,
+        dimensionStylesTab: contentTabPadding,
+        dimensionStylesMobile: contentMobPadding,
+    } = generateDimensionStyle({
+        controlName: CONTENT_PADDING,
+        styleFor: 'padding',
         attributes,
     });
 
@@ -173,6 +223,16 @@ export default function Edit(props) {
 
     // Container
     const {
+        backgroundStylesDesktop: containerDeskBGStyle,
+        backgroundStylesTab: containerTabBGStyle,
+        backgroundStylesMobile: containerMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CONTAINER_BACKGROUND,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
         desktopBorderStyle: containerDeskBorderStyle,
         tabBorderStyle: containerTabBorderStyle,
         mobBorderStyle: containerMobBorderStyle,
@@ -194,6 +254,26 @@ export default function Edit(props) {
     const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
         attributes,
         controlName: CONTAINER_BOX_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: containerDeskMargin,
+        dimensionStylesTab: containerTabMargin,
+        dimensionStylesMobile: containerMobMargin,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: containerDeskPadding,
+        dimensionStylesTab: containerTabPadding,
+        dimensionStylesMobile: containerMobPadding,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_PADDING,
+        styleFor: 'padding',
+        attributes,
     });
 
     // Photo
@@ -335,27 +415,6 @@ export default function Edit(props) {
         attributes,
     });
 
-    // container
-    const {
-        dimensionStylesDesktop: containerDeskMargin,
-        dimensionStylesTab: containerTabMargin,
-        dimensionStylesMobile: containerMobMargin,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: containerDeskPadding,
-        dimensionStylesTab: containerTabPadding,
-        dimensionStylesMobile: containerMobPadding,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
     // Detail page link icon
     const {
         backgroundStylesDesktop: dplNormDeskBG,
@@ -459,6 +518,19 @@ export default function Edit(props) {
 			${containerBoxShadow}
 			${containerDeskBGStyle}
 		}
+        .${uniqueId}.wp-block-zolo-review .zolo-info-wrap {
+			${contentDeskMargin}
+			${contentDeskPadding}
+			${contentDeskBorderStyle}
+			${contentDeskBorderRadius}
+			${contentDeskBGStyle}
+            ${contentBoxShadow}
+		}
+
+        .${uniqueId}.wp-block-zolo-review.style-2 .zolo-info-wrap {
+			backdrop-filter: blur(${blurBgOpacity}px);
+		}
+
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating {
 			${ratingIconDeskAlignStyle}
 		}
@@ -477,7 +549,7 @@ export default function Edit(props) {
 			color: ${addReviewerWebsiteLink ? nameLinkColor : nameColor};
 		}
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-name:hover {
-			color: ${nameHoverColor ? nameHoverColor : ''};
+			color: ${addReviewerWebsiteLink ? nameHoverColor : nameColor};
 		}
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-designation {
 			${designationTypoDesk}
@@ -507,7 +579,6 @@ export default function Edit(props) {
 			${dplDeskMargin}
 			${dplDeskHeight}
 			${dplDeskWidth}
-			${dplDeskSize}
 		}
 
 		.${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn a:hover {
@@ -516,6 +587,7 @@ export default function Edit(props) {
 
 		.${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn svg {
 			fill: ${dplIconColor ? dplIconColor : ''};
+            ${dplDeskSize}
 		}
 
 		.${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn a:hover svg{
@@ -531,6 +603,13 @@ export default function Edit(props) {
 			${containerTabBorderStyle}
 			${containerTabBorderRadius}
 			${containerTabBGStyle}
+		}
+		.${uniqueId}.wp-block-zolo-review .zolo-info-wrap {
+			${contentTabMargin}
+			${contentTabPadding}
+			${contentTabBorderStyle}
+			${contentTabBorderRadius}
+			${contentTabBGStyle}
 		}
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating {
 			${ratingIconTabAlignStyle}
@@ -558,6 +637,21 @@ export default function Edit(props) {
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating svg {
 			${ratingIconWidthTab}
 		}
+        .${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn a {
+			${dplNormTabBG}
+			${dplTabBorderStyle}
+			${dplTabBorderRadius}
+			${dplTabPadding}
+			${dplTabMargin}
+			${dplTabHeight}
+			${dplTabWidth}
+		}
+        .${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn svg{
+            ${dplTabSize}
+		}
+        .${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn a:hover {
+			${dplHoverTabBG}
+		}
 	`;
 
     const mobileAllStyle = `
@@ -568,6 +662,13 @@ export default function Edit(props) {
 			${containerMobBorderStyle}
 			${containerMobBorderRadius}
 			${containerMobBGStyle}
+		}
+        .${uniqueId}.wp-block-zolo-review .zolo-info-wrap {
+			${contentMobMargin}
+			${contentMobPadding}
+			${contentMobBorderStyle}
+			${contentMobBorderRadius}
+			${contentMobBGStyle}
 		}
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating {
 			${ratingIconMobAlignStyle}
@@ -594,6 +695,21 @@ export default function Edit(props) {
 		}
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating svg {
 			${ratingIconWidthMob}
+		}
+        .${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn a {
+			${dplNormMobBG}
+			${dplMobBorderStyle}
+			${dplMobBorderRadius}
+			${dplMobPadding}
+			${dplMobMargin}
+			${dplMobHeight}
+			${dplMobWidth}
+		}
+        .${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn svg{
+			${dplMobSize}
+		}
+        .${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn a:hover {
+			${dplHoverMobBG}
 		}
 	`;
 

@@ -19,6 +19,12 @@ import {
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
+    CONTENT_BACKGROUND,
+    CONTENT_BORDER,
+    CONTENT_BORDER_RADIUS,
+    CONTENT_BOX_SHADOW,
+    CONTENT_MARGIN,
+    CONTENT_PADDING,
     REVIEWER_PHOTO_SIZE,
     REVIEWER_PHOTO_BG,
     REVIEWER_PHOTO_BORDER,
@@ -60,10 +66,17 @@ const attributes = {
         default: 'default',
     },
     // Generators
-    ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
     ...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
         defaultAlign: 'left',
     }),
+    ...generateNormalBGAttributes(CONTENT_BACKGROUND),
+    ...generateBorderAttributies(CONTENT_BORDER),
+    ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(CONTENT_BOX_SHADOW),
+    ...generateDimensionAttributes(CONTENT_MARGIN),
+    ...generateDimensionAttributes(CONTENT_PADDING),
+
+    ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
     ...generateBorderAttributies(CONTAINER_BORDER),
     ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
     ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
@@ -174,6 +187,10 @@ const attributes = {
     },
     dplIconHoverColor: {
         type: 'string',
+    },
+    // blur
+    blurBgOpacity: {
+        type: 'number',
     },
 };
 
