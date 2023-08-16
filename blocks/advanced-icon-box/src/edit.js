@@ -584,7 +584,7 @@ export default function Edit( props ) {
 		}
 		
 		.${ uniqueId } .zolo-box-button span{
-			color: ${ buttonIconColor }	
+			color: ${ buttonIconColor };
 			${ buttonIconSize }			
 			${ buttonIconHeight }			
 			${ buttonIconWidth }			
