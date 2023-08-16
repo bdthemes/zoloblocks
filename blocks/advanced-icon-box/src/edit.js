@@ -56,6 +56,7 @@ import {
 	BUTTON_MARGIN,
 	BUTTON_PADDING,
 	ICON_IMAGE_SIZE,
+	IMAGE_BORDER,
 	ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 
@@ -423,7 +424,7 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
-	// generate image height
+	// generate image size
 	const {
 		desktopRangeStyle: iconImageSizeDesk,
 		tabRangeStyle: iconImageSizeTab,
@@ -433,6 +434,17 @@ export default function Edit( props ) {
 		property: 'width',
 		attributes,
 	} );
+
+	// generate image border
+	const {
+		desktopBorderStyle: iconImageBorderDesk,
+		tabBorderStyle: iconImageBorderTab,
+		mobBorderStyle: iconImageBorderMob,
+	} = generateBorderStyle( {
+		controlName: IMAGE_BORDER,
+		attributes,
+	} );
+
 	// generate image border radius
 	const {
 		desktopRangeStyle: iconImageBorderRadiusDesk,
@@ -553,6 +565,7 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-icon-wrap img {
 			${ iconImageSizeDesk }
+			${ iconImageBorderDesk }
 			${ iconImageBorderRadiusDesk }
 		}
 		.${ uniqueId } .zolo-block-body-content .zolo-box-button {			
@@ -629,6 +642,7 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-icon-wrap img {
 			${ iconImageSizeTab }
+			${ iconImageBorderTab }
 			${ iconImageBorderRadiusTab }
 		}
 		.${ uniqueId } .zolo-box-button span{
@@ -682,6 +696,7 @@ export default function Edit( props ) {
 		}		
 		.${ uniqueId } .zolo-block-icon-wrap img {
 			${ iconImageSizeMob }
+			${ iconImageBorderMob }
 			${ iconImageBorderRadiusMob }
 		}
 		.${ uniqueId } .zolo-box-button span{

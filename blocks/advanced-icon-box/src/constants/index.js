@@ -104,4 +104,5 @@ export const DESCRIPTION_MARGIN = 'descMargin';
 
 // image
 export const ICON_IMAGE_SIZE = 'iconImageSize';
+export const IMAGE_BORDER = 'imageBorder';
 export const ICON_IMAGE_BORDER_RADIUS = 'iconImageBorderRadius';

@@ -34,6 +34,7 @@ import {
 	CONTAINER_MARGIN,
 	CONTAINER_PADDING,
 	ICON_IMAGE_SIZE,
+	IMAGE_BORDER,
 	ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -94,6 +95,7 @@ const attributes = {
 	...generateTypographyAttributes( Object.values( typographyObjs ) ),
 
 	// Image
+	...generateBorderAttributies( IMAGE_BORDER ),
 	...generateResRangeAttributies( ICON_IMAGE_SIZE, {
 		default: 16,
 	} ),

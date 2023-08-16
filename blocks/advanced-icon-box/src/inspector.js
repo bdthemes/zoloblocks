@@ -58,6 +58,7 @@ import {
 	CONTAINER_MARGIN,
 	CONTAINER_PADDING,
 	ICON_IMAGE_SIZE,
+	IMAGE_BORDER,
 	ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 
@@ -178,14 +179,6 @@ function Inspector( props ) {
 											'zolo-blocks'
 										) }
 										controlName={ ICON_IMAGE_SIZE }
-										resRequiredProps={ resRequiredProps }
-									/>
-									<ResRangeControl
-										label={ __(
-											'Border Radius',
-											'zolo-blocks'
-										) }
-										controlName={ ICON_IMAGE_BORDER_RADIUS }
 										resRequiredProps={ resRequiredProps }
 									/>
 								</>
@@ -357,124 +350,170 @@ function Inspector( props ) {
 								resRequiredProps={ resRequiredProps }
 							/>
 						</PanelBody>
-						<PanelBody
-							title={ __( 'Icon', 'zolo-blocks' ) }
-							initialOpen={ false }
-						>
-							{ ( preset == 'style-2' ||
-								preset == 'style-3' ) && (
-								<IconicBtnGroup
+						{ iconType == 'icon' && (
+							<PanelBody
+								title={ __( 'Icon', 'zolo-blocks' ) }
+								initialOpen={ false }
+							>
+								{ ( preset == 'style-2' ||
+									preset == 'style-3' ) && (
+									<IconicBtnGroup
+										label={ __(
+											'Icon Alignment',
+											'zolo-blocks'
+										) }
+										value={ iconAlignment }
+										onChange={ ( value ) =>
+											setAttributes( {
+												iconAlignment: value,
+											} )
+										}
+										options={ FLEX_ALIGN_OPTIONS }
+									/>
+								) }
+								<TabPanelControl
+									normalComponents={
+										<>
+											<ColorControl
+												label={ __(
+													'Background',
+													'zolo-blocks'
+												) }
+												color={ iconBackgroundColor }
+												onChange={ ( value ) =>
+													setAttributes( {
+														iconBackgroundColor:
+															value,
+													} )
+												}
+											/>
+											<ColorControl
+												label={ __(
+													'Color',
+													'zolo-blocks'
+												) }
+												color={ iconColor }
+												onChange={ ( value ) =>
+													setAttributes( {
+														iconColor: value,
+													} )
+												}
+											/>
+											<BoxShadowControl
+												controlName={ ICON_BOX_SHADOW }
+												resRequiredProps={
+													resRequiredProps
+												}
+												enableTransition={ false }
+											/>
+										</>
+									}
+									hoverComponents={
+										<>
+											<ColorControl
+												label={ __(
+													'Background',
+													'zolo-blocks'
+												) }
+												color={
+													iconBackgroundHoverColor
+												}
+												onChange={ ( value ) =>
+													setAttributes( {
+														iconBackgroundHoverColor:
+															value,
+													} )
+												}
+											/>
+											<ColorControl
+												label={ __(
+													'Color',
+													'zolo-blocks'
+												) }
+												color={ iconHoverColor }
+												onChange={ ( value ) =>
+													setAttributes( {
+														iconHoverColor: value,
+													} )
+												}
+											/>
+											<BoxShadowControl
+												controlName={
+													ICON_HOVER_BOX_SHADOW
+												}
+												resRequiredProps={
+													resRequiredProps
+												}
+												enableTransition={ false }
+											/>
+										</>
+									}
+								/>
+								<CardDivider />
+								<BorderControl
+									label={ __( 'Border', 'zolo-blocks' ) }
+									controlName={ ICON_BORDER }
+									resRequiredProps={ resRequiredProps }
+								/>
+								<ResDimensionsControl
 									label={ __(
-										'Icon Alignment',
+										'Border Radius',
 										'zolo-blocks'
 									) }
-									value={ iconAlignment }
-									onChange={ ( value ) =>
-										setAttributes( {
-											iconAlignment: value,
-										} )
-									}
-									options={ FLEX_ALIGN_OPTIONS }
+									controlName={ ICON_BORDER_RADIUS }
+									resRequiredProps={ resRequiredProps }
+									forBorderRadius={ true }
 								/>
-							) }
-							<TabPanelControl
-								normalComponents={
-									<>
-										<ColorControl
+								<ResDimensionsControl
+									label={ __( 'Margin', 'zolo-blocks' ) }
+									controlName={ ICON_MARGIN }
+									resRequiredProps={ resRequiredProps }
+								/>
+								<ResDimensionsControl
+									label={ __( 'Padding', 'zolo-blocks' ) }
+									controlName={ ICON_PADDING }
+									resRequiredProps={ resRequiredProps }
+								/>
+							</PanelBody>
+						) }
+						{ iconType == 'image' && (
+							<PanelBody
+								title={ __( 'Image', 'zolo-blocks' ) }
+								initialOpen={ false }
+							>
+								<>
+									{ ( preset == 'style-2' ||
+										preset == 'style-3' ) && (
+										<IconicBtnGroup
 											label={ __(
-												'Background',
+												'Image Alignment',
 												'zolo-blocks'
 											) }
-											color={ iconBackgroundColor }
+											value={ iconAlignment }
 											onChange={ ( value ) =>
 												setAttributes( {
-													iconBackgroundColor: value,
+													iconAlignment: value,
 												} )
 											}
+											options={ FLEX_ALIGN_OPTIONS }
 										/>
-										<ColorControl
-											label={ __(
-												'Color',
-												'zolo-blocks'
-											) }
-											color={ iconColor }
-											onChange={ ( value ) =>
-												setAttributes( {
-													iconColor: value,
-												} )
-											}
-										/>
-										<BoxShadowControl
-											controlName={ ICON_BOX_SHADOW }
-											resRequiredProps={
-												resRequiredProps
-											}
-											enableTransition={ false }
-										/>
-									</>
-								}
-								hoverComponents={
-									<>
-										<ColorControl
-											label={ __(
-												'Background',
-												'zolo-blocks'
-											) }
-											color={ iconBackgroundHoverColor }
-											onChange={ ( value ) =>
-												setAttributes( {
-													iconBackgroundHoverColor:
-														value,
-												} )
-											}
-										/>
-										<ColorControl
-											label={ __(
-												'Color',
-												'zolo-blocks'
-											) }
-											color={ iconHoverColor }
-											onChange={ ( value ) =>
-												setAttributes( {
-													iconHoverColor: value,
-												} )
-											}
-										/>
-										<BoxShadowControl
-											controlName={
-												ICON_HOVER_BOX_SHADOW
-											}
-											resRequiredProps={
-												resRequiredProps
-											}
-											enableTransition={ false }
-										/>
-									</>
-								}
-							/>
-							<CardDivider />
-							<BorderControl
-								label={ __( 'Border', 'zolo-blocks' ) }
-								controlName={ ICON_BORDER }
-								resRequiredProps={ resRequiredProps }
-							/>
-							<ResDimensionsControl
-								label={ __( 'Border Radius', 'zolo-blocks' ) }
-								controlName={ ICON_BORDER_RADIUS }
-								resRequiredProps={ resRequiredProps }
-								forBorderRadius={ true }
-							/>
-							<ResDimensionsControl
-								label={ __( 'Margin', 'zolo-blocks' ) }
-								controlName={ ICON_MARGIN }
-								resRequiredProps={ resRequiredProps }
-							/>
-							<ResDimensionsControl
-								label={ __( 'Padding', 'zolo-blocks' ) }
-								controlName={ ICON_PADDING }
-								resRequiredProps={ resRequiredProps }
-							/>
-						</PanelBody>
+									) }
+									<BorderControl
+										label={ __( 'Border', 'zolo-blocks' ) }
+										controlName={ IMAGE_BORDER }
+										resRequiredProps={ resRequiredProps }
+									/>
+									<ResRangeControl
+										label={ __(
+											'Border Radius',
+											'zolo-blocks'
+										) }
+										controlName={ ICON_IMAGE_BORDER_RADIUS }
+										resRequiredProps={ resRequiredProps }
+									/>
+								</>
+							</PanelBody>
+						) }
 						<PanelBody
 							title={ __( 'Heading', 'zolo-blocks' ) }
 							initialOpen={ false }
