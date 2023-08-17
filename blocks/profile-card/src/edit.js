@@ -40,6 +40,8 @@ import {
 	HEADER_AREA_BORDER_RADIUS,
 	HEADER_AREA_PADDING,
 	HEADER_BADGE_BORDER,
+	HEADER_AREA_BG,
+	BADGE_PADDING,
 	BADGE_BG,
 	BADGE_BORDER_RADIUS,
 	CONTENT_BORDER,
@@ -47,6 +49,7 @@ import {
 	CONTENT_MARGIN,
 	CONTENT_BG,
 	CONTENT_BORDER_RADIUS,
+	PHOTO_VOFFSET,
 	PHOTO_SIZE,
 	PHOTO_BORDER,
 	PHOTO_BORDER_RADIUS,
@@ -54,6 +57,7 @@ import {
 	USERNAME_MARGIN,
 	EMAIL_MARGIN,
 	BIO_MARGIN,
+	STATUS_GAP,
 	STATUS_MARGIN,
 	FBTN_BG,
 	FBTN_BOX_SHADOW,
@@ -109,7 +113,6 @@ export default function Edit(props) {
 		statusItems,
 		showFollowButton,
 		followButtonText,
-		headerAreaBG,
 		showSocialProfiles,
 		socialProfiles,
 		badgeColor,
@@ -141,17 +144,6 @@ export default function Edit(props) {
 		className: classnames(className, `${uniqueId} ${preset ? preset : ''}`),
 	});
 
-	// Container
-	// const {
-	// 	backgroundStylesDesktop: containerDeskBGStyle,
-	// 	backgroundStylesTab: containerTabBGStyle,
-	// 	backgroundStylesMobile: containerMobBGStyle,
-	// } = generateNormalBGControlStyles({
-	// 	controlName: CONTAINER_BG,
-	// 	attributes,
-	// 	noMainBGImg: false,
-	// });
-
 	// header area part
 	const {
 		dimensionStylesDesktop: headerAreaDeskBorderRadius,
@@ -164,16 +156,35 @@ export default function Edit(props) {
 	});
 
 	const {
-		desktopRangeStyle: headerAreaDeskPadding,
-		tabRangeStyle: headerAreaTabPadding,
-		mobRangeStyle: headerAreaMobPadding,
-	} = generateResRangeStyle({
+		dimensionStylesDesktop: headerAreaDeskPadding,
+		dimensionStylesTab: headerAreaTabPadding,
+		dimensionStylesMobile: headerAreaMobPadding,
+	} = generateDimensionStyle({
 		controlName: HEADER_AREA_PADDING,
-		property: 'padding-bottom',
+		styleFor: 'padding',
 		attributes,
 	});
 
+	const {
+		backgroundStylesDesktop: headerAreaBgDeskStyle,
+		backgroundStylesTab: headerAreaBgTabStyle,
+		backgroundStylesMobile: headerAreaBgMobStyle,
+	} = generateNormalBGControlStyles({
+		controlName: HEADER_AREA_BG,
+		attributes,
+		noMainBGImg: true,
+	});
+
 	// header badge
+	const {
+		dimensionStylesDesktop: badgeDeskPadding,
+		dimensionStylesTab: badgeTabPadding,
+		dimensionStylesMobile: badgeMobPadding,
+	} = generateDimensionStyle({
+		controlName: BADGE_PADDING,
+		styleFor: 'padding',
+		attributes,
+	});
 	const {
 		desktopBorderStyle: headerBadgeDeskBorderStyle,
 		tabBorderStyle: headerBadgeTabBorderStyle,
@@ -285,6 +296,16 @@ export default function Edit(props) {
 	});
 
 	const {
+		desktopRangeStyle: photoDeskOffset,
+		tabRangeStyle: photoTabOffset,
+		mobRangeStyle: photoMobOffset,
+	} = generateResRangeStyle({
+		controlName: PHOTO_VOFFSET,
+		property: 'margin-top',
+		attributes,
+	});
+
+	const {
 		desktopBorderStyle: photoDeskBorderStyle,
 		tabBorderStyle: photoTabBorderStyle,
 		mobBorderStyle: photoMobBorderStyle,
@@ -384,6 +405,17 @@ export default function Edit(props) {
 	} = generateDimensionStyle({
 		controlName: BIO_MARGIN,
 		styleFor: 'margin',
+		attributes,
+	});
+
+	// status gap
+	const {
+		desktopRangeStyle: statusDeskGap,
+		tabRangeStyle: statusTabGap,
+		mobRangeStyle: statusMobGap,
+	} = generateResRangeStyle({
+		controlName: STATUS_GAP,
+		property: 'gap',
 		attributes,
 	});
 
@@ -604,6 +636,9 @@ export default function Edit(props) {
 	 * All Style Combination
 	 */
 	const desktopAllStyle = `
+		.${uniqueId} .zb-profile-image {
+			${photoDeskOffset}
+		}	
 		.${uniqueId} .zb-profile-image img {
 			${photoDeskWidth}
 			${photoDeskHeight}
@@ -611,10 +646,7 @@ export default function Edit(props) {
 			${photoDeskBorderStyle}
 		}
 		.${uniqueId} .zb-profile-header-content {
-			background: ${headerAreaBG ? headerAreaBG : ''};
-		}
-		.${uniqueId} .zb-profile-header-content {
-			background: ${headerAreaBG ? headerAreaBG : ''}; 
+			${headerAreaBgDeskStyle}
 			${headerAreaDeskPadding}
 			${headerAreaDeskBorderRadius}
 		}
@@ -624,6 +656,7 @@ export default function Edit(props) {
 			${headerBadgeBgDeskStyle}
 			${headerBadgeDeskBorderRadius}
 			${badgeTypoDesk}
+			${badgeDeskPadding}
 		}
 		.${uniqueId}.wp-block-zolo-profile-card .zb-profile-name {
 			color: ${nameColor ? nameColor : ''};
@@ -644,6 +677,10 @@ export default function Edit(props) {
 			color: ${bioColor ? bioColor : ''};
 			${bioTypoDesk}
 			${bioDeskMargin}
+		}
+		.${uniqueId} .zb-profile-status {
+			${statusDeskGap}
+			${statusDeskMargin}
 		}
 		.${uniqueId} .zb-profile-status-count {
 			color: ${numberColor ? numberColor : ''};
@@ -690,9 +727,6 @@ export default function Edit(props) {
 		.${uniqueId} .zb-profile-socail-share i, .${uniqueId} .zb-profile-socail-share .dashicon {
 			${socialIconDesk}
 		}
-		.${uniqueId} .zb-profile-status {
-			${statusDeskMargin}
-		}
 		.${uniqueId} .zb-profile-image img {
 			${photoDeskWidth}
 			${photoDeskHeight}
@@ -710,6 +744,7 @@ export default function Edit(props) {
 
 	const tabletAllStyle = `
 		.${uniqueId} .zb-profile-header-content {
+			${headerAreaBgTabStyle}
 			${headerAreaTabPadding}
 			${headerAreaTabBorderRadius}
 		}
@@ -718,6 +753,7 @@ export default function Edit(props) {
 			${headerBadgeBgTabStyle}
 			${headerBadgeTabBorderRadius}
 			${badgeTypoTab}
+			${badgeTabPadding}
 		}
 		.${uniqueId} .zb-profile-bottom-content {
 			${contentTabBGStyle}
@@ -755,6 +791,7 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zb-profile-status {
 			${statusTabMargin}
+			${statusTabGap}
 		}
 		.${uniqueId} .zb-profile-status-count {
 			${counterTypoTab}
@@ -780,6 +817,9 @@ export default function Edit(props) {
 		.${uniqueId} .zb-profile-socail-share i, .${uniqueId} .zb-profile-socail-share .dashicon {
 			${socialIconTab}
 		}
+		.${uniqueId} .zb-profile-image {
+			${photoTabOffset}
+		}	
 		.${uniqueId} .zb-profile-image img {
 			${photoTabWidth}
 			${photoTabHeight}
@@ -797,6 +837,7 @@ export default function Edit(props) {
 
 	const mobileAllStyle = `
 		.${uniqueId} .zb-profile-header-content {
+			${headerAreaBgMobStyle}
 			${headerAreaMobPadding}
 			${headerAreaMobBorderRadius}
 		}
@@ -805,6 +846,7 @@ export default function Edit(props) {
 			${headerBadgeBgMobStyle}
 			${headerBadgeMobBorderRadius}
 			${badgeTypoMob}
+			${badgeMobPadding}
 		}
 		.${uniqueId} .zb-profile-bottom-content {
 			${contentMobBGStyle}
@@ -842,6 +884,7 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zb-profile-status {
 			${statusMobMargin}
+			${statusMobGap}
 		}
 		.${uniqueId} .zb-profile-status-count {
 			${counterTypoMob}
@@ -867,6 +910,9 @@ export default function Edit(props) {
 		.${uniqueId} .zb-profile-socail-share i, .${uniqueId} .zb-profile-socail-share .dashicon {
 			${socialIconMob}
 		}
+		.${uniqueId} .zb-profile-image {
+			${photoMobOffset}
+		}	
 		.${uniqueId} .zb-profile-image img {
 			${photoMobWidth}
 			${photoMobHeight}
@@ -1011,7 +1057,7 @@ export default function Edit(props) {
 							)}
 							<div className="zb-profile-info">
 								{showName && (
-									<a className="zb-profile-name" href="#">
+									<div className="zb-profile-name">
 										<RichText
 											tagName="span"
 											value={name}
@@ -1023,7 +1069,7 @@ export default function Edit(props) {
 												'zolo-blocks'
 											)}
 										/>
-									</a>
+									</div>
 								)}
 								{showUsername && (
 									<div className="zb-profile-username">

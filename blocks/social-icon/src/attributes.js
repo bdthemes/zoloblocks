@@ -1,24 +1,27 @@
 const {
-	generateResAlignmentAttributies,
 	generateResRangeAttributies,
 	generateBorderAttributies,
 	generateResCounterAttributies,
+	generateDimensionAttributes,
+	generateBoxShadowAttributies,
+	generateTypographyAttributes,
 } = window.zoloModule;
 
 import {
-	BUTTON_ALIGNMENT,
-	BUTTON_BG_COLOR,
-	BUTTON_HOVER_BG_COLOR,
+	BUTTON_PADDING,
 	BUTTON_BORDER,
-	ICON_SIZE,
+	BTN_BORDER_RADIUS,
+	BTN_SHADOW,
+	BTN_HOVER_SHADOW,
 	ICON_TEXT_SPACING,
 	COLUMN_COUNT,
 	COLUMNS_GAP,
 	ROW_GAP,
 	BUTTON_SIZE,
-	BUTTON_ICON_SIZE,
-	BUTTON_HEIGHT,
+	BLOCK_MARGIN,
 } from './constants';
+
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
 	//Common Attributes
@@ -32,16 +35,11 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
-	//alignment attributes
-	...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
-		defaultAlign: 'left',
-	}),
-
 	// border attributes
 	...generateBorderAttributies(BUTTON_BORDER),
-	...generateResRangeAttributies(ICON_SIZE, {
-		default: 16,
-	}),
+	...generateDimensionAttributes(BTN_BORDER_RADIUS),
+	...generateBoxShadowAttributies(BTN_SHADOW),
+	...generateBoxShadowAttributies(BTN_HOVER_SHADOW),
 	// column count
 	...generateResCounterAttributies(COLUMN_COUNT, {
 		defaultRange: 4,
@@ -51,17 +49,16 @@ const attributes = {
 	//row gaps
 	...generateResRangeAttributies(ROW_GAP),
 
-	//button size
+	//button
+	...generateDimensionAttributes(BUTTON_PADDING),
 	...generateResRangeAttributies(BUTTON_SIZE),
-	//button icon size
-	...generateResRangeAttributies(BUTTON_ICON_SIZE),
-	//button height
-	...generateResRangeAttributies(BUTTON_HEIGHT),
-
 	//icon spacing
 	...generateResRangeAttributies(ICON_TEXT_SPACING, {
 		default: 5,
 	}),
+	// block margin
+	...generateDimensionAttributes(BLOCK_MARGIN),
+	...generateTypographyAttributes(Object.values(typographyObjs)),
 	//Block specific Attributes
 	preset: {
 		type: 'string',
@@ -107,6 +104,7 @@ const attributes = {
 	},
 	socialColor: {
 		type: 'string',
+		default: 'original',
 	},
 	socialTextColor: {
 		type: 'string',
@@ -120,10 +118,6 @@ const attributes = {
 	socialBgHoverColor: {
 		type: 'string',
 	},
-	showIcon: {
-		type: 'boolean',
-		default: false,
-	},
 	icon: {
 		type: 'string',
 	},
@@ -135,6 +129,12 @@ const attributes = {
 		type: 'string',
 	},
 	textHoverColor: {
+		type: 'string',
+	},
+	borderHoverColor: {
+		type: 'string',
+	},
+	presetBgColor: {
 		type: 'string',
 	},
 };

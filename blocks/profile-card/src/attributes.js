@@ -15,6 +15,8 @@ import {
 	HEADER_AREA_BORDER_RADIUS,
 	HEADER_AREA_PADDING,
 	HEADER_BADGE_BORDER,
+	HEADER_AREA_BG,
+	BADGE_PADDING,
 	BADGE_BG,
 	BADGE_BORDER_RADIUS,
 	CONTENT_BORDER_RADIUS,
@@ -22,6 +24,7 @@ import {
 	CONTENT_BORDER,
 	CONTENT_PADDING,
 	CONTENT_MARGIN,
+	PHOTO_VOFFSET,
 	PHOTO_SIZE,
 	PHOTO_BORDER,
 	PHOTO_BORDER_RADIUS,
@@ -29,6 +32,7 @@ import {
 	USERNAME_MARGIN,
 	EMAIL_MARGIN,
 	BIO_MARGIN,
+	STATUS_GAP,
 	STATUS_MARGIN,
 	FBTN_BG,
 	FBTN_BOX_SHADOW,
@@ -67,9 +71,6 @@ const attributes = {
 		default: 'default',
 	},
 	//Block Specific Attributes
-	headerAreaBG: {
-		type: 'string',
-	},
 	showBadge: {
 		type: 'boolean',
 		default: true,
@@ -219,9 +220,11 @@ const attributes = {
 	},
 	// Generators
 	...generateDimensionAttributes(HEADER_AREA_BORDER_RADIUS),
-	...generateResRangeAttributies(HEADER_AREA_PADDING, {}),
+	...generateDimensionAttributes(HEADER_AREA_PADDING, {}),
+	...generateNormalBGAttributes(HEADER_AREA_BG),
 	...generateBorderAttributies(HEADER_BADGE_BORDER),
 	...generateNormalBGAttributes(BADGE_BG),
+	...generateDimensionAttributes(BADGE_PADDING),
 	...generateDimensionAttributes(BADGE_BORDER_RADIUS),
 
 	...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
@@ -231,6 +234,7 @@ const attributes = {
 	...generateDimensionAttributes(CONTENT_MARGIN),
 
 	...generateResRangeAttributies(PHOTO_SIZE, {}),
+	...generateResRangeAttributies(PHOTO_VOFFSET, {}),
 	...generateBorderAttributies(PHOTO_BORDER),
 	...generateDimensionAttributes(PHOTO_BORDER_RADIUS),
 
@@ -240,6 +244,7 @@ const attributes = {
 	...generateDimensionAttributes(BIO_MARGIN),
 
 	...generateDimensionAttributes(STATUS_MARGIN),
+	...generateResRangeAttributies(STATUS_GAP),
 
 	...generateNormalBGAttributes(FBTN_BG),
 	...generateBoxShadowAttributies(FBTN_BOX_SHADOW),

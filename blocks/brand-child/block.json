@@ -1,15 +1,15 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"title": "Brand",
-	"icon": "shield-alt",
-	"name": "zolo/brand-child",
-	"category": "zolo-blocks",
-	"keywords": [ "child", "brand" ],
-	"description": "Brand child block description",
-	"apiVersion": 2,
-	"textdomain": "zolo-blocks",
-	"supports": {
-		"anchor": true
-	},
-	"editorScript": ""
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Brand Child",
+    "icon": "shield-alt",
+    "name": "zolo/brand-child",
+    "category": "zolo-blocks",
+    "keywords": ["brand child", "brand"],
+    "description": "Acts as a child block for the brand block",
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "supports": {
+        "anchor": true
+    },
+    "editorScript": ""
 }

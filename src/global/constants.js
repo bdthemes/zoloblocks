@@ -5,23 +5,14 @@ import { __ } from '@wordpress/i18n';
 export const prefix = 'zolo_';
 
 export const UNIT_TYPES = [
-	{ label: 'px', value: 'px' },
-	{ label: '%', value: '%' },
-	{ label: 'em', value: 'em' },
+    { label: 'px', value: 'px' },
+    { label: '%', value: '%' },
+    { label: 'em', value: 'em' },
 ];
 
 export const NORMAL_HOVER = [
-	{ label: 'Normal', value: 'normal' },
-	{ label: 'Hover', value: 'hover' },
-];
-
-export const TEXT_ALIGN = [
-	{ label: __( <Dashicon icon={ 'editor-alignleft' } /> ), value: 'left' },
-	{
-		label: __( <Dashicon icon={ 'editor-aligncenter' } /> ),
-		value: 'center',
-	},
-	{ label: __( <Dashicon icon={ 'editor-alignright' } /> ), value: 'right' },
+    { label: 'Normal', value: 'normal' },
+    { label: 'Hover', value: 'hover' },
 ];
 
 export const TEXT_ALIGN_OPTIONS = [
@@ -463,6 +454,190 @@ export const BOX_SHADOW_TYPES = [
 	},
 ];
 
+export const TEXT_ALIGN_OPTIONS = [
+    {
+        label: 'Left',
+        value: 'left',
+        icon: (
+            <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.33331 1.66669V18.3334" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x="3.33331" y="11.6667" width="8.33333" height="4.16667" rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x="3.33331" y="4.16669" width="13.3333" height="4.16667" rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Center',
+        value: 'center',
+        icon: (
+            <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3.33334" y="4.16669" width="13.3333" height="4.16667" rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x={5} y="11.6667" width={10} height="4.16667" rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+                <path d="M10 8.33331L10 11.6666" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10 15.8333L10 18.3333" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10 1.66669V4.16669" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Right',
+        value: 'right',
+        icon: (
+            <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.6667 1.66667V18.3333" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect
+                    width="8.33333"
+                    height="4.16667"
+                    rx={1}
+                    transform="matrix(-1 0 0 1 16.6667 11.6667)"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                />
+                <rect
+                    width="13.3333"
+                    height="4.16667"
+                    rx={1}
+                    transform="matrix(-1 0 0 1 16.6667 4.16667)"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                />
+            </svg>
+        ),
+    },
+    {
+        label: 'Justify',
+        value: 'justify',
+        icon: (
+            <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.6667 1.66669V18.3334" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M3.33334 1.66669V18.3334" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x="3.33334" y={5} width="4.16667" height={10} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x="12.5" y={5} width="4.16667" height={10} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+];
+
+export const DEFAULT_ALIGNS = [
+    {
+        label: 'Left',
+        value: 'left',
+        icon: (
+            <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.33331 1.66669V18.3334" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x="3.33331" y="11.6667" width="8.33333" height="4.16667" rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x="3.33331" y="4.16669" width="13.3333" height="4.16667" rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Center',
+        value: 'center',
+        icon: (
+            <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3.33334" y="4.16669" width="13.3333" height="4.16667" rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x={5} y="11.6667" width={10} height="4.16667" rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+                <path d="M10 8.33331L10 11.6666" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10 15.8333L10 18.3333" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10 1.66669V4.16669" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Right',
+        value: 'right',
+        icon: (
+            <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.6667 1.66667V18.3333" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect
+                    width="8.33333"
+                    height="4.16667"
+                    rx={1}
+                    transform="matrix(-1 0 0 1 16.6667 11.6667)"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                />
+                <rect
+                    width="13.3333"
+                    height="4.16667"
+                    rx={1}
+                    transform="matrix(-1 0 0 1 16.6667 4.16667)"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                />
+            </svg>
+        ),
+    },
+];
+
+export const FLEX_ALIGN_OPTIONS = [
+    {
+        label: 'Top',
+        value: 'flex-start',
+    },
+    {
+        label: 'Center',
+        value: 'center',
+    },
+    {
+        label: 'Bottom',
+        value: 'flex-end',
+    },
+];
+
+export const HEADING = [
+    { label: __('H1', 'zolo-blocks'), value: 'h1' },
+    { label: __('H2', 'zolo-blocks'), value: 'h2' },
+    { label: __('H3', 'zolo-blocks'), value: 'h3' },
+    { label: __('H4', 'zolo-blocks'), value: 'h4' },
+    { label: __('H5', 'zolo-blocks'), value: 'h5' },
+    { label: __('H6', 'zolo-blocks'), value: 'h6' },
+    { label: __('P', 'zolo-blocks'), value: 'p' },
+];
+
+export const BORDER_TYPES = [
+    { label: __('None', 'zolo-blocks'), value: 'none' },
+    { label: __('Solid', 'zolo-blocks'), value: 'solid' },
+    { label: __('Custom', 'zolo-blocks'), value: 'custom' },
+];
+
+export const SEPERATOR_STYLES = [
+    { label: __('Dashed', 'zolo-blocks'), value: 'dashed' },
+    { label: __('Dotted', 'zolo-blocks'), value: 'dotted' },
+    { label: __('Double', 'zolo-blocks'), value: 'double' },
+    { label: __('Groove', 'zolo-blocks'), value: 'groove' },
+    { label: __('Outset', 'zolo-blocks'), value: 'outset' },
+    { label: __('Ridge', 'zolo-blocks'), value: 'ridge' },
+];
+
+export const BACKGROUND_TYPES = [
+    {
+        label: __('Classic', 'zolo-blocks'),
+        value: 'classic',
+        icon: 'color-picker',
+    },
+    {
+        label: __('Gradient', 'zolo-blocks'),
+        value: 'gradient',
+        icon: 'art',
+    },
+];
+
+export const BOX_SHADOW_TYPES = [
+    {
+        label: __('None', 'zolo-blocks'),
+        value: 'none',
+    },
+    {
+        label: __('Inner', 'zolo-blocks'),
+        value: 'inset',
+    },
+    {
+        label: __('Outer', 'zolo-blocks'),
+        value: 'outset',
+    },
+];
+
 // position
 export const POSITIONS = [
 	{
@@ -712,6 +887,49 @@ export const ICON_POSITIONS = [
 		),
 	},
 ];
+// position
+export const ICON_POSITIONS = [
+    {
+        label: 'Left',
+        value: 'left',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x={11} y={12} width={11} height="0.01" rx="0.005" stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x={3} y={10} width={4} height={4} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Right',
+        value: 'right',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x={3} y={12} width={11} height="0.01" rx="0.005" stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x={18} y={10} width={4} height={4} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Top',
+        value: 'top',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x={6} y={16} width={12} height="0.01" rx="0.005" stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x={10} y={8} width={4} height={4} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Bottom',
+        value: 'bottom',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x={6} y={8} width={12} height="0.01" rx="0.005" stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x={10} y={12} width={4} height={4} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+];
 
 // social icon text
 export const ICON_STATUS = [
@@ -801,6 +1019,34 @@ export const ICON_STATUS = [
 			</svg>
 		),
 	},
+];
+
+export const ORDER_BY = [
+    { label: __('Date', 'zolo-blocks'), value: 'date' },
+    { label: __('Author', 'zolo-blocks'), value: 'author' },
+    { label: __('Title', 'zolo-blocks'), value: 'title' },
+    { label: __('Last modified date', 'zolo-blocks'), value: 'modified' },
+    { label: __('Post parent ID', 'zolo-blocks'), value: 'parent' },
+];
+
+export const SORT_ORDER = [
+    { label: __('ASC', 'zolo-blocks'), value: 'asc' },
+    { label: __('DESC', 'zolo-blocks'), value: 'desc' },
+];
+
+export const PRINT_TAXONOMY = (taxonomy) => {
+    let allTax = [];
+    for (let tax in taxonomy) {
+        allTax.push({ value: tax, label: __(taxonomy[tax], 'zolo-blocks') });
+    }
+    return allTax;
+};
+export const THUMBNAIL_SIZE = [
+    { label: __('Default', 'zolo-blocks'), value: '' },
+    { label: __('Thumbnail', 'zolo-blocks'), value: 'thumbnail' },
+    { label: __('Medium', 'zolo-blocks'), value: 'medium' },
+    { label: __('Large', 'zolo-blocks'), value: 'large' },
+    { label: __('Full', 'zolo-blocks'), value: 'full' },
 ];
 
 // social icon text
