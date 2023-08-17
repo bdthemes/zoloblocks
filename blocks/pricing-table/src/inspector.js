@@ -2,8 +2,6 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import {
     BaseControl,
-    Button,
-    ButtonGroup,
     __experimentalDivider as Divider,
     PanelBody,
     SelectControl,
@@ -28,6 +26,7 @@ const {
     NormalBGControl,
     HeaderTabs,
     LinkControl,
+    TabPanelControl,
 } = window.zoloModule;
 
 //block attributes
@@ -36,12 +35,21 @@ import objAttributes from './attributes';
 //block constants
 import {
     BTN_BORDER,
+    BTN_RADIUS,
     BTN_HOVER_BG,
-    BTN_HOVER_BORDER,
     BTN_MARGIN,
     BTN_NORMAL_BG,
     BTN_PADDING,
     BTN_SHADOW,
+    BTN_HOVER_SHADOW,
+    CBTN_BORDER,
+    CBTN_RADIUS,
+    CBTN_HOVER_BG,
+    CBTN_MARGIN,
+    CBTN_NORMAL_BG,
+    CBTN_PADDING,
+    CBTN_SHADOW,
+    CBTN_HOVER_SHADOW,
     DESC_MARGIN,
     FEATURE_ALIGN,
     FEATURE_DESC_MARGIN,
@@ -50,7 +58,6 @@ import {
     FEATURE_ITEM_GAP,
     FEATURE_MARGIN,
     FEATURE_PADDING,
-    NORMAL_HOVER,
     ORGINAL_PRICE_MARGIN,
     PERIOD_MARGIN,
     PRICE_MARGIN,
@@ -69,6 +76,7 @@ import {
 } from './constants';
 import {
     BTN_TYPOGRAPHY,
+    CBTN_TYPOGRAPHY,
     DESC_TYPOGRAPHY,
     FEATURE_DESC_TYPOGRAPHY,
     FEATURE_TITLE_TYPOGRAPHY,
@@ -134,8 +142,10 @@ const Inspector = ({ attributes, setAttributes }) => {
         //button style
         btnTextColor,
         btnHoverTextColor,
-        btnBgHoverType,
-        btnBorderHoverType,
+        btnHoverBorderColor,
+        chatBtnColor,
+        chatBtnHoverColor,
+        chatBtnHoverBorderColor,
         //ribbon style
         ribbonColor,
         ribbonBgColor,
@@ -751,103 +761,169 @@ const Inspector = ({ attributes, setAttributes }) => {
                             />
                         </PanelBody>
 
-                        <PanelBody title={__('Buttons', 'zolo-blocks')} initialOpen={false}>
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={BTN_MARGIN}
-                                resRequiredProps={resRequiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={BTN_PADDING}
-                                resRequiredProps={resRequiredProps}
-                                forBorderRadius={true}
-                            />
-                            <TypographyDropdown
-                                label="Typography"
-                                typoPrefixConstant={BTN_TYPOGRAPHY}
-                                resRequiredProps={resRequiredProps}
-                            />
-                            <ColorControl
-                                label={__('Text Color', 'zolo-blocks')}
-                                color={btnTextColor}
-                                onChange={(val) =>
-                                    setAttributes({
-                                        btnTextColor: val,
-                                    })
-                                }
-                            />
-                            <ColorControl
-                                label={__('Hover Text Color', 'zolo-blocks')}
-                                color={btnHoverTextColor}
-                                onChange={(val) =>
-                                    setAttributes({
-                                        btnHoverTextColor: val,
-                                    })
-                                }
-                            />
-
-                            <PanelBody title={__('Background', 'zolo-blocks')} initialOpen={false}>
-                                <ButtonGroup>
-                                    {NORMAL_HOVER.map(({ value, label }) => (
-                                        <Button
-                                            variant={btnBgHoverType === value ? 'primary' : 'secondary'}
-                                            onClick={() =>
-                                                setAttributes({
-                                                    btnBgHoverType: value,
-                                                })
-                                            }
-                                        >
-                                            {label}
-                                        </Button>
-                                    ))}
-                                </ButtonGroup>
-
-                                {btnBgHoverType == 'normal' && (
-                                    <NormalBGControl noMainBGImg={true} controlName={BTN_NORMAL_BG} resRequiredProps={resRequiredProps} />
-                                )}
-                                {btnBgHoverType == 'hover' && (
-                                    <NormalBGControl noMainBGImg={true} controlName={BTN_HOVER_BG} resRequiredProps={resRequiredProps} />
-                                )}
+                        {showBtn && (
+                            <PanelBody title={__('Primary Button', 'zolo-blocks')} initialOpen={false}>
+                                <TypographyDropdown
+                                    label={__('Typography', 'zolo-blocks')}
+                                    typoPrefixConstant={BTN_TYPOGRAPHY}
+                                    resRequiredProps={resRequiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={BTN_RADIUS}
+                                    resRequiredProps={resRequiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zolo-blocks')}
+                                    controlName={BTN_PADDING}
+                                    resRequiredProps={resRequiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zolo-blocks')}
+                                    controlName={BTN_MARGIN}
+                                    resRequiredProps={resRequiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Text Color', 'zolo-blocks')}
+                                                color={btnTextColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        btnTextColor: val,
+                                                    })
+                                                }
+                                            />
+                                            <BorderControl
+                                                label={__('Border', 'zolo-blocks')}
+                                                controlName={BTN_BORDER}
+                                                resRequiredProps={resRequiredProps}
+                                            />
+                                            <BoxShadowControl controlName={BTN_SHADOW} resRequiredProps={resRequiredProps} />
+                                            <NormalBGControl
+                                                noMainBGImg={true}
+                                                controlName={BTN_NORMAL_BG}
+                                                resRequiredProps={resRequiredProps}
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Text Color', 'zolo-blocks')}
+                                                color={btnHoverTextColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        btnHoverTextColor: val,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Border Color', 'zolo-blocks')}
+                                                color={btnHoverBorderColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        btnHoverBorderColor: val,
+                                                    })
+                                                }
+                                            />
+                                            <BoxShadowControl controlName={BTN_HOVER_SHADOW} resRequiredProps={resRequiredProps} />
+                                            <NormalBGControl
+                                                noMainBGImg={true}
+                                                controlName={BTN_HOVER_BG}
+                                                resRequiredProps={resRequiredProps}
+                                            />
+                                        </>
+                                    }
+                                />
                             </PanelBody>
-                            <PanelBody title={__('Border', 'zolo-blocks')} initialOpen={false}>
-                                <ButtonGroup>
-                                    {NORMAL_HOVER.map(({ value, label }) => (
-                                        <Button
-                                            variant={btnBorderHoverType === value ? 'primary' : 'secondary'}
-                                            onClick={() =>
-                                                setAttributes({
-                                                    btnBorderHoverType: value,
-                                                })
-                                            }
-                                        >
-                                            {label}
-                                        </Button>
-                                    ))}
-                                </ButtonGroup>
+                        )}
+                        {showChatBtn && (
+                            <PanelBody title={__('Chat Button', 'zolo-blocks')} initialOpen={false}>
+                                <TypographyDropdown
+                                    label={__('Typography', 'zolo-blocks')}
+                                    typoPrefixConstant={CBTN_TYPOGRAPHY}
+                                    resRequiredProps={resRequiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={CBTN_RADIUS}
+                                    resRequiredProps={resRequiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zolo-blocks')}
+                                    controlName={CBTN_PADDING}
+                                    resRequiredProps={resRequiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zolo-blocks')}
+                                    controlName={CBTN_MARGIN}
+                                    resRequiredProps={resRequiredProps}
+                                    forBorderRadius={false}
+                                />
 
-                                {btnBorderHoverType == 'normal' && (
-                                    <BorderControl
-                                        label={__('Border', 'zolo-blocks')}
-                                        controlName={BTN_BORDER}
-                                        resRequiredProps={resRequiredProps}
-                                    />
-                                )}
-
-                                {btnBorderHoverType == 'hover' && (
-                                    <BorderControl
-                                        label={__('Hover Border', 'zolo-blocks')}
-                                        controlName={BTN_HOVER_BORDER}
-                                        resRequiredProps={resRequiredProps}
-                                    />
-                                )}
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Text Color', 'zolo-blocks')}
+                                                color={chatBtnColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        chatBtnColor: val,
+                                                    })
+                                                }
+                                            />
+                                            <BorderControl
+                                                label={__('Border', 'zolo-blocks')}
+                                                controlName={CBTN_BORDER}
+                                                resRequiredProps={resRequiredProps}
+                                            />
+                                            <BoxShadowControl controlName={CBTN_SHADOW} resRequiredProps={resRequiredProps} />
+                                            <NormalBGControl
+                                                noMainBGImg={true}
+                                                controlName={CBTN_NORMAL_BG}
+                                                resRequiredProps={resRequiredProps}
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Text Color', 'zolo-blocks')}
+                                                color={chatBtnHoverColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        chatBtnHoverColor: val,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Border Color', 'zolo-blocks')}
+                                                color={chatBtnHoverBorderColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        chatBtnHoverBorderColor: val,
+                                                    })
+                                                }
+                                            />
+                                            <BoxShadowControl controlName={CBTN_HOVER_SHADOW} resRequiredProps={resRequiredProps} />
+                                            <NormalBGControl
+                                                noMainBGImg={true}
+                                                controlName={CBTN_HOVER_BG}
+                                                resRequiredProps={resRequiredProps}
+                                            />
+                                        </>
+                                    }
+                                />
                             </PanelBody>
-
-                            <PanelBody title={__('Box Shadow', 'zolo-blocks')} initialOpen={false}>
-                                <BoxShadowControl controlName={BTN_SHADOW} resRequiredProps={resRequiredProps} />
-                            </PanelBody>
-                        </PanelBody>
+                        )}
 
                         <PanelBody title={__('Ribbon', 'zolo-blocks')} initialOpen={false}>
                             <TypographyDropdown

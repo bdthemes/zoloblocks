@@ -19,8 +19,6 @@ const Sortable = ({ features, setAttributes }) => {
         };
         setAttributes({ features: [...feature] });
     };
-
-    console.log(features);
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">

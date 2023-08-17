@@ -55,14 +55,25 @@ export const FEATURE_MARGIN = 'featureMargin';
 export const FEATURE_PADDING = 'featurePadding';
 export const FEATURE_ITEM_GAP = 'featureItemGap';
 
-//buttons style
+// primary button style
 export const BTN_MARGIN = 'btnMargin';
 export const BTN_PADDING = 'btnPadding';
 export const BTN_NORMAL_BG = 'btnBg';
 export const BTN_HOVER_BG = 'btnHoverBg';
 export const BTN_BORDER = 'btnBorder';
-export const BTN_HOVER_BORDER = 'btnHoverBorder';
+export const BTN_RADIUS = 'btnRadius';
 export const BTN_SHADOW = 'btnShadow';
+export const BTN_HOVER_SHADOW = 'btnHoverShadow';
+
+// chat button style
+export const CBTN_MARGIN = 'cbtnMargin';
+export const CBTN_PADDING = 'cbtnPadding';
+export const CBTN_NORMAL_BG = 'cbtnBg';
+export const CBTN_HOVER_BG = 'cbtnHoverBg';
+export const CBTN_BORDER = 'cbtnBorder';
+export const CBTN_RADIUS = 'cbtnRadius';
+export const CBTN_SHADOW = 'cbtnShadow';
+export const CBTN_HOVER_SHADOW = 'cbtnHoverShadow';
 
 //advance tab
 export const WRAPPER_MARGIN = 'wrapMargin';

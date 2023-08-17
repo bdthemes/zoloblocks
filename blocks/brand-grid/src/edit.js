@@ -46,7 +46,7 @@ export default function Edit(props) {
     }, []);
 
     const blockProps = useBlockProps({
-        className: classnames(className, ``),
+        className: classnames(className, `zb-brand-grid-wrap ${uniqueId} ${preset}`),
     });
 
     const {
@@ -170,71 +170,11 @@ export default function Edit(props) {
     /**
      * All Style Combination
      */
-    const desktopAllStyle = `
-		.${uniqueId}.zb-brand-grid-back{
-			${containerDeskBGStyle}		
-			${containerBorderRadiusDesk}		
-			${containerPaddingDesk}		
-			${containerBoxShadow}		
-			${containerDeskBorderStyle}		
-		}
-		.${uniqueId}.zb-brand-grid-front{
-			${containerDeskBGStyle}
-			${containerBorderRadiusDesk}
-			${containerPaddingDesk}
-			${containerBoxShadow}
-			${containerDeskBorderStyle}
-		}
-		.${uniqueId}.zb-brand-grid-back:hover{
-			${containerHoverDeskBGStyle}		
-			${containerBoxShadowHover}		
-		}
-		.${uniqueId}.zb-brand-grid-front:hover{
-			${containerHoverDeskBGStyle}
-			${containerBoxShadowHover}
-		}
-		${presetStyles}		
-  	`;
+    const desktopAllStyle = ``;
 
-    const tabletAllStyle = `
-		.${uniqueId}.zb-brand-grid-back{
-			${containerTabBGStyle}		
-			${containerBorderRadiusTab}		
-			${containerPaddingTab}		
-		}
-		.${uniqueId}.zb-brand-grid-front{
-			${containerTabBGStyle}
-			${containerBorderRadiusTab}
-			${containerPaddingTab}
-		}
-		.${uniqueId}.zb-brand-grid-back:hover{
-			${containerHoverTabBGStyle}		
-		}
-		.${uniqueId}.zb-brand-grid-front:hover{
-			${containerHoverTabBGStyle}
-		}
-		${presetStyles}
-	`;
+    const tabletAllStyle = ``;
 
-    const mobileAllStyle = `
-		.${uniqueId}.zb-brand-grid-back{
-			${containerMobBGStyle}		
-			${containerBorderRadiusMob}		
-			${containerPaddingMob}		
-		}
-		.${uniqueId}.zb-brand-grid-front{
-			${containerMobBGStyle}
-			${containerBorderRadiusMob}
-			${containerPaddingMob}
-		}
-		.${uniqueId}.zb-brand-grid-back:hover{
-			${containerHoverMobBGStyle}		
-		}
-		.${uniqueId}.zb-brand-grid-front:hover{
-			${containerHoverMobBGStyle}
-		}
-		${presetStyles}
-  	`;
+    const mobileAllStyle = ``;
 
     const allStyle = `
 		${desktopAllStyle}
@@ -269,22 +209,32 @@ export default function Edit(props) {
 
     return (
         <>
-            {/* {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />} */}
-            <style>{` ${softMinifyCssStrings(allStyle)}`}</style>
+            {/* {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}  */}
+            <style>
+                {` ${softMinifyCssStrings(allStyle)}`}
+                {`
+                    .zb-brand-grid-wrap {
+                        display: block;
+                    }
+                    .zb-brand-grid-wrap .block-editor-block-list__layout{
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        grid-gap: 20px;
+                    }
+                `}
+            </style>
             <div {...blockProps}>
-                <div className={`zb-brand-grid-back zb-brand-${preset} ${uniqueId} `}>
-                    <InnerBlocks allowedBlocks={['zolo/brand-child']} template={[['zolo/brand-child', {}]]} renderAppender={false} />
-                    <div className="appender-btn">
-                        <Button
-                            className="components-button"
-                            label={__('Add Brand', 'zolo-blocks')}
-                            icon="insert"
-                            variant="primary"
-                            onClick={() => appendBlock()}
-                        >
-                            {__('Add Brand', 'zolo-blocks')}
-                        </Button>
-                    </div>
+                <InnerBlocks allowedBlocks={['zolo/brand-child']} template={[['zolo/brand-child', {}]]} renderAppender={false} />
+                <div className="appender-btn">
+                    <Button
+                        className="components-button"
+                        label={__('Add Brand', 'zolo-blocks')}
+                        icon="insert"
+                        variant="primary"
+                        onClick={() => appendBlock()}
+                    >
+                        {__('Add Brand', 'zolo-blocks')}
+                    </Button>
                 </div>
             </div>
         </>

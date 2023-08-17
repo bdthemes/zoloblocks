@@ -15,12 +15,21 @@ const {
 //block constants
 import {
     BTN_BORDER,
+    BTN_RADIUS,
     BTN_HOVER_BG,
-    BTN_HOVER_BORDER,
     BTN_MARGIN,
     BTN_NORMAL_BG,
     BTN_PADDING,
     BTN_SHADOW,
+    BTN_HOVER_SHADOW,
+    CBTN_BORDER,
+    CBTN_RADIUS,
+    CBTN_HOVER_BG,
+    CBTN_MARGIN,
+    CBTN_NORMAL_BG,
+    CBTN_PADDING,
+    CBTN_SHADOW,
+    CBTN_HOVER_SHADOW,
     DESC_MARGIN,
     FEATURE_ALIGN,
     FEATURE_DESC_MARGIN,
@@ -263,15 +272,18 @@ const attributes = {
         type: 'string',
         default: '',
     },
-    btnBgHoverType: {
+    btnHoverBorderColor: {
         type: 'string',
-        default: 'normal',
     },
-    btnBorderHoverType: {
+    chatBtnColor: {
         type: 'string',
-        default: 'normal',
     },
-
+    chatBtnHoverColor: {
+        type: 'string',
+    },
+    chatBtnHoverBorderColor: {
+        type: 'string',
+    },
     //ribbon style
     ribbonColor: {
         type: 'string',
@@ -315,8 +327,19 @@ const attributes = {
         defaultBgGradient: 'linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)',
     }),
     ...generateBorderAttributies(BTN_BORDER),
-    ...generateBorderAttributies(BTN_HOVER_BORDER),
+    ...generateDimensionAttributes(BTN_RADIUS),
     ...generateBoxShadowAttributies(BTN_SHADOW),
+    ...generateBoxShadowAttributies(BTN_HOVER_SHADOW),
+
+    //chat button
+    ...generateDimensionAttributes(CBTN_MARGIN),
+    ...generateDimensionAttributes(CBTN_PADDING),
+    ...generateNormalBGAttributes(CBTN_NORMAL_BG),
+    ...generateNormalBGAttributes(CBTN_HOVER_BG),
+    ...generateBorderAttributies(CBTN_BORDER),
+    ...generateDimensionAttributes(CBTN_RADIUS),
+    ...generateBoxShadowAttributies(CBTN_SHADOW),
+    ...generateBoxShadowAttributies(CBTN_HOVER_SHADOW),
 
     //all typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),

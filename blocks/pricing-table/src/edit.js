@@ -12,12 +12,21 @@ import './style.scss';
 import {
     BLOCK_PREFIX,
     BTN_BORDER,
+    BTN_RADIUS,
     BTN_HOVER_BG,
-    BTN_HOVER_BORDER,
     BTN_MARGIN,
     BTN_NORMAL_BG,
     BTN_PADDING,
     BTN_SHADOW,
+    BTN_HOVER_SHADOW,
+    CBTN_BORDER,
+    CBTN_RADIUS,
+    CBTN_HOVER_BG,
+    CBTN_MARGIN,
+    CBTN_NORMAL_BG,
+    CBTN_PADDING,
+    CBTN_SHADOW,
+    CBTN_HOVER_SHADOW,
     DESC_MARGIN,
     FEATURE_ALIGN,
     FEATURE_DESC_MARGIN,
@@ -42,6 +51,7 @@ import {
 } from './constants';
 import {
     BTN_TYPOGRAPHY,
+    CBTN_TYPOGRAPHY,
     DESC_TYPOGRAPHY,
     FEATURE_DESC_TYPOGRAPHY,
     FEATURE_TITLE_TYPOGRAPHY,
@@ -97,9 +107,16 @@ const Edit = (props) => {
 
         //buttons
         showBtn,
-        buttonText,
         showChatBtn,
+        buttonText,
         chatBtnText,
+
+        btnTextColor,
+        btnHoverTextColor,
+        btnHoverBorderColor,
+        chatBtnColor,
+        chatBtnHoverColor,
+        chatBtnHoverBorderColor,
 
         //ribbon
         showRibbon,
@@ -123,8 +140,6 @@ const Edit = (props) => {
         featureColor,
         featureIconColor,
         featureIconBgColor,
-        btnTextColor,
-        btnHoverTextColor,
         ribbonBgColor,
         ribbonColor,
     } = attributes;
@@ -368,6 +383,7 @@ const Edit = (props) => {
         property: 'text-align',
         attributes,
     });
+
     //button style
     const {
         dimensionStylesDesktop: btnMarginDesktop,
@@ -385,6 +401,15 @@ const Edit = (props) => {
     } = generateDimensionStyle({
         controlName: BTN_PADDING,
         styleFor: 'padding',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: btnDeskRadius,
+        dimensionStylesTab: btnTabRadius,
+        dimensionStylesMobile: btnMobRadius,
+    } = generateDimensionStyle({
+        controlName: BTN_RADIUS,
+        styleFor: 'border-radius',
         attributes,
     });
     const {
@@ -419,18 +444,86 @@ const Edit = (props) => {
         attributes,
         controlName: BTN_BORDER,
     });
-    const {
-        desktopBorderStyle: btnHoverBorderDesktop,
-        tabBorderStyle: btnHoverBorderTab,
-        mobBorderStyle: btnHoverBorderMob,
-    } = generateBorderStyle({
-        attributes,
-        controlName: BTN_HOVER_BORDER,
-    });
 
     const { boxShadowStyle: btnShadow } = generateBoxShadowStyles({
         attributes,
         controlName: BTN_SHADOW,
+    });
+
+    const { boxShadowStyle: btnHoverShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: BTN_HOVER_SHADOW,
+    });
+
+    // chat button
+    const {
+        dimensionStylesDesktop: chatBtnMarginDesktop,
+        dimensionStylesTab: chatBtnMarginTab,
+        dimensionStylesMobile: chatBtnMarginMobile,
+    } = generateDimensionStyle({
+        controlName: CBTN_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: chatBtnPaddingDesktop,
+        dimensionStylesTab: chatBtnPaddingTab,
+        dimensionStylesMobile: chatBtnPaddingMobile,
+    } = generateDimensionStyle({
+        controlName: CBTN_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: chatBtnDeskRadius,
+        dimensionStylesTab: chatBtnTabRadius,
+        dimensionStylesMobile: chatBtnMobRadius,
+    } = generateDimensionStyle({
+        controlName: CBTN_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+    const {
+        typoStylesDesktop: chatBtnTypoDesktop,
+        typoStylesTab: chatBtnTypoTab,
+        typoStylesMobile: chatBtnTypoMobile,
+    } = generateTypographyStyles({
+        prefixConstant: CBTN_TYPOGRAPHY,
+        attributes,
+    });
+    const {
+        backgroundStylesDesktop: chatBtnBgDesktop,
+        backgroundStylesTab: chatBtnBgTab,
+        backgroundStylesMobile: chatBtnBgMob,
+    } = generateNormalBGControlStyles({
+        attributes,
+        controlName: CBTN_NORMAL_BG,
+    });
+    const {
+        backgroundStylesDesktop: chatBtnHoverBgDesktop,
+        backgroundStylesTab: chatBtnHoverBgTab,
+        backgroundStylesMobile: chatBtnHoverBgMob,
+    } = generateNormalBGControlStyles({
+        attributes,
+        controlName: CBTN_HOVER_BG,
+    });
+    const {
+        desktopBorderStyle: chatBtnBorderDesktop,
+        tabBorderStyle: chatBtnBorderTab,
+        mobBorderStyle: chatBtnBorderMob,
+    } = generateBorderStyle({
+        attributes,
+        controlName: CBTN_BORDER,
+    });
+
+    const { boxShadowStyle: chatBtnShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CBTN_SHADOW,
+    });
+
+    const { boxShadowStyle: chatBtnHoverShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CBTN_HOVER_SHADOW,
     });
 
     //ribbon style
@@ -745,7 +838,7 @@ const Edit = (props) => {
   `;
 
     const buttonStylesDesktop = `
-    .${uniqueId} .zolo-link-btn a{
+    .${uniqueId} .zolo-link-btn a.zolo-buy-btn{
       ${btnTextColor ? `color: ${btnTextColor};` : ''}
       ${btnMarginDesktop}
       ${btnPaddingDesktop}
@@ -753,39 +846,81 @@ const Edit = (props) => {
       ${btnBgDesktop}
       ${btnBorderDesktop}
       ${btnShadow}
+      ${btnDeskRadius}
     }
-    .${uniqueId} .zolo-link-btn a:hover{
+    .${uniqueId} .zolo-link-btn a.zolo-buy-btn:hover{
       ${btnHoverTextColor ? `color: ${btnHoverTextColor};` : ''}
+      ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
       ${btnHoverBgDesktop}
-      ${btnHoverBorderDesktop}
+      ${btnHoverShadow}
+    }
+    .${uniqueId} .zolo-link-btn a.zolo-chat-btn{
+      ${chatBtnColor ? `color: ${chatBtnColor};` : ''}
+      ${chatBtnMarginDesktop}
+      ${chatBtnPaddingDesktop}
+      ${chatBtnTypoDesktop}
+      ${chatBtnBgDesktop}
+      ${chatBtnBorderDesktop}
+      ${chatBtnShadow}
+      ${chatBtnDeskRadius}
+    }
+    .${uniqueId} .zolo-link-btn a.zolo-chat-btn:hover{
+      ${chatBtnHoverColor ? `color: ${chatBtnHoverColor};` : ''}
+      ${chatBtnHoverBorderColor ? `border-color: ${chatBtnHoverBorderColor};` : ''}
+      ${chatBtnHoverBgDesktop}
+      ${chatBtnHoverShadow}
     }
   `;
 
     const buttonStylesTab = `
-    .${uniqueId} .zolo-link-btn a{
+    .${uniqueId} .zolo-link-btn a.zolo-buy-btn{
       ${btnMarginTab}
       ${btnPaddingTab}
       ${btnTypoTab}
       ${btnBgTab}
       ${btnBorderTab}
+      ${btnTabRadius}
     }
-    .${uniqueId} .zolo-link-btn a:hover{
+    .${uniqueId} .zolo-link-btn a.zolo-buy-btn:hover{
       ${btnHoverBgTab}
-      ${btnHoverBorderTab}
+    }
+
+    .${uniqueId} .zolo-link-btn a.zolo-chat-btn{
+      ${chatBtnMarginTab}
+      ${chatBtnPaddingTab}
+      ${chatBtnTypoTab}
+      ${chatBtnBgTab}
+      ${chatBtnBorderTab}
+      ${chatBtnTabRadius}
+    }
+    .${uniqueId} .zolo-link-btn a.zolo-chat-btn:hover{
+      ${chatBtnHoverBgTab}
     }
   `;
 
     const buttonStylesMob = `
-    .${uniqueId} .zolo-link-btn a{
+    .${uniqueId} .zolo-link-btn a.zolo-buy-btn{
       ${btnMarginMobile}
       ${btnPaddingMobile}
       ${btnTypoMobile}
       ${btnBgMob}
       ${btnBorderMob}
+      ${btnMobRadius}
     }
-    .${uniqueId} .zolo-link-btn a:hover{
+    .${uniqueId} .zolo-link-btn a.zolo-buy-btn:hover{
       ${btnHoverBgMob}
-      ${btnHoverBorderMob}
+    }
+
+    .${uniqueId} .zolo-link-btn a.zolo-chat-btn{
+      ${chatBtnMarginMobile}
+      ${chatBtnPaddingMobile}
+      ${chatBtnTypoMobile}
+      ${chatBtnBgMob}
+      ${chatBtnBorderMob}
+      ${chatBtnMobRadius}
+    }
+    .${uniqueId} .zolo-link-btn a.zolo-chat-btn:hover{
+      ${chatBtnHoverBgMob}
     }
   `;
 
