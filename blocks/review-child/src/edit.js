@@ -505,8 +505,6 @@ export default function Edit(props) {
      */
     const desktopAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-child .zolo-item {
-			${containerDeskMargin}
-			${containerDeskPadding}
 			${reviewContentDeskAlignStyle}
 			${containerDeskBorderStyle}
 			${containerDeskBorderRadius}
@@ -586,8 +584,6 @@ export default function Edit(props) {
 
     const tabletAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-child .zolo-item {
-			${containerTabMargin}
-			${containerTabPadding}
 			${reviewContentTabAlignStyle}
 			${containerTabBorderStyle}
 			${containerTabBorderRadius}
@@ -643,8 +639,6 @@ export default function Edit(props) {
 
     const mobileAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-child .zolo-item {
-			${containerMobMargin}
-			${containerMobPadding}
 			${reviewContentMobAlignStyle}
 			${containerMobBorderStyle}
 			${containerMobBorderRadius}
