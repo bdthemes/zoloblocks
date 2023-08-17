@@ -7,19 +7,17 @@ const {
 	generateBoxShadowAttributies,
 	generateTextShadowAttributies,
 	generateTextStrokeAttributies,
+	generateNormalBGAttributes,
 } = window.zoloModule;
 
 import {
 	ICON_BOX_ALIGNMENT,
-	TITLE_ALIGNMENT,
 	TITLE_MARGIN,
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
 	DESCRIPTION_MARGIN,
-	DESC_ALIGNMENT,
 	ICON_BORDER,
 	ICON_BOX_SHADOW,
-	ICON_HOVER_BOX_SHADOW,
 	BUTTON_BOX_SHADOW,
 	BUTTON_HOVER_BOX_SHADOW,
 	ICON_BORDER_RADIUS,
@@ -27,12 +25,17 @@ import {
 	BUTTON_ICON_SIZE,
 	BUTTON_BORDER,
 	ICON_TEXT_SPACING,
-	ICON_SPACING,
 	ICON_PADDING,
 	ICON_MARGIN,
 	BUTTON_BORDER_RADIUS,
 	BUTTON_MARGIN,
 	BUTTON_PADDING,
+	CONTAINER_BACKGROUND,
+	CONTAINER_MARGIN,
+	CONTAINER_PADDING,
+	ICON_IMAGE_SIZE,
+	IMAGE_BORDER,
+	ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
@@ -47,64 +50,60 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
-	//alignment attributes
-	...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT, {
+
+	// Item
+	...generateNormalBGAttributes( CONTAINER_BACKGROUND ),
+	...generateDimensionAttributes( CONTAINER_PADDING ),
+	...generateDimensionAttributes( CONTAINER_MARGIN ),
+
+	// Icon
+	...generateResAlignmentAttributies( ICON_BOX_ALIGNMENT, {
 		defaultAlign: 'left',
-	}),
-	//title alignment attributes
-	...generateResAlignmentAttributies(TITLE_ALIGNMENT, {
-		defaultAlign: '',
-	}),
-	//description alignment attributes
-	...generateResAlignmentAttributies(DESC_ALIGNMENT, {
-		defaultAlign: '',
-	}),
-	// border attributes
-	...generateBorderAttributies(ICON_BORDER),
-	// button border
-	...generateBorderAttributies(BUTTON_BORDER),
-	//icon size
-	...generateResRangeAttributies(ICON_SIZE, {
+	} ),
+	...generateBorderAttributies( ICON_BORDER ),
+	...generateResRangeAttributies( ICON_SIZE, {
 		default: 16,
-	}),
-	//button
-	...generateResRangeAttributies(BUTTON_ICON_SIZE, {
+	} ),
+	...generateResRangeAttributies( ICON_TEXT_SPACING, {
+		default: 5,
+	} ),
+	...generateDimensionAttributes( ICON_BORDER_RADIUS ),
+	...generateDimensionAttributes( ICON_PADDING ),
+	...generateDimensionAttributes( ICON_MARGIN ),
+	...generateBoxShadowAttributies( ICON_BOX_SHADOW ),
+
+	// Button
+	...generateBorderAttributies( BUTTON_BORDER ),
+	...generateResRangeAttributies( BUTTON_ICON_SIZE, {
 		default: 16,
-	}),
-	...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
-	...generateDimensionAttributes(BUTTON_PADDING),
-	...generateDimensionAttributes(BUTTON_MARGIN),
-	//icon text spacing
-	...generateResRangeAttributies(ICON_TEXT_SPACING, {
-		default: 5,
-	}),
-	//icon spacing
-	...generateResRangeAttributies(ICON_SPACING, {
-		default: 5,
-	}),
-	//icon border radius
-	...generateDimensionAttributes(ICON_BORDER_RADIUS),
-	//icon padding
-	...generateDimensionAttributes(ICON_PADDING),
-	//icon margin
-	...generateDimensionAttributes(ICON_MARGIN),
-	//icon boxshadow
-	...generateBoxShadowAttributies(ICON_BOX_SHADOW),
-	//icon hover boxshadow
-	...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
-	//button boxshadow
-	...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
-	//button hover boxshadow
-	...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
-	//title margin
-	...generateDimensionAttributes(TITLE_MARGIN),
-	...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
-	...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
-	//description margin
-	...generateDimensionAttributes(DESCRIPTION_MARGIN),
-	//typography
-	...generateTypographyAttributes(Object.values(typographyObjs)),
-	//Block specific Attributes
+	} ),
+	...generateDimensionAttributes( BUTTON_BORDER_RADIUS ),
+	...generateDimensionAttributes( BUTTON_PADDING ),
+	...generateDimensionAttributes( BUTTON_MARGIN ),
+	...generateBoxShadowAttributies( BUTTON_BOX_SHADOW ),
+	...generateBoxShadowAttributies( BUTTON_HOVER_BOX_SHADOW ),
+
+	// Title
+	...generateDimensionAttributes( TITLE_MARGIN ),
+	...generateTextShadowAttributies( TITLE_TEXT_SHADOW ),
+	...generateTextStrokeAttributies( TITLE_TEXT_STROKE ),
+
+	// Description
+	...generateDimensionAttributes( DESCRIPTION_MARGIN ),
+
+	// Typography
+	...generateTypographyAttributes( Object.values( typographyObjs ) ),
+
+	// Image
+	...generateBorderAttributies( IMAGE_BORDER ),
+	...generateResRangeAttributies( ICON_IMAGE_SIZE, {
+		default: 16,
+	} ),
+	...generateResRangeAttributies( ICON_IMAGE_BORDER_RADIUS, {
+		default: 16,
+	} ),
+
+	//Block Specific Attributes
 	preset: {
 		type: 'string',
 		default: 'style-1',
@@ -166,6 +165,10 @@ const attributes = {
 	iconType: {
 		type: 'string',
 		default: 'icon',
+	},
+	iconAlignment: {
+		type: 'string',
+		default: 'flex-start',
 	},
 	mainIcon: {
 		type: 'object',
@@ -231,26 +234,34 @@ const attributes = {
 	btnBgHoverColor: {
 		type: 'string',
 	},
+	buttonIconColor: {
+		type: 'string',
+	},
+	buttonIconHoverColor: {
+		type: 'string',
+	},
 	presetOneStyles: {
 		type: 'object',
 		default: {
-			iconPosition: 'left',
-			buttonPosition: 'left',
+			contentPosition: 'left',
+			iconPosition: 'row',
 			buttonIconPosition: 'row-reverse',
 		},
 	},
 	presetTwoStyles: {
 		type: 'object',
 		default: {
-			iconPosition: 'top',
-			buttonPosition: 'left',
+			contentPosition: 'left',
+			iconPosition: 'row-reverse',
 			buttonIconPosition: 'row-reverse',
 		},
 	},
 	presetThreeStyles: {
 		type: 'object',
 		default: {
-			iconPosition: 'right',
+			contentPosition: 'right',
+			iconPosition: 'row-reverse',
+			buttonIconPosition: 'row-reverse',
 		},
 	},
 };

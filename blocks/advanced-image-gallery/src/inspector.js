@@ -1,13 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import {
-	PanelBody,
-	BaseControl,
-	Button,
-	SelectControl,
-} from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -20,7 +15,6 @@ const {
 	NormalBGControl,
 	ResDimensionsControl,
 	TabPanelControl,
-	ImageAvatar,
 	ResRangeControl,
 	ResCounterControl,
 	ColorControl,
@@ -61,8 +55,7 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector( props ) {
 	const { attributes, setAttributes } = props;
-	const { uniqueId, advancedGallery, preset, resMode, headingColor } =
-		attributes;
+	const { preset, resMode, headingColor } = attributes;
 
 	const resRequiredProps = {
 		attributes,
@@ -336,10 +329,7 @@ function Inspector( props ) {
 									resRequiredProps={ resRequiredProps }
 								/>
 								<BorderControl
-									label={ __(
-										'Image Border',
-										'zolo-blocks'
-									) }
+									label={ __( 'Border', 'zolo-blocks' ) }
 									controlName={ HEADING_BORDER }
 									resRequiredProps={ resRequiredProps }
 								/>
@@ -366,7 +356,6 @@ function Inspector( props ) {
 										} )
 									}
 								/>
-
 								<BoxShadowControl
 									controlName={ HEADING_BOX_SHADOW }
 									resRequiredProps={ resRequiredProps }
