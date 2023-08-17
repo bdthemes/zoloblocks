@@ -64,12 +64,11 @@ export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected, context } = props;
     const {
         uniqueId,
-        preset,
-        heading,
-        showBrandName,
-        showBrandLink,
+        isBrandName,
+        isBrandLink,
         brandPhoto,
         brandName,
+        brandNameTag,
         brandLabel,
         brandDetailPageLink,
         textColor,
@@ -421,9 +420,71 @@ export default function Edit(props) {
 		}
   	`;
 
-    const tabletAllStyle = ``;
+    const tabletAllStyle = `
+        .${uniqueId}.zb-brand-item{
+            ${tabContainerHeight}
+            ${containerTabBorderRadius}
+            ${containerTabBGStyle}
+            ${containerBorderTab}
+        }
+        .${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
+            ${brandPhotoPaddingTab}
+            ${tabImageWidth}
+            ${brandPhotoBorderRadiusTab}
+            ${brandPhotoTabBGStyle}
+            ${brandPhotoMarginTab}
+            ${photoBorderTab}
+        }
+        .${uniqueId} .zb-brand-inner-content{
+            ${brandContentTabAlignStyle}
+        }
+        .${uniqueId} .zb-brand-content{
+            ${containerHoverTabBGStyle}
+        }
+        .${uniqueId} .zb-brand-title{
+            ${titleTypoTab}
+            ${titleMarginTab}
+            ${titleTextStrokeTab}
+        }
+        .${uniqueId} .zb-brand-link{
+            ${linkTypoTab}
+            ${linkMarginTab}
+            ${linkTextStrokeTab}
+        }
+    `;
 
-    const mobileAllStyle = ``;
+    const mobileAllStyle = `
+        .${uniqueId}.zb-brand-item{
+            ${mobContainerHeight}
+            ${containerMobBorderRadius}
+            ${containerMobBGStyle}
+            ${containerBorderMob}
+        }
+        .${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
+            ${brandPhotoPaddingMob}
+            ${mobImageWidth}
+            ${brandPhotoBorderRadiusMob}
+            ${brandPhotoMobBGStyle}
+            ${brandPhotoMarginMob}
+            ${photoBorderMob}
+        }
+        .${uniqueId} .zb-brand-inner-content{
+            ${brandContentMobAlignStyle}
+        }
+        .${uniqueId} .zb-brand-content{
+            ${containerHoverMobBGStyle}
+        }
+        .${uniqueId} .zb-brand-title{
+            ${titleTypoMob}
+            ${titleMarginMob}
+            ${titleTextStrokeMob}
+        }
+        .${uniqueId} .zb-brand-link{
+            ${linkTypoMob}
+            ${linkMarginMob}
+            ${linkTextStrokeMob}
+        }
+    `;
 
     const allStyle = `
 		${desktopAllStyle}
@@ -515,34 +576,38 @@ export default function Edit(props) {
                         </svg>
                     </div>
                     <div className="zb-brand-inner-content">
-                        <RichText
-                            tagName="h1"
-                            className="zb-brand-title"
-                            value={brandName}
-                            onChange={(name) =>
-                                setAttributes({
-                                    brandName: name,
-                                })
-                            }
-                            placeholder={__('Brand name..', 'zolo-blocks')}
-                        />
-                        <a
-                            className="zb-brand-link"
-                            href={brandDetailPageLink && brandDetailPageLink.url}
-                            rel={brandDetailPageLink && brandDetailPageLink.opensInNewTab && 'noreferer'}
-                            target={brandDetailPageLink && brandDetailPageLink.opensInNewTab && '_blank'}
-                        >
+                        {isBrandName && (
                             <RichText
-                                tagName="span"
-                                value={brandLabel}
+                                tagName={brandNameTag}
+                                className="zb-brand-title"
+                                value={brandName}
                                 onChange={(name) =>
                                     setAttributes({
-                                        brandLabel: name,
+                                        brandName: name,
                                     })
                                 }
-                                placeholder={__('www.zalando.com', 'zolo-blocks')}
+                                placeholder={__('Brand name..', 'zolo-blocks')}
                             />
-                        </a>
+                        )}
+                        {isBrandLink && (
+                            <a
+                                className="zb-brand-link"
+                                href={brandDetailPageLink && brandDetailPageLink.url}
+                                rel={brandDetailPageLink && brandDetailPageLink.opensInNewTab && 'noreferer'}
+                                target={brandDetailPageLink && brandDetailPageLink.opensInNewTab && '_blank'}
+                            >
+                                <RichText
+                                    tagName="span"
+                                    value={brandLabel}
+                                    onChange={(name) =>
+                                        setAttributes({
+                                            brandLabel: name,
+                                        })
+                                    }
+                                    placeholder={__('www.zalando.com', 'zolo-blocks')}
+                                />
+                            </a>
+                        )}
                     </div>
                 </div>
             </div>

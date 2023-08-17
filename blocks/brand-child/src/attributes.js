@@ -31,7 +31,6 @@ import {
     BRAND_PHOTO_BG,
     BRAND_PHOTO_PADDING,
     BRAND_PHOTO_MARGIN,
-    IMAGE_HEIGHT,
     IMAGE_WIDTH,
     CONTAINER_BORDER,
 } from './constants';
@@ -48,9 +47,19 @@ const attributes = {
     blockStyle: {
         type: 'object',
     },
+
+    isBrandName: {
+        type: 'boolean',
+        default: true,
+    },
+    isBrandLink: {
+        type: 'boolean',
+        default: true,
+    },
+
     // content alignment
     ...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
-        defaultAlign: 'left',
+        defaultAlign: 'center',
     }),
 
     // container
@@ -90,28 +99,16 @@ const attributes = {
     //typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     //Block specific Attributes
-    preset: {
-        type: 'string',
-        default: 'style-1',
-    },
-    heading: {
-        type: 'string',
-        default: 'h1',
-    },
-    showBrandName: {
-        type: 'boolean',
-        default: true,
-    },
-    showBrandLink: {
-        type: 'boolean',
-        default: true,
-    },
     brandPhoto: {
         type: 'object',
     },
     brandName: {
         type: 'string',
         default: 'Zalando',
+    },
+    brandNameTag: {
+        type: 'string',
+        default: 'h2',
     },
     brandLabel: {
         type: 'string',
@@ -127,26 +124,6 @@ const attributes = {
     titleTag: {
         type: 'string',
         default: 'h2',
-    },
-    link: {
-        type: 'object',
-        default: {
-            url: '#',
-            opensInNewTab: false,
-            addNoFollow: false,
-        },
-    },
-    openInNewTab: {
-        type: 'boolean',
-        default: false,
-    },
-    addNoFollow: {
-        type: 'boolean',
-        default: false,
-    },
-    showIcon: {
-        type: 'boolean',
-        default: false,
     },
     textColor: {
         type: 'string',

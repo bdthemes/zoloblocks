@@ -1,8 +1,7 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, preset, heading, brandPhoto, brandName, brandDetailPageLink, brandLabel, link, showBrandName, showBrandLink } =
-        attributes;
+    const { uniqueId, isBrandName, isBrandLink, brandPhoto, brandName, brandNameTag, brandDetailPageLink, brandLabel } = attributes;
 
     return (
         <div
@@ -27,15 +26,17 @@ const Save = ({ attributes }) => {
                     </svg>
                 </div>
                 <div className="zb-brand-inner-content">
-                    <RichText.Content tagName="h1" className="zb-brand-title" value={brandName} />
-                    <a
-                        className="zb-brand-link"
-                        href={brandDetailPageLink && brandDetailPageLink.url}
-                        rel={brandDetailPageLink && brandDetailPageLink.opensInNewTab && 'noreferer'}
-                        target={brandDetailPageLink && brandDetailPageLink.opensInNewTab && '_blank'}
-                    >
-                        <RichText.Content value={brandLabel} />
-                    </a>
+                    {isBrandName && <RichText.Content tagName={brandNameTag} className="zb-brand-title" value={brandName} />}
+                    {isBrandLink && (
+                        <a
+                            className="zb-brand-link"
+                            href={brandDetailPageLink && brandDetailPageLink.url}
+                            rel={brandDetailPageLink && brandDetailPageLink.opensInNewTab && 'noreferer'}
+                            target={brandDetailPageLink && brandDetailPageLink.opensInNewTab && '_blank'}
+                        >
+                            <RichText.Content value={brandLabel} />
+                        </a>
+                    )}
                 </div>
             </div>
         </div>

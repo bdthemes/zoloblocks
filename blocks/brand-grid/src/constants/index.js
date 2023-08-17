@@ -9,14 +9,7 @@ export const BLOCK_PREFIX = 'brand-grid';
 // Presets
 export const PRESETS = [
     { label: __('Default', 'zolo-blocks'), value: 'zb-brand-style-1' },
-    { label: __('Style 1', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
-    { label: __('Style 3', 'zolo-blocks'), value: 'style-3' },
-    { label: __('Style 4', 'zolo-blocks'), value: 'style-4' },
-    { label: __('Style 5', 'zolo-blocks'), value: 'style-5' },
-    { label: __('Style 6', 'zolo-blocks'), value: 'style-6' },
-    { label: __('Style 7', 'zolo-blocks'), value: 'style-7' },
-    { label: __('Style 8', 'zolo-blocks'), value: 'style-8' },
+    { label: __('Style 1', 'zolo-blocks'), value: 'zb-brand-style-2' },
 ];
 
 // container
@@ -154,8 +147,9 @@ export const ROWS_GAP = 'rowsGap';
 
 // Container
 export const CONTAINER_PADDING = 'containerPadding';
+export const CONTAINER_MARGIN = 'containerMargin';
 export const CONTAINER_BORDER = 'containerBorder';
 export const CONTAINER_BORDER_HOVER = 'containerBorderHover';
 export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
-export const CONTAINER_BOX_SHADOW_HOVER = 'containerBoxShadowHover';
+export const CONTAINER_HOVER_BOX_SHADOW = 'containerBoxShadowHover';

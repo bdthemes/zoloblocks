@@ -17,7 +17,7 @@ import {
     CONTAINER_BORDER_RADIUS,
     CONTAINER_PADDING,
     CONTAINER_BOX_SHADOW,
-    CONTAINER_BOX_SHADOW_HOVER,
+    CONTAINER_HOVER_BOX_SHADOW,
 } from './constants';
 const attributes = {
     //Common Attributes
@@ -35,7 +35,7 @@ const attributes = {
     ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
     ...generateDimensionAttributes(CONTAINER_PADDING),
     ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
-    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW_HOVER),
+    ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
     //grid system
     ...generateResRangeAttributies(GRID_COLUMNS, {
         defaultRange: 3,

@@ -6,6 +6,7 @@
     "category": "zolo-blocks",
     "keywords": ["brand child", "brand"],
     "description": "Acts as a child block for the brand block",
+    "parent": ["zolo/brand-grid"],
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "supports": {

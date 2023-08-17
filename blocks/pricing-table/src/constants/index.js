@@ -8,9 +8,8 @@ export const NORMAL_HOVER = [
 
 //settings tab
 export const STYLES = [
-    { label: __('Style 1', 'zolo-blocks'), value: 'style-1' },
+    { label: __('Default', 'zolo-blocks'), value: 'style-1' },
     { label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
-    { label: __('Style 3', 'zolo-blocks'), value: 'style-3' },
 ];
 
 export const TITLE_TAG = [
