@@ -155,7 +155,7 @@ const attributes = {
 		default: false,
 	},
 	icon: {
-		type: 'object',
+		type: 'string',
 	},
 	iconPosition: {
 		type: 'string',

@@ -25,6 +25,8 @@ const {
 	IconicBtnGroup,
 } = window.zoloModule;
 
+// import {IconPicker} from "wordpress-icon-picker";
+
 import {
 	TEXT_ALIGN_OPTIONS,
 	ICON_POSITIONS,
@@ -157,7 +159,8 @@ function Inspector(props) {
 												icon: value,
 											})
 										}
-										showHeading={true}
+										showHeading={true} //optional
+										disableDashicon={true} //optional
 									/>
 
 									{iconType !== 'iconOnly' && (

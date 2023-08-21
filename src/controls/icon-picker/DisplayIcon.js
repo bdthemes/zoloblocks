@@ -1,31 +1,26 @@
 import {
-	PanelRow,
-	Dashicon,
-	SearchControl,
-	TabPanel,
-	Popover,
+  Dashicon
 } from '@wordpress/components';
-import { useEffect, useState } from '@wordpress/element';
 
-const DisplayIcon = ( { icon } ) => {
-	if ( typeof icon != 'object' ) {
-		return;
-	}
+import { getIconType } from "./helpers";
 
-	const iconName = Object.keys( icon )[ 0 ];
+const DisplayIcon = ({ icon }) => {
+  if (typeof icon != 'string') {
+    return;
+  }
 
-	return (
-		<>
-			{ icon[ iconName ].source &&
-				icon[ iconName ].source === 'dashicon' && (
-					<Dashicon icon={ iconName } />
-				) }
-			{ icon[ iconName ].source &&
-				icon[ iconName ].source === 'fontawesome' && (
-					<i class={ `${ icon[ iconName ].type } ${ iconName }` }></i>
-				) }
-		</>
-	);
+  const iconType = getIconType(icon)
+
+  return (
+    <>
+      {iconType === 'dashicon' && (
+        <Dashicon icon={icon} />
+      )}
+      {iconType === 'fontawesome' && (
+        <i class={icon}></i>
+      )}
+    </>
+  );
 };
 
 export default DisplayIcon;
