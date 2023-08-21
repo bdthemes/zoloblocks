@@ -195,6 +195,15 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
+                                label={__('Show Status', 'zolo-blocks')}
+                                checked={showStatus}
+                                onChange={() =>
+                                    setAttributes({
+                                        showStatus: !showStatus,
+                                    })
+                                }
+                            />
+                            <ToggleControl
                                 label={__('Show Follow Button', 'zolo-blocks')}
                                 checked={showFollowButton}
                                 onChange={() =>

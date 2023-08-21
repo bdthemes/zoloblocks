@@ -35,6 +35,7 @@ import {
     FEATURE_ITEM_GAP,
     FEATURE_MARGIN,
     FEATURE_PADDING,
+    FEATURE_ICON_PADDING,
     ORGINAL_PRICE_MARGIN,
     PERIOD_MARGIN,
     PRICE_MARGIN,
@@ -48,6 +49,11 @@ import {
     WRAPPER_MARGIN,
     WRAPPER_PADDING,
     WRAPPER_SHADOW,
+    RIBBON_MARGIN,
+    RIBBON_PADDING,
+    RIBBON_BORDER,
+    RIBBON_RADIUS,
+    RIBBON_BG,
 } from './constants';
 import {
     BTN_TYPOGRAPHY,
@@ -347,6 +353,15 @@ const Edit = (props) => {
 
     //icon
     const {
+        dimensionStylesDesktop: featureIconDeskPadding,
+        dimensionStylesTab: featureIconTabPadding,
+        dimensionStylesMobile: featureIconMobPadding,
+    } = generateDimensionStyle({
+        controlName: FEATURE_ICON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    const {
         desktopRangeStyle: featureIconSizeDesktop,
         tabRangeStyle: featureIconSizeTab,
         mobRangeStyle: featureIconSizeMob,
@@ -536,6 +551,53 @@ const Edit = (props) => {
         attributes,
     });
 
+    const {
+        dimensionStylesDesktop: ribbonMarginDesktop,
+        dimensionStylesTab: ribbonMarginTab,
+        dimensionStylesMobile: ribbonMarginMobile,
+    } = generateDimensionStyle({
+        controlName: RIBBON_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: ribbonPaddingDesktop,
+        dimensionStylesTab: ribbonPaddingTab,
+        dimensionStylesMobile: ribbonPaddingMobile,
+    } = generateDimensionStyle({
+        controlName: RIBBON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: ribbonBorderDesktop,
+        tabBorderStyle: ribbonBorderTab,
+        mobBorderStyle: ribbonBorderMob,
+    } = generateBorderStyle({
+        attributes,
+        controlName: RIBBON_BORDER,
+    });
+
+    const {
+        dimensionStylesDesktop: ribbonDeskRadius,
+        dimensionStylesTab: ribbonTabRadius,
+        dimensionStylesMobile: ribbonMobRadius,
+    } = generateDimensionStyle({
+        controlName: RIBBON_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: ribbonBgDesktop,
+        backgroundStylesTab: ribbonBgTab,
+        backgroundStylesMobile: ribbonBgMob,
+    } = generateNormalBGControlStyles({
+        attributes,
+        controlName: RIBBON_BG,
+    });
     //wrapper style
     const {
         dimensionStylesDesktop: wrapperMarginDesktop,
@@ -777,6 +839,7 @@ const Edit = (props) => {
       ${featureIconColor ? `color: ${featureIconColor};` : ''}
       ${featureIconBgColor ? `background-color: ${featureIconBgColor};` : ''}
       ${featureIconSizeDesktop}
+      ${featureIconDeskPadding}
     }
 
     .${uniqueId} .zolo-features-info .features li{
@@ -804,6 +867,7 @@ const Edit = (props) => {
     }
     .${uniqueId} .zolo-features-info .zolo-check-icon{
       ${featureIconSizeTab}
+      ${featureIconTabPadding}
     }
     .${uniqueId} .zolo-features-info .features li{
       ${featureTypoTab}
@@ -829,6 +893,7 @@ const Edit = (props) => {
     }
     .${uniqueId} .zolo-features-info .zolo-check-icon{
       ${featureIconSizeMob}
+      ${featureIconMobPadding}
     }
     .${uniqueId} .zolo-features-info .features li{
       ${featureTypoMobile}
@@ -925,24 +990,38 @@ const Edit = (props) => {
   `;
 
     const ribbonStylesDesktop = `
-  .${uniqueId} .zolo-ribbon-btn{
-    ${ribbonColor ? `color: ${ribbonColor};` : ''}
-    ${ribbonBgColor ? `background-color: ${ribbonBgColor};` : ''}
-    ${ribbonTypoDesktop}
-    -webkit-transform: translate(var(--zolo-ribbon-xposition, 0), var(--zolo-ribbon-yposition, 0)) rotate(var(--zolo-ribbon-rotate, 0));
-    transform: translate(var(--zolo-ribbon-xposition, 0), var(--zolo-ribbon-yposition, 0)) rotate(var(--zolo-ribbon-rotate, 0));
-  }
-`;
+      .${uniqueId} .zolo-ribbon-btn{
+        ${ribbonColor ? `color: ${ribbonColor};` : ''}
+        ${ribbonBgDesktop}
+        ${ribbonPaddingDesktop}
+        ${ribbonMarginDesktop}
+        ${ribbonBorderDesktop}
+        ${ribbonDeskRadius}
+        ${ribbonTypoDesktop}
+        -webkit-transform: translate(var(--zolo-ribbon-xposition, 0), var(--zolo-ribbon-yposition, 0)) rotate(var(--zolo-ribbon-rotate, 0));
+        transform: translate(var(--zolo-ribbon-xposition, 0), var(--zolo-ribbon-yposition, 0)) rotate(var(--zolo-ribbon-rotate, 0));
+      }
+    `;
     const ribbonStylesTab = `
-  .${uniqueId} .zolo-ribbon-btn{
-   ${ribbonTypoTab}
-  }
-`;
+      .${uniqueId} .zolo-ribbon-btn{
+        ${ribbonTypoTab}
+        ${ribbonBgTab}
+        ${ribbonPaddingTab}
+        ${ribbonMarginTab}
+        ${ribbonBorderTab}
+        ${ribbonTabRadius}
+      }
+    `;
     const ribbonStylesMobile = `
-  .${uniqueId} .zolo-ribbon-btn{
-    ${ribbonTypoMobile}
-  }
-`;
+      .${uniqueId} .zolo-ribbon-btn{
+        ${ribbonTypoMobile}
+        ${ribbonBgMob}
+        ${ribbonPaddingMobile}
+        ${ribbonMarginMobile}
+        ${ribbonBorderMob}
+        ${ribbonMobRadius}
+      }
+    `;
 
     const desktopAllStyle = `
 		${wrapperStylesDesktop}

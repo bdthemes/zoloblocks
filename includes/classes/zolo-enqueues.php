@@ -72,7 +72,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 [],
                 ZOLO_VERSION
             );
-
         }
 
         /**
