@@ -14,6 +14,11 @@ const {
 import {
 	CONTAINER_BG,
 	CONTENT_ALIGNMENT,
+	CONTENT_PADDING,
+	CONTENT_MARGIN,
+	CONTENT_BORDER,
+	CONTENT_BORDER_RADIUS,
+	CONTENT_BOX_SHADOW,
 	PHOTO_BG,
 	TEAM_PHOTO_BORDER,
 	TEAM_PHOTO_BORDER_RADIUS,
@@ -34,6 +39,13 @@ import {
 	ICONS_HOVER_BG,
 	DETAIL_PAGE_LINK_BG,
 	DETAIL_PAGE_LINK_HOVER_BG,
+	DPL_HEIGHT,
+	DPL_WIDTH,
+	DPL_BORDER,
+	DPL_BORDER_RADIUS,
+	DPL_PADDING,
+	DPL_MARGIN,
+	DPL_ICON_SIZE,
 	TEAM_MEMBER_CONTAINER_PADDING,
 	TEAM_MEMBER_CONTAINER_MARGIN,
 } from './constants';
@@ -63,6 +75,11 @@ const attributes = {
 	...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
 		defaultAlign: 'left',
 	}),
+	...generateBorderAttributies(CONTENT_BORDER),
+	...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
+	...generateDimensionAttributes(CONTENT_PADDING),
+	...generateDimensionAttributes(CONTENT_MARGIN),
+	...generateBoxShadowAttributies(CONTENT_BOX_SHADOW),
 	...generateNormalBGAttributes(PHOTO_BG),
 	...generateBorderAttributies(TEAM_PHOTO_BORDER),
 	...generateDimensionAttributes(TEAM_PHOTO_BORDER_RADIUS),
@@ -85,9 +102,22 @@ const attributes = {
 
 	...generateNormalBGAttributes(DETAIL_PAGE_LINK_BG),
 	...generateNormalBGAttributes(DETAIL_PAGE_LINK_HOVER_BG),
+	...generateResRangeAttributies(DPL_ICON_SIZE, {}),
+	...generateResRangeAttributies(DPL_HEIGHT, {}),
+	...generateResRangeAttributies(DPL_WIDTH, {}),
+	...generateBorderAttributies(DPL_BORDER),
+	...generateDimensionAttributes(DPL_BORDER_RADIUS),
+	...generateDimensionAttributes(DPL_PADDING),
+	...generateDimensionAttributes(DPL_MARGIN),
 	// typography
 	...generateTypographyAttributes(Object.values(typographyObjs)),
 	//Block Specific Attributes
+	blurBgColor: {
+		type: 'string',
+	},
+	blurBgOpacity: {
+		type: 'number',
+	},
 	memberPhoto: {
 		type: 'object',
 	},
@@ -106,7 +136,7 @@ const attributes = {
 		type: 'object',
 		default: {
 			url: '#',
-			opensInNewTab: false,
+			openInNewTab: false,
 		},
 	},
 	showDesignation: {
@@ -131,23 +161,30 @@ const attributes = {
 		type: 'array',
 		default: [
 			{
+				id: 1,
+				title: 'Facebook',
 				icon: {
 					twitter: {
-						name: 'twitter',
+						name: 'facebook',
 						source: 'dashicon',
 						type: '',
 					},
 				},
-				link: '#',
+				link: {
+					url: '#',
+					openInNewTab: false,
+				},
 			},
 		],
 	},
-	socialProfilesLinkTarget: {
-		type: 'boolean',
-		default: true,
-	},
 	// block styles
 	nameColor: {
+		type: 'string',
+	},
+	nameLinkColor: {
+		type: 'string',
+	},
+	nameHoverColor: {
 		type: 'string',
 	},
 	designationColor: {

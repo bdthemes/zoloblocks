@@ -13,60 +13,68 @@ export const PRESETS = [
 ];
 
 // Container
-export const CONTAINER_BG = 'profileCardContainerBg';
-export const CONTENT_BG = 'profileCardContentBg';
+// export const CONTAINER_BG = 'ContainerBg';
 
 // Header Area
-export const HEADER_AREA_BORDER_RADIUS = 'profileCardHeaderAreaBorderRadius';
+export const HEADER_AREA_BORDER_RADIUS = 'HeaderAreaBorderRadius';
+export const HEADER_AREA_PADDING = 'HeaderAreaPadding';
+export const HEADER_BADGE_BORDER = 'HeaderBadgeBorder';
+export const HEADER_AREA_BG = 'HeaderAreaBg';
 
-// photo bg
-export const PHOTO_BG = 'teamPhotoBg';
+// Badge
+export const BADGE_BG = 'BadgeBg';
+export const BADGE_BORDER_RADIUS = 'BadgeBorderRadius';
+export const BADGE_PADDING = 'BadgePadding';
 
-// content alignment
-export const CONTENT_ALIGNMENT = 'teamContentAlignment';
+// content
+export const CONTENT_BORDER_RADIUS = 'ContentBorderRadius';
+export const CONTENT_BG = 'ContentBg';
+export const CONTENT_BORDER = 'ContentBorder';
+export const CONTENT_PADDING = 'ContentPadding';
+export const CONTENT_MARGIN = 'ContentMargin';
 
-// team border
-export const TEAM_PHOTO_BORDER = 'teamPhotoBorder';
+// photo
+export const PHOTO_SIZE = 'PhotoSize';
+export const PHOTO_BORDER = 'PhotoBorder';
+export const PHOTO_BORDER_RADIUS = 'PhotoBorderRadius';
+export const PHOTO_VOFFSET = 'PhotoVOffset';
 
-// team border radius
-export const TEAM_PHOTO_BORDER_RADIUS = 'teamPhotoBorderRadius';
+// name
+export const NAME_MARGIN = 'NameMargin';
 
-// box shadow
-export const TEAM_PHOTO_BOX_SHADOW = 'teamPhotoBoxShadow';
+// username
+export const USERNAME_MARGIN = 'UsernameMargin';
 
-// team margin
-export const TEAM_PHOTO_MARGIN = 'teamPhotoMargin';
+// email
+export const EMAIL_MARGIN = 'EmailMargin';
 
-// team padding
-export const TEAM_PHOTO_PADDING = 'teamPhotoPadding';
+// bio
+export const BIO_MARGIN = 'BioMargin';
 
-// name margin
-export const TEAM_NAME_MARGIN = 'teamNameMargin';
+// status
+export const STATUS_MARGIN = 'StatusMargin';
+export const STATUS_GAP = 'StatusGap';
 
-// designation margin
-export const TEAM_DESIGNATION_MARGIN = 'teamDesignationMargin';
+// follow button
+export const FBTN_BG = 'fbtnBg';
+export const FBTN_BOX_SHADOW = 'fbtnBoxShadow';
+export const FBTN_BORDER = 'fbtnBorder';
+export const FBTN_BORDER_RADIUS = 'fbtnBorderRadius';
+export const FBTN_PADDING = 'fbtnPadding';
+export const FBTN_MARGIN = 'fbtnMargin';
 
-// short bio margin
-export const TEAM_SHORT_BIO_MARGIN = 'teamShortBioMargin';
+// hover style
+export const FBTN_HOVER_BG = 'fbtnHoverBg';
+export const FBTN_HOVER_BOX_SHADOW = 'fbtnHoverBoxShadow';
 
 // social icons
-export const ICONS_BG = 'teamIconsBg';
-export const ICONS_HOVER_BG = 'teamIconsHoverBg';
-export const ICONS_SIZE = 'teamIconsSize';
-export const ICONS_SPACING = 'teamIconsSpacing';
+export const ICONS_BG = 'IconsBg';
+export const ICONS_HOVER_BG = 'IconsHoverBg';
+export const ICONS_SIZE = 'IconsSize';
+export const ICONS_SPACING = 'IconsSpacing';
 
-export const ICONS_BORDER = 'teamIconsBorder';
-export const ICONS_BORDER_RADIUS = 'teamIconsBorderRadius';
+export const ICONS_BORDER = 'IconsBorder';
+export const ICONS_BORDER_RADIUS = 'IconsBorderRadius';
 
-export const ICONS_PADDING = 'teamIconsPadding';
-
-export const ICONS_BOX_SHADOW = 'teamIconsBoxShadow';
-export const ICONS_HOVER_BOX_SHADOW = 'teamIconsHoverBoxShadow';
-
-// detailPageLink
-export const DETAIL_PAGE_LINK_BG = 'teamDetailPageLinkBg';
-export const DETAIL_PAGE_LINK_HOVER_BG = 'teamDetailPageLinkHoverBg';
-
-// container
-export const TEAM_MEMBER_CONTAINER_PADDING = 'teamMemberContainerPadding';
-export const TEAM_MEMBER_CONTAINER_MARGIN = 'teamMemberContainerMargin';
+export const ICONS_PADDING = 'IconsPadding';
+export const ICONS_MARGIN = 'IconsMargin';

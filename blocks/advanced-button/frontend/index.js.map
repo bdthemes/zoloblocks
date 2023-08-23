@@ -1,1 +1,0 @@
-{"version":3,"file":"blocks/advanced-button/frontend/index.js","mappings":";;;;;AAAAA,OAAO,CAACC,GAAG,CAAC,sBAAsB,CAAC,C","sources":["webpack://zolo-blocks/./blocks/advanced-button/src/frontend.js"],"sourcesContent":["console.log(\"Zolo Advanced Button\")\r\n"],"names":["console","log"],"sourceRoot":""}

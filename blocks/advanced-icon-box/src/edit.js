@@ -7,7 +7,6 @@ import {
 	BlockControls,
 	MediaUpload,
 	MediaPlaceholder,
-	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
@@ -20,6 +19,7 @@ const {
 	handleUniqueId,
 	softMinifyCssStrings,
 	generateResAlignmentStyle,
+	generateNormalBGControlStyles,
 	generateResRangeStyle,
 	generateBorderStyle,
 	generateDimensionStyle,
@@ -32,13 +32,14 @@ const {
 
 import {
 	BLOCK_PREFIX,
+	CONTAINER_BACKGROUND,
+	CONTAINER_MARGIN,
+	CONTAINER_PADDING,
 	ICON_BOX_ALIGNMENT,
-	TITLE_ALIGNMENT,
 	TITLE_MARGIN,
 	TITLE_TEXT_SHADOW,
 	TITLE_TEXT_STROKE,
 	DESCRIPTION_MARGIN,
-	DESC_ALIGNMENT,
 	ICON_BORDER,
 	ICON_BORDER_RADIUS,
 	ICON_SIZE,
@@ -50,11 +51,13 @@ import {
 	ICON_HOVER_BOX_SHADOW,
 	BUTTON_BOX_SHADOW,
 	BUTTON_HOVER_BOX_SHADOW,
-	ICON_SPACING,
 	ICON_TEXT_SPACING,
 	BUTTON_BORDER_RADIUS,
 	BUTTON_MARGIN,
 	BUTTON_PADDING,
+	ICON_IMAGE_SIZE,
+	IMAGE_BORDER,
+	ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 
 import {
@@ -81,7 +84,7 @@ export default function Edit( props ) {
 		textHoverColor,
 		descColor,
 		descHoverColor,
-		iconPosition,
+		iconAlignment,
 		iconColor,
 		iconHoverColor,
 		iconBackgroundColor,
@@ -95,6 +98,8 @@ export default function Edit( props ) {
 		btnHoverColor,
 		btnBgColor,
 		btnBgHoverColor,
+		buttonIconColor,
+		buttonIconHoverColor,
 		presetOneStyles,
 		presetTwoStyles,
 		presetThreeStyles,
@@ -111,6 +116,39 @@ export default function Edit( props ) {
 
 	const blockProps = useBlockProps( {
 		className: classnames( className, `` ),
+	} );
+
+	// item background
+	const {
+		backgroundStylesDesktop: containerDeskBGStyle,
+		backgroundStylesTab: containerTabBGStyle,
+		backgroundStylesMobile: containerMobBGStyle,
+	} = generateNormalBGControlStyles( {
+		controlName: CONTAINER_BACKGROUND,
+		attributes,
+		noMainBGImg: false,
+	} );
+
+	// Generate Container Margin
+	const {
+		dimensionStylesDesktop: containerMarginDesk,
+		dimensionStylesTab: containerMarginTab,
+		dimensionStylesMobile: containerMarginMob,
+	} = generateDimensionStyle( {
+		controlName: CONTAINER_MARGIN,
+		styleFor: 'margin',
+		attributes,
+	} );
+
+	// Generate Container Padding
+	const {
+		dimensionStylesDesktop: containerPaddingDesk,
+		dimensionStylesTab: containerPaddingTab,
+		dimensionStylesMobile: containerPaddingMob,
+	} = generateDimensionStyle( {
+		controlName: CONTAINER_PADDING,
+		styleFor: 'padding',
+		attributes,
 	} );
 
 	// icon alignment
@@ -213,17 +251,6 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
-	// title alignment
-	const {
-		desktopAlignStyle: textAlignmentDesktop,
-		tabAlignStyle: textAlignmentTab,
-		mobAlignStyle: textAlignmentMob,
-	} = generateResAlignmentStyle( {
-		controlName: TITLE_ALIGNMENT,
-		property: 'text-align',
-		attributes,
-	} );
-
 	// Generate Title Margin
 	const {
 		dimensionStylesDesktop: titleMarginDesktop,
@@ -251,17 +278,6 @@ export default function Edit( props ) {
 	} = generateTextStrokeStyles( {
 		attributes,
 		controlName: TITLE_TEXT_STROKE,
-	} );
-
-	// description alignment
-	const {
-		desktopAlignStyle: descAlignmentDesktop,
-		tabAlignStyle: descAlignmentTab,
-		mobAlignStyle: descAlignmentMob,
-	} = generateResAlignmentStyle( {
-		controlName: DESC_ALIGNMENT,
-		property: 'text-align',
-		attributes,
 	} );
 
 	// descrtiption typography
@@ -296,37 +312,6 @@ export default function Edit( props ) {
 		styleFor: 'margin',
 		attributes,
 	} );
-
-	/**
-	 * Generate Title Alignment Class
-	 */
-	const deskTitleAlign = `display: ${
-		textAlignmentDesktop === 'text-align:left;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const tabTitleAlign = `display: ${
-		textAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const mobTitleAlign = `display: ${
-		textAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	/**
-	 * Generate Description Alignment Class
-	 */
-
-	const deskDescAlign = `display: ${
-		descAlignmentDesktop === 'text-align:left;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const tabDescAlign = `display: ${
-		descAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
-
-	const mobDescAlign = `display: ${
-		descAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'
-	};`;
 
 	/**
 	 * Generate Icon Alignment Class
@@ -373,19 +358,10 @@ export default function Edit( props ) {
 		property: 'height',
 		attributes,
 	} );
-	// generate icon spacing
-	const {
-		desktopRangeStyle: iconSpacing,
-		tabRangeStyle: iconSpacingTab,
-		mobRangeStyle: iconSpacingMob,
-	} = generateResRangeStyle( {
-		controlName: ICON_SPACING,
-		property: 'margin',
-		attributes,
-	} );
+
 	// Spacing between icon and text
 	const {
-		desktopRangeStyle: gap,
+		desktopRangeStyle: gapDesk,
 		tabRangeStyle: gapTab,
 		mobRangeStyle: gapMob,
 	} = generateResRangeStyle( {
@@ -448,6 +424,38 @@ export default function Edit( props ) {
 		attributes,
 	} );
 
+	// generate image size
+	const {
+		desktopRangeStyle: iconImageSizeDesk,
+		tabRangeStyle: iconImageSizeTab,
+		mobRangeStyle: iconImageSizeMob,
+	} = generateResRangeStyle( {
+		controlName: ICON_IMAGE_SIZE,
+		property: 'width',
+		attributes,
+	} );
+
+	// generate image border
+	const {
+		desktopBorderStyle: iconImageBorderDesk,
+		tabBorderStyle: iconImageBorderTab,
+		mobBorderStyle: iconImageBorderMob,
+	} = generateBorderStyle( {
+		controlName: IMAGE_BORDER,
+		attributes,
+	} );
+
+	// generate image border radius
+	const {
+		desktopRangeStyle: iconImageBorderRadiusDesk,
+		tabRangeStyle: iconImageBorderRadiusTab,
+		mobRangeStyle: iconImageBorderRadiusMob,
+	} = generateResRangeStyle( {
+		controlName: ICON_IMAGE_BORDER_RADIUS,
+		property: 'border-radius',
+		attributes,
+	} );
+
 	/**
 	 * Presets Based Styles
 	 */
@@ -456,45 +464,41 @@ export default function Edit( props ) {
 		case 'style-1':
 			presetStyles = `
 				.zolo-block-icon-wrap{
-					justify-content: ${ presetOneStyles && presetOneStyles.iconPosition };
-				}	
-				.zolo-block-link-btn{
-					justify-content: ${ presetOneStyles && presetOneStyles.buttonPosition };
-				}		
+					justify-content: ${ presetOneStyles && presetOneStyles.contentPosition };
+				}
 				.zolo-box-button{
-					flex-direction: ${ presetOneStyles && presetOneStyles.buttonIconPosition };
-				}			
-								
-			
+					flex-direction: ${ presetOneStyles && presetOneStyles.iconPosition };
+				}
 			`;
 			break;
 		case 'style-2':
 			presetStyles = `
-				.zolo-block-icon-wrap{
-					align-items: ${ presetTwoStyles && presetTwoStyles.iconPosition };
-				}					
+			.${ uniqueId } 
+				.zolo-block-body-content{
+					text-align: ${ presetTwoStyles && presetTwoStyles.contentPosition };
+				}
+				.${ uniqueId } 
 				.zolo-block-link-btn{
-					justify-content: ${ presetTwoStyles && presetTwoStyles.buttonPosition };
-				}		
+					justify-content: ${ presetTwoStyles && presetTwoStyles.contentPosition };
+				}
 				.zolo-box-button{
-					flex-direction: ${ presetTwoStyles && presetTwoStyles.buttonIconPosition };
-				}		
-			
+					flex-direction: ${ presetTwoStyles && presetTwoStyles.iconPosition };
+				}
 			`;
 			break;
 		case 'style-3':
 			presetStyles = `
-				.${ uniqueId }
-				.zolo-block-icon-wrap{
-					align-items: ${ presetThreeStyles && presetThreeStyles.iconPosition };
-				}						
+				.${ uniqueId } 
+				.zolo-block-body-content{
+					text-align: ${ presetThreeStyles && presetThreeStyles.contentPosition };
+				}
+				.${ uniqueId } 
 				.zolo-block-link-btn{
-					justify-content: ${ presetThreeStyles && presetThreeStyles.buttonPosition };
-				}		
+					justify-content: ${ presetThreeStyles && presetThreeStyles.contentPosition };
+				}
 				.zolo-box-button{
-					flex-direction: ${ presetThreeStyles && presetThreeStyles.buttonIconPosition };
-				}				
-			
+					flex-direction: ${ presetThreeStyles && presetThreeStyles.iconPosition };
+				}
 			`;
 			break;
 		case 'style-4':
@@ -505,12 +509,27 @@ export default function Edit( props ) {
 	/**
 	 * All Style Combination
 	 */
-	const desktopAllStyle = `
-		.${ uniqueId }{
-			${ iconAlignmentDesktop }
+	const desktopAllStyle = `	
+		.${ uniqueId } .zolo-block-item{
+			${ containerDeskBGStyle }
+			${ containerMarginDesk }
+			${ containerPaddingDesk }
+		}	
+		.${ uniqueId } .zolo-block-icon-wrap{
+			justify-content: ${
+				presetOneStyles ? presetOneStyles.contentPosition : 'left'
+			};
+			align-items: ${ iconAlignment ? iconAlignment : 'flex-start' };
 		}
+		.${ uniqueId } .zolo-block-body-content{
+			text-align: ${ presetOneStyles ? presetOneStyles.contentPosition : 'left' };
+		}
+		.${ uniqueId } .zolo-block-link-btn{
+			justify-content: ${
+				presetOneStyles ? presetOneStyles.contentPosition : 'left'
+			};
+		}		
 		.${ uniqueId } .zolo-block-title{
-			${ textAlignmentDesktop }
 			${ titleTypoDesktop }
 			${ titleTextShadowStyle }
         	${ titleTextStrokeStyle }
@@ -522,21 +541,17 @@ export default function Edit( props ) {
 		}
 		.${ uniqueId } .zolo-block-desc{
 			${ descTypoDesktop }
-			${ descAlignmentDesktop }
 			${ descMarginDesktop }
 			color: ${ descColor ? descColor : '#87878a' };
 		}
 		.${ uniqueId } .zolo-block-desc:hover{
 			color: ${ descHoverColor ? descHoverColor : '' };
-		}
-		.${ uniqueId } .zolo-block-icon-wrap  {			
-			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
-			color: ${ iconColor ? iconColor : '' };			
-		}
+		}		
 		.${ uniqueId } .zolo-block-icon-wrap span {
+			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
+			color: ${ iconColor ? iconColor : '' };	
 			${ iconSize }
 			${ iconHeight }	
-			${ iconSpacing }
 			${ borderStyles }
 			${ iconBorderRadiusDesktop }
 			${ iconPaddingDesktop }
@@ -548,36 +563,41 @@ export default function Edit( props ) {
 			color: ${ iconHoverColor ? iconHoverColor : '' };
 			${ iconHoverBoxShadow }
 		}
-		.${ uniqueId } .zolo-content {			
-			${ gap }
-			${ deskAlign }
-			color: ${ textColor ? textColor : 'inherit' };
+		.${ uniqueId } .zolo-block-icon-wrap img {
+			${ iconImageSizeDesk }
+			${ iconImageBorderDesk }
+			${ iconImageBorderRadiusDesk }
 		}
-		.${ uniqueId } .zolo-content:hover {
-			color: ${ textHoverColor ? textHoverColor : 'inherit' };
-		}
-		
-		.${ uniqueId } .zolo-box-button span{
-			${ buttonIconSize }			
-			${ buttonIconHeight }			
-			${ buttonIconWidth }			
-		}
-		.${ uniqueId } .zolo-box-button {			
-			${ gap }
-			background: ${ btnBgColor ? btnBgColor : '' };			
+		.${ uniqueId } .zolo-block-body-content .zolo-box-button {			
+			background: ${ btnBgColor ? btnBgColor : '' };	
+			${ gapDesk }		
 			${ buttonBorderStyles }
 			${ buttonBorderRadiusDesktop }
 			${ buttonPaddingDesktop }
 			${ buttonMarginDesktop }
 			${ buttonBoxShadow }
 		}
-		.${ uniqueId } .zolo-box-button p{
-			${ btnTypoDesktop }
-		}
+
 		.${ uniqueId } .zolo-box-button:hover {			
 			background: ${ btnBgHoverColor ? btnBgHoverColor : '#32DE23' };
 			${ buttonHoverBoxShadow }
 		}
+		
+		.${ uniqueId } .zolo-box-button span{
+			color: ${ buttonIconColor };
+			${ buttonIconSize }			
+			${ buttonIconHeight }			
+			${ buttonIconWidth }			
+		}
+
+		.${ uniqueId } .zolo-box-button:hover span{
+			color: ${ buttonIconHoverColor }	
+		}
+		
+		.${ uniqueId } .zolo-box-button p{
+			${ btnTypoDesktop }
+		}
+
 		.${ uniqueId } .zolo-box-button p{			
 			color: ${ btnColor ? btnColor : '' };			
 		}
@@ -591,14 +611,17 @@ export default function Edit( props ) {
 		.${ uniqueId }{
 			${ iconAlignmentTab }
 		}
+		.${ uniqueId } .zolo-block-item{
+			${ containerTabBGStyle }
+			${ containerMarginTab }
+			${ containerPaddingTab }
+		}	
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoTab }
 			${ tabTitleTextStrokeStyle }
-			${ textAlignmentTab }
 			${ titleMarginTab }
 		}		
 		.${ uniqueId } .zolo-block-desc{
-			${ descAlignmentTab }
 			${ descMarginTab }
 			${ descTypoTab }
 		}
@@ -610,13 +633,17 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-block-icon-wrap span {
 			${ iconSizeTab }
 			${ iconHeightTab }
-			${ iconSpacingTab }
 			${ borderStylesTab }
 			${ iconBorderRadiusTab }
 			${ iconPaddingTab }
 			${ iconMarginTab }
 			background: ${ iconBackgroundColor ? iconBackgroundColor : '' };
 			color: ${ iconColor ? iconColor : '' };	
+		}
+		.${ uniqueId } .zolo-block-icon-wrap img {
+			${ iconImageSizeTab }
+			${ iconImageBorderTab }
+			${ iconImageBorderRadiusTab }
 		}
 		.${ uniqueId } .zolo-box-button span{
 			${ buttonIconSizeTab }			
@@ -640,14 +667,17 @@ export default function Edit( props ) {
 		.${ uniqueId }{
 			${ iconAlignmentMob }
 		}
+		.${ uniqueId } .zolo-block-item{
+			${ containerMobBGStyle }
+			${ containerMarginMob }
+			${ containerPaddingMob }
+		}
 		.${ uniqueId } .zolo-block-title{
 			${ titleTypoMobile }
 			${ mobTitleTextStrokeStyle }
-			${ textAlignmentMob }
 			${ titleMarginMob }
 		}		
 		.${ uniqueId } .zolo-block-desc{
-			${ descAlignmentMob }
 			${ descMarginMob }
 			${ descTypoMobile }
 		}
@@ -659,11 +689,15 @@ export default function Edit( props ) {
 		.${ uniqueId } .zolo-block-icon-wrap span {
 			${ iconSizeMob }
 			${ iconHeightMob }
-			${ iconSpacingMob }
 			${ borderStylesMob }
 			${ iconBorderRadiusMob }
 			${ iconPaddingMob }
 			${ iconMarginMob }
+		}		
+		.${ uniqueId } .zolo-block-icon-wrap img {
+			${ iconImageSizeMob }
+			${ iconImageBorderMob }
+			${ iconImageBorderRadiusMob }
 		}
 		.${ uniqueId } .zolo-box-button span{
 			${ buttonIconSizeMob }			
@@ -838,7 +872,7 @@ export default function Edit( props ) {
 									} )
 								}
 								placeholder={ __(
-									'The Theme Setting',
+									'The Title Goes Here',
 									'zolo-blocks'
 								) }
 								allowedFormats={ [] }
@@ -854,14 +888,14 @@ export default function Edit( props ) {
 									} )
 								}
 								placeholder={ __(
-									'The Theme Setting is a website that provides users with a range of tools to customize their web experience.',
+									'The Description Goes Here.........',
 									'zolo-blocks'
 								) }
 								allowedFormats={ [] }
 							/>
 
 							<div className={ `zolo-block-link-btn` }>
-								<a className={ `zolo-box-button` }>
+								<div className={ `zolo-box-button` }>
 									<RichText
 										value={ buttonText }
 										tagName="p"
@@ -878,7 +912,7 @@ export default function Edit( props ) {
 									{ showIcon && (
 										<DisplayIcon icon={ buttonIcon } />
 									) }
-								</a>
+								</div>
 							</div>
 						</div>
 

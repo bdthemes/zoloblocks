@@ -1,33 +1,48 @@
 import { RangeControl } from '@wordpress/components';
-import ResetControl from '../reset-control';
+import ResetBtn from '../reset-btn';
+import WithResDeviceBtn from '../with-res-device-btn';
 
 const RangeResetControl = ({
-  label, controlName, min, max, step, help,
-  resRequiredProps
+	label,
+	controlName,
+	min,
+	max,
+	step,
+	help,
+	resRequiredProps,
 }) => {
-  const dataAttributes = { min, max, step, help };
-  const { attributes, setAttributes, objAttributes } = resRequiredProps;
-  const {
-    [controlName]: controlVal,
-  } = attributes;
-  return (
-    <ResetControl
-      onReset={() =>
-        setAttributes({
-          [controlName]: objAttributes[controlName].default,
-        })
-      }
-    >
-      <RangeControl
-        label={label}
-        value={controlVal}
-        onChange={(val) => setAttributes({ [controlName]: val })}
-        {...dataAttributes}
-      />
-    </ResetControl>
-  )
-}
+	const dataAttributes = { min, max, step, help };
+	const { attributes, setAttributes, objAttributes } = resRequiredProps;
+	const { [controlName]: controlVal } = attributes;
+	return (
+		<div className="zb-res-range-control-wrapper">
+			<div className="zb-units-wrapper">
+				<ResetBtn
+					onReset={() => {
+						setAttributes({
+							[controlName]: objAttributes[controlName].default,
+						});
+					}}
+				/>
+			</div>
+			<WithResDeviceBtn
+				label={label}
+				resRequiredProps={resRequiredProps}
+				controlName={controlName}
+				noResetBtn={true}
+				noResponsive={true}
+			>
+				<RangeControl
+					value={controlVal}
+					onChange={(val) => setAttributes({ [controlName]: val })}
+					{...dataAttributes}
+					min={min || 0}
+					max={max || 100}
+					step={step || 1}
+				/>
+			</WithResDeviceBtn>
+		</div>
+	);
+};
 
 export default RangeResetControl;
-
-

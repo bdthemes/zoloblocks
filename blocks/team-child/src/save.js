@@ -16,7 +16,6 @@ const Save = ({ attributes }) => {
 		memberShortBio,
 		showSocialProfiles,
 		socialProfiles,
-		socialProfilesLinkTarget,
 	} = attributes;
 
 	return (
@@ -30,7 +29,7 @@ const Save = ({ attributes }) => {
 					{memberPhoto && (
 						<img
 							src={memberPhoto.url}
-							alt={memberPhoto.alt || 'Team Member'}
+							alt={memberPhoto.alt || memberName}
 						/>
 					)}
 					<div className="zolo-hover-content">
@@ -42,12 +41,12 @@ const Save = ({ attributes }) => {
 								}
 								rel={
 									memberDetailPageLink &&
-									memberDetailPageLink.opensInNewTab &&
+									memberDetailPageLink.openInNewTab &&
 									'noreferrer noopener'
 								}
 								target={
 									memberDetailPageLink &&
-									memberDetailPageLink.opensInNewTab &&
+									memberDetailPageLink.openInNewTab &&
 									'_blank'
 								}
 								className="zolo-name"
@@ -75,14 +74,19 @@ const Save = ({ attributes }) => {
 									socialProfiles.map((profile, index) => {
 										return (
 											<a
-												href={profile.link}
+												href={
+													profile.link &&
+													profile.link.url
+												}
 												key={index}
 												rel={
-													socialProfilesLinkTarget &&
+													profile.link &&
+													profile.link.openInNewTab &&
 													'noreferer noopener'
 												}
 												target={
-													socialProfilesLinkTarget &&
+													profile.link &&
+													profile.link.openInNewTab &&
 													'_blank'
 												}
 											>
@@ -103,12 +107,12 @@ const Save = ({ attributes }) => {
 									}
 									rel={
 										memberDetailPageLink &&
-										memberDetailPageLink.opensInNewTab &&
+										memberDetailPageLink.openInNewTab &&
 										'noreferer noopener'
 									}
 									target={
 										memberDetailPageLink &&
-										memberDetailPageLink.opensInNewTab &&
+										memberDetailPageLink.openInNewTab &&
 										'_blank'
 									}
 								>
@@ -120,30 +124,32 @@ const Save = ({ attributes }) => {
 				</div>
 				<div className="zolo-info-wrap">
 					<div className="zolo-content">
-						<div className="zolo-name">
-							{showDetailPageIcon ? (
-								<a
-									href={
-										memberDetailPageLink &&
-										memberDetailPageLink.url
-									}
-									rel={
-										memberDetailPageLink &&
-										memberDetailPageLink.opensInNewTab &&
-										'noreferrer noopener'
-									}
-									target={
-										memberDetailPageLink &&
-										memberDetailPageLink.opensInNewTab &&
-										'_blank'
-									}
-								>
-									<RichText.Content value={memberName} />
-								</a>
-							) : (
+						{addDetailPageLink ? (
+							<a
+								href={
+									memberDetailPageLink &&
+									memberDetailPageLink.url
+								}
+								rel={
+									memberDetailPageLink &&
+									memberDetailPageLink.opensInNewTab &&
+									'noreferrer noopener'
+								}
+								target={
+									memberDetailPageLink &&
+									memberDetailPageLink.opensInNewTab &&
+									'_blank'
+								}
+								className="zolo-name"
+							>
 								<RichText.Content value={memberName} />
-							)}
-						</div>
+							</a>
+						) : (
+							<RichText.Content
+								value={memberName}
+								className="zolo-name"
+							/>
+						)}
 						{showDesignation && (
 							<div className="zolo-designation">
 								<RichText.Content value={memberDesignation} />
@@ -164,12 +170,12 @@ const Save = ({ attributes }) => {
 								}
 								rel={
 									memberDetailPageLink &&
-									memberDetailPageLink.opensInNewTab &&
+									memberDetailPageLink.openInNewTab &&
 									'noreferer noopener'
 								}
 								target={
 									memberDetailPageLink &&
-									memberDetailPageLink.opensInNewTab &&
+									memberDetailPageLink.openInNewTab &&
 									'_blank'
 								}
 							>

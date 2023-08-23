@@ -1,0 +1,71 @@
+.dnd-container {
+	border: 1px solid #ebe9e9;
+	margin-bottom: 10px;
+	position: relative;
+	border-radius: 6px;
+	overflow: hidden;
+	.dnd-trash {
+		position: absolute;
+		top: 5px;
+		left: 0;
+		z-index: 99;
+		color: #e0e0e0;
+		&:hover {
+			color: #f44336;
+		}
+		span {
+			font-size: 18px;
+		}
+	}
+
+	&:not(.no-trash) {
+		.dnd-fields-wrapper {
+			.components-panel__body-toggle {
+				padding: 14px 10px 14px 35px;
+			}
+		}
+	}
+
+	.dnd-fields-wrapper {
+		.components-panel__body.is-opened {
+			.components-panel__body-toggle {
+				border-bottom: 1px solid #e0e0e0;
+			}
+		}
+		.components-button {
+			background-color: #f2f2f2;
+		}
+	}
+
+	.float-btn {
+		background: none;
+		border: none;
+		position: absolute;
+		top: 10px;
+		right: 40px;
+		z-index: 99;
+		cursor: pointer;
+		svg {
+			width: 20px;
+			height: 20px;
+		}
+		&:hover svg {
+			fill: #068d1e;
+		}
+	}
+}
+
+.zb-repeater-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+	button {
+		padding: 0;
+		margin: 0;
+		height: 26px;
+		width: 26px;
+		background-color: #f2f2f2;
+		border-radius: 50%;
+	}
+}

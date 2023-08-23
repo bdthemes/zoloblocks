@@ -73,9 +73,24 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            wp_enqueue_script('react', 'https://unpkg.com/react/umd/react.production.min.js', [], false, true);
-            wp_enqueue_script('react-dom', 'https://unpkg.com/react-dom/umd/react-dom.production.min.js', [], false, true);
+            if(!is_admin(  )){
+
+                // enqueue style for frontend
+                wp_enqueue_style( 'zolo-maginific-popup', ZOLO_ADMIN_URL . 'assets/css/magnific-popup/magnific-popup.css', [], ZOLO_VERSION );
+
+                // enqueue magnific popup for frontend
+                wp_enqueue_script(
+                    'zolo-maginific-popup', ZOLO_ADMIN_URL . 'assets/js/magnific-popup/jquery.magnific-popup.min.js', ['jquery'], ZOLO_VERSION, true
+                );
+
+                // enqueue scripts for frontend
+                wp_enqueue_script(
+                    'zolo-popup-scripts', ZOLO_ADMIN_URL . 'assets/js/scripts.js', ['jquery','zolo-maginific-popup'], ZOLO_VERSION, true
+                );
+            }
+
         }
+        
 
         /**
          * Load Block Editor Assets
@@ -158,10 +173,12 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 [
                     'wp-edit-blocks',
                     'zolo-block-common-style',
-                    'zolo-fontawesome'
+                    'zolo-fontawesome',
                 ],
                 ZOLO_VERSION
             );
+
+
 
             //this file use for js
             wp_localize_script('zolo-block-editor', 'zoloParams', [

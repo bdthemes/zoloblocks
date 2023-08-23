@@ -1,0 +1,52 @@
+.zb-link-flex {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	.components-base-control,
+	.components-base-control__field {
+		margin-bottom: 0;
+	}
+
+	.components-base-control {
+		flex: 1;
+	}
+
+	.zb-link-extra-btn {
+		height: 40px;
+		border: 1px solid #b3b3b3;
+		border-radius: 6px;
+		&.zb-extra-active {
+			border-color: #001feb;
+			svg path {
+				stroke: #001feb;
+			}
+		}
+		svg {
+			fill: none;
+		}
+	}
+
+	.components-text-control__input {
+		height: 36px;
+		border: 1px solid #b3b3b3;
+		border-radius: 6px;
+	}
+}
+
+.zb-link-control-wrapper {
+	margin-bottom: 24px;
+}
+
+.zb-link-popover {
+	width: 100%;
+	padding: 15px;
+	margin-top: -15px;
+	box-sizing: border-box;
+	border: 1px solid #e9e9e9;
+	border-radius: 6px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	.components-base-control {
+		margin-bottom: 0 !important;
+	}
+}

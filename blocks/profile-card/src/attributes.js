@@ -12,32 +12,44 @@ const {
 } = window.zoloModule;
 
 import {
-	CONTAINER_BG,
-	CONTENT_BG,
 	HEADER_AREA_BORDER_RADIUS,
-	CONTENT_ALIGNMENT,
-	PHOTO_BG,
-	TEAM_PHOTO_BORDER,
-	TEAM_PHOTO_BORDER_RADIUS,
-	TEAM_PHOTO_BOX_SHADOW,
-	TEAM_PHOTO_MARGIN,
-	TEAM_PHOTO_PADDING,
-	TEAM_NAME_MARGIN,
-	TEAM_DESIGNATION_MARGIN,
-	TEAM_SHORT_BIO_MARGIN,
+	HEADER_AREA_PADDING,
+	HEADER_BADGE_BORDER,
+	HEADER_AREA_BG,
+	BADGE_PADDING,
+	BADGE_BG,
+	BADGE_BORDER_RADIUS,
+	CONTENT_BORDER_RADIUS,
+	CONTENT_BG,
+	CONTENT_BORDER,
+	CONTENT_PADDING,
+	CONTENT_MARGIN,
+	PHOTO_VOFFSET,
+	PHOTO_SIZE,
+	PHOTO_BORDER,
+	PHOTO_BORDER_RADIUS,
+	NAME_MARGIN,
+	USERNAME_MARGIN,
+	EMAIL_MARGIN,
+	BIO_MARGIN,
+	STATUS_GAP,
+	STATUS_MARGIN,
+	FBTN_BG,
+	FBTN_BOX_SHADOW,
+	FBTN_BORDER,
+	FBTN_BORDER_RADIUS,
+	FBTN_PADDING,
+	FBTN_MARGIN,
+	FBTN_HOVER_BG,
+	FBTN_HOVER_BOX_SHADOW,
 	ICONS_SIZE,
 	ICONS_SPACING,
 	ICONS_BORDER,
 	ICONS_BORDER_RADIUS,
 	ICONS_PADDING,
-	ICONS_BOX_SHADOW,
-	ICONS_HOVER_BOX_SHADOW,
+	ICONS_MARGIN,
 	ICONS_BG,
 	ICONS_HOVER_BG,
-	DETAIL_PAGE_LINK_BG,
-	DETAIL_PAGE_LINK_HOVER_BG,
-	TEAM_MEMBER_CONTAINER_PADDING,
-	TEAM_MEMBER_CONTAINER_MARGIN,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -110,14 +122,17 @@ const attributes = {
 		type: 'array',
 		default: [
 			{
+				id: 1,
 				number: '210',
 				label: 'Posts',
 			},
 			{
+				id: 2,
 				number: '430',
 				label: 'Followers',
 			},
 			{
+				id: 3,
 				number: '210',
 				label: 'Following',
 			},
@@ -135,7 +150,7 @@ const attributes = {
 		type: 'object',
 		default: {
 			url: '#',
-			opensInNewTab: false,
+			openInNewTab: false,
 		},
 	},
 	showSocialProfiles: {
@@ -146,6 +161,8 @@ const attributes = {
 		type: 'array',
 		default: [
 			{
+				id: 1,
+				title: 'Twitter',
 				icon: {
 					twitter: {
 						name: 'twitter',
@@ -153,28 +170,45 @@ const attributes = {
 						type: '',
 					},
 				},
-				link: '#',
+				link: {
+					url: '#',
+					openInNewTab: false,
+				},
 			},
 		],
 	},
-	socialProfilesLinkTarget: {
-		type: 'boolean',
-		default: true,
-	},
 	// block styles
+	badgeColor: {
+		type: 'string',
+	},
 	nameColor: {
 		type: 'string',
 	},
-	designationColor: {
+	usernameColor: {
 		type: 'string',
 	},
-	shortBioColor: {
+	emailColor: {
+		type: 'string',
+	},
+	bioColor: {
+		type: 'string',
+	},
+	numberColor: {
+		type: 'string',
+	},
+	labelColor: {
+		type: 'string',
+	},
+	btnColor: {
+		type: 'string',
+	},
+	btnHoverColor: {
+		type: 'string',
+	},
+	btnHoverBorderColor: {
 		type: 'string',
 	},
 	// social icons
-	separatorColor: {
-		type: 'string',
-	},
 	iconColor: {
 		type: 'string',
 	},
@@ -184,47 +218,53 @@ const attributes = {
 	iconHoverBorderColor: {
 		type: 'string',
 	},
-	detailPageIconColor: {
-		type: 'string',
-	},
-	detailPageIconHoverColor: {
-		type: 'string',
-	},
-	// style
-	headerAreaBG: {
-		type: 'string',
-	},
 	// Generators
 	...generateDimensionAttributes(HEADER_AREA_BORDER_RADIUS),
-	...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_PADDING),
-	...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_MARGIN),
-	...generateNormalBGAttributes(CONTAINER_BG),
+	...generateDimensionAttributes(HEADER_AREA_PADDING, {}),
+	...generateNormalBGAttributes(HEADER_AREA_BG),
+	...generateBorderAttributies(HEADER_BADGE_BORDER),
+	...generateNormalBGAttributes(BADGE_BG),
+	...generateDimensionAttributes(BADGE_PADDING),
+	...generateDimensionAttributes(BADGE_BORDER_RADIUS),
+
+	...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
 	...generateNormalBGAttributes(CONTENT_BG),
-	...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
-		defaultAlign: 'left',
-	}),
-	...generateNormalBGAttributes(PHOTO_BG),
-	...generateBorderAttributies(TEAM_PHOTO_BORDER),
-	...generateDimensionAttributes(TEAM_PHOTO_BORDER_RADIUS),
-	...generateDimensionAttributes(TEAM_PHOTO_MARGIN),
-	...generateDimensionAttributes(TEAM_PHOTO_PADDING),
-	...generateBoxShadowAttributies(TEAM_PHOTO_BOX_SHADOW),
-	...generateDimensionAttributes(TEAM_DESIGNATION_MARGIN),
-	...generateDimensionAttributes(TEAM_NAME_MARGIN),
+	...generateBorderAttributies(CONTENT_BORDER),
+	...generateDimensionAttributes(CONTENT_PADDING),
+	...generateDimensionAttributes(CONTENT_MARGIN),
+
+	...generateResRangeAttributies(PHOTO_SIZE, {}),
+	...generateResRangeAttributies(PHOTO_VOFFSET, {}),
+	...generateBorderAttributies(PHOTO_BORDER),
+	...generateDimensionAttributes(PHOTO_BORDER_RADIUS),
+
+	...generateDimensionAttributes(NAME_MARGIN),
+	...generateDimensionAttributes(USERNAME_MARGIN),
+	...generateDimensionAttributes(EMAIL_MARGIN),
+	...generateDimensionAttributes(BIO_MARGIN),
+
+	...generateDimensionAttributes(STATUS_MARGIN),
+	...generateResRangeAttributies(STATUS_GAP),
+
+	...generateNormalBGAttributes(FBTN_BG),
+	...generateBoxShadowAttributies(FBTN_BOX_SHADOW),
+	...generateBorderAttributies(FBTN_BORDER),
+	...generateDimensionAttributes(FBTN_BORDER_RADIUS),
+	...generateDimensionAttributes(FBTN_PADDING),
+	...generateDimensionAttributes(FBTN_MARGIN),
+
+	...generateNormalBGAttributes(FBTN_HOVER_BG),
+	...generateBoxShadowAttributies(FBTN_HOVER_BOX_SHADOW),
 
 	...generateNormalBGAttributes(ICONS_BG),
 	...generateNormalBGAttributes(ICONS_HOVER_BG),
 	...generateBorderAttributies(ICONS_BORDER),
 	...generateDimensionAttributes(ICONS_BORDER_RADIUS),
 	...generateDimensionAttributes(ICONS_PADDING),
-	...generateDimensionAttributes(TEAM_SHORT_BIO_MARGIN),
+	...generateDimensionAttributes(ICONS_MARGIN),
 	...generateResRangeAttributies(ICONS_SIZE, {}),
 	...generateResRangeAttributies(ICONS_SPACING, {}),
-	...generateBoxShadowAttributies(ICONS_BOX_SHADOW),
-	...generateBoxShadowAttributies(ICONS_HOVER_BOX_SHADOW),
 
-	...generateNormalBGAttributes(DETAIL_PAGE_LINK_BG),
-	...generateNormalBGAttributes(DETAIL_PAGE_LINK_HOVER_BG),
 	// typography
 	...generateTypographyAttributes(Object.values(typographyObjs)),
 };

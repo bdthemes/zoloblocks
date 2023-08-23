@@ -1,25 +1,33 @@
-.zb-reset-control-container {
+.zb-reset-button,
+.zb-rest-btn,
+.zb-linked-btn,
+.zb-typography-dropdown-btn {
+	height: 26px !important;
+	width: 26px !important;
+	padding: 6px !important;
+	background-color: #f2f2f2;
+	border-radius: 50%;
+	border: 0;
+	cursor: pointer !important;
+	min-width: auto !important;
+	opacity: 1 !important;
 	display: flex;
 	align-items: center;
-
-	.components-range-control {
-		flex-grow: 1;
+	justify-content: center;
+	svg {
+		display: block;
+		fill: none;
 	}
 }
-
-.zb-reset-button {
-	background: transparent;
-	border: none;
-	box-shadow: none;
-	cursor: pointer;
-	height: 26px;
-	margin-left: 2px;
-	outline: none;
-	padding: 0;
-	width: 20px;
-
-	.dashicon {
-		color: #62626f;
-		font-size: 14px;
+.zb-rest-btn,
+.zb-linked-btn,
+.zb-typography-dropdown-btn {
+	svg {
+		path {
+			stroke: #000;
+		}
 	}
+}
+.zb-linked-btn {
+	order: 1;
 }

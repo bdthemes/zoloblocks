@@ -1,6 +1,10 @@
-import UnitBtn from '../unit-btn';
+import UnitsBtn from '../units-btn';
 import DimensionControl from './dimension';
 import { prefix } from '../../global/constants';
+import { Button } from '@wordpress/components';
+import { useState } from '@wordpress/element';
+import ResetBtn from '../reset-btn';
+import LinkUnlink from '../link-unlink';
 
 const ResDimensionsControl = ({
 	label,
@@ -33,6 +37,8 @@ const ResDimensionsControl = ({
 		[`${prefix}${controlName}IsLinked`]: dimensionIsLinked,
 	} = attributes;
 
+	const [isLinked, setIsLinked] = useState(dimensionIsLinked);
+
 	const defaultUnits = [
 		{ label: 'px', value: 'px' },
 		{ label: 'em', value: 'em' },
@@ -47,13 +53,18 @@ const ResDimensionsControl = ({
 		dimensionIsLinked,
 		forBorderRadius,
 		controlName,
+		isLinked,
+	};
+
+	const onButtonClick = () => {
+		setIsLinked(!isLinked);
 	};
 
 	return (
-		<div className="dimensions-control-wraper">
+		<div className="zolo-dimensions-control-wraper">
 			{resMode == 'Desktop' && (
 				<>
-					<UnitBtn
+					<UnitsBtn
 						selectedUnit={dimensionUnit}
 						unitTypes={units || defaultUnits}
 						onClick={(dimensionUnit) =>
@@ -61,7 +72,26 @@ const ResDimensionsControl = ({
 								[`${prefix}${controlName}Unit`]: dimensionUnit,
 							})
 						}
-					/>
+					>
+						<Button
+							className={`zb-linked-btn ${
+								isLinked ? 'zb-linked-btn-active' : ''
+							}`}
+							icon={<LinkUnlink isLinked={isLinked} />}
+							onClick={onButtonClick}
+						/>
+						<ResetBtn
+							onReset={() => {
+								setAttributes({
+									[`${prefix}${controlName}Top`]: '',
+									[`${prefix}${controlName}Right`]: '',
+									[`${prefix}${controlName}Bottom`]: '',
+									[`${prefix}${controlName}Left`]: '',
+								});
+							}}
+						/>
+					</UnitsBtn>
+
 					<DimensionControl
 						top={dimensionTop}
 						right={dimensionRight}
@@ -82,15 +112,34 @@ const ResDimensionsControl = ({
 
 			{resMode == 'Tablet' && (
 				<>
-					<UnitBtn
+					<UnitsBtn
 						selectedUnit={TABdimensionUnit}
 						unitTypes={units || defaultUnits}
 						onClick={(TABdimensionUnit) =>
 							setAttributes({
-								[`${prefix}TAB${controlName}Unit`]: TABdimensionUnit,
+								[`${prefix}TAB${controlName}Unit`]:
+									TABdimensionUnit,
 							})
 						}
-					/>
+					>
+						<Button
+							className={`zb-linked-btn ${
+								isLinked ? 'zb-linked-btn-active' : ''
+							}`}
+							icon={<LinkUnlink isLinked={isLinked} />}
+							onClick={onButtonClick}
+						/>
+						<ResetBtn
+							onReset={() => {
+								setAttributes({
+									[`${prefix}TAB${controlName}Top`]: '',
+									[`${prefix}TAB${controlName}Right`]: '',
+									[`${prefix}TAB${controlName}Bottom`]: '',
+									[`${prefix}TAB${controlName}Left`]: '',
+								});
+							}}
+						/>
+					</UnitsBtn>
 
 					<DimensionControl
 						top={TABdimensionTop}
@@ -112,15 +161,34 @@ const ResDimensionsControl = ({
 
 			{resMode == 'Mobile' && (
 				<>
-					<UnitBtn
+					<UnitsBtn
 						selectedUnit={MOBdimensionUnit}
 						unitTypes={units || defaultUnits}
 						onClick={(MOBdimensionUnit) =>
 							setAttributes({
-								[`${prefix}MOB${controlName}Unit`]: MOBdimensionUnit,
+								[`${prefix}MOB${controlName}Unit`]:
+									MOBdimensionUnit,
 							})
 						}
-					/>
+					>
+						<Button
+							className={`zb-linked-btn ${
+								isLinked ? 'zb-linked-btn-active' : ''
+							}`}
+							icon={<LinkUnlink isLinked={isLinked} />}
+							onClick={onButtonClick}
+						/>
+						<ResetBtn
+							onReset={() => {
+								setAttributes({
+									[`${prefix}MOB${controlName}Top`]: '',
+									[`${prefix}MOB${controlName}Right`]: '',
+									[`${prefix}MOB${controlName}Bottom`]: '',
+									[`${prefix}MOB${controlName}Left`]: '',
+								});
+							}}
+						/>
+					</UnitsBtn>
 
 					<DimensionControl
 						top={MOBdimensionTop}

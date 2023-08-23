@@ -22,9 +22,6 @@ class ComposerStaticInit712ab97058b05af3a61ab3bdef87e3ee
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Zolo\\Blocks\\BlockBase' => __DIR__ . '/../..' . '/includes/Blocks/BlockBase.php',
-        'Zolo\\Blocks\\BlockControl' => __DIR__ . '/../..' . '/includes/Blocks/BlockControl.php',
-        'Zolo\\Blocks\\PostGrid' => __DIR__ . '/../..' . '/includes/Blocks/PostGrid.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

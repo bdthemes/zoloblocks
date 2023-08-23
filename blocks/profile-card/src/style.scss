@@ -37,9 +37,6 @@
 		margin: 0 0 5px;
 		display: inline-block;
 		transition: color 0.3s ease;
-		&:hover {
-			color: var(--color6);
-		}
 	}
 
 	.zb-profile-email {
@@ -52,6 +49,7 @@
 		font-size: 16px;
 		color: var(--color5);
 		padding-left: var(--padding-left);
+		padding-right: var(--padding-left);
 		strong {
 			color: var(--color6);
 		}
@@ -141,18 +139,16 @@
 	}
 
 	.zb-profile-item {
-		border-radius: 20px;
 		overflow: hidden;
 	}
 
 	.zb-profile-header-content {
-		padding: 30px;
-		height: 100px;
-		background: linear-gradient(
-			45deg,
-			var(--background1),
-			var(--background2)
-		);
+		border-radius: 20px;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		padding: 30px 30px 100px;
+		box-sizing: border-box;
+		background-color: var(--background1);
 	}
 
 	.zb-profile-bottom-content {
@@ -163,6 +159,7 @@
 		width: 100%;
 		text-align: center;
 		backdrop-filter: blur(45px);
+		box-sizing: border-box;
 	}
 
 	.zb-profile-image {

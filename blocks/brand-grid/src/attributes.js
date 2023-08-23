@@ -1,258 +1,98 @@
 const {
-	generateResAlignmentAttributies,
-	generateResRangeAttributies,
-	generateBorderAttributies,
-	generateDimensionAttributes,
-	generateTypographyAttributes,
-	generateBoxShadowAttributies,
-	generateTextShadowAttributies,
-	generateTextStrokeAttributies,
+    generateResRangeAttributies,
+    generateNormalBGAttributes,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateBoxShadowAttributies,
 } = window.zoloModule;
 
 import {
-	ICON_BOX_ALIGNMENT,
-	TITLE_ALIGNMENT,
-	TITLE_MARGIN,
-	TITLE_TEXT_SHADOW,
-	TITLE_TEXT_STROKE,
-	DESCRIPTION_MARGIN,
-	DESC_ALIGNMENT,
-	ICON_BORDER,
-	ICON_BOX_SHADOW,
-	ICON_HOVER_BOX_SHADOW,
-	BUTTON_BOX_SHADOW,
-	BUTTON_HOVER_BOX_SHADOW,
-	ICON_BORDER_RADIUS,
-	ICON_SIZE,
-	BUTTON_ICON_SIZE,
-	BUTTON_BORDER,
-	ICON_TEXT_SPACING,
-	ICON_SPACING,
-	ICON_PADDING,
-	ICON_MARGIN,
-	BUTTON_BORDER_RADIUS,
-	BUTTON_MARGIN,
-	BUTTON_PADDING,
+    GRID_COLUMNS,
+    COLUMNS_GAP,
+    ROWS_GAP,
+    CONTAINER_BACKGROUND,
+    CONTAINER_HOVER_BACKGROUND,
+    CONTAINER_BORDER,
+    CONTAINER_BORDER_HOVER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_PADDING,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_HOVER_BOX_SHADOW,
 } from './constants';
-import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
-	//Common Attributes
-	uniqueId: {
-		type: 'string',
-	},
-	resDevice: {
-		type: 'string',
-		default: 'Desktop',
-	},
-	blockStyle: {
-		type: 'object',
-	},
-	//alignment attributes
-	...generateResAlignmentAttributies( ICON_BOX_ALIGNMENT, {
-		defaultAlign: 'left',
-	} ),
-	//title alignment attributes
-	...generateResAlignmentAttributies( TITLE_ALIGNMENT, {
-		defaultAlign: '',
-	} ),
-	//description alignment attributes
-	...generateResAlignmentAttributies( DESC_ALIGNMENT, {
-		defaultAlign: '',
-	} ),
-	// border attributes
-	...generateBorderAttributies( ICON_BORDER ),
-	// button border
-	...generateBorderAttributies( BUTTON_BORDER ),
-	//icon size
-	...generateResRangeAttributies( ICON_SIZE, {
-		default: 16,
-	} ),
-	//button
-	...generateResRangeAttributies( BUTTON_ICON_SIZE, {
-		default: 16,
-	} ),
-	...generateDimensionAttributes( BUTTON_BORDER_RADIUS ),
-	...generateDimensionAttributes( BUTTON_PADDING ),
-	...generateDimensionAttributes( BUTTON_MARGIN ),
-	//icon text spacing
-	...generateResRangeAttributies( ICON_TEXT_SPACING, {
-		default: 5,
-	} ),
-	//icon spacing
-	...generateResRangeAttributies( ICON_SPACING, {
-		default: 5,
-	} ),
-	//icon border radius
-	...generateDimensionAttributes( ICON_BORDER_RADIUS ),
-	//icon padding
-	...generateDimensionAttributes( ICON_PADDING ),
-	//icon margin
-	...generateDimensionAttributes( ICON_MARGIN ),
-	//icon boxshadow
-	...generateBoxShadowAttributies( ICON_BOX_SHADOW ),
-	//icon hover boxshadow
-	...generateBoxShadowAttributies( ICON_HOVER_BOX_SHADOW ),
-	//button boxshadow
-	...generateBoxShadowAttributies( BUTTON_BOX_SHADOW ),
-	//button hover boxshadow
-	...generateBoxShadowAttributies( BUTTON_HOVER_BOX_SHADOW ),
-	//title margin
-	...generateDimensionAttributes( TITLE_MARGIN ),
-	...generateTextShadowAttributies( TITLE_TEXT_SHADOW ),
-	...generateTextStrokeAttributies( TITLE_TEXT_STROKE ),
-	//description margin
-	...generateDimensionAttributes( DESCRIPTION_MARGIN ),
-	//typography
-	...generateTypographyAttributes( Object.values( typographyObjs ) ),
-	//Block specific Attributes
-	preset: {
-		type: 'string',
-		default: 'style-1',
-	},
-	label: {
-		type: 'string',
-	},
-	titleTag: {
-		type: 'string',
-		default: 'h2',
-	},
-	link: {
-		type: 'object',
-		default: {
-			url: '#',
-			opensInNewTab: false,
-			addNoFollow: false,
-		},
-	},
-	openInNewTab: {
-		type: 'boolean',
-		default: false,
-	},
-	addNoFollow: {
-		type: 'boolean',
-		default: false,
-	},
-	showIcon: {
-		type: 'boolean',
-		default: false,
-	},
-	globalLink: {
-		type: 'boolean',
-		default: false,
-	},
-	icon: {
-		type: 'string',
-	},
-	iconPosition: {
-		type: 'string',
-		default: 'right',
-	},
-	topIconPosition: {
-		type: 'string',
-		default: 'left',
-	},
-	textColor: {
-		type: 'string',
-	},
-	textHoverColor: {
-		type: 'string',
-	},
-	descColor: {
-		type: 'string',
-	},
-	descHoverColor: {
-		type: 'string',
-	},
-	iconType: {
-		type: 'string',
-		default: 'icon',
-	},
-	mainIcon: {
-		type: 'object',
-		default: {
-			'admin-generic': {
-				name: 'admin generic',
-				source: 'dashicon',
-				type: '',
-			},
-		},
-	},
-	buttonIcon: {
-		type: 'object',
-		default: {
-			'admin-generic': {
-				name: 'admin generic',
-				source: 'dashicon',
-				type: '',
-			},
-		},
-	},
-	iconColor: {
-		type: 'string',
-	},
-	iconHoverColor: {
-		type: 'string',
-	},
-	iconBackgroundColor: {
-		type: 'string',
-	},
-	iconBackgroundHoverColor: {
-		type: 'string',
-	},
-	iconTypeImage: {
-		type: 'object',
-	},
-	iconBoxTitle: {
-		type: 'string',
-		default: 'The Theme Settings',
-	},
-	iconBoxDescription: {
-		type: 'string',
-		default:
-			'The Theme Setting is a website that provides users with a range of tools to customize their web experience.',
-	},
-	buttonText: {
-		type: 'string',
-		default: 'Read More',
-	},
-	buttonLink: {
-		type: 'string',
-		default: '#',
-	},
-	btnColor: {
-		type: 'string',
-	},
-	btnHoverColor: {
-		type: 'string',
-	},
-	btnBgColor: {
-		type: 'string',
-	},
-	btnBgHoverColor: {
-		type: 'string',
-	},
-	presetOneStyles: {
-		type: 'object',
-		default: {
-			iconPosition: 'left',
-			buttonPosition: 'left',
-			buttonIconPosition: 'row-reverse',
-		},
-	},
-	presetTwoStyles: {
-		type: 'object',
-		default: {
-			iconPosition: 'top',
-			buttonPosition: 'left',
-			buttonIconPosition: 'row-reverse',
-		},
-	},
-	presetThreeStyles: {
-		type: 'object',
-		default: {
-			iconPosition: 'right',
-		},
-	},
+    //Common Attributes
+    uniqueId: {
+        type: 'string',
+    },
+    blockStyle: {
+        type: 'object',
+    },
+    // container
+    ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
+    ...generateNormalBGAttributes(CONTAINER_HOVER_BACKGROUND),
+    ...generateBorderAttributies(CONTAINER_BORDER),
+    ...generateBorderAttributies(CONTAINER_BORDER_HOVER),
+    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
+    ...generateDimensionAttributes(CONTAINER_PADDING),
+    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
+    ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
+    //grid system
+    ...generateResRangeAttributies(GRID_COLUMNS, {
+        defaultRange: 3,
+        noUnits: true,
+    }),
+    ...generateResRangeAttributies(COLUMNS_GAP, {
+        defaultRange: 30,
+    }),
+    ...generateResRangeAttributies(ROWS_GAP, {
+        defaultRange: 30,
+    }),
+
+    //Block specific Attributes
+    preset: {
+        type: 'string',
+        default: 'zb-brand-style-1',
+    },
+    heading: {
+        type: 'string',
+        default: 'h1',
+    },
+    containerBackgroundColor: {
+        type: 'string',
+    },
+    containerBackgroundHoverColor: {
+        type: 'string',
+    },
+    showBrandName: {
+        type: 'boolean',
+        default: true,
+    },
+    showBrandLink: {
+        type: 'boolean',
+        default: true,
+    },
+    presetOneStyles: {
+        type: 'object',
+        default: {
+            iconPosition: 'left',
+            buttonPosition: 'left',
+            buttonIconPosition: 'row-reverse',
+        },
+    },
+    presetTwoStyles: {
+        type: 'object',
+        default: {
+            iconPosition: 'top',
+            buttonPosition: 'left',
+            buttonIconPosition: 'row-reverse',
+        },
+    },
+    presetThreeStyles: {
+        type: 'object',
+        default: {
+            iconPosition: 'right',
+        },
+    },
 };
 
 export default attributes;

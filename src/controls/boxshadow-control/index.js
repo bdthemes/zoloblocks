@@ -1,186 +1,182 @@
 import {
-  BaseControl,
-  Button,
-  Dropdown,
-  RangeControl,
-  ToggleControl,
+	BaseControl,
+	Button,
+	ButtonGroup,
+	Dropdown,
+	RangeControl,
+	ToggleControl,
+	ColorPicker,
+	__experimentalNumberControl as NumberControl,
+	Popover,
+	ColorIndicator,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import ColorControl from '../color-control';
-import ResetControl from '../reset-control';
+import { useEffect, useState } from '@wordpress/element';
 
-function BoxShadowControl({ controlName, resRequiredProps, enableTransition }) {
-  const { setAttributes, attributes, objAttributes } = resRequiredProps;
+/**
+ * Internal dependencies
+ */
+import UnitsBtn from '../units-btn';
+import ResetBtn from '../reset-btn';
+import WithResDeviceBtn from '../with-res-device-btn';
 
-  const {
-    [`${controlName}inset`]: inset,
-    [`${controlName}shadowColor`]: shadowColor,
-    [`${controlName}hOffset`]: hOffset,
-    [`${controlName}vOffset`]: vOffset,
-    [`${controlName}blur`]: blur,
-    [`${controlName}spread`]: spread,
-    [`${controlName}shadowTransition`]: shadowTransition,
-  } = attributes;
+import ColorBtn from '../color-btn';
 
-  return (
-    <BaseControl
-      label={__('Box Shadow', 'zolo-blocks')}
-      className="zb-boxshadow-control-wrap"
-    >
-      <Dropdown
-        className="zb-boxshadow-control-dropdown"
-        contentClassName="zb-popover-content-area"
-        position="bottom right"
-        renderToggle={({ isOpen, onToggle }) => (
-          <Button isSmall onClick={onToggle} aria-expanded={isOpen}>
-            <span className="dashicons dashicons-edit"></span>
-          </Button>
-        )}
-        renderContent={() => (
-          <>
-            <div
-              className="zb-boxshadow-content-wrap"
-              style={{
-                minWidth: '230px',
-                padding: '10px',
-              }}
-            >
-              <ToggleControl
-                label={__('Inset', 'zolo-blocks')}
-                checked={inset}
-                onChange={() =>
-                  setAttributes({
-                    [`${controlName}inset`]: !inset,
-                  })
-                }
-              />
-              <ColorControl
-                defaultColor={
-                  (
-                    objAttributes[
-                    `${controlName}shadowColor`
-                    ] || {}
-                  ).default
-                }
-                label={__('Shadow Color', 'zolo-blocks')}
-                color={shadowColor}
-                onChange={(shadowColor) =>
-                  setAttributes({
-                    [`${controlName}shadowColor`]:
-                      shadowColor,
-                  })
-                }
-              />
+import { BOX_SHADOW_TYPES } from '../../global/constants';
 
-              <ResetControl
-                onReset={() =>
-                  setAttributes({
-                    [`${controlName}hOffset`]: undefined,
-                  })
-                }
-              >
-                <RangeControl
-                  label={__(
-                    'Horizontal Offset',
-                    'zolo-blocks'
-                  )}
-                  value={hOffset}
-                  onChange={(hOffset) =>
-                    setAttributes({
-                      [`${controlName}hOffset`]: hOffset,
-                    })
-                  }
-                  min={0}
-                  max={200}
-                />
-              </ResetControl>
+const BoxShadowControl = ({ label = '', controlName, resRequiredProps }) => {
+	const { setAttributes, attributes } = resRequiredProps;
+	const {
+		[`${controlName}shadowType`]: shadowType,
+		[`${controlName}shadowUnit`]: shadowUnit,
+		[`${controlName}shadowColor`]: shadowColor,
+		[`${controlName}hOffset`]: hOffset,
+		[`${controlName}vOffset`]: vOffset,
+		[`${controlName}blur`]: blur,
+		[`${controlName}spread`]: spread,
+	} = attributes;
 
-              <ResetControl
-                onReset={() =>
-                  setAttributes({
-                    [`${controlName}vOffset`]: undefined,
-                  })
-                }
-              >
-                <RangeControl
-                  label={__(
-                    'Vertical Offset',
-                    'zolo-blocks'
-                  )}
-                  value={vOffset}
-                  onChange={(vOffset) =>
-                    setAttributes({
-                      [`${controlName}vOffset`]: vOffset,
-                    })
-                  }
-                  min={0}
-                  max={200}
-                />
-              </ResetControl>
+	const defaultUnits = [
+		{ label: 'px', value: 'px' },
+		{ label: 'em', value: 'em' },
+		{ label: '%', value: '%' },
+	];
 
-              <ResetControl
-                onReset={() =>
-                  setAttributes({
-                    [`${controlName}blur`]: undefined,
-                  })
-                }
-              >
-                <RangeControl
-                  label={__('Shadow Blur', 'zolo-blocks')}
-                  value={blur}
-                  onChange={(blur) =>
-                    setAttributes({
-                      [`${controlName}blur`]: blur,
-                    })
-                  }
-                  min={0}
-                  max={200}
-                />
-              </ResetControl>
-
-              <ResetControl
-                onReset={() =>
-                  setAttributes({
-                    [`${controlName}spread`]: undefined,
-                  })
-                }
-              >
-                <RangeControl
-                  label={__('Shadow Spread', 'zolo-blocks')}
-                  value={spread}
-                  onChange={(spread) =>
-                    setAttributes({
-                      [`${controlName}spread`]: spread,
-                    })
-                  }
-                  min={0}
-                  max={200}
-                />
-              </ResetControl>
-              {enableTransition && (
-                <RangeControl
-                  label={__(
-                    'Shadow Transition',
-                    'zolo-blocks'
-                  )}
-                  value={shadowTransition}
-                  onChange={(shadowTransition) =>
-                    setAttributes({
-                      [`${controlName}shadowTransition`]:
-                        shadowTransition,
-                    })
-                  }
-                  step={0.01}
-                  min={0}
-                  max={5}
-                />
-              )}
-            </div>
-          </>
-        )}
-      />
-    </BaseControl>
-  );
-}
+	return (
+		<div className="zolo-box-shadow">
+			<div className="zolo-label-area">
+				<UnitsBtn
+					selectedUnit={shadowUnit}
+					unitTypes={defaultUnits}
+					onClick={(sizeUnit) =>
+						setAttributes({
+							[`${controlName}shadowUnit`]: sizeUnit,
+						})
+					}
+				>
+					<ResetBtn
+						onReset={() => {
+							setAttributes({
+								[`${controlName}shadowType`]: 'none',
+								[`${controlName}shadowUnit`]: 'px',
+								[`${controlName}shadowColor`]: '',
+								[`${controlName}hOffset`]: '',
+								[`${controlName}vOffset`]: '',
+								[`${controlName}blur`]: '',
+								[`${controlName}spread`]: '',
+							});
+						}}
+					/>
+					<ColorBtn
+						color={shadowColor}
+						onChange={(value) =>
+							setAttributes({
+								[`${controlName}shadowColor`]: value,
+							})
+						}
+					/>
+				</UnitsBtn>
+				<WithResDeviceBtn
+					label={label || __('Box Shadow', 'zolo-blocks')}
+					resRequiredProps={resRequiredProps}
+					controlName={controlName}
+					noResetBtn={true}
+					noResponsive={true}
+				>
+					<ButtonGroup className="shadow-style-btn-group">
+						{BOX_SHADOW_TYPES &&
+							BOX_SHADOW_TYPES.map((type, index) => {
+								return (
+									<Button
+										key={index}
+										className={`shadow-style-btn ${
+											shadowType === type.value
+												? 'active'
+												: ''
+										}`}
+										onClick={() =>
+											setAttributes({
+												[`${controlName}shadowType`]:
+													type.value,
+											})
+										}
+									>
+										{type.label}
+									</Button>
+								);
+							})}
+					</ButtonGroup>
+					<div className="zolo-box-shadow-options">
+						<div className="single-shadow-input">
+							<NumberControl
+								isShiftStepEnabled={true}
+								onChange={(hOffset) =>
+									setAttributes({
+										[`${controlName}hOffset`]:
+											parseInt(hOffset),
+									})
+								}
+								value={hOffset}
+								type="number"
+							/>
+							<div className="input-label">
+								{__('X', 'zolo-blocks')}
+							</div>
+						</div>
+						<div className="single-shadow-input">
+							<NumberControl
+								isShiftStepEnabled={true}
+								onChange={(vOffset) =>
+									setAttributes({
+										[`${controlName}vOffset`]:
+											parseInt(vOffset),
+									})
+								}
+								value={vOffset}
+								type="number"
+							/>
+							<div className="input-label">
+								{__('Y', 'zolo-blocks')}
+							</div>
+						</div>
+						<div className="single-shadow-input">
+							<NumberControl
+								isShiftStepEnabled={true}
+								onChange={(blur) =>
+									setAttributes({
+										[`${controlName}blur`]: parseInt(blur),
+									})
+								}
+								value={blur}
+								min={0}
+								type="number"
+							/>
+							<div className="input-label">
+								{__('Blur', 'zolo-blocks')}
+							</div>
+						</div>
+						<div className="single-shadow-input">
+							<NumberControl
+								isShiftStepEnabled={true}
+								onChange={(spread) =>
+									setAttributes({
+										[`${controlName}spread`]:
+											parseInt(spread),
+									})
+								}
+								value={spread}
+								min={0}
+								type="number"
+							/>
+							<div className="input-label">
+								{__('Spread', 'zolo-blocks')}
+							</div>
+						</div>
+					</div>
+				</WithResDeviceBtn>
+			</div>
+		</div>
+	);
+};
 
 export default BoxShadowControl;

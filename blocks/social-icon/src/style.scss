@@ -1,264 +1,194 @@
+:root {
+	--facebook: #3b5998;
+	--instagram-bg: radial-gradient(
+		circle,
+		rgba(63, 94, 251, 1) 0%,
+		rgba(252, 70, 107, 1) 100%
+	);
+	--instagram: #e4405f;
+	--twitter: #00acee;
+	--linkedin: #0072b1;
+	--behance: #053eff;
+	--pinterest: #c8232c;
+	--dribbble: #ea4c89;
+	--whatsapp: #25d366;
+	--youtube: #ff0000;
+	--tumblr: #35465c;
+	--reddit: #ff4500;
+	--snapchat: #fffc00;
+	--telegram: #0088cc;
+	--vimeo: #1ab7ea;
+	--skype: #00aff0;
+	--spotify: #1db954;
+	--soundcloud: #ff5500;
+	--github: #333;
+	--twitch: #6441a5;
+	--medium: #000;
+	--xing: #006567;
+	--flickr: #ff0084;
+	--slack: #4a154b;
+	--discord: #7289da;
+	--line: #00c300;
+	--wechat: #7bb32e;
+	--wechat-bg: radial-gradient(
+		circle,
+		rgba(63, 94, 251, 1) 0%,
+		rgba(252, 70, 107, 1) 100%
+	);
+}
+
 .wp-block-zolo-social-icon {
-	.zolo-advanced-social-share {
-		display: grid;
-		grid-gap: 10px;
+	display: grid;
+	grid-gap: 10px;
+
+	&.preset-1,
+	&.preset-2 {
+		.zolo-social-item {
+			color: #36354f;
+			background-color: #f5f5f5;
+			border: 1px solid #f5f5f5;
+			&::before {
+				background-color: #fff;
+			}
+			&:hover {
+				color: #2196f3;
+			}
+		}
 	}
 
-	:root {
-		--facebook: #3b5998;
-		--instagram: radial-gradient(
-			circle,
-			rgba(63, 94, 251, 1) 0%,
-			rgba(252, 70, 107, 1) 100%
-		);
-		--twitter: #00acee;
-		--linkedin: #0072b1;
-		--behance: #053eff;
-		--pinterest: #c8232c;
-		--dribbble: #ea4c89;
+	&.preset-3 {
+		.zolo-social-item {
+			color: #36354f;
+			background-color: #fff;
+			border: 1px solid #36354f;
+			&::before {
+				background-color: #36354f;
+			}
+			&:hover {
+				color: #fff;
+			}
+		}
 	}
 
-	.zolo-advanced-social-share .zolo-social-item {
+	.zolo-social-item {
 		text-decoration: none;
 		border-radius: 3px;
 		font-size: 14px;
 		position: relative;
 		overflow: hidden;
 		transition: color 0.3s ease;
-	}
-
-	.zolo-advanced-social-preset-2,
-	.zolo-advanced-social-preset-5 {
-		grid-template-columns: repeat(6, 1fr);
-	}
-
-	.zolo-advanced-social-preset-1 .zolo-social-item,
-	.zolo-advanced-social-preset-2 .zolo-social-item,
-	.zolo-advanced-social-preset-3 .zolo-social-item,
-	.zolo-advanced-social-preset-5 .zolo-social-item {
 		padding: 12px;
+		gap: 10px;
+		border: 1px solid #f5f5f5;
+		width: 100%;
+		box-sizing: border-box;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 10px;
-	}
-
-	.zolo-advanced-social-preset-1 .zolo-social-item,
-	.zolo-advanced-social-preset-2 .zolo-social-item,
-	.zolo-advanced-social-preset-5 .zolo-social-item {
-		color: #36354f;
-		background-color: #f5f5f5;
-		border: 1px solid #f5f5f5;
-	}
-
-	.zolo-advanced-social-preset-1 .zolo-social-item:hover,
-	.zolo-advanced-social-preset-2 .zolo-social-item:hover,
-	.zolo-advanced-social-preset-2 .zolo-social-item:hover {
-		color: #2196f3;
-	}
-
-	.zolo-advanced-social-share .zolo-social-item span {
-		z-index: 1;
-	}
-
-	.zolo-advanced-social-preset-1 .zolo-social-item:before,
-	.zolo-advanced-social-preset-2 .zolo-social-item:before,
-	.zolo-advanced-social-preset-3 .zolo-social-item:before,
-	.zolo-advanced-social-preset-5 .zolo-social-item:before {
-		content: "";
-		position: absolute;
-		bottom: -50%;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: #fff;
-		transform-origin: bottom center;
-		transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
-		transform: skewY(9.3deg) scaleY(0);
-	}
-
-	.zolo-advanced-social-preset-1 .zolo-social-item:hover:before,
-	.zolo-advanced-social-preset-2 .zolo-social-item:hover:before,
-	.zolo-advanced-social-preset-3 .zolo-social-item:hover:before,
-	.zolo-advanced-social-preset-5 .zolo-social-item:hover:before {
-		transform-origin: bottom center;
-		transform: skewY(9.3deg) scaleY(2);
-	}
-
-	.zolo-advanced-social-preset-2 .zolo-social-item .zolo-social-text,
-	.zolo-advanced-social-preset-5 .zolo-social-item .zolo-social-text {
-		display: none;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-facebook {
-		color: #3b5998;
-		border: 1px solid #3b5998;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-facebook:before {
-		background-color: #3b5998;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-instagram {
-		color: rgba(252, 70, 107, 1);
-		border: 1px solid rgba(252, 70, 107, 1);
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-instagram:before {
-		background: rgba(252, 70, 107, 1);
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-twitter {
-		color: #00acee;
-		border: 1px solid #00acee;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-twitter:before {
-		background: #00acee;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-linkedin {
-		color: #0072b1;
-		border: 1px solid #0072b1;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-linkedin:before {
-		background: #0072b1;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-fa-behance {
-		color: #053eff;
-		border: 1px solid #053eff;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-fa-behance:before {
-		background: #053eff;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-pinterest {
-		color: #c8232c;
-		border: 1px solid #c8232c;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-pinterest:before {
-		background: #c8232c;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-fa-dribbble {
-		color: #ea4c89;
-		border: 1px solid #ea4c89;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item.zolo-fa-dribbble:before {
-		background: #ea4c89;
-	}
-
-	.zolo-advanced-social-preset-3 .zolo-social-item:hover {
-		color: #fff;
-	}
-
-	.zolo-advanced-social-preset-4 .zolo-social-item {
-		display: flex;
-	}
-
-	.zolo-advanced-social-preset-4 .zolo-social-item .zolo-social-icon {
-		padding: 10px 12px;
-	}
-	.zolo-advanced-social-preset-4 .zolo-social-item .zolo-social-text {
-		padding: 10px 12px;
-	}
-
-	.zolo-advanced-social-preset-4 .zolo-social-item .zolo-social-icon {
-		color: #fff;
-	}
-
-	.zolo-advanced-social-preset-4 .zolo-social-item .zolo-social-text {
-		color: blue;
-	}
-
-	.zolo-advanced-social-preset-4 .zolo-facebook .zolo-social-icon {
-		background-color: #3b5998;
-	}
-
-	.zolo-advanced-social-preset-4 .zolo-facebook {
-		border: 1px solid #3b5998;
-	}
-	.zolo-advanced-social-preset-4 .zolo-instagram {
-		border: 1px solid rgba(252, 70, 107, 1);
-	}
-
-	.zolo-advanced-social-preset-4 .zolo-linkedin {
-		border: 1px solid #0072b1;
-	}
-
-	.zolo-advanced-social-preset-4 .zolo-twitter {
-		border: 1px solid #00acee;
-	}
-
-	.zolo-advanced-social-preset-4 .zolo-fa-behance {
-		border: 1px solid #053eff;
-	}
-
-	.zolo-advanced-social-preset-4 .zolo-pinterest {
-		border: 1px solid #c8232c;
-	}
-
-	.zolo-advanced-social-preset-4 .zolo-fa-dribbble {
-		border: 1px solid #ea4c89;
-	}
-
-	.zolo-advanced-social-preset-4
-		.zolo-social-item.zolo-instagram
-		.zolo-social-icon {
-		background: rgba(252, 70, 107, 1);
-	}
-
-	.zolo-advanced-social-preset-4
-		.zolo-social-item.zolo-twitter
-		.zolo-social-icon {
-		background-color: #00acee;
-	}
-
-	.zolo-advanced-social-preset-4
-		.zolo-social-item.zolo-linkedin
-		.zolo-social-icon {
-		background-color: #0072b1;
-	}
-
-	.zolo-advanced-social-preset-4
-		.zolo-social-item.zolo-pinterest
-		.zolo-social-icon {
-		background-color: #c8232c;
-	}
-
-	.zolo-advanced-social-preset-4
-		.zolo-social-item.zolo-fa-behance
-		.zolo-social-icon {
-		background-color: #053eff;
-	}
-
-	.zolo-advanced-social-preset-4
-		.zolo-social-item.zolo-fa-dribbble
-		.zolo-social-icon {
-		background-color: #ea4c89;
-	}
-
-	.zolo-advanced-social-preset-5 .zolo-social-item {
-		clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-	}
-
-	.zolo-advanced-social-preset-5 .zolo-social-item:before {
-		background-color: #000;
-	}
-
-	.zolo-advanced-social-preset-5 .zolo-social-item:hover {
-		color: #fff;
-	}
-
-	@media (min-width: 768px) {
-		.zolo-advanced-social-preset-2,
-		.zolo-advanced-social-preset-5 {
-			grid-template-columns: repeat(11, 1fr);
+		&::before {
+			content: "";
+			position: absolute;
+			bottom: -50%;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			transform-origin: bottom center;
+			transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+			transform: skewY(9.3deg) scaleY(0);
+		}
+		&:hover {
+			&::before {
+				transform-origin: bottom center;
+				transform: skewY(9.3deg) scaleY(2);
+			}
+		}
+		span {
+			z-index: 1;
+		}
+		&.zolo-fa- {
+			&facebook,
+			&facebook-f {
+				color: var(--facebook);
+			}
+			&twitter,
+			&twitter-square {
+				color: var(--twitter);
+			}
+			&instagram {
+				color: var(--instagram);
+			}
+			&linkedin,
+			&linkedin-in {
+				color: var(--linkedin);
+			}
+			&behance {
+				color: var(--behance);
+			}
+			&pinterest {
+				color: var(--pinterest);
+			}
+			&dribbble {
+				color: var(--dribbble);
+			}
+			&whatsapp {
+				color: var(--whatsapp);
+			}
+			&youtube {
+				color: var(--youtube);
+			}
+			&tumblr {
+				color: var(--tumblr);
+			}
+			&reddit {
+				color: var(--reddit);
+			}
+			&snapchat {
+				color: var(--snapchat);
+			}
+			&telegram {
+				color: var(--telegram);
+			}
+			&vimeo {
+				color: var(--vimeo);
+			}
+			&skype {
+				color: var(--skype);
+			}
+			&spotify {
+				color: var(--spotify);
+			}
+			&soundcloud {
+				color: var(--soundcloud);
+			}
+			&github,
+			&github-alt,
+			&github-square {
+				color: var(--github);
+			}
+			&twitch {
+				color: var(--twitch);
+			}
+			&medium {
+				color: var(--medium);
+			}
+			&xing {
+				color: var(--xing);
+			}
+			&flickr {
+				color: var(--flickr);
+			}
+			&slack {
+				color: var(--slack);
+			}
+			&discord {
+				color: var(--discord);
+			}
+			&line {
+				color: var(--line);
+			}
+			&wechat {
+				color: var(--wechat);
+			}
 		}
 	}
 }

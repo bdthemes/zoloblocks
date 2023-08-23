@@ -1,57 +1,46 @@
-export const generateTextShadowAttributies = (controlName, defaults = {}) => {
-  const { enableTransition = false } = defaults;
+export const generateTextShadowAttributies = (controlName) => {
+	const shdAttrs = {
+		// shadow attributes
+		[`${controlName}shadowColor`]: {
+			type: 'string',
+		},
+		[`${controlName}shadowUnit`]: {
+			type: 'string',
+			default: 'px',
+		},
+		[`${controlName}hShadow`]: {
+			type: 'number',
+		},
+		[`${controlName}vShadow`]: {
+			type: 'number',
+		},
+		[`${controlName}blur`]: {
+			type: 'number',
+		},
+	};
 
-  const shdAttrs = {
-    // shadow attributes  ⬇
-    [`${controlName}shadowColor`]: {
-      type: 'string',
-    },
-    [`${controlName}hShadow`]: {
-      type: 'number',
-    },
-    [`${controlName}vShadow`]: {
-      type: 'number',
-    },
-    [`${controlName}blur`]: {
-      type: 'number',
-    },
-
-  };
-
-  if (enableTransition) {
-    return {
-      ...shdAttrs,
-    };
-  } else {
-    return {
-      ...shdAttrs,
-      [`${controlName}shadowTransition`]: {
-        type: 'number',
-        default: 0.5,
-      },
-    };
-  }
+	return {
+		...shdAttrs,
+	};
 };
 
 export const generateTextShadowStyles = ({ controlName, attributes }) => {
-  const {
-    [`${controlName}shadowColor`]: shadowColor,
-    [`${controlName}hShadow`]: hShadow = 0,
-    [`${controlName}vShadow`]: vShadow = 0,
-    [`${controlName}blur`]: blur = 0,
-    [`${controlName}shadowTransition`]: shadowTransition,
-  } = attributes;
+	const {
+		[`${controlName}shadowColor`]: shadowColor,
+		[`${controlName}shadowUnit`]: shadowUnit,
+		[`${controlName}hShadow`]: hShadow = 0,
+		[`${controlName}vShadow`]: vShadow = 0,
+		[`${controlName}blur`]: blur = 0,
+	} = attributes;
 
-  const textShadowStyle = `${shadowColor
-    ? `text-shadow: ${hShadow}px ${vShadow}px ${blur}px ${shadowColor};`
-    : ' '
-    }
+	const textShadowStyle = `${
+		shadowColor
+			? `text-shadow: ${hShadow}${shadowUnit} ${vShadow}${shadowUnit} ${blur}${shadowUnit} ${shadowColor};`
+			: ' '
+	}
 	`;
 
-  const transitionStyle = `text-shadow ${shadowTransition || 0}s `;
-
-  return {
-    textShadowStyle,
-    transitionStyle,
-  };
+	return {
+		textShadowStyle,
+	};
 };

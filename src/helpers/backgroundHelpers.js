@@ -74,7 +74,7 @@ export const generateBackgroundAttributes = (controlName, defaults = {}) => {
 			type: 'string',
 		},
 		[`${controlName}bgImageID`]: {
-			type: 'string',
+			type: 'number',
 		},
 		[`${controlName}bgImgAttachment`]: {
 			type: 'string',
@@ -194,7 +194,7 @@ export const generateBackgroundAttributes = (controlName, defaults = {}) => {
 			type: 'string',
 		},
 		[`hov_${controlName}bgImageID`]: {
-			type: 'string',
+			type: 'number',
 		},
 		[`hov_${controlName}bgImgAttachment`]: {
 			type: 'string',
@@ -374,7 +374,7 @@ export const generateBackgroundAttributes = (controlName, defaults = {}) => {
 			type: 'string',
 		},
 		[`hov_${controlName}ovl_bgImageID`]: {
-			type: 'string',
+			type: 'number',
 		},
 		[`hov_${controlName}ovl_bgImgAttachment`]: {
 			type: 'string',
@@ -414,7 +414,7 @@ export const generateBackgroundAttributes = (controlName, defaults = {}) => {
 			type: 'string',
 		},
 		[`${controlName}ovl_bgImageID`]: {
-			type: 'string',
+			type: 'number',
 		},
 		[`${controlName}ovl_bgImgAttachment`]: {
 			type: 'string',
