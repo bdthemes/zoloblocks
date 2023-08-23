@@ -56,8 +56,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @since 0.0.1
          * @return void
          */
-        public function block_assets_loader()
-        {
+        public function block_assets_loader() {
             wp_register_style(
                 'zolo-block-common-style',
                 ZOLO_ADMIN_URL . 'dist/style.css',
@@ -72,6 +71,34 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 [],
                 ZOLO_VERSION
             );
+
+            // enqueue magnific popup css + js
+
+            if( ! is_admin( ) ) {
+                wp_enqueue_style(
+                    'zolo-magnific-popup',
+                    ZOLO_ADMIN_URL . 'assets/css/magnificpopup/magnific-popup.css',
+                    [],
+                    ZOLO_VERSION
+                );
+
+                wp_enqueue_script(
+                    'zolo-magnific-popup',
+                    ZOLO_ADMIN_URL . 'assets/js/magnific-popup/jquery.magnific-popup.min.js',
+                    [ 'jquery' ],
+                    ZOLO_VERSION,
+                    true
+                );
+
+                wp_enqueue_script(
+                    'zolo-magnific-popup-script',
+                    ZOLO_ADMIN_URL . 'assets/js/scripts.js',
+                    [ 'jquery' ],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
+
         }
 
         /**

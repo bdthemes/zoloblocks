@@ -1,15 +1,16 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"title": "Advanced Icon Box",
-	"icon": "tide",
-	"name": "zolo/advanced-icon-box",
-	"category": "zolo-blocks",
-	"keywords": ["icon", "advanced icon box"],
-	"description": "Advanced icon box description",
-	"apiVersion": 2,
-	"textdomain": "zolo-blocks",
-	"supports": {
-		"anchor": true
-	},
-	"editorScript": ""
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Advanced Icon Box",
+    "icon": "tide",
+    "name": "zolo/advanced-icon-box",
+    "category": "zolo-blocks",
+    "keywords": ["icon", "advanced icon box"],
+    "description": "Advanced icon box description",
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "supports": {
+        "anchor": true,
+        "align": ["wide", "full"]
+    },
+    "editorScript": ""
 }

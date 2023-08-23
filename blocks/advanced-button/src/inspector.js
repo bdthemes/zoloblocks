@@ -454,7 +454,9 @@ function Inspector(props) {
 
                                         <NormalBGControl resRequiredProps={resRequiredProps} controlName={BUTTON_BG} noMainBGImg={false} />
 
-                                        <BoxShadowControl controlName={BUTTON_BOX_SHADOW} resRequiredProps={resRequiredProps} />
+                                        {preset !== 'button-4' && (
+                                            <BoxShadowControl controlName={BUTTON_BOX_SHADOW} resRequiredProps={resRequiredProps} />
+                                        )}
                                     </>
                                 }
                                 hoverComponents={
