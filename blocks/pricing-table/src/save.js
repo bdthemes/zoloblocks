@@ -17,6 +17,7 @@ const Save = ({ attributes }) => {
         period,
         showFeatureHeading,
         featureTitle,
+        showFeatureDesc,
         featureDesc,
         features,
         showBtn,
@@ -96,12 +97,9 @@ const Save = ({ attributes }) => {
                 </div>
 
                 <div className="zolo-features-info">
-                    {showFeatureHeading && (
-                        <>
-                            <RichText.Content tagName="div" value={featureTitle} className="zolo-features-title" />
-                            <RichText.Content tagName="div" value={featureDesc} className="zolo-features-desc" />
-                        </>
-                    )}
+                    {showFeatureHeading && <RichText.Content tagName="div" value={featureTitle} className="zolo-features-title" />}
+
+                    {showFeatureDesc && <RichText.Content tagName="div" value={featureDesc} className="zolo-features-desc" />}
 
                     {features.length !== 0 && (
                         <ul className="features">

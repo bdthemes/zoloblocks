@@ -149,7 +149,7 @@
 	* Button Style: 04
 	*/
     &.button-4 {
-        background: linear-gradient(45deg, transparent 5%, var(--color-bg4) 5%);
+        background: var(--color-bg4);
         box-shadow: 6px 0px 0px var(--color-bg5);
         outline: transparent;
         position: relative;
@@ -161,8 +161,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent 3%, var(--color-bg5) 3%, var(--color-bg5) 5%, var(--color-bg4) 5%);
-            text-shadow: -3px -3px 0px var(--color-bg6), 3px 3px 0px var(--color-bg5);
+            background: var(--color-bg4);
+            text-shadow: -3px -3px 0px var(--color-bg6);
             clip-path: var(--slice-0);
         }
         &:hover {

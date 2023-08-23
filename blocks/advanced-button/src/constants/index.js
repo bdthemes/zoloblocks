@@ -42,3 +42,23 @@ export const ICON_BORDER_RADIUS = 'btnIconBorderRadius';
 export const ICON_BOX_SHADOW = 'btnIconBoxShadow';
 export const ICON_HOVER_BOX_SHADOW = 'btnIconHoverBoxShadow';
 export const ICON_PADDING = 'btnIconPadding';
+
+/**
+ * Presets Styles
+ */
+
+export const PO_SWIDTH = 'presetOSWidth';
+
+export const PT_BORDER = 'presetTBorder';
+export const PT_BORDER_RADIUS = 'presetTRadius';
+
+export const PTH_BORDER = 'presetTHBorder';
+export const PTH_BORDER_RADIUS = 'presetTHRadius';
+
+export const PF_SWIDTH = 'presetFSWidth';
+
+export const PFV_BORDER = 'presetFVBorder';
+export const PFV_BORDER_RADIUS = 'presetFVRadius';
+
+export const PS_BORDER = 'presetSBorder';
+export const PS_BORDER_RADIUS = 'presetSRadius';

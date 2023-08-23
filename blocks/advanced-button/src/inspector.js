@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TextControl } from '@wordpress/components';
+import { PanelBody, SelectControl, TextControl, RangeControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 
@@ -46,6 +46,16 @@ import {
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
     ICON_PADDING,
+    PO_SWIDTH,
+    PT_BORDER,
+    PT_BORDER_RADIUS,
+    PTH_BORDER,
+    PTH_BORDER_RADIUS,
+    PF_SWIDTH,
+    PFV_BORDER,
+    PFV_BORDER_RADIUS,
+    PS_BORDER,
+    PS_BORDER_RADIUS,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -72,7 +82,7 @@ function Inspector(props) {
         presetTwoStyles,
         presetThreeStyles,
         presetFourStyles,
-        presetFiveStyles,
+        presetSixStyle,
         presetSevenStyles,
         presetEightStyles,
         presetTenStyles,
@@ -189,6 +199,13 @@ function Inspector(props) {
                             <PanelBody title={__('Preset', 'zolo-blocks')} initialOpen={false}>
                                 {preset === 'button-1' && (
                                     <Fragment>
+                                        <ResRangeControl
+                                            label={__('Shadow Width', 'zolo-blocks')}
+                                            controlName={PO_SWIDTH}
+                                            resRequiredProps={resRequiredProps}
+                                            min={1}
+                                            max={100}
+                                        />
                                         <ColorControl
                                             label={__('Shadow Color', 'zolo-blocks')}
                                             color={presetOneStyles && presetOneStyles.shadowColor}
@@ -205,6 +222,17 @@ function Inspector(props) {
                                 )}
                                 {preset === 'button-2' && (
                                     <Fragment>
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={PT_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zolo-blocks')}
+                                            controlName={PT_BORDER_RADIUS}
+                                            resRequiredProps={resRequiredProps}
+                                            forBorderRadius={true}
+                                        />
                                         <TabPanelControl
                                             normalComponents={
                                                 <Fragment>
@@ -255,47 +283,111 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={PTH_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zolo-blocks')}
+                                            controlName={PTH_BORDER_RADIUS}
+                                            resRequiredProps={resRequiredProps}
+                                            forBorderRadius={true}
+                                        />
                                     </Fragment>
                                 )}
                                 {preset === 'button-4' && (
                                     <Fragment>
-                                        <ColorControl
-                                            label={__('Overlay Color 1', 'zolo-blocks')}
-                                            color={presetFourStyles && presetFourStyles.colorOne}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    presetFourStyles: {
-                                                        ...presetFourStyles,
-                                                        colorOne: value,
-                                                    },
-                                                })
-                                            }
+                                        <ResRangeControl
+                                            label={__('Shadow Width', 'zolo-blocks')}
+                                            controlName={PF_SWIDTH}
+                                            resRequiredProps={resRequiredProps}
+                                            min={1}
+                                            max={100}
                                         />
-                                        <ColorControl
-                                            label={__('Overlay Color 2', 'zolo-blocks')}
-                                            color={presetFourStyles && presetFourStyles.colorTwo}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    presetFourStyles: {
-                                                        ...presetFourStyles,
-                                                        colorTwo: value,
-                                                    },
-                                                })
+                                        <TabPanelControl
+                                            normalComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Shadow Color', 'zolo-blocks')}
+                                                        color={presetFourStyles && presetFourStyles.shadowColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                presetFourStyles: {
+                                                                    ...presetFourStyles,
+                                                                    shadowColor: value,
+                                                                },
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            }
+                                            hoverComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Overlay Background', 'zolo-blocks')}
+                                                        color={presetFourStyles && presetFourStyles.colorOne}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                presetFourStyles: {
+                                                                    ...presetFourStyles,
+                                                                    colorOne: value,
+                                                                },
+                                                            })
+                                                        }
+                                                    />
+                                                    <ColorControl
+                                                        label={__('Text Color', 'zolo-blocks')}
+                                                        color={presetFourStyles && presetFourStyles.textColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                presetFourStyles: {
+                                                                    ...presetFourStyles,
+                                                                    textColor: value,
+                                                                },
+                                                            })
+                                                        }
+                                                    />
+                                                    <ColorControl
+                                                        label={__('Text Shadow Color', 'zolo-blocks')}
+                                                        color={presetFourStyles && presetFourStyles.textShadowColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                presetFourStyles: {
+                                                                    ...presetFourStyles,
+                                                                    textShadowColor: value,
+                                                                },
+                                                            })
+                                                        }
+                                                    />
+                                                </>
                                             }
                                         />
                                     </Fragment>
                                 )}
                                 {preset === 'button-5' && (
                                     <Fragment>
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={PFV_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zolo-blocks')}
+                                            controlName={PFV_BORDER_RADIUS}
+                                            resRequiredProps={resRequiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                    </Fragment>
+                                )}
+                                {preset === 'button-6' && (
+                                    <Fragment>
                                         <ColorControl
-                                            label={__('Border Color', 'zolo-blocks')}
-                                            color={presetFiveStyles && presetFiveStyles.borderColor}
+                                            label={__('Shadow Color', 'zolo-blocks')}
+                                            color={presetSixStyle && presetSixStyle}
                                             onChange={(value) =>
                                                 setAttributes({
-                                                    presetFiveStyles: {
-                                                        ...presetFiveStyles,
-                                                        borderColor: value,
-                                                    },
+                                                    presetSixStyle: value,
                                                 })
                                             }
                                         />
@@ -303,8 +395,19 @@ function Inspector(props) {
                                 )}
                                 {preset === 'button-7' && (
                                     <Fragment>
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={PS_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zolo-blocks')}
+                                            controlName={PS_BORDER_RADIUS}
+                                            resRequiredProps={resRequiredProps}
+                                            forBorderRadius={true}
+                                        />
                                         <ColorControl
-                                            label={__('Background Color', 'zolo-blocks')}
+                                            label={__('Shadow Background', 'zolo-blocks')}
                                             color={presetSevenStyles && presetSevenStyles.bgColor}
                                             onChange={(value) =>
                                                 setAttributes({

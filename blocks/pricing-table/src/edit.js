@@ -107,6 +107,7 @@ const Edit = (props) => {
         period,
         //features
         showFeatureHeading,
+        showFeatureDesc,
         featureTitle,
         featureDesc,
         features,
@@ -1159,24 +1160,24 @@ const Edit = (props) => {
 
                     <div className="zolo-features-info">
                         {showFeatureHeading && (
-                            <>
-                                <RichText
-                                    tagName="div"
-                                    className="zolo-features-title"
-                                    value={featureTitle}
-                                    onChange={(featureTitle) => setAttributes({ featureTitle })}
-                                    placeholder={__('Add feature title', 'zolo-blocks')}
-                                    allowedFormats={['bold', 'italic', 'strikethrough']}
-                                />
-                                <RichText
-                                    tagName="div"
-                                    className="zolo-features-desc"
-                                    value={featureDesc}
-                                    onChange={(featureDesc) => setAttributes({ featureDesc })}
-                                    placeholder={__('Add feature description', 'zolo-blocks')}
-                                    allowedFormats={['bold', 'italic', 'strikethrough']}
-                                />
-                            </>
+                            <RichText
+                                tagName="div"
+                                className="zolo-features-title"
+                                value={featureTitle}
+                                onChange={(featureTitle) => setAttributes({ featureTitle })}
+                                placeholder={__('Add feature title', 'zolo-blocks')}
+                                allowedFormats={['bold', 'italic', 'strikethrough']}
+                            />
+                        )}
+                        {showFeatureDesc && (
+                            <RichText
+                                tagName="div"
+                                className="zolo-features-desc"
+                                value={featureDesc}
+                                onChange={(featureDesc) => setAttributes({ featureDesc })}
+                                placeholder={__('Add feature description', 'zolo-blocks')}
+                                allowedFormats={['bold', 'italic', 'strikethrough']}
+                            />
                         )}
 
                         {features.length !== 0 && (
