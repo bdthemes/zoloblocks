@@ -7,7 +7,7 @@ import Save from './save';
 import './style.scss';
 
 registerBlockType(metadata, {
-	attributes,
-	edit: Edit,
-	save: Save,
+    attributes,
+    edit: Edit,
+    save: Save,
 });
