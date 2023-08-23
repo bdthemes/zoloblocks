@@ -85,7 +85,7 @@ const attributes = {
 
     // column count
     ...generateResCounterAttributies(COLUMN_COUNT, {
-        defaultRange: 2,
+        defaultRange: 3,
     }),
     //columns gaps
     ...generateResRangeAttributies(COLUMNS_GAP),

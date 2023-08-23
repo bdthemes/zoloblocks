@@ -70,7 +70,7 @@ function Inspector(props) {
                     <>
                         <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
-                                label={__('Preset', 'zolo-blocks')}
+                                label={__('Preset Designs', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
                                 onChange={(value) =>
