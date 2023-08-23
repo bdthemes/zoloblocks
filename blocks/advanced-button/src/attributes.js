@@ -28,6 +28,16 @@ import {
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
     ICON_PADDING,
+    PO_SWIDTH,
+    PT_BORDER,
+    PT_BORDER_RADIUS,
+    PTH_BORDER,
+    PTH_BORDER_RADIUS,
+    PF_SWIDTH,
+    PFV_BORDER,
+    PFV_BORDER_RADIUS,
+    PS_BORDER,
+    PS_BORDER_RADIUS,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -69,6 +79,28 @@ const attributes = {
     ...generateBoxShadowAttributies(ICON_BOX_SHADOW),
     ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
     ...generateDimensionAttributes(ICON_PADDING),
+
+    // presets
+    ...generateResRangeAttributies(PO_SWIDTH, {
+        defaultRange: 1,
+    }),
+
+    ...generateBorderAttributies(PT_BORDER),
+    ...generateDimensionAttributes(PT_BORDER_RADIUS),
+
+    ...generateBorderAttributies(PTH_BORDER),
+    ...generateDimensionAttributes(PTH_BORDER_RADIUS),
+
+    ...generateResRangeAttributies(PF_SWIDTH, {
+        defaultRange: 6,
+    }),
+
+    ...generateBorderAttributies(PFV_BORDER),
+    ...generateDimensionAttributes(PFV_BORDER_RADIUS),
+
+    ...generateBorderAttributies(PS_BORDER),
+    ...generateDimensionAttributes(PS_BORDER_RADIUS),
+
     //Block specific Attributes
     preset: {
         type: 'string',
@@ -96,44 +128,19 @@ const attributes = {
     presetFourStyles: {
         type: 'object',
         default: {
+            shadowColor: '',
             colorOne: '',
-            colorTwo: '',
+            textColor: '',
+            textShadowColor: '',
         },
     },
-    presetFiveStyles: {
-        type: 'object',
-        default: {
-            borderColor: '',
-        },
+    presetSixStyle: {
+        type: 'string',
     },
     presetSevenStyles: {
         type: 'object',
         default: {
             bgColor: '',
-        },
-    },
-    presetEightStyles: {
-        type: 'object',
-        default: {
-            overlayColor: '',
-        },
-    },
-    presetTenStyles: {
-        type: 'object',
-        default: {
-            outlineColor: '#373b44',
-        },
-    },
-    presetElevenStyles: {
-        type: 'object',
-        default: {
-            overlayBgColor: '',
-        },
-    },
-    presetTwelveStyles: {
-        type: 'object',
-        default: {
-            overlayBgColor: '',
         },
     },
     label: {

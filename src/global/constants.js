@@ -177,6 +177,53 @@ export const FLEX_ALIGN_OPTIONS = [
     },
 ];
 
+export const FLEX_HORIZONTAL_OPTIONS = [
+    {
+        label: 'Left',
+        value: 'flex-start',
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2V22" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <rect
+                    x="7"
+                    y="8"
+                    width="12"
+                    height="8"
+                    rx="1"
+                    fill="none"
+                    stroke="#4D4D4D"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1"
+                ></rect>
+            </svg>
+        ),
+    },
+    {
+        label: 'Center',
+        value: 'center',
+        icon: (
+            <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3.33334" y="4.16669" width="13.3333" height="4.16667" rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x={5} y="11.6667" width={10} height="4.16667" rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+                <path d="M10 8.33331L10 11.6666" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10 15.8333L10 18.3333" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10 1.66669V4.16669" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Right',
+        value: 'flex-end',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+];
+
 export const HEADING = [
     { label: __('H1', 'zolo-blocks'), value: 'h1' },
     { label: __('H2', 'zolo-blocks'), value: 'h2' },

@@ -2,6 +2,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import {
     BaseControl,
+    CardDivider,
     __experimentalDivider as Divider,
     PanelBody,
     SelectControl,
@@ -58,6 +59,7 @@ import {
     FEATURE_ITEM_GAP,
     FEATURE_MARGIN,
     FEATURE_PADDING,
+    FEATURE_ICON_PADDING,
     ORGINAL_PRICE_MARGIN,
     PERIOD_MARGIN,
     PRICE_MARGIN,
@@ -73,6 +75,11 @@ import {
     WRAPPER_MARGIN,
     WRAPPER_PADDING,
     WRAPPER_SHADOW,
+    RIBBON_MARGIN,
+    RIBBON_PADDING,
+    RIBBON_BORDER,
+    RIBBON_RADIUS,
+    RIBBON_BG,
 } from './constants';
 import {
     BTN_TYPOGRAPHY,
@@ -148,7 +155,6 @@ const Inspector = ({ attributes, setAttributes }) => {
         chatBtnHoverBorderColor,
         //ribbon style
         ribbonColor,
-        ribbonBgColor,
     } = attributes;
 
     const resRequiredProps = {
@@ -409,6 +415,17 @@ const Inspector = ({ attributes, setAttributes }) => {
                 }
                 styleTab={
                     <>
+                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
+                            <BorderControl
+                                label={__('Border', 'zolo-blocks')}
+                                controlName={WRAPPER_BORDER}
+                                resRequiredProps={resRequiredProps}
+                            />
+                            <BoxShadowControl controlName={WRAPPER_SHADOW} resRequiredProps={resRequiredProps} />
+                            <BackgroundControl controlName={WRAPPER_BG} resRequiredProps={resRequiredProps} />
+                            <ResDimensionsControl label="Margin" controlName={WRAPPER_MARGIN} resRequiredProps={resRequiredProps} />
+                            <ResDimensionsControl label="Padding" controlName={WRAPPER_PADDING} resRequiredProps={resRequiredProps} />
+                        </PanelBody>
                         <PanelBody title={__('Header', 'zolo-blocks')} initialOpen={false}>
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
@@ -717,13 +734,20 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={FEATURE_MARGIN}
                                 resRequiredProps={resRequiredProps}
-                                forBorderRadius={true}
+                                forBorderRadius={false}
                             />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={FEATURE_PADDING}
                                 resRequiredProps={resRequiredProps}
-                                forBorderRadius={true}
+                                forBorderRadius={false}
+                            />
+                            <CardDivider />
+                            <ResDimensionsControl
+                                label={__('Icon Padding', 'zolo-blocks')}
+                                controlName={FEATURE_ICON_PADDING}
+                                resRequiredProps={resRequiredProps}
+                                forBorderRadius={false}
                             />
                             <ColorControl
                                 label={__('Icon Color', 'zolo-blocks')}
@@ -940,33 +964,34 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     })
                                 }
                             />
-                            <ColorControl
-                                label={__('Background', 'zolo-blocks')}
-                                color={ribbonBgColor}
-                                onChange={(val) =>
-                                    setAttributes({
-                                        ribbonBgColor: val,
-                                    })
-                                }
-                            />
-                        </PanelBody>
-                    </>
-                }
-                advancedTab={
-                    <>
-                        <PanelBody title={__('Block', 'zolo-blocks')} initialOpen={false}>
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
-                                controlName={WRAPPER_BORDER}
+                                controlName={RIBBON_BORDER}
                                 resRequiredProps={resRequiredProps}
                             />
-                            <BoxShadowControl controlName={WRAPPER_SHADOW} resRequiredProps={resRequiredProps} />
-                            <BackgroundControl controlName={WRAPPER_BG} resRequiredProps={resRequiredProps} />
-                            <ResDimensionsControl label="Margin" controlName={WRAPPER_MARGIN} resRequiredProps={resRequiredProps} />
-                            <ResDimensionsControl label="Padding" controlName={WRAPPER_PADDING} resRequiredProps={resRequiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={RIBBON_RADIUS}
+                                resRequiredProps={resRequiredProps}
+                                forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={RIBBON_PADDING}
+                                resRequiredProps={resRequiredProps}
+                                forBorderRadius={false}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={RIBBON_MARGIN}
+                                resRequiredProps={resRequiredProps}
+                                forBorderRadius={false}
+                            />
+                            <NormalBGControl noMainBGImg={true} controlName={RIBBON_BG} resRequiredProps={resRequiredProps} />
                         </PanelBody>
                     </>
                 }
+                advancedTab={<></>}
             />
         </InspectorControls>
     );
