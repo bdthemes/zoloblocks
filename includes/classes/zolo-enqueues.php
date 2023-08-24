@@ -56,8 +56,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @since 0.0.1
          * @return void
          */
-        public function block_assets_loader()
-        {
+        public function block_assets_loader() {
             wp_register_style(
                 'zolo-block-common-style',
                 ZOLO_ADMIN_URL . 'dist/style.css',
