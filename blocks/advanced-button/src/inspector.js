@@ -454,7 +454,7 @@ function Inspector(props) {
 
                                         <NormalBGControl resRequiredProps={resRequiredProps} controlName={BUTTON_BG} noMainBGImg={false} />
 
-                                        {preset !== 'button-4' && (
+                                        {preset !== 'button-4' && preset !== 'button-6' && (
                                             <BoxShadowControl controlName={BUTTON_BOX_SHADOW} resRequiredProps={resRequiredProps} />
                                         )}
                                     </>
