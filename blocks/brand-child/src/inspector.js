@@ -22,12 +22,14 @@ const {
     ImageAvatar,
     ResRangeControl,
     LinkControl,
+    IconicBtnGroup,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
     CONTAINER_HEIGHT,
     CONTENT_ALIGNMENT,
+    CONTENT_PADDING,
     TITLE_TEXT_STROKE,
     LINK_TEXT_STROKE,
     LINK_MARGIN,
@@ -47,7 +49,7 @@ import {
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { DEFAULT_ALIGNS, HEADING } from '../../../src/global/constants';
+import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS, FLEX_HORIZONTAL_OPTIONS, HEADING } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -64,6 +66,8 @@ function Inspector(props) {
         linkColor,
         linkHoverColor,
         containerHoverBorderColor,
+        contentHorizontalPosition,
+        contentVerticalPosition,
     } = attributes;
 
     const resRequiredProps = {
@@ -72,8 +76,6 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
-
-    console.log(attributes);
 
     return (
         <InspectorControls key="controls">
@@ -188,14 +190,6 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={false}>
-                            <ResAlignmentControl
-                                label={__('Content Alignment', 'zolo-blocks')}
-                                controlName={CONTENT_ALIGNMENT}
-                                resRequiredProps={resRequiredProps}
-                                alignOptions={DEFAULT_ALIGNS}
-                            />
-                        </PanelBody>
                         <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
                             <ResRangeControl
                                 label={__('Height', 'zolo-blocks')}
@@ -256,7 +250,32 @@ function Inspector(props) {
                                 }
                             />
                         </PanelBody>
-
+                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
+                            <ResAlignmentControl
+                                label={__('Alignment', 'zolo-blocks')}
+                                controlName={CONTENT_ALIGNMENT}
+                                resRequiredProps={resRequiredProps}
+                                alignOptions={DEFAULT_ALIGNS}
+                            />
+                            <IconicBtnGroup
+                                label={__('Horizontal Position', 'zolo-blocks')}
+                                value={contentHorizontalPosition}
+                                onChange={(value) => setAttributes({ contentHorizontalPosition: value })}
+                                options={FLEX_HORIZONTAL_OPTIONS}
+                            />
+                            <IconicBtnGroup
+                                label={__('Vertical Position', 'zolo-blocks')}
+                                value={contentVerticalPosition}
+                                onChange={(value) => setAttributes({ contentVerticalPosition: value })}
+                                options={FLEX_ALIGN_OPTIONS}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={CONTENT_PADDING}
+                                resRequiredProps={resRequiredProps}
+                                forBorderRadius={false}
+                            />
+                        </PanelBody>
                         <PanelBody title={__('Photo', 'zolo-blocks')} initialOpen={false}>
                             <ResRangeControl
                                 label={__('Photo Size', 'zolo-blocks')}

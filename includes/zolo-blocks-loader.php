@@ -45,8 +45,8 @@ class Zolo_Blocks_Loader
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
-        require_once ZOLO_DIR_PATH . 'includes/Classes/zolo-ajax.php';
-        require_once ZOLO_DIR_PATH . 'includes/Classes/zolo-enqueues.php';
+        require_once ZOLO_DIR_PATH . '/includes/Classes/zolo-ajax.php';
+        require_once ZOLO_DIR_PATH . '/includes/Classes/zolo-enqueues.php';
         require_once ZOLO_DIR_PATH . '/includes/Classes/font-loader.php';
         require_once ZOLO_DIR_PATH . '/includes/Classes/post-meta.php';
 

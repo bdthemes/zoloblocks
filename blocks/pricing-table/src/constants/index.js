@@ -53,6 +53,7 @@ export const FEATURE_ICON_SIZE = 'featureIconSize';
 export const FEATURE_MARGIN = 'featureMargin';
 export const FEATURE_PADDING = 'featurePadding';
 export const FEATURE_ITEM_GAP = 'featureItemGap';
+export const FEATURE_ICON_PADDING = 'featureIconPadding';
 
 // primary button style
 export const BTN_MARGIN = 'btnMargin';
@@ -80,3 +81,10 @@ export const WRAPPER_PADDING = 'wrapPadding';
 export const WRAPPER_BG = 'wrapBg';
 export const WRAPPER_BORDER = 'wrapBorder';
 export const WRAPPER_SHADOW = 'wrapShadow';
+
+// ribbon style
+export const RIBBON_MARGIN = 'ribbonMargin';
+export const RIBBON_PADDING = 'ribbonPadding';
+export const RIBBON_BORDER = 'ribbonBorder';
+export const RIBBON_RADIUS = 'ribbonRadius';
+export const RIBBON_BG = 'ribbonBg';

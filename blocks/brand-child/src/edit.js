@@ -34,6 +34,7 @@ import {
     BLOCK_PREFIX,
     CONTAINER_HEIGHT,
     CONTENT_ALIGNMENT,
+    CONTENT_PADDING,
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
@@ -52,7 +53,6 @@ import {
     CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_BACKGROUND,
     CONTAINER_HOVER_BACKGROUND,
-    IMAGE_HEIGHT,
     IMAGE_WIDTH,
 } from './constants';
 
@@ -76,6 +76,8 @@ export default function Edit(props) {
         linkHoverColor,
         blockStyle,
         containerHoverBorderColor,
+        contentHorizontalPosition,
+        contentVerticalPosition,
     } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -112,6 +114,15 @@ export default function Edit(props) {
     } = generateResAlignmentStyle({
         controlName: CONTENT_ALIGNMENT,
         property: 'text-align',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: contentDeskPadding,
+        dimensionStylesTab: contentTabPadding,
+        dimensionStylesMobile: contentMobPadding,
+    } = generateDimensionStyle({
+        controlName: CONTENT_PADDING,
+        styleFor: 'padding',
         attributes,
     });
 
@@ -321,56 +332,6 @@ export default function Edit(props) {
     });
 
     /**
-     * Presets Based Styles
-     */
-    // let presetStyles;
-    // switch (preset) {
-    //     case 'style-1':
-    //         presetStyles = `
-    // 			.zolo-block-icon-wrap{
-    // 				justify-content: ${presetOneStyles && presetOneStyles.iconPosition};
-    // 			}
-    // 			.zolo-block-link-btn{
-    // 				justify-content: ${presetOneStyles && presetOneStyles.buttonPosition};
-    // 			}
-    // 			.zolo-box-button{
-    // 				flex-direction: ${presetOneStyles && presetOneStyles.buttonIconPosition};
-    // 			}
-    // 		`;
-    //         break;
-    //     case 'style-2':
-    //         presetStyles = `
-    // 			.zolo-block-icon-wrap{
-    // 				align-items: ${presetTwoStyles && presetTwoStyles.iconPosition};
-    // 			}
-    // 			.zolo-block-link-btn{
-    // 				justify-content: ${presetTwoStyles && presetTwoStyles.buttonPosition};
-    // 			}
-    // 			.zolo-box-button{
-    // 				flex-direction: ${presetTwoStyles && presetTwoStyles.buttonIconPosition};
-    // 			}
-    // 		`;
-    //         break;
-    //     case 'style-3':
-    //         presetStyles = `
-    // 			.${uniqueId}
-    // 			.zolo-block-icon-wrap{
-    // 				align-items: ${presetThreeStyles && presetThreeStyles.iconPosition};
-    // 			}
-    // 			.zolo-block-link-btn{
-    // 				justify-content: ${presetThreeStyles && presetThreeStyles.buttonPosition};
-    // 			}
-    // 			.zolo-box-button{
-    // 				flex-direction: ${presetThreeStyles && presetThreeStyles.buttonIconPosition};
-    // 			}
-    // 		`;
-    //         break;
-    //     case 'style-4':
-    //         break;
-    //     default:
-    //         presetStyles = '';
-    // }
-    /**
      * All Style Combination
      */
 
@@ -400,6 +361,9 @@ export default function Edit(props) {
         }
 		.${uniqueId} .zb-brand-content{
 			${containerHoverDeskBGStyle}
+            ${contentHorizontalPosition ? `align-items:${contentHorizontalPosition};` : ''}
+            ${contentVerticalPosition ? `justify-content:${contentVerticalPosition};` : ''}
+            ${contentDeskPadding}
 		}		
 		.${uniqueId} .zb-brand-title{
 			${titleTypoDesk}
@@ -408,14 +372,14 @@ export default function Edit(props) {
 			${titleTextStrokeDesk}
 			color:${textColor};
 		}
-		.${uniqueId} .zb-brand-link{
+		.${uniqueId}.zb-brand-item .zb-brand-link{
 			${linkTypoDesk}
 			${linkMarginDesk}
 			${linkTextShadow}
 			${linkTextStrokeDesk}
 			color:${linkColor};
 		}
-		.${uniqueId} .zb-brand-link:hover{
+		.${uniqueId}.zb-brand-item .zb-brand-link:hover{
 			color:${linkHoverColor};
 		}
   	`;
@@ -440,6 +404,7 @@ export default function Edit(props) {
         }
         .${uniqueId} .zb-brand-content{
             ${containerHoverTabBGStyle}
+            ${contentTabPadding}
         }
         .${uniqueId} .zb-brand-title{
             ${titleTypoTab}
@@ -473,6 +438,7 @@ export default function Edit(props) {
         }
         .${uniqueId} .zb-brand-content{
             ${containerHoverMobBGStyle}
+            ${contentMobPadding}
         }
         .${uniqueId} .zb-brand-title{
             ${titleTypoMob}

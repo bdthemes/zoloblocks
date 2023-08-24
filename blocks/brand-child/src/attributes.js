@@ -19,6 +19,7 @@ import {
     LINK_TEXT_SHADOW,
     LINK_TEXT_STROKE,
     CONTENT_ALIGNMENT,
+    CONTENT_PADDING,
     LINK_MARGIN,
     CONTAINER_BACKGROUND,
     CONTAINER_HOVER_BACKGROUND,
@@ -61,7 +62,7 @@ const attributes = {
     ...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
         defaultAlign: 'center',
     }),
-
+    ...generateDimensionAttributes(CONTENT_PADDING),
     // container
     ...generateResRangeAttributies(CONTAINER_HEIGHT),
     ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
@@ -136,6 +137,14 @@ const attributes = {
     },
     containerHoverBorderColor: {
         type: 'string',
+    },
+    contentHorizontalPosition: {
+        type: 'string',
+        default: 'center',
+    },
+    contentVerticalPosition: {
+        type: 'string',
+        default: 'center',
     },
 };
 

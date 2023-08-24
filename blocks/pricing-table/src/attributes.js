@@ -51,6 +51,12 @@ import {
     WRAPPER_MARGIN,
     WRAPPER_PADDING,
     WRAPPER_SHADOW,
+    RIBBON_BG,
+    RIBBON_RADIUS,
+    RIBBON_BORDER,
+    RIBBON_MARGIN,
+    RIBBON_PADDING,
+    FEATURE_ICON_PADDING,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -316,6 +322,7 @@ const attributes = {
     ...generateDimensionAttributes(FEATURE_PADDING),
     ...generateResRangeAttributies(FEATURE_ICON_GAP),
     ...generateResRangeAttributies(FEATURE_ICON_SIZE),
+    ...generateDimensionAttributes(FEATURE_ICON_PADDING),
 
     //button
     ...generateDimensionAttributes(BTN_MARGIN),
@@ -340,6 +347,13 @@ const attributes = {
     ...generateDimensionAttributes(CBTN_RADIUS),
     ...generateBoxShadowAttributies(CBTN_SHADOW),
     ...generateBoxShadowAttributies(CBTN_HOVER_SHADOW),
+
+    // ribbon
+    ...generateDimensionAttributes(RIBBON_MARGIN),
+    ...generateDimensionAttributes(RIBBON_PADDING),
+    ...generateNormalBGAttributes(RIBBON_BG),
+    ...generateDimensionAttributes(RIBBON_RADIUS),
+    ...generateBorderAttributies(RIBBON_BORDER),
 
     //all typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),

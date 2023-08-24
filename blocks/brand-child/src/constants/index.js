@@ -34,6 +34,7 @@ export const TITLE_TEXT_STROKE = 'titleTextStroke';
 
 // content
 export const CONTENT_ALIGNMENT = 'ContentAlignment';
+export const CONTENT_PADDING = 'ContentPadding';
 
 // link
 export const LINK_TEXT_SHADOW = 'linkTextShadow';
