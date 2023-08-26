@@ -153,7 +153,8 @@ function Inspector(props) {
                                                 icon: value,
                                             })
                                         }
-                                        showHeading={true}
+                                        showHeading={true} //optional
+                                        disableDashicon={true} //optional
                                     />
 
                                     {iconType !== 'iconOnly' && (
