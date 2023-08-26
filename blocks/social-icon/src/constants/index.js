@@ -10,8 +10,6 @@ export const PRESETS = [
 	{ label: __('Default', 'zolo-blocks'), value: 'preset-1' },
 	{ label: __('Style 1', 'zolo-blocks'), value: 'preset-2' },
 	{ label: __('Style 2', 'zolo-blocks'), value: 'preset-3' },
-	{ label: __('Style 3', 'zolo-blocks'), value: 'preset-4' },
-	{ label: __('Style 4', 'zolo-blocks'), value: 'preset-5' },
 ];
 
 // button icon positions

@@ -104,6 +104,7 @@ const attributes = {
 	},
 	socialColor: {
 		type: 'string',
+		default: 'original',
 	},
 	socialTextColor: {
 		type: 'string',
@@ -116,10 +117,6 @@ const attributes = {
 	},
 	socialBgHoverColor: {
 		type: 'string',
-	},
-	showIcon: {
-		type: 'boolean',
-		default: false,
 	},
 	icon: {
 		type: 'string',
@@ -135,6 +132,9 @@ const attributes = {
 		type: 'string',
 	},
 	borderHoverColor: {
+		type: 'string',
+	},
+	presetBgColor: {
 		type: 'string',
 	},
 };

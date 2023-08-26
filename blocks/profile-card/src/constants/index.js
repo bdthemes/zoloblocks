@@ -18,8 +18,8 @@ export const PRESETS = [
 // Header Area
 export const HEADER_AREA_BORDER_RADIUS = 'HeaderAreaBorderRadius';
 export const HEADER_AREA_PADDING = 'HeaderAreaPadding';
-
 export const HEADER_BADGE_BORDER = 'HeaderBadgeBorder';
+export const HEADER_AREA_BG = 'HeaderAreaBg';
 
 // Badge
 export const BADGE_BG = 'BadgeBg';
