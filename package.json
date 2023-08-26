@@ -8,7 +8,25 @@
         "build": "wp-scripts build",
         "packages-update": "wp-scripts packages-update"
     },
-    "prettier": "@wordpress/prettier-config",
+    "prettier": {
+        "printWidth": 140,
+        "tabWidth": 4,
+        "useTabs": false,
+        "semi": true,
+        "singleQuote": true,
+        "quoteProps": "as-needed",
+        "jsxSingleQuote": false,
+        "trailingComma": "es5",
+        "bracketSpacing": true,
+        "jsxBracketSameLine": false,
+        "arrowParens": "always",
+        "requirePragma": false,
+        "insertPragma": false,
+        "proseWrap": "preserve",
+        "htmlWhitespaceSensitivity": "css",
+        "endOfLine": "lf",
+        "embeddedLanguageFormatting": "auto"
+    },
     "dependencies": {
         "@dnd-kit/core": "^6.0.8",
         "@dnd-kit/sortable": "^7.0.2",
@@ -45,10 +63,10 @@
         "html-react-parser": "^3.0.4",
         "lodash": "^4.17.21",
         "moment": "^2.29.1",
+        "node-sass": "^9.0.0",
         "react": "^18.0.0",
         "react-dom": "^17.0.2",
         "react-transition-group": "^4.4.2",
-        "node-sass": "^9.0.0",
         "sass-loader": "^13.3.2"
     }
 }
