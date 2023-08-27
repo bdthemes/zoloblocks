@@ -22,6 +22,20 @@ export const COLUMN_BORDER = 'columnBorder';
 export const COLUMN_BORDER_RADIUS = 'columnBRadius';
 export const COLUMN_SHADOW = 'columnShadow';
 
-// conatainer spacing
-export const CONTAINER_MARGIN = 'postContainerMargin';
-export const CONTAINER_PADDING = 'postContainerPadding';
+export const THUMBNAIL_BORDER = '';
+export const THUMBNAIL_BORDER_RADIUS = '';
+export const THUMBNAIL_BG = '';
+export const THUMBNAIL_BOX_SHADOW = '';
+export const THUMBNAIL_PADDING = '';
+export const THUMBNAIL_MARGIN = '';
+
+export const TITLE_MARGIN = 'titleMargin';
+export const EXCERPT_MARGIN = 'excerptMargin';
+
+
+//advanced
+export const WRAPPER_MARGIN = 'wrapMargin';
+export const WRAPPER_PADDING = 'wrapPadding';
+export const WRAPPER_BG = 'wrapBg';
+export const WRAPPER_BORDER = 'wrapBorder';
+export const WRAPPER_SHADOW = 'wrapShadow';

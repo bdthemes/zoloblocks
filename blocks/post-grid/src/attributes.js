@@ -2,13 +2,13 @@
  * Internal dependencies
  */
 const {
-  generateResAlignmentAttributies,
   generateResRangeAttributies,
   generateBorderAttributies,
   generateDimensionAttributes,
   generateBoxShadowAttributies,
-  generateTypographyAttributes,
-  generateNormalBGAttributes
+  generateNormalBGAttributes,
+  generateBackgroundAttributes,
+  generateTypographyAttributes
 } = window.zoloModule;
 
 import {
@@ -20,9 +20,23 @@ import {
   COLUMN_BORDER,
   COLUMN_BORDER_RADIUS,
   COLUMN_SHADOW,
-  CONTAINER_MARGIN,
-  CONTAINER_PADDING,
+  THUMBNAIL_PADDING,
+  THUMBNAIL_MARGIN,
+  THUMBNAIL_BG,
+  THUMBNAIL_BORDER,
+  THUMBNAIL_BORDER_RADIUS,
+  THUMBNAIL_BOX_SHADOW,
+  TITLE_MARGIN,
+  EXCERPT_MARGIN,
+  WRAPPER_MARGIN,
+  WRAPPER_PADDING,
+  WRAPPER_BG,
+  WRAPPER_BORDER,
+  WRAPPER_SHADOW,
+
 } from './constants';
+
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
   //Common Attributes
@@ -134,9 +148,26 @@ const attributes = {
   ...generateDimensionAttributes(COLUMN_BORDER_RADIUS),
   ...generateBoxShadowAttributies(COLUMN_SHADOW),
 
-  ...generateDimensionAttributes(CONTAINER_MARGIN),
-  ...generateDimensionAttributes(CONTAINER_PADDING),
+  ...generateDimensionAttributes(THUMBNAIL_MARGIN),
+  ...generateDimensionAttributes(THUMBNAIL_PADDING),
+  ...generateBorderAttributies(THUMBNAIL_BORDER),
+  ...generateDimensionAttributes(THUMBNAIL_BORDER_RADIUS),
+  ...generateNormalBGAttributes(THUMBNAIL_BG),
+  ...generateBoxShadowAttributies(THUMBNAIL_BOX_SHADOW),
 
+  ...generateDimensionAttributes(TITLE_MARGIN),
+  ...generateDimensionAttributes(EXCERPT_MARGIN),
+
+  ...generateTypographyAttributes(Object.values(typographyObjs)),
+
+  //advanced tab attributes
+  ...generateDimensionAttributes(WRAPPER_MARGIN),
+  ...generateDimensionAttributes(WRAPPER_PADDING),
+  ...generateBackgroundAttributes(WRAPPER_BG, {
+    defaultBgGradient: 'linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)',
+  }),
+  ...generateBorderAttributies(WRAPPER_BORDER),
+  ...generateBoxShadowAttributies(WRAPPER_SHADOW),
 };
 
 export default attributes;

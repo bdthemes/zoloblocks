@@ -7,22 +7,38 @@ import {
   COLUMN_BORDER,
   COLUMN_BORDER_RADIUS,
   COLUMN_SHADOW,
-  CONTAINER_MARGIN,
-  CONTAINER_PADDING
+  THUMBNAIL_PADDING,
+  THUMBNAIL_MARGIN,
+  THUMBNAIL_BG,
+  THUMBNAIL_BORDER,
+  THUMBNAIL_BORDER_RADIUS,
+  THUMBNAIL_BOX_SHADOW,
+  TITLE_MARGIN,
+  EXCERPT_MARGIN,
+  WRAPPER_MARGIN,
+  WRAPPER_PADDING,
+  WRAPPER_BG,
+  WRAPPER_BORDER,
+  WRAPPER_SHADOW,
 } from './constants';
-
+import { TITLE_TYPOGRAPHY, EXCERPT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 const {
   generateDimensionStyle,
   generateResRangeStyle,
   generateNormalBGControlStyles,
   generateBorderStyle,
-  generateBoxShadowStyles
+  generateBoxShadowStyles,
+  generateBackgroundControlStyles,
+  generateTypographyStyles
 } = window.zoloModule;
 
 function styles({ attributes, setAttributes }) {
   const {
     uniqueId,
     blockStyle,
+    titleColor,
+    titleHoverColor,
+    excerptColor
   } = attributes;
 
   const {
@@ -92,37 +108,175 @@ function styles({ attributes, setAttributes }) {
     controlName: COLUMN_SHADOW,
   });
 
-
-  // Container Margin
   const {
-    dimensionStylesDesktop: containerDeskMargin,
-    dimensionStylesTab: containerTabMargin,
-    dimensionStylesMobile: containerMobMargin,
+    dimensionStylesDesktop: thumbMarginDesk,
+    dimensionStylesTab: thumbMarginTab,
+    dimensionStylesMobile: thumbMarginMob,
   } = generateDimensionStyle({
-    controlName: CONTAINER_MARGIN,
+    controlName: THUMBNAIL_MARGIN,
     styleFor: 'margin',
     attributes,
   });
 
-  // Container Padding
   const {
-    dimensionStylesDesktop: containerDeskPadding,
-    dimensionStylesTab: containerTabPadding,
-    dimensionStylesMobile: containerMobPadding,
+    dimensionStylesDesktop: thumbPaddingDesk,
+    dimensionStylesTab: thumbPaddingTab,
+    dimensionStylesMobile: thumbPaddingMob,
   } = generateDimensionStyle({
-    controlName: CONTAINER_PADDING,
+    controlName: THUMBNAIL_PADDING,
     styleFor: 'padding',
     attributes,
   });
+
+  const {
+    backgroundStylesDesktop: thumbBgDesk,
+    backgroundStylesTab: thumbBgTab,
+    backgroundStylesMobile: thumbBgMob,
+  } = generateNormalBGControlStyles({
+    controlName: THUMBNAIL_BG,
+    attributes,
+    noMainBGImg: true,
+  });
+
+  const {
+    desktopBorderStyle: thumbBorderDesk,
+    tabBorderStyle: thumbBorderTab,
+    mobBorderStyle: thumbBorderMob,
+  } = generateBorderStyle({
+    controlName: THUMBNAIL_BORDER,
+    attributes,
+  });
+
+  const {
+    dimensionStylesDesktop: thumbBorderRadiusDesk,
+    dimensionStylesTab: thumbBorderRadiusTab,
+    dimensionStylesMobile: thumbBorderRadiusMob,
+  } = generateDimensionStyle({
+    controlName: THUMBNAIL_BORDER_RADIUS,
+    styleFor: 'border-radius',
+    attributes,
+  });
+
+  const { boxShadowStyle: thumbBoxShadow } = generateBoxShadowStyles({
+    attributes,
+    controlName: THUMBNAIL_BOX_SHADOW,
+  });
+
+  const {
+    typoStylesDesktop: titleTypoDesk,
+    typoStylesTab: titleTypoTab,
+    typoStylesMobile: titleTypoMob,
+  } = generateTypographyStyles({
+    prefixConstant: TITLE_TYPOGRAPHY,
+    defaultFontSize: 22,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: titleMarginDesk,
+    dimensionStylesTab: titleMarginTab,
+    dimensionStylesMobile: titleMarginMob,
+  } = generateDimensionStyle({
+    controlName: TITLE_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+  const {
+    typoStylesDesktop: excerptTypoDesk,
+    typoStylesTab: excerptTypoTab,
+    typoStylesMobile: excerptTypoMob,
+  } = generateTypographyStyles({
+    prefixConstant: EXCERPT_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: excerptMarginDesk,
+    dimensionStylesTab: excerptMarginTab,
+    dimensionStylesMobile: excerptMarginMob,
+  } = generateDimensionStyle({
+    controlName: EXCERPT_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+
+
+  //wrapper style generate
+  const {
+    dimensionStylesDesktop: wrapperMarginDesktop,
+    dimensionStylesTab: wrapperMarginTab,
+    dimensionStylesMobile: wrapperMarginMobile,
+  } = generateDimensionStyle({
+    controlName: WRAPPER_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: wrapperPaddingDesktop,
+    dimensionStylesTab: wrapperPaddingTab,
+    dimensionStylesMobile: wrapperPaddingMobile,
+  } = generateDimensionStyle({
+    controlName: WRAPPER_PADDING,
+    styleFor: 'padding',
+    attributes,
+  });
+  const {
+    backgroundStylesDesktop: wrapperBackgroundStylesDesktop,
+    hoverBackgroundStylesDesktop: wrapperHoverBackgroundStylesDesktop,
+    backgroundStylesTab: wrapperBackgroundStylesTab,
+    hoverBackgroundStylesTab: wrapperHoverBackgroundStylesTab,
+    backgroundStylesMobile: wrapperBackgroundStylesMobile,
+    hoverBackgroundStylesMobile: wrapperHoverBackgroundStylesMobile,
+    overlayStylesDesktop: wrapperOverlayStylesDesktop,
+    hoverOverlayStylesDesktop: wrapperHoverOverlayStylesDesktop,
+    overlayStylesTab: wrapperOverlayStylesTab,
+    hoverOverlayStylesTab: wrapperHoverOverlayStylesTab,
+    overlayStylesMobile: wrapperOverlayStylesMobile,
+    hoverOverlayStylesMobile: wrapperHoverOverlayStylesMobile,
+  } = generateBackgroundControlStyles({
+    attributes,
+    controlName: WRAPPER_BG,
+  });
+
+  const {
+    boxShadowStyle: wrapperShadow,
+    hoverBoxShadowstyle: wrapperHoverShadow,
+    transitionStyle: wrapperShadowTransition,
+  } = generateBoxShadowStyles({
+    attributes,
+    controlName: WRAPPER_SHADOW,
+  });
+
+  const {
+    desktopBorderStyle: wrapperBorderDesktop,
+    tabBorderStyle: wrapperBorderTab,
+    mobBorderStyle: wrapperBorderMob,
+  } = generateBorderStyle({
+    attributes,
+    controlName: WRAPPER_BORDER,
+  });
+
 
   /**
    * All Style Combination
    */
   const desktopAllStyle = `
       .${uniqueId}.wp-block-zolo-post-grid {
-        ${containerDeskMargin}
-        ${containerDeskPadding}
+        ${wrapperMarginDesktop}
+        ${wrapperPaddingDesktop}
+        ${wrapperBackgroundStylesDesktop}
+        ${wrapperBorderDesktop}
+        ${wrapperShadow}
       }
+     .${uniqueId}.wp-block-zolo-post-grid:hover{
+        ${wrapperHoverBackgroundStylesDesktop}
+        ${wrapperHoverShadow}
+      }
+     .${uniqueId}.wp-block-zolo-post-grid::before{
+          ${wrapperOverlayStylesDesktop}
+      }
+     .${uniqueId}.wp-block-zolo-post-grid:hover::before{
+        ${wrapperHoverOverlayStylesDesktop}
+      }
+
       .${uniqueId}.wp-block-zolo-post-grid.zolo-post-wrap{
         ${deskColumns}
         ${deskColumnsGap}
@@ -134,22 +288,42 @@ function styles({ attributes, setAttributes }) {
         ${columnDeskBorderRadius}
         ${columnBoxShadow}
       }
-    `;
-  const tabletAllStyle = `
-      .${uniqueId}.wp-block-zolo-post-grid {
-        ${containerTabMargin}
-        ${containerTabPadding}
+
+      .${uniqueId}.wp-block-zolo-post-grid .zolo-post-title{
+        ${titleMarginDesk}
+        ${titleTypoDesk}
       }
+      .${uniqueId}.wp-block-zolo-post-grid .zolo-post-title a{
+        ${titleColor ? `color:${titleColor};` : ''}
+      }
+      .${uniqueId}.wp-block-zolo-post-grid .zolo-post-title a:hover{
+        ${titleHoverColor ? `color:${titleHoverColor};` : ''}
+      }
+      .${uniqueId}.wp-block-zolo-post-grid .zolo-post-desc p{
+        ${excerptMarginDesk}
+        ${excerptTypoDesk}
+        ${excerptColor ? `color:${excerptColor};` : ''}
+      }
+
+      .${uniqueId}.wp-block-zolo-post-grid .zolo-post-image{
+        ${thumbMarginDesk}
+        ${thumbPaddingDesk}
+        ${thumbBgDesk}
+        ${thumbBorderDesk}
+        ${thumbBorderRadiusDesk}
+        ${thumbBoxShadow}
+      }
+
+    `;
+
+  const tabletAllStyle = `
       .${uniqueId}.wp-block-zolo-post-grid.zolo-post-wrap{
         ${tabColumns}
         ${tabColumnsGap}
       }
     `;
+
   const mobileAllStyle = `
-      .${uniqueId}.wp-block-zolo-post-grid {
-        ${containerMobMargin}
-        ${containerMobPadding}
-      }
       .${uniqueId}.wp-block-zolo-post-grid.zolo-post-wrap{
         ${mobColumns}
         ${mobColumnsGap}

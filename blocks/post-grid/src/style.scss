@@ -1,12 +1,5 @@
 .wp-block-zolo-post-grid {
-	* {
-		box-sizing: border-box;
-	}
-
-	/* global css start  */
-	:root {
-		--zb-post-hover-color: #3f1a46;
-	}
+	--zb-post-hover-color: #3f1a46;
 
 	&.zolo-post-wrap {
 		display: grid;
@@ -88,7 +81,7 @@
 
 	&.zolo-post-wrap .zolo-post-title a:hover,
 	&.zolo-post-wrap .zolo-post-meta-content a:hover {
-		color: var(--zb-post-hover-color) !important;
+		color: var(--zb-post-hover-color);
 	}
 
 	&.zolo-post-wrap .zolo-post-category {
