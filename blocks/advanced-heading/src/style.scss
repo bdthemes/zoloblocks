@@ -1,132 +1,74 @@
 .zolo-advanced-heading {
-	position: relative;
+    position: relative;
 }
 
 .zolo-transparent-heading-wrap {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 50%;
-	margin: 0;
-	font-size: 70px;
-	font-weight: 900;
-	text-transform: uppercase;
-	transform: translateY(-50%);
-	color: rgba(156, 156, 156);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin: 0;
+    font-size: 70px;
+    font-weight: 900;
+    text-transform: uppercase;
+    transform: translateY(-50%);
+    color: rgba(156, 156, 156);
 }
 
 .zolo-ah-subtitle {
-	margin: 0 0 4px;
-	font-size: 16px;
-	color: #323641;
-	font-weight: 500;
-	text-transform: capitalize;
+    margin: 0 0 4px;
+    font-size: 16px;
+    color: #323641;
+    font-weight: 500;
+    text-transform: capitalize;
 }
 
 .zolo-ah-title {
-	font-size: 35px;
-	margin: 0;
-	font-weight: 700;
-	color: #202224;
-	text-transform: capitalize;
+    font-size: 35px;
+    margin: 0;
+    font-weight: 700;
+    color: #202224;
+    text-transform: capitalize;
 
-	.zolo-ah-main-title {
-		display: inline-block;
-	}
+    .zolo-ah-main-title {
+        display: inline-block;
+    }
 }
 
 .zolo-ah-style-3 .zolo-ah-title {
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-image: url(https://www.elementpack.pro/demo/wp-content/uploads/2018/02/bg1.jpg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: url(https://www.elementpack.pro/demo/wp-content/uploads/2018/02/bg1.jpg);
 }
-
-.zolo-ah-style-2 .zolo-transparent-heading,
-.zolo-ah-style-6 .zolo-ah-title {
-	color: transparent;
-	-webkit-text-fill-color: transparent;
-}
-
-.zolo-ah-style-7 {
-	.zolo-ah-main-title {
-		background-color: #fff;
-		padding: 10px 20px;
-	}
-
-	.zolo-ah-title {
-		position: relative;
-		display: inline-block;
-		z-index: 1;
-
-		&::after,
-		&::before {
-			position: absolute;
-			content: '';
-			left: 0;
-			width: 100%;
-			height: 1px;
-			background-color: #1b5080;
-		}
-
-		&::before {
-			top: -4px;
-		}
-
-		&::after {
-			bottom: -5px;
-		}
-	}
-}
-
-.zolo-ah-style-8 {
-	.zolo-ah-title {
-
-		position: relative;
-		display: inline-block;
-		z-index: 1;
-
-		&::before {
-			position: absolute;
-			top: 0;
-			right: 0;
-			width: 10px;
-			height: 100%;
-			background-color: #ff1e1e;
-			content: '';
-		}
-	}
-}
-
-
 
 .zolo-transform-origin-top-left {
-	transform-origin: 0 0
+    transform-origin: 0 0;
 }
 
 .zolo-transform-origin-top-center {
-	transform-origin: 50% 0
+    transform-origin: 50% 0;
 }
 
 .zolo-transform-origin-top-right {
-	transform-origin: 100% 0
+    transform-origin: 100% 0;
 }
 
 .zolo-transform-origin-center-left {
-	transform-origin: 0 50%
+    transform-origin: 0 50%;
 }
 
 .zolo-transform-origin-center-right {
-	transform-origin: 100% 50%
+    transform-origin: 100% 50%;
 }
 
 .zolo-transform-origin-bottom-left {
-	transform-origin: 0 100%
+    transform-origin: 0 100%;
 }
 
 .zolo-transform-origin-bottom-center {
-	transform-origin: 50% 100%
+    transform-origin: 50% 100%;
 }
 
 .zolo-transform-origin-bottom-right {
-	transform-origin: 100% 100%
+    transform-origin: 100% 100%;
 }

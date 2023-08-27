@@ -15,6 +15,7 @@ import {
 	HEADER_AREA_BORDER_RADIUS,
 	HEADER_AREA_PADDING,
 	HEADER_BADGE_BORDER,
+	HEADER_AREA_BG,
 	BADGE_PADDING,
 	BADGE_BG,
 	BADGE_BORDER_RADIUS,
@@ -70,9 +71,6 @@ const attributes = {
 		default: 'default',
 	},
 	//Block Specific Attributes
-	headerAreaBG: {
-		type: 'string',
-	},
 	showBadge: {
 		type: 'boolean',
 		default: true,
@@ -223,6 +221,7 @@ const attributes = {
 	// Generators
 	...generateDimensionAttributes(HEADER_AREA_BORDER_RADIUS),
 	...generateDimensionAttributes(HEADER_AREA_PADDING, {}),
+	...generateNormalBGAttributes(HEADER_AREA_BG),
 	...generateBorderAttributies(HEADER_BADGE_BORDER),
 	...generateNormalBGAttributes(BADGE_BG),
 	...generateDimensionAttributes(BADGE_PADDING),

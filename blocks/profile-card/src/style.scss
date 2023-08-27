@@ -148,11 +148,7 @@
 		border-bottom-right-radius: 0;
 		padding: 30px 30px 100px;
 		box-sizing: border-box;
-		background: linear-gradient(
-			45deg,
-			var(--background1),
-			var(--background2)
-		);
+		background-color: var(--background1);
 	}
 
 	.zb-profile-bottom-content {

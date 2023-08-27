@@ -124,30 +124,32 @@ const Save = ({ attributes }) => {
 				</div>
 				<div className="zolo-info-wrap">
 					<div className="zolo-content">
-						<div className="zolo-name">
-							{showDetailPageIcon ? (
-								<a
-									href={
-										memberDetailPageLink &&
-										memberDetailPageLink.url
-									}
-									rel={
-										memberDetailPageLink &&
-										memberDetailPageLink.opensInNewTab &&
-										'noreferrer noopener'
-									}
-									target={
-										memberDetailPageLink &&
-										memberDetailPageLink.opensInNewTab &&
-										'_blank'
-									}
-								>
-									<RichText.Content value={memberName} />
-								</a>
-							) : (
+						{addDetailPageLink ? (
+							<a
+								href={
+									memberDetailPageLink &&
+									memberDetailPageLink.url
+								}
+								rel={
+									memberDetailPageLink &&
+									memberDetailPageLink.opensInNewTab &&
+									'noreferrer noopener'
+								}
+								target={
+									memberDetailPageLink &&
+									memberDetailPageLink.opensInNewTab &&
+									'_blank'
+								}
+								className="zolo-name"
+							>
 								<RichText.Content value={memberName} />
-							)}
-						</div>
+							</a>
+						) : (
+							<RichText.Content
+								value={memberName}
+								className="zolo-name"
+							/>
+						)}
 						{showDesignation && (
 							<div className="zolo-designation">
 								<RichText.Content value={memberDesignation} />

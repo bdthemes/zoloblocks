@@ -8,8 +8,8 @@ import Context from './context';
 import './style.scss';
 
 registerBlockType(metadata, {
-	usesContext: Context,
-	attributes,
-	edit: Edit,
-	save: Save,
+    usesContext: Context,
+    attributes,
+    edit: Edit,
+    save: Save,
 });
