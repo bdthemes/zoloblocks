@@ -60,6 +60,11 @@ import {
     BUTTON_MARGIN,
     BUTTON_PADDING,
     CONTAINER_BACKGROUND,
+    CONTAINER_BORDER,
+    CONTAINER_HOVER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
     ICON_IMAGE_SIZE,
@@ -272,23 +277,6 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-
-                                    <ResRangeControl
-                                        label={__('Icon Size', 'zolo-blocks')}
-                                        controlName={BUTTON_ICON_SIZE}
-                                        resRequiredProps={resRequiredProps}
-                                        min={0}
-                                        max={100}
-                                        step={1}
-                                    />
-                                    <ResRangeControl
-                                        label={__('Gap', 'zolo-blocks')}
-                                        controlName={ICON_TEXT_SPACING}
-                                        resRequiredProps={resRequiredProps}
-                                        min={0}
-                                        max={100}
-                                        step={1}
-                                    />
                                 </Fragment>
                             )}
                         </PanelBody>
@@ -346,6 +334,7 @@ function Inspector(props) {
                             )}
 
                             <NormalBGControl resRequiredProps={resRequiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
+
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={CONTAINER_MARGIN}
@@ -355,6 +344,43 @@ function Inspector(props) {
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={CONTAINER_PADDING}
                                 resRequiredProps={resRequiredProps}
+                            />
+
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={CONTAINER_BORDER_RADIUS}
+                                resRequiredProps={resRequiredProps}
+                                forBorderRadius={true}
+                            />
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={CONTAINER_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <BoxShadowControl
+                                            controlName={CONTAINER_BOX_SHADOW}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={CONTAINER_HOVER_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <BoxShadowControl
+                                            controlName={CONTAINER_HOVER_BOX_SHADOW}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
+                                        />
+                                    </>
+                                }
                             />
                         </PanelBody>
                         {iconType == 'icon' && (
@@ -379,6 +405,29 @@ function Inspector(props) {
                                         options={FLEX_ALIGN_OPTIONS}
                                     />
                                 )}
+
+                                <BorderControl
+                                    label={__('Border', 'zolo-blocks')}
+                                    controlName={ICON_BORDER}
+                                    resRequiredProps={resRequiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={ICON_BORDER_RADIUS}
+                                    resRequiredProps={resRequiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zolo-blocks')}
+                                    controlName={ICON_MARGIN}
+                                    resRequiredProps={resRequiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zolo-blocks')}
+                                    controlName={ICON_PADDING}
+                                    resRequiredProps={resRequiredProps}
+                                />
+
                                 <TabPanelControl
                                     normalComponents={
                                         <>
@@ -434,28 +483,6 @@ function Inspector(props) {
                                             />
                                         </>
                                     }
-                                />
-                                <CardDivider />
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={ICON_BORDER}
-                                    resRequiredProps={resRequiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
-                                    controlName={ICON_BORDER_RADIUS}
-                                    resRequiredProps={resRequiredProps}
-                                    forBorderRadius={true}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zolo-blocks')}
-                                    controlName={ICON_MARGIN}
-                                    resRequiredProps={resRequiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zolo-blocks')}
-                                    controlName={ICON_PADDING}
-                                    resRequiredProps={resRequiredProps}
                                 />
                             </PanelBody>
                         )}
@@ -560,34 +587,7 @@ function Inspector(props) {
                                 typoPrefixConstant={DESCRIPTION_TYPOGRAPHY}
                                 resRequiredProps={resRequiredProps}
                             />
-                            <TabPanelControl
-                                normalComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
-                                            color={descColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    descColor: value,
-                                                })
-                                            }
-                                        />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
-                                            color={descHoverColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    descHoverColor: value,
-                                                })
-                                            }
-                                        />
-                                    </>
-                                }
-                            />
+
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={DESCRIPTION_MARGIN}
@@ -598,6 +598,28 @@ function Inspector(props) {
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={BUTTON_TYPOGRAPHY}
+                                resRequiredProps={resRequiredProps}
+                            />
+
+                            <BorderControl
+                                label={__('Border', 'zolo-blocks')}
+                                controlName={BUTTON_BORDER}
+                                resRequiredProps={resRequiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={BUTTON_BORDER_RADIUS}
+                                resRequiredProps={resRequiredProps}
+                                forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={BUTTON_MARGIN}
+                                resRequiredProps={resRequiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={BUTTON_PADDING}
                                 resRequiredProps={resRequiredProps}
                             />
                             <TabPanelControl
@@ -656,31 +678,25 @@ function Inspector(props) {
                                     </>
                                 }
                             />
-                            <CardDivider />
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={BUTTON_BORDER}
-                                resRequiredProps={resRequiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={BUTTON_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={BUTTON_MARGIN}
-                                resRequiredProps={resRequiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={BUTTON_PADDING}
-                                resRequiredProps={resRequiredProps}
-                            />
                         </PanelBody>
                         {showIcon && (
                             <PanelBody title={__('Button Icon', 'zolo-blocks')} initialOpen={false}>
+                                <ResRangeControl
+                                    label={__('Icon Size', 'zolo-blocks')}
+                                    controlName={BUTTON_ICON_SIZE}
+                                    resRequiredProps={resRequiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                />
+                                <ResRangeControl
+                                    label={__('Gap', 'zolo-blocks')}
+                                    controlName={ICON_TEXT_SPACING}
+                                    resRequiredProps={resRequiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                />
                                 <TabPanelControl
                                     normalComponents={
                                         <>
