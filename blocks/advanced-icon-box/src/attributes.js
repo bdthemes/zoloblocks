@@ -31,6 +31,11 @@ import {
     BUTTON_MARGIN,
     BUTTON_PADDING,
     CONTAINER_BACKGROUND,
+    CONTAINER_BORDER,
+    CONTAINER_HOVER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
     ICON_IMAGE_SIZE,
@@ -55,6 +60,11 @@ const attributes = {
     ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
     ...generateDimensionAttributes(CONTAINER_PADDING),
     ...generateDimensionAttributes(CONTAINER_MARGIN),
+    ...generateBorderAttributies(CONTAINER_BORDER),
+    ...generateBorderAttributies(CONTAINER_HOVER_BORDER),
+    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
+    ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
 
     // Icon
     ...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT, {
@@ -153,12 +163,6 @@ const attributes = {
         type: 'string',
     },
     textHoverColor: {
-        type: 'string',
-    },
-    descColor: {
-        type: 'string',
-    },
-    descHoverColor: {
         type: 'string',
     },
     iconType: {

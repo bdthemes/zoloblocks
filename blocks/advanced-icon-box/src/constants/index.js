@@ -7,70 +7,75 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'advanced-icon-box';
 // Presets
 export const PRESETS = [
-	{ label: __( 'Default', 'zolo-blocks' ), value: 'style-0' },
-	{ label: __( 'Preset 1', 'zolo-blocks' ), value: 'style-1' },
-	{ label: __( 'Preset 2', 'zolo-blocks' ), value: 'style-2' },
-	{ label: __( 'Preset 3', 'zolo-blocks' ), value: 'style-3' },
+    { label: __('Default', 'zolo-blocks'), value: 'style-0' },
+    { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
+    { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
+    { label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
 ];
 
 // Title
 export const TITLE_TAG = [
-	{
-		label: 'H1',
-		value: 'h1',
-	},
-	{
-		label: 'H2',
-		value: 'h2',
-	},
-	{
-		label: 'H3',
-		value: 'h3',
-	},
-	{
-		label: 'H4',
-		value: 'h4',
-	},
-	{
-		label: 'H5',
-		value: 'h5',
-	},
-	{
-		label: 'H6',
-		value: 'h6',
-	},
-	{
-		label: 'Span',
-		value: 'span',
-	},
-	{
-		label: 'P',
-		value: 'p',
-	},
+    {
+        label: 'H1',
+        value: 'h1',
+    },
+    {
+        label: 'H2',
+        value: 'h2',
+    },
+    {
+        label: 'H3',
+        value: 'h3',
+    },
+    {
+        label: 'H4',
+        value: 'h4',
+    },
+    {
+        label: 'H5',
+        value: 'h5',
+    },
+    {
+        label: 'H6',
+        value: 'h6',
+    },
+    {
+        label: 'Span',
+        value: 'span',
+    },
+    {
+        label: 'P',
+        value: 'p',
+    },
 ];
 
 export const ICON_POSITIONS = [
-	{
-		label: __( 'Left', 'zolo-blocks' ),
-		value: 'row-reverse',
-	},
-	{
-		label: __( 'Right', 'zolo-blocks' ),
-		value: 'row',
-	},
-	{
-		label: __( 'Top', 'zolo-blocks' ),
-		value: 'column-reverse',
-	},
-	{
-		label: __( 'Bottom', 'zolo-blocks' ),
-		value: 'column',
-	},
+    {
+        label: __('Left', 'zolo-blocks'),
+        value: 'row-reverse',
+    },
+    {
+        label: __('Right', 'zolo-blocks'),
+        value: 'row',
+    },
+    {
+        label: __('Top', 'zolo-blocks'),
+        value: 'column-reverse',
+    },
+    {
+        label: __('Bottom', 'zolo-blocks'),
+        value: 'column',
+    },
 ];
 
 // Item
 
 export const CONTAINER_BACKGROUND = 'containerBg';
+export const CONTAINER_BORDER = 'containerBorder';
+export const CONTAINER_HOVER_BORDER = 'containerHoverBorder';
+export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
+export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
+export const CONTAINER_HOVER_BOX_SHADOW = 'containerHoverBoxShadow';
 export const CONTAINER_MARGIN = 'containerMargin';
 export const CONTAINER_PADDING = 'containerPadding';
 

@@ -50,7 +50,6 @@ const attributes = {
     blockStyle: {
         type: 'object',
     },
-
     headingColor: {
         type: 'string',
     },
@@ -99,11 +98,9 @@ const attributes = {
         type: 'string',
         default: 'style-1',
     },
-
     advancedGallery: {
         type: 'array',
     },
-
     presetOneStyles: {
         type: 'object',
         default: {

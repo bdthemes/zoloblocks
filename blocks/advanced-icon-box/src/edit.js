@@ -27,6 +27,11 @@ const {
 import {
     BLOCK_PREFIX,
     CONTAINER_BACKGROUND,
+    CONTAINER_BORDER,
+    CONTAINER_HOVER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
     ICON_BOX_ALIGNMENT,
@@ -116,6 +121,49 @@ export default function Edit(props) {
         controlName: CONTAINER_BACKGROUND,
         attributes,
         noMainBGImg: false,
+    });
+
+    // item border
+    const {
+        desktopBorderStyle: containerBorderDeskStyle,
+        tabBorderStyle: containerBorderTabStyle,
+        mobBorderStyle: containerBorderMobStyle,
+    } = generateBorderStyle({
+        controlName: CONTAINER_BORDER,
+        attributes,
+    });
+
+    // item hover border
+    const {
+        desktopBorderStyle: containerHoverBorderDeskStyle,
+        tabBorderStyle: containerHoverBorderTabStyle,
+        mobBorderStyle: containerHoverBorderMobStyle,
+    } = generateBorderStyle({
+        controlName: CONTAINER_HOVER_BORDER,
+        attributes,
+    });
+
+    // item border radius
+    const {
+        dimensionStylesDesktop: containerDeskBorderRadius,
+        dimensionStylesTab: containerTabBorderRadius,
+        dimensionStylesMobile: containerMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    // item box shadow
+    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_BOX_SHADOW,
+    });
+
+    // item hover box shadow
+    const { boxShadowStyle: containerHoverBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_HOVER_BOX_SHADOW,
     });
 
     // Generate Container Margin
@@ -482,11 +530,18 @@ export default function Edit(props) {
      * All Style Combination
      */
     const desktopAllStyle = `	
-		.${uniqueId} .zolo-block-item{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
 			${containerDeskBGStyle}
+			${containerBorderDeskStyle}
+			${containerDeskBorderRadius}
+			${containerBoxShadow}
 			${containerMarginDesk}
 			${containerPaddingDesk}
-		}	
+		}
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
+            ${containerHoverBorderDeskStyle}
+            ${containerHoverBoxShadow}
+        }
 		.${uniqueId} .zolo-block-icon-wrap{
 			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
@@ -579,11 +634,16 @@ export default function Edit(props) {
 		.${uniqueId}{
 			${iconAlignmentTab}
 		}
-		.${uniqueId} .zolo-block-item{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
 			${containerTabBGStyle}
+			${containerBorderTabStyle}
+			${containerTabBorderRadius}
 			${containerMarginTab}
 			${containerPaddingTab}
-		}	
+		}        
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
+            ${containerHoverBorderTabStyle}
+        }
 		.${uniqueId} .zolo-block-title{
 			${titleTypoTab}
 			${tabTitleTextStrokeStyle}
@@ -630,11 +690,16 @@ export default function Edit(props) {
 		.${uniqueId}{
 			${iconAlignmentMob}
 		}
-		.${uniqueId} .zolo-block-item{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
 			${containerMobBGStyle}
+			${containerBorderMobStyle}
+			${containerMobBorderRadius}
 			${containerMarginMob}
 			${containerPaddingMob}
-		}
+		}                
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
+            ${containerHoverBorderMobStyle};
+        }
 		.${uniqueId} .zolo-block-title{
 			${titleTypoMobile}
 			${mobTitleTextStrokeStyle}
@@ -793,7 +858,7 @@ export default function Edit(props) {
                                 <div className={`zolo-box-button`}>
                                     <RichText
                                         value={buttonText}
-                                        tagName="span"
+                                        tagName="p"
                                         onChange={(text) =>
                                             setAttributes({
                                                 buttonText: text,
