@@ -530,7 +530,7 @@ export default function Edit(props) {
      * All Style Combination
      */
     const desktopAllStyle = `	
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
+		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
 			${containerDeskBGStyle}
 			${containerBorderDeskStyle}
 			${containerDeskBorderRadius}
@@ -552,14 +552,14 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-block-link-btn{
 			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 		}		
-		.${uniqueId} .zolo-block-title{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{
 			${titleTypoDesktop}
 			${titleTextShadowStyle}
         	${titleTextStrokeStyle}
 			${titleMarginDesktop ? titleMarginDesktop : '0 0 12px 0'}
 			color: ${textColor ? textColor : ''};
 		}
-		.${uniqueId} .zolo-block-title:hover{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title:hover{
 			color: ${textHoverColor ? textHoverColor : ''};
 		}
 		.${uniqueId} .zolo-block-desc{
@@ -634,7 +634,7 @@ export default function Edit(props) {
 		.${uniqueId}{
 			${iconAlignmentTab}
 		}
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
+		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
 			${containerTabBGStyle}
 			${containerBorderTabStyle}
 			${containerTabBorderRadius}
@@ -690,7 +690,7 @@ export default function Edit(props) {
 		.${uniqueId}{
 			${iconAlignmentMob}
 		}
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
+		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
 			${containerMobBGStyle}
 			${containerBorderMobStyle}
 			${containerMobBorderRadius}

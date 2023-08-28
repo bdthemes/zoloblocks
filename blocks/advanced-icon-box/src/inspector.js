@@ -535,6 +535,21 @@ function Inspector(props) {
                                 typoPrefixConstant={TITLE_TYPOGRAPHY}
                                 resRequiredProps={resRequiredProps}
                             />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={TITLE_MARGIN}
+                                resRequiredProps={resRequiredProps}
+                            />
+                            <TextShadowControl
+                                controlName={TITLE_TEXT_SHADOW}
+                                resRequiredProps={resRequiredProps}
+                                enableTransition={false}
+                            />
+                            <TextStrokeControl
+                                controlName={TITLE_TEXT_STROKE}
+                                resRequiredProps={resRequiredProps}
+                                enableTransition={false}
+                            />
                             <TabPanelControl
                                 normalComponents={
                                     <>
@@ -562,23 +577,6 @@ function Inspector(props) {
                                         />
                                     </>
                                 }
-                            />
-                            <CardDivider />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={TITLE_MARGIN}
-                                resRequiredProps={resRequiredProps}
-                            />
-                            <TextShadowControl
-                                controlName={TITLE_TEXT_SHADOW}
-                                resRequiredProps={resRequiredProps}
-                                enableTransition={false}
-                            />
-
-                            <TextStrokeControl
-                                controlName={TITLE_TEXT_STROKE}
-                                resRequiredProps={resRequiredProps}
-                                enableTransition={false}
                             />
                         </PanelBody>
                         <PanelBody title={__('Description', 'zolo-blocks')} initialOpen={false}>
@@ -697,34 +695,6 @@ function Inspector(props) {
                                     max={100}
                                     step={1}
                                 />
-                                <TabPanelControl
-                                    normalComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={buttonIconColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        buttonIconColor: value,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={buttonIconHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        buttonIconHoverColor: value,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                />
                                 {preset === 'style-1' && (
                                     <IconicBtnGroup
                                         label={__('Position', 'zolo-blocks')}
@@ -770,6 +740,34 @@ function Inspector(props) {
                                         options={POSITIONS}
                                     />
                                 )}
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={buttonIconColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        buttonIconColor: value,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={buttonIconHoverColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        buttonIconHoverColor: value,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                />
                             </PanelBody>
                         )}
                     </>
