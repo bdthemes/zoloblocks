@@ -529,7 +529,6 @@ export default function Edit(props) {
 
             <div {...blockProps}>
                 <div className={`${advancedGallery ? 'zolo-image-gallery' : 'zolo-single-image'} ${uniqueId} zolo-img-gallery-${preset}`}>
-                    {}
                     {advancedGallery ? (
                         advancedGallery &&
                         advancedGallery.map((image, index) => {
