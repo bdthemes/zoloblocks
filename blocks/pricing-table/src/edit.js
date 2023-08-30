@@ -46,6 +46,7 @@ import {
     TITLE_TEXT_SHADOW,
     WRAPPER_BG,
     WRAPPER_BORDER,
+    WRAPPER_BORDER_RADIUS,
     WRAPPER_MARGIN,
     WRAPPER_PADDING,
     WRAPPER_SHADOW,
@@ -654,6 +655,16 @@ const Edit = (props) => {
         controlName: WRAPPER_BORDER,
     });
 
+    const {
+        dimensionStylesDesktop: wrapperDeskRadius,
+        dimensionStylesTab: wrapperTabRadius,
+        dimensionStylesMobile: wrapperMobRadius,
+    } = generateDimensionStyle({
+        controlName: WRAPPER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
     //css style
     const wrapperStylesDesktop = `
 		.zolo-block-wrapper.${uniqueId}{
@@ -662,6 +673,7 @@ const Edit = (props) => {
 			${wrapperBackgroundStylesDesktop}
 			${wrapperBorderDesktop}
 			${wrapperShadow}
+            ${wrapperDeskRadius}
 			transition:${wrapperShadowTransition};
       --zolo-ribbon-xposition: ${ribbonXPosition}px;
       --zolo-ribbon-yposition: ${ribbonYPosition}px;
@@ -684,6 +696,7 @@ const Edit = (props) => {
 			${wrapperPaddingTab}
 			${wrapperBackgroundStylesTab}
 			${wrapperBorderTab}
+            ${wrapperTabRadius}
 		}
 		.zolo-block-wrapper.${uniqueId}:hover{
 			${wrapperHoverBackgroundStylesTab}
@@ -701,6 +714,7 @@ const Edit = (props) => {
 			${wrapperPaddingMobile}
 			${wrapperBackgroundStylesMobile}
 			${wrapperBorderMob}
+            ${wrapperMobRadius}
 		}
 		.zolo-block-wrapper.${uniqueId}:hover{
 			${wrapperHoverBackgroundStylesMobile}

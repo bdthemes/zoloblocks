@@ -72,6 +72,7 @@ import {
     TITLE_TEXT_SHADOW,
     WRAPPER_BG,
     WRAPPER_BORDER,
+    WRAPPER_BORDER_RADIUS,
     WRAPPER_MARGIN,
     WRAPPER_PADDING,
     WRAPPER_SHADOW,
@@ -421,6 +422,12 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 controlName={WRAPPER_BORDER}
                                 resRequiredProps={resRequiredProps}
                             />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={WRAPPER_BORDER_RADIUS}
+                                resRequiredProps={resRequiredProps}
+                                forBorderRadius={false}
+                            />
                             <BoxShadowControl controlName={WRAPPER_SHADOW} resRequiredProps={resRequiredProps} />
                             <BackgroundControl controlName={WRAPPER_BG} resRequiredProps={resRequiredProps} />
                             <ResDimensionsControl label="Margin" controlName={WRAPPER_MARGIN} resRequiredProps={resRequiredProps} />
@@ -692,7 +699,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         label={__('Margin', 'zolo-blocks')}
                                         controlName={FEATURE_DESC_MARGIN}
                                         resRequiredProps={resRequiredProps}
-                                        forBorderRadius={true}
+                                        forBorderRadius={false}
                                     />
                                 </>
                             )}
