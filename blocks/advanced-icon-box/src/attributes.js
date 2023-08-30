@@ -17,6 +17,7 @@ import {
     TITLE_TEXT_STROKE,
     DESCRIPTION_MARGIN,
     ICON_BORDER,
+    ICON_HOVER_BORDER,
     ICON_BOX_SHADOW,
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
@@ -71,6 +72,7 @@ const attributes = {
         defaultAlign: 'left',
     }),
     ...generateBorderAttributies(ICON_BORDER),
+    ...generateBorderAttributies(ICON_HOVER_BORDER),
     ...generateResRangeAttributies(ICON_SIZE, {
         default: 16,
     }),

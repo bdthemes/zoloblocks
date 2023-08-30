@@ -40,6 +40,7 @@ import {
     TITLE_TEXT_STROKE,
     DESCRIPTION_MARGIN,
     ICON_BORDER,
+    ICON_HOVER_BORDER,
     ICON_BORDER_RADIUS,
     ICON_SIZE,
     ICON_PADDING,
@@ -358,6 +359,16 @@ export default function Edit(props) {
         attributes,
     });
 
+    // generate hover border style
+    const {
+        desktopBorderStyle: borderHoverStyles,
+        tabBorderStyle: borderHoverStylesTab,
+        mobBorderStyle: borderHoverStylesMob,
+    } = generateBorderStyle({
+        controlName: ICON_HOVER_BORDER,
+        attributes,
+    });
+
     // generate icon size
     const {
         desktopRangeStyle: iconSize,
@@ -585,6 +596,7 @@ export default function Edit(props) {
 			background: ${iconBackgroundHoverColor ? iconBackgroundHoverColor : ''};
 			color: ${iconHoverColor ? iconHoverColor : ''};
 			${iconHoverBoxShadow}
+			${borderHoverStyles}
 		}
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
@@ -663,6 +675,9 @@ export default function Edit(props) {
 			background: ${iconBackgroundColor ? iconBackgroundColor : ''};
 			color: ${iconColor ? iconColor : ''};	
 		}
+        .${uniqueId} .zolo-block-icon-wrap span:hover{
+            ${borderHoverStylesTab}
+        }
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeTab}
 			${iconImageBorderTab}
@@ -716,7 +731,10 @@ export default function Edit(props) {
 			${iconBorderRadiusMob}
 			${iconPaddingMob}
 			${iconMarginMob}
-		}		
+		}        
+        .${uniqueId} .zolo-block-icon-wrap span:hover{
+            ${borderHoverStylesMob}
+        }
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeMob}
 			${iconImageBorderMob}

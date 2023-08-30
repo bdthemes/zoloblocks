@@ -52,6 +52,7 @@ import {
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
     ICON_BORDER,
+    ICON_HOVER_BORDER,
     ICON_BORDER_RADIUS,
     ICON_PADDING,
     ICON_MARGIN,
@@ -405,18 +406,6 @@ function Inspector(props) {
                                         options={FLEX_ALIGN_OPTIONS}
                                     />
                                 )}
-
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={ICON_BORDER}
-                                    resRequiredProps={resRequiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
-                                    controlName={ICON_BORDER_RADIUS}
-                                    resRequiredProps={resRequiredProps}
-                                    forBorderRadius={true}
-                                />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={ICON_MARGIN}
@@ -427,10 +416,20 @@ function Inspector(props) {
                                     controlName={ICON_PADDING}
                                     resRequiredProps={resRequiredProps}
                                 />
-
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={ICON_BORDER_RADIUS}
+                                    resRequiredProps={resRequiredProps}
+                                    forBorderRadius={true}
+                                />
                                 <TabPanelControl
                                     normalComponents={
                                         <>
+                                            <BorderControl
+                                                label={__('Border', 'zolo-blocks')}
+                                                controlName={ICON_BORDER}
+                                                resRequiredProps={resRequiredProps}
+                                            />
                                             <ColorControl
                                                 label={__('Background', 'zolo-blocks')}
                                                 color={iconBackgroundColor}
@@ -458,6 +457,11 @@ function Inspector(props) {
                                     }
                                     hoverComponents={
                                         <>
+                                            <BorderControl
+                                                label={__('Border', 'zolo-blocks')}
+                                                controlName={ICON_HOVER_BORDER}
+                                                resRequiredProps={resRequiredProps}
+                                            />
                                             <ColorControl
                                                 label={__('Background', 'zolo-blocks')}
                                                 color={iconBackgroundHoverColor}
