@@ -17,13 +17,16 @@ import {
     TITLE_TEXT_STROKE,
     DESCRIPTION_MARGIN,
     ICON_BORDER,
+    ICON_HOVER_BORDER,
     ICON_BOX_SHADOW,
+    ICON_HOVER_BOX_SHADOW,
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
     ICON_BORDER_RADIUS,
     ICON_SIZE,
     BUTTON_ICON_SIZE,
     BUTTON_BORDER,
+    BUTTON_HOVER_BORDER,
     ICON_TEXT_SPACING,
     ICON_PADDING,
     ICON_MARGIN,
@@ -71,6 +74,7 @@ const attributes = {
         defaultAlign: 'left',
     }),
     ...generateBorderAttributies(ICON_BORDER),
+    ...generateBorderAttributies(ICON_HOVER_BORDER),
     ...generateResRangeAttributies(ICON_SIZE, {
         default: 16,
     }),
@@ -81,9 +85,11 @@ const attributes = {
     ...generateDimensionAttributes(ICON_PADDING),
     ...generateDimensionAttributes(ICON_MARGIN),
     ...generateBoxShadowAttributies(ICON_BOX_SHADOW),
+    ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
 
     // Button
     ...generateBorderAttributies(BUTTON_BORDER),
+    ...generateBorderAttributies(BUTTON_HOVER_BORDER),
     ...generateResRangeAttributies(BUTTON_ICON_SIZE, {
         default: 16,
     }),
