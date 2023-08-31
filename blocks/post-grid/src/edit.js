@@ -43,7 +43,6 @@ export default function Edit(props) {
     setAttributes
   })
 
-
   useEffect(() => {
     if (typeof (postQuery) === 'undefined') {
       setAttributes({
@@ -57,6 +56,7 @@ export default function Edit(props) {
           postOffset: 0,
           postOrderby: 'date',
           postOrder: 'desc',
+          postThumbnail: ''
         }
       })
     }

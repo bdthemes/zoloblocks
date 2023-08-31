@@ -93,9 +93,7 @@ const attributes = {
     type: 'boolean',
     default: true,
   },
-  thumbnailSize: {
-    type: 'boolean',
-  },
+
   ...generateResRangeAttributies(THUMBNAIL_HEIGHT, {
     defaultRange: 200,
   }),
@@ -112,7 +110,7 @@ const attributes = {
   },
   showExcerpt: {
     type: 'boolean',
-    default: true,
+    default: false,
   },
   excerptWords: {
     type: 'number',
@@ -124,7 +122,7 @@ const attributes = {
   },
   showReadMore: {
     type: 'boolean',
-    default: true,
+    default: false,
   },
   readMoreBtnText: {
     type: 'string',

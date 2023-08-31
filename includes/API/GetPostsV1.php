@@ -108,7 +108,9 @@ class GetPostsV1
             $args['post__not_in'] = array_unique($excluded_post_ids);
         }
 
+        $postThumbnail=!empty($data['postThumbnail'])?$data['postThumbnail']:'';
 
+        //error_log(print_r($postThumbnail, true), 3, __DIR__ . '/log.txt');
         $loop = new WP_Query($args);
 
         if ($loop->have_posts()) {
@@ -127,7 +129,7 @@ class GetPostsV1
                 $post = [];
                 $post['id']               = $post_id;
                 $post['title']            = get_the_title();
-                $post["thumbnail"]        = get_the_post_thumbnail($post_id);
+                $post["thumbnail"]        = get_the_post_thumbnail($post_id,$postThumbnail);
                 $post['permalink']        = get_permalink();
                 $post['excerpt']          = strip_tags(get_the_content());
                 $post['excerpt_full']     = strip_tags(get_the_excerpt());

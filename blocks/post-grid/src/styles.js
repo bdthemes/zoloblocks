@@ -29,7 +29,8 @@ const {
   generateBorderStyle,
   generateBoxShadowStyles,
   generateBackgroundControlStyles,
-  generateTypographyStyles
+  generateTypographyStyles,
+  generateResCounterStyle
 } = window.zoloModule;
 
 function styles({ attributes, setAttributes }) {
@@ -41,28 +42,27 @@ function styles({ attributes, setAttributes }) {
     excerptColor
   } = attributes;
 
+
   const {
-    desktopRangeStyle: deskColumns,
-    tabRangeStyle: tabColumns,
-    mobRangeStyle: mobColumns,
-  } = generateResRangeStyle({
+    desktopRangeStyle: columnCountDesk,
+    tabRangeStyle: columnCountTab,
+    mobRangeStyle: columnCountMob,
+  } = generateResCounterStyle({
     controlName: GRID_COLUMNS,
-    property: 'grid-template-columns',
     attributes,
     noProperty: true,
-    noUnits: false,
-    unitCustomTxt: '',
   });
 
   const {
-    desktopRangeStyle: deskColumnsGap,
-    tabRangeStyle: tabColumnsGap,
-    mobRangeStyle: mobColumnsGap,
+    desktopRangeStyle: colGapDesk,
+    tabRangeStyle: colGapTab,
+    mobRangeStyle: colGapMob,
   } = generateResRangeStyle({
     controlName: COLUMNS_GAP,
     property: 'grid-gap',
     attributes,
   });
+
 
   //column
   const {
@@ -278,8 +278,8 @@ function styles({ attributes, setAttributes }) {
       }
 
       .${uniqueId}.wp-block-zolo-post-grid.zolo-post-wrap{
-        ${deskColumns}
-        ${deskColumnsGap}
+        grid-template-columns:repeat(${columnCountDesk}, 1fr);
+        ${colGapDesk}
       }
       .${uniqueId}.wp-block-zolo-post-grid .zolo-post-item{
         ${columnDeskPadding}
@@ -317,17 +317,11 @@ function styles({ attributes, setAttributes }) {
     `;
 
   const tabletAllStyle = `
-      .${uniqueId}.wp-block-zolo-post-grid.zolo-post-wrap{
-        ${tabColumns}
-        ${tabColumnsGap}
-      }
+
     `;
 
   const mobileAllStyle = `
-      .${uniqueId}.wp-block-zolo-post-grid.zolo-post-wrap{
-        ${mobColumns}
-        ${mobColumnsGap}
-      }
+
 
     `;
 

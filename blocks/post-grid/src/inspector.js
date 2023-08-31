@@ -53,13 +53,15 @@ const {
   BackgroundControl,
   TabPanelControl,
   ColorControl,
-  TypographyDropdown
+  TypographyDropdown,
+  ResCounterControl
 } = window.zoloModule;
 
 function Inspector({ attributes, setAttributes }) {
   const {
     preset,
     resMode,
+    postQuery,
     showThumbnail,
     thumbnailSize,
     showTitle,
@@ -85,28 +87,40 @@ function Inspector({ attributes, setAttributes }) {
 
   const changePremade = (selected) => {
     setAttributes({ preset: selected });
-    // switch (selected) {
-    // 	case 'default':
-    // 		setAttributes({
-    // 			showTestimonialMessage: false,
-    // 		});
-    // 		break;
-    // 	case 'style-1':
-    // 		setAttributes({
-    // 			showTestimonialMessage: false,
-    // 		});
-    // 		break;
-    // 	case 'style-2':
-    // 		setAttributes({
-    // 			showTestimonialMessage: false,
-    // 		});
-    // 		break;
-    // 	default:
-    // 		setAttributes({
-    // 			showTestimonialMessage: false,
-    // 		});
-    // 		break;
-    // }
+    switch (selected) {
+      case 'style-1':
+        setAttributes({
+          showExcerpt: false,
+          showReadMore: false
+        });
+        break;
+      case 'style-2':
+        setAttributes({
+          showExcerpt: false,
+          showReadMore: false
+        });
+        break;
+      case 'style-3':
+        setAttributes({
+          showExcerpt: false,
+          showReadMore: false
+        });
+        break;
+      case 'style-4':
+        setAttributes({
+          showExcerpt: false,
+          showReadMore: false
+        });
+        break;
+      case 'style-5':
+        setAttributes({
+          showExcerpt: true,
+          showReadMore: true
+        });
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -130,19 +144,22 @@ function Inspector({ attributes, setAttributes }) {
                   changePremade(selected)
                 }
               />
-              <ResRangeControl
-                label={__('Columns', 'zolo-blocks')}
+
+              <ResCounterControl
+                label={__('Column', 'zolo-blocks')}
                 controlName={GRID_COLUMNS}
                 resRequiredProps={resRequiredProps}
-                max={4}
                 min={1}
-                step={1}
-                noUnits={true}
+                max={6}
               />
+
               <ResRangeControl
-                label={__('Columns Gap', 'zolo-blocks')}
+                label={__('Gap', 'zolo-blocks')}
                 controlName={COLUMNS_GAP}
                 resRequiredProps={resRequiredProps}
+                min={0}
+                max={100}
+                step={1}
               />
 
               <ToggleControl
@@ -155,11 +172,14 @@ function Inspector({ attributes, setAttributes }) {
                 controlName={THUMBNAIL_HEIGHT}
                 resRequiredProps={resRequiredProps}
               />
+
               <SelectControl
                 label={__('Thumbnail Image Size', 'zolo-blocks')}
-                value={thumbnailSize}
+                value={postQuery?.postThumbnail}
                 options={THUMBNAIL_SIZE}
-                onChange={(selected) => changePremade(selected)}
+                onChange={(postThumbnail) => setAttributes({
+                  postQuery: { ...postQuery, postThumbnail }
+                })}
               />
 
               <ToggleControl
