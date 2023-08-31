@@ -57,6 +57,7 @@ import {
     ICON_PADDING,
     ICON_MARGIN,
     BUTTON_BORDER,
+    BUTTON_HOVER_BORDER,
     BUTTON_BORDER_RADIUS,
     BUTTON_MARGIN,
     BUTTON_PADDING,
@@ -602,18 +603,6 @@ function Inspector(props) {
                                 typoPrefixConstant={BUTTON_TYPOGRAPHY}
                                 resRequiredProps={resRequiredProps}
                             />
-
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={BUTTON_BORDER}
-                                resRequiredProps={resRequiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={BUTTON_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
-                                forBorderRadius={true}
-                            />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={BUTTON_MARGIN}
@@ -624,9 +613,25 @@ function Inspector(props) {
                                 controlName={BUTTON_PADDING}
                                 resRequiredProps={resRequiredProps}
                             />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={BUTTON_BORDER_RADIUS}
+                                resRequiredProps={resRequiredProps}
+                                forBorderRadius={true}
+                            />
                             <TabPanelControl
                                 normalComponents={
                                     <>
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={BUTTON_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <BoxShadowControl
+                                            controlName={BUTTON_BOX_SHADOW}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
+                                        />
                                         <ColorControl
                                             label={__('Background', 'zolo-blocks')}
                                             color={btnBgColor}
@@ -645,15 +650,20 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                        <BoxShadowControl
-                                            controlName={BUTTON_BOX_SHADOW}
-                                            resRequiredProps={resRequiredProps}
-                                            enableTransition={false}
-                                        />
                                     </>
                                 }
                                 hoverComponents={
                                     <>
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={BUTTON_HOVER_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <BoxShadowControl
+                                            controlName={BUTTON_HOVER_BOX_SHADOW}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
+                                        />
                                         <ColorControl
                                             label={__('Background', 'zolo-blocks')}
                                             color={btnBgHoverColor}
@@ -671,11 +681,6 @@ function Inspector(props) {
                                                     btnHoverColor: value,
                                                 })
                                             }
-                                        />
-                                        <BoxShadowControl
-                                            controlName={BUTTON_HOVER_BOX_SHADOW}
-                                            resRequiredProps={resRequiredProps}
-                                            enableTransition={false}
                                         />
                                     </>
                                 }

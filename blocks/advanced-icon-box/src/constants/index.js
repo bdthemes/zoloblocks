@@ -96,6 +96,7 @@ export const BUTTON_BOX_SHADOW = 'buttonBoxShadow';
 export const BUTTON_HOVER_BOX_SHADOW = 'buttonHoverBoxShadow';
 export const BUTTON_ICON_SIZE = 'buttonIconSize';
 export const BUTTON_BORDER = 'buttonBorder';
+export const BUTTON_HOVER_BORDER = 'buttonHoverBorder';
 export const BUTTON_BORDER_RADIUS = 'buttonBorderRadius';
 export const BUTTON_MARGIN = 'buttonMargin';
 export const BUTTON_PADDING = 'buttonPadding';

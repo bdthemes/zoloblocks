@@ -25,6 +25,7 @@ import {
     ICON_SIZE,
     BUTTON_ICON_SIZE,
     BUTTON_BORDER,
+    BUTTON_HOVER_BORDER,
     ICON_TEXT_SPACING,
     ICON_PADDING,
     ICON_MARGIN,
@@ -86,6 +87,7 @@ const attributes = {
 
     // Button
     ...generateBorderAttributies(BUTTON_BORDER),
+    ...generateBorderAttributies(BUTTON_HOVER_BORDER),
     ...generateResRangeAttributies(BUTTON_ICON_SIZE, {
         default: 16,
     }),
