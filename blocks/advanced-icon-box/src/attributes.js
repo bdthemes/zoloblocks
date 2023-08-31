@@ -19,6 +19,7 @@ import {
     ICON_BORDER,
     ICON_HOVER_BORDER,
     ICON_BOX_SHADOW,
+    ICON_HOVER_BOX_SHADOW,
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
     ICON_BORDER_RADIUS,
@@ -84,6 +85,7 @@ const attributes = {
     ...generateDimensionAttributes(ICON_PADDING),
     ...generateDimensionAttributes(ICON_MARGIN),
     ...generateBoxShadowAttributies(ICON_BOX_SHADOW),
+    ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
 
     // Button
     ...generateBorderAttributies(BUTTON_BORDER),
