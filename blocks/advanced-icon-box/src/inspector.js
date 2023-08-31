@@ -52,10 +52,12 @@ import {
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
     ICON_BORDER,
+    ICON_HOVER_BORDER,
     ICON_BORDER_RADIUS,
     ICON_PADDING,
     ICON_MARGIN,
     BUTTON_BORDER,
+    BUTTON_HOVER_BORDER,
     BUTTON_BORDER_RADIUS,
     BUTTON_MARGIN,
     BUTTON_PADDING,
@@ -405,18 +407,6 @@ function Inspector(props) {
                                         options={FLEX_ALIGN_OPTIONS}
                                     />
                                 )}
-
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={ICON_BORDER}
-                                    resRequiredProps={resRequiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
-                                    controlName={ICON_BORDER_RADIUS}
-                                    resRequiredProps={resRequiredProps}
-                                    forBorderRadius={true}
-                                />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={ICON_MARGIN}
@@ -427,10 +417,20 @@ function Inspector(props) {
                                     controlName={ICON_PADDING}
                                     resRequiredProps={resRequiredProps}
                                 />
-
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={ICON_BORDER_RADIUS}
+                                    resRequiredProps={resRequiredProps}
+                                    forBorderRadius={true}
+                                />
                                 <TabPanelControl
                                     normalComponents={
                                         <>
+                                            <BorderControl
+                                                label={__('Border', 'zolo-blocks')}
+                                                controlName={ICON_BORDER}
+                                                resRequiredProps={resRequiredProps}
+                                            />
                                             <ColorControl
                                                 label={__('Background', 'zolo-blocks')}
                                                 color={iconBackgroundColor}
@@ -458,6 +458,11 @@ function Inspector(props) {
                                     }
                                     hoverComponents={
                                         <>
+                                            <BorderControl
+                                                label={__('Border', 'zolo-blocks')}
+                                                controlName={ICON_HOVER_BORDER}
+                                                resRequiredProps={resRequiredProps}
+                                            />
                                             <ColorControl
                                                 label={__('Background', 'zolo-blocks')}
                                                 color={iconBackgroundHoverColor}
@@ -535,6 +540,21 @@ function Inspector(props) {
                                 typoPrefixConstant={TITLE_TYPOGRAPHY}
                                 resRequiredProps={resRequiredProps}
                             />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={TITLE_MARGIN}
+                                resRequiredProps={resRequiredProps}
+                            />
+                            <TextShadowControl
+                                controlName={TITLE_TEXT_SHADOW}
+                                resRequiredProps={resRequiredProps}
+                                enableTransition={false}
+                            />
+                            <TextStrokeControl
+                                controlName={TITLE_TEXT_STROKE}
+                                resRequiredProps={resRequiredProps}
+                                enableTransition={false}
+                            />
                             <TabPanelControl
                                 normalComponents={
                                     <>
@@ -563,23 +583,6 @@ function Inspector(props) {
                                     </>
                                 }
                             />
-                            <CardDivider />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={TITLE_MARGIN}
-                                resRequiredProps={resRequiredProps}
-                            />
-                            <TextShadowControl
-                                controlName={TITLE_TEXT_SHADOW}
-                                resRequiredProps={resRequiredProps}
-                                enableTransition={false}
-                            />
-
-                            <TextStrokeControl
-                                controlName={TITLE_TEXT_STROKE}
-                                resRequiredProps={resRequiredProps}
-                                enableTransition={false}
-                            />
                         </PanelBody>
                         <PanelBody title={__('Description', 'zolo-blocks')} initialOpen={false}>
                             <TypographyDropdown
@@ -600,18 +603,6 @@ function Inspector(props) {
                                 typoPrefixConstant={BUTTON_TYPOGRAPHY}
                                 resRequiredProps={resRequiredProps}
                             />
-
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={BUTTON_BORDER}
-                                resRequiredProps={resRequiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={BUTTON_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
-                                forBorderRadius={true}
-                            />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={BUTTON_MARGIN}
@@ -622,9 +613,25 @@ function Inspector(props) {
                                 controlName={BUTTON_PADDING}
                                 resRequiredProps={resRequiredProps}
                             />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={BUTTON_BORDER_RADIUS}
+                                resRequiredProps={resRequiredProps}
+                                forBorderRadius={true}
+                            />
                             <TabPanelControl
                                 normalComponents={
                                     <>
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={BUTTON_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <BoxShadowControl
+                                            controlName={BUTTON_BOX_SHADOW}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
+                                        />
                                         <ColorControl
                                             label={__('Background', 'zolo-blocks')}
                                             color={btnBgColor}
@@ -643,15 +650,20 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                        <BoxShadowControl
-                                            controlName={BUTTON_BOX_SHADOW}
-                                            resRequiredProps={resRequiredProps}
-                                            enableTransition={false}
-                                        />
                                     </>
                                 }
                                 hoverComponents={
                                     <>
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={BUTTON_HOVER_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <BoxShadowControl
+                                            controlName={BUTTON_HOVER_BOX_SHADOW}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
+                                        />
                                         <ColorControl
                                             label={__('Background', 'zolo-blocks')}
                                             color={btnBgHoverColor}
@@ -669,11 +681,6 @@ function Inspector(props) {
                                                     btnHoverColor: value,
                                                 })
                                             }
-                                        />
-                                        <BoxShadowControl
-                                            controlName={BUTTON_HOVER_BOX_SHADOW}
-                                            resRequiredProps={resRequiredProps}
-                                            enableTransition={false}
                                         />
                                     </>
                                 }
@@ -696,34 +703,6 @@ function Inspector(props) {
                                     min={0}
                                     max={100}
                                     step={1}
-                                />
-                                <TabPanelControl
-                                    normalComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={buttonIconColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        buttonIconColor: value,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={buttonIconHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        buttonIconHoverColor: value,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
                                 />
                                 {preset === 'style-1' && (
                                     <IconicBtnGroup
@@ -770,6 +749,34 @@ function Inspector(props) {
                                         options={POSITIONS}
                                     />
                                 )}
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={buttonIconColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        buttonIconColor: value,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={buttonIconHoverColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        buttonIconHoverColor: value,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                />
                             </PanelBody>
                         )}
                     </>

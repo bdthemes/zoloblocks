@@ -39,24 +39,26 @@ import {
     ROW_GAP,
     CONTAINER_BACKGROUND,
     CONTAINER_HOVER_BACKGROUND,
+    CONTAINER_MARGIN,
+    CONTAINER_PADDING,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BORDER,
     CONTAINER_HOVER_BORDER,
     IMAGE_BORDER,
     IMAGE_HOVER_BORDER,
-    CONTAINER_HOVER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
     CONTAINER_HOVER_BOX_SHADOW,
     IMAGE_BORDER_RADIUS,
     IMAGE_BOX_SHADOW,
     IMAGE_BACKGROUND,
-    IMAGE_HOVER_BORDER_RADIUS,
     IMAGE_HOVER_BOX_SHADOW,
     IMAGE_HOVER_BACKGROUND,
     IMAGE_PADDING,
     IMAGE_MARGIN,
     HEADING_BORDER,
     HEADING_BACKGROUND,
+    HEADING_MARGIN,
+    HEADING_PADDING,
     HEADING_BORDER_RADIUS,
     HEADING_BOX_SHADOW,
 } from './constants';
@@ -139,6 +141,26 @@ export default function Edit(props) {
     });
 
     const {
+        dimensionStylesDesktop: containerMarginDesk,
+        dimensionStylesTab: containerMarginTab,
+        dimensionStylesMobile: containerMarginMob,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: containerPaddingDesk,
+        dimensionStylesTab: containerPaddingTab,
+        dimensionStylesMobile: containerPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
         desktopBorderStyle: containerBorderDesk,
         tabBorderStyle: containerBorderTab,
         mobBorderStyle: containerBorderMob,
@@ -162,16 +184,6 @@ export default function Edit(props) {
         dimensionStylesMobile: containerBorderRadiusMob,
     } = generateDimensionStyle({
         controlName: CONTAINER_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: containerHoverBorderRadiusDesk,
-        dimensionStylesTab: containerHoverBorderRadiusTab,
-        dimensionStylesMobile: containerHoverBorderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_HOVER_BORDER_RADIUS,
         styleFor: 'border-radius',
         attributes,
     });
@@ -237,16 +249,6 @@ export default function Edit(props) {
     });
 
     const {
-        dimensionStylesDesktop: imageHoverBorderRadiusDesk,
-        dimensionStylesTab: imageHoverBorderRadiusTab,
-        dimensionStylesMobile: imageHoverBorderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: IMAGE_HOVER_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const {
         dimensionStylesDesktop: imagePaddingDesk,
         dimensionStylesTab: imagePaddingTab,
         dimensionStylesMobile: imagePaddingMob,
@@ -295,6 +297,26 @@ export default function Edit(props) {
         controlName: HEADING_BACKGROUND,
         attributes,
         noMainBGImg: false,
+    });
+
+    const {
+        dimensionStylesDesktop: headingMarginDesk,
+        dimensionStylesTab: headingMarginTab,
+        dimensionStylesMobile: headingMarginMob,
+    } = generateDimensionStyle({
+        controlName: HEADING_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: headingPaddingDesk,
+        dimensionStylesTab: headingPaddingTab,
+        dimensionStylesMobile: headingPaddingMob,
+    } = generateDimensionStyle({
+        controlName: HEADING_PADDING,
+        styleFor: 'padding',
+        attributes,
     });
 
     const {
@@ -348,6 +370,8 @@ export default function Edit(props) {
     const desktopAllStyle = `
 		.${uniqueId}.zolo-img-gallery-${preset} {
 			${containerDeskBGStyle}
+			${containerMarginDesk}
+			${containerPaddingDesk}
 			${containerBorderDesk}
 			${containerBorderRadiusDesk}
 			${containerBoxShadow}
@@ -356,7 +380,6 @@ export default function Edit(props) {
 		.${uniqueId}.zolo-img-gallery-${preset}:hover {
 			${containerHoverDeskBGStyle}
 			${containerHoverBorderDesk}
-			${containerHoverBorderRadiusDesk}
 			${containerBoxShadowHover}
 		}
 		.${uniqueId}.zolo-img-gallery-${preset}.zolo-image-gallery {
@@ -375,12 +398,13 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-image-wrap:hover {
 			${imageHoverDeskBGStyle}
 			${imageHoverBorderDesk}
-			${imageHoverBorderRadiusDesk}
 			${imageHoverBoxShadow}
 		}		
 		.${uniqueId} .zolo-title {
 			color: ${headingColor ? headingColor : ''};
 			${headingDeskBGStyle}
+			${headingMarginDesk}
+			${headingPaddingDesk}
 			${headingBorderDesk}
 			${headingBorderRadiusDesk}
 			${headingBoxShadow}
@@ -392,13 +416,14 @@ export default function Edit(props) {
     const tabletAllStyle = `
 	.${uniqueId}.zolo-img-gallery-${preset} {
 		${containerTabBGStyle}
+		${containerMarginTab}
+		${containerPaddingTab}
 		${containerBorderTab}
 		${containerBorderRadiusTab}
 	}		
 	.${uniqueId}.zolo-img-gallery-${preset}:hover {
 		${containerHoverTabBGStyle}
 		${containerHoverBorderTab}
-		${containerHoverBorderRadiusTab}
 	}
 	.${uniqueId}.zolo-img-gallery-${preset}.zolo-image-gallery {
 		grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
@@ -415,10 +440,11 @@ export default function Edit(props) {
 	.${uniqueId} .zolo-image-wrap:hover {
 		${imageHoverTabBGStyle}
 		${imageHoverBorderTab}
-		${imageHoverBorderRadiusTab}
-	}			
+	}
 	.${uniqueId} .zolo-title {
 		${headingTabBGStyle}
+		${headingMarginTab}
+		${headingPaddingTab}
 		${headingBorderTab}
 		${headingBorderRadiusTab}
 		${headingTypoTab}
@@ -427,15 +453,16 @@ export default function Edit(props) {
 	`;
 
     const mobileAllStyle = `		
-	.${uniqueId}.zolo-img-gallery-${preset}{
+	.${uniqueId}.zolo-img-gallery-${preset} {
 		${containerMobBGStyle}
+		${containerMarginMob}
+		${containerPaddingMob}
 		${containerBorderMob}
 		${containerBorderRadiusMob}
 	}		
 	.${uniqueId}.zolo-img-gallery-${preset}:hover {
 		${containerHoverMobBGStyle}
 		${containerHoverBorderMob}
-		${containerHoverBorderRadiusMob}
 	}
 	.${uniqueId}.zolo-img-gallery-${preset}.zolo-image-gallery {
 		grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
@@ -452,10 +479,11 @@ export default function Edit(props) {
 	.${uniqueId} .zolo-image-wrap:hover {
 		${imageHoverMobBGStyle}
 		${imageHoverBorderMob}
-		${imageHoverBorderRadiusMob}
-	}			
+	}
 	.${uniqueId} .zolo-title {
 		${headingMobBGStyle}
+		${headingMarginMob}
+		${headingPaddingMob}
 		${headingBorderMob}
 		${headingBorderRadiusMob}
 		${headingTypoMob}
@@ -529,7 +557,6 @@ export default function Edit(props) {
 
             <div {...blockProps}>
                 <div className={`${advancedGallery ? 'zolo-image-gallery' : 'zolo-single-image'} ${uniqueId} zolo-img-gallery-${preset}`}>
-                    {}
                     {advancedGallery ? (
                         advancedGallery &&
                         advancedGallery.map((image, index) => {
