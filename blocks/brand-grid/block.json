@@ -1,7 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Brand Grid",
-    "icon": "shield",
     "name": "zolo/brand-grid",
     "category": "zolo-blocks",
     "keywords": ["grid", "brand"],
