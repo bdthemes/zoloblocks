@@ -80,6 +80,7 @@ export const WRAPPER_MARGIN = 'wrapMargin';
 export const WRAPPER_PADDING = 'wrapPadding';
 export const WRAPPER_BG = 'wrapBg';
 export const WRAPPER_BORDER = 'wrapBorder';
+export const WRAPPER_BORDER_RADIUS = 'wrapBorderRadius';
 export const WRAPPER_SHADOW = 'wrapShadow';
 
 // ribbon style

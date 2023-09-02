@@ -8,7 +8,6 @@ const {
     generateResRangeAttributies,
     generateResAlignmentAttributies,
     generateTextShadowAttributies,
-    generateTextStrokeAttributies,
     generateNormalBGAttributes,
 } = window.zoloModule;
 
@@ -48,6 +47,7 @@ import {
     TITLE_TEXT_SHADOW,
     WRAPPER_BG,
     WRAPPER_BORDER,
+    WRAPPER_BORDER_RADIUS,
     WRAPPER_MARGIN,
     WRAPPER_PADDING,
     WRAPPER_SHADOW,
@@ -365,6 +365,7 @@ const attributes = {
         defaultBgGradient: 'linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)',
     }),
     ...generateBorderAttributies(WRAPPER_BORDER),
+    ...generateDimensionAttributes(WRAPPER_BORDER_RADIUS),
     ...generateBoxShadowAttributies(WRAPPER_SHADOW),
 };
 export default attributes;
