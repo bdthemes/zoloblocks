@@ -625,7 +625,7 @@ export default function Edit(props) {
 		}
 
 		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover {			
-			background: ${btnBgHoverColor ? btnBgHoverColor : '#32DE23'};
+			background: ${btnBgHoverColor ? btnBgHoverColor : ''};
 			${buttonHoverBoxShadow}
 			${buttonHoverBorderStyles}
 		}

@@ -1,53 +1,37 @@
 .wp-block-zolo-pricing-table {
     box-sizing: border-box;
     position: relative;
-
-    .zolo-pricing-style-1 .zolo-item {
-        border-radius: 10px;
+    .zolo-item {
+        border-radius: 6px;
         border: 1px solid #ddd;
     }
-
-    .zolo-pricing-style-1 .zolo-head-content {
-        padding: 30px;
+    .zolo-head-content {
+        padding: clamp(1.5rem, 4vw, 2.5rem);
     }
-
-    .zolo-pricing-style-1 .zolo-package-title {
+    .zolo-package-title {
         margin: 0 0 20px;
-        font-size: 23px;
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
         font-weight: 700;
         color: #292734;
         text-transform: capitalize;
     }
-
-    .zolo-pricing-style-1 .zolo-price-info {
+    .zolo-price-info {
         display: flex;
         align-items: center;
         gap: 6px;
-        margin-bottom: 10px;
     }
 
-    .zolo-pricing-style-1 .zolo-user-month,
-    .zolo-pricing-style-2 .zolo-user-month {
+    .zolo-user-month {
         display: flex;
         font-size: 14px;
         font-weight: 300;
         color: #34353c;
-    }
-
-    .zolo-pricing-style-1 .zolo-user-month {
         flex-direction: column;
     }
-
-    .zolo-pricing-style-2 .zolo-user-month {
-        flex-direction: row;
-        gap: 10px;
-    }
-
     .zolo-price {
-        font-size: 40px;
+        font-size: 50px;
         font-weight: 700;
         color: #17171a;
-
         .currency,
         .fractional {
             position: relative;
@@ -102,9 +86,9 @@
         }
     }
 
-    .zolo-pricing-style-1 .zolo-features-info {
+    .zolo-features-info {
         border-top: 1px solid #ddd;
-        padding: 30px;
+        padding: clamp(1.5rem, 4vw, 2.5rem);
     }
 
     .zolo-features-title {
@@ -143,170 +127,53 @@
         position: absolute;
         top: 0;
         right: 0;
-        margin: 30px;
+        margin: clamp(1.5rem, 4vw, 2.5rem);
         color: #000;
         font-size: 11px;
         text-transform: capitalize;
         background-color: #72fd3f;
         padding: 4px 10px;
-        border-radius: 30px;
+        border-radius: 6px;
     }
 
-    .zolo-pricing-style-1 .zolo-featerd-item {
+    .zolo-featerd-item {
         background-color: #000;
     }
 
-    .zolo-pricing-style-1 .zolo-featerd-item .zolo-buy-btn,
-    .zolo-pricing-style-1 .zolo-featerd-item .zolo-chat-btn:hover {
+    .zolo-featerd-item .zolo-buy-btn,
+    .zolo-featerd-item .zolo-chat-btn:hover {
         background-color: #7aff00;
         color: #000;
-
         border: 1px solid #ddd;
     }
 
-    .zolo-pricing-style-1 .zolo-featerd-item .zolo-buy-btn:hover,
-    .zolo-pricing-style-1 .zolo-featerd-item .zolo-chat-btn {
+    .zolo-featerd-item .zolo-buy-btn:hover,
+    .zolo-featerd-item .zolo-chat-btn {
         background-color: white;
         color: #000;
     }
 
-    .zolo-pricing-style-1 .zolo-featerd-item .zolo-package-title {
+    .zolo-featerd-item .zolo-package-title {
         color: #72fd3f;
     }
 
-    .zolo-pricing-style-1 .zolo-featerd-item .zolo-price,
-    .zolo-pricing-style-1 .zolo-featerd-item .zolo-features-title {
+    .zolo-featerd-item .zolo-price,
+    .zolo-featerd-item .zolo-features-title {
         color: #e1e1e1;
     }
 
-    .zolo-pricing-style-1 .zolo-featerd-item .zolo-user-month,
-    .zolo-pricing-style-1 .zolo-featerd-item .zolo-package-desc,
-    .zolo-pricing-style-1 .zolo-featerd-item .zolo-features-desc,
-    .zolo-pricing-style-1 .zolo-featerd-item .features li {
+    .zolo-featerd-item .zolo-user-month,
+    .zolo-featerd-item .zolo-package-desc,
+    .zolo-featerd-item .zolo-features-desc,
+    .zolo-featerd-item .features li {
         color: #b4b5b9;
     }
 
-    .zolo-pricing-style-1 .zolo-featerd-item .zolo-check-icon {
+    .zolo-featerd-item .zolo-check-icon {
         color: #000;
     }
 
-    .zolo-pricing-style-1 .zolo-featerd-item .zolo-features-info {
+    .zolo-featerd-item .zolo-features-info {
         border-top: 1px solid rgba(215, 218, 223, 0.322);
-    }
-
-    .zolo-pricing-style-2 .zolo-package-desc,
-    .zolo-pricing-style-2 .zolo-chat-btn,
-    .zolo-pricing-style-3 .zolo-package-desc,
-    .zolo-pricing-style-3 .zolo-chat-btn {
-        display: none;
-    }
-
-    .zolo-pricing-style-2 .zolo-item,
-    .zolo-pricing-style-3 .zolo-item {
-        display: flex;
-        align-items: flex-start;
-        background-color: #d5f2fe;
-        padding: 30px;
-        border-radius: 10px;
-        /* gap: 12px; */
-        height: 250px;
-    }
-
-    .zolo-pricing-style-3 .zolo-item {
-        flex-direction: row-reverse;
-    }
-
-    .zolo-pricing-style-2 .zolo-package-title,
-    .zolo-pricing-style-3 .zolo-package-title {
-        margin: 0 0 25px;
-        font-size: 15px;
-        border: 1px solid #5c5858;
-        display: inline-block;
-        padding: 8px 12px;
-        text-transform: capitalize;
-        border-radius: 5px;
-    }
-
-    .zolo-pricing-style-2 .zolo-link-btn,
-    .zolo-pricing-style-3 .zolo-link-btn {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: 30px;
-    }
-
-    .zolo-pricing-style-2 .zolo-features-info {
-        width: 100%;
-        border-left: 1px solid rgba(181, 181, 181, 0.349);
-        padding-left: 30px;
-    }
-
-    .zolo-pricing-style-2 .zolo-head-content {
-        width: 100%;
-        padding-right: 30px;
-    }
-
-    .zolo-pricing-style-3 .zolo-features-info {
-        width: 100%;
-        border-right: 1px solid rgba(181, 181, 181, 0.349);
-        padding-right: 30px;
-    }
-
-    .zolo-pricing-style-3 .zolo-head-content {
-        width: 100%;
-        padding-left: 30px;
-    }
-
-    .zolo-pricing-style-2 .zolo-price,
-    .zolo-pricing-style-3 .zolo-price {
-        font-size: 50px;
-    }
-
-    .zolo-pricing-style-2 .zolo-user-month,
-    .zolo-pricing-style-2 .zolo-user-month,
-    .zolo-pricing-style-3 .zolo-user-month,
-    .zolo-pricing-style-3 .zolo-user-month {
-        font-weight: 700;
-    }
-
-    .zolo-pricing-style-2 .features li,
-    .zolo-pricing-style-3 .features li {
-        font-size: 13px;
-        gap: 7px;
-    }
-
-    .zolo-pricing-style-2 .zolo-check-icon,
-    .zolo-pricing-style-3 .zolo-check-icon {
-        background-color: #070808;
-        padding: 2px;
-        color: #fff;
-    }
-
-    .zolo-pricing-style-2 .zolo-item.zolo-featerd-item,
-    .zolo-pricing-style-3 .zolo-item.zolo-featerd-item {
-        background-color: #ffd7fd;
-    }
-
-    .zolo-pricing-style-2 .zolo-link-btn a,
-    .zolo-pricing-style-3 .zolo-link-btn a {
-        border: 1px solid #1f1e22;
-    }
-
-    .zolo-pricing-style-2 .features,
-    .zolo-pricing-style-3 .features {
-        gap: 20px;
-    }
-}
-
-@media (min-width: 768px) {
-    .zolo-pricing-plan-wrap {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .zolo-pricing-plan-wrap {
-        grid-template-columns: repeat(3, 1fr);
     }
 }

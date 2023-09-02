@@ -30,7 +30,6 @@ const Save = ({ attributes }) => {
                                             ></path>
                                         </svg>
                                     </span>
-                                    <span className="zolo-icon-text">{__('zoom', 'zolo-blocks')}</span>
                                 </div>
                                 {image.caption && <div className="zolo-title">{image.caption}</div>}
                             </a>
