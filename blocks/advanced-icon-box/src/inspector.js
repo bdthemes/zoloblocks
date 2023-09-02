@@ -2,16 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import {
-    CardDivider,
-    PanelBody,
-    SelectControl,
-    ToggleControl,
-    TextControl,
-    TextareaControl,
-    BaseControl,
-    Button,
-} from '@wordpress/components';
+import { PanelBody, SelectControl, ToggleControl, TextControl, TextareaControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 
@@ -49,6 +40,7 @@ import {
     TITLE_TEXT_STROKE,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
+    BUTTON_BG_COLOR,
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
     ICON_BORDER,
@@ -96,12 +88,9 @@ function Inspector(props) {
         iconBackgroundHoverColor,
         textColor,
         textHoverColor,
-        descColor,
-        descHoverColor,
         iconType,
         btnColor,
         btnHoverColor,
-        btnBgColor,
         btnBgHoverColor,
         buttonText,
         buttonLink,
@@ -632,14 +621,10 @@ function Inspector(props) {
                                             resRequiredProps={resRequiredProps}
                                             enableTransition={false}
                                         />
-                                        <ColorControl
-                                            label={__('Background', 'zolo-blocks')}
-                                            color={btnBgColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    btnBgColor: value,
-                                                })
-                                            }
+                                        <NormalBGControl
+                                            resRequiredProps={resRequiredProps}
+                                            controlName={BUTTON_BG_COLOR}
+                                            noMainBGImg={true}
                                         />
                                         <ColorControl
                                             label={__('Color', 'zolo-blocks')}

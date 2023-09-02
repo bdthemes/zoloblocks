@@ -20,6 +20,7 @@ import {
     ICON_HOVER_BORDER,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
+    BUTTON_BG_COLOR,
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
     ICON_BORDER_RADIUS,
@@ -88,6 +89,7 @@ const attributes = {
     ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
 
     // Button
+    ...generateNormalBGAttributes(BUTTON_BG_COLOR),
     ...generateBorderAttributies(BUTTON_BORDER),
     ...generateBorderAttributies(BUTTON_HOVER_BORDER),
     ...generateResRangeAttributies(BUTTON_ICON_SIZE, {

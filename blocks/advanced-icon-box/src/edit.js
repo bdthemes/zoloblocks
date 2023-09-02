@@ -45,6 +45,7 @@ import {
     ICON_SIZE,
     ICON_PADDING,
     ICON_MARGIN,
+    BUTTON_BG_COLOR,
     BUTTON_ICON_SIZE,
     BUTTON_BORDER,
     BUTTON_HOVER_BORDER,
@@ -402,6 +403,17 @@ export default function Edit(props) {
         attributes,
     });
 
+    // button background color
+    const {
+        backgroundStylesDesktop: buttonBGDeskStyle,
+        backgroundStylesTab: buttonBGTabStyle,
+        backgroundStylesMobile: buttonBGMobStyle,
+    } = generateNormalBGControlStyles({
+        controlName: BUTTON_BG_COLOR,
+        attributes,
+        noMainBGImg: true,
+    });
+
     // generate button icon size
     const {
         desktopRangeStyle: buttonIconSize,
@@ -499,56 +511,6 @@ export default function Edit(props) {
     });
 
     /**
-     * Presets Based Styles
-     */
-    let presetStyles;
-    switch (preset) {
-        case 'style-1':
-            presetStyles = `
-				.zolo-block-icon-wrap{
-					justify-content: ${presetOneStyles && presetOneStyles.contentPosition};
-				}
-				.zolo-box-button{
-					flex-direction: ${presetOneStyles && presetOneStyles.iconPosition};
-				}
-			`;
-            break;
-        case 'style-2':
-            presetStyles = `
-			.${uniqueId} 
-				.zolo-block-body-content{
-					text-align: ${presetTwoStyles && presetTwoStyles.contentPosition};
-				}
-				.${uniqueId} 
-				.zolo-block-link-btn{
-					justify-content: ${presetTwoStyles && presetTwoStyles.contentPosition};
-				}
-				.zolo-box-button{
-					flex-direction: ${presetTwoStyles && presetTwoStyles.iconPosition};
-				}
-			`;
-            break;
-        case 'style-3':
-            presetStyles = `
-				.${uniqueId} 
-				.zolo-block-body-content{
-					text-align: ${presetThreeStyles && presetThreeStyles.contentPosition};
-				}
-				.${uniqueId} 
-				.zolo-block-link-btn{
-					justify-content: ${presetThreeStyles && presetThreeStyles.contentPosition};
-				}
-				.zolo-box-button{
-					flex-direction: ${presetThreeStyles && presetThreeStyles.iconPosition};
-				}
-			`;
-            break;
-        case 'style-4':
-            break;
-        default:
-            presetStyles = '';
-    }
-    /**
      * All Style Combination
      */
     const desktopAllStyle = `	
@@ -615,7 +577,7 @@ export default function Edit(props) {
 			${iconImageBorderRadiusDesk}
 		}
 		.${uniqueId} .zolo-block-body-content .zolo-box-button {			
-			background: ${btnBgColor ? btnBgColor : ''};	
+			${buttonBGDeskStyle}	
 			${gapDesk}		
 			${buttonBorderStyles}
 			${buttonBorderRadiusDesktop}
@@ -649,7 +611,44 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover p{			
 			color: ${btnHoverColor ? btnHoverColor : '#fff'};			
 		}
-		${presetStyles}		
+       ${
+           preset === 'style-1'
+               ? `.zolo-block-icon-wrap {
+                        justify-content: ${presetOneStyles && presetOneStyles.contentPosition};
+                } .zolo-box-button {
+                    flex-direction: ${presetOneStyles && presetOneStyles.iconPosition};
+                }`
+               : ''
+       }
+       ${
+           preset === 'style-2'
+               ? `.${uniqueId} 
+               .zolo-block-body-content {
+                text-align: ${presetTwoStyles && presetTwoStyles.contentPosition};
+                } .${uniqueId} 
+				.zolo-block-link-btn {
+                    justify-content: ${presetTwoStyles && presetTwoStyles.contentPosition};
+                }
+                .zolo-box-button{
+					flex-direction: ${presetTwoStyles && presetTwoStyles.iconPosition};
+				}`
+               : ''
+       }
+       ${
+           preset === 'style-3'
+               ? `.${uniqueId} 
+               .zolo-block-body-content {
+                text-align: ${presetThreeStyles && presetThreeStyles.contentPosition};
+                } .${uniqueId} 
+				.zolo-block-link-btn {
+                    justify-content: ${presetThreeStyles && presetThreeStyles.contentPosition};
+                }
+                .zolo-box-button{
+					flex-direction: ${presetThreeStyles && presetThreeStyles.iconPosition};
+				}`
+               : ''
+       }
+			 
   	`;
 
     const tabletAllStyle = `
@@ -711,7 +710,6 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
 			${btnTypoTab}
 		}
-		${presetStyles}
 	`;
 
     const mobileAllStyle = `
@@ -771,7 +769,6 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
 			${btnTypoMobile}
 		}
-		${presetStyles}
   	`;
 
     const allStyle = `

@@ -92,6 +92,7 @@ export const ICON_SIZE = 'iconSize';
 export const ICON_TEXT_SPACING = 'iconTextSpacing';
 
 // Button
+export const BUTTON_BG_COLOR = 'buttonBgColor';
 export const BUTTON_BOX_SHADOW = 'buttonBoxShadow';
 export const BUTTON_HOVER_BOX_SHADOW = 'buttonHoverBoxShadow';
 export const BUTTON_ICON_SIZE = 'buttonIconSize';
