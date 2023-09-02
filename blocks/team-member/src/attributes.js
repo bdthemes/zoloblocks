@@ -122,9 +122,15 @@ const attributes = {
     },
     memberPhoto: {
         type: 'object',
+        default: {
+            id: '',
+            url: 'https://placehold.co/600x300',
+            alt: '',
+        },
     },
     memberName: {
         type: 'string',
+        default: 'John Doe',
     },
     addDetailPageLink: {
         type: 'boolean',
@@ -147,13 +153,16 @@ const attributes = {
     },
     memberDesignation: {
         type: 'string',
+        default: 'CEO, ZoloBlocks',
     },
     showShortBio: {
         type: 'boolean',
-        default: true,
+        default: false,
     },
     memberShortBio: {
         type: 'string',
+        default:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
     showSocialProfiles: {
         type: 'boolean',
@@ -164,12 +173,42 @@ const attributes = {
         default: [
             {
                 id: 1,
+                title: 'Facebook',
+                icon: {
+                    'fa-facebook-f': {
+                        name: 'facebook',
+                        source: 'fontawesome',
+                        type: 'fab',
+                    },
+                },
+                link: {
+                    url: '#',
+                    openInNewTab: false,
+                },
+            },
+            {
+                id: 2,
                 title: 'Twitter',
                 icon: {
-                    twitter: {
+                    'fa-twitter': {
                         name: 'twitter',
-                        source: 'dashicon',
-                        type: '',
+                        source: 'fontawesome',
+                        type: 'fab',
+                    },
+                },
+                link: {
+                    url: '#',
+                    openInNewTab: false,
+                },
+            },
+            {
+                id: 3,
+                title: 'Instagram',
+                icon: {
+                    'fa-instagram': {
+                        name: 'instagram',
+                        source: 'fontawesome',
+                        type: 'fab',
                     },
                 },
                 link: {
