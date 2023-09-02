@@ -581,7 +581,6 @@ export default function Edit(props) {
                                                 ></path>
                                             </svg>
                                         </span>
-                                        <span className="zolo-icon-text">{__('zoom', 'zolo-blocks')}</span>
                                     </a>
                                     {image.caption && <div className="zolo-title">{image.caption}</div>}
                                 </div>

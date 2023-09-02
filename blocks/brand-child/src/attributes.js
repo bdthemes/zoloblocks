@@ -102,6 +102,11 @@ const attributes = {
     //Block specific Attributes
     brandPhoto: {
         type: 'object',
+        default: {
+            id: '',
+            url: 'https://placehold.co/600x600',
+            alt: '',
+        },
     },
     brandName: {
         type: 'string',

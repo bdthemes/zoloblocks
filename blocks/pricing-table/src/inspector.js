@@ -165,66 +165,18 @@ const Inspector = ({ attributes, setAttributes }) => {
         objAttributes,
     };
 
-    const changePremade = (selected) => {
-        setAttributes({ styles: selected });
-        switch (selected) {
-            case 'style-1':
-                setAttributes({
-                    showFeatureHeading: true,
-                    showRibbon: true,
-                    showDesc: true,
-                });
-                break;
-            case 'style-2':
-                setAttributes({
-                    showFeatureHeading: false,
-                    showRibbon: false,
-                    showDesc: false,
-                });
-                break;
-            case 'style-3':
-                setAttributes({
-                    showFeatureHeading: false,
-                    showRibbon: false,
-                    showDesc: false,
-                });
-                break;
-            default:
-                return false;
-        }
-    };
-
-    const featureItemAdd = () => {
-        const count = features.length + 1;
-        const featuresList = [
-            ...features,
-            {
-                text: `List Item #${count}`,
-                icon: {
-                    'fa-check': {
-                        name: 'check',
-                        source: 'fontawesome',
-                        type: 'fas',
-                    },
-                },
-                color: '#03bb89',
-            },
-        ];
-        setAttributes({ features: featuresList });
-    };
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs
                 generalTab={
                     <>
                         <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
-                            <SelectControl
+                            {/* <SelectControl
                                 label={__('Preset Designs', 'zolo-blocks')}
                                 value={styles}
                                 options={applyFilters('zolo_pricing_table_style_filter', STYLES) || STYLES}
                                 onChange={(selected) => changePremade(selected)}
-                            />
+                            /> */}
 
                             <ToggleControl
                                 label={__('Show Ribbon', 'zolo-blocks')}

@@ -73,6 +73,7 @@ const attributes = {
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateDimensionAttributes(BUTTON_PADDING),
     ...generateDimensionAttributes(BUTTON_MARGIN),
+
     // button icon generator
     ...generateBorderAttributies(ICON_BORDER),
     ...generateDimensionAttributes(ICON_BORDER_RADIUS),
@@ -145,6 +146,7 @@ const attributes = {
     },
     label: {
         type: 'string',
+        default: 'Button',
     },
     link: {
         type: 'object',

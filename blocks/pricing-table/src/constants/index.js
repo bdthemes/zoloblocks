@@ -7,10 +7,10 @@ export const NORMAL_HOVER = [
 ];
 
 //settings tab
-export const STYLES = [
-    { label: __('Default', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
-];
+// export const STYLES = [
+//     { label: __('Default', 'zolo-blocks'), value: 'style-1' },
+//     { label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
+// ];
 
 export const TITLE_TAG = [
     { label: __('H1', 'zolo-blocks'), value: 'h1' },
