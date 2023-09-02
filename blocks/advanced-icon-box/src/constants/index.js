@@ -72,7 +72,6 @@ export const ICON_POSITIONS = [
 
 export const CONTAINER_BACKGROUND = 'containerBg';
 export const CONTAINER_BORDER = 'containerBorder';
-export const CONTAINER_HOVER_BORDER = 'containerHoverBorder';
 export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
 export const CONTAINER_HOVER_BOX_SHADOW = 'containerHoverBoxShadow';
@@ -84,7 +83,6 @@ export const ICON_PADDING = 'iconPadding';
 export const ICON_MARGIN = 'iconMargin';
 export const ICON_BOX_ALIGNMENT = 'iconBoxAlignment';
 export const ICON_BORDER = 'iconBorder';
-export const ICON_HOVER_BORDER = 'iconHoverBorder';
 export const ICON_BOX_SHADOW = 'iconBoxShadow';
 export const ICON_HOVER_BOX_SHADOW = 'iconHoverBoxShadow';
 export const ICON_BORDER_RADIUS = 'iconBorderRadius';
@@ -93,11 +91,11 @@ export const ICON_TEXT_SPACING = 'iconTextSpacing';
 
 // Button
 export const BUTTON_BG_COLOR = 'buttonBgColor';
+export const BUTTON_BG_HOVER_COLOR = 'buttonBgHoverColor';
 export const BUTTON_BOX_SHADOW = 'buttonBoxShadow';
 export const BUTTON_HOVER_BOX_SHADOW = 'buttonHoverBoxShadow';
 export const BUTTON_ICON_SIZE = 'buttonIconSize';
 export const BUTTON_BORDER = 'buttonBorder';
-export const BUTTON_HOVER_BORDER = 'buttonHoverBorder';
 export const BUTTON_BORDER_RADIUS = 'buttonBorderRadius';
 export const BUTTON_MARGIN = 'buttonMargin';
 export const BUTTON_PADDING = 'buttonPadding';

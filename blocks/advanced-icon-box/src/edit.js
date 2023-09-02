@@ -28,7 +28,6 @@ import {
     BLOCK_PREFIX,
     CONTAINER_BACKGROUND,
     CONTAINER_BORDER,
-    CONTAINER_HOVER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
     CONTAINER_HOVER_BOX_SHADOW,
@@ -40,15 +39,14 @@ import {
     TITLE_TEXT_STROKE,
     DESCRIPTION_MARGIN,
     ICON_BORDER,
-    ICON_HOVER_BORDER,
     ICON_BORDER_RADIUS,
     ICON_SIZE,
     ICON_PADDING,
     ICON_MARGIN,
     BUTTON_BG_COLOR,
+    BUTTON_BG_HOVER_COLOR,
     BUTTON_ICON_SIZE,
     BUTTON_BORDER,
-    BUTTON_HOVER_BORDER,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
     BUTTON_BOX_SHADOW,
@@ -72,10 +70,10 @@ export default function Edit(props) {
         uniqueId,
         preset,
         titleTag,
-        link,
         blockStyle,
-        showIcon,
+        showButtonIcon,
         mainIcon,
+        containerBorderHoverColor,
         buttonIcon,
         textColor,
         textHoverColor,
@@ -84,6 +82,7 @@ export default function Edit(props) {
         iconAlignment,
         iconColor,
         iconHoverColor,
+        iconBorderHoverColor,
         iconBackgroundColor,
         iconBackgroundHoverColor,
         iconType,
@@ -93,8 +92,7 @@ export default function Edit(props) {
         buttonText,
         btnColor,
         btnHoverColor,
-        btnBgColor,
-        btnBgHoverColor,
+        btnHoverBorderColor,
         buttonIconColor,
         buttonIconHoverColor,
         presetOneStyles,
@@ -133,16 +131,6 @@ export default function Edit(props) {
         mobBorderStyle: containerBorderMobStyle,
     } = generateBorderStyle({
         controlName: CONTAINER_BORDER,
-        attributes,
-    });
-
-    // item hover border
-    const {
-        desktopBorderStyle: containerHoverBorderDeskStyle,
-        tabBorderStyle: containerHoverBorderTabStyle,
-        mobBorderStyle: containerHoverBorderMobStyle,
-    } = generateBorderStyle({
-        controlName: CONTAINER_HOVER_BORDER,
         attributes,
     });
 
@@ -361,16 +349,6 @@ export default function Edit(props) {
         attributes,
     });
 
-    // generate hover border style
-    const {
-        desktopBorderStyle: borderHoverStyles,
-        tabBorderStyle: borderHoverStylesTab,
-        mobBorderStyle: borderHoverStylesMob,
-    } = generateBorderStyle({
-        controlName: ICON_HOVER_BORDER,
-        attributes,
-    });
-
     // generate icon size
     const {
         desktopRangeStyle: iconSize,
@@ -410,6 +388,17 @@ export default function Edit(props) {
         backgroundStylesMobile: buttonBGMobStyle,
     } = generateNormalBGControlStyles({
         controlName: BUTTON_BG_COLOR,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    // button background hover color
+    const {
+        backgroundStylesDesktop: buttonBGHoverDeskStyle,
+        backgroundStylesTab: buttonBGHoverTabStyle,
+        backgroundStylesMobile: buttonBGHoverMobStyle,
+    } = generateNormalBGControlStyles({
+        controlName: BUTTON_BG_HOVER_COLOR,
         attributes,
         noMainBGImg: true,
     });
@@ -454,16 +443,6 @@ export default function Edit(props) {
         mobBorderStyle: buttonBorderStylesMob,
     } = generateBorderStyle({
         controlName: BUTTON_BORDER,
-        attributes,
-    });
-
-    // generate button style
-    const {
-        desktopBorderStyle: buttonHoverBorderStyles,
-        tabBorderStyle: buttonHoverBorderStylesTab,
-        mobBorderStyle: buttonHoverBorderStylesMob,
-    } = generateBorderStyle({
-        controlName: BUTTON_HOVER_BORDER,
         attributes,
     });
 
@@ -523,7 +502,7 @@ export default function Edit(props) {
 			${containerPaddingDesk}
 		}
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
-            ${containerHoverBorderDeskStyle}
+            border-color: ${containerBorderHoverColor ? containerBorderHoverColor : ''};
             ${containerHoverBoxShadow}
         }
 		.${uniqueId} .zolo-block-icon-wrap{
@@ -540,7 +519,7 @@ export default function Edit(props) {
 			${titleTypoDesktop}
 			${titleTextShadowStyle}
         	${titleTextStrokeStyle}
-			${titleMarginDesktop ? titleMarginDesktop : '0 0 12px 0'}
+			${titleMarginDesktop ? titleMarginDesktop : ''}
 			color: ${textColor ? textColor : ''};
 		}
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title:hover{
@@ -549,7 +528,7 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-block-desc{
 			${descTypoDesktop}
 			${descMarginDesktop}
-			color: ${descColor ? descColor : '#87878a'};
+			color: ${descColor ? descColor : ''};
 		}
 		.${uniqueId} .zolo-block-desc:hover{
 			color: ${descHoverColor ? descHoverColor : ''};
@@ -569,7 +548,7 @@ export default function Edit(props) {
 			background: ${iconBackgroundHoverColor ? iconBackgroundHoverColor : ''};
 			color: ${iconHoverColor ? iconHoverColor : ''};
 			${iconHoverBoxShadow}
-			${borderHoverStyles}
+			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''}
 		}
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
@@ -587,9 +566,9 @@ export default function Edit(props) {
 		}
 
 		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover {			
-			background: ${btnBgHoverColor ? btnBgHoverColor : '#32DE23'};
+			${buttonBGHoverDeskStyle}
 			${buttonHoverBoxShadow}
-			${buttonHoverBorderStyles}
+			border-color: ${btnHoverBorderColor ? btnHoverBorderColor : ''}
 		}
 		
 		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
@@ -609,7 +588,7 @@ export default function Edit(props) {
 		}
 
 		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover p{			
-			color: ${btnHoverColor ? btnHoverColor : '#fff'};			
+			color: ${btnHoverColor ? btnHoverColor : ''};			
 		}
        ${
            preset === 'style-1'
@@ -662,9 +641,7 @@ export default function Edit(props) {
 			${containerMarginTab}
 			${containerPaddingTab}
 		}        
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
-            ${containerHoverBorderTabStyle}
-        }
+        
 		.${uniqueId} .zolo-block-title{
 			${titleTypoTab}
 			${tabTitleTextStrokeStyle}
@@ -684,9 +661,6 @@ export default function Edit(props) {
 			background: ${iconBackgroundColor ? iconBackgroundColor : ''};
 			color: ${iconColor ? iconColor : ''};	
 		}
-        .${uniqueId} .zolo-block-icon-wrap span:hover{
-            ${borderHoverStylesTab}
-        }
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeTab}
 			${iconImageBorderTab}
@@ -704,9 +678,6 @@ export default function Edit(props) {
 			${buttonPaddingTab}
 			${buttonMarginTab}
 		}
-        .${uniqueId} .zolo-block-body-content .zolo-box-button:hover {
-            ${buttonHoverBorderStylesTab}
-        }
 		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
 			${btnTypoTab}
 		}
@@ -722,10 +693,7 @@ export default function Edit(props) {
 			${containerMobBorderRadius}
 			${containerMarginMob}
 			${containerPaddingMob}
-		}                
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
-            ${containerHoverBorderMobStyle};
-        }
+		}
 		.${uniqueId} .zolo-block-title{
 			${titleTypoMobile}
 			${mobTitleTextStrokeStyle}
@@ -742,10 +710,7 @@ export default function Edit(props) {
 			${iconBorderRadiusMob}
 			${iconPaddingMob}
 			${iconMarginMob}
-		}        
-        .${uniqueId} .zolo-block-icon-wrap span:hover{
-            ${borderHoverStylesMob}
-        }
+		}
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeMob}
 			${iconImageBorderMob}
@@ -763,9 +728,6 @@ export default function Edit(props) {
 			${buttonPaddingMob}
 			${buttonMarginMob}
 		}
-        .${uniqueId} .zolo-block-body-content .zolo-box-button:hover {
-            ${buttonHoverBorderStylesMob}
-        }
 		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
 			${btnTypoMobile}
 		}
@@ -898,7 +860,7 @@ export default function Edit(props) {
                                         placeholder={__('Read More', 'zolo-blocks')}
                                         allowedFormats={['core/bold', 'core/italic']}
                                     />
-                                    {showIcon && <DisplayIcon icon={buttonIcon} />}
+                                    {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
                                 </div>
                             </div>
                         </div>

@@ -41,21 +41,19 @@ import {
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
     BUTTON_BG_COLOR,
+    BUTTON_BG_HOVER_COLOR,
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
     ICON_BORDER,
-    ICON_HOVER_BORDER,
     ICON_BORDER_RADIUS,
     ICON_PADDING,
     ICON_MARGIN,
     BUTTON_BORDER,
-    BUTTON_HOVER_BORDER,
     BUTTON_BORDER_RADIUS,
     BUTTON_MARGIN,
     BUTTON_PADDING,
     CONTAINER_BACKGROUND,
     CONTAINER_BORDER,
-    CONTAINER_HOVER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
     CONTAINER_HOVER_BOX_SHADOW,
@@ -75,23 +73,29 @@ function Inspector(props) {
         preset,
         titleTag,
         resMode,
-        showIcon,
+        showButtonIcon,
         mainIcon,
+        showMainIcon,
         iconTypeImage,
         buttonIcon,
         iconBoxTitle,
         iconBoxDescription,
         iconAlignment,
         iconColor,
+        iconBorderHoverColor,
         iconHoverColor,
         iconBackgroundColor,
+        containerBorderHoverColor,
         iconBackgroundHoverColor,
         textColor,
         textHoverColor,
+        showHeading,
+        showDesc,
+        showButton,
         iconType,
         btnColor,
         btnHoverColor,
-        btnBgHoverColor,
+        btnHoverBorderColor,
         buttonText,
         buttonLink,
         globalLink,
@@ -124,6 +128,53 @@ function Inspector(props) {
                                     })
                                 }
                             />
+                            <ToggleControl
+                                label={__('Show Icon / Image', 'zolo-blocks')}
+                                checked={showMainIcon}
+                                onChange={() =>
+                                    setAttributes({
+                                        showMainIcon: !showMainIcon,
+                                    })
+                                }
+                            />
+                            <ToggleControl
+                                label={__('Show Heading', 'zolo-blocks')}
+                                checked={showHeading}
+                                onChange={() =>
+                                    setAttributes({
+                                        showHeading: !showHeading,
+                                    })
+                                }
+                            />
+                            <ToggleControl
+                                label={__('Show Description', 'zolo-blocks')}
+                                checked={showDesc}
+                                onChange={() =>
+                                    setAttributes({
+                                        showDesc: !showDesc,
+                                    })
+                                }
+                            />
+                            <ToggleControl
+                                label={__('Show Button', 'zolo-blocks')}
+                                checked={showButton}
+                                onChange={() =>
+                                    setAttributes({
+                                        showButton: !showButton,
+                                    })
+                                }
+                            />
+                            {showButton && (
+                                <ToggleControl
+                                    label={__('Show Button Icon', 'zolo-blocks')}
+                                    checked={showButtonIcon}
+                                    onChange={() =>
+                                        setAttributes({
+                                            showButtonIcon: !showButtonIcon,
+                                        })
+                                    }
+                                />
+                            )}
                         </PanelBody>
                         <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
                             <IconicBtnGroup
@@ -248,17 +299,8 @@ function Inspector(props) {
                                 }
                             />
                         </PanelBody>
-                        <PanelBody title={__('Button Icon', 'zolo-blocks')} initialOpen={false}>
-                            <ToggleControl
-                                label={__('Show Icon', 'zolo-blocks')}
-                                checked={showIcon}
-                                onChange={() =>
-                                    setAttributes({
-                                        showIcon: !showIcon,
-                                    })
-                                }
-                            />
-                            {showIcon && (
+                        {showButtonIcon && (
+                            <PanelBody title={__('Button Icon', 'zolo-blocks')} initialOpen={false}>
                                 <Fragment>
                                     <IconPicker
                                         value={buttonIcon}
@@ -269,8 +311,8 @@ function Inspector(props) {
                                         }
                                     />
                                 </Fragment>
-                            )}
-                        </PanelBody>
+                            </PanelBody>
+                        )}
                     </>
                 }
                 styleTab={
@@ -360,10 +402,14 @@ function Inspector(props) {
                                 }
                                 hoverComponents={
                                     <>
-                                        <BorderControl
-                                            label={__('Border', 'zolo-blocks')}
-                                            controlName={CONTAINER_HOVER_BORDER}
-                                            resRequiredProps={resRequiredProps}
+                                        <ColorControl
+                                            label={__('Border Hover Color', 'zolo-blocks')}
+                                            color={containerBorderHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    containerBorderHoverColor: value,
+                                                })
+                                            }
                                         />
                                         <BoxShadowControl
                                             controlName={CONTAINER_HOVER_BOX_SHADOW}
@@ -447,10 +493,14 @@ function Inspector(props) {
                                     }
                                     hoverComponents={
                                         <>
-                                            <BorderControl
-                                                label={__('Border', 'zolo-blocks')}
-                                                controlName={ICON_HOVER_BORDER}
-                                                resRequiredProps={resRequiredProps}
+                                            <ColorControl
+                                                label={__('Border Hover Color', 'zolo-blocks')}
+                                                color={iconBorderHoverColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        iconBorderHoverColor: value,
+                                                    })
+                                                }
                                             />
                                             <ColorControl
                                                 label={__('Background', 'zolo-blocks')}
@@ -639,24 +689,24 @@ function Inspector(props) {
                                 }
                                 hoverComponents={
                                     <>
-                                        <BorderControl
-                                            label={__('Border', 'zolo-blocks')}
-                                            controlName={BUTTON_HOVER_BORDER}
-                                            resRequiredProps={resRequiredProps}
+                                        <ColorControl
+                                            label={__('Button Hover Border Color', 'zolo-blocks')}
+                                            color={btnHoverBorderColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    btnHoverBorderColor: value,
+                                                })
+                                            }
                                         />
                                         <BoxShadowControl
                                             controlName={BUTTON_HOVER_BOX_SHADOW}
                                             resRequiredProps={resRequiredProps}
                                             enableTransition={false}
                                         />
-                                        <ColorControl
-                                            label={__('Background', 'zolo-blocks')}
-                                            color={btnBgHoverColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    btnBgHoverColor: value,
-                                                })
-                                            }
+                                        <NormalBGControl
+                                            resRequiredProps={resRequiredProps}
+                                            controlName={BUTTON_BG_HOVER_COLOR}
+                                            noMainBGImg={true}
                                         />
                                         <ColorControl
                                             label={__('Color', 'zolo-blocks')}
@@ -671,7 +721,7 @@ function Inspector(props) {
                                 }
                             />
                         </PanelBody>
-                        {showIcon && (
+                        {showButtonIcon && (
                             <PanelBody title={__('Button Icon', 'zolo-blocks')} initialOpen={false}>
                                 <ResRangeControl
                                     label={__('Icon Size', 'zolo-blocks')}

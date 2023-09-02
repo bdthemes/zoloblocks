@@ -7,7 +7,7 @@ const Save = ({ attributes }) => {
         uniqueId,
         preset,
         titleTag,
-        showIcon,
+        showButtonIcon,
         mainIcon,
         buttonIcon,
         iconType,
@@ -43,7 +43,7 @@ const Save = ({ attributes }) => {
                             <div className={`zolo-block-link-btn`}>
                                 <div className={`zolo-box-button`} href={buttonLink}>
                                     <RichText.Content value={buttonText} />
-                                    {showIcon && <DisplayIcon icon={buttonIcon} />}
+                                    {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@ const Save = ({ attributes }) => {
                                 >
                                     <div className={`zolo-box-button`}>
                                         <RichText.Content tagName="p" value={buttonText} />
-                                        {showIcon && <DisplayIcon icon={buttonIcon} />}
+                                        {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
                                     </div>
                                 </a>
                             </div>
