@@ -113,6 +113,11 @@ const attributes = {
     },
     memberPhoto: {
         type: 'object',
+        default: {
+            id: '',
+            url: 'https://placehold.co/70x70',
+            alt: '',
+        },
     },
     showName: {
         type: 'boolean',
@@ -120,6 +125,7 @@ const attributes = {
     },
     memberName: {
         type: 'string',
+        default: 'John Doe',
     },
     addReviewerWebsiteLink: {
         type: 'boolean',
@@ -138,6 +144,7 @@ const attributes = {
     },
     memberDesignation: {
         type: 'string',
+        default: 'CEO at ZoloBlocks',
     },
     showTestimonialMessage: {
         type: 'boolean',
@@ -145,6 +152,8 @@ const attributes = {
     },
     testimonialMessage: {
         type: 'string',
+        default:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.',
     },
     showRating: {
         type: 'boolean',

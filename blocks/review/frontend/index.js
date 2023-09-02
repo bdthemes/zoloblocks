@@ -15,11 +15,11 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Internal dependencies
  */
-
-const StarRating = ({
-  total = 5,
-  rating
-}) => {
+const StarRating = _ref => {
+  let {
+    total = 5,
+    rating
+  } = _ref;
   const fraction = Math.round((rating - Math.floor(rating)) * 10) / 10;
   const filled = Math.floor(rating);
   const empty = total - Math.ceil(rating);
@@ -226,11 +226,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _src_controls_star_rating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/controls/star-rating */ "./src/controls/star-rating/index.js");
 
-
-
-const ReviewFrontend = ({
-  rating
-}) => {
+const ReviewFrontend = _ref => {
+  let {
+    rating
+  } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_src_controls_star_rating__WEBPACK_IMPORTED_MODULE_1__["default"], {
     rating: rating,
     total: 5

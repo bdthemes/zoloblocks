@@ -71,10 +71,10 @@ const attributes = {
     },
 
     //layout
-    styles: {
-        type: 'string',
-        default: 'style-1',
-    },
+    // styles: {
+    //     type: 'string',
+    //     default: 'style-1',
+    // },
 
     //header
     titleText: {
@@ -125,13 +125,13 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
-    showFeatureDesc: {
-        type: 'boolean',
-        default: true,
-    },
     featureTitle: {
         type: 'string',
         default: 'FEATURES',
+    },
+    showFeatureDesc: {
+        type: 'boolean',
+        default: true,
     },
     featureDesc: {
         type: 'string',

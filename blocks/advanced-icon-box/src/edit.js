@@ -647,7 +647,7 @@ export default function Edit(props) {
 		}
 
 		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover p{			
-			color: ${btnHoverColor ? btnHoverColor : '#fff'};			
+			color: ${btnHoverColor ? btnHoverColor : ''};			
 		}
 		${presetStyles}		
   	`;

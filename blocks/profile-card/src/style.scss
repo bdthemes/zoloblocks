@@ -1,176 +1,176 @@
 :root {
-	--color1: #fff;
-	--color2: #000;
-	--color3: #96a2b3;
-	--color4: #df0606;
-	--color5: #494950;
-	--color6: #2c74e3;
-	--color7: #595862;
-	--color8: #38383c;
-	--color9: #717387;
-	--color10: #8f8d99;
-	--color11: #4b4b52;
-	--background1: #043bef;
-	--background2: rgba(22, 110, 185, 0.651);
-	--background3: rgba(237, 245, 255, 0.94);
-	--background4: rgba(255, 255, 255, 0.302);
-	--padding-left: 40px;
+    --color1: #fff;
+    --color2: #000;
+    --color3: #96a2b3;
+    --color4: #df0606;
+    --color5: #494950;
+    --color6: #2c74e3;
+    --color7: #595862;
+    --color8: #38383c;
+    --color9: #717387;
+    --color10: #8f8d99;
+    --color11: #4b4b52;
+    --background1: #043bef;
+    --background2: rgba(22, 110, 185, 0.651);
+    --background3: rgba(237, 245, 255, 0.94);
+    --background4: rgba(255, 255, 255, 0.302);
+    --padding-left: 40px;
 }
 
 .wp-block-zolo-profile-card {
-	.zb-profile-badge {
-		padding: 4px 13px;
-		font-size: 11px;
-		border-radius: 25px;
-		color: var(--color1);
-		font-weight: 700;
-		display: inline-block;
-		text-transform: uppercase;
-		border: 1px solid var(--color3);
-	}
+    .zb-profile-badge {
+        padding: 4px 13px;
+        font-size: 11px;
+        border-radius: 25px;
+        color: var(--color1);
+        font-weight: 700;
+        display: inline-block;
+        text-transform: uppercase;
+        border: 1px solid var(--color3);
+    }
 
-	.zb-profile-name {
-		font-size: 28px;
-		color: var(--color2);
-		font-weight: 700;
-		text-decoration: none;
-		margin: 0 0 5px;
-		display: inline-block;
-		transition: color 0.3s ease;
-	}
+    .zb-profile-name {
+        font-size: 28px;
+        color: var(--color2);
+        font-weight: 700;
+        text-decoration: none;
+        margin: 0 0 5px;
+        display: inline-block;
+        transition: color 0.3s ease;
+    }
 
-	.zb-profile-email {
-		font-size: 14px;
-		color: var(--color5);
-	}
+    .zb-profile-email {
+        font-size: 14px;
+        color: var(--color5);
+    }
 
-	.bdt-profile-card-bio {
-		margin: 15px 0;
-		font-size: 16px;
-		color: var(--color5);
-		padding-left: var(--padding-left);
-		padding-right: var(--padding-left);
-		strong {
-			color: var(--color6);
-		}
-	}
+    .zb-profile-card-bio {
+        margin: 15px 0;
+        font-size: 16px;
+        color: var(--color5);
+        padding-left: var(--padding-left);
+        padding-right: var(--padding-left);
+        strong {
+            color: var(--color6);
+        }
+    }
 
-	.zb-profile-status {
-		gap: 15px;
-		margin: 0 0 20px;
-	}
+    .zb-profile-status {
+        gap: 15px;
+        margin: 0 0 20px;
+    }
 
-	.zb-profile-status,
-	.zb-profile-socail-share {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+    .zb-profile-status,
+    .zb-profile-socail-share {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-	.zb-profile-status-item {
-		display: flex;
-		gap: -4px;
-		flex-direction: column;
-	}
+    .zb-profile-status-item {
+        display: flex;
+        gap: -4px;
+        flex-direction: column;
+    }
 
-	.zb-profile-status-count {
-		font-weight: 700;
-		color: var(--color6);
-	}
+    .zb-profile-status-count {
+        font-weight: 700;
+        color: var(--color6);
+    }
 
-	.zb-profile-status-text {
-		color: var(--color7);
-		font-size: 14px;
-		text-transform: capitalize;
-	}
+    .zb-profile-status-text {
+        color: var(--color7);
+        font-size: 14px;
+        text-transform: capitalize;
+    }
 
-	.zb-profile-fllow-btn {
-		font-size: 12px;
-		color: var(--color8);
-		border: 1px solid var(--color9);
-		text-transform: capitalize;
-		text-decoration: none;
-		display: inline-block;
-		font-weight: 700;
-		padding: 8px 23px;
-		border-radius: 17px;
-		transition: all 0.3s ease;
-		&:hover {
-			color: var(--color1);
-			border-color: var(--color6);
-			background-color: var(--color6);
-		}
-	}
+    .zb-profile-fllow-btn {
+        font-size: 12px;
+        color: var(--color8);
+        border: 1px solid var(--color9);
+        text-transform: capitalize;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 700;
+        padding: 8px 23px;
+        border-radius: 17px;
+        transition: all 0.3s ease;
+        &:hover {
+            color: var(--color1);
+            border-color: var(--color6);
+            background-color: var(--color6);
+        }
+    }
 
-	.zb-profile-socail-and-fllow {
-		padding-bottom: 30px;
-	}
+    .zb-profile-socail-and-fllow {
+        padding-bottom: 30px;
+    }
 
-	.zb-profile-socail-share {
-		gap: 10px;
-		padding: 30px 30px 0;
-		a {
-			border: 1px solid var(--color10);
-			padding: 5px;
-			border-radius: 50%;
-			color: var(--color11);
-			transition: all 0.3s ease;
-			width: 30px;
-			height: 30px;
-			text-decoration: none;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			&:hover {
-				color: var(--color1);
-				border-color: var(--color6);
-				background-color: var(--color6);
-			}
-		}
-		svg {
-			display: block;
-			width: 12px;
-			height: 12px;
-		}
-	}
+    .zb-profile-socail-share {
+        gap: 10px;
+        padding: 30px 30px 0;
+        a {
+            border: 1px solid var(--color10);
+            padding: 5px;
+            border-radius: 50%;
+            color: var(--color11);
+            transition: all 0.3s ease;
+            width: 30px;
+            height: 30px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:hover {
+                color: var(--color1);
+                border-color: var(--color6);
+                background-color: var(--color6);
+            }
+        }
+        svg {
+            display: block;
+            width: 12px;
+            height: 12px;
+        }
+    }
 
-	.zb-profile-info {
-		margin-top: 15px;
-	}
+    .zb-profile-info {
+        margin-top: 15px;
+    }
 
-	.zb-profile-item {
-		overflow: hidden;
-	}
+    .zb-profile-item {
+        overflow: hidden;
+    }
 
-	.zb-profile-header-content {
-		border-radius: 20px;
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
-		padding: 30px 30px 100px;
-		box-sizing: border-box;
-		background-color: var(--background1);
-	}
+    .zb-profile-header-content {
+        border-radius: 20px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        padding: 30px 30px 100px;
+        box-sizing: border-box;
+        background-color: var(--background1);
+    }
 
-	.zb-profile-bottom-content {
-		margin-top: -30px;
-		background-color: var(--background3);
-		border-radius: 30px;
-		display: inline-block;
-		width: 100%;
-		text-align: center;
-		backdrop-filter: blur(45px);
-		box-sizing: border-box;
-	}
+    .zb-profile-bottom-content {
+        margin-top: -30px;
+        background-color: var(--background3);
+        border-radius: 30px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        backdrop-filter: blur(45px);
+        box-sizing: border-box;
+    }
 
-	.zb-profile-image {
-		margin-top: -50px;
-		img {
-			width: 80px;
-			height: 80px;
-			display: block;
-			border-radius: 100%;
-			margin: auto;
-			border: 6px solid var(--background4);
-		}
-	}
+    .zb-profile-image {
+        margin-top: -50px;
+        img {
+            width: 80px;
+            height: 80px;
+            display: block;
+            border-radius: 100%;
+            margin: auto;
+            border: 6px solid var(--background4);
+        }
+    }
 }
