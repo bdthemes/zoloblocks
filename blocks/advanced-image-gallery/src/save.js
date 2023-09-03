@@ -3,7 +3,6 @@ import { __ } from '@wordpress/i18n';
 
 const Save = ({ attributes }) => {
     const { uniqueId, preset, advancedGallery } = attributes;
-
     return (
         <div {...useBlockProps.save()}>
             <div className={`zolo-image-gallery ${uniqueId} zolo-img-gallery-${preset}`}>

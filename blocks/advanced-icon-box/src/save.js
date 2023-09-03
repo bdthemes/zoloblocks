@@ -7,8 +7,12 @@ const Save = ({ attributes }) => {
         uniqueId,
         preset,
         titleTag,
-        showButtonIcon,
         mainIcon,
+        showMainIcon,
+        showHeading,
+        showDesc,
+        showButton,
+        showButtonIcon,
         buttonIcon,
         iconType,
         iconTypeImage,
@@ -18,7 +22,6 @@ const Save = ({ attributes }) => {
         buttonLink,
         globalLink,
     } = attributes;
-
     return (
         <div {...useBlockProps.save()}>
             {globalLink === true ? (
@@ -29,23 +32,26 @@ const Save = ({ attributes }) => {
                     className={`zolo-block-advanced-icon-box ${uniqueId} zolo-block-advanced-icon-box-${preset}`}
                 >
                     <div className="zolo-block-item">
-                        <div className={`zolo-block-icon-wrap`}>
-                            {iconType == 'icon' ? (
-                                <DisplayIcon icon={mainIcon} />
-                            ) : (
-                                iconTypeImage && <img src={iconTypeImage.url} alt={iconTypeImage.alt || iconBoxTitle} />
-                            )}
-                        </div>
-
-                        <div className="zolo-block-body-content">
-                            <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />
-                            <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />
-                            <div className={`zolo-block-link-btn`}>
-                                <div className={`zolo-box-button`} href={buttonLink}>
-                                    <RichText.Content value={buttonText} />
-                                    {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
-                                </div>
+                        {showMainIcon && (
+                            <div className={`zolo-block-icon-wrap`}>
+                                {iconType == 'icon' ? (
+                                    <DisplayIcon icon={mainIcon} />
+                                ) : (
+                                    iconTypeImage && <img src={iconTypeImage.url} alt={iconTypeImage.alt || iconBoxTitle} />
+                                )}
                             </div>
+                        )}
+                        <div className="zolo-block-body-content">
+                            {showHeading && <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />}
+                            {showDesc && <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />}
+                            {showButton && (
+                                <div className={`zolo-block-link-btn`}>
+                                    <div className={`zolo-box-button`} href={buttonLink}>
+                                        <RichText.Content value={buttonText} />
+                                        {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
                         <div className="zolo-block-hover-icon">

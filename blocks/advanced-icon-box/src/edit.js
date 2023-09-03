@@ -75,6 +75,10 @@ export default function Edit(props) {
         mainIcon,
         containerBorderHoverColor,
         buttonIcon,
+        showMainIcon,
+        showHeading,
+        showDesc,
+        showButton,
         textColor,
         textHoverColor,
         descColor,
@@ -754,7 +758,7 @@ export default function Edit(props) {
             setAttributes({ blockStyle: styles });
         }
     }, [attributes]);
-
+    console.log(typeof showHeading);
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -797,77 +801,82 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <div className={`zolo-block-advanced-icon-box ${uniqueId} zolo-block-advanced-icon-box-${preset}`}>
                     <div className="zolo-block-item">
-                        <div className={`zolo-block-icon-wrap`}>
-                            {iconType == 'icon' ? (
-                                <DisplayIcon icon={mainIcon} />
-                            ) : iconTypeImage ? (
-                                <img src={iconTypeImage.url} alt={iconTypeImage.alt || 'Team Member'} />
-                            ) : (
-                                <MediaPlaceholder
-                                    icon="format-image"
-                                    labels={{
-                                        title: __('Add Photo', 'zolo-blocks'),
-                                        instructions: '',
-                                    }}
-                                    onSelect={(media) => {
-                                        setAttributes({
-                                            iconTypeImage: media,
-                                        });
-                                    }}
-                                    accept="image/*"
-                                    allowedTypes={['image']}
-                                />
-                            )}
-
-                            {}
-                        </div>
+                        {showMainIcon && (
+                            <div className={`zolo-block-icon-wrap`}>
+                                {iconType == 'icon' ? (
+                                    <DisplayIcon icon={mainIcon} />
+                                ) : iconTypeImage ? (
+                                    <img src={iconTypeImage.url} alt={iconTypeImage.alt || 'Team Member'} />
+                                ) : (
+                                    <MediaPlaceholder
+                                        icon="format-image"
+                                        labels={{
+                                            title: __('Add Photo', 'zolo-blocks'),
+                                            instructions: '',
+                                        }}
+                                        onSelect={(media) => {
+                                            setAttributes({
+                                                iconTypeImage: media,
+                                            });
+                                        }}
+                                        accept="image/*"
+                                        allowedTypes={['image']}
+                                    />
+                                )}
+                            </div>
+                        )}
 
                         <div className="zolo-block-body-content">
-                            <RichText
-                                className={`zolo-block-title`}
-                                tagName={titleTag}
-                                value={iconBoxTitle}
-                                onChange={(text) =>
-                                    setAttributes({
-                                        iconBoxTitle: text,
-                                    })
-                                }
-                                placeholder={__('The Title Goes Here', 'zolo-blocks')}
-                            />
-
-                            <RichText
-                                className={`zolo-block-desc`}
-                                tagName="div"
-                                value={iconBoxDescription}
-                                onChange={(text) =>
-                                    setAttributes({
-                                        iconBoxDescription: text,
-                                    })
-                                }
-                                placeholder={__('The Description Goes Here..', 'zolo-blocks')}
-                            />
-
-                            <div className={`zolo-block-link-btn`}>
-                                <div className={`zolo-box-button`}>
-                                    <RichText
-                                        value={buttonText}
-                                        tagName="p"
-                                        onChange={(text) =>
-                                            setAttributes({
-                                                buttonText: text,
-                                            })
-                                        }
-                                        placeholder={__('Read More', 'zolo-blocks')}
-                                        allowedFormats={['core/bold', 'core/italic']}
-                                    />
-                                    {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
+                            {showHeading && (
+                                <RichText
+                                    className={`zolo-block-title`}
+                                    tagName={titleTag}
+                                    value={iconBoxTitle}
+                                    onChange={(text) =>
+                                        setAttributes({
+                                            iconBoxTitle: text,
+                                        })
+                                    }
+                                    placeholder={__('The Title Goes Here', 'zolo-blocks')}
+                                />
+                            )}
+                            {showDesc && (
+                                <RichText
+                                    className={`zolo-block-desc`}
+                                    tagName="div"
+                                    value={iconBoxDescription}
+                                    onChange={(text) =>
+                                        setAttributes({
+                                            iconBoxDescription: text,
+                                        })
+                                    }
+                                    placeholder={__('The Description Goes Here..', 'zolo-blocks')}
+                                />
+                            )}
+                            {showButton && (
+                                <div className={`zolo-block-link-btn`}>
+                                    <div className={`zolo-box-button`}>
+                                        <RichText
+                                            value={buttonText}
+                                            tagName="p"
+                                            onChange={(text) =>
+                                                setAttributes({
+                                                    buttonText: text,
+                                                })
+                                            }
+                                            placeholder={__('Read More', 'zolo-blocks')}
+                                            allowedFormats={['core/bold', 'core/italic']}
+                                        />
+                                        {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
+                                    </div>
                                 </div>
+                            )}
+                        </div>
+                        {showMainIcon && (
+                            <div className="zolo-block-hover-icon">
+                                <DisplayIcon icon={mainIcon} />
                             </div>
-                        </div>
-
-                        <div className="zolo-block-hover-icon">
-                            <DisplayIcon icon={mainIcon} />
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>

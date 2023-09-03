@@ -209,6 +209,30 @@ const attributes = {
             },
         },
     },
+    mainTopIcon: {
+        type: 'array',
+        default: [
+            {
+                id: 1,
+                icon: {
+                    facebook: {
+                        name: 'facebook',
+                        source: 'fontawesome',
+                        type: 'fb',
+                    },
+                },
+                link: {
+                    url: '#',
+                    openInNewTab: false,
+                },
+                text: 'Facebook',
+            },
+        ],
+    },
+    mainTopIconLinkTarget: {
+        type: 'boolean',
+        default: true,
+    },
     buttonIcon: {
         type: 'object',
         default: {
