@@ -62,35 +62,40 @@ const Save = ({ attributes }) => {
             ) : (
                 <div className={`zolo-block-advanced-icon-box ${uniqueId} zolo-block-advanced-icon-box-${preset}`}>
                     <div className="zolo-block-item">
-                        <div className={`zolo-block-icon-wrap`}>
-                            {iconType == 'icon' ? (
-                                <DisplayIcon icon={mainIcon} />
-                            ) : (
-                                iconTypeImage && <img src={iconTypeImage.url} alt={iconTypeImage.alt || iconBoxTitle} />
-                            )}
-                        </div>
+                        {showMainIcon && (
+                            <div className={`zolo-block-icon-wrap`}>
+                                {iconType == 'icon' ? (
+                                    <DisplayIcon icon={mainIcon} />
+                                ) : (
+                                    iconTypeImage && <img src={iconTypeImage.url} alt={iconTypeImage.alt || iconBoxTitle} />
+                                )}
+                            </div>
+                        )}
 
                         <div className="zolo-block-body-content">
-                            <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />
-                            <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />
-                            <div className={`zolo-block-link-btn`}>
-                                <a
-                                    className={`zolo-icon-link`}
-                                    href={buttonLink && buttonLink.url}
-                                    target={buttonLink && buttonLink.openInNewTab && '_blank'}
-                                    rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
-                                >
-                                    <div className={`zolo-box-button`}>
-                                        <RichText.Content tagName="p" value={buttonText} />
-                                        {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
-                                    </div>
-                                </a>
+                            {showHeading && <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />}
+                            {showDesc && <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />}
+                            {showButton && (
+                                <div className={`zolo-block-link-btn`}>
+                                    <a
+                                        className={`zolo-icon-link`}
+                                        href={buttonLink && buttonLink.url}
+                                        target={buttonLink && buttonLink.openInNewTab && '_blank'}
+                                        rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
+                                    >
+                                        <div className={`zolo-box-button`}>
+                                            <RichText.Content tagName="p" value={buttonText} />
+                                            {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
+                                        </div>
+                                    </a>
+                                </div>
+                            )}
+                        </div>
+                        {showMainIcon && (
+                            <div className="zolo-block-hover-icon">
+                                <DisplayIcon icon={mainIcon} />
                             </div>
-                        </div>
-
-                        <div className="zolo-block-hover-icon">
-                            <DisplayIcon icon={mainIcon} />
-                        </div>
+                        )}
                     </div>
                 </div>
             )}
