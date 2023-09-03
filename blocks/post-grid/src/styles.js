@@ -2,6 +2,7 @@ import { useEffect } from '@wordpress/element';
 import {
   GRID_COLUMNS,
   COLUMNS_GAP,
+  THUMBNAIL_HEIGHT,
   COLUMN_PADDING,
   COLUMN_BG,
   COLUMN_BORDER,
@@ -63,6 +64,15 @@ function styles({ attributes, setAttributes }) {
     attributes,
   });
 
+  const {
+    desktopRangeStyle: thumbnailHeightDesk,
+    tabRangeStyle: thumbnailHeightTab,
+    mobRangeStyle: thumbnailHeightMob,
+  } = generateResRangeStyle({
+    controlName: THUMBNAIL_HEIGHT,
+    property: 'height',
+    attributes,
+  });
 
   //column
   const {
@@ -259,53 +269,57 @@ function styles({ attributes, setAttributes }) {
    * All Style Combination
    */
   const desktopAllStyle = `
-      .${uniqueId}.wp-block-zolo-post-grid {
+      .${uniqueId}.zolo-post-grid-wrap {
         ${wrapperMarginDesktop}
         ${wrapperPaddingDesktop}
         ${wrapperBackgroundStylesDesktop}
         ${wrapperBorderDesktop}
         ${wrapperShadow}
       }
-     .${uniqueId}.wp-block-zolo-post-grid:hover{
+     .${uniqueId}.zolo-post-grid-wrap:hover{
         ${wrapperHoverBackgroundStylesDesktop}
         ${wrapperHoverShadow}
       }
-     .${uniqueId}.wp-block-zolo-post-grid::before{
+     .${uniqueId}.zolo-post-grid-wrap::before{
           ${wrapperOverlayStylesDesktop}
       }
-     .${uniqueId}.wp-block-zolo-post-grid:hover::before{
+     .${uniqueId}.zolo-post-grid-wrap:hover::before{
         ${wrapperHoverOverlayStylesDesktop}
       }
 
-      .${uniqueId}.wp-block-zolo-post-grid.zolo-post-wrap{
+      .${uniqueId}.zolo-post-grid-wrap{
         grid-template-columns:repeat(${columnCountDesk}, 1fr);
         ${colGapDesk}
       }
-      .${uniqueId}.wp-block-zolo-post-grid .zolo-post-item{
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-item{
         ${columnDeskPadding}
         ${columnDeskBGStyle}
         ${columnDeskBorderStyle}
         ${columnDeskBorderRadius}
         ${columnBoxShadow}
       }
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-image{
+        ${thumbnailHeightDesk}
+      }
 
-      .${uniqueId}.wp-block-zolo-post-grid .zolo-post-title{
+
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-title{
         ${titleMarginDesk}
         ${titleTypoDesk}
       }
-      .${uniqueId}.wp-block-zolo-post-grid .zolo-post-title a{
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-title a{
         ${titleColor ? `color:${titleColor};` : ''}
       }
-      .${uniqueId}.wp-block-zolo-post-grid .zolo-post-title a:hover{
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-title a:hover{
         ${titleHoverColor ? `color:${titleHoverColor};` : ''}
       }
-      .${uniqueId}.wp-block-zolo-post-grid .zolo-post-desc p{
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-desc p{
         ${excerptMarginDesk}
         ${excerptTypoDesk}
         ${excerptColor ? `color:${excerptColor};` : ''}
       }
 
-      .${uniqueId}.wp-block-zolo-post-grid .zolo-post-image{
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-image{
         ${thumbMarginDesk}
         ${thumbPaddingDesk}
         ${thumbBgDesk}

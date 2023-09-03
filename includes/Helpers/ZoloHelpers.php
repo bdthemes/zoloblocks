@@ -197,4 +197,19 @@ class ZoloHelpers
 
         return $options;
     }
+
+    public static function get_wrapper_class($settings = [], $class_name = '')
+    {
+        $wrap_class = '';
+
+        if (isset($settings['uniqueId'])) {
+            $wrap_class .= $settings['uniqueId'];
+        }
+
+        if (!empty($class_name)) {
+            $wrap_class .= ' ' . $class_name;
+        }
+
+        return $wrap_class;
+    }
 }

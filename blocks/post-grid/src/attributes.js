@@ -58,11 +58,6 @@ const attributes = {
     default: 'style-1',
   },
 
-  showPagination: {
-    type: 'boolean',
-    default: false
-  },
-
   showExcerpt: {
     type: 'boolean',
     default: false
@@ -93,10 +88,7 @@ const attributes = {
     type: 'boolean',
     default: true,
   },
-
-  ...generateResRangeAttributies(THUMBNAIL_HEIGHT, {
-    defaultRange: 200,
-  }),
+  ...generateResRangeAttributies(THUMBNAIL_HEIGHT),
   showTitle: {
     type: 'boolean',
     default: true,
@@ -140,6 +132,11 @@ const attributes = {
     type: 'boolean',
     default: true,
   },
+  showPagination: {
+    type: 'boolean',
+    default: true,
+  },
+
   ...generateDimensionAttributes(COLUMN_PADDING),
   ...generateNormalBGAttributes(COLUMN_BG),
   ...generateBorderAttributies(COLUMN_BORDER),

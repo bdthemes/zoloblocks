@@ -17,11 +17,12 @@ import './style.scss';
 const {
   handleUniqueId,
   softMinifyCssStrings,
+  Pagination
 } = window.zoloModule;
 
 export default function Edit(props) {
   const { attributes, setAttributes, className, clientId, isSelected } = props;
-  const { uniqueId, postQuery, preset } = attributes;
+  const { uniqueId, postQuery, preset, page, showPagination } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
   useEffect(() => {
@@ -34,7 +35,7 @@ export default function Edit(props) {
   }, []);
 
   const blockProps = useBlockProps({
-    className: classnames(className, `${uniqueId} zolo-post-wrap zolo-post-${preset}`),
+    className: classnames(className, `${uniqueId} zolo-post-grid-wrap zolo-post-${preset}`),
   });
 
   //generate all style
@@ -133,6 +134,15 @@ export default function Edit(props) {
           postResults={postResults}
         />
       </div>
+      {(showPagination && pageTotal > 1) && (
+        <Pagination
+          total={pageTotal}
+          current={page || 1}
+          prevText=""
+          nextText=""
+          onClickPage={(page) => setAttributes({ page })}
+        />
+      )}
     </>
   );
 }

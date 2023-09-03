@@ -63,7 +63,6 @@ function Inspector({ attributes, setAttributes }) {
     resMode,
     postQuery,
     showThumbnail,
-    thumbnailSize,
     showTitle,
     titleTag,
     showExcerpt,
@@ -73,6 +72,7 @@ function Inspector({ attributes, setAttributes }) {
     showCategory,
     showAuthor,
     showMeta,
+    showPagination,
     titleColor,
     titleHoverColor,
     excerptColor
@@ -144,7 +144,6 @@ function Inspector({ attributes, setAttributes }) {
                   changePremade(selected)
                 }
               />
-
               <ResCounterControl
                 label={__('Column', 'zolo-blocks')}
                 controlName={GRID_COLUMNS}
@@ -152,7 +151,6 @@ function Inspector({ attributes, setAttributes }) {
                 min={1}
                 max={6}
               />
-
               <ResRangeControl
                 label={__('Gap', 'zolo-blocks')}
                 controlName={COLUMNS_GAP}
@@ -161,7 +159,6 @@ function Inspector({ attributes, setAttributes }) {
                 max={100}
                 step={1}
               />
-
               <ToggleControl
                 label={__('Show Thumbnail', 'zolo-blocks')}
                 checked={showThumbnail}
@@ -171,8 +168,10 @@ function Inspector({ attributes, setAttributes }) {
                 label={__('Thumbnail Height', 'zolo-blocks')}
                 controlName={THUMBNAIL_HEIGHT}
                 resRequiredProps={resRequiredProps}
+                min={0}
+                max={600}
+                step={1}
               />
-
               <SelectControl
                 label={__('Thumbnail Image Size', 'zolo-blocks')}
                 value={postQuery?.postThumbnail}
@@ -181,7 +180,6 @@ function Inspector({ attributes, setAttributes }) {
                   postQuery: { ...postQuery, postThumbnail }
                 })}
               />
-
               <ToggleControl
                 label={__('Show Title', 'zolo-blocks')}
                 checked={showTitle}
@@ -249,6 +247,12 @@ function Inspector({ attributes, setAttributes }) {
                 checked={showMeta}
                 onChange={(showMeta) => setAttributes({ showMeta })}
               />
+              <ToggleControl
+                label={__('Show Pagination', 'zolo-blocks')}
+                checked={showPagination}
+                onChange={(showPagination) => setAttributes({ showPagination })}
+              />
+
 
             </PanelBody>
           </>

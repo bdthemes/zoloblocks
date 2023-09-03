@@ -42,10 +42,8 @@ class GetPostsV1
         }
     }
 
-    public static function zolo_posts_query($data)
+    public static function zolo_get_post_args($data)
     {
-
-        $results = [];
         $excluded_ids = null;
         //$showPagination = $data['showPagination'] == 'true' ? true : false;
         $args = [
@@ -108,10 +106,18 @@ class GetPostsV1
             $args['post__not_in'] = array_unique($excluded_post_ids);
         }
 
-        $postThumbnail=!empty($data['postThumbnail'])?$data['postThumbnail']:'';
+        return apply_filters('zolo_post_args', $args);
+    }
+
+    public static function zolo_posts_query($data)
+    {
+
+        $results = [];
+        $args = self::zolo_get_post_args($data);
+        $loop = new \WP_Query($args);
 
         //error_log(print_r($postThumbnail, true), 3, __DIR__ . '/log.txt');
-        $loop = new WP_Query($args);
+        $postThumbnail = !empty($data['postThumbnail']) ? $data['postThumbnail'] : '';
 
         if ($loop->have_posts()) {
 
@@ -127,9 +133,9 @@ class GetPostsV1
                 $content  = get_post_field('post_content', get_the_ID());
 
                 $post = [];
-                $post['id']               = $post_id;
+                $post['ID']               = $post_id;
                 $post['title']            = get_the_title();
-                $post["thumbnail"]        = get_the_post_thumbnail($post_id,$postThumbnail);
+                $post["thumbnail"]        = get_the_post_thumbnail($post_id, $postThumbnail);
                 $post['permalink']        = get_permalink();
                 $post['excerpt']          = strip_tags(get_the_content());
                 $post['excerpt_full']     = strip_tags(get_the_excerpt());

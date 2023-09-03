@@ -7,12 +7,14 @@ use Zolo\Helpers\ZoloHelpers;
 
 class PostGrid
 {
-
     public static function render($attributes)
     {
 
         $default_attributes = [
-            'showExcerpt' => true
+            'preset' => 'style-1',
+            'titleTag' => 'h2',
+            'showExcerpt' => false,
+            'showTitle' => true,
         ];
 
         $attributes = wp_parse_args($attributes, $default_attributes);
@@ -23,7 +25,7 @@ class PostGrid
         ZoloHelpers::views('post-grid', [
             'settings'  => $attributes,
             'className' => '',
-            'posts'     => $post_results
+            'post_results'    => $post_results
         ]);
         return ob_get_clean();
     }
