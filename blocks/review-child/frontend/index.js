@@ -16,11 +16,10 @@ __webpack_require__.r(__webpack_exports__);
  * Internal dependencies
  */
 
-const StarRating = _ref => {
-  let {
-    total = 5,
-    rating
-  } = _ref;
+const StarRating = ({
+  total = 5,
+  rating
+}) => {
   const fraction = Math.round((rating - Math.floor(rating)) * 10) / 10;
   const filled = Math.floor(rating);
   const empty = total - Math.ceil(rating);
@@ -228,10 +227,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_controls_star_rating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/controls/star-rating */ "./src/controls/star-rating/index.js");
 
 
-const ReviewFrontend = _ref => {
-  let {
-    rating
-  } = _ref;
+
+const ReviewFrontend = ({
+  rating
+}) => {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_src_controls_star_rating__WEBPACK_IMPORTED_MODULE_1__["default"], {
     rating: rating,
     total: 5
