@@ -75,7 +75,6 @@ function Inspector(props) {
         resMode,
         showButtonIcon,
         mainIcon,
-        mainTopIcon,
         showMainIcon,
         iconTypeImage,
         buttonIcon,
@@ -106,7 +105,6 @@ function Inspector(props) {
         presetTwoStyles,
         presetThreeStyles,
     } = attributes;
-
     const resRequiredProps = {
         attributes,
         setAttributes,
@@ -193,10 +191,10 @@ function Inspector(props) {
                                     {iconType == 'icon' && (
                                         <Fragment>
                                             <IconPicker
-                                                value={mainTopIcon}
+                                                value={mainIcon}
                                                 onChange={(value) =>
                                                     setAttributes({
-                                                        mainTopIcon: value,
+                                                        mainIcon: value,
                                                     })
                                                 }
                                             />

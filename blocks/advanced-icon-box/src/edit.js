@@ -758,7 +758,6 @@ export default function Edit(props) {
             setAttributes({ blockStyle: styles });
         }
     }, [attributes]);
-    console.log(typeof showHeading);
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}

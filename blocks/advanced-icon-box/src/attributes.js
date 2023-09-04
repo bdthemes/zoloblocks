@@ -202,36 +202,14 @@ const attributes = {
     mainIcon: {
         type: 'object',
         default: {
-            'admin-generic': {
-                name: 'admin generic',
-                source: 'dashicon',
-                type: '',
+            icon: {
+                'fa-facebook-f': {
+                    name: 'facebook',
+                    source: 'fontawesome',
+                    type: 'fab',
+                },
             },
         },
-    },
-    mainTopIcon: {
-        type: 'array',
-        default: [
-            {
-                id: 1,
-                icon: {
-                    facebook: {
-                        name: 'facebook',
-                        source: 'fontawesome',
-                        type: 'fb',
-                    },
-                },
-                link: {
-                    url: '#',
-                    openInNewTab: false,
-                },
-                text: 'Facebook',
-            },
-        ],
-    },
-    mainTopIconLinkTarget: {
-        type: 'boolean',
-        default: true,
     },
     buttonIcon: {
         type: 'object',
