@@ -19,6 +19,7 @@ const {
     ResCounterControl,
     ColorControl,
     TypographyDropdown,
+    IconPicker,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -57,7 +58,7 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { preset, resMode, headingColor } = attributes;
+    const { preset, resMode, headingColor, imageZoomIcon } = attributes;
 
     const resRequiredProps = {
         attributes,
@@ -107,6 +108,16 @@ function Inspector(props) {
                                 min={0}
                                 max={100}
                                 step={1}
+                            />
+                        </PanelBody>
+                        <PanelBody title={__('Zoom Icon', 'zolo-blocks')} initialOpen={false}>
+                            <IconPicker
+                                value={imageZoomIcon}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        imageZoomIcon: value,
+                                    })
+                                }
                             />
                         </PanelBody>
                     </>

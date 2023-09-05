@@ -73,7 +73,7 @@ const attributes = {
     }),
     ...generateBorderAttributies(ICON_BORDER),
     ...generateResRangeAttributies(ICON_SIZE, {
-        default: 16,
+        default: 30,
     }),
     ...generateResRangeAttributies(ICON_TEXT_SPACING, {
         default: 5,
@@ -202,10 +202,10 @@ const attributes = {
     mainIcon: {
         type: 'object',
         default: {
-            'fa-facebook-f': {
-                name: 'facebook',
+            'fa-cog': {
+                name: 'cog',
                 source: 'fontawesome',
-                type: 'fab',
+                type: 'fas',
             },
         },
     },

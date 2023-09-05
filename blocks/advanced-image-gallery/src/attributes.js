@@ -105,6 +105,16 @@ const attributes = {
     advancedGallery: {
         type: 'array',
     },
+    imageZoomIcon: {
+        type: 'object',
+        default: {
+            'fa-plus': {
+                name: 'plus',
+                source: 'fontawesome',
+                type: 'fas',
+            },
+        },
+    },
     presetOneStyles: {
         type: 'object',
         default: {
