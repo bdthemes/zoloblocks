@@ -202,12 +202,10 @@ const attributes = {
     mainIcon: {
         type: 'object',
         default: {
-            icon: {
-                'fa-facebook-f': {
-                    name: 'facebook',
-                    source: 'fontawesome',
-                    type: 'fab',
-                },
+            'fa-facebook-f': {
+                name: 'facebook',
+                source: 'fontawesome',
+                type: 'fab',
             },
         },
     },

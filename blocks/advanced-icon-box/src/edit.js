@@ -63,6 +63,7 @@ import {
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
+import { dashIcon } from './../../../src/controls/icon-picker/icons/dashicon';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
@@ -363,16 +364,6 @@ export default function Edit(props) {
         property: 'font-size',
         attributes,
     });
-    // generate icon height
-    const {
-        desktopRangeStyle: iconHeight,
-        tabRangeStyle: iconHeightTab,
-        mobRangeStyle: iconHeightMob,
-    } = generateResRangeStyle({
-        controlName: ICON_SIZE,
-        property: 'height',
-        attributes,
-    });
 
     // Spacing between icon and text
     const {
@@ -537,18 +528,17 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-block-desc:hover{
 			color: ${descHoverColor ? descHoverColor : ''};
 		}		
-		.${uniqueId} .zolo-block-icon-wrap span {
+		.${uniqueId} .zolo-block-icon-wrap i {
 			background: ${iconBackgroundColor ? iconBackgroundColor : ''};
 			color: ${iconColor ? iconColor : ''};	
 			${iconSize}
-			${iconHeight}	
 			${borderStyles}
 			${iconBorderRadiusDesktop}
 			${iconPaddingDesktop}
 			${iconMarginDesktop}
 			${iconBoxShadow}
 			}
-		.${uniqueId} .zolo-block-icon-wrap span:hover{			
+		.${uniqueId} .zolo-block-icon-wrap i:hover{			
 			background: ${iconBackgroundHoverColor ? iconBackgroundHoverColor : ''};
 			color: ${iconHoverColor ? iconHoverColor : ''};
 			${iconHoverBoxShadow}
@@ -655,9 +645,8 @@ export default function Edit(props) {
 			${descMarginTab}
 			${descTypoTab}
 		}
-		.${uniqueId} .zolo-block-icon-wrap span {
+		.${uniqueId} .zolo-block-icon-wrap i {
 			${iconSizeTab}
-			${iconHeightTab}
 			${borderStylesTab}
 			${iconBorderRadiusTab}
 			${iconPaddingTab}
@@ -707,9 +696,8 @@ export default function Edit(props) {
 			${descMarginMob}
 			${descTypoMobile}
 		}
-		.${uniqueId} .zolo-block-icon-wrap span {
+		.${uniqueId} .zolo-block-icon-wrap i {
 			${iconSizeMob}
-			${iconHeightMob}
 			${borderStylesMob}
 			${iconBorderRadiusMob}
 			${iconPaddingMob}
