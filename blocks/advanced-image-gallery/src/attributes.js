@@ -38,6 +38,13 @@ import {
     HEADING_PADDING,
     HEADING_BORDER_RADIUS,
     HEADING_BOX_SHADOW,
+    ZOOM_ICON_PADDING,
+    ZOOM_ICON_BORDER_RADIUS,
+    ZOOM_ICON_BORDER,
+    ZOOM_ICON_BOX_SHADOW,
+    ZOOM_ICON_HOVER_BOX_SHADOW,
+    ZOOM_ICON_BG_COLOR,
+    ZOOM_ICON_BG_HOVER_COLOR,
 } from './constants';
 
 const attributes = {
@@ -86,16 +93,27 @@ const attributes = {
     ...generateDimensionAttributes(HEADING_BORDER_RADIUS),
     ...generateBoxShadowAttributies(HEADING_BOX_SHADOW),
 
-    // column count
+    // Zoom Icon
+    ...generateDimensionAttributes(ZOOM_ICON_PADDING),
+    ...generateDimensionAttributes(ZOOM_ICON_BORDER_RADIUS),
+    ...generateBorderAttributies(ZOOM_ICON_BORDER),
+    ...generateBoxShadowAttributies(ZOOM_ICON_BOX_SHADOW),
+    ...generateBoxShadowAttributies(ZOOM_ICON_HOVER_BOX_SHADOW),
+    ...generateNormalBGAttributes(ZOOM_ICON_BG_COLOR),
+    ...generateNormalBGAttributes(ZOOM_ICON_BG_HOVER_COLOR),
+
+    // Column Count
     ...generateResCounterAttributies(COLUMN_COUNT, {
         defaultRange: 3,
     }),
-    //columns gaps
+
+    //Columns Gaps
     ...generateResRangeAttributies(COLUMNS_GAP),
-    //row gaps
+
+    //Row Gaps
     ...generateResRangeAttributies(ROW_GAP),
 
-    //typography
+    //Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     //Block specific Attributes
     preset: {
@@ -114,6 +132,15 @@ const attributes = {
                 type: 'fas',
             },
         },
+    },
+    zoomIconColor: {
+        type: 'string',
+    },
+    zoomIconHoverBorderColor: {
+        type: 'string',
+    },
+    zoomIconHoverColor: {
+        type: 'string',
     },
     presetOneStyles: {
         type: 'object',

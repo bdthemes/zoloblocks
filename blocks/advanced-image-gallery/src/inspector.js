@@ -52,13 +52,20 @@ import {
     HEADING_PADDING,
     HEADING_BORDER_RADIUS,
     HEADING_BOX_SHADOW,
+    ZOOM_ICON_PADDING,
+    ZOOM_ICON_BORDER_RADIUS,
+    ZOOM_ICON_BORDER,
+    ZOOM_ICON_BOX_SHADOW,
+    ZOOM_ICON_BG_COLOR,
+    ZOOM_ICON_HOVER_BOX_SHADOW,
+    ZOOM_ICON_BG_HOVER_COLOR,
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { preset, resMode, headingColor, imageZoomIcon } = attributes;
+    const { preset, resMode, headingColor, imageZoomIcon, zoomIconColor, zoomIconHoverBorderColor, zoomIconHoverColor } = attributes;
 
     const resRequiredProps = {
         attributes,
@@ -290,6 +297,81 @@ function Inspector(props) {
                                     forBorderRadius={true}
                                 />
                             </>
+                        </PanelBody>
+                        <PanelBody title={__('Zoom Icon', 'zolo-blocks')} initialOpen={false}>
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={ZOOM_ICON_PADDING}
+                                resRequiredProps={resRequiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={ZOOM_ICON_BORDER_RADIUS}
+                                resRequiredProps={resRequiredProps}
+                                forBorderRadius={true}
+                            />
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={ZOOM_ICON_BORDER}
+                                            resRequiredProps={resRequiredProps}
+                                        />
+                                        <BoxShadowControl
+                                            controlName={ZOOM_ICON_BOX_SHADOW}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
+                                        />
+                                        <NormalBGControl
+                                            resRequiredProps={resRequiredProps}
+                                            controlName={ZOOM_ICON_BG_COLOR}
+                                            noMainBGImg={true}
+                                        />
+                                        <ColorControl
+                                            label={__('Color', 'zolo-blocks')}
+                                            color={zoomIconColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    zoomIconColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Border Hover Color', 'zolo-blocks')}
+                                            color={zoomIconHoverBorderColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    zoomIconHoverBorderColor: value,
+                                                })
+                                            }
+                                        />
+                                        <BoxShadowControl
+                                            controlName={ZOOM_ICON_HOVER_BOX_SHADOW}
+                                            resRequiredProps={resRequiredProps}
+                                            enableTransition={false}
+                                        />
+                                        <NormalBGControl
+                                            resRequiredProps={resRequiredProps}
+                                            controlName={ZOOM_ICON_BG_HOVER_COLOR}
+                                            noMainBGImg={true}
+                                        />
+                                        <ColorControl
+                                            label={__('Color', 'zolo-blocks')}
+                                            color={zoomIconHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    zoomIconHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                            />
                         </PanelBody>
                     </>
                 }
