@@ -61,22 +61,26 @@
     transform: translate(-50%, -50%);
 }
 
-.zolo-image-gallery .zolo-icon svg {
-    width: 50px;
-    height: 50px;
-    color: #fff;
+.zolo-image-gallery .zolo-item .zolo-icon {
+    display: block;
     opacity: 0;
     transform: scale(0.6);
     transition: all 0.3s ease-in-out;
 }
 
-.zolo-image-gallery .zolo-icon svg:hover {
-    color: rgba(19, 11, 249, 0.945);
-}
-
-.zolo-image-gallery .zolo-item:hover .zolo-icon svg {
+.zolo-image-gallery .zolo-item:hover .zolo-icon {
     opacity: 1;
     transform: scale(1);
+}
+.zolo-image-gallery .zolo-icon svg {
+    width: 50px;
+    height: 50px;
+    color: #fff;
+}
+
+.zolo-image-gallery .zolo-icon svg:hover {
+    color: rgba(19, 11, 249, 0.945);
+    transition: all 0.3s ease-in-out;
 }
 
 .zolo-image-gallery .zolo-title {

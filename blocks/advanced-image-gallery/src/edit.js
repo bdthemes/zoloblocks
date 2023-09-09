@@ -64,6 +64,9 @@ import {
     ZOOM_ICON_PADDING,
     ZOOM_ICON_BORDER_RADIUS,
     ZOOM_ICON_BORDER,
+    ZOOM_ICON_BOX_SHADOW,
+    ZOOM_ICON_HOVER_BOX_SHADOW,
+    ZOOM_ICON_BG_COLOR,
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -71,7 +74,7 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import Inspector from './inspector';
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, preset, blockStyle, advancedGallery, headingColor, zoomIconColor } = attributes;
+    const { uniqueId, preset, blockStyle, advancedGallery, headingColor, zoomIconColor, zoomIconHoverBorderColor } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
         handleUniqueId({
@@ -342,6 +345,16 @@ export default function Edit(props) {
         controlName: HEADING_BOX_SHADOW,
     });
 
+    const {
+        backgroundStylesDesktop: zoomIconDeskBGStyle,
+        backgroundStylesTab: zoomIconTabBGStyle,
+        backgroundStylesMobile: zoomIconMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: ZOOM_ICON_BG_COLOR,
+        attributes,
+        noMainBGImg: false,
+    });
+
     // zoom icon
     const {
         dimensionStylesDesktop: zoomIconPaddingDesk,
@@ -372,26 +385,16 @@ export default function Edit(props) {
         attributes,
     });
 
-    /**
-     * Presets Based Styles
-     */
-    let presetStyles;
-    switch (preset) {
-        case 'style-1':
-            presetStyles = `
-						
-			`;
-            break;
-        case 'style-2':
-            presetStyles = `
-				
-			`;
-            break;
-        case 'style-3':
-            break;
-        default:
-            presetStyles = '';
-    }
+    const { boxShadowStyle: zoomIconBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: ZOOM_ICON_BOX_SHADOW,
+    });
+
+    const { boxShadowStyle: zoomIconHoverBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: ZOOM_ICON_HOVER_BOX_SHADOW,
+    });
+
     /**
      * All Style Combination
      */
@@ -439,13 +442,16 @@ export default function Edit(props) {
 			${headingBoxShadow}
 			${headingTypoDesk}			
 		}
-        .${uniqueId} .zolo-icon svg{
-            color: ${zoomIconColor ? zoomIconColor : ''};
+        .${uniqueId} .zolo-item .zolo-icon{
             ${zoomIconPaddingDesk}
             ${zoomIconBorderDesk}
             ${zoomIconBorderRadiusDesk}
+            ${zoomIconBoxShadow}
+            ${zoomIconDeskBGStyle}
         }
-		${presetStyles}		
+        .${uniqueId} .zolo-icon svg{
+            color: ${zoomIconColor ? zoomIconColor : ''};
+        }
   	`;
 
     const tabletAllStyle = `
@@ -484,12 +490,15 @@ export default function Edit(props) {
 		${headingBorderRadiusTab}
 		${headingTypoTab}
 	}
-    .${uniqueId} .zolo-icon svg{
+    .${uniqueId} .zolo-item .zolo-icon{
         ${zoomIconPaddingTab}
         ${zoomIconBorderTab}
         ${zoomIconBorderRadiusTab}
+        ${zoomIconTabBGStyle}
     }
-	${presetStyles}
+    .${uniqueId} .zolo-item:hover .zolo-icon{
+        border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
+    }
 	`;
 
     const mobileAllStyle = `		
@@ -528,12 +537,16 @@ export default function Edit(props) {
 		${headingBorderRadiusMob}
 		${headingTypoMob}
 	}
-    .${uniqueId} .zolo-icon svg{
+    
+    .${uniqueId} .zolo-item .zolo-icon{
         ${zoomIconPaddingMob}
         ${zoomIconBorderMob}
         ${zoomIconBorderRadiusMob}
+        ${zoomIconMobBGStyle}
     }
-	${presetStyles}
+    .${uniqueId} .zolo-item:hover .zolo-icon{
+        border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
+    }
   	`;
 
     const allStyle = `
