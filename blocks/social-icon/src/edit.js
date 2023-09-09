@@ -12,30 +12,30 @@ import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 
 const {
-	DisplayIcon,
-	generateResRangeStyle,
-	generateBorderStyle,
-	handleUniqueId,
-	softMinifyCssStrings,
-	generateResCounterStyle,
-	generateDimensionStyle,
-	generateBoxShadowStyles,
-	generateTypographyStyles,
+    DisplayIcon,
+    generateResRangeStyle,
+    generateBorderStyle,
+    handleUniqueId,
+    softMinifyCssStrings,
+    generateResCounterStyle,
+    generateDimensionStyle,
+    generateBoxShadowStyles,
+    generateTypographyStyles,
 } = window.zoloModule;
 
 import {
-	BLOCK_PREFIX,
-	BUTTON_BORDER,
-	BTN_BORDER_RADIUS,
-	COLUMN_COUNT,
-	COLUMNS_GAP,
-	ROW_GAP,
-	BUTTON_PADDING,
-	BUTTON_SIZE,
-	ICON_TEXT_SPACING,
-	BLOCK_MARGIN,
-	BTN_SHADOW,
-	BTN_HOVER_SHADOW,
+    BLOCK_PREFIX,
+    BUTTON_BORDER,
+    BTN_BORDER_RADIUS,
+    COLUMN_COUNT,
+    COLUMNS_GAP,
+    ROW_GAP,
+    BUTTON_PADDING,
+    BUTTON_SIZE,
+    ICON_TEXT_SPACING,
+    BLOCK_MARGIN,
+    BTN_SHADOW,
+    BTN_HOVER_SHADOW,
 } from './constants';
 
 import Inspector from './inspector';
@@ -43,155 +43,154 @@ import Inspector from './inspector';
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Edit(props) {
-	const { attributes, setAttributes, className, clientId, isSelected } =
-		props;
-	const {
-		uniqueId,
-		preset,
-		blockStyle,
-		socialText,
-		socialProfiles,
-		socialBgColor,
-		socialColor,
-		socialBgHoverColor,
-		socialTextColor,
-		socialTextHoverColor,
-		borderHoverColor,
-		presetBgColor,
-	} = attributes;
-	// this useEffect is for creating a unique id for each block's unique className by a random unique number
-	useEffect(() => {
-		handleUniqueId({
-			BLOCK_PREFIX,
-			uniqueId,
-			setAttributes,
-			clientId,
-		});
-	}, []);
+    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const {
+        uniqueId,
+        preset,
+        blockStyle,
+        socialText,
+        socialProfiles,
+        socialBgColor,
+        socialColor,
+        socialBgHoverColor,
+        socialTextColor,
+        socialTextHoverColor,
+        borderHoverColor,
+        presetBgColor,
+    } = attributes;
+    // this useEffect is for creating a unique id for each block's unique className by a random unique number
+    useEffect(() => {
+        handleUniqueId({
+            BLOCK_PREFIX,
+            uniqueId,
+            setAttributes,
+            clientId,
+        });
+    }, []);
 
-	const blockProps = useBlockProps({
-		className: classnames(className, `${preset} ${uniqueId}`),
-	});
+    const blockProps = useBlockProps({
+        className: classnames(className, `${preset} ${uniqueId}`),
+    });
 
-	//  button general settings
-	const {
-		desktopRangeStyle: buttonSize,
-		tabRangeStyle: buttonSizeTab,
-		mobRangeStyle: buttonSizeMob,
-	} = generateResRangeStyle({
-		controlName: BUTTON_SIZE,
-		property: 'font-size',
-		attributes,
-	});
+    //  button general settings
+    const {
+        desktopRangeStyle: buttonSize,
+        tabRangeStyle: buttonSizeTab,
+        mobRangeStyle: buttonSizeMob,
+    } = generateResRangeStyle({
+        controlName: BUTTON_SIZE,
+        property: 'font-size',
+        attributes,
+    });
 
-	const {
-		desktopBorderStyle: borderStyles,
-		tabBorderStyle: borderStylesTab,
-		mobBorderStyle: borderStylesMob,
-	} = generateBorderStyle({
-		controlName: BUTTON_BORDER,
-		attributes,
-	});
+    const {
+        desktopBorderStyle: borderStyles,
+        tabBorderStyle: borderStylesTab,
+        mobBorderStyle: borderStylesMob,
+    } = generateBorderStyle({
+        controlName: BUTTON_BORDER,
+        attributes,
+    });
 
-	const {
-		dimensionStylesDesktop: btnRadiusDesk,
-		dimensionStylesTab: btnRadiusTab,
-		dimensionStylesMobile: btnRadiusMob,
-	} = generateDimensionStyle({
-		controlName: BTN_BORDER_RADIUS,
-		styleFor: 'border-radius',
-		attributes,
-	});
+    const {
+        dimensionStylesDesktop: btnRadiusDesk,
+        dimensionStylesTab: btnRadiusTab,
+        dimensionStylesMobile: btnRadiusMob,
+    } = generateDimensionStyle({
+        controlName: BTN_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
 
-	const { boxShadowStyle: normalShadow } = generateBoxShadowStyles({
-		attributes,
-		controlName: BTN_SHADOW,
-	});
+    const { boxShadowStyle: normalShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: BTN_SHADOW,
+    });
 
-	const { boxShadowStyle: hoverShadow } = generateBoxShadowStyles({
-		attributes,
-		controlName: BTN_HOVER_SHADOW,
-	});
+    const { boxShadowStyle: hoverShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: BTN_HOVER_SHADOW,
+    });
 
-	const {
-		typoStylesDesktop: textTypoDesk,
-		typoStylesTab: textTypoTab,
-		typoStylesMobile: textTypoMob,
-	} = generateTypographyStyles({
-		prefixConstant: TEXT_TYPOGRAPHY,
-		defaultFontSize: 14,
-		attributes,
-	});
+    const {
+        typoStylesDesktop: textTypoDesk,
+        typoStylesTab: textTypoTab,
+        typoStylesMobile: textTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: TEXT_TYPOGRAPHY,
+        defaultFontSize: 14,
+        attributes,
+    });
 
-	const {
-		dimensionStylesDesktop: paddingDesktop,
-		dimensionStylesTab: paddingTab,
-		dimensionStylesMobile: paddingMob,
-	} = generateDimensionStyle({
-		controlName: BUTTON_PADDING,
-		styleFor: 'padding',
-		attributes,
-	});
+    const {
+        dimensionStylesDesktop: paddingDesktop,
+        dimensionStylesTab: paddingTab,
+        dimensionStylesMobile: paddingMob,
+    } = generateDimensionStyle({
+        controlName: BUTTON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
 
-	// Spacing between icon and text
-	const {
-		desktopRangeStyle: gapDesktop,
-		tabRangeStyle: gapTablet,
-		mobRangeStyle: gapMobile,
-	} = generateResRangeStyle({
-		controlName: ICON_TEXT_SPACING,
-		property: 'gap',
-		attributes,
-	});
+    // Spacing between icon and text
+    const {
+        desktopRangeStyle: gapDesktop,
+        tabRangeStyle: gapTablet,
+        mobRangeStyle: gapMobile,
+    } = generateResRangeStyle({
+        controlName: ICON_TEXT_SPACING,
+        property: 'gap',
+        attributes,
+    });
 
-	// column count
-	const {
-		desktopRangeStyle: columnCountDeskstyle,
-		tabRangeStyle: columnCountTabStyle,
-		mobRangeStyle: columnCountMobStyle,
-	} = generateResCounterStyle({
-		controlName: COLUMN_COUNT,
-		attributes,
-		noProperty: true,
-	});
+    // column count
+    const {
+        desktopRangeStyle: columnCountDeskstyle,
+        tabRangeStyle: columnCountTabStyle,
+        mobRangeStyle: columnCountMobStyle,
+    } = generateResCounterStyle({
+        controlName: COLUMN_COUNT,
+        attributes,
+        noProperty: true,
+    });
 
-	// column gap
-	const {
-		desktopRangeStyle: colGapDeskstyle,
-		tabRangeStyle: colGapTabStyle,
-		mobRangeStyle: colGapMobStyle,
-	} = generateResRangeStyle({
-		controlName: COLUMNS_GAP,
-		property: 'column-gap',
-		attributes,
-	});
+    // column gap
+    const {
+        desktopRangeStyle: colGapDeskstyle,
+        tabRangeStyle: colGapTabStyle,
+        mobRangeStyle: colGapMobStyle,
+    } = generateResRangeStyle({
+        controlName: COLUMNS_GAP,
+        property: 'column-gap',
+        attributes,
+    });
 
-	// row gap
-	const {
-		desktopRangeStyle: rowGapDeskstyle,
-		tabRangeStyle: rowGapTabStyle,
-		mobRangeStyle: rowGapMobStyle,
-	} = generateResRangeStyle({
-		controlName: ROW_GAP,
-		property: 'row-gap',
-		attributes,
-	});
+    // row gap
+    const {
+        desktopRangeStyle: rowGapDeskstyle,
+        tabRangeStyle: rowGapTabStyle,
+        mobRangeStyle: rowGapMobStyle,
+    } = generateResRangeStyle({
+        controlName: ROW_GAP,
+        property: 'row-gap',
+        attributes,
+    });
 
-	// block margin
-	const {
-		dimensionStylesDesktop: blockDeskMargin,
-		dimensionStylesTab: blockTabMargin,
-		dimensionStylesMobile: blockMobMargin,
-	} = generateDimensionStyle({
-		controlName: BLOCK_MARGIN,
-		styleFor: 'margin',
-		attributes,
-	});
+    // block margin
+    const {
+        dimensionStylesDesktop: blockDeskMargin,
+        dimensionStylesTab: blockTabMargin,
+        dimensionStylesMobile: blockMobMargin,
+    } = generateDimensionStyle({
+        controlName: BLOCK_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
 
-	/**
-	 * All Style Combination
-	 */
-	const desktopAllStyle = `
+    /**
+     * All Style Combination
+     */
+    const desktopAllStyle = `
 		.${uniqueId}.wp-block-zolo-social-icon {
 			${blockDeskMargin}
 			${colGapDeskstyle}
@@ -217,23 +216,23 @@ export default function Edit(props) {
 			${textTypoDesk}
 		}			
 		${
-			socialColor === 'custom'
-				? `.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item{
+            socialColor === 'custom'
+                ? `.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item{
 					color:${socialTextColor};
 					background:${socialBgColor};
 				}`
-				: ' '
-		}
+                : ' '
+        }
 		${
-			socialColor === 'custom'
-				? `.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item:hover{
+            socialColor === 'custom'
+                ? `.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item:hover{
 					color:${socialTextHoverColor};
 					background:${socialBgHoverColor};
 				}`
-				: ' '
-		}
+                : ' '
+        }
   	`;
-	const tabletAllStyle = `
+    const tabletAllStyle = `
 		.${uniqueId}.wp-block-zolo-social-icon{
 			${blockTabMargin}
 			${colGapTabStyle}
@@ -252,7 +251,7 @@ export default function Edit(props) {
 		}			 		
 	`;
 
-	const mobileAllStyle = `
+    const mobileAllStyle = `
 		.${uniqueId}.wp-block-zolo-social-icon{
 			${blockMobMargin}
 			${colGapMobStyle}
@@ -271,7 +270,7 @@ export default function Edit(props) {
 		}		
   	`;
 
-	const allStyle = `
+    const allStyle = `
 		${desktopAllStyle}
 		@media all and (max-width: 1024px) {
 			${tabletAllStyle}
@@ -281,62 +280,45 @@ export default function Edit(props) {
 		}
 	`;
 
-	// Set All Style in "blockStyle" Attribute
-	useEffect(() => {
-		const styles = {
-			desktop: desktopAllStyle,
-			tablet: tabletAllStyle,
-			mobile: mobileAllStyle,
-		};
-		if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-			setAttributes({ blockStyle: styles });
-		}
-	}, [attributes]);
+    // Set All Style in "blockStyle" Attribute
+    useEffect(() => {
+        const styles = {
+            desktop: desktopAllStyle,
+            tablet: tabletAllStyle,
+            mobile: mobileAllStyle,
+        };
+        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
+            setAttributes({ blockStyle: styles });
+        }
+    }, [attributes]);
 
-	return (
-		<>
-			{isSelected && (
-				<Inspector
-					attributes={attributes}
-					setAttributes={setAttributes}
-				/>
-			)}
-			<style>{` ${softMinifyCssStrings(allStyle)}`}</style>
+    return (
+        <>
+            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
+            <style>{` ${softMinifyCssStrings(allStyle)}`}</style>
 
-			<div {...blockProps}>
-				{socialProfiles &&
-					socialProfiles.map((profile, index) => {
-						let socialName = Object.keys(profile.icon)[0];
-						return (
-							<a
-								href={profile.link && profile.link.url}
-								key={index}
-								target={
-									profile.link &&
-									profile.link.openInNewTab &&
-									'_blank'
-								}
-								rel={
-									profile.link &&
-									profile.link.openInNewTab &&
-									'noopener noreferrer'
-								}
-								className={`zolo-social-item zolo-${socialName} ${socialColor}`}
-							>
-								{socialText !== 'none' && (
-									<span className="zolo-social-icon">
-										<DisplayIcon icon={profile.icon} />
-									</span>
-								)}
-								{socialText !== 'iconOnly' && (
-									<span className="zolo-social-text">
-										{profile.text}
-									</span>
-								)}
-							</a>
-						);
-					})}
-			</div>
-		</>
-	);
+            <div {...blockProps}>
+                {socialProfiles &&
+                    socialProfiles.map((profile, index) => {
+                        let socialName = Object.keys(profile.icon)[0];
+                        return (
+                            <a
+                                href={profile.link && profile.link.url}
+                                key={index}
+                                target={profile.link && profile.link.openInNewTab && '_blank'}
+                                rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
+                                className={`zolo-social-item zolo-${socialName} ${socialColor}`}
+                            >
+                                {socialText !== 'none' && (
+                                    <span className="zolo-social-icon">
+                                        <DisplayIcon icon={profile.icon} />
+                                    </span>
+                                )}
+                                {socialText !== 'iconOnly' && <span className="zolo-social-text">{profile.text}</span>}
+                            </a>
+                        );
+                    })}
+            </div>
+        </>
+    );
 }

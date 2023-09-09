@@ -27,6 +27,11 @@ const {
 import {
     BLOCK_PREFIX,
     CONTAINER_BACKGROUND,
+    CONTAINER_BORDER,
+    CONTAINER_HOVER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
     ICON_BOX_ALIGNMENT,
@@ -35,12 +40,14 @@ import {
     TITLE_TEXT_STROKE,
     DESCRIPTION_MARGIN,
     ICON_BORDER,
+    ICON_HOVER_BORDER,
     ICON_BORDER_RADIUS,
     ICON_SIZE,
     ICON_PADDING,
     ICON_MARGIN,
     BUTTON_ICON_SIZE,
     BUTTON_BORDER,
+    BUTTON_HOVER_BORDER,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
     BUTTON_BOX_SHADOW,
@@ -116,6 +123,49 @@ export default function Edit(props) {
         controlName: CONTAINER_BACKGROUND,
         attributes,
         noMainBGImg: false,
+    });
+
+    // item border
+    const {
+        desktopBorderStyle: containerBorderDeskStyle,
+        tabBorderStyle: containerBorderTabStyle,
+        mobBorderStyle: containerBorderMobStyle,
+    } = generateBorderStyle({
+        controlName: CONTAINER_BORDER,
+        attributes,
+    });
+
+    // item hover border
+    const {
+        desktopBorderStyle: containerHoverBorderDeskStyle,
+        tabBorderStyle: containerHoverBorderTabStyle,
+        mobBorderStyle: containerHoverBorderMobStyle,
+    } = generateBorderStyle({
+        controlName: CONTAINER_HOVER_BORDER,
+        attributes,
+    });
+
+    // item border radius
+    const {
+        dimensionStylesDesktop: containerDeskBorderRadius,
+        dimensionStylesTab: containerTabBorderRadius,
+        dimensionStylesMobile: containerMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    // item box shadow
+    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_BOX_SHADOW,
+    });
+
+    // item hover box shadow
+    const { boxShadowStyle: containerHoverBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_HOVER_BOX_SHADOW,
     });
 
     // Generate Container Margin
@@ -310,6 +360,16 @@ export default function Edit(props) {
         attributes,
     });
 
+    // generate hover border style
+    const {
+        desktopBorderStyle: borderHoverStyles,
+        tabBorderStyle: borderHoverStylesTab,
+        mobBorderStyle: borderHoverStylesMob,
+    } = generateBorderStyle({
+        controlName: ICON_HOVER_BORDER,
+        attributes,
+    });
+
     // generate icon size
     const {
         desktopRangeStyle: iconSize,
@@ -382,6 +442,16 @@ export default function Edit(props) {
         mobBorderStyle: buttonBorderStylesMob,
     } = generateBorderStyle({
         controlName: BUTTON_BORDER,
+        attributes,
+    });
+
+    // generate button style
+    const {
+        desktopBorderStyle: buttonHoverBorderStyles,
+        tabBorderStyle: buttonHoverBorderStylesTab,
+        mobBorderStyle: buttonHoverBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: BUTTON_HOVER_BORDER,
         attributes,
     });
 
@@ -482,11 +552,18 @@ export default function Edit(props) {
      * All Style Combination
      */
     const desktopAllStyle = `	
-		.${uniqueId} .zolo-block-item{
+		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
 			${containerDeskBGStyle}
+			${containerBorderDeskStyle}
+			${containerDeskBorderRadius}
+			${containerBoxShadow}
 			${containerMarginDesk}
 			${containerPaddingDesk}
-		}	
+		}
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
+            ${containerHoverBorderDeskStyle}
+            ${containerHoverBoxShadow}
+        }
 		.${uniqueId} .zolo-block-icon-wrap{
 			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
@@ -497,14 +574,14 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-block-link-btn{
 			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 		}		
-		.${uniqueId} .zolo-block-title{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{
 			${titleTypoDesktop}
 			${titleTextShadowStyle}
         	${titleTextStrokeStyle}
 			${titleMarginDesktop ? titleMarginDesktop : '0 0 12px 0'}
 			color: ${textColor ? textColor : ''};
 		}
-		.${uniqueId} .zolo-block-title:hover{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title:hover{
 			color: ${textHoverColor ? textHoverColor : ''};
 		}
 		.${uniqueId} .zolo-block-desc{
@@ -530,6 +607,7 @@ export default function Edit(props) {
 			background: ${iconBackgroundHoverColor ? iconBackgroundHoverColor : ''};
 			color: ${iconHoverColor ? iconHoverColor : ''};
 			${iconHoverBoxShadow}
+			${borderHoverStyles}
 		}
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
@@ -546,31 +624,30 @@ export default function Edit(props) {
 			${buttonBoxShadow}
 		}
 
-		.${uniqueId} .zolo-box-button:hover {			
-			background: ${btnBgHoverColor ? btnBgHoverColor : '#32DE23'};
+		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover {			
+			background: ${btnBgHoverColor ? btnBgHoverColor : ''};
 			${buttonHoverBoxShadow}
+			${buttonHoverBorderStyles}
 		}
 		
-		.${uniqueId} .zolo-box-button span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
 			color: ${buttonIconColor};
 			${buttonIconSize}			
 			${buttonIconHeight}			
 			${buttonIconWidth}			
 		}
 
-		.${uniqueId} .zolo-box-button:hover span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover span{
 			color: ${buttonIconHoverColor}	
 		}
 		
-		.${uniqueId} .zolo-box-button p{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
+            color: ${btnColor ? btnColor : ''};	
 			${btnTypoDesktop}
 		}
 
-		.${uniqueId} .zolo-box-button p{			
-			color: ${btnColor ? btnColor : ''};			
-		}
-		.${uniqueId} .zolo-box-button:hover p{			
-			color: ${btnHoverColor ? btnHoverColor : '#fff'};			
+		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover p{			
+			color: ${btnHoverColor ? btnHoverColor : ''};			
 		}
 		${presetStyles}		
   	`;
@@ -579,11 +656,16 @@ export default function Edit(props) {
 		.${uniqueId}{
 			${iconAlignmentTab}
 		}
-		.${uniqueId} .zolo-block-item{
+		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
 			${containerTabBGStyle}
+			${containerBorderTabStyle}
+			${containerTabBorderRadius}
 			${containerMarginTab}
 			${containerPaddingTab}
-		}	
+		}        
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
+            ${containerHoverBorderTabStyle}
+        }
 		.${uniqueId} .zolo-block-title{
 			${titleTypoTab}
 			${tabTitleTextStrokeStyle}
@@ -603,24 +685,30 @@ export default function Edit(props) {
 			background: ${iconBackgroundColor ? iconBackgroundColor : ''};
 			color: ${iconColor ? iconColor : ''};	
 		}
+        .${uniqueId} .zolo-block-icon-wrap span:hover{
+            ${borderHoverStylesTab}
+        }
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeTab}
 			${iconImageBorderTab}
 			${iconImageBorderRadiusTab}
 		}
-		.${uniqueId} .zolo-box-button span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
 			${buttonIconSizeTab}			
 			${buttonIconHeightTab}			
 			${buttonIconWidthTab}			
 		}
-		.${uniqueId} .zolo-box-button {
+		.${uniqueId} .zolo-block-body-content .zolo-box-button {
 			${gapTab}
 			${buttonBorderStylesTab}
 			${buttonBorderRadiusTab}
 			${buttonPaddingTab}
 			${buttonMarginTab}
 		}
-		.${uniqueId} .zolo-box-button p{
+        .${uniqueId} .zolo-block-body-content .zolo-box-button:hover {
+            ${buttonHoverBorderStylesTab}
+        }
+		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
 			${btnTypoTab}
 		}
 		${presetStyles}
@@ -630,11 +718,16 @@ export default function Edit(props) {
 		.${uniqueId}{
 			${iconAlignmentMob}
 		}
-		.${uniqueId} .zolo-block-item{
+		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
 			${containerMobBGStyle}
+			${containerBorderMobStyle}
+			${containerMobBorderRadius}
 			${containerMarginMob}
 			${containerPaddingMob}
-		}
+		}                
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
+            ${containerHoverBorderMobStyle};
+        }
 		.${uniqueId} .zolo-block-title{
 			${titleTypoMobile}
 			${mobTitleTextStrokeStyle}
@@ -651,25 +744,31 @@ export default function Edit(props) {
 			${iconBorderRadiusMob}
 			${iconPaddingMob}
 			${iconMarginMob}
-		}		
+		}        
+        .${uniqueId} .zolo-block-icon-wrap span:hover{
+            ${borderHoverStylesMob}
+        }
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeMob}
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
-		.${uniqueId} .zolo-box-button span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
 			${buttonIconSizeMob}			
 			${buttonIconHeightMob}			
 			${buttonIconWidthMob}			
 		}
-		.${uniqueId} .zolo-box-button {
+		.${uniqueId} .zolo-block-body-content .zolo-box-button {
 			${gapMob}			
 			${buttonBorderStylesMob}
 			${buttonBorderRadiusMob}
 			${buttonPaddingMob}
 			${buttonMarginMob}
 		}
-		.${uniqueId} .zolo-box-button p{
+        .${uniqueId} .zolo-block-body-content .zolo-box-button:hover {
+            ${buttonHoverBorderStylesMob}
+        }
+		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
 			${btnTypoMobile}
 		}
 		${presetStyles}
@@ -793,7 +892,7 @@ export default function Edit(props) {
                                 <div className={`zolo-box-button`}>
                                     <RichText
                                         value={buttonText}
-                                        tagName="span"
+                                        tagName="p"
                                         onChange={(text) =>
                                             setAttributes({
                                                 buttonText: text,

@@ -1,11 +1,17 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, BlockControls, MediaUpload, __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
+import {
+    useBlockProps,
+    BlockControls,
+    MediaUpload,
+    __experimentalLinkControl as LinkControl,
+    MediaPlaceholder,
+} from '@wordpress/block-editor';
 
 import { useEffect } from '@wordpress/element';
 
-import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 
 import { __ } from '@wordpress/i18n';
 
@@ -33,24 +39,26 @@ import {
     ROW_GAP,
     CONTAINER_BACKGROUND,
     CONTAINER_HOVER_BACKGROUND,
+    CONTAINER_MARGIN,
+    CONTAINER_PADDING,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BORDER,
     CONTAINER_HOVER_BORDER,
     IMAGE_BORDER,
     IMAGE_HOVER_BORDER,
-    CONTAINER_HOVER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
     CONTAINER_HOVER_BOX_SHADOW,
     IMAGE_BORDER_RADIUS,
     IMAGE_BOX_SHADOW,
     IMAGE_BACKGROUND,
-    IMAGE_HOVER_BORDER_RADIUS,
     IMAGE_HOVER_BOX_SHADOW,
     IMAGE_HOVER_BACKGROUND,
     IMAGE_PADDING,
     IMAGE_MARGIN,
     HEADING_BORDER,
     HEADING_BACKGROUND,
+    HEADING_MARGIN,
+    HEADING_PADDING,
     HEADING_BORDER_RADIUS,
     HEADING_BOX_SHADOW,
 } from './constants';
@@ -58,10 +66,11 @@ import {
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
+import { apiFetch } from '@wordpress/api-fetch';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, preset, blockStyle, advancedGallery, headingColor, presetOneStyles, presetTwoStyles } = attributes;
+    const { uniqueId, preset, blockStyle, advancedGallery, headingColor } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
         handleUniqueId({
@@ -132,6 +141,26 @@ export default function Edit(props) {
     });
 
     const {
+        dimensionStylesDesktop: containerMarginDesk,
+        dimensionStylesTab: containerMarginTab,
+        dimensionStylesMobile: containerMarginMob,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: containerPaddingDesk,
+        dimensionStylesTab: containerPaddingTab,
+        dimensionStylesMobile: containerPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
         desktopBorderStyle: containerBorderDesk,
         tabBorderStyle: containerBorderTab,
         mobBorderStyle: containerBorderMob,
@@ -155,16 +184,6 @@ export default function Edit(props) {
         dimensionStylesMobile: containerBorderRadiusMob,
     } = generateDimensionStyle({
         controlName: CONTAINER_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: containerHoverBorderRadiusDesk,
-        dimensionStylesTab: containerHoverBorderRadiusTab,
-        dimensionStylesMobile: containerHoverBorderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_HOVER_BORDER_RADIUS,
         styleFor: 'border-radius',
         attributes,
     });
@@ -230,16 +249,6 @@ export default function Edit(props) {
     });
 
     const {
-        dimensionStylesDesktop: imageHoverBorderRadiusDesk,
-        dimensionStylesTab: imageHoverBorderRadiusTab,
-        dimensionStylesMobile: imageHoverBorderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: IMAGE_HOVER_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const {
         dimensionStylesDesktop: imagePaddingDesk,
         dimensionStylesTab: imagePaddingTab,
         dimensionStylesMobile: imagePaddingMob,
@@ -288,6 +297,26 @@ export default function Edit(props) {
         controlName: HEADING_BACKGROUND,
         attributes,
         noMainBGImg: false,
+    });
+
+    const {
+        dimensionStylesDesktop: headingMarginDesk,
+        dimensionStylesTab: headingMarginTab,
+        dimensionStylesMobile: headingMarginMob,
+    } = generateDimensionStyle({
+        controlName: HEADING_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: headingPaddingDesk,
+        dimensionStylesTab: headingPaddingTab,
+        dimensionStylesMobile: headingPaddingMob,
+    } = generateDimensionStyle({
+        controlName: HEADING_PADDING,
+        styleFor: 'padding',
+        attributes,
     });
 
     const {
@@ -341,6 +370,8 @@ export default function Edit(props) {
     const desktopAllStyle = `
 		.${uniqueId}.zolo-img-gallery-${preset} {
 			${containerDeskBGStyle}
+			${containerMarginDesk}
+			${containerPaddingDesk}
 			${containerBorderDesk}
 			${containerBorderRadiusDesk}
 			${containerBoxShadow}
@@ -349,7 +380,6 @@ export default function Edit(props) {
 		.${uniqueId}.zolo-img-gallery-${preset}:hover {
 			${containerHoverDeskBGStyle}
 			${containerHoverBorderDesk}
-			${containerHoverBorderRadiusDesk}
 			${containerBoxShadowHover}
 		}
 		.${uniqueId}.zolo-img-gallery-${preset}.zolo-image-gallery {
@@ -368,12 +398,13 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-image-wrap:hover {
 			${imageHoverDeskBGStyle}
 			${imageHoverBorderDesk}
-			${imageHoverBorderRadiusDesk}
 			${imageHoverBoxShadow}
 		}		
 		.${uniqueId} .zolo-title {
 			color: ${headingColor ? headingColor : ''};
 			${headingDeskBGStyle}
+			${headingMarginDesk}
+			${headingPaddingDesk}
 			${headingBorderDesk}
 			${headingBorderRadiusDesk}
 			${headingBoxShadow}
@@ -385,13 +416,14 @@ export default function Edit(props) {
     const tabletAllStyle = `
 	.${uniqueId}.zolo-img-gallery-${preset} {
 		${containerTabBGStyle}
+		${containerMarginTab}
+		${containerPaddingTab}
 		${containerBorderTab}
 		${containerBorderRadiusTab}
 	}		
 	.${uniqueId}.zolo-img-gallery-${preset}:hover {
 		${containerHoverTabBGStyle}
 		${containerHoverBorderTab}
-		${containerHoverBorderRadiusTab}
 	}
 	.${uniqueId}.zolo-img-gallery-${preset}.zolo-image-gallery {
 		grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
@@ -408,10 +440,11 @@ export default function Edit(props) {
 	.${uniqueId} .zolo-image-wrap:hover {
 		${imageHoverTabBGStyle}
 		${imageHoverBorderTab}
-		${imageHoverBorderRadiusTab}
-	}			
+	}
 	.${uniqueId} .zolo-title {
 		${headingTabBGStyle}
+		${headingMarginTab}
+		${headingPaddingTab}
 		${headingBorderTab}
 		${headingBorderRadiusTab}
 		${headingTypoTab}
@@ -420,15 +453,16 @@ export default function Edit(props) {
 	`;
 
     const mobileAllStyle = `		
-	.${uniqueId}.zolo-img-gallery-${preset}{
+	.${uniqueId}.zolo-img-gallery-${preset} {
 		${containerMobBGStyle}
+		${containerMarginMob}
+		${containerPaddingMob}
 		${containerBorderMob}
 		${containerBorderRadiusMob}
 	}		
 	.${uniqueId}.zolo-img-gallery-${preset}:hover {
 		${containerHoverMobBGStyle}
 		${containerHoverBorderMob}
-		${containerHoverBorderRadiusMob}
 	}
 	.${uniqueId}.zolo-img-gallery-${preset}.zolo-image-gallery {
 		grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
@@ -445,10 +479,11 @@ export default function Edit(props) {
 	.${uniqueId} .zolo-image-wrap:hover {
 		${imageHoverMobBGStyle}
 		${imageHoverBorderMob}
-		${imageHoverBorderRadiusMob}
-	}			
+	}
 	.${uniqueId} .zolo-title {
 		${headingMobBGStyle}
+		${headingMarginMob}
+		${headingPaddingMob}
 		${headingBorderMob}
 		${headingBorderRadiusMob}
 		${headingTypoMob}
@@ -494,7 +529,7 @@ export default function Edit(props) {
                                 allowedTypes={['image']}
                                 multiple={true}
                                 gallery={true}
-                                value={advancedGallery.map((image) => image.id)}
+                                value={advancedGallery && advancedGallery.map((image) => image.id)}
                                 render={({ open }) => (
                                     <ToolbarButton
                                         className="components-toolbar__control"
@@ -510,7 +545,7 @@ export default function Edit(props) {
                                 icon="trash"
                                 onClick={() => {
                                     setAttributes({
-                                        advancedGallery: null,
+                                        advancedGallery: advancedGallery.null,
                                     });
                                 }}
                             />
@@ -522,14 +557,13 @@ export default function Edit(props) {
 
             <div {...blockProps}>
                 <div className={`${advancedGallery ? 'zolo-image-gallery' : 'zolo-single-image'} ${uniqueId} zolo-img-gallery-${preset}`}>
-                    {}
                     {advancedGallery ? (
                         advancedGallery &&
                         advancedGallery.map((image, index) => {
                             return (
                                 <div className="zolo-item" key={index}>
                                     <div className="zolo-image-wrap">
-                                        <img src={image.url} alt="" />
+                                        <img src={image.url} alt={image.alt || image.caption} />
                                     </div>
                                     <a href="#" className="zolo-icon-wrap">
                                         <span className="zolo-icon">
@@ -547,33 +581,25 @@ export default function Edit(props) {
                                                 ></path>
                                             </svg>
                                         </span>
-                                        <span className="zolo-icon-text">zoom</span>
                                     </a>
-                                    <div className="zolo-title">{image.caption}</div>
+                                    {image.caption && <div className="zolo-title">{image.caption}</div>}
                                 </div>
                             );
                         })
                     ) : (
-                        <MediaUpload
-                            onSelect={(media) => {
-                                setAttributes({
-                                    advancedGallery: media,
-                                });
-                            }}
-                            multiple={true}
-                            gallery={true}
-                            addToGallery={true}
-                            allowedTypes={['image']}
-                            value={advancedGallery && advancedGallery.map((image) => image.id)}
-                            render={({ open }) => (
-                                <Button className="media-upload" onClick={open}>
-                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
-                                        <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
-                                    </svg>
-                                    {__(' Upload Photo', 'zolo-blocks')}
-                                </Button>
-                            )}
-                        />
+                        <>
+                            <MediaPlaceholder
+                                onSelect={(media) => {
+                                    setAttributes({
+                                        advancedGallery: media,
+                                    });
+                                }}
+                                gallery={true}
+                                multiple={true}
+                                allowedTypes={['image']}
+                                value={advancedGallery && advancedGallery.map((image) => image.id)}
+                            />
+                        </>
                     )}
                 </div>
             </div>

@@ -1,7 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Advanced Icon Box",
-    "icon": "tide",
     "name": "zolo/advanced-icon-box",
     "category": "zolo-blocks",
     "keywords": ["icon", "advanced icon box"],

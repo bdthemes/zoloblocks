@@ -17,13 +17,16 @@ import {
     TITLE_TEXT_STROKE,
     DESCRIPTION_MARGIN,
     ICON_BORDER,
+    ICON_HOVER_BORDER,
     ICON_BOX_SHADOW,
+    ICON_HOVER_BOX_SHADOW,
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
     ICON_BORDER_RADIUS,
     ICON_SIZE,
     BUTTON_ICON_SIZE,
     BUTTON_BORDER,
+    BUTTON_HOVER_BORDER,
     ICON_TEXT_SPACING,
     ICON_PADDING,
     ICON_MARGIN,
@@ -31,6 +34,11 @@ import {
     BUTTON_MARGIN,
     BUTTON_PADDING,
     CONTAINER_BACKGROUND,
+    CONTAINER_BORDER,
+    CONTAINER_HOVER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
     ICON_IMAGE_SIZE,
@@ -55,12 +63,18 @@ const attributes = {
     ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
     ...generateDimensionAttributes(CONTAINER_PADDING),
     ...generateDimensionAttributes(CONTAINER_MARGIN),
+    ...generateBorderAttributies(CONTAINER_BORDER),
+    ...generateBorderAttributies(CONTAINER_HOVER_BORDER),
+    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
+    ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
 
     // Icon
     ...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT, {
         defaultAlign: 'left',
     }),
     ...generateBorderAttributies(ICON_BORDER),
+    ...generateBorderAttributies(ICON_HOVER_BORDER),
     ...generateResRangeAttributies(ICON_SIZE, {
         default: 16,
     }),
@@ -71,9 +85,11 @@ const attributes = {
     ...generateDimensionAttributes(ICON_PADDING),
     ...generateDimensionAttributes(ICON_MARGIN),
     ...generateBoxShadowAttributies(ICON_BOX_SHADOW),
+    ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
 
     // Button
     ...generateBorderAttributies(BUTTON_BORDER),
+    ...generateBorderAttributies(BUTTON_HOVER_BORDER),
     ...generateResRangeAttributies(BUTTON_ICON_SIZE, {
         default: 16,
     }),
@@ -153,12 +169,6 @@ const attributes = {
         type: 'string',
     },
     textHoverColor: {
-        type: 'string',
-    },
-    descColor: {
-        type: 'string',
-    },
-    descHoverColor: {
         type: 'string',
     },
     iconType: {

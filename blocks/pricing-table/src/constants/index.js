@@ -7,10 +7,10 @@ export const NORMAL_HOVER = [
 ];
 
 //settings tab
-export const STYLES = [
-    { label: __('Default', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
-];
+// export const STYLES = [
+//     { label: __('Default', 'zolo-blocks'), value: 'style-1' },
+//     { label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
+// ];
 
 export const TITLE_TAG = [
     { label: __('H1', 'zolo-blocks'), value: 'h1' },
@@ -80,6 +80,7 @@ export const WRAPPER_MARGIN = 'wrapMargin';
 export const WRAPPER_PADDING = 'wrapPadding';
 export const WRAPPER_BG = 'wrapBg';
 export const WRAPPER_BORDER = 'wrapBorder';
+export const WRAPPER_BORDER_RADIUS = 'wrapBorderRadius';
 export const WRAPPER_SHADOW = 'wrapShadow';
 
 // ribbon style
