@@ -65,7 +65,7 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { preset, resMode, headingColor, imageZoomIcon, zoomIconColor, zoomIconHoverBorderColor, zoomIconHoverColor } = attributes;
+    const { preset, resMode, headingColor, zoomIconColor, zoomIconHoverBorderColor, zoomIconHoverColor } = attributes;
 
     const resRequiredProps = {
         attributes,
@@ -115,16 +115,6 @@ function Inspector(props) {
                                 min={0}
                                 max={100}
                                 step={1}
-                            />
-                        </PanelBody>
-                        <PanelBody title={__('Zoom Icon', 'zolo-blocks')} initialOpen={false}>
-                            <IconPicker
-                                value={imageZoomIcon}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        imageZoomIcon: value,
-                                    })
-                                }
                             />
                         </PanelBody>
                     </>

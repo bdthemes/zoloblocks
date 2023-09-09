@@ -123,16 +123,6 @@ const attributes = {
     advancedGallery: {
         type: 'array',
     },
-    imageZoomIcon: {
-        type: 'object',
-        default: {
-            'fa-plus': {
-                name: 'plus',
-                source: 'fontawesome',
-                type: 'fas',
-            },
-        },
-    },
     zoomIconColor: {
         type: 'string',
     },

@@ -61,6 +61,9 @@ import {
     HEADING_PADDING,
     HEADING_BORDER_RADIUS,
     HEADING_BOX_SHADOW,
+    ZOOM_ICON_PADDING,
+    ZOOM_ICON_BORDER_RADIUS,
+    ZOOM_ICON_BORDER,
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -68,7 +71,7 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import Inspector from './inspector';
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, preset, blockStyle, advancedGallery, headingColor, imageZoomIcon, zoomIconColor } = attributes;
+    const { uniqueId, preset, blockStyle, advancedGallery, headingColor, zoomIconColor } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
         handleUniqueId({
@@ -197,7 +200,6 @@ export default function Edit(props) {
     });
 
     // Image
-
     const {
         desktopBorderStyle: imageBorderDesk,
         tabBorderStyle: imageBorderTab,
@@ -277,7 +279,6 @@ export default function Edit(props) {
     });
 
     // Heading
-
     const {
         desktopBorderStyle: headingBorderDesk,
         tabBorderStyle: headingBorderTab,
@@ -339,6 +340,36 @@ export default function Edit(props) {
     const { boxShadowStyle: headingBoxShadow } = generateBoxShadowStyles({
         attributes,
         controlName: HEADING_BOX_SHADOW,
+    });
+
+    // zoom icon
+    const {
+        dimensionStylesDesktop: zoomIconPaddingDesk,
+        dimensionStylesTab: zoomIconPaddingTab,
+        dimensionStylesMobile: zoomIconPaddingMob,
+    } = generateDimensionStyle({
+        controlName: ZOOM_ICON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: zoomIconBorderRadiusDesk,
+        dimensionStylesTab: zoomIconBorderRadiusTab,
+        dimensionStylesMobile: zoomIconBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: ZOOM_ICON_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: zoomIconBorderDesk,
+        tabBorderStyle: zoomIconBorderTab,
+        mobBorderStyle: zoomIconBorderMob,
+    } = generateBorderStyle({
+        controlName: ZOOM_ICON_BORDER,
+        attributes,
     });
 
     /**
@@ -410,6 +441,9 @@ export default function Edit(props) {
 		}
         .${uniqueId} .zolo-icon svg{
             color: ${zoomIconColor ? zoomIconColor : ''};
+            ${zoomIconPaddingDesk}
+            ${zoomIconBorderDesk}
+            ${zoomIconBorderRadiusDesk}
         }
 		${presetStyles}		
   	`;
@@ -450,6 +484,11 @@ export default function Edit(props) {
 		${headingBorderRadiusTab}
 		${headingTypoTab}
 	}
+    .${uniqueId} .zolo-icon svg{
+        ${zoomIconPaddingTab}
+        ${zoomIconBorderTab}
+        ${zoomIconBorderRadiusTab}
+    }
 	${presetStyles}
 	`;
 
@@ -489,6 +528,11 @@ export default function Edit(props) {
 		${headingBorderRadiusMob}
 		${headingTypoMob}
 	}
+    .${uniqueId} .zolo-icon svg{
+        ${zoomIconPaddingMob}
+        ${zoomIconBorderMob}
+        ${zoomIconBorderRadiusMob}
+    }
 	${presetStyles}
   	`;
 
