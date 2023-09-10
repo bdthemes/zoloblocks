@@ -14,7 +14,20 @@ $html = '';
     <?php foreach ($post_results['posts'] as $result) {
         $result = (object)$result;
         $html .= '<div class="zolo-post-item">';
+
+        $html .= '<div class="zolo-post-image">';
+        $html .= require __DIR__ . '/post-partials/thumbnail.php';
+        $html .= require __DIR__ . '/post-partials/meta/author.php';
+        $html .= '</div>';
+
+        $html .= '<div class="zolo-post-content">';
         $html .= require __DIR__ . '/post-partials/title.php';
+        $html .= require __DIR__ . '/post-partials/meta/date.php';
+        $html .= require __DIR__ . '/post-partials/content.php';
+        $html .= '</div>';
+
+        $html .= require __DIR__ . '/post-partials/read-more.php';
+
         $html .= '</div>';
     } ?>
 

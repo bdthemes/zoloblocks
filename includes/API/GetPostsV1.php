@@ -137,8 +137,8 @@ class GetPostsV1
                 $post['title']            = get_the_title();
                 $post["thumbnail"]        = get_the_post_thumbnail($post_id, $postThumbnail);
                 $post['permalink']        = get_permalink();
-                $post['excerpt']          = strip_tags(get_the_content());
-                $post['excerpt_full']     = strip_tags(get_the_excerpt());
+                $post['excerpt']          = strip_tags(get_the_excerpt());
+                $post['content']     = strip_tags(get_the_content());
                 $post['date']             = get_the_date();
                 $post['reading_time']     = self::content_reading_time($content);
                 $post['categories']       = self::zolo_get_terms($post_id, 'category');

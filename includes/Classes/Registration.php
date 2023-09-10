@@ -1,17 +1,20 @@
 <?php
 
 namespace Zolo\Classes;
+
 use Zolo\Traits\SingletonTrait;
 
-class Registration {
+class Registration
+{
     use SingletonTrait;
 
-    public function __construct() {
+    public function __construct()
+    {
         //Register Block Category
-        add_filter( 'block_categories_all', [$this, 'register_block_category'], 99999, 2 );
+        add_filter('block_categories_all', [$this, 'register_block_category'], 99999, 2);
 
         //Register Block
-        add_filter( 'init', [$this, 'block_register'] );
+        add_filter('init', [$this, 'block_register']);
     }
 
     /**
@@ -21,11 +24,12 @@ class Registration {
      *
      * @return void
      */
-    public function block_register() {
+    public function block_register()
+    {
         $blocks = $this::block_list();
-        if ( is_array( $blocks ) && count( $blocks ) > 0 ) {
-            foreach ( $blocks as $key => $block ) {
-                if ( ! isset( $block['name'] ) ) {
+        if (is_array($blocks) && count($blocks) > 0) {
+            foreach ($blocks as $key => $block) {
+                if (!isset($block['name'])) {
                     continue;
                 }
 
@@ -36,15 +40,15 @@ class Registration {
 
                 $blockname = 'zolo/' . $block['name'];
 
-                if ( isset( $block['metadata'] ) && file_exists( $block['metadata'] ) ) {
+                if (isset($block['metadata']) && file_exists($block['metadata'])) {
                     $blockname = $block['metadata'];
                 }
 
                 //Register Frontend Scripts
-                $frontend_script_path = trailingslashit( ZOLO_DIR_PATH ) . 'blocks/' . $block['name'] . '/frontend/index.js';
-                $frontend_script_deps = trailingslashit( ZOLO_DIR_PATH ) . 'blocks/' . $block['name'] . '/frontend/index.asset.php';
-                if ( file_exists( $frontend_script_path ) ) {
-                    $args = file_exists( $frontend_script_deps ) ? include $frontend_script_deps : [
+                $frontend_script_path = trailingslashit(ZOLO_DIR_PATH) . 'blocks/' . $block['name'] . '/frontend/index.js';
+                $frontend_script_deps = trailingslashit(ZOLO_DIR_PATH) . 'blocks/' . $block['name'] . '/frontend/index.asset.php';
+                if (file_exists($frontend_script_path)) {
+                    $args = file_exists($frontend_script_deps) ? include $frontend_script_deps : [
                         'dependencies' => [],
                         'version'      => ZOLO_VERSION
                     ];
@@ -59,9 +63,9 @@ class Registration {
                 }
 
                 //Check Render Class
-                if ( isset( $block['class'] ) ) {
+                if (isset($block['class'])) {
                     $class = new $block['class'];
-                    if ( method_exists( $class, 'render' ) ) {
+                    if (method_exists($class, 'render')) {
                         $run_render_callback = true;
                         $render_method       = $class;
                     } else {
@@ -70,27 +74,27 @@ class Registration {
                 }
 
                 //Check frontend style
-                if ( isset( $block['frontend-styles'] ) ) {
+                if (isset($block['frontend-styles'])) {
                     $run_render_callback = true;
                     $frontend_styles     = $block['frontend-styles'];
                 }
 
                 //Check frontend script
-                if ( isset( $block['frontend-scripts'] ) ) {
+                if (isset($block['frontend-scripts'])) {
                     $run_render_callback = true;
                     $frontend_scripts    = $block['frontend-scripts'];
                 }
 
                 //Register Block
-                if ( $run_render_callback ) {
-                    register_block_type( $blockname, [
+                if ($run_render_callback) {
+                    register_block_type($blockname, [
                         // 'render_callback' => [$this, 'render_callback', 10, 2]
-                        'render_callback' => function ( $attributes, $content ) use ( $render_method, $frontend_scripts, $frontend_styles ) {
-                            return $this->render_callback( $attributes, $content, $render_method, $frontend_scripts, $frontend_styles );
+                        'render_callback' => function ($attributes, $content) use ($render_method, $frontend_scripts, $frontend_styles) {
+                            return $this->render_callback($attributes, $content, $render_method, $frontend_scripts, $frontend_styles);
                         }
-                    ] );
+                    ]);
                 } else {
-                    register_block_type( $blockname );
+                    register_block_type($blockname);
                 }
             }
         }
@@ -103,24 +107,26 @@ class Registration {
      *
      * @return string
      */
-    public function render_callback( $attributes, $content, $render, $scripts, $styles ) {
-        if ( $scripts !== false && is_array( $scripts ) && count( $scripts ) > 0 ) {
-            foreach ( $scripts as $script ) {
-                if ( is_string( $script ) ) {
-                    wp_enqueue_script( $script );
+    public function render_callback($attributes, $content, $render, $scripts, $styles)
+    {
+        if ($scripts !== false && is_array($scripts) && count($scripts) > 0) {
+            foreach ($scripts as $script) {
+                if (is_string($script)) {
+                    wp_enqueue_script($script);
                 }
             }
         }
-        if ( $styles !== false && is_array( $styles ) && count( $styles ) > 0 ) {
-            foreach ( $styles as $style ) {
-                if ( is_string( $style ) ) {
-                    wp_enqueue_style( $style );
+        if ($styles !== false && is_array($styles) && count($styles) > 0) {
+            foreach ($styles as $style) {
+                if (is_string($style)) {
+                    wp_enqueue_style($style);
                 }
             }
         }
 
-        if ( $render !== false ) {
-            return $render::render( $attributes );
+        if ($render !== false) {
+            // $render->abc();
+            return $render->render($attributes);
         }
 
         return $content;
@@ -133,7 +139,8 @@ class Registration {
      *
      * @return array
      */
-    public static function block_list() {
+    public static function block_list()
+    {
         $blocks = require_once ZOLO_DIR_PATH . 'includes/Blocks/Blocks.php';
         return $blocks;
     }
@@ -145,14 +152,15 @@ class Registration {
      *
      * @return array
      */
-    public function register_block_category( $categories, $post ) {
+    public function register_block_category($categories, $post)
+    {
         $updatedCat  = [];
         $eb_category = [
             'slug'  => 'zolo-blocks',
-            'title' => __( 'Zolo Blocks', 'zolo-blocks' )
+            'title' => __('Zolo Blocks', 'zolo-blocks')
         ];
         $updatedCat[0] = $eb_category;
-        $updatedCat    = array_merge( $updatedCat, $categories );
+        $updatedCat    = array_merge($updatedCat, $categories);
         return $updatedCat;
     }
 }

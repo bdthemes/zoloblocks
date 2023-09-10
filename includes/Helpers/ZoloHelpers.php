@@ -212,4 +212,24 @@ class ZoloHelpers
 
         return $wrap_class;
     }
+
+    public static function removeHtmlTagContents($contant, $tags)
+    {
+        if (is_array($tags)) {
+            foreach ($tags as $tag) {
+                $contant = preg_replace(
+                    sprintf(
+                        '/<%1$s\b[^>]*>(.*?)<\/%1$s>/is',
+                        $tag
+                    ),
+                    '',
+                    $contant
+                );
+            }
+        } else {
+            $contant = preg_replace('/<figure\b[^>]*>(.*?)<\/figure>/is', '', $contant);
+        }
+
+        return $contant;
+    }
 }
