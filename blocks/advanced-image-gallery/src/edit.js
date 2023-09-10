@@ -67,6 +67,7 @@ import {
     ZOOM_ICON_BOX_SHADOW,
     ZOOM_ICON_HOVER_BOX_SHADOW,
     ZOOM_ICON_BG_COLOR,
+    ZOOM_ICON_BG_HOVER_COLOR,
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -74,7 +75,8 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import Inspector from './inspector';
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, preset, blockStyle, advancedGallery, headingColor, zoomIconColor, zoomIconHoverBorderColor } = attributes;
+    const { uniqueId, preset, blockStyle, advancedGallery, headingColor, zoomIconColor, zoomIconHoverColor, zoomIconHoverBorderColor } =
+        attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
         handleUniqueId({
@@ -395,6 +397,16 @@ export default function Edit(props) {
         controlName: ZOOM_ICON_HOVER_BOX_SHADOW,
     });
 
+    const {
+        backgroundStylesDesktop: zoomIconBgHoverDesk,
+        backgroundStylesTab: zoomIconBgHoverTab,
+        backgroundStylesMobile: zoomIconBgHoverMob,
+    } = generateNormalBGControlStyles({
+        controlName: ZOOM_ICON_BG_HOVER_COLOR,
+        attributes,
+        noMainBGImg: false,
+    });
+
     /**
      * All Style Combination
      */
@@ -442,15 +454,19 @@ export default function Edit(props) {
 			${headingBoxShadow}
 			${headingTypoDesk}			
 		}
-        .${uniqueId} .zolo-item .zolo-icon{
+        .${uniqueId} .zolo-icon svg{
+            color: ${zoomIconColor ? zoomIconColor : ''};
             ${zoomIconPaddingDesk}
             ${zoomIconBorderDesk}
             ${zoomIconBorderRadiusDesk}
             ${zoomIconBoxShadow}
             ${zoomIconDeskBGStyle}
         }
-        .${uniqueId} .zolo-icon svg{
-            color: ${zoomIconColor ? zoomIconColor : ''};
+        .${uniqueId} .zolo-icon svg:hover{
+            color: ${zoomIconHoverColor ? zoomIconHoverColor : ''};
+            border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
+            ${zoomIconHoverBoxShadow}
+            ${zoomIconBgHoverDesk}
         }
   	`;
 
@@ -490,15 +506,16 @@ export default function Edit(props) {
 		${headingBorderRadiusTab}
 		${headingTypoTab}
 	}
-    .${uniqueId} .zolo-item .zolo-icon{
+    .${uniqueId} .zolo-icon svg{
         ${zoomIconPaddingTab}
         ${zoomIconBorderTab}
         ${zoomIconBorderRadiusTab}
         ${zoomIconTabBGStyle}
     }
-    .${uniqueId} .zolo-item:hover .zolo-icon{
+    .${uniqueId} .zolo-icon svg:hover{
         border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
-    }
+        ${zoomIconBgHoverTab}
+    }    
 	`;
 
     const mobileAllStyle = `		
@@ -538,14 +555,15 @@ export default function Edit(props) {
 		${headingTypoMob}
 	}
     
-    .${uniqueId} .zolo-item .zolo-icon{
+    .${uniqueId} .zolo-icon svg{
         ${zoomIconPaddingMob}
         ${zoomIconBorderMob}
         ${zoomIconBorderRadiusMob}
         ${zoomIconMobBGStyle}
     }
-    .${uniqueId} .zolo-item:hover .zolo-icon{
+    .${uniqueId} .zolo-icon svg:hover{
         border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
+        ${zoomIconBgHoverMob}
     }
   	`;
 
