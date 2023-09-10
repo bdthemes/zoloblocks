@@ -443,7 +443,7 @@ export default function Edit(props) {
 			${imageHoverDeskBGStyle}
 			${imageHoverBorderDesk}
 			${imageHoverBoxShadow}
-		}		
+		}
 		.${uniqueId} .zolo-title {
 			color: ${headingColor ? headingColor : ''};
 			${headingDeskBGStyle}
