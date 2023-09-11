@@ -123,6 +123,10 @@ const attributes = {
     advancedGallery: {
         type: 'array',
     },
+    showCaption: {
+        type: 'boolean',
+        default: true,
+    },
     zoomIconColor: {
         type: 'string',
     },

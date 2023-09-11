@@ -1,8 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { InspectorControls, MediaPlaceholder } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -19,7 +19,6 @@ const {
     ResCounterControl,
     ColorControl,
     TypographyDropdown,
-    IconPicker,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -65,7 +64,8 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { preset, resMode, headingColor, zoomIconColor, zoomIconHoverBorderColor, zoomIconHoverColor } = attributes;
+    const { preset, resMode, showCaption, advancedGallery, headingColor, zoomIconColor, zoomIconHoverBorderColor, zoomIconHoverColor } =
+        attributes;
 
     const resRequiredProps = {
         attributes,
@@ -88,6 +88,47 @@ function Inspector(props) {
                                         preset: value,
                                     })
                                 }
+                            />
+                            <p>{__('Elements', 'zolo-blocks')}</p>
+                            <ToggleControl
+                                label={__('Caption', 'zolo-blocks')}
+                                checked={showCaption}
+                                onChange={() =>
+                                    setAttributes({
+                                        showCaption: !showCaption,
+                                    })
+                                }
+                            />
+                            <ToggleControl
+                                label={__('Lightbox', 'zolo-blocks')}
+                                checked={showCaption}
+                                onChange={() =>
+                                    setAttributes({
+                                        showCaption: !showCaption,
+                                    })
+                                }
+                            />
+                            <ToggleControl
+                                label={__('Pagination', 'zolo-blocks')}
+                                checked={showCaption}
+                                onChange={() =>
+                                    setAttributes({
+                                        showCaption: !showCaption,
+                                    })
+                                }
+                            />
+                        </PanelBody>
+                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
+                            <MediaPlaceholder
+                                onSelect={(media) => {
+                                    setAttributes({
+                                        advancedGallery: media,
+                                    });
+                                }}
+                                gallery={true}
+                                multiple={true}
+                                allowedTypes={['image']}
+                                value={advancedGallery && advancedGallery.map((image) => image.id)}
                             />
                         </PanelBody>
                         <PanelBody title={__('Column Settings', 'zolo-blocks')} initialOpen={false}>
