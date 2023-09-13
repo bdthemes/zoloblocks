@@ -131,24 +131,26 @@ function Inspector(props) {
                                 value={advancedGallery && advancedGallery.map((image) => image.id)}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Column Settings', 'zolo-blocks')} initialOpen={false}>
+                    </>
+                }
+                styleTab={
+                    <>
+                        <PanelBody title={__('Grid', 'zolo-blocks')} initialOpen={false}>
                             <ResCounterControl
-                                label={__('Column Number', 'zolo-blocks')}
+                                label={__('Columns', 'zolo-blocks')}
                                 controlName={COLUMN_COUNT}
                                 resRequiredProps={resRequiredProps}
                                 min={1}
                                 max={5}
                             />
-
                             <ResRangeControl
-                                label={__('Columns Gap', 'zolo-blocks')}
+                                label={__('Column Gap', 'zolo-blocks')}
                                 controlName={COLUMNS_GAP}
                                 resRequiredProps={resRequiredProps}
                                 min={0}
                                 max={100}
                                 step={1}
                             />
-
                             <ResRangeControl
                                 label={__('Row Gap', 'zolo-blocks')}
                                 controlName={ROW_GAP}
@@ -158,10 +160,6 @@ function Inspector(props) {
                                 step={1}
                             />
                         </PanelBody>
-                    </>
-                }
-                styleTab={
-                    <>
                         <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
