@@ -127,6 +127,10 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
+    showLightbox: {
+        type: 'boolean',
+        default: true,
+    },
     zoomIconColor: {
         type: 'string',
     },
