@@ -116,7 +116,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
                                 label={__('Preset Designs', 'zolo-blocks')}
                                 value={preset}
@@ -164,15 +164,26 @@ function Inspector(props) {
                                 }
                             />
                             {showButton && (
-                                <ToggleControl
-                                    label={__('Show Button Icon', 'zolo-blocks')}
-                                    checked={showButtonIcon}
-                                    onChange={() =>
-                                        setAttributes({
-                                            showButtonIcon: !showButtonIcon,
-                                        })
-                                    }
-                                />
+                                <>
+                                    <ToggleControl
+                                        label={__('Show Button Icon', 'zolo-blocks')}
+                                        checked={showButtonIcon}
+                                        onChange={() =>
+                                            setAttributes({
+                                                showButtonIcon: !showButtonIcon,
+                                            })
+                                        }
+                                    />
+                                    <ToggleControl
+                                        label={__('Use Button Link as Global Link', 'zolo-blocks')}
+                                        checked={globalLink}
+                                        onChange={() =>
+                                            setAttributes({
+                                                globalLink: !globalLink,
+                                            })
+                                        }
+                                    />
+                                </>
                             )}
                         </PanelBody>
                         <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
@@ -271,8 +282,6 @@ function Inspector(props) {
                                 }
                                 placeholder={__('Description goes here..', 'zolo-blocks')}
                             />
-                        </PanelBody>
-                        <PanelBody title={__('Button', 'zolo-blocks')} initialOpen={false}>
                             <TextControl
                                 label={__('Button Text', 'zolo-blocks')}
                                 onChange={(btnText) =>
@@ -292,17 +301,8 @@ function Inspector(props) {
                                     })
                                 }
                             />
-
-                            <ToggleControl
-                                label={__('Use as Global Link', 'zolo-blocks')}
-                                checked={globalLink}
-                                onChange={() =>
-                                    setAttributes({
-                                        globalLink: !globalLink,
-                                    })
-                                }
-                            />
                         </PanelBody>
+
                         {showButtonIcon && (
                             <PanelBody title={__('Button Icon', 'zolo-blocks')} initialOpen={false}>
                                 <Fragment>
@@ -322,54 +322,6 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
-                            {preset == 'style-1' && (
-                                <IconicBtnGroup
-                                    label={__('Content Alignment', 'zolo-blocks')}
-                                    value={presetOneStyles.contentPosition}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            presetOneStyles: {
-                                                ...presetOneStyles,
-                                                contentPosition: value,
-                                            },
-                                        })
-                                    }
-                                    options={DEFAULT_ALIGNS}
-                                />
-                            )}
-
-                            {preset == 'style-2' && (
-                                <IconicBtnGroup
-                                    label={__('Content Alignment', 'zolo-blocks')}
-                                    value={presetTwoStyles.contentPosition}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            presetTwoStyles: {
-                                                ...presetTwoStyles,
-                                                contentPosition: value,
-                                            },
-                                        })
-                                    }
-                                    options={DEFAULT_ALIGNS}
-                                />
-                            )}
-
-                            {preset == 'style-3' && (
-                                <IconicBtnGroup
-                                    label={__('Content Alignment', 'zolo-blocks')}
-                                    value={presetThreeStyles.contentPosition}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            presetThreeStyles: {
-                                                ...presetThreeStyles,
-                                                contentPosition: value,
-                                            },
-                                        })
-                                    }
-                                    options={DEFAULT_ALIGNS}
-                                />
-                            )}
-
                             <NormalBGControl resRequiredProps={resRequiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
 
                             <ResDimensionsControl
@@ -423,6 +375,55 @@ function Inspector(props) {
                                     </>
                                 }
                             />
+                        </PanelBody>
+                        <PanelBody title={__('Alignment', 'zolo-blocks')} initialOpen={false}>
+                            {preset == 'style-1' && (
+                                <IconicBtnGroup
+                                    label={__('Content Alignment', 'zolo-blocks')}
+                                    value={presetOneStyles.contentPosition}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            presetOneStyles: {
+                                                ...presetOneStyles,
+                                                contentPosition: value,
+                                            },
+                                        })
+                                    }
+                                    options={DEFAULT_ALIGNS}
+                                />
+                            )}
+
+                            {preset == 'style-2' && (
+                                <IconicBtnGroup
+                                    label={__('Content Alignment', 'zolo-blocks')}
+                                    value={presetTwoStyles.contentPosition}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            presetTwoStyles: {
+                                                ...presetTwoStyles,
+                                                contentPosition: value,
+                                            },
+                                        })
+                                    }
+                                    options={DEFAULT_ALIGNS}
+                                />
+                            )}
+
+                            {preset == 'style-3' && (
+                                <IconicBtnGroup
+                                    label={__('Content Alignment', 'zolo-blocks')}
+                                    value={presetThreeStyles.contentPosition}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            presetThreeStyles: {
+                                                ...presetThreeStyles,
+                                                contentPosition: value,
+                                            },
+                                        })
+                                    }
+                                    options={DEFAULT_ALIGNS}
+                                />
+                            )}
                         </PanelBody>
                         {iconType == 'icon' && (
                             <PanelBody title={__('Icon', 'zolo-blocks')} initialOpen={false}>
@@ -567,7 +568,7 @@ function Inspector(props) {
                                 </>
                             </PanelBody>
                         )}
-                        <PanelBody title={__('Heading', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Title', 'zolo-blocks')} initialOpen={false}>
                             <SelectControl
                                 label={__('Title Tag', 'zolo-blocks')}
                                 options={TITLE_TAG}
@@ -640,7 +641,7 @@ function Inspector(props) {
                                 resRequiredProps={resRequiredProps}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Button', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Call To Action', 'zolo-blocks')} initialOpen={false}>
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={BUTTON_TYPOGRAPHY}
