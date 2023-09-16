@@ -4,6 +4,8 @@ $titleHTML = '';
 
 if (!empty($settings['showTitle'])) {
     $post_title = wp_kses($result->title, 'post');
+    $post_title  = !empty($settings['titleWords']) ?
+        $class_object->wordcount($post_title, $settings['titleWords']) : $post_title;
 
     $titleHTML .= sprintf(
         '<%1$s class="zolo-post-title">

@@ -16,7 +16,7 @@ class PostGrid extends PostBlock
         'excerptindicator' => '...',
         'excerptWords' => 15,
         'showReadMore' => false,
-        'readMoreBtnText' => 'Button Text'
+        'readMoreBtnText' => 'Button Text',
     ];
 
     public function get_default_attributes()
@@ -38,10 +38,5 @@ class PostGrid extends PostBlock
             'class_object' => $this
         ]);
         return ob_get_clean();
-    }
-
-    public function abc()
-    {
-        echo "helloddddd";
     }
 }

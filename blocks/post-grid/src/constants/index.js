@@ -22,16 +22,32 @@ export const COLUMN_BORDER = 'columnBorder';
 export const COLUMN_BORDER_RADIUS = 'columnBRadius';
 export const COLUMN_SHADOW = 'columnShadow';
 
-export const THUMBNAIL_BORDER = '';
-export const THUMBNAIL_BORDER_RADIUS = '';
-export const THUMBNAIL_BG = '';
-export const THUMBNAIL_BOX_SHADOW = '';
-export const THUMBNAIL_PADDING = '';
-export const THUMBNAIL_MARGIN = '';
+export const THUMBNAIL_BORDER = 'thumbBorder';
+export const THUMBNAIL_BORDER_RADIUS = 'thumbBRadius';
+export const THUMBNAIL_BG = 'thumbBg';
+export const THUMBNAIL_BOX_SHADOW = 'thumbShadow';
+export const THUMBNAIL_PADDING = 'thumbPadding';
+export const THUMBNAIL_MARGIN = 'thumbMargin';
 
 export const TITLE_MARGIN = 'titleMargin';
 export const EXCERPT_MARGIN = 'excerptMargin';
+export const META_MARGIN = 'metaMargin';
 
+export const CAT_GAP = 'catGap';
+export const CAT_BORDER = 'catBorder';
+export const CAT_BORDER_RADIUS = 'catBRadius';
+export const CAT_MARGIN = 'catMargin';
+export const CAT_PADDING = 'catPading';
+
+export const READMORE_GAP = 'readMoreGap';
+export const READMORE_BORDER = 'readMoreBorder';
+export const READMORE_BORDER_RADIUS = 'readMoreBRadius';
+export const READMORE_MARGIN = 'readMoreMargin';
+export const READMORE_PADDING = 'readMorePadding';
+
+export const AVATAR_SIZE = '';
+export const AVATAR_BORDER = '';
+export const AVATAR_BORDER_RADIUS = '';
 
 //advanced
 export const WRAPPER_MARGIN = 'wrapMargin';

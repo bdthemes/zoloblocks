@@ -5,7 +5,9 @@ import {
   PanelBody,
   SelectControl,
   TextControl,
-  ToggleControl
+  ToggleControl,
+  CardDivider,
+  BaseControl
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
@@ -27,6 +29,20 @@ import {
   THUMBNAIL_BG,
   TITLE_MARGIN,
   EXCERPT_MARGIN,
+  META_MARGIN,
+  CAT_GAP,
+  CAT_BORDER,
+  CAT_BORDER_RADIUS,
+  CAT_MARGIN,
+  CAT_PADDING,
+  READMORE_GAP,
+  READMORE_BORDER,
+  READMORE_BORDER_RADIUS,
+  READMORE_MARGIN,
+  READMORE_PADDING,
+  AVATAR_SIZE,
+  AVATAR_BORDER,
+  AVATAR_BORDER_RADIUS,
   WRAPPER_MARGIN,
   WRAPPER_PADDING,
   WRAPPER_BG,
@@ -34,7 +50,14 @@ import {
   WRAPPER_SHADOW,
 } from './constants';
 
-import { TITLE_TYPOGRAPHY, EXCERPT_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import {
+  TITLE_TYPOGRAPHY,
+  EXCERPT_TYPOGRAPHY,
+  META_TYPOGRAPHY,
+  CAT_TYPOGRAPHY,
+  READMORE_TYPOGRAPHY,
+  NAME_TYPOGRAPHY
+} from './constants/typoPrefixConstant';
 
 import {
   HEADING,
@@ -54,7 +77,7 @@ const {
   TabPanelControl,
   ColorControl,
   TypographyDropdown,
-  ResCounterControl
+  ResCounterControl,
 } = window.zoloModule;
 
 function Inspector({ attributes, setAttributes }) {
@@ -72,10 +95,20 @@ function Inspector({ attributes, setAttributes }) {
     showCategory,
     showAuthor,
     showMeta,
-    showPagination,
     titleColor,
     titleHoverColor,
-    excerptColor
+    excerptColor,
+    metaColor,
+    catBgColor,
+    catColor,
+    catBgHoverColor,
+    catHoverColor,
+    readMoreBgColor,
+    readMoreColor,
+    readMoreBgHoverColor,
+    readMoreHoverColor,
+    nameColor,
+    nameHoverColor
   } = attributes;
 
   const resRequiredProps = {
@@ -91,31 +124,41 @@ function Inspector({ attributes, setAttributes }) {
       case 'style-1':
         setAttributes({
           showExcerpt: false,
-          showReadMore: false
+          showReadMore: false,
+          showThumbnail: true,
+          zolo_gridColumnsRange: 3
         });
         break;
       case 'style-2':
         setAttributes({
           showExcerpt: false,
-          showReadMore: false
+          showReadMore: false,
+          showThumbnail: true,
+          zolo_gridColumnsRange: 3
         });
         break;
       case 'style-3':
         setAttributes({
           showExcerpt: false,
-          showReadMore: false
+          showReadMore: false,
+          showThumbnail: true,
+          zolo_gridColumnsRange: 3
         });
         break;
       case 'style-4':
         setAttributes({
           showExcerpt: false,
-          showReadMore: false
+          showReadMore: false,
+          showThumbnail: true,
+          zolo_gridColumnsRange: 2
         });
         break;
       case 'style-5':
         setAttributes({
           showExcerpt: true,
-          showReadMore: true
+          showReadMore: true,
+          showThumbnail: false,
+          zolo_gridColumnsRange: 1
         });
         break;
       default:
@@ -249,8 +292,10 @@ function Inspector({ attributes, setAttributes }) {
               />
               <ToggleControl
                 label={__('Show Pagination', 'zolo-blocks')}
-                checked={showPagination}
-                onChange={(showPagination) => setAttributes({ showPagination })}
+                checked={postQuery?.showPagination}
+                onChange={(showPagination) => setAttributes({
+                  postQuery: { ...postQuery, showPagination }
+                })}
               />
 
 
@@ -393,8 +438,274 @@ function Inspector({ attributes, setAttributes }) {
               </PanelBody>
             )}
 
-            <PanelBody title={__('Meta', 'zolo-blocks')} initialOpen={false}>
-            </PanelBody>
+            {showMeta && (
+              <PanelBody title={__('Meta', 'zolo-blocks')} initialOpen={false}>
+                <TypographyDropdown
+                  label={__('Typography', 'zolo-blocks')}
+                  typoPrefixConstant={META_TYPOGRAPHY}
+                  resRequiredProps={resRequiredProps}
+                />
+                <ColorControl
+                  label={__('Color', 'zolo-blocks')}
+                  color={metaColor}
+                  onChange={(metaColor) => setAttributes({ metaColor })
+                  }
+                />
+                <ResDimensionsControl
+                  label={__('Margin', 'zolo-blocks')}
+                  controlName={META_MARGIN}
+                  resRequiredProps={resRequiredProps}
+                />
+              </PanelBody>
+            )}
+
+            {showCategory && (
+              <PanelBody title={__('Category', 'zolo-blocks')} initialOpen={false}>
+                <TypographyDropdown
+                  label={__('Typography', 'zolo-blocks')}
+                  typoPrefixConstant={CAT_TYPOGRAPHY}
+                  resRequiredProps={resRequiredProps}
+                />
+
+                <TabPanelControl
+                  normalComponents={
+                    <>
+                      <ColorControl
+                        label={__('Background', 'zolo-blocks')}
+                        color={catBgColor}
+                        onChange={(value) =>
+                          setAttributes({
+                            catBgColor: value,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Color', 'zolo-blocks')}
+                        color={catColor}
+                        onChange={(value) =>
+                          setAttributes({
+                            catColor: value,
+                          })
+                        }
+                      />
+                    </>
+                  }
+                  hoverComponents={
+                    <>
+                      <ColorControl
+                        label={__('Background', 'zolo-blocks')}
+                        color={catBgHoverColor}
+                        onChange={(value) =>
+                          setAttributes({
+                            catBgHoverColor: value,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Color', 'zolo-blocks')}
+                        color={catHoverColor}
+                        onChange={(value) =>
+                          setAttributes({
+                            catHoverColor: value,
+                          })
+                        }
+                      />
+                    </>
+                  }
+                />
+                <CardDivider />
+
+                <ResRangeControl
+                  label={__('Gap', 'zolo-blocks')}
+                  controlName={CAT_GAP}
+                  resRequiredProps={resRequiredProps}
+                  min={0}
+                  max={100}
+                  step={1}
+                />
+                <BorderControl
+                  label={__('Border', 'zolo-blocks')}
+                  controlName={CAT_BORDER}
+                  resRequiredProps={resRequiredProps}
+                />
+                <ResDimensionsControl
+                  label={__('Border Radius', 'zolo-blocks')}
+                  controlName={CAT_BORDER_RADIUS}
+                  resRequiredProps={resRequiredProps}
+                  forBorderRadius={true}
+                />
+                <ResDimensionsControl
+                  label={__('Margin', 'zolo-blocks')}
+                  controlName={CAT_MARGIN}
+                  resRequiredProps={resRequiredProps}
+                />
+                <ResDimensionsControl
+                  label={__('Padding', 'zolo-blocks')}
+                  controlName={CAT_PADDING}
+                  resRequiredProps={resRequiredProps}
+                />
+              </PanelBody>
+            )}
+
+            {showReadMore && (
+              <PanelBody title={__('Read More Button', 'zolo-blocks')} initialOpen={false}>
+                <TypographyDropdown
+                  label={__('Typography', 'zolo-blocks')}
+                  typoPrefixConstant={READMORE_TYPOGRAPHY}
+                  resRequiredProps={resRequiredProps}
+                />
+
+                <TabPanelControl
+                  normalComponents={
+                    <>
+                      <ColorControl
+                        label={__('Background', 'zolo-blocks')}
+                        color={readMoreBgColor}
+                        onChange={(value) =>
+                          setAttributes({
+                            readMoreBgColor: value,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Color', 'zolo-blocks')}
+                        color={readMoreColor}
+                        onChange={(value) =>
+                          setAttributes({
+                            readMoreColor: value,
+                          })
+                        }
+                      />
+                    </>
+                  }
+                  hoverComponents={
+                    <>
+                      <ColorControl
+                        label={__('Background', 'zolo-blocks')}
+                        color={readMoreBgHoverColor}
+                        onChange={(value) =>
+                          setAttributes({
+                            readMoreBgHoverColor: value,
+                          })
+                        }
+                      />
+                      <ColorControl
+                        label={__('Color', 'zolo-blocks')}
+                        color={readMoreHoverColor}
+                        onChange={(value) =>
+                          setAttributes({
+                            readMoreHoverColor: value,
+                          })
+                        }
+                      />
+                    </>
+                  }
+                />
+                <CardDivider />
+
+                <ResRangeControl
+                  label={__('Gap', 'zolo-blocks')}
+                  controlName={READMORE_GAP}
+                  resRequiredProps={resRequiredProps}
+                  min={0}
+                  max={100}
+                  step={1}
+                />
+                <BorderControl
+                  label={__('Border', 'zolo-blocks')}
+                  controlName={READMORE_BORDER}
+                  resRequiredProps={resRequiredProps}
+                />
+                <ResDimensionsControl
+                  label={__('Border Radius', 'zolo-blocks')}
+                  controlName={READMORE_BORDER_RADIUS}
+                  resRequiredProps={resRequiredProps}
+                  forBorderRadius={true}
+                />
+                <ResDimensionsControl
+                  label={__('Margin', 'zolo-blocks')}
+                  controlName={READMORE_MARGIN}
+                  resRequiredProps={resRequiredProps}
+                />
+                <ResDimensionsControl
+                  label={__('Padding', 'zolo-blocks')}
+                  controlName={READMORE_PADDING}
+                  resRequiredProps={resRequiredProps}
+                />
+              </PanelBody>
+            )}
+
+            {showAuthor && (
+              <PanelBody title={__('Author', 'zolo-blocks')} initialOpen={false}>
+                <ResRangeControl
+                  label={__('Gap', 'zolo-blocks')}
+                  controlName={READMORE_GAP}
+                  resRequiredProps={resRequiredProps}
+                  min={0}
+                  max={100}
+                  step={1}
+                />
+                <BaseControl label={__('Avatar', 'zolo-blocks')}>
+                  <ResRangeControl
+                    label={__('Size', 'zolo-blocks')}
+                    controlName={AVATAR_SIZE}
+                    resRequiredProps={resRequiredProps}
+                  />
+                  <BorderControl
+                    label={__('Border', 'zolo-blocks')}
+                    controlName={AVATAR_BORDER}
+                    resRequiredProps={resRequiredProps}
+                  />
+                  <ResDimensionsControl
+                    label={__('Border Radius', 'zolo-blocks')}
+                    controlName={AVATAR_BORDER_RADIUS}
+                    resRequiredProps={resRequiredProps}
+                    forBorderRadius={true}
+                  />
+                </BaseControl>
+
+                <CardDivider />
+                <BaseControl label={__('Name', 'zolo-blocks')}>
+
+                  <TypographyDropdown
+                    label={__('Typography', 'zolo-blocks')}
+                    typoPrefixConstant={NAME_TYPOGRAPHY}
+                    resRequiredProps={resRequiredProps}
+                  />
+
+                  <TabPanelControl
+                    normalComponents={
+                      <>
+                        <ColorControl
+                          label={__('Name Color', 'zolo-blocks')}
+                          color={nameColor}
+                          onChange={(color) =>
+                            setAttributes({
+                              nameColor: color,
+                            })
+                          }
+                        />
+                      </>
+                    }
+                    hoverComponents={
+                      <>
+                        <ColorControl
+                          label={__('Name Hover Color', 'zolo-blocks')}
+                          color={nameHoverColor}
+                          onChange={(color) =>
+                            setAttributes({
+                              nameHoverColor: color,
+                            })
+                          }
+                        />
+                      </>
+                    }
+                  />
+                </BaseControl>
+
+              </PanelBody>
+            )}
+
           </>
         }
         advancedTab={

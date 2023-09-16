@@ -22,7 +22,7 @@ const {
 
 export default function Edit(props) {
   const { attributes, setAttributes, className, clientId, isSelected } = props;
-  const { uniqueId, postQuery, preset, page, showPagination } = attributes;
+  const { uniqueId, postQuery, preset, page } = attributes;
 
   // this useEffect is for creating a unique id for each block's unique className by a random unique number
   useEffect(() => {
@@ -57,7 +57,8 @@ export default function Edit(props) {
           postOffset: 0,
           postOrderby: 'date',
           postOrder: 'desc',
-          postThumbnail: ''
+          postThumbnail: '',
+          showPagination: false
         }
       })
     }
@@ -134,7 +135,7 @@ export default function Edit(props) {
           postResults={postResults}
         />
       </div>
-      {(showPagination && pageTotal > 1) && (
+      {(postQuery?.showPagination && pageTotal > 1) && (
         <Pagination
           total={pageTotal}
           current={page || 1}

@@ -8,7 +8,7 @@ if (!empty($settings['showExcerpt'])) {
     $_content = !empty($result->excerpt) ? $result->excerpt : $result->content;
     $_content = ZoloHelpers::removeHtmlTagContents($_content, array('figure'));
 
-    $content  = !empty($settings['excerptWords']) ? $class_object->truncate(wp_kses_post(strip_tags($_content)), $settings['excerptWords'])
+    $content  = !empty($settings['excerptWords']) ? $class_object->wordcount(wp_kses_post(strip_tags($_content)), $settings['excerptWords'])
         : $_content;
 
     $contentHTML .= sprintf(

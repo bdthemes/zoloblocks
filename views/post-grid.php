@@ -17,13 +17,19 @@ $html = '';
 
         $html .= '<div class="zolo-post-image">';
         $html .= require __DIR__ . '/post-partials/thumbnail.php';
+        if (!empty($settings['preset'] === 'style-5')) {
+            $html .= require __DIR__ . '/post-partials/meta/date.php';
+        }
         $html .= require __DIR__ . '/post-partials/meta/author.php';
         $html .= '</div>';
 
         $html .= '<div class="zolo-post-content">';
+        if (!empty($settings['preset'] !== 'style-5')) {
+            $html .= require __DIR__ . '/post-partials/meta/date.php';
+        }
         $html .= require __DIR__ . '/post-partials/title.php';
-        $html .= require __DIR__ . '/post-partials/meta/date.php';
         $html .= require __DIR__ . '/post-partials/content.php';
+        $html .= require __DIR__ . '/post-partials/meta/categories.php';
         $html .= '</div>';
 
         $html .= require __DIR__ . '/post-partials/read-more.php';
@@ -33,3 +39,9 @@ $html = '';
 
     <?php echo wp_kses($html, 'post'); ?>
 </div>
+
+<?php if (!empty($settings['postQuery']['showPagination']) && !empty($post_results['total_page'])) { ?>
+    <div class="zolo-pagination-nav">
+        <?php echo ZoloHelpers::pagination($post_results['total_page']); ?>
+    </div>
+<?php } ?>

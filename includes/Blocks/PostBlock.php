@@ -9,12 +9,13 @@ abstract class PostBlock
         'showTitle' => true,
         'showThumbnail' => true,
         'showAuthor' => true,
-        'showMeta' => true
+        'showMeta' => true,
+        'showCategory' => true
     );
 
     abstract public function get_default_attributes();
 
-    public function truncate($phrase, $max_words)
+    public function wordcount($phrase, $max_words)
     {
         $phrase_array = explode(' ', $phrase);
         if (count($phrase_array) > $max_words && $max_words >= 0) {

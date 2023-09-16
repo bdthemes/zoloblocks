@@ -45,7 +45,7 @@ class GetPostsV1
     public static function zolo_get_post_args($data)
     {
         $excluded_ids = null;
-        //$showPagination = $data['showPagination'] == 'true' ? true : false;
+        $showPagination = !empty($data['showPagination']) && $data['showPagination'] == 'true' ? true : false;
         $args = [
             'post_status'    => 'publish',
             'post_type'      => isset($data['postType']) ? $data['postType'] : 'post',
@@ -68,10 +68,10 @@ class GetPostsV1
             }
         }
 
-        // if ($postShowPagination) {
-        // 	$_paged        = is_front_page() ? "page" : "paged";
-        // 	$args['paged'] = get_query_var($_paged) ? absint(get_query_var($_paged)) : 1;
-        // }
+        if ($showPagination) {
+            $_paged        = is_front_page() ? "page" : "paged";
+            $args['paged'] = get_query_var($_paged) ? absint(get_query_var($_paged)) : 1;
+        }
 
         if (isset($data['postTaxonomies']) && !empty($data['postTaxonomies'])) {
             foreach ($data['postTaxonomies'] as $index => $texonomy) {
@@ -115,8 +115,6 @@ class GetPostsV1
         $results = [];
         $args = self::zolo_get_post_args($data);
         $loop = new \WP_Query($args);
-
-        //error_log(print_r($postThumbnail, true), 3, __DIR__ . '/log.txt');
         $postThumbnail = !empty($data['postThumbnail']) ? $data['postThumbnail'] : '';
 
         if ($loop->have_posts()) {
@@ -138,7 +136,7 @@ class GetPostsV1
                 $post["thumbnail"]        = get_the_post_thumbnail($post_id, $postThumbnail);
                 $post['permalink']        = get_permalink();
                 $post['excerpt']          = strip_tags(get_the_excerpt());
-                $post['content']     = strip_tags(get_the_content());
+                $post['content']          = strip_tags(get_the_content());
                 $post['date']             = get_the_date();
                 $post['reading_time']     = self::content_reading_time($content);
                 $post['categories']       = self::zolo_get_terms($post_id, 'category');

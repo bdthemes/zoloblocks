@@ -28,6 +28,20 @@ import {
   THUMBNAIL_BOX_SHADOW,
   TITLE_MARGIN,
   EXCERPT_MARGIN,
+  META_MARGIN,
+  CAT_GAP,
+  CAT_BORDER,
+  CAT_BORDER_RADIUS,
+  CAT_MARGIN,
+  CAT_PADDING,
+  READMORE_GAP,
+  READMORE_BORDER,
+  READMORE_BORDER_RADIUS,
+  READMORE_MARGIN,
+  READMORE_PADDING,
+  AVATAR_SIZE,
+  AVATAR_BORDER,
+  AVATAR_BORDER_RADIUS,
   WRAPPER_MARGIN,
   WRAPPER_PADDING,
   WRAPPER_BG,
@@ -134,7 +148,7 @@ const attributes = {
   },
   showPagination: {
     type: 'boolean',
-    default: true,
+    default: false,
   },
 
   ...generateDimensionAttributes(COLUMN_PADDING),
@@ -152,6 +166,24 @@ const attributes = {
 
   ...generateDimensionAttributes(TITLE_MARGIN),
   ...generateDimensionAttributes(EXCERPT_MARGIN),
+  ...generateDimensionAttributes(META_MARGIN),
+
+  ...generateResRangeAttributies(CAT_GAP),
+  ...generateBorderAttributies(CAT_BORDER),
+  ...generateDimensionAttributes(CAT_BORDER_RADIUS),
+  ...generateDimensionAttributes(CAT_MARGIN),
+  ...generateDimensionAttributes(CAT_PADDING),
+
+  ...generateResRangeAttributies(READMORE_GAP),
+  ...generateBorderAttributies(READMORE_BORDER),
+  ...generateDimensionAttributes(READMORE_BORDER_RADIUS),
+  ...generateDimensionAttributes(READMORE_MARGIN),
+  ...generateDimensionAttributes(READMORE_PADDING),
+
+  ...generateResRangeAttributies(AVATAR_SIZE),
+  ...generateBorderAttributies(AVATAR_BORDER),
+  ...generateDimensionAttributes(AVATAR_BORDER_RADIUS),
+
 
   ...generateTypographyAttributes(Object.values(typographyObjs)),
 
