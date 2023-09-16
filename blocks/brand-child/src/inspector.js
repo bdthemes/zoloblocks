@@ -82,7 +82,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
                             <BaseControl label={__('Brand Photo', 'zolo-blocks')}>
                                 {brandPhoto ? (
                                     <ImageAvatar
@@ -139,8 +139,8 @@ function Inspector(props) {
                                 onChange={() => setAttributes({ isBrandLink: !isBrandLink })}
                             />
                         </PanelBody>
-                        {isBrandName && (
-                            <PanelBody title={__('Brand Name', 'zolo-blocks')} initialOpen={false}>
+                        {(isBrandName || isBrandLink) && (
+                            <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
                                 <TextControl
                                     label={__('Name', 'zolo-blocks')}
                                     onChange={(name) =>
@@ -161,10 +161,6 @@ function Inspector(props) {
                                         });
                                     }}
                                 />
-                            </PanelBody>
-                        )}
-                        {isBrandLink && (
-                            <PanelBody title={__('Brand Link', 'zolo-blocks')} initialOpen={false}>
                                 <TextControl
                                     label={__('Label', 'zolo-blocks')}
                                     onChange={(name) =>
@@ -190,7 +186,31 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Brand Stylings', 'zolo-blocks')} initialOpen={false}>
+                            <ResAlignmentControl
+                                label={__('Alignment', 'zolo-blocks')}
+                                controlName={CONTENT_ALIGNMENT}
+                                resRequiredProps={resRequiredProps}
+                                alignOptions={DEFAULT_ALIGNS}
+                            />
+                            <IconicBtnGroup
+                                label={__('Horizontal Position', 'zolo-blocks')}
+                                value={contentHorizontalPosition}
+                                onChange={(value) => setAttributes({ contentHorizontalPosition: value })}
+                                options={FLEX_HORIZONTAL_OPTIONS}
+                            />
+                            <IconicBtnGroup
+                                label={__('Vertical Position', 'zolo-blocks')}
+                                value={contentVerticalPosition}
+                                onChange={(value) => setAttributes({ contentVerticalPosition: value })}
+                                options={FLEX_ALIGN_OPTIONS}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={CONTENT_PADDING}
+                                resRequiredProps={resRequiredProps}
+                                forBorderRadius={false}
+                            />
                             <ResRangeControl
                                 label={__('Height', 'zolo-blocks')}
                                 controlName={CONTAINER_HEIGHT}
@@ -250,32 +270,6 @@ function Inspector(props) {
                                 }
                             />
                         </PanelBody>
-                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zolo-blocks')}
-                                controlName={CONTENT_ALIGNMENT}
-                                resRequiredProps={resRequiredProps}
-                                alignOptions={DEFAULT_ALIGNS}
-                            />
-                            <IconicBtnGroup
-                                label={__('Horizontal Position', 'zolo-blocks')}
-                                value={contentHorizontalPosition}
-                                onChange={(value) => setAttributes({ contentHorizontalPosition: value })}
-                                options={FLEX_HORIZONTAL_OPTIONS}
-                            />
-                            <IconicBtnGroup
-                                label={__('Vertical Position', 'zolo-blocks')}
-                                value={contentVerticalPosition}
-                                onChange={(value) => setAttributes({ contentVerticalPosition: value })}
-                                options={FLEX_ALIGN_OPTIONS}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={CONTENT_PADDING}
-                                resRequiredProps={resRequiredProps}
-                                forBorderRadius={false}
-                            />
-                        </PanelBody>
                         <PanelBody title={__('Photo', 'zolo-blocks')} initialOpen={false}>
                             <ResRangeControl
                                 label={__('Photo Size', 'zolo-blocks')}
@@ -317,7 +311,7 @@ function Inspector(props) {
                             />
                         </PanelBody>
                         {isBrandName && (
-                            <PanelBody title={__('Brand Name', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody title={__('Name', 'zolo-blocks')} initialOpen={false}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={TITLE_TYPOGRAPHY}
