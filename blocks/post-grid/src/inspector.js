@@ -107,8 +107,10 @@ function Inspector({ attributes, setAttributes }) {
     readMoreColor,
     readMoreBgHoverColor,
     readMoreHoverColor,
+    namePrefixColor,
     nameColor,
-    nameHoverColor
+    nameHoverColor,
+    namePrefixHoverColor,
   } = attributes;
 
   const resRequiredProps = {
@@ -677,6 +679,15 @@ function Inspector({ attributes, setAttributes }) {
                     normalComponents={
                       <>
                         <ColorControl
+                          label={__('Prefix Color', 'zolo-blocks')}
+                          color={namePrefixColor}
+                          onChange={(color) =>
+                            setAttributes({
+                              namePrefixColor: color,
+                            })
+                          }
+                        />
+                        <ColorControl
                           label={__('Name Color', 'zolo-blocks')}
                           color={nameColor}
                           onChange={(color) =>
@@ -695,6 +706,15 @@ function Inspector({ attributes, setAttributes }) {
                           onChange={(color) =>
                             setAttributes({
                               nameHoverColor: color,
+                            })
+                          }
+                        />
+                        <ColorControl
+                          label={__('Prefix Hover Color', 'zolo-blocks')}
+                          color={namePrefixHoverColor}
+                          onChange={(color) =>
+                            setAttributes({
+                              namePrefixHoverColor: color,
                             })
                           }
                         />

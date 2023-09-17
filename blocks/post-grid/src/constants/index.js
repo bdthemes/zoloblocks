@@ -45,9 +45,9 @@ export const READMORE_BORDER_RADIUS = 'readMoreBRadius';
 export const READMORE_MARGIN = 'readMoreMargin';
 export const READMORE_PADDING = 'readMorePadding';
 
-export const AVATAR_SIZE = '';
-export const AVATAR_BORDER = '';
-export const AVATAR_BORDER_RADIUS = '';
+export const AVATAR_SIZE = 'avatarSize';
+export const AVATAR_BORDER = 'avatarBorder';
+export const AVATAR_BORDER_RADIUS = 'avatarBRadius';
 
 //advanced
 export const WRAPPER_MARGIN = 'wrapMargin';

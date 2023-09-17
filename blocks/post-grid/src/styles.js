@@ -16,13 +16,36 @@ import {
   THUMBNAIL_BOX_SHADOW,
   TITLE_MARGIN,
   EXCERPT_MARGIN,
+  META_MARGIN,
+  CAT_GAP,
+  CAT_BORDER,
+  CAT_BORDER_RADIUS,
+  CAT_MARGIN,
+  CAT_PADDING,
+  READMORE_GAP,
+  READMORE_BORDER,
+  READMORE_BORDER_RADIUS,
+  READMORE_MARGIN,
+  READMORE_PADDING,
+  AVATAR_SIZE,
+  AVATAR_BORDER,
+  AVATAR_BORDER_RADIUS,
   WRAPPER_MARGIN,
   WRAPPER_PADDING,
   WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_SHADOW,
 } from './constants';
-import { TITLE_TYPOGRAPHY, EXCERPT_TYPOGRAPHY } from './constants/typoPrefixConstant';
+
+import {
+  TITLE_TYPOGRAPHY,
+  EXCERPT_TYPOGRAPHY,
+  META_TYPOGRAPHY,
+  CAT_TYPOGRAPHY,
+  READMORE_TYPOGRAPHY,
+  NAME_TYPOGRAPHY
+} from './constants/typoPrefixConstant';
+
 const {
   generateDimensionStyle,
   generateResRangeStyle,
@@ -40,7 +63,20 @@ function styles({ attributes, setAttributes }) {
     blockStyle,
     titleColor,
     titleHoverColor,
-    excerptColor
+    excerptColor,
+    metaColor,
+    catBgColor,
+    catColor,
+    catBgHoverColor,
+    catHoverColor,
+    readMoreBgColor,
+    readMoreColor,
+    readMoreBgHoverColor,
+    readMoreHoverColor,
+    namePrefixColor,
+    nameColor,
+    nameHoverColor,
+    namePrefixHoverColor
   } = attributes;
 
 
@@ -208,6 +244,173 @@ function styles({ attributes, setAttributes }) {
     attributes,
   });
 
+  const {
+    typoStylesDesktop: metaTypoDesk,
+    typoStylesTab: metaTypoTab,
+    typoStylesMobile: metaTypoMob,
+  } = generateTypographyStyles({
+    prefixConstant: META_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: metaMarginDesk,
+    dimensionStylesTab: metaMarginTab,
+    dimensionStylesMobile: metaMarginMob,
+  } = generateDimensionStyle({
+    controlName: META_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+
+  const {
+    typoStylesDesktop: catTypoDesk,
+    typoStylesTab: catTypoTab,
+    typoStylesMobile: catTypoMob,
+  } = generateTypographyStyles({
+    prefixConstant: CAT_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    desktopRangeStyle: catGapDesk,
+    tabRangeStyle: catGapTab,
+    mobRangeStyle: catGapMob,
+  } = generateResRangeStyle({
+    controlName: CAT_GAP,
+    property: 'gap',
+    attributes,
+  });
+  const {
+    desktopBorderStyle: catBorderDesk,
+    tabBorderStyle: catBorderTab,
+    mobBorderStyle: catBorderMob,
+  } = generateBorderStyle({
+    controlName: CAT_BORDER,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: catBorderRadiusDesk,
+    dimensionStylesTab: catBorderRadiusTab,
+    dimensionStylesMobile: catBorderRadiusMob,
+  } = generateDimensionStyle({
+    controlName: CAT_BORDER_RADIUS,
+    styleFor: 'border-radius',
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: catMarginDesk,
+    dimensionStylesTab: catMarginTab,
+    dimensionStylesMobile: catMarginMob,
+  } = generateDimensionStyle({
+    controlName: CAT_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: catPaddingDesk,
+    dimensionStylesTab: catPaddingTab,
+    dimensionStylesMobile: catPaddingMob,
+  } = generateDimensionStyle({
+    controlName: CAT_PADDING,
+    styleFor: 'padding',
+    attributes,
+  });
+
+  const {
+    typoStylesDesktop: readMoreTypoDesk,
+    typoStylesTab: readMoreTypoTab,
+    typoStylesMobile: readMoreTypoMob,
+  } = generateTypographyStyles({
+    prefixConstant: READMORE_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    desktopRangeStyle: readMoreGapDesk,
+    tabRangeStyle: readMoreGapTab,
+    mobRangeStyle: readMoreGapMob,
+  } = generateResRangeStyle({
+    controlName: READMORE_GAP,
+    property: 'gap',
+    attributes,
+  });
+  const {
+    desktopBorderStyle: readMoreBorderDesk,
+    tabBorderStyle: readMoreBorderTab,
+    mobBorderStyle: readMoreBorderMob,
+  } = generateBorderStyle({
+    controlName: READMORE_BORDER,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: readMoreBorderRadiusDesk,
+    dimensionStylesTab: readMoreBorderRadiusTab,
+    dimensionStylesMobile: readMoreBorderRadiusMob,
+  } = generateDimensionStyle({
+    controlName: READMORE_BORDER_RADIUS,
+    styleFor: 'border-radius',
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: readMoreMarginDesk,
+    dimensionStylesTab: readMoreMarginTab,
+    dimensionStylesMobile: readMoreMarginMob,
+  } = generateDimensionStyle({
+    controlName: READMORE_MARGIN,
+    styleFor: 'margin',
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: readMorePaddingDesk,
+    dimensionStylesTab: readMorePaddingTab,
+    dimensionStylesMobile: readMorePaddingMob,
+  } = generateDimensionStyle({
+    controlName: READMORE_PADDING,
+    styleFor: 'padding',
+    attributes,
+  });
+
+  const {
+    desktopRangeStyle: avatarWidthDesk,
+    tabRangeStyle: avatarWidthTab,
+    mobRangeStyle: avatarWidthMob,
+  } = generateResRangeStyle({
+    controlName: AVATAR_SIZE,
+    property: 'width',
+    attributes,
+  });
+  const {
+    desktopRangeStyle: avatarHeightDesk,
+    tabRangeStyle: avatarHeightTab,
+    mobRangeStyle: avatarHeightMob,
+  } = generateResRangeStyle({
+    controlName: AVATAR_SIZE,
+    property: 'height',
+    attributes,
+  });
+  const {
+    desktopBorderStyle: avatarBorderDesk,
+    tabBorderStyle: avatarBorderTab,
+    mobBorderStyle: avatarBorderMob,
+  } = generateBorderStyle({
+    controlName: AVATAR_BORDER,
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: avatarBorderRadiusDesk,
+    dimensionStylesTab: avatarBorderRadiusTab,
+    dimensionStylesMobile: avatarBorderRadiusMob,
+  } = generateDimensionStyle({
+    controlName: AVATAR_BORDER_RADIUS,
+    styleFor: 'border-radius',
+    attributes,
+  });
+  const {
+    typoStylesDesktop: nameTypoDesk,
+    typoStylesTab: nameTypoTab,
+    typoStylesMobile: nameTypoMob,
+  } = generateTypographyStyles({
+    prefixConstant: NAME_TYPOGRAPHY,
+    attributes,
+  });
 
   //wrapper style generate
   const {
@@ -326,6 +529,67 @@ function styles({ attributes, setAttributes }) {
         ${thumbBorderDesk}
         ${thumbBorderRadiusDesk}
         ${thumbBoxShadow}
+      }
+
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-dateTime{
+        ${metaTypoDesk}
+        ${metaMarginDesk}
+        ${metaColor ? `color:${metaColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-category{
+        ${catGapDesk}
+        ${catMarginDesk}
+      }
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-category a{
+        ${catTypoDesk}
+        ${catPaddingDesk}
+        ${catBorderDesk}
+        ${catBorderRadiusDesk}
+        ${catColor ? `color:${catColor};` : ''}
+        ${catBgColor ? `background-color:${catBgColor};` : ''}
+      }
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-category a:hover{
+        ${catHoverColor ? `color:${catHoverColor};` : ''}
+        ${catBgHoverColor ? `background-color:${catBgHoverColor};` : ''}
+      }
+      .${uniqueId}.zolo-post-grid-wrap  .zolo-post-link-btn{
+        ${readMoreMarginDesk}
+      }
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-link-btn a{
+        ${readMoreGapDesk}
+        ${readMoreTypoDesk}
+        ${readMorePaddingDesk}
+        ${readMoreBorderDesk}
+        ${readMoreBorderRadiusDesk}
+        ${readMoreColor ? `color:${readMoreColor};` : ''}
+        ${readMoreBgColor ? `background-color:${readMoreBgColor};` : ''}
+      }
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-link-btn a:hover{
+        ${readMoreHoverColor ? `color:${readMoreHoverColor};` : ''}
+        ${readMoreBgHoverColor ? `background-color:${readMoreBgHoverColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-box img{
+        ${avatarWidthDesk}
+        ${avatarHeightDesk}
+        ${avatarBorderDesk}
+        ${avatarBorderRadiusDesk}
+      }
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content{
+        ${nameTypoDesk}
+      }
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content span{
+        ${namePrefixColor ? `color:${namePrefixColor} !important;` : ''}
+      }
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content span:hover{
+        ${namePrefixHoverColor ? `color:${namePrefixHoverColor} !important;` : ''}
+      }
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content a{
+        ${nameColor ? `color:${nameColor} !important;` : ''}
+      }
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content a:hover{
+        ${nameHoverColor ? `color:${nameHoverColor} !important;` : ''}
       }
 
     `;
