@@ -84,10 +84,6 @@ function Inspector(props) {
         presetFourStyles,
         presetSixStyle,
         presetSevenStyles,
-        presetEightStyles,
-        presetTenStyles,
-        presetElevenStyles,
-        presetTwelveStyles,
     } = attributes;
 
     const resRequiredProps = {
