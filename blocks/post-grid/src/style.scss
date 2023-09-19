@@ -1,23 +1,13 @@
-.wp-block-zolo-post-grid {
-	* {
-		box-sizing: border-box;
-	}
+.zolo-post-grid-wrap {
+	--zb-post-hover-color: #3f1a46;
+	display: grid;
+	grid-gap: 30px;
 
-	/* global css start  */
-	:root {
-		--zb-post-hover-color: #3f1a46;
-	}
-
-	&.zolo-post-wrap {
-		display: grid;
-		grid-gap: 30px;
-	}
-
-	&.zolo-post-wrap .zolo-post-item {
+	.zolo-post-item {
 		position: relative;
 	}
 
-	&.zolo-post-wrap .zolo-img {
+	.wp-post-image {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
@@ -25,13 +15,13 @@
 		transition: all cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
 	}
 
-	&.zolo-post-wrap .zolo-post-image {
+	.zolo-post-image {
 		position: relative;
 		overflow: hidden;
 		border-radius: 6px;
 	}
 
-	&.zolo-post-wrap .zolo-post-meta-box {
+	.zolo-post-meta-box {
 		position: absolute;
 		left: 0;
 		right: 0;
@@ -45,28 +35,28 @@
 		transition: all cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
 	}
 
-	&.zolo-post-wrap .zolo-post-meta-content {
+	.zolo-post-meta-content {
 		display: inline-flex;
 		flex-direction: column;
 		font-size: 14px;
 		text-transform: capitalize;
 	}
 
-	&.zolo-post-wrap .zolo-post-meta-content a {
+	.zolo-post-meta-content a {
 		font-weight: 600;
 		text-decoration: none;
-		color: currentColor;
+		color: #fff !important;
 		transition: color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
 	}
 
-	&.zolo-post-wrap .zolo-post-meta-box img {
+	.zolo-post-meta-box img {
 		width: 50px;
 		height: 50px;
 		border-radius: 50%;
 	}
 
-	&.zolo-post-wrap .zolo-post-dateTime,
-	&.zolo-post-wrap .zolo-post-secount-dateTime {
+	.zolo-post-dateTime,
+	.zolo-post-secount-dateTime {
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
@@ -75,23 +65,23 @@
 		text-transform: capitalize;
 	}
 
-	&.zolo-post-wrap .zolo-post-title {
+	.zolo-post-title {
 		margin: 15px 0;
 		font-size: 22px;
 		font-weight: 700;
 	}
 
-	&.zolo-post-wrap .zolo-post-title a {
+	.zolo-post-title a {
 		text-decoration: none;
 		transition: color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
 	}
 
-	&.zolo-post-wrap .zolo-post-title a:hover,
-	&.zolo-post-wrap .zolo-post-meta-content a:hover {
-		color: var(--zb-post-hover-color) !important;
+	.zolo-post-title a:hover,
+	.zolo-post-meta-content a:hover {
+		color: var(--zb-post-hover-color);
 	}
 
-	&.zolo-post-wrap .zolo-post-category {
+	.zolo-post-category {
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -100,7 +90,7 @@
 		gap: 10px;
 	}
 
-	&.zolo-post-wrap .zolo-post-category a {
+	.zolo-post-category a {
 		font-size: 14px;
 		padding: 7px 15px;
 		display: inline;
@@ -111,12 +101,12 @@
 		transition: color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s, background-color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
 	}
 
-	&.zolo-post-wrap .zolo-post-category a:hover {
-		color: #fff !important;
-		background-color: var(--zb-post-hover-color) !important;
+	.zolo-post-category a:hover {
+		color: #fff;
+		background-color: var(--zb-post-hover-color);
 	}
 
-	&.zolo-post-wrap .zolo-post-link-btn a {
+	.zolo-post-link-btn a {
 		font-size: 14px;
 		text-transform: capitalize;
 		color: #111013;
@@ -129,12 +119,12 @@
 		transition: all cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
 	}
 
-	&.zolo-post-wrap .zolo-post-link-btn a:hover {
+	.zolo-post-link-btn a:hover {
 		color: var(--zb-post-hover-color);
 		background-color: #ecf2fe;
 	}
 
-	&.zolo-post-wrap .zolo-post-link-btn a svg {
+	.zolo-post-link-btn a svg {
 		width: 14px;
 		height: 14px;
 	}
@@ -173,10 +163,10 @@
 		color: #e5e6ed;
 	}
 
-	&.zolo-post-style-1 .zolo-post-item:hover .zolo-img,
-	&.zolo-post-style-2 .zolo-post-item:hover .zolo-img,
-	&.zolo-post-style-3 .zolo-post-item:hover .zolo-img,
-	&.zolo-post-style-4 .zolo-post-item:hover .zolo-img {
+	&.zolo-post-style-1 .zolo-post-item:hover .wp-post-image,
+	&.zolo-post-style-2 .zolo-post-item:hover .wp-post-image,
+	&.zolo-post-style-3 .zolo-post-item:hover .wp-post-image,
+	&.zolo-post-style-4 .zolo-post-item:hover .wp-post-image {
 		transform: scale(103.5%);
 	}
 
@@ -390,10 +380,10 @@
 
 	/* post style 05 css start  */
 
-	&.zolo-post-style-5 .zolo-post-image .zolo-img,
-	&.zolo-post-style-5 .zolo-post-dateTime {
-		display: none;
-	}
+	// &.zolo-post-style-5 .zolo-post-image .wp-post-image,
+	// &.zolo-post-style-5 .zolo-post-dateTime {
+	// 	display: none;
+	// }
 
 	&.zolo-post-style-5 .zolo-post-item {
 		display: flex;

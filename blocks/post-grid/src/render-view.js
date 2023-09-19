@@ -3,7 +3,6 @@ const {
   DynamicTag,
 } = window.zoloModule;
 function RenderView({ attributes, setAttributes, postResults }) {
-
   const {
     preset,
     showThumbnail,
@@ -19,11 +18,10 @@ function RenderView({ attributes, setAttributes, postResults }) {
     showAuthor,
     showMeta
   } = attributes;
-  console.log(postResults);
+
   return [
     postResults.length > 0 && (
       postResults.map((post) => {
-
         const titleLimitWords = titleWords > 0 ? post.title.trim().split(' ', titleWords).join(' ') : post.title;
         const excerptLimitWords = excerptWords > 0 ? post.excerpt.trim().split(' ', excerptWords).join(' ') : post.excerpt;
 
@@ -37,11 +35,10 @@ function RenderView({ attributes, setAttributes, postResults }) {
           dangerouslySetInnerHTML={{ __html: __('<span>posted by</span>') + (post.author_link) }}
         />
         const date = <div className="zolo-post-date">{post.date}</div>
-        const readingTime = <div cclassName="zolo-post-estimate">{post.reading_time}</div>
+        const readingTime = <div className="zolo-post-estimate">{post.reading_time}</div>
 
         const authorInfoHtml = <div className="zolo-post-meta-box">{avatar}{author}</div>
-        const dateRTimeHtml = <div className="zolo-post-secount-dateTime">{date}<span>,</span>{readingTime}</div>
-
+        const dateRTimeHtml = <div className="zolo-post-dateTime">{date}<span>,</span>{readingTime}{__('Min Read', 'zolo-blocks')}</div>
 
         return (
           <div className="zolo-post-item">
