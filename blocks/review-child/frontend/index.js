@@ -228,6 +228,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_controls_star_rating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/controls/star-rating */ "./src/controls/star-rating/index.js");
 
 
+
 const ReviewFrontend = _ref => {
   let {
     rating

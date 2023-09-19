@@ -84,10 +84,6 @@ function Inspector(props) {
         presetFourStyles,
         presetSixStyle,
         presetSevenStyles,
-        presetEightStyles,
-        presetTenStyles,
-        presetElevenStyles,
-        presetTwelveStyles,
     } = attributes;
 
     const resRequiredProps = {
@@ -96,6 +92,7 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
+
 
     return (
         <InspectorControls key="controls">
@@ -148,11 +145,12 @@ function Inspector(props) {
                                 <Fragment>
                                     <IconPicker
                                         value={icon}
-                                        onChange={(value) =>
+                                        onChange={(value) => {
                                             setAttributes({
                                                 icon: value,
-                                            })
-                                        }
+                                            });
+                                            console.log(value);
+                                        }}
                                         showHeading={true}
                                     />
 
