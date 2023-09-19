@@ -1,369 +1,369 @@
 :root {
-	--primary-color: #000;
-	--secondary-color: #fff;
-	--hover-color: #395ddf;
-	--color-1: #f0f0f0;
-	--color-2: #0000;
-	--color-b1: #266db6;
-	--color-b2: #111;
-	--color-b3: #1a1a1a;
-	--color-b4: #18181a;
-	--color-bg1: #d5edf6;
-	--color-bg2: #6dcff6;
-	--color-bg3: #ffe54c;
-	--color-bg4: #ff013c;
-	--color-bg5: #00e6f6;
-	--color-bg6: #f8f005;
-	--color-bg7: #3dd1e7;
-	--color-bg8: #fee6e3;
-	--color-bg9: #28282d;
-	--color-bg10: rgba(255, 255, 255, 0.082);
-	--color-bg11: #ff512f;
-	--color-bg-12: #fff5;
-	--color-bg-13: #004dff;
-	--color-bs1: #f09819;
-	--color-ts: #0004;
-	--b: 3px;
-	--s: 0.45em;
-	--color: #373b44;
-	--slice-0: inset(50% 50% 50% 50%);
-	--slice-1: inset(80% -6px 0 0);
-	--slice-2: inset(50% -6px 30% 0);
-	--slice-3: inset(10% -6px 85% 0);
-	--slice-4: inset(40% -6px 43% 0);
-	--slice-5: inset(80% -6px 5% 0);
+    --primary-color: #000;
+    --secondary-color: #fff;
+    --hover-color: #395ddf;
+    --color-1: #f0f0f0;
+    --color-2: #0000;
+    --color-b1: #266db6;
+    --color-b2: #111;
+    --color-b3: #1a1a1a;
+    --color-b4: #18181a;
+    --color-bg1: #d5edf6;
+    --color-bg2: #6dcff6;
+    --color-bg3: #ffe54c;
+    --color-bg4: #ff013c;
+    --color-bg5: #00e6f6;
+    --color-bg6: #f8f005;
+    --color-bg7: #3dd1e7;
+    --color-bg8: #fee6e3;
+    --color-bg9: #28282d;
+    --color-bg10: rgba(255, 255, 255, 0.082);
+    --color-bg11: #ff512f;
+    --color-bg-12: #fff5;
+    --color-bg-13: #004dff;
+    --color-bs1: #f09819;
+    --color-ts: #0004;
+    --b: 3px;
+    --s: 0.45em;
+    --color: #373b44;
+    --slice-0: inset(50% 50% 50% 50%);
+    --slice-1: inset(80% -6px 0 0);
+    --slice-2: inset(50% -6px 30% 0);
+    --slice-3: inset(10% -6px 85% 0);
+    --slice-4: inset(40% -6px 43% 0);
+    --slice-5: inset(80% -6px 5% 0);
 }
 
 .wp-block-zolo-advanced-button {
-	position: relative;
-	z-index: 1;
+    position: relative;
+    z-index: 1;
 }
 
 .zolo-advanced-button {
-	white-space: nowrap;
-	transition: 0.2s ease-in;
-	box-sizing: border-box;
-	cursor: pointer;
-	text-align: center;
-	border-radius: 4px;
-	background-color: var(--primary-color);
-	position: relative;
-	padding: 12px 40px;
+    white-space: nowrap;
+    transition: 0.2s ease-in;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 4px;
+    background-color: var(--primary-color);
+    position: relative;
+    padding: 12px 40px;
 
-	&:hover {
-		background-color: var(--hover-color);
-	}
+    &:hover {
+        background-color: var(--hover-color);
+    }
 
-	.zolo-button-content {
-		color: var(--secondary-color);
-	}
+    .zolo-button-content {
+        color: var(--secondary-color);
+    }
 
-	.zolo-button-icon {
-		fill: var(--secondary-color);
-	}
+    .zolo-button-icon {
+        fill: var(--secondary-color);
+    }
 
-	.zolo-button {
-		gap: 8px;
+    .zolo-button {
+        gap: 8px;
 
-		i,
-		span.dashicon {
-			color: #fff;
-		}
-	}
+        i,
+        span.dashicon {
+            color: #fff;
+        }
+    }
 
-	/*
+    /*
     * Button Style: 01
 	*/
-	&.button-1 {
-		background-color: var(--primary-color);
-		border: 1px solid var(--primary-color);
-		box-shadow: var(--secondary-color) 4px 4px 0 0, var(--primary-color) 4px 4px 0 1px;
+    &.button-1 {
+        background-color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        box-shadow: var(--secondary-color) 4px 4px 0 0, var(--primary-color) 4px 4px 0 1px;
 
-		&:hover {
-			background-color: var(--hover-color);
-			box-shadow: var(--secondary-color) 4px 4px 0 0, var(--hover-color) 4px 4px 0 1px;
-		}
-	}
+        &:hover {
+            background-color: var(--hover-color);
+            box-shadow: var(--secondary-color) 4px 4px 0 0, var(--hover-color) 4px 4px 0 1px;
+        }
+    }
 
-	/*
+    /*
 	* Button Style: 02
 	*/
-	&.button-2 {
-		background-color: transparent;
-		border: 1px solid var(--color-b1);
-		position: relative;
-		touch-action: manipulation;
+    &.button-2 {
+        background-color: transparent;
+        border: 1px solid var(--color-b1);
+        position: relative;
+        touch-action: manipulation;
 
-		&::before {
-			background-color: var(--color-bg1);
-			content: '';
-			height: calc(100% + 3px);
-			position: absolute;
-			right: -7px;
-			top: -9px;
-			transition: background-color 300ms ease-in;
-			width: 100%;
-			z-index: -1;
-		}
+        &::before {
+            background-color: var(--color-bg1);
+            content: '';
+            height: calc(100% + 3px);
+            position: absolute;
+            right: -7px;
+            top: -9px;
+            transition: background-color 300ms ease-in;
+            width: 100%;
+            z-index: -1;
+        }
 
-		&:hover {
-			&::before {
-				background-color: var(--color-bg2);
-			}
-		}
+        &:hover {
+            &::before {
+                background-color: var(--color-bg2);
+            }
+        }
 
-		.zolo-button-content {
-			color: var(--primary-color);
-		}
+        .zolo-button-content {
+            color: var(--primary-color);
+        }
 
-		.zolo-button-icon {
-			fill: var(--primary-color);
-		}
-	}
+        .zolo-button-icon {
+            fill: var(--primary-color);
+        }
+    }
 
-	/*
+    /*
 		* Button Style: 03
 		*/
-	&.button-3 {
-		outline: 0;
-		border: 1px solid var(--primary-color);
-		position: relative;
-		background-color: transparent;
+    &.button-3 {
+        outline: 0;
+        border: 1px solid var(--primary-color);
+        position: relative;
+        background-color: transparent;
 
-		&::after {
-			content: '';
-			background-color: var(--color-bg3);
-			width: 100%;
-			z-index: -1;
-			position: absolute;
-			height: 100%;
-			top: 7px;
-			left: 7px;
-			transition: 0.2s;
-		}
+        &::after {
+            content: '';
+            background-color: var(--color-bg3);
+            width: 100%;
+            z-index: -1;
+            position: absolute;
+            height: 100%;
+            top: 7px;
+            left: 7px;
+            transition: 0.2s;
+        }
 
-		&:hover {
-			&::after {
-				top: 0;
-				left: 0;
-			}
-		}
+        &:hover {
+            &::after {
+                top: 0;
+                left: 0;
+            }
+        }
 
-		.zolo-button-content {
-			color: var(--primary-color);
-		}
+        .zolo-button-content {
+            color: var(--primary-color);
+        }
 
-		.zolo-button-icon {
-			fill: var(--primary-color);
-		}
-	}
+        .zolo-button-icon {
+            fill: var(--primary-color);
+        }
+    }
 
-	/*
+    /*
 	* Button Style: 04
 	*/
-	&.button-4 {
-		background: var(--color-bg4);
-		box-shadow: 6px 0px 0px var(--color-bg5);
-		outline: transparent;
-		position: relative;
+    &.button-4 {
+        background: var(--color-bg4);
+        box-shadow: 6px 0px 0px var(--color-bg5);
+        outline: transparent;
+        position: relative;
 
-		&::after {
-			content: 'ALTERNATE TEXT';
-			display: block;
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background: var(--color-bg4);
-			text-shadow: -3px -3px 0px var(--color-bg6);
-			clip-path: var(--slice-0);
-		}
+        &::after {
+            content: 'ALTERNATE TEXT';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--color-bg4);
+            text-shadow: -3px -3px 0px var(--color-bg6);
+            clip-path: var(--slice-0);
+        }
 
-		&:hover {
-			&::after {
-				animation: 1s glitch;
-				animation-timing-function: steps(2, end);
-			}
-		}
-	}
+        &:hover {
+            &::after {
+                animation: 1s glitch;
+                animation-timing-function: steps(2, end);
+            }
+        }
+    }
 
-	/*
+    /*
 	* Button Style: 05
 	*/
-	&.button-5 {
-		background-color: var(--color-bg7);
-		transform: rotate(-2deg);
+    &.button-5 {
+        background-color: var(--color-bg7);
+        transform: rotate(-2deg);
 
-		&::after {
-			content: '';
-			position: absolute;
-			border: 1px solid var(--primary-color);
-			bottom: 4px;
-			left: 4px;
-			width: calc(100% - 1px);
-			height: calc(100% - 1px);
-		}
+        &::after {
+            content: '';
+            position: absolute;
+            border: 1px solid var(--primary-color);
+            bottom: 4px;
+            left: 4px;
+            width: calc(100% - 1px);
+            height: calc(100% - 1px);
+        }
 
-		&:hover {
-			&::after {
-				bottom: 2px;
-				left: 2px;
-			}
-		}
+        &:hover {
+            &::after {
+                bottom: 2px;
+                left: 2px;
+            }
+        }
 
-		.zolo-button-content {
-			color: var(--primary-color);
-		}
-	}
+        .zolo-button-content {
+            color: var(--primary-color);
+        }
+    }
 
-	/*
+    /*
 	* Button Style: 06
 	*/
-	&.button-6 {
-		background-color: var(--secondary-color);
-		border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-		border-style: solid;
-		border-width: 2px;
-		box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
-		border-bottom-left-radius: 15px 255px;
-		border-bottom-right-radius: 225px 15px;
-		border-top-left-radius: 255px 15px;
-		border-top-right-radius: 15px 225px;
-		touch-action: manipulation;
+    &.button-6 {
+        background-color: var(--secondary-color);
+        border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+        border-style: solid;
+        border-width: 2px;
+        box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+        border-bottom-left-radius: 15px 255px;
+        border-bottom-right-radius: 225px 15px;
+        border-top-left-radius: 255px 15px;
+        border-top-right-radius: 15px 225px;
+        touch-action: manipulation;
 
-		&:hover {
-			box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
-			transform: translate3d(0, 2px, 0);
-		}
+        &:hover {
+            box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
+            transform: translate3d(0, 2px, 0);
+        }
 
-		.zolo-button-content {
-			color: var(--primary-color);
-		}
+        .zolo-button-content {
+            color: var(--primary-color);
+        }
 
-		.zolo-button-icon {
-			fill: var(--primary-color);
-		}
-	}
+        .zolo-button-icon {
+            fill: var(--primary-color);
+        }
+    }
 
-	/*
+    /*
 	* Button Style: 07
 	*/
-	&.button-7 {
-		background-color: var(--color-bg8);
-		border: 2px solid var(--color-b2);
-		border-radius: 8px;
+    &.button-7 {
+        background-color: var(--color-bg8);
+        border: 2px solid var(--color-b2);
+        border-radius: 8px;
 
-		&::after {
-			background-color: var(--color-b2);
-			border-radius: 8px;
-			content: '';
-			height: 100%;
-			left: 0;
-			width: 100%;
-			position: absolute;
-			top: 0;
-			transform: translate(8px, 8px);
-			transition: transform 0.2s ease-out;
-			z-index: -1;
-		}
+        &::after {
+            background-color: var(--color-b2);
+            border-radius: 8px;
+            content: '';
+            height: 100%;
+            left: 0;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            transform: translate(8px, 8px);
+            transition: transform 0.2s ease-out;
+            z-index: -1;
+        }
 
-		&:hover {
-			&::after {
-				transform: translate(0, 0);
-			}
-		}
+        &:hover {
+            &::after {
+                transform: translate(0, 0);
+            }
+        }
 
-		.zolo-button-content {
-			color: var(--primary-color);
-		}
-	}
+        .zolo-button-content {
+            color: var(--primary-color);
+        }
+    }
 
-	.zolo-button {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
-		text-decoration: none;
+    .zolo-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        text-decoration: none;
 
-		&.top {
-			flex-direction: column-reverse;
-		}
+        &.top {
+            flex-direction: column-reverse;
+        }
 
-		&.bottom {
-			flex-direction: column;
-		}
+        &.bottom {
+            flex-direction: column;
+        }
 
-		&.left {
-			flex-direction: row-reverse;
-		}
+        &.left {
+            flex-direction: row-reverse;
+        }
 
-		&.right {
-			flex-direction: row;
-		}
-	}
+        &.right {
+            flex-direction: row;
+        }
+    }
 
-	// button icon
-	.zolo-button-icon {
-		width: 20px;
-		display: block;
-	}
+    // button icon
+    .zolo-button-icon {
+        width: 20px;
+        display: block;
+    }
 }
 
 // Animation
 @keyframes glitch {
-	0% {
-		clip-path: var(--slice-1);
-		transform: translate(-20px, -10px);
-	}
+    0% {
+        clip-path: var(--slice-1);
+        transform: translate(-20px, -10px);
+    }
 
-	10% {
-		clip-path: var(--slice-3);
-		transform: translate(10px, 10px);
-	}
+    10% {
+        clip-path: var(--slice-3);
+        transform: translate(10px, 10px);
+    }
 
-	20% {
-		clip-path: var(--slice-1);
-		transform: translate(-10px, 10px);
-	}
+    20% {
+        clip-path: var(--slice-1);
+        transform: translate(-10px, 10px);
+    }
 
-	30% {
-		clip-path: var(--slice-3);
-		transform: translate(0px, 5px);
-	}
+    30% {
+        clip-path: var(--slice-3);
+        transform: translate(0px, 5px);
+    }
 
-	40% {
-		clip-path: var(--slice-2);
-		transform: translate(-5px, 0px);
-	}
+    40% {
+        clip-path: var(--slice-2);
+        transform: translate(-5px, 0px);
+    }
 
-	50% {
-		clip-path: var(--slice-3);
-		transform: translate(5px, 0px);
-	}
+    50% {
+        clip-path: var(--slice-3);
+        transform: translate(5px, 0px);
+    }
 
-	60% {
-		clip-path: var(--slice-4);
-		transform: translate(5px, 10px);
-	}
+    60% {
+        clip-path: var(--slice-4);
+        transform: translate(5px, 10px);
+    }
 
-	70% {
-		clip-path: var(--slice-2);
-		transform: translate(-10px, 10px);
-	}
+    70% {
+        clip-path: var(--slice-2);
+        transform: translate(-10px, 10px);
+    }
 
-	80% {
-		clip-path: var(--slice-5);
-		transform: translate(20px, -10px);
-	}
+    80% {
+        clip-path: var(--slice-5);
+        transform: translate(20px, -10px);
+    }
 
-	90% {
-		clip-path: var(--slice-1);
-		transform: translate(-10px, 0px);
-	}
+    90% {
+        clip-path: var(--slice-1);
+        transform: translate(-10px, 0px);
+    }
 
-	100% {
-		clip-path: var(--slice-1);
-		transform: translate(0);
-	}
+    100% {
+        clip-path: var(--slice-1);
+        transform: translate(0);
+    }
 }

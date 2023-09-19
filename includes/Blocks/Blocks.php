@@ -3,6 +3,12 @@
 require_once ZOLO_DIR_PATH . 'includes/Blocks/PostGrid.php';
 
 return apply_filters( 'zolo_blocks_list_data', [
+    'container' => [
+        'name'             => 'container',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/container/block.json',
+        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
     'advanced-button' => [
         'name'             => 'advanced-button',
         'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/advanced-button/block.json',

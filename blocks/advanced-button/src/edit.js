@@ -78,13 +78,8 @@ export default function Edit(props) {
         presetTwoStyles,
         presetThreeStyles,
         presetFourStyles,
-        presetFiveStyles,
         presetSixStyle,
         presetSevenStyles,
-        presetEightStyles,
-        presetTenStyles,
-        presetElevenStyles,
-        presetTwelveStyles,
     } = attributes;
 
     // unique ID
