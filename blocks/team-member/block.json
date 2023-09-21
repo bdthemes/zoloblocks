@@ -1,16 +1,15 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"title": "Team Member",
-	"icon": "admin-users",
-	"name": "zolo/team-member",
-	"category": "zolo-blocks",
-	"keywords": ["team", "team member"],
-	"description": "Single team member",
-	"apiVersion": 2,
-	"textdomain": "zolo-blocks",
-	"supports": {
-		"anchor": true,
-		"align": ["wide", "full"]
-	},
-	"editorScript": ""
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Team Member",
+    "name": "zolo/team-member",
+    "category": "zolo-blocks",
+    "keywords": ["team", "team member"],
+    "description": "Single team member",
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "supports": {
+        "anchor": true,
+        "align": ["wide", "full"]
+    },
+    "editorScript": ""
 }

@@ -7,41 +7,41 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'social-icon';
 // Presets
 export const PRESETS = [
-	{ label: __('Default', 'zolo-blocks'), value: 'preset-1' },
-	{ label: __('Style 1', 'zolo-blocks'), value: 'preset-2' },
-	{ label: __('Style 2', 'zolo-blocks'), value: 'preset-3' },
+    { label: __('Default', 'zolo-blocks'), value: 'preset-1' },
+    { label: __('Style 1', 'zolo-blocks'), value: 'preset-2' },
+    { label: __('Style 2', 'zolo-blocks'), value: 'preset-3' },
 ];
 
 // button icon positions
 export const ICON_POSITIONS = [
-	{
-		label: 'Left',
-		value: 'left',
-	},
-	{
-		label: 'Right',
-		value: 'right',
-	},
-	{
-		label: 'Top',
-		value: 'top',
-	},
-	{
-		label: 'Bottom',
-		value: 'bottom',
-	},
+    {
+        label: 'Left',
+        value: 'left',
+    },
+    {
+        label: 'Right',
+        value: 'right',
+    },
+    {
+        label: 'Top',
+        value: 'top',
+    },
+    {
+        label: 'Bottom',
+        value: 'bottom',
+    },
 ];
 
 // social icon color
 export const SOCIAL_ICON_COLOR = [
-	{
-		label: __('Original', 'zolo-blocks'),
-		value: 'original',
-	},
-	{
-		label: __('Custom', 'zolo-blocks'),
-		value: 'custom',
-	},
+    {
+        label: __('Original', 'zolo-blocks'),
+        value: 'original',
+    },
+    {
+        label: __('Custom', 'zolo-blocks'),
+        value: 'custom',
+    },
 ];
 
 // column count

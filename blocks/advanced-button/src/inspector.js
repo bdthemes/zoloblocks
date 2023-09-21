@@ -93,6 +93,7 @@ function Inspector(props) {
         objAttributes,
     };
 
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -144,11 +145,12 @@ function Inspector(props) {
                                 <Fragment>
                                     <IconPicker
                                         value={icon}
-                                        onChange={(value) =>
+                                        onChange={(value) => {
                                             setAttributes({
                                                 icon: value,
-                                            })
-                                        }
+                                            });
+                                            console.log(value);
+                                        }}
                                         showHeading={true}
                                     />
 
