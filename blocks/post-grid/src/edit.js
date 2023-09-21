@@ -10,51 +10,49 @@ import styles from './styles';
 import RenderView from './render-view';
 import './style.scss';
 
-const {
-  handleUniqueId,
-  softMinifyCssStrings,
-  Pagination
-} = window.zoloModule;
+const { handleUniqueId, softMinifyCssStrings, Pagination } = window.zoloModule;
 
 export default function Edit(props) {
-  const { attributes, setAttributes, className, clientId, isSelected } = props;
-  const { uniqueId, postQuery, preset, page } = attributes;
+    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { uniqueId, postQuery, preset, page } = attributes;
 
-  // this useEffect is for creating a unique id for each block's unique className by a random unique number
-  useEffect(() => {
-    handleUniqueId({
-      BLOCK_PREFIX,
-      uniqueId,
-      setAttributes,
-      clientId,
+    // this useEffect is for creating a unique id for each block's unique className by a random unique number
+    useEffect(() => {
+        handleUniqueId({
+            BLOCK_PREFIX,
+            uniqueId,
+            setAttributes,
+            clientId,
+        });
+    }, []);
+
+    const blockProps = useBlockProps({
+        className: classnames(className, `${uniqueId} zolo-post-grid-wrap zolo-post-${preset}`),
     });
-  }, []);
 
-  const blockProps = useBlockProps({
-    className: classnames(className, `${uniqueId} zolo-post-grid-wrap zolo-post-${preset}`),
-  });
+    //generate all style
+    const allStyle = styles({
+        attributes,
+        setAttributes,
+    });
 
-  //generate all style
-  const allStyle = styles({
-    attributes,
-    setAttributes
-  })
-
-  useEffect(() => {
-    if (typeof (postQuery) === 'undefined') {
-      setAttributes({
-        postQuery: {
-          postType: 'post',
-          postInclude: '',
-          postExclude: '',
-          postAuthors: [],
-          postTaxonomies: {},
-          postPerPage: 6,
-          postOffset: 0,
-          postOrderby: 'date',
-          postOrder: 'desc',
-          postThumbnail: '',
-          showPagination: false
+    useEffect(() => {
+        if (typeof postQuery === 'undefined') {
+            setAttributes({
+                postQuery: {
+                    postType: 'post',
+                    postInclude: '',
+                    postExclude: '',
+                    postAuthors: [],
+                    postTaxonomies: {},
+                    postPerPage: 6,
+                    postOffset: 0,
+                    postOrderby: 'date',
+                    postOrder: 'desc',
+                    postThumbnail: '',
+                    showPagination: false,
+                },
+            });
         }
     }, []);
 
@@ -110,31 +108,16 @@ export default function Edit(props) {
         pageTotal,
     });
 
-  return (
-    <>
-      {isSelected && (
-        <Inspector
-          attributes={attributes}
-          setAttributes={setAttributes}
-        />
-      )}
-      <style>{`${softMinifyCssStrings(allStyle)}`}</style>
-      <div {...blockProps}>
-        <RenderView
-          attributes={attributes}
-          setAttributes={setAttributes}
-          postResults={postResults}
-        />
-      </div>
-      {(postQuery?.showPagination && pageTotal > 1) && (
-        <Pagination
-          total={pageTotal}
-          current={page || 1}
-          prevText=""
-          nextText=""
-          onClickPage={(page) => setAttributes({ page })}
-        />
-      )}
-    </>
-  );
+    return (
+        <>
+            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
+            <style>{`${softMinifyCssStrings(allStyle)}`}</style>
+            <div {...blockProps}>
+                <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults} />
+            </div>
+            {postQuery?.showPagination && pageTotal > 1 && (
+                <Pagination total={pageTotal} current={page || 1} prevText="" nextText="" onClickPage={(page) => setAttributes({ page })} />
+            )}
+        </>
+    );
 }
