@@ -197,4 +197,62 @@ class ZoloHelpers
 
         return $options;
     }
+
+    public static function get_wrapper_class($settings = [], $class_name = '')
+    {
+        $wrap_class = '';
+
+        if (isset($settings['uniqueId'])) {
+            $wrap_class .= $settings['uniqueId'];
+        }
+
+        if (!empty($class_name)) {
+            $wrap_class .= ' ' . $class_name;
+        }
+
+        return $wrap_class;
+    }
+
+    public static function removeHtmlTagContents($contant, $tags)
+    {
+        if (is_array($tags)) {
+            foreach ($tags as $tag) {
+                $contant = preg_replace(
+                    sprintf(
+                        '/<%1$s\b[^>]*>(.*?)<\/%1$s>/is',
+                        $tag
+                    ),
+                    '',
+                    $contant
+                );
+            }
+        } else {
+            $contant = preg_replace('/<figure\b[^>]*>(.*?)<\/figure>/is', '', $contant);
+        }
+
+        return $contant;
+    }
+
+    public static function pagination($max_pages)
+    {
+        global $paged;
+
+        if (!empty(get_query_var('page')) || !empty(get_query_var('paged'))) {
+            $paged = is_front_page() ? absint(get_query_var('page')) : absint(get_query_var('paged'));
+        } else {
+            $paged = 1;
+        }
+
+        if ($max_pages > 1) {
+            $big = 9999999;
+            return paginate_links(array(
+                'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+                'format'        => '?paged=%#%',
+                'current' => $paged,
+                'total' => $max_pages,
+                'prev_text' => sprintf('<span>%1$s</span>', __('prev', 'zolo-blocks')),
+                'next_text' => sprintf('<span>%1$s</span>', __('next', 'zolo-blocks')),
+            ));
+        }
+    }
 }

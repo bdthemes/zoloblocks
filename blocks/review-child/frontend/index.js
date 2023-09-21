@@ -1,4 +1,5 @@
 /******/ (function() { // webpackBootstrap
+
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -9,6 +10,7 @@
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
+
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -135,7 +137,6 @@ const StarRating = _ref => {
   })));
 };
 /* harmony default export */ __webpack_exports__["default"] = (StarRating);
-
 /***/ }),
 
 /***/ "@wordpress/element":
@@ -226,7 +227,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _src_controls_star_rating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/controls/star-rating */ "./src/controls/star-rating/index.js");
-
 
 
 const ReviewFrontend = _ref => {

@@ -28,6 +28,7 @@ export { default as SortableControl } from './controls/sortable-control';
 export { default as SortableItem } from './controls/sortable-control/sortableitem';
 export { default as ResCounterControl } from './controls/res-counter-control';
 export { default as QueryControl } from './controls/query-control';
+export { default as Pagination } from './controls/pagination';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';
