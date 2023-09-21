@@ -146,7 +146,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
                             <SelectControl
                                 label={__('Preset Designs', 'zolo-blocks')}
                                 value={preset}
