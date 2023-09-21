@@ -27,6 +27,10 @@ const {
 import {
     BLOCK_PREFIX,
     CONTAINER_BACKGROUND,
+    CONTAINER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
     ICON_BOX_ALIGNMENT,
@@ -39,6 +43,8 @@ import {
     ICON_SIZE,
     ICON_PADDING,
     ICON_MARGIN,
+    BUTTON_BG_COLOR,
+    BUTTON_BG_HOVER_COLOR,
     BUTTON_ICON_SIZE,
     BUTTON_BORDER,
     ICON_BOX_SHADOW,
@@ -57,6 +63,7 @@ import {
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
+import { dashIcon } from './../../../src/controls/icon-picker/icons/dashicon';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
@@ -64,11 +71,15 @@ export default function Edit(props) {
         uniqueId,
         preset,
         titleTag,
-        link,
         blockStyle,
-        showIcon,
+        showButtonIcon,
         mainIcon,
+        containerBorderHoverColor,
         buttonIcon,
+        showMainIcon,
+        showHeading,
+        showDesc,
+        showButton,
         textColor,
         textHoverColor,
         descColor,
@@ -76,6 +87,7 @@ export default function Edit(props) {
         iconAlignment,
         iconColor,
         iconHoverColor,
+        iconBorderHoverColor,
         iconBackgroundColor,
         iconBackgroundHoverColor,
         iconType,
@@ -85,8 +97,7 @@ export default function Edit(props) {
         buttonText,
         btnColor,
         btnHoverColor,
-        btnBgColor,
-        btnBgHoverColor,
+        btnHoverBorderColor,
         buttonIconColor,
         buttonIconHoverColor,
         presetOneStyles,
@@ -116,6 +127,39 @@ export default function Edit(props) {
         controlName: CONTAINER_BACKGROUND,
         attributes,
         noMainBGImg: false,
+    });
+
+    // item border
+    const {
+        desktopBorderStyle: containerBorderDeskStyle,
+        tabBorderStyle: containerBorderTabStyle,
+        mobBorderStyle: containerBorderMobStyle,
+    } = generateBorderStyle({
+        controlName: CONTAINER_BORDER,
+        attributes,
+    });
+
+    // item border radius
+    const {
+        dimensionStylesDesktop: containerDeskBorderRadius,
+        dimensionStylesTab: containerTabBorderRadius,
+        dimensionStylesMobile: containerMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    // item box shadow
+    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_BOX_SHADOW,
+    });
+
+    // item hover box shadow
+    const { boxShadowStyle: containerHoverBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_HOVER_BOX_SHADOW,
     });
 
     // Generate Container Margin
@@ -320,16 +364,6 @@ export default function Edit(props) {
         property: 'font-size',
         attributes,
     });
-    // generate icon height
-    const {
-        desktopRangeStyle: iconHeight,
-        tabRangeStyle: iconHeightTab,
-        mobRangeStyle: iconHeightMob,
-    } = generateResRangeStyle({
-        controlName: ICON_SIZE,
-        property: 'height',
-        attributes,
-    });
 
     // Spacing between icon and text
     const {
@@ -340,6 +374,28 @@ export default function Edit(props) {
         controlName: ICON_TEXT_SPACING,
         property: 'gap',
         attributes,
+    });
+
+    // button background color
+    const {
+        backgroundStylesDesktop: buttonBGDeskStyle,
+        backgroundStylesTab: buttonBGTabStyle,
+        backgroundStylesMobile: buttonBGMobStyle,
+    } = generateNormalBGControlStyles({
+        controlName: BUTTON_BG_COLOR,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    // button background hover color
+    const {
+        backgroundStylesDesktop: buttonBGHoverDeskStyle,
+        backgroundStylesTab: buttonBGHoverTabStyle,
+        backgroundStylesMobile: buttonBGHoverMobStyle,
+    } = generateNormalBGControlStyles({
+        controlName: BUTTON_BG_HOVER_COLOR,
+        attributes,
+        noMainBGImg: true,
     });
 
     // generate button icon size
@@ -429,64 +485,21 @@ export default function Edit(props) {
     });
 
     /**
-     * Presets Based Styles
-     */
-    let presetStyles;
-    switch (preset) {
-        case 'style-1':
-            presetStyles = `
-				.zolo-block-icon-wrap{
-					justify-content: ${presetOneStyles && presetOneStyles.contentPosition};
-				}
-				.zolo-box-button{
-					flex-direction: ${presetOneStyles && presetOneStyles.iconPosition};
-				}
-			`;
-            break;
-        case 'style-2':
-            presetStyles = `
-			.${uniqueId} 
-				.zolo-block-body-content{
-					text-align: ${presetTwoStyles && presetTwoStyles.contentPosition};
-				}
-				.${uniqueId} 
-				.zolo-block-link-btn{
-					justify-content: ${presetTwoStyles && presetTwoStyles.contentPosition};
-				}
-				.zolo-box-button{
-					flex-direction: ${presetTwoStyles && presetTwoStyles.iconPosition};
-				}
-			`;
-            break;
-        case 'style-3':
-            presetStyles = `
-				.${uniqueId} 
-				.zolo-block-body-content{
-					text-align: ${presetThreeStyles && presetThreeStyles.contentPosition};
-				}
-				.${uniqueId} 
-				.zolo-block-link-btn{
-					justify-content: ${presetThreeStyles && presetThreeStyles.contentPosition};
-				}
-				.zolo-box-button{
-					flex-direction: ${presetThreeStyles && presetThreeStyles.iconPosition};
-				}
-			`;
-            break;
-        case 'style-4':
-            break;
-        default:
-            presetStyles = '';
-    }
-    /**
      * All Style Combination
      */
     const desktopAllStyle = `	
-		.${uniqueId} .zolo-block-item{
+		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
 			${containerDeskBGStyle}
+			${containerBorderDeskStyle}
+			${containerDeskBorderRadius}
+			${containerBoxShadow}
 			${containerMarginDesk}
 			${containerPaddingDesk}
-		}	
+		}
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
+            border-color: ${containerBorderHoverColor ? containerBorderHoverColor : ''};
+            ${containerHoverBoxShadow}
+        }
 		.${uniqueId} .zolo-block-icon-wrap{
 			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
@@ -497,39 +510,39 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-block-link-btn{
 			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 		}		
-		.${uniqueId} .zolo-block-title{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{
 			${titleTypoDesktop}
 			${titleTextShadowStyle}
         	${titleTextStrokeStyle}
-			${titleMarginDesktop ? titleMarginDesktop : '0 0 12px 0'}
+			${titleMarginDesktop ? titleMarginDesktop : ''}
 			color: ${textColor ? textColor : ''};
 		}
-		.${uniqueId} .zolo-block-title:hover{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title:hover{
 			color: ${textHoverColor ? textHoverColor : ''};
 		}
 		.${uniqueId} .zolo-block-desc{
 			${descTypoDesktop}
 			${descMarginDesktop}
-			color: ${descColor ? descColor : '#87878a'};
+			color: ${descColor ? descColor : ''};
 		}
 		.${uniqueId} .zolo-block-desc:hover{
 			color: ${descHoverColor ? descHoverColor : ''};
 		}		
-		.${uniqueId} .zolo-block-icon-wrap span {
+		.${uniqueId} .zolo-block-icon-wrap i {
 			background: ${iconBackgroundColor ? iconBackgroundColor : ''};
 			color: ${iconColor ? iconColor : ''};	
 			${iconSize}
-			${iconHeight}	
 			${borderStyles}
 			${iconBorderRadiusDesktop}
 			${iconPaddingDesktop}
 			${iconMarginDesktop}
 			${iconBoxShadow}
 			}
-		.${uniqueId} .zolo-block-icon-wrap span:hover{			
+		.${uniqueId} .zolo-block-icon-wrap i:hover{			
 			background: ${iconBackgroundHoverColor ? iconBackgroundHoverColor : ''};
 			color: ${iconHoverColor ? iconHoverColor : ''};
 			${iconHoverBoxShadow}
+			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''}
 		}
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
@@ -537,7 +550,7 @@ export default function Edit(props) {
 			${iconImageBorderRadiusDesk}
 		}
 		.${uniqueId} .zolo-block-body-content .zolo-box-button {			
-			background: ${btnBgColor ? btnBgColor : ''};	
+			${buttonBGDeskStyle}	
 			${gapDesk}		
 			${buttonBorderStyles}
 			${buttonBorderRadiusDesktop}
@@ -546,44 +559,84 @@ export default function Edit(props) {
 			${buttonBoxShadow}
 		}
 
-		.${uniqueId} .zolo-box-button:hover {			
-			background: ${btnBgHoverColor ? btnBgHoverColor : '#32DE23'};
+		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover {			
+			${buttonBGHoverDeskStyle}
+			background: ${btnBgHoverColor ? btnBgHoverColor : ''};
 			${buttonHoverBoxShadow}
+			border-color: ${btnHoverBorderColor ? btnHoverBorderColor : ''}
 		}
 		
-		.${uniqueId} .zolo-box-button span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
 			color: ${buttonIconColor};
 			${buttonIconSize}			
 			${buttonIconHeight}			
 			${buttonIconWidth}			
 		}
 
-		.${uniqueId} .zolo-box-button:hover span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover span{
 			color: ${buttonIconHoverColor}	
 		}
 		
-		.${uniqueId} .zolo-box-button p{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
+            color: ${btnColor ? btnColor : ''};	
 			${btnTypoDesktop}
 		}
 
-		.${uniqueId} .zolo-box-button p{			
-			color: ${btnColor ? btnColor : ''};			
+		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover p{			
+			color: ${btnHoverColor ? btnHoverColor : ''};			
 		}
-		.${uniqueId} .zolo-box-button:hover p{			
-			color: ${btnHoverColor ? btnHoverColor : '#fff'};			
-		}
-		${presetStyles}		
+       ${
+           preset === 'style-1'
+               ? `.zolo-block-icon-wrap {
+                        justify-content: ${presetOneStyles && presetOneStyles.contentPosition};
+                } .zolo-box-button {
+                    flex-direction: ${presetOneStyles && presetOneStyles.iconPosition};
+                }`
+               : ''
+       }
+       ${
+           preset === 'style-2'
+               ? `.${uniqueId} 
+               .zolo-block-body-content {
+                text-align: ${presetTwoStyles && presetTwoStyles.contentPosition};
+                } .${uniqueId} 
+				.zolo-block-link-btn {
+                    justify-content: ${presetTwoStyles && presetTwoStyles.contentPosition};
+                }
+                .zolo-box-button{
+					flex-direction: ${presetTwoStyles && presetTwoStyles.iconPosition};
+				}`
+               : ''
+       }
+       ${
+           preset === 'style-3'
+               ? `.${uniqueId} 
+               .zolo-block-body-content {
+                text-align: ${presetThreeStyles && presetThreeStyles.contentPosition};
+                } .${uniqueId} 
+				.zolo-block-link-btn {
+                    justify-content: ${presetThreeStyles && presetThreeStyles.contentPosition};
+                }
+                .zolo-box-button{
+					flex-direction: ${presetThreeStyles && presetThreeStyles.iconPosition};
+				}`
+               : ''
+       }
+			 
   	`;
 
     const tabletAllStyle = `
 		.${uniqueId}{
 			${iconAlignmentTab}
 		}
-		.${uniqueId} .zolo-block-item{
+		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
 			${containerTabBGStyle}
+			${containerBorderTabStyle}
+			${containerTabBorderRadius}
 			${containerMarginTab}
 			${containerPaddingTab}
-		}	
+		}        
+        
 		.${uniqueId} .zolo-block-title{
 			${titleTypoTab}
 			${tabTitleTextStrokeStyle}
@@ -593,9 +646,8 @@ export default function Edit(props) {
 			${descMarginTab}
 			${descTypoTab}
 		}
-		.${uniqueId} .zolo-block-icon-wrap span {
+		.${uniqueId} .zolo-block-icon-wrap i {
 			${iconSizeTab}
-			${iconHeightTab}
 			${borderStylesTab}
 			${iconBorderRadiusTab}
 			${iconPaddingTab}
@@ -608,30 +660,31 @@ export default function Edit(props) {
 			${iconImageBorderTab}
 			${iconImageBorderRadiusTab}
 		}
-		.${uniqueId} .zolo-box-button span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
 			${buttonIconSizeTab}			
 			${buttonIconHeightTab}			
 			${buttonIconWidthTab}			
 		}
-		.${uniqueId} .zolo-box-button {
+		.${uniqueId} .zolo-block-body-content .zolo-box-button {
 			${gapTab}
 			${buttonBorderStylesTab}
 			${buttonBorderRadiusTab}
 			${buttonPaddingTab}
 			${buttonMarginTab}
 		}
-		.${uniqueId} .zolo-box-button p{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
 			${btnTypoTab}
 		}
-		${presetStyles}
 	`;
 
     const mobileAllStyle = `
 		.${uniqueId}{
 			${iconAlignmentMob}
 		}
-		.${uniqueId} .zolo-block-item{
+		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
 			${containerMobBGStyle}
+			${containerBorderMobStyle}
+			${containerMobBorderRadius}
 			${containerMarginMob}
 			${containerPaddingMob}
 		}
@@ -644,35 +697,33 @@ export default function Edit(props) {
 			${descMarginMob}
 			${descTypoMobile}
 		}
-		.${uniqueId} .zolo-block-icon-wrap span {
+		.${uniqueId} .zolo-block-icon-wrap i {
 			${iconSizeMob}
-			${iconHeightMob}
 			${borderStylesMob}
 			${iconBorderRadiusMob}
 			${iconPaddingMob}
 			${iconMarginMob}
-		}		
+		}
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeMob}
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
-		.${uniqueId} .zolo-box-button span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
 			${buttonIconSizeMob}			
 			${buttonIconHeightMob}			
 			${buttonIconWidthMob}			
 		}
-		.${uniqueId} .zolo-box-button {
+		.${uniqueId} .zolo-block-body-content .zolo-box-button {
 			${gapMob}			
 			${buttonBorderStylesMob}
 			${buttonBorderRadiusMob}
 			${buttonPaddingMob}
 			${buttonMarginMob}
 		}
-		.${uniqueId} .zolo-box-button p{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
 			${btnTypoMobile}
 		}
-		${presetStyles}
   	`;
 
     const allStyle = `
@@ -696,7 +747,6 @@ export default function Edit(props) {
             setAttributes({ blockStyle: styles });
         }
     }, [attributes]);
-
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -739,77 +789,82 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <div className={`zolo-block-advanced-icon-box ${uniqueId} zolo-block-advanced-icon-box-${preset}`}>
                     <div className="zolo-block-item">
-                        <div className={`zolo-block-icon-wrap`}>
-                            {iconType == 'icon' ? (
-                                <DisplayIcon icon={mainIcon} />
-                            ) : iconTypeImage ? (
-                                <img src={iconTypeImage.url} alt={iconTypeImage.alt || 'Team Member'} />
-                            ) : (
-                                <MediaPlaceholder
-                                    icon="format-image"
-                                    labels={{
-                                        title: __('Add Photo', 'zolo-blocks'),
-                                        instructions: '',
-                                    }}
-                                    onSelect={(media) => {
-                                        setAttributes({
-                                            iconTypeImage: media,
-                                        });
-                                    }}
-                                    accept="image/*"
-                                    allowedTypes={['image']}
-                                />
-                            )}
-
-                            {}
-                        </div>
+                        {showMainIcon && (
+                            <div className={`zolo-block-icon-wrap`}>
+                                {iconType == 'icon' ? (
+                                    <DisplayIcon icon={mainIcon} />
+                                ) : iconTypeImage ? (
+                                    <img src={iconTypeImage.url} alt={iconTypeImage.alt || 'Team Member'} />
+                                ) : (
+                                    <MediaPlaceholder
+                                        icon="format-image"
+                                        labels={{
+                                            title: __('Add Photo', 'zolo-blocks'),
+                                            instructions: '',
+                                        }}
+                                        onSelect={(media) => {
+                                            setAttributes({
+                                                iconTypeImage: media,
+                                            });
+                                        }}
+                                        accept="image/*"
+                                        allowedTypes={['image']}
+                                    />
+                                )}
+                            </div>
+                        )}
 
                         <div className="zolo-block-body-content">
-                            <RichText
-                                className={`zolo-block-title`}
-                                tagName={titleTag}
-                                value={iconBoxTitle}
-                                onChange={(text) =>
-                                    setAttributes({
-                                        iconBoxTitle: text,
-                                    })
-                                }
-                                placeholder={__('The Title Goes Here', 'zolo-blocks')}
-                            />
-
-                            <RichText
-                                className={`zolo-block-desc`}
-                                tagName="div"
-                                value={iconBoxDescription}
-                                onChange={(text) =>
-                                    setAttributes({
-                                        iconBoxDescription: text,
-                                    })
-                                }
-                                placeholder={__('The Description Goes Here..', 'zolo-blocks')}
-                            />
-
-                            <div className={`zolo-block-link-btn`}>
-                                <div className={`zolo-box-button`}>
-                                    <RichText
-                                        value={buttonText}
-                                        tagName="span"
-                                        onChange={(text) =>
-                                            setAttributes({
-                                                buttonText: text,
-                                            })
-                                        }
-                                        placeholder={__('Read More', 'zolo-blocks')}
-                                        allowedFormats={['core/bold', 'core/italic']}
-                                    />
-                                    {showIcon && <DisplayIcon icon={buttonIcon} />}
+                            {showHeading && (
+                                <RichText
+                                    className={`zolo-block-title`}
+                                    tagName={titleTag}
+                                    value={iconBoxTitle}
+                                    onChange={(text) =>
+                                        setAttributes({
+                                            iconBoxTitle: text,
+                                        })
+                                    }
+                                    placeholder={__('The Title Goes Here', 'zolo-blocks')}
+                                />
+                            )}
+                            {showDesc && (
+                                <RichText
+                                    className={`zolo-block-desc`}
+                                    tagName="div"
+                                    value={iconBoxDescription}
+                                    onChange={(text) =>
+                                        setAttributes({
+                                            iconBoxDescription: text,
+                                        })
+                                    }
+                                    placeholder={__('The Description Goes Here..', 'zolo-blocks')}
+                                />
+                            )}
+                            {showButton && (
+                                <div className={`zolo-block-link-btn`}>
+                                    <div className={`zolo-box-button`}>
+                                        <RichText
+                                            value={buttonText}
+                                            tagName="p"
+                                            onChange={(text) =>
+                                                setAttributes({
+                                                    buttonText: text,
+                                                })
+                                            }
+                                            placeholder={__('Read More', 'zolo-blocks')}
+                                            allowedFormats={['core/bold', 'core/italic']}
+                                        />
+                                        {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
+                                    </div>
                                 </div>
+                            )}
+                        </div>
+                        {showMainIcon && (
+                            <div className="zolo-block-hover-icon">
+                                <DisplayIcon icon={mainIcon} />
                             </div>
-                        </div>
-
-                        <div className="zolo-block-hover-icon">
-                            <DisplayIcon icon={mainIcon} />
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>

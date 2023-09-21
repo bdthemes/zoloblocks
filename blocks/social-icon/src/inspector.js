@@ -103,7 +103,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
                                 label={__('Preset Designs', 'zolo-blocks')}
                                 value={preset}
@@ -120,8 +120,6 @@ function Inspector(props) {
                                 }
                                 options={ICON_STATUS}
                             />
-                        </PanelBody>
-                        <PanelBody title={__('Column Settings', 'zolo-blocks')} initialOpen={false}>
                             <ResCounterControl
                                 label={__('Column Number', 'zolo-blocks')}
                                 controlName={COLUMN_COUNT}
@@ -129,7 +127,6 @@ function Inspector(props) {
                                 min={1}
                                 max={6}
                             />
-
                             <ResRangeControl
                                 label={__('Columns Gap', 'zolo-blocks')}
                                 controlName={COLUMNS_GAP}
@@ -138,7 +135,6 @@ function Inspector(props) {
                                 max={100}
                                 step={1}
                             />
-
                             <ResRangeControl
                                 label={__('Row Gap', 'zolo-blocks')}
                                 controlName={ROW_GAP}

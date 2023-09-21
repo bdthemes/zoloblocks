@@ -47,45 +47,41 @@ import {
   WRAPPER_BG,
   WRAPPER_BORDER,
   WRAPPER_SHADOW,
-
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
-  //Common Attributes
-  uniqueId: {
-    type: 'string',
-  },
+    //Common Attributes
+    uniqueId: {
+        type: 'string',
+    },
 
-  resDevice: {
-    type: 'string',
-    default: 'Desktop',
-  },
+    resDevice: {
+        type: 'string',
+        default: 'Desktop',
+    },
 
-  blockStyle: {
-    type: 'object',
-  },
+    blockStyle: {
+        type: 'object',
+    },
 
-  preset: {
-    type: 'string',
-    default: 'style-1',
-  },
-
+    preset: {
+        type: 'string',
+        default: 'style-1',
+    },
   showExcerpt: {
     type: 'boolean',
     default: false
   },
+    postTaxonomies: {
+        type: 'object',
+        default: {},
+    },
 
-  postTaxonomies: {
-    type: 'object',
-    default: {}
-  },
-
-  postQuery: {
-    type: 'object'
-  },
-
+    postQuery: {
+        type: 'object',
+    },
   //layout
   preset: {
     type: 'string',

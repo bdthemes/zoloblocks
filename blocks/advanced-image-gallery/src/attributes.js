@@ -16,26 +16,35 @@ import {
     ROW_GAP,
     CONTAINER_BACKGROUND,
     CONTAINER_HOVER_BACKGROUND,
+    CONTAINER_MARGIN,
+    CONTAINER_PADDING,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BORDER,
     CONTAINER_HOVER_BORDER,
     IMAGE_BORDER,
     IMAGE_HOVER_BORDER,
-    CONTAINER_HOVER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
     CONTAINER_HOVER_BOX_SHADOW,
     IMAGE_BORDER_RADIUS,
     IMAGE_BOX_SHADOW,
     IMAGE_BACKGROUND,
-    IMAGE_HOVER_BORDER_RADIUS,
     IMAGE_HOVER_BOX_SHADOW,
     IMAGE_HOVER_BACKGROUND,
     IMAGE_PADDING,
     IMAGE_MARGIN,
     HEADING_BORDER,
     HEADING_BACKGROUND,
+    HEADING_MARGIN,
+    HEADING_PADDING,
     HEADING_BORDER_RADIUS,
     HEADING_BOX_SHADOW,
+    ZOOM_ICON_PADDING,
+    ZOOM_ICON_BORDER_RADIUS,
+    ZOOM_ICON_BORDER,
+    ZOOM_ICON_BOX_SHADOW,
+    ZOOM_ICON_HOVER_BOX_SHADOW,
+    ZOOM_ICON_BG_COLOR,
+    ZOOM_ICON_BG_HOVER_COLOR,
 } from './constants';
 
 const attributes = {
@@ -50,7 +59,6 @@ const attributes = {
     blockStyle: {
         type: 'object',
     },
-
     headingColor: {
         type: 'string',
     },
@@ -58,10 +66,11 @@ const attributes = {
     // Container
     ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
     ...generateNormalBGAttributes(CONTAINER_HOVER_BACKGROUND),
+    ...generateDimensionAttributes(CONTAINER_MARGIN),
+    ...generateDimensionAttributes(CONTAINER_PADDING),
     ...generateBorderAttributies(CONTAINER_BORDER),
     ...generateBorderAttributies(CONTAINER_HOVER_BORDER),
     ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
-    ...generateDimensionAttributes(CONTAINER_HOVER_BORDER_RADIUS),
     ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
     ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
 
@@ -71,7 +80,6 @@ const attributes = {
     ...generateBorderAttributies(IMAGE_BORDER),
     ...generateBorderAttributies(IMAGE_HOVER_BORDER),
     ...generateDimensionAttributes(IMAGE_BORDER_RADIUS),
-    ...generateDimensionAttributes(IMAGE_HOVER_BORDER_RADIUS),
     ...generateBoxShadowAttributies(IMAGE_BOX_SHADOW),
     ...generateBoxShadowAttributies(IMAGE_HOVER_BOX_SHADOW),
     ...generateDimensionAttributes(IMAGE_PADDING),
@@ -80,30 +88,58 @@ const attributes = {
     // Heading
     ...generateBorderAttributies(HEADING_BORDER),
     ...generateNormalBGAttributes(HEADING_BACKGROUND),
+    ...generateDimensionAttributes(HEADING_MARGIN),
+    ...generateDimensionAttributes(HEADING_PADDING),
     ...generateDimensionAttributes(HEADING_BORDER_RADIUS),
     ...generateBoxShadowAttributies(HEADING_BOX_SHADOW),
 
-    // column count
+    // Zoom Icon
+    ...generateDimensionAttributes(ZOOM_ICON_PADDING),
+    ...generateDimensionAttributes(ZOOM_ICON_BORDER_RADIUS),
+    ...generateBorderAttributies(ZOOM_ICON_BORDER),
+    ...generateBoxShadowAttributies(ZOOM_ICON_BOX_SHADOW),
+    ...generateBoxShadowAttributies(ZOOM_ICON_HOVER_BOX_SHADOW),
+    ...generateNormalBGAttributes(ZOOM_ICON_BG_COLOR),
+    ...generateNormalBGAttributes(ZOOM_ICON_BG_HOVER_COLOR),
+
+    // Column Count
     ...generateResCounterAttributies(COLUMN_COUNT, {
         defaultRange: 3,
     }),
-    //columns gaps
+
+    //Columns Gaps
     ...generateResRangeAttributies(COLUMNS_GAP),
-    //row gaps
+
+    //Row Gaps
     ...generateResRangeAttributies(ROW_GAP),
 
-    //typography
+    //Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     //Block specific Attributes
     preset: {
         type: 'string',
         default: 'style-1',
     },
-
     advancedGallery: {
         type: 'array',
     },
-
+    showCaption: {
+        type: 'boolean',
+        default: true,
+    },
+    showLightbox: {
+        type: 'boolean',
+        default: true,
+    },
+    zoomIconColor: {
+        type: 'string',
+    },
+    zoomIconHoverBorderColor: {
+        type: 'string',
+    },
+    zoomIconHoverColor: {
+        type: 'string',
+    },
     presetOneStyles: {
         type: 'object',
         default: {

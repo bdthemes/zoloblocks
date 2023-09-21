@@ -1,7 +1,5 @@
 import { __ } from '@wordpress/i18n';
-const {
-  DynamicTag,
-} = window.zoloModule;
+const { DynamicTag } = window.zoloModule;
 function RenderView({ attributes, setAttributes, postResults }) {
   const {
     preset,

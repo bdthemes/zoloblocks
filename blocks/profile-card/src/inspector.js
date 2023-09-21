@@ -139,7 +139,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
                             <ToggleControl
                                 label={__('Show Badge', 'zolo-blocks')}
                                 checked={showBadge}

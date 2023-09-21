@@ -18,6 +18,9 @@ import {
     DESCRIPTION_MARGIN,
     ICON_BORDER,
     ICON_BOX_SHADOW,
+    ICON_HOVER_BOX_SHADOW,
+    BUTTON_BG_COLOR,
+    BUTTON_BG_HOVER_COLOR,
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
     ICON_BORDER_RADIUS,
@@ -31,6 +34,10 @@ import {
     BUTTON_MARGIN,
     BUTTON_PADDING,
     CONTAINER_BACKGROUND,
+    CONTAINER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
     ICON_IMAGE_SIZE,
@@ -55,6 +62,10 @@ const attributes = {
     ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
     ...generateDimensionAttributes(CONTAINER_PADDING),
     ...generateDimensionAttributes(CONTAINER_MARGIN),
+    ...generateBorderAttributies(CONTAINER_BORDER),
+    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
+    ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
 
     // Icon
     ...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT, {
@@ -62,7 +73,7 @@ const attributes = {
     }),
     ...generateBorderAttributies(ICON_BORDER),
     ...generateResRangeAttributies(ICON_SIZE, {
-        default: 16,
+        default: 30,
     }),
     ...generateResRangeAttributies(ICON_TEXT_SPACING, {
         default: 5,
@@ -71,8 +82,11 @@ const attributes = {
     ...generateDimensionAttributes(ICON_PADDING),
     ...generateDimensionAttributes(ICON_MARGIN),
     ...generateBoxShadowAttributies(ICON_BOX_SHADOW),
+    ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
 
     // Button
+    ...generateNormalBGAttributes(BUTTON_BG_COLOR),
+    ...generateNormalBGAttributes(BUTTON_BG_HOVER_COLOR),
     ...generateBorderAttributies(BUTTON_BORDER),
     ...generateResRangeAttributies(BUTTON_ICON_SIZE, {
         default: 16,
@@ -130,7 +144,23 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
-    showIcon: {
+    showMainIcon: {
+        type: 'boolean',
+        default: true,
+    },
+    showHeading: {
+        type: 'boolean',
+        default: true,
+    },
+    showDesc: {
+        type: 'boolean',
+        default: true,
+    },
+    showButton: {
+        type: 'boolean',
+        default: true,
+    },
+    showButtonIcon: {
         type: 'boolean',
         default: false,
     },
@@ -149,16 +179,13 @@ const attributes = {
         type: 'string',
         default: 'left',
     },
+    containerBorderHoverColor: {
+        type: 'string',
+    },
     textColor: {
         type: 'string',
     },
     textHoverColor: {
-        type: 'string',
-    },
-    descColor: {
-        type: 'string',
-    },
-    descHoverColor: {
         type: 'string',
     },
     iconType: {
@@ -169,13 +196,16 @@ const attributes = {
         type: 'string',
         default: 'flex-start',
     },
+    iconBorderHoverColor: {
+        type: 'string',
+    },
     mainIcon: {
         type: 'object',
         default: {
-            'admin-generic': {
-                name: 'admin generic',
-                source: 'dashicon',
-                type: '',
+            'fa-cog': {
+                name: 'cog',
+                source: 'fontawesome',
+                type: 'fas',
             },
         },
     },
@@ -206,9 +236,11 @@ const attributes = {
     },
     iconBoxTitle: {
         type: 'string',
+        default: 'The Theme Settings',
     },
     iconBoxDescription: {
         type: 'string',
+        default: 'The Theme Setting is a website that provides users with a range of tools to customize their web experience.',
     },
     buttonText: {
         type: 'string',
@@ -230,7 +262,7 @@ const attributes = {
     btnBgColor: {
         type: 'string',
     },
-    btnBgHoverColor: {
+    btnHoverBorderColor: {
         type: 'string',
     },
     buttonIconColor: {

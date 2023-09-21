@@ -1,130 +1,72 @@
 .wp-block-zolo-advanced-icon-box {
-	.zolo-block-title {
-		font-size: 25px;
-		font-weight: 700;
-	}
-
-	.zolo-block-desc {
-		line-height: 1.6;
-	}
-
-	.zolo-box-button {
-		border: 1px solid #32de23;
-		border-radius: 30px;
-		padding: 10px 15px;
-	}
-
-	.zolo-block-icon-wrap span {
-		font-size: 35px;
-		height: 35px;
-		width: 35px;
-	}
-	.zolo-block-icon-wrap img {
-		height: max-content;
-	}
-
-	/* icon box style 1 */
-	& .zolo-block-advanced-icon-box-style-1 {
-		.zolo-block-icon-wrap {
-			display: flex;
-		}
-	}
-	/* icon box style 2 */
-	& .zolo-block-advanced-icon-box-style-2 {
-		.zolo-block-item {
-			display: inline-flex;
-			grid-gap: 20px;
-			padding: 30px;
-			.zolo-block-title {
-				line-height: 1;
-				margin: 0 0 12px 0;
-			}
-		}
-	}
-
-	/* icon box style 3 */
-	& .zolo-block-advanced-icon-box-style-3 {
-		.zolo-block-item {
-			display: flex;
-			flex-direction: row-reverse;
-			grid-gap: 20px;
-			.zolo-block-title {
-				line-height: 1;
-				margin: 0 0 12px 0;
-			}
-		}
-	}
-	/* General Styles */
-
-	.zolo-block-advanced-icon-box {
-		text-decoration: none;
-		color: inherit;
-	}
-	.zolo-block-item {
-		border: 1px solid rgba(247, 247, 247, 0.829);
-		padding: 30px;
-		transition: border 0.3s ease;
-		position: relative;
-		overflow: hidden;
-		border-radius: 10px;
-		background: rgba(147, 255, 170, 0.15);
-	}
-
-	.zolo-block-hover-icon {
-		display: none;
-	}
-	.zolo-block-icon-wrap {
-		display: flex;
-		span {
-			display: table;
-		}
-	}
-
-	.zolo-block-body-content {
-		z-index: 1;
-		position: relative;
-
-		.zolo-block-link-btn {
-			margin-top: 22px;
-			display: flex;
-		}
-
-		.zolo-box-button {
-			display: inline-flex;
-			gap: 15px;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			text-align: center;
-			text-decoration: none;
-			font-size: 14px;
-			text-transform: capitalize;
-			transition: all 0.3s ease;
-		}
-		.zolo-box-button p {
-			margin: 0px;
-		}
-	}
-
-	.zolo-block-advanced-icon-box .zolo-block-item:hover {
-		border-color: #32de23;
-	}
-}
-
-.zb-res-device-btns {
-	margin-bottom: 20px;
-}
-
-// tablet view
-@media (max-width: 1024px) {
-	.zolo-advanced-icon {
-		font-family: inherit;
-	}
-}
-
-// mobile view
-@media (max-width: 767px) {
-	.zolo-advanced-icon {
-		font-family: inherit;
-	}
+    /* General Styles */
+    .zolo-block-item {
+        padding: 40px;
+        position: relative;
+        border-radius: 3px;
+        background: rgba(205, 210, 255, 0.123);
+    }
+    .zolo-block-title {
+        font-size: 25px;
+        font-weight: 700;
+        margin: 0 0 18px;
+    }
+    .zolo-block-hover-icon {
+        display: none;
+    }
+    .zolo-block-desc {
+        font-weight: 300;
+    }
+    .zolo-block-icon-wrap {
+        display: flex;
+        margin: 0 0 20px;
+       i {
+         font-size: 24px;
+       }
+       img {
+           width: 60px;
+           height: 60px;
+       }
+    }
+    .zolo-block-body-content {
+        z-index: 1;
+        position: relative;
+        .zolo-block-link-btn {
+            margin-top: 20px;
+        }
+        .zolo-box-button {
+            display: inline-flex;
+            gap: 15px;
+            align-items: center;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: 1px solid #c7c3e1;
+            border-radius: 3px;
+            padding: 10px 15px;
+            &:hover {
+                border-color: #3F1A46;
+                background: #3F1A46;
+            }
+        }
+        .zolo-box-button p {
+            margin: 0px;
+        }
+    }
+    /* icon box style 2 */
+    & .zolo-block-advanced-icon-box-style-2,
+    & .zolo-block-advanced-icon-box-style-3 {
+        .zolo-block-item {
+            display: flex;
+            grid-gap: 20px;
+        }
+        .zolo-block-icon-wrap {
+            margin: 0;
+        }
+    }
+    /* icon box style 3 */
+    & .zolo-block-advanced-icon-box-style-3 {
+        .zolo-block-item {
+            flex-direction: row-reverse;
+        }
+    }
 }

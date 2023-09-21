@@ -49,18 +49,22 @@
     background-color: var(--primary-color);
     position: relative;
     padding: 12px 40px;
+
     &:hover {
         background-color: var(--hover-color);
     }
+
     .zolo-button-content {
         color: var(--secondary-color);
     }
+
     .zolo-button-icon {
         fill: var(--secondary-color);
     }
 
     .zolo-button {
         gap: 8px;
+
         i,
         span.dashicon {
             color: #fff;
@@ -68,12 +72,13 @@
     }
 
     /*
-	* Button Style: 01
+    * Button Style: 01
 	*/
     &.button-1 {
         background-color: var(--primary-color);
         border: 1px solid var(--primary-color);
         box-shadow: var(--secondary-color) 4px 4px 0 0, var(--primary-color) 4px 4px 0 1px;
+
         &:hover {
             background-color: var(--hover-color);
             box-shadow: var(--secondary-color) 4px 4px 0 0, var(--hover-color) 4px 4px 0 1px;
@@ -81,13 +86,14 @@
     }
 
     /*
-		* Button Style: 02
-		*/
+	* Button Style: 02
+	*/
     &.button-2 {
         background-color: transparent;
         border: 1px solid var(--color-b1);
         position: relative;
         touch-action: manipulation;
+
         &::before {
             background-color: var(--color-bg1);
             content: '';
@@ -99,14 +105,17 @@
             width: 100%;
             z-index: -1;
         }
+
         &:hover {
             &::before {
                 background-color: var(--color-bg2);
             }
         }
+
         .zolo-button-content {
             color: var(--primary-color);
         }
+
         .zolo-button-icon {
             fill: var(--primary-color);
         }
@@ -120,6 +129,7 @@
         border: 1px solid var(--primary-color);
         position: relative;
         background-color: transparent;
+
         &::after {
             content: '';
             background-color: var(--color-bg3);
@@ -131,15 +141,18 @@
             left: 7px;
             transition: 0.2s;
         }
+
         &:hover {
             &::after {
                 top: 0;
                 left: 0;
             }
         }
+
         .zolo-button-content {
             color: var(--primary-color);
         }
+
         .zolo-button-icon {
             fill: var(--primary-color);
         }
@@ -153,6 +166,7 @@
         box-shadow: 6px 0px 0px var(--color-bg5);
         outline: transparent;
         position: relative;
+
         &::after {
             content: 'ALTERNATE TEXT';
             display: block;
@@ -165,6 +179,7 @@
             text-shadow: -3px -3px 0px var(--color-bg6);
             clip-path: var(--slice-0);
         }
+
         &:hover {
             &::after {
                 animation: 1s glitch;
@@ -179,6 +194,7 @@
     &.button-5 {
         background-color: var(--color-bg7);
         transform: rotate(-2deg);
+
         &::after {
             content: '';
             position: absolute;
@@ -188,12 +204,14 @@
             width: calc(100% - 1px);
             height: calc(100% - 1px);
         }
+
         &:hover {
             &::after {
                 bottom: 2px;
                 left: 2px;
             }
         }
+
         .zolo-button-content {
             color: var(--primary-color);
         }
@@ -213,13 +231,16 @@
         border-top-left-radius: 255px 15px;
         border-top-right-radius: 15px 225px;
         touch-action: manipulation;
+
         &:hover {
             box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
             transform: translate3d(0, 2px, 0);
         }
+
         .zolo-button-content {
             color: var(--primary-color);
         }
+
         .zolo-button-icon {
             fill: var(--primary-color);
         }
@@ -232,6 +253,7 @@
         background-color: var(--color-bg8);
         border: 2px solid var(--color-b2);
         border-radius: 8px;
+
         &::after {
             background-color: var(--color-b2);
             border-radius: 8px;
@@ -245,11 +267,13 @@
             transition: transform 0.2s ease-out;
             z-index: -1;
         }
+
         &:hover {
             &::after {
                 transform: translate(0, 0);
             }
         }
+
         .zolo-button-content {
             color: var(--primary-color);
         }
@@ -261,19 +285,24 @@
         justify-content: center;
         text-align: center;
         text-decoration: none;
+
         &.top {
             flex-direction: column-reverse;
         }
+
         &.bottom {
             flex-direction: column;
         }
+
         &.left {
             flex-direction: row-reverse;
         }
+
         &.right {
             flex-direction: row;
         }
     }
+
     // button icon
     .zolo-button-icon {
         width: 20px;
@@ -287,42 +316,52 @@
         clip-path: var(--slice-1);
         transform: translate(-20px, -10px);
     }
+
     10% {
         clip-path: var(--slice-3);
         transform: translate(10px, 10px);
     }
+
     20% {
         clip-path: var(--slice-1);
         transform: translate(-10px, 10px);
     }
+
     30% {
         clip-path: var(--slice-3);
         transform: translate(0px, 5px);
     }
+
     40% {
         clip-path: var(--slice-2);
         transform: translate(-5px, 0px);
     }
+
     50% {
         clip-path: var(--slice-3);
         transform: translate(5px, 0px);
     }
+
     60% {
         clip-path: var(--slice-4);
         transform: translate(5px, 10px);
     }
+
     70% {
         clip-path: var(--slice-2);
         transform: translate(-10px, 10px);
     }
+
     80% {
         clip-path: var(--slice-5);
         transform: translate(20px, -10px);
     }
+
     90% {
         clip-path: var(--slice-1);
         transform: translate(-10px, 0px);
     }
+
     100% {
         clip-path: var(--slice-1);
         transform: translate(0);

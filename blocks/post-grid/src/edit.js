@@ -1,14 +1,10 @@
 import { __ } from '@wordpress/i18n';
-import {
-  useBlockProps
-} from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { useEffect, useState } from '@wordpress/element';
-import apiFetch from "@wordpress/api-fetch";
+import apiFetch from '@wordpress/api-fetch';
 import { Spinner } from '@wordpress/components';
 import classnames from 'classnames';
-import {
-  BLOCK_PREFIX,
-} from './constants';
+import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
 import styles from './styles';
 import RenderView from './render-view';
@@ -60,64 +56,59 @@ export default function Edit(props) {
           postThumbnail: '',
           showPagination: false
         }
-      })
+    }, []);
+
+    const [postResults, setPostResults] = useState([]);
+    const [dataSuccess, setDataSuccess] = useState(true);
+    const [pageTotal, setPageTotal] = useState(0);
+
+    useEffect(() => {
+        let paginationLimit = 0;
+        paginationLimit = postQuery?.postPerPage;
+
+        const apiData = {
+            zolo_nonce: zoloParams.zolo_nonce,
+            attributes: attributes,
+            postQuery: postQuery,
+        };
+
+        apiFetch({
+            path: '/zolo/v1/posts',
+            method: 'POST',
+            data: apiData,
+        })
+            .then((response) => {
+                if (response.success) {
+                    setPostResults([...response.data.posts]);
+                    setPageTotal(response.data.total_page);
+                    setDataSuccess(response.success);
+                } else {
+                    setPostResults([]);
+                    setPageTotal(0);
+                    setDataSuccess(response.success);
+                }
+            })
+            .catch((error) => console.log(error));
+    }, [postQuery]);
+
+    if (Array.isArray(postResults) && postResults.length === 0) {
+        return [
+            isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />,
+            dataSuccess ? (
+                <div className="zolo-spinner">
+                    <Spinner />
+                </div>
+            ) : (
+                <p>{__('No posts found.', 'zolo-blocks')}</p>
+            ),
+        ];
     }
-  }, []);
 
-  const [postResults, setPostResults] = useState([]);
-  const [dataSuccess, setDataSuccess] = useState(true);
-  const [pageTotal, setPageTotal] = useState(0);
-
-  useEffect(() => {
-    let paginationLimit = 0;
-    paginationLimit = postQuery?.postPerPage;
-
-    const apiData = {
-      zolo_nonce: zoloParams.zolo_nonce,
-      attributes: attributes,
-      postQuery: postQuery
-    }
-
-    apiFetch({
-      path: '/zolo/v1/posts',
-      method: 'POST',
-      data: apiData,
-    }).then((response) => {
-      if (response.success) {
-        setPostResults([...response.data.posts]);
-        setPageTotal(response.data.total_page);
-        setDataSuccess(response.success);
-      } else {
-        setPostResults([]);
-        setPageTotal(0);
-        setDataSuccess(response.success);
-      }
-    })
-      .catch((error) => console.log(error));;
-  }, [postQuery]);
-
-
-  if (Array.isArray(postResults) && postResults.length === 0) {
-    return [
-      isSelected && (
-        <Inspector
-          attributes={attributes}
-          setAttributes={setAttributes}
-        />
-      ),
-      dataSuccess ? (<div className="zolo-spinner"><Spinner /></div>) : (
-        <p>{__('No posts found.', 'zolo-blocks')}</p>
-      )
-    ];
-  }
-
-  console.log({
-    postResults,
-    dataSuccess,
-    pageTotal,
-  })
-
-
+    console.log({
+        postResults,
+        dataSuccess,
+        pageTotal,
+    });
 
   return (
     <>

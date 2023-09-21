@@ -114,10 +114,10 @@ function Inspector({ attributes, setAttributes }) {
   } = attributes;
 
   const resRequiredProps = {
-    resMode,
-    setAttributes,
-    attributes,
-    objAttributes,
+      resMode,
+      setAttributes,
+      attributes,
+      objAttributes,
   };
 
   const changePremade = (selected) => {
