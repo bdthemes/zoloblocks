@@ -46,3 +46,12 @@ export const HEADING_MARGIN = 'headingMargin';
 export const HEADING_PADDING = 'headingPadding';
 export const HEADING_BORDER_RADIUS = 'headingBorderRadius';
 export const HEADING_BOX_SHADOW = 'headingBoxShadow';
+
+// Zoom Icon
+export const ZOOM_ICON_PADDING = 'zoomIconPadding';
+export const ZOOM_ICON_BORDER_RADIUS = 'zoomIconBorderRadius';
+export const ZOOM_ICON_BORDER = 'zoomIconBorder';
+export const ZOOM_ICON_BOX_SHADOW = 'zoomIconBoxShadow';
+export const ZOOM_ICON_BG_COLOR = 'zoomIconBgColor';
+export const ZOOM_ICON_HOVER_BOX_SHADOW = 'zoomIconHoverBoxShadow';
+export const ZOOM_ICON_BG_HOVER_COLOR = 'zoomIconBgHoverColor';
