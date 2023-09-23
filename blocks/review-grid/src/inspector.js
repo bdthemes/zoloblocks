@@ -65,7 +65,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
                             <SelectControl
                                 label={__('Preset Designs', 'zolo-blocks')}
                                 value={preset}
@@ -126,8 +126,6 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                        </PanelBody>
-                        <PanelBody title={__('Grid Settings', 'zolo-blocks')} initialOpen={false}>
                             <ResCounterControl
                                 label={__('Grid Columns', 'zolo-blocks')}
                                 controlName={GRID_COLUMNS}
@@ -150,7 +148,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
                             <NormalBGControl resRequiredProps={resRequiredProps} controlName={REVIEW_GRID_BG} noMainBGImg={false} />
                         </PanelBody>
                     </>

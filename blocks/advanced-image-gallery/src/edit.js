@@ -61,16 +61,32 @@ import {
     HEADING_PADDING,
     HEADING_BORDER_RADIUS,
     HEADING_BOX_SHADOW,
+    ZOOM_ICON_PADDING,
+    ZOOM_ICON_BORDER_RADIUS,
+    ZOOM_ICON_BORDER,
+    ZOOM_ICON_BOX_SHADOW,
+    ZOOM_ICON_HOVER_BOX_SHADOW,
+    ZOOM_ICON_BG_COLOR,
+    ZOOM_ICON_BG_HOVER_COLOR,
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
-import { apiFetch } from '@wordpress/api-fetch';
-
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, preset, blockStyle, advancedGallery, headingColor } = attributes;
+    const {
+        uniqueId,
+        preset,
+        blockStyle,
+        showCaption,
+        showLightbox,
+        advancedGallery,
+        headingColor,
+        zoomIconColor,
+        zoomIconHoverColor,
+        zoomIconHoverBorderColor,
+    } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
         handleUniqueId({
@@ -199,7 +215,6 @@ export default function Edit(props) {
     });
 
     // Image
-
     const {
         desktopBorderStyle: imageBorderDesk,
         tabBorderStyle: imageBorderTab,
@@ -279,7 +294,6 @@ export default function Edit(props) {
     });
 
     // Heading
-
     const {
         desktopBorderStyle: headingBorderDesk,
         tabBorderStyle: headingBorderTab,
@@ -343,26 +357,66 @@ export default function Edit(props) {
         controlName: HEADING_BOX_SHADOW,
     });
 
-    /**
-     * Presets Based Styles
-     */
-    let presetStyles;
-    switch (preset) {
-        case 'style-1':
-            presetStyles = `
-						
-			`;
-            break;
-        case 'style-2':
-            presetStyles = `
-				
-			`;
-            break;
-        case 'style-3':
-            break;
-        default:
-            presetStyles = '';
-    }
+    const {
+        backgroundStylesDesktop: zoomIconDeskBGStyle,
+        backgroundStylesTab: zoomIconTabBGStyle,
+        backgroundStylesMobile: zoomIconMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: ZOOM_ICON_BG_COLOR,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // zoom icon
+    const {
+        dimensionStylesDesktop: zoomIconPaddingDesk,
+        dimensionStylesTab: zoomIconPaddingTab,
+        dimensionStylesMobile: zoomIconPaddingMob,
+    } = generateDimensionStyle({
+        controlName: ZOOM_ICON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: zoomIconBorderRadiusDesk,
+        dimensionStylesTab: zoomIconBorderRadiusTab,
+        dimensionStylesMobile: zoomIconBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: ZOOM_ICON_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: zoomIconBorderDesk,
+        tabBorderStyle: zoomIconBorderTab,
+        mobBorderStyle: zoomIconBorderMob,
+    } = generateBorderStyle({
+        controlName: ZOOM_ICON_BORDER,
+        attributes,
+    });
+
+    const { boxShadowStyle: zoomIconBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: ZOOM_ICON_BOX_SHADOW,
+    });
+
+    const { boxShadowStyle: zoomIconHoverBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: ZOOM_ICON_HOVER_BOX_SHADOW,
+    });
+
+    const {
+        backgroundStylesDesktop: zoomIconBgHoverDesk,
+        backgroundStylesTab: zoomIconBgHoverTab,
+        backgroundStylesMobile: zoomIconBgHoverMob,
+    } = generateNormalBGControlStyles({
+        controlName: ZOOM_ICON_BG_HOVER_COLOR,
+        attributes,
+        noMainBGImg: false,
+    });
+
     /**
      * All Style Combination
      */
@@ -399,7 +453,7 @@ export default function Edit(props) {
 			${imageHoverDeskBGStyle}
 			${imageHoverBorderDesk}
 			${imageHoverBoxShadow}
-		}		
+		}
 		.${uniqueId} .zolo-title {
 			color: ${headingColor ? headingColor : ''};
 			${headingDeskBGStyle}
@@ -410,7 +464,20 @@ export default function Edit(props) {
 			${headingBoxShadow}
 			${headingTypoDesk}			
 		}
-		${presetStyles}		
+        .${uniqueId} .zolo-icon svg{
+            color: ${zoomIconColor ? zoomIconColor : ''};
+            ${zoomIconPaddingDesk}
+            ${zoomIconBorderDesk}
+            ${zoomIconBorderRadiusDesk}
+            ${zoomIconBoxShadow}
+            ${zoomIconDeskBGStyle}
+        }
+        .${uniqueId} .zolo-icon svg:hover{
+            color: ${zoomIconHoverColor ? zoomIconHoverColor : ''};
+            border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
+            ${zoomIconHoverBoxShadow}
+            ${zoomIconBgHoverDesk}
+        }
   	`;
 
     const tabletAllStyle = `
@@ -449,7 +516,16 @@ export default function Edit(props) {
 		${headingBorderRadiusTab}
 		${headingTypoTab}
 	}
-	${presetStyles}
+    .${uniqueId} .zolo-icon svg{
+        ${zoomIconPaddingTab}
+        ${zoomIconBorderTab}
+        ${zoomIconBorderRadiusTab}
+        ${zoomIconTabBGStyle}
+    }
+    .${uniqueId} .zolo-icon svg:hover{
+        border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
+        ${zoomIconBgHoverTab}
+    }    
 	`;
 
     const mobileAllStyle = `		
@@ -488,7 +564,17 @@ export default function Edit(props) {
 		${headingBorderRadiusMob}
 		${headingTypoMob}
 	}
-	${presetStyles}
+    
+    .${uniqueId} .zolo-icon svg{
+        ${zoomIconPaddingMob}
+        ${zoomIconBorderMob}
+        ${zoomIconBorderRadiusMob}
+        ${zoomIconMobBGStyle}
+    }
+    .${uniqueId} .zolo-icon svg:hover{
+        border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
+        ${zoomIconBgHoverMob}
+    }
   	`;
 
     const allStyle = `
@@ -565,24 +651,27 @@ export default function Edit(props) {
                                     <div className="zolo-image-wrap">
                                         <img src={image.url} alt={image.alt || image.caption} />
                                     </div>
-                                    <a href="#" className="zolo-icon-wrap">
-                                        <span className="zolo-icon">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="16"
-                                                height="16"
-                                                fill="currentColor"
-                                                className="bi bi-plus-lg"
-                                                viewBox="0 0 16 16"
-                                            >
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
-                                                ></path>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                    {image.caption && <div className="zolo-title">{image.caption}</div>}
+                                    {showLightbox && (
+                                        <a href="#" className="zolo-icon-wrap">
+                                            <span className="zolo-icon">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="16"
+                                                    height="16"
+                                                    fill="currentColor"
+                                                    class="bi bi-plus-lg"
+                                                    viewBox="0 0 16 16"
+                                                >
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+                                                    ></path>
+                                                </svg>
+                                            </span>
+                                            <span className="zolo-icon-text">{__('zoom', 'zolo-blocks')}</span>
+                                        </a>
+                                    )}
+                                    {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
                                 </div>
                             );
                         })
