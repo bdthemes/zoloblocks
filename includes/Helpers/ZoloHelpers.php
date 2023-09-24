@@ -247,7 +247,7 @@ class ZoloHelpers
             $big = 9999999;
             return paginate_links(array(
                 'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-                'format'        => '?paged=%#%',
+                'format' => '?paged=%#%',
                 'current' => $paged,
                 'total' => $max_pages,
                 'prev_text' => sprintf('<span>%1$s</span>', __('prev', 'zolo-blocks')),
