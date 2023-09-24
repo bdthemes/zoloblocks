@@ -38,17 +38,7 @@ import {
     FLEX_ALIGN,
 } from './constants';
 
-import {
-    FLEX_DIRECTIONS,
-    FLEX_ALIGNS,
-    FLEX_JUSTIFIES,
-    FLEX_WRAPS,
-    WIDTH_TYPES,
-    CONTENT_WIDTH_TYPES,
-    FLEX_HORIZONTAL_OPTIONS,
-} from '../../../src/global/constants';
-
-import { Fragment } from 'react';
+import { FLEX_DIRECTIONS, FLEX_ALIGNS, FLEX_JUSTIFIES, FLEX_WRAPS, WIDTH_TYPES, CONTENT_WIDTH_TYPES } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;

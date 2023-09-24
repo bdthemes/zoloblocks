@@ -97,6 +97,7 @@ export default function Edit(props) {
         buttonText,
         btnColor,
         btnHoverColor,
+        btnBgHoverColor,
         btnHoverBorderColor,
         buttonIconColor,
         buttonIconHoverColor,
