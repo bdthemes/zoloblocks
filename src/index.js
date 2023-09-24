@@ -2,6 +2,7 @@
 import './global/hooks';
 
 //Import Blocks
+import '../blocks/container/src';
 import '../blocks/advanced-button/src';
 import '../blocks/advanced-heading/src';
 import '../blocks/advanced-icon-box/src';

@@ -42,7 +42,7 @@ function RenderView({ attributes, setAttributes, postResults }) {
                     />
                 );
                 const date = <div className="zolo-post-date">{post.date}</div>;
-                const readingTime = <div cclassName="zolo-post-estimate">{post.reading_time}</div>;
+                const readingTime = <div className="zolo-post-estimate">{post.reading_time}</div>;
 
                 const authorInfoHtml = (
                     <div className="zolo-post-meta-box">
@@ -51,10 +51,11 @@ function RenderView({ attributes, setAttributes, postResults }) {
                     </div>
                 );
                 const dateRTimeHtml = (
-                    <div className="zolo-post-secount-dateTime">
+                    <div className="zolo-post-dateTime">
                         {date}
                         <span>,</span>
                         {readingTime}
+                        {__('Min Read', 'zolo-blocks')}
                     </div>
                 );
 

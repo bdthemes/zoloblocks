@@ -28,60 +28,19 @@ export { default as SortableControl } from './controls/sortable-control';
 export { default as SortableItem } from './controls/sortable-control/sortableitem';
 export { default as ResCounterControl } from './controls/res-counter-control';
 export { default as QueryControl } from './controls/query-control';
+export { default as Pagination } from './controls/pagination';
 
 //Export Helpers
-export {
-	generateBackgroundAttributes,
-	generateBackgroundControlStyles,
-} from './helpers/backgroundHelpers';
-export {
-	generateBorderAttributies,
-	generateBorderStyle,
-} from './helpers/border-helper';
-export {
-	generateBoxShadowAttributies,
-	generateBoxShadowStyles,
-} from './helpers/boxshadow-helper';
-export {
-	generateDimensionAttributes,
-	generateDimensionStyle,
-} from './helpers/dimension-helper';
-export {
-	DynamicTag,
-	handleUniqueId,
-	hasVal,
-	softMinifyCssStrings,
-} from './helpers/helper';
-export {
-	generateNormalBGAttributes,
-	generateNormalBGControlStyles,
-} from './helpers/normal-bg-helpers';
-export {
-	onDesktopBtnClick,
-	onMobileBtnClick,
-	onTabletBtnClick,
-} from './helpers/preview-btns-helper';
-export {
-	generateResAlignmentAttributies,
-	generateResAlignmentStyle,
-} from './helpers/res-alignment-helper';
-export {
-	generateResRangeAttributies,
-	generateResRangeStyle,
-} from './helpers/res-range-helper';
-export {
-	generateTextShadowAttributies,
-	generateTextShadowStyles,
-} from './helpers/textshadow-helper';
-export {
-	generateTextStrokeAttributies,
-	generateTextStrokeStyles,
-} from './helpers/textstroke-helper';
-export {
-	generateTypographyAttributes,
-	generateTypographyStyles,
-} from './helpers/typoHelpers';
-export {
-	generateResCounterAttributies,
-	generateResCounterStyle,
-} from './helpers/res-counter-helper';
+export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';
+export { generateBorderAttributies, generateBorderStyle } from './helpers/border-helper';
+export { generateBoxShadowAttributies, generateBoxShadowStyles } from './helpers/boxshadow-helper';
+export { generateDimensionAttributes, generateDimensionStyle } from './helpers/dimension-helper';
+export { DynamicTag, handleUniqueId, hasVal, softMinifyCssStrings } from './helpers/helper';
+export { generateNormalBGAttributes, generateNormalBGControlStyles } from './helpers/normal-bg-helpers';
+export { onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick } from './helpers/preview-btns-helper';
+export { generateResAlignmentAttributies, generateResAlignmentStyle } from './helpers/res-alignment-helper';
+export { generateResRangeAttributies, generateResRangeStyle } from './helpers/res-range-helper';
+export { generateTextShadowAttributies, generateTextShadowStyles } from './helpers/textshadow-helper';
+export { generateTextStrokeAttributies, generateTextStrokeStyles } from './helpers/textstroke-helper';
+export { generateTypographyAttributes, generateTypographyStyles } from './helpers/typoHelpers';
+export { generateResCounterAttributies, generateResCounterStyle } from './helpers/res-counter-helper';

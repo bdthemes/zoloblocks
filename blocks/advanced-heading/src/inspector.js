@@ -34,7 +34,6 @@ import {
     SUBTITLE_MARGIN,
     SUBTITLE_TEXT_SHADOW,
     SUBTITLE_TEXT_STROKE,
-    TEXT_ALIGN,
     TITLE_BORDER,
     TITLE_BORDER_RADIUS,
     TITLE_MARGIN,
@@ -152,7 +151,7 @@ const Inspector = ({ attributes, setAttributes }) => {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={styles}
@@ -180,7 +179,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 onChange={() => setAttributes({ showTransparentTitle: !showTransparentTitle })}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Main Heading', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
                             <TextControl
                                 label={__('Main Heading', 'zolo-blocks')}
                                 value={titleText}
@@ -322,7 +321,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Main Heading', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Heading', 'zolo-blocks')} initialOpen={false}>
                             <TypographyDropdown
                                 label="Typography"
                                 typoPrefixConstant={TITLE_TYPOGRAPHY}

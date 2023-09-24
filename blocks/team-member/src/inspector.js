@@ -13,7 +13,6 @@ import {
     RangeControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -28,12 +27,9 @@ const {
     NormalBGControl,
     BoxShadowControl,
     ImageAvatar,
-    IconPicker,
     TabPanelControl,
     HeaderTabs,
     LinkControl,
-    SortableItem,
-    SortableControl,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -180,7 +176,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
                                 label={__('Preset Designs', 'zolo-blocks')}
                                 value={preset}
