@@ -13,7 +13,8 @@ if (!empty($settings['showThumbnail'])) {
             $thumbnail
         );
     } else {
-        $thumbnailHTML .= '<a href="' . $result->peramalink . '">
+        $permalink = $result->permalink ?? '#';
+        $thumbnailHTML .= '<a href="' . $permalink . '">
         <img src="https://via.placeholder.com/380x440.png" alt="No Image Available" />
       </a>';
     }
