@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+
+.wp-block-zolo-counter {
+    font-family: 'Nunito', sans-serif;
+    .zolo-counter-wrap {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 10px;
+        padding: 30px 0;
+    }
+
+    .zolo-counter-item {
+        padding: 40px;
+        overflow: hidden;
+        background-color: #f7f7f7;
+        transition: all 0.3s ease;
+    }
+
+    .zolo-counter-item:hover {
+        transform: scale(0.95) rotate(-3deg);
+    }
+
+    .zolo-counter-icon svg {
+        display: flex;
+        transition: all 0.3s ease;
+    }
+
+    .zolo-counter-count {
+        display: flex;
+        gap: 5px;
+        font-size: 30px;
+        font-weight: 800;
+        line-height: 1;
+        align-items: center;
+        color: #20232a;
+        margin: 0 0 5px;
+    }
+
+    .zolo-counter-title {
+        font-size: 16px;
+        color: #484a54;
+        font-weight: 600;
+    }
+
+    /* Demo style 1 css start  */
+    .zolo-counter-style-1 .zolo-counter-icon {
+        margin: 0 0 15px;
+        display: -webkit-inline-box;
+    }
+
+    .zolo-counter-style-1 .zolo-counter-icon svg {
+        width: 25px;
+        height: 25px;
+        color: #6a6c84;
+    }
+
+    .zolo-counter-style-1 .zolo-counter-item:hover .zolo-counter-icon svg {
+        color: #000;
+    }
+
+    /* Demo style 1 css end  */
+
+    /* Demo style 2 css start  */
+
+    .zolo-counter-style-2 .zolo-counter-item,
+    .zolo-counter-style-3 .zolo-counter-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 30px;
+        border-radius: 5px;
+    }
+
+    .zolo-counter-style-2 .zolo-counter-icon,
+    .zolo-counter-style-3 .zolo-counter-icon {
+        padding: 10px;
+        border-radius: 3px;
+        background-color: #d9dae0;
+    }
+
+    .zolo-counter-style-2 .zolo-counter-icon svg,
+    .zolo-counter-style-3 .zolo-counter-icon svg {
+        width: 18px;
+        height: 18px;
+        color: #000;
+    }
+
+    /* Demo style 2 css end  */
+
+    /* Demo style 3 css start  */
+
+    .zolo-counter-style-3 .zolo-counter-item {
+        flex-direction: row-reverse;
+    }
+
+    /* Demo style 3 css end  */
+
+    /* Demo outside css end  */
+
+    @media (min-width: 768px) {
+        .zolo-counter-wrap {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .zolo-counter-wrap {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .zolo-counter-wrap {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}

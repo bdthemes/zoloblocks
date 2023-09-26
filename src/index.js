@@ -19,3 +19,4 @@ import '../blocks/review/src';
 import '../blocks/review-grid/src';
 import '../blocks/review-child/src';
 import '../blocks/profile-card/src';
+import '../blocks/counter/src';

@@ -72,6 +72,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
+            
+
             if(!is_admin(  )){
 
                 // enqueue style for frontend
