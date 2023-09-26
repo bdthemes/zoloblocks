@@ -102,12 +102,6 @@ export default function Edit(props) {
         ];
     }
 
-    console.log({
-        postResults,
-        dataSuccess,
-        pageTotal,
-    });
-
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
