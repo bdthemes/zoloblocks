@@ -60,9 +60,29 @@ const attributes = {
         default: 'style-0',
     },
 
+    hideIcon: {
+        type: 'boolean',
+        default: true,
+    },
+    hideCounter: {
+        type: 'boolean',
+        default: true,
+    },
+    hideTitle: {
+        type: 'boolean',
+        default: true,
+    },
+    counterNumber: {
+        type: 'text',
+        default: '1000',
+    },
+    counterSuffix: {
+        type: 'text',
+        default: '+',
+    },
     titleText: {
         type: 'string',
-        default: 'I am Advanced Heading',
+        default: 'Happy Client',
     },
     enableTitleLink: {
         type: 'boolean',
