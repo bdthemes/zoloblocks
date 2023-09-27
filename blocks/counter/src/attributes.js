@@ -1,230 +1,300 @@
-//internal dependencies controls
 const {
-    generateBackgroundAttributes,
+    generateResAlignmentAttributies,
+    generateResRangeAttributies,
     generateBorderAttributies,
-    generateBoxShadowAttributies,
     generateDimensionAttributes,
     generateTypographyAttributes,
-    generateResRangeAttributies,
-    generateResAlignmentAttributies,
+    generateBoxShadowAttributies,
     generateTextShadowAttributies,
     generateTextStrokeAttributies,
     generateNormalBGAttributes,
 } = window.zoloModule;
 
-//block constants
 import {
-    SEPARATOR_HEIGHT,
-    SEPARATOR_SPACING,
-    SEPARATOR_WIDTH,
-    SUBTITLE_MARGIN,
-    SUBTITLE_TEXT_SHADOW,
-    SUBTITLE_TEXT_STROKE,
-    TEST_NORMAL_BG,
-    TITLE_BORDER,
-    TITLE_BORDER_RADIUS,
+    ICON_BOX_ALIGNMENT,
     TITLE_MARGIN,
-    TITLE_PADDING,
-    TITLE_SHADOW,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
-    TPT_ALIGNMENT,
-    TPT_BORDER,
-    TPT_BORDER_RADIUS,
-    TPT_MARGIN,
-    TPT_PADDING,
-    TPT_SHADOW,
-    TPT_TEXT_SHADOW,
-    TPT_TEXT_STROKE,
-    WRAPPER_BG,
-    WRAPPER_BORDER,
-    WRAPPER_MARGIN,
-    WRAPPER_PADDING,
-    WRAPPER_SHADOW,
+    DESCRIPTION_MARGIN,
+    ICON_BORDER,
+    ICON_BOX_SHADOW,
+    ICON_HOVER_BOX_SHADOW,
+    BUTTON_BG_COLOR,
+    BUTTON_BG_HOVER_COLOR,
+    BUTTON_BOX_SHADOW,
+    BUTTON_HOVER_BOX_SHADOW,
+    ICON_BORDER_RADIUS,
+    ICON_SIZE,
+    BUTTON_ICON_SIZE,
+    BUTTON_BORDER,
+    ICON_TEXT_SPACING,
+    ICON_PADDING,
+    ICON_MARGIN,
+    BUTTON_BORDER_RADIUS,
+    BUTTON_MARGIN,
+    BUTTON_PADDING,
+    CONTAINER_BACKGROUND,
+    CONTAINER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_HOVER_BOX_SHADOW,
+    CONTAINER_MARGIN,
+    CONTAINER_PADDING,
+    ICON_IMAGE_SIZE,
+    IMAGE_BORDER,
+    ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
-
 const attributes = {
     //Common Attributes
     uniqueId: {
         type: 'string',
     },
-
+    resDevice: {
+        type: 'string',
+        default: 'Desktop',
+    },
     blockStyle: {
         type: 'object',
     },
 
-    //settings tab
-    styles: {
-        type: 'string',
-        default: 'style-0',
-    },
+    // Item
+    ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
+    ...generateDimensionAttributes(CONTAINER_PADDING),
+    ...generateDimensionAttributes(CONTAINER_MARGIN),
+    ...generateBorderAttributies(CONTAINER_BORDER),
+    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
+    ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
 
-    hideIcon: {
-        type: 'boolean',
-        default: true,
-    },
-    hideCounter: {
-        type: 'boolean',
-        default: true,
-    },
-    hideTitle: {
-        type: 'boolean',
-        default: true,
-    },
-    counterNumber: {
-        type: 'text',
-        default: '1000',
-    },
-    counterSuffix: {
-        type: 'text',
-        default: '+',
-    },
-    titleText: {
+    // Icon
+    ...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT, {
+        defaultAlign: 'left',
+    }),
+    ...generateBorderAttributies(ICON_BORDER),
+    ...generateResRangeAttributies(ICON_SIZE, {
+        default: 30,
+    }),
+    ...generateResRangeAttributies(ICON_TEXT_SPACING, {
+        default: 5,
+    }),
+    ...generateDimensionAttributes(ICON_BORDER_RADIUS),
+    ...generateDimensionAttributes(ICON_PADDING),
+    ...generateDimensionAttributes(ICON_MARGIN),
+    ...generateBoxShadowAttributies(ICON_BOX_SHADOW),
+    ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
+
+    // Button
+    ...generateNormalBGAttributes(BUTTON_BG_COLOR),
+    ...generateNormalBGAttributes(BUTTON_BG_HOVER_COLOR),
+    ...generateBorderAttributies(BUTTON_BORDER),
+    ...generateResRangeAttributies(BUTTON_ICON_SIZE, {
+        default: 16,
+    }),
+    ...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
+    ...generateDimensionAttributes(BUTTON_PADDING),
+    ...generateDimensionAttributes(BUTTON_MARGIN),
+    ...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
+    ...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
+
+    // Title
+    ...generateDimensionAttributes(TITLE_MARGIN),
+    ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
+
+    // Description
+    ...generateDimensionAttributes(DESCRIPTION_MARGIN),
+
+    // Typography
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
+
+    // Image
+    ...generateBorderAttributies(IMAGE_BORDER),
+    ...generateResRangeAttributies(ICON_IMAGE_SIZE, {
+        default: 16,
+    }),
+    ...generateResRangeAttributies(ICON_IMAGE_BORDER_RADIUS, {
+        default: 16,
+    }),
+
+    //Block Specific Attributes
+    preset: {
         type: 'string',
-        default: 'Happy Client',
+        default: 'style-1',
     },
-    enableTitleLink: {
-        type: 'boolean',
-        default: false,
+    label: {
+        type: 'string',
     },
-    titleLink: {
+    titleTag: {
+        type: 'string',
+        default: 'h2',
+    },
+    link: {
         type: 'object',
         default: {
             url: '#',
             openInNewTab: false,
         },
     },
-    titleTagName: {
-        type: 'string',
-        default: 'h2',
-    },
-    showSubTitle: {
+    openInNewTab: {
         type: 'boolean',
         default: false,
     },
-    subTitleText: {
-        type: 'string',
-        default: 'Sub Heading Here',
-    },
-    subTitlePosition: {
-        type: 'string',
-        default: 'top',
-    },
-    showSeparator: {
+    addNoFollow: {
         type: 'boolean',
         default: false,
     },
-    separatorPosition: {
-        type: 'string',
-        default: 'bottom',
+    showMainIcon: {
+        type: 'boolean',
+        default: true,
     },
-    align: {
+    showHeading: {
+        type: 'boolean',
+        default: true,
+    },
+    showDesc: {
+        type: 'boolean',
+        default: true,
+    },
+    showButton: {
+        type: 'boolean',
+        default: true,
+    },
+    showButtonIcon: {
+        type: 'boolean',
+        default: false,
+    },
+    globalLink: {
+        type: 'boolean',
+        default: false,
+    },
+    icon: {
+        type: 'string',
+    },
+    iconPosition: {
+        type: 'string',
+        default: 'right',
+    },
+    topIconPosition: {
         type: 'string',
         default: 'left',
     },
-    showTransparentTitle: {
-        type: 'boolean',
-        default: false,
-    },
-    transparentTitleText: {
+    containerBorderHoverColor: {
         type: 'string',
-        default: 'Advanced Heading',
     },
-    transparentTitleXOffset: {
-        type: 'number',
-        default: 0,
-    },
-    transparentTitleYOffset: {
-        type: 'number',
-        default: 0,
-    },
-    transparentTitleRotate: {
-        type: 'number',
-        default: 0,
-    },
-    transparentTitleHide: {
+    textColor: {
         type: 'string',
-        default: 'tab-mob',
     },
-    transparentTitleRotateOrigin: {
+    textHoverColor: {
         type: 'string',
-        default: 'top-left',
     },
-
-    ...generateResAlignmentAttributies(TPT_ALIGNMENT),
-
-    //design tab attributes
-    titleColor: {
+    iconType: {
         type: 'string',
-        default: '',
+        default: 'icon',
     },
-    titleBgColor: {
+    iconAlignment: {
         type: 'string',
-        default: '',
+        default: 'flex-start',
     },
-
-    subTitleColor: {
+    iconBorderHoverColor: {
         type: 'string',
-        default: '',
     },
-    tptColor: {
+    mainIcon: {
+        type: 'object',
+        default: {
+            'fa-cog': {
+                name: 'cog',
+                source: 'fontawesome',
+                type: 'fas',
+            },
+        },
+    },
+    buttonIcon: {
+        type: 'object',
+        default: {
+            'admin-generic': {
+                name: 'admin generic',
+                source: 'dashicon',
+                type: '',
+            },
+        },
+    },
+    iconColor: {
         type: 'string',
-        default: '',
     },
-    tptBgColor: {
+    iconHoverColor: {
         type: 'string',
-        default: '',
     },
-    tptOpacity: {
-        type: 'number',
-        default: 0.14,
-    },
-
-    separatorColor: {
+    iconBackgroundColor: {
         type: 'string',
-        default: '',
     },
-    ...generateResRangeAttributies(SEPARATOR_WIDTH, {
-        defaultRange: 70,
-    }),
-    ...generateResRangeAttributies(SEPARATOR_HEIGHT, {
-        defaultRange: 3,
-    }),
-    ...generateResRangeAttributies(SEPARATOR_SPACING),
-
-    ...generateDimensionAttributes(TITLE_MARGIN),
-    ...generateDimensionAttributes(TITLE_PADDING),
-    ...generateBorderAttributies(TITLE_BORDER),
-    ...generateDimensionAttributes(TITLE_BORDER_RADIUS),
-    ...generateBoxShadowAttributies(TITLE_SHADOW),
-    ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
-    ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
-
-    ...generateDimensionAttributes(TPT_MARGIN),
-    ...generateDimensionAttributes(TPT_PADDING),
-    ...generateBorderAttributies(TPT_BORDER),
-    ...generateDimensionAttributes(TPT_BORDER_RADIUS),
-    ...generateBoxShadowAttributies(TPT_SHADOW),
-    ...generateTextShadowAttributies(TPT_TEXT_SHADOW),
-    ...generateTextStrokeAttributies(TPT_TEXT_STROKE),
-
-    ...generateDimensionAttributes(SUBTITLE_MARGIN),
-    ...generateTextShadowAttributies(SUBTITLE_TEXT_SHADOW),
-    ...generateTextStrokeAttributies(SUBTITLE_TEXT_STROKE),
-    ...generateTypographyAttributes(Object.values(typographyObjs)),
-
-    //advance tab attributes
-    ...generateDimensionAttributes(WRAPPER_MARGIN),
-    ...generateDimensionAttributes(WRAPPER_PADDING),
-    ...generateBackgroundAttributes(WRAPPER_BG, {
-        defaultBgGradient: 'linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)',
-    }),
-    ...generateBorderAttributies(WRAPPER_BORDER),
-    ...generateBoxShadowAttributies(WRAPPER_SHADOW),
-
-    ...generateNormalBGAttributes(TEST_NORMAL_BG, {
-        defaultBgGradient: 'linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)',
-    }),
+    iconBackgroundHoverColor: {
+        type: 'string',
+    },
+    iconTypeImage: {
+        type: 'object',
+    },
+    iconBoxTitle: {
+        type: 'string',
+        default: 'The Theme Settings',
+    },
+    iconBoxDescription: {
+        type: 'string',
+        default: 'The Theme Setting is a website that provides users with a range of tools to customize their web experience.',
+    },
+    buttonText: {
+        type: 'string',
+        default: 'Read More',
+    },
+    buttonLink: {
+        type: 'object',
+        default: {
+            url: '#',
+            openInNewTab: false,
+        },
+    },
+    btnColor: {
+        type: 'string',
+    },
+    btnHoverColor: {
+        type: 'string',
+    },
+    btnBgColor: {
+        type: 'string',
+    },
+    btnHoverBorderColor: {
+        type: 'string',
+    },
+    buttonIconColor: {
+        type: 'string',
+    },
+    buttonIconHoverColor: {
+        type: 'string',
+    },
+    presetOneStyles: {
+        type: 'object',
+        default: {
+            contentPosition: 'left',
+            iconPosition: 'row',
+            buttonIconPosition: 'row-reverse',
+        },
+    },
+    presetTwoStyles: {
+        type: 'object',
+        default: {
+            contentPosition: 'left',
+            iconPosition: 'row-reverse',
+            buttonIconPosition: 'row-reverse',
+        },
+    },
+    presetThreeStyles: {
+        type: 'object',
+        default: {
+            contentPosition: 'right',
+            iconPosition: 'row-reverse',
+            buttonIconPosition: 'row-reverse',
+        },
+    },
 };
+
 export default attributes;

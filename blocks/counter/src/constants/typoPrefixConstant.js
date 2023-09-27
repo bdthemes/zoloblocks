@@ -1,4 +1,4 @@
 // the consts defined here should be unique from one another
-export const TITLE_TYPOGRAPHY = "title";
-export const SUBTITLE_TYPOGRAPHY = "subTitle";
-export const TRANSPARENT_TYPOGRAPHY = "tpTitle";
+export const TITLE_TYPOGRAPHY = 'title';
+export const DESCRIPTION_TYPOGRAPHY = 'descTypo';
+export const BUTTON_TYPOGRAPHY = 'btnTypo';

@@ -1,26 +1,27 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DynamicTag } = window.zoloModule;
+
+const { DisplayIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
         uniqueId,
-        //settings
-        titleText,
-        enableTitleLink,
-        titleLink,
-        titleTagName,
-        subTitleText,
-        showSubTitle,
-        subTitlePosition,
-        showSeparator,
-        separatorPosition,
-        showTransparentTitle,
-        transparentTitleText,
-        transparentTitleRotateOrigin,
-        //styles
-        styles,
+        preset,
+        titleTag,
+        mainIcon,
+        showMainIcon,
+        showHeading,
+        showDesc,
+        showButton,
+        showButtonIcon,
+        buttonIcon,
+        iconType,
+        iconTypeImage,
+        iconBoxTitle,
+        iconBoxDescription,
+        buttonText,
+        buttonLink,
+        globalLink,
     } = attributes;
-
     return (
         <div {...useBlockProps.save()}>
             <div class="zolo-counter-wrap zolo-counter-style-1">
