@@ -100,5 +100,16 @@ return apply_filters( 'zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => false
     ],
-
+    'slide' => [
+        'name'             => 'slide',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/slide/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
+    'slider' => [
+        'name'             => 'slider',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/slider/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-slider-frontend']
+    ],
 ]);
