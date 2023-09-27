@@ -550,9 +550,9 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
                       dynamicBullets: dynamicBullets,
                   }
                 : false,
-            effect: sliderType === 'carousel' ? carouselEffect : sliderEffect,
-            breakpoints: breakpoints,
-        };
+                effect: sliderType === 'carousel' ? carouselEffect : sliderEffect,
+                breakpoints: breakpoints,
+            };
 
         setAttributes({ sliderOptions: options });
 
