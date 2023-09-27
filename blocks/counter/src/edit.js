@@ -63,7 +63,6 @@ import {
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
-import { dashIcon } from './../../../src/controls/icon-picker/icons/dashicon';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
@@ -116,7 +115,7 @@ export default function Edit(props) {
     }, []);
 
     const blockProps = useBlockProps({
-        className: classnames(className, ``),
+        className: classnames(className, `muhib`),
     });
 
     // item background
@@ -787,6 +786,7 @@ export default function Edit(props) {
                 )}
             </BlockControls>
             <style>{` ${softMinifyCssStrings(allStyle)}`}</style>
+
             <div {...blockProps}>
                 <div class="zolo-counter-wrap zolo-counter-style-1">
                     <div class="zolo-counter-item">

@@ -22,6 +22,7 @@ const Save = ({ attributes }) => {
         buttonLink,
         globalLink,
     } = attributes;
+
     return (
         <div {...useBlockProps.save()}>
             <div class="zolo-counter-wrap zolo-counter-style-1">
