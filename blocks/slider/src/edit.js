@@ -351,12 +351,12 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         .${uniqueId} .swiper-button-next:hover, .${uniqueId} .swiper-button-prev:hover {
             ${navHoverBGStyle}
         }
-        .swiper-button-next:after, .swiper-button-prev:after {
+        .${uniqueId} .swiper-button-next:after, .${uniqueId}.swiper-button-prev:after {
             color: ${navColor};
             ${navDeskSize}
 
         }
-        .swiper-button-next:hover:after, .swiper-button-prev:hover:after {
+        .${uniqueId}.swiper-button-next:hover:after, .${uniqueId}.swiper-button-prev:hover:after {
             color: ${navHoverColor};
         }
         .${uniqueId} .swiper-pagination-bullets {
@@ -395,7 +395,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         .${uniqueId} .swiper-button-next:hover, .${uniqueId} .swiper-button-prev:hover {
             ${navHoverBGStyleTab}
         }
-        .swiper-button-next:after, .swiper-button-prev:after {
+        .${uniqueId}.swiper-button-next:after, .${uniqueId}.swiper-button-prev:after {
             ${navTabSize}
         }
         .${uniqueId} .swiper-pagination-bullet {
@@ -432,7 +432,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         .${uniqueId} .swiper-button-next:hover, .${uniqueId} .swiper-button-prev:hover {
             ${navHoverBGStyleMob}
         }
-        .swiper-button-next:after, .swiper-button-prev:after {
+        .${uniqueId}.swiper-button-next:after, .${uniqueId}.swiper-button-prev:after {
             ${navMobSize}
         }
         .${uniqueId} .swiper-pagination-bullet {
