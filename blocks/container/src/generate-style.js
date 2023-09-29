@@ -33,7 +33,7 @@ export default function generateStyle({ attributes, setAttributes }) {
 
   const {
     uniqueId,
-    blockStyle
+    zoloStyles
   } = attributes;
 
   // content
@@ -206,15 +206,15 @@ export default function generateStyle({ attributes, setAttributes }) {
     }
   `);
 
-  // Set All Style in "blockStyle" Attribute
+  // Set All Style in "zoloStyles" Attribute
   useEffect(() => {
     const styles = {
       desktop: desktopAllStyle,
       tablet: tabletAllStyle,
       mobile: mobileAllStyle,
     };
-    if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-      setAttributes({ blockStyle: styles });
+    if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
+      setAttributes({ zoloStyles: styles });
     }
   }, [attributes]);
 

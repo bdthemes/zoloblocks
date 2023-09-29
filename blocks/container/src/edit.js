@@ -11,7 +11,6 @@ import { useSelect } from '@wordpress/data';
  */
 const {
   softMinifyCssStrings,
-  handleUniqueId,
 } = window.zoloModule;
 
 import {
@@ -35,20 +34,10 @@ export default function Edit(props) {
   } = props;
   const {
     uniqueId,
-    blockStyle,
+    zoloStyles,
     templates,
     variationStatus
   } = attributes;
-
-  // this useEffect is for creating a unique id for each block's unique className by a random unique number
-  useEffect(() => {
-    handleUniqueId({
-      BLOCK_PREFIX,
-      uniqueId,
-      setAttributes,
-      clientId,
-    });
-  }, []);
 
   const {
     isParentOfSelectedBlock,

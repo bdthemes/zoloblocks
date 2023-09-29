@@ -23,6 +23,7 @@ const {
     IconPicker,
     LinkControl,
     IconicBtnGroup,
+    AdvancedOptions
 } = window.zoloModule;
 
 import { TEXT_ALIGN_OPTIONS, ICON_POSITIONS, ICON_STATUS } from '../../../src/global/constants';
@@ -577,6 +578,11 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
+                      <AdvancedOptions
+                        attributes={attributes}
+                        setAttributes={setAttributes}
+                        parentClass={''}
+                      />
                         {/* Advanced Controls */}
                         <PanelBody title={__('Block', 'zolo-blocks')} initialOpen={false}>
                             <ResDimensionsControl

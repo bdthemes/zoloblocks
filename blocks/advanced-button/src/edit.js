@@ -10,7 +10,6 @@ import classnames from 'classnames';
  * Internal depencencies
  */
 const {
-    handleUniqueId,
     softMinifyCssStrings,
     generateResAlignmentStyle,
     generateResRangeStyle,
@@ -19,11 +18,11 @@ const {
     generateNormalBGControlStyles,
     generateBoxShadowStyles,
     generateTypographyStyles,
+    classArrayToStr,
     DisplayIcon,
 } = window.zoloModule;
 
 import {
-    BLOCK_PREFIX,
     BUTTON_ALIGNMENT,
     BUTTON_BORDER,
     BUTTON_BORDER_RADIUS,
@@ -62,7 +61,8 @@ export default function Edit(props) {
         uniqueId,
         preset,
         label,
-        blockStyle,
+        zoloStyles,
+        parentClasses,
         iconType,
         icon,
         iconPosition,
@@ -82,18 +82,8 @@ export default function Edit(props) {
         presetSevenStyles,
     } = attributes;
 
-    // unique ID
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
-
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`),
+        className: classnames(className, classArrayToStr(parentClasses)),
     });
 
     // alignment
@@ -688,15 +678,15 @@ export default function Edit(props) {
 		}
 	`;
 
-    // Set All Style in "blockStyle" Attribute
+    // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
             desktop: desktopAllStyle,
             tablet: tabletAllStyle,
             mobile: mobileAllStyle,
         };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
+        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
+            setAttributes({ zoloStyles: styles });
         }
     }, [attributes]);
 

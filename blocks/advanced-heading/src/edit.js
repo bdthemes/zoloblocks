@@ -40,7 +40,6 @@ import {
 import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const {
-    handleUniqueId,
     softMinifyCssStrings,
     generateBackgroundControlStyles,
     generateBorderStyle,
@@ -60,7 +59,7 @@ const Edit = (props) => {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
     const {
         uniqueId,
-        blockStyle,
+        zoloStyles,
 
         //settings
         styles,
@@ -92,17 +91,6 @@ const Edit = (props) => {
         separatorColor,
         titleBgColor,
     } = attributes;
-
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        const BLOCK_PREFIX = 'zolo-advance-heading';
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
 
     //block wrapper class
     const blockProps = useBlockProps({
@@ -663,15 +651,15 @@ const Edit = (props) => {
     ${separatorStylesMobile}
 	`;
 
-    // Set All Style in "blockStyle" Attribute
+    // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
             desktop: desktopAllStyle,
             tablet: tabletAllStyle,
             mobile: mobileAllStyle,
         };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
+        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
+            setAttributes({ zoloStyles: styles });
         }
     }, [attributes]);
 

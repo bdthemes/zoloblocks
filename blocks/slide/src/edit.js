@@ -17,7 +17,6 @@ import classnames from 'classnames';
  * Internal depencencies
  */
 const {
-    handleUniqueId,
     softMinifyCssStrings,
     StarRating,
     generateResAlignmentStyle,
@@ -60,17 +59,10 @@ addFilter('editor.BlockListBlock', 'zolo/slide', zoloSlide);
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, blockStyle, enableOverlay, overlayType, overlayColor, overlayGradient } = attributes;
+    const { uniqueId, zoloStyles, enableOverlay, overlayType, overlayColor, overlayGradient } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
+
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`),
@@ -165,15 +157,15 @@ export default function Edit(props) {
 		}
 	`;
 
-    // Set All Style in "blockStyle" Attribute
+    // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
             desktop: desktopAllStyle,
             tablet: tabletAllStyle,
             mobile: mobileAllStyle,
         };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
+        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
+            setAttributes({ zoloStyles: styles });
         }
     }, [attributes]);
 

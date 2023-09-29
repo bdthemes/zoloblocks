@@ -50,7 +50,7 @@ const attributes = {
         type: 'string',
     },
 
-    blockStyle: {
+    zoloStyles: {
         type: 'object',
     },
 

@@ -28,13 +28,14 @@ export { default as SortableItem } from './controls/sortable-control/sortableite
 export { default as ResCounterControl } from './controls/res-counter-control';
 export { default as QueryControl } from './controls/query-control';
 export { default as Pagination } from './controls/pagination';
+export { default as AdvancedOptions } from './global/components/advancedOptions';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';
 export { generateBorderAttributies, generateBorderStyle } from './helpers/border-helper';
 export { generateBoxShadowAttributies, generateBoxShadowStyles } from './helpers/boxshadow-helper';
 export { generateDimensionAttributes, generateDimensionStyle } from './helpers/dimension-helper';
-export { DynamicTag, handleUniqueId, hasVal, softMinifyCssStrings } from './helpers/helper';
+export { DynamicTag, handleUniqueId, hasVal, softMinifyCssStrings, classArrayToStr } from './helpers/helper';
 export { generateNormalBGAttributes, generateNormalBGControlStyles } from './helpers/normal-bg-helpers';
 export { onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick } from './helpers/preview-btns-helper';
 export { generateResAlignmentAttributies, generateResAlignmentStyle } from './helpers/res-alignment-helper';

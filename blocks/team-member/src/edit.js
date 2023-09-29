@@ -13,7 +13,6 @@ import classnames from 'classnames';
  * Internal depencencies
  */
 const {
-    handleUniqueId,
     softMinifyCssStrings,
     generateResAlignmentStyle,
     generateBorderStyle,
@@ -81,7 +80,7 @@ export default function Edit(props) {
         preset,
         blurBgColor,
         blurBgOpacity,
-        blockStyle,
+        zoloStyles,
         memberPhoto,
         memberName,
         addDetailPageLink,
@@ -107,14 +106,7 @@ export default function Edit(props) {
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
+
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId} ${preset ? preset : ''}`),
@@ -638,7 +630,7 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
 			${teamDeskAlignStyle}
 		}
-		.${uniqueId}.default .zolo-item .zolo-info-wrap, 
+		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
@@ -733,7 +725,7 @@ export default function Edit(props) {
 			${teamMemberContainerTabMargin}
 			${containerTabBGStyle}
 		}
-		.${uniqueId}.default .zolo-item .zolo-info-wrap, 
+		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
@@ -809,7 +801,7 @@ export default function Edit(props) {
 			${teamMemberContainerMobMargin}
 			${containerMobBGStyle}
 		}
-		.${uniqueId}.default .zolo-item .zolo-info-wrap, 
+		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
@@ -820,7 +812,7 @@ export default function Edit(props) {
 			${contentMobBorderRadius}
 			${contentMobPadding}
 			${contentMobMargin}
-			
+
 		}
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
 			${teamMobAlignStyle}
@@ -890,15 +882,15 @@ export default function Edit(props) {
 		}
 	`;
 
-    // Set All Style in "blockStyle" Attribute
+    // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
             desktop: desktopAllStyle,
             tablet: tabletAllStyle,
             mobile: mobileAllStyle,
         };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
+        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
+            setAttributes({ zoloStyles: styles });
         }
     }, [attributes]);
 

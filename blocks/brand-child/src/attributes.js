@@ -45,7 +45,7 @@ const attributes = {
         type: 'string',
         default: 'Desktop',
     },
-    blockStyle: {
+    zoloStyles: {
         type: 'object',
     },
 

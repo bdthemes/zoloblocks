@@ -43,17 +43,6 @@ import {
 import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
-    //Common Attributes
-    uniqueId: {
-        type: 'string',
-    },
-    resDevice: {
-        type: 'string',
-        default: 'Desktop',
-    },
-    blockStyle: {
-        type: 'object',
-    },
     // Button Generators
     ...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
         defaultAlign: 'left',

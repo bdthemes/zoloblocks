@@ -39,7 +39,7 @@ const attributes = {
     uniqueId: {
         type: 'string',
     },
-    blockStyle: {
+    zoloStyles: {
         type: 'object',
     },
     slideItems: {
