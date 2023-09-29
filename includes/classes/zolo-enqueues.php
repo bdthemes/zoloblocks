@@ -72,7 +72,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            if(!is_admin(  )){
+            if( !is_admin( ) ){
 
                 // enqueue style for frontend
                 wp_enqueue_style( 'zolo-maginific-popup', ZOLO_ADMIN_URL . 'assets/css/magnific-popup/magnific-popup.css', [], ZOLO_VERSION );
@@ -88,6 +88,24 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 );
             }
 
+            // Swiper Scripts and Styles 
+            if( ! is_admin( ) && has_block( 'zolo/slider' ) ) {
+                wp_enqueue_style(
+                    'zolo-swiper-editor-style',
+                    ZOLO_ADMIN_URL . 'assets/css/swiper/swiper-bundle.min.css',
+                    [],
+                    ZOLO_VERSION
+                );
+    
+                wp_enqueue_script(
+                    'zolo-swiper-editor-script',
+                    ZOLO_ADMIN_URL . 'assets/js/swiper/swiper-bundle.min.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
+            
         }
         
 
@@ -177,7 +195,21 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
+            // Swiper Scripts and Styles
+            wp_enqueue_style(
+                'zolo-swiper-editor-style',
+                ZOLO_ADMIN_URL . 'assets/css/swiper/swiper-bundle.min.css',
+                [],
+                ZOLO_VERSION
+            );
 
+            wp_enqueue_script(
+                'zolo-swiper-editor-script',
+                ZOLO_ADMIN_URL . 'assets/js/swiper/swiper-bundle.min.js',
+                [],
+                ZOLO_VERSION,
+                true
+            );
 
             //this file use for js
             wp_localize_script('zolo-block-editor', 'zoloParams', [

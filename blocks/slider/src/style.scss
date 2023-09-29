@@ -1,0 +1,28 @@
+.wp-block-zolo-slider {
+    box-sizing: border-box;
+
+    .wp-block-zolo-slide {
+        height: 500px;
+    }
+
+    .swiper-content-outer {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    .swiper-pagination-bullet {
+        margin: 0 !important;
+    }
+
+    .swiper-pagination-bullets {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+}
