@@ -63,7 +63,7 @@ const attributes = {
     },
     pauseOnMouseEnter: {
         type: 'boolean',
-        default: true,
+        default: false,
     },
     infiniteLoop: {
         type: 'boolean',

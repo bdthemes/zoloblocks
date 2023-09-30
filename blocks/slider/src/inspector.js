@@ -308,6 +308,12 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     resRequiredProps={resRequiredProps}
                                     min={1}
                                     max={100}
+                                    units={[
+                                        { label: 'px', value: 'px' },
+                                        { label: '%', value: '%' },
+                                        { label: 'em', value: 'em' },
+                                        { label: 'vh', value: 'vh' },
+                                    ]}
                                 />
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
@@ -375,91 +381,87 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         min={0}
                                         max={100}
                                     />
-                                    <div
-                                        style={{
-                                            marginBottom: '24px',
-                                            border: '1px solid rgb(221, 221, 221)',
-                                            padding: '8px',
-                                            fontSize: '13px',
-                                            fontWeight: 400,
-                                            background: '#f5f5f5',
-                                        }}
-                                    >
-                                        {__('Normal Bullets', 'zolo-blocks')}
-                                    </div>
-                                    <ResRangeControl
-                                        label={__('Width', 'zolo-blocks')}
-                                        controlName={PAG_WIDTH}
-                                        resRequiredProps={resRequiredProps}
-                                        min={1}
-                                        max={100}
-                                    />
-                                    <ResRangeControl
-                                        label={__('Height', 'zolo-blocks')}
-                                        controlName={PAG_HEIGHT}
-                                        resRequiredProps={resRequiredProps}
-                                        min={1}
-                                        max={100}
-                                    />
-                                    <BorderControl
-                                        label={__('Border', 'zolo-blocks')}
-                                        controlName={PAG_BORDER}
-                                        resRequiredProps={resRequiredProps}
-                                    />
-                                    <ResDimensionsControl
-                                        label={__('Border Radius', 'zolo-blocks')}
-                                        controlName={PAG_BORDER_RADIUS}
-                                        resRequiredProps={resRequiredProps}
-                                        forBorderRadius={true}
-                                    />
-                                    <NormalBGControl
-                                        label={__('Background', 'zolo-blocks')}
-                                        controlName={PAG_BG}
-                                        resRequiredProps={resRequiredProps}
-                                        noMainBGImg={true}
-                                    />
-                                    <div
-                                        style={{
-                                            marginBottom: '24px',
-                                            border: '1px solid rgb(221, 221, 221)',
-                                            padding: '8px',
-                                            fontSize: '13px',
-                                            fontWeight: 400,
-                                            background: '#f5f5f5',
-                                        }}
-                                    >
-                                        {__('Active Bullets', 'zolo-blocks')}
-                                    </div>
-                                    <ResRangeControl
-                                        label={__('Width', 'zolo-blocks')}
-                                        controlName={APAG_WIDTH}
-                                        resRequiredProps={resRequiredProps}
-                                        min={1}
-                                        max={100}
-                                    />
-                                    <ResRangeControl
-                                        label={__('Height', 'zolo-blocks')}
-                                        controlName={APAG_HEIGHT}
-                                        resRequiredProps={resRequiredProps}
-                                        min={1}
-                                        max={100}
-                                    />
-                                    <BorderControl
-                                        label={__('Border', 'zolo-blocks')}
-                                        controlName={APAG_BORDER}
-                                        resRequiredProps={resRequiredProps}
-                                    />
-                                    <ResDimensionsControl
-                                        label={__('Border Radius', 'zolo-blocks')}
-                                        controlName={APAG_BORDER_RADIUS}
-                                        resRequiredProps={resRequiredProps}
-                                        forBorderRadius={true}
-                                    />
-                                    <NormalBGControl
-                                        label={__('Background', 'zolo-blocks')}
-                                        controlName={APAG_BG}
-                                        resRequiredProps={resRequiredProps}
-                                        noMainBGImg={true}
+                                    <TabPanelControl
+                                        options={[
+                                            {
+                                                value: 'normal',
+                                                label: __('Normal', 'zolo-blocks'),
+                                            },
+                                            {
+                                                value: 'hover',
+                                                label: __('Active', 'zolo-blocks'),
+                                            },
+                                        ]}
+                                        normalComponents={
+                                            <Fragment>
+                                                <ResRangeControl
+                                                    label={__('Width', 'zolo-blocks')}
+                                                    controlName={PAG_WIDTH}
+                                                    resRequiredProps={resRequiredProps}
+                                                    min={1}
+                                                    max={100}
+                                                />
+                                                <ResRangeControl
+                                                    label={__('Height', 'zolo-blocks')}
+                                                    controlName={PAG_HEIGHT}
+                                                    resRequiredProps={resRequiredProps}
+                                                    min={1}
+                                                    max={100}
+                                                />
+                                                <BorderControl
+                                                    label={__('Border', 'zolo-blocks')}
+                                                    controlName={PAG_BORDER}
+                                                    resRequiredProps={resRequiredProps}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Border Radius', 'zolo-blocks')}
+                                                    controlName={PAG_BORDER_RADIUS}
+                                                    resRequiredProps={resRequiredProps}
+                                                    forBorderRadius={true}
+                                                />
+                                                <NormalBGControl
+                                                    label={__('Background', 'zolo-blocks')}
+                                                    controlName={PAG_BG}
+                                                    resRequiredProps={resRequiredProps}
+                                                    noMainBGImg={true}
+                                                />
+                                            </Fragment>
+                                        }
+                                        hoverComponents={
+                                            <Fragment>
+                                                <ResRangeControl
+                                                    label={__('Width', 'zolo-blocks')}
+                                                    controlName={APAG_WIDTH}
+                                                    resRequiredProps={resRequiredProps}
+                                                    min={1}
+                                                    max={100}
+                                                />
+                                                <ResRangeControl
+                                                    label={__('Height', 'zolo-blocks')}
+                                                    controlName={APAG_HEIGHT}
+                                                    resRequiredProps={resRequiredProps}
+                                                    min={1}
+                                                    max={100}
+                                                />
+                                                <BorderControl
+                                                    label={__('Border', 'zolo-blocks')}
+                                                    controlName={APAG_BORDER}
+                                                    resRequiredProps={resRequiredProps}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Border Radius', 'zolo-blocks')}
+                                                    controlName={APAG_BORDER_RADIUS}
+                                                    resRequiredProps={resRequiredProps}
+                                                    forBorderRadius={true}
+                                                />
+                                                <NormalBGControl
+                                                    label={__('Background', 'zolo-blocks')}
+                                                    controlName={APAG_BG}
+                                                    resRequiredProps={resRequiredProps}
+                                                    noMainBGImg={true}
+                                                />
+                                            </Fragment>
+                                        }
                                     />
                                 </PanelBody>
                             </Fragment>
