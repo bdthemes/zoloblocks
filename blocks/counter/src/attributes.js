@@ -146,6 +146,25 @@ const attributes = {
         type: 'string',
         default: 'Happy Client',
     },
+    iconType: {
+        type: 'string',
+        default: 'icon',
+    },
+    counterIcon: {
+        type: 'object',
+        default: {
+            'far fa-smile': {
+                name: 'fa-smile',
+                source: 'fontawesome',
+                type: 'far',
+            },
+        },
+    },
+    iconTypeImage: {
+        type: 'object',
+    },
+
+    //old attributes
     label: {
         type: 'string',
     },

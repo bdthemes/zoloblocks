@@ -4,14 +4,17 @@
 import { __ } from '@wordpress/i18n';
 
 // Block Prefix
-export const BLOCK_PREFIX = 'advanced-icon-box';
+export const BLOCK_PREFIX = 'zolo-counter';
 // Presets
 export const PRESETS = [
     { label: __('Default', 'zolo-blocks'), value: 'style-0' },
     { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
     { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
-    { label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
 ];
+
+// Icon Options
+
+export const ICON_OPTIONS = 'iconOptions';
 
 // Title
 export const TITLE_TAG = [

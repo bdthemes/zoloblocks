@@ -20,7 +20,7 @@
         transform: scale(0.95) rotate(-3deg);
     }
 
-    .zolo-counter-icon svg {
+    .zolo-counter-icon i {
         display: flex;
         transition: all 0.3s ease;
     }
@@ -48,13 +48,12 @@
         display: -webkit-inline-box;
     }
 
-    .zolo-counter-style-1 .zolo-counter-icon svg {
-        width: 25px;
-        height: 25px;
+    .zolo-counter-style-1 .zolo-counter-icon i {
+        font-size: 25px;
         color: #6a6c84;
     }
 
-    .zolo-counter-style-1 .zolo-counter-item:hover .zolo-counter-icon svg {
+    .zolo-counter-style-1 .zolo-counter-item:hover .zolo-counter-icon i {
         color: #000;
     }
 
@@ -78,8 +77,8 @@
         background-color: #d9dae0;
     }
 
-    .zolo-counter-style-2 .zolo-counter-icon svg,
-    .zolo-counter-style-3 .zolo-counter-icon svg {
+    .zolo-counter-style-2 .zolo-counter-icon i,
+    .zolo-counter-style-3 .zolo-counter-icon i {
         width: 18px;
         height: 18px;
         color: #000;
