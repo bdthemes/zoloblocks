@@ -62,7 +62,7 @@ function Inspector(props) {
         presetBgColor,
     } = attributes;
 
-    const resRequiredProps = {
+    const requiredProps = {
         attributes,
         setAttributes,
         resMode,
@@ -123,14 +123,14 @@ function Inspector(props) {
                             <ResCounterControl
                                 label={__('Column Number', 'zolo-blocks')}
                                 controlName={COLUMN_COUNT}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={1}
                                 max={6}
                             />
                             <ResRangeControl
                                 label={__('Columns Gap', 'zolo-blocks')}
                                 controlName={COLUMNS_GAP}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={0}
                                 max={100}
                                 step={1}
@@ -138,7 +138,7 @@ function Inspector(props) {
                             <ResRangeControl
                                 label={__('Row Gap', 'zolo-blocks')}
                                 controlName={ROW_GAP}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={0}
                                 max={100}
                                 step={1}
@@ -168,7 +168,7 @@ function Inspector(props) {
                                             <ResRangeControl
                                                 label={__('Size', 'zolo-blocks')}
                                                 controlName={BUTTON_SIZE}
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                                 min={0}
                                                 max={100}
                                                 step={1}
@@ -179,14 +179,14 @@ function Inspector(props) {
                                             <TypographyDropdown
                                                 label={__('Text Typography', 'zolo-blocks')}
                                                 typoPrefixConstant={TEXT_TYPOGRAPHY}
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                             />
                                         )}
                                         {socialText === 'iconText' && (
                                             <ResRangeControl
                                                 label={__('Icon-Text Gap', 'zolo-blocks')}
                                                 controlName={ICON_TEXT_SPACING}
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                                 min={0}
                                                 max={100}
                                                 step={1}
@@ -196,19 +196,19 @@ function Inspector(props) {
                                         <BorderControl
                                             label={__('Border', 'zolo-blocks')}
                                             controlName={BUTTON_BORDER}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                         />
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zolo-blocks')}
                                             controlName={BTN_BORDER_RADIUS}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
-                                        <BoxShadowControl controlName={BTN_SHADOW} resRequiredProps={resRequiredProps} />
+                                        <BoxShadowControl controlName={BTN_SHADOW} requiredProps={requiredProps} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zolo-blocks')}
                                             controlName={BUTTON_PADDING}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
                                         <IconicBtnGroup
@@ -278,7 +278,7 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                        <BoxShadowControl controlName={BTN_HOVER_SHADOW} resRequiredProps={resRequiredProps} />
+                                        <BoxShadowControl controlName={BTN_HOVER_SHADOW} requiredProps={requiredProps} />
                                     </>
                                 }
                             />
@@ -290,7 +290,7 @@ function Inspector(props) {
                         <ResDimensionsControl
                             label={__('Margin', 'zolo-blocks')}
                             controlName={BLOCK_MARGIN}
-                            resRequiredProps={resRequiredProps}
+                            requiredProps={requiredProps}
                             forBorderRadius={false}
                         />
                     </PanelBody>

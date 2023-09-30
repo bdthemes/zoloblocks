@@ -76,7 +76,7 @@ function Inspector(props) {
         zoomIconHoverColor,
     } = attributes;
 
-    const resRequiredProps = {
+    const requiredProps = {
         attributes,
         setAttributes,
         resMode,
@@ -139,14 +139,14 @@ function Inspector(props) {
                             <ResCounterControl
                                 label={__('Columns', 'zolo-blocks')}
                                 controlName={COLUMN_COUNT}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={1}
                                 max={5}
                             />
                             <ResRangeControl
                                 label={__('Column Gap', 'zolo-blocks')}
                                 controlName={COLUMNS_GAP}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={0}
                                 max={100}
                                 step={1}
@@ -154,7 +154,7 @@ function Inspector(props) {
                             <ResRangeControl
                                 label={__('Row Gap', 'zolo-blocks')}
                                 controlName={ROW_GAP}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={0}
                                 max={100}
                                 step={1}
@@ -162,19 +162,19 @@ function Inspector(props) {
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={CONTAINER_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={CONTAINER_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={CONTAINER_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <TabPanelControl
@@ -183,16 +183,16 @@ function Inspector(props) {
                                         <BorderControl
                                             label={__('Border', 'zolo-blocks')}
                                             controlName={CONTAINER_BORDER}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                         />
                                         <NormalBGControl
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             controlName={CONTAINER_BACKGROUND}
                                             noMainBGImg={false}
                                         />
                                         <BoxShadowControl
                                             controlName={CONTAINER_BOX_SHADOW}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
                                     </>
@@ -202,16 +202,16 @@ function Inspector(props) {
                                         <BorderControl
                                             label={__('Border', 'zolo-blocks')}
                                             controlName={CONTAINER_HOVER_BORDER}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                         />
                                         <NormalBGControl
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             controlName={CONTAINER_HOVER_BACKGROUND}
                                             noMainBGImg={false}
                                         />
                                         <BoxShadowControl
                                             controlName={CONTAINER_HOVER_BOX_SHADOW}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
                                     </>
@@ -222,19 +222,19 @@ function Inspector(props) {
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={IMAGE_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={IMAGE_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={IMAGE_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <TabPanelControl
@@ -243,16 +243,16 @@ function Inspector(props) {
                                         <BorderControl
                                             label={__('Image Border', 'zolo-blocks')}
                                             controlName={IMAGE_BORDER}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                         />
                                         <NormalBGControl
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             controlName={IMAGE_BACKGROUND}
                                             noMainBGImg={false}
                                         />
                                         <BoxShadowControl
                                             controlName={IMAGE_BOX_SHADOW}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
                                     </>
@@ -262,16 +262,16 @@ function Inspector(props) {
                                         <BorderControl
                                             label={__('Border', 'zolo-blocks')}
                                             controlName={IMAGE_HOVER_BORDER}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                         />
                                         <NormalBGControl
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             controlName={IMAGE_HOVER_BACKGROUND}
                                             noMainBGImg={false}
                                         />
                                         <BoxShadowControl
                                             controlName={IMAGE_HOVER_BOX_SHADOW}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
                                     </>
@@ -284,7 +284,7 @@ function Inspector(props) {
                                     <TypographyDropdown
                                         label={__('Typography', 'zolo-blocks')}
                                         typoPrefixConstant={HEADING_TYPOGRAPHY}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                     />
                                     <ColorControl
                                         label={__('Color', 'zolo-blocks')}
@@ -296,36 +296,36 @@ function Inspector(props) {
                                         }
                                     />
                                     <NormalBGControl
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                         controlName={HEADING_BACKGROUND}
                                         noMainBGImg={false}
                                     />
                                     <BoxShadowControl
                                         controlName={HEADING_BOX_SHADOW}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                         enableTransition={false}
                                     />
                                     <ResDimensionsControl
                                         label={__('Margin', 'zolo-blocks')}
                                         controlName={HEADING_MARGIN}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                         forBorderRadius={false}
                                     />
                                     <ResDimensionsControl
                                         label={__('Padding', 'zolo-blocks')}
                                         controlName={HEADING_PADDING}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                         forBorderRadius={false}
                                     />
                                     <BorderControl
                                         label={__('Border', 'zolo-blocks')}
                                         controlName={HEADING_BORDER}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                     />
                                     <ResDimensionsControl
                                         label={__('Border Radius', 'zolo-blocks')}
                                         controlName={HEADING_BORDER_RADIUS}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                         forBorderRadius={true}
                                     />
                                 </>
@@ -336,12 +336,12 @@ function Inspector(props) {
                                 <ResDimensionsControl
                                     label={__('Padding', 'zolo-blocks')}
                                     controlName={ZOOM_ICON_PADDING}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
                                     controlName={ZOOM_ICON_BORDER_RADIUS}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
                                 <TabPanelControl
@@ -350,15 +350,15 @@ function Inspector(props) {
                                             <BorderControl
                                                 label={__('Border', 'zolo-blocks')}
                                                 controlName={ZOOM_ICON_BORDER}
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                             />
                                             <BoxShadowControl
                                                 controlName={ZOOM_ICON_BOX_SHADOW}
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                                 enableTransition={false}
                                             />
                                             <NormalBGControl
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                                 controlName={ZOOM_ICON_BG_COLOR}
                                                 noMainBGImg={true}
                                             />
@@ -386,11 +386,11 @@ function Inspector(props) {
                                             />
                                             <BoxShadowControl
                                                 controlName={ZOOM_ICON_HOVER_BOX_SHADOW}
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                                 enableTransition={false}
                                             />
                                             <NormalBGControl
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                                 controlName={ZOOM_ICON_BG_HOVER_COLOR}
                                                 noMainBGImg={true}
                                             />

@@ -14,8 +14,8 @@ let frontendEntries = getFrontend(blocksFolder);
 
 let allEntries = {
   ...frontendEntries,
-  dist: './src/index.js',
-  modules: {
+  ['build/dist']: './src/index.js',
+  ['build/module']: {
     import: path.resolve(__dirname, "src/module-export.js"),
     library: {
       name: "zoloModule",

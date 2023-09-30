@@ -16,10 +16,10 @@ import WithResDeviceBtn from '../with-res-device-btn';
 
 const NormalBGControl = ({
 	controlName,
-	resRequiredProps,
+	requiredProps,
 	noMainBGImg = false,
 }) => {
-	const { setAttributes, attributes, resMode } = resRequiredProps;
+	const { setAttributes, attributes, resMode } = requiredProps;
 
 	const {
 		//attributes for background type normal start
@@ -155,8 +155,8 @@ const NormalBGControl = ({
 									{resMode === 'Desktop' && (
 										<>
 											<WithResDeviceBtn
-												resRequiredProps={
-													resRequiredProps
+												requiredProps={
+													requiredProps
 												}
 												label="Position"
 											>
@@ -281,8 +281,8 @@ const NormalBGControl = ({
 													/>
 
 													<WithResDeviceBtn
-														resRequiredProps={
-															resRequiredProps
+														requiredProps={
+															requiredProps
 														}
 														label="X Position"
 													>
@@ -332,8 +332,8 @@ const NormalBGControl = ({
 													/>
 
 													<WithResDeviceBtn
-														resRequiredProps={
-															resRequiredProps
+														requiredProps={
+															requiredProps
 														}
 														label="Y Position"
 													>
@@ -411,8 +411,8 @@ const NormalBGControl = ({
 											)}
 
 											<WithResDeviceBtn
-												resRequiredProps={
-													resRequiredProps
+												requiredProps={
+													requiredProps
 												}
 												label="Repeat"
 											>
@@ -465,8 +465,8 @@ const NormalBGControl = ({
 											</WithResDeviceBtn>
 
 											<WithResDeviceBtn
-												resRequiredProps={
-													resRequiredProps
+												requiredProps={
+													requiredProps
 												}
 												label="Size"
 											>
@@ -551,8 +551,8 @@ const NormalBGControl = ({
 													/>
 
 													<WithResDeviceBtn
-														resRequiredProps={
-															resRequiredProps
+														requiredProps={
+															requiredProps
 														}
 														label="Width"
 													>
@@ -591,8 +591,8 @@ const NormalBGControl = ({
 									{resMode === 'Tablet' && (
 										<>
 											<WithResDeviceBtn
-												resRequiredProps={
-													resRequiredProps
+												requiredProps={
+													requiredProps
 												}
 												label="Position"
 											>
@@ -717,8 +717,8 @@ const NormalBGControl = ({
 													/>
 
 													<WithResDeviceBtn
-														resRequiredProps={
-															resRequiredProps
+														requiredProps={
+															requiredProps
 														}
 														label="X Position"
 													>
@@ -773,8 +773,8 @@ const NormalBGControl = ({
 													/>
 
 													<WithResDeviceBtn
-														resRequiredProps={
-															resRequiredProps
+														requiredProps={
+															requiredProps
 														}
 														label="Y Position"
 													>
@@ -857,8 +857,8 @@ const NormalBGControl = ({
 											)}
 
 											<WithResDeviceBtn
-												resRequiredProps={
-													resRequiredProps
+												requiredProps={
+													requiredProps
 												}
 												label="Repeat"
 											>
@@ -913,8 +913,8 @@ const NormalBGControl = ({
 											</WithResDeviceBtn>
 
 											<WithResDeviceBtn
-												resRequiredProps={
-													resRequiredProps
+												requiredProps={
+													requiredProps
 												}
 												label="Size"
 											>
@@ -999,8 +999,8 @@ const NormalBGControl = ({
 													/>
 
 													<WithResDeviceBtn
-														resRequiredProps={
-															resRequiredProps
+														requiredProps={
+															requiredProps
 														}
 														label="Width"
 													>
@@ -1039,8 +1039,8 @@ const NormalBGControl = ({
 									{resMode === 'Mobile' && (
 										<>
 											<WithResDeviceBtn
-												resRequiredProps={
-													resRequiredProps
+												requiredProps={
+													requiredProps
 												}
 												label="Position"
 											>
@@ -1165,8 +1165,8 @@ const NormalBGControl = ({
 													/>
 
 													<WithResDeviceBtn
-														resRequiredProps={
-															resRequiredProps
+														requiredProps={
+															requiredProps
 														}
 														label="X Position"
 													>
@@ -1221,8 +1221,8 @@ const NormalBGControl = ({
 													/>
 
 													<WithResDeviceBtn
-														resRequiredProps={
-															resRequiredProps
+														requiredProps={
+															requiredProps
 														}
 														label="Y Position"
 													>
@@ -1305,8 +1305,8 @@ const NormalBGControl = ({
 											)}
 
 											<WithResDeviceBtn
-												resRequiredProps={
-													resRequiredProps
+												requiredProps={
+													requiredProps
 												}
 												label="Repeat"
 											>
@@ -1361,8 +1361,8 @@ const NormalBGControl = ({
 											</WithResDeviceBtn>
 
 											<WithResDeviceBtn
-												resRequiredProps={
-													resRequiredProps
+												requiredProps={
+													requiredProps
 												}
 												label="Size"
 											>
@@ -1447,8 +1447,8 @@ const NormalBGControl = ({
 													/>
 
 													<WithResDeviceBtn
-														resRequiredProps={
-															resRequiredProps
+														requiredProps={
+															requiredProps
 														}
 														label="Width"
 													>

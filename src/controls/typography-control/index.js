@@ -36,11 +36,11 @@ import { googleFonts } from './fontPicker/googleFonts';
 const TypographyDropdown = ({
 	label,
 	typoPrefixConstant,
-	resRequiredProps,
+	requiredProps,
 	defaultFontSize,
 }) => {
 	const { attributes, setAttributes, resMode, objAttributes } =
-		resRequiredProps;
+		requiredProps;
 
 	const {
 		[`${prefix}${typoPrefixConstant}FontFamily`]: fontFamily,
@@ -168,7 +168,7 @@ const TypographyDropdown = ({
 
 									<WithResDeviceBtn
 										label={__('Font Size', 'zolo-blocks')}
-										resRequiredProps={resRequiredProps}
+										requiredProps={requiredProps}
 										noResetBtn={true}
 									>
 										<RangeControl
@@ -214,7 +214,7 @@ const TypographyDropdown = ({
 
 									<WithResDeviceBtn
 										label={__('Font Size', 'zolo-blocks')}
-										resRequiredProps={resRequiredProps}
+										requiredProps={requiredProps}
 										noResetBtn={true}
 									>
 										<RangeControl
@@ -264,7 +264,7 @@ const TypographyDropdown = ({
 
 									<WithResDeviceBtn
 										label={__('Font Size', 'zolo-blocks')}
-										resRequiredProps={resRequiredProps}
+										requiredProps={requiredProps}
 										noResetBtn={true}
 									>
 										<RangeControl
@@ -367,7 +367,7 @@ const TypographyDropdown = ({
 											'Letter Spacing',
 											'zolo-blocks'
 										)}
-										resRequiredProps={resRequiredProps}
+										requiredProps={requiredProps}
 										noResetBtn={true}
 									>
 										<RangeControl
@@ -424,7 +424,7 @@ const TypographyDropdown = ({
 											'Letter Spacing',
 											'zolo-blocks'
 										)}
-										resRequiredProps={resRequiredProps}
+										requiredProps={requiredProps}
 										noResetBtn={true}
 									>
 										<RangeControl
@@ -481,7 +481,7 @@ const TypographyDropdown = ({
 											'Letter Spacing',
 											'zolo-blocks'
 										)}
-										resRequiredProps={resRequiredProps}
+										requiredProps={requiredProps}
 										noResetBtn={true}
 									>
 										<RangeControl
@@ -537,7 +537,7 @@ const TypographyDropdown = ({
 
 									<WithResDeviceBtn
 										label={__('Line Height', 'zolo-blocks')}
-										resRequiredProps={resRequiredProps}
+										requiredProps={requiredProps}
 										noResetBtn={true}
 									>
 										<RangeControl
@@ -591,7 +591,7 @@ const TypographyDropdown = ({
 
 									<WithResDeviceBtn
 										label={__('Line Height', 'zolo-blocks')}
-										resRequiredProps={resRequiredProps}
+										requiredProps={requiredProps}
 										noResetBtn={true}
 									>
 										<RangeControl
@@ -645,7 +645,7 @@ const TypographyDropdown = ({
 
 									<WithResDeviceBtn
 										label={__('Line Height', 'zolo-blocks')}
-										resRequiredProps={resRequiredProps}
+										requiredProps={requiredProps}
 										noResetBtn={true}
 									>
 										<RangeControl

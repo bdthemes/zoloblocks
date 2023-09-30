@@ -16,7 +16,14 @@ import { addFilter } from '@wordpress/hooks';
  * Internal depencencies
  */
 const {
-  handleUniqueId
+  handleUniqueId,
+  generateResAlignmentAttributies,
+  generateResRangeAttributies,
+  generateBorderAttributies,
+  generateDimensionAttributes,
+  generateNormalBGAttributes,
+  generateBoxShadowAttributies,
+  generateTypographyAttributes,
 } = window.zoloModule;
 
 /**
@@ -62,6 +69,10 @@ function addAttributes(settings) {
       customCss: {
         type: 'string',
       },
+      customClass: {
+        type: 'string',
+      },
+      ...(settings.attributes.globalConfig?.default?.background && generateNormalBGAttributes(settings.attributes.globalConfig.background?.prefix || 'mainBg')),
     };
   }
   return settings;

@@ -49,7 +49,7 @@ function Inspector(props) {
     isBlockRootParent
   } = attributes;
 
-  const resRequiredProps = {
+  const requiredProps = {
     resMode,
     setAttributes,
     attributes,
@@ -90,7 +90,7 @@ function Inspector(props) {
                         <ResRangeControl
                           label={__('Content Width', 'zolo-blocks')}
                           controlName={CONTENT_WIDTH}
-                          resRequiredProps={resRequiredProps}
+                          requiredProps={requiredProps}
                           min={0}
                           max={2000}
                         />
@@ -104,7 +104,7 @@ function Inspector(props) {
                 <ResRangeControl
                   label={__('Custom Width', 'zolo-blocks')}
                   controlName={CONTAINER_WIDTH}
-                  resRequiredProps={resRequiredProps}
+                  requiredProps={requiredProps}
                   min={0}
                   max={2000}
                 />
@@ -113,7 +113,7 @@ function Inspector(props) {
               <ResRangeControl
                 label={__('Minimum Height', 'zolo-blocks')}
                 controlName={MIN_HEIGHT}
-                resRequiredProps={resRequiredProps}
+                requiredProps={requiredProps}
                 min={0}
                 max={1000}
               />
@@ -122,25 +122,25 @@ function Inspector(props) {
               <ResAlignmentControl
                 label={__('Direction', 'zolo-blocks')}
                 controlName={FLEX_DIRECTION}
-                resRequiredProps={resRequiredProps}
+                requiredProps={requiredProps}
                 alignOptions={FLEX_DIRECTIONS}
               />
               <ResAlignmentControl
                 label={__('Align Items', 'zolo-blocks')}
                 controlName={FLEX_ALIGN}
-                resRequiredProps={resRequiredProps}
+                requiredProps={requiredProps}
                 alignOptions={FLEX_ALIGNS}
               />
               <ResAlignmentControl
                 label={__('Justify Content', 'zolo-blocks')}
                 controlName={FLEX_JUSTIFY}
-                resRequiredProps={resRequiredProps}
+                requiredProps={requiredProps}
                 alignOptions={FLEX_JUSTIFIES}
               />
               <ResAlignmentControl
                 label={__('Wrap', 'zolo-blocks')}
                 controlName={FLEX_WRAP}
-                resRequiredProps={resRequiredProps}
+                requiredProps={requiredProps}
                 alignOptions={FLEX_WRAPS}
               />
             </PanelBody>
@@ -152,44 +152,44 @@ function Inspector(props) {
               <BorderControl
                 label={__('Border', 'zolo-blocks')}
                 controlName={CONTAINER_BORDER}
-                resRequiredProps={resRequiredProps}
+                requiredProps={requiredProps}
               />
               <ResDimensionsControl
                 label={__('Border Radius', 'zolo-blocks')}
                 controlName={CONTAINER_BORDER_RADIUS}
-                resRequiredProps={resRequiredProps}
+                requiredProps={requiredProps}
                 forBorderRadius={true}
               />
               <BoxShadowControl
                 controlName={CONTAINER_BOX_SHADOW}
-                resRequiredProps={resRequiredProps}
+                requiredProps={requiredProps}
                 enableTransition={false}
               />
 
-              <NormalBGControl resRequiredProps={resRequiredProps} controlName={CONTAINER_BG} noMainBGImg={false} />
+              <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BG} noMainBGImg={false} />
             </PanelBody>
 
             <PanelBody title={__('Spacing', 'zolo-blocks')} initialOpen={false}>
               <ResRangeControl
                 label={__('Row Gap', 'zolo-blocks')}
                 controlName={ROW_GAP}
-                resRequiredProps={resRequiredProps}
+                requiredProps={requiredProps}
               />
               <ResRangeControl
                 label={__('Column Gap', 'zolo-blocks')}
                 controlName={COLUMN_GAP}
-                resRequiredProps={resRequiredProps}
+                requiredProps={requiredProps}
               />
               <ResDimensionsControl
                 label={__('Padding', 'zolo-blocks')}
                 controlName={CONTAINER_PADDING}
-                resRequiredProps={resRequiredProps}
+                requiredProps={requiredProps}
                 forBorderRadius={false}
               />
               <ResDimensionsControl
                 label={__('Margin', 'zolo-blocks')}
                 controlName={CONTAINER_MARGIN}
-                resRequiredProps={resRequiredProps}
+                requiredProps={requiredProps}
                 forBorderRadius={false}
               />
             </PanelBody>

@@ -24,8 +24,8 @@ import ColorBtn from '../color-btn';
 
 import { BOX_SHADOW_TYPES } from '../../global/constants';
 
-const BoxShadowControl = ({ label = '', controlName, resRequiredProps }) => {
-	const { setAttributes, attributes } = resRequiredProps;
+const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
+	const { setAttributes, attributes } = requiredProps;
 	const {
 		[`${controlName}shadowType`]: shadowType,
 		[`${controlName}shadowUnit`]: shadowUnit,
@@ -78,7 +78,7 @@ const BoxShadowControl = ({ label = '', controlName, resRequiredProps }) => {
 				</UnitsBtn>
 				<WithResDeviceBtn
 					label={label || __('Box Shadow', 'zolo-blocks')}
-					resRequiredProps={resRequiredProps}
+					requiredProps={requiredProps}
 					controlName={controlName}
 					noResetBtn={true}
 					noResponsive={true}

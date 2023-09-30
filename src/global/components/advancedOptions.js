@@ -15,22 +15,17 @@ import {
   BaseControl,
   TabPanel,
 } from "@wordpress/components";
-import { select } from "@wordpress/data";
 
 /**
- * Internal Dependencies
-*/
+ * Internal dependencies
+ */
+import BackgroundControl from "../../controls/background-control"
 
-export default function AdvancedOptions(props) {
+export const AdvancedOptions = (props) => {
   const {
     attributes,
     setAttributes,
-    disableResponsive = false,
-    disableMargin = false,
-    disablePadding = false,
-    disableBackground = false,
-    disableBorder = false,
-    disableCustomClass = false,
+    requiredProps
   } = props;
 
   const {
@@ -38,7 +33,9 @@ export default function AdvancedOptions(props) {
     customCss,
     responsiveness,
     parentClasses,
-    zoloStyles
+    customClass,
+    zoloStyles,
+    globalConfig
   } = attributes;
 
   const handleResponsiveness = (key, value, classname) => {
@@ -60,9 +57,39 @@ export default function AdvancedOptions(props) {
     })
   }
 
+  const handleCustomClass = (classname) => {
+    const updatedClasses = parentClasses.filter(function (e) { return e !== customClass })
+    setAttributes({
+      customClass: classname,
+      parentClasses: [
+        ...updatedClasses,
+        classname
+      ]
+    })
+  }
+
   return (
     <>
-      {!disableResponsive && (
+      <PanelBody
+        title={__("Advanced", "essential-blocks")}
+        initialOpen={true}
+      >
+        <TextControl
+          label={__('Custom Class', 'zolo-blocks')}
+          onChange={(value) => handleCustomClass(value)}
+          value={customClass}
+        />
+        {globalConfig?.background && (
+          <PanelBody title={__('Background', 'zolo-blocks')} initialOpen={true}>
+            <BackgroundControl
+              controlName={globalConfig.background.prefix || 'mainBg'}
+              requiredProps={requiredProps}
+            />
+          </PanelBody>
+        )}
+      </PanelBody>
+
+      {globalConfig?.responsiveControls && (
         <>
           <PanelBody
             title={__("Responsive Control", "essential-blocks")}
