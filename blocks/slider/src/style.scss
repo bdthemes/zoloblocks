@@ -2,7 +2,7 @@
     box-sizing: border-box;
 
     .wp-block-zolo-slide {
-        height: 500px;
+        height: clamp(21.875rem, 50vw, 34.375rem);
     }
 
     .swiper-content-outer {
@@ -24,11 +24,11 @@
         justify-content: center;
         gap: 12px;
         z-index: 11;
-        margin-bottom: 50px;
+        margin-bottom: clamp(1.25rem, 6vw, 3.125rem);
         .swiper-pagination-bullet {
             background-color: transparent;
-            width: 14px;
-            height: 14px;
+            width: clamp(0.75rem, 1.5vw, 0.875rem);
+            height: clamp(0.75rem,  1.5vw, 0.875rem);
             border: 1px solid #3055ff;
             transition: all .3s ease;
                     
@@ -40,9 +40,9 @@
 
     }
     .swiper-nav-button {
-        margin: 0 50px;
-        width: 50px;
-        height: 50px;
+        margin: 0 clamp(1.25rem, 6vw, 3.125rem);
+        width: clamp(2.188rem, 6vw, 3.125rem);
+        height: clamp(2.188rem, 6vw, 3.125rem);
         border: 1px solid #3055ff;
         color: #3055ff;
         border-radius: 50%;
@@ -54,7 +54,7 @@
         }
             
         &:after {
-            font-size: 14px;
+            font-size: clamp(0.625rem, 1.5vw, 0.875rem);
         }
     }
 
