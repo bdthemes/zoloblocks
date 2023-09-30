@@ -69,6 +69,14 @@ export default function Edit(props) {
     const {
         uniqueId,
         preset,
+        hideIcon,
+        hideTitle,
+        hideCounter,
+        counterNumber,
+        counterSuffix,
+        titleText,
+
+        // Old Attributes
         titleTag,
         blockStyle,
         showButtonIcon,
@@ -115,7 +123,7 @@ export default function Edit(props) {
     }, []);
 
     const blockProps = useBlockProps({
-        className: classnames(className, `muhib`),
+        className: classnames(className, `muhib `),
     });
 
     // item background
@@ -805,10 +813,34 @@ export default function Edit(props) {
                         </div>
                         <div class="zolo-counter-inner-content">
                             <div class="zolo-counter-count">
-                                <span class="counter">1000</span>
-                                <span class="zolo-counter-sub-text">+</span>
+                                {counterNumber && (
+                                    <RichText
+                                        label={__('Counter Number', 'zolo-blocks')}
+                                        tagName="span"
+                                        className="counter"
+                                        value={counterNumber}
+                                        onChange={(counterNumber) => setAttributes({ counterNumber })}
+                                    />
+                                )}
+
+                                {counterSuffix && (
+                                    <RichText
+                                        label={__('Counter Suffix', 'zolo-blocks')}
+                                        tagName="span"
+                                        className="zolo-counter-sub-text"
+                                        value={counterSuffix}
+                                        onChange={(counterSuffix) => setAttributes({ counterSuffix })}
+                                    />
+                                )}
                             </div>
-                            <div class="zolo-counter-title">Happy Client</div>
+
+                            <RichText
+                                label={__('Counter Title', 'zolo-blocks')}
+                                tagName="div"
+                                className="zolo-counter-title"
+                                value={titleText}
+                                onChange={(titleText) => setAttributes({ titleText })}
+                            />
                         </div>
                     </div>
                 </div>

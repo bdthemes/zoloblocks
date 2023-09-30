@@ -71,6 +71,14 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         preset,
+        hideIcon,
+        hideTitle,
+        hideCounter,
+        counterNumber,
+        counterSuffix,
+        titleText,
+
+        // old settings
         titleTag,
         resMode,
         showButtonIcon,
@@ -128,195 +136,38 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Icon / Image', 'zolo-blocks')}
-                                checked={showMainIcon}
-                                onChange={() =>
-                                    setAttributes({
-                                        showMainIcon: !showMainIcon,
-                                    })
-                                }
+                                label={__('Hide Icon', 'zolo-blocks')}
+                                checked={hideIcon}
+                                onChange={() => setAttributes({ hideIcon: !hideIcon })}
                             />
                             <ToggleControl
-                                label={__('Show Heading', 'zolo-blocks')}
-                                checked={showHeading}
-                                onChange={() =>
-                                    setAttributes({
-                                        showHeading: !showHeading,
-                                    })
-                                }
+                                label={__('Hide Counter', 'zolo-blocks')}
+                                checked={hideCounter}
+                                onChange={() => setAttributes({ hideCounter: !hideCounter })}
                             />
                             <ToggleControl
-                                label={__('Show Description', 'zolo-blocks')}
-                                checked={showDesc}
-                                onChange={() =>
-                                    setAttributes({
-                                        showDesc: !showDesc,
-                                    })
-                                }
+                                label={__('Hide Title', 'zolo-blocks')}
+                                checked={hideTitle}
+                                onChange={() => setAttributes({ hideTitle: !hideTitle })}
                             />
-                            <ToggleControl
-                                label={__('Show Button', 'zolo-blocks')}
-                                checked={showButton}
-                                onChange={() =>
-                                    setAttributes({
-                                        showButton: !showButton,
-                                    })
-                                }
-                            />
-                            {showButton && (
-                                <>
-                                    <ToggleControl
-                                        label={__('Show Button Icon', 'zolo-blocks')}
-                                        checked={showButtonIcon}
-                                        onChange={() =>
-                                            setAttributes({
-                                                showButtonIcon: !showButtonIcon,
-                                            })
-                                        }
-                                    />
-                                    <ToggleControl
-                                        label={__('Use Button Link as Global Link', 'zolo-blocks')}
-                                        checked={globalLink}
-                                        onChange={() =>
-                                            setAttributes({
-                                                globalLink: !globalLink,
-                                            })
-                                        }
-                                    />
-                                </>
-                            )}
                         </PanelBody>
                         <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
-                            {showMainIcon && (
-                                <>
-                                    <IconicBtnGroup
-                                        label={__('Type', 'zolo-blocks')}
-                                        value={iconType}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                iconType: value,
-                                            })
-                                        }
-                                        options={ICON_BOX_OPTIONS}
-                                    />
-                                    {iconType == 'icon' && (
-                                        <Fragment>
-                                            <IconPicker
-                                                value={mainIcon}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        mainIcon: value,
-                                                    })
-                                                }
-                                            />
-                                        </Fragment>
-                                    )}
-
-                                    {iconType == 'image' && (
-                                        <BaseControl label={__('Photo', 'zolo-blocks')}>
-                                            {iconTypeImage ? (
-                                                <ImageAvatar
-                                                    imageUrl={iconTypeImage && iconTypeImage.url}
-                                                    onDeleteImage={() =>
-                                                        setAttributes({
-                                                            iconTypeImage: null,
-                                                        })
-                                                    }
-                                                    imageId={iconTypeImage && iconTypeImage.id}
-                                                    onEditImage={(url, id) => {
-                                                        setAttributes({
-                                                            iconTypeImage: {
-                                                                url,
-                                                                id,
-                                                            },
-                                                        });
-                                                    }}
-                                                />
-                                            ) : (
-                                                <MediaUpload
-                                                    onSelect={(media) => {
-                                                        setAttributes({
-                                                            iconTypeImage: media,
-                                                        });
-                                                    }}
-                                                    allowedTypes={['image']}
-                                                    value={iconTypeImage && iconTypeImage.id}
-                                                    render={({ open }) => (
-                                                        <Button className="zolo-image-upload-btn" onClick={open}>
-                                                            <svg
-                                                                width="24"
-                                                                height="24"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                fillRule="evenodd"
-                                                                clipRule="evenodd"
-                                                            >
-                                                                <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
-                                                            </svg>
-                                                            {__(' Upload Photo', 'zolo-blocks')}
-                                                        </Button>
-                                                    )}
-                                                />
-                                            )}
-                                        </BaseControl>
-                                    )}
-                                </>
-                            )}
-
                             <TextControl
-                                label={__('Title', 'zolo-blocks')}
-                                onChange={(title) =>
-                                    setAttributes({
-                                        iconBoxTitle: title,
-                                    })
-                                }
-                                value={iconBoxTitle}
-                                placeholder={__('Title Goes Here..', 'zolo-blocks')}
-                            />
-                            <TextareaControl
-                                label={__('Description', 'zolo-blocks')}
-                                value={iconBoxDescription}
-                                onChange={(desc) =>
-                                    setAttributes({
-                                        iconBoxDescription: desc,
-                                    })
-                                }
-                                placeholder={__('Description goes here..', 'zolo-blocks')}
+                                label={__('Counter Number', 'zolo-blocks')}
+                                value={counterNumber}
+                                onChange={(counterNumber) => setAttributes({ counterNumber })}
                             />
                             <TextControl
-                                label={__('Button Text', 'zolo-blocks')}
-                                onChange={(btnText) =>
-                                    setAttributes({
-                                        buttonText: btnText,
-                                    })
-                                }
-                                value={buttonText}
-                                placeholder={__('Read More', 'zolo-blocks')}
+                                label={__('Counter Suffix', 'zolo-blocks')}
+                                value={counterSuffix}
+                                onChange={(counterSuffix) => setAttributes({ counterSuffix })}
                             />
-                            <LinkControl
-                                label={__('Button URL', 'zolo-blocks')}
-                                value={buttonLink}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        buttonLink: value,
-                                    })
-                                }
+                            <TextControl
+                                label={__('Counter Title', 'zolo-blocks')}
+                                value={titleText}
+                                onChange={(titleText) => setAttributes({ titleText })}
                             />
                         </PanelBody>
-
-                        {showButtonIcon && (
-                            <PanelBody title={__('Button Icon', 'zolo-blocks')} initialOpen={false}>
-                                <Fragment>
-                                    <IconPicker
-                                        value={buttonIcon}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                buttonIcon: value,
-                                            })
-                                        }
-                                    />
-                                </Fragment>
-                            </PanelBody>
-                        )}
                     </>
                 }
                 styleTab={

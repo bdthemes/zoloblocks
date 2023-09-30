@@ -122,6 +122,30 @@ const attributes = {
         type: 'string',
         default: 'style-1',
     },
+    hideIcon: {
+        type: 'boolean',
+        default: true,
+    },
+    hideCounter: {
+        type: 'boolean',
+        default: true,
+    },
+    hideTitle: {
+        type: 'boolean',
+        default: true,
+    },
+    counterNumber: {
+        type: 'text',
+        default: '1000',
+    },
+    counterSuffix: {
+        type: 'text',
+        default: '+',
+    },
+    titleText: {
+        type: 'string',
+        default: 'Happy Client',
+    },
     label: {
         type: 'string',
     },

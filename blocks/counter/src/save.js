@@ -6,6 +6,14 @@ const Save = ({ attributes }) => {
     const {
         uniqueId,
         preset,
+        hideIcon,
+        hideTitle,
+        hideCounter,
+        counterNumber,
+        counterSuffix,
+        titleText,
+
+        //Old attributes
         titleTag,
         mainIcon,
         showMainIcon,
@@ -42,10 +50,11 @@ const Save = ({ attributes }) => {
                     </div>
                     <div class="zolo-counter-inner-content">
                         <div class="zolo-counter-count">
-                            <span class="counter">1000</span>
-                            <span class="zolo-counter-sub-text">+</span>
+                            {counterNumber && <RichText.Content tagName="span" className="counter" value={counterNumber} />}
+
+                            {counterSuffix && <RichText.Content tagName="span" className="zolo-counter-sub-text" value={counterSuffix} />}
                         </div>
-                        <div class="zolo-counter-title">Happy Client</div>
+                        {titleText && <RichText.Content tagName="div" className="zolo-counter-title" value={titleText} />}
                     </div>
                 </div>
             </div>
