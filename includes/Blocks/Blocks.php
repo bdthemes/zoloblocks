@@ -104,7 +104,7 @@ return apply_filters( 'zolo_blocks_list_data', [
         'name'             => 'counter',
         'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/counter/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
-        'frontend-scripts' => false
+        'frontend-scripts' => ['zolo-counter-frontend']
     ],
 
 ]);

@@ -6,6 +6,7 @@ import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import { CountUp } from 'use-count-up';
 /**
  * Internal depencencies
  */
@@ -804,14 +805,12 @@ export default function Edit(props) {
                                 {hideCounter && (
                                     <>
                                         <RichText
-                                            label={__('Counter Number', 'zolo-blocks')}
                                             tagName="span"
                                             className="counter"
                                             value={counterNumber}
                                             onChange={(counterNumber) => setAttributes({ counterNumber })}
                                         />
                                         <RichText
-                                            label={__('Counter Suffix', 'zolo-blocks')}
                                             tagName="span"
                                             className="zolo-counter-sub-text"
                                             value={counterSuffix}
