@@ -46,8 +46,12 @@ const attributes = {
   globalConfig: {
     type: 'object',
     default: {
-      background: {
-        prefix: 'mainBg'
+      background: false,
+      margin: {
+        prefix: 'mainMargin'
+      },
+      padding: {
+        prefix: 'mainPadding'
       },
       responsiveControls: true
     }

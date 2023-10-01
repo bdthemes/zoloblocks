@@ -73,6 +73,8 @@ function addAttributes(settings) {
         type: 'string',
       },
       ...(settings.attributes.globalConfig?.default?.background && generateNormalBGAttributes(settings.attributes.globalConfig.background?.prefix || 'mainBg')),
+      ...(settings.attributes.globalConfig?.default?.margin && generateDimensionAttributes(settings.attributes.globalConfig.margin?.prefix || 'mainMargin')),
+      ...(settings.attributes.globalConfig?.default?.padding && generateDimensionAttributes(settings.attributes.globalConfig.padding?.prefix || 'mainPadding')),
     };
   }
   return settings;

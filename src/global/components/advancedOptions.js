@@ -20,6 +20,7 @@ import {
  * Internal dependencies
  */
 import BackgroundControl from "../../controls/background-control"
+import ResDimensionsControl from "../../controls/dimensions-control"
 
 export const AdvancedOptions = (props) => {
   const {
@@ -79,6 +80,22 @@ export const AdvancedOptions = (props) => {
           onChange={(value) => handleCustomClass(value)}
           value={customClass}
         />
+        {globalConfig?.margin && (
+          <ResDimensionsControl
+            label={__('Margin', 'zolo-blocks')}
+            controlName={globalConfig.margin.prefix || 'mainMargin'}
+            requiredProps={requiredProps}
+            forBorderRadius={false}
+          />
+        )}
+        {globalConfig?.padding && (
+          <ResDimensionsControl
+            label={__('Padding', 'zolo-blocks')}
+            controlName={globalConfig.padding.prefix || 'mainPadding'}
+            requiredProps={requiredProps}
+            forBorderRadius={false}
+          />
+        )}
         {globalConfig?.background && (
           <PanelBody title={__('Background', 'zolo-blocks')} initialOpen={true}>
             <BackgroundControl
