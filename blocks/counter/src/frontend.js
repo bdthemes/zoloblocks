@@ -1,8 +1,8 @@
 import { render } from '@wordpress/element';
 import { CountUp } from 'use-count-up';
 
-const CounterFrontend = ({ counterNumber }) => {
-    return <CountUp isCounting end={counterNumber} duration={3.2} />;
+const CounterFrontend = ({ end }) => {
+    return <CountUp isCounting end={end} duration={3.2} />;
 };
 
 // render on page load
