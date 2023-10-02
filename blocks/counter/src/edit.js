@@ -790,6 +790,7 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <div class="zolo-counter-wrap zolo-counter-style-1">
                     <div class="zolo-counter-item">
+                        <CountUp isCounting end={1320} duration={3.2} />
                         {hideIcon && (
                             <div class="zolo-counter-icon">
                                 {iconType == 'icon' ? (

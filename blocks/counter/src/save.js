@@ -16,7 +16,6 @@ const Save = ({ attributes }) => {
         iconType,
         iconTypeImage,
     } = attributes;
-
     return (
         <div {...useBlockProps.save()}>
             <div class="zolo-counter-wrap zolo-counter-style-1">
@@ -36,9 +35,7 @@ const Save = ({ attributes }) => {
                             {hideCounter && (
                                 <>
                                     <RichText.Content tagName="span" className="counter" value={counterNumber} />
-                                    <span className="counter" data-count={counterNumber}>
-                                        {counterNumber}
-                                    </span>
+                                    <div className="counter" data-count={counterNumber}></div>
                                     <RichText.Content tagName="span" className="zolo-counter-sub-text" value={counterSuffix} />
                                 </>
                             )}
