@@ -512,7 +512,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
     }, []);
 
     // slider options init
-    const axvartSliderInit = function (sliderE, options) {
+    const zoloSliderInit = function (sliderE, options) {
         if (sliderE.swiper) {
             sliderE.swiper.destroy();
         }
@@ -559,7 +559,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
 
         setAttributes({ sliderOptions: options });
 
-        axvartSliderInit(swiperRef.current, options);
+        zoloSliderInit(swiperRef.current, options);
     }, [
         sliderType,
         deskCol,
@@ -580,6 +580,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         carouselEffect,
         sliderEffect,
         slideItems,
+        addNewSlideBlock,
     ]);
 
     const innerBlocksProps = useInnerBlocksProps(
@@ -598,7 +599,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
 
     return (
         <Fragment>
-            <style>{` 
+            <style>{`
                 .wp-block-zolo-slider {
                     padding: 10px;
                     border: 2px dashed #021feb;

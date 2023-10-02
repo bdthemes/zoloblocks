@@ -120,6 +120,90 @@ const attributes = {
     ...generateNormalBGAttributes(NAV_BG),
     ...generateNormalBGAttributes(NAV_HOVER_BG),
     ...generateResRangeAttributies(NAV_ICON_SIZE),
+    uniqueId: {
+        type: 'string',
+    },
+    blockStyle: {
+        type: 'object',
+    },
+    slideItems: {
+        type: 'number',
+        default: 3,
+    },
+    sliderType: {
+        type: 'string',
+        default: 'slider',
+    },
+    sliderOptions: {
+        type: 'object',
+    },
+    autoplay: {
+        type: 'boolean',
+        default: false,
+    },
+    autoplayDelay: {
+        type: 'number',
+        default: 30,
+    },
+    pauseOnMouseEnter: {
+        type: 'boolean',
+        default: false,
+    },
+    infiniteLoop: {
+        type: 'boolean',
+        default: true,
+    },
+    showNavigation: {
+        type: 'boolean',
+        default: true,
+    },
+    navColor: {
+        type: 'string',
+    },
+    navHoverColor: {
+        type: 'string',
+    },
+    showPagination: {
+        type: 'boolean',
+        default: true,
+    },
+    paginationType: {
+        type: 'string',
+        default: 'bullets',
+    },
+    dynamicBullets: {
+        type: 'boolean',
+        default: false,
+    },
+    speed: {
+        type: 'number',
+        default: 8,
+    },
+    carouselEffect: {
+        type: 'string',
+        default: 'slide',
+    },
+    sliderEffect: {
+        type: 'string',
+        default: 'slide',
+    },
+    addNewSlideBlock: {
+        type: 'boolean',
+        default: false,
+    },
+    // Generator
+    ...generateResCounterAttributies(COLUMNS),
+    ...generateResRangeAttributies(COLUMNS_GAP),
+    ...generateResRangeAttributies(SLIDER_HEIGHT),
+    ...generateResRangeAttributies(CONTENT_WIDTH),
+    ...generateDimensionAttributes(CONTENT_PADDING),
+    ...generateResRangeAttributies(NAV_WIDTH),
+    ...generateResRangeAttributies(NAV_HEIGHT),
+    ...generateBorderAttributies(NAV_BORDER),
+    ...generateDimensionAttributes(NAV_BORDER_RADIUS),
+    ...generateNormalBGAttributes(NAV_BG),
+    ...generateNormalBGAttributes(NAV_HOVER_BG),
+    ...generateResRangeAttributies(NAV_ICON_SIZE),
 
     // pagination
     ...generateResRangeAttributies(PAG_WIDTH),

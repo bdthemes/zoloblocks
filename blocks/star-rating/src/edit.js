@@ -30,8 +30,9 @@ const {
     generateBackgroundControlStyles,
 } = window.zoloModule;
 
-import { BLOCK_PREFIX, STAR_SIZE, STAR_SPACING, STAR_MARGIN, TITLE_MARGIN, ITEMS_ALIGN } from './constants';
+import { BLOCK_PREFIX, STAR_SIZE, STAR_SPACING, TITLE_GAP, ITEMS_ALIGN } from './constants';
 import Inspector from './inspector';
+import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 /**
  * Edit Function
@@ -58,38 +59,72 @@ export default function Edit(props) {
 
     // styles
     const {
-        desktopAlignStyle: itemsDeskAlign,
-        tabAlignStyle: itemsTabAlign,
-        mobAlignStyle: itemsMobAlign,
+        desktopAlignStyle: itemsVDeskAlign,
+        tabAlignStyle: itemsVTabAlign,
+        mobAlignStyle: itemsVMobAlign,
     } = generateResAlignmentStyle({
         controlName: ITEMS_ALIGN,
-        property: 'align-items',
+        property: 'justify-content',
         attributes,
     });
 
-    // icon
+    const {
+        desktopRangeStyle: deskGap,
+        tabRangeStyle: tabGap,
+        mobRangeStyle: mobGap,
+    } = generateResRangeStyle({
+        controlName: TITLE_GAP,
+        property: 'gap',
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: titleDeskTypo,
+        typoStylesTab: titleTabTypo,
+        typoStylesMobile: titleMobTypo,
+    } = generateTypographyStyles({
+        prefixConstant: TITLE_TYPO,
+        attributes,
+    });
 
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
         .${uniqueId} .start-rating-wrapper {
-            ${itemsDeskAlign}
+            ${itemsVDeskAlign}
+        }
+        .${uniqueId} .star-rating-inner {
+            ${deskGap}
+        }
+        .${uniqueId} .start-rating-title {
+            color: ${titleColor};
+            ${titleDeskTypo}
         }
     `;
 
     const tabletAllStyle = `
         .${uniqueId} .start-rating-wrapper {
-            ${itemsTabAlign}
+            ${itemsVTabAlign}
         }
-
+        .${uniqueId} .star-rating-inner {
+            ${tabGap}
+        }
+        .${uniqueId} .start-rating-title {
+            ${titleTabTypo}
+        }
     `;
 
     const mobileAllStyle = `
         .${uniqueId} .start-rating-wrapper {
-            ${itemsMobAlign}
+            ${itemsVMobAlign}
         }
-
+        .${uniqueId} .star-rating-inner {
+            ${mobGap}
+        }
+        .${uniqueId} .start-rating-title {
+            ${titleMobTypo}
+        }
     `;
 
     const allStyle = `
@@ -120,16 +155,18 @@ export default function Edit(props) {
             <style>{`${softMinifyCssStrings(allStyle)}`}</style>
             <div {...blockProps}>
                 <div className={classnames('start-rating-wrapper', titlePosition)}>
-                    {showTitle && (
-                        <RichText
-                            tagName={titleTag}
-                            className="start-rating-title"
-                            value={title}
-                            onChange={(v) => setAttributes({ title: v })}
-                            placeholder={__('Enter title', 'zolo-blocks')}
-                        />
-                    )}
-                    <StarRating rating={rating} total={5} />
+                    <div className={classnames('star-rating-inner', titlePosition)}>
+                        {showTitle && (
+                            <RichText
+                                tagName={titleTag}
+                                className="start-rating-title"
+                                value={title}
+                                onChange={(v) => setAttributes({ title: v })}
+                                placeholder={__('Enter title', 'zolo-blocks')}
+                            />
+                        )}
+                        <StarRating rating={rating} total={5} />
+                    </div>
                 </div>
             </div>
         </>
