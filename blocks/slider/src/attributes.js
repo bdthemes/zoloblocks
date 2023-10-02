@@ -103,6 +103,10 @@ const attributes = {
         type: 'string',
         default: 'slide',
     },
+    addNewSlideBlock: {
+        type: 'boolean',
+        default: false,
+    },
     // Generator
     ...generateResCounterAttributies(COLUMNS),
     ...generateResRangeAttributies(COLUMNS_GAP),

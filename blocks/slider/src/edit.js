@@ -79,6 +79,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         carouselEffect,
         sliderEffect,
         sliderOptions,
+        addNewSlideBlock,
     } = attributes;
 
     // unique ID
@@ -488,6 +489,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         const newSlideBlock = createBlock('zolo/slide');
         // Insert the new slide block
         dispatch('core/block-editor').insertBlocks(newSlideBlock, 100, clientId);
+        setAttributes({ addNewSlideBlock: !addNewSlideBlock });
     };
 
     // control the click event on the slider
@@ -579,8 +581,6 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         sliderEffect,
         slideItems,
     ]);
-
-    console.log(sliderOptions);
 
     const innerBlocksProps = useInnerBlocksProps(
         {

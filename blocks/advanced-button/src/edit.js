@@ -578,6 +578,17 @@ export default function Edit(props) {
 			}`
                 : ''
         }
+        ${
+            preset === 'button-4'
+                ? `.zolo-advanced-button.${uniqueId}.button-4 {
+					${
+                        presetFourStyles && (presetFourStyles.shadowColor || pfTabShadowWidth)
+                            ? `box-shadow: ${pfTabShadowWidth.replace(/;/g, '')} 0px 0px ${presetFourStyles.shadowColor};`
+                            : ''
+                    }
+				}`
+                : ''
+        }
 		${
             preset === 'button-5'
                 ? `.zolo-advanced-button.${uniqueId}.button-5:after {
@@ -652,6 +663,17 @@ export default function Edit(props) {
 				${pthMobBorder}
 				${pthMobBorderRadius}
 			}`
+                : ''
+        }
+        ${
+            preset === 'button-4'
+                ? `.zolo-advanced-button.${uniqueId}.button-4 {
+					${
+                        presetFourStyles && (presetFourStyles.shadowColor || pfMobShadowWidth)
+                            ? `box-shadow: ${pfMobShadowWidth.replace(/;/g, '')} 0px 0px ${presetFourStyles.shadowColor};`
+                            : ''
+                    }
+				}`
                 : ''
         }
 		${

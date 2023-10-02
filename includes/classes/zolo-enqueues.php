@@ -72,7 +72,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            if( !is_admin( ) ){
+            if( ! is_admin( ) && has_block( 'zolo/advanced-image-gallery' ) ){
 
                 // enqueue style for frontend
                 wp_enqueue_style( 'zolo-maginific-popup', ZOLO_ADMIN_URL . 'assets/css/magnific-popup/magnific-popup.css', [], ZOLO_VERSION );

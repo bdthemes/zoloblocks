@@ -112,4 +112,10 @@ return apply_filters( 'zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => ['zolo-slider-frontend']
     ],
+    'star-rating' => [
+        'name'             => 'star-rating',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/star-rating/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false 
+    ],
 ]);

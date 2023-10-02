@@ -1,0 +1,17 @@
+.wp-block-zolo-star-rating {
+    .start-rating-wrapper {
+        display: flex;
+        &.top {
+            flex-direction: column;
+        }
+        &.bottom {
+            flex-direction: column-reverse;
+        }
+        &.left {
+            flex-direction: row;
+        }
+        &.right {
+            flex-direction: row-reverse;
+        }
+    }
+}
