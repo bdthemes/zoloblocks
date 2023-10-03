@@ -1,5 +1,4 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-import { CountUp } from 'use-count-up';
 const { DisplayIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
@@ -35,7 +34,7 @@ const Save = ({ attributes }) => {
                             {hideCounter && (
                                 <>
                                     <RichText.Content tagName="span" className="counter" value={counterNumber} />
-                                    <div className="counter" data-count={counterNumber}></div>
+                                    <div className="animated-counter" data-count={counterNumber}></div>
                                     <RichText.Content tagName="span" className="zolo-counter-sub-text" value={counterSuffix} />
                                 </>
                             )}
