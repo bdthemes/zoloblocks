@@ -72,9 +72,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            
-
-            if(!is_admin(  )){
+            if(!is_admin()){
 
                 // enqueue style for frontend
                 wp_enqueue_style( 'zolo-maginific-popup', ZOLO_ADMIN_URL . 'assets/css/magnific-popup/magnific-popup.css', [], ZOLO_VERSION );
@@ -89,19 +87,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'zolo-popup-scripts', ZOLO_ADMIN_URL . 'assets/js/scripts.js', ['jquery','zolo-maginific-popup'], ZOLO_VERSION, true
                 );
             }
-
-        }
-        
-
-        /**
-         * Load Block Editor Assets
-         *
-         * @since 0.0.1
-         *
-         * @return void
-         */
-        public function editor_assets_loader()
-        {
+            
             //Register vendor bundle
             $dependency_path  = ZOLO_DIR_PATH . 'vendor-bundle/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
@@ -120,6 +106,18 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 true
             );
 
+        }
+        
+
+        /**
+         * Load Block Editor Assets
+         *
+         * @since 0.0.1
+         *
+         * @return void
+         */
+        public function editor_assets_loader()
+        {
             //Register Modules
             $modules_dep_path = ZOLO_DIR_PATH . 'modules/index.asset.php';
             $script_dependecy = file_exists($modules_dep_path) ? include $modules_dep_path : [
