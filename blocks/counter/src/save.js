@@ -35,7 +35,7 @@ const Save = ({ attributes }) => {
                                 <>
                                     <span className="counter" data-count={counterNumber}></span>
                                     <RichText.Content tagName="span" className="counter" value={counterNumber} />
-
+                                    <div className="animated-counter" data-count={counterNumber}></div>
                                     <RichText.Content tagName="span" className="zolo-counter-sub-text" value={counterSuffix} />
                                 </>
                             )}

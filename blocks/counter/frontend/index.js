@@ -11,30 +11,27 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var use_count_up__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! use-count-up */ "./node_modules/use-count-up/lib/index.module.js");
+/* harmony import */ var react_countup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-countup */ "./node_modules/react-countup/build/index.js");
 
 
 
-const CounterFrontend = _ref => {
-  let {
-    count
-  } = _ref;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(use_count_up__WEBPACK_IMPORTED_MODULE_1__.CountUp, {
-    isCounting: true,
-    end: count,
-    duration: 3.2
-  });
-};
+// import CountUp from 'react-countup';
+// const CounterFrontend = ({ count }) => {
+//     return <CountUp isCounting end={count} duration={3.2} />;
+// };
+
+console.log('counter frontend');
 
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
-  const counterItems = document.querySelectorAll('.counter');
-  if (counterItems.length) {
-    counterItems.forEach(item => {
-      const countValue = item.dataset.count;
-      (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(CounterFrontend, {
-        count: countValue
-      }), item);
+  const animatedCounters = document.querySelectorAll('.animated-counter');
+  console.log('animatedCounters', animatedCounters);
+  if (animatedCounters.length > 0) {
+    animatedCounters.forEach(counter => {
+      (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_countup__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        end: counter.dataset.count,
+        duration: 3.2
+      }), counter);
     });
   }
 });

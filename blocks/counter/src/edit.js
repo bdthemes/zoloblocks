@@ -6,6 +6,7 @@ import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+import CountUp from 'react-countup';
 /**
  * Internal depencencies
  */
@@ -789,6 +790,7 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <div class="zolo-counter-wrap zolo-counter-style-1">
                     <div class="zolo-counter-item">
+                        <CountUp end={1320} duration={3.2} />
                         {hideIcon && (
                             <div class="zolo-counter-icon">
                                 {iconType == 'icon' ? (
