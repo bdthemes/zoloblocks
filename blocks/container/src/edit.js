@@ -300,7 +300,6 @@ export default function Edit(props) {
                             onSelect={(variation) => {
                                 setAttributes({ templates: variation.innerBlocks });
                                 setAttributes({ variationStatus: false });
-                                console.log(variation);
                             }}
                             variations={variations}
                         />
