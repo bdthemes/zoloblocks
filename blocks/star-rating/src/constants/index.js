@@ -9,7 +9,6 @@ export const BLOCK_PREFIX = 'slide';
 // Block Settings
 export const ITEMS_ALIGN = 'itemsAlign';
 export const STAR_SIZE = 'starSize';
-export const STAR_SPACING = 'starSpacing';
 export const STAR_MARGIN = 'starMargin';
 
 // title

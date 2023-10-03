@@ -38,7 +38,7 @@ const {
 import objAttributes from './attributes';
 
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
-import { STAR_SIZE, STAR_SPACING, TITLE_GAP, ITEMS_ALIGN } from './constants';
+import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
 
 import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS } from '../../../src/global/constants';
 
@@ -116,14 +116,6 @@ function Inspector(props) {
                             <ResRangeControl
                                 label={__('Size', 'zolo-blocks')}
                                 controlName={STAR_SIZE}
-                                resRequiredProps={resRequiredProps}
-                                min={1}
-                                max={100}
-                                step={1}
-                            />
-                            <ResRangeControl
-                                label={__('Stars Gap', 'zolo-blocks')}
-                                controlName={STAR_SPACING}
                                 resRequiredProps={resRequiredProps}
                                 min={1}
                                 max={100}

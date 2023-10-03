@@ -116,6 +116,6 @@ return apply_filters( 'zolo_blocks_list_data', [
         'name'             => 'star-rating',
         'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/star-rating/block.json',
         'frontend-styles'  => ['zolo-block-common-style'],
-        'frontend-scripts' => false 
+        'frontend-scripts' => ['zolo-star-rating-frontend']
     ],
 ]);

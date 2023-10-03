@@ -30,7 +30,7 @@ const {
     generateBackgroundControlStyles,
 } = window.zoloModule;
 
-import { BLOCK_PREFIX, STAR_SIZE, STAR_SPACING, TITLE_GAP, ITEMS_ALIGN } from './constants';
+import { BLOCK_PREFIX, STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
 import Inspector from './inspector';
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
@@ -87,6 +87,17 @@ export default function Edit(props) {
         attributes,
     });
 
+    // Star Rating Style
+    const {
+        desktopRangeStyle: deskSize,
+        tabRangeStyle: tabSize,
+        mobRangeStyle: mobSize,
+    } = generateResRangeStyle({
+        controlName: STAR_SIZE,
+        property: 'width',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -101,6 +112,13 @@ export default function Edit(props) {
             color: ${titleColor};
             ${titleDeskTypo}
         }
+        .${uniqueId} .zolo-star-rating svg {
+            ${deskSize}
+            ${activeStarColor ? `fill: ${activeStarColor};` : ''}
+        }
+        .${uniqueId} .zolo-star-rating .empty-star svg {
+            ${inactiveStarColor ? `fill: ${inactiveStarColor};` : ''}
+        }
     `;
 
     const tabletAllStyle = `
@@ -113,6 +131,9 @@ export default function Edit(props) {
         .${uniqueId} .start-rating-title {
             ${titleTabTypo}
         }
+        .${uniqueId} .zolo-star-rating svg {
+            ${tabSize}
+        }
     `;
 
     const mobileAllStyle = `
@@ -124,6 +145,9 @@ export default function Edit(props) {
         }
         .${uniqueId} .start-rating-title {
             ${titleMobTypo}
+        }
+        .${uniqueId} .zolo-star-rating svg {
+            ${mobSize}
         }
     `;
 

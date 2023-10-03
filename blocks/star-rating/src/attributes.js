@@ -4,7 +4,7 @@
 const { generateResRangeAttributies, generateDimensionAttributes, generateTypographyAttributes, generateResAlignmentAttributies } =
     window.zoloModule;
 
-import { STAR_SIZE, STAR_SPACING, TITLE_GAP, ITEMS_ALIGN } from './constants';
+import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -25,7 +25,6 @@ const attributes = {
         defaultAlign: 'flex-start',
     }),
     ...generateResRangeAttributies(STAR_SIZE),
-    ...generateResRangeAttributies(STAR_SPACING),
     ...generateResRangeAttributies(TITLE_GAP),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     rating: {
