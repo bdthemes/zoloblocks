@@ -185,7 +185,7 @@ const attributes = {
     textColor: {
         type: 'string',
     },
-    textHoverColor: {
+    descColor: {
         type: 'string',
     },
     iconType: {

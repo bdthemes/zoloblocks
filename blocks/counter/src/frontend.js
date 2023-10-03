@@ -1,11 +1,5 @@
 import { render } from '@wordpress/element';
 import CountUp from 'react-countup';
-// import CountUp from 'react-countup';
-// const CounterFrontend = ({ count }) => {
-//     return <CountUp isCounting end={count} duration={3.2} />;
-// };
-
-console.log('counter frontend');
 
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {

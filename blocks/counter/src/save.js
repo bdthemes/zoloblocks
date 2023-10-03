@@ -33,10 +33,8 @@ const Save = ({ attributes }) => {
                         <div class="zolo-counter-count">
                             {hideCounter && (
                                 <>
-                                    <span className="counter" data-count={counterNumber}></span>
-                                    <RichText.Content tagName="span" className="counter" value={counterNumber} />
                                     <div className="animated-counter" data-count={counterNumber}></div>
-                                    <RichText.Content tagName="span" className="zolo-counter-sub-text" value={counterSuffix} />
+                                    <span className="zolo-counter-sub-text">{counterSuffix}</span>
                                 </>
                             )}
                         </div>

@@ -88,7 +88,7 @@ function Inspector(props) {
         containerBorderHoverColor,
         iconBackgroundHoverColor,
         textColor,
-        textHoverColor,
+        descColor,
         showHeading,
         showDesc,
         showButton,
@@ -599,32 +599,13 @@ function Inspector(props) {
                                 resRequiredProps={resRequiredProps}
                                 enableTransition={false}
                             />
-                            <TabPanelControl
-                                normalComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
-                                            color={textColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    textColor: value,
-                                                })
-                                            }
-                                        />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
-                                            color={textHoverColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    textHoverColor: value,
-                                                })
-                                            }
-                                        />
-                                    </>
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={textColor}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        textColor: value,
+                                    })
                                 }
                             />
                         </PanelBody>
@@ -634,7 +615,15 @@ function Inspector(props) {
                                 typoPrefixConstant={DESCRIPTION_TYPOGRAPHY}
                                 resRequiredProps={resRequiredProps}
                             />
-
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={descColor}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        descColor: value,
+                                    })
+                                }
+                            />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={DESCRIPTION_MARGIN}

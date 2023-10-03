@@ -790,7 +790,6 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <div class="zolo-counter-wrap zolo-counter-style-1">
                     <div class="zolo-counter-item">
-                        <CountUp end={1320} duration={3.2} />
                         {hideIcon && (
                             <div class="zolo-counter-icon">
                                 {iconType == 'icon' ? (
@@ -805,20 +804,14 @@ export default function Edit(props) {
                             <div class="zolo-counter-count">
                                 {hideCounter && (
                                     <>
-                                        <span className="counter">{counterNumber}</span>
+                                        <span className="counter">
+                                            <CountUp end={counterNumber} duration={3.2} />
+                                        </span>
                                         <span className="zolo-counter-sub-text">{counterSuffix}</span>
                                     </>
                                 )}
                             </div>
-                            {hideTitle && (
-                                <RichText
-                                    label={__('Counter Title', 'zolo-blocks')}
-                                    tagName="div"
-                                    className="zolo-counter-title"
-                                    value={titleText}
-                                    onChange={(titleText) => setAttributes({ titleText })}
-                                />
-                            )}
+                            {hideTitle && <div className="zolo-counter-title">{titleText}</div>}
                         </div>
                     </div>
                 </div>

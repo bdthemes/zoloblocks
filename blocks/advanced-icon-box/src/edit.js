@@ -81,7 +81,6 @@ export default function Edit(props) {
         showDesc,
         showButton,
         textColor,
-        textHoverColor,
         descColor,
         descHoverColor,
         iconAlignment,
@@ -517,9 +516,6 @@ export default function Edit(props) {
         	${titleTextStrokeStyle}
 			${titleMarginDesktop ? titleMarginDesktop : ''}
 			color: ${textColor ? textColor : ''};
-		}
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title:hover{
-			color: ${textHoverColor ? textHoverColor : ''};
 		}
 		.${uniqueId} .zolo-block-desc{
 			${descTypoDesktop}
