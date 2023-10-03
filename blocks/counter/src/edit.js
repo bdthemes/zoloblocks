@@ -6,7 +6,6 @@ import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import { CountUp } from 'use-count-up';
 /**
  * Internal depencencies
  */
@@ -790,7 +789,6 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <div class="zolo-counter-wrap zolo-counter-style-1">
                     <div class="zolo-counter-item">
-                        <CountUp isCounting end={1320} duration={3.2} />
                         {hideIcon && (
                             <div class="zolo-counter-icon">
                                 {iconType == 'icon' ? (
@@ -805,18 +803,8 @@ export default function Edit(props) {
                             <div class="zolo-counter-count">
                                 {hideCounter && (
                                     <>
-                                        <RichText
-                                            tagName="span"
-                                            className="counter"
-                                            value={counterNumber}
-                                            onChange={(counterNumber) => setAttributes({ counterNumber })}
-                                        />
-                                        <RichText
-                                            tagName="span"
-                                            className="zolo-counter-sub-text"
-                                            value={counterSuffix}
-                                            onChange={(counterSuffix) => setAttributes({ counterSuffix })}
-                                        />
+                                        <span className="counter">{counterNumber}</span>
+                                        <span className="zolo-counter-sub-text">{counterSuffix}</span>
                                     </>
                                 )}
                             </div>

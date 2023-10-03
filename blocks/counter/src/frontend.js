@@ -8,7 +8,7 @@ const CounterFrontend = ({ count }) => {
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
     const counterItems = document.querySelectorAll('.counter');
-    console.log(counterItems);
+
     if (counterItems.length) {
         counterItems.forEach((item) => {
             const countValue = item.dataset.count;
