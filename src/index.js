@@ -1,3 +1,6 @@
+//Import common-styles
+import "./common-styles.scss";
+
 //Import Global Hooks
 import './global/hooks';
 

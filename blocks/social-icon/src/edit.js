@@ -15,7 +15,6 @@ const {
     DisplayIcon,
     generateResRangeStyle,
     generateBorderStyle,
-    handleUniqueId,
     softMinifyCssStrings,
     generateResCounterStyle,
     generateDimensionStyle,
@@ -47,7 +46,7 @@ export default function Edit(props) {
     const {
         uniqueId,
         preset,
-        blockStyle,
+        zoloStyles,
         socialText,
         socialProfiles,
         socialBgColor,
@@ -59,14 +58,7 @@ export default function Edit(props) {
         presetBgColor,
     } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
+
 
     const blockProps = useBlockProps({
         className: classnames(className, `${preset} ${uniqueId}`),
@@ -214,7 +206,7 @@ export default function Edit(props) {
 		}
 		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-text {
 			${textTypoDesk}
-		}			
+		}
 		${
             socialColor === 'custom'
                 ? `.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item{
@@ -238,17 +230,17 @@ export default function Edit(props) {
 			${colGapTabStyle}
 			${rowGapTabStyle}
 			grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
-		}		
+		}
 		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item {
 			${borderStylesTab}
 			${paddingTab}
 			${gapTablet}
 			${btnRadiusTab}
 			${buttonSizeTab}
-		}		
+		}
 		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-text {
 			${textTypoTab}
-		}			 		
+		}
 	`;
 
     const mobileAllStyle = `
@@ -257,17 +249,17 @@ export default function Edit(props) {
 			${colGapMobStyle}
 			${rowGapMobStyle}
 			grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
-		}		
+		}
 		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item {
 			${borderStylesMob}
 			${paddingMob}
 			${gapMobile}
 			${btnRadiusMob}
 			${buttonSizeMob}
-		}		
+		}
 		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-text {
 			${textTypoMob}
-		}		
+		}
   	`;
 
     const allStyle = `
@@ -280,15 +272,15 @@ export default function Edit(props) {
 		}
 	`;
 
-    // Set All Style in "blockStyle" Attribute
+    // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
             desktop: desktopAllStyle,
             tablet: tabletAllStyle,
             mobile: mobileAllStyle,
         };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
+        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
+            setAttributes({ zoloStyles: styles });
         }
     }, [attributes]);
 

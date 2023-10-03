@@ -17,7 +17,6 @@ import classnames from 'classnames';
  * Internal depencencies
  */
 const {
-    handleUniqueId,
     softMinifyCssStrings,
     generateResAlignmentStyle,
     generateDimensionStyle,
@@ -74,20 +73,13 @@ export default function Edit(props) {
         textColor,
         linkColor,
         linkHoverColor,
-        blockStyle,
+        zoloStyles,
         containerHoverBorderColor,
         contentHorizontalPosition,
         contentVerticalPosition,
     } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
+
 
     /**
      * context
@@ -335,25 +327,25 @@ export default function Edit(props) {
      * All Style Combination
      */
 
-    const desktopAllStyle = `	
+    const desktopAllStyle = `
 		.${uniqueId}.zb-brand-item{
             ${deskContainerHeight}
 			${containerDeskBorderRadius}
 			${containerBoxShadow}
 			${containerDeskBGStyle}
             ${containerBorderDesk}
-		}		
+		}
 		.${uniqueId}.zb-brand-item:hover{
 			${brandContainerHoverBoxShadow}
             ${containerHoverBorderColor ? `border-color:${containerHoverBorderColor};` : ''}
 		}
 		.${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
-            ${brandPhotoPaddingDesk}	
+            ${brandPhotoPaddingDesk}
 			${deskImageWidth}
 			${brandPhotoBorderRadiusDesk}
 			${brandPhotoBoxShadow}
-			${brandPhotoDeskBGStyle}			
-			${brandPhotoMaringDesk}		
+			${brandPhotoDeskBGStyle}
+			${brandPhotoMaringDesk}
 			${photoBorderDesktop}
 		}
         .${uniqueId} .zb-brand-inner-content{
@@ -364,7 +356,7 @@ export default function Edit(props) {
             ${contentHorizontalPosition ? `align-items:${contentHorizontalPosition};` : ''}
             ${contentVerticalPosition ? `justify-content:${contentVerticalPosition};` : ''}
             ${contentDeskPadding}
-		}		
+		}
 		.${uniqueId} .zb-brand-title{
 			${titleTypoDesk}
 			${titleMarginDesk}
@@ -462,15 +454,15 @@ export default function Edit(props) {
 		}
 	`;
 
-    // Set All Style in "blockStyle" Attribute
+    // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
             desktop: desktopAllStyle,
             tablet: tabletAllStyle,
             mobile: mobileAllStyle,
         };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
+        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
+            setAttributes({ zoloStyles: styles });
         }
     }, [attributes]);
 

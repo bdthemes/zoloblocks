@@ -7,8 +7,8 @@ import UnitsBtn from '../units-btn';
 import ResetBtn from '../reset-btn';
 import { prefix } from '../../global/constants';
 
-const ResRangeControl = ({ label, controlName, units, resRequiredProps, min, max, step, noUnits }) => {
-    const { attributes, setAttributes, resMode } = resRequiredProps;
+const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, step, noUnits }) => {
+    const { attributes, setAttributes, resMode } = requiredProps;
     const {
         [`${prefix}${controlName}Range`]: desktopRange,
         [`${prefix}TAB${controlName}Range`]: tabRange,
@@ -46,7 +46,7 @@ const ResRangeControl = ({ label, controlName, units, resRequiredProps, min, max
                                 />
                             </div>
 
-                            <WithResDeviceBtn label={label} resRequiredProps={resRequiredProps} controlName={controlName} noResetBtn={true}>
+                            <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <RangeControl
                                     value={desktopRange}
                                     onChange={(val) =>
@@ -63,7 +63,7 @@ const ResRangeControl = ({ label, controlName, units, resRequiredProps, min, max
                     )}
 
                     {resMode == 'Tablet' && (
-                        <WithResDeviceBtn label={label} resRequiredProps={resRequiredProps} controlName={controlName}>
+                        <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
                             <RangeControl
                                 value={tabRange}
                                 onChange={(val) =>
@@ -79,7 +79,7 @@ const ResRangeControl = ({ label, controlName, units, resRequiredProps, min, max
                     )}
 
                     {resMode == 'Mobile' && (
-                        <WithResDeviceBtn label={label} resRequiredProps={resRequiredProps} controlName={controlName}>
+                        <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
                             <RangeControl
                                 value={mobRange}
                                 onChange={(val) =>
@@ -116,7 +116,7 @@ const ResRangeControl = ({ label, controlName, units, resRequiredProps, min, max
                                 />
                             </UnitsBtn>
 
-                            <WithResDeviceBtn label={label} resRequiredProps={resRequiredProps} controlName={controlName} noResetBtn={true}>
+                            <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <RangeControl
                                     value={desktopRange}
                                     onChange={(val) =>
@@ -151,7 +151,7 @@ const ResRangeControl = ({ label, controlName, units, resRequiredProps, min, max
                                     }}
                                 />
                             </UnitsBtn>
-                            <WithResDeviceBtn label={label} resRequiredProps={resRequiredProps} controlName={controlName}>
+                            <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
                                 <RangeControl
                                     value={tabRange}
                                     onChange={(val) =>
@@ -186,7 +186,7 @@ const ResRangeControl = ({ label, controlName, units, resRequiredProps, min, max
                                     }}
                                 />
                             </UnitsBtn>
-                            <WithResDeviceBtn label={label} resRequiredProps={resRequiredProps} controlName={controlName}>
+                            <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
                                 <RangeControl
                                     value={mobRange}
                                     onChange={(val) =>

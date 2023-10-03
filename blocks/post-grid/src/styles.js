@@ -60,7 +60,7 @@ const {
 function styles({ attributes, setAttributes }) {
     const {
         uniqueId,
-        blockStyle,
+        zoloStyles,
         titleColor,
         titleHoverColor,
         excerptColor,
@@ -681,7 +681,7 @@ function styles({ attributes, setAttributes }) {
       ${avatarHeightTab}
       ${avatarBorderTab}
       ${avatarBorderRadiusTab}
-    
+
     .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content{
       ${nameTypoTab}
     }
@@ -694,46 +694,46 @@ function styles({ attributes, setAttributes }) {
         ${wrapperBackgroundStylesMobile}
         ${wrapperBorderMob}
       }
-  
+
      .${uniqueId}.zolo-post-grid-wrap:hover{
         ${wrapperHoverBackgroundStylesMobile}
       }
-  
+
      .${uniqueId}.zolo-post-grid-wrap::before{
           ${wrapperOverlayStylesMobile}
       }
-  
+
      .${uniqueId}.zolo-post-grid-wrap:hover::before{
         ${wrapperHoverOverlayStylesMobile}
       }
-  
+
       .${uniqueId}.zolo-post-grid-wrap{
         grid-template-columns:repeat(${columnCountMob}, 1fr);
         ${colGapMob}
       }
-  
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-item{
         ${columnMobPadding}
         ${columnMobBGStyle}
         ${columnMobBorderStyle}
         ${columnMobBorderRadius}
       }
-  
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-image{
         ${thumbnailHeightMob}
       }
-  
-  
+
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-title{
         ${titleMarginMob}
         ${titleTypoMob}
       }
-  
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-desc p{
         ${excerptMarginMob}
         ${excerptTypoMob}
       }
-  
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-image{
         ${thumbMarginMob}
         ${thumbPaddingMob}
@@ -741,28 +741,28 @@ function styles({ attributes, setAttributes }) {
         ${thumbBorderMob}
         ${thumbBorderRadiusMob}
       }
-  
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-dateTime{
         ${metaTypoMob}
         ${metaMarginMob}
       }
-  
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-category{
         ${catGapMob}
         ${catMarginMob}
       }
-  
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-category a{
         ${catTypoMob}
         ${catPaddingMob}
         ${catBorderMob}
         ${catBorderRadiusMob}
       }
-  
+
       .${uniqueId}.zolo-post-grid-wrap  .zolo-post-link-btn{
         ${readMoreMarginMob}
       }
-  
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-link-btn a{
         ${readMoreGapMob}
         ${readMoreTypoMob}
@@ -770,27 +770,27 @@ function styles({ attributes, setAttributes }) {
         ${readMoreBorderMob}
         ${readMoreBorderRadiusMob}
       }
-  
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-box img{
         ${avatarWidthMob}
         ${avatarHeightMob}
         ${avatarBorderMob}
         ${avatarBorderRadiusMob}
-      
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content{
         ${nameTypoMob}
       }
     `;
 
-    // Set All Style in "blockStyle" Attribute
+    // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
             desktop: desktopAllStyle,
             tablet: tabletAllStyle,
             mobile: mobileAllStyle,
         };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
+        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
+            setAttributes({ zoloStyles: styles });
         }
     }, [attributes]);
 

@@ -38,8 +38,8 @@ class StyleGenerator {
     public function generate_style_on_render_block( $block_content, $block ) {
         if ( isset( $block['blockName'] ) && str_contains( $block['blockName'], 'zolo/' ) ) {
             do_action('zolo_block_render_block', $block);
-            if ( isset( $block['attrs']['blockStyle'] ) ) {
-                $style         = $this::zolo_generate_style( $block['attrs']['blockStyle'] );
+            if ( isset( $block['attrs']['zoloStyles'] ) ) {
+                $style         = $this::zolo_generate_style( $block['attrs']['zoloStyles'] );
                 $block_content = sprintf(
                     '<style>%1$s</style>%2$s',
                     $style,

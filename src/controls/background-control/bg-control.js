@@ -15,8 +15,8 @@ import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 
-const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
-	const { setAttributes, attributes, resMode } = resRequiredProps;
+const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
+	const { setAttributes, attributes, resMode } = requiredProps;
 
 	const {
 		[`${controlName}bg_hoverType`]: bg_hoverType,
@@ -246,8 +246,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																'Desktop' && (
 																<>
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Position"
 																	>
@@ -381,8 +381,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="X Position"
 																			>
@@ -440,8 +440,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Y Position"
 																			>
@@ -539,8 +539,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																	)}
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Repeat"
 																	>
@@ -599,8 +599,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																	</WithResDeviceBtn>
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Size"
 																	>
@@ -692,8 +692,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Width"
 																			>
@@ -737,8 +737,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																'Tablet' && (
 																<>
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Position"
 																	>
@@ -872,8 +872,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="X Position"
 																			>
@@ -934,8 +934,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Y Position"
 																			>
@@ -1036,8 +1036,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																	)}
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Repeat"
 																	>
@@ -1096,8 +1096,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																	</WithResDeviceBtn>
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Size"
 																	>
@@ -1189,8 +1189,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Width"
 																			>
@@ -1234,8 +1234,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																'Mobile' && (
 																<>
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Position"
 																	>
@@ -1369,8 +1369,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="X Position"
 																			>
@@ -1431,8 +1431,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Y Position"
 																			>
@@ -1533,8 +1533,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																	)}
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Repeat"
 																	>
@@ -1593,8 +1593,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																	</WithResDeviceBtn>
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Size"
 																	>
@@ -1686,8 +1686,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Width"
 																			>
@@ -1859,8 +1859,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																'Desktop' && (
 																<>
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Position"
 																	>
@@ -1994,8 +1994,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="X Position"
 																			>
@@ -2053,8 +2053,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Y Position"
 																			>
@@ -2152,8 +2152,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																	)}
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Repeat"
 																	>
@@ -2212,8 +2212,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																	</WithResDeviceBtn>
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Size"
 																	>
@@ -2305,8 +2305,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Width"
 																			>
@@ -2350,8 +2350,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																'Tablet' && (
 																<>
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Position"
 																	>
@@ -2485,8 +2485,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="X Position"
 																			>
@@ -2547,8 +2547,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Y Position"
 																			>
@@ -2649,8 +2649,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																	)}
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Repeat"
 																	>
@@ -2709,8 +2709,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																	</WithResDeviceBtn>
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Size"
 																	>
@@ -2802,8 +2802,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Width"
 																			>
@@ -2847,8 +2847,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																'Mobile' && (
 																<>
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Position"
 																	>
@@ -2982,8 +2982,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="X Position"
 																			>
@@ -3044,8 +3044,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Y Position"
 																			>
@@ -3146,8 +3146,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																	)}
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Repeat"
 																	>
@@ -3206,8 +3206,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																	</WithResDeviceBtn>
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Size"
 																	>
@@ -3299,8 +3299,8 @@ const BGControl = ({ controlName, resRequiredProps, noMainBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Width"
 																			>

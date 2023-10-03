@@ -41,7 +41,7 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const { preset, resMode, enableOverlay, overlayType, overlayColor, overlayGradient } = attributes;
 
-    const resRequiredProps = {
+    const requiredProps = {
         resMode,
         setAttributes,
         attributes,
@@ -57,25 +57,25 @@ function Inspector(props) {
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={SLIDE_BORDER}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={SLIDE_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={SLIDE_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                         </PanelBody>
                         <PanelBody title={__('Background', 'zolo-blocks')} initialOpen={false}>
                             <NormalBGControl
                                 label={__('Background', 'zolo-blocks')}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 controlName={SLIDE_BG}
                                 noMainBGImg={false}
                             />

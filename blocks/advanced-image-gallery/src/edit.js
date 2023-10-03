@@ -21,7 +21,6 @@ import classnames from 'classnames';
  * Internal depencencies
  */
 const {
-    handleUniqueId,
     softMinifyCssStrings,
     generateNormalBGControlStyles,
     generateBorderStyle,
@@ -78,7 +77,7 @@ export default function Edit(props) {
     const {
         uniqueId,
         preset,
-        blockStyle,
+        zoloStyles,
         showCaption,
         showLightbox,
         advancedGallery,
@@ -88,14 +87,7 @@ export default function Edit(props) {
         zoomIconHoverBorderColor,
     } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
+
 
     // block props
     const blockProps = useBlockProps({
@@ -430,7 +422,7 @@ export default function Edit(props) {
 			${containerBorderRadiusDesk}
 			${containerBoxShadow}
 			overflow:hidden;
-		}	
+		}
 		.${uniqueId}.zolo-img-gallery-${preset}:hover {
 			${containerHoverDeskBGStyle}
 			${containerHoverBorderDesk}
@@ -448,7 +440,7 @@ export default function Edit(props) {
 			${imageBoxShadow}
 			${imageMarginDesk}
 			${imagePaddingDesk}
-		}		
+		}
 		.${uniqueId} .zolo-image-wrap:hover {
 			${imageHoverDeskBGStyle}
 			${imageHoverBorderDesk}
@@ -462,7 +454,7 @@ export default function Edit(props) {
 			${headingBorderDesk}
 			${headingBorderRadiusDesk}
 			${headingBoxShadow}
-			${headingTypoDesk}			
+			${headingTypoDesk}
 		}
         .${uniqueId} .zolo-icon svg{
             color: ${zoomIconColor ? zoomIconColor : ''};
@@ -487,7 +479,7 @@ export default function Edit(props) {
 		${containerPaddingTab}
 		${containerBorderTab}
 		${containerBorderRadiusTab}
-	}		
+	}
 	.${uniqueId}.zolo-img-gallery-${preset}:hover {
 		${containerHoverTabBGStyle}
 		${containerHoverBorderTab}
@@ -525,17 +517,17 @@ export default function Edit(props) {
     .${uniqueId} .zolo-icon svg:hover{
         border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
         ${zoomIconBgHoverTab}
-    }    
+    }
 	`;
 
-    const mobileAllStyle = `		
+    const mobileAllStyle = `
 	.${uniqueId}.zolo-img-gallery-${preset} {
 		${containerMobBGStyle}
 		${containerMarginMob}
 		${containerPaddingMob}
 		${containerBorderMob}
 		${containerBorderRadiusMob}
-	}		
+	}
 	.${uniqueId}.zolo-img-gallery-${preset}:hover {
 		${containerHoverMobBGStyle}
 		${containerHoverBorderMob}
@@ -564,7 +556,7 @@ export default function Edit(props) {
 		${headingBorderRadiusMob}
 		${headingTypoMob}
 	}
-    
+
     .${uniqueId} .zolo-icon svg{
         ${zoomIconPaddingMob}
         ${zoomIconBorderMob}
@@ -587,15 +579,15 @@ export default function Edit(props) {
 		}
 	`;
 
-    // Set All Style in "blockStyle" Attribute
+    // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
             desktop: desktopAllStyle,
             tablet: tabletAllStyle,
             mobile: mobileAllStyle,
         };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
+        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
+            setAttributes({ zoloStyles: styles });
         }
     }, [attributes]);
 

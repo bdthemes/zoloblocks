@@ -10,7 +10,6 @@ import classnames from 'classnames';
  * Internal depencencies
  */
 const {
-    handleUniqueId,
     softMinifyCssStrings,
     generateNormalBGControlStyles,
     generateDimensionStyle,
@@ -39,16 +38,9 @@ import Inspector from './inspector';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, preset, blockStyle, borderHoverColor } = attributes;
+    const { uniqueId, preset, zoloStyles, borderHoverColor } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
+
 
     const blockProps = useBlockProps({
         className: classnames(className, `zb-brand-grid-wrap ${uniqueId} ${preset}`),
@@ -180,7 +172,7 @@ export default function Edit(props) {
         .${uniqueId}.zb-brand-grid-wrap:hover{
             ${containerHoverDeskBGStyle}
             ${containerBoxShadowHover}
-            ${borderHoverColor ? `border-color: ${borderHoverColor};` : ''} 
+            ${borderHoverColor ? `border-color: ${borderHoverColor};` : ''}
         }
     `;
 
@@ -204,7 +196,7 @@ export default function Edit(props) {
         .${uniqueId}.zb-brand-grid-wrap:hover{
             ${containerHoverTabBGStyle}
         }
-        
+
     `;
 
     const mobileAllStyle = `
@@ -238,15 +230,15 @@ export default function Edit(props) {
 		}
 	`;
 
-    // Set All Style in "blockStyle" Attribute
+    // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
             desktop: desktopAllStyle,
             tablet: tabletAllStyle,
             mobile: mobileAllStyle,
         };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
+        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
+            setAttributes({ zoloStyles: styles });
         }
     }, [attributes]);
 

@@ -1,16 +1,17 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
+import classnames from 'classnames';
 
 /**
  * Internal Dependencies
  */
-const { DisplayIcon } = window.zoloModule;
+const { classArrayToStr, DisplayIcon } = window.zoloModule;
 
-const Save = ({ attributes }) => {
-    const { uniqueId, preset, label, link, iconType, iconPosition, icon } = attributes;
+const Save = ({ className, attributes }) => {
+    const { uniqueId, preset, label, link, iconType, iconPosition, icon, parentClasses } = attributes;
     return (
         <div
             {...useBlockProps.save({
-                className: uniqueId,
+                className: classnames(className, classArrayToStr(parentClasses))
             })}
         >
             <div className={`zolo-block-wrapper zolo-advanced-button ${uniqueId} ${preset}`}>

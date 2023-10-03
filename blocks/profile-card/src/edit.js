@@ -13,7 +13,6 @@ import classnames from 'classnames';
  * Internal depencencies
  */
 const {
-    handleUniqueId,
     softMinifyCssStrings,
     generateBorderStyle,
     generateDimensionStyle,
@@ -84,7 +83,7 @@ export default function Edit(props) {
     const {
         uniqueId,
         preset,
-        blockStyle,
+        zoloStyles,
         showBadge,
         badgeText,
         showPhoto,
@@ -119,14 +118,7 @@ export default function Edit(props) {
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
+
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId} ${preset ? preset : ''}`),
@@ -626,7 +618,7 @@ export default function Edit(props) {
     const desktopAllStyle = `
 		.${uniqueId} .zb-profile-image {
 			${photoDeskOffset}
-		}	
+		}
 		.${uniqueId} .zb-profile-image img {
 			${photoDeskWidth}
 			${photoDeskHeight}
@@ -807,7 +799,7 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zb-profile-image {
 			${photoTabOffset}
-		}	
+		}
 		.${uniqueId} .zb-profile-image img {
 			${photoTabWidth}
 			${photoTabHeight}
@@ -900,7 +892,7 @@ export default function Edit(props) {
 		}
 		.${uniqueId} .zb-profile-image {
 			${photoMobOffset}
-		}	
+		}
 		.${uniqueId} .zb-profile-image img {
 			${photoMobWidth}
 			${photoMobHeight}
@@ -922,15 +914,15 @@ export default function Edit(props) {
     // 	${mobileAllStyle}
     // `;
 
-    // Set All Style in "blockStyle" Attribute
+    // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
             desktop: desktopAllStyle,
             tablet: tabletAllStyle,
             mobile: mobileAllStyle,
         };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
+        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
+            setAttributes({ zoloStyles: styles });
         }
     }, [attributes]);
 

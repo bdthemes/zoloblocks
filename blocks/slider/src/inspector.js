@@ -94,7 +94,7 @@ const Inspector = ({ attributes, setAttributes }) => {
         sliderEffect,
     } = attributes;
 
-    const resRequiredProps = {
+    const requiredProps = {
         resMode,
         attributes,
         setAttributes,
@@ -121,7 +121,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                             <ResRangeControl
                                 label={__('Slider Height', 'zolo-blocks')}
                                 controlName={SLIDER_HEIGHT}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={1}
                                 max={1000}
                             />
@@ -130,14 +130,14 @@ const Inspector = ({ attributes, setAttributes }) => {
                             <ResRangeControl
                                 label={__('Content Max Width', 'zolo-blocks')}
                                 controlName={CONTENT_WIDTH}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={1}
                                 max={2000}
                             />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={CONTENT_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                         </PanelBody>
@@ -246,14 +246,14 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <ResCounterControl
                                     label={__('Column Number', 'zolo-blocks')}
                                     controlName={COLUMNS}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     min={2}
                                     max={5}
                                 />
                                 <ResRangeControl
                                     label={__('Column Gap', 'zolo-blocks')}
                                     controlName={COLUMNS_GAP}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     min={1}
                                     max={100}
                                     step={1}
@@ -298,14 +298,14 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <ResRangeControl
                                     label={__('Width', 'zolo-blocks')}
                                     controlName={NAV_WIDTH}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     min={1}
                                     max={100}
                                 />
                                 <ResRangeControl
                                     label={__('Height', 'zolo-blocks')}
                                     controlName={NAV_HEIGHT}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     min={1}
                                     max={100}
                                     units={[
@@ -318,18 +318,18 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={NAV_BORDER}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
                                     controlName={NAV_BORDER_RADIUS}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
                                 <ResRangeControl
                                     label={__('Icon Size', 'zolo-blocks')}
                                     controlName={NAV_ICON_SIZE}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     min={1}
                                     max={100}
                                 />
@@ -348,7 +348,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             <NormalBGControl
                                                 label={__('Background', 'zolo-blocks')}
                                                 controlName={NAV_BG}
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                                 noMainBGImg={true}
                                             />
                                         </Fragment>
@@ -363,7 +363,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             <NormalBGControl
                                                 label={__('Background', 'zolo-blocks')}
                                                 controlName={NAV_HOVER_BG}
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                                 noMainBGImg={true}
                                             />
                                         </Fragment>
@@ -377,7 +377,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <ResRangeControl
                                         label={__('Space Between', 'zolo-blocks')}
                                         controlName={PAG_SPACING}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                         min={0}
                                         max={100}
                                     />

@@ -16,7 +16,6 @@ import { createBlock } from '@wordpress/blocks';
  */
 import Inspector from './inspector';
 const {
-    handleUniqueId,
     generateResRangeStyle,
     generateResCounterStyle,
     generateDimensionStyle,
@@ -62,7 +61,7 @@ import {
 export default function Edit({ attributes, setAttributes, className, clientId, isSelected }) {
     const {
         uniqueId,
-        blockStyle,
+        zoloStyles,
         slideItems,
         sliderType,
         autoplay,
@@ -82,15 +81,8 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         addNewSlideBlock,
     } = attributes;
 
-    // unique ID
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
+
+
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`),
@@ -467,15 +459,15 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
 		}
 	`;
 
-    // Set All Style in "blockStyle" Attribute
+    // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
             desktop: desktopAllStyle,
             tablet: tabletAllStyle,
             mobile: mobileAllStyle,
         };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
+        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
+            setAttributes({ zoloStyles: styles });
         }
     }, [attributes]);
 

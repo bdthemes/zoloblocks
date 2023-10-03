@@ -6,13 +6,13 @@ import { __ } from '@wordpress/i18n';
 
 const WithResDeviceBtn = ({
 	label,
-	resRequiredProps,
+	requiredProps,
 	children,
 	controlName,
 	noResetBtn = false,
 	noResponsive = false,
 }) => {
-	const { resMode, objAttributes, setAttributes } = resRequiredProps;
+	const { resMode, objAttributes, setAttributes } = requiredProps;
 	const [switcherIsOpen, setSwitcherIsOpen] = useState(false);
 	const [device, setDevice] = useState(() => resMode || 'Desktop');
 	const devicesRef = useRef();

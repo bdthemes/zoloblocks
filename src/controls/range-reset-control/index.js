@@ -9,10 +9,10 @@ const RangeResetControl = ({
 	max,
 	step,
 	help,
-	resRequiredProps,
+	requiredProps,
 }) => {
 	const dataAttributes = { min, max, step, help };
-	const { attributes, setAttributes, objAttributes } = resRequiredProps;
+	const { attributes, setAttributes, objAttributes } = requiredProps;
 	const { [controlName]: controlVal } = attributes;
 	return (
 		<div className="zb-res-range-control-wrapper">
@@ -27,7 +27,7 @@ const RangeResetControl = ({
 			</div>
 			<WithResDeviceBtn
 				label={label}
-				resRequiredProps={resRequiredProps}
+				requiredProps={requiredProps}
 				controlName={controlName}
 				noResetBtn={true}
 				noResponsive={true}

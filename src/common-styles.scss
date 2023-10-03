@@ -1,0 +1,28 @@
+// Responsive show/hide css
+.zolo-hide-desktop {
+	display: none;
+}
+
+.zolo-hide-tab {
+	display: none;
+}
+
+.zolo-hide-mobile {
+	display: none;
+}
+
+// Responsive show/hide css for Editor
+.wp-admin .zolo-hide-desktop {
+	display: block;
+	opacity: .5;
+}
+
+.wp-admin .zolo-hide-tab {
+	display: block;
+	opacity: .5;
+}
+
+.wp-admin .zolo-hide-mobile {
+	display: block;
+	opacity: .5;
+}

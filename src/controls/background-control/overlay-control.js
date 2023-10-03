@@ -15,8 +15,8 @@ import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 
-const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
-	const { setAttributes, attributes, resMode } = resRequiredProps;
+const OverlayControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
+	const { setAttributes, attributes, resMode } = requiredProps;
 
 	const {
 		[`${controlName}ovl_hoverType`]: ovl_hoverType,
@@ -291,8 +291,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																'Desktop' && (
 																<>
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Position"
 																	>
@@ -426,8 +426,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="X Position"
 																			>
@@ -488,8 +488,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Y Position"
 																			>
@@ -590,8 +590,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																	)}
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Repeat"
 																	>
@@ -650,8 +650,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																	</WithResDeviceBtn>
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Size"
 																	>
@@ -743,8 +743,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Width"
 																			>
@@ -788,8 +788,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																'Tablet' && (
 																<>
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Position"
 																	>
@@ -923,8 +923,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="X Position"
 																			>
@@ -985,8 +985,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Y Position"
 																			>
@@ -1087,8 +1087,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																	)}
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Repeat"
 																	>
@@ -1147,8 +1147,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																	</WithResDeviceBtn>
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Size"
 																	>
@@ -1240,8 +1240,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Width"
 																			>
@@ -1285,8 +1285,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																'Mobile' && (
 																<>
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Position"
 																	>
@@ -1420,8 +1420,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="X Position"
 																			>
@@ -1482,8 +1482,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Y Position"
 																			>
@@ -1584,8 +1584,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																	)}
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Repeat"
 																	>
@@ -1644,8 +1644,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																	</WithResDeviceBtn>
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Size"
 																	>
@@ -1737,8 +1737,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Width"
 																			>
@@ -1919,8 +1919,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																'Desktop' && (
 																<>
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Position"
 																	>
@@ -2054,8 +2054,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="X Position"
 																			>
@@ -2116,8 +2116,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Y Position"
 																			>
@@ -2218,8 +2218,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																	)}
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Repeat"
 																	>
@@ -2278,8 +2278,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																	</WithResDeviceBtn>
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Size"
 																	>
@@ -2371,8 +2371,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Width"
 																			>
@@ -2416,8 +2416,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																'Tablet' && (
 																<>
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Position"
 																	>
@@ -2551,8 +2551,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="X Position"
 																			>
@@ -2613,8 +2613,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Y Position"
 																			>
@@ -2715,8 +2715,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																	)}
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Repeat"
 																	>
@@ -2775,8 +2775,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																	</WithResDeviceBtn>
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Size"
 																	>
@@ -2868,8 +2868,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Width"
 																			>
@@ -2913,8 +2913,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																'Mobile' && (
 																<>
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Position"
 																	>
@@ -3048,8 +3048,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="X Position"
 																			>
@@ -3110,8 +3110,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Y Position"
 																			>
@@ -3212,8 +3212,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																	)}
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Repeat"
 																	>
@@ -3272,8 +3272,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																	</WithResDeviceBtn>
 
 																	<WithResDeviceBtn
-																		resRequiredProps={
-																			resRequiredProps
+																		requiredProps={
+																			requiredProps
 																		}
 																		label="Size"
 																	>
@@ -3365,8 +3365,8 @@ const OverlayControl = ({ controlName, resRequiredProps, noOverlayBGImg }) => {
 																			/>
 
 																			<WithResDeviceBtn
-																				resRequiredProps={
-																					resRequiredProps
+																				requiredProps={
+																					requiredProps
 																				}
 																				label="Width"
 																			>

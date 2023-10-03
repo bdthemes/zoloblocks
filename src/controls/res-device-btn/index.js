@@ -4,8 +4,8 @@ import { __ } from '@wordpress/i18n';
 import '../scss/componets/_resdevice-btn.scss';
 import useClickOutside from './use-click-outside';
 
-const ResDeviceBtn = ({ label, resRequiredProps, children, className }) => {
-	const { resMode, setAttributes } = resRequiredProps;
+const ResDeviceBtn = ({ label, requiredProps, children, className }) => {
+	const { resMode, setAttributes } = requiredProps;
 	const [switcherIsOpen, setSwitcherIsOpen] = useState(false);
 	const [device, setDevice] = useState(() => resMode || 'Desktop');
 	const devicesRef = useRef();

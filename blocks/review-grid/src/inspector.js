@@ -15,7 +15,7 @@ function Inspector(props) {
     const { preset, resMode, showPhoto, addReviewerWebsiteLink, showName, showDesignation, showTestimonialMessage, showRating } =
         attributes;
 
-    const resRequiredProps = {
+    const requiredProps = {
         resMode,
         setAttributes,
         attributes,
@@ -129,19 +129,19 @@ function Inspector(props) {
                             <ResCounterControl
                                 label={__('Grid Columns', 'zolo-blocks')}
                                 controlName={GRID_COLUMNS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={1}
                                 max={5}
                             />
                             <ResRangeControl
                                 label={__('Columns Gap', 'zolo-blocks')}
                                 controlName={COLUMNS_GAP}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResRangeControl
                                 label={__('Rows Gap', 'zolo-blocks')}
                                 controlName={ROWS_GAP}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                         </PanelBody>
                     </>
@@ -149,7 +149,7 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
-                            <NormalBGControl resRequiredProps={resRequiredProps} controlName={REVIEW_GRID_BG} noMainBGImg={false} />
+                            <NormalBGControl requiredProps={requiredProps} controlName={REVIEW_GRID_BG} noMainBGImg={false} />
                         </PanelBody>
                     </>
                 }
@@ -159,12 +159,12 @@ function Inspector(props) {
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={REVIEW_GRID_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={REVIEW_GRID_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                         </PanelBody>
                     </>

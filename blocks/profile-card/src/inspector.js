@@ -118,7 +118,7 @@ function Inspector(props) {
         iconHoverBorderColor,
     } = attributes;
 
-    const resRequiredProps = {
+    const requiredProps = {
         resMode,
         setAttributes,
         attributes,
@@ -410,38 +410,38 @@ function Inspector(props) {
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={HEADER_AREA_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={HEADER_AREA_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <NormalBGControl resRequiredProps={resRequiredProps} controlName={HEADER_AREA_BG} noMainBGImg={true} />
+                            <NormalBGControl requiredProps={requiredProps} controlName={HEADER_AREA_BG} noMainBGImg={true} />
                         </PanelBody>
                         <PanelBody title={__('Header Badge', 'zolo-blocks')} initialOpen={false}>
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={BADGE_TYPO}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={BADGE_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={HEADER_BADGE_BORDER}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={BADGE_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <ColorControl
@@ -453,31 +453,31 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <NormalBGControl resRequiredProps={resRequiredProps} controlName={BADGE_BG} noMainBGImg={true} />
+                            <NormalBGControl requiredProps={requiredProps} controlName={BADGE_BG} noMainBGImg={true} />
                         </PanelBody>
                         <PanelBody title={__('Content Area', 'zolo-blocks')} initialOpen={false}>
-                            <NormalBGControl resRequiredProps={resRequiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
+                            <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={CONTENT_BORDER}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={CONTENT_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={CONTENT_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={CONTENT_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                         </PanelBody>
@@ -485,24 +485,24 @@ function Inspector(props) {
                             <ResRangeControl
                                 label={__('Size', 'zolo-blocks')}
                                 controlName={PHOTO_SIZE}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResRangeControl
                                 label={__('Vertical Offset', 'zolo-blocks')}
                                 controlName={PHOTO_VOFFSET}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={-250}
                                 max={250}
                             />
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={PHOTO_BORDER}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={PHOTO_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                         </PanelBody>
@@ -519,12 +519,12 @@ function Inspector(props) {
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={PROFILE_NAME}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={NAME_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                         </PanelBody>
@@ -541,12 +541,12 @@ function Inspector(props) {
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={PROFILE_USERNAME}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={USERNAME_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                         </PanelBody>
@@ -563,12 +563,12 @@ function Inspector(props) {
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={EMAIL_TYPO}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={EMAIL_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                         </PanelBody>
@@ -585,12 +585,12 @@ function Inspector(props) {
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={BIO_TYPO}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={BIO_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                         </PanelBody>
@@ -607,7 +607,7 @@ function Inspector(props) {
                             <TypographyDropdown
                                 label={__('Number Typography', 'zolo-blocks')}
                                 typoPrefixConstant={NUMBER_TYPO}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <CardDivider />
                             <ColorControl
@@ -622,18 +622,18 @@ function Inspector(props) {
                             <TypographyDropdown
                                 label={__('Label Typography', 'zolo-blocks')}
                                 typoPrefixConstant={LABEL_TYPO}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <CardDivider />
                             <ResRangeControl
                                 label={__('Items Gap', 'zolo-blocks')}
                                 controlName={STATUS_GAP}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={STATUS_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                         </PanelBody>
@@ -641,7 +641,7 @@ function Inspector(props) {
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={BTN_TYPO}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <TabPanelControl
                                 normalComponents={
@@ -655,21 +655,21 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                        <NormalBGControl resRequiredProps={resRequiredProps} controlName={FBTN_BG} noMainBGImg={false} />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={FBTN_BG} noMainBGImg={false} />
                                         <BorderControl
                                             label={__('Border', 'zolo-blocks')}
                                             controlName={FBTN_BORDER}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                         />
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zolo-blocks')}
                                             controlName={FBTN_BORDER_RADIUS}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
                                         <BoxShadowControl
                                             controlName={FBTN_BOX_SHADOW}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
                                     </>
@@ -695,13 +695,13 @@ function Inspector(props) {
                                             }
                                         />
                                         <NormalBGControl
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             controlName={FBTN_HOVER_BG}
                                             noMainBGImg={false}
                                         />
                                         <BoxShadowControl
                                             controlName={FBTN_HOVER_BOX_SHADOW}
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
                                     </>
@@ -710,13 +710,13 @@ function Inspector(props) {
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={FBTN_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={FBTN_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                         </PanelBody>
@@ -725,32 +725,32 @@ function Inspector(props) {
                                 <ResRangeControl
                                     label={__('Icon Size', 'zolo-blocks')}
                                     controlName={ICONS_SIZE}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
                                 <ResRangeControl
                                     label={__('Icon Spacing', 'zolo-blocks')}
                                     controlName={ICONS_SPACING}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={ICONS_BORDER}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
                                     controlName={ICONS_BORDER_RADIUS}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zolo-blocks')}
                                     controlName={ICONS_PADDING}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={ICONS_MARGIN}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
                                 <TabPanelControl
                                     normalComponents={
@@ -765,7 +765,7 @@ function Inspector(props) {
                                                 }
                                             />
                                             <NormalBGControl
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                                 controlName={ICONS_BG}
                                                 noMainBGImg={true}
                                             />
@@ -784,7 +784,7 @@ function Inspector(props) {
                                             />
 
                                             <NormalBGControl
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                                 controlName={ICONS_HOVER_BG}
                                                 noMainBGImg={true}
                                             />

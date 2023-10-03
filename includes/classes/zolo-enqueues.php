@@ -59,7 +59,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
         public function block_assets_loader() {
             wp_register_style(
                 'zolo-block-common-style',
-                ZOLO_ADMIN_URL . 'dist/style.css',
+                ZOLO_ADMIN_URL . 'build/dist/style.css',
                 [],
                 ZOLO_VERSION
             );
@@ -88,7 +88,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 );
             }
 
-            // Swiper Scripts and Styles 
+            // Swiper Scripts and Styles
             if( ! is_admin( ) && has_block( 'zolo/slider' ) ) {
                 wp_enqueue_style(
                     'zolo-swiper-editor-style',
@@ -96,7 +96,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     [],
                     ZOLO_VERSION
                 );
-    
+
                 wp_enqueue_script(
                     'zolo-swiper-editor-script',
                     ZOLO_ADMIN_URL . 'assets/js/swiper/swiper-bundle.min.js',
@@ -105,9 +105,9 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     true
                 );
             }
-            
+
         }
-        
+
 
         /**
          * Load Block Editor Assets
@@ -137,7 +137,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             );
 
             //Register Modules
-            $modules_dep_path = ZOLO_DIR_PATH . 'modules/index.asset.php';
+            $modules_dep_path = ZOLO_DIR_PATH . 'build/module/index.asset.php';
             $script_dependecy = file_exists($modules_dep_path) ? include $modules_dep_path : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
@@ -148,13 +148,13 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // Enqueue Modules Scripts
             wp_register_script(
                 'zolo-block-modules',
-                ZOLO_ADMIN_URL . 'modules/index.js',
+                ZOLO_ADMIN_URL . 'build/module/index.js',
                 $script_dependecy['dependencies'],
                 $version,
                 true
             );
 
-            $dependency_path  = ZOLO_DIR_PATH . 'dist/index.asset.php';
+            $dependency_path  = ZOLO_DIR_PATH . 'build/dist/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
@@ -177,7 +177,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // Enqueue Scripts
             wp_enqueue_script(
                 'zolo-block-editor',
-                ZOLO_ADMIN_URL . 'dist/index.js',
+                ZOLO_ADMIN_URL . 'build/dist/index.js',
                 $script_dependecy,
                 $version,
                 true
@@ -186,7 +186,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // Controls Editor style.
             wp_enqueue_style(
                 'zolo-block-control-editor-style',
-                ZOLO_ADMIN_URL . 'modules/style.css',
+                ZOLO_ADMIN_URL . 'build/module/style.css',
                 [
                     'wp-edit-blocks',
                     'zolo-block-common-style',
