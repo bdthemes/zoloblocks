@@ -94,7 +94,6 @@ function Inspector(props) {
         objAttributes,
     };
 
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -112,7 +111,7 @@ function Inspector(props) {
                                 }
                             />
                             <ResAlignmentControl
-                                label={__('Button Alignmet', 'zolo-blocks')}
+                                label={__('Button Alignment', 'zolo-blocks')}
                                 controlName={BUTTON_ALIGNMENT}
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}

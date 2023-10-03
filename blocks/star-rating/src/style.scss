@@ -1,0 +1,36 @@
+.wp-block-zolo-star-rating {
+    .start-rating-wrapper {
+        display: flex;
+        .star-rating-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &.top {
+                flex-direction: column;
+            }
+            &.bottom {
+                flex-direction: column-reverse;
+            }
+            &.left {
+                flex-direction: row;
+            }
+            &.right {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+
+    .zolo-star-rating svg {
+        width: 18px;
+        height: 18px;
+        fill: #f0ad4e;
+    }
+
+    .start-rating-title {
+        margin: 0 !important;
+    }
+
+    .star-rating-inner {
+        gap: 10px;
+    }
+}

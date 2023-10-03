@@ -77,6 +77,8 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         speed,
         carouselEffect,
         sliderEffect,
+        sliderOptions,
+        addNewSlideBlock,
     } = attributes;
 
 
@@ -326,42 +328,42 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
      * Block Styles
      */
     const desktopAllStyle = `
-        .${uniqueId} .swiper-slide {
+        .${uniqueId}.wp-block-zolo-slider .swiper-slide {
             ${deskHeight}
         }
-        .${uniqueId} .swiper-content-outer {
+        .${uniqueId}.wp-block-zolo-slider .swiper-content-outer {
             ${deskContentWidth}
             ${contentPaddingDesktop}
         }
-        .${uniqueId} .swiper-button-next, .${uniqueId} .swiper-button-prev {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev {
             ${navBorderStyles}
             ${navBorderRadiusDesktop}
             ${navNormalBGStyle}
             ${navDeskWidth}
             ${navDeskHeight}
         }
-        .${uniqueId} .swiper-button-next:hover, .${uniqueId} .swiper-button-prev:hover {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover {
             ${navHoverBGStyle}
         }
-        .swiper-button-next:after, .swiper-button-prev:after {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:after {
             color: ${navColor};
             ${navDeskSize}
 
         }
-        .swiper-button-next:hover:after, .swiper-button-prev:hover:after {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover:after {
             color: ${navHoverColor};
         }
-        .${uniqueId} .swiper-pagination-bullets {
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets {
             ${pagSpacingDesktop}
         }
-        .${uniqueId} .swiper-pagination-bullets .swiper-pagination-bullet {
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets .swiper-pagination-bullet {
             ${pagDeskWidth}
             ${pagDeskHeight}
             ${pagBorderStyles}
             ${pagBorderRadiusDesktop}
             ${pagNormalBGStyle}
         }
-        .${uniqueId} .swiper-pagination-bullet-active {
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagDeskWidth}
             ${apagDeskHeight}
             ${apagBorderStyles}
@@ -370,27 +372,27 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         }
     `;
     const tabletAllStyle = `
-        .${uniqueId} .swiper-slide {
+        .${uniqueId}.wp-block-zolo-slider .swiper-slide {
             ${tabHeight}
         }
-        .${uniqueId} .swiper-content-outer {
+        .${uniqueId}.wp-block-zolo-slider .swiper-content-outer {
             ${tabContentWidth}
             ${contentPaddingTab}
         }
-        .${uniqueId} .swiper-button-next, .${uniqueId} .swiper-button-prev {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev {
             ${navTabWidth}
             ${navTabHeight}
             ${navBorderStylesTab}
             ${navBorderRadiusTab}
             ${navNormalBGStyleTab}
         }
-        .${uniqueId} .swiper-button-next:hover, .${uniqueId} .swiper-button-prev:hover {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover {
             ${navHoverBGStyleTab}
         }
-        .swiper-button-next:after, .swiper-button-prev:after {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:after {
             ${navTabSize}
         }
-        .${uniqueId} .swiper-pagination-bullet {
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullet {
             ${pagTabWidth}
             ${pagTabHeight}
             ${pagBorderStylesTab}
@@ -398,7 +400,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
             ${pagNormalBGStyleTab}
             ${pagSpacingTab}
         }
-        .${uniqueId} .swiper-pagination-bullet-active {
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagTabWidth}
             ${apagTabHeight}
             ${apagBorderStylesTab}
@@ -407,27 +409,27 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         }
     `;
     const mobileAllStyle = `
-        .${uniqueId} .swiper-slide {
+        .${uniqueId}.wp-block-zolo-slider .swiper-slide {
             ${mobHeight}
         }
-        .${uniqueId} .swiper-content-outer {
+        .${uniqueId}.wp-block-zolo-slider .swiper-content-outer {
             ${mobContentWidth}
             ${contentPaddingMob}
         }
-        .${uniqueId} .swiper-button-next, .${uniqueId} .swiper-button-prev {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev {
             ${navMobWidth}
             ${navMobHeight}
             ${navBorderStylesMob}
             ${navBorderRadiusMob}
             ${navNormalBGStyleMob}
         }
-        .${uniqueId} .swiper-button-next:hover, .${uniqueId} .swiper-button-prev:hover {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover {
             ${navHoverBGStyleMob}
         }
-        .swiper-button-next:after, .swiper-button-prev:after {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:after {
             ${navMobSize}
         }
-        .${uniqueId} .swiper-pagination-bullet {
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullet {
             ${pagMobWidth}
             ${pagMobHeight}
             ${pagBorderStylesMob}
@@ -435,7 +437,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
             ${pagNormalBGStyleMob}
             ${pagSpacingMob}
         }
-        .${uniqueId} .swiper-pagination-bullet-active {
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets .swiper-pagination-bullet-active {
             ${apagMobWidth}
             ${apagMobHeight}
             ${apagBorderStylesMob}
@@ -479,6 +481,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         const newSlideBlock = createBlock('zolo/slide');
         // Insert the new slide block
         dispatch('core/block-editor').insertBlocks(newSlideBlock, 100, clientId);
+        setAttributes({ addNewSlideBlock: !addNewSlideBlock });
     };
 
     // control the click event on the slider
@@ -501,7 +504,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
     }, []);
 
     // slider options init
-    const axvartSliderInit = function (sliderE, options) {
+    const zoloSliderInit = function (sliderE, options) {
         if (sliderE.swiper) {
             sliderE.swiper.destroy();
         }
@@ -548,7 +551,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
 
         setAttributes({ sliderOptions: options });
 
-        axvartSliderInit(swiperRef.current, options);
+        zoloSliderInit(swiperRef.current, options);
     }, [
         sliderType,
         deskCol,
@@ -569,6 +572,7 @@ export default function Edit({ attributes, setAttributes, className, clientId, i
         carouselEffect,
         sliderEffect,
         slideItems,
+        addNewSlideBlock,
     ]);
 
     const innerBlocksProps = useInnerBlocksProps(

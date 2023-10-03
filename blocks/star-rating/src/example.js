@@ -1,6 +1,6 @@
 const Example = {
     attributes: {
-        slideItems: 1,
+        memberName: 'John Doe',
     },
 };
 
