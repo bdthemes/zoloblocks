@@ -17,7 +17,7 @@ const Save = ({ attributes }) => {
     } = attributes;
     return (
         <div {...useBlockProps.save()}>
-            <div class="zolo-counter-wrap zolo-counter-style-1">
+            <div class={`zolo-counter-wrap zolo-counter-${preset} ${uniqueId}`}>
                 <div class="zolo-counter-item">
                     {hideIcon && (
                         <div class="zolo-counter-icon">

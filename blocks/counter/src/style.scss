@@ -10,6 +10,8 @@
     }
 
     .zolo-counter-item {
+        display: flex;
+        flex-direction: column;
         padding: 40px;
         overflow: hidden;
         background-color: #f7f7f7;

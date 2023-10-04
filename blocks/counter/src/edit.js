@@ -191,7 +191,7 @@ export default function Edit(props) {
         mobAlignStyle: iconAlignmentMob,
     } = generateResAlignmentStyle({
         controlName: ICON_BOX_ALIGNMENT,
-        property: 'text-align',
+        property: 'align-items',
         attributes,
     });
 
@@ -484,26 +484,25 @@ export default function Edit(props) {
         attributes,
     });
 
+    console.log(iconAlignmentDesktop);
     /**
      * All Style Combination
      */
     const desktopAllStyle = `	
-		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
-			${containerDeskBGStyle}
+		.${uniqueId}.zolo-counter-${preset} .zolo-counter-item{
+            ${iconAlignmentDesktop};
+			${containerDeskBGStyle}            
 			${containerBorderDeskStyle}
 			${containerDeskBorderRadius}
 			${containerBoxShadow}
 			${containerMarginDesk}
 			${containerPaddingDesk}
 		}
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
+        .${uniqueId}.zolo-counter-${preset} .zolo-counter-item:hover{
             border-color: ${containerBorderHoverColor ? containerBorderHoverColor : ''};
             ${containerHoverBoxShadow}
         }
-		.${uniqueId} .zolo-block-icon-wrap{
-			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
-			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
-		}
+		
 		.${uniqueId} .zolo-block-body-content{
 			text-align: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 		}
@@ -788,7 +787,7 @@ export default function Edit(props) {
             <style>{` ${softMinifyCssStrings(allStyle)}`}</style>
 
             <div {...blockProps}>
-                <div class="zolo-counter-wrap zolo-counter-style-1">
+                <div class={`zolo-counter-wrap zolo-counter-${preset} ${uniqueId}`}>
                     <div class="zolo-counter-item">
                         {hideIcon && (
                             <div class="zolo-counter-icon">
