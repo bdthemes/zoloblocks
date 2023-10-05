@@ -64,7 +64,7 @@ import {
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS, POSITIONS } from '../../../src/global/constants';
+import { COUNTER_CONTENT_ALIGNS, FLEX_ALIGN_OPTIONS, POSITIONS } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -108,6 +108,7 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
+    console.log(iconAlignment);
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -244,17 +245,14 @@ function Inspector(props) {
                         <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <NormalBGControl resRequiredProps={resRequiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
                             <IconicBtnGroup
-                                label={__('Content Alignment', 'zolo-blocks')}
-                                value={presetOneStyles.contentPosition}
+                                label={__('Icon Alignment', 'zolo-blocks')}
+                                value={iconAlignment}
                                 onChange={(value) =>
                                     setAttributes({
-                                        presetOneStyles: {
-                                            ...presetOneStyles,
-                                            contentPosition: value,
-                                        },
+                                        iconAlignment: value,
                                     })
                                 }
-                                options={DEFAULT_ALIGNS}
+                                options={COUNTER_CONTENT_ALIGNS}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}

@@ -484,13 +484,12 @@ export default function Edit(props) {
         attributes,
     });
 
-    console.log(iconAlignmentDesktop);
     /**
      * All Style Combination
      */
     const desktopAllStyle = `	
 		.${uniqueId}.zolo-counter-${preset} .zolo-counter-item{
-            ${iconAlignmentDesktop};
+            align-items:${iconAlignment ? iconAlignment : 'flex-start'};
 			${containerDeskBGStyle}            
 			${containerBorderDeskStyle}
 			${containerDeskBorderRadius}
