@@ -298,11 +298,7 @@ function Inspector({ attributes, setAttributes }) {
                                 requiredProps={requiredProps}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={COLUMN_BG} noMainBGImg={true} />
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={COLUMN_BORDER}
-                                requiredProps={requiredProps}
-                            />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={COLUMN_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={COLUMN_BORDER_RADIUS}
@@ -499,11 +495,7 @@ function Inspector({ attributes, setAttributes }) {
                                     max={100}
                                     step={1}
                                 />
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={CAT_BORDER}
-                                    requiredProps={requiredProps}
-                                />
+                                <BorderControl label={__('Border', 'zolo-blocks')} controlName={CAT_BORDER} requiredProps={requiredProps} />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
                                     controlName={CAT_BORDER_RADIUS}

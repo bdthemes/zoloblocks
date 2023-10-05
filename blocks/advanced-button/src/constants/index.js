@@ -24,7 +24,6 @@ export const PRESETS = [
 export const BUTTON_BG = 'buttonBg';
 export const BUTTON_HOVER_BG_COLOR = 'buttonHover';
 export const BUTTON_PADDING = 'buttonPadding';
-export const BUTTON_MARGIN = 'buttonMargin';
 export const BUTTON_ALIGNMENT = 'buttonAlignment';
 export const BUTTON_BORDER = 'buttonBorder';
 export const BUTTON_BORDER_RADIUS = 'buttonBorderRadius';

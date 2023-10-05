@@ -76,7 +76,7 @@ function Inspector(props) {
                             <ResAlignmentControl
                                 label={__('Alignment', 'zolo-blocks')}
                                 controlName={ITEMS_ALIGN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={resRequiredProps}
                                 alignOptions={FLEX_HORIZONTAL_OPTIONS}
                             />
                         </PanelBody>
@@ -116,7 +116,7 @@ function Inspector(props) {
                             <ResRangeControl
                                 label={__('Size', 'zolo-blocks')}
                                 controlName={STAR_SIZE}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={resRequiredProps}
                                 min={1}
                                 max={100}
                                 step={1}
@@ -153,7 +153,7 @@ function Inspector(props) {
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={TITLE_TYPO}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={resRequiredProps}
                                 />
                                 <ColorControl
                                     label={__('Color', 'zolo-blocks')}
@@ -163,7 +163,7 @@ function Inspector(props) {
                                 <ResRangeControl
                                     label={__('Title Gap', 'zolo-blocks')}
                                     controlName={TITLE_GAP}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={resRequiredProps}
                                     min={1}
                                     max={100}
                                     step={1}

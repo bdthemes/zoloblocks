@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TextControl, RangeControl, CardDivider } from '@wordpress/components';
+import { PanelBody, SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 
@@ -23,7 +23,7 @@ const {
     IconPicker,
     LinkControl,
     IconicBtnGroup,
-    AdvancedOptions
+    AdvancedOptions,
 } = window.zoloModule;
 
 import { TEXT_ALIGN_OPTIONS, ICON_POSITIONS, ICON_STATUS } from '../../../src/global/constants';
@@ -35,7 +35,6 @@ import {
     BUTTON_BORDER,
     BUTTON_BORDER_RADIUS,
     BUTTON_PADDING,
-    BUTTON_MARGIN,
     BUTTON_BG,
     BUTTON_HOVER_BG_COLOR,
     BUTTON_BOX_SHADOW,
@@ -419,22 +418,24 @@ function Inspector(props) {
                                 )}
                             </PanelBody>
                         )}
-                        <PanelBody title={__('Button', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Button', 'zolo-blocks')} initialOpen={true}>
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={BUTTON_TYPOGRAPHY}
                                 requiredProps={requiredProps}
                             />
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={BUTTON_BORDER}
-                                requiredProps={requiredProps}
-                            />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={BUTTON_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={BUTTON_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={BUTTON_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
                             />
                             <TabPanelControl
                                 normalComponents={
@@ -577,26 +578,7 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                      <AdvancedOptions
-                        attributes={attributes}
-                        setAttributes={setAttributes}
-                        requiredProps={requiredProps}
-                      />
-                        {/* Advanced Controls */}
-                        <PanelBody title={__('Block', 'zolo-blocks')} initialOpen={false}>
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={BUTTON_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={BUTTON_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                        </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />
