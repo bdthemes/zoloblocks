@@ -34,6 +34,9 @@ import {
     CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
+    ICON_SIZE,
+
+    // old
     ICON_BOX_ALIGNMENT,
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
@@ -41,7 +44,6 @@ import {
     DESCRIPTION_MARGIN,
     ICON_BORDER,
     ICON_BORDER_RADIUS,
-    ICON_SIZE,
     ICON_PADDING,
     ICON_MARGIN,
     BUTTON_BG_COLOR,
@@ -489,7 +491,7 @@ export default function Edit(props) {
      */
     const desktopAllStyle = `	
 		.${uniqueId}.zolo-counter-${preset} .zolo-counter-item{
-            align-items:${iconAlignment ? iconAlignment : 'flex-start'};
+            align-items:${iconAlignment ? iconAlignment : ''};
 			${containerDeskBGStyle}            
 			${containerBorderDeskStyle}
 			${containerDeskBorderRadius}
@@ -497,6 +499,22 @@ export default function Edit(props) {
 			${containerMarginDesk}
 			${containerPaddingDesk}
 		}
+        .wp-block-zolo-counter .zolo-counter-style-1.${uniqueId} .zolo-counter-icon i {
+			${iconSize}
+			${borderStyles}
+			${iconBorderRadiusDesktop}
+			${iconPaddingDesktop}
+			${iconMarginDesktop}
+			${iconBoxShadow}
+            background: ${iconBackgroundColor ? iconBackgroundColor : ''};
+			color: ${iconColor ? iconColor : ''};	
+			}
+        .wp-block-zolo-counter .zolo-counter-style-1.${uniqueId} .zolo-counter-icon i:hover{			
+            background: ${iconBackgroundHoverColor ? iconBackgroundHoverColor : ''};
+            color: ${iconHoverColor ? iconHoverColor : ''};
+            ${iconHoverBoxShadow}
+            border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''}
+        }
         .${uniqueId}.zolo-counter-${preset} .zolo-counter-item:hover{
             border-color: ${containerBorderHoverColor ? containerBorderHoverColor : ''};
             ${containerHoverBoxShadow}
@@ -526,22 +544,6 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-block-desc:hover{
 			color: ${descHoverColor ? descHoverColor : ''};
 		}		
-		.${uniqueId} .zolo-block-icon-wrap i {
-			background: ${iconBackgroundColor ? iconBackgroundColor : ''};
-			color: ${iconColor ? iconColor : ''};	
-			${iconSize}
-			${borderStyles}
-			${iconBorderRadiusDesktop}
-			${iconPaddingDesktop}
-			${iconMarginDesktop}
-			${iconBoxShadow}
-			}
-		.${uniqueId} .zolo-block-icon-wrap i:hover{			
-			background: ${iconBackgroundHoverColor ? iconBackgroundHoverColor : ''};
-			color: ${iconHoverColor ? iconHoverColor : ''};
-			${iconHoverBoxShadow}
-			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''}
-		}
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
 			${iconImageBorderDesk}
