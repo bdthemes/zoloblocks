@@ -29,11 +29,14 @@ import {
   ROW_GAP,
   COLUMN_GAP,
 } from './constants';
-export default function generateStyle({ attributes, setAttributes }) {
+export default function generateStyle({ attributes, setAttributes, clientId }) {
 
   const {
     uniqueId,
-    blockStyle
+    blockStyle,
+    isBlockRootParent,
+    containerWidthType,
+    contentWidthType
   } = attributes;
 
   // content
@@ -47,7 +50,7 @@ export default function generateStyle({ attributes, setAttributes }) {
     attributes,
   });
 
-  // container
+  // custom container
   const {
     desktopRangeStyle: containerDeskWidth,
     tabRangeStyle: containerTabWidth,
@@ -102,6 +105,7 @@ export default function generateStyle({ attributes, setAttributes }) {
     noMainBGImg: false,
   });
 
+  //spacing style
   const {
     dimensionStylesDesktop: containerDeskPadding,
     dimensionStylesTab: containerTabPadding,
@@ -145,52 +149,70 @@ export default function generateStyle({ attributes, setAttributes }) {
 
   // flex properties
   const {
-    desktopAlignmentStyle: flexDirectionDesk,
-    tabAlignmentStyle: flexDirectionTab,
-    mobAlignmentStyle: flexDirectionMob,
+    desktopAlignStyle: flexDirectionDesk,
+    tabAlignStyle: flexDirectionTab,
+    mobAlignStyle: flexDirectionMob,
   } = generateResAlignmentStyle({
     controlName: FLEX_DIRECTION,
-    attributes,
     property: 'flex-direction',
+    attributes,
   });
 
   const {
-    desktopAlignmentStyle: flexWrapDesk,
-    tabAlignmentStyle: flexWrapTab,
-    mobAlignmentStyle: flexWrapMob,
+    desktopAlignStyle: flexWrapDesk,
+    tabAlignStyle: flexWrapTab,
+    mobAlignStyle: flexWrapMob,
   } = generateResAlignmentStyle({
     controlName: FLEX_WRAP,
-    attributes,
     property: 'flex-wrap',
+    attributes,
   });
 
   const {
-    desktopAlignmentStyle: flexJustifyDesk,
-    tabAlignmentStyle: flexJustifyTab,
-    mobAlignmentStyle: flexJustifyMob,
+    desktopAlignStyle: flexJustifyDesk,
+    tabAlignStyle: flexJustifyTab,
+    mobAlignStyle: flexJustifyMob,
   } = generateResAlignmentStyle({
     controlName: FLEX_JUSTIFY,
-    attributes,
     property: 'justify-content',
+    attributes,
   });
 
   const {
-    desktopAlignmentStyle: flexAlignDesk,
-    tabAlignmentStyle: flexAlignTab,
-    mobAlignmentStyle: flexAlignMob,
+    desktopAlignStyle: flexAlignDesk,
+    tabAlignStyle: flexAlignTab,
+    mobAlignStyle: flexAlignMob,
   } = generateResAlignmentStyle({
     controlName: FLEX_ALIGN,
-    attributes,
     property: 'align-items',
+    attributes,
   });
 
 
   /**
    * All Style Combination
    */
+  let flexSelector =
+    '.wp-block-zolo-container > .zolo-container-inner-blocks-wrap > .block-editor-inner-blocks > .block-editor-block-list__layout';
+  if (!isBlockRootParent || 'full_width' !== containerWidthType || 'boxed' !== contentWidthType) {
+    flexSelector =
+      '.wp-block-zolo-container > .block-editor-inner-blocks > .block-editor-block-list__layout';
+  }
   const desktopAllStyle = softMinifyCssStrings(`
-    .zolo-blocks-container .block-editor-block-list__layout {
-        display: flex;
+    .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId}{
+      ${containerDeskWidth}
+			width: 100%;
+    }
+    .editor-styles-wrapper #block-${clientId}.wp-block{
+     ${containerDeskPadding}
+    }
+    ${flexSelector}{
+      ${rowDeskGap}
+      ${columnDeskGap}
+      ${flexDirectionDesk}
+      ${flexWrapDesk}
+      ${flexJustifyDesk}
+      ${flexAlignDesk}
     }
   `);
 

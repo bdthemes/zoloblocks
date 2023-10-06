@@ -16,276 +16,277 @@ export const NORMAL_HOVER = [
 ];
 
 export const TEXT_ALIGN_OPTIONS = [
-    {
-        label: 'Left',
-        value: 'left',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={8} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Center',
-        value: 'center',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L12 8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 16L12 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={4} y={8} width={16} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Right',
-        value: 'right',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Justify',
-        value: 'justify',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M2 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={6} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
+  {
+    label: 'Left',
+    value: 'left',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x={8} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Center',
+    value: 'center',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L12 8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 16L12 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x={4} y={8} width={16} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Right',
+    value: 'right',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Justify',
+    value: 'justify',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M2 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x={6} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
 ];
 
 export const DEFAULT_ALIGNS = [
-    {
-        label: 'Left',
-        value: 'left',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={8} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Center',
-        value: 'center',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L12 8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 16L12 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={4} y={8} width={16} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Right',
-        value: 'right',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
+  {
+    label: 'Left',
+    value: 'left',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x={8} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Center',
+    value: 'center',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L12 8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 16L12 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x={4} y={8} width={16} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Right',
+    value: 'right',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
 ];
 
 export const FLEX_ALIGN_OPTIONS = [
-    {
-        label: 'Top',
-        value: 'flex-start',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 4L2 4" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path
-                    d="M15 8C15.5523 8 16 8.44772 16 9V19C16 19.5523 15.5523 20 15 20H9C8.44772 20 8 19.5523 8 19L8 9C8 8.44771 8.44772 8 9 8L15 8Z"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                />
-            </svg>
-        ),
-    },
-    {
-        label: 'Center',
-        value: 'center',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 12L16 12" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M8 12L2 12" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={16} y={4} width={16} height={8} rx={1} transform="rotate(90 16 4)" stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Bottom',
-        value: 'flex-end',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 20L2 20" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path
-                    d="M15 4C15.5523 4 16 4.44772 16 5V15C16 15.5523 15.5523 16 15 16H9C8.44772 16 8 15.5523 8 15L8 5C8 4.44771 8.44772 4 9 4L15 4Z"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                />
-            </svg>
-        ),
-    },
+  {
+    label: 'Top',
+    value: 'flex-start',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 4L2 4" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M15 8C15.5523 8 16 8.44772 16 9V19C16 19.5523 15.5523 20 15 20H9C8.44772 20 8 19.5523 8 19L8 9C8 8.44771 8.44772 8 9 8L15 8Z"
+          stroke="#4D4D4D"
+          strokeWidth="1.5"
+        />
+      </svg>
+    ),
+  },
+  {
+    label: 'Center',
+    value: 'center',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 12L16 12" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8 12L2 12" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x={16} y={4} width={16} height={8} rx={1} transform="rotate(90 16 4)" stroke="#4D4D4D" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Bottom',
+    value: 'flex-end',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 20L2 20" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M15 4C15.5523 4 16 4.44772 16 5V15C16 15.5523 15.5523 16 15 16H9C8.44772 16 8 15.5523 8 15L8 5C8 4.44771 8.44772 4 9 4L15 4Z"
+          stroke="#4D4D4D"
+          strokeWidth="1.5"
+        />
+      </svg>
+    ),
+  },
 ];
 
 export const FLEX_HORIZONTAL_OPTIONS = [
-    {
-        label: 'Left',
-        value: 'flex-start',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={8} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Center',
-        value: 'center',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L12 8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 16L12 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={4} y={8} width={16} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Right',
-        value: 'flex-end',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
+  {
+    label: 'Left',
+    value: 'flex-start',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x={8} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Center',
+    value: 'center',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L12 8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 16L12 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x={4} y={8} width={16} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Right',
+    value: 'flex-end',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
 ];
 
 // Flex Properties
 export const FLEX_DIRECTIONS = [
-    {
-        label: 'Row',
-        value: 'row',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12H19" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 5L19 12L12 19" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Column',
-        value: 'column',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 5V19" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M19 12L12 19L5 12" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Row Reverse',
-        value: 'row-reverse',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 12H5" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 19L5 12L12 5" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Column Reverse',
-        value: 'column-reverse',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 19V5" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M5 12L12 5L19 12" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-        ),
-    },
+  {
+    label: 'Row',
+    value: 'row',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 12H19" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 5L19 12L12 19" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Column',
+    value: 'column',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 5V19" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M19 12L12 19L5 12" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Row Reverse',
+    value: 'row-reverse',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 12H5" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 19L5 12L12 5" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Column Reverse',
+    value: 'column-reverse',
+    icon: (
+      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 19V5" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M5 12L12 5L19 12" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
 ];
 
 export const FLEX_ALIGNS = [
-    {
-        label: 'Flex Start',
-        value: 'flex-start',
-        icon: <Dashicon icon="arrow-left-alt2" />,
-    },
-    {
-        label: 'Center',
-        value: 'center',
-        icon: <Dashicon icon="arrow-up-alt" />,
-    },
-    {
-        label: 'Flex End',
-        value: 'flex-end',
-        icon: <Dashicon icon="arrow-right-alt2" />,
-    },
-    {
-        label: 'Stretch',
-        value: 'stretch',
-        icon: <Dashicon icon="arrow-down-alt" />,
-    },
+  {
+    label: 'Flex Start',
+    value: 'flex-start',
+    icon: <Dashicon icon="arrow-left-alt2" />,
+  },
+  {
+    label: 'Center',
+    value: 'center',
+    icon: <Dashicon icon="arrow-up-alt" />,
+  },
+  {
+    label: 'Flex End',
+    value: 'flex-end',
+    icon: <Dashicon icon="arrow-right-alt2" />,
+  },
+  {
+    label: 'Stretch',
+    value: 'stretch',
+    icon: <Dashicon icon="arrow-down-alt" />,
+  },
 ];
 
 export const FLEX_JUSTIFIES = [
-    {
-        label: 'Flex Start',
-        value: 'flex-start',
-        icon: <Dashicon icon="arrow-left-alt2" />,
-    },
-    {
-        label: 'Center',
-        value: 'center',
-        icon: <Dashicon icon="arrow-up-alt" />,
-    },
-    {
-        label: 'Flex End',
-        value: 'flex-end',
-        icon: <Dashicon icon="arrow-right-alt2" />,
-    },
-    {
-        label: 'Space Between',
-        value: 'space-between',
-        icon: <Dashicon icon="arrow-left-alt2" />,
-    },
-    {
-        label: 'Space Around',
-        value: 'space-around',
-        icon: <Dashicon icon="arrow-up-alt" />,
-    },
-    {
-        label: 'Space Evenly',
-        value: 'space-evenly',
-        icon: <Dashicon icon="arrow-right-alt2" />,
-    },
+  {
+    label: 'Flex Start',
+    value: 'flex-start',
+    icon: <Dashicon icon="arrow-left-alt2" />,
+  },
+  {
+    label: 'Center',
+    value: 'center',
+    icon: <Dashicon icon="arrow-up-alt" />,
+  },
+  {
+    label: 'Flex End',
+    value: 'flex-end',
+    icon: <Dashicon icon="arrow-right-alt2" />,
+  },
+  {
+    label: 'Space Between',
+    value: 'space-between',
+    icon: <Dashicon icon="arrow-left-alt2" />,
+  },
+  {
+    label: 'Space Around',
+    value: 'space-around',
+    icon: <Dashicon icon="arrow-up-alt" />,
+  },
+  {
+    label: 'Space Evenly',
+    value: 'space-evenly',
+    icon: <Dashicon icon="arrow-right-alt2" />,
+  },
 ];
 
 export const FLEX_WRAPS = [
-    {
-        label: 'No Wrap',
-        value: 'nowrap',
-        icon: <Dashicon icon="arrow-left-alt2" />,
-    },
-    {
-        label: 'Wrap',
-        value: 'wrap',
-        icon: <Dashicon icon="arrow-up-alt" />,
-    },
-    {
-        label: 'Wrap Reverse',
-        value: 'wrap-reverse',
-        icon: <Dashicon icon="arrow-right-alt2" />,
-    },
+  {
+    label: 'Wrap',
+    value: 'wrap',
+    icon: <Dashicon icon="arrow-up-alt" />,
+  },
+  {
+    label: 'No Wrap',
+    value: 'nowrap',
+    icon: <Dashicon icon="arrow-left-alt2" />,
+  },
+
+  {
+    label: 'Wrap Reverse',
+    value: 'wrap-reverse',
+    icon: <Dashicon icon="arrow-right-alt2" />,
+  },
 ];
 
 export const HEADING = [
@@ -524,27 +525,27 @@ export const ICON_BOX_OPTIONS = [
 
 // Width Types
 export const WIDTH_TYPES = [
-    {
-        label: __('Full', 'zolo-blocks'),
-        value: 'full_width',
-    },
-    {
-        label: __('Boxed', 'zolo-blocks'),
-        value: 'boxed',
-    },
-    {
-        label: __('Custom', 'zolo-blocks'),
-        value: 'custom_width',
-    },
+  {
+    label: __('Full', 'zolo-blocks'),
+    value: 'full_width',
+  },
+  {
+    label: __('Boxed', 'zolo-blocks'),
+    value: 'boxed',
+  },
+  {
+    label: __('Custom', 'zolo-blocks'),
+    value: 'custom_width',
+  },
 ];
 
 export const CONTENT_WIDTH_TYPES = [
-    {
-        label: __('Boxed', 'zolo-blocks'),
-        value: 'boxed',
-    },
-    {
-        label: __('Full Width', 'zolo-blocks'),
-        value: 'full_width',
-    },
+  {
+    label: __('Boxed', 'zolo-blocks'),
+    value: 'boxed',
+  },
+  {
+    label: __('Full Width', 'zolo-blocks'),
+    value: 'full_width',
+  },
 ];

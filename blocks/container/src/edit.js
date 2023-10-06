@@ -91,6 +91,7 @@ export default function Edit(props) {
   const allStyle = generateStyle({
     attributes,
     setAttributes,
+    clientId
   });
 
 
@@ -103,9 +104,12 @@ export default function Edit(props) {
       {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
       <style>{`${softMinifyCssStrings(allStyle)}`}</style>
       <RenderView
-        attributes={attributes}
-        clientId={clientId}
-        className={className}
+        {...{
+          attributes,
+          clientId,
+          className
+        }}
+
       />
     </>
   );
