@@ -454,9 +454,19 @@ export default function Edit(props) {
 
     // generate image size
     const {
-        desktopRangeStyle: iconImageSizeDesk,
-        tabRangeStyle: iconImageSizeTab,
-        mobRangeStyle: iconImageSizeMob,
+        desktopRangeStyle: iconImageHeightDesk,
+        tabRangeStyle: iconImageHeightTab,
+        mobRangeStyle: iconImageHeightMob,
+    } = generateResRangeStyle({
+        controlName: ICON_IMAGE_SIZE,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: iconImageWidthDesk,
+        tabRangeStyle: iconImageWidthTab,
+        mobRangeStyle: iconImageWidthMob,
     } = generateResRangeStyle({
         controlName: ICON_IMAGE_SIZE,
         property: 'width',
@@ -542,7 +552,8 @@ export default function Edit(props) {
 			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''}
 		}
 		.${uniqueId} .zolo-block-icon-wrap img {
-			${iconImageSizeDesk}
+			${iconImageHeightDesk}
+			${iconImageWidthDesk}
 			${iconImageBorderDesk}
 			${iconImageBorderRadiusDesk}
 		}
@@ -653,7 +664,8 @@ export default function Edit(props) {
 			color: ${iconColor ? iconColor : ''};	
 		}
 		.${uniqueId} .zolo-block-icon-wrap img {
-			${iconImageSizeTab}
+			${iconImageHeightTab}
+			${iconImageWidthTab}
 			${iconImageBorderTab}
 			${iconImageBorderRadiusTab}
 		}
@@ -702,7 +714,8 @@ export default function Edit(props) {
 			${iconMarginMob}
 		}
 		.${uniqueId} .zolo-block-icon-wrap img {
-			${iconImageSizeMob}
+			${iconImageHeightMob}
+			${iconImageWidthMob}
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
