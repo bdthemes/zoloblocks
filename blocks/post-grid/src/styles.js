@@ -55,9 +55,11 @@ const {
     generateBackgroundControlStyles,
     generateTypographyStyles,
     generateResCounterStyle,
+    GlobalStyleHanlder,
 } = window.zoloModule;
 
-function styles({ attributes, setAttributes }) {
+function Style({ props }) {
+    const { attributes, setAttributes } = props;
     const {
         uniqueId,
         zoloStyles,
@@ -782,29 +784,17 @@ function styles({ attributes, setAttributes }) {
       }
     `;
 
-    // Set All Style in "zoloStyles" Attribute
-    useEffect(() => {
-        const styles = {
-            desktop: desktopAllStyle,
-            tablet: tabletAllStyle,
-            mobile: mobileAllStyle,
-        };
-        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
-            setAttributes({ zoloStyles: styles });
-        }
-    }, [attributes]);
-
-    const allStyle = `
-      ${desktopAllStyle}
-      @media all and (max-width: 1024px) {
-        ${tabletAllStyle}
-      }
-      @media all and (max-width: 767px) {
-        ${mobileAllStyle}
-      }
-    `;
-
-    return allStyle;
+    return (
+        <>
+            <GlobalStyleHanlder
+                attributes={attributes}
+                setAttributes={setAttributes}
+                desktopAllStyle={desktopAllStyle}
+                tabAllStyle={tabletAllStyle}
+                mobileAllStyle={mobileAllStyle}
+            />
+        </>
+    );
 }
 
-export default styles;
+export default Style;

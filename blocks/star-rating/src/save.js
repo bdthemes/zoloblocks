@@ -1,16 +1,16 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-// const { StarRating } = window.zoloModule;
+const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, showTitle, title, titleTag, rating, titlePosition } = attributes;
+    const { uniqueId, parentClasses, showTitle, title, titleTag, rating, titlePosition } = attributes;
+
+    const blockProps = useBlockProps.save({
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+    });
 
     return (
-        <div
-            {...useBlockProps.save({
-                className: classnames(uniqueId),
-            })}
-        >
+        <div {...blockProps}>
             <div className={classnames('start-rating-wrapper', titlePosition)}>
                 <div className={classnames('star-rating-inner', titlePosition)}>
                     {showTitle && <RichText.Content tagName={titleTag} className="start-rating-title" value={title} />}

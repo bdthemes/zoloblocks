@@ -33,6 +33,7 @@ const {
     TabPanelControl,
     IconicBtnGroup,
     GradientControl,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -47,10 +48,10 @@ function Inspector(props) {
     const { preset, resMode, rating, showTitle, title, titleTag, titleColor, titlePosition, activeStarColor, inactiveStarColor } =
         attributes;
 
-    const resRequiredProps = {
-        resMode,
-        setAttributes,
+    const requiredProps = {
         attributes,
+        setAttributes,
+        resMode,
         objAttributes,
     };
 
@@ -76,7 +77,7 @@ function Inspector(props) {
                             <ResAlignmentControl
                                 label={__('Alignment', 'zolo-blocks')}
                                 controlName={ITEMS_ALIGN}
-                                requiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 alignOptions={FLEX_HORIZONTAL_OPTIONS}
                             />
                         </PanelBody>
@@ -116,7 +117,7 @@ function Inspector(props) {
                             <ResRangeControl
                                 label={__('Size', 'zolo-blocks')}
                                 controlName={STAR_SIZE}
-                                requiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={1}
                                 max={100}
                                 step={1}
@@ -153,7 +154,7 @@ function Inspector(props) {
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={TITLE_TYPO}
-                                    requiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
                                 <ColorControl
                                     label={__('Color', 'zolo-blocks')}
@@ -163,7 +164,7 @@ function Inspector(props) {
                                 <ResRangeControl
                                     label={__('Title Gap', 'zolo-blocks')}
                                     controlName={TITLE_GAP}
-                                    requiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     min={1}
                                     max={100}
                                     step={1}
@@ -174,9 +175,7 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <PanelBody title={__('Block', 'zolo-blocks')} initialOpen={false}>
-                            advanced settings here
-                        </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />

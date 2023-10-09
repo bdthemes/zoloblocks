@@ -1,5 +1,6 @@
 .wp-block-zolo-slider {
     box-sizing: border-box;
+    overflow: hidden;
 
     .wp-block-zolo-slide {
         height: clamp(21.875rem, 50vw, 34.375rem);
@@ -27,7 +28,7 @@
         .swiper-pagination-bullet {
             background-color: transparent;
             width: clamp(0.75rem, 1.5vw, 0.875rem);
-            height: clamp(0.75rem,  1.5vw, 0.875rem);
+            height: clamp(0.75rem, 1.5vw, 0.875rem);
             border: 1px solid #3055ff;
             transition: all 0.3s ease;
 
@@ -37,6 +38,7 @@
             }
         }
     }
+
     .swiper-nav-button {
         margin: 0 clamp(1.25rem, 6vw, 3.125rem);
         width: clamp(2.188rem, 6vw, 3.125rem);

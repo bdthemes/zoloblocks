@@ -54,17 +54,32 @@ import {
 import * as typographyObjs from './constants/typoPrefixConstants';
 
 const attributes = {
-    //Common Attributes
-    uniqueId: {
-        type: 'string',
-    },
-    resDevice: {
-        type: 'string',
-        default: 'Desktop',
-    },
-    zoloStyles: {
+    // Global Attributes
+    globalConfig: {
         type: 'object',
+        default: {
+            margin: {
+                prefix: 'mainMargin',
+            },
+            padding: {
+                prefix: 'mainPadding',
+            },
+            background: {
+                prefix: 'mainBg',
+            },
+            border: {
+                prefix: 'mainBorder',
+            },
+            borderRadius: {
+                prefix: 'mainBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'mainBoxShadow',
+            },
+            responsiveControls: true,
+        },
     },
+    // block attributes
     preset: {
         type: 'string',
         default: 'default',
@@ -171,13 +186,7 @@ const attributes = {
             {
                 id: 1,
                 title: 'Facebook',
-                icon: {
-                    'fa-facebook-f': {
-                        name: 'facebook',
-                        source: 'fontawesome',
-                        type: 'fab',
-                    },
-                },
+                icon: 'fab fa-facebook-f',
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -186,13 +195,7 @@ const attributes = {
             {
                 id: 2,
                 title: 'Twitter',
-                icon: {
-                    'fa-twitter': {
-                        name: 'twitter',
-                        source: 'fontawesome',
-                        type: 'fab',
-                    },
-                },
+                icon: 'fab fa-twitter',
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -201,13 +204,7 @@ const attributes = {
             {
                 id: 3,
                 title: 'Instagram',
-                icon: {
-                    'fa-instagram': {
-                        name: 'instagram',
-                        source: 'fontawesome',
-                        type: 'fab',
-                    },
-                },
+                icon: 'fab fa-instagram',
                 link: {
                     url: '#',
                     openInNewTab: false,

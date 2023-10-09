@@ -26,6 +26,9 @@ class PostGrid extends PostBlock
 
     public function render($attributes)
     {
+
+        // var_dump($attributes);
+
         $attributes = wp_parse_args($attributes, $this->get_default_attributes());
 
         $postQuery = $attributes['postQuery'] ?? [];

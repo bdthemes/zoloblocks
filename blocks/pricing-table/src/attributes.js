@@ -61,21 +61,31 @@ import {
 import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
-    //Common Attributes
-    uniqueId: {
-        type: 'string',
-    },
-
-    zoloStyles: {
+    // global attributes
+    globalConfig: {
         type: 'object',
+        default: {
+            margin: {
+                prefix: 'mainMargin',
+            },
+            padding: {
+                prefix: 'mainPadding',
+            },
+            background: {
+                prefix: 'mainBg',
+            },
+            border: {
+                prefix: 'mainBorder',
+            },
+            borderRadius: {
+                prefix: 'mainBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'mainBoxShadow',
+            },
+            responsiveControls: true,
+        },
     },
-
-    //layout
-    // styles: {
-    //     type: 'string',
-    //     default: 'style-1',
-    // },
-
     //header
     titleText: {
         type: 'string',

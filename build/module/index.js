@@ -5338,7 +5338,7 @@ const QueryControl = ({
   let tpgAllTaxonomies = new Set();
   for (let tax in allTaxonomyList) {
     let value = allTaxonomyList[tax];
-    if (value.object_type[0] === postQuery.postType) {
+    if (postQuery && postQuery.postType && postQuery.postType === value.object_type[0]) {
       tpgAllTaxonomies.add({
         value: value.name,
         name: value.label
@@ -5350,8 +5350,8 @@ const QueryControl = ({
     let postTaxonomies = {
       ...postQuery.postTaxonomies,
       [name]: {
-        'name': name,
-        'options': terms
+        name: name,
+        options: terms
       }
     };
     setAttributes({
@@ -5398,7 +5398,7 @@ const QueryControl = ({
     isMulti: true,
     closeMenuOnSelect: false
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Include Only", "zolo-blocks"),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Include Only', 'zolo-blocks'),
     value: postQuery.postInclude,
     onChange: postInclude => setAttributes({
       postQuery: {
@@ -5408,7 +5408,7 @@ const QueryControl = ({
     }),
     autocomplete: "off"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Exclude", "zolo-blocks"),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Exclude', 'zolo-blocks'),
     autocomplete: "off",
     value: postQuery.postExclude,
     onChange: postExclude => {
@@ -5430,7 +5430,7 @@ const QueryControl = ({
     closeMenuOnSelect: false
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
     isShiftStepEnabled: true,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Post Per Page", "zolo-blocks"),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Post Per Page', 'zolo-blocks'),
     max: 100,
     min: -1,
     value: postQuery.postPerPage,
@@ -5446,7 +5446,7 @@ const QueryControl = ({
     step: 1
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
     isShiftStepEnabled: true,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Offset", "zolo-blocks"),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Offset', 'zolo-blocks'),
     max: 100,
     min: 0,
     value: postQuery.postOffset,
@@ -17280,7 +17280,7 @@ const generateBackgroundAttributes = (controlName, defaults = {}) => {
     },
     [`${controlName}ovl_opacity`]: {
       type: 'number',
-      default: 0.5
+      default: 1
     },
     [`${controlName}ovl_blendMode`]: {
       type: 'string'

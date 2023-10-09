@@ -1,10 +1,12 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-// const { StarRating } = window.zoloModule;
+import classnames from 'classnames';
+const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
         uniqueId,
         preset,
+        parentClasses,
         showPhoto,
         memberPhoto,
         showName,
@@ -22,7 +24,7 @@ const Save = ({ attributes }) => {
     return (
         <div
             {...useBlockProps.save({
-                className: uniqueId + `${preset ? ' ' + preset : ''}`,
+                className: classnames(uniqueId, `${preset ? preset : ''}`, classArrayToStr(parentClasses)),
             })}
         >
             <div className="zolo-item">

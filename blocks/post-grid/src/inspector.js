@@ -66,6 +66,7 @@ const {
     ColorControl,
     TypographyDropdown,
     ResCounterControl,
+    AdvancedOptions,
 } = window.zoloModule;
 
 function Inspector({ attributes, setAttributes }) {
@@ -693,25 +694,7 @@ function Inspector({ attributes, setAttributes }) {
                 }
                 advancedTab={
                     <>
-                        <>
-                            <PanelBody title={__('Wrapper Margin & Padding', 'zolo-blocks')} initialOpen={true}>
-                                <ResDimensionsControl label="Margin" controlName={WRAPPER_MARGIN} requiredProps={requiredProps} />
-                                <ResDimensionsControl label="Padding" controlName={WRAPPER_PADDING} requiredProps={requiredProps} />
-                            </PanelBody>
-
-                            <PanelBody title={__('Background', 'zolo-blocks')} initialOpen={false}>
-                                <BackgroundControl controlName={WRAPPER_BG} requiredProps={requiredProps} />
-                            </PanelBody>
-
-                            <PanelBody title={__('Border & BoxShadow', 'zolo-blocks')} initialOpen={false}>
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={WRAPPER_BORDER}
-                                    requiredProps={requiredProps}
-                                />
-                                <BoxShadowControl controlName={WRAPPER_SHADOW} requiredProps={requiredProps} />
-                            </PanelBody>
-                        </>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />

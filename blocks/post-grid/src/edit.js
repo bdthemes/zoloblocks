@@ -10,23 +10,18 @@ import styles from './styles';
 import RenderView from './render-view';
 import './style.scss';
 
-const { softMinifyCssStrings, Pagination } = window.zoloModule;
+const { softMinifyCssStrings, Pagination, classArrayToStr } = window.zoloModule;
+
+import Style from './styles';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, postQuery, preset, page } = attributes;
+    const { uniqueId, parentClasses, postQuery, preset, page } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
-
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId} zolo-post-grid-wrap zolo-post-${preset}`),
-    });
-
-    //generate all style
-    const allStyle = styles({
-        attributes,
-        setAttributes,
+        className: classnames(className, `${uniqueId} zolo-post-grid-wrap zolo-post-${preset}`, classArrayToStr(parentClasses)),
     });
 
     useEffect(() => {
@@ -98,7 +93,7 @@ export default function Edit(props) {
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            <style>{`${softMinifyCssStrings(allStyle)}`}</style>
+            <Style props={props} />
             <div {...blockProps}>
                 <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults} />
             </div>

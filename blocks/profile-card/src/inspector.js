@@ -23,6 +23,7 @@ const {
     LinkControl,
     SortableItem,
     SortableControl,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -457,11 +458,7 @@ function Inspector(props) {
                         </PanelBody>
                         <PanelBody title={__('Content Area', 'zolo-blocks')} initialOpen={false}>
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={CONTENT_BORDER}
-                                requiredProps={requiredProps}
-                            />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={CONTENT_BORDER_RADIUS}
@@ -482,11 +479,7 @@ function Inspector(props) {
                             />
                         </PanelBody>
                         <PanelBody title={__('Photo', 'zolo-blocks')} initialOpen={false}>
-                            <ResRangeControl
-                                label={__('Size', 'zolo-blocks')}
-                                controlName={PHOTO_SIZE}
-                                requiredProps={requiredProps}
-                            />
+                            <ResRangeControl label={__('Size', 'zolo-blocks')} controlName={PHOTO_SIZE} requiredProps={requiredProps} />
                             <ResRangeControl
                                 label={__('Vertical Offset', 'zolo-blocks')}
                                 controlName={PHOTO_VOFFSET}
@@ -494,11 +487,7 @@ function Inspector(props) {
                                 min={-250}
                                 max={250}
                             />
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={PHOTO_BORDER}
-                                requiredProps={requiredProps}
-                            />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={PHOTO_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={PHOTO_BORDER_RADIUS}
@@ -694,11 +683,7 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                        <NormalBGControl
-                                            requiredProps={requiredProps}
-                                            controlName={FBTN_HOVER_BG}
-                                            noMainBGImg={false}
-                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={FBTN_HOVER_BG} noMainBGImg={false} />
                                         <BoxShadowControl
                                             controlName={FBTN_HOVER_BOX_SHADOW}
                                             requiredProps={requiredProps}
@@ -764,11 +749,7 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
-                                            <NormalBGControl
-                                                requiredProps={requiredProps}
-                                                controlName={ICONS_BG}
-                                                noMainBGImg={true}
-                                            />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={ICONS_BG} noMainBGImg={true} />
                                         </>
                                     }
                                     hoverComponents={
@@ -804,7 +785,11 @@ function Inspector(props) {
                         )}
                     </>
                 }
-                advancedTab={<></>}
+                advancedTab={
+                    <>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                    </>
+                }
             />
         </InspectorControls>
     );
