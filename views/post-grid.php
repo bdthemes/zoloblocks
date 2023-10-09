@@ -7,6 +7,14 @@ if (!empty($settings['preset'])) {
     $topclass .= ' zolo-post-' . $settings['preset'];
 }
 $wrapper_class = ZoloHelpers::get_wrapper_class($settings, $topclass);
+
+// get parent classes
+$parentClasses = $settings['parentClasses'] ?? [];
+// convert to string
+$parentClasses = implode(' ', $parentClasses);
+// add parent classes to wrapper class
+$wrapper_class .= ' ' . $parentClasses;
+
 $html = '';
 ?>
 

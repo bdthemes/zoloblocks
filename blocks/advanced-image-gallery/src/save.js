@@ -1,10 +1,16 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+const { classArrayToStr } = window.zoloModule;
+import classnames from 'classnames';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, preset, advancedGallery, showCaption, showLightbox } = attributes;
+    const { uniqueId, preset, parentClasses, advancedGallery, showCaption, showLightbox } = attributes;
+
+    const blockProps = useBlockProps.save({
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+    });
     return (
-        <div {...useBlockProps.save()}>
+        <div {...blockProps}>
             <div className={`zolo-image-gallery ${uniqueId} zolo-img-gallery-${preset}`}>
                 {advancedGallery &&
                     advancedGallery.map((image, index) => {

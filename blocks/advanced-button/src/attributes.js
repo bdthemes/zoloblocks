@@ -20,7 +20,6 @@ import {
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
     BUTTON_PADDING,
-    BUTTON_MARGIN,
     ICON_SIZE,
     ICON_TEXT_SPACING,
     ICON_BORDER,
@@ -43,16 +42,29 @@ import {
 import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
-    //Common Attributes
-    uniqueId: {
-        type: 'string',
-    },
-    resDevice: {
-        type: 'string',
-        default: 'Desktop',
-    },
-    blockStyle: {
+    globalConfig: {
         type: 'object',
+        default: {
+            margin: {
+                prefix: 'mainMargin',
+            },
+            padding: {
+                prefix: 'mainPadding',
+            },
+            background: {
+                prefix: 'mainBg',
+            },
+            border: {
+                prefix: 'mainBorder',
+            },
+            borderRadius: {
+                prefix: 'mainBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'mainBoxShadow',
+            },
+            responsiveControls: true,
+        },
     },
     // Button Generators
     ...generateResAlignmentAttributies(BUTTON_ALIGNMENT, {
@@ -72,7 +84,6 @@ const attributes = {
     ...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateDimensionAttributes(BUTTON_PADDING),
-    ...generateDimensionAttributes(BUTTON_MARGIN),
 
     // button icon generator
     ...generateBorderAttributies(ICON_BORDER),
@@ -164,7 +175,7 @@ const attributes = {
         default: false,
     },
     icon: {
-        type: 'object',
+        type: 'string',
     },
     iconPosition: {
         type: 'string',

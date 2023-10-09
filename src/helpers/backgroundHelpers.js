@@ -328,7 +328,7 @@ export const generateBackgroundAttributes = (controlName, defaults = {}) => {
 
         [`${controlName}ovl_opacity`]: {
             type: 'number',
-            default: 0.5,
+            default: 1,
         },
         [`${controlName}ovl_blendMode`]: {
             type: 'string',

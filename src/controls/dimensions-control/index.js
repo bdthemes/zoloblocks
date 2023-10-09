@@ -9,11 +9,11 @@ import LinkUnlink from '../link-unlink';
 const ResDimensionsControl = ({
 	label,
 	controlName,
-	resRequiredProps,
+	requiredProps,
 	forBorderRadius,
 	units,
 }) => {
-	const { attributes, setAttributes, resMode } = resRequiredProps;
+	const { attributes, setAttributes, resMode } = requiredProps;
 
 	const {
 		[`${prefix}${controlName}Unit`]: dimensionUnit,

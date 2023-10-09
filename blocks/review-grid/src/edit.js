@@ -13,35 +13,23 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    handleUniqueId,
-    softMinifyCssStrings,
-    generateResRangeStyle,
-    generateDimensionStyle,
-    generateNormalBGControlStyles,
-    generateResCounterStyle,
-} = window.zoloModule;
+const { classArrayToStr, generateResRangeStyle, generateDimensionStyle, generateNormalBGControlStyles, generateResCounterStyle } =
+    window.zoloModule;
 
 import { BLOCK_PREFIX, COLUMNS_GAP, GRID_COLUMNS, ROWS_GAP, REVIEW_GRID_BG, REVIEW_GRID_MARGIN, REVIEW_GRID_PADDING } from './constants';
 
 import Inspector from './inspector';
 
+// import style
+import Style from './style';
+
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, blockStyle } = attributes;
+    const { uniqueId, zoloStyles, parentClasses } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
-
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`),
+        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });
 
     // column count
@@ -77,93 +65,6 @@ export default function Edit(props) {
         attributes,
     });
 
-    // Container
-    const {
-        backgroundStylesDesktop: reviewGridDeskBGStyle,
-        backgroundStylesTab: reviewGridTabBGStyle,
-        backgroundStylesMobile: reviewGridMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: REVIEW_GRID_BG,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    const {
-        dimensionStylesDesktop: containerDeskMargin,
-        dimensionStylesTab: containerTabMargin,
-        dimensionStylesMobile: containerMobMargin,
-    } = generateDimensionStyle({
-        controlName: REVIEW_GRID_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: containerDeskPadding,
-        dimensionStylesTab: containerTabPadding,
-        dimensionStylesMobile: containerMobPadding,
-    } = generateDimensionStyle({
-        controlName: REVIEW_GRID_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
-    /**
-     * All Style Combination
-     */
-    const desktopAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-grid {
-			${reviewGridDeskBGStyle}
-			${containerDeskMargin}
-			${containerDeskPadding}
-			grid-template-columns: repeat(${deskColumns}, 1fr);
-			${deskColumnsGap}
-			${deskRowsGap}
-		}
-	`;
-    const tabletAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-grid {
-			${reviewGridTabBGStyle}
-			${containerTabMargin}
-			${containerTabPadding}
-			grid-template-columns: repeat(${tabColumns}, 1fr);
-			${tabColumnsGap}
-			${tabRowsGap}
-		}
-	`;
-    const mobileAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-grid {
-			${reviewGridMobBGStyle}
-			${containerMobMargin}
-			${containerMobPadding}
-			grid-template-columns: repeat(${mobColumns}, 1fr);
-			${mobColumnsGap}
-			${mobRowsGap}
-		}
-	`;
-
-    const allStyle = `
-		${desktopAllStyle}
-		@media all and (max-width: 1024px) {
-			${tabletAllStyle}
-		}
-		@media all and (max-width: 767px) {
-			${mobileAllStyle}
-		}
-	`;
-
-    // Set All Style in "blockStyle" Attribute
-    useEffect(() => {
-        const styles = {
-            desktop: desktopAllStyle,
-            tablet: tabletAllStyle,
-            mobile: mobileAllStyle,
-        };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
-        }
-    }, [attributes]);
-
     /**
      * Custom Append Button for InnerBlocks
      */
@@ -176,6 +77,7 @@ export default function Edit(props) {
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
+            <Style props={props} />
             <style>{`
 					.${uniqueId}.wp-block-zolo-review-grid {
 						display: block;
@@ -186,7 +88,21 @@ export default function Edit(props) {
 						${deskColumnsGap}
 						${deskRowsGap}
 					}
-					${softMinifyCssStrings(allStyle)}
+                    @media only screen and (max-width: 1024px) {
+                        .${uniqueId}.wp-block-zolo-review-grid .block-editor-block-list__layout {
+                            grid-template-columns: repeat(${tabColumns}, 1fr);
+                            ${tabColumnsGap}
+                            ${tabRowsGap}
+                        }
+                    }
+
+                    @media only screen and (max-width: 767px) {
+                        .${uniqueId}.wp-block-zolo-review-grid .block-editor-block-list__layout {
+                            grid-template-columns: repeat(${mobColumns}, 1fr);
+                            ${mobColumnsGap}
+                            ${mobRowsGap}
+                        }
+                    }
 				`}</style>
             <BlockControls>
                 <ToolbarGroup>

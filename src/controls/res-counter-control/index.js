@@ -10,12 +10,12 @@ import { __ } from '@wordpress/i18n';
 const ResCounterControl = ({
 	label,
 	controlName,
-	resRequiredProps,
+	requiredProps,
 	min,
 	max,
 	step,
 }) => {
-	const { attributes, setAttributes, resMode } = resRequiredProps;
+	const { attributes, setAttributes, resMode } = requiredProps;
 	const {
 		[`${prefix}${controlName}Range`]: desktopRange = 1,
 		[`${prefix}TAB${controlName}Range`]: tabRange = 1,
@@ -39,7 +39,7 @@ const ResCounterControl = ({
 				<>
 					<WithResDeviceBtn
 						label={label}
-						resRequiredProps={resRequiredProps}
+						requiredProps={requiredProps}
 						controlName={controlName}
 						noResetBtn={true}
 					>
@@ -135,7 +135,7 @@ const ResCounterControl = ({
 			{resMode == 'Tablet' && (
 				<WithResDeviceBtn
 					label={label}
-					resRequiredProps={resRequiredProps}
+					requiredProps={requiredProps}
 					controlName={controlName}
 				>
 					<div className="zb-counter-control">
@@ -226,7 +226,7 @@ const ResCounterControl = ({
 			{resMode == 'Mobile' && (
 				<WithResDeviceBtn
 					label={label}
-					resRequiredProps={resRequiredProps}
+					requiredProps={requiredProps}
 					controlName={controlName}
 				>
 					<div className="zb-counter-control">

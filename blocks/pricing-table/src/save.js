@@ -1,9 +1,11 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DisplayIcon } = window.zoloModule;
+import classnames from 'classnames';
+const { classArrayToStr, DisplayIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
         uniqueId,
+        parentClasses,
         styles,
         titleText,
         titleTagName,
@@ -31,90 +33,92 @@ const Save = ({ attributes }) => {
     } = attributes;
 
     const blockprops = useBlockProps.save({
-        className: `zolo-block-wrapper ${uniqueId} ${'zolo-pricing-' + styles}`,
+        className: classnames(classArrayToStr(parentClasses)),
     });
 
     const pricingPeriod = period.length !== 0 && period.split(',');
     return (
         <div {...blockprops}>
-            <div className="zolo-item">
-                <div className="zolo-head-content">
-                    <RichText.Content tagName={titleTagName} value={titleText} className="zolo-package-title" />
+            <div className={`zolo-block-wrapper ${uniqueId} ${'zolo-pricing-' + styles}`}>
+                <div className="zolo-item">
+                    <div className="zolo-head-content">
+                        <RichText.Content tagName={titleTagName} value={titleText} className="zolo-package-title" />
 
-                    {showRibbon && ribbonTitle && <div className="zolo-ribbon-btn">{ribbonTitle}</div>}
+                        {showRibbon && ribbonTitle && <div className="zolo-ribbon-btn">{ribbonTitle}</div>}
 
-                    <div className="zolo-price-info">
-                        {orginalPrice && sale && (
-                            <span className="zolo-orginal-price">
-                                {pricePrefix && <span className="currency">{pricePrefix}</span>}
-                                <span className="price">{orginalPrice}</span>
-                            </span>
-                        )}
+                        <div className="zolo-price-info">
+                            {orginalPrice && sale && (
+                                <span className="zolo-orginal-price">
+                                    {pricePrefix && <span className="currency">{pricePrefix}</span>}
+                                    <span className="price">{orginalPrice}</span>
+                                </span>
+                            )}
 
-                        {price && (
-                            <span className="zolo-price">
-                                {pricePrefix && <span className="currency">{pricePrefix}</span>}
-                                <span className="price">{price}</span>
-                                {priceSuffix && <span className="fractional">{priceSuffix}</span>}
-                            </span>
-                        )}
+                            {price && (
+                                <span className="zolo-price">
+                                    {pricePrefix && <span className="currency">{pricePrefix}</span>}
+                                    <span className="price">{price}</span>
+                                    {priceSuffix && <span className="fractional">{priceSuffix}</span>}
+                                </span>
+                            )}
 
-                        {pricingPeriod.length !== 0 && (
-                            <div className="zolo-user-month">
-                                {pricingPeriod.map((name, index) => (
-                                    <span className={`zolo-period text-${index}`} key={index}>
-                                        {name}
-                                    </span>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
-                    {showDesc && <RichText.Content tagName="div" className="zolo-package-desc" value={descText} />}
-
-                    <div className="zolo-link-btn">
-                        {showBtn && (
-                            <RichText.Content
-                                tagName="a"
-                                className="zolo-buy-btn"
-                                value={buttonText}
-                                href={buttonLink && buttonLink.url ? buttonLink.url : '# '}
-                                target={buttonLink && buttonLink.openInNewTab && '_blank'}
-                                rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
-                            />
-                        )}
-                        {showChatBtn && (
-                            <RichText.Content
-                                tagName="a"
-                                className="zolo-chat-btn"
-                                value={chatBtnText}
-                                href={chatBtnLink && chatBtnLink.url ? chatBtnLink.url : '# '}
-                                target={chatBtnLink && chatBtnLink.openInNewTab && '_blank'}
-                                rel={chatBtnLink && chatBtnLink.openInNewTab && 'noopener noreferrer'}
-                            />
-                        )}
-                    </div>
-                </div>
-
-                <div className="zolo-features-info">
-                    {showFeatureHeading && <RichText.Content tagName="div" value={featureTitle} className="zolo-features-title" />}
-
-                    {showFeatureDesc && <RichText.Content tagName="div" value={featureDesc} className="zolo-features-desc" />}
-
-                    {features.length !== 0 && (
-                        <ul className="features">
-                            {features.map((item, index) => (
-                                <li key={index}>
-                                    {item.icon && (
-                                        <span className="zolo-check-icon">
-                                            <DisplayIcon icon={item.icon} />
+                            {pricingPeriod.length !== 0 && (
+                                <div className="zolo-user-month">
+                                    {pricingPeriod.map((name, index) => (
+                                        <span className={`zolo-period text-${index}`} key={index}>
+                                            {name}
                                         </span>
-                                    )}
-                                    <span className="zolo-list-text">{item.text}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        {showDesc && <RichText.Content tagName="div" className="zolo-package-desc" value={descText} />}
+
+                        <div className="zolo-link-btn">
+                            {showBtn && (
+                                <RichText.Content
+                                    tagName="a"
+                                    className="zolo-buy-btn"
+                                    value={buttonText}
+                                    href={buttonLink && buttonLink.url ? buttonLink.url : '# '}
+                                    target={buttonLink && buttonLink.openInNewTab && '_blank'}
+                                    rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
+                                />
+                            )}
+                            {showChatBtn && (
+                                <RichText.Content
+                                    tagName="a"
+                                    className="zolo-chat-btn"
+                                    value={chatBtnText}
+                                    href={chatBtnLink && chatBtnLink.url ? chatBtnLink.url : '# '}
+                                    target={chatBtnLink && chatBtnLink.openInNewTab && '_blank'}
+                                    rel={chatBtnLink && chatBtnLink.openInNewTab && 'noopener noreferrer'}
+                                />
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="zolo-features-info">
+                        {showFeatureHeading && <RichText.Content tagName="div" value={featureTitle} className="zolo-features-title" />}
+
+                        {showFeatureDesc && <RichText.Content tagName="div" value={featureDesc} className="zolo-features-desc" />}
+
+                        {features.length !== 0 && (
+                            <ul className="features">
+                                {features.map((item, index) => (
+                                    <li key={index}>
+                                        {item.icon && (
+                                            <span className="zolo-check-icon">
+                                                <DisplayIcon icon={item.icon} />
+                                            </span>
+                                        )}
+                                        <span className="zolo-list-text">{item.text}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

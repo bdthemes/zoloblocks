@@ -1,9 +1,11 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DisplayIcon } = window.zoloModule;
+const { DisplayIcon, classArrayToStr } = window.zoloModule;
+import classNames from 'classnames';
 
 const Save = ({ attributes }) => {
     const {
         uniqueId,
+        parentClasses,
         preset,
         showBadge,
         badgeText,
@@ -26,12 +28,12 @@ const Save = ({ attributes }) => {
         socialProfiles,
     } = attributes;
 
+    const blockProps = useBlockProps.save({
+        className: classNames(uniqueId, `${preset ? preset : ''}`, classArrayToStr(parentClasses)),
+    });
+
     return (
-        <div
-            {...useBlockProps.save({
-                className: uniqueId + ` ${preset ? preset : ''}`,
-            })}
-        >
+        <div {...blockProps}>
             <div className="zb-profile-item">
                 <div className="zb-profile-header-content">
                     {showBadge && (
