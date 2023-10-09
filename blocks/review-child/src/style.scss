@@ -3,12 +3,10 @@
 }
 
 .wp-block-zolo-review-child {
+    overflow: hidden;
+
     a {
         transition: 0.2s;
-    }
-
-    .zolo-item {
-        overflow: hidden;
     }
 
     .zolo-item,
@@ -70,12 +68,12 @@
 	* Default Style
 	*/
     &.default {
+        overflow: visible;
         .zolo-item {
             padding: 40px 30px;
             background-color: #fff;
             border: 1px solid #ebebeb;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            overflow: visible;
         }
 
         .zolo-image-wrap {

@@ -6,17 +6,32 @@ const { generateResRangeAttributies, generateDimensionAttributes, generateNormal
 import { TEAM_GRID_BG, GRID_COLUMNS, COLUMNS_GAP, ROWS_GAP, CONTAINER_MARGIN, CONTAINER_PADDING } from './constants';
 
 const attributes = {
-    //Common Attributes
-    uniqueId: {
-        type: 'string',
-    },
-    resDevice: {
-        type: 'string',
-        default: 'Desktop',
-    },
-    blockStyle: {
+    // global Attributes
+    globalConfig: {
         type: 'object',
+        default: {
+            margin: {
+                prefix: 'mainMargin',
+            },
+            padding: {
+                prefix: 'mainPadding',
+            },
+            background: {
+                prefix: 'mainBg',
+            },
+            border: {
+                prefix: 'mainBorder',
+            },
+            borderRadius: {
+                prefix: 'mainBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'mainBoxShadow',
+            },
+            responsiveControls: true,
+        },
     },
+    // block attributes
     preset: {
         type: 'string',
         default: 'default',

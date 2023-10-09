@@ -1,68 +1,68 @@
 .zolo-panel-control {
-	.zolo-tab-group {
-		display: flex;
-		position: relative;
-		background: #fff;
-		z-index: 9;
+    .zolo-tab-group {
+        display: flex;
+        position: relative;
+        background: #fff;
+        z-index: 9;
 
-		.zolo-tab {
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			height: 80px;
-			gap: 5px;
-			width: 100%;
-			color: #1a1a1a;
-			border-top: 1px solid #e0e0e0 !important;
-			box-shadow: none !important;
-			&.next__tab {
-				border-radius: 0 0 0 8px;
-				border-left: 1px solid #e0e0e0;
-				border-right: 1px solid #e0e0e0;
-			}
-			&.prev__tab {
-				border-right: 1px solid #e0e0e0;
-				border-radius: 0 0 8px 0;
-			}
-			&.sup_prev__tab {
-				border-left: 1px solid #e0e0e0;
-				border-right: 1px solid #e0e0e0;
-				border-radius: 0 0 8px 0;
-			}
-			&.active__tab {
-				background: #fff;
-				color: #001feb;
-				border-top: 2px solid #001feb !important;
-				svg {
-					path {
-						fill: #001feb !important;
-					}
-				}
-			}
+        .zolo-tab {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            gap: 5px;
+            width: 100%;
+            color: #1a1a1a;
+            border-top: 1px solid #e0e0e0 !important;
+            box-shadow: none !important;
+            &.next__tab {
+                border-radius: 0 0 0 8px;
+                border-left: 1px solid #e0e0e0;
+                border-right: 1px solid #e0e0e0;
+            }
+            &.prev__tab {
+                border-right: 1px solid #e0e0e0;
+                border-radius: 0 0 8px 0;
+            }
+            &.sup_prev__tab {
+                border-left: 1px solid #e0e0e0;
+                border-right: 1px solid #e0e0e0;
+                border-radius: 0 0 8px 0;
+            }
+            &.active__tab {
+                background: #fff;
+                color: #001feb;
+                border-top: 2px solid #001feb !important;
+                svg {
+                    path {
+                        fill: #001feb !important;
+                    }
+                }
+            }
 
-			&:not(.active__tab) {
-				border-bottom: 1px solid #e0e0e0 !important;
-				background: #f2f2f2;
-			}
+            &:not(.active__tab) {
+                // border-bottom: 1px solid #e0e0e0 !important;
+                background: #f2f2f2;
+            }
 
-			svg {
-				width: 24px;
-			}
+            svg {
+                width: 24px;
+            }
 
-			.zolo-tab-label {
-				margin: 0;
-				padding: 0;
-				font-size: 13px;
-				font-weight: 400;
-			}
-		}
-	}
+            .zolo-tab-label {
+                margin: 0;
+                padding: 0;
+                font-size: 13px;
+                font-weight: 400;
+            }
+        }
+    }
 
-	.components-button:focus:not(:disabled) {
-		box-shadow: none !important;
-		outline: none !important;
-	}
-	.components-button-group .components-button + .components-button {
-		margin-left: 0 !important;
-	}
+    .components-button:focus:not(:disabled) {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+    .components-button-group .components-button + .components-button {
+        margin-left: 0 !important;
+    }
 }

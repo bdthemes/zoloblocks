@@ -48,17 +48,32 @@ import {
 import * as typographyObjs from './constants/typoPrefixConstants';
 
 const attributes = {
-    //Common Attributes
-    uniqueId: {
-        type: 'string',
-    },
-    resDevice: {
-        type: 'string',
-        default: 'Desktop',
-    },
-    blockStyle: {
+    // global Attributes
+    globalConfig: {
         type: 'object',
+        default: {
+            margin: {
+                prefix: 'mainMargin',
+            },
+            padding: {
+                prefix: 'mainPadding',
+            },
+            background: {
+                prefix: 'mainBg',
+            },
+            border: {
+                prefix: 'mainBorder',
+            },
+            borderRadius: {
+                prefix: 'mainBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'mainBoxShadow',
+            },
+            responsiveControls: true,
+        },
     },
+    // block attribtues
     preset: {
         type: 'string',
         default: 'default',

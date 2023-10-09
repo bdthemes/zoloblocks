@@ -14,6 +14,7 @@ const {
 
 //block constants
 import {
+    SEPARATOR_ALIGN,
     SEPARATOR_HEIGHT,
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
@@ -21,6 +22,7 @@ import {
     SUBTITLE_TEXT_SHADOW,
     SUBTITLE_TEXT_STROKE,
     TEST_NORMAL_BG,
+    TITLE_ALIGN,
     TITLE_BORDER,
     TITLE_BORDER_RADIUS,
     TITLE_MARGIN,
@@ -46,12 +48,29 @@ import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
     //Common Attributes
-    uniqueId: {
-        type: 'string',
-    },
-
-    blockStyle: {
+    globalConfig: {
         type: 'object',
+        default: {
+            background: {
+                prefix: 'mainBg',
+            },
+            margin: {
+                prefix: 'mainMargin',
+            },
+            padding: {
+                prefix: 'mainPadding',
+            },
+            border: {
+                prefix: 'mainBorder',
+            },
+            borderRadius: {
+                prefix: 'mainBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'mainBoxShadow',
+            },
+            responsiveControls: true,
+        },
     },
 
     //settings tab
@@ -132,6 +151,12 @@ const attributes = {
         default: 'top-left',
     },
 
+    ...generateResAlignmentAttributies(TITLE_ALIGN, {
+        defaultAlign: 'left',
+    }),
+    ...generateResAlignmentAttributies(SEPARATOR_ALIGN, {
+        defaultAlign: 'flex-start',
+    }),
     ...generateResAlignmentAttributies(TPT_ALIGNMENT),
 
     //design tab attributes

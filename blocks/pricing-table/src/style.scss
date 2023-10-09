@@ -1,9 +1,11 @@
 .wp-block-zolo-pricing-table {
     box-sizing: border-box;
     position: relative;
-    .zolo-item {
+    overflow: hidden;
+    .zolo-block-wrapper {
         border-radius: 6px;
         border: 1px solid #ddd;
+        position: relative;
     }
     .zolo-head-content {
         padding: clamp(1.5rem, 4vw, 2.5rem);

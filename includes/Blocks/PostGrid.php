@@ -26,9 +26,14 @@ class PostGrid extends PostBlock
 
     public function render($attributes)
     {
+
+        // var_dump($attributes);
+
         $attributes = wp_parse_args($attributes, $this->get_default_attributes());
 
-        $post_results = apply_filters('zolo_post_grid_results', GetPostsV1::zolo_posts_query($attributes['postQuery']));
+        $postQuery = $attributes['postQuery'] ?? [];
+
+        $post_results = apply_filters('zolo_post_grid_results', GetPostsV1::zolo_posts_query($postQuery));
 
         ob_start();
         ZoloHelpers::views('post-grid', [

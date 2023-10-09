@@ -1,11 +1,16 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
+import classnames from 'classnames';
 
-const { DisplayIcon } = window.zoloModule;
+/**
+ * Internal Dependencies
+ */
+const { classArrayToStr, DisplayIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
         uniqueId,
         preset,
+        parentClasses,
         titleTag,
         mainIcon,
         showMainIcon,
@@ -22,8 +27,13 @@ const Save = ({ attributes }) => {
         buttonLink,
         globalLink,
     } = attributes;
+
+    const blockProps = useBlockProps.save({
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+    });
+
     return (
-        <div {...useBlockProps.save()}>
+        <div {...blockProps}>
             {globalLink === true ? (
                 <a
                     href={buttonLink && buttonLink.url}

@@ -53,7 +53,7 @@ const DimensionControl = ({ top, right, bottom, left, onChange, neededProps }) =
 
     return (
         <div className="zb-dimension-container">
-            <WithResDeviceBtn label={label} resRequiredProps={neededProps} controlName={controlName}>
+            <WithResDeviceBtn label={label} requiredProps={neededProps} controlName={controlName}>
                 <div className="input-container">
                     {isLinked && (
                         <RangeControl

@@ -17,7 +17,6 @@ import classnames from 'classnames';
  * Internal depencencies
  */
 const {
-    handleUniqueId,
     softMinifyCssStrings,
     generateResAlignmentStyle,
     generateDimensionStyle,
@@ -28,6 +27,7 @@ const {
     generateNormalBGControlStyles,
     generateResRangeStyle,
     generateBorderStyle,
+    classArrayToStr,
 } = window.zoloModule;
 
 import {
@@ -60,10 +60,14 @@ import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstan
 
 import Inspector from './inspector';
 
+// import style
+import Style from './style';
+
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected, context } = props;
     const {
         uniqueId,
+        parentClasses,
         isBrandName,
         isBrandLink,
         brandPhoto,
@@ -74,20 +78,16 @@ export default function Edit(props) {
         textColor,
         linkColor,
         linkHoverColor,
-        blockStyle,
+        zoloStyles,
         containerHoverBorderColor,
         contentHorizontalPosition,
         contentVerticalPosition,
     } = attributes;
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
+
+    // block props
+    const blockProps = useBlockProps({
+        className: classnames(className, `zb-brand-item ${uniqueId} ${brandPhoto ? 'has-photo' : ''}`, classArrayToStr(parentClasses)),
+    });
 
     /**
      * context
@@ -101,383 +101,9 @@ export default function Edit(props) {
         });
     }, [context]);
 
-    // block props
-    const blockProps = useBlockProps({
-        className: classnames(className, `zb-brand-item ${uniqueId} ${brandPhoto ? 'has-photo' : ''}`),
-    });
-
-    // Content Align
-    const {
-        desktopAlignStyle: brandContentDeskAlignStyle,
-        tabAlignStyle: brandContentTabAlignStyle,
-        mobAlignStyle: brandContentMobAlignStyle,
-    } = generateResAlignmentStyle({
-        controlName: CONTENT_ALIGNMENT,
-        property: 'text-align',
-        attributes,
-    });
-    const {
-        dimensionStylesDesktop: contentDeskPadding,
-        dimensionStylesTab: contentTabPadding,
-        dimensionStylesMobile: contentMobPadding,
-    } = generateDimensionStyle({
-        controlName: CONTENT_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
-    // Container
-    const {
-        desktopRangeStyle: deskContainerHeight,
-        tabRangeStyle: tabContainerHeight,
-        mobRangeStyle: mobContainerHeight,
-    } = generateResRangeStyle({
-        controlName: CONTAINER_HEIGHT,
-        property: 'height',
-        attributes,
-    });
-
-    const {
-        desktopBorderStyle: containerBorderDesk,
-        tabBorderStyle: containerBorderTab,
-        mobBorderStyle: containerBorderMob,
-    } = generateBorderStyle({
-        controlName: CONTAINER_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: containerDeskBorderRadius,
-        dimensionStylesTab: containerTabBorderRadius,
-        dimensionStylesMobile: containerMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_BOX_SHADOW,
-    });
-
-    const {
-        backgroundStylesDesktop: containerDeskBGStyle,
-        backgroundStylesTab: containerTabBGStyle,
-        backgroundStylesMobile: containerMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTAINER_BACKGROUND,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    const {
-        backgroundStylesDesktop: brandPhotoDeskBGStyle,
-        backgroundStylesTab: brandPhotoTabBGStyle,
-        backgroundStylesMobile: brandPhotoMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: BRAND_PHOTO_BG,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    // Container Hover
-    const {
-        backgroundStylesDesktop: containerHoverDeskBGStyle,
-        backgroundStylesTab: containerHoverTabBGStyle,
-        backgroundStylesMobile: containerHoverMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTAINER_HOVER_BACKGROUND,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    // Container Hover Box Shadow
-    const { boxShadowStyle: brandContainerHoverBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_HOVER_BOX_SHADOW,
-    });
-
-    // Photo
-    const {
-        desktopRangeStyle: deskImageWidth,
-        tabRangeStyle: tabImageWidth,
-        mobRangeStyle: mobImageWidth,
-    } = generateResRangeStyle({
-        controlName: IMAGE_WIDTH,
-        property: 'width',
-        attributes,
-    });
-
-    const {
-        desktopBorderStyle: photoBorderDesktop,
-        tabBorderStyle: photoBorderTab,
-        mobBorderStyle: photoBorderMob,
-    } = generateBorderStyle({
-        controlName: BRAND_PHOTO_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: brandPhotoBorderRadiusDesk,
-        dimensionStylesTab: brandPhotoBorderRadiusTab,
-        dimensionStylesMobile: brandPhotoBorderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: BRAND_PHOTO_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    // Photo Box Shadow
-    const { boxShadowStyle: brandPhotoBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: BRAND_PHOTO_BOX_SHADOW,
-    });
-
-    // Brand Photo Padding
-    const {
-        dimensionStylesDesktop: brandPhotoPaddingDesk,
-        dimensionStylesTab: brandPhotoPaddingTab,
-        dimensionStylesMobile: brandPhotoPaddingMob,
-    } = generateDimensionStyle({
-        controlName: BRAND_PHOTO_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
-    // Brand Photo Margin
-    const {
-        dimensionStylesDesktop: brandPhotoMaringDesk,
-        dimensionStylesTab: brandPhotoMarginTab,
-        dimensionStylesMobile: brandPhotoMarginMob,
-    } = generateDimensionStyle({
-        controlName: BRAND_PHOTO_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    // Title Typography
-    const {
-        typoStylesDesktop: titleTypoDesk,
-        typoStylesTab: titleTypoTab,
-        typoStylesMobile: titleTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: TITLE_TYPOGRAPHY,
-        attributes,
-    });
-
-    // Link Typography
-    const {
-        typoStylesDesktop: linkTypoDesk,
-        typoStylesTab: linkTypoTab,
-        typoStylesMobile: linkTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: LINK_TYPOGRAPHY,
-        defaultFontSize: 16,
-        attributes,
-    });
-
-    // Title Margin
-    const {
-        dimensionStylesDesktop: titleMarginDesk,
-        dimensionStylesTab: titleMarginTab,
-        dimensionStylesMobile: titleMarginMob,
-    } = generateDimensionStyle({
-        controlName: TITLE_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    // Link Margin
-    const {
-        dimensionStylesDesktop: linkMarginDesk,
-        dimensionStylesTab: linkMarginTab,
-        dimensionStylesMobile: linkMarginMob,
-    } = generateDimensionStyle({
-        controlName: LINK_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    // Title Text Shadow
-    const { textShadowStyle: titleTextShadow } = generateTextShadowStyles({
-        attributes,
-        controlName: TITLE_TEXT_SHADOW,
-    });
-
-    // Title Text Stroke
-    const {
-        desktopTextStrokeStyle: titleTextStrokeDesk,
-        tabTextStrokeStyle: titleTextStrokeTab,
-        mobTextStrokeStyle: titleTextStrokeMob,
-    } = generateTextStrokeStyles({
-        attributes,
-        controlName: TITLE_TEXT_STROKE,
-    });
-
-    // Link Text Shadow
-    const { textShadowStyle: linkTextShadow } = generateTextShadowStyles({
-        attributes,
-        controlName: LINK_TEXT_SHADOW,
-    });
-
-    // Link Text Stroke
-    const {
-        desktopTextStrokeStyle: linkTextStrokeDesk,
-        tabTextStrokeStyle: linkTextStrokeTab,
-        mobTextStrokeStyle: linkTextStrokeMob,
-    } = generateTextStrokeStyles({
-        attributes,
-        controlName: LINK_TEXT_STROKE,
-    });
-
-    /**
-     * All Style Combination
-     */
-
-    const desktopAllStyle = `	
-		.${uniqueId}.zb-brand-item{
-            ${deskContainerHeight}
-			${containerDeskBorderRadius}
-			${containerBoxShadow}
-			${containerDeskBGStyle}
-            ${containerBorderDesk}
-		}		
-		.${uniqueId}.zb-brand-item:hover{
-			${brandContainerHoverBoxShadow}
-            ${containerHoverBorderColor ? `border-color:${containerHoverBorderColor};` : ''}
-		}
-		.${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
-            ${brandPhotoPaddingDesk}	
-			${deskImageWidth}
-			${brandPhotoBorderRadiusDesk}
-			${brandPhotoBoxShadow}
-			${brandPhotoDeskBGStyle}			
-			${brandPhotoMaringDesk}		
-			${photoBorderDesktop}
-		}
-        .${uniqueId} .zb-brand-inner-content{
-            ${brandContentDeskAlignStyle}
-        }
-		.${uniqueId} .zb-brand-content{
-			${containerHoverDeskBGStyle}
-            ${contentHorizontalPosition ? `align-items:${contentHorizontalPosition};` : ''}
-            ${contentVerticalPosition ? `justify-content:${contentVerticalPosition};` : ''}
-            ${contentDeskPadding}
-		}		
-		.${uniqueId} .zb-brand-title{
-			${titleTypoDesk}
-			${titleMarginDesk}
-			${titleTextShadow}
-			${titleTextStrokeDesk}
-			color:${textColor};
-		}
-		.${uniqueId}.zb-brand-item .zb-brand-link{
-			${linkTypoDesk}
-			${linkMarginDesk}
-			${linkTextShadow}
-			${linkTextStrokeDesk}
-			color:${linkColor};
-		}
-		.${uniqueId}.zb-brand-item .zb-brand-link:hover{
-			color:${linkHoverColor};
-		}
-  	`;
-
-    const tabletAllStyle = `
-        .${uniqueId}.zb-brand-item{
-            ${tabContainerHeight}
-            ${containerTabBorderRadius}
-            ${containerTabBGStyle}
-            ${containerBorderTab}
-        }
-        .${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
-            ${brandPhotoPaddingTab}
-            ${tabImageWidth}
-            ${brandPhotoBorderRadiusTab}
-            ${brandPhotoTabBGStyle}
-            ${brandPhotoMarginTab}
-            ${photoBorderTab}
-        }
-        .${uniqueId} .zb-brand-inner-content{
-            ${brandContentTabAlignStyle}
-        }
-        .${uniqueId} .zb-brand-content{
-            ${containerHoverTabBGStyle}
-            ${contentTabPadding}
-        }
-        .${uniqueId} .zb-brand-title{
-            ${titleTypoTab}
-            ${titleMarginTab}
-            ${titleTextStrokeTab}
-        }
-        .${uniqueId} .zb-brand-link{
-            ${linkTypoTab}
-            ${linkMarginTab}
-            ${linkTextStrokeTab}
-        }
-    `;
-
-    const mobileAllStyle = `
-        .${uniqueId}.zb-brand-item{
-            ${mobContainerHeight}
-            ${containerMobBorderRadius}
-            ${containerMobBGStyle}
-            ${containerBorderMob}
-        }
-        .${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
-            ${brandPhotoPaddingMob}
-            ${mobImageWidth}
-            ${brandPhotoBorderRadiusMob}
-            ${brandPhotoMobBGStyle}
-            ${brandPhotoMarginMob}
-            ${photoBorderMob}
-        }
-        .${uniqueId} .zb-brand-inner-content{
-            ${brandContentMobAlignStyle}
-        }
-        .${uniqueId} .zb-brand-content{
-            ${containerHoverMobBGStyle}
-            ${contentMobPadding}
-        }
-        .${uniqueId} .zb-brand-title{
-            ${titleTypoMob}
-            ${titleMarginMob}
-            ${titleTextStrokeMob}
-        }
-        .${uniqueId} .zb-brand-link{
-            ${linkTypoMob}
-            ${linkMarginMob}
-            ${linkTextStrokeMob}
-        }
-    `;
-
-    const allStyle = `
-		${desktopAllStyle}
-		@media all and (max-width: 1024px) {
-			${tabletAllStyle}
-		}
-		@media all and (max-width: 767px) {
-			${mobileAllStyle}
-		}
-	`;
-
-    // Set All Style in "blockStyle" Attribute
-    useEffect(() => {
-        const styles = {
-            desktop: desktopAllStyle,
-            tablet: tabletAllStyle,
-            mobile: mobileAllStyle,
-        };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
-        }
-    }, [attributes]);
-
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-
             {brandPhoto && (
                 <BlockControls>
                     <Fragment>
@@ -515,8 +141,7 @@ export default function Edit(props) {
                     </Fragment>
                 </BlockControls>
             )}
-
-            <style>{` ${softMinifyCssStrings(allStyle)}`}</style>
+            <Style props={props} />
             <div {...blockProps}>
                 <div className="zb-brand-image">
                     {brandPhoto ? (

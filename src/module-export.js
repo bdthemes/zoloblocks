@@ -9,8 +9,7 @@ export { default as BoxShadowControl } from './controls/boxshadow-control';
 export { default as ColorControl } from './controls/color-control';
 export { default as ResDimensionsControl } from './controls/dimensions-control';
 export { default as GradientControl } from './controls/gradient-control';
-export { default as IconPicker } from './controls/icon-picker';
-export { default as DisplayIcon } from './controls/icon-picker/DisplayIcon';
+export { IconPicker, DisplayIcon } from './controls/icon-picker';
 export { default as ImageAvatar } from './controls/image-avatar';
 export { default as NormalBGControl } from './controls/normal-bg-control';
 export { default as RangeResetControl } from './controls/range-reset-control';
@@ -29,13 +28,15 @@ export { default as SortableItem } from './controls/sortable-control/sortableite
 export { default as ResCounterControl } from './controls/res-counter-control';
 export { default as QueryControl } from './controls/query-control';
 export { default as Pagination } from './controls/pagination';
+export { AdvancedOptions } from './global/components/advancedOptions';
+export { GlobalStyleHanlder } from './global/components/globalStyleHandler';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';
 export { generateBorderAttributies, generateBorderStyle } from './helpers/border-helper';
 export { generateBoxShadowAttributies, generateBoxShadowStyles } from './helpers/boxshadow-helper';
 export { generateDimensionAttributes, generateDimensionStyle } from './helpers/dimension-helper';
-export { DynamicTag, handleUniqueId, hasVal, softMinifyCssStrings } from './helpers/helper';
+export { DynamicTag, handleUniqueId, hasVal, softMinifyCssStrings, classArrayToStr } from './helpers/helper';
 export { generateNormalBGAttributes, generateNormalBGControlStyles } from './helpers/normal-bg-helpers';
 export { onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick } from './helpers/preview-btns-helper';
 export { generateResAlignmentAttributies, generateResAlignmentStyle } from './helpers/res-alignment-helper';

@@ -1,12 +1,15 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
+import classnames from 'classnames';
+const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, isBrandName, isBrandLink, brandPhoto, brandName, brandNameTag, brandDetailPageLink, brandLabel } = attributes;
+    const { uniqueId, parentClasses, isBrandName, isBrandLink, brandPhoto, brandName, brandNameTag, brandDetailPageLink, brandLabel } =
+        attributes;
 
     return (
         <div
             {...useBlockProps.save({
-                className: `zb-brand-item ${brandPhoto ? 'has-photo' : ''} ${uniqueId}`,
+                className: classnames(`zb-brand-item ${brandPhoto ? 'has-photo' : ''} ${uniqueId}`, classArrayToStr(parentClasses)),
             })}
         >
             <div className="zb-brand-image">
