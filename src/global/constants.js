@@ -527,11 +527,11 @@ export const ICON_BOX_OPTIONS = [
 export const WIDTH_TYPES = [
   {
     label: __('Full', 'zolo-blocks'),
-    value: 'full_width',
+    value: 'alignfull',
   },
   {
     label: __('Boxed', 'zolo-blocks'),
-    value: 'boxed',
+    value: 'alignwide',
   },
   {
     label: __('Custom', 'zolo-blocks'),
@@ -542,10 +542,10 @@ export const WIDTH_TYPES = [
 export const CONTENT_WIDTH_TYPES = [
   {
     label: __('Boxed', 'zolo-blocks'),
-    value: 'boxed',
+    value: 'alignwide',
   },
   {
     label: __('Full Width', 'zolo-blocks'),
-    value: 'full_width',
+    value: 'alignfull',
   },
 ];

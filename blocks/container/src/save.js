@@ -1,4 +1,5 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import classnames from 'classnames';
 
 
 const Save = ({ attributes }) => {
@@ -12,11 +13,15 @@ const Save = ({ attributes }) => {
   return (
     <div
       {...useBlockProps.save({
-        className: uniqueId,
+        className: classnames(
+          uniqueId,
+          isBlockRootParent ? `${containerWidthType} zolo-root-container` : '',
+          'frontend'
+        ),
       })}
     >
 
-      {isBlockRootParent && 'full_width' === containerWidthType && 'boxed' === contentWidthType ? (
+      {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
         <div className="zolo-container-inner-blocks-wrap">
           <InnerBlocks.Content />
         </div>

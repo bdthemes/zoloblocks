@@ -39,7 +39,7 @@ export default function generateStyle({ attributes, setAttributes, clientId }) {
     contentWidthType
   } = attributes;
 
-  // content
+  // content boxed width
   const {
     desktopRangeStyle: contentDeskWidth,
     tabRangeStyle: contentTabWidth,
@@ -192,21 +192,38 @@ export default function generateStyle({ attributes, setAttributes, clientId }) {
   /**
    * All Style Combination
    */
+
   let flexSelector =
     '.wp-block-zolo-container > .zolo-container-inner-blocks-wrap > .block-editor-inner-blocks > .block-editor-block-list__layout';
-  if (!isBlockRootParent || 'full_width' !== containerWidthType || 'boxed' !== contentWidthType) {
+  if (!isBlockRootParent || 'alignfull' !== containerWidthType || 'alignwide' !== contentWidthType) {
     flexSelector =
       '.wp-block-zolo-container > .block-editor-inner-blocks > .block-editor-block-list__layout';
   }
+
   const desktopAllStyle = softMinifyCssStrings(`
+
+    .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap{
+      ${contentDeskWidth}
+    }
+
+    ${'custom_width' === containerWidthType ? `
+      #block-${clientId}.block-editor-block-list__block{
+        ${containerDeskWidth}
+      }`: ''}
+
+
     .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId}{
       ${containerDeskWidth}
 			width: 100%;
     }
-    .editor-styles-wrapper #block-${clientId}.wp-block{
+
+    .${uniqueId}.wp-block{
      ${containerDeskPadding}
+     ${containerDeskMinHeight}
+     ${containerDeskMargin}
     }
-    ${flexSelector}{
+
+     .${uniqueId + flexSelector}{
       ${rowDeskGap}
       ${columnDeskGap}
       ${flexDirectionDesk}

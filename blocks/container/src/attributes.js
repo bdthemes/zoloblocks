@@ -54,11 +54,11 @@ const attributes = {
   },
   containerWidthType: {
     type: 'string',
-    default: 'full_width',
+    default: 'alignfull',
   },
   contentWidthType: {
     type: 'string',
-    default: 'boxed',
+    default: 'alignwide',
   },
   // New Generators
   ...generateResRangeAttributies(CONTAINER_WIDTH, {
