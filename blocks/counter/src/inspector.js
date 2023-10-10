@@ -31,6 +31,7 @@ import {
     TITLE_TAG,
     COUNTER_MARGIN,
     COUNTER_GAP,
+    COUNTER_TEXT_STROKE,
     DESCRIPTION_MARGIN,
     PRESETS,
     ICON_SIZE,
@@ -460,13 +461,8 @@ function Inspector(props) {
                                 max={100}
                                 step={1}
                             />
-                            <TextShadowControl
-                                controlName={TITLE_TEXT_SHADOW}
-                                resRequiredProps={resRequiredProps}
-                                enableTransition={false}
-                            />
                             <TextStrokeControl
-                                controlName={TITLE_TEXT_STROKE}
+                                controlName={COUNTER_TEXT_STROKE}
                                 resRequiredProps={resRequiredProps}
                                 enableTransition={false}
                             />

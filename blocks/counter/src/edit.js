@@ -36,6 +36,7 @@ import {
     CONTAINER_PADDING,
     COUNTER_MARGIN,
     COUNTER_GAP,
+    COUNTER_TEXT_STROKE,
     ICON_SIZE,
 
     // old
@@ -205,6 +206,16 @@ export default function Edit(props) {
         controlName: COUNTER_GAP,
         property: 'gap',
         attributes,
+    });
+
+    // Generate Counter Text Stroke
+    const {
+        desktopTextStrokeStyle: counterTextStrokeStyleDesk,
+        tabTextStrokeStyle: counterTextStrokeStyleTab,
+        mobTextStrokeStyle: counterTextStrokeStyleMob,
+    } = generateTextStrokeStyles({
+        attributes,
+        controlName: COUNTER_TEXT_STROKE,
     });
 
     // generate icon border radius
@@ -478,8 +489,13 @@ export default function Edit(props) {
 			${containerPaddingDesk}
 		}
         .wp-block-zolo-counter .${uniqueId} .zolo-counter-count{
+            color: ${textColor ? textColor : ''};
             ${counterMarginDesk}
             ${counterGapDesk}
+            ${counterTextStrokeStyleDesk}
+        }
+        .wp-block-zolo-counter .${uniqueId} .zolo-counter-count:hover{
+            color: ${textHoverColor ? textHoverColor : ''};
         }
         .wp-block-zolo-counter .zolo-counter-style-1.${uniqueId} .zolo-counter-icon i {
 			${iconSize}
@@ -604,6 +620,7 @@ export default function Edit(props) {
         .wp-block-zolo-counter .${uniqueId} .zolo-counter-count{
             ${counterMarginTab}
             ${counterGapTab}
+            ${counterTextStrokeStyleTab}
         }
 		.${uniqueId} .zolo-block-title{
 			${counterTypoTab}
@@ -639,6 +656,7 @@ export default function Edit(props) {
         .wp-block-zolo-counter .${uniqueId} .zolo-counter-count{
             ${counterMarginMob}
             ${counterGapMob}
+            ${counterTextStrokeStyleMob}
         }
 		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
 			${containerMobBGStyle}

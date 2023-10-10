@@ -85,6 +85,7 @@ export const CONTAINER_PADDING = 'containerPadding';
 
 export const COUNTER_MARGIN = 'counterMargin';
 export const COUNTER_GAP = 'counterGap';
+export const COUNTER_TEXT_STROKE = 'counterTextStroke';
 
 // Icon
 export const ICON_PADDING = 'iconPadding';
