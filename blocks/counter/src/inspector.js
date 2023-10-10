@@ -33,6 +33,9 @@ import {
     COUNTER_GAP,
     COUNTER_TEXT_SHADOW,
     COUNTER_TEXT_STROKE,
+    TITLE_MARGIN,
+    TITLE_TEXT_SHADOW,
+    TITLE_TEXT_STROKE,
     PRESETS,
     ICON_SIZE,
     ICON_BOX_SHADOW,
@@ -69,6 +72,8 @@ function Inspector(props) {
         iconType,
         counterIcon,
         iconTypeImage,
+        titleTextColor,
+        titleTextHoverColor,
 
         // old settings
         titleTag,
@@ -506,16 +511,16 @@ function Inspector(props) {
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
-                                controlName={COUNTER_MARGIN}
+                                controlName={TITLE_MARGIN}
                                 resRequiredProps={resRequiredProps}
                             />
                             <TextShadowControl
-                                controlName={COUNTER_TEXT_SHADOW}
+                                controlName={TITLE_TEXT_SHADOW}
                                 resRequiredProps={resRequiredProps}
                                 enableTransition={false}
                             />
                             <TextStrokeControl
-                                controlName={COUNTER_TEXT_STROKE}
+                                controlName={TITLE_TEXT_STROKE}
                                 resRequiredProps={resRequiredProps}
                                 enableTransition={false}
                             />
@@ -524,10 +529,10 @@ function Inspector(props) {
                                     <>
                                         <ColorControl
                                             label={__('Color', 'zolo-blocks')}
-                                            color={textColor}
+                                            color={titleTextColor}
                                             onChange={(value) =>
                                                 setAttributes({
-                                                    textColor: value,
+                                                    titleTextColor: value,
                                                 })
                                             }
                                         />
@@ -537,10 +542,10 @@ function Inspector(props) {
                                     <>
                                         <ColorControl
                                             label={__('Color', 'zolo-blocks')}
-                                            color={textHoverColor}
+                                            color={titleTextHoverColor}
                                             onChange={(value) =>
                                                 setAttributes({
-                                                    textHoverColor: value,
+                                                    titleTextHoverColor: value,
                                                 })
                                             }
                                         />

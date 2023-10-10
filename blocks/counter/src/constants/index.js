@@ -86,8 +86,6 @@ export const COUNTER_GAP = 'counterGap';
 export const COUNTER_TEXT_SHADOW = 'counterTextShadow';
 export const COUNTER_TEXT_STROKE = 'counterTextStroke';
 
-// Title
-
 // Icon
 export const ICON_PADDING = 'iconPadding';
 export const ICON_MARGIN = 'iconMargin';

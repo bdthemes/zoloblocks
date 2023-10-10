@@ -37,17 +37,18 @@ import {
     COUNTER_MARGIN,
     COUNTER_GAP,
     COUNTER_TEXT_STROKE,
-    ICON_SIZE,
-
-    // old
-    TITLE_MARGIN,
     COUNTER_TEXT_SHADOW,
-    TITLE_TEXT_STROKE,
-    DESCRIPTION_MARGIN,
+    ICON_SIZE,
     ICON_BORDER,
     ICON_BORDER_RADIUS,
     ICON_PADDING,
     ICON_MARGIN,
+    TITLE_MARGIN,
+    TITLE_TEXT_SHADOW,
+    TITLE_TEXT_STROKE,
+
+    // old
+    DESCRIPTION_MARGIN,
     BUTTON_BG_COLOR,
     BUTTON_BG_HOVER_COLOR,
     BUTTON_ICON_SIZE,
@@ -81,6 +82,8 @@ export default function Edit(props) {
         counterSuffix,
         counterIcon,
         titleText,
+        titleTextColor,
+        titleTextHoverColor,
         iconType,
         iconTypeImage,
 
@@ -98,10 +101,6 @@ export default function Edit(props) {
         iconBorderHoverColor,
         iconBackgroundColor,
         iconBackgroundHoverColor,
-        btnBgHoverColor,
-        btnHoverBorderColor,
-        buttonIconColor,
-        buttonIconHoverColor,
         presetOneStyles,
         presetTwoStyles,
         presetThreeStyles,
@@ -219,6 +218,12 @@ export default function Edit(props) {
         attributes,
     });
 
+    // Generate Counter Text Shadow
+    const { textShadowStyle: counterTextShadowStyle } = generateTextShadowStyles({
+        attributes,
+        controlName: COUNTER_TEXT_SHADOW,
+    });
+
     // Generate Counter Text Stroke
     const {
         desktopTextStrokeStyle: counterTextStrokeStyleDesk,
@@ -320,9 +325,9 @@ export default function Edit(props) {
     });
 
     // Generate Title Text Shadow
-    const { textShadowStyle: counterTextShadowStyle } = generateTextShadowStyles({
+    const { textShadowStyle: titleTextShadowStyle } = generateTextShadowStyles({
         attributes,
-        controlName: COUNTER_TEXT_SHADOW,
+        controlName: TITLE_TEXT_SHADOW,
     });
 
     // Generate Title Text Stroke
@@ -518,7 +523,14 @@ export default function Edit(props) {
 			color: ${descHoverColor ? descHoverColor : ''};
 		}        
         .wp-block-zolo-counter .${uniqueId} .zolo-counter-title{
+            color: ${titleTextColor ? titleTextColor : ''};
             ${titleTypoDesktop}
+            ${titleMarginDesktop}
+            ${titleTextShadowStyle}
+            ${titleTextStrokeStyle}
+        }
+        .wp-block-zolo-counter .${uniqueId} .zolo-counter-title:hover{
+            color: ${titleTextHoverColor ? titleTextHoverColor : ''};
         }
         .wp-block-zolo-counter .zolo-counter-style-1.${uniqueId} .zolo-counter-icon i {
 			${iconSize}
@@ -546,56 +558,15 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-block-link-btn{
 			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 		}		
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{
-			${counterTypoDesktop}
-        	${titleTextStrokeStyle}
-			${titleMarginDesktop ? titleMarginDesktop : ''}
-			color: ${textColor ? textColor : ''};
-		}
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title:hover{
-			color: ${textHoverColor ? textHoverColor : ''};
-		}		
-		.${uniqueId} .zolo-block-icon-wrap img {
-			${iconImageSizeDesk}
-			${iconImageBorderDesk}
-			${iconImageBorderRadiusDesk}
-		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button {			
-			${buttonBGDeskStyle}	
-			${gapDesk}		
-			${buttonBorderStyles}
-			${buttonBorderRadiusDesktop}
-			${buttonMarginDesktop}
-			${buttonBoxShadow}
-		}
-
-		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover {			
-			${buttonBGHoverDeskStyle}
-			background: ${btnBgHoverColor ? btnBgHoverColor : ''};
-			${buttonHoverBoxShadow}
-			border-color: ${btnHoverBorderColor ? btnHoverBorderColor : ''}
-		}
-		
-		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
-			color: ${buttonIconColor};
-			${buttonIconSize}			
-			${buttonIconHeight}			
-			${buttonIconWidth}			
-		}
-
-		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover span{
-			color: ${buttonIconHoverColor}	
-		}
-
-       ${
-           preset === 'style-1'
-               ? `.zolo-block-icon-wrap {
-                        justify-content: ${presetOneStyles && presetOneStyles.contentPosition};
-                } .zolo-box-button {
-                    flex-direction: ${presetOneStyles && presetOneStyles.iconPosition};
-                }`
-               : ''
-       }
+        ${
+            preset === 'style-1'
+                ? `.zolo-block-icon-wrap {
+                justify-content: ${presetOneStyles && presetOneStyles.contentPosition};
+        } .zolo-box-button {
+            flex-direction: ${presetOneStyles && presetOneStyles.iconPosition};
+        }`
+                : ''
+        }
        ${
            preset === 'style-2'
                ? `.${uniqueId} 
@@ -636,30 +607,11 @@ export default function Edit(props) {
             ${counterGapTab}
             ${counterTextStrokeStyleTab}
         }
-		.${uniqueId} .zolo-block-title{
-			${counterTypoTab}
-			${tabTitleTextStrokeStyle}
-			${titleMarginTab}
-		}
-		.${uniqueId} .zolo-block-icon-wrap i {
-			${iconSizeTab}
-			${borderStylesTab}
-			${iconBorderRadiusTab}
-			${iconPaddingTab}
-			${iconMarginTab}
-			background: ${iconBackgroundColor ? iconBackgroundColor : ''};
-			color: ${iconColor ? iconColor : ''};	
-		}
-		.${uniqueId} .zolo-block-icon-wrap img {
-			${iconImageSizeTab}
-			${iconImageBorderTab}
-			${iconImageBorderRadiusTab}
-		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
-			${buttonIconSizeTab}			
-			${buttonIconHeightTab}			
-			${buttonIconWidthTab}			
-		}
+        .wp-block-zolo-counter .${uniqueId} .zolo-counter-title{
+            ${titleTypoTab}
+            ${titleMarginTab}
+            ${tabTitleTextStrokeStyle}
+        }		
 	`;
 
     const mobileAllStyle = `
@@ -672,35 +624,11 @@ export default function Edit(props) {
             ${counterGapMob}
             ${counterTextStrokeStyleMob}
         }
-		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
-			${containerMobBGStyle}
-			${containerBorderMobStyle}
-			${containerMobBorderRadius}
-			${containerMarginMob}
-			${containerPaddingMob}
-		}
-		.${uniqueId} .zolo-block-title{
-			${counterTypoMobile}
-			${mobTitleTextStrokeStyle}
-			${titleMarginMob}
-		}		
-		.${uniqueId} .zolo-block-icon-wrap i {
-			${iconSizeMob}
-			${borderStylesMob}
-			${iconBorderRadiusMob}
-			${iconPaddingMob}
-			${iconMarginMob}
-		}
-		.${uniqueId} .zolo-block-icon-wrap img {
-			${iconImageSizeMob}
-			${iconImageBorderMob}
-			${iconImageBorderRadiusMob}
-		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
-			${buttonIconSizeMob}			
-			${buttonIconHeightMob}			
-			${buttonIconWidthMob}			
-		}
+        .wp-block-zolo-counter .${uniqueId} .zolo-counter-title{
+            ${titleTypoMobile}
+            ${titleMarginMob}
+            ${mobTitleTextStrokeStyle}
+        }
   	`;
 
     const allStyle = `

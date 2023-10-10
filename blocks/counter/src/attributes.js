@@ -242,6 +242,12 @@ const attributes = {
     textHoverColor: {
         type: 'string',
     },
+    titleTextColor: {
+        type: 'string',
+    },
+    titleTextHoverColor: {
+        type: 'string',
+    },
     iconType: {
         type: 'string',
         default: 'icon',
@@ -260,16 +266,6 @@ const attributes = {
                 name: 'cog',
                 source: 'fontawesome',
                 type: 'fas',
-            },
-        },
-    },
-    buttonIcon: {
-        type: 'object',
-        default: {
-            'admin-generic': {
-                name: 'admin generic',
-                source: 'dashicon',
-                type: '',
             },
         },
     },
