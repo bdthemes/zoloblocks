@@ -53,6 +53,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
 
             <BaseControl label={__('By Author', 'zolo-block')}>
                 <Select2
+                    classNamePrefix="zolo-select"
                     options={AUTHOR_LISTS}
                     value={postQuery.postAuthors}
                     onChange={(postAuthors) => setAttributes({ postQuery: { ...postQuery, postAuthors } })}
@@ -80,6 +81,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
             {tpgAllTaxonomies.map((tax, index) => (
                 <BaseControl label={__('By ', 'zolo-blocks') + tax.name} key={index}>
                     <Select2
+                        classNamePrefix="zolo-select"
                         options={PRINT_TAXONOMY(allTermList[tax.value])}
                         value={
                             Object.keys(postQuery.postTaxonomies).length > 0
