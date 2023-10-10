@@ -41,7 +41,7 @@ import {
 
     // old
     TITLE_MARGIN,
-    TITLE_TEXT_SHADOW,
+    COUNTER_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
     DESCRIPTION_MARGIN,
     ICON_BORDER,
@@ -197,6 +197,17 @@ export default function Edit(props) {
         attributes,
     });
 
+    //counter typography
+    const {
+        typoStylesDesktop: counterTypoDesktop,
+        typoStylesTab: counterTypoTab,
+        typoStylesMobile: counterTypoMobile,
+    } = generateTypographyStyles({
+        prefixConstant: COUNTER_TYPOGRAPHY,
+        defaultFontSize: 25,
+        attributes,
+    });
+
     // generate counter gap
     const {
         desktopRangeStyle: counterGapDesk,
@@ -216,6 +227,17 @@ export default function Edit(props) {
     } = generateTextStrokeStyles({
         attributes,
         controlName: COUNTER_TEXT_STROKE,
+    });
+
+    //title typography
+    const {
+        typoStylesDesktop: titleTypoDesktop,
+        typoStylesTab: titleTypoTab,
+        typoStylesMobile: titleTypoMobile,
+    } = generateTypographyStyles({
+        prefixConstant: TITLE_TYPOGRAPHY,
+        defaultFontSize: 16,
+        attributes,
     });
 
     // generate icon border radius
@@ -286,17 +308,6 @@ export default function Edit(props) {
         attributes,
     });
 
-    //title typography
-    const {
-        typoStylesDesktop: counterTypoDesktop,
-        typoStylesTab: counterTypoTab,
-        typoStylesMobile: counterTypoMobile,
-    } = generateTypographyStyles({
-        prefixConstant: COUNTER_TYPOGRAPHY,
-        defaultFontSize: 25,
-        attributes,
-    });
-
     // Generate Title Margin
     const {
         dimensionStylesDesktop: titleMarginDesktop,
@@ -309,9 +320,9 @@ export default function Edit(props) {
     });
 
     // Generate Title Text Shadow
-    const { textShadowStyle: titleTextShadowStyle } = generateTextShadowStyles({
+    const { textShadowStyle: counterTextShadowStyle } = generateTextShadowStyles({
         attributes,
-        controlName: TITLE_TEXT_SHADOW,
+        controlName: COUNTER_TEXT_SHADOW,
     });
 
     // Generate Title Text Stroke
@@ -497,6 +508,18 @@ export default function Edit(props) {
         .wp-block-zolo-counter .${uniqueId} .zolo-counter-count:hover{
             color: ${textHoverColor ? textHoverColor : ''};
         }
+		.${uniqueId} .animated-counter, .${uniqueId} .zolo-counter-sub-text{
+			${counterTypoDesktop}
+			${descMarginDesktop}
+			${counterTextShadowStyle}
+			color: ${descColor ? descColor : ''};
+		}
+        .${uniqueId} .animated-counter:hover{
+			color: ${descHoverColor ? descHoverColor : ''};
+		}        
+        .wp-block-zolo-counter .${uniqueId} .zolo-counter-title{
+            ${titleTypoDesktop}
+        }
         .wp-block-zolo-counter .zolo-counter-style-1.${uniqueId} .zolo-counter-icon i {
 			${iconSize}
 			${borderStyles}
@@ -517,14 +540,6 @@ export default function Edit(props) {
             border-color: ${containerBorderHoverColor ? containerBorderHoverColor : ''};
             ${containerHoverBoxShadow}
         }
-		.${uniqueId} .animated-counter, .${uniqueId} .zolo-counter-sub-text{
-			${counterTypoDesktop}
-			${descMarginDesktop}
-			color: ${descColor ? descColor : ''};
-		}
-        .${uniqueId} .animated-counter:hover{
-			color: ${descHoverColor ? descHoverColor : ''};
-		}
 		.${uniqueId} .zolo-block-body-content{
 			text-align: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 		}
@@ -533,7 +548,6 @@ export default function Edit(props) {
 		}		
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{
 			${counterTypoDesktop}
-			${titleTextShadowStyle}
         	${titleTextStrokeStyle}
 			${titleMarginDesktop ? titleMarginDesktop : ''}
 			color: ${textColor ? textColor : ''};

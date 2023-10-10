@@ -31,12 +31,10 @@ import {
     TITLE_TAG,
     COUNTER_MARGIN,
     COUNTER_GAP,
+    COUNTER_TEXT_SHADOW,
     COUNTER_TEXT_STROKE,
-    DESCRIPTION_MARGIN,
     PRESETS,
     ICON_SIZE,
-    TITLE_TEXT_SHADOW,
-    TITLE_TEXT_STROKE,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
     ICON_BORDER,
@@ -55,7 +53,7 @@ import {
     ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 
-import { COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { TITLE_TYPOGRAPHY, COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { COUNTER_CONTENT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 function Inspector(props) {
@@ -433,16 +431,6 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         <PanelBody title={__('Counter', 'zolo-blocks')} initialOpen={false}>
-                            <SelectControl
-                                label={__('Counter Tag', 'zolo-blocks')}
-                                options={TITLE_TAG}
-                                onChange={(tag) => {
-                                    setAttributes({
-                                        titleTag: tag,
-                                    });
-                                }}
-                                value={titleTag}
-                            />
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={COUNTER_TYPOGRAPHY}
@@ -460,6 +448,11 @@ function Inspector(props) {
                                 min={0}
                                 max={100}
                                 step={1}
+                            />
+                            <TextShadowControl
+                                controlName={COUNTER_TEXT_SHADOW}
+                                resRequiredProps={resRequiredProps}
+                                enableTransition={false}
                             />
                             <TextStrokeControl
                                 controlName={COUNTER_TEXT_STROKE}
@@ -496,10 +489,63 @@ function Inspector(props) {
                             />
                         </PanelBody>
                         <PanelBody title={__('Title', 'zolo-blocks')} initialOpen={false}>
+                            <SelectControl
+                                label={__('Title Tag', 'zolo-blocks')}
+                                options={TITLE_TAG}
+                                onChange={(tag) => {
+                                    setAttributes({
+                                        titleTag: tag,
+                                    });
+                                }}
+                                value={titleTag}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zolo-blocks')}
+                                typoPrefixConstant={TITLE_TYPOGRAPHY}
+                                resRequiredProps={resRequiredProps}
+                            />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
-                                controlName={DESCRIPTION_MARGIN}
+                                controlName={COUNTER_MARGIN}
                                 resRequiredProps={resRequiredProps}
+                            />
+                            <TextShadowControl
+                                controlName={COUNTER_TEXT_SHADOW}
+                                resRequiredProps={resRequiredProps}
+                                enableTransition={false}
+                            />
+                            <TextStrokeControl
+                                controlName={COUNTER_TEXT_STROKE}
+                                resRequiredProps={resRequiredProps}
+                                enableTransition={false}
+                            />
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zolo-blocks')}
+                                            color={textColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    textColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zolo-blocks')}
+                                            color={textHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    textHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
                             />
                         </PanelBody>
                     </>

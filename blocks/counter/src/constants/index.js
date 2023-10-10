@@ -72,7 +72,6 @@ export const ICON_POSITIONS = [
 ];
 
 // Item
-
 export const CONTAINER_BACKGROUND = 'containerBg';
 export const CONTAINER_BORDER = 'containerBorder';
 export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
@@ -82,10 +81,12 @@ export const CONTAINER_MARGIN = 'containerMargin';
 export const CONTAINER_PADDING = 'containerPadding';
 
 // Counter
-
 export const COUNTER_MARGIN = 'counterMargin';
 export const COUNTER_GAP = 'counterGap';
+export const COUNTER_TEXT_SHADOW = 'counterTextShadow';
 export const COUNTER_TEXT_STROKE = 'counterTextStroke';
+
+// Title
 
 // Icon
 export const ICON_PADDING = 'iconPadding';

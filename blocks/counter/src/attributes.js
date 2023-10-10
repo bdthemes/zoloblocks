@@ -42,6 +42,7 @@ import {
     CONTAINER_PADDING,
     COUNTER_MARGIN,
     COUNTER_GAP,
+    COUNTER_TEXT_SHADOW,
     COUNTER_TEXT_STROKE,
     ICON_IMAGE_SIZE,
     IMAGE_BORDER,
@@ -75,6 +76,7 @@ const attributes = {
     ...generateResRangeAttributies(COUNTER_GAP, {
         default: 30,
     }),
+    ...generateTextShadowAttributies(COUNTER_TEXT_SHADOW),
     ...generateTextStrokeAttributies(COUNTER_TEXT_STROKE),
     // Icon
     ...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT, {
