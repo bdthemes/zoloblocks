@@ -29,28 +29,19 @@ import objAttributes from './attributes';
 import {
     //OLD CONSTANTS
     TITLE_TAG,
-    TITLE_MARGIN,
+    COUNTER_MARGIN,
+    COUNTER_GAP,
     DESCRIPTION_MARGIN,
     PRESETS,
     ICON_SIZE,
-    BUTTON_ICON_SIZE,
-    ICON_TEXT_SPACING,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
-    BUTTON_BG_COLOR,
-    BUTTON_BG_HOVER_COLOR,
-    BUTTON_BOX_SHADOW,
-    BUTTON_HOVER_BOX_SHADOW,
     ICON_BORDER,
     ICON_BORDER_RADIUS,
     ICON_PADDING,
     ICON_MARGIN,
-    BUTTON_BORDER,
-    BUTTON_BORDER_RADIUS,
-    BUTTON_MARGIN,
-    BUTTON_PADDING,
     CONTAINER_BACKGROUND,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
@@ -63,8 +54,8 @@ import {
     ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 
-import { BUTTON_TYPOGRAPHY, TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { COUNTER_CONTENT_ALIGNS, FLEX_ALIGN_OPTIONS, POSITIONS } from '../../../src/global/constants';
+import { COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { COUNTER_CONTENT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -83,7 +74,6 @@ function Inspector(props) {
         // old settings
         titleTag,
         resMode,
-        showButtonIcon,
         iconAlignment,
         iconColor,
         iconBorderHoverColor,
@@ -93,14 +83,6 @@ function Inspector(props) {
         iconBackgroundHoverColor,
         textColor,
         textHoverColor,
-        btnColor,
-        btnHoverColor,
-        btnHoverBorderColor,
-        buttonIconColor,
-        buttonIconHoverColor,
-        presetOneStyles,
-        presetTwoStyles,
-        presetThreeStyles,
     } = attributes;
     const resRequiredProps = {
         attributes,
@@ -108,7 +90,6 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
-    console.log(iconAlignment);
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -450,9 +431,9 @@ function Inspector(props) {
                                 </>
                             </PanelBody>
                         )}
-                        <PanelBody title={__('Title', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Counter', 'zolo-blocks')} initialOpen={false}>
                             <SelectControl
-                                label={__('Title Tag', 'zolo-blocks')}
+                                label={__('Counter Tag', 'zolo-blocks')}
                                 options={TITLE_TAG}
                                 onChange={(tag) => {
                                     setAttributes({
@@ -463,13 +444,21 @@ function Inspector(props) {
                             />
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
-                                typoPrefixConstant={TITLE_TYPOGRAPHY}
+                                typoPrefixConstant={COUNTER_TYPOGRAPHY}
                                 resRequiredProps={resRequiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
-                                controlName={TITLE_MARGIN}
+                                controlName={COUNTER_MARGIN}
                                 resRequiredProps={resRequiredProps}
+                            />
+                            <ResRangeControl
+                                label={__('Gap', 'zolo-blocks')}
+                                controlName={COUNTER_GAP}
+                                resRequiredProps={resRequiredProps}
+                                min={0}
+                                max={100}
+                                step={1}
                             />
                             <TextShadowControl
                                 controlName={TITLE_TEXT_SHADOW}
@@ -510,13 +499,7 @@ function Inspector(props) {
                                 }
                             />
                         </PanelBody>
-                        <PanelBody title={__('Counter', 'zolo-blocks')} initialOpen={false}>
-                            <TypographyDropdown
-                                label={__('Typography', 'zolo-blocks')}
-                                typoPrefixConstant={DESCRIPTION_TYPOGRAPHY}
-                                resRequiredProps={resRequiredProps}
-                            />
-
+                        <PanelBody title={__('Title', 'zolo-blocks')} initialOpen={false}>
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={DESCRIPTION_MARGIN}

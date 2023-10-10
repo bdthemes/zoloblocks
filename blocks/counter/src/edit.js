@@ -34,10 +34,11 @@ import {
     CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
+    COUNTER_MARGIN,
+    COUNTER_GAP,
     ICON_SIZE,
 
     // old
-    ICON_BOX_ALIGNMENT,
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
@@ -57,13 +58,12 @@ import {
     ICON_TEXT_SPACING,
     BUTTON_BORDER_RADIUS,
     BUTTON_MARGIN,
-    BUTTON_PADDING,
     ICON_IMAGE_SIZE,
     IMAGE_BORDER,
     ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 
-import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { TITLE_TYPOGRAPHY, COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import Inspector from './inspector';
 
@@ -76,6 +76,7 @@ export default function Edit(props) {
         hideTitle,
         hideCounter,
         counterNumber,
+        titleTag,
         counterSuffix,
         counterIcon,
         titleText,
@@ -96,8 +97,6 @@ export default function Edit(props) {
         iconBorderHoverColor,
         iconBackgroundColor,
         iconBackgroundHoverColor,
-        btnColor,
-        btnHoverColor,
         btnBgHoverColor,
         btnHoverBorderColor,
         buttonIconColor,
@@ -186,14 +185,25 @@ export default function Edit(props) {
         attributes,
     });
 
-    // icon alignment
+    // Generate Counter Margin
     const {
-        desktopAlignStyle: iconAlignmentDesktop,
-        tabAlignStyle: iconAlignmentTab,
-        mobAlignStyle: iconAlignmentMob,
-    } = generateResAlignmentStyle({
-        controlName: ICON_BOX_ALIGNMENT,
-        property: 'align-items',
+        dimensionStylesDesktop: counterMarginDesk,
+        dimensionStylesTab: counterMarginTab,
+        dimensionStylesMobile: counterMarginMob,
+    } = generateDimensionStyle({
+        controlName: COUNTER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    // generate counter gap
+    const {
+        desktopRangeStyle: counterGapDesk,
+        tabRangeStyle: counterGapTab,
+        mobRangeStyle: counterGapMob,
+    } = generateResRangeStyle({
+        controlName: COUNTER_GAP,
+        property: 'gap',
         attributes,
     });
 
@@ -242,16 +252,6 @@ export default function Edit(props) {
         styleFor: 'padding',
         attributes,
     });
-    // Generate Button Padding
-    const {
-        dimensionStylesDesktop: buttonPaddingDesktop,
-        dimensionStylesTab: buttonPaddingTab,
-        dimensionStylesMobile: buttonPaddingMob,
-    } = generateDimensionStyle({
-        controlName: BUTTON_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
 
     // Generate Icon Margin
     const {
@@ -277,11 +277,11 @@ export default function Edit(props) {
 
     //title typography
     const {
-        typoStylesDesktop: titleTypoDesktop,
-        typoStylesTab: titleTypoTab,
-        typoStylesMobile: titleTypoMobile,
+        typoStylesDesktop: counterTypoDesktop,
+        typoStylesTab: counterTypoTab,
+        typoStylesMobile: counterTypoMobile,
     } = generateTypographyStyles({
-        prefixConstant: TITLE_TYPOGRAPHY,
+        prefixConstant: COUNTER_TYPOGRAPHY,
         defaultFontSize: 25,
         attributes,
     });
@@ -311,28 +311,6 @@ export default function Edit(props) {
     } = generateTextStrokeStyles({
         attributes,
         controlName: TITLE_TEXT_STROKE,
-    });
-
-    // descrtiption typography
-    const {
-        typoStylesDesktop: descTypoDesktop,
-        typoStylesTab: descTypoTab,
-        typoStylesMobile: descTypoMobile,
-    } = generateTypographyStyles({
-        prefixConstant: DESCRIPTION_TYPOGRAPHY,
-        defaultFontSize: 16,
-        attributes,
-    });
-
-    // button typography
-    const {
-        typoStylesDesktop: btnTypoDesktop,
-        typoStylesTab: btnTypoTab,
-        typoStylesMobile: btnTypoMobile,
-    } = generateTypographyStyles({
-        prefixConstant: BUTTON_TYPOGRAPHY,
-        defaultFontSize: 14,
-        attributes,
     });
 
     // Generate Title Margin
@@ -499,6 +477,10 @@ export default function Edit(props) {
 			${containerMarginDesk}
 			${containerPaddingDesk}
 		}
+        .wp-block-zolo-counter .${uniqueId} .zolo-counter-count{
+            ${counterMarginDesk}
+            ${counterGapDesk}
+        }
         .wp-block-zolo-counter .zolo-counter-style-1.${uniqueId} .zolo-counter-icon i {
 			${iconSize}
 			${borderStyles}
@@ -519,7 +501,14 @@ export default function Edit(props) {
             border-color: ${containerBorderHoverColor ? containerBorderHoverColor : ''};
             ${containerHoverBoxShadow}
         }
-		
+		.${uniqueId} .animated-counter, .${uniqueId} .zolo-counter-sub-text{
+			${counterTypoDesktop}
+			${descMarginDesktop}
+			color: ${descColor ? descColor : ''};
+		}
+        .${uniqueId} .animated-counter:hover{
+			color: ${descHoverColor ? descHoverColor : ''};
+		}
 		.${uniqueId} .zolo-block-body-content{
 			text-align: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 		}
@@ -527,7 +516,7 @@ export default function Edit(props) {
 			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 		}		
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{
-			${titleTypoDesktop}
+			${counterTypoDesktop}
 			${titleTextShadowStyle}
         	${titleTextStrokeStyle}
 			${titleMarginDesktop ? titleMarginDesktop : ''}
@@ -535,14 +524,6 @@ export default function Edit(props) {
 		}
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title:hover{
 			color: ${textHoverColor ? textHoverColor : ''};
-		}
-		.${uniqueId} .zolo-block-desc{
-			${descTypoDesktop}
-			${descMarginDesktop}
-			color: ${descColor ? descColor : ''};
-		}
-		.${uniqueId} .zolo-block-desc:hover{
-			color: ${descHoverColor ? descHoverColor : ''};
 		}		
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
@@ -554,7 +535,6 @@ export default function Edit(props) {
 			${gapDesk}		
 			${buttonBorderStyles}
 			${buttonBorderRadiusDesktop}
-			${buttonPaddingDesktop}
 			${buttonMarginDesktop}
 			${buttonBoxShadow}
 		}
@@ -576,15 +556,7 @@ export default function Edit(props) {
 		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover span{
 			color: ${buttonIconHoverColor}	
 		}
-		
-		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
-            color: ${btnColor ? btnColor : ''};	
-			${btnTypoDesktop}
-		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover p{			
-			color: ${btnHoverColor ? btnHoverColor : ''};			
-		}
        ${
            preset === 'style-1'
                ? `.zolo-block-icon-wrap {
@@ -625,26 +597,18 @@ export default function Edit(props) {
 			 
   	`;
 
-    const tabletAllStyle = `
-		.${uniqueId}{
-			${iconAlignmentTab}
+    const tabletAllStyle = `		
+		.${uniqueId} .animated-counter, .${uniqueId} .zolo-counter-sub-text{
+			${descMarginTab}
 		}
-		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
-			${containerTabBGStyle}
-			${containerBorderTabStyle}
-			${containerTabBorderRadius}
-			${containerMarginTab}
-			${containerPaddingTab}
-		}        
-        
+        .wp-block-zolo-counter .${uniqueId} .zolo-counter-count{
+            ${counterMarginTab}
+            ${counterGapTab}
+        }
 		.${uniqueId} .zolo-block-title{
-			${titleTypoTab}
+			${counterTypoTab}
 			${tabTitleTextStrokeStyle}
 			${titleMarginTab}
-		}		
-		.${uniqueId} .zolo-block-desc{
-			${descMarginTab}
-			${descTypoTab}
 		}
 		.${uniqueId} .zolo-block-icon-wrap i {
 			${iconSizeTab}
@@ -665,22 +629,17 @@ export default function Edit(props) {
 			${buttonIconHeightTab}			
 			${buttonIconWidthTab}			
 		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button {
-			${gapTab}
-			${buttonBorderStylesTab}
-			${buttonBorderRadiusTab}
-			${buttonPaddingTab}
-			${buttonMarginTab}
-		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
-			${btnTypoTab}
-		}
 	`;
 
     const mobileAllStyle = `
-		.${uniqueId}{
-			${iconAlignmentMob}
-		}
+		.${uniqueId} .animated-counter, .${uniqueId} .zolo-counter-sub-text{
+			${descMarginMob}
+			${counterTypoMobile}
+		}        
+        .wp-block-zolo-counter .${uniqueId} .zolo-counter-count{
+            ${counterMarginMob}
+            ${counterGapMob}
+        }
 		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
 			${containerMobBGStyle}
 			${containerBorderMobStyle}
@@ -689,14 +648,10 @@ export default function Edit(props) {
 			${containerPaddingMob}
 		}
 		.${uniqueId} .zolo-block-title{
-			${titleTypoMobile}
+			${counterTypoMobile}
 			${mobTitleTextStrokeStyle}
 			${titleMarginMob}
 		}		
-		.${uniqueId} .zolo-block-desc{
-			${descMarginMob}
-			${descTypoMobile}
-		}
 		.${uniqueId} .zolo-block-icon-wrap i {
 			${iconSizeMob}
 			${borderStylesMob}
@@ -713,16 +668,6 @@ export default function Edit(props) {
 			${buttonIconSizeMob}			
 			${buttonIconHeightMob}			
 			${buttonIconWidthMob}			
-		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button {
-			${gapMob}			
-			${buttonBorderStylesMob}
-			${buttonBorderRadiusMob}
-			${buttonPaddingMob}
-			${buttonMarginMob}
-		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
-			${btnTypoMobile}
 		}
   	`;
 
@@ -804,7 +749,7 @@ export default function Edit(props) {
                             <div class="zolo-counter-count">
                                 {hideCounter && (
                                     <>
-                                        <span className="counter">
+                                        <span className="animated-counter">
                                             <CountUp end={counterNumber} duration={3.2} />
                                         </span>
                                         <span className="zolo-counter-sub-text">{counterSuffix}</span>

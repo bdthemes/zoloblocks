@@ -81,6 +81,11 @@ export const CONTAINER_HOVER_BOX_SHADOW = 'containerHoverBoxShadow';
 export const CONTAINER_MARGIN = 'containerMargin';
 export const CONTAINER_PADDING = 'containerPadding';
 
+// Counter
+
+export const COUNTER_MARGIN = 'counterMargin';
+export const COUNTER_GAP = 'counterGap';
+
 // Icon
 export const ICON_PADDING = 'iconPadding';
 export const ICON_MARGIN = 'iconMargin';

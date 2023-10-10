@@ -40,6 +40,8 @@ import {
     CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
+    COUNTER_MARGIN,
+    COUNTER_GAP,
     ICON_IMAGE_SIZE,
     IMAGE_BORDER,
     ICON_IMAGE_BORDER_RADIUS,
@@ -67,6 +69,11 @@ const attributes = {
     ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
     ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
 
+    // Counter
+    ...generateDimensionAttributes(COUNTER_MARGIN),
+    ...generateResRangeAttributies(COUNTER_GAP, {
+        default: 30,
+    }),
     // Icon
     ...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT, {
         defaultAlign: 'left',
