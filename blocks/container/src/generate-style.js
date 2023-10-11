@@ -193,16 +193,18 @@ export default function generateStyle({ attributes, setAttributes, clientId }) {
    * All Style Combination
    */
 
-  let flexSelector =
-    '.wp-block-zolo-container > .zolo-container-inner-blocks-wrap > .block-editor-inner-blocks > .block-editor-block-list__layout';
+  let editorFlexSelector = '.wp-block-zolo-container > .zolo-container-inner-blocks-wrap > .block-editor-inner-blocks > .block-editor-block-list__layout';
+  let flexSelector = '.wp-block-zolo-container.zolo-root-container.alignfull > .zolo-container-inner-blocks-wrap';
+
   if (!isBlockRootParent || 'alignfull' !== containerWidthType || 'alignwide' !== contentWidthType) {
-    flexSelector =
-      '.wp-block-zolo-container > .block-editor-inner-blocks > .block-editor-block-list__layout';
+    editorFlexSelector = '.wp-block-zolo-container > .block-editor-inner-blocks > .block-editor-block-list__layout';
+    flexSelector = '.wp-block-zolo-container.frontend';
   }
 
   const desktopAllStyle = softMinifyCssStrings(`
 
-    .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap{
+    .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
+    .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap{
       ${contentDeskWidth}
     }
 
@@ -212,17 +214,20 @@ export default function generateStyle({ attributes, setAttributes, clientId }) {
       }`: ''}
 
 
-    .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId}{
+    .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
+    .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
       ${containerDeskWidth}
 			width: 100%;
     }
 
-    .${uniqueId}.wp-block{
+    .${uniqueId}.wp-block,
+    .wp-block-zolo-container.frontend.${uniqueId}{
      ${containerDeskPadding}
      ${containerDeskMinHeight}
      ${containerDeskMargin}
     }
 
+     .${uniqueId + editorFlexSelector},
      .${uniqueId + flexSelector}{
       ${rowDeskGap}
       ${columnDeskGap}
