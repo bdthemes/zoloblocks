@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
+import { useBlockProps, BlockControls, MediaUpload, MediaPlaceholder, RichText } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -13,7 +13,6 @@ import CountUp from 'react-countup';
 const {
     handleUniqueId,
     softMinifyCssStrings,
-    generateResAlignmentStyle,
     generateNormalBGControlStyles,
     generateResRangeStyle,
     generateBorderStyle,
@@ -23,6 +22,7 @@ const {
     generateTextShadowStyles,
     generateTextStrokeStyles,
     DisplayIcon,
+    DynamicTag,
 } = window.zoloModule;
 
 import {
@@ -46,23 +46,8 @@ import {
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
-
-    // old
-    DESCRIPTION_MARGIN,
-    BUTTON_BG_COLOR,
-    BUTTON_BG_HOVER_COLOR,
-    BUTTON_ICON_SIZE,
-    BUTTON_BORDER,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
-    BUTTON_BOX_SHADOW,
-    BUTTON_HOVER_BOX_SHADOW,
-    ICON_TEXT_SPACING,
-    BUTTON_BORDER_RADIUS,
-    BUTTON_MARGIN,
-    ICON_IMAGE_SIZE,
-    IMAGE_BORDER,
-    ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -116,7 +101,7 @@ export default function Edit(props) {
     }, []);
 
     const blockProps = useBlockProps({
-        className: classnames(className, `muhib `),
+        className: classnames(className, ``),
     });
 
     // item background
@@ -268,18 +253,6 @@ export default function Edit(props) {
         controlName: ICON_HOVER_BOX_SHADOW,
     });
 
-    // Generate Button Box Shadow
-    const { boxShadowStyle: buttonBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: BUTTON_BOX_SHADOW,
-    });
-
-    // Generate Icon Hover Box Shadow
-    const { boxShadowStyle: buttonHoverBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: BUTTON_HOVER_BOX_SHADOW,
-    });
-
     // Generate Icon Padding
     const {
         dimensionStylesDesktop: iconPaddingDesktop,
@@ -298,17 +271,6 @@ export default function Edit(props) {
         dimensionStylesMobile: iconMarginMob,
     } = generateDimensionStyle({
         controlName: ICON_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    // Generate Button Margin
-    const {
-        dimensionStylesDesktop: buttonMarginDesktop,
-        dimensionStylesTab: buttonMarginTab,
-        dimensionStylesMobile: buttonMarginMob,
-    } = generateDimensionStyle({
-        controlName: BUTTON_MARGIN,
         styleFor: 'margin',
         attributes,
     });
@@ -340,17 +302,6 @@ export default function Edit(props) {
         controlName: TITLE_TEXT_STROKE,
     });
 
-    // Generate Title Margin
-    const {
-        dimensionStylesDesktop: descMarginDesktop,
-        dimensionStylesTab: descMarginTab,
-        dimensionStylesMobile: descMarginMob,
-    } = generateDimensionStyle({
-        controlName: DESCRIPTION_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
     // generate border style
     const {
         desktopBorderStyle: borderStyles,
@@ -369,125 +320,6 @@ export default function Edit(props) {
     } = generateResRangeStyle({
         controlName: ICON_SIZE,
         property: 'font-size',
-        attributes,
-    });
-
-    // Spacing between icon and text
-    const {
-        desktopRangeStyle: gapDesk,
-        tabRangeStyle: gapTab,
-        mobRangeStyle: gapMob,
-    } = generateResRangeStyle({
-        controlName: ICON_TEXT_SPACING,
-        property: 'gap',
-        attributes,
-    });
-
-    // button background color
-    const {
-        backgroundStylesDesktop: buttonBGDeskStyle,
-        backgroundStylesTab: buttonBGTabStyle,
-        backgroundStylesMobile: buttonBGMobStyle,
-    } = generateNormalBGControlStyles({
-        controlName: BUTTON_BG_COLOR,
-        attributes,
-        noMainBGImg: true,
-    });
-
-    // button background hover color
-    const {
-        backgroundStylesDesktop: buttonBGHoverDeskStyle,
-        backgroundStylesTab: buttonBGHoverTabStyle,
-        backgroundStylesMobile: buttonBGHoverMobStyle,
-    } = generateNormalBGControlStyles({
-        controlName: BUTTON_BG_HOVER_COLOR,
-        attributes,
-        noMainBGImg: true,
-    });
-
-    // generate button icon size
-    const {
-        desktopRangeStyle: buttonIconSize,
-        tabRangeStyle: buttonIconSizeTab,
-        mobRangeStyle: buttonIconSizeMob,
-    } = generateResRangeStyle({
-        controlName: BUTTON_ICON_SIZE,
-        property: 'font-size',
-        attributes,
-    });
-
-    // generate button icon height
-    const {
-        desktopRangeStyle: buttonIconHeight,
-        tabRangeStyle: buttonIconHeightTab,
-        mobRangeStyle: buttonIconHeightMob,
-    } = generateResRangeStyle({
-        controlName: BUTTON_ICON_SIZE,
-        property: 'height',
-        attributes,
-    });
-
-    // generate button icon width
-    const {
-        desktopRangeStyle: buttonIconWidth,
-        tabRangeStyle: buttonIconWidthTab,
-        mobRangeStyle: buttonIconWidthMob,
-    } = generateResRangeStyle({
-        controlName: BUTTON_ICON_SIZE,
-        property: 'width',
-        attributes,
-    });
-
-    // generate button style
-    const {
-        desktopBorderStyle: buttonBorderStyles,
-        tabBorderStyle: buttonBorderStylesTab,
-        mobBorderStyle: buttonBorderStylesMob,
-    } = generateBorderStyle({
-        controlName: BUTTON_BORDER,
-        attributes,
-    });
-
-    // generate button border radius
-    const {
-        dimensionStylesDesktop: buttonBorderRadiusDesktop,
-        dimensionStylesTab: buttonBorderRadiusTab,
-        dimensionStylesMobile: buttonBorderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: BUTTON_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    // generate image size
-    const {
-        desktopRangeStyle: iconImageSizeDesk,
-        tabRangeStyle: iconImageSizeTab,
-        mobRangeStyle: iconImageSizeMob,
-    } = generateResRangeStyle({
-        controlName: ICON_IMAGE_SIZE,
-        property: 'width',
-        attributes,
-    });
-
-    // generate image border
-    const {
-        desktopBorderStyle: iconImageBorderDesk,
-        tabBorderStyle: iconImageBorderTab,
-        mobBorderStyle: iconImageBorderMob,
-    } = generateBorderStyle({
-        controlName: IMAGE_BORDER,
-        attributes,
-    });
-
-    // generate image border radius
-    const {
-        desktopRangeStyle: iconImageBorderRadiusDesk,
-        tabRangeStyle: iconImageBorderRadiusTab,
-        mobRangeStyle: iconImageBorderRadiusMob,
-    } = generateResRangeStyle({
-        controlName: ICON_IMAGE_BORDER_RADIUS,
-        property: 'border-radius',
         attributes,
     });
 
@@ -515,7 +347,6 @@ export default function Edit(props) {
         }
 		.${uniqueId} .animated-counter, .${uniqueId} .zolo-counter-sub-text{
 			${counterTypoDesktop}
-			${descMarginDesktop}
 			${counterTextShadowStyle}
 			color: ${descColor ? descColor : ''};
 		}
@@ -551,13 +382,7 @@ export default function Edit(props) {
         .${uniqueId}.zolo-counter-${preset} .zolo-counter-item:hover{
             border-color: ${containerBorderHoverColor ? containerBorderHoverColor : ''};
             ${containerHoverBoxShadow}
-        }
-		.${uniqueId} .zolo-block-body-content{
-			text-align: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
-		}
-		.${uniqueId} .zolo-block-link-btn{
-			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
-		}		
+        }	
         ${
             preset === 'style-1'
                 ? `.zolo-block-icon-wrap {
@@ -598,9 +423,12 @@ export default function Edit(props) {
 			 
   	`;
 
-    const tabletAllStyle = `		
+    const tabletAllStyle = `	
+        .${uniqueId}.zolo-counter-${preset} .zolo-counter-item{
+            ${containerTabBGStyle}
+        }	
 		.${uniqueId} .animated-counter, .${uniqueId} .zolo-counter-sub-text{
-			${descMarginTab}
+            ${counterTypoTab}
 		}
         .wp-block-zolo-counter .${uniqueId} .zolo-counter-count{
             ${counterMarginTab}
@@ -615,8 +443,10 @@ export default function Edit(props) {
 	`;
 
     const mobileAllStyle = `
+        .${uniqueId}.zolo-counter-${preset} .zolo-counter-item{
+            ${containerMobBGStyle}
+        }
 		.${uniqueId} .animated-counter, .${uniqueId} .zolo-counter-sub-text{
-			${descMarginMob}
 			${counterTypoMobile}
 		}        
         .wp-block-zolo-counter .${uniqueId} .zolo-counter-count{
@@ -716,7 +546,19 @@ export default function Edit(props) {
                                     </>
                                 )}
                             </div>
-                            {hideTitle && <div className="zolo-counter-title">{titleText}</div>}
+
+                            {hideTitle && (
+                                <RichText
+                                    className={`zolo-counter-title`}
+                                    tagName={titleTag}
+                                    value={titleText}
+                                    onChange={(text) =>
+                                        setAttributes({
+                                            titleText: text,
+                                        })
+                                    }
+                                />
+                            )}
                         </div>
                     </div>
                 </div>

@@ -12,10 +12,6 @@ export const PRESETS = [
     { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
 ];
 
-// Icon Options
-
-export const ICON_OPTIONS = 'iconOptions';
-
 // Title
 export const TITLE_TAG = [
     {
@@ -49,25 +45,6 @@ export const TITLE_TAG = [
     {
         label: 'P',
         value: 'p',
-    },
-];
-
-export const ICON_POSITIONS = [
-    {
-        label: __('Left', 'zolo-blocks'),
-        value: 'row-reverse',
-    },
-    {
-        label: __('Right', 'zolo-blocks'),
-        value: 'row',
-    },
-    {
-        label: __('Top', 'zolo-blocks'),
-        value: 'column-reverse',
-    },
-    {
-        label: __('Bottom', 'zolo-blocks'),
-        value: 'column',
     },
 ];
 
@@ -112,9 +89,6 @@ export const BUTTON_PADDING = 'buttonPadding';
 export const TITLE_MARGIN = 'titleMargin';
 export const TITLE_TEXT_SHADOW = 'titleTextShadow';
 export const TITLE_TEXT_STROKE = 'titleTextStroke';
-
-// description
-export const DESCRIPTION_MARGIN = 'descMargin';
 
 // image
 export const ICON_IMAGE_SIZE = 'iconImageSize';

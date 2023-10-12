@@ -11,6 +11,7 @@ const Save = ({ attributes }) => {
         counterNumber,
         counterSuffix,
         titleText,
+        titleTag,
         counterIcon,
         iconType,
         iconTypeImage,
@@ -38,7 +39,7 @@ const Save = ({ attributes }) => {
                                 </>
                             )}
                         </div>
-                        {hideTitle && <RichText.Content tagName="div" className="zolo-counter-title" value={titleText} />}
+                        {hideTitle && <RichText.Content tagName={titleTag} className="zolo-counter-title" value={titleText} />}
                     </div>
                 </div>
             </div>

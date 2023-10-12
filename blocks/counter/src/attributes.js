@@ -15,7 +15,6 @@ import {
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
-    DESCRIPTION_MARGIN,
     ICON_BORDER,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
@@ -112,9 +111,6 @@ const attributes = {
     ...generateDimensionAttributes(TITLE_MARGIN),
     ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
     ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
-
-    // Description
-    ...generateDimensionAttributes(DESCRIPTION_MARGIN),
 
     // Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
