@@ -5,7 +5,7 @@ import Edit from './edit';
 import Save from './save';
 import Example from './example';
 import { variations } from './variations'
-
+import './editor.scss';
 import './style.scss';
 
 registerBlockType(metadata, {
