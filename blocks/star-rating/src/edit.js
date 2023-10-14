@@ -28,11 +28,15 @@ const {
     generateBoxShadowStyles,
     generateNormalBGControlStyles,
     generateBackgroundControlStyles,
+    classArrayToStr,
 } = window.zoloModule;
 
 import { BLOCK_PREFIX, STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
 import Inspector from './inspector';
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
+
+// import style
+import Style from './style';
 
 /**
  * Edit Function
@@ -40,7 +44,7 @@ import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, blockStyle, showTitle, title, titleTag, titleColor, titlePosition, rating, activeStarColor, inactiveStarColor } =
+    const { uniqueId, parentClasses, showTitle, title, titleTag, titleColor, titlePosition, rating, activeStarColor, inactiveStarColor } =
         attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -54,129 +58,13 @@ export default function Edit(props) {
     }, []);
 
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`),
+        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });
-
-    // styles
-    const {
-        desktopAlignStyle: itemsVDeskAlign,
-        tabAlignStyle: itemsVTabAlign,
-        mobAlignStyle: itemsVMobAlign,
-    } = generateResAlignmentStyle({
-        controlName: ITEMS_ALIGN,
-        property: 'justify-content',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: deskGap,
-        tabRangeStyle: tabGap,
-        mobRangeStyle: mobGap,
-    } = generateResRangeStyle({
-        controlName: TITLE_GAP,
-        property: 'gap',
-        attributes,
-    });
-
-    const {
-        typoStylesDesktop: titleDeskTypo,
-        typoStylesTab: titleTabTypo,
-        typoStylesMobile: titleMobTypo,
-    } = generateTypographyStyles({
-        prefixConstant: TITLE_TYPO,
-        attributes,
-    });
-
-    // Star Rating Style
-    const {
-        desktopRangeStyle: deskSize,
-        tabRangeStyle: tabSize,
-        mobRangeStyle: mobSize,
-    } = generateResRangeStyle({
-        controlName: STAR_SIZE,
-        property: 'width',
-        attributes,
-    });
-
-    /**
-     * All Style Combination
-     */
-    const desktopAllStyle = `
-        .${uniqueId} .start-rating-wrapper {
-            ${itemsVDeskAlign}
-        }
-        .${uniqueId} .star-rating-inner {
-            ${deskGap}
-        }
-        .${uniqueId} .start-rating-title {
-            color: ${titleColor};
-            ${titleDeskTypo}
-        }
-        .${uniqueId} .zolo-star-rating svg {
-            ${deskSize}
-            ${activeStarColor ? `fill: ${activeStarColor};` : ''}
-        }
-        .${uniqueId} .zolo-star-rating .empty-star svg {
-            ${inactiveStarColor ? `fill: ${inactiveStarColor};` : ''}
-        }
-    `;
-
-    const tabletAllStyle = `
-        .${uniqueId} .start-rating-wrapper {
-            ${itemsVTabAlign}
-        }
-        .${uniqueId} .star-rating-inner {
-            ${tabGap}
-        }
-        .${uniqueId} .start-rating-title {
-            ${titleTabTypo}
-        }
-        .${uniqueId} .zolo-star-rating svg {
-            ${tabSize}
-        }
-    `;
-
-    const mobileAllStyle = `
-        .${uniqueId} .start-rating-wrapper {
-            ${itemsVMobAlign}
-        }
-        .${uniqueId} .star-rating-inner {
-            ${mobGap}
-        }
-        .${uniqueId} .start-rating-title {
-            ${titleMobTypo}
-        }
-        .${uniqueId} .zolo-star-rating svg {
-            ${mobSize}
-        }
-    `;
-
-    const allStyle = `
-		${desktopAllStyle}
-		@media all and (max-width: 1024px) {
-			${tabletAllStyle}
-		}
-		@media all and (max-width: 767px) {
-			${mobileAllStyle}
-		}
-	`;
-
-    // Set All Style in "blockStyle" Attribute
-    useEffect(() => {
-        const styles = {
-            desktop: desktopAllStyle,
-            tablet: tabletAllStyle,
-            mobile: mobileAllStyle,
-        };
-        if (JSON.stringify(blockStyle) != JSON.stringify(styles)) {
-            setAttributes({ blockStyle: styles });
-        }
-    }, [attributes]);
 
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            <style>{`${softMinifyCssStrings(allStyle)}`}</style>
+            <Style props={props} />
             <div {...blockProps}>
                 <div className={classnames('start-rating-wrapper', titlePosition)}>
                     <div className={classnames('star-rating-inner', titlePosition)}>

@@ -19,6 +19,7 @@ const {
     ResCounterControl,
     ColorControl,
     TypographyDropdown,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -245,11 +246,7 @@ function Inspector(props) {
                                             controlName={IMAGE_BORDER}
                                             requiredProps={requiredProps}
                                         />
-                                        <NormalBGControl
-                                            requiredProps={requiredProps}
-                                            controlName={IMAGE_BACKGROUND}
-                                            noMainBGImg={false}
-                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={IMAGE_BACKGROUND} noMainBGImg={false} />
                                         <BoxShadowControl
                                             controlName={IMAGE_BOX_SHADOW}
                                             requiredProps={requiredProps}
@@ -295,11 +292,7 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                    <NormalBGControl
-                                        requiredProps={requiredProps}
-                                        controlName={HEADING_BACKGROUND}
-                                        noMainBGImg={false}
-                                    />
+                                    <NormalBGControl requiredProps={requiredProps} controlName={HEADING_BACKGROUND} noMainBGImg={false} />
                                     <BoxShadowControl
                                         controlName={HEADING_BOX_SHADOW}
                                         requiredProps={requiredProps}
@@ -412,9 +405,7 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <PanelBody title={__('Visibility', 'zolo-blocks')} initialOpen={false}>
-                            <p>{__('Advanced Settings are here..', 'zolo-blocks')}</p>
-                        </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />

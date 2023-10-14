@@ -25,6 +25,7 @@ const {
     LinkControl,
     NormalBGControl,
     ImageAvatar,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -321,7 +322,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={false}>
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
 
                             <ResDimensionsControl
@@ -589,16 +590,8 @@ function Inspector(props) {
                                 controlName={TITLE_MARGIN}
                                 requiredProps={requiredProps}
                             />
-                            <TextShadowControl
-                                controlName={TITLE_TEXT_SHADOW}
-                                requiredProps={requiredProps}
-                                enableTransition={false}
-                            />
-                            <TextStrokeControl
-                                controlName={TITLE_TEXT_STROKE}
-                                requiredProps={requiredProps}
-                                enableTransition={false}
-                            />
+                            <TextShadowControl controlName={TITLE_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                            <TextStrokeControl controlName={TITLE_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
                             <TabPanelControl
                                 normalComponents={
                                     <>
@@ -676,11 +669,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
-                                        <NormalBGControl
-                                            requiredProps={requiredProps}
-                                            controlName={BUTTON_BG_COLOR}
-                                            noMainBGImg={true}
-                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={BUTTON_BG_COLOR} noMainBGImg={true} />
                                         <ColorControl
                                             label={__('Color', 'zolo-blocks')}
                                             color={btnColor}
@@ -823,9 +812,7 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={false}>
-                            <p>Extra Options</p>
-                        </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />

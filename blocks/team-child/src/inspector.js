@@ -21,6 +21,7 @@ const {
     TabPanelControl,
     HeaderTabs,
     LinkControl,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -109,15 +110,6 @@ function Inspector(props) {
         setAttributes,
         attributes,
         objAttributes,
-    };
-
-    const setProfileIcon = (value, index) => {
-        let profile = [...socialProfiles];
-        profile[index] = {
-            ...profile[index],
-            icon: { ...value },
-        };
-        setAttributes({ socialProfiles: [...profile] });
     };
 
     return (
@@ -251,22 +243,14 @@ function Inspector(props) {
                                     alignOptions={TEXT_ALIGN_OPTIONS}
                                 />
                             )}
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={CONTENT_BORDER}
-                                requiredProps={requiredProps}
-                            />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={CONTENT_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl
-                                controlName={CONTENT_BOX_SHADOW}
-                                requiredProps={requiredProps}
-                                enableTransition={false}
-                            />
+                            <BoxShadowControl controlName={CONTENT_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={CONTENT_PADDING}
@@ -294,11 +278,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl
-                                controlName={TEAM_PHOTO_BOX_SHADOW}
-                                requiredProps={requiredProps}
-                                enableTransition={false}
-                            />
+                            <BoxShadowControl controlName={TEAM_PHOTO_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={TEAM_PHOTO_PADDING}
@@ -461,11 +441,7 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
-                                            <NormalBGControl
-                                                requiredProps={requiredProps}
-                                                controlName={ICONS_BG}
-                                                noMainBGImg={true}
-                                            />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={ICONS_BG} noMainBGImg={true} />
                                             <BoxShadowControl
                                                 controlName={ICONS_BOX_SHADOW}
                                                 requiredProps={requiredProps}
@@ -521,16 +497,8 @@ function Inspector(props) {
                                     controlName={DPL_HEIGHT}
                                     requiredProps={requiredProps}
                                 />
-                                <ResRangeControl
-                                    label={__('Width', 'zolo-blocks')}
-                                    controlName={DPL_WIDTH}
-                                    requiredProps={requiredProps}
-                                />
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={DPL_BORDER}
-                                    requiredProps={requiredProps}
-                                />
+                                <ResRangeControl label={__('Width', 'zolo-blocks')} controlName={DPL_WIDTH} requiredProps={requiredProps} />
+                                <BorderControl label={__('Border', 'zolo-blocks')} controlName={DPL_BORDER} requiredProps={requiredProps} />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
                                     controlName={DPL_BORDER_RADIUS}
@@ -591,20 +559,7 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <PanelBody title={__('Spacing', 'zolo-blocks')} initialOpen={false}>
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={TEAM_MEMBER_CONTAINER_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={TEAM_MEMBER_CONTAINER_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                        </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />

@@ -37,18 +37,32 @@ import {
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
-    //Common Attributes
-    uniqueId: {
-        type: 'string',
-    },
-    resDevice: {
-        type: 'string',
-        default: 'Desktop',
-    },
-    zoloStyles: {
+    // global attributes
+    globalConfig: {
         type: 'object',
+        default: {
+            margin: {
+                prefix: 'mainMargin',
+            },
+            padding: {
+                prefix: 'mainPadding',
+            },
+            background: {
+                prefix: 'mainBg',
+            },
+            border: {
+                prefix: 'mainBorder',
+            },
+            borderRadius: {
+                prefix: 'mainBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'mainBoxShadow',
+            },
+            responsiveControls: true,
+        },
     },
-
+    // block attributes
     isBrandName: {
         type: 'boolean',
         default: true,

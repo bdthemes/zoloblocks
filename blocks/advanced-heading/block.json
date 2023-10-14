@@ -8,8 +8,9 @@
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "supports": {
-        "anchor": true,
-        "align": ["wide", "full"]
+        "anchor": false,
+        "align": ["wide", "full"],
+        "customClassName": false
     },
     "editorScript": ""
 }

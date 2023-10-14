@@ -37,6 +37,7 @@ const {
     LinkControl,
     IconicBtnGroup,
     ResCounterControl,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import { CardDivider, CardHeader } from '@wordpress/components';
@@ -315,11 +316,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         { label: 'vh', value: 'vh' },
                                     ]}
                                 />
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={NAV_BORDER}
-                                    requiredProps={requiredProps}
-                                />
+                                <BorderControl label={__('Border', 'zolo-blocks')} controlName={NAV_BORDER} requiredProps={requiredProps} />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
                                     controlName={NAV_BORDER_RADIUS}
@@ -397,32 +394,32 @@ const Inspector = ({ attributes, setAttributes }) => {
                                                 <ResRangeControl
                                                     label={__('Width', 'zolo-blocks')}
                                                     controlName={PAG_WIDTH}
-                                                    resRequiredProps={resRequiredProps}
+                                                    resRequiredProps={requiredProps}
                                                     min={1}
                                                     max={100}
                                                 />
                                                 <ResRangeControl
                                                     label={__('Height', 'zolo-blocks')}
                                                     controlName={PAG_HEIGHT}
-                                                    resRequiredProps={resRequiredProps}
+                                                    resRequiredProps={requiredProps}
                                                     min={1}
                                                     max={100}
                                                 />
                                                 <BorderControl
                                                     label={__('Border', 'zolo-blocks')}
                                                     controlName={PAG_BORDER}
-                                                    resRequiredProps={resRequiredProps}
+                                                    resRequiredProps={requiredProps}
                                                 />
                                                 <ResDimensionsControl
                                                     label={__('Border Radius', 'zolo-blocks')}
                                                     controlName={PAG_BORDER_RADIUS}
-                                                    resRequiredProps={resRequiredProps}
+                                                    resRequiredProps={requiredProps}
                                                     forBorderRadius={true}
                                                 />
                                                 <NormalBGControl
                                                     label={__('Background', 'zolo-blocks')}
                                                     controlName={PAG_BG}
-                                                    resRequiredProps={resRequiredProps}
+                                                    resRequiredProps={requiredProps}
                                                     noMainBGImg={true}
                                                 />
                                             </Fragment>
@@ -432,32 +429,32 @@ const Inspector = ({ attributes, setAttributes }) => {
                                                 <ResRangeControl
                                                     label={__('Width', 'zolo-blocks')}
                                                     controlName={APAG_WIDTH}
-                                                    resRequiredProps={resRequiredProps}
+                                                    resRequiredProps={requiredProps}
                                                     min={1}
                                                     max={100}
                                                 />
                                                 <ResRangeControl
                                                     label={__('Height', 'zolo-blocks')}
                                                     controlName={APAG_HEIGHT}
-                                                    resRequiredProps={resRequiredProps}
+                                                    resRequiredProps={requiredProps}
                                                     min={1}
                                                     max={100}
                                                 />
                                                 <BorderControl
                                                     label={__('Border', 'zolo-blocks')}
                                                     controlName={APAG_BORDER}
-                                                    resRequiredProps={resRequiredProps}
+                                                    resRequiredProps={requiredProps}
                                                 />
                                                 <ResDimensionsControl
                                                     label={__('Border Radius', 'zolo-blocks')}
                                                     controlName={APAG_BORDER_RADIUS}
-                                                    resRequiredProps={resRequiredProps}
+                                                    resRequiredProps={requiredProps}
                                                     forBorderRadius={true}
                                                 />
                                                 <NormalBGControl
                                                     label={__('Background', 'zolo-blocks')}
                                                     controlName={APAG_BG}
-                                                    resRequiredProps={resRequiredProps}
+                                                    resRequiredProps={requiredProps}
                                                     noMainBGImg={true}
                                                 />
                                             </Fragment>
@@ -469,9 +466,9 @@ const Inspector = ({ attributes, setAttributes }) => {
                     </Fragment>
                 }
                 advancedTab={
-                    <PanelBody title={__('Advanced', 'boilerplate')} initialOpen={false}>
-                        advanced tab
-                    </PanelBody>
+                    <>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                    </>
                 }
             />
         </InspectorControls>

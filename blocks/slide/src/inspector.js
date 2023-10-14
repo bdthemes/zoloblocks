@@ -53,12 +53,13 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={false}>
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={SLIDE_BORDER}
-                                requiredProps={requiredProps}
-                            />
+                        <PanelBody initialOpen={true}>{__('No settings available. Move to Style Tab', 'zolo-blocks')}</PanelBody>
+                    </>
+                }
+                styleTab={
+                    <>
+                        <PanelBody initialOpen={true}>
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={SLIDE_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={SLIDE_BORDER_RADIUS}
@@ -72,7 +73,11 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Background', 'zolo-blocks')} initialOpen={false}>
+                    </>
+                }
+                advancedTab={
+                    <>
+                        <PanelBody initialOpen={true}>
                             <NormalBGControl
                                 label={__('Background', 'zolo-blocks')}
                                 requiredProps={requiredProps}

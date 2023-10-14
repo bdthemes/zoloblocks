@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { PRESETS, GRID_COLUMNS, COLUMNS_GAP, ROWS_GAP, REVIEW_GRID_BG, REVIEW_GRID_MARGIN, REVIEW_GRID_PADDING } from './constants';
 
-const { ResRangeControl, ResDimensionsControl, NormalBGControl, HeaderTabs, ResCounterControl } = window.zoloModule;
+const { ResRangeControl, ResDimensionsControl, NormalBGControl, HeaderTabs, ResCounterControl, AdvancedOptions } = window.zoloModule;
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -65,7 +65,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody initialOpen={true}>
                             <SelectControl
                                 label={__('Preset Designs', 'zolo-blocks')}
                                 value={preset}
@@ -138,35 +138,14 @@ function Inspector(props) {
                                 controlName={COLUMNS_GAP}
                                 requiredProps={requiredProps}
                             />
-                            <ResRangeControl
-                                label={__('Rows Gap', 'zolo-blocks')}
-                                controlName={ROWS_GAP}
-                                requiredProps={requiredProps}
-                            />
+                            <ResRangeControl label={__('Rows Gap', 'zolo-blocks')} controlName={ROWS_GAP} requiredProps={requiredProps} />
                         </PanelBody>
                     </>
                 }
-                styleTab={
-                    <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
-                            <NormalBGControl requiredProps={requiredProps} controlName={REVIEW_GRID_BG} noMainBGImg={false} />
-                        </PanelBody>
-                    </>
-                }
+                styleTab={<></>}
                 advancedTab={
                     <>
-                        <PanelBody title={__('Spacing', 'zolo-blocks')} initialOpen={false}>
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={REVIEW_GRID_PADDING}
-                                requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={REVIEW_GRID_MARGIN}
-                                requiredProps={requiredProps}
-                            />
-                        </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />

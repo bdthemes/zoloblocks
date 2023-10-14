@@ -20,12 +20,30 @@ import {
     CONTAINER_HOVER_BOX_SHADOW,
 } from './constants';
 const attributes = {
-    //Common Attributes
-    uniqueId: {
-        type: 'string',
-    },
-    zoloStyles: {
+    // global Attributes
+    globalConfig: {
         type: 'object',
+        default: {
+            margin: {
+                prefix: 'mainMargin',
+            },
+            padding: {
+                prefix: 'mainPadding',
+            },
+            background: {
+                prefix: 'mainBg',
+            },
+            border: {
+                prefix: 'mainBorder',
+            },
+            borderRadius: {
+                prefix: 'mainBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'mainBoxShadow',
+            },
+            responsiveControls: true,
+        },
     },
     // container
     ...generateNormalBGAttributes(CONTAINER_BACKGROUND),

@@ -12,6 +12,7 @@ const {
     BorderControl,
     BoxShadowControl,
     TypographyDropdown,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -286,14 +287,9 @@ function Inspector(props) {
                     </>
                 }
                 advancedTab={
-                    <PanelBody title={__('Block', 'zolo-blocks')} initialOpen={false}>
-                        <ResDimensionsControl
-                            label={__('Margin', 'zolo-blocks')}
-                            controlName={BLOCK_MARGIN}
-                            requiredProps={requiredProps}
-                            forBorderRadius={false}
-                        />
-                    </PanelBody>
+                    <>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                    </>
                 }
             />
         </InspectorControls>

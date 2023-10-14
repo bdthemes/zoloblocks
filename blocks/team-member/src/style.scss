@@ -1,5 +1,6 @@
 .wp-block-zolo-team-member {
     box-sizing: border-box;
+    overflow: hidden;
     // image wrapper
     .zolo-image-wrap {
         position: relative;
@@ -28,7 +29,7 @@
         margin-top: 5px;
     }
     .zolo-designation,
-    .zolo-desc  {
+    .zolo-desc {
         font-size: 14px;
         font-weight: 300;
         color: #4b445a;
@@ -91,7 +92,9 @@
             opacity: 1;
             transform: scale(1, 1);
             transform-origin: top center;
-            transition: opacity 500ms ease, transform 500ms ease;
+            transition:
+                opacity 500ms ease,
+                transform 500ms ease;
         }
         // hover content
         .zolo-hover-content {
@@ -157,7 +160,9 @@
                 opacity: 0;
                 transform: scale(1, 0);
                 transform-origin: bottom center;
-                transition: opacity 500ms ease, transform 500ms ease;
+                transition:
+                    opacity 500ms ease,
+                    transform 500ms ease;
                 .zolo-social-share {
                     padding-top: 25px;
                     margin-top: 25px;
@@ -202,7 +207,9 @@
             background-color: #fff;
             transform: translateY(10px);
             opacity: 0;
-            transition: transform 0.5s ease, opacity 0.5s ease;
+            transition:
+                transform 0.5s ease,
+                opacity 0.5s ease;
         }
         .zolo-social-share {
             border-top: 0;
@@ -239,7 +246,9 @@
                 background-color: rgba(255, 255, 255, 0);
                 backdrop-filter: blur(7px);
                 transform: skewY(-30deg) translateY(60%);
-                transition: height 0.3s 0s cubic-bezier(0.6, -0.28, 0.735, 0.045), opacity 0.3s 0s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+                transition:
+                    height 0.3s 0s cubic-bezier(0.6, -0.28, 0.735, 0.045),
+                    opacity 0.3s 0s cubic-bezier(0.6, -0.28, 0.735, 0.045);
             }
         }
         .zolo-hover-content {

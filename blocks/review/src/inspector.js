@@ -30,6 +30,7 @@ const {
     NormalBGControl,
     HeaderTabs,
     TabPanelControl,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -146,7 +147,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
                                 label={__('Preset Designs', 'zolo-blocks')}
                                 value={preset}
@@ -345,11 +346,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl
-                                controlName={CONTAINER_BOX_SHADOW}
-                                requiredProps={requiredProps}
-                                enableTransition={false}
-                            />
+                            <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
                         </PanelBody>
                         <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
@@ -359,11 +356,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={DEFAULT_ALIGNS}
                             />
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={CONTENT_BORDER}
-                                requiredProps={requiredProps}
-                            />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={CONTENT_BORDER_RADIUS}
@@ -382,11 +375,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <BoxShadowControl
-                                controlName={CONTENT_BOX_SHADOW}
-                                requiredProps={requiredProps}
-                                enableTransition={false}
-                            />
+                            <BoxShadowControl controlName={CONTENT_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BACKGROUND} noMainBGImg={true} />
                         </PanelBody>
                         {showPhoto && (
@@ -570,16 +559,8 @@ function Inspector(props) {
                                     controlName={DPL_HEIGHT}
                                     requiredProps={requiredProps}
                                 />
-                                <ResRangeControl
-                                    label={__('Width', 'zolo-blocks')}
-                                    controlName={DPL_WIDTH}
-                                    requiredProps={requiredProps}
-                                />
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={DPL_BORDER}
-                                    requiredProps={requiredProps}
-                                />
+                                <ResRangeControl label={__('Width', 'zolo-blocks')} controlName={DPL_WIDTH} requiredProps={requiredProps} />
+                                <BorderControl label={__('Border', 'zolo-blocks')} controlName={DPL_BORDER} requiredProps={requiredProps} />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
                                     controlName={DPL_BORDER_RADIUS}
@@ -622,11 +603,7 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
-                                            <NormalBGControl
-                                                requiredProps={requiredProps}
-                                                controlName={DPL_HOVER_BG}
-                                                noMainBGImg={true}
-                                            />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={DPL_HOVER_BG} noMainBGImg={true} />
                                         </>
                                     }
                                 />
@@ -636,20 +613,7 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <PanelBody title={__('Block', 'zolo-blocks')} initialOpen={false}>
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={CONTAINER_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={CONTAINER_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                        </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />

@@ -18,6 +18,7 @@ const {
     HeaderTabs,
     ResCounterControl,
     ResRangeControl,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -140,18 +141,7 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <PanelBody initialOpen={true}>
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={CONTAINER_PADDING}
-                                requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={CONTAINER_MARGIN}
-                                requiredProps={requiredProps}
-                            />
-                        </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />
