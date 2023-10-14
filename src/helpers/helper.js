@@ -2,16 +2,15 @@ import { select } from '@wordpress/data';
 
 /**
  * this function is for creating a unique uniqueId for each block's unique className
- * @param {BLOCK_PREFIX: type "string", uniqueId: "current uniqueId", setAttributes: type function, clientId}
+ * @param {prefix: type "string", uniqueId: "current uniqueId", setAttributes: type function, clientId}
  */
 export const handleUniqueId = ({
-  BLOCK_PREFIX,
+  prefix,
   uniqueId,
   setAttributes,
   clientId,
 }) => {
-  const unique_id =
-    BLOCK_PREFIX + '-' + Math.random().toString(36).substr(2, 8);
+  const unique_id = prefix + '-' + Math.random().toString(36).substr(2, 8);
 
   /**
    * Define and Generate Unique Block ID

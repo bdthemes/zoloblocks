@@ -23,7 +23,7 @@ export const GlobalStyleHanlder = (props) => {
     //     borderStylesTab: tabBorderStyles,
     //     borderStylesMobile: mobileBorderStyles,
     // } = generateBorderStyle({
-    //     controlName: globalConfig.border.prefix || 'mainBorder',
+    //     controlName: globalConfig?.border?.prefix || 'mainBorder',
     //     attributes,
     // });
 
@@ -32,7 +32,7 @@ export const GlobalStyleHanlder = (props) => {
         tabBorderStyle: tabBorderStyles,
         mobBorderStyle: mobileBorderStyles,
     } = generateBorderStyle({
-        controlName: globalConfig.border.prefix || 'mainBorder',
+        controlName: globalConfig?.border?.prefix || 'mainBorder',
         attributes,
     });
 
@@ -42,14 +42,14 @@ export const GlobalStyleHanlder = (props) => {
         dimensionStylesTab: borderRadiusStylesTab,
         dimensionStylesMobile: borderRadiusStylesMobile,
     } = generateDimensionStyle({
-        controlName: globalConfig.borderRadius.prefix || 'mainBorderRadius',
+        controlName: globalConfig?.borderRadius?.prefix || 'mainBorderRadius',
         styleFor: 'border-radius',
         attributes,
     });
 
     // box shadow
     const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
-        controlName: globalConfig.boxShadow.prefix || 'mainBoxShadow',
+        controlName: globalConfig?.boxShadow?.prefix || 'mainBoxShadow',
         attributes,
     });
 
@@ -59,7 +59,7 @@ export const GlobalStyleHanlder = (props) => {
     //     backgroundStylesTab: tabBgStyles,
     //     backgroundStylesMobile: mobileBgStyles,
     // } = generateNormalBGControlStyles({
-    //     controlName: globalConfig.background.prefix || 'mainBg',
+    //     controlName: globalConfig?.background?.prefix || 'mainBg',
     //     attributes,
     //     noMainBGImg: false,
     // });
@@ -79,7 +79,7 @@ export const GlobalStyleHanlder = (props) => {
         hoverOverlayStylesMobile: hoverOverlayMobStyle,
     } = generateBackgroundControlStyles({
         attributes,
-        controlName: globalConfig.background.prefix || 'mainBg',
+        controlName: globalConfig?.background?.prefix || 'mainBg',
     });
 
     // margin
@@ -88,7 +88,7 @@ export const GlobalStyleHanlder = (props) => {
         dimensionStylesTab: marginStylesTab,
         dimensionStylesMobile: marginStylesMobile,
     } = generateDimensionStyle({
-        controlName: globalConfig.margin.prefix || 'mainMargin',
+        controlName: globalConfig?.margin?.prefix || 'mainMargin',
         styleFor: 'margin',
         attributes,
     });
@@ -99,7 +99,7 @@ export const GlobalStyleHanlder = (props) => {
         dimensionStylesTab: paddingStylesTab,
         dimensionStylesMobile: paddingStylesMobile,
     } = generateDimensionStyle({
-        controlName: globalConfig.padding.prefix || 'mainPadding',
+        controlName: globalConfig?.padding?.prefix || 'mainPadding',
         styleFor: 'padding',
         attributes,
     });
@@ -127,7 +127,7 @@ export const GlobalStyleHanlder = (props) => {
         ${bgTabStyle ? bgTabStyle : ''}
         ${overlayTabStyle ? overlayTabStyle : ''}
         ${hoverOverlayTabStyle ? hoverOverlayTabStyle : ''}
-        ${hoverBgTabStyle ? hoverBgTabStyle : ''}   
+        ${hoverBgTabStyle ? hoverBgTabStyle : ''}
     }
   `;
 

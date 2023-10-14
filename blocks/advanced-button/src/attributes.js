@@ -46,13 +46,13 @@ const attributes = {
         type: 'object',
         default: {
             margin: {
-                prefix: 'mainMargin',
+                prefix: 'advBtnMargin',
             },
             padding: {
-                prefix: 'mainPadding',
+                prefix: 'advBtnPadding',
             },
             background: {
-                prefix: 'mainBg',
+                prefix: 'advBtnBg',
             },
             border: {
                 prefix: 'mainBorder',
