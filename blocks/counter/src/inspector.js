@@ -230,7 +230,7 @@ function Inspector(props) {
                         <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <NormalBGControl resRequiredProps={resRequiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
                             <IconicBtnGroup
-                                label={__('Icon Alignment', 'zolo-blocks')}
+                                label={__('Counter Alignment', 'zolo-blocks')}
                                 value={iconAlignment}
                                 onChange={(value) =>
                                     setAttributes({

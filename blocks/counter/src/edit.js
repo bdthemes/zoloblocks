@@ -22,7 +22,6 @@ const {
     generateTextShadowStyles,
     generateTextStrokeStyles,
     DisplayIcon,
-    DynamicTag,
 } = window.zoloModule;
 
 import {
@@ -41,6 +40,7 @@ import {
     ICON_SIZE,
     ICON_BORDER,
     ICON_BORDER_RADIUS,
+    ICON_IMAGE_SIZE,
     ICON_PADDING,
     ICON_MARGIN,
     TITLE_MARGIN,
@@ -71,9 +71,6 @@ export default function Edit(props) {
         titleTextHoverColor,
         iconType,
         iconTypeImage,
-
-        // Old Attributes
-
         blockStyle,
         containerBorderHoverColor,
         textColor,
@@ -230,6 +227,17 @@ export default function Edit(props) {
         attributes,
     });
 
+    //generate image width
+    const {
+        desktopRangeStyle: iconImageWidthDesk,
+        tabRangeStyle: iconImageWidthTab,
+        mobRangeStyle: iconImageWidthMob,
+    } = generateResRangeStyle({
+        controlName: ICON_IMAGE_SIZE,
+        property: 'width',
+        attributes,
+    });
+
     // generate icon border radius
     const {
         dimensionStylesDesktop: iconBorderRadiusDesktop,
@@ -378,6 +386,14 @@ export default function Edit(props) {
             color: ${iconHoverColor ? iconHoverColor : ''};
             ${iconHoverBoxShadow}
             border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''}
+        }
+
+        .wp-block-zolo-counter .zolo-counter-style-1 .zolo-counter-icon{
+            justify-content: ${iconAlignment ? iconAlignment : ''};
+        }
+
+        .wp-block-zolo-counter .zolo-counter-style-1.${uniqueId} .zolo-counter-icon img {
+            ${iconImageWidthDesk}
         }
         .${uniqueId}.zolo-counter-${preset} .zolo-counter-item:hover{
             border-color: ${containerBorderHoverColor ? containerBorderHoverColor : ''};

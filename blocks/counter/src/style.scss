@@ -47,7 +47,8 @@
     /* Demo style 1 css start  */
     .zolo-counter-style-1 .zolo-counter-icon {
         margin: 0 0 15px;
-        display: -webkit-inline-box;
+        /*display: -webkit-inline-box;*/
+        display: flex;
     }
 
     .zolo-counter-style-1 .zolo-counter-icon i {
