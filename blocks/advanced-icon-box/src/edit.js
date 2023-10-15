@@ -82,7 +82,6 @@ export default function Edit(props) {
         showDesc,
         showButton,
         textColor,
-        textHoverColor,
         descColor,
         descHoverColor,
         iconAlignment,

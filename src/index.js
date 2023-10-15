@@ -22,6 +22,7 @@ import '../blocks/review/src';
 import '../blocks/review-grid/src';
 import '../blocks/review-child/src';
 import '../blocks/profile-card/src';
+import '../blocks/counter/src';
 import '../blocks/slide/src';
 import '../blocks/slider/src';
 import '../blocks/star-rating/src';

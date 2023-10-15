@@ -89,7 +89,7 @@ function Inspector(props) {
         containerBorderHoverColor,
         iconBackgroundHoverColor,
         textColor,
-        textHoverColor,
+        descColor,
         showHeading,
         showDesc,
         showButton,
@@ -627,7 +627,15 @@ function Inspector(props) {
                                 typoPrefixConstant={DESCRIPTION_TYPOGRAPHY}
                                 requiredProps={requiredProps}
                             />
-
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={descColor}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        descColor: value,
+                                    })
+                                }
+                            />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={DESCRIPTION_MARGIN}

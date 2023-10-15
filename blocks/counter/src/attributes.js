@@ -15,7 +15,6 @@ import {
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
-    DESCRIPTION_MARGIN,
     ICON_BORDER,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
@@ -40,36 +39,28 @@ import {
     CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
+    COUNTER_MARGIN,
+    COUNTER_GAP,
+    COUNTER_TEXT_SHADOW,
+    COUNTER_TEXT_STROKE,
     ICON_IMAGE_SIZE,
     IMAGE_BORDER,
     ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 const attributes = {
-    globalConfig: {
-        type: 'object',
-        default: {
-            margin: {
-                prefix: 'mainMargin',
-            },
-            padding: {
-                prefix: 'mainPadding',
-            },
-            background: {
-                prefix: 'mainBg',
-            },
-            border: {
-                prefix: 'mainBorder',
-            },
-            borderRadius: {
-                prefix: 'mainBorderRadius',
-            },
-            boxShadow: {
-                prefix: 'mainBoxShadow',
-            },
-            responsiveControls: true,
-        },
+    //Common Attributes
+    uniqueId: {
+        type: 'string',
     },
+    resDevice: {
+        type: 'string',
+        default: 'Desktop',
+    },
+    blockStyle: {
+        type: 'object',
+    },
+
     // Item
     ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
     ...generateDimensionAttributes(CONTAINER_PADDING),
@@ -79,6 +70,13 @@ const attributes = {
     ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
     ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
 
+    // Counter
+    ...generateDimensionAttributes(COUNTER_MARGIN),
+    ...generateResRangeAttributies(COUNTER_GAP, {
+        default: 30,
+    }),
+    ...generateTextShadowAttributies(COUNTER_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(COUNTER_TEXT_STROKE),
     // Icon
     ...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT, {
         defaultAlign: 'left',
@@ -114,9 +112,6 @@ const attributes = {
     ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
     ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
 
-    // Description
-    ...generateDimensionAttributes(DESCRIPTION_MARGIN),
-
     // Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 
@@ -134,6 +129,49 @@ const attributes = {
         type: 'string',
         default: 'style-1',
     },
+    hideIcon: {
+        type: 'boolean',
+        default: true,
+    },
+    hideCounter: {
+        type: 'boolean',
+        default: true,
+    },
+    hideTitle: {
+        type: 'boolean',
+        default: true,
+    },
+    counterNumber: {
+        type: 'text',
+        default: '1000',
+    },
+    counterSuffix: {
+        type: 'text',
+        default: '+',
+    },
+    titleText: {
+        type: 'string',
+        default: 'Happy Client',
+    },
+    iconType: {
+        type: 'string',
+        default: 'icon',
+    },
+    counterIcon: {
+        type: 'object',
+        default: {
+            'far fa-smile': {
+                name: 'fa-smile',
+                source: 'fontawesome',
+                type: 'far',
+            },
+        },
+    },
+    iconTypeImage: {
+        type: 'object',
+    },
+
+    //old attributes
     label: {
         type: 'string',
     },
@@ -197,7 +235,13 @@ const attributes = {
     textColor: {
         type: 'string',
     },
-    descColor: {
+    textHoverColor: {
+        type: 'string',
+    },
+    titleTextColor: {
+        type: 'string',
+    },
+    titleTextHoverColor: {
         type: 'string',
     },
     iconType: {
@@ -218,16 +262,6 @@ const attributes = {
                 name: 'cog',
                 source: 'fontawesome',
                 type: 'fas',
-            },
-        },
-    },
-    buttonIcon: {
-        type: 'object',
-        default: {
-            'admin-generic': {
-                name: 'admin generic',
-                source: 'dashicon',
-                type: '',
             },
         },
     },

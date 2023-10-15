@@ -148,6 +148,18 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 true
             );
 
+        }
+        
+
+        /**
+         * Load Block Editor Assets
+         *
+         * @since 0.0.1
+         *
+         * @return void
+         */
+        public function editor_assets_loader()
+        {
             //Register Modules
             $modules_dep_path = ZOLO_DIR_PATH . 'build/module/index.asset.php';
             $script_dependecy = file_exists($modules_dep_path) ? include $modules_dep_path : [

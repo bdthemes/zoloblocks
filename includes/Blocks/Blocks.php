@@ -100,6 +100,12 @@ return apply_filters( 'zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => false
     ],
+    'counter' => [
+        'name'             => 'counter',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/counter/block.json',
+        'frontend-styles'  => ['zolo-fontawesome','zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-counter-frontend', 'zolo-block-editor-dependency']
+    ],
     'slide' => [
         'name'             => 'slide',
         'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/slide/block.json',
