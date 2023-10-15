@@ -33,6 +33,9 @@ import { BLOCK_PREFIX, SLIDE_BG, SLIDE_PADDING, SLIDE_BORDER, SLIDE_BORDER_RADIU
 
 import Inspector from './inspector';
 
+// import Style
+import Style from './style';
+
 /**
  * Filter Slide Item block on Register
  * and pass the block as a child of swiper-slide
@@ -62,112 +65,9 @@ export default function Edit(props) {
     const { uniqueId, zoloStyles, enableOverlay, overlayType, overlayColor, overlayGradient } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-
-
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`),
     });
-
-    // settings
-    const {
-        backgroundStylesDesktop: slideBgDesktop,
-        backgroundStylesTab: slideBgTab,
-        backgroundStylesMobile: slideBgMob,
-    } = generateNormalBGControlStyles({
-        controlName: SLIDE_BG,
-        attributes,
-    });
-
-    const {
-        desktopBorderStyle: slideDeskBorderStyle,
-        tabBorderStyle: slideTabBorderStyle,
-        mobBorderStyle: slideMobBorderStyle,
-    } = generateBorderStyle({
-        controlName: SLIDE_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: slideDeskBorderRadius,
-        dimensionStylesTab: slideTabBorderRadius,
-        dimensionStylesMobile: slideMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: SLIDE_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: slideDeskPadding,
-        dimensionStylesTab: slideTabPadding,
-        dimensionStylesMobile: slideMobPadding,
-    } = generateDimensionStyle({
-        controlName: SLIDE_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
-    /**
-     * All Style Combination
-     */
-    const desktopAllStyle = `
-        .${uniqueId}.wp-block-zolo-slide {
-            ${slideBgDesktop}
-            ${slideDeskBorderStyle}
-            ${slideDeskBorderRadius}
-            ${slideDeskPadding}
-        }
-        ${
-            enableOverlay
-                ? `
-            .${uniqueId}.wp-block-zolo-slide:before {
-                ${overlayType == 'overlay_color' ? `background-color: ${overlayColor};` : ''}
-                ${overlayType == 'overlay_gradient' ? `background-image: ${overlayGradient};` : ''}
-            }
-        `
-                : ''
-        }
-    `;
-
-    const tabletAllStyle = `
-        .${uniqueId}.wp-block-zolo-slide {
-            ${slideBgTab}
-            ${slideTabBorderStyle}
-            ${slideTabBorderRadius}
-            ${slideTabPadding}
-        }
-    `;
-
-    const mobileAllStyle = `
-        .${uniqueId}.wp-block-zolo-slide {
-            ${slideBgMob}
-            ${slideMobBorderStyle}
-            ${slideMobBorderRadius}
-            ${slideMobPadding}
-        }
-    `;
-
-    const allStyle = `
-		${desktopAllStyle}
-		@media all and (max-width: 1024px) {
-			${tabletAllStyle}
-		}
-		@media all and (max-width: 767px) {
-			${mobileAllStyle}
-		}
-	`;
-
-    // Set All Style in "zoloStyles" Attribute
-    useEffect(() => {
-        const styles = {
-            desktop: desktopAllStyle,
-            tablet: tabletAllStyle,
-            mobile: mobileAllStyle,
-        };
-        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
-            setAttributes({ zoloStyles: styles });
-        }
-    }, [attributes]);
 
     const innerBlocksProps = useInnerBlocksProps(
         {
@@ -184,7 +84,7 @@ export default function Edit(props) {
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            <style>{`${softMinifyCssStrings(allStyle)}`}</style>
+            <Style props={props} />
             <div {...blockProps}>
                 <div {...innerBlocksProps} />
             </div>

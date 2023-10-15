@@ -32,6 +32,7 @@ const {
     TabPanelControl,
     IconicBtnGroup,
     GradientControl,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -117,6 +118,7 @@ function Inspector(props) {
                                 </>
                             )}
                         </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />
