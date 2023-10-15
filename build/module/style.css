@@ -1,6 +1,6 @@
-/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/@wordpress/scripts/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/controls/scss/controls.scss ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/controls/scss/controls.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
 .zolo-panel-control .zolo-tab-group {
   display: flex;
   position: relative;
@@ -641,6 +641,20 @@
   width: 20px;
 }
 
+.zolo-select__control .zolo-select__input-container .zolo-select__input,
+.zolo-select__control .zolo-select__input-container .zolo__input {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  height: auto !important;
+  width: auto !important;
+}
+.zolo-select__control .zolo-select__input-container .zolo-select__input:focus,
+.zolo-select__control .zolo-select__input-container .zolo__input:focus {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
 .zolo-panel-control .zb-typography-control-wrapper {
   margin-bottom: 12px !important;
 }
@@ -1086,6 +1100,105 @@
   width: 26px;
   background-color: #f2f2f2;
   border-radius: 50%;
+}
+
+.zolo-panel-control #wipIcon {
+  margin-bottom: 20px;
+  height: 130px;
+  width: 100%;
+  border-radius: 6px;
+  background-color: #f6f6f8;
+  border: 1px solid #e9e9e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.wip-iconpicker-popup {
+  width: 350px;
+  top: 10px !important;
+}
+.wip-iconpicker-popup .components-popover__content {
+  width: 100%;
+}
+
+.wip-parent-tab-panel .wip-icon-tab {
+  height: 30px;
+  color: #9f9d9d;
+  margin-bottom: 8px;
+}
+.wip-parent-tab-panel .wip-icon-tab.active-tab,
+.wip-parent-tab-panel .wip-tab.active-tab {
+  border-bottom: 2px solid #3c434a;
+  color: #3c434a;
+}
+
+.wip-icon-area {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-height: 225px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+.wip-icon-area .wip-icon-box {
+  background-color: #e4e4e4;
+  text-align: center;
+  width: calc(33.33% - 7px);
+  height: 70px;
+  position: relative;
+  transition: 0.3s;
+  order: 2;
+}
+.wip-icon-area .wip-icon-box.active {
+  background-color: #bcd4f0;
+  order: 1;
+}
+.wip-icon-area .wip-icon-box:hover {
+  background-color: #c7c7c7;
+  cursor: pointer;
+}
+.wip-icon-area .wip-icon-box .wip-icon-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  overflow: hidden;
+}
+.wip-icon-area .wip-icon-box .dashicon,
+.wip-icon-area .wip-icon-box i {
+  font-size: 22px;
+  display: block;
+  margin: 0 auto 8px;
+}
+.wip-icon-area .wip-icon-box .components-panel__row {
+  font-size: 11px;
+  line-height: 1;
+  height: auto !important;
+  display: block;
+  text-transform: capitalize;
+}
+
+.wip-social-profile #wipIcon {
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  min-width: 30px;
+}
+.wip-social-profile #wipIcon .dashicon,
+.wip-social-profile #wipIcon i {
+  font-size: 18px;
 }
 
 .zb-counter-flex {
