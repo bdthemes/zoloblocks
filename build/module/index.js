@@ -5387,6 +5387,7 @@ const QueryControl = ({
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('By Author', 'zolo-block')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    classNamePrefix: "zolo-select",
     options: AUTHOR_LISTS,
     value: postQuery.postAuthors,
     onChange: postAuthors => setAttributes({
@@ -5423,6 +5424,7 @@ const QueryControl = ({
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('By ', 'zolo-blocks') + tax.name,
     key: index
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    classNamePrefix: "zolo-select",
     options: (0,_global_constants__WEBPACK_IMPORTED_MODULE_3__.PRINT_TAXONOMY)(allTermList[tax.value]),
     value: Object.keys(postQuery.postTaxonomies).length > 0 ? postQuery.postTaxonomies[tax.value] !== undefined ? postQuery.postTaxonomies[tax.value].options : [] : [],
     onChange: value => changeTaxonomy(value, tax.value),

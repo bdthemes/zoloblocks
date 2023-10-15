@@ -1,3 +1,22 @@
+// select control css 
+.zolo-select__control {
+	.zolo-select__input-container {
+
+		.zolo-select__input,
+		.zolo__input {
+			border-color: transparent  !important;
+			box-shadow: none !important;
+			padding: 0 !important;
+			height: auto !important;
+			width: auto !important;
+			&:focus {
+				border-color: transparent !important;
+				box-shadow: none !important;
+			}
+		}
+	}
+}
+
 .zolo-panel-control {
 	.zb-typography-control-wrapper {
 		margin-bottom: 12px !important;
@@ -142,3 +161,4 @@
     border-radius: 6px;
     background-color: #f2f2f2;
 }
+
