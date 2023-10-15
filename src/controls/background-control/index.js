@@ -5,7 +5,7 @@ import BGControl from "./bg-control";
 import OverlayControl from "./overlay-control";
 
 const BackgroundControl = ({
-	resRequiredProps,
+	requiredProps,
 	controlName,
 	noOverlay = false,
 	noMainBGImg = false,
@@ -13,7 +13,7 @@ const BackgroundControl = ({
 	noTransition = false,
 }) => {
 
-	const { setAttributes, attributes } = resRequiredProps;
+	const { setAttributes, attributes } = requiredProps;
 
 	const { [`${controlName}isBgOverlay`]: isBgOverlay } = attributes;
 
@@ -21,7 +21,7 @@ const BackgroundControl = ({
 		<>
 			<BGControl
 				controlName={controlName}
-				resRequiredProps={resRequiredProps}
+				requiredProps={requiredProps}
 				noMainBGImg={noMainBGImg}
 				noTransition={noTransition}
 			/>
@@ -40,7 +40,7 @@ const BackgroundControl = ({
 				{isBgOverlay && (
 					<OverlayControl
 						controlName={controlName}
-						resRequiredProps={resRequiredProps}
+						requiredProps={requiredProps}
 						noOverlayBGImg={noOverlayBGImg}
 						noTransition={noTransition}
 					/>

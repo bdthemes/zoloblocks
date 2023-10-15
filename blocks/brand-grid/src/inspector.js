@@ -18,6 +18,7 @@ const {
     HeaderTabs,
     ResCounterControl,
     ResRangeControl,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -40,7 +41,7 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const { preset, resMode, borderHoverColor } = attributes;
 
-    const resRequiredProps = {
+    const requiredProps = {
         attributes,
         setAttributes,
         resMode,
@@ -65,14 +66,14 @@ function Inspector(props) {
                             <ResCounterControl
                                 label={__('Column Number', 'zolo-blocks')}
                                 controlName={GRID_COLUMNS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={1}
                                 max={6}
                             />
                             <ResRangeControl
                                 label={__('Columns Gap', 'zolo-blocks')}
                                 controlName={COLUMNS_GAP}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={0}
                                 max={100}
                                 step={1}
@@ -81,7 +82,7 @@ function Inspector(props) {
                             <ResRangeControl
                                 label={__('Row Gap', 'zolo-blocks')}
                                 controlName={ROWS_GAP}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={0}
                                 max={100}
                                 step={1}
@@ -95,21 +96,21 @@ function Inspector(props) {
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={CONTAINER_BORDER}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={CONTAINER_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
 
                             <TabPanelControl
                                 normalComponents={
                                     <>
-                                        <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} resRequiredProps={resRequiredProps} />
+                                        <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} />
                                         <NormalBGControl
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             controlName={CONTAINER_BACKGROUND}
                                             noMainBGImg={false}
                                         />
@@ -126,9 +127,9 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                        <BoxShadowControl controlName={CONTAINER_HOVER_BOX_SHADOW} resRequiredProps={resRequiredProps} />
+                                        <BoxShadowControl controlName={CONTAINER_HOVER_BOX_SHADOW} requiredProps={requiredProps} />
                                         <NormalBGControl
-                                            resRequiredProps={resRequiredProps}
+                                            requiredProps={requiredProps}
                                             controlName={CONTAINER_HOVER_BACKGROUND}
                                             noMainBGImg={false}
                                         />
@@ -140,18 +141,7 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <PanelBody initialOpen={true}>
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={CONTAINER_PADDING}
-                                resRequiredProps={resRequiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={CONTAINER_MARGIN}
-                                resRequiredProps={resRequiredProps}
-                            />
-                        </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />

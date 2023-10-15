@@ -2,16 +2,10 @@ import { select } from '@wordpress/data';
 
 /**
  * this function is for creating a unique uniqueId for each block's unique className
- * @param {BLOCK_PREFIX: type "string", uniqueId: "current uniqueId", setAttributes: type function, clientId}
+ * @param {prefix: type "string", uniqueId: "current uniqueId", setAttributes: type function, clientId}
  */
-export const handleUniqueId = ({
-    BLOCK_PREFIX,
-    uniqueId,
-    setAttributes,
-    clientId,
-}) => {
-    const unique_id =
-        BLOCK_PREFIX + '-' + Math.random().toString(36).substr(2, 8);
+export const handleUniqueId = ({ BLOCK_PREFIX, uniqueId, setAttributes, clientId }) => {
+    const unique_id = BLOCK_PREFIX + '-' + Math.random().toString(36).substr(2, 8);
 
     /**
      * Define and Generate Unique Block ID
@@ -55,16 +49,25 @@ export const hasVal = (val) => val || val === 0;
 // softMinifyCssStrings is for minifying the css which is in the style tag as a string  for view.js
 export const softMinifyCssStrings = (cssString = ' ') =>
     cssString
-    .replace(/[^{}]+{\s*}/g, '') //Remove empty curly braces selectors
-    .replace(/\n\s+/g, '')  // Remove newlines and preceding spaces
-    .replace(/\s+{/g, '{')  // Remove spaces before opening curly braces
-    .replace(/\s+}/g, '}')  // Remove spaces before closing curly braces
-    .replace(/:\s+/g, ':')  // Remove spaces after colons
-    .replace(/;\s+/g, ';'); // Remove spaces after semicolons;
+        .replace(/[^{}]+{\s*}/g, '') //Remove empty curly braces selectors
+        .replace(/\n\s+/g, '') // Remove newlines and preceding spaces
+        .replace(/\s+{/g, '{') // Remove spaces before opening curly braces
+        .replace(/\s+}/g, '}') // Remove spaces before closing curly braces
+        .replace(/:\s+/g, ':') // Remove spaces after colons
+        .replace(/;\s+/g, ';'); // Remove spaces after semicolons;
 
 //Dynamic Tag
 export const DynamicTag = (props) => {
     const { tagName, children, ...attr } = props;
     const Tag = tagName || 'h2';
     return <Tag {...attr}>{children}</Tag>;
+};
+
+export const classArrayToStr = (classes) => {
+    if (typeof classes !== 'object') {
+        return '';
+    }
+    const uniqueClasses = [...new Set(classes)];
+
+    return uniqueClasses.join(' ');
 };

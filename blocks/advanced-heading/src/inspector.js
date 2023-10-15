@@ -18,6 +18,7 @@ const {
     HeaderTabs,
     LinkControl,
     IconicBtnGroup,
+    AdvancedOptions,
 } = window.zoloModule;
 
 //block attributes
@@ -26,6 +27,7 @@ import objAttributes from './attributes';
 //block constants
 import {
     HEADING_TAG,
+    SEPARATOR_ALIGN,
     SEPARATOR_HEIGHT,
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
@@ -34,6 +36,7 @@ import {
     SUBTITLE_MARGIN,
     SUBTITLE_TEXT_SHADOW,
     SUBTITLE_TEXT_STROKE,
+    TITLE_ALIGN,
     TITLE_BORDER,
     TITLE_BORDER_RADIUS,
     TITLE_MARGIN,
@@ -59,7 +62,7 @@ import {
 } from './constants';
 import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
-import { TEXT_ALIGN_OPTIONS, DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { TEXT_ALIGN_OPTIONS, DEFAULT_ALIGNS, FLEX_HORIZONTAL_OPTIONS } from '../../../src/global/constants';
 
 const Inspector = ({ attributes, setAttributes }) => {
     const {
@@ -75,7 +78,6 @@ const Inspector = ({ attributes, setAttributes }) => {
         subTitlePosition,
         showSeparator,
         separatorPosition,
-        align,
 
         showTransparentTitle,
         transparentTitleText,
@@ -93,7 +95,7 @@ const Inspector = ({ attributes, setAttributes }) => {
         separatorColor,
     } = attributes;
 
-    const resRequiredProps = {
+    const requiredProps = {
         attributes,
         setAttributes,
         resMode,
@@ -108,7 +110,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                     showSubTitle: false,
                     showTransparentTitle: false,
                     showSeparator: false,
-                    align: 'left',
                 });
                 break;
 
@@ -118,7 +119,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                     subTitlePosition: 'top',
                     showTransparentTitle: true,
                     showSeparator: false,
-                    align: 'center',
                 });
                 break;
 
@@ -128,7 +128,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                     subTitlePosition: 'top',
                     showTransparentTitle: true,
                     showSeparator: false,
-                    align: 'center',
                 });
                 break;
 
@@ -138,7 +137,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                     subTitlePosition: 'top',
                     showTransparentTitle: true,
                     showSeparator: false,
-                    align: 'center',
                 });
                 break;
             default:
@@ -199,15 +197,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     help={__('http://your-link.com', 'zolo-blocks')}
                                 />
                             )}
-                            <IconicBtnGroup
-                                label={__('Alignment', 'zolo-blocks')}
-                                value={align}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        align: value,
-                                    })
-                                }
-                                options={TEXT_ALIGN_OPTIONS}
+                            <ResAlignmentControl
+                                label={__('Alignmet', 'zolo-blocks')}
+                                controlName={TITLE_ALIGN}
+                                requiredProps={requiredProps}
+                                alignOptions={TEXT_ALIGN_OPTIONS}
                             />
                         </PanelBody>
                         {showSubTitle && (
@@ -242,6 +236,12 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     }
                                     options={ST_POSITION}
                                 />
+                                <ResAlignmentControl
+                                    label={__('Separator Alignmet', 'zolo-blocks')}
+                                    controlName={SEPARATOR_ALIGN}
+                                    requiredProps={requiredProps}
+                                    alignOptions={FLEX_HORIZONTAL_OPTIONS}
+                                />
                             </PanelBody>
                         )}
                         {showTransparentTitle && (
@@ -263,14 +263,14 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <ResAlignmentControl
                                     label={__('Alignmet', 'zolo-blocks')}
                                     controlName={TPT_ALIGNMENT}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     alignOptions={DEFAULT_ALIGNS}
                                 />
 
                                 <RangeResetControl
                                     label={__('X Offset', 'zolo-blocks')}
                                     controlName={'transparentTitleXOffset'}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     min={-800}
                                     max={800}
                                     step={1}
@@ -279,7 +279,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <RangeResetControl
                                     label={__('Y Offset', 'zolo-blocks')}
                                     controlName={'transparentTitleYOffset'}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     min={-800}
                                     max={800}
                                     step={1}
@@ -299,7 +299,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <RangeResetControl
                                     label={__('Rotate', 'zolo-blocks')}
                                     controlName={'transparentTitleRotate'}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     min={-180}
                                     max={180}
                                     step={1}
@@ -322,11 +322,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                 styleTab={
                     <>
                         <PanelBody title={__('Heading', 'zolo-blocks')} initialOpen={false}>
-                            <TypographyDropdown
-                                label="Typography"
-                                typoPrefixConstant={TITLE_TYPOGRAPHY}
-                                resRequiredProps={resRequiredProps}
-                            />
+                            <TypographyDropdown label="Typography" typoPrefixConstant={TITLE_TYPOGRAPHY} requiredProps={requiredProps} />
 
                             <ColorControl
                                 label={__('Color', 'zolo-blocks')}
@@ -351,41 +347,29 @@ const Inspector = ({ attributes, setAttributes }) => {
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={TITLE_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
 
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={TITLE_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
 
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={TITLE_BORDER}
-                                resRequiredProps={resRequiredProps}
-                            />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={TITLE_BORDER} requiredProps={requiredProps} />
 
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={TITLE_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
 
-                            <BoxShadowControl controlName={TITLE_SHADOW} resRequiredProps={resRequiredProps} />
+                            <BoxShadowControl controlName={TITLE_SHADOW} requiredProps={requiredProps} />
 
-                            <TextShadowControl
-                                controlName={TITLE_TEXT_SHADOW}
-                                resRequiredProps={resRequiredProps}
-                                enableTransition={false}
-                            />
+                            <TextShadowControl controlName={TITLE_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
 
-                            <TextStrokeControl
-                                controlName={TITLE_TEXT_STROKE}
-                                resRequiredProps={resRequiredProps}
-                                enableTransition={false}
-                            />
+                            <TextStrokeControl controlName={TITLE_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
                         </PanelBody>
 
                         {showSubTitle && (
@@ -393,7 +377,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <TypographyDropdown
                                     label="Typography"
                                     typoPrefixConstant={SUBTITLE_TYPOGRAPHY}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
 
                                 <ColorControl
@@ -409,18 +393,18 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={SUBTITLE_MARGIN}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
 
                                 <TextShadowControl
                                     controlName={SUBTITLE_TEXT_SHADOW}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     enableTransition={false}
                                 />
 
                                 <TextStrokeControl
                                     controlName={SUBTITLE_TEXT_STROKE}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     enableTransition={false}
                                 />
                             </PanelBody>
@@ -439,7 +423,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 />
                                 <ResRangeControl
                                     label={__('Width', 'zolo-blocks')}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     controlName={SEPARATOR_WIDTH}
                                     min={0}
                                     max={300}
@@ -447,7 +431,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 />
                                 <ResRangeControl
                                     label={__('Height', 'zolo-blocks')}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     controlName={SEPARATOR_HEIGHT}
                                     min={0}
                                     max={100}
@@ -455,7 +439,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 />
                                 <ResRangeControl
                                     label={__('Spacing', 'zolo-blocks')}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     controlName={SEPARATOR_SPACING}
                                     min={0}
                                     max={50}
@@ -469,7 +453,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <TypographyDropdown
                                     label="Typography"
                                     typoPrefixConstant={TRANSPARENT_TYPOGRAPHY}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
 
                                 <ColorControl
@@ -494,39 +478,27 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <ResDimensionsControl
                                     label={__('Padding', 'zolo-blocks')}
                                     controlName={TPT_PADDING}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={TPT_MARGIN}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
 
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={TPT_BORDER}
-                                    resRequiredProps={resRequiredProps}
-                                />
+                                <BorderControl label={__('Border', 'zolo-blocks')} controlName={TPT_BORDER} requiredProps={requiredProps} />
 
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
                                     controlName={TPT_BORDER_RADIUS}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
 
-                                <BoxShadowControl controlName={TPT_SHADOW} resRequiredProps={resRequiredProps} />
-                                <TextShadowControl
-                                    controlName={TPT_TEXT_SHADOW}
-                                    resRequiredProps={resRequiredProps}
-                                    enableTransition={false}
-                                />
+                                <BoxShadowControl controlName={TPT_SHADOW} requiredProps={requiredProps} />
+                                <TextShadowControl controlName={TPT_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
 
-                                <TextStrokeControl
-                                    controlName={TPT_TEXT_STROKE}
-                                    resRequiredProps={resRequiredProps}
-                                    enableTransition={false}
-                                />
+                                <TextStrokeControl controlName={TPT_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
 
                                 <RangeControl
                                     label={__('Opacity', 'zolo-blocks')}
@@ -546,23 +518,24 @@ const Inspector = ({ attributes, setAttributes }) => {
                 }
                 advancedTab={
                     <>
-                        <PanelBody title={__('Wrapper Margin & Padding', 'zolo-blocks')} initialOpen={true}>
-                            <ResDimensionsControl label="Margin" controlName={WRAPPER_MARGIN} resRequiredProps={resRequiredProps} />
-                            <ResDimensionsControl label="Padding" controlName={WRAPPER_PADDING} resRequiredProps={resRequiredProps} />
-                        </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        {/* <PanelBody title={__('Wrapper Margin & Padding', 'zolo-blocks')} initialOpen={true}>
+              <ResDimensionsControl label="Margin" controlName={WRAPPER_MARGIN} requiredProps={requiredProps} />
+              <ResDimensionsControl label="Padding" controlName={WRAPPER_PADDING} requiredProps={requiredProps} />
+            </PanelBody>
 
-                        <PanelBody title={__('Background', 'zolo-blocks')} initialOpen={false}>
-                            <BackgroundControl controlName={WRAPPER_BG} resRequiredProps={resRequiredProps} />
-                        </PanelBody>
+            <PanelBody title={__('Background', 'zolo-blocks')} initialOpen={false}>
+              <BackgroundControl controlName={WRAPPER_BG} requiredProps={requiredProps} />
+            </PanelBody>
 
-                        <PanelBody title={__('Border & BoxShadow', 'zolo-blocks')} initialOpen={false}>
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={WRAPPER_BORDER}
-                                resRequiredProps={resRequiredProps}
-                            />
-                            <BoxShadowControl controlName={WRAPPER_SHADOW} resRequiredProps={resRequiredProps} />
-                        </PanelBody>
+            <PanelBody title={__('Border & BoxShadow', 'zolo-blocks')} initialOpen={false}>
+              <BorderControl
+                label={__('Border', 'zolo-blocks')}
+                controlName={WRAPPER_BORDER}
+                requiredProps={requiredProps}
+              />
+              <BoxShadowControl controlName={WRAPPER_SHADOW} requiredProps={requiredProps} />
+            </PanelBody> */}
                     </>
                 }
             />

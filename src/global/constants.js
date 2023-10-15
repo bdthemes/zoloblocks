@@ -94,40 +94,6 @@ export const DEFAULT_ALIGNS = [
     },
 ];
 
-export const COUNTER_CONTENT_ALIGNS = [
-    {
-        label: 'Left',
-        value: 'flex-start',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={8} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Center',
-        value: 'center',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L12 8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 16L12 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={4} y={8} width={16} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
-    {
-        label: 'Right',
-        value: 'flex-end',
-        icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
-            </svg>
-        ),
-    },
-];
-
 export const FLEX_ALIGN_OPTIONS = [
     {
         label: 'Top',
@@ -306,15 +272,16 @@ export const FLEX_JUSTIFIES = [
 
 export const FLEX_WRAPS = [
     {
-        label: 'No Wrap',
-        value: 'nowrap',
-        icon: <Dashicon icon="arrow-left-alt2" />,
-    },
-    {
         label: 'Wrap',
         value: 'wrap',
         icon: <Dashicon icon="arrow-up-alt" />,
     },
+    {
+        label: 'No Wrap',
+        value: 'nowrap',
+        icon: <Dashicon icon="arrow-left-alt2" />,
+    },
+
     {
         label: 'Wrap Reverse',
         value: 'wrap-reverse',
@@ -560,11 +527,11 @@ export const ICON_BOX_OPTIONS = [
 export const WIDTH_TYPES = [
     {
         label: __('Full', 'zolo-blocks'),
-        value: 'full_width',
+        value: 'alignfull',
     },
     {
         label: __('Boxed', 'zolo-blocks'),
-        value: 'boxed',
+        value: 'alignwide',
     },
     {
         label: __('Custom', 'zolo-blocks'),
@@ -575,10 +542,10 @@ export const WIDTH_TYPES = [
 export const CONTENT_WIDTH_TYPES = [
     {
         label: __('Boxed', 'zolo-blocks'),
-        value: 'boxed',
+        value: 'alignwide',
     },
     {
         label: __('Full Width', 'zolo-blocks'),
-        value: 'full_width',
+        value: 'alignfull',
     },
 ];

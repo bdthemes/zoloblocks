@@ -8,14 +8,14 @@ import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { PRESETS, GRID_COLUMNS, COLUMNS_GAP, ROWS_GAP, REVIEW_GRID_BG, REVIEW_GRID_MARGIN, REVIEW_GRID_PADDING } from './constants';
 
-const { ResRangeControl, ResDimensionsControl, NormalBGControl, HeaderTabs, ResCounterControl } = window.zoloModule;
+const { ResRangeControl, ResDimensionsControl, NormalBGControl, HeaderTabs, ResCounterControl, AdvancedOptions } = window.zoloModule;
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const { preset, resMode, showPhoto, addReviewerWebsiteLink, showName, showDesignation, showTestimonialMessage, showRating } =
         attributes;
 
-    const resRequiredProps = {
+    const requiredProps = {
         resMode,
         setAttributes,
         attributes,
@@ -65,7 +65,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody initialOpen={true}>
                             <SelectControl
                                 label={__('Preset Designs', 'zolo-blocks')}
                                 value={preset}
@@ -129,44 +129,23 @@ function Inspector(props) {
                             <ResCounterControl
                                 label={__('Grid Columns', 'zolo-blocks')}
                                 controlName={GRID_COLUMNS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 min={1}
                                 max={5}
                             />
                             <ResRangeControl
                                 label={__('Columns Gap', 'zolo-blocks')}
                                 controlName={COLUMNS_GAP}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
-                            <ResRangeControl
-                                label={__('Rows Gap', 'zolo-blocks')}
-                                controlName={ROWS_GAP}
-                                resRequiredProps={resRequiredProps}
-                            />
+                            <ResRangeControl label={__('Rows Gap', 'zolo-blocks')} controlName={ROWS_GAP} requiredProps={requiredProps} />
                         </PanelBody>
                     </>
                 }
-                styleTab={
-                    <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
-                            <NormalBGControl resRequiredProps={resRequiredProps} controlName={REVIEW_GRID_BG} noMainBGImg={false} />
-                        </PanelBody>
-                    </>
-                }
+                styleTab={<></>}
                 advancedTab={
                     <>
-                        <PanelBody title={__('Spacing', 'zolo-blocks')} initialOpen={false}>
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={REVIEW_GRID_PADDING}
-                                resRequiredProps={resRequiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={REVIEW_GRID_MARGIN}
-                                resRequiredProps={resRequiredProps}
-                            />
-                        </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />

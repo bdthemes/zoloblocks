@@ -3,8 +3,8 @@ import IconicBtnGroup from '../iconic-btn-group';
 
 import { DEFAULT_ALIGNS } from '../../global/constants';
 
-const ResAlignmentControl = ({ label, controlName, resRequiredProps, alignOptions }) => {
-    const { attributes, setAttributes, resMode } = resRequiredProps;
+const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions }) => {
+    const { attributes, setAttributes, resMode } = requiredProps;
 
     const {
         [`${controlName}ZRPAlign`]: desktopAlignment,
@@ -16,7 +16,7 @@ const ResAlignmentControl = ({ label, controlName, resRequiredProps, alignOption
     return (
         <div className="zb-res-alignment-control-wrapper">
             {resMode == 'Desktop' && (
-                <WithResDeviceBtn label={label} resRequiredProps={resRequiredProps} controlName={controlName}>
+                <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
                     <IconicBtnGroup
                         onChange={(newAlign) => {
                             setAttributes({
@@ -30,7 +30,7 @@ const ResAlignmentControl = ({ label, controlName, resRequiredProps, alignOption
             )}
 
             {resMode == 'Tablet' && (
-                <WithResDeviceBtn label={label} resRequiredProps={resRequiredProps} controlName={controlName}>
+                <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
                     <IconicBtnGroup
                         onChange={(newAlign) => {
                             setAttributes({
@@ -44,7 +44,7 @@ const ResAlignmentControl = ({ label, controlName, resRequiredProps, alignOption
             )}
 
             {resMode == 'Mobile' && (
-                <WithResDeviceBtn label={label} resRequiredProps={resRequiredProps} controlName={controlName}>
+                <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
                     <IconicBtnGroup
                         onChange={(newAlign) => {
                             setAttributes({

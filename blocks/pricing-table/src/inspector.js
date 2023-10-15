@@ -28,6 +28,7 @@ const {
     HeaderTabs,
     LinkControl,
     TabPanelControl,
+    AdvancedOptions,
 } = window.zoloModule;
 
 //block attributes
@@ -158,7 +159,7 @@ const Inspector = ({ attributes, setAttributes }) => {
         ribbonColor,
     } = attributes;
 
-    const resRequiredProps = {
+    const requiredProps = {
         attributes,
         setAttributes,
         resMode,
@@ -171,13 +172,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                 generalTab={
                     <>
                         <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
-                            {/* <SelectControl
-                                label={__('Preset Designs', 'zolo-blocks')}
-                                value={styles}
-                                options={applyFilters('zolo_pricing_table_style_filter', STYLES) || STYLES}
-                                onChange={(selected) => changePremade(selected)}
-                            /> */}
-
                             <ToggleControl
                                 label={__('Show Ribbon', 'zolo-blocks')}
                                 checked={showRibbon}
@@ -206,7 +200,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <RangeResetControl
                                     label={__('Horizontal Position', 'zolo-blocks')}
                                     controlName={'ribbonXPosition'}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     min={-150}
                                     max={150}
                                     step={1}
@@ -215,7 +209,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <RangeResetControl
                                     label={__('Vertical Position', 'zolo-blocks')}
                                     controlName={'ribbonYPosition'}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     min={-150}
                                     max={150}
                                     step={1}
@@ -224,7 +218,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <RangeResetControl
                                     label={__('Rotate', 'zolo-blocks')}
                                     controlName={'ribbonRotate'}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     min={-180}
                                     max={180}
                                     step={1}
@@ -297,7 +291,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                             <ResAlignmentControl
                                 label={__('Alignment', 'zolo-blocks')}
                                 controlName={FEATURE_ALIGN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 alignOptions={DEFAULT_ALIGNS}
                             />
 
@@ -369,27 +363,23 @@ const Inspector = ({ attributes, setAttributes }) => {
                 styleTab={
                     <>
                         <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={WRAPPER_BORDER}
-                                resRequiredProps={resRequiredProps}
-                            />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={WRAPPER_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={WRAPPER_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <BoxShadowControl controlName={WRAPPER_SHADOW} resRequiredProps={resRequiredProps} />
-                            <BackgroundControl controlName={WRAPPER_BG} resRequiredProps={resRequiredProps} />
-                            <ResDimensionsControl label="Margin" controlName={WRAPPER_MARGIN} resRequiredProps={resRequiredProps} />
-                            <ResDimensionsControl label="Padding" controlName={WRAPPER_PADDING} resRequiredProps={resRequiredProps} />
+                            <BoxShadowControl controlName={WRAPPER_SHADOW} requiredProps={requiredProps} />
+                            <BackgroundControl controlName={WRAPPER_BG} requiredProps={requiredProps} />
+                            <ResDimensionsControl label="Margin" controlName={WRAPPER_MARGIN} requiredProps={requiredProps} />
+                            <ResDimensionsControl label="Padding" controlName={WRAPPER_PADDING} requiredProps={requiredProps} />
                         </PanelBody>
                         <PanelBody title={__('Header', 'zolo-blocks')} initialOpen={false}>
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={TITLE_TYPOGRAPHY}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
 
                             <ColorControl
@@ -415,33 +405,25 @@ const Inspector = ({ attributes, setAttributes }) => {
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={TITLE_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
 
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={TITLE_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
 
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={TITLE_BORDER}
-                                resRequiredProps={resRequiredProps}
-                            />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={TITLE_BORDER} requiredProps={requiredProps} />
 
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={TITLE_BORDER_RADIUS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
 
-                            <TextShadowControl
-                                controlName={TITLE_TEXT_SHADOW}
-                                resRequiredProps={resRequiredProps}
-                                enableTransition={false}
-                            />
+                            <TextShadowControl controlName={TITLE_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
 
                             {showDesc && (
                                 <>
@@ -453,7 +435,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <TypographyDropdown
                                         label="Typography"
                                         typoPrefixConstant={DESC_TYPOGRAPHY}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                     />
 
                                     <ColorControl
@@ -468,18 +450,14 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <ResDimensionsControl
                                         label={__('Margin', 'zolo-blocks')}
                                         controlName={DESC_MARGIN}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                     />
                                 </>
                             )}
                         </PanelBody>
 
                         <PanelBody title={__('Pricing', 'zolo-blocks')} initialOpen={false}>
-                            <TypographyDropdown
-                                label="Typography"
-                                typoPrefixConstant={PRICE_TYPOGRAPHY}
-                                resRequiredProps={resRequiredProps}
-                            />
+                            <TypographyDropdown label="Typography" typoPrefixConstant={PRICE_TYPOGRAPHY} requiredProps={requiredProps} />
 
                             <ColorControl
                                 label={__('Color', 'zolo-blocks')}
@@ -494,7 +472,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={PRICE_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                             />
 
                             {pricePrefix && (
@@ -506,7 +484,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <RangeResetControl
                                         label={__('Size', 'zolo-blocks')}
                                         controlName={'prefixSize'}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                         min={0}
                                         max={100}
                                         step={1}
@@ -514,7 +492,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <RangeResetControl
                                         label={__('Position', 'zolo-blocks')}
                                         controlName={'prefixPosition'}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                         min={-100}
                                         max={100}
                                         step={1}
@@ -531,7 +509,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <RangeResetControl
                                         label={__('Size', 'zolo-blocks')}
                                         controlName={'suffixSize'}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                         min={0}
                                         max={100}
                                         step={1}
@@ -539,7 +517,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <RangeResetControl
                                         label={__('Position', 'zolo-blocks')}
                                         controlName={'suffixPosition'}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                         min={-100}
                                         max={100}
                                         step={1}
@@ -557,7 +535,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <TypographyDropdown
                                         label="Typography"
                                         typoPrefixConstant={ORGINAL_PRICE_TYPOGRAPHY}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                     />
 
                                     <ColorControl
@@ -572,7 +550,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <ResDimensionsControl
                                         label={__('Margin', 'zolo-blocks')}
                                         controlName={ORGINAL_PRICE_MARGIN}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                     />
                                 </>
                             )}
@@ -587,7 +565,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <TypographyDropdown
                                         label="Typography"
                                         typoPrefixConstant={PERIOD_TYPOGRAPHY}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                     />
 
                                     <ColorControl
@@ -602,7 +580,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <ResDimensionsControl
                                         label={__('Margin', 'zolo-blocks')}
                                         controlName={PERIOD_MARGIN}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                     />
                                 </>
                             )}
@@ -614,7 +592,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <TypographyDropdown
                                         label="Title Typography"
                                         typoPrefixConstant={FEATURE_TITLE_TYPOGRAPHY}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                     />
 
                                     <ColorControl
@@ -635,7 +613,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <TypographyDropdown
                                         label="Typography"
                                         typoPrefixConstant={FEATURE_DESC_TYPOGRAPHY}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                     />
 
                                     <ColorControl
@@ -650,7 +628,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     <ResDimensionsControl
                                         label={__('Margin', 'zolo-blocks')}
                                         controlName={FEATURE_DESC_MARGIN}
-                                        resRequiredProps={resRequiredProps}
+                                        requiredProps={requiredProps}
                                         forBorderRadius={false}
                                     />
                                 </>
@@ -664,11 +642,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     </BaseControl>
                                 </>
                             )}
-                            <TypographyDropdown
-                                label="Typography"
-                                typoPrefixConstant={FEATURE_TYPOGRAPHY}
-                                resRequiredProps={resRequiredProps}
-                            />
+                            <TypographyDropdown label="Typography" typoPrefixConstant={FEATURE_TYPOGRAPHY} requiredProps={requiredProps} />
 
                             <ColorControl
                                 label={__('Color', 'zolo-blocks')}
@@ -682,7 +656,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 
                             <ResRangeControl
                                 label={__('Item Gap', 'zolo-blocks')}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 controlName={FEATURE_ITEM_GAP}
                                 min={0}
                                 max={100}
@@ -692,20 +666,20 @@ const Inspector = ({ attributes, setAttributes }) => {
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={FEATURE_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={FEATURE_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <CardDivider />
                             <ResDimensionsControl
                                 label={__('Icon Padding', 'zolo-blocks')}
                                 controlName={FEATURE_ICON_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ColorControl
@@ -728,7 +702,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                             />
                             <ResRangeControl
                                 label={__('Icon Size', 'zolo-blocks')}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 controlName={FEATURE_ICON_SIZE}
                                 min={0}
                                 max={100}
@@ -736,7 +710,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                             />
                             <ResRangeControl
                                 label={__('Icon Gap', 'zolo-blocks')}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 controlName={FEATURE_ICON_GAP}
                                 min={0}
                                 max={100}
@@ -749,24 +723,24 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={BTN_TYPOGRAPHY}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
                                     controlName={BTN_RADIUS}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zolo-blocks')}
                                     controlName={BTN_PADDING}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={BTN_MARGIN}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
                                 <TabPanelControl
@@ -784,14 +758,10 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             <BorderControl
                                                 label={__('Border', 'zolo-blocks')}
                                                 controlName={BTN_BORDER}
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                             />
-                                            <BoxShadowControl controlName={BTN_SHADOW} resRequiredProps={resRequiredProps} />
-                                            <NormalBGControl
-                                                noMainBGImg={true}
-                                                controlName={BTN_NORMAL_BG}
-                                                resRequiredProps={resRequiredProps}
-                                            />
+                                            <BoxShadowControl controlName={BTN_SHADOW} requiredProps={requiredProps} />
+                                            <NormalBGControl noMainBGImg={true} controlName={BTN_NORMAL_BG} requiredProps={requiredProps} />
                                         </>
                                     }
                                     hoverComponents={
@@ -814,12 +784,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                                                     })
                                                 }
                                             />
-                                            <BoxShadowControl controlName={BTN_HOVER_SHADOW} resRequiredProps={resRequiredProps} />
-                                            <NormalBGControl
-                                                noMainBGImg={true}
-                                                controlName={BTN_HOVER_BG}
-                                                resRequiredProps={resRequiredProps}
-                                            />
+                                            <BoxShadowControl controlName={BTN_HOVER_SHADOW} requiredProps={requiredProps} />
+                                            <NormalBGControl noMainBGImg={true} controlName={BTN_HOVER_BG} requiredProps={requiredProps} />
                                         </>
                                     }
                                 />
@@ -830,24 +796,24 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={CBTN_TYPOGRAPHY}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                 />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
                                     controlName={CBTN_RADIUS}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zolo-blocks')}
                                     controlName={CBTN_PADDING}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={CBTN_MARGIN}
-                                    resRequiredProps={resRequiredProps}
+                                    requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
 
@@ -866,13 +832,13 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             <BorderControl
                                                 label={__('Border', 'zolo-blocks')}
                                                 controlName={CBTN_BORDER}
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                             />
-                                            <BoxShadowControl controlName={CBTN_SHADOW} resRequiredProps={resRequiredProps} />
+                                            <BoxShadowControl controlName={CBTN_SHADOW} requiredProps={requiredProps} />
                                             <NormalBGControl
                                                 noMainBGImg={true}
                                                 controlName={CBTN_NORMAL_BG}
-                                                resRequiredProps={resRequiredProps}
+                                                requiredProps={requiredProps}
                                             />
                                         </>
                                     }
@@ -896,12 +862,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                                                     })
                                                 }
                                             />
-                                            <BoxShadowControl controlName={CBTN_HOVER_SHADOW} resRequiredProps={resRequiredProps} />
-                                            <NormalBGControl
-                                                noMainBGImg={true}
-                                                controlName={CBTN_HOVER_BG}
-                                                resRequiredProps={resRequiredProps}
-                                            />
+                                            <BoxShadowControl controlName={CBTN_HOVER_SHADOW} requiredProps={requiredProps} />
+                                            <NormalBGControl noMainBGImg={true} controlName={CBTN_HOVER_BG} requiredProps={requiredProps} />
                                         </>
                                     }
                                 />
@@ -909,11 +871,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                         )}
 
                         <PanelBody title={__('Ribbon', 'zolo-blocks')} initialOpen={false}>
-                            <TypographyDropdown
-                                label="Typography"
-                                typoPrefixConstant={RIBBON_TYPOGRAPHY}
-                                resRequiredProps={resRequiredProps}
-                            />
+                            <TypographyDropdown label="Typography" typoPrefixConstant={RIBBON_TYPOGRAPHY} requiredProps={requiredProps} />
                             <ColorControl
                                 label={__('Color', 'zolo-blocks')}
                                 color={ribbonColor}
@@ -923,34 +881,34 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     })
                                 }
                             />
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={RIBBON_BORDER}
-                                resRequiredProps={resRequiredProps}
-                            />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={RIBBON_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={RIBBON_RADIUS}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={RIBBON_PADDING}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={RIBBON_MARGIN}
-                                resRequiredProps={resRequiredProps}
+                                requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <NormalBGControl noMainBGImg={true} controlName={RIBBON_BG} resRequiredProps={resRequiredProps} />
+                            <NormalBGControl noMainBGImg={true} controlName={RIBBON_BG} requiredProps={requiredProps} />
                         </PanelBody>
                     </>
                 }
-                advancedTab={<></>}
+                advancedTab={
+                    <>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                    </>
+                }
             />
         </InspectorControls>
     );

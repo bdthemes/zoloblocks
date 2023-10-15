@@ -12,8 +12,8 @@ import { __ } from '@wordpress/i18n';
 import ColorBtn from '../color-btn';
 import LinkUnlink from '../link-unlink';
 
-const BorderControl = ({ label, controlName, resRequiredProps, units }) => {
-	const { attributes, setAttributes, resMode } = resRequiredProps;
+const BorderControl = ({ label, controlName, requiredProps, units }) => {
+	const { attributes, setAttributes, resMode } = requiredProps;
 
 	const {
 		[`${prefix}${controlName}BorderType`]: borderType,

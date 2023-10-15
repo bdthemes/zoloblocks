@@ -1,0 +1,16 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Slide",
+    "name": "zolo/slide",
+    "category": "zolo-blocks",
+    "keywords": ["Slide", "Slider", "Carousel"],
+    "description": "Act as child block for slider",
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "parent": ["zolo/slider"],
+    "supports": {
+        "anchor": false,
+        "customClassName": false
+    },
+    "editorScript": ""
+}

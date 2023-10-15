@@ -1,7 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Brand Child",
-    "icon": "shield-alt",
     "name": "zolo/brand-child",
     "category": "zolo-blocks",
     "keywords": ["brand child", "brand"],
@@ -10,7 +9,8 @@
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "supports": {
-        "anchor": true
+        "anchor": false,
+        "customClassName": false
     },
     "editorScript": ""
 }

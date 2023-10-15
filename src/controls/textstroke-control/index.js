@@ -14,9 +14,9 @@ import ResetBtn from '../reset-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 import ColorBtn from '../color-btn';
 
-function TextShadowControl({ label = '', controlName, resRequiredProps }) {
+function TextShadowControl({ label = '', controlName, requiredProps }) {
 	const { attributes, setAttributes, resMode, objAttributes } =
-		resRequiredProps;
+		requiredProps;
 
 	const strokeWidthAttr = `${
 		resMode === 'Desktop' ? '' : resMode.slice(0, 3).toUpperCase()
@@ -67,7 +67,7 @@ function TextShadowControl({ label = '', controlName, resRequiredProps }) {
 					</UnitsBtn>
 					<WithResDeviceBtn
 						label={label || __('Text Stroke', 'zolo-blocks')}
-						resRequiredProps={resRequiredProps}
+						requiredProps={requiredProps}
 						controlName={controlName}
 						noResetBtn={true}
 						noResponsive={false}
@@ -128,7 +128,7 @@ function TextShadowControl({ label = '', controlName, resRequiredProps }) {
 							>
 								<WithResDeviceBtn
 									className="zb-text-stroke"
-									resRequiredProps={resRequiredProps}
+									requiredProps={requiredProps}
 								>
 									<UnitBtn
 										selectedUnit={strokeUnitVal}

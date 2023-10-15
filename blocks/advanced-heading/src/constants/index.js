@@ -74,6 +74,7 @@ export const TPT_ROTATE_ORIGIN = [
 
 export const TPT_ALIGNMENT = 'tpAlign';
 //style tab
+export const TITLE_ALIGN = 'titleAlign';
 export const TITLE_MARGIN = 'titleMargin';
 export const TITLE_BORDER = 'titleBorder';
 export const TITLE_BORDER_RADIUS = 'titleBorderRadius';
@@ -88,6 +89,7 @@ export const SUBTITLE_TEXT_STROKE = 'subTitleTextStroke';
 export const SEPARATOR_WIDTH = 'separatorWidth';
 export const SEPARATOR_SPACING = 'separatorSpacing';
 export const SEPARATOR_HEIGHT = 'separatorHeight';
+export const SEPARATOR_ALIGN = 'separatorAlign';
 
 export const TPT_MARGIN = 'TPTMargin';
 export const TPT_BORDER = 'TPTBorder';

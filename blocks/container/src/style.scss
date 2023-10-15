@@ -1,0 +1,21 @@
+.wp-block-zolo-container.frontend {
+	display: flex;
+	position: relative;
+	box-sizing: border-box;
+
+	&.alignfull.zolo-root-container {
+		.zolo-container-inner-blocks-wrap {
+			display: flex;
+			position: relative;
+			box-sizing: border-box;
+			margin-left: auto !important;
+			margin-right: auto !important;
+		}
+	}
+
+	&.zolo-root-container {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+}

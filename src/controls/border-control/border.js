@@ -63,7 +63,7 @@ const Borders = ({
     <div className="zb-dimension-container">
       <WithResDeviceBtn
         label={label}
-        resRequiredProps={neededProps}
+        requiredProps={neededProps}
         controlName={controlName}
       >
         {children}

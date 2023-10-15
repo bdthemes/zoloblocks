@@ -106,5 +106,34 @@ return apply_filters( 'zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-fontawesome','zolo-block-common-style'],
         'frontend-scripts' => ['zolo-counter-frontend', 'zolo-block-editor-dependency']
     ],
-
+    'slide' => [
+        'name'             => 'slide',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/slide/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
+    'slider' => [
+        'name'             => 'slider',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/slider/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-slider-frontend']
+    ],
+    'star-rating' => [
+        'name'             => 'star-rating',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/star-rating/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-star-rating-frontend']
+    ],
+    'accordion-child' => [
+        'name'             => 'accordion-child',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/accordion-child/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
+    'accordion' => [
+        'name'             => 'accordion',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/accordion/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-accordion-frontend']
+    ],
 ]);

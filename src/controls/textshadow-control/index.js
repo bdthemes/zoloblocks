@@ -9,8 +9,8 @@ import ResetBtn from '../reset-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 import ColorBtn from '../color-btn';
 
-function TextShadowControl({ label = '', controlName, resRequiredProps }) {
-	const { setAttributes, attributes } = resRequiredProps;
+function TextShadowControl({ label = '', controlName, requiredProps }) {
+	const { setAttributes, attributes } = requiredProps;
 
 	const {
 		[`${controlName}shadowColor`]: shadowColor,
@@ -59,7 +59,7 @@ function TextShadowControl({ label = '', controlName, resRequiredProps }) {
 				</UnitsBtn>
 				<WithResDeviceBtn
 					label={label || __('Text Shadow', 'zolo-blocks')}
-					resRequiredProps={resRequiredProps}
+					requiredProps={requiredProps}
 					controlName={controlName}
 					noResetBtn={true}
 					noResponsive={true}

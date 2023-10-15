@@ -2,11 +2,9 @@
     --zb-post-hover-color: #3f1a46;
     display: grid;
     grid-gap: 30px;
-
     .zolo-post-item {
         position: relative;
     }
-
     .wp-post-image {
         width: 100%;
         height: 100%;
@@ -14,7 +12,6 @@
         vertical-align: middle;
         transition: all cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
     }
-
     .zolo-post-image {
         position: relative;
         overflow: hidden;
@@ -45,7 +42,7 @@
     .zolo-post-meta-content a {
         font-weight: 600;
         text-decoration: none;
-        color: #fff !important;
+        color: #fff;
         transition: color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
     }
 
@@ -69,6 +66,7 @@
         margin: 15px 0;
         font-size: 22px;
         font-weight: 700;
+        line-height: 1.6;
     }
 
     .zolo-post-title a {
@@ -129,6 +127,12 @@
     .zolo-post-link-btn a svg {
         width: 14px;
         height: 14px;
+    }
+
+    &.zolo-post-style-1 .wp-post-image,
+    &.zolo-post-style-2 .wp-post-image,
+    &.zolo-post-style-3 .wp-post-image {
+        height: 350px;
     }
 
     /* global css end  */
@@ -254,7 +258,6 @@
     }
 
     &.zolo-post-style-3 .zolo-post-image:before {
-        /* opacity: 0; */
         background: linear-gradient(45deg, rgba(7, 4, 34, 0.69), transparent);
     }
 
@@ -290,11 +293,6 @@
         background-color: #e8eaf7;
     }
 
-    &.zolo-post-style-4,
-    &.zolo-post-style-5 {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
     &.zolo-post-style-4 .zolo-post-item {
         display: flex;
         align-items: center;
@@ -312,42 +310,13 @@
         height: 100%;
     }
 
+    &.zolo-post-style-4 .zolo-post-content {
+        width: 100%;
+    }
+
     &.zolo-post-style-4 .zolo-post-content,
     &.zolo-post-style-4 .zolo-post-meta-box {
-        padding: 15px;
-    }
-
-    &.zolo-post-style-4 .zolo-post-dateTime,
-    &.zolo-post-style-5 .zolo-post-secount-dateTime {
-        gap: 6px;
-        font-size: 12px;
-    }
-
-    &.zolo-post-style-4 .zolo-post-title,
-    &.zolo-post-style-5 .zolo-post-title {
-        font-size: 14px;
-    }
-
-    &.zolo-post-style-4 .zolo-post-category a,
-    &.zolo-post-style-5 .zolo-post-category a {
-        font-size: 12px;
-        padding: 5px 11px;
-    }
-
-    &.zolo-post-style-4 .zolo-post-meta-content,
-    &.zolo-post-style-5 .zolo-post-meta-content {
-        font-size: 12px;
-    }
-
-    &.zolo-post-style-4 .zolo-post-meta-box img,
-    &.zolo-post-style-5 .zolo-post-meta-box img {
-        width: 40px;
-        height: 40px;
-    }
-
-    &.zolo-post-style-4 .zolo-post-meta-box,
-    zb-post-style-5 .zolo-post-meta-box {
-        gap: 2px;
+        padding: clamp(0.938rem, 4vw, 1.875rem);
     }
 
     &.zolo-post-style-5 .zolo-post-item {
@@ -363,7 +332,7 @@
         width: 60%;
     }
 
-    &.zolo-post-style-5 .zolo-post-secount-dateTime {
+    &.zolo-post-style-5 .zolo-post-date {
         margin-bottom: 20px;
     }
 
@@ -373,12 +342,14 @@
         padding: 0;
     }
 
-    &.zolo-post-style-5 .zolo-post-meta-content {
+    &.zolo-post-style-5 .zolo-post-meta-content,
+    &.zolo-post-style-5 .zolo-post-meta-content a {
         color: #111013;
     }
 
     &.zolo-post-style-5 .zolo-post-title {
-        margin: 0;
+        margin: 0 0 15px;
+        font-size: clamp(1.125rem, 3vw, 1.875rem);
     }
 
     &.zolo-post-style-5 .zolo-post-link-btn {
@@ -386,95 +357,34 @@
     }
 }
 
-/*
- Responsive Styles
-*/
-
-.zolo-post-style-1,
-.zolo-post-style-2,
-.zolo-post-style-3 {
-    grid-template-columns: repeat(1, 1fr);
-}
-
-// Tablet
 @media (min-width: 768px) {
-    .zolo-post-style-1,
-    .zolo-post-style-2,
-    .zolo-post-style-3 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .zolo-post-style-4 .zolo-post-meta-box,
-    .zolo-post-style-4 .zolo-post-content {
-        padding: 30px;
-    }
-
-    .zolo-post-style-4 .zolo-post-dateTime,
-    .zolo-post-style-4 .zolo-post-secount-dateTime {
-        gap: 10px;
-        font-size: 14px;
-    }
-
-    .zolo-post-style-4 .zolo-post-title {
-        font-size: 22px;
-    }
-
-    .zolo-post-style-4 .zolo-post-category a,
-    .zolo-post-style-5 .zolo-post-category a {
-        font-size: 14px;
-        padding: 7px 15px;
-    }
-
-    .zolo-post-style-4 .zolo-post-meta-content,
-    .zolo-post-style-5 .zolo-post-meta-content {
-        font-size: 14px;
-    }
-
-    .zolo-post-style-4 .zolo-post-meta-box img,
-    .zolo-post-style-5 .zolo-post-meta-box img {
-        width: 50px;
-        height: 50px;
-    }
-
-    .zolo-post-style-4 .zolo-post-meta-box,
-    .zolo-post-style-5 .zolo-post-meta-box {
-        gap: 12px;
-    }
-
-    .zolo-post-style-5 .zolo-post-title {
-        font-size: 30px;
-    }
-
-    .zolo-post-style-5 .zolo-post-content {
-        width: 50%;
-    }
-
-    .zolo-post-style-5 .zolo-post-title {
-        font-size: 22px;
-    }
-
-    .zolo-post-style-5 .zolo-post-link-btn {
-        display: block;
+    .zolo-post-grid-wrap {
+        &.zolo-post-style-5 .zolo-post-link-btn {
+            display: block;
+        }
     }
 }
 
-// Desktop
-@media (min-width: 1024px) {
-    .zolo-post-style-1,
-    .zolo-post-style-2,
-    .zolo-post-style-3 {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .zolo-post-style-4 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .zolo-post-style-5 .zolo-post-content {
-        width: 60%;
-    }
-
-    .zolo-post-style-5 .zolo-post-title {
-        font-size: 30px;
+// pagination css  start
+.zolo-pagination-nav {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+    .page-numbers {
+        font-size: 14px;
+        padding: 8px 15px;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: #f0f0f4;
+        border-right: 1px solid #d9d9d9;
+        &:last-child {
+            border-right: none;
+        }
+        &.current {
+            border-right: none;
+            background-color: #c5c5c5;
+        }
     }
 }
+// pagination css  end

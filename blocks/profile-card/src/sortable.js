@@ -10,15 +10,6 @@ import { Button, PanelBody, TextControl } from '@wordpress/components';
 const { IconPicker, LinkControl, SortableItem, SortableControl } = window.zoloModule;
 
 const Sortable = ({ socialProfiles, setAttributes }) => {
-    // set profile icon
-    const setProfileIcon = (value, index) => {
-        let profile = [...socialProfiles];
-        profile[index] = {
-            ...profile[index],
-            icon: { ...value },
-        };
-        setAttributes({ socialProfiles: [...profile] });
-    };
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
@@ -31,13 +22,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                 {
                                     id: socialProfiles.length + 1,
                                     title: 'Facebook',
-                                    icon: {
-                                        facebook: {
-                                            name: 'facebook',
-                                            source: 'dashicon',
-                                            type: '',
-                                        },
-                                    },
+                                    icon: 'fab fa-facebook-f',
                                     link: {
                                         url: '#',
                                         openInNewTab: false,
@@ -85,7 +70,13 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                         />
                                         <IconPicker
                                             value={profile.icon}
-                                            onChange={(value) => setProfileIcon(value, index)}
+                                            onChange={(value) => {
+                                                const newItems = [...socialProfiles];
+                                                newItems[index].icon = value;
+                                                setAttributes({
+                                                    socialProfiles: newItems,
+                                                });
+                                            }}
                                             showHeading={false}
                                         />
                                         <LinkControl
