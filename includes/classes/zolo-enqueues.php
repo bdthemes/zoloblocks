@@ -57,7 +57,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function block_assets_loader() {
-            wp_register_style(
+            wp_enqueue_style(
                 'zolo-block-common-style',
                 ZOLO_ADMIN_URL . 'build/dist/style.css',
                 [],
@@ -65,7 +65,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             );
 
             // enqueue fontawesome icons
-            wp_register_style(
+            wp_enqueue_style(
                 'zolo-fontawesome',
                 ZOLO_ADMIN_URL . 'assets/css/fontawesome/css/fontawesome.min.css',
                 [],
@@ -100,6 +100,18 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 wp_enqueue_script(
                     'zolo-swiper-editor-script',
                     ZOLO_ADMIN_URL . 'assets/js/swiper/swiper-bundle.min.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
+
+            // accordion Scripts and Styles
+            if( ! is_admin() && has_block( 'zolo/accordion') ){
+    
+                wp_enqueue_script(
+                    'zolo-accordion-editor-script',
+                    ZOLO_ADMIN_URL . 'assets/js/accordion/accordion.js',
                     [],
                     ZOLO_VERSION,
                     true
