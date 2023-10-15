@@ -150,6 +150,7 @@ function Inspector(props) {
                                             });
                                         }}
                                         showHeading={true}
+                                        disableDashicon={true}
                                     />
 
                                     {iconType !== 'iconOnly' && (
