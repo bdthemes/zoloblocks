@@ -1,0 +1,85 @@
+/*
+* Style Works for both Editor and Frontend
+*/
+.wp-block-zolo-accordion {
+    overflow: hidden;
+
+    .accordion-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .accordion-head .accordion-title {
+        flex: 1;
+    }
+
+    .accordion-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .accordion-title {
+        margin: 0;
+    }
+
+    .accordion-toggle {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        width: 30px;
+        height: 30px;
+        min-width: auto !important;
+    }
+
+    .accordion-body {
+        visibility: hidden;
+        opacity: 0;
+        height: 0;
+        transition: all 0.3s ease-in-out;
+        padding: 0;
+        margin: 0;
+        background-color: #fff;
+        overflow: hidden;
+        p {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .accordion-body-inner {
+        padding: 10px;
+    }
+    .open {
+        .accordion-body {
+            visibility: visible;
+            opacity: 1;
+            height: auto;
+        }
+    }
+
+    // collapse and expand icons
+    .accordion-toggle.zolo-active .expanded-mode {
+        display: block;
+    }
+
+    .collapsed-mode,
+    .expanded-mode {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .expanded-mode {
+        display: none;
+    }
+    .accordion-toggle.zolo-active .collapsed-mode {
+        display: none;
+    }
+}

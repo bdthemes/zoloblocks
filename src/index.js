@@ -1,5 +1,5 @@
 //Import common-styles
-import "./common-styles.scss";
+import './common-styles.scss';
 
 //Import Global Hooks
 import './global/hooks';
@@ -25,3 +25,5 @@ import '../blocks/profile-card/src';
 import '../blocks/slide/src';
 import '../blocks/slider/src';
 import '../blocks/star-rating/src';
+import '../blocks/accordion-child/src';
+import '../blocks/accordion/src';
