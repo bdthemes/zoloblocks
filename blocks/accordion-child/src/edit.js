@@ -1,11 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, InnerBlocks, useInnerBlocksProps, RichText } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
-import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
+import { useBlockProps, InnerBlocks, RichText } from '@wordpress/block-editor';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -16,22 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    StarRating,
-    generateResAlignmentStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    generateBoxShadowStyles,
-    generateNormalBGControlStyles,
-    generateBackgroundControlStyles,
-    classArrayToStr,
-    DisplayIcon,
-} = window.zoloModule;
-
-import { BLOCK_PREFIX, SLIDE_BG, SLIDE_PADDING, SLIDE_BORDER, SLIDE_BORDER_RADIUS } from './constants';
+const { classArrayToStr, DisplayIcon } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -43,24 +25,12 @@ import Style from './style';
  */
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected, context } = props;
-    const {
-        uniqueId,
-        collapseIcon,
-        expandIcon,
-        zoloStyles,
-        enableOverlay,
-        overlayType,
-        overlayColor,
-        overlayGradient,
-        title,
-        titleTag,
-        parentClasses,
-    } = attributes;
+    const { attributes, setAttributes, className, isSelected, context } = props;
+    const { uniqueId, collapseIcon, expandIcon, title, titleTag, parentClasses } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
+        className: classnames(className, uniqueId, classArrayToStr(parentClasses)),
     });
 
     /**

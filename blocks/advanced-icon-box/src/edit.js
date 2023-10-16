@@ -2,113 +2,41 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    generateResAlignmentStyle,
-    generateNormalBGControlStyles,
-    generateResRangeStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateBoxShadowStyles,
-    generateTextShadowStyles,
-    generateTextStrokeStyles,
-    DisplayIcon,
-    classArrayToStr,
-} = window.zoloModule;
-
-import {
-    BLOCK_PREFIX,
-    CONTAINER_BACKGROUND,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_HOVER_BOX_SHADOW,
-    CONTAINER_MARGIN,
-    CONTAINER_PADDING,
-    ICON_BOX_ALIGNMENT,
-    TITLE_MARGIN,
-    TITLE_TEXT_SHADOW,
-    TITLE_TEXT_STROKE,
-    DESCRIPTION_MARGIN,
-    ICON_BORDER,
-    ICON_BORDER_RADIUS,
-    ICON_SIZE,
-    ICON_PADDING,
-    ICON_MARGIN,
-    BUTTON_BG_COLOR,
-    BUTTON_BG_HOVER_COLOR,
-    BUTTON_ICON_SIZE,
-    BUTTON_BORDER,
-    ICON_BOX_SHADOW,
-    ICON_HOVER_BOX_SHADOW,
-    BUTTON_BOX_SHADOW,
-    BUTTON_HOVER_BOX_SHADOW,
-    ICON_TEXT_SPACING,
-    BUTTON_BORDER_RADIUS,
-    BUTTON_MARGIN,
-    BUTTON_PADDING,
-    ICON_IMAGE_SIZE,
-    IMAGE_BORDER,
-    ICON_IMAGE_BORDER_RADIUS,
-} from './constants';
-
-import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+const { DisplayIcon, classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected } = props;
     const {
         uniqueId,
         preset,
         parentClasses,
         titleTag,
-        zoloStyles,
         showButtonIcon,
         mainIcon,
-        containerBorderHoverColor,
         buttonIcon,
         showMainIcon,
         showHeading,
         showDesc,
         showButton,
-        textColor,
-        descColor,
-        descHoverColor,
-        iconAlignment,
-        iconColor,
-        iconHoverColor,
-        iconBorderHoverColor,
-        iconBackgroundColor,
-        iconBackgroundHoverColor,
         iconType,
         iconTypeImage,
         iconBoxTitle,
         iconBoxDescription,
         buttonText,
-        btnColor,
-        btnHoverColor,
-        btnBgHoverColor,
-        btnHoverBorderColor,
-        buttonIconColor,
-        buttonIconHoverColor,
-        presetOneStyles,
-        presetTwoStyles,
-        presetThreeStyles,
     } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
     const blockProps = useBlockProps({
-        className: classnames(className, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
     return (

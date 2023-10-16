@@ -6,12 +6,12 @@ import classnames from 'classnames';
  */
 const { classArrayToStr, DisplayIcon } = window.zoloModule;
 
-const Save = ({ className, attributes }) => {
+const Save = ({ attributes }) => {
     const { uniqueId, preset, label, link, iconType, iconPosition, icon, parentClasses } = attributes;
     return (
         <div
             {...useBlockProps.save({
-                className: classnames(className, classArrayToStr(parentClasses))
+                className: classnames(uniqueId, classArrayToStr(parentClasses)),
             })}
         >
             <div className={`zolo-block-wrapper zolo-advanced-button ${uniqueId} ${preset}`}>
