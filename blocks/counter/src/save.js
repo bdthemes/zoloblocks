@@ -1,13 +1,15 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DisplayIcon } = window.zoloModule;
+const { DisplayIcon, classArrayToStr } = window.zoloModule;
+import classnames from 'classnames';
 
 const Save = ({ attributes }) => {
     const {
         uniqueId,
-        preset,
+        parentClasses,
         hideIcon,
         hideTitle,
         hideCounter,
+        hideSuffix,
         counterNumber,
         counterSuffix,
         titleText,
@@ -16,9 +18,14 @@ const Save = ({ attributes }) => {
         iconType,
         iconTypeImage,
     } = attributes;
+
+    const blockProps = useBlockProps.save({
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+    });
+
     return (
-        <div {...useBlockProps.save()}>
-            <div class={`zolo-counter-wrap zolo-counter-${preset} ${uniqueId}`}>
+        <div {...blockProps}>
+            <div class="zolo-counter-wrap">
                 <div class="zolo-counter-item">
                     {hideIcon && (
                         <div class="zolo-counter-icon">
@@ -34,8 +41,8 @@ const Save = ({ attributes }) => {
                         <div class="zolo-counter-count">
                             {hideCounter && (
                                 <>
-                                    <div className="animated-counter" data-count={counterNumber}></div>
-                                    <span className="zolo-counter-sub-text">{counterSuffix}</span>
+                                    <span className="animated-counter" data-count={counterNumber}></span>
+                                    {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
                                 </>
                             )}
                         </div>

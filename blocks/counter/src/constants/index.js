@@ -12,41 +12,8 @@ export const PRESETS = [
     { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
 ];
 
-// Title
-export const TITLE_TAG = [
-    {
-        label: 'H1',
-        value: 'h1',
-    },
-    {
-        label: 'H2',
-        value: 'h2',
-    },
-    {
-        label: 'H3',
-        value: 'h3',
-    },
-    {
-        label: 'H4',
-        value: 'h4',
-    },
-    {
-        label: 'H5',
-        value: 'h5',
-    },
-    {
-        label: 'H6',
-        value: 'h6',
-    },
-    {
-        label: 'Span',
-        value: 'span',
-    },
-    {
-        label: 'P',
-        value: 'p',
-    },
-];
+// content
+export const CONTENT_ALIGN = 'contentAlign';
 
 // Item
 export const CONTAINER_BACKGROUND = 'containerBg';
@@ -73,6 +40,7 @@ export const ICON_HOVER_BOX_SHADOW = 'iconHoverBoxShadow';
 export const ICON_BORDER_RADIUS = 'iconBorderRadius';
 export const ICON_SIZE = 'iconSize';
 export const ICON_TEXT_SPACING = 'iconTextSpacing';
+export const ICON_BACKGROUND = 'iconBg';
 
 // Button
 export const BUTTON_BG_COLOR = 'buttonBgColor';
