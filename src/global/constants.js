@@ -272,15 +272,16 @@ export const FLEX_JUSTIFIES = [
 
 export const FLEX_WRAPS = [
     {
-        label: 'No Wrap',
-        value: 'nowrap',
-        icon: <Dashicon icon="arrow-left-alt2" />,
-    },
-    {
         label: 'Wrap',
         value: 'wrap',
         icon: <Dashicon icon="arrow-up-alt" />,
     },
+    {
+        label: 'No Wrap',
+        value: 'nowrap',
+        icon: <Dashicon icon="arrow-left-alt2" />,
+    },
+
     {
         label: 'Wrap Reverse',
         value: 'wrap-reverse',
@@ -526,11 +527,11 @@ export const ICON_BOX_OPTIONS = [
 export const WIDTH_TYPES = [
     {
         label: __('Full', 'zolo-blocks'),
-        value: 'full_width',
+        value: 'alignfull',
     },
     {
         label: __('Boxed', 'zolo-blocks'),
-        value: 'boxed',
+        value: 'alignwide',
     },
     {
         label: __('Custom', 'zolo-blocks'),
@@ -541,10 +542,10 @@ export const WIDTH_TYPES = [
 export const CONTENT_WIDTH_TYPES = [
     {
         label: __('Boxed', 'zolo-blocks'),
-        value: 'boxed',
+        value: 'alignwide',
     },
     {
         label: __('Full Width', 'zolo-blocks'),
-        value: 'full_width',
+        value: 'alignfull',
     },
 ];

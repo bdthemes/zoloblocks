@@ -7,6 +7,7 @@ export default function RenderView({ attributes, clientId, className }) {
   const {
     uniqueId,
     containerWidthType,
+    contentWidthType,
     isBlockRootParent
   } = attributes;
 
@@ -18,18 +19,26 @@ export default function RenderView({ attributes, clientId, className }) {
 
 
   const blockProps = useBlockProps({
-    className: classnames(className, `${uniqueId} ${containerWidthType} ${hasChildrenClass}  ${isRootContainerClass}`),
+    className: classnames(className, `${uniqueId} ${containerWidthType} ${hasChildrenClass} ${isRootContainerClass} backend`),
   });
 
   return (
     <div {...blockProps}>
-
-      <InnerBlocks
-        renderAppender={hasChildBlocks
-          ? undefined
-          : InnerBlocks.ButtonBlockAppender}
-      />
-
+      {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
+        <div className="zolo-container-inner-blocks-wrap">
+          <InnerBlocks
+            renderAppender={hasChildBlocks
+              ? undefined
+              : InnerBlocks.ButtonBlockAppender}
+          />
+        </div>
+      ) : (
+        <InnerBlocks
+          renderAppender={hasChildBlocks
+            ? undefined
+            : InnerBlocks.ButtonBlockAppender}
+        />
+      )}
     </div>
   )
 }

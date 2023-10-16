@@ -15809,7 +15809,7 @@ const GlobalStyleHanlder = props => {
   //     borderStylesTab: tabBorderStyles,
   //     borderStylesMobile: mobileBorderStyles,
   // } = generateBorderStyle({
-  //     controlName: globalConfig.border.prefix || 'mainBorder',
+  //     controlName: globalConfig?.border?.prefix || 'mainBorder',
   //     attributes,
   // });
 
@@ -15818,7 +15818,7 @@ const GlobalStyleHanlder = props => {
     tabBorderStyle: tabBorderStyles,
     mobBorderStyle: mobileBorderStyles
   } = (0,_helpers_border_helper__WEBPACK_IMPORTED_MODULE_5__.generateBorderStyle)({
-    controlName: globalConfig.border.prefix || 'mainBorder',
+    controlName: globalConfig?.border?.prefix || 'mainBorder',
     attributes
   });
 
@@ -15828,7 +15828,7 @@ const GlobalStyleHanlder = props => {
     dimensionStylesTab: borderRadiusStylesTab,
     dimensionStylesMobile: borderRadiusStylesMobile
   } = (0,_helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_4__.generateDimensionStyle)({
-    controlName: globalConfig.borderRadius.prefix || 'mainBorderRadius',
+    controlName: globalConfig?.borderRadius?.prefix || 'mainBorderRadius',
     styleFor: 'border-radius',
     attributes
   });
@@ -15837,7 +15837,7 @@ const GlobalStyleHanlder = props => {
   const {
     boxShadowStyle: normalBoxShadowStyle
   } = (0,_helpers_boxshadow_helper__WEBPACK_IMPORTED_MODULE_6__.generateBoxShadowStyles)({
-    controlName: globalConfig.boxShadow.prefix || 'mainBoxShadow',
+    controlName: globalConfig?.boxShadow?.prefix || 'mainBoxShadow',
     attributes
   });
 
@@ -15847,7 +15847,7 @@ const GlobalStyleHanlder = props => {
   //     backgroundStylesTab: tabBgStyles,
   //     backgroundStylesMobile: mobileBgStyles,
   // } = generateNormalBGControlStyles({
-  //     controlName: globalConfig.background.prefix || 'mainBg',
+  //     controlName: globalConfig?.background?.prefix || 'mainBg',
   //     attributes,
   //     noMainBGImg: false,
   // });
@@ -15867,7 +15867,7 @@ const GlobalStyleHanlder = props => {
     hoverOverlayStylesMobile: hoverOverlayMobStyle
   } = (0,_helpers_backgroundHelpers__WEBPACK_IMPORTED_MODULE_3__.generateBackgroundControlStyles)({
     attributes,
-    controlName: globalConfig.background.prefix || 'mainBg'
+    controlName: globalConfig?.background?.prefix || 'mainBg'
   });
 
   // margin
@@ -15876,7 +15876,7 @@ const GlobalStyleHanlder = props => {
     dimensionStylesTab: marginStylesTab,
     dimensionStylesMobile: marginStylesMobile
   } = (0,_helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_4__.generateDimensionStyle)({
-    controlName: globalConfig.margin.prefix || 'mainMargin',
+    controlName: globalConfig?.margin?.prefix || 'mainMargin',
     styleFor: 'margin',
     attributes
   });
@@ -15887,7 +15887,7 @@ const GlobalStyleHanlder = props => {
     dimensionStylesTab: paddingStylesTab,
     dimensionStylesMobile: paddingStylesMobile
   } = (0,_helpers_dimension_helper__WEBPACK_IMPORTED_MODULE_4__.generateDimensionStyle)({
-    controlName: globalConfig.padding.prefix || 'mainPadding',
+    controlName: globalConfig?.padding?.prefix || 'mainPadding',
     styleFor: 'padding',
     attributes
   });
@@ -15913,7 +15913,7 @@ const GlobalStyleHanlder = props => {
         ${bgTabStyle ? bgTabStyle : ''}
         ${overlayTabStyle ? overlayTabStyle : ''}
         ${hoverOverlayTabStyle ? hoverOverlayTabStyle : ''}
-        ${hoverBgTabStyle ? hoverBgTabStyle : ''}   
+        ${hoverBgTabStyle ? hoverBgTabStyle : ''}
     }
   `;
   const mobileGlobalStyles = `
@@ -16515,16 +16515,16 @@ const FLEX_JUSTIFIES = [{
   })
 }];
 const FLEX_WRAPS = [{
-  label: 'No Wrap',
-  value: 'nowrap',
-  icon: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Dashicon, {
-    icon: "arrow-left-alt2"
-  })
-}, {
   label: 'Wrap',
   value: 'wrap',
   icon: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Dashicon, {
     icon: "arrow-up-alt"
+  })
+}, {
+  label: 'No Wrap',
+  value: 'nowrap',
+  icon: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Dashicon, {
+    icon: "arrow-left-alt2"
   })
 }, {
   label: 'Wrap Reverse',
@@ -16935,20 +16935,20 @@ const ICON_BOX_OPTIONS = [{
 // Width Types
 const WIDTH_TYPES = [{
   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Full', 'zolo-blocks'),
-  value: 'full_width'
+  value: 'alignfull'
 }, {
   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Boxed', 'zolo-blocks'),
-  value: 'boxed'
+  value: 'alignwide'
 }, {
   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Custom', 'zolo-blocks'),
   value: 'custom_width'
 }];
 const CONTENT_WIDTH_TYPES = [{
   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Boxed', 'zolo-blocks'),
-  value: 'boxed'
+  value: 'alignwide'
 }, {
   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Full Width', 'zolo-blocks'),
-  value: 'full_width'
+  value: 'alignfull'
 }];
 
 /***/ }),
@@ -18502,7 +18502,7 @@ const generateDimensionAttributes = (controlName, defaults = {}) => {
 
 /**
  * Function Name: generateDimensionStyle
- * @param {*} param0
+ * @param {*} param
  * @returns string
  */
 const generateDimensionStyle = ({
@@ -18528,6 +18528,8 @@ const generateDimensionStyle = ({
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}MOB${controlName}Left`]: MOBdimensionLeft,
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}${controlName}IsLinked`]: isLinked
   } = attributes;
+  // console.log("here", `${prefix}${controlName}Top`)
+
   let dimensionStylesDesktop = ' ';
   let dimensionStylesTab = ' ';
   let dimensionStylesMobile = ' ';
@@ -18599,6 +18601,9 @@ const generateDimensionStyle = ({
         `;
     }
   }
+  if (controlName === 'advBtnMargin') {
+    // console.log("ControlName: ", controlName, styleFor, dimensionStylesDesktop)
+  }
   return {
     dimensionStylesDesktop,
     dimensionStylesTab,
@@ -18631,7 +18636,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * this function is for creating a unique uniqueId for each block's unique className
- * @param {BLOCK_PREFIX: type "string", uniqueId: "current uniqueId", setAttributes: type function, clientId}
+ * @param {prefix: type "string", uniqueId: "current uniqueId", setAttributes: type function, clientId}
  */
 const handleUniqueId = ({
   BLOCK_PREFIX,

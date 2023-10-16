@@ -18,7 +18,7 @@ export default function Edit(props) {
     const { uniqueId, preset, label, parentClasses, iconType, icon, iconPosition } = attributes;
 
     const blockProps = useBlockProps({
-        className: classnames(className, classArrayToStr(parentClasses)),
+        className: classnames(className, classArrayToStr(parentClasses))
     });
 
     return (

@@ -54,18 +54,21 @@ const attributes = {
   },
   containerWidthType: {
     type: 'string',
-    default: 'full_width',
+    default: 'alignfull',
   },
   contentWidthType: {
     type: 'string',
-    default: 'boxed',
+    default: 'alignwide',
   },
   // New Generators
   ...generateResRangeAttributies(CONTAINER_WIDTH, {
     defaultRange: 100,
     defaultUnit: '%'
   }),
-  ...generateResRangeAttributies(CONTENT_WIDTH, {}),
+  ...generateResRangeAttributies(CONTENT_WIDTH, {
+    defaultRange: 1200,
+    defaultUnit: 'px'
+  }),
   ...generateResRangeAttributies(MIN_HEIGHT, {}),
 
   // flex
@@ -73,13 +76,13 @@ const attributes = {
     defaultAlign: 'row',
   }),
   ...generateResAlignmentAttributies(FLEX_ALIGN, {
-    defaultAlign: 'flex-start',
+    defaultAlign: 'center',
   }),
   ...generateResAlignmentAttributies(FLEX_JUSTIFY, {
-    defaultAlign: 'flex-start',
+    defaultAlign: 'center',
   }),
   ...generateResAlignmentAttributies(FLEX_WRAP, {
-    defaultAlign: 'wrap',
+    defaultAlign: 'nowrap',
   }),
 
   // container
@@ -87,12 +90,23 @@ const attributes = {
   ...generateBorderAttributies(CONTAINER_BORDER),
   ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
   ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
-  ...generateDimensionAttributes(CONTAINER_PADDING),
+  ...generateDimensionAttributes(CONTAINER_PADDING, {
+    top: 10,
+    bottom: 10,
+    left: 10,
+    right: 10
+  }),
   ...generateDimensionAttributes(CONTAINER_MARGIN),
 
   // row & column
-  ...generateResRangeAttributies(ROW_GAP, {}),
-  ...generateResRangeAttributies(COLUMN_GAP, {}),
+  ...generateResRangeAttributies(ROW_GAP, {
+    defaultRange: 20,
+    defaultUnit: 'px'
+  }),
+  ...generateResRangeAttributies(COLUMN_GAP, {
+    defaultRange: 20,
+    defaultUnit: 'px'
+  }),
 };
 
 export default attributes;

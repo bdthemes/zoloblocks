@@ -74,7 +74,7 @@ function Inspector(props) {
                     }
                     options={WIDTH_TYPES}
                   />
-                  {containerWidthType === 'full_width' && (
+                  {containerWidthType === 'alignfull' && (
                     <>
                       <IconicBtnGroup
                         label={__('Content Width', 'zolo-blocks')}
@@ -86,7 +86,7 @@ function Inspector(props) {
                         }
                         options={CONTENT_WIDTH_TYPES}
                       />
-                      {contentWidthType === 'boxed' && (
+                      {contentWidthType === 'alignwide' && (
                         <ResRangeControl
                           label={__('Content Width', 'zolo-blocks')}
                           controlName={CONTENT_WIDTH}

@@ -12,6 +12,7 @@ export const variations = [
     scope: ['block'],
     attributes: {
       variationStatus: true,
+      FlexDirectionZRPAlign: 'column'
     },
   },
   {
@@ -30,6 +31,7 @@ export const variations = [
           zolo_ContainerWidthUnit: '%',
           zolo_TABContainerWidthRange: 100,
           zolo_TABContainerWidthUnit: '%',
+          FlexDirectionZRPAlign: 'column'
         },
       ],
       [
@@ -39,6 +41,7 @@ export const variations = [
           zolo_ContainerWidthUnit: '%',
           zolo_TABContainerWidthRange: 100,
           zolo_TABContainerWidthUnit: '%',
+          FlexDirectionZRPAlign: 'column'
         },
       ],
     ],

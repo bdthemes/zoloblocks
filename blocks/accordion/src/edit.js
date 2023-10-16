@@ -59,7 +59,7 @@ export default function Edit(props) {
     const innerBlocksArray = innerBlocks && innerBlocks.innerBlocks;
     // set total items
     setAttributes({
-        totalItems: innerBlocksArray.length,
+        totalItems: innerBlocksArray && innerBlocksArray.length,
     });
 
     useEffect(() => {
