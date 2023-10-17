@@ -33,10 +33,6 @@ const attributes = {
   uniqueId: {
     type: 'string',
   },
-  resDevice: {
-    type: 'string',
-    default: 'Desktop',
-  },
   zoloStyles: {
     type: 'object',
   },
