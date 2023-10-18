@@ -183,6 +183,8 @@ export const variations = [
         scope: ['block'],
         attributes: {
             variationStatus: true,
+            FlexDirectionZRPAlign: 'row',
+            FlexWrapZRPAlign: 'wrap',
         },
         innerBlocks: [
             [

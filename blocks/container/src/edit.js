@@ -69,6 +69,8 @@ export default function Edit(props) {
         return <VariationPicker {...{ ...props, variations, defaultVariation }} />;
     }
 
+    console.log(attributes);
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
