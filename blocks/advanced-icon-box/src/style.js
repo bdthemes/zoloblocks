@@ -1,16 +1,12 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import classnames from 'classnames';
+
 /**
  * Internal depencencies
  */
 const {
-    softMinifyCssStrings,
     generateResAlignmentStyle,
     generateNormalBGControlStyles,
     generateResRangeStyle,
@@ -20,12 +16,10 @@ const {
     generateBoxShadowStyles,
     generateTextShadowStyles,
     generateTextStrokeStyles,
-    DisplayIcon,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
 import {
-    BLOCK_PREFIX,
     CONTAINER_BACKGROUND,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
@@ -63,20 +57,11 @@ import {
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Style({ props }) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes } = props;
     const {
         uniqueId,
         preset,
-        titleTag,
-        zoloStyles,
-        showButtonIcon,
-        mainIcon,
         containerBorderHoverColor,
-        buttonIcon,
-        showMainIcon,
-        showHeading,
-        showDesc,
-        showButton,
         textColor,
         textHoverColor,
         descColor,
@@ -87,11 +72,6 @@ export default function Style({ props }) {
         iconBorderHoverColor,
         iconBackgroundColor,
         iconBackgroundHoverColor,
-        iconType,
-        iconTypeImage,
-        iconBoxTitle,
-        iconBoxDescription,
-        buttonText,
         btnColor,
         btnHoverColor,
         btnBgHoverColor,

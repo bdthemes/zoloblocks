@@ -1,18 +1,8 @@
 /**
  * WordPress dependencies
  */
-import {
-    useBlockProps,
-    BlockControls,
-    MediaUpload,
-    __experimentalLinkControl as LinkControl,
-    MediaPlaceholder,
-} from '@wordpress/block-editor';
-
-import { useEffect } from '@wordpress/element';
-
+import { useBlockProps, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
-
 import { __ } from '@wordpress/i18n';
 
 import classnames from 'classnames';
@@ -20,82 +10,19 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    generateNormalBGControlStyles,
-    generateBorderStyle,
-    generateResCounterStyle,
-    generateResRangeStyle,
-    generateDimensionStyle,
-    generateBoxShadowStyles,
-    generateTypographyStyles,
-    classArrayToStr,
-} = window.zoloModule;
-
-import {
-    BLOCK_PREFIX,
-    COLUMN_COUNT,
-    COLUMNS_GAP,
-    ROW_GAP,
-    CONTAINER_BACKGROUND,
-    CONTAINER_HOVER_BACKGROUND,
-    CONTAINER_MARGIN,
-    CONTAINER_PADDING,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BORDER,
-    CONTAINER_HOVER_BORDER,
-    IMAGE_BORDER,
-    IMAGE_HOVER_BORDER,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_HOVER_BOX_SHADOW,
-    IMAGE_BORDER_RADIUS,
-    IMAGE_BOX_SHADOW,
-    IMAGE_BACKGROUND,
-    IMAGE_HOVER_BOX_SHADOW,
-    IMAGE_HOVER_BACKGROUND,
-    IMAGE_PADDING,
-    IMAGE_MARGIN,
-    HEADING_BORDER,
-    HEADING_BACKGROUND,
-    HEADING_MARGIN,
-    HEADING_PADDING,
-    HEADING_BORDER_RADIUS,
-    HEADING_BOX_SHADOW,
-    ZOOM_ICON_PADDING,
-    ZOOM_ICON_BORDER_RADIUS,
-    ZOOM_ICON_BORDER,
-    ZOOM_ICON_BOX_SHADOW,
-    ZOOM_ICON_HOVER_BOX_SHADOW,
-    ZOOM_ICON_BG_COLOR,
-    ZOOM_ICON_BG_HOVER_COLOR,
-} from './constants';
-
-import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
+const { classArrayToStr } = window.zoloModule;
 
 // import style
 import Style from './style';
 
 import Inspector from './inspector';
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const {
-        uniqueId,
-        preset,
-        zoloStyles,
-        parentClasses,
-        showCaption,
-        showLightbox,
-        advancedGallery,
-        headingColor,
-        zoomIconColor,
-        zoomIconHoverColor,
-        zoomIconHoverBorderColor,
-    } = attributes;
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
+    const { attributes, setAttributes, isSelected } = props;
+    const { uniqueId, preset, parentClasses, showCaption, showLightbox, advancedGallery } = attributes;
 
-    // block props
+    // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
     return (
@@ -185,6 +112,10 @@ export default function Edit(props) {
                                 multiple={true}
                                 allowedTypes={['image']}
                                 value={advancedGallery && advancedGallery.map((image) => image.id)}
+                                labels={{
+                                    title: __('Upload Gallery Photos', 'zolo-blocks'),
+                                    instructions: __('Drag images, upload new ones or select files from your library.', 'zolo-blocks'),
+                                }}
                             />
                         </>
                     )}

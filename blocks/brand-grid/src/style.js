@@ -1,16 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, InnerBlocks, BlockControls } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
-import { Button, ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import classnames from 'classnames';
 /**
  * Internal depencencies
  */
 const {
-    softMinifyCssStrings,
     generateNormalBGControlStyles,
     generateDimensionStyle,
     generateBoxShadowStyles,
@@ -21,7 +16,6 @@ const {
 } = window.zoloModule;
 
 import {
-    BLOCK_PREFIX,
     GRID_COLUMNS,
     COLUMNS_GAP,
     ROWS_GAP,
@@ -36,13 +30,8 @@ import {
 } from './constants';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, preset, zoloStyles, borderHoverColor } = attributes;
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-
-    const blockProps = useBlockProps({
-        className: classnames(className, `zb-brand-grid-wrap ${uniqueId} ${preset}`),
-    });
+    const { attributes, setAttributes } = props;
+    const { uniqueId, borderHoverColor } = attributes;
 
     // column count
     const {

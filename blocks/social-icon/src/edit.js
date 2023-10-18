@@ -3,7 +3,6 @@
  */
 
 import { useBlockProps } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -11,32 +10,7 @@ import { __ } from '@wordpress/i18n';
  */
 import classnames from 'classnames';
 
-const {
-    DisplayIcon,
-    generateResRangeStyle,
-    generateBorderStyle,
-    softMinifyCssStrings,
-    generateResCounterStyle,
-    generateDimensionStyle,
-    generateBoxShadowStyles,
-    generateTypographyStyles,
-    classArrayToStr,
-} = window.zoloModule;
-
-import {
-    BLOCK_PREFIX,
-    BUTTON_BORDER,
-    BTN_BORDER_RADIUS,
-    COLUMN_COUNT,
-    COLUMNS_GAP,
-    ROW_GAP,
-    BUTTON_PADDING,
-    BUTTON_SIZE,
-    ICON_TEXT_SPACING,
-    BLOCK_MARGIN,
-    BTN_SHADOW,
-    BTN_HOVER_SHADOW,
-} from './constants';
+const { DisplayIcon, classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -44,24 +18,10 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const {
-        uniqueId,
-        preset,
-        zoloStyles,
-        parentClasses,
-        socialText,
-        socialProfiles,
-        socialBgColor,
-        socialColor,
-        socialBgHoverColor,
-        socialTextColor,
-        socialTextHoverColor,
-        borderHoverColor,
-        presetBgColor,
-    } = attributes;
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
+    const { attributes, setAttributes, className, isSelected } = props;
+    const { uniqueId, preset, parentClasses, socialText, socialProfiles, socialColor } = attributes;
 
+    // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
         className: classnames(className, `${preset} ${uniqueId}`, classArrayToStr(parentClasses)),
     });

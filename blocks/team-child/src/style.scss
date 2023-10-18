@@ -91,6 +91,10 @@
         position: relative;
     }
 
+    &.default {
+        overflow: visible;
+    }
+
     /*
 	* Common Style
 	*/
@@ -107,10 +111,19 @@
             transform: scale(1, 1);
             -webkit-transform-origin: top center;
             transform-origin: top center;
-            -webkit-transition: opacity 500ms ease, -webkit-transform 500ms ease;
-            transition: opacity 500ms ease, -webkit-transform 500ms ease;
-            transition: opacity 500ms ease, transform 500ms ease;
-            transition: opacity 500ms ease, transform 500ms ease, -webkit-transform 500ms ease;
+            -webkit-transition:
+                opacity 500ms ease,
+                -webkit-transform 500ms ease;
+            transition:
+                opacity 500ms ease,
+                -webkit-transform 500ms ease;
+            transition:
+                opacity 500ms ease,
+                transform 500ms ease;
+            transition:
+                opacity 500ms ease,
+                transform 500ms ease,
+                -webkit-transform 500ms ease;
         }
         // hover content
         .zolo-hover-content {
@@ -184,10 +197,19 @@
                 transform: scale(1, 0);
                 -webkit-transform-origin: bottom center;
                 transform-origin: bottom center;
-                -webkit-transition: opacity 500ms ease, -webkit-transform 500ms ease;
-                transition: opacity 500ms ease, -webkit-transform 500ms ease;
-                transition: opacity 500ms ease, transform 500ms ease;
-                transition: opacity 500ms ease, transform 500ms ease, -webkit-transform 500ms ease;
+                -webkit-transition:
+                    opacity 500ms ease,
+                    -webkit-transform 500ms ease;
+                transition:
+                    opacity 500ms ease,
+                    -webkit-transform 500ms ease;
+                transition:
+                    opacity 500ms ease,
+                    transform 500ms ease;
+                transition:
+                    opacity 500ms ease,
+                    transform 500ms ease,
+                    -webkit-transform 500ms ease;
                 .zolo-social-share {
                     padding-top: 25px;
                     margin-top: 25px;
@@ -236,7 +258,9 @@
             background-color: #fff;
             transform: translateY(10px);
             opacity: 0;
-            transition: transform 0.5s ease, opacity 0.5s ease;
+            transition:
+                transform 0.5s ease,
+                opacity 0.5s ease;
         }
         .zolo-social-share {
             border-top: 0;
@@ -276,7 +300,9 @@
                 background-color: rgba(255, 255, 255, 0);
                 backdrop-filter: blur(7px);
                 transform: skewY(-30deg) translateY(60%);
-                transition: height 0.3s 0s cubic-bezier(0.6, -0.28, 0.735, 0.045), opacity 0.3s 0s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+                transition:
+                    height 0.3s 0s cubic-bezier(0.6, -0.28, 0.735, 0.045),
+                    opacity 0.3s 0s cubic-bezier(0.6, -0.28, 0.735, 0.045);
             }
         }
         .zolo-hover-content {

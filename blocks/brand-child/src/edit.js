@@ -1,62 +1,15 @@
 /**
  * WordPress dependencies
  */
-import {
-    useBlockProps,
-    RichText,
-    BlockControls,
-    MediaUpload,
-    __experimentalLinkControl as LinkControl,
-    MediaPlaceholder,
-} from '@wordpress/block-editor';
+import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    generateResAlignmentStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateTextShadowStyles,
-    generateTextStrokeStyles,
-    generateBoxShadowStyles,
-    generateNormalBGControlStyles,
-    generateResRangeStyle,
-    generateBorderStyle,
-    classArrayToStr,
-} = window.zoloModule;
-
-import {
-    BLOCK_PREFIX,
-    CONTAINER_HEIGHT,
-    CONTENT_ALIGNMENT,
-    CONTENT_PADDING,
-    TITLE_MARGIN,
-    TITLE_TEXT_SHADOW,
-    TITLE_TEXT_STROKE,
-    LINK_MARGIN,
-    LINK_TEXT_SHADOW,
-    LINK_TEXT_STROKE,
-    BRAND_PHOTO_BORDER,
-    BRAND_PHOTO_BORDER_RADIUS,
-    BRAND_PHOTO_BOX_SHADOW,
-    BRAND_PHOTO_BG,
-    BRAND_PHOTO_PADDING,
-    BRAND_PHOTO_MARGIN,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BORDER,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_HOVER_BOX_SHADOW,
-    CONTAINER_BACKGROUND,
-    CONTAINER_HOVER_BACKGROUND,
-    IMAGE_WIDTH,
-} from './constants';
-
-import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
+const { classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -64,25 +17,9 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected, context } = props;
-    const {
-        uniqueId,
-        parentClasses,
-        isBrandName,
-        isBrandLink,
-        brandPhoto,
-        brandName,
-        brandNameTag,
-        brandLabel,
-        brandDetailPageLink,
-        textColor,
-        linkColor,
-        linkHoverColor,
-        zoloStyles,
-        containerHoverBorderColor,
-        contentHorizontalPosition,
-        contentVerticalPosition,
-    } = attributes;
+    const { attributes, setAttributes, className, isSelected, context } = props;
+    const { uniqueId, parentClasses, isBrandName, isBrandLink, brandPhoto, brandName, brandNameTag, brandLabel, brandDetailPageLink } =
+        attributes;
 
     // block props
     const blockProps = useBlockProps({

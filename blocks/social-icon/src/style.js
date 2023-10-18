@@ -1,31 +1,22 @@
 /**
  * WordPress dependencies
  */
-
-import { useBlockProps } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
-import classnames from 'classnames';
-
 const {
-    DisplayIcon,
     generateResRangeStyle,
     generateBorderStyle,
-    softMinifyCssStrings,
     generateResCounterStyle,
     generateDimensionStyle,
     generateBoxShadowStyles,
     generateTypographyStyles,
-    classArrayToStr,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
 import {
-    BLOCK_PREFIX,
     BUTTON_BORDER,
     BTN_BORDER_RADIUS,
     COLUMN_COUNT,
@@ -42,14 +33,9 @@ import {
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        preset,
-        zoloStyles,
-        parentClasses,
-        socialText,
-        socialProfiles,
         socialBgColor,
         socialColor,
         socialBgHoverColor,
@@ -58,7 +44,6 @@ const Style = ({ props }) => {
         borderHoverColor,
         presetBgColor,
     } = attributes;
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
     //  button general settings
     const {

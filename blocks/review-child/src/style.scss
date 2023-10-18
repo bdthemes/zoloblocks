@@ -1,12 +1,18 @@
-* {
-    box-sizing: border-box;
-}
-
 .wp-block-zolo-review-child {
     overflow: hidden;
-
+    box-sizing: border-box;
     a {
         transition: 0.2s;
+    }
+
+    .zolo-item {
+        overflow: hidden;
+    }
+
+    &.default {
+        .zolo-item {
+            overflow: visible;
+        }
     }
 
     .zolo-item,

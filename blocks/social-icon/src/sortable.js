@@ -7,15 +7,15 @@ const { __ } = wp.i18n;
 const { Button, PanelBody, TextControl } = wp.components;
 
 const Sortable = ({ socialProfiles, setAttributes }) => {
-    //social profile icon set
-    const setProfileIcon = (value, index) => {
-        let profile = [...socialProfiles];
-        profile[index] = {
-            ...profile[index],
-            icon: { ...value },
-        };
-        setAttributes({ socialProfiles: [...profile] });
-    };
+    // //social profile icon set
+    // const setProfileIcon = (value, index) => {
+    //     let profile = [...socialProfiles];
+    //     profile[index] = {
+    //         ...profile[index],
+    //         icon: { ...value },
+    //     };
+    //     setAttributes({ socialProfiles: [...profile] });
+    // };
 
     return (
         <div className="sortable">
@@ -28,13 +28,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                 ...socialProfiles,
                                 {
                                     id: socialProfiles.length + 1,
-                                    icon: {
-                                        facebook: {
-                                            name: 'facebook',
-                                            source: 'dashicon',
-                                            type: '',
-                                        },
-                                    },
+                                    icon: 'fab fa-facebook-f',
                                     link: {
                                         url: '#',
                                         openInNewTab: false,
@@ -83,8 +77,15 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                         />
                                         <IconPicker
                                             value={profile.icon}
-                                            onChange={(value) => setProfileIcon(value, index)}
+                                            onChange={(value) => {
+                                                const newItems = [...socialProfiles];
+                                                newItems[index].icon = value;
+                                                setAttributes({
+                                                    socialProfiles: newItems,
+                                                });
+                                            }}
                                             showHeading={false}
+                                            disableDashicon={true}
                                         />
 
                                         <LinkControl

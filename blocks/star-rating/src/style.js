@@ -1,43 +1,19 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, InnerBlocks, useInnerBlocksProps } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
-import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-
-/**
- * External dependencies
- */
-import classnames from 'classnames';
 
 /**
  * Internal depencencies
  */
-const {
-    handleUniqueId,
-    softMinifyCssStrings,
-    StarRating,
-    generateResAlignmentStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    generateBoxShadowStyles,
-    generateNormalBGControlStyles,
-    generateBackgroundControlStyles,
-    GlobalStyleHanlder,
-} = window.zoloModule;
+const { generateResAlignmentStyle, generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder } = window.zoloModule;
 
-import { BLOCK_PREFIX, STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
+import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, blockStyle, showTitle, title, titleTag, titleColor, titlePosition, rating, activeStarColor, inactiveStarColor } =
-        attributes;
+    const { attributes, setAttributes } = props;
+    const { uniqueId, titleColor, activeStarColor, inactiveStarColor } = attributes;
 
     // styles
     const {

@@ -1,11 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, BlockControls, InnerBlocks } from '@wordpress/block-editor';
-
-import { useEffect } from '@wordpress/element';
-
-import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
+import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 import classnames from 'classnames';
@@ -13,24 +9,14 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    generateResRangeStyle,
-    generateDimensionStyle,
-    generateNormalBGControlStyles,
-    generateResCounterStyle,
-    GlobalStyleHanlder,
-} = window.zoloModule;
+const { generateResRangeStyle, generateDimensionStyle, generateNormalBGControlStyles, generateResCounterStyle, GlobalStyleHanlder } =
+    window.zoloModule;
 
-import { BLOCK_PREFIX, TEAM_GRID_BG, COLUMNS_GAP, GRID_COLUMNS, ROWS_GAP, CONTAINER_MARGIN, CONTAINER_PADDING } from './constants';
+import { TEAM_GRID_BG, COLUMNS_GAP, GRID_COLUMNS, ROWS_GAP, CONTAINER_MARGIN, CONTAINER_PADDING } from './constants';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, zoloStyles } = attributes;
-
-    const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`),
-    });
+    const { attributes, setAttributes, className } = props;
+    const { uniqueId } = attributes;
 
     const {
         backgroundStylesDesktop: normalDeskBGStyle,

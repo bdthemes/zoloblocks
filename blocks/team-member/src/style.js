@@ -1,32 +1,23 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, BlockControls, MediaPlaceholder, MediaUpload } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
-
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
-import classnames from 'classnames';
 
 /**
  * Internal depencencies
  */
 const {
-    softMinifyCssStrings,
     generateResAlignmentStyle,
     generateBorderStyle,
     generateDimensionStyle,
     generateTypographyStyles,
     generateResRangeStyle,
     generateBoxShadowStyles,
-    DisplayIcon,
     generateNormalBGControlStyles,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
 import {
-    BLOCK_PREFIX,
     CONTAINER_BG,
     CONTENT_BG,
     CONTENT_ALIGNMENT,
@@ -73,24 +64,13 @@ import {
 } from './constants/typoPrefixConstants';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes } = props;
     const {
         uniqueId,
         preset,
         blurBgColor,
         blurBgOpacity,
-        zoloStyles,
-        memberPhoto,
-        memberName,
         addDetailPageLink,
-        showDetailPageIcon,
-        memberDetailPageLink,
-        showDesignation,
-        memberDesignation,
-        showShortBio,
-        memberShortBio,
-        showSocialProfiles,
-        socialProfiles,
         nameColor,
         nameLinkColor,
         nameHoverColor,

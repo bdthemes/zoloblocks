@@ -34,11 +34,6 @@ import {
     AVATAR_SIZE,
     AVATAR_BORDER,
     AVATAR_BORDER_RADIUS,
-    WRAPPER_MARGIN,
-    WRAPPER_PADDING,
-    WRAPPER_BG,
-    WRAPPER_BORDER,
-    WRAPPER_SHADOW,
 } from './constants';
 
 import {
@@ -61,7 +56,6 @@ const {
     BorderControl,
     BoxShadowControl,
     HeaderTabs,
-    BackgroundControl,
     TabPanelControl,
     ColorControl,
     TypographyDropdown,
@@ -162,11 +156,7 @@ function Inspector({ attributes, setAttributes }) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Query', 'zolo-blocks')} initialOpen={true}>
-                            <QueryControl attributes={attributes} setAttributes={setAttributes} />
-                        </PanelBody>
-
-                        <PanelBody title={__('Layout Style', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
                             <SelectControl
                                 label={__('Preset Designs', 'zolo-blocks')}
                                 value={preset}
@@ -287,6 +277,9 @@ function Inspector({ attributes, setAttributes }) {
                                     })
                                 }
                             />
+                        </PanelBody>
+                        <PanelBody title={__('Query', 'zolo-blocks')} initialOpen={false}>
+                            <QueryControl attributes={attributes} setAttributes={setAttributes} />
                         </PanelBody>
                     </>
                 }

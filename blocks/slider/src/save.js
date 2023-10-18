@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 const { Fragment } = wp.element;
 import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;

@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls, MediaPlaceholder } from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -88,9 +88,9 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody initialOpen={true}>
                             <SelectControl
-                                label={__('Preset Designs', 'zolo-blocks')}
+                                label={__('Presets', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
                                 onChange={(value) =>
@@ -99,9 +99,8 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <p>{__('Elements', 'zolo-blocks')}</p>
                             <ToggleControl
-                                label={__('Caption', 'zolo-blocks')}
+                                label={__('Show photo caption', 'zolo-blocks')}
                                 checked={showCaption}
                                 onChange={() =>
                                     setAttributes({
@@ -110,26 +109,14 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Lightbox', 'zolo-blocks')}
+                                label={__('Enable photo lightbox', 'zolo-blocks')}
                                 checked={showLightbox}
                                 onChange={() =>
                                     setAttributes({
                                         showLightbox: !showLightbox,
                                     })
                                 }
-                            />
-                        </PanelBody>
-                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
-                            <MediaPlaceholder
-                                onSelect={(media) => {
-                                    setAttributes({
-                                        advancedGallery: media,
-                                    });
-                                }}
-                                gallery={true}
-                                multiple={true}
-                                allowedTypes={['image']}
-                                value={advancedGallery && advancedGallery.map((image) => image.id)}
+                                help={__('This option will only work at the frontend', 'zolo-blocks')}
                             />
                         </PanelBody>
                     </>

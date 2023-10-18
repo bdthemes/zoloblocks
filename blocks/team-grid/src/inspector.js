@@ -2,13 +2,13 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TabPanel, SelectControl, ToggleControl, Panel } from '@wordpress/components';
+import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
-import { TEAM_GRID_BG, GRID_COLUMNS, COLUMNS_GAP, ROWS_GAP, CONTAINER_MARGIN, CONTAINER_PADDING, PRESETS } from './constants';
+import { GRID_COLUMNS, COLUMNS_GAP, ROWS_GAP, PRESETS } from './constants';
 
-const { ResRangeControl, ResDimensionsControl, NormalBGControl, HeaderTabs, ResCounterControl, AdvancedOptions } = window.zoloModule;
+const { ResRangeControl, HeaderTabs, ResCounterControl, AdvancedOptions } = window.zoloModule;
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;

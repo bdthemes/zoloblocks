@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 const { DynamicTag } = window.zoloModule;
-function RenderView({ attributes, setAttributes, postResults }) {
+function RenderView({ attributes, postResults }) {
     const {
         preset,
         showThumbnail,

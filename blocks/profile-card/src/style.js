@@ -1,31 +1,22 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, BlockControls, MediaUpload } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
-
-import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
-import classnames from 'classnames';
 
 /**
  * Internal depencencies
  */
 const {
-    softMinifyCssStrings,
     generateBorderStyle,
     generateDimensionStyle,
     generateTypographyStyles,
     generateResRangeStyle,
     generateBoxShadowStyles,
-    DisplayIcon,
     generateNormalBGControlStyles,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
 import {
-    BLOCK_PREFIX,
     HEADER_AREA_BORDER_RADIUS,
     HEADER_AREA_PADDING,
     HEADER_BADGE_BORDER,
@@ -78,29 +69,9 @@ import {
 } from './constants/typoPrefixConstants';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        preset,
-        zoloStyles,
-        showBadge,
-        badgeText,
-        showPhoto,
-        photo,
-        showName,
-        name,
-        showUsername,
-        username,
-        showEmail,
-        email,
-        showBio,
-        bio,
-        showStatus,
-        statusItems,
-        showFollowButton,
-        followButtonText,
-        showSocialProfiles,
-        socialProfiles,
         badgeColor,
         nameColor,
         usernameColor,

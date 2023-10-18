@@ -38,7 +38,6 @@ import {
     BUTTON_SIZE,
     ICON_TEXT_SPACING,
     SOCIAL_ICON_COLOR,
-    BLOCK_MARGIN,
     BTN_SHADOW,
     BTN_HOVER_SHADOW,
 } from './constants';
@@ -106,7 +105,7 @@ function Inspector(props) {
                     <>
                         <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
-                                label={__('Preset Designs', 'zolo-blocks')}
+                                label={__('Presets', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
                                 onChange={(value) => changePremade(value)}
@@ -154,7 +153,7 @@ function Inspector(props) {
                     <>
                         <PanelBody initialOpen={true}>
                             <ColorControl
-                                label={__('Preset Style Color', 'zolo-blocks')}
+                                label={__('Preset Style', 'zolo-blocks')}
                                 color={presetBgColor}
                                 onChange={(value) =>
                                     setAttributes({

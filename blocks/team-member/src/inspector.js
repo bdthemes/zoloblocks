@@ -30,7 +30,6 @@ const {
     TabPanelControl,
     HeaderTabs,
     LinkControl,
-    IconPicker,
     AdvancedOptions,
 } = window.zoloModule;
 
@@ -39,7 +38,6 @@ import Sortable from './sortable';
 import objAttributes from './attributes';
 import {
     PRESETS,
-    CONTAINER_BG,
     CONTENT_BG,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
@@ -74,8 +72,6 @@ import {
     DPL_PADDING,
     DPL_MARGIN,
     DPL_ICON_SIZE,
-    TEAM_MEMBER_CONTAINER_PADDING,
-    TEAM_MEMBER_CONTAINER_MARGIN,
 } from './constants';
 
 import {
@@ -85,7 +81,6 @@ import {
 } from './constants/typoPrefixConstants';
 
 import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
-import { add } from 'lodash';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -353,9 +348,6 @@ function Inspector(props) {
                                 />
                             </PanelBody>
                         )}
-                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
-                            <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BG} noMainBGImg={false} />
-                        </PanelBody>
                         <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
                             {preset !== 'style-3' && (
                                 <ResAlignmentControl

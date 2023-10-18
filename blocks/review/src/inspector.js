@@ -37,8 +37,6 @@ import objAttributes from './attributes';
 import {
     PRESETS,
     CONTAINER_BACKGROUND,
-    CONTAINER_PADDING,
-    CONTAINER_MARGIN,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
@@ -527,22 +525,42 @@ function Inspector(props) {
                                     controlName={ICONS_SIZE}
                                     requiredProps={requiredProps}
                                 />
-                                <ColorControl
-                                    label={__('Active Star Color', 'zolo-blocks')}
-                                    color={activeRatingColor}
-                                    onChange={(color) =>
-                                        setAttributes({
-                                            activeRatingColor: color,
-                                        })
+                                <TabPanelControl
+                                    options={[
+                                        {
+                                            value: 'normal',
+                                            label: __('Active', 'zolo-blocks'),
+                                        },
+                                        {
+                                            value: 'hover',
+                                            label: __('Inactive', 'zolo-blocks'),
+                                        },
+                                    ]}
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Star Color', 'zolo-blocks')}
+                                                color={activeRatingColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        activeRatingColor: color,
+                                                    })
+                                                }
+                                            />
+                                        </>
                                     }
-                                />
-                                <ColorControl
-                                    label={__('Inactive Star Color', 'zolo-blocks')}
-                                    color={inactiveRatingColor}
-                                    onChange={(color) =>
-                                        setAttributes({
-                                            inactiveRatingColor: color,
-                                        })
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Star Color', 'zolo-blocks')}
+                                                color={inactiveRatingColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        inactiveRatingColor: color,
+                                                    })
+                                                }
+                                            />
+                                        </>
                                     }
                                 />
                             </PanelBody>

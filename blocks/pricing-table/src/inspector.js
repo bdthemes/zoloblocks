@@ -10,7 +10,6 @@ import {
     TextareaControl,
     ToggleControl,
 } from '@wordpress/components';
-import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
 const {
@@ -64,7 +63,6 @@ import {
     ORGINAL_PRICE_MARGIN,
     PERIOD_MARGIN,
     PRICE_MARGIN,
-    STYLES,
     TITLE_BORDER,
     TITLE_BORDER_RADIUS,
     TITLE_MARGIN,
@@ -104,8 +102,6 @@ import Sortable from './sortable';
 const Inspector = ({ attributes, setAttributes }) => {
     const {
         resMode,
-        //layout
-        styles,
         //header
         titleText,
         titleTagName,

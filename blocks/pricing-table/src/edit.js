@@ -1,6 +1,5 @@
 //WordPress dependencies
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 //external dependencies
 import classnames from 'classnames';
@@ -8,93 +7,15 @@ import classnames from 'classnames';
 import Inspector from './inspector';
 import './style.scss';
 
-//block constants
-import {
-    BLOCK_PREFIX,
-    BTN_BORDER,
-    BTN_RADIUS,
-    BTN_HOVER_BG,
-    BTN_MARGIN,
-    BTN_NORMAL_BG,
-    BTN_PADDING,
-    BTN_SHADOW,
-    BTN_HOVER_SHADOW,
-    CBTN_BORDER,
-    CBTN_RADIUS,
-    CBTN_HOVER_BG,
-    CBTN_MARGIN,
-    CBTN_NORMAL_BG,
-    CBTN_PADDING,
-    CBTN_SHADOW,
-    CBTN_HOVER_SHADOW,
-    DESC_MARGIN,
-    FEATURE_ALIGN,
-    FEATURE_DESC_MARGIN,
-    FEATURE_ICON_GAP,
-    FEATURE_ICON_SIZE,
-    FEATURE_ITEM_GAP,
-    FEATURE_MARGIN,
-    FEATURE_PADDING,
-    FEATURE_ICON_PADDING,
-    ORGINAL_PRICE_MARGIN,
-    PERIOD_MARGIN,
-    PRICE_MARGIN,
-    TITLE_BORDER,
-    TITLE_BORDER_RADIUS,
-    TITLE_MARGIN,
-    TITLE_PADDING,
-    TITLE_TEXT_SHADOW,
-    WRAPPER_BG,
-    WRAPPER_BORDER,
-    WRAPPER_BORDER_RADIUS,
-    WRAPPER_MARGIN,
-    WRAPPER_PADDING,
-    WRAPPER_SHADOW,
-    RIBBON_MARGIN,
-    RIBBON_PADDING,
-    RIBBON_BORDER,
-    RIBBON_RADIUS,
-    RIBBON_BG,
-} from './constants';
-import {
-    BTN_TYPOGRAPHY,
-    CBTN_TYPOGRAPHY,
-    DESC_TYPOGRAPHY,
-    FEATURE_DESC_TYPOGRAPHY,
-    FEATURE_TITLE_TYPOGRAPHY,
-    FEATURE_TYPOGRAPHY,
-    ORGINAL_PRICE_TYPOGRAPHY,
-    PERIOD_TYPOGRAPHY,
-    PRICE_TYPOGRAPHY,
-    RIBBON_TYPOGRAPHY,
-    TITLE_TYPOGRAPHY,
-} from './constants/typoPrefixConstant';
-
-const {
-    softMinifyCssStrings,
-    generateBackgroundControlStyles,
-    generateBorderStyle,
-    generateBoxShadowStyles,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    DynamicTag,
-    generateResAlignmentStyle,
-    generateTextShadowStyles,
-    generateTextStrokeStyles,
-    DisplayIcon,
-    generateNormalBGControlStyles,
-    classArrayToStr,
-} = window.zoloModule;
+const { DisplayIcon, classArrayToStr } = window.zoloModule;
 
 // import style
 import Style from './style';
 
 const Edit = (props) => {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes, isSelected } = props;
     const {
         uniqueId,
-        zoloStyles,
         parentClasses,
         //layout
         styles,
@@ -123,44 +44,16 @@ const Edit = (props) => {
         buttonText,
         chatBtnText,
 
-        btnTextColor,
-        btnHoverTextColor,
-        btnHoverBorderColor,
-        chatBtnColor,
-        chatBtnHoverColor,
-        chatBtnHoverBorderColor,
-
         //ribbon
         showRibbon,
         ribbonTitle,
-        ribbonXPosition,
-        ribbonYPosition,
-        ribbonRotate,
-        //style
-        titleColor,
-        titleBgColor,
-        descColor,
-        priceColor,
-        prefixSize,
-        suffixSize,
-        prefixPosition,
-        suffixPosition,
-        orginalPriceColor,
-        periodColor,
-        featureTitleColor,
-        featureDescColor,
-        featureColor,
-        featureIconColor,
-        featureIconBgColor,
-        ribbonBgColor,
-        ribbonColor,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
     //block wrapper class
     const blockProps = useBlockProps({
-        className: classnames(className, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
     const pricingPeriod = period.length !== 0 && period.split(',');

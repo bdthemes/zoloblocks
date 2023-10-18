@@ -1,46 +1,21 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import {
-    PanelBody,
-    GradientPicker,
-    ToggleControl,
-    TextControl,
-    TextareaControl,
-    BaseControl,
-    Button,
-    RangeControl,
-} from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
+import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
-const {
-    ResAlignmentControl,
-    ResRangeControl,
-    ColorControl,
-    BorderControl,
-    ResDimensionsControl,
-    TypographyDropdown,
-    BoxShadowControl,
-    ImageAvatar,
-    LinkControl,
-    NormalBGControl,
-    HeaderTabs,
-    TabPanelControl,
-    IconicBtnGroup,
-    GradientControl,
-    AdvancedOptions,
-} = window.zoloModule;
+const { BorderControl, ResDimensionsControl, HeaderTabs, AdvancedOptions } = window.zoloModule;
 
 import objAttributes from './attributes';
-import { SLIDE_BG, SLIDE_PADDING, SLIDE_BORDER, SLIDE_BORDER_RADIUS } from './constants';
+import { SLIDE_PADDING, SLIDE_BORDER, SLIDE_BORDER_RADIUS } from './constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { preset, resMode, enableOverlay, overlayType, overlayColor, overlayGradient } = attributes;
+    const { resMode } = attributes;
 
     const requiredProps = {
         resMode,
@@ -78,46 +53,6 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <PanelBody initialOpen={true}>
-                            <NormalBGControl
-                                label={__('Background', 'zolo-blocks')}
-                                requiredProps={requiredProps}
-                                controlName={SLIDE_BG}
-                                noMainBGImg={false}
-                            />
-                            <ToggleControl
-                                label={__('Enable overlay color', 'zolo-blocks')}
-                                checked={enableOverlay}
-                                onChange={() => setAttributes({ enableOverlay: !enableOverlay })}
-                            />
-                            {enableOverlay && (
-                                <>
-                                    <IconicBtnGroup
-                                        label={__('Overlay Type', 'zolo-blocks')}
-                                        value={overlayType}
-                                        onChange={(type) => setAttributes({ overlayType: type })}
-                                        options={[
-                                            { label: __('Color', 'zolo-blocks'), value: 'overlay_color' },
-                                            { label: __('Gradient', 'zolo-blocks'), value: 'overlay_gradient' },
-                                        ]}
-                                    />
-                                    {overlayType === 'overlay_color' && (
-                                        <ColorControl
-                                            label={__('Overlay Color', 'zolo-blocks')}
-                                            color={overlayColor}
-                                            onChange={(color) => setAttributes({ overlayColor: color })}
-                                        />
-                                    )}
-                                    {overlayType === 'overlay_gradient' && (
-                                        <GradientControl
-                                            label={__('Overlay Gradient', 'zolo-blocks')}
-                                            value={overlayGradient}
-                                            onChange={(value) => setAttributes({ overlayGradient: value })}
-                                        />
-                                    )}
-                                </>
-                            )}
-                        </PanelBody>
                         <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }

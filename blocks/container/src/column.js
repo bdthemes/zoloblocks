@@ -19,7 +19,7 @@ registerBlockType('zolo/column', {
     },
     parent: ['zolo/container'],
     attributes: {
-        uniqueId: {
+        blockId: {
             type: 'string',
         },
         width: {
@@ -42,7 +42,7 @@ registerBlockType('zolo/column', {
                     {`
                         #${id} {
                             width: ${width}%;
-                        }
+                        }   
                         #${id}.block-editor-block-list__layout {
                             width: 100%;
                             display: block;

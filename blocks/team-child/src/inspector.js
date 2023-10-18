@@ -30,7 +30,7 @@ import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 import objAttributes from './attributes';
 import {
-    CONTAINER_BG,
+    CONTENT_BG,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
     CONTENT_MARGIN,
@@ -64,8 +64,6 @@ import {
     DPL_PADDING,
     DPL_MARGIN,
     DPL_ICON_SIZE,
-    TEAM_MEMBER_CONTAINER_PADDING,
-    TEAM_MEMBER_CONTAINER_MARGIN,
 } from './constants';
 
 import {
@@ -263,7 +261,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BG} noMainBGImg={false} />
+                            <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
                         </PanelBody>
                         <PanelBody title={__('Photo', 'zolo-blocks')} initialOpen={false}>
                             <NormalBGControl requiredProps={requiredProps} controlName={PHOTO_BG} noMainBGImg={true} />

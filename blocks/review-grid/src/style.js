@@ -1,14 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, BlockControls, InnerBlocks } from '@wordpress/block-editor';
-
-import { useEffect } from '@wordpress/element';
-
-import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
-import classnames from 'classnames';
 
 /**
  * Internal depencencies
@@ -16,11 +9,11 @@ import classnames from 'classnames';
 const { GlobalStyleHanlder, generateResRangeStyle, generateDimensionStyle, generateNormalBGControlStyles, generateResCounterStyle } =
     window.zoloModule;
 
-import { BLOCK_PREFIX, COLUMNS_GAP, GRID_COLUMNS, ROWS_GAP, REVIEW_GRID_BG, REVIEW_GRID_MARGIN, REVIEW_GRID_PADDING } from './constants';
+import { COLUMNS_GAP, GRID_COLUMNS, ROWS_GAP, REVIEW_GRID_BG, REVIEW_GRID_MARGIN, REVIEW_GRID_PADDING } from './constants';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, zoloStyles } = attributes;
+    const { attributes, setAttributes } = props;
+    const { uniqueId } = attributes;
 
     // column count
     const {

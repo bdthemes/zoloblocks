@@ -1,11 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, InnerBlocks, useInnerBlocksProps } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
-import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -16,24 +13,10 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    handleUniqueId,
-    softMinifyCssStrings,
-    StarRating,
-    generateResAlignmentStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    generateBoxShadowStyles,
-    generateNormalBGControlStyles,
-    generateBackgroundControlStyles,
-    classArrayToStr,
-} = window.zoloModule;
+const { handleUniqueId, StarRating, classArrayToStr } = window.zoloModule;
 
-import { BLOCK_PREFIX, STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
+import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
-import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 // import style
 import Style from './style';
@@ -44,8 +27,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, parentClasses, showTitle, title, titleTag, titleColor, titlePosition, rating, activeStarColor, inactiveStarColor } =
-        attributes;
+    const { uniqueId, parentClasses, showTitle, title, titleTag, titlePosition, rating } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {

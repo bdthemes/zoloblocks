@@ -1,23 +1,14 @@
 /**
  * WordPress dependencies
  */
-import {
-    useBlockProps,
-    RichText,
-    BlockControls,
-    MediaUpload,
-    __experimentalLinkControl as LinkControl,
-    MediaPlaceholder,
-} from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup, Dropdown } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 /**
  * Internal depencencies
  */
 const {
-    softMinifyCssStrings,
     generateResAlignmentStyle,
     generateDimensionStyle,
     generateTypographyStyles,
@@ -31,7 +22,6 @@ const {
 } = window.zoloModule;
 
 import {
-    BLOCK_PREFIX,
     CONTAINER_HEIGHT,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
@@ -59,25 +49,17 @@ import {
 import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, clientId, isSelected, context } = props;
+    const { attributes, setAttributes, className, context } = props;
     const {
         uniqueId,
-        isBrandName,
-        isBrandLink,
         brandPhoto,
-        brandName,
-        brandNameTag,
-        brandLabel,
-        brandDetailPageLink,
         textColor,
         linkColor,
         linkHoverColor,
-        zoloStyles,
         containerHoverBorderColor,
         contentHorizontalPosition,
         contentVerticalPosition,
     } = attributes;
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
     /**
      * context
@@ -90,11 +72,6 @@ const Style = ({ props }) => {
             showBrandLink: context['zolo/showBrandLink'],
         });
     }, [context]);
-
-    // block props
-    const blockProps = useBlockProps({
-        className: classnames(className, `zb-brand-item ${uniqueId} ${brandPhoto ? 'has-photo' : ''}`),
-    });
 
     // Content Align
     const {

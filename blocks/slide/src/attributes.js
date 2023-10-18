@@ -29,7 +29,7 @@ const attributes = {
             boxShadow: {
                 prefix: 'mainBoxShadow',
             },
-            responsiveControls: true,
+            responsiveControls: false,
         },
     },
     // Generators

@@ -1,36 +1,13 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, BlockControls, useInnerBlocksProps, InnerBlocks } from '@wordpress/block-editor';
-import { Fragment, useEffect, useRef } from '@wordpress/element';
-import { Button, ToolbarButton, ToolbarGroup } from '@wordpress/components';
-import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-import { dispatch, select } from '@wordpress/data';
-import { createBlock } from '@wordpress/blocks';
-
-/**
- * External dependencies
- */
-import classnames from 'classnames';
 
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    StarRating,
-    generateResAlignmentStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    generateBoxShadowStyles,
-    generateNormalBGControlStyles,
-    generateBackgroundControlStyles,
-    GlobalStyleHanlder,
-} = window.zoloModule;
+const { generateBorderStyle, generateDimensionStyle, generateResRangeStyle, generateNormalBGControlStyles, GlobalStyleHanlder } =
+    window.zoloModule;
 
 import {
     ICONCONTAINER_WIDTH,
@@ -60,7 +37,7 @@ import {
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
 
-    const { uniqueId, iconColor, iconHoverColor, aiconColor, atitleColor } = attributes;
+    const { uniqueId, iconColor, iconHoverColor, aiconColor, titleColor, titleHoverColor, atitleColor } = attributes;
 
     // icon container
     const {
@@ -326,6 +303,14 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-accordion .accordion-head.zolo-active {
             ${aachNormalBgDesktop}
+        }
+
+        .${uniqueId}.wp-block-zolo-accordion .accordion-head .accordion-title{
+            ${titleColor ? `color: ${titleColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-accordion .accordion-head .accordion-title:hover{
+            ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
         }
 
         .${uniqueId}.wp-block-zolo-accordion .accordion-head.zolo-active .accordion-title{

@@ -4,9 +4,7 @@
     "title": "Container",
     "name": "zolo/container",
     "category": "zolo-blocks",
-    "keywords": [
-        "Container"
-    ],
+    "keywords": ["Container"],
     "description": "A container block for other blocks",
     "textdomain": "zolo-blocks",
     "supports": {
