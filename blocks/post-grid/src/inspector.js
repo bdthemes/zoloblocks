@@ -285,13 +285,7 @@ function Inspector({ attributes, setAttributes }) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Grid Columns', 'zolo-blocks')} initialOpen={true}>
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={COLUMN_PADDING}
-                                requiredProps={requiredProps}
-                            />
-                            <NormalBGControl requiredProps={requiredProps} controlName={COLUMN_BG} noMainBGImg={true} />
+                        <PanelBody title={__('Grid Columns', 'zolo-blocks')} initialOpen={false}>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={COLUMN_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
@@ -299,11 +293,28 @@ function Inspector({ attributes, setAttributes }) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={COLUMN_PADDING}
+                                requiredProps={requiredProps}
+                            />
+                            <NormalBGControl requiredProps={requiredProps} controlName={COLUMN_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={COLUMN_SHADOW} requiredProps={requiredProps} />
                         </PanelBody>
 
                         {showThumbnail && (
                             <PanelBody title={__('Thumbnail', 'zolo-blocks')} initialOpen={false}>
+                                <BorderControl
+                                    label={__('Border', 'zolo-blocks')}
+                                    controlName={THUMBNAIL_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={THUMBNAIL_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zolo-blocks')}
                                     controlName={THUMBNAIL_PADDING}
@@ -317,17 +328,6 @@ function Inspector({ attributes, setAttributes }) {
                                     forBorderRadius={false}
                                 />
                                 <NormalBGControl requiredProps={requiredProps} controlName={THUMBNAIL_BG} noMainBGImg={true} />
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={THUMBNAIL_BORDER}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
-                                    controlName={THUMBNAIL_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
                                 <BoxShadowControl
                                     controlName={THUMBNAIL_BOX_SHADOW}
                                     requiredProps={requiredProps}
@@ -343,13 +343,11 @@ function Inspector({ attributes, setAttributes }) {
                                     typoPrefixConstant={TITLE_TYPOGRAPHY}
                                     requiredProps={requiredProps}
                                 />
-
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={TITLE_MARGIN}
                                     requiredProps={requiredProps}
                                 />
-
                                 <TabPanelControl
                                     normalComponents={
                                         <>
@@ -432,7 +430,31 @@ function Inspector({ attributes, setAttributes }) {
                                     typoPrefixConstant={CAT_TYPOGRAPHY}
                                     requiredProps={requiredProps}
                                 />
-
+                                <ResRangeControl
+                                    label={__('Gap', 'zolo-blocks')}
+                                    controlName={CAT_GAP}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                />
+                                <BorderControl label={__('Border', 'zolo-blocks')} controlName={CAT_BORDER} requiredProps={requiredProps} />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={CAT_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zolo-blocks')}
+                                    controlName={CAT_PADDING}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zolo-blocks')}
+                                    controlName={CAT_MARGIN}
+                                    requiredProps={requiredProps}
+                                />
                                 <TabPanelControl
                                     normalComponents={
                                         <>
@@ -479,33 +501,6 @@ function Inspector({ attributes, setAttributes }) {
                                         </>
                                     }
                                 />
-                                <CardDivider />
-
-                                <ResRangeControl
-                                    label={__('Gap', 'zolo-blocks')}
-                                    controlName={CAT_GAP}
-                                    requiredProps={requiredProps}
-                                    min={0}
-                                    max={100}
-                                    step={1}
-                                />
-                                <BorderControl label={__('Border', 'zolo-blocks')} controlName={CAT_BORDER} requiredProps={requiredProps} />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
-                                    controlName={CAT_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zolo-blocks')}
-                                    controlName={CAT_MARGIN}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zolo-blocks')}
-                                    controlName={CAT_PADDING}
-                                    requiredProps={requiredProps}
-                                />
                             </PanelBody>
                         )}
 
@@ -516,55 +511,6 @@ function Inspector({ attributes, setAttributes }) {
                                     typoPrefixConstant={READMORE_TYPOGRAPHY}
                                     requiredProps={requiredProps}
                                 />
-
-                                <TabPanelControl
-                                    normalComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Background', 'zolo-blocks')}
-                                                color={readMoreBgColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        readMoreBgColor: value,
-                                                    })
-                                                }
-                                            />
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={readMoreColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        readMoreColor: value,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Background', 'zolo-blocks')}
-                                                color={readMoreBgHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        readMoreBgHoverColor: value,
-                                                    })
-                                                }
-                                            />
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={readMoreHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        readMoreHoverColor: value,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                />
-                                <CardDivider />
-
                                 <ResRangeControl
                                     label={__('Gap', 'zolo-blocks')}
                                     controlName={READMORE_GAP}
@@ -585,14 +531,60 @@ function Inspector({ attributes, setAttributes }) {
                                     forBorderRadius={true}
                                 />
                                 <ResDimensionsControl
+                                    label={__('Padding', 'zolo-blocks')}
+                                    controlName={READMORE_PADDING}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={READMORE_MARGIN}
                                     requiredProps={requiredProps}
                                 />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zolo-blocks')}
-                                    controlName={READMORE_PADDING}
-                                    requiredProps={requiredProps}
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={readMoreColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        readMoreColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Background', 'zolo-blocks')}
+                                                color={readMoreBgColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        readMoreBgColor: value,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={readMoreHoverColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        readMoreHoverColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Background', 'zolo-blocks')}
+                                                color={readMoreBgHoverColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        readMoreBgHoverColor: value,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
                                 />
                             </PanelBody>
                         )}

@@ -36,6 +36,7 @@ export default function Edit(props) {
         memberShortBio,
         showSocialProfiles,
         socialProfiles,
+        detailIcon,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -165,7 +166,7 @@ export default function Edit(props) {
                                         rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer'}
                                         target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
                                     >
-                                        <i className="fa-solid fa-arrow-right" />
+                                        <DisplayIcon icon={detailIcon} />
                                     </a>
                                 </div>
                             )}
@@ -214,7 +215,7 @@ export default function Edit(props) {
                                     rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer'}
                                     target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
                                 >
-                                    <i className="fa-solid fa-arrow-right" />
+                                    <DisplayIcon icon={detailIcon} />
                                 </a>
                             </div>
                         )}

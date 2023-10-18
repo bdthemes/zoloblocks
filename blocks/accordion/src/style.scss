@@ -3,6 +3,7 @@
 */
 .wp-block-zolo-accordion {
     overflow: hidden;
+    box-sizing: border-box;
 
     .accordion-head {
         display: flex;

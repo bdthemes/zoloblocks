@@ -120,7 +120,7 @@ function Inspector(props) {
                     <>
                         <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
-                                label={__('Preset Designs', 'zolo-blocks')}
+                                label={__('Presets', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
                                 onChange={(value) =>
@@ -130,7 +130,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Icon / Image', 'zolo-blocks')}
+                                label={__('Show Icon', 'zolo-blocks')}
                                 checked={showMainIcon}
                                 onChange={() =>
                                     setAttributes({

@@ -213,6 +213,10 @@ const attributes = {
             },
         ],
     },
+    detailIcon: {
+        type: 'string',
+        default: 'fa-solid fa-arrow-right',
+    },
     // block styles
     nameColor: {
         type: 'string',

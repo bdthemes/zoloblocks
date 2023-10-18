@@ -20,6 +20,7 @@ import { COLUMNS, COLUMNS_GAP } from './constants';
 
 // import style
 import Style from './style';
+import { DisplayIcon } from 'wordpress-icon-picker';
 
 /**
  * Edit function
@@ -44,6 +45,9 @@ export default function Edit(props) {
         carouselEffect,
         sliderEffect,
         addNewSlideBlock,
+        customNavIcon,
+        prevNavIcon,
+        nextNavIcon,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -137,7 +141,12 @@ export default function Edit(props) {
             speed: speed * 100,
             effect: sliderType === 'carousel' ? carouselEffect : sliderEffect,
             autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
-            navigation: showNavigation ? { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' } : false,
+            navigation: showNavigation
+                ? {
+                      nextEl: customNavIcon ? '.swiper-zolo-next' : '.swiper-button-next',
+                      prevEl: customNavIcon ? '.swiper-zolo-prev' : '.swiper-button-prev',
+                  }
+                : false,
             pagination: showPagination
                 ? {
                       el: '.swiper-pagination',
@@ -197,6 +206,10 @@ export default function Edit(props) {
                 [data-type="zolo/slide"] {
                     height: 100%;
                 }
+                [data-type="zolo/slider"] {
+                    border: 2px dashed #ccc;
+                    padding: 10px;                
+                }
             `}</style>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <BlockControls>
@@ -210,9 +223,27 @@ export default function Edit(props) {
                     {showPagination && <div class="swiper-pagination swiper-pagination-position-bottom"></div>}
                     {showNavigation && (
                         <Fragment>
-                            <div className="swiper-navigation-wrap  swiper-navigation-position-center">
-                                <div className="swiper-nav-button swiper-button-prev"></div>
-                                <div className="swiper-nav-button swiper-button-next"></div>
+                            <div
+                                className={`swiper-navigation-wrap  swiper-navigation-position-center ${
+                                    customNavIcon ? 'zolo-custom-nav' : ''
+                                }`}
+                            >
+                                {customNavIcon && (
+                                    <>
+                                        <div className="swiper-nav-button swiper-zolo-prev">
+                                            <DisplayIcon icon={prevNavIcon} />
+                                        </div>
+                                        <div className="swiper-nav-button swiper-zolo-next">
+                                            <DisplayIcon icon={nextNavIcon} />
+                                        </div>
+                                    </>
+                                )}
+                                {!customNavIcon && (
+                                    <>
+                                        <div className="swiper-nav-button swiper-button-prev"></div>
+                                        <div className="swiper-nav-button swiper-button-next"></div>
+                                    </>
+                                )}
                             </div>
                         </Fragment>
                     )}

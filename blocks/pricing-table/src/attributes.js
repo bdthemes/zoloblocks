@@ -153,13 +153,7 @@ const attributes = {
             {
                 id: 1,
                 text: 'List Item #1',
-                icon: {
-                    'fa-check': {
-                        name: 'check',
-                        source: 'fontawesome',
-                        type: 'fas',
-                    },
-                },
+                icon: 'fas fa-check',
             },
         ],
     },
