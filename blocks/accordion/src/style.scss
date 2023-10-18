@@ -4,27 +4,31 @@
 .wp-block-zolo-accordion {
     overflow: hidden;
     box-sizing: border-box;
-
     .accordion-head {
         display: flex;
         align-items: center;
         gap: 10px;
-    }
-
-    .accordion-head .accordion-title {
-        flex: 1;
-    }
-
-    .accordion-head {
-        display: flex;
         justify-content: space-between;
-        align-items: center;
-        padding: 10px;
+        padding: clamp(0.625rem, 2vw, 0.938rem);
         cursor: pointer;
-    }
-
-    .accordion-title {
-        margin: 0;
+        transition:
+            background-color 0.3s ease,
+            border 0.3s ease;
+        &:hover,
+        &.zolo-active {
+            background-color: rgba(230, 229, 234, 0.38);
+            .accordion-title {
+                color: #000;
+            }
+        }
+        .accordion-title {
+            flex: 1;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin: 0;
+            font-weight: 600;
+            color: #4f4f5a;
+            transition: color 0.3s ease;
+        }
     }
 
     .accordion-toggle {
@@ -35,6 +39,12 @@
         width: 30px;
         height: 30px;
         min-width: auto !important;
+        i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
     }
 
     .accordion-body {
@@ -53,7 +63,11 @@
     }
 
     .accordion-body-inner {
-        padding: 10px;
+        padding: clamp(0.625rem, 2vw, 0.938rem);
+        p {
+            font-size: clamp(0.813rem, 1.5vw, 0.938rem);
+            color: #707074;
+        }
     }
     .open {
         .accordion-body {
@@ -77,9 +91,7 @@
         height: 100%;
     }
 
-    .expanded-mode {
-        display: none;
-    }
+    .expanded-mode,
     .accordion-toggle.zolo-active .collapsed-mode {
         display: none;
     }
