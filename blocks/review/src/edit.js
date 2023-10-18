@@ -2,9 +2,9 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, MediaPlaceholder, MediaUpload } from '@wordpress/block-editor';
-import { Fragment, useState, useEffect } from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 
-import { ToolbarButton, ToolbarGroup, Popover } from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import classnames from 'classnames';
@@ -12,57 +12,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    StarRating,
-    generateResAlignmentStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    generateBoxShadowStyles,
-    generateNormalBGControlStyles,
-    classArrayToStr,
-} = window.zoloModule;
-
-import {
-    BLOCK_PREFIX,
-    CONTAINER_BACKGROUND,
-    CONTAINER_MARGIN,
-    CONTAINER_PADDING,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
-    CONTENT_ALIGNMENT,
-    CONTENT_BACKGROUND,
-    CONTENT_BORDER,
-    CONTENT_BORDER_RADIUS,
-    CONTENT_BOX_SHADOW,
-    CONTENT_MARGIN,
-    CONTENT_PADDING,
-    REVIEWER_DESIGNATION_MARGIN,
-    REVIEWER_NAME_MARGIN,
-    REVIEWER_PHOTO_SIZE,
-    REVIEWER_PHOTO_BG,
-    REVIEWER_PHOTO_BORDER,
-    REVIEWER_PHOTO_BORDER_RADIUS,
-    REVIEWER_PHOTO_BOX_SHADOW,
-    REVIEWER_PHOTO_MARGIN,
-    REVIEWER_PHOTO_PADDING,
-    REVIEWER_TESTIMONIAL_MARGIN,
-    ICONS_SIZE,
-    DPL_BG,
-    DPL_HOVER_BG,
-    DPL_HEIGHT,
-    DPL_WIDTH,
-    DPL_BORDER,
-    DPL_BORDER_RADIUS,
-    DPL_PADDING,
-    DPL_MARGIN,
-    DPL_ICON_SIZE,
-} from './constants';
-
-import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
+const { StarRating, classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -70,13 +20,11 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected } = props;
     const {
         uniqueId,
         preset,
         parentClasses,
-        blurBgOpacity,
-        zoloStyles,
         showPhoto,
         memberPhoto,
         showName,
@@ -89,15 +37,6 @@ export default function Edit(props) {
         reviewerWebsiteLink,
         showRating,
         rating,
-        nameColor,
-        nameLinkColor,
-        nameHoverColor,
-        designationColor,
-        testimonialMessageColor,
-        activeRatingColor,
-        inactiveRatingColor,
-        dplIconColor,
-        dplIconHoverColor,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number

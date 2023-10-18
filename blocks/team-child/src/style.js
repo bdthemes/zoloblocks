@@ -1,33 +1,24 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, BlockControls, MediaPlaceholder, MediaUpload } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
-
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
-import classnames from 'classnames';
 
 /**
  * Internal depencencies
  */
 const {
-    softMinifyCssStrings,
     generateResAlignmentStyle,
     generateBorderStyle,
     generateDimensionStyle,
     generateTypographyStyles,
     generateResRangeStyle,
     generateBoxShadowStyles,
-    DisplayIcon,
     generateNormalBGControlStyles,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
 import {
-    BLOCK_PREFIX,
-    CONTAINER_BG,
+    CONTENT_BG,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
     CONTENT_MARGIN,
@@ -72,24 +63,13 @@ import {
 } from './constants/typoPrefixConstants';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, clientId, isSelected, context } = props;
+    const { attributes, setAttributes } = props;
     const {
         uniqueId,
         preset,
         blurBgColor,
         blurBgOpacity,
-        zoloStyles,
-        memberPhoto,
-        memberName,
         addDetailPageLink,
-        showDetailPageIcon,
-        memberDetailPageLink,
-        showDesignation,
-        memberDesignation,
-        showShortBio,
-        memberShortBio,
-        showSocialProfiles,
-        socialProfiles,
         nameColor,
         nameLinkColor,
         nameHoverColor,
@@ -124,18 +104,17 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    // Container
+    // content
     const {
-        backgroundStylesDesktop: containerDeskBGStyle,
-        backgroundStylesTab: containerTabBGStyle,
-        backgroundStylesMobile: containerMobBGStyle,
+        backgroundStylesDesktop: contentDeskBg,
+        backgroundStylesTab: contentTabBg,
+        backgroundStylesMobile: contentMobBg,
     } = generateNormalBGControlStyles({
-        controlName: CONTAINER_BG,
+        controlName: CONTENT_BG,
         attributes,
-        noMainBGImg: false,
+        noMainBGImg: true,
     });
 
-    // content
     const {
         desktopAlignStyle: teamDeskAlignStyle,
         tabAlignStyle: teamTabAlignStyle,
@@ -614,7 +593,7 @@ const Style = ({ props }) => {
 		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,
 		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
-			${containerDeskBGStyle}
+            ${contentDeskBg}
 			${contentBorderDeskStyle}
 			${contentDeskBorderRadius}
 			${contentDeskPadding}
@@ -708,7 +687,7 @@ const Style = ({ props }) => {
 		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,
 		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
-			${containerTabBGStyle}
+            ${contentTabBg}
 			${contentBorderTabStyle}
 			${contentTabBorderRadius}
 			${contentTabPadding}
@@ -783,7 +762,7 @@ const Style = ({ props }) => {
 		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.default .zolo-item .zolo-hover-content,
 		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
-			${containerMobBGStyle}
+            ${contentMobBg}
 			${contentBorderMobStyle}
 			${contentMobBorderRadius}
 			${contentMobPadding}

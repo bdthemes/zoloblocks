@@ -12,7 +12,7 @@ const {
 } = window.zoloModule;
 
 import {
-    CONTAINER_BG,
+    CONTENT_BG,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
     CONTENT_MARGIN,
@@ -86,10 +86,10 @@ const attributes = {
     // Generators
     ...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_PADDING),
     ...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_MARGIN),
-    ...generateNormalBGAttributes(CONTAINER_BG),
     ...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
         defaultAlign: 'left',
     }),
+    ...generateNormalBGAttributes(CONTENT_BG),
     ...generateBorderAttributies(CONTENT_BORDER),
     ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
     ...generateDimensionAttributes(CONTENT_PADDING),

@@ -87,13 +87,7 @@ const attributes = {
         default: [
             {
                 id: 1,
-                icon: {
-                    facebook: {
-                        name: 'facebook',
-                        source: 'dashicon',
-                        type: '',
-                    },
-                },
+                icon: 'fab fa-facebook-f',
                 link: {
                     url: '#',
                     openInNewTab: false,

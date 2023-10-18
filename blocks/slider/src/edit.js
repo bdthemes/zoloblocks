@@ -1,11 +1,9 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, InnerBlocks, useInnerBlocksProps, BlockControls } from '@wordpress/block-editor';
+import { useBlockProps, useInnerBlocksProps, BlockControls } from '@wordpress/block-editor';
 const { Fragment, useEffect, useRef } = wp.element;
 import { useDispatch } from '@wordpress/data';
-import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
@@ -15,45 +13,10 @@ import { createBlock } from '@wordpress/blocks';
  * Internal dependencies
  */
 import Inspector from './inspector';
-const {
-    generateResRangeStyle,
-    generateResCounterStyle,
-    generateDimensionStyle,
-    generateBorderStyle,
-    generateNormalBGControlStyles,
-    generateTypographyStyle,
-    generateDimensionsStyle,
-    softMinifyCssStrings,
-    classArrayToStr,
-} = window.zoloModule;
+const { generateResRangeStyle, generateResCounterStyle, classArrayToStr } = window.zoloModule;
 
 // Constants
-import {
-    BLOCK_PREFIX,
-    COLUMNS,
-    COLUMNS_GAP,
-    SLIDER_HEIGHT,
-    CONTENT_WIDTH,
-    CONTENT_PADDING,
-    NAV_WIDTH,
-    NAV_HEIGHT,
-    NAV_BORDER,
-    NAV_BORDER_RADIUS,
-    NAV_BG,
-    NAV_HOVER_BG,
-    NAV_ICON_SIZE,
-    PAG_WIDTH,
-    PAG_HEIGHT,
-    PAG_BORDER,
-    PAG_BORDER_RADIUS,
-    PAG_BG,
-    PAG_SPACING,
-    APAG_WIDTH,
-    APAG_HEIGHT,
-    APAG_BORDER,
-    APAG_BORDER_RADIUS,
-    APAG_BG,
-} from './constants';
+import { COLUMNS, COLUMNS_GAP } from './constants';
 
 // import style
 import Style from './style';
@@ -67,7 +30,6 @@ export default function Edit(props) {
     const {
         uniqueId,
         parentClasses,
-        zoloStyles,
         slideItems,
         sliderType,
         autoplay,
@@ -75,15 +37,12 @@ export default function Edit(props) {
         pauseOnMouseEnter,
         infiniteLoop,
         showNavigation,
-        navColor,
-        navHoverColor,
         showPagination,
         paginationType,
         dynamicBullets,
         speed,
         carouselEffect,
         sliderEffect,
-        sliderOptions,
         addNewSlideBlock,
     } = attributes;
 

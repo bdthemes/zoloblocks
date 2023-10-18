@@ -212,24 +212,12 @@ const attributes = {
         type: 'string',
     },
     mainIcon: {
-        type: 'object',
-        default: {
-            'fa-cog': {
-                name: 'cog',
-                source: 'fontawesome',
-                type: 'fas',
-            },
-        },
+        type: 'string',
+        default: 'fas fa-star',
     },
     buttonIcon: {
-        type: 'object',
-        default: {
-            'admin-generic': {
-                name: 'admin generic',
-                source: 'dashicon',
-                type: '',
-            },
-        },
+        type: 'string',
+        default: 'fas fa-arrow-right',
     },
     iconColor: {
         type: 'string',

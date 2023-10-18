@@ -1,7 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Team Child",
-    "icon": "admin-users",
     "name": "zolo/team-child",
     "category": "zolo-blocks",
     "keywords": ["team", "team member"],

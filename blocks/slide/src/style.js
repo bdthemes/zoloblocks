@@ -1,40 +1,18 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, InnerBlocks, useInnerBlocksProps } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
-import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-
-/**
- * External dependencies
- */
-import classnames from 'classnames';
 
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    StarRating,
-    generateResAlignmentStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    generateBoxShadowStyles,
-    generateNormalBGControlStyles,
-    generateBackgroundControlStyles,
-    GlobalStyleHanlder,
-} = window.zoloModule;
+const { generateBorderStyle, generateDimensionStyle, generateNormalBGControlStyles, GlobalStyleHanlder } = window.zoloModule;
 
-import { BLOCK_PREFIX, SLIDE_BG, SLIDE_PADDING, SLIDE_BORDER, SLIDE_BORDER_RADIUS } from './constants';
+import { SLIDE_BG, SLIDE_PADDING, SLIDE_BORDER, SLIDE_BORDER_RADIUS } from './constants';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, zoloStyles, enableOverlay, overlayType, overlayColor, overlayGradient } = attributes;
+    const { attributes, setAttributes } = props;
+    const { uniqueId, enableOverlay, overlayType, overlayColor, overlayGradient } = attributes;
 
     // settings
     const {

@@ -1,4 +1,3 @@
-import { useEffect } from '@wordpress/element';
 import {
     GRID_COLUMNS,
     COLUMNS_GAP,
@@ -62,7 +61,6 @@ function Style({ props }) {
     const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        zoloStyles,
         titleColor,
         titleHoverColor,
         excerptColor,

@@ -2,9 +2,6 @@
  * WordPress dependencies
  */
 import { useBlockProps, BlockControls, InnerBlocks } from '@wordpress/block-editor';
-
-import { useEffect } from '@wordpress/element';
-
 import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -13,16 +10,9 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    classArrayToStr,
-    softMinifyCssStrings,
-    generateResRangeStyle,
-    generateDimensionStyle,
-    generateNormalBGControlStyles,
-    generateResCounterStyle,
-} = window.zoloModule;
+const { classArrayToStr, generateResRangeStyle, generateResCounterStyle } = window.zoloModule;
 
-import { BLOCK_PREFIX, TEAM_GRID_BG, COLUMNS_GAP, GRID_COLUMNS, ROWS_GAP, CONTAINER_MARGIN, CONTAINER_PADDING } from './constants';
+import { COLUMNS_GAP, GRID_COLUMNS, ROWS_GAP } from './constants';
 
 import Inspector from './inspector';
 

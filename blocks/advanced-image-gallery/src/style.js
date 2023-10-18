@@ -1,27 +1,12 @@
 /**
  * WordPress dependencies
  */
-import {
-    useBlockProps,
-    BlockControls,
-    MediaUpload,
-    __experimentalLinkControl as LinkControl,
-    MediaPlaceholder,
-} from '@wordpress/block-editor';
-
-import { useEffect } from '@wordpress/element';
-
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
-
 import { __ } from '@wordpress/i18n';
-
-import classnames from 'classnames';
 
 /**
  * Internal depencencies
  */
 const {
-    softMinifyCssStrings,
     generateNormalBGControlStyles,
     generateBorderStyle,
     generateResCounterStyle,
@@ -29,12 +14,10 @@ const {
     generateDimensionStyle,
     generateBoxShadowStyles,
     generateTypographyStyles,
-    classArrayToStr,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
 import {
-    BLOCK_PREFIX,
     COLUMN_COUNT,
     COLUMNS_GAP,
     ROW_GAP,
@@ -76,19 +59,7 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
 
-    const {
-        uniqueId,
-        preset,
-        zoloStyles,
-        parentClasses,
-        showCaption,
-        showLightbox,
-        advancedGallery,
-        headingColor,
-        zoomIconColor,
-        zoomIconHoverColor,
-        zoomIconHoverBorderColor,
-    } = attributes;
+    const { uniqueId, preset, headingColor, zoomIconColor, zoomIconHoverColor, zoomIconHoverBorderColor } = attributes;
 
     // column count
     const {

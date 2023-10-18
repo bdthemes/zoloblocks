@@ -37,7 +37,7 @@ import {
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
 
-    const { uniqueId, iconColor, iconHoverColor, aiconColor, atitleColor } = attributes;
+    const { uniqueId, iconColor, iconHoverColor, aiconColor, titleColor, titleHoverColor, atitleColor } = attributes;
 
     // icon container
     const {
@@ -303,6 +303,14 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-accordion .accordion-head.zolo-active {
             ${aachNormalBgDesktop}
+        }
+
+        .${uniqueId}.wp-block-zolo-accordion .accordion-head .accordion-title{
+            ${titleColor ? `color: ${titleColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-accordion .accordion-head .accordion-title:hover{
+            ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
         }
 
         .${uniqueId}.wp-block-zolo-accordion .accordion-head.zolo-active .accordion-title{

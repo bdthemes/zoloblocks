@@ -77,6 +77,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                                     socialProfiles: newItems,
                                                 });
                                             }}
+                                            disableDashicon={true}
                                             showHeading={true}
                                         />
                                         <LinkControl

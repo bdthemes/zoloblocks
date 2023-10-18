@@ -1,16 +1,9 @@
 //WordPress dependencies
-import { RichText, useBlockProps } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-//external dependencies
-import classnames from 'classnames';
-//internal dependencies
-import Inspector from './inspector';
 import './style.scss';
 
 //block constants
 import {
-    BLOCK_PREFIX,
     BTN_BORDER,
     BTN_RADIUS,
     BTN_HOVER_BG,
@@ -56,6 +49,7 @@ import {
     RIBBON_RADIUS,
     RIBBON_BG,
 } from './constants';
+
 import {
     BTN_TYPOGRAPHY,
     CBTN_TYPOGRAPHY,
@@ -71,18 +65,14 @@ import {
 } from './constants/typoPrefixConstant';
 
 const {
-    softMinifyCssStrings,
     generateBackgroundControlStyles,
     generateBorderStyle,
     generateBoxShadowStyles,
     generateDimensionStyle,
     generateTypographyStyles,
     generateResRangeStyle,
-    DynamicTag,
     generateResAlignmentStyle,
     generateTextShadowStyles,
-    generateTextStrokeStyles,
-    DisplayIcon,
     generateNormalBGControlStyles,
     GlobalStyleHanlder,
 } = window.zoloModule;
@@ -91,34 +81,6 @@ const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        zoloStyles,
-        //layout
-        styles,
-        //header
-        titleText,
-        titleTagName,
-        showDesc,
-        descText,
-        //price
-        orginalPrice,
-        pricePrefix,
-        priceSuffix,
-        price,
-        sale,
-        period,
-        //features
-        showFeatureHeading,
-        showFeatureDesc,
-        featureTitle,
-        featureDesc,
-        features,
-
-        //buttons
-        showBtn,
-        showChatBtn,
-        buttonText,
-        chatBtnText,
-
         btnTextColor,
         btnHoverTextColor,
         btnHoverBorderColor,
@@ -127,8 +89,6 @@ const Style = ({ props }) => {
         chatBtnHoverBorderColor,
 
         //ribbon
-        showRibbon,
-        ribbonTitle,
         ribbonXPosition,
         ribbonYPosition,
         ribbonRotate,
@@ -148,7 +108,6 @@ const Style = ({ props }) => {
         featureColor,
         featureIconColor,
         featureIconBgColor,
-        ribbonBgColor,
         ribbonColor,
     } = attributes;
     //header style

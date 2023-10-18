@@ -3,8 +3,6 @@
  */
 import { useBlockProps, BlockControls, InnerBlocks } from '@wordpress/block-editor';
 
-import { useEffect } from '@wordpress/element';
-
 import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -13,10 +11,9 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, generateResRangeStyle, generateDimensionStyle, generateNormalBGControlStyles, generateResCounterStyle } =
-    window.zoloModule;
+const { classArrayToStr, generateResRangeStyle, generateResCounterStyle } = window.zoloModule;
 
-import { BLOCK_PREFIX, COLUMNS_GAP, GRID_COLUMNS, ROWS_GAP, REVIEW_GRID_BG, REVIEW_GRID_MARGIN, REVIEW_GRID_PADDING } from './constants';
+import { COLUMNS_GAP, GRID_COLUMNS, ROWS_GAP } from './constants';
 
 import Inspector from './inspector';
 
@@ -25,7 +22,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, zoloStyles, parentClasses } = attributes;
+    const { uniqueId, parentClasses } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({

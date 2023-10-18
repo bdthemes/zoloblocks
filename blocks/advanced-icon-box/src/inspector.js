@@ -89,6 +89,7 @@ function Inspector(props) {
         containerBorderHoverColor,
         iconBackgroundHoverColor,
         textColor,
+        textHoverColor,
         descColor,
         showHeading,
         showDesc,
@@ -200,7 +201,7 @@ function Inspector(props) {
                                         }
                                         options={ICON_BOX_OPTIONS}
                                     />
-                                    {iconType == 'icon' && (
+                                    {iconType === 'icon' && (
                                         <Fragment>
                                             <IconPicker
                                                 value={mainIcon}
@@ -209,11 +210,12 @@ function Inspector(props) {
                                                         mainIcon: value,
                                                     })
                                                 }
+                                                disableDashicon={true}
                                             />
                                         </Fragment>
                                     )}
 
-                                    {iconType == 'image' && (
+                                    {iconType === 'image' && (
                                         <BaseControl label={__('Photo', 'zolo-blocks')}>
                                             {iconTypeImage ? (
                                                 <ImageAvatar
@@ -314,6 +316,7 @@ function Inspector(props) {
                                                 buttonIcon: value,
                                             })
                                         }
+                                        disableDashicon={true}
                                     />
                                 </Fragment>
                             </PanelBody>
