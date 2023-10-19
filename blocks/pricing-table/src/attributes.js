@@ -57,6 +57,7 @@ import {
     RIBBON_MARGIN,
     RIBBON_PADDING,
     FEATURE_ICON_PADDING,
+    SEPARATOR_WIDTH,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -156,6 +157,9 @@ const attributes = {
                 icon: 'fas fa-check',
             },
         ],
+    },
+    separatorColor: {
+        type: 'string',
     },
 
     //Buttons
@@ -371,5 +375,8 @@ const attributes = {
     ...generateBorderAttributies(WRAPPER_BORDER),
     ...generateDimensionAttributes(WRAPPER_BORDER_RADIUS),
     ...generateBoxShadowAttributies(WRAPPER_SHADOW),
+
+    // separator
+    ...generateResRangeAttributies(SEPARATOR_WIDTH),
 };
 export default attributes;

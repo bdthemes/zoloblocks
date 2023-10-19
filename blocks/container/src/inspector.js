@@ -17,6 +17,7 @@ const {
     HeaderTabs,
     IconicBtnGroup,
     ResAlignmentControl,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -153,46 +154,31 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={CONTAINER_BORDER}
+                        <PanelBody initialOpen={true}>
+                            <ResRangeControl
+                                label={__('Row Gap', 'zolo-blocks')}
+                                controlName={ROW_GAP}
                                 requiredProps={requiredProps}
+                                min={0}
+                                max={500}
+                                step={1}
                             />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={CONTAINER_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-
-                            <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BG} noMainBGImg={false} />
-                        </PanelBody>
-
-                        <PanelBody title={__('Spacing', 'zolo-blocks')} initialOpen={false}>
-                            <ResRangeControl label={__('Row Gap', 'zolo-blocks')} controlName={ROW_GAP} requiredProps={requiredProps} />
                             <ResRangeControl
                                 label={__('Column Gap', 'zolo-blocks')}
                                 controlName={COLUMN_GAP}
                                 requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={CONTAINER_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={CONTAINER_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
+                                min={0}
+                                max={500}
+                                step={1}
                             />
                         </PanelBody>
                     </>
                 }
-                advancedTab={<></>}
+                advancedTab={
+                    <>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                    </>
+                }
             />
         </InspectorControls>
     );

@@ -1,6 +1,15 @@
+// global container style
+body .wp-block-zolo-container > .zolo-container-inner-blocks-wrap *:not(.wp-block-zolo-container):not(.components-dropdown) {
+    min-width: unset !important;
+    position: relative;
+    width: 100%;
+}
+
+// block style
 .wp-block-zolo-container {
     box-sizing: border-box;
 }
+
 .wp-block-zolo-container.frontend {
     display: flex;
     position: relative;
@@ -13,6 +22,7 @@
             box-sizing: border-box;
             margin-left: auto !important;
             margin-right: auto !important;
+            width: 100%;
         }
     }
 

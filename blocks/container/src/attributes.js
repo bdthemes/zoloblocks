@@ -29,17 +29,32 @@ import {
 } from './constants';
 
 const attributes = {
-    //Common Attributes
-    uniqueId: {
-        type: 'string',
-    },
-    resDevice: {
-        type: 'string',
-        default: 'Desktop',
-    },
-    blockStyle: {
+    // global config
+    globalConfig: {
         type: 'object',
+        default: {
+            margin: {
+                prefix: 'advBtnMargin',
+            },
+            padding: {
+                prefix: 'advBtnPadding',
+            },
+            background: {
+                prefix: 'advBtnBg',
+            },
+            border: {
+                prefix: 'mainBorder',
+            },
+            borderRadius: {
+                prefix: 'mainBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'mainBoxShadow',
+            },
+            responsiveControls: true,
+        },
     },
+    // block attributes
     variationStatus: {
         type: 'boolean',
         default: false,

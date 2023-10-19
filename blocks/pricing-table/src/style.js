@@ -48,6 +48,7 @@ import {
     RIBBON_BORDER,
     RIBBON_RADIUS,
     RIBBON_BG,
+    SEPARATOR_WIDTH,
 } from './constants';
 
 import {
@@ -109,6 +110,7 @@ const Style = ({ props }) => {
         featureIconColor,
         featureIconBgColor,
         ribbonColor,
+        separatorColor,
     } = attributes;
     //header style
     const {
@@ -606,6 +608,17 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // separator
+    const {
+        desktopRangeStyle: separatorWidthDesktop,
+        tabRangeStyle: separatorWidthTab,
+        mobRangeStyle: separatorWidthMob,
+    } = generateResRangeStyle({
+        controlName: SEPARATOR_WIDTH,
+        property: 'border-top-width',
+        attributes,
+    });
+
     //css style
     const wrapperStylesDesktop = `
 		.zolo-block-wrapper.${uniqueId}{
@@ -630,6 +643,11 @@ const Style = ({ props }) => {
 		.zolo-block-wrapper.${uniqueId}:hover::before{
 			${wrapperHoverOverlayStylesDesktop}
 		}
+    .zolo-block-wrapper.${uniqueId} .zolo-features-info {
+      ${separatorWidthDesktop}
+      border-top-style: solid;
+      border-top-color: ${separatorColor};
+    }
 	`;
     const wrapperStylesTab = `
 		.zolo-block-wrapper.${uniqueId}{
@@ -648,6 +666,9 @@ const Style = ({ props }) => {
 		.zolo-block-wrapper.${uniqueId}:hover::before{
 			${wrapperHoverOverlayStylesTab}
 		}
+    .zolo-block-wrapper.${uniqueId} .zolo-features-info {
+      ${separatorWidthTab}
+    }
 	`;
     const wrapperStylesMobile = `
 		.zolo-block-wrapper.${uniqueId}{
@@ -666,6 +687,9 @@ const Style = ({ props }) => {
 		.zolo-block-wrapper.${uniqueId}::before:hover{
 			${wrapperHoverOverlayStylesMobile}
 		}
+    .zolo-block-wrapper.${uniqueId} .zolo-features-info {
+      ${separatorWidthMob}
+    }
 	`;
 
     const headerStylesDesktop = `

@@ -14,22 +14,14 @@ import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
 
 import { VariationPicker } from './variations';
-import generateStyle from './generate-style';
 import RenderView from './render-view';
+
+// import style
+import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected, name } = props;
     const { uniqueId, blockStyle, templates, variationStatus } = attributes;
-
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
 
     const { isParentOfSelectedBlock, variations, defaultVariation, getBlockParents, parentBlocks } = useSelect((select) => {
         const coreBlocks = select('core/blocks');
@@ -58,23 +50,14 @@ export default function Edit(props) {
         }
     }, []);
 
-    //generate all style
-    const allStyle = generateStyle({
-        attributes,
-        setAttributes,
-        clientId,
-    });
-
     if (!variationStatus && 0 === getBlockParents?.length) {
         return <VariationPicker {...{ ...props, variations, defaultVariation }} />;
     }
 
-    console.log(attributes);
-
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            <style>{`${softMinifyCssStrings(allStyle)}`}</style>
+            <Style props={props} />
             <RenderView
                 {...{
                     attributes,

@@ -1,9 +1,10 @@
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import { select } from '@wordpress/data';
 import classnames from 'classnames';
+const { classArrayToStr } = window.zoloModule;
 
 export default function RenderView({ attributes, clientId, className }) {
-    const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent } = attributes;
+    const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses } = attributes;
 
     const { getBlockOrder } = select('core/block-editor');
     const hasChildBlocks = getBlockOrder(clientId).length > 0;
@@ -12,7 +13,11 @@ export default function RenderView({ attributes, clientId, className }) {
     const isRootContainerClass = isBlockRootParent ? 'zolo-root-container' : '';
 
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId} ${containerWidthType} ${hasChildrenClass} ${isRootContainerClass} backend`),
+        className: classnames(
+            className,
+            `${uniqueId} ${containerWidthType} ${hasChildrenClass} ${isRootContainerClass} backend`,
+            classArrayToStr(parentClasses)
+        ),
     });
 
     return (
