@@ -239,15 +239,79 @@ const Style = ({ props }) => {
         }
     `;
 
-    const tabletAllStyle = `    
-        .${uniqueId}.zolo-blocks-container{
-            color:red;
+    const tabletAllStyle = `
+        .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
+        .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
+            ${contentTabWidth}
+        }
+
+        ${
+            'custom_width' === containerWidthType
+                ? `
+        #block-${clientId}.block-editor-block-list__block{
+            ${containerTabWidth}
+        }`
+                : ''
+        }
+
+        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
+        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
+            ${containerTabWidth}
+            width: 100%;
+        }
+
+        .${uniqueId} {
+            ${containerTabPadding}
+            ${containerTabMinHeight}
+            ${containerTabMargin}
+        }
+
+        .${uniqueId + editorFlexSelector},
+        .${uniqueId + flexSelector}{
+            ${rowTabGap}
+            ${columnTabGap}
+            ${flexDirectionTab}
+            ${flexWrapTab}
+            ${flexJustifyTab}
+            ${flexAlignTab}
         }
     `;
 
     const mobileAllStyle = `
-        .${uniqueId}.zolo-blocks-container{
-            color:red;
+        .${uniqueId}.block-editor-block-list__block.wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
+        .wp-block-zolo-container.zolo-root-container.alignfull.${uniqueId} > .zolo-container-inner-blocks-wrap {
+            ${contentMobWidth}
+        }
+
+        ${
+            'custom_width' === containerWidthType
+                ? `
+        #block-${clientId}.block-editor-block-list__block{
+            ${containerMobWidth}
+        }`
+                : ''
+        }
+
+        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
+        .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}{
+            ${containerMobWidth}
+            width: 100%;
+        }
+
+        .${uniqueId} {
+            ${containerMobPadding}
+            ${containerMobMinHeight}
+            ${containerMobMargin}
+        }
+
+        .${uniqueId + editorFlexSelector},
+        .${uniqueId + flexSelector}{
+            ${rowMobGap}
+            ${columnMobGap}
+            ${flexDirectionMob}
+            ${flexWrapMob}
+            ${flexJustifyMob}
+            ${flexAlignMob}
         }
     `;
     return (

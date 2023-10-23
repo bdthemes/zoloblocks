@@ -546,6 +546,8 @@ function Inspector(props) {
                                         label={__('Image Size', 'zolo-blocks')}
                                         controlName={ICON_IMAGE_SIZE}
                                         requiredProps={requiredProps}
+                                        min={0}
+                                        max={500}
                                     />
                                     {(preset == 'style-2' || preset == 'style-3') && (
                                         <IconicBtnGroup

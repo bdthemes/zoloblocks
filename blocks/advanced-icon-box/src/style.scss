@@ -20,13 +20,13 @@
     .zolo-block-icon-wrap {
         display: flex;
         margin: 0 0 20px;
-       i {
-         font-size: 24px;
-       }
-       img {
-           width: 60px;
-           height: 60px;
-       }
+        i {
+            font-size: 24px;
+        }
+        img {
+            width: 60px;
+            height: auto;
+        }
     }
     .zolo-block-body-content {
         z-index: 1;
@@ -44,11 +44,11 @@
             border-radius: 3px;
             padding: 10px 15px;
             p {
-                color: #3F1A46;
+                color: #3f1a46;
             }
             &:hover {
-                border-color: #3F1A46;
-                background: #3F1A46;
+                border-color: #3f1a46;
+                background: #3f1a46;
                 p {
                     color: #fff;
                 }

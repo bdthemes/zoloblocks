@@ -1,5 +1,6 @@
-// global container style
-body .wp-block-zolo-container > .zolo-container-inner-blocks-wrap *:not(.wp-block-zolo-container):not(.components-dropdown) {
+// Global Style
+body .wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
+body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
     min-width: unset !important;
     position: relative;
     width: 100%;
