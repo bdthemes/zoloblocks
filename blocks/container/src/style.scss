@@ -1,8 +1,13 @@
 // Global Style
 body .wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
+body .wp-block-zolo-container > .zolo-container-inner-blocks-wrap > *,
 body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
     min-width: unset !important;
     position: relative;
+    width: 100%;
+}
+
+.wp-block-zolo-container .block-editor-block-list__layout > * {
     width: 100%;
 }
 

@@ -15928,22 +15928,6 @@ const GlobalStyleHanlder = props => {
         ${hoverBgMobStyle ? hoverBgMobStyle : ''}
     }
   `;
-
-  // Set All Style in "zoloStyles" Attribute
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    const styles = {
-      desktop: desktopAllStyle + desktopGlobalStyles,
-      tab: tabAllStyle + tabGlobalStyles,
-      mobile: mobileAllStyle + mobileGlobalStyles
-    };
-    if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
-      setAttributes({
-        zoloStyles: {
-          ...styles
-        }
-      });
-    }
-  }, [attributes]);
   const allStyle = `
 		${desktopAllStyle + desktopGlobalStyles}
 		@media all and (max-width: 1024px) {
@@ -15953,6 +15937,22 @@ const GlobalStyleHanlder = props => {
 			${mobileAllStyle + mobileGlobalStyles}
 		}
 	`;
+
+  // Set All Style in "zoloStyles" Attribute
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const styles = {
+      desktop: desktopAllStyle + desktopGlobalStyles,
+      tab: tabAllStyle + tabGlobalStyles,
+      mobile: mobileAllStyle + mobileGlobalStyles
+    };
+    if (JSON.stringify(zoloStyles) !== JSON.stringify(styles)) {
+      setAttributes({
+        zoloStyles: {
+          ...styles
+        }
+      });
+    }
+  }, [attributes]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, ` ${(0,_helpers_helper__WEBPACK_IMPORTED_MODULE_1__.softMinifyCssStrings)(allStyle)}`));
 };
 
@@ -16367,23 +16367,59 @@ const FLEX_DIRECTIONS = [{
   label: 'Row',
   value: 'row',
   icon: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
-    width: 24,
-    height: 24,
+    width: "24",
+    height: "24",
     viewBox: "0 0 24 24",
     fill: "none",
     xmlns: "http://www.w3.org/2000/svg"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "M5 12H19",
+    d: "M6.64246 7.53723H17.2781",
     stroke: "#4D4D4D",
-    strokeWidth: "1.5",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
+    "stroke-width": "1.5",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "M12 5L19 12L12 19",
+    d: "M17.2781 7.53729L15.3485 5.28601",
     stroke: "#4D4D4D",
-    strokeWidth: "1.5",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
+    "stroke-width": "1.5",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M17.2781 7.53723L15.3485 9.78851",
+    stroke: "#4D4D4D",
+    "stroke-width": "1.5",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M6.64246 16.4172H17.2781",
+    stroke: "#4D4D4D",
+    "stroke-width": "1.5",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M17.2781 16.4173L15.3485 14.1774",
+    stroke: "#4D4D4D",
+    "stroke-width": "1.5",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M17.2781 16.4172L15.3485 18.6685",
+    stroke: "#4D4D4D",
+    "stroke-width": "1.5",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M2.85132 21.1473V2.85278",
+    stroke: "#4D4D4D",
+    "stroke-width": "1.5",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M21.1487 21.1473V2.85278",
+    stroke: "#4D4D4D",
+    "stroke-width": "1.5",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
   }))
 }, {
   label: 'Column',
@@ -18210,7 +18246,7 @@ const generateBorderStyle = ({
 }) => {
   const {
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}${controlName}BorderType`]: type,
-    [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}${controlName}Unit`]: unit,
+    [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}${controlName}Unit`]: unit = 'px',
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}${controlName}Top`]: top,
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}${controlName}Right`]: right,
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}${controlName}Bottom`]: bottom,
@@ -18218,7 +18254,7 @@ const generateBorderStyle = ({
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}${controlName}BorderColor`]: color,
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}${controlName}BorderStyle`]: style,
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}TAB${controlName}BorderType`]: tabType,
-    [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}TAB${controlName}Unit`]: tabUnit,
+    [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}TAB${controlName}Unit`]: tabUnit = 'px',
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}TAB${controlName}Top`]: tabTop,
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}TAB${controlName}Right`]: tabRight,
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}TAB${controlName}Bottom`]: tabBottom,
@@ -18226,7 +18262,7 @@ const generateBorderStyle = ({
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}TAB${controlName}BorderColor`]: tabColor,
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}TAB${controlName}BorderStyle`]: tabStyle,
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}MOB${controlName}BorderType`]: mobType,
-    [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}MOB${controlName}Unit`]: mobUnit,
+    [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}MOB${controlName}Unit`]: mobUnit = 'px',
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}MOB${controlName}Top`]: mobTop,
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}MOB${controlName}Right`]: mobRight,
     [`${_global_constants__WEBPACK_IMPORTED_MODULE_1__.prefix}MOB${controlName}Bottom`]: mobBottom,

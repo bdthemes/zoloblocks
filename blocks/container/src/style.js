@@ -68,40 +68,6 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    const {
-        desktopBorderStyle: containerDeskBorderStyle,
-        tabBorderStyle: containerTabBorderStyle,
-        mobBorderStyle: containerMobBorderStyle,
-    } = generateBorderStyle({
-        controlName: CONTAINER_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: containerDeskBorderRadius,
-        dimensionStylesTab: containerTabBorderRadius,
-        dimensionStylesMobile: containerMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_BOX_SHADOW,
-    });
-
-    const {
-        backgroundStylesDesktop: containerDeskBGStyle,
-        backgroundStylesTab: containerTabBGStyle,
-        backgroundStylesMobile: containerMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTAINER_BG,
-        attributes,
-        noMainBGImg: false,
-    });
-
     //spacing style
     const {
         dimensionStylesDesktop: containerDeskPadding,

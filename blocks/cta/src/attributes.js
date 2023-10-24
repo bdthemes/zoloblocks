@@ -37,6 +37,8 @@ import {
     PFV_BORDER_RADIUS,
     PS_BORDER,
     PS_BORDER_RADIUS,
+    TITLE_MARGIN,
+    DESC_MARGIN,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -77,12 +79,19 @@ const attributes = {
     ...generateResRangeAttributies(ICON_TEXT_SPACING, {
         default: 5,
     }),
+    // typography
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
+
+    // title
+    ...generateDimensionAttributes(TITLE_MARGIN),
+    // description
+    ...generateDimensionAttributes(DESC_MARGIN),
+
     ...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
     ...generateNormalBGAttributes(BUTTON_BG),
     ...generateNormalBGAttributes(BUTTON_HOVER_BG_COLOR),
     ...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
     ...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
-    ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateDimensionAttributes(BUTTON_PADDING),
 
     // button icon generator
@@ -118,42 +127,35 @@ const attributes = {
         type: 'string',
         default: '',
     },
-    presetOneStyles: {
-        type: 'object',
-        default: {
-            shadowColor: '#000000',
-        },
+    showTitle: {
+        type: 'boolean',
+        default: true,
     },
-    presetTwoStyles: {
-        type: 'object',
-        default: {
-            bgColor: '#d5edf6',
-            hoverBgColor: '#6dcff6',
-        },
+    showDescription: {
+        type: 'boolean',
+        default: true,
     },
-    presetThreeStyles: {
-        type: 'object',
-        default: {
-            bgColor: '',
-        },
+    showBtn: {
+        type: 'boolean',
+        default: true,
     },
-    presetFourStyles: {
-        type: 'object',
-        default: {
-            shadowColor: '',
-            colorOne: '',
-            textColor: '',
-            textShadowColor: '',
-        },
+    title: {
+        type: 'string',
+        default: 'Call to Action',
     },
-    presetSixStyle: {
+    titleTag: {
+        type: 'string',
+        default: 'h2',
+    },
+    titleColor: {
         type: 'string',
     },
-    presetSevenStyles: {
-        type: 'object',
-        default: {
-            bgColor: '',
-        },
+    description: {
+        type: 'string',
+        default: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
+    },
+    descriptionColor: {
+        type: 'string',
     },
     label: {
         type: 'string',
@@ -168,7 +170,7 @@ const attributes = {
     },
     iconType: {
         type: 'string',
-        default: 'none',
+        default: 'iconText',
     },
     showIcon: {
         type: 'boolean',
@@ -176,11 +178,11 @@ const attributes = {
     },
     icon: {
         type: 'string',
-        default: 'fas fa-arrow-right',
+        default: 'fab fa-whatsapp',
     },
     iconPosition: {
         type: 'string',
-        default: 'right',
+        default: 'left',
     },
     iconColor: {
         type: 'string',

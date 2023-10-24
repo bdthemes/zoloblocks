@@ -28,3 +28,4 @@ import '../blocks/slider/src';
 import '../blocks/star-rating/src';
 import '../blocks/accordion-child/src';
 import '../blocks/accordion/src';
+import '../blocks/cta/src';

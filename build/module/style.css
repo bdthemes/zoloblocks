@@ -987,7 +987,7 @@
 }
 .zolo-iconic-btn-group .iconic-btn.active svg rect,
 .zolo-iconic-btn-group .iconic-btn.active svg path {
-  stroke: #001feb !important;
+  stroke: #001feb;
 }
 .zolo-iconic-btn-group .iconic-btn-label {
   margin-bottom: 8px;

@@ -176,9 +176,39 @@ export const FLEX_DIRECTIONS = [
         label: 'Row',
         value: 'row',
         icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12H19" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 5L19 12L12 19" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.64246 7.53723H17.2781" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M17.2781 7.53729L15.3485 5.28601"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M17.2781 7.53723L15.3485 9.78851"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M6.64246 16.4172H17.2781" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M17.2781 16.4173L15.3485 14.1774"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M17.2781 16.4172L15.3485 18.6685"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M2.85132 21.1473V2.85278" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21.1487 21.1473V2.85278" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         ),
     },
