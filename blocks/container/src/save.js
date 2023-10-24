@@ -1,13 +1,19 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
+const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType } = attributes;
+    const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses } = attributes;
 
     return (
         <div
             {...useBlockProps.save({
-                className: classnames(uniqueId, isBlockRootParent ? `${containerWidthType} zolo-root-container` : '', 'frontend'),
+                className: classnames(
+                    uniqueId,
+                    isBlockRootParent ? `${containerWidthType} zolo-root-container` : '',
+                    'frontend',
+                    classArrayToStr(parentClasses)
+                ),
             })}
         >
             {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (

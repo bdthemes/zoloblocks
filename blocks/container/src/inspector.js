@@ -17,6 +17,7 @@ const {
     HeaderTabs,
     IconicBtnGroup,
     ResAlignmentControl,
+    AdvancedOptions,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -46,13 +47,23 @@ import {
     WIDTH_TYPES,
     CONTENT_WIDTH_TYPES,
     FLEX_HORIZONTAL_OPTIONS,
+    FLEX_ALIGNS_ROW,
+    FLEX_JUSTIFIES_ROW,
 } from '../../../src/global/constants';
 
 import { Fragment } from 'react';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { containerWidthType, contentWidthType, resMode, isBlockRootParent } = attributes;
+    const {
+        containerWidthType,
+        contentWidthType,
+        resMode,
+        isBlockRootParent,
+        FlexDirectionZRPAlign,
+        TABFlexDirectionZRPAlign,
+        MOBFlexDirectionZRPAlign,
+    } = attributes;
 
     const requiredProps = {
         resMode,
@@ -60,6 +71,22 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
+
+    const isRowDirection = FlexDirectionZRPAlign === 'row' || FlexDirectionZRPAlign === 'row-reverse';
+    const isRowDirectionTab = TABFlexDirectionZRPAlign === 'row' || TABFlexDirectionZRPAlign === 'row-reverse';
+    const isRowDirectionMob = MOBFlexDirectionZRPAlign === 'row' || MOBFlexDirectionZRPAlign === 'row-reverse';
+
+    let alignItemsOptions;
+    if (resMode === 'Desktop') alignItemsOptions = isRowDirection;
+    else if (resMode === 'Tablet') alignItemsOptions = isRowDirectionTab;
+    else if (resMode === 'Mobile') alignItemsOptions = isRowDirectionMob;
+    alignItemsOptions ? (alignItemsOptions = FLEX_ALIGNS_ROW) : (alignItemsOptions = FLEX_ALIGNS);
+
+    let justifyContentOptions;
+    if (resMode === 'Desktop') justifyContentOptions = isRowDirection;
+    else if (resMode === 'Tablet') justifyContentOptions = isRowDirectionTab;
+    else if (resMode === 'Mobile') justifyContentOptions = isRowDirectionMob;
+    justifyContentOptions ? (justifyContentOptions = FLEX_JUSTIFIES_ROW) : (justifyContentOptions = FLEX_JUSTIFIES);
 
     return (
         <InspectorControls key="controls">
@@ -134,13 +161,15 @@ function Inspector(props) {
                                 label={__('Align Items', 'zolo-blocks')}
                                 controlName={FLEX_ALIGN}
                                 requiredProps={requiredProps}
-                                alignOptions={FLEX_ALIGNS}
+                                alignOptions={alignItemsOptions}
                             />
+
                             <ResAlignmentControl
                                 label={__('Justify Content', 'zolo-blocks')}
                                 controlName={FLEX_JUSTIFY}
                                 requiredProps={requiredProps}
-                                alignOptions={FLEX_JUSTIFIES}
+                                alignOptions={justifyContentOptions}
+                                customClass="zb-flex-justify-content"
                             />
                             <ResAlignmentControl
                                 label={__('Wrap', 'zolo-blocks')}
@@ -153,46 +182,31 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={CONTAINER_BORDER}
+                        <PanelBody initialOpen={true}>
+                            <ResRangeControl
+                                label={__('Row Gap', 'zolo-blocks')}
+                                controlName={ROW_GAP}
                                 requiredProps={requiredProps}
+                                min={0}
+                                max={500}
+                                step={1}
                             />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={CONTAINER_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-
-                            <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BG} noMainBGImg={false} />
-                        </PanelBody>
-
-                        <PanelBody title={__('Spacing', 'zolo-blocks')} initialOpen={false}>
-                            <ResRangeControl label={__('Row Gap', 'zolo-blocks')} controlName={ROW_GAP} requiredProps={requiredProps} />
                             <ResRangeControl
                                 label={__('Column Gap', 'zolo-blocks')}
                                 controlName={COLUMN_GAP}
                                 requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={CONTAINER_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={CONTAINER_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
+                                min={0}
+                                max={500}
+                                step={1}
                             />
                         </PanelBody>
                     </>
                 }
-                advancedTab={<></>}
+                advancedTab={
+                    <>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                    </>
+                }
             />
         </InspectorControls>
     );

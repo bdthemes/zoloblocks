@@ -22,6 +22,7 @@ const {
     HeaderTabs,
     LinkControl,
     AdvancedOptions,
+    IconPicker,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -101,6 +102,7 @@ function Inspector(props) {
         iconHoverBorderColor,
         detailPageIconColor,
         detailPageIconHoverColor,
+        detailIcon,
     } = attributes;
 
     const requiredProps = {
@@ -210,6 +212,17 @@ function Inspector(props) {
                         {showSocialProfiles && (
                             <PanelBody title={__('Social Profiles', 'zolo-blocks')} initialOpen={false}>
                                 <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
+                            </PanelBody>
+                        )}
+                        {showDetailPageIcon && (
+                            <PanelBody title={__('Details Page Icon', 'zolo-blocks')} initialOpen={false}>
+                                <IconPicker
+                                    label={__('Select Icon', 'zolo-blocks')}
+                                    icon={detailIcon}
+                                    onChange={(icon) => setAttributes({ detailIcon: icon })}
+                                    value={detailIcon}
+                                    disableDashicon={true}
+                                />
                             </PanelBody>
                         )}
                     </>

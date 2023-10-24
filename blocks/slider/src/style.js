@@ -6,20 +6,11 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import Inspector from './inspector';
-const {
-    generateResRangeStyle,
-    generateResCounterStyle,
-    generateDimensionStyle,
-    generateBorderStyle,
-    generateNormalBGControlStyles,
-    GlobalStyleHanlder,
-} = window.zoloModule;
+const { generateResRangeStyle, generateDimensionStyle, generateBorderStyle, generateNormalBGControlStyles, GlobalStyleHanlder } =
+    window.zoloModule;
 
 // Constants
 import {
-    COLUMNS,
-    COLUMNS_GAP,
     SLIDER_HEIGHT,
     CONTENT_WIDTH,
     CONTENT_PADDING,
@@ -272,22 +263,25 @@ const Style = ({ props }) => {
             ${deskContentWidth}
             ${contentPaddingDesktop}
         }
-        .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev,
+        .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev {
             ${navBorderStyles}
             ${navBorderRadiusDesktop}
             ${navNormalBGStyle}
             ${navDeskWidth}
             ${navDeskHeight}
         }
-        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover {
+
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover,
+        .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev:hover {
             ${navHoverBGStyle}
         }
-        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:after {
+
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:after, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next i, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:after, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev i {
             color: ${navColor};
             ${navDeskSize}
-
         }
-        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover:after {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover:after, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next:hover i, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev:hover i {
             color: ${navHoverColor};
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets {

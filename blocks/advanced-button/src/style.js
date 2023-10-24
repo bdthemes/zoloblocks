@@ -48,16 +48,10 @@ import {
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Style({ props }) {
-    const { attributes, setAttributes, name } = props;
+    const { attributes, setAttributes } = props;
     const {
         uniqueId,
         preset,
-        label,
-        zoloStyles,
-        parentClasses,
-        iconType,
-        icon,
-        iconPosition,
         iconColor,
         iconHoverColor,
         iconBg,

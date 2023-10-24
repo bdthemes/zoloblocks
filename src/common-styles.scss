@@ -1,28 +1,36 @@
 // Responsive show/hide css
-.zolo-hide-desktop {
-    display: none;
+@media screen and (min-width: 1025px) {
+    .zolo-hide-desktop {
+        display: none !important;
+    }
 }
 
-.zolo-hide-tab {
-    display: none;
+// tablet view
+@media all and (max-width: 1024px) {
+    .zolo-hide-tab {
+        display: none !important;
+    }
 }
 
-.zolo-hide-mobile {
-    display: none;
+// mobile view
+@media all and (max-width: 768px) {
+    .zolo-hide-mobile {
+        display: none !important;
+    }
 }
 
 // Responsive show/hide css for Editor
 .wp-admin .zolo-hide-desktop {
-    display: block;
+    display: block !important;
     opacity: 0.5;
 }
 
 .wp-admin .zolo-hide-tab {
-    display: block;
+    display: block !important;
     opacity: 0.5;
 }
 
 .wp-admin .zolo-hide-mobile {
-    display: block;
+    display: block !important;
     opacity: 0.5;
 }

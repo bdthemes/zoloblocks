@@ -36,6 +36,7 @@ export default function Edit(props) {
         memberShortBio,
         showSocialProfiles,
         socialProfiles,
+        detailIcon,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -149,7 +150,7 @@ export default function Edit(props) {
                                         rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
                                         target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
                                     >
-                                        <i className="fa-solid fa-arrow-right" />
+                                        <DisplayIcon icon={detailIcon} />
                                     </a>
                                 </div>
                             )}
@@ -198,7 +199,7 @@ export default function Edit(props) {
                                     rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
                                     target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
                                 >
-                                    <i className="fa-solid fa-arrow-right" />
+                                    <DisplayIcon icon={detailIcon} />
                                 </a>
                             </div>
                         )}

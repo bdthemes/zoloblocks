@@ -639,14 +639,21 @@ const Style = ({ props }) => {
 			${nameDeskMargin}
 			color: ${addDetailPageLink ? nameLinkColor : nameColor};
 		}
-		.${uniqueId} a.zolo-name:hover {
-			color: ${nameHoverColor};
+
+		.${uniqueId} .zolo-name:hover {
+			color: ${nameHoverColor} !important;
 		}
+
+		.${uniqueId} a.zolo-name:hover {
+			color: ${nameHoverColor} !important;
+		}
+
 		.${uniqueId} .zolo-designation {
 			${designationColor ? `color: ${designationColor};` : ''}
 			${designationTypoDesk}
 			${designationDeskMargin}
 		}
+
 		.${uniqueId} .zolo-desc {
 			${shortBioColor && shortBioColor !== '' ? `color: ${shortBioColor};` : ''}
 			${shortBioTypoDesk}

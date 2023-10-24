@@ -3,7 +3,7 @@
  */
 const { __ } = wp.i18n;
 const { InspectorControls } = wp.blockEditor;
-const { PanelBody, RangeControl, ToggleControl, SelectControl } = wp.components;
+const { PanelBody, RangeControl, ToggleControl, SelectControl, BaseControl } = wp.components;
 const { Fragment } = wp.element;
 
 /**
@@ -22,6 +22,7 @@ const {
     AdvancedOptions,
 } = window.zoloModule;
 
+import { IconPicker } from 'wordpress-icon-picker';
 // objAttributes
 import objAttributes from './attributes';
 
@@ -71,6 +72,9 @@ const Inspector = ({ attributes, setAttributes }) => {
         speed,
         carouselEffect,
         sliderEffect,
+        customNavIcon,
+        prevNavIcon,
+        nextNavIcon,
     } = attributes;
 
     const requiredProps = {
@@ -267,6 +271,49 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     value={carouselEffect}
                                 />
                             </PanelBody>
+                        )}
+                        {showNavigation && (
+                            <>
+                                <PanelBody title={__('Navigation', 'zolo-blocks')} initialOpen={false}>
+                                    <ToggleControl
+                                        label={__('Custom Navigation Icons', 'zolo-blocks')}
+                                        checked={customNavIcon}
+                                        onChange={() =>
+                                            setAttributes({
+                                                customNavIcon: !customNavIcon,
+                                            })
+                                        }
+                                    />
+                                    {customNavIcon && (
+                                        <>
+                                            <BaseControl label={__('Select Prev Icon', 'zolo-blocks')}>
+                                                <IconPicker
+                                                    value={prevNavIcon}
+                                                    onChange={(value) => {
+                                                        setAttributes({
+                                                            prevNavIcon: value,
+                                                        });
+                                                    }}
+                                                    showHeading={false}
+                                                    disableDashicon={true}
+                                                />
+                                            </BaseControl>
+                                            <BaseControl label={__('Select Next Icon', 'zolo-blocks')}>
+                                                <IconPicker
+                                                    value={nextNavIcon}
+                                                    onChange={(value) => {
+                                                        setAttributes({
+                                                            nextNavIcon: value,
+                                                        });
+                                                    }}
+                                                    showHeading={false}
+                                                    disableDashicon={true}
+                                                />
+                                            </BaseControl>
+                                        </>
+                                    )}
+                                </PanelBody>
+                            </>
                         )}
                     </Fragment>
                 }

@@ -89,3 +89,6 @@ export const RIBBON_PADDING = 'ribbonPadding';
 export const RIBBON_BORDER = 'ribbonBorder';
 export const RIBBON_RADIUS = 'ribbonRadius';
 export const RIBBON_BG = 'ribbonBg';
+
+// separator
+export const SEPARATOR_WIDTH = 'separatorWidth';

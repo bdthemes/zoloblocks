@@ -624,6 +624,11 @@ const Style = ({ props }) => {
 			${nameDeskMargin}
 			color: ${addDetailPageLink ? nameLinkColor : nameColor};
 		}
+
+        .${uniqueId} .zolo-name:hover {
+			color: ${nameHoverColor} !important;
+		}
+
 		.${uniqueId} a.zolo-name:hover {
 			color: ${nameHoverColor};
 		}

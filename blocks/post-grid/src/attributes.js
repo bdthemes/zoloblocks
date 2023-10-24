@@ -158,7 +158,19 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
-
+    // readmore button
+    readMoreColor: {
+        type: 'string',
+    },
+    readMoreBgColor: {
+        type: 'string',
+    },
+    readMoreHoverColor: {
+        type: 'string',
+    },
+    readMoreBgHoverColor: {
+        type: 'string',
+    },
     ...generateDimensionAttributes(COLUMN_PADDING),
     ...generateNormalBGAttributes(COLUMN_BG),
     ...generateBorderAttributies(COLUMN_BORDER),

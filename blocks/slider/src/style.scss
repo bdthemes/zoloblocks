@@ -1,9 +1,6 @@
 .wp-block-zolo-slider {
     box-sizing: border-box;
     overflow: hidden;
-    border: 2px dashed #ccc;
-    padding: 10px;
-
     .wp-block-zolo-slide {
         height: clamp(21.875rem, 50vw, 34.375rem);
     }
@@ -16,6 +13,7 @@
         flex-direction: column;
         justify-content: center;
         box-sizing: border-box;
+        max-width: 825px;
     }
 
     .swiper-pagination-bullet {

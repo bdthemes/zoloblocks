@@ -374,28 +374,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    // generate button icon height
-    const {
-        desktopRangeStyle: buttonIconHeight,
-        tabRangeStyle: buttonIconHeightTab,
-        mobRangeStyle: buttonIconHeightMob,
-    } = generateResRangeStyle({
-        controlName: BUTTON_ICON_SIZE,
-        property: 'height',
-        attributes,
-    });
-
-    // generate button icon width
-    const {
-        desktopRangeStyle: buttonIconWidth,
-        tabRangeStyle: buttonIconWidthTab,
-        mobRangeStyle: buttonIconWidthMob,
-    } = generateResRangeStyle({
-        controlName: BUTTON_ICON_SIZE,
-        property: 'width',
-        attributes,
-    });
-
     // generate button style
     const {
         desktopBorderStyle: buttonBorderStyles,
@@ -502,7 +480,7 @@ export default function Style({ props }) {
 			${iconPaddingDesktop}
 			${iconMarginDesktop}
 			${iconBoxShadow}
-			}
+		}
 		.${uniqueId} .zolo-block-icon-wrap i:hover{
 			background: ${iconBackgroundHoverColor ? iconBackgroundHoverColor : ''};
 			color: ${iconHoverColor ? iconHoverColor : ''};
@@ -531,14 +509,12 @@ export default function Style({ props }) {
 			border-color: ${btnHoverBorderColor ? btnHoverBorderColor : ''}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button i{
 			color: ${buttonIconColor};
 			${buttonIconSize}
-			${buttonIconHeight}
-			${buttonIconWidth}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover i{
 			color: ${buttonIconHoverColor}
 		}
 
@@ -625,10 +601,8 @@ export default function Style({ props }) {
 			${iconImageBorderTab}
 			${iconImageBorderRadiusTab}
 		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button i{
 			${buttonIconSizeTab}
-			${buttonIconHeightTab}
-			${buttonIconWidthTab}
 		}
 		.${uniqueId} .zolo-block-body-content .zolo-box-button {
 			${gapTab}
@@ -674,10 +648,8 @@ export default function Style({ props }) {
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button i{
 			${buttonIconSizeMob}
-			${buttonIconHeightMob}
-			${buttonIconWidthMob}
 		}
 		.${uniqueId} .zolo-block-body-content .zolo-box-button {
 			${gapMob}
