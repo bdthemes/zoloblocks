@@ -285,7 +285,7 @@ function Inspector({ attributes, setAttributes }) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Grid Columns', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={COLUMN_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
