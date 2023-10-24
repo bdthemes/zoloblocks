@@ -9,16 +9,15 @@
 use Zolo\Helpers\ZoloHelpers;
 
 // Exit if accessed directly.
-if (!defined('ABSPATH')) {
+if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if (!class_exists('Zolo_Block_Enqueue')) {
+if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
     /**
      * Class Zolo_Block_Enqueue.
      */
-    final class Zolo_Block_Enqueue
-    {
+    final class Zolo_Block_Enqueue {
 
         /**
          * Member Variable
@@ -30,9 +29,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
         /**
          *  Initiator
          */
-        public static function get_instance()
-        {
-            if (!isset(self::$instance)) {
+        public static function get_instance() {
+            if ( ! isset( self::$instance ) ) {
                 self::$instance = new self();
             }
             return self::$instance;
@@ -41,10 +39,9 @@ if (!class_exists('Zolo_Block_Enqueue')) {
         /**
          * Constructor
          */
-        public function __construct()
-        {
+        public function __construct() {
 
-            add_action('enqueue_block_editor_assets', [$this, 'editor_assets_loader']);
+            add_action( 'enqueue_block_editor_assets', [$this, 'editor_assets_loader'] );
 
             // enqueue style for both editor and frontend
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
@@ -89,8 +86,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            if( ! is_admin( ) && has_block( 'zolo/advanced-image-gallery' ) ){
-
+            if ( ! is_admin() && has_block( 'zolo/advanced-image-gallery' ) ) {
                 // enqueue style for frontend
                 wp_enqueue_style( 'zolo-maginific-popup', ZOLO_ADMIN_URL . 'assets/css/magnific-popup/magnific-popup.css', [], ZOLO_VERSION );
 
@@ -101,12 +97,12 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
                 // enqueue scripts for frontend
                 wp_enqueue_script(
-                    'zolo-popup-scripts', ZOLO_ADMIN_URL . 'assets/js/scripts.js', ['jquery','zolo-maginific-popup'], ZOLO_VERSION, true
+                    'zolo-popup-scripts', ZOLO_ADMIN_URL . 'assets/js/scripts.js', ['jquery', 'zolo-maginific-popup'], ZOLO_VERSION, true
                 );
             }
 
             // Swiper Scripts and Styles
-            if( ! is_admin( ) && has_block( 'zolo/slider' ) ) {
+            if ( ! is_admin() && has_block( 'zolo/slider' ) ) {
                 wp_enqueue_style(
                     'zolo-swiper-editor-style',
                     ZOLO_ADMIN_URL . 'assets/css/swiper/swiper-bundle.min.css',
@@ -124,8 +120,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // accordion Scripts and Styles
-            if( ! is_admin() && has_block( 'zolo/accordion') ){
-    
+            if ( ! is_admin() && has_block( 'zolo/accordion' ) ) {
                 wp_enqueue_script(
                     'zolo-accordion-editor-script',
                     ZOLO_ADMIN_URL . 'assets/js/accordion/accordion.js',
@@ -134,9 +129,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     true
                 );
             }
-
         }
-
 
         /**
          * Load Block Editor Assets
@@ -145,11 +138,28 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          *
          * @return void
          */
-        public function editor_assets_loader()
-        {
+        public function editor_assets_loader() {
+            //Register vendor bundle
+            $dependency_path  = ZOLO_DIR_PATH . 'vendor-bundle/index.asset.php';
+            $script_dependecy = file_exists( $dependency_path ) ? include $dependency_path : [
+                'dependencies' => [],
+                'version'      => ZOLO_VERSION
+            ];
+
+            $version = $script_dependecy['version'];
+
+            // Enqueue vendor bundle Scripts
+            wp_register_script(
+                'zolo-block-editor-dependency',
+                ZOLO_ADMIN_URL . 'vendor-bundle/index.js',
+                $script_dependecy['dependencies'],
+                $version,
+                true
+            );
+
             //Register Modules
             $modules_dep_path = ZOLO_DIR_PATH . 'build/module/index.asset.php';
-            $script_dependecy = file_exists($modules_dep_path) ? include $modules_dep_path : [
+            $script_dependecy = file_exists( $modules_dep_path ) ? include $modules_dep_path : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
             ];
@@ -166,7 +176,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             );
 
             $dependency_path  = ZOLO_DIR_PATH . 'build/dist/index.asset.php';
-            $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
+            $script_dependecy = file_exists( $dependency_path ) ? include $dependency_path : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
             ];
@@ -201,7 +211,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 [
                     'wp-edit-blocks',
                     'zolo-block-common-style',
-                    'zolo-fontawesome',
+                    'zolo-fontawesome'
                 ],
                 ZOLO_VERSION
             );
@@ -222,15 +232,25 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 true
             );
 
+            //get editor type
+            global $pagenow;
+            $editor_type = 'edit-post';
+            if ( $pagenow == 'site-editor.php' ) {
+                $editor_type = 'edit-site';
+            } elseif ( $pagenow == 'widgets.php' ) {
+                $editor_type = 'edit-widgets';
+            }
+
             //this file use for js
-            wp_localize_script('zolo-block-editor', 'zoloParams', [
-                'ajaxurl'    => admin_url('admin-ajax.php'),
-                'post_types' => ZoloHelpers::get_post_types(),
-                'get_users' => ZoloHelpers::get_all_users(),
+            wp_localize_script( 'zolo-block-editor', 'zoloParams', [
+                'ajaxurl'        => admin_url( 'admin-ajax.php' ),
+                'post_types'     => ZoloHelpers::get_post_types(),
+                'get_users'      => ZoloHelpers::get_all_users(),
                 'get_taxonomies' => ZoloHelpers::get_taxonomies(),
                 'all_term_list'  => ZoloHelpers::get_all_taxonomy(),
-                'zolo_nonce' => wp_create_nonce('zolo-nonce'),
-            ]);
+                'zolo_nonce'     => wp_create_nonce( 'zolo-nonce' ),
+                'editor_type'    => $editor_type
+            ] );
         }
     }
 }
