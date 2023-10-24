@@ -6,9 +6,9 @@ import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
-import { PRESETS, GRID_COLUMNS, COLUMNS_GAP, ROWS_GAP, REVIEW_GRID_BG, REVIEW_GRID_MARGIN, REVIEW_GRID_PADDING } from './constants';
+import { PRESETS, GRID_COLUMNS, COLUMNS_GAP, ROWS_GAP } from './constants';
 
-const { ResRangeControl, ResDimensionsControl, NormalBGControl, HeaderTabs, ResCounterControl, AdvancedOptions } = window.zoloModule;
+const { ResRangeControl, HeaderTabs, ResCounterControl, AdvancedOptions } = window.zoloModule;
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;

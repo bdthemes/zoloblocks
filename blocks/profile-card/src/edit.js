@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 
 import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -12,70 +12,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    generateBoxShadowStyles,
-    DisplayIcon,
-    generateNormalBGControlStyles,
-    classArrayToStr,
-} = window.zoloModule;
-
-import {
-    BLOCK_PREFIX,
-    HEADER_AREA_BORDER_RADIUS,
-    HEADER_AREA_PADDING,
-    HEADER_BADGE_BORDER,
-    HEADER_AREA_BG,
-    BADGE_PADDING,
-    BADGE_BG,
-    BADGE_BORDER_RADIUS,
-    CONTENT_BORDER,
-    CONTENT_PADDING,
-    CONTENT_MARGIN,
-    CONTENT_BG,
-    CONTENT_BORDER_RADIUS,
-    PHOTO_VOFFSET,
-    PHOTO_SIZE,
-    PHOTO_BORDER,
-    PHOTO_BORDER_RADIUS,
-    NAME_MARGIN,
-    USERNAME_MARGIN,
-    EMAIL_MARGIN,
-    BIO_MARGIN,
-    STATUS_GAP,
-    STATUS_MARGIN,
-    FBTN_BG,
-    FBTN_BOX_SHADOW,
-    FBTN_HOVER_BOX_SHADOW,
-    FBTN_BORDER,
-    FBTN_HOVER_BG,
-    FBTN_BORDER_RADIUS,
-    FBTN_MARGIN,
-    FBTN_PADDING,
-    ICONS_BG,
-    ICONS_HOVER_BG,
-    ICONS_BORDER,
-    ICONS_BORDER_RADIUS,
-    ICONS_PADDING,
-    ICONS_MARGIN,
-    ICONS_SIZE,
-    ICONS_SPACING,
-} from './constants';
-
-import {
-    BADGE_TYPO,
-    BIO_TYPO,
-    BTN_TYPO,
-    EMAIL_TYPO,
-    LABEL_TYPO,
-    NUMBER_TYPO,
-    PROFILE_NAME,
-    PROFILE_USERNAME,
-} from './constants/typoPrefixConstants';
+const { DisplayIcon, classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -83,12 +20,11 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected } = props;
     const {
         uniqueId,
         parentClasses,
         preset,
-        zoloStyles,
         showBadge,
         badgeText,
         showPhoto,
@@ -107,23 +43,9 @@ export default function Edit(props) {
         followButtonText,
         showSocialProfiles,
         socialProfiles,
-        badgeColor,
-        nameColor,
-        usernameColor,
-        emailColor,
-        bioColor,
-        numberColor,
-        labelColor,
-        btnColor,
-        btnHoverColor,
-        btnHoverBorderColor,
-        iconColor,
-        iconHoverColor,
-        iconHoverBorderColor,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId} ${preset ? preset : ''}`, classArrayToStr(parentClasses)),
     });

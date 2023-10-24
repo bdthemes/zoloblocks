@@ -1,19 +1,8 @@
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    StarRating,
-    generateResAlignmentStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    generateBoxShadowStyles,
-    generateNormalBGControlStyles,
-    generateBackgroundControlStyles,
-    GlobalStyleHanlder,
-} = window.zoloModule;
+const { generateBorderStyle, generateDimensionStyle, generateResRangeStyle, generateNormalBGControlStyles, GlobalStyleHanlder } =
+    window.zoloModule;
 
 import {
     AC_HEADER_BORDER,

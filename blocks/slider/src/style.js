@@ -1,37 +1,16 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, InnerBlocks, useInnerBlocksProps, BlockControls } from '@wordpress/block-editor';
-const { Fragment, useEffect, useRef } = wp.element;
-import { useDispatch } from '@wordpress/data';
-import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
-import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
-import { createBlock } from '@wordpress/blocks';
 
 /**
  * Internal dependencies
  */
-import Inspector from './inspector';
-const {
-    generateResRangeStyle,
-    generateResCounterStyle,
-    generateDimensionStyle,
-    generateBorderStyle,
-    generateNormalBGControlStyles,
-    generateTypographyStyle,
-    generateDimensionsStyle,
-    softMinifyCssStrings,
-    GlobalStyleHanlder,
-} = window.zoloModule;
+const { generateResRangeStyle, generateDimensionStyle, generateBorderStyle, generateNormalBGControlStyles, GlobalStyleHanlder } =
+    window.zoloModule;
 
 // Constants
 import {
-    BLOCK_PREFIX,
-    COLUMNS,
-    COLUMNS_GAP,
     SLIDER_HEIGHT,
     CONTENT_WIDTH,
     CONTENT_PADDING,
@@ -57,49 +36,7 @@ import {
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const {
-        uniqueId,
-        zoloStyles,
-        slideItems,
-        sliderType,
-        autoplay,
-        autoplayDelay,
-        pauseOnMouseEnter,
-        infiniteLoop,
-        showNavigation,
-        navColor,
-        navHoverColor,
-        showPagination,
-        paginationType,
-        dynamicBullets,
-        speed,
-        carouselEffect,
-        sliderEffect,
-        sliderOptions,
-        addNewSlideBlock,
-    } = attributes;
-
-    // columns count
-    const {
-        desktopRangeStyle: deskCol,
-        tabRangeStyle: tabCol,
-        mobRangeStyle: mobCol,
-    } = generateResCounterStyle({
-        controlName: COLUMNS,
-        attributes,
-        noProperty: true,
-    });
-
-    const {
-        desktopRangeStyle: deskColGap,
-        tabRangeStyle: tabColGap,
-        mobRangeStyle: mobColGap,
-    } = generateResRangeStyle({
-        controlName: COLUMNS_GAP,
-        attributes,
-        noProperty: true,
-        noUnits: true,
-    });
+    const { uniqueId, navColor, navHoverColor } = attributes;
 
     // slider height
     const {
@@ -326,22 +263,25 @@ const Style = ({ props }) => {
             ${deskContentWidth}
             ${contentPaddingDesktop}
         }
-        .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev,
+        .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev {
             ${navBorderStyles}
             ${navBorderRadiusDesktop}
             ${navNormalBGStyle}
             ${navDeskWidth}
             ${navDeskHeight}
         }
-        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover {
+
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover,
+        .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev:hover {
             ${navHoverBGStyle}
         }
-        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:after {
+
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:after, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next i, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:after, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev i {
             color: ${navColor};
             ${navDeskSize}
-
         }
-        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover:after {
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover:after, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover:after, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next:hover i, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev:hover i {
             color: ${navHoverColor};
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets {

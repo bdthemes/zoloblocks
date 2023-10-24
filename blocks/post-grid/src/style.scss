@@ -52,6 +52,14 @@
         border-radius: 50%;
     }
 
+    .zolo-post-link-btn {
+        margin-top: 20px;
+    }
+
+    .zolo-post-dateTime {
+        margin-top: 15px;
+    }
+
     .zolo-post-dateTime,
     .zolo-post-secount-dateTime {
         display: flex;
@@ -63,7 +71,7 @@
     }
 
     .zolo-post-title {
-        margin: 15px 0;
+        margin: 15px 0 0;
         font-size: 22px;
         font-weight: 700;
         line-height: 1.6;
@@ -77,6 +85,15 @@
     .zolo-post-title a:hover,
     .zolo-post-meta-content a:hover {
         color: var(--zb-post-hover-color);
+    }
+
+    .zolo-post-desc {
+        margin-top: 10px;
+        p {
+            margin: 0;
+            color: #3f3f45;
+            font-size: 14px;
+        }
     }
 
     .zolo-post-category {
@@ -117,6 +134,8 @@
         padding: 10px 14px;
         border-radius: 3px;
         transition: all cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
+        min-width: 120px;
+        justify-content: center;
     }
 
     .zolo-post-link-btn a:hover {
@@ -129,10 +148,10 @@
         height: 14px;
     }
 
-    &.zolo-post-style-1 .wp-post-image,
-    &.zolo-post-style-2 .wp-post-image,
-    &.zolo-post-style-3 .wp-post-image {
-        height: 350px;
+    &.zolo-post-style-1 .zolo-post-image,
+    &.zolo-post-style-2 .zolo-post-image,
+    &.zolo-post-style-3 .zolo-post-image {
+        height: 400px;
     }
 
     /* global css end  */
@@ -184,7 +203,7 @@
         color: #111013;
     }
 
-    &.zolo-post-style-1 .zolo-post-link-btn,
+    &.zolo-post-style-1 .zolo-post-link-btn a,
     &.zolo-post-style-2 .zolo-post-link-btn,
     &.zolo-post-style-3 .zolo-post-link-btn,
     &.zolo-post-style-4 .zolo-post-link-btn,
@@ -233,7 +252,9 @@
     }
 
     &.zolo-post-style-2 .zolo-post-dateTime,
-    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-dateTime {
+    &.zolo-post-style-2 .zolo-post-desc p,
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-dateTime,
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-desc p {
         color: #e5e6ed;
     }
 
@@ -267,7 +288,8 @@
     }
 
     .zolo-post-dateTime,
-    .zolo-post-meta-content span {
+    .zolo-post-meta-content span,
+    .zolo-post-desc p {
         transition: color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
     }
 
@@ -329,11 +351,15 @@
     }
 
     &.zolo-post-style-5 .zolo-post-content {
-        width: 60%;
+        width: 100%;
+        display: flex;
+        gap: 15px;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    &.zolo-post-style-5 .zolo-post-date {
-        margin-bottom: 20px;
+    &.zolo-post-style-5 .zolo-post-dateTime {
+        margin: 0 0 15px;
     }
 
     &.zolo-post-style-5 .zolo-post-meta-box {
@@ -348,19 +374,19 @@
     }
 
     &.zolo-post-style-5 .zolo-post-title {
-        margin: 0 0 15px;
         font-size: clamp(1.125rem, 3vw, 1.875rem);
     }
 
     &.zolo-post-style-5 .zolo-post-link-btn {
-        display: none;
+        margin-top: 0;
     }
 }
 
 @media (min-width: 768px) {
     .zolo-post-grid-wrap {
-        &.zolo-post-style-5 .zolo-post-link-btn {
-            display: block;
+        &.zolo-post-style-5 .zolo-post-content {
+            width: 60%;
+            flex-direction: row;
         }
     }
 }

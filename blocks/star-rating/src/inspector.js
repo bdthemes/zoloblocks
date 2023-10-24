@@ -1,18 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import {
-    PanelBody,
-    GradientPicker,
-    ToggleControl,
-    TextControl,
-    TextareaControl,
-    BaseControl,
-    Button,
-    RangeControl,
-    SelectControl,
-} from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, ToggleControl, TextControl, RangeControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -22,17 +12,10 @@ const {
     ResAlignmentControl,
     ResRangeControl,
     ColorControl,
-    BorderControl,
-    ResDimensionsControl,
     TypographyDropdown,
-    BoxShadowControl,
-    ImageAvatar,
-    LinkControl,
-    NormalBGControl,
     HeaderTabs,
     TabPanelControl,
     IconicBtnGroup,
-    GradientControl,
     AdvancedOptions,
 } = window.zoloModule;
 
@@ -45,8 +28,7 @@ import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS } from '../../../src/g
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { preset, resMode, rating, showTitle, title, titleTag, titleColor, titlePosition, activeStarColor, inactiveStarColor } =
-        attributes;
+    const { resMode, rating, showTitle, title, titleTag, titleColor, titlePosition, activeStarColor, inactiveStarColor } = attributes;
 
     const requiredProps = {
         attributes,

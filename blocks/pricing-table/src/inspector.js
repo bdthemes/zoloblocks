@@ -10,7 +10,6 @@ import {
     TextareaControl,
     ToggleControl,
 } from '@wordpress/components';
-import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
 const {
@@ -64,7 +63,6 @@ import {
     ORGINAL_PRICE_MARGIN,
     PERIOD_MARGIN,
     PRICE_MARGIN,
-    STYLES,
     TITLE_BORDER,
     TITLE_BORDER_RADIUS,
     TITLE_MARGIN,
@@ -82,6 +80,7 @@ import {
     RIBBON_BORDER,
     RIBBON_RADIUS,
     RIBBON_BG,
+    SEPARATOR_WIDTH,
 } from './constants';
 import {
     BTN_TYPOGRAPHY,
@@ -104,8 +103,6 @@ import Sortable from './sortable';
 const Inspector = ({ attributes, setAttributes }) => {
     const {
         resMode,
-        //layout
-        styles,
         //header
         titleText,
         titleTagName,
@@ -157,6 +154,7 @@ const Inspector = ({ attributes, setAttributes }) => {
         chatBtnHoverBorderColor,
         //ribbon style
         ribbonColor,
+        separatorColor,
     } = attributes;
 
     const requiredProps = {
@@ -370,10 +368,10 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <BoxShadowControl controlName={WRAPPER_SHADOW} requiredProps={requiredProps} />
-                            <BackgroundControl controlName={WRAPPER_BG} requiredProps={requiredProps} />
                             <ResDimensionsControl label="Margin" controlName={WRAPPER_MARGIN} requiredProps={requiredProps} />
                             <ResDimensionsControl label="Padding" controlName={WRAPPER_PADDING} requiredProps={requiredProps} />
+                            <BoxShadowControl controlName={WRAPPER_SHADOW} requiredProps={requiredProps} />
+                            <BackgroundControl controlName={WRAPPER_BG} requiredProps={requiredProps} />
                         </PanelBody>
                         <PanelBody title={__('Header', 'zolo-blocks')} initialOpen={false}>
                             <TypographyDropdown
@@ -585,7 +583,25 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 </>
                             )}
                         </PanelBody>
-
+                        <PanelBody title={__('Separator', 'zolo-blocks')} initialOpen={false}>
+                            <ResRangeControl
+                                label={__('Width', 'zolo-blocks')}
+                                controlName={SEPARATOR_WIDTH}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={10}
+                                step={1}
+                            />
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={separatorColor}
+                                onChange={(val) =>
+                                    setAttributes({
+                                        separatorColor: val,
+                                    })
+                                }
+                            />
+                        </PanelBody>
                         <PanelBody title={__('Features', 'zolo-blocks')} initialOpen={false}>
                             {showFeatureHeading && (
                                 <>

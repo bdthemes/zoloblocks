@@ -1,16 +1,9 @@
 //WordPress dependencies
-import { RichText, useBlockProps } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-//external dependencies
-import classnames from 'classnames';
-//internal dependencies
-import Inspector from './inspector';
 import './style.scss';
 
 //block constants
 import {
-    BLOCK_PREFIX,
     BTN_BORDER,
     BTN_RADIUS,
     BTN_HOVER_BG,
@@ -55,7 +48,9 @@ import {
     RIBBON_BORDER,
     RIBBON_RADIUS,
     RIBBON_BG,
+    SEPARATOR_WIDTH,
 } from './constants';
+
 import {
     BTN_TYPOGRAPHY,
     CBTN_TYPOGRAPHY,
@@ -71,18 +66,14 @@ import {
 } from './constants/typoPrefixConstant';
 
 const {
-    softMinifyCssStrings,
     generateBackgroundControlStyles,
     generateBorderStyle,
     generateBoxShadowStyles,
     generateDimensionStyle,
     generateTypographyStyles,
     generateResRangeStyle,
-    DynamicTag,
     generateResAlignmentStyle,
     generateTextShadowStyles,
-    generateTextStrokeStyles,
-    DisplayIcon,
     generateNormalBGControlStyles,
     GlobalStyleHanlder,
 } = window.zoloModule;
@@ -91,34 +82,6 @@ const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        zoloStyles,
-        //layout
-        styles,
-        //header
-        titleText,
-        titleTagName,
-        showDesc,
-        descText,
-        //price
-        orginalPrice,
-        pricePrefix,
-        priceSuffix,
-        price,
-        sale,
-        period,
-        //features
-        showFeatureHeading,
-        showFeatureDesc,
-        featureTitle,
-        featureDesc,
-        features,
-
-        //buttons
-        showBtn,
-        showChatBtn,
-        buttonText,
-        chatBtnText,
-
         btnTextColor,
         btnHoverTextColor,
         btnHoverBorderColor,
@@ -127,8 +90,6 @@ const Style = ({ props }) => {
         chatBtnHoverBorderColor,
 
         //ribbon
-        showRibbon,
-        ribbonTitle,
         ribbonXPosition,
         ribbonYPosition,
         ribbonRotate,
@@ -148,8 +109,8 @@ const Style = ({ props }) => {
         featureColor,
         featureIconColor,
         featureIconBgColor,
-        ribbonBgColor,
         ribbonColor,
+        separatorColor,
     } = attributes;
     //header style
     const {
@@ -647,6 +608,17 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // separator
+    const {
+        desktopRangeStyle: separatorWidthDesktop,
+        tabRangeStyle: separatorWidthTab,
+        mobRangeStyle: separatorWidthMob,
+    } = generateResRangeStyle({
+        controlName: SEPARATOR_WIDTH,
+        property: 'border-top-width',
+        attributes,
+    });
+
     //css style
     const wrapperStylesDesktop = `
 		.zolo-block-wrapper.${uniqueId}{
@@ -671,6 +643,11 @@ const Style = ({ props }) => {
 		.zolo-block-wrapper.${uniqueId}:hover::before{
 			${wrapperHoverOverlayStylesDesktop}
 		}
+    .zolo-block-wrapper.${uniqueId} .zolo-features-info {
+      ${separatorWidthDesktop}
+      border-top-style: solid;
+      border-top-color: ${separatorColor};
+    }
 	`;
     const wrapperStylesTab = `
 		.zolo-block-wrapper.${uniqueId}{
@@ -689,6 +666,9 @@ const Style = ({ props }) => {
 		.zolo-block-wrapper.${uniqueId}:hover::before{
 			${wrapperHoverOverlayStylesTab}
 		}
+    .zolo-block-wrapper.${uniqueId} .zolo-features-info {
+      ${separatorWidthTab}
+    }
 	`;
     const wrapperStylesMobile = `
 		.zolo-block-wrapper.${uniqueId}{
@@ -707,6 +687,9 @@ const Style = ({ props }) => {
 		.zolo-block-wrapper.${uniqueId}::before:hover{
 			${wrapperHoverOverlayStylesMobile}
 		}
+    .zolo-block-wrapper.${uniqueId} .zolo-features-info {
+      ${separatorWidthMob}
+    }
 	`;
 
     const headerStylesDesktop = `

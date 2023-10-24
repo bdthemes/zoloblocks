@@ -90,6 +90,7 @@ function Inspector(props) {
         iconBackgroundHoverColor,
         textColor,
         textHoverColor,
+        descColor,
         showHeading,
         showDesc,
         showButton,
@@ -119,7 +120,7 @@ function Inspector(props) {
                     <>
                         <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
-                                label={__('Preset Designs', 'zolo-blocks')}
+                                label={__('Presets', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
                                 onChange={(value) =>
@@ -129,7 +130,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Icon / Image', 'zolo-blocks')}
+                                label={__('Show Icon', 'zolo-blocks')}
                                 checked={showMainIcon}
                                 onChange={() =>
                                     setAttributes({
@@ -200,7 +201,7 @@ function Inspector(props) {
                                         }
                                         options={ICON_BOX_OPTIONS}
                                     />
-                                    {iconType == 'icon' && (
+                                    {iconType === 'icon' && (
                                         <Fragment>
                                             <IconPicker
                                                 value={mainIcon}
@@ -209,11 +210,12 @@ function Inspector(props) {
                                                         mainIcon: value,
                                                     })
                                                 }
+                                                disableDashicon={true}
                                             />
                                         </Fragment>
                                     )}
 
-                                    {iconType == 'image' && (
+                                    {iconType === 'image' && (
                                         <BaseControl label={__('Photo', 'zolo-blocks')}>
                                             {iconTypeImage ? (
                                                 <ImageAvatar
@@ -314,6 +316,7 @@ function Inspector(props) {
                                                 buttonIcon: value,
                                             })
                                         }
+                                        disableDashicon={true}
                                     />
                                 </Fragment>
                             </PanelBody>
@@ -543,6 +546,8 @@ function Inspector(props) {
                                         label={__('Image Size', 'zolo-blocks')}
                                         controlName={ICON_IMAGE_SIZE}
                                         requiredProps={requiredProps}
+                                        min={0}
+                                        max={500}
                                     />
                                     {(preset == 'style-2' || preset == 'style-3') && (
                                         <IconicBtnGroup
@@ -627,7 +632,15 @@ function Inspector(props) {
                                 typoPrefixConstant={DESCRIPTION_TYPOGRAPHY}
                                 requiredProps={requiredProps}
                             />
-
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={descColor}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        descColor: value,
+                                    })
+                                }
+                            />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={DESCRIPTION_MARGIN}

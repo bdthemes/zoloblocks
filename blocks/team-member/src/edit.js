@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, MediaPlaceholder, MediaUpload } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -12,65 +12,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    generateResAlignmentStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    generateBoxShadowStyles,
-    DisplayIcon,
-    generateNormalBGControlStyles,
-    classArrayToStr,
-} = window.zoloModule;
-
-import {
-    BLOCK_PREFIX,
-    CONTAINER_BG,
-    CONTENT_BG,
-    CONTENT_ALIGNMENT,
-    CONTENT_PADDING,
-    CONTENT_MARGIN,
-    CONTENT_BORDER,
-    CONTENT_BORDER_RADIUS,
-    CONTENT_BOX_SHADOW,
-    ICONS_BG,
-    ICONS_HOVER_BG,
-    ICONS_BORDER,
-    ICONS_BORDER_RADIUS,
-    ICONS_BOX_SHADOW,
-    ICONS_HOVER_BOX_SHADOW,
-    ICONS_PADDING,
-    ICONS_SIZE,
-    ICONS_SPACING,
-    TEAM_DESIGNATION_MARGIN,
-    TEAM_NAME_MARGIN,
-    PHOTO_BG,
-    TEAM_PHOTO_BORDER,
-    TEAM_PHOTO_BORDER_RADIUS,
-    TEAM_PHOTO_BOX_SHADOW,
-    TEAM_PHOTO_MARGIN,
-    TEAM_PHOTO_PADDING,
-    TEAM_SHORT_BIO_MARGIN,
-    DETAIL_PAGE_LINK_BG,
-    DETAIL_PAGE_LINK_HOVER_BG,
-    DPL_HEIGHT,
-    DPL_WIDTH,
-    DPL_BORDER,
-    DPL_BORDER_RADIUS,
-    DPL_PADDING,
-    DPL_MARGIN,
-    DPL_ICON_SIZE,
-    TEAM_MEMBER_CONTAINER_PADDING,
-    TEAM_MEMBER_CONTAINER_MARGIN,
-} from './constants';
-
-import {
-    TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
-    TEAM_MEMBER_NAME_TYPOGRAPHY,
-    TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
-} from './constants/typoPrefixConstants';
+const { DisplayIcon, classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -78,14 +20,11 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected } = props;
     const {
         uniqueId,
         preset,
         parentClasses,
-        blurBgColor,
-        blurBgOpacity,
-        zoloStyles,
         memberPhoto,
         memberName,
         addDetailPageLink,
@@ -97,17 +36,7 @@ export default function Edit(props) {
         memberShortBio,
         showSocialProfiles,
         socialProfiles,
-        nameColor,
-        nameLinkColor,
-        nameHoverColor,
-        designationColor,
-        shortBioColor,
-        separatorColor,
-        iconColor,
-        iconHoverColor,
-        iconHoverBorderColor,
-        detailPageIconColor,
-        detailPageIconHoverColor,
+        detailIcon,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -221,7 +150,7 @@ export default function Edit(props) {
                                         rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
                                         target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
                                     >
-                                        <i className="fa-solid fa-arrow-right" />
+                                        <DisplayIcon icon={detailIcon} />
                                     </a>
                                 </div>
                             )}
@@ -270,7 +199,7 @@ export default function Edit(props) {
                                     rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
                                     target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
                                 >
-                                    <i className="fa-solid fa-arrow-right" />
+                                    <DisplayIcon icon={detailIcon} />
                                 </a>
                             </div>
                         )}

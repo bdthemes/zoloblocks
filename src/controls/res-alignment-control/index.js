@@ -3,7 +3,7 @@ import IconicBtnGroup from '../iconic-btn-group';
 
 import { DEFAULT_ALIGNS } from '../../global/constants';
 
-const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions }) => {
+const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions, customClass = '' }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
 
     const {
@@ -14,7 +14,7 @@ const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions }
 
     const defaultAlign = alignOptions && Array.isArray(alignOptions) ? alignOptions : DEFAULT_ALIGNS;
     return (
-        <div className="zb-res-alignment-control-wrapper">
+        <div className={`zb-res-alignment-control-wrapper ${customClass}`}>
             {resMode == 'Desktop' && (
                 <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
                     <IconicBtnGroup

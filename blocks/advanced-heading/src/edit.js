@@ -1,6 +1,5 @@
 //WordPress dependencies
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
 //external dependencies
 import classnames from 'classnames';
 //internal dependencies
@@ -11,7 +10,7 @@ import './style.scss';
 const { DynamicTag, DisplayIcon, classArrayToStr } = window.zoloModule;
 
 const Edit = (props) => {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes, isSelected } = props;
     const {
         uniqueId,
         parentClasses,
@@ -33,7 +32,7 @@ const Edit = (props) => {
 
     //block wrapper class
     const blockProps = useBlockProps({
-        className: classnames(className, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
     return (

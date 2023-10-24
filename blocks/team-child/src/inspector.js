@@ -22,6 +22,7 @@ const {
     HeaderTabs,
     LinkControl,
     AdvancedOptions,
+    IconPicker,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -30,7 +31,7 @@ import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 import objAttributes from './attributes';
 import {
-    CONTAINER_BG,
+    CONTENT_BG,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
     CONTENT_MARGIN,
@@ -64,8 +65,6 @@ import {
     DPL_PADDING,
     DPL_MARGIN,
     DPL_ICON_SIZE,
-    TEAM_MEMBER_CONTAINER_PADDING,
-    TEAM_MEMBER_CONTAINER_MARGIN,
 } from './constants';
 
 import {
@@ -103,6 +102,7 @@ function Inspector(props) {
         iconHoverBorderColor,
         detailPageIconColor,
         detailPageIconHoverColor,
+        detailIcon,
     } = attributes;
 
     const requiredProps = {
@@ -214,6 +214,17 @@ function Inspector(props) {
                                 <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
                             </PanelBody>
                         )}
+                        {showDetailPageIcon && (
+                            <PanelBody title={__('Details Page Icon', 'zolo-blocks')} initialOpen={false}>
+                                <IconPicker
+                                    label={__('Select Icon', 'zolo-blocks')}
+                                    icon={detailIcon}
+                                    onChange={(icon) => setAttributes({ detailIcon: icon })}
+                                    value={detailIcon}
+                                    disableDashicon={true}
+                                />
+                            </PanelBody>
+                        )}
                     </>
                 }
                 styleTab={
@@ -263,7 +274,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BG} noMainBGImg={false} />
+                            <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
                         </PanelBody>
                         <PanelBody title={__('Photo', 'zolo-blocks')} initialOpen={false}>
                             <NormalBGControl requiredProps={requiredProps} controlName={PHOTO_BG} noMainBGImg={true} />

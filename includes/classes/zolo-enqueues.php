@@ -44,8 +44,7 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
             add_action( 'enqueue_block_editor_assets', [$this, 'editor_assets_loader'] );
 
             // enqueue style for both editor and frontend
-            // add_action('admin_init', array($this, 'block_assets_loader'));
-            add_action( 'enqueue_block_assets', [$this, 'block_assets_loader'] );
+            add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
         }
 
         /**
@@ -59,6 +58,24 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
                 ZOLO_ADMIN_URL . 'build/dist/style.css',
                 [],
                 ZOLO_VERSION
+            );
+
+            //Register vendor bundle
+            $dependency_path  = ZOLO_DIR_PATH . 'vendor-bundle/index.asset.php';
+            $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
+                'dependencies' => [],
+                'version'      => ZOLO_VERSION
+            ];
+
+            $version = $script_dependecy['version'];
+
+            // Enqueue vendor bundle Scripts
+            wp_register_script(
+                'zolo-block-editor-dependency',
+                ZOLO_ADMIN_URL . 'vendor-bundle/index.js',
+                $script_dependecy['dependencies'],
+                $version,
+                true
             );
 
             // enqueue fontawesome icons

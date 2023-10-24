@@ -33,7 +33,7 @@ const Save = ({ attributes }) => {
     } = attributes;
 
     const blockprops = useBlockProps.save({
-        className: classnames(classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
     const pricingPeriod = period.length !== 0 && period.split(',');

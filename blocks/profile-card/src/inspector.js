@@ -17,7 +17,6 @@ const {
     NormalBGControl,
     BoxShadowControl,
     ImageAvatar,
-    IconPicker,
     TabPanelControl,
     HeaderTabs,
     LinkControl,
@@ -124,15 +123,6 @@ function Inspector(props) {
         setAttributes,
         attributes,
         objAttributes,
-    };
-
-    const setProfileIcon = (value, index) => {
-        let profile = [...socialProfiles];
-        profile[index] = {
-            ...profile[index],
-            icon: { ...value },
-        };
-        setAttributes({ socialProfiles: [...profile] });
     };
 
     return (

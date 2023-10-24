@@ -18,6 +18,7 @@ const Save = ({ attributes }) => {
         memberShortBio,
         showSocialProfiles,
         socialProfiles,
+        detailIcon,
     } = attributes;
 
     return (
@@ -68,7 +69,7 @@ const Save = ({ attributes }) => {
                                     rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
                                     target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
                                 >
-                                    <i className="fa-solid fa-arrow-right" />
+                                    <DisplayIcon icon={detailIcon} />
                                 </a>
                             </div>
                         )}
@@ -106,7 +107,7 @@ const Save = ({ attributes }) => {
                                 rel={memberDetailPageLink && memberDetailPageLink.opensInNewTab && 'noreferer noopener'}
                                 target={memberDetailPageLink && memberDetailPageLink.opensInNewTab && '_blank'}
                             >
-                                <i className="fa-solid fa-arrow-right" />
+                                <DisplayIcon icon={detailIcon} />
                             </a>
                         </div>
                     )}

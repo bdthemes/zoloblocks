@@ -4,22 +4,19 @@ import { useEffect, useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import { Spinner } from '@wordpress/components';
 import classnames from 'classnames';
-import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
-import styles from './styles';
 import RenderView from './render-view';
 import './style.scss';
 
-const { softMinifyCssStrings, Pagination, classArrayToStr } = window.zoloModule;
+const { Pagination, classArrayToStr } = window.zoloModule;
 
 import Style from './styles';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes, className, isSelected } = props;
     const { uniqueId, parentClasses, postQuery, preset, page } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId} zolo-post-grid-wrap zolo-post-${preset}`, classArrayToStr(parentClasses)),
     });

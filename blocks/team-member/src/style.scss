@@ -79,6 +79,10 @@
         position: relative;
     }
 
+    &.default {
+        overflow: visible;
+    }
+
     /*
 	* Common Style
 	*/

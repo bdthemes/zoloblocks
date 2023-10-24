@@ -1,11 +1,9 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, InnerBlocks, useInnerBlocksProps, BlockControls } from '@wordpress/block-editor';
+import { useBlockProps, useInnerBlocksProps, BlockControls } from '@wordpress/block-editor';
 const { Fragment, useEffect, useRef } = wp.element;
 import { useDispatch } from '@wordpress/data';
-import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
@@ -15,48 +13,14 @@ import { createBlock } from '@wordpress/blocks';
  * Internal dependencies
  */
 import Inspector from './inspector';
-const {
-    generateResRangeStyle,
-    generateResCounterStyle,
-    generateDimensionStyle,
-    generateBorderStyle,
-    generateNormalBGControlStyles,
-    generateTypographyStyle,
-    generateDimensionsStyle,
-    softMinifyCssStrings,
-    classArrayToStr,
-} = window.zoloModule;
+const { generateResRangeStyle, generateResCounterStyle, classArrayToStr } = window.zoloModule;
 
 // Constants
-import {
-    BLOCK_PREFIX,
-    COLUMNS,
-    COLUMNS_GAP,
-    SLIDER_HEIGHT,
-    CONTENT_WIDTH,
-    CONTENT_PADDING,
-    NAV_WIDTH,
-    NAV_HEIGHT,
-    NAV_BORDER,
-    NAV_BORDER_RADIUS,
-    NAV_BG,
-    NAV_HOVER_BG,
-    NAV_ICON_SIZE,
-    PAG_WIDTH,
-    PAG_HEIGHT,
-    PAG_BORDER,
-    PAG_BORDER_RADIUS,
-    PAG_BG,
-    PAG_SPACING,
-    APAG_WIDTH,
-    APAG_HEIGHT,
-    APAG_BORDER,
-    APAG_BORDER_RADIUS,
-    APAG_BG,
-} from './constants';
+import { COLUMNS, COLUMNS_GAP } from './constants';
 
 // import style
 import Style from './style';
+import { DisplayIcon } from 'wordpress-icon-picker';
 
 /**
  * Edit function
@@ -67,7 +31,6 @@ export default function Edit(props) {
     const {
         uniqueId,
         parentClasses,
-        zoloStyles,
         slideItems,
         sliderType,
         autoplay,
@@ -75,16 +38,16 @@ export default function Edit(props) {
         pauseOnMouseEnter,
         infiniteLoop,
         showNavigation,
-        navColor,
-        navHoverColor,
         showPagination,
         paginationType,
         dynamicBullets,
         speed,
         carouselEffect,
         sliderEffect,
-        sliderOptions,
         addNewSlideBlock,
+        customNavIcon,
+        prevNavIcon,
+        nextNavIcon,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -178,7 +141,12 @@ export default function Edit(props) {
             speed: speed * 100,
             effect: sliderType === 'carousel' ? carouselEffect : sliderEffect,
             autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
-            navigation: showNavigation ? { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' } : false,
+            navigation: showNavigation
+                ? {
+                      nextEl: customNavIcon ? '.swiper-zolo-next' : '.swiper-button-next',
+                      prevEl: customNavIcon ? '.swiper-zolo-prev' : '.swiper-button-prev',
+                  }
+                : false,
             pagination: showPagination
                 ? {
                       el: '.swiper-pagination',
@@ -238,6 +206,10 @@ export default function Edit(props) {
                 [data-type="zolo/slide"] {
                     height: 100%;
                 }
+                [data-type="zolo/slider"] {
+                    border: 2px dashed #ccc;
+                    padding: 10px;                
+                }
             `}</style>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <BlockControls>
@@ -251,9 +223,27 @@ export default function Edit(props) {
                     {showPagination && <div class="swiper-pagination swiper-pagination-position-bottom"></div>}
                     {showNavigation && (
                         <Fragment>
-                            <div className="swiper-navigation-wrap  swiper-navigation-position-center">
-                                <div className="swiper-nav-button swiper-button-prev"></div>
-                                <div className="swiper-nav-button swiper-button-next"></div>
+                            <div
+                                className={`swiper-navigation-wrap  swiper-navigation-position-center ${
+                                    customNavIcon ? 'zolo-custom-nav' : ''
+                                }`}
+                            >
+                                {customNavIcon && (
+                                    <>
+                                        <div className="swiper-nav-button swiper-zolo-prev">
+                                            <DisplayIcon icon={prevNavIcon} />
+                                        </div>
+                                        <div className="swiper-nav-button swiper-zolo-next">
+                                            <DisplayIcon icon={nextNavIcon} />
+                                        </div>
+                                    </>
+                                )}
+                                {!customNavIcon && (
+                                    <>
+                                        <div className="swiper-nav-button swiper-button-prev"></div>
+                                        <div className="swiper-nav-button swiper-button-next"></div>
+                                    </>
+                                )}
                             </div>
                         </Fragment>
                     )}

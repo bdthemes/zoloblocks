@@ -176,6 +176,7 @@ const attributes = {
     },
     icon: {
         type: 'string',
+        default: 'fas fa-arrow-right',
     },
     iconPosition: {
         type: 'string',

@@ -10,15 +10,6 @@ import { Button, PanelBody, TextControl } from '@wordpress/components';
 const { IconPicker, SortableItem, SortableControl } = window.zoloModule;
 
 const Sortable = ({ features, setAttributes }) => {
-    // set feature icon
-    const setProfileIcon = (value, index) => {
-        let feature = [...features];
-        feature[index] = {
-            ...feature[index],
-            icon: { ...value },
-        };
-        setAttributes({ features: [...feature] });
-    };
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
@@ -31,13 +22,7 @@ const Sortable = ({ features, setAttributes }) => {
                                 {
                                     id: features.length + 1,
                                     text: `List Item #${features.length + 1}`,
-                                    icon: {
-                                        'fa-check': {
-                                            name: 'check',
-                                            source: 'fontawesome',
-                                            type: 'fas',
-                                        },
-                                    },
+                                    icon: 'fas fa-check',
                                 },
                             ],
                         });
@@ -80,8 +65,15 @@ const Sortable = ({ features, setAttributes }) => {
                                         />
                                         <IconPicker
                                             value={feature.icon}
-                                            onChange={(value) => setProfileIcon(value, index)}
+                                            onChange={(value) => {
+                                                const newItems = [...features];
+                                                newItems[index].icon = value;
+                                                setAttributes({
+                                                    features: newItems,
+                                                });
+                                            }}
                                             showHeading={false}
+                                            disableDashicon={true}
                                         />
                                     </PanelBody>
                                 </SortableItem>

@@ -1,42 +1,21 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import {
-    PanelBody,
-    GradientPicker,
-    ToggleControl,
-    TextControl,
-    TextareaControl,
-    BaseControl,
-    Button,
-    RangeControl,
-    SelectControl,
-    Card,
-    CardDivider,
-    CardBody,
-    CardHeader,
-} from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, BaseControl, SelectControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
 const {
-    ResAlignmentControl,
     ResRangeControl,
     ColorControl,
     BorderControl,
     ResDimensionsControl,
-    TypographyDropdown,
-    BoxShadowControl,
-    ImageAvatar,
-    LinkControl,
     NormalBGControl,
     HeaderTabs,
     TabPanelControl,
-    IconicBtnGroup,
-    GradientControl,
     AdvancedOptions,
     IconPicker,
 } = window.zoloModule;

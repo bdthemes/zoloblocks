@@ -211,6 +211,18 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+    customNavIcon: {
+        type: 'boolean',
+        default: false,
+    },
+    prevNavIcon: {
+        type: 'string',
+        default: 'fas fa-arrow-left',
+    },
+    nextNavIcon: {
+        type: 'string',
+        default: 'fas fa-arrow-right',
+    },
     // Generator
     ...generateResCounterAttributies(COLUMNS),
     ...generateResRangeAttributies(COLUMNS_GAP),

@@ -9,7 +9,8 @@
     "textdomain": "zolo-blocks",
     "supports": {
         "anchor": false,
-        "align": ["wide", "full"]
+        "align": ["wide", "full"],
+        "customClassName": false
     },
     "editorScript": ""
 }

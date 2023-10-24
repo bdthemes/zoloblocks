@@ -1,22 +1,12 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, BlockControls, MediaPlaceholder, MediaUpload } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
-/**
- * External dependencies
- */
-import classnames from 'classnames';
 
 /**
  * Internal depencencies
  */
 const {
-    softMinifyCssStrings,
-    StarRating,
     generateResAlignmentStyle,
     generateBorderStyle,
     generateDimensionStyle,
@@ -28,7 +18,6 @@ const {
 } = window.zoloModule;
 
 import {
-    BLOCK_PREFIX,
     CONTAINER_BACKGROUND,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
@@ -65,24 +54,11 @@ import {
 import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, clientId, isSelected, context } = props;
+    const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        preset,
         blurBgOpacity,
-        zoloStyles,
-        showPhoto,
-        memberPhoto,
-        showName,
-        memberName,
-        showDesignation,
-        showTestimonialMessage,
-        testimonialMessage,
-        memberDesignation,
         addReviewerWebsiteLink,
-        reviewerWebsiteLink,
-        showRating,
-        rating,
         nameColor,
         nameHoverColor,
         nameLinkColor,
@@ -524,10 +500,10 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
 			${ratingIconWidthDesk}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .filled-star, .${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .fraction-star {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .filled-star svg, .${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .fraction-star svg {
 			${activeRatingColor ? `fill: ${activeRatingColor};` : ''}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .empty-star {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .empty-star svg {
 			${inactiveRatingColor ? `fill: ${inactiveRatingColor};` : ''}
 		}
         .${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn a {

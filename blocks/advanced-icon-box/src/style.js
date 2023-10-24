@@ -1,16 +1,12 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import classnames from 'classnames';
+
 /**
  * Internal depencencies
  */
 const {
-    softMinifyCssStrings,
     generateResAlignmentStyle,
     generateNormalBGControlStyles,
     generateResRangeStyle,
@@ -20,12 +16,10 @@ const {
     generateBoxShadowStyles,
     generateTextShadowStyles,
     generateTextStrokeStyles,
-    DisplayIcon,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
 import {
-    BLOCK_PREFIX,
     CONTAINER_BACKGROUND,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
@@ -63,20 +57,11 @@ import {
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Style({ props }) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes } = props;
     const {
         uniqueId,
         preset,
-        titleTag,
-        zoloStyles,
-        showButtonIcon,
-        mainIcon,
         containerBorderHoverColor,
-        buttonIcon,
-        showMainIcon,
-        showHeading,
-        showDesc,
-        showButton,
         textColor,
         textHoverColor,
         descColor,
@@ -87,11 +72,6 @@ export default function Style({ props }) {
         iconBorderHoverColor,
         iconBackgroundColor,
         iconBackgroundHoverColor,
-        iconType,
-        iconTypeImage,
-        iconBoxTitle,
-        iconBoxDescription,
-        buttonText,
         btnColor,
         btnHoverColor,
         btnBgHoverColor,
@@ -394,28 +374,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    // generate button icon height
-    const {
-        desktopRangeStyle: buttonIconHeight,
-        tabRangeStyle: buttonIconHeightTab,
-        mobRangeStyle: buttonIconHeightMob,
-    } = generateResRangeStyle({
-        controlName: BUTTON_ICON_SIZE,
-        property: 'height',
-        attributes,
-    });
-
-    // generate button icon width
-    const {
-        desktopRangeStyle: buttonIconWidth,
-        tabRangeStyle: buttonIconWidthTab,
-        mobRangeStyle: buttonIconWidthMob,
-    } = generateResRangeStyle({
-        controlName: BUTTON_ICON_SIZE,
-        property: 'width',
-        attributes,
-    });
-
     // generate button style
     const {
         desktopBorderStyle: buttonBorderStyles,
@@ -522,7 +480,7 @@ export default function Style({ props }) {
 			${iconPaddingDesktop}
 			${iconMarginDesktop}
 			${iconBoxShadow}
-			}
+		}
 		.${uniqueId} .zolo-block-icon-wrap i:hover{
 			background: ${iconBackgroundHoverColor ? iconBackgroundHoverColor : ''};
 			color: ${iconHoverColor ? iconHoverColor : ''};
@@ -551,14 +509,12 @@ export default function Style({ props }) {
 			border-color: ${btnHoverBorderColor ? btnHoverBorderColor : ''}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button i{
 			color: ${buttonIconColor};
 			${buttonIconSize}
-			${buttonIconHeight}
-			${buttonIconWidth}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover i{
 			color: ${buttonIconHoverColor}
 		}
 
@@ -645,10 +601,8 @@ export default function Style({ props }) {
 			${iconImageBorderTab}
 			${iconImageBorderRadiusTab}
 		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button i{
 			${buttonIconSizeTab}
-			${buttonIconHeightTab}
-			${buttonIconWidthTab}
 		}
 		.${uniqueId} .zolo-block-body-content .zolo-box-button {
 			${gapTab}
@@ -694,10 +648,8 @@ export default function Style({ props }) {
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button span{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button i{
 			${buttonIconSizeMob}
-			${buttonIconHeightMob}
-			${buttonIconWidthMob}
 		}
 		.${uniqueId} .zolo-block-body-content .zolo-box-button {
 			${gapMob}

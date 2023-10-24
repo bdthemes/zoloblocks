@@ -1,14 +1,10 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, BlockControls, useInnerBlocksProps, InnerBlocks } from '@wordpress/block-editor';
-import { Fragment, useEffect, useRef } from '@wordpress/element';
+import { useBlockProps, BlockControls, useInnerBlocksProps } from '@wordpress/block-editor';
+import { useEffect } from '@wordpress/element';
 import { Button, ToolbarButton, ToolbarGroup } from '@wordpress/components';
-import { createHigherOrderComponent } from '@wordpress/compose';
-import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-import { dispatch, select } from '@wordpress/data';
-import { createBlock } from '@wordpress/blocks';
 
 /**
  * External dependencies
@@ -18,21 +14,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    StarRating,
-    generateResAlignmentStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    generateBoxShadowStyles,
-    generateNormalBGControlStyles,
-    generateBackgroundControlStyles,
-    classArrayToStr,
-} = window.zoloModule;
-
-import { BLOCK_PREFIX, SLIDE_BG, SLIDE_PADDING, SLIDE_BORDER, SLIDE_BORDER_RADIUS } from './constants';
+const { classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -45,13 +27,12 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, parentClasses, zoloStyles, addAccordion, enableOverlay, overlayType, overlayColor, overlayGradient, totalItems } =
-        attributes;
+    const { uniqueId, parentClasses, totalItems } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
+        className: classnames(className, uniqueId, classArrayToStr(parentClasses)),
     });
 
     // get inner blocks array
@@ -59,7 +40,7 @@ export default function Edit(props) {
     const innerBlocksArray = innerBlocks && innerBlocks.innerBlocks;
     // set total items
     setAttributes({
-        totalItems: innerBlocksArray.length,
+        totalItems: innerBlocksArray && innerBlocksArray.length,
     });
 
     useEffect(() => {

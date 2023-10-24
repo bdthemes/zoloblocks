@@ -1,12 +1,12 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, InnerBlocks, useInnerBlocksProps } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
+import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
+
+const { classArrayToStr } = window.zoloModule;
 
 /**
  * External dependencies
@@ -16,21 +16,6 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    StarRating,
-    generateResAlignmentStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateResRangeStyle,
-    generateBoxShadowStyles,
-    generateNormalBGControlStyles,
-    generateBackgroundControlStyles,
-} = window.zoloModule;
-
-import { BLOCK_PREFIX, SLIDE_BG, SLIDE_PADDING, SLIDE_BORDER, SLIDE_BORDER_RADIUS } from './constants';
-
 import Inspector from './inspector';
 
 // import Style
@@ -61,12 +46,12 @@ addFilter('editor.BlockListBlock', 'zolo/slide', zoloSlide);
  */
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, zoloStyles, enableOverlay, overlayType, overlayColor, overlayGradient } = attributes;
+    const { attributes, setAttributes, isSelected } = props;
+    const { uniqueId, parentClasses } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`),
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
     const innerBlocksProps = useInnerBlocksProps(

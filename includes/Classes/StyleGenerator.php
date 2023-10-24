@@ -40,6 +40,10 @@ class StyleGenerator {
             do_action('zolo_block_render_block', $block);
             if ( isset( $block['attrs']['zoloStyles'] ) ) {
                 $style         = $this::zolo_generate_style( $block['attrs']['zoloStyles'] );
+
+                // minify style string
+                $style = preg_replace( '/\s+/', ' ', $style );
+
                 $block_content = sprintf(
                     '<style>%1$s</style>%2$s',
                     $style,
@@ -59,10 +63,10 @@ class StyleGenerator {
         if ( isset( $style['desktop'] ) && strlen( $style['desktop'] ) > 0 ) {
             $css .= $style['desktop'];
         }
-        if ( isset( $style['tablet'] ) && strlen( $style['tablet'] ) > 0 ) {
+        if ( isset( $style['tab'] ) && strlen( $style['tab'] ) > 0 ) {
             $css .= sprintf(
                 '@media all and (max-width: 1024px) {%1$s}',
-                $style['tablet']
+                $style['tab']
             );
         }
         if ( isset( $style['mobile'] ) && strlen( $style['mobile'] ) > 0 ) {

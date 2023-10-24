@@ -55,7 +55,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                                         })
                                     }
                                     min={min || 0}
-                                    max={max || 100}
+                                    max={sizeUnit === '%' ? 100 : max || 100}
                                     step={step || 1}
                                 />
                             </WithResDeviceBtn>
@@ -72,7 +72,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                                     })
                                 }
                                 min={min || 0}
-                                max={max || 100}
+                                max={TABsizeUnit === '%' ? 100 : max || 100}
                                 step={step || 1}
                             />
                         </WithResDeviceBtn>
@@ -88,7 +88,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                                     })
                                 }
                                 min={min || 0}
-                                max={max || 100}
+                                max={MOBsizeUnit === '%' ? 100 : max || 100}
                                 step={step || 1}
                             />
                         </WithResDeviceBtn>
@@ -125,7 +125,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                                         })
                                     }
                                     min={min || 0}
-                                    max={max || 100}
+                                    max={sizeUnit === '%' ? 100 : max || 100}
                                     step={step || 1}
                                 />
                             </WithResDeviceBtn>
@@ -160,7 +160,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                                         })
                                     }
                                     min={min || 0}
-                                    max={max || 100}
+                                    max={TABsizeUnit === '%' ? 100 : max || 100}
                                     step={step || 1}
                                 />
                             </WithResDeviceBtn>
@@ -195,7 +195,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                                         })
                                     }
                                     min={min || 0}
-                                    max={max || 100}
+                                    max={MOBsizeUnit === '%' ? 100 : max || 100}
                                     step={step || 1}
                                 />
                             </WithResDeviceBtn>

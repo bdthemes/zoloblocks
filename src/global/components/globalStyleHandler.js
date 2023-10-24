@@ -144,20 +144,6 @@ export const GlobalStyleHanlder = (props) => {
     }
   `;
 
-    // Set All Style in "zoloStyles" Attribute
-    useEffect(() => {
-        const styles = {
-            desktop: desktopAllStyle + desktopGlobalStyles,
-            tab: tabAllStyle + tabGlobalStyles,
-            mobile: mobileAllStyle + mobileGlobalStyles,
-        };
-        if (JSON.stringify(zoloStyles) != JSON.stringify(styles)) {
-            setAttributes({
-                zoloStyles: { ...styles },
-            });
-        }
-    }, [attributes]);
-
     const allStyle = `
 		${desktopAllStyle + desktopGlobalStyles}
 		@media all and (max-width: 1024px) {
@@ -167,6 +153,20 @@ export const GlobalStyleHanlder = (props) => {
 			${mobileAllStyle + mobileGlobalStyles}
 		}
 	`;
+
+    // Set All Style in "zoloStyles" Attribute
+    useEffect(() => {
+        const styles = {
+            desktop: desktopAllStyle + desktopGlobalStyles,
+            tab: tabAllStyle + tabGlobalStyles,
+            mobile: mobileAllStyle + mobileGlobalStyles,
+        };
+        if (JSON.stringify(zoloStyles) !== JSON.stringify(styles)) {
+            setAttributes({
+                zoloStyles: { ...styles },
+            });
+        }
+    }, [attributes]);
 
     return (
         <>
