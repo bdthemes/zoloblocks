@@ -216,9 +216,51 @@ export const FLEX_DIRECTIONS = [
         label: 'Column',
         value: 'column',
         icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 5V19" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M19 12L12 19L5 12" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M16.391 6.72949L16.391 17.1923"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M16.3909 17.1923L18.606 15.2941"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M16.391 17.1923L14.176 15.2941"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M7.65393 6.72949L7.65393 17.1923"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M7.65381 17.1923L9.85767 15.2941"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M7.65393 17.1923L5.43889 15.2941"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M3 3L21 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 21L21 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         ),
     },
@@ -226,9 +268,51 @@ export const FLEX_DIRECTIONS = [
         label: 'Row Reverse',
         value: 'row-reverse',
         icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 12H5" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 19L5 12L12 5" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M17.2705 16.391L6.80771 16.391"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M6.80767 16.3909L8.70593 18.606"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M6.80767 16.391L8.70593 14.176"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M17.2705 7.65393L6.80771 7.65393"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M6.80767 7.65381L8.70593 9.85767"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M6.80767 7.65393L8.70593 5.43889"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M21 3L21 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 3L3 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         ),
     },
@@ -236,9 +320,51 @@ export const FLEX_DIRECTIONS = [
         label: 'Column Reverse',
         value: 'column-reverse',
         icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 19V5" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M5 12L12 5L19 12" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M7.60901 17.2705L7.60901 6.80771"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M7.60908 6.80767L5.39404 8.70593"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M7.60901 6.80767L9.82405 8.70593"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M16.3461 17.2705L16.3461 6.80771"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M16.3462 6.80767L14.1423 8.70593"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M16.3461 6.80767L18.5611 8.70593"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M21 21L3 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 3L3 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         ),
     },
@@ -248,22 +374,131 @@ export const FLEX_ALIGNS = [
     {
         label: 'Flex Start',
         value: 'flex-start',
-        icon: <Dashicon icon="arrow-left-alt2" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.142 16.6062V7.48108" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7.15051 16.6062V7.48108" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
     },
     {
         label: 'Center',
         value: 'center',
-        icon: <Dashicon icon="arrow-up-alt" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.46875 7.44006V16.5707" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M14.4974 7.44006V16.5707" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
     },
     {
         label: 'Flex End',
         value: 'flex-end',
-        icon: <Dashicon icon="arrow-right-alt2" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.858 7.39404V16.5191" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16.8495 7.39404V16.5191" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 21V3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 21V3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
     },
     {
         label: 'Stretch',
         value: 'stretch',
-        icon: <Dashicon icon="arrow-down-alt" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.86999 15.69L7.87 8.88" stroke="#4D4D4D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M4.03003 3.96997L4.03003 20.51"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M20.51 3.96997L20.51 20.51" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16.67 15.69L16.67 8.88" stroke="#4D4D4D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
+    },
+];
+
+export const FLEX_ALIGNS_ROW = [
+    {
+        label: 'Flex Start',
+        value: 'flex-start',
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.39385 12.142L16.5189 12.142" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M7.39385 7.15051L16.5189 7.15051"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M21 3L3 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 21L3 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Center',
+        value: 'center',
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M16.5599 9.46875L7.42934 9.46875"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M16.5599 14.4974L7.42934 14.4974"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M21 3L3 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 21L3 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Flex End',
+        value: 'flex-end',
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.606 11.858L7.48088 11.858" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M16.606 16.8495L7.48088 16.8495"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M3 21L21 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 3L21 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Stretch',
+        value: 'stretch',
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.72 16.64H8.91003" stroke="#4D4D4D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M4 20.48H20.54" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M4 4H20.54" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M15.72 7.83997H8.91003" stroke="#4D4D4D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
     },
 ];
 
@@ -271,32 +506,203 @@ export const FLEX_JUSTIFIES = [
     {
         label: 'Flex Start',
         value: 'flex-start',
-        icon: <Dashicon icon="arrow-left-alt2" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.39385 12.142L16.5189 12.142" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M7.39385 7.15051L16.5189 7.15051"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M21 3L3 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 21L3 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
     },
     {
         label: 'Center',
         value: 'center',
-        icon: <Dashicon icon="arrow-up-alt" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M16.5599 9.46875L7.42934 9.46875"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M16.5599 14.4974L7.42934 14.4974"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M21 3L3 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 21L3 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
     },
     {
         label: 'Flex End',
         value: 'flex-end',
-        icon: <Dashicon icon="arrow-right-alt2" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.606 11.858L7.48088 11.858" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M16.606 16.8495L7.48088 16.8495"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M3 21L21 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 3L21 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
     },
     {
         label: 'Space Between',
         value: 'space-between',
-        icon: <Dashicon icon="arrow-left-alt2" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.606 7.1615L7.48088 7.1615" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M16.606 16.8386L7.48088 16.8386"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M3 21L21 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 3L21 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
     },
     {
         label: 'Space Around',
         value: 'space-around',
-        icon: <Dashicon icon="arrow-up-alt" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M16.6713 8.21777L7.54619 8.21777"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M16.606 15.8041L7.48088 15.8041"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M3 21L21 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 3L21 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
     },
     {
         label: 'Space Evenly',
         value: 'space-evenly',
-        icon: <Dashicon icon="arrow-right-alt2" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M16.606 8.73425L7.48088 8.73425"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M16.606 15.2767L7.48088 15.2767"
+                    stroke="#4D4D4D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path d="M3 21L21 21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 3L21 3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
+    },
+];
+
+export const FLEX_JUSTIFIES_ROW = [
+    {
+        label: 'Flex Start',
+        value: 'flex-start',
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.142 16.6062V7.48108" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7.15051 16.6062V7.48108" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Center',
+        value: 'center',
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.46875 7.44006V16.5707" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M14.4974 7.44006V16.5707" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Flex End',
+        value: 'flex-end',
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.858 7.39404V16.5191" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16.8495 7.39404V16.5191" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 21V3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 21V3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Space Between',
+        value: 'space-between',
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.1615 7.39404V16.5191" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16.8386 7.39404V16.5191" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 21V3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 21V3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Space Around',
+        value: 'space-around',
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.21777 7.32874V16.4538" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M15.8041 7.39404V16.5191" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 21V3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 21V3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Space Evenly',
+        value: 'space-evenly',
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.73425 7.39404V16.5191" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M15.2767 7.39404V16.5191" stroke="#4D4D4D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 21V3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 21V3" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        ),
     },
 ];
 
@@ -304,18 +710,69 @@ export const FLEX_WRAPS = [
     {
         label: 'Wrap',
         value: 'wrap',
-        icon: <Dashicon icon="arrow-up-alt" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M7.37 15.2757H15.27C16.35 15.2757 17.23 14.318 17.23 13.1427V7.451C17.23 6.27567 16.35 5.31799 15.27 5.31799H7.53"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M10.07 11.8368L6.77002 15.2757L10.07 18.7255"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+        ),
     },
     {
         label: 'No Wrap',
         value: 'nowrap',
-        icon: <Dashicon icon="arrow-left-alt2" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M17.51 12.0109H6.18005" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M14.8101 8.5719L18.1101 12.0108L14.8101 15.4607"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+        ),
     },
 
     {
         label: 'Wrap Reverse',
         value: 'wrap-reverse',
-        icon: <Dashicon icon="arrow-right-alt2" />,
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 3V21" stroke="#4D4D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M7.35999 8.76794H15.26C16.34 8.76794 17.22 9.72562 17.22 10.901V16.5926C17.22 17.7679 16.34 18.7256 15.26 18.7256H7.51999"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M10.0699 12.2068L6.7699 8.76783L10.0699 5.30713"
+                    stroke="#4D4D4D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+        ),
     },
 ];
 

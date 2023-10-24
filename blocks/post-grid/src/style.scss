@@ -355,6 +355,7 @@
         display: flex;
         gap: 15px;
         flex-direction: column;
+        justify-content: space-between;
     }
 
     &.zolo-post-style-5 .zolo-post-dateTime {
