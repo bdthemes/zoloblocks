@@ -43,6 +43,8 @@ import {
     WRAPPER_MARGIN,
     WRAPPER_PADDING,
     WRAPPER_SHADOW,
+    TPH_X_OFFSET,
+    TPH_Y_OFFSET,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -130,14 +132,6 @@ const attributes = {
         type: 'string',
         default: 'Advanced Heading',
     },
-    transparentTitleXOffset: {
-        type: 'number',
-        default: 0,
-    },
-    transparentTitleYOffset: {
-        type: 'number',
-        default: 0,
-    },
     transparentTitleRotate: {
         type: 'number',
         default: 0,
@@ -150,6 +144,9 @@ const attributes = {
         type: 'string',
         default: 'top-left',
     },
+
+    ...generateResRangeAttributies(TPH_X_OFFSET),
+    ...generateResRangeAttributies(TPH_Y_OFFSET),
 
     ...generateResAlignmentAttributies(TITLE_ALIGN, {
         defaultAlign: 'left',

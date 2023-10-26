@@ -54,6 +54,8 @@ import {
     WRAPPER_MARGIN,
     WRAPPER_PADDING,
     WRAPPER_SHADOW,
+    TPH_X_OFFSET,
+    TPH_Y_OFFSET,
 } from './constants';
 import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
@@ -378,6 +380,27 @@ export default function Style({ props }) {
         controlName: WRAPPER_BORDER,
     });
 
+    // Offset
+    const {
+        desktopRangeStyle: xOffsetDesk,
+        tabRangeStyle: xOffsetTab,
+        mobRangeStyle: xOffsetMob,
+    } = generateResRangeStyle({
+        controlName: TPH_X_OFFSET,
+        property: '--zb-advanced-heading-pos-x',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: yOffsetDesk,
+        tabRangeStyle: yOffsetTab,
+        mobRangeStyle: yOffsetMob,
+    } = generateResRangeStyle({
+        controlName: TPH_Y_OFFSET,
+        property: '--zb-advanced-heading-pos-y',
+        attributes,
+    });
+
     //css style
     const wrapperStylesDesktop = `
   .zolo-block-wrapper.${uniqueId}{
@@ -388,8 +411,8 @@ export default function Style({ props }) {
     ${wrapperShadow}
     transition:${wrapperShadowTransition};
     ${titleDeskAlign}
-    --zb-advanced-heading-pos-x: ${transparentTitleXOffset}px;
-    --zb-advanced-heading-pos-y: ${transparentTitleYOffset}px;
+    ${xOffsetDesk}
+    ${yOffsetDesk}
     --zb-advanced-heading-rotate: ${transparentTitleRotate}deg;
   }
   .zolo-block-wrapper.${uniqueId}:hover{
@@ -414,6 +437,7 @@ export default function Style({ props }) {
     color: #202224;
   }
 `;
+
     const wrapperStylesTab = `
   .zolo-block-wrapper.${uniqueId}{
     ${wrapperMarginTab}
@@ -421,14 +445,8 @@ export default function Style({ props }) {
     ${wrapperBackgroundStylesTab}
     ${wrapperBorderTab}
     ${titleTabAlign}
-    ${
-        transparentTitleHide === 'nothing' &&
-        `
-      --zb-advanced-heading-pos-x: 0px;
-      --zb-advanced-heading-pos-y: 0px;
-      --zb-advanced-heading-rotate: 0deg;
-    `
-    }
+    ${xOffsetTab}
+    ${yOffsetTab}
   }
   .zolo-block-wrapper.${uniqueId}:hover{
     ${wrapperHoverBackgroundStylesTab}
@@ -447,14 +465,8 @@ export default function Style({ props }) {
     ${wrapperBackgroundStylesMobile}
     ${wrapperBorderMob}
     ${titleMobAlign}
-    ${
-        transparentTitleHide === 'nothing' &&
-        `
-      --zb-advanced-heading-pos-x: 0px;
-      --zb-advanced-heading-pos-y: 0px;
-      --zb-advanced-heading-rotate: 0deg;
-    `
-    }
+    ${xOffsetMob}
+    ${yOffsetMob}
   }
   .zolo-block-wrapper.${uniqueId}:hover{
     ${wrapperHoverBackgroundStylesMobile}
@@ -640,28 +652,28 @@ export default function Style({ props }) {
 `;
 
     const desktopAllStyle = `
-  ${wrapperStylesDesktop}
-  ${titleStylesDesktop}
-  ${subtitleStylesDesktop}
-  ${transparentStylesDesktop}
-  ${separatorStylesDesktop}
-`;
+      ${wrapperStylesDesktop}
+      ${titleStylesDesktop}
+      ${subtitleStylesDesktop}
+      ${transparentStylesDesktop}
+      ${separatorStylesDesktop}
+    `;
 
     const tabletAllStyle = `
-  ${wrapperStylesTab}
-  ${titleStylesTab}
-  ${subtitleStylesTab}
-  ${transparentStylesTab}
-  ${separatorStylesTab}
-`;
+      ${wrapperStylesTab}
+      ${titleStylesTab}
+      ${subtitleStylesTab}
+      ${transparentStylesTab}
+      ${separatorStylesTab}
+    `;
 
     const mobileAllStyle = `
-  ${wrapperStylesMobile}
-  ${titleStylesMobile}
-  ${subtitleStylesMobile}
-  ${transparentStylesMobile}
-  ${separatorStylesMobile}
-`;
+      ${wrapperStylesMobile}
+      ${titleStylesMobile}
+      ${subtitleStylesMobile}
+      ${transparentStylesMobile}
+      ${separatorStylesMobile}
+    `;
 
     return (
         <>

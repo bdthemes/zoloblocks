@@ -107,3 +107,7 @@ export const WRAPPER_BORDER = 'wrapBorder';
 export const WRAPPER_SHADOW = 'wrapShadow';
 
 export const TEST_NORMAL_BG = 'testBg';
+
+// transparent heading offset
+export const TPH_X_OFFSET = 'tphXOffset';
+export const TPH_Y_OFFSET = 'tphYOffset';

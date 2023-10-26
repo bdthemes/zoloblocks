@@ -6,7 +6,10 @@ import { __ } from '@wordpress/i18n';
 // Block Prefix
 export const BLOCK_PREFIX = 'advanced-button';
 // Presets
-export const PRESETS = [{ label: __('Default', 'zolo-blocks'), value: '' }];
+export const PRESETS = [
+    { label: __('Default', 'zolo-blocks'), value: '' },
+    { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
+];
 
 // icons position
 export const ICON_POSITIONS = [
@@ -82,3 +85,6 @@ export const TITLE_MARGIN = 'titleMargin';
 
 // CTA description
 export const DESC_MARGIN = 'descMargin';
+
+// flex gap
+export const FLEX_GAP = 'flexGap';
