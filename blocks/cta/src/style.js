@@ -27,7 +27,6 @@ import {
     BUTTON_HOVER_BOX_SHADOW,
     BUTTON_PADDING,
     ICON_SIZE,
-    ICON_TEXT_SPACING,
     ICON_BORDER,
     ICON_BORDER_RADIUS,
     ICON_BOX_SHADOW,
@@ -35,6 +34,7 @@ import {
     ICON_PADDING,
     TITLE_MARGIN,
     DESC_MARGIN,
+    FLEX_GAP,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, TITLE_TYPO, DESC_TYPO } from './constants/typoPrefixConstant';
@@ -52,12 +52,6 @@ export default function Style({ props }) {
         textColor,
         textHoverColor,
         borderHoverColor,
-        presetOneStyles,
-        presetTwoStyles,
-        presetThreeStyles,
-        presetFourStyles,
-        presetSixStyle,
-        presetSevenStyles,
         titleColor,
         descriptionColor,
     } = attributes;
@@ -114,15 +108,6 @@ export default function Style({ props }) {
         property: 'text-align',
         attributes,
     });
-
-    /**
-     * Generate Alignment Class
-     */
-    const deskAlign = `display: ${buttonAlignmentDesktop === 'text-align:justify;' ? 'block' : 'inline-block'};`;
-
-    const tabAlign = `display: ${buttonAlignmentTab === 'text-align:justify;' ? 'block' : 'inline-block'};`;
-
-    const mobAlign = `display: ${buttonAlignmentMob === 'text-align:justify;' ? 'block' : 'inline-block'};`;
 
     // generate Background
     const {
@@ -254,6 +239,17 @@ export default function Style({ props }) {
         attributes,
     });
 
+    // flex item
+    const {
+        desktopRangeStyle: flexGap,
+        tabRangeStyle: flexGapTab,
+        mobRangeStyle: flexGapMob,
+    } = generateResRangeStyle({
+        controlName: FLEX_GAP,
+        property: 'gap',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -280,7 +276,6 @@ export default function Style({ props }) {
             ${borderRadiusDesktop}
             ${normalBoxShadowStyle}
         }
-
 
         .wp-block-zolo-cta.${uniqueId} .zolo-text {
             ${btnTypoDesktop}
@@ -316,6 +311,10 @@ export default function Style({ props }) {
 
         .wp-block-zolo-cta.${uniqueId} .zolo-icon i{
             ${iconSize}
+        }
+
+        .wp-block-zolo-cta.${uniqueId} .zolo-call-out.style-1 {
+            ${flexGap}
         }
 
   	`;
@@ -358,6 +357,10 @@ export default function Style({ props }) {
         .wp-block-zolo-cta.${uniqueId} .zolo-icon i{
             ${iconSizeTab}
         }
+
+        .wp-block-zolo-cta.${uniqueId} .zolo-call-out.style-1 {
+            ${flexGapTab}
+        }
     `;
 
     const mobileAllStyle = `
@@ -398,6 +401,10 @@ export default function Style({ props }) {
 
         .wp-block-zolo-cta.${uniqueId} .zolo-icon i{
             ${iconSizeMob}
+        }
+
+        .wp-block-zolo-cta.${uniqueId} .zolo-call-out.style-1 {
+            ${flexGapMob}
         }
     `;
 

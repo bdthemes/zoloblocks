@@ -59,6 +59,8 @@ import {
     WRAPPER_MARGIN,
     WRAPPER_PADDING,
     WRAPPER_SHADOW,
+    TPH_X_OFFSET,
+    TPH_Y_OFFSET,
 } from './constants';
 import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
@@ -267,19 +269,19 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     alignOptions={DEFAULT_ALIGNS}
                                 />
 
-                                <RangeResetControl
+                                <ResRangeControl
                                     label={__('X Offset', 'zolo-blocks')}
-                                    controlName={'transparentTitleXOffset'}
                                     requiredProps={requiredProps}
+                                    controlName={TPH_X_OFFSET}
                                     min={-800}
                                     max={800}
                                     step={1}
                                 />
 
-                                <RangeResetControl
+                                <ResRangeControl
                                     label={__('Y Offset', 'zolo-blocks')}
-                                    controlName={'transparentTitleYOffset'}
                                     requiredProps={requiredProps}
+                                    controlName={TPH_Y_OFFSET}
                                     min={-800}
                                     max={800}
                                     step={1}
