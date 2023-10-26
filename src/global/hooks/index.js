@@ -50,7 +50,7 @@ function addAttributes(settings) {
       uniqueId: {
         type: 'string',
       },
-      resDevice: {
+      resMode: {
         type: 'string',
         default: 'Desktop',
       },
@@ -117,7 +117,7 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
     const { uniqueId, resMode, parentClasses, zoloStyles, customCss } = attributes;
 
     const isBlockJustInserted = select('core/block-editor').wasBlockJustInserted(clientId);
-    const [editorStoreForGettingPreivew, setEditorStoreForGettingPreview] = useState();
+    const [editorType, setEditorType] = useState();
 
     // UseEffect for initial setting
     useEffect(() => {
@@ -141,29 +141,32 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 
     //
     useEffect(() => {
-      if (!window?.eb_conditional_localize) {
-        setEditorStoreForGettingPreview(false);
+      if (!zoloParams) {
+        setEditorType(false);
         return;
       }
 
-      if (eb_conditional_localize.editor_type === 'edit-site') {
-        setEditorStoreForGettingPreview('core/edit-site');
-      } else if (eb_conditional_localize.editor_type === 'edit-post') {
-        setEditorStoreForGettingPreview('core/edit-post');
+      if (zoloParams.editor_type === 'edit-site') {
+        setEditorType('core/edit-site');
+      } else if (zoloParams.editor_type === 'edit-post') {
+        setEditorType('core/edit-post');
       } else {
-        setEditorStoreForGettingPreview(false);
+        setEditorType(false);
       }
     }, []);
 
     //Get Device type from "__experimentalGetPreviewDeviceType" Function
     const deviceType = useSelect((select) => {
-      return select('core/edit-post').__experimentalGetPreviewDeviceType() || 'Desktop';
+      if (editorType && typeof editorType === 'string') {
+        return select(editorType).__experimentalGetPreviewDeviceType();
+      }
+      return "Desktop";
     });
 
     // this useEffect is for setting the resMode attribute to desktop/tab/mobile depending on the added 'zolo-res-option-' class
     useEffect(() => {
       setAttributes({
-        resMode: deviceType,
+        resMode: deviceType
       });
     }, [deviceType]);
 
