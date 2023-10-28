@@ -105,44 +105,54 @@ export const GlobalStyleHanlder = (props) => {
     });
 
     const desktopGlobalStyles = `
-    .parent-${uniqueId} {
-        ${normalBoxShadowStyle ? normalBoxShadowStyle : ''}
-        ${borderRadiusStylesDesktop ? borderRadiusStylesDesktop : ''}
-        ${desktopBorderStyles ? desktopBorderStyles : ''}
-        ${marginStylesDesktop ? marginStylesDesktop : ''}
-        ${paddingStylesDesktop ? paddingStylesDesktop : ''}
-        ${bgDeskStyle ? bgDeskStyle : ''}
-        ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
-        ${overlayDeskStyle ? overlayDeskStyle : ''}
-        ${hoverOverlayDeskStyle ? hoverOverlayDeskStyle : ''}
-    }
-  `;
+        .parent-${uniqueId} {
+            ${normalBoxShadowStyle ? normalBoxShadowStyle : ''}
+            ${borderRadiusStylesDesktop ? borderRadiusStylesDesktop : ''}
+            ${desktopBorderStyles ? desktopBorderStyles : ''}
+            ${marginStylesDesktop ? marginStylesDesktop : ''}
+            ${paddingStylesDesktop ? paddingStylesDesktop : ''}
+            ${bgDeskStyle ? bgDeskStyle : ''}
+            transition: all 0.3s ease-in-out;
+        }
+        .parent-${uniqueId}:hover {
+            ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
+            ${overlayDeskStyle ? overlayDeskStyle : ''}
+            ${hoverOverlayDeskStyle ? hoverOverlayDeskStyle : ''}
+        }
+    `;
 
     const tabGlobalStyles = `
-    .parent-${uniqueId} {
-        ${borderRadiusStylesTab ? borderRadiusStylesTab : ''}
-        ${tabBorderStyles ? tabBorderStyles : ''}
-        ${marginStylesTab ? marginStylesTab : ''}
-        ${paddingStylesTab ? paddingStylesTab : ''}
-        ${bgTabStyle ? bgTabStyle : ''}
-        ${overlayTabStyle ? overlayTabStyle : ''}
-        ${hoverOverlayTabStyle ? hoverOverlayTabStyle : ''}
-        ${hoverBgTabStyle ? hoverBgTabStyle : ''}
-    }
-  `;
+        .parent-${uniqueId} {
+            ${borderRadiusStylesTab ? borderRadiusStylesTab : ''}
+            ${tabBorderStyles ? tabBorderStyles : ''}
+            ${marginStylesTab ? marginStylesTab : ''}
+            ${paddingStylesTab ? paddingStylesTab : ''}
+            ${bgTabStyle ? bgTabStyle : ''}
+            ${overlayTabStyle ? overlayTabStyle : ''}
+        }
+
+        .parent-${uniqueId}:hover {
+            ${hoverOverlayTabStyle ? hoverOverlayTabStyle : ''}
+            ${hoverBgTabStyle ? hoverBgTabStyle : ''}
+        }
+    `;
 
     const mobileGlobalStyles = `
-    .parent-${uniqueId} {
-        ${borderRadiusStylesMobile ? borderRadiusStylesMobile : ''}
-        ${mobileBorderStyles ? mobileBorderStyles : ''}
-        ${marginStylesMobile ? marginStylesMobile : ''}
-        ${paddingStylesMobile ? paddingStylesMobile : ''}
-        ${bgMobStyle ? bgMobStyle : ''}
-        ${overlayMobStyle ? overlayMobStyle : ''}
-        ${hoverOverlayMobStyle ? hoverOverlayMobStyle : ''}
-        ${hoverBgMobStyle ? hoverBgMobStyle : ''}
-    }
-  `;
+        .parent-${uniqueId} {
+            ${borderRadiusStylesMobile ? borderRadiusStylesMobile : ''}
+            ${mobileBorderStyles ? mobileBorderStyles : ''}
+            ${marginStylesMobile ? marginStylesMobile : ''}
+            ${paddingStylesMobile ? paddingStylesMobile : ''}
+            ${bgMobStyle ? bgMobStyle : ''}
+            ${overlayMobStyle ? overlayMobStyle : ''}
+
+        }
+
+        .parent-${uniqueId}:hover {
+            ${hoverOverlayMobStyle ? hoverOverlayMobStyle : ''}
+            ${hoverBgMobStyle ? hoverBgMobStyle : ''}
+        }
+    `;
 
     const allStyle = `
 		${desktopAllStyle + desktopGlobalStyles}

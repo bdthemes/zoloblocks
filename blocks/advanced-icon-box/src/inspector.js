@@ -53,13 +53,6 @@ import {
     BUTTON_BORDER_RADIUS,
     BUTTON_MARGIN,
     BUTTON_PADDING,
-    CONTAINER_BACKGROUND,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_HOVER_BOX_SHADOW,
-    CONTAINER_MARGIN,
-    CONTAINER_PADDING,
     ICON_IMAGE_SIZE,
     IMAGE_BORDER,
     ICON_IMAGE_BORDER_RADIUS,
@@ -325,61 +318,6 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={false}>
-                            <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
-
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={CONTAINER_MARGIN}
-                                requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={CONTAINER_PADDING}
-                                requiredProps={requiredProps}
-                            />
-
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={CONTAINER_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <TabPanelControl
-                                normalComponents={
-                                    <>
-                                        <BorderControl
-                                            label={__('Border', 'zolo-blocks')}
-                                            controlName={CONTAINER_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <BoxShadowControl
-                                            controlName={CONTAINER_BOX_SHADOW}
-                                            requiredProps={requiredProps}
-                                            enableTransition={false}
-                                        />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Border Hover Color', 'zolo-blocks')}
-                                            color={containerBorderHoverColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    containerBorderHoverColor: value,
-                                                })
-                                            }
-                                        />
-                                        <BoxShadowControl
-                                            controlName={CONTAINER_HOVER_BOX_SHADOW}
-                                            requiredProps={requiredProps}
-                                            enableTransition={false}
-                                        />
-                                    </>
-                                }
-                            />
-                        </PanelBody>
                         <PanelBody title={__('Alignment', 'zolo-blocks')} initialOpen={false}>
                             {preset == 'style-1' && (
                                 <IconicBtnGroup

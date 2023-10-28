@@ -784,6 +784,7 @@ export const HEADING = [
     { label: __('H5', 'zolo-blocks'), value: 'h5' },
     { label: __('H6', 'zolo-blocks'), value: 'h6' },
     { label: __('P', 'zolo-blocks'), value: 'p' },
+    { label: __('Span', 'zolo-blocks'), value: 'span' },
 ];
 
 export const BORDER_TYPES = [

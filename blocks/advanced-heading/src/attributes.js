@@ -19,6 +19,9 @@ import {
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
     SUBTITLE_MARGIN,
+    SUBTITLE_PADDING,
+    SUBTITE_BORDER,
+    SUBTITLE_BORDER_RADIUS,
     SUBTITLE_TEXT_SHADOW,
     SUBTITLE_TEXT_STROKE,
     TEST_NORMAL_BG,
@@ -108,6 +111,10 @@ const attributes = {
         type: 'string',
         default: 'Sub Heading Here',
     },
+    subTitleTag: {
+        type: 'string',
+        default: 'h4',
+    },
     subTitlePosition: {
         type: 'string',
         default: 'top',
@@ -170,6 +177,10 @@ const attributes = {
         type: 'string',
         default: '',
     },
+    subTitleBgColor: {
+        type: 'string',
+        default: '',
+    },
     tptColor: {
         type: 'string',
         default: '',
@@ -211,6 +222,9 @@ const attributes = {
     ...generateTextShadowAttributies(TPT_TEXT_SHADOW),
     ...generateTextStrokeAttributies(TPT_TEXT_STROKE),
 
+    ...generateBorderAttributies(SUBTITE_BORDER),
+    ...generateDimensionAttributes(SUBTITLE_BORDER_RADIUS),
+    ...generateDimensionAttributes(SUBTITLE_PADDING),
     ...generateDimensionAttributes(SUBTITLE_MARGIN),
     ...generateTextShadowAttributies(SUBTITLE_TEXT_SHADOW),
     ...generateTextStrokeAttributies(SUBTITLE_TEXT_STROKE),

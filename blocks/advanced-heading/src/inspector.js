@@ -26,7 +26,6 @@ import objAttributes from './attributes';
 
 //block constants
 import {
-    HEADING_TAG,
     SEPARATOR_ALIGN,
     SEPARATOR_HEIGHT,
     SEPARATOR_SPACING,
@@ -34,6 +33,9 @@ import {
     STYLES,
     ST_POSITION,
     SUBTITLE_MARGIN,
+    SUBTITLE_PADDING,
+    SUBTITE_BORDER,
+    SUBTITLE_BORDER_RADIUS,
     SUBTITLE_TEXT_SHADOW,
     SUBTITLE_TEXT_STROKE,
     TITLE_ALIGN,
@@ -54,17 +56,12 @@ import {
     TPT_SHADOW,
     TPT_TEXT_SHADOW,
     TPT_TEXT_STROKE,
-    WRAPPER_BG,
-    WRAPPER_BORDER,
-    WRAPPER_MARGIN,
-    WRAPPER_PADDING,
-    WRAPPER_SHADOW,
     TPH_X_OFFSET,
     TPH_Y_OFFSET,
 } from './constants';
 import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
-import { TEXT_ALIGN_OPTIONS, DEFAULT_ALIGNS, FLEX_HORIZONTAL_OPTIONS } from '../../../src/global/constants';
+import { TEXT_ALIGN_OPTIONS, DEFAULT_ALIGNS, FLEX_HORIZONTAL_OPTIONS, HEADING } from '../../../src/global/constants';
 
 const Inspector = ({ attributes, setAttributes }) => {
     const {
@@ -77,6 +74,7 @@ const Inspector = ({ attributes, setAttributes }) => {
         titleTagName,
         showSubTitle,
         subTitleText,
+        subTitleTag,
         subTitlePosition,
         showSeparator,
         separatorPosition,
@@ -91,6 +89,7 @@ const Inspector = ({ attributes, setAttributes }) => {
         titleBgColor,
 
         subTitleColor,
+        subTitleBgColor,
         tptColor,
         tptBgColor,
         tptOpacity,
@@ -187,7 +186,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                             />
                             <SelectControl
                                 label={__('Heading Tag', 'zolo-blocks')}
-                                options={HEADING_TAG}
+                                options={HEADING}
                                 onChange={(value) => setAttributes({ titleTagName: value })}
                                 value={titleTagName}
                             />
@@ -212,6 +211,12 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     label={__('Text', 'zolo-blocks')}
                                     value={subTitleText}
                                     onChange={(subTitleText) => setAttributes({ subTitleText })}
+                                />
+                                <SelectControl
+                                    label={__('Select Tag', 'zolo-blocks')}
+                                    options={HEADING}
+                                    onChange={(value) => setAttributes({ subTitleTag: value })}
+                                    value={subTitleTag}
                                 />
                                 <IconicBtnGroup
                                     label={__('Sub Heading Position', 'zolo-blocks')}
@@ -391,10 +396,38 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         })
                                     }
                                 />
+                                <ColorControl
+                                    label={__('Background', 'zolo-blocks')}
+                                    color={subTitleBgColor}
+                                    onChange={(val) =>
+                                        setAttributes({
+                                            subTitleBgColor: val,
+                                        })
+                                    }
+                                />
+
+                                <BorderControl
+                                    label={__('Border', 'zolo-blocks')}
+                                    controlName={SUBTITE_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={SUBTITLE_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
 
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={SUBTITLE_MARGIN}
+                                    requiredProps={requiredProps}
+                                />
+
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zolo-blocks')}
+                                    controlName={SUBTITLE_PADDING}
                                     requiredProps={requiredProps}
                                 />
 

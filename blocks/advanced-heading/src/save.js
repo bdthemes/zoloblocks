@@ -12,6 +12,7 @@ const Save = ({ className, attributes }) => {
         titleTagName,
         subTitleText,
         showSubTitle,
+        subTitleTag,
         subTitlePosition,
         showSeparator,
         separatorPosition,
@@ -41,7 +42,7 @@ const Save = ({ className, attributes }) => {
 
                 {showSubTitle && subTitlePosition == 'top' && (
                     <RichText.Content
-                        tagName={'h4'}
+                        tagName={subTitleTag}
                         className="zolo-ah-subtitle"
                         value={subTitleText}
                         formattingControl={['bold', 'italic']}
