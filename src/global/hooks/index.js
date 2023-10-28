@@ -11,6 +11,7 @@ import { useEffect, useState, Fragment, useRef } from '@wordpress/element';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { select, useSelect, withSelect } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
+import { prefix } from '../constants';
 
 /**
  * Internal depencencies
@@ -121,13 +122,15 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 
     // UseEffect for initial setting
     useEffect(() => {
-      const prefix = name.split('/')[1];
-      handleUniqueId({
-        prefix,
-        uniqueId,
-        setAttributes,
-        clientId,
-      });
+      const splitName = name.split('/')
+      if (splitName && typeof splitName === 'object' && splitName.length > 1) {
+        handleUniqueId({
+          prefix: splitName[1],
+          uniqueId,
+          setAttributes,
+          clientId,
+        });
+      }
     }, []);
 
     //set Unique Id globally
