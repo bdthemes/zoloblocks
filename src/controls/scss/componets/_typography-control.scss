@@ -24,6 +24,8 @@
 		&__value-container {
 			height: 32px;
 			min-height: auto !important;
+			margin: 0;
+			padding: 0;
 		}
 		&__single-value {
 			&:focus {
@@ -35,15 +37,17 @@
 			height: 32px;
 			min-height: auto !important;
 			padding: 2px 8px;
-			background: #fff;
+			// background: #fff;
 			padding: 0.5rem 1rem;
 			&--is-focused {
-				background-color: #e5e5e5;
+				color: #fff !important;
+				background-color: #3d87f6 !important;
 			}
 		}
 		&__input-container {
 			position: relative;
 			height: 30px;
+			padding: 0;
 		}
 		&__input {
 			cursor: pointer;
@@ -59,7 +63,7 @@
 			border-radius: 0;
 			&:focus {
 				box-shadow: none !important;
-				outline: none !important;
+				outline: none !important; 
 				border: none !important;
 			}
 		}
@@ -72,7 +76,8 @@
 			cursor: pointer;
 		}
 		&__indicator-separator {
-			background: #e5e5e5;
+			color: #fff;
+			background: #3d87f6;
 		}
 		&__menu {
 			border-radius: 3px;

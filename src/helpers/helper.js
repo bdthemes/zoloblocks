@@ -4,8 +4,8 @@ import { select } from '@wordpress/data';
  * this function is for creating a unique uniqueId for each block's unique className
  * @param {prefix: type "string", uniqueId: "current uniqueId", setAttributes: type function, clientId}
  */
-export const handleUniqueId = ({ BLOCK_PREFIX, uniqueId, setAttributes, clientId }) => {
-    const unique_id = BLOCK_PREFIX + '-' + Math.random().toString(36).substr(2, 8);
+export const handleUniqueId = ({ prefix, uniqueId, setAttributes, clientId }) => {
+    const unique_id = prefix + '-' + Math.random().toString(36).substr(2, 8);
 
     /**
      * Define and Generate Unique Block ID
@@ -47,14 +47,45 @@ export const handleUniqueId = ({ BLOCK_PREFIX, uniqueId, setAttributes, clientId
 export const hasVal = (val) => val || val === 0;
 
 // softMinifyCssStrings is for minifying the css which is in the style tag as a string  for view.js
-export const softMinifyCssStrings = (cssString = ' ') =>
-    cssString
+export const softMinifyCssStrings = (cssString = ' ') => {
+    cssString = cssString
         .replace(/[^{}]+{\s*}/g, '') //Remove empty curly braces selectors
         .replace(/\n\s+/g, '') // Remove newlines and preceding spaces
         .replace(/\s+{/g, '{') // Remove spaces before opening curly braces
         .replace(/\s+}/g, '}') // Remove spaces before closing curly braces
         .replace(/:\s+/g, ':') // Remove spaces after colons
         .replace(/;\s+/g, ';'); // Remove spaces after semicolons;
+
+    return cssString;
+    // return removeEmptyCSSProperties(cssString)
+};
+
+export const removeEmptyCSSProperties = (cssString) => {
+    // Split the CSS string into individual rules
+    const cssRules = cssString.split('}');
+
+    // Iterate through each rule and process it
+    const filteredRules = cssRules
+        .map((rule) => {
+            // Split the rule into selector and properties
+            const [selector, properties] = rule.split('{');
+            if (properties) {
+                // Split the properties into individual property declarations
+                const propertyDeclarations = properties.split(';').filter((declaration) => {
+                    // Remove any property with an empty value or "undefined" value
+                    const [property, value] = declaration.split(':');
+                    return value && value.trim() !== '' && value.trim() !== 'undefined';
+                });
+                // Rejoin the selector and filtered properties
+                return propertyDeclarations.length > 0 ? `${selector} { ${propertyDeclarations.join('; ')} }` : null;
+            }
+            return null;
+        })
+        .filter(Boolean);
+
+    // Rejoin the filtered rules into a CSS string
+    return filteredRules.join('}');
+};
 
 //Dynamic Tag
 export const DynamicTag = (props) => {
