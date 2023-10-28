@@ -3,22 +3,7 @@ const { DisplayIcon, classArrayToStr } = window.zoloModule;
 import classnames from 'classnames';
 
 const Save = ({ attributes }) => {
-    const {
-        uniqueId,
-        preset,
-        parentClasses,
-        memberPhoto,
-        memberName,
-        addDetailPageLink,
-        showDetailPageIcon,
-        memberDetailPageLink,
-        showDesignation,
-        memberDesignation,
-        showShortBio,
-        memberShortBio,
-        showSocialProfiles,
-        socialProfiles,
-    } = attributes;
+    const { uniqueId, preset, parentClasses } = attributes;
 
     return (
         <div
