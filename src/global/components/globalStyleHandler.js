@@ -11,100 +11,104 @@ import { generateBorderStyle } from '../../helpers/border-helper';
 import { generateBoxShadowStyles } from '../../helpers/boxshadow-helper';
 
 export const GlobalStyleHanlder = (props) => {
-    const { attributes, setAttributes, desktopAllStyle, tabAllStyle, mobileAllStyle } = props;
+  const { attributes, setAttributes, desktopAllStyle, tabAllStyle, mobileAllStyle } = props;
 
-    const { uniqueId, zoloStyles, globalConfig } = attributes;
+  const { uniqueId, zoloStyles, globalConfig } = attributes;
 
-    //Generate Global Styles
+  if (!uniqueId) {
+    return
+  }
 
-    // generate Border
-    // const {
-    //     borderStylesDesktop: desktopBorderStyles,
-    //     borderStylesTab: tabBorderStyles,
-    //     borderStylesMobile: mobileBorderStyles,
-    // } = generateBorderStyle({
-    //     controlName: globalConfig?.border?.prefix || 'mainBorder',
-    //     attributes,
-    // });
+  //Generate Global Styles
 
-    const {
-        desktopBorderStyle: desktopBorderStyles,
-        tabBorderStyle: tabBorderStyles,
-        mobBorderStyle: mobileBorderStyles,
-    } = generateBorderStyle({
-        controlName: globalConfig?.border?.prefix || 'mainBorder',
-        attributes,
-    });
+  // generate Border
+  // const {
+  //     borderStylesDesktop: desktopBorderStyles,
+  //     borderStylesTab: tabBorderStyles,
+  //     borderStylesMobile: mobileBorderStyles,
+  // } = generateBorderStyle({
+  //     controlName: globalConfig?.border?.prefix || 'mainBorder',
+  //     attributes,
+  // });
 
-    // border-radius
-    const {
-        dimensionStylesDesktop: borderRadiusStylesDesktop,
-        dimensionStylesTab: borderRadiusStylesTab,
-        dimensionStylesMobile: borderRadiusStylesMobile,
-    } = generateDimensionStyle({
-        controlName: globalConfig?.borderRadius?.prefix || 'mainBorderRadius',
-        styleFor: 'border-radius',
-        attributes,
-    });
+  const {
+    desktopBorderStyle: desktopBorderStyles,
+    tabBorderStyle: tabBorderStyles,
+    mobBorderStyle: mobileBorderStyles,
+  } = generateBorderStyle({
+    controlName: globalConfig?.border?.prefix || 'mainBorder',
+    attributes,
+  });
 
-    // box shadow
-    const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
-        controlName: globalConfig?.boxShadow?.prefix || 'mainBoxShadow',
-        attributes,
-    });
+  // border-radius
+  const {
+    dimensionStylesDesktop: borderRadiusStylesDesktop,
+    dimensionStylesTab: borderRadiusStylesTab,
+    dimensionStylesMobile: borderRadiusStylesMobile,
+  } = generateDimensionStyle({
+    controlName: globalConfig?.borderRadius?.prefix || 'mainBorderRadius',
+    styleFor: 'border-radius',
+    attributes,
+  });
 
-    // generate Background
-    // const {
-    //     backgroundStylesDesktop: desktopBgStyles,
-    //     backgroundStylesTab: tabBgStyles,
-    //     backgroundStylesMobile: mobileBgStyles,
-    // } = generateNormalBGControlStyles({
-    //     controlName: globalConfig?.background?.prefix || 'mainBg',
-    //     attributes,
-    //     noMainBGImg: false,
-    // });
+  // box shadow
+  const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
+    controlName: globalConfig?.boxShadow?.prefix || 'mainBoxShadow',
+    attributes,
+  });
 
-    const {
-        backgroundStylesDesktop: bgDeskStyle,
-        hoverBackgroundStylesDesktop: hoverBgDeskStyle,
-        backgroundStylesTab: bgTabStyle,
-        hoverBackgroundStylesTab: hoverBgTabStyle,
-        backgroundStylesMobile: bgMobStyle,
-        hoverBackgroundStylesMobile: hoverBgMobStyle,
-        overlayStylesDesktop: overlayDeskStyle,
-        hoverOverlayStylesDesktop: hoverOverlayDeskStyle,
-        overlayStylesTab: overlayTabStyle,
-        hoverOverlayStylesTab: hoverOverlayTabStyle,
-        overlayStylesMobile: overlayMobStyle,
-        hoverOverlayStylesMobile: hoverOverlayMobStyle,
-    } = generateBackgroundControlStyles({
-        attributes,
-        controlName: globalConfig?.background?.prefix || 'mainBg',
-    });
+  // generate Background
+  // const {
+  //     backgroundStylesDesktop: desktopBgStyles,
+  //     backgroundStylesTab: tabBgStyles,
+  //     backgroundStylesMobile: mobileBgStyles,
+  // } = generateNormalBGControlStyles({
+  //     controlName: globalConfig?.background?.prefix || 'mainBg',
+  //     attributes,
+  //     noMainBGImg: false,
+  // });
 
-    // margin
-    const {
-        dimensionStylesDesktop: marginStylesDesktop,
-        dimensionStylesTab: marginStylesTab,
-        dimensionStylesMobile: marginStylesMobile,
-    } = generateDimensionStyle({
-        controlName: globalConfig?.margin?.prefix || 'mainMargin',
-        styleFor: 'margin',
-        attributes,
-    });
+  const {
+    backgroundStylesDesktop: bgDeskStyle,
+    hoverBackgroundStylesDesktop: hoverBgDeskStyle,
+    backgroundStylesTab: bgTabStyle,
+    hoverBackgroundStylesTab: hoverBgTabStyle,
+    backgroundStylesMobile: bgMobStyle,
+    hoverBackgroundStylesMobile: hoverBgMobStyle,
+    overlayStylesDesktop: overlayDeskStyle,
+    hoverOverlayStylesDesktop: hoverOverlayDeskStyle,
+    overlayStylesTab: overlayTabStyle,
+    hoverOverlayStylesTab: hoverOverlayTabStyle,
+    overlayStylesMobile: overlayMobStyle,
+    hoverOverlayStylesMobile: hoverOverlayMobStyle,
+  } = generateBackgroundControlStyles({
+    attributes,
+    controlName: globalConfig?.background?.prefix || 'mainBg',
+  });
 
-    // padding
-    const {
-        dimensionStylesDesktop: paddingStylesDesktop,
-        dimensionStylesTab: paddingStylesTab,
-        dimensionStylesMobile: paddingStylesMobile,
-    } = generateDimensionStyle({
-        controlName: globalConfig?.padding?.prefix || 'mainPadding',
-        styleFor: 'padding',
-        attributes,
-    });
+  // margin
+  const {
+    dimensionStylesDesktop: marginStylesDesktop,
+    dimensionStylesTab: marginStylesTab,
+    dimensionStylesMobile: marginStylesMobile,
+  } = generateDimensionStyle({
+    controlName: globalConfig?.margin?.prefix || 'mainMargin',
+    styleFor: 'margin',
+    attributes,
+  });
 
-    const desktopGlobalStyles = `
+  // padding
+  const {
+    dimensionStylesDesktop: paddingStylesDesktop,
+    dimensionStylesTab: paddingStylesTab,
+    dimensionStylesMobile: paddingStylesMobile,
+  } = generateDimensionStyle({
+    controlName: globalConfig?.padding?.prefix || 'mainPadding',
+    styleFor: 'padding',
+    attributes,
+  });
+
+  const desktopGlobalStyles = `
     .parent-${uniqueId} {
         ${normalBoxShadowStyle ? normalBoxShadowStyle : ''}
         ${borderRadiusStylesDesktop ? borderRadiusStylesDesktop : ''}
@@ -118,7 +122,7 @@ export const GlobalStyleHanlder = (props) => {
     }
   `;
 
-    const tabGlobalStyles = `
+  const tabGlobalStyles = `
     .parent-${uniqueId} {
         ${borderRadiusStylesTab ? borderRadiusStylesTab : ''}
         ${tabBorderStyles ? tabBorderStyles : ''}
@@ -131,7 +135,7 @@ export const GlobalStyleHanlder = (props) => {
     }
   `;
 
-    const mobileGlobalStyles = `
+  const mobileGlobalStyles = `
     .parent-${uniqueId} {
         ${borderRadiusStylesMobile ? borderRadiusStylesMobile : ''}
         ${mobileBorderStyles ? mobileBorderStyles : ''}
@@ -144,33 +148,33 @@ export const GlobalStyleHanlder = (props) => {
     }
   `;
 
-    const allStyle = `
-		${desktopAllStyle + desktopGlobalStyles}
+  const allStyle = `
+		${softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles)}
 		@media all and (max-width: 1024px) {
-			${tabAllStyle + tabGlobalStyles}
+			${softMinifyCssStrings(tabAllStyle + tabGlobalStyles)}
 		}
 		@media all and (max-width: 767px) {
-			${mobileAllStyle + mobileGlobalStyles}
+			${softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles)}
 		}
 	`;
 
-    // Set All Style in "zoloStyles" Attribute
-    useEffect(() => {
-        const styles = {
-            desktop: desktopAllStyle + desktopGlobalStyles,
-            tab: tabAllStyle + tabGlobalStyles,
-            mobile: mobileAllStyle + mobileGlobalStyles,
-        };
-        if (JSON.stringify(zoloStyles) !== JSON.stringify(styles)) {
-            setAttributes({
-                zoloStyles: { ...styles },
-            });
-        }
-    }, [attributes]);
+  // Set All Style in "zoloStyles" Attribute
+  useEffect(() => {
+    const styles = {
+      desktop: softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles),
+      tab: softMinifyCssStrings(tabAllStyle + tabGlobalStyles),
+      mobile: softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles),
+    };
+    if (JSON.stringify(zoloStyles) !== JSON.stringify(styles)) {
+      setAttributes({
+        zoloStyles: { ...styles },
+      });
+    }
+  }, [attributes]);
 
-    return (
-        <>
-            <style>{` ${softMinifyCssStrings(allStyle)}`}</style>
-        </>
-    );
+  return (
+    <>
+      <style>{allStyle}</style>
+    </>
+  );
 };

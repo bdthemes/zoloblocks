@@ -56,8 +56,8 @@ export const softMinifyCssStrings = (cssString = ' ') => {
     .replace(/:\s+/g, ':') // Remove spaces after colons
     .replace(/;\s+/g, ';'); // Remove spaces after semicolons;
 
-    return cssString
-  // return removeEmptyCSSProperties(cssString)
+  // return cssString
+  return removeEmptyCSSProperties(cssString)
 }
 
 export const removeEmptyCSSProperties = (cssString) => {
@@ -88,7 +88,7 @@ export const removeEmptyCSSProperties = (cssString) => {
     .filter(Boolean);
 
   // Rejoin the filtered rules into a CSS string
-  return filteredRules.join('}');
+  return filteredRules.join('');
 }
 
 //Dynamic Tag
