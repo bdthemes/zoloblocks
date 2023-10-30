@@ -373,13 +373,19 @@ const Inspector = ({ attributes, setAttributes }) => {
                             <BoxShadowControl controlName={WRAPPER_SHADOW} requiredProps={requiredProps} />
                             <BackgroundControl controlName={WRAPPER_BG} requiredProps={requiredProps} />
                         </PanelBody>
+                        <PanelBody title={__('Header Container', 'zolo-blocks')} initialOpen={false}>
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={TITLE_PADDING}
+                                requiredProps={requiredProps}
+                            />
+                        </PanelBody>
                         <PanelBody title={__('Header', 'zolo-blocks')} initialOpen={false}>
                             <TypographyDropdown
-                                label={__('Typography', 'zolo-blocks')}
+                                label={__('Title Typography', 'zolo-blocks')}
                                 typoPrefixConstant={TITLE_TYPOGRAPHY}
                                 requiredProps={requiredProps}
                             />
-
                             <ColorControl
                                 label={__('Color', 'zolo-blocks')}
                                 color={titleColor}
@@ -389,7 +395,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     })
                                 }
                             />
-
                             <ColorControl
                                 label={__('Background', 'zolo-blocks')}
                                 color={titleBgColor}
@@ -399,30 +404,19 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     })
                                 }
                             />
-
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={TITLE_PADDING}
-                                requiredProps={requiredProps}
-                            />
-
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={TITLE_MARGIN}
                                 requiredProps={requiredProps}
                             />
-
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={TITLE_BORDER} requiredProps={requiredProps} />
-
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={TITLE_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-
                             <TextShadowControl controlName={TITLE_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-
                             {showDesc && (
                                 <>
                                     <Divider />
@@ -453,7 +447,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 </>
                             )}
                         </PanelBody>
-
                         <PanelBody title={__('Pricing', 'zolo-blocks')} initialOpen={false}>
                             <TypographyDropdown label="Typography" typoPrefixConstant={PRICE_TYPOGRAPHY} requiredProps={requiredProps} />
 
@@ -466,7 +459,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     })
                                 }
                             />
-
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={PRICE_MARGIN}
@@ -602,6 +594,14 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 }
                             />
                         </PanelBody>
+                        <PanelBody title={__('Features Container', 'zolo-blocks')} initialOpen={false}>
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={FEATURE_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                        </PanelBody>
                         <PanelBody title={__('Features', 'zolo-blocks')} initialOpen={false}>
                             {showFeatureHeading && (
                                 <>
@@ -685,12 +685,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={FEATURE_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
+
                             <CardDivider />
                             <ResDimensionsControl
                                 label={__('Icon Padding', 'zolo-blocks')}

@@ -95,7 +95,7 @@ const Edit = (props) => {
                                     </span>
                                 )}
 
-                                {pricingPeriod.length !== 0 && (
+                                {pricingPeriod && pricingPeriod.length > 0 && (
                                     <div className="zolo-user-month">
                                         {pricingPeriod.map((name, index) => (
                                             <span className={`zolo-period text-${index}`} key={index}>
