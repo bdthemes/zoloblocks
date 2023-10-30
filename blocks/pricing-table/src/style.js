@@ -693,10 +693,12 @@ const Style = ({ props }) => {
 	`;
 
     const headerStylesDesktop = `
+    .${uniqueId} .zolo-head-content{
+      ${titlePaddingDesktop}
+    }
     .${uniqueId} .zolo-package-title{
       ${titleTypoDesktop}
       ${titleMarginDesktop}
-      ${titlePaddingDesktop}
       ${titleBorderDesktop}
       ${titleBorderRadiusDesktop}
       ${titleTextShadowStyle}
@@ -710,10 +712,12 @@ const Style = ({ props }) => {
     }
   `;
     const headerStylesTab = `
+    .${uniqueId} .zolo-head-content{
+      ${titlePaddingTab}
+    }
     .${uniqueId} .zolo-package-title{
       ${titleTypoTab}
       ${titleMarginTab}
-      ${titlePaddingTab}
       ${titleBorderTab}
       ${titleBorderRadiusTab}
     }
@@ -723,11 +727,13 @@ const Style = ({ props }) => {
     }
   `;
     const headerStylesMob = `
+    .${uniqueId} .zolo-head-content{
+      ${titlePaddingMobile}
+    }
     .${uniqueId} .zolo-package-title{
       ${titleTypoMobile}
       ${titleBorderMob}
       ${titleMarginMobile}
-      ${titlePaddingMobile}
       ${titleBorderRadiusMob}
     }
     .${uniqueId} .zolo-package-desc{
@@ -810,10 +816,12 @@ const Style = ({ props }) => {
     .${uniqueId} .zolo-features-info{
       ${featureInfoAlignDesktop}
     }
+    .${uniqueId} .zolo-features-info{
+      ${featurePaddingDesktop}
+    }
     .${uniqueId} .zolo-features-info .features{
       ${featureItemGapDesktop}
       ${featureMarginDesktop}
-      ${featurePaddingDesktop}
     }
     .${uniqueId} .zolo-features-info .zolo-check-icon{
       ${featureIconColor ? `color: ${featureIconColor};` : ''}
@@ -840,10 +848,12 @@ const Style = ({ props }) => {
     .${uniqueId} .zolo-features-info{
       ${featureInfoAlignTab}
     }
+    .${uniqueId} .zolo-features-info {
+      ${featurePaddingTab}
+    }
     .${uniqueId} .zolo-features-info .features{
       ${featureItemGapTab}
       ${featureMarginTab}
-      ${featurePaddingTab}
     }
     .${uniqueId} .zolo-features-info .zolo-check-icon{
       ${featureIconSizeTab}
@@ -866,10 +876,12 @@ const Style = ({ props }) => {
     .${uniqueId} .zolo-features-info{
       ${featureInfoAlignMob}
     }
+    .${uniqueId} .zolo-features-info {
+      ${featurePaddingMobile}
+    }
     .${uniqueId} .zolo-features-info .features{
       ${featureItemGapMob}
       ${featureMarginMobile}
-      ${featurePaddingMobile}
     }
     .${uniqueId} .zolo-features-info .zolo-check-icon{
       ${featureIconSizeMob}
