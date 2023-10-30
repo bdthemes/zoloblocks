@@ -68,16 +68,6 @@ export const ICON_POSITIONS = [
     },
 ];
 
-// Item
-
-export const CONTAINER_BACKGROUND = 'containerBg';
-export const CONTAINER_BORDER = 'containerBorder';
-export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
-export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
-export const CONTAINER_HOVER_BOX_SHADOW = 'containerHoverBoxShadow';
-export const CONTAINER_MARGIN = 'containerMargin';
-export const CONTAINER_PADDING = 'containerPadding';
-
 // Icon
 export const ICON_PADDING = 'iconPadding';
 export const ICON_MARGIN = 'iconMargin';

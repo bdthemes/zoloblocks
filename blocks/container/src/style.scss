@@ -14,6 +14,9 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
 // block style
 .wp-block-zolo-container {
     box-sizing: border-box;
+    figure {
+        margin: 0;
+    }
 }
 
 .wp-block-zolo-container.frontend {

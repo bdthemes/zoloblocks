@@ -33,18 +33,13 @@ import {
     BUTTON_BORDER_RADIUS,
     BUTTON_MARGIN,
     BUTTON_PADDING,
-    CONTAINER_BACKGROUND,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_HOVER_BOX_SHADOW,
-    CONTAINER_MARGIN,
-    CONTAINER_PADDING,
     ICON_IMAGE_SIZE,
     IMAGE_BORDER,
     ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
+
 import * as typographyObjs from './constants/typoPrefixConstant';
+
 const attributes = {
     globalConfig: {
         type: 'object',
@@ -70,15 +65,6 @@ const attributes = {
             responsiveControls: true,
         },
     },
-    // Item
-    ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
-    ...generateDimensionAttributes(CONTAINER_PADDING),
-    ...generateDimensionAttributes(CONTAINER_MARGIN),
-    ...generateBorderAttributies(CONTAINER_BORDER),
-    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
-    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
-    ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
-
     // Icon
     ...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT, {
         defaultAlign: 'left',

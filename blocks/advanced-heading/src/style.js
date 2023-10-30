@@ -8,19 +8,15 @@ import { __ } from '@wordpress/i18n';
  * Internal depencencies
  */
 const {
-    softMinifyCssStrings,
     generateBackgroundControlStyles,
     generateBorderStyle,
     generateBoxShadowStyles,
     generateDimensionStyle,
     generateTypographyStyles,
     generateResRangeStyle,
-    DynamicTag,
     generateResAlignmentStyle,
     generateTextShadowStyles,
     generateTextStrokeStyles,
-    DisplayIcon,
-    generateNormalBGControlStyles,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
@@ -31,6 +27,9 @@ import {
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
     SUBTITLE_MARGIN,
+    SUBTITLE_PADDING,
+    SUBTITE_BORDER,
+    SUBTITLE_BORDER_RADIUS,
     SUBTITLE_TEXT_SHADOW,
     SUBTITLE_TEXT_STROKE,
     TITLE_ALIGN,
@@ -63,32 +62,15 @@ export default function Style({ props }) {
     const { attributes, setAttributes, name } = props;
     const {
         uniqueId,
-        zoloStyles,
 
         //settings
-        styles,
-        headingIcon,
-        enableTitleLink,
-        titleText,
-        subTitleText,
-        showSubTitle,
-        titleTagName,
-        titleLink,
-        showSeparator,
-        subTitlePosition,
-        separatorPosition,
-
-        showTransparentTitle,
-        transparentTitleText,
-        transparentTitleXOffset,
-        transparentTitleYOffset,
         transparentTitleRotate,
-        transparentTitleRotateOrigin,
         transparentTitleHide,
 
         //style
         titleColor,
         subTitleColor,
+        subTitleBgColor,
         tptColor,
         tptBgColor,
         tptOpacity,
@@ -230,6 +212,32 @@ export default function Style({ props }) {
     } = generateDimensionStyle({
         controlName: SUBTITLE_MARGIN,
         styleFor: 'margin',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: subTitlePaddingDesktop,
+        dimensionStylesTab: subTitlePaddingTab,
+        dimensionStylesMobile: subTitlePaddingMobile,
+    } = generateDimensionStyle({
+        controlName: SUBTITLE_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    const {
+        desktopBorderStyle: stBorderDesktop,
+        tabBorderStyle: stBorderTab,
+        mobBorderStyle: stBorderMob,
+    } = generateBorderStyle({
+        attributes,
+        controlName: SUBTITE_BORDER,
+    });
+    const {
+        dimensionStylesDesktop: stBorderRadiusDesktop,
+        dimensionStylesTab: stBorderRadiusTab,
+        dimensionStylesMobile: stBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: SUBTITLE_BORDER_RADIUS,
+        styleFor: 'border-radius',
         attributes,
     });
     const { textShadowStyle: subTitleTextShadowStyle } = generateTextShadowStyles({
@@ -571,10 +579,14 @@ export default function Style({ props }) {
     const subtitleStylesDesktop = `
   .zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
     ${subTitleColor ? `color: ${subTitleColor};` : ''}
+    ${subTitleBgColor ? `background-color: ${subTitleBgColor};` : ''}
     ${subTitleTypoDesktop}
     ${subTitleMarginDesktop}
     ${subTitleTextShadowStyle}
     ${subTitleTextStrokeStyle}
+    ${stBorderDesktop}
+    ${stBorderRadiusDesktop}
+    ${subTitlePaddingDesktop}
   }
 `;
     const subtitleStylesTab = `
@@ -582,6 +594,9 @@ export default function Style({ props }) {
     ${subTitleTypoTab}
     ${subTitleMarginTab}
     ${tabSubTitleTextStrokeStyle}
+    ${stBorderTab}
+    ${stBorderRadiusTab}
+    ${subTitlePaddingTab}
   }
 `;
     const subtitleStylesMobile = `
@@ -589,6 +604,9 @@ export default function Style({ props }) {
     ${subTitleTypoMobile}
     ${subTitleMarginMobile}
     ${mobSubTitleTextStrokeStyle}
+    ${stBorderMob}
+    ${stBorderRadiusMob}
+    ${subTitlePaddingMobile}
   }
 `;
 

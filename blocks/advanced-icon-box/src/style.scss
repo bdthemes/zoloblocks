@@ -1,11 +1,10 @@
 .wp-block-zolo-advanced-icon-box {
-    /* General Styles */
-    .zolo-block-item {
-        padding: 40px;
-        position: relative;
-        border-radius: 3px;
-        background: rgba(205, 210, 255, 0.123);
-    }
+    padding: 40px;
+    position: relative;
+    border-radius: 3px;
+    background: rgba(205, 210, 255, 0.123);
+    box-sizing: border-box;
+
     .zolo-block-title {
         font-size: 25px;
         font-weight: 700;

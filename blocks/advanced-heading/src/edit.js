@@ -20,6 +20,7 @@ const Edit = (props) => {
         titleText,
         subTitleText,
         showSubTitle,
+        subTitleTag,
         titleTagName,
         titleLink,
         showSeparator,
@@ -59,7 +60,7 @@ const Edit = (props) => {
 
                     {showSubTitle && subTitlePosition == 'top' && (
                         <RichText
-                            tagName={'h4'}
+                            tagName={subTitleTag}
                             className="zolo-ah-subtitle"
                             value={subTitleText}
                             formattingControl={['bold', 'italic']}

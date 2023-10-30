@@ -20,13 +20,6 @@ const {
 } = window.zoloModule;
 
 import {
-    CONTAINER_BACKGROUND,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_HOVER_BOX_SHADOW,
-    CONTAINER_MARGIN,
-    CONTAINER_PADDING,
     ICON_BOX_ALIGNMENT,
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
@@ -82,72 +75,6 @@ export default function Style({ props }) {
         presetTwoStyles,
         presetThreeStyles,
     } = attributes;
-
-    // item background
-    const {
-        backgroundStylesDesktop: containerDeskBGStyle,
-        backgroundStylesTab: containerTabBGStyle,
-        backgroundStylesMobile: containerMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTAINER_BACKGROUND,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    // item border
-    const {
-        desktopBorderStyle: containerBorderDeskStyle,
-        tabBorderStyle: containerBorderTabStyle,
-        mobBorderStyle: containerBorderMobStyle,
-    } = generateBorderStyle({
-        controlName: CONTAINER_BORDER,
-        attributes,
-    });
-
-    // item border radius
-    const {
-        dimensionStylesDesktop: containerDeskBorderRadius,
-        dimensionStylesTab: containerTabBorderRadius,
-        dimensionStylesMobile: containerMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    // item box shadow
-    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_BOX_SHADOW,
-    });
-
-    // item hover box shadow
-    const { boxShadowStyle: containerHoverBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_HOVER_BOX_SHADOW,
-    });
-
-    // Generate Container Margin
-    const {
-        dimensionStylesDesktop: containerMarginDesk,
-        dimensionStylesTab: containerMarginTab,
-        dimensionStylesMobile: containerMarginMob,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    // Generate Container Padding
-    const {
-        dimensionStylesDesktop: containerPaddingDesk,
-        dimensionStylesTab: containerPaddingTab,
-        dimensionStylesMobile: containerPaddingMob,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
 
     // icon alignment
     const {
@@ -431,18 +358,6 @@ export default function Style({ props }) {
      * All Style Combination
      */
     const desktopAllStyle = `
-		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
-			${containerDeskBGStyle}
-			${containerBorderDeskStyle}
-			${containerDeskBorderRadius}
-			${containerBoxShadow}
-			${containerMarginDesk}
-			${containerPaddingDesk}
-		}
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
-            border-color: ${containerBorderHoverColor ? containerBorderHoverColor : ''};
-            ${containerHoverBoxShadow}
-        }
 		.${uniqueId} .zolo-block-icon-wrap{
 			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
@@ -570,14 +485,6 @@ export default function Style({ props }) {
 		.${uniqueId}{
 			${iconAlignmentTab}
 		}
-		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
-			${containerTabBGStyle}
-			${containerBorderTabStyle}
-			${containerTabBorderRadius}
-			${containerMarginTab}
-			${containerPaddingTab}
-		}
-
 		.${uniqueId} .zolo-block-title{
 			${titleTypoTab}
 			${tabTitleTextStrokeStyle}
@@ -619,13 +526,6 @@ export default function Style({ props }) {
     const mobileAllStyle = `
 		.${uniqueId}{
 			${iconAlignmentMob}
-		}
-		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
-			${containerMobBGStyle}
-			${containerBorderMobStyle}
-			${containerMobBorderRadius}
-			${containerMarginMob}
-			${containerPaddingMob}
 		}
 		.${uniqueId} .zolo-block-title{
 			${titleTypoMobile}
