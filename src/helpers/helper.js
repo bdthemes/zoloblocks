@@ -12,6 +12,7 @@ export const handleUniqueId = ({ prefix, uniqueId, setAttributes, clientId }) =>
    */
   if (!uniqueId) {
     setAttributes({ uniqueId: unique_id });
+    return
   }
 
   /**
