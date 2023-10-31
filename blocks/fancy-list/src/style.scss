@@ -1,21 +1,15 @@
 .wp-block-zolo-fancy-list {
-    .zb-fancy-list-wrap {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-gap: 10px;
-    }
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #f3f3f3;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: all 0.3s ease;
 
-    .zb-fancy-list-item {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        background-color: #f3f3f3;
-        justify-content: space-between;
-        padding: 20px;
-        transition: all 0.3s ease;
-    }
-
-    .zb-fancy-list-item:hover {
+    &:hover {
         background-color: #ebf0f9;
     }
 
@@ -34,10 +28,12 @@
     .zb-fancy-icon {
         padding: 10px;
         display: block;
-        // background-color: #fff;
+        i {
+            transition: all 0.3s ease;
+        }
     }
 
-    .zb-fancy-icon svg {
+    .zb-fancy-icon i {
         display: block;
         width: 14px;
         height: 14px;
@@ -45,43 +41,26 @@
 
     .zb-fancy-list-number {
         background-color: #ffffff;
-        padding: 6px 12px;
-        font-size: 13px;
+        padding: 5px;
+        font-size: 14px;
+        width: 30px;
+        height: 30px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
     }
 
     .zb-fancy-list-image img {
         width: 50px;
     }
 
-    .zb-fancy-style-1 .zb-fancy-list-number,
-    .zb-fancy-style-1 .zb-fancy-list-text,
-    .zb-fancy-style-1 .zb-fancy-list-image,
-    .zb-fancy-style-2 .zb-fancy-list-image,
-    .zb-fancy-style-3 .zb-fancy-list-image,
-    .zb-fancy-style-2 .zb-fancy-list-text,
-    .zb-fancy-style-3 .zb-fancy-list-number,
-    .zb-fancy-style-4 .zb-fancy-list-number,
-    .zb-fancy-style-5 .zb-fancy-list-number,
-    .zb-fancy-style-6 .zb-fancy-list-number,
-    .zb-fancy-style-7 .zb-fancy-list-number {
-        display: none;
-    }
-
-    .zb-fancy-style-5 .zb-fancy-list-item,
-    .zb-fancy-style-5 .zb-fancy-list-content {
+    &.style-5 {
         flex-direction: row-reverse;
-        text-align: right;
-    }
-    .zb-fancy-style-6 .zb-fancy-list-content {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .zb-fancy-style-7 .zb-fancy-list-content {
-        flex-direction: column;
-        align-items: flex-end;
-        text-align: right;
-    }
-    .zb-fancy-style-7 .zb-fancy-list-item {
-        flex-direction: row-reverse;
+        .zb-fancy-list-item,
+        .zb-fancy-list-content {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
     }
 }

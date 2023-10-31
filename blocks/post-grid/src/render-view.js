@@ -79,8 +79,8 @@ function RenderView({ attributes, postResults }) {
                         </div>
 
                         <div className="zolo-post-content">
-                            <div className='zolo-post-inner-content'>
-                                {showCategory && categoriesHtml}   
+                            <div className="zolo-post-inner-content">
+                                {showCategory && categoriesHtml}
                                 {showTitle && (
                                     <DynamicTag tagName={titleTag} className="zolo-post-title">
                                         <a href={post.permalink}>{titleLimitWords}</a>
@@ -94,8 +94,8 @@ function RenderView({ attributes, postResults }) {
                                         </p>
                                     </div>
                                 )}
-                                 {showMeta && preset != 'style-5' && dateRTimeHtml} 
-                            </div>  
+                                {showMeta && preset != 'style-5' && dateRTimeHtml}
+                            </div>
                             {showReadMore && (
                                 <div className="zolo-post-link-btn">
                                     <a href={post.permalink}>

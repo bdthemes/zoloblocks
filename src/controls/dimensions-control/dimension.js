@@ -4,7 +4,7 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import { __ } from '@wordpress/i18n';
 import { RangeControl } from '@wordpress/components';
 
-const DimensionControl = ({ top, right, bottom, left, onChange, neededProps }) => {
+const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min = null, max = null }) => {
     const { label, setAttributes, forBorderRadius, controlName, isLinked } = neededProps;
 
     const [dimensions, setDimensions] = useState({
@@ -64,7 +64,7 @@ const DimensionControl = ({ top, right, bottom, left, onChange, neededProps }) =
                                 parseInt(dimensions.left)
                             }
                             onChange={(value) => setLinkedDimensions(value.toString())}
-                            max={1000}
+                            max={max || 100}
                         />
                     )}
                     {!isLinked && (

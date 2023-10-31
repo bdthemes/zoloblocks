@@ -134,6 +134,18 @@ const attributes = {
         type: 'string',
         default: '...',
     },
+    catColor: {
+        type: 'string',
+    },
+    catBgColor: {
+        type: 'string',
+    },
+    catHoverColor: {
+        type: 'string',
+    },
+    catBgHoverColor: {
+        type: 'string',
+    },
     showReadMore: {
         type: 'boolean',
         default: false,

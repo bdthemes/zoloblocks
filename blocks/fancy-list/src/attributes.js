@@ -2,9 +2,27 @@
  * Internal dependencies
  */
 import * as typographyObjs from './constants/typoPrefixConstants';
-import { ICON_WIDTH, ICON_BORDER, ICON_RADIUS, IMAGE_SIZE, IMAGE_BORDER, IMAGE_BORDERRADIUS, IMAGE_PADDING } from './constants';
-const { generateTypographyAttributes, generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes } =
-    window.zoloModule;
+import {
+    IMAGE_SIZE,
+    IMAGE_BORDER,
+    IMAGE_BORDERRADIUS,
+    IMAGE_PADDING,
+    TITLE_SPACING,
+    DESC_SPACING,
+    ICON_WIDTH,
+    ICON_BORDER,
+    ICON_RADIUS,
+    ICON_PADDING,
+    ICON_BG,
+    ICON_HBG,
+} from './constants';
+const {
+    generateTypographyAttributes,
+    generateResRangeAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateNormalBGAttributes,
+} = window.zoloModule;
 
 const attributes = {
     //Common Attributes
@@ -33,10 +51,11 @@ const attributes = {
         },
     },
     preset: {
-        type: 'number',
+        type: 'string',
     },
     fancyTitle: {
         type: 'string',
+        default: 'Fancy Title',
     },
     titleToggle: {
         type: 'boolean',
@@ -44,19 +63,12 @@ const attributes = {
     },
     fancyListText: {
         type: 'string',
+        default: 'Fancy list description goes here.',
     },
     textToggle: {
         type: 'boolean',
-        default: true,
+        default: false,
     },
-    image: {
-        type: 'string',
-    },
-    imageToggle: {
-        type: 'boolean',
-        default: true,
-    },
-
     headingTag: {
         type: 'string',
         default: 'h2',
@@ -79,6 +91,27 @@ const attributes = {
     },
     fancyIcon: {
         type: 'string',
+        default: 'fab fa-apple',
+    },
+    imageToggle: {
+        type: 'boolean',
+        default: false,
+    },
+    mediaType: {
+        type: 'string',
+        default: 'text',
+    },
+    mediaText: {
+        type: 'string',
+        default: '1',
+    },
+    image: {
+        type: 'object',
+        default: {
+            url: 'https://via.placeholder.com/150',
+            id: '',
+            alt: '',
+        },
     },
     iconToggle: {
         type: 'boolean',
@@ -90,15 +123,28 @@ const attributes = {
     iconColor: {
         type: 'string',
     },
-
+    iconHColor: {
+        type: 'string',
+    },
+    iconHBColor: {
+        type: 'string',
+    },
     ...generateTypographyAttributes(Object.values(typographyObjs)),
-    ...generateResRangeAttributies(ICON_WIDTH, { defaultUnit: 15, defaultUnit: 'px' }),
-    ...generateBorderAttributies(ICON_BORDER, { top: 0, right: 0, bottom: 0, left: 0, color: '#ccc ' }),
-    ...generateResRangeAttributies(IMAGE_SIZE, { defaultUnit: 15, defaultUnit: 'px' }),
-    ...generateBorderAttributies(IMAGE_BORDER, { top: 0, right: 0, bottom: 0, left: 0, color: '#ccc ' }),
-    ...generateDimensionAttributes(IMAGE_BORDERRADIUS, { top: 0, bottom: 0, left: 0, right: 0, isLinked: true }),
-    ...generateDimensionAttributes(ICON_RADIUS, { top: 0, bottom: 0, left: 0, right: 0, isLinked: true }),
-    ...generateResRangeAttributies(IMAGE_PADDING, { defaultUnit: 15, defaultUnit: 'px' }),
+    ...generateDimensionAttributes(ICON_PADDING),
+    ...generateNormalBGAttributes(ICON_BG),
+    ...generateNormalBGAttributes(ICON_HBG),
+    ...generateResRangeAttributies(ICON_WIDTH),
+    ...generateBorderAttributies(ICON_BORDER),
+    ...generateResRangeAttributies(IMAGE_SIZE),
+    ...generateBorderAttributies(IMAGE_BORDER),
+    ...generateDimensionAttributes(IMAGE_BORDERRADIUS),
+    ...generateDimensionAttributes(ICON_RADIUS),
+    ...generateDimensionAttributes(IMAGE_PADDING),
+
+    // title
+    ...generateDimensionAttributes(TITLE_SPACING),
+    // description
+    ...generateDimensionAttributes(DESC_SPACING),
 };
 
 export default attributes;

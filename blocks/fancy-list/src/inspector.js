@@ -1,8 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, CardDivider, TextControl, TextareaControl, ToggleControl, RangeControl } from '@wordpress/components';
+import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -18,15 +18,14 @@ const {
     BorderControl,
     ResRangeControl,
     ResDimensionsControl,
+    IconicBtnGroup,
+    NormalBGControl,
+    AdvancedOptions,
 } = window.zoloModule;
-
-import Sortable from './sortable';
 
 import objAttributes from './attributes';
 import {
     PRESETS,
-    TAGS,
-    UNITS,
     ICON_WIDTH,
     ICON_BORDER,
     ICON_PADDING,
@@ -35,12 +34,15 @@ import {
     IMAGE_BORDER,
     IMAGE_BORDERRADIUS,
     IMAGE_PADDING,
+    TITLE_SPACING,
+    DESC_SPACING,
+    ICON_BG,
+    ICON_HBG,
 } from './constants';
 
-import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY } from './constants/typoPrefixConstants';
+import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
 
-import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
-import { add } from 'lodash';
+import { HEADING } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -48,7 +50,6 @@ function Inspector(props) {
         resMode,
         preset,
         headingTag,
-        dscTag,
         titleColor,
         titleHColor,
         dscColor,
@@ -56,13 +57,16 @@ function Inspector(props) {
         fancyIcon,
         fancyTitle,
         fancyListText,
+        mediaType,
+        mediaText,
         image,
         imageToggle,
         titleToggle,
         textToggle,
         iconToggle,
-        iconbgColor,
         iconColor,
+        iconHColor,
+        iconHBColor,
     } = attributes;
 
     const requiredProps = {
@@ -70,6 +74,42 @@ function Inspector(props) {
         setAttributes,
         attributes,
         objAttributes,
+    };
+
+    const onPresetChange = (selected) => {
+        setAttributes({ preset: selected });
+        switch (selected) {
+            case 'style-1':
+                setAttributes({
+                    imageToggle: false,
+                    textToggle: false,
+                });
+                break;
+
+            case 'style-2':
+                setAttributes({
+                    textToggle: false,
+                    imageToggle: true,
+                    mediaType: 'text',
+                });
+                break;
+
+            case 'style-3':
+                setAttributes({
+                    imageToggle: false,
+                    textToggle: true,
+                });
+                break;
+
+            case 'style-4':
+                setAttributes({
+                    imageToggle: true,
+                    mediaType: 'image',
+                });
+                break;
+            default:
+                return false;
+        }
     };
 
     return (
@@ -81,32 +121,25 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Preset', 'zolo-block')}
                                 options={PRESETS}
-                                onChange={(v) =>
-                                    setAttributes({
-                                        preset: Number(v),
-                                    })
-                                }
+                                onChange={(v) => onPresetChange(v)}
                                 value={preset}
                             />
                             <ToggleControl
-                                label={__('Enable Title', 'zolo-block')}
-                                help={titleToggle ? 'Show' : 'Hide'}
+                                label={__('Show title', 'zolo-block')}
                                 checked={titleToggle}
                                 onChange={() => {
                                     setAttributes({ titleToggle: !titleToggle });
                                 }}
                             />
                             <ToggleControl
-                                label={__('Enable Text', 'zolo-block')}
-                                help={textToggle ? 'Show' : 'Hide'}
+                                label={__('Show description', 'zolo-block')}
                                 checked={textToggle}
                                 onChange={() => {
                                     setAttributes({ textToggle: !textToggle });
                                 }}
                             />
                             <ToggleControl
-                                label={__('Enable Image', 'zolo-block')}
-                                help={imageToggle ? 'Show' : 'Hide'}
+                                label={__('Show media', 'zolo-block')}
                                 checked={imageToggle}
                                 onChange={() => {
                                     setAttributes({ imageToggle: !imageToggle });
@@ -114,7 +147,6 @@ function Inspector(props) {
                             />
                             <ToggleControl
                                 label={__('Enable Icon', 'zolo-block')}
-                                help={iconToggle ? 'Show' : 'Hide'}
                                 checked={iconToggle}
                                 onChange={() => {
                                     setAttributes({ iconToggle: !iconToggle });
@@ -128,6 +160,7 @@ function Inspector(props) {
                                         label={__('Title', 'zolo-block')}
                                         value={fancyTitle}
                                         onChange={(v) => setAttributes({ fancyTitle: v })}
+                                        placeholder="title.."
                                     />
                                 )}
                                 {textToggle && (
@@ -135,6 +168,7 @@ function Inspector(props) {
                                         label={__('Description', 'zolo-block')}
                                         value={fancyListText}
                                         onChange={(v) => setAttributes({ fancyListText: v })}
+                                        placeholder="description text.."
                                     />
                                 )}
                             </PanelBody>
@@ -148,18 +182,82 @@ function Inspector(props) {
                                         value={fancyIcon}
                                         onChange={(v) => setAttributes({ fancyIcon: v })}
                                         showHeading={false}
+                                        disableDashicon={true}
                                     />
                                 )}
                             </PanelBody>
                         )}
                         {imageToggle && (
-                            <PanelBody initialOpen={false} title={__('Image', 'zolo-block')}>
-                                {imageToggle && (
-                                    <ImageAvatar
-                                        imageUrl={image && image}
-                                        imageId={image && image.length}
-                                        onDeleteImage={() => setAttributes({ image: '' })}
-                                        onEditImage={(v) => setAttributes({ image: v })}
+                            <PanelBody initialOpen={false} title={__('Media', 'zolo-block')}>
+                                <IconicBtnGroup
+                                    label={__('Media Type', 'zolo-blocks')}
+                                    value={mediaType}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            mediaType: value,
+                                        })
+                                    }
+                                    options={[
+                                        {
+                                            label: __('Text', 'zolo-blocks'),
+                                            value: 'text',
+                                        },
+                                        {
+                                            label: __('Image', 'zolo-blocks'),
+                                            value: 'image',
+                                        },
+                                    ]}
+                                />
+                                {mediaType === 'image' &&
+                                    (image ? (
+                                        <ImageAvatar
+                                            imageUrl={image && image.url}
+                                            onDeleteImage={() =>
+                                                setAttributes({
+                                                    image: null,
+                                                })
+                                            }
+                                            imageId={image && image.id}
+                                            onEditImage={(url, id) => {
+                                                setAttributes({
+                                                    image: {
+                                                        url,
+                                                        id,
+                                                    },
+                                                });
+                                            }}
+                                        />
+                                    ) : (
+                                        <MediaUpload
+                                            onSelect={(media) => {
+                                                setAttributes({
+                                                    image: media,
+                                                });
+                                            }}
+                                            allowedTypes={['image']}
+                                            value={image && image.id}
+                                            render={({ open }) => (
+                                                <Button className="zolo-image-upload-btn" onClick={open}>
+                                                    <svg
+                                                        width="24"
+                                                        height="24"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fillRule="evenodd"
+                                                        clipRule="evenodd"
+                                                    >
+                                                        <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
+                                                    </svg>
+                                                    {__(' Upload Photo', 'zolo-blocks')}
+                                                </Button>
+                                            )}
+                                        />
+                                    ))}
+                                {mediaType === 'text' && (
+                                    <TextControl
+                                        label={__('Text', 'zolo-block')}
+                                        value={mediaText}
+                                        onChange={(v) => setAttributes({ mediaText: v })}
+                                        placeholder="1"
                                     />
                                 )}
                             </PanelBody>
@@ -168,175 +266,171 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody initialOpen={false} title={__('Title', 'zolo-block')}>
-                            <SelectControl
-                                label={__('Heading Tag', 'zolo-block')}
-                                options={TAGS}
-                                onChange={(v) =>
-                                    setAttributes({
-                                        headingTag: v,
-                                    })
-                                }
-                                value={headingTag}
-                            />
-                            <TypographyDropdown
-                                label={__('Typography', 'zolo-block')}
-                                typoPrefixConstant={TITLE_TYPOGRAPHY}
-                                requiredProps={requiredProps}
-                                defaultFontSize={14}
-                            />
-                            <CardDivider />
-                            <TabPanelControl
-                                normalComponents={
-                                    <ColorControl
-                                        label={__('Title Color', 'zolo-block')}
-                                        color={titleColor}
-                                        onChange={(v) =>
-                                            setAttributes({
-                                                titleColor: v,
-                                            })
-                                        }
+                        {titleToggle && (
+                            <PanelBody title={__('Title', 'zolo-block')} initialOpen={false}>
+                                <TypographyDropdown
+                                    label={__('Typography', 'zolo-block')}
+                                    typoPrefixConstant={TITLE_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                />
+                                <SelectControl
+                                    label={__('Select Tag', 'zolo-block')}
+                                    options={HEADING}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            headingTag: v,
+                                        })
+                                    }
+                                    value={headingTag}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Spacing', 'zolo-block')}
+                                    controlName={TITLE_SPACING}
+                                    requiredProps={requiredProps}
+                                    max={100}
+                                />
+                                <TabPanelControl
+                                    normalComponents={
+                                        <ColorControl
+                                            label={__('Color', 'zolo-block')}
+                                            color={titleColor}
+                                            onChange={(v) =>
+                                                setAttributes({
+                                                    titleColor: v,
+                                                })
+                                            }
+                                        />
+                                    }
+                                    hoverComponents={
+                                        <ColorControl
+                                            label={__('Hover Color', 'zolo-block')}
+                                            color={titleHColor}
+                                            onChange={(v) =>
+                                                setAttributes({
+                                                    titleHColor: v,
+                                                })
+                                            }
+                                        />
+                                    }
+                                />
+                            </PanelBody>
+                        )}
+                        {textToggle && (
+                            <PanelBody title={__('Description', 'zolo-block')} initialOpen={false}>
+                                <TypographyDropdown
+                                    label={__('Typography', 'zolo-block')}
+                                    typoPrefixConstant={TEXT_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Spacing', 'zolo-block')}
+                                    controlName={DESC_SPACING}
+                                    requiredProps={requiredProps}
+                                    max={100}
+                                />
+                                <TabPanelControl
+                                    normalComponents={
+                                        <ColorControl
+                                            label={__('Color', 'zolo-block')}
+                                            color={dscColor}
+                                            onChange={(v) =>
+                                                setAttributes({
+                                                    dscColor: v,
+                                                })
+                                            }
+                                        />
+                                    }
+                                    hoverComponents={
+                                        <ColorControl
+                                            label={__('Hover Color', 'zolo-block')}
+                                            color={desHcolor}
+                                            onChange={(v) =>
+                                                setAttributes({
+                                                    desHcolor: v,
+                                                })
+                                            }
+                                        />
+                                    }
+                                />
+                            </PanelBody>
+                        )}
+                        {iconToggle && (
+                            <PanelBody title={__('Icon', 'zolo-block')} initialOpen={false}>
+                                <ResRangeControl label={__('Size', 'zolo-block')} controlName={ICON_WIDTH} requiredProps={requiredProps} />
+                                <BorderControl label={__('Border')} controlName={ICON_BORDER} requiredProps={requiredProps} />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-block')}
+                                    controlName={ICON_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zolo-block')}
+                                    controlName={ICON_PADDING}
+                                    requiredProps={requiredProps}
+                                />
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-block')}
+                                                color={iconColor}
+                                                onChange={(v) => setAttributes({ iconColor: v })}
+                                            />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={ICON_BG} noMainBGImg={true} />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-block')}
+                                                color={iconHColor}
+                                                onChange={(v) => setAttributes({ iconHColor: v })}
+                                            />
+                                            <ColorControl
+                                                label={__('Border Color', 'zolo-block')}
+                                                color={iconHBColor}
+                                                onChange={(v) => setAttributes({ iconHBColor: v })}
+                                            />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={ICON_HBG} noMainBGImg={true} />
+                                        </>
+                                    }
+                                />
+                            </PanelBody>
+                        )}
+                        {imageToggle && (
+                            <PanelBody title={__('Media', 'zolo-block')} initialOpen={false}>
+                                {mediaType === 'text' && (
+                                    <TypographyDropdown
+                                        label={__('Typography', 'zolo-blocks')}
+                                        typoPrefixConstant={MEDIA_TYPOGRAPHY}
+                                        requiredProps={requiredProps}
                                     />
-                                }
-                                hoverComponents={
-                                    <ColorControl
-                                        label={__('Hover Color', 'zolo-block')}
-                                        color={titleHColor}
-                                        onChange={(v) =>
-                                            setAttributes({
-                                                titleHColor: v,
-                                            })
-                                        }
-                                    />
-                                }
-                            />
-                        </PanelBody>
-                        <PanelBody initialOpen={false} title={__('Description', 'zolo-block')}>
-                            <SelectControl
-                                label={__('Description Tag', 'zolo-block')}
-                                options={TAGS}
-                                onChange={(v) =>
-                                    setAttributes({
-                                        dscTag: v,
-                                    })
-                                }
-                                value={dscTag}
-                            />
-                            <TypographyDropdown
-                                label={__('Typography', 'zolo-block')}
-                                typoPrefixConstant={TEXT_TYPOGRAPHY}
-                                requiredProps={requiredProps}
-                                defaultFontSize={14}
-                            />
-                            <CardDivider />
-                            <TabPanelControl
-                                normalComponents={
-                                    <ColorControl
-                                        label={__('Description Color', 'zolo-block')}
-                                        color={dscColor}
-                                        onChange={(v) =>
-                                            setAttributes({
-                                                dscColor: v,
-                                            })
-                                        }
-                                    />
-                                }
-                                hoverComponents={
-                                    <ColorControl
-                                        label={__('Hover Color', 'zolo-block')}
-                                        color={desHcolor}
-                                        onChange={(v) =>
-                                            setAttributes({
-                                                desHcolor: v,
-                                            })
-                                        }
-                                    />
-                                }
-                            />
-                        </PanelBody>
-                        <PanelBody title={__('Icon', 'zolo-block')} initialOpen={false}>
-                            <ResRangeControl
-                                label={__('Size', 'zolo-block')}
-                                controlName={ICON_WIDTH}
-                                units={UNITS}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={50}
-                                step={1}
-                                noUnits={false}
-                            />
-                            <BorderControl label={__('Border')} controlName={ICON_BORDER} requiredProps={requiredProps} units={UNITS} />
-
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-block')}
-                                controlName={ICON_RADIUS}
-                                units={UNITS}
-                                requiredProps={requiredProps}
-                                forBorderRadius="border-radius"
-                            />
-                            <ResRangeControl
-                                label={__('Padding', 'zolo-block')}
-                                controlName={ICON_PADDING}
-                                units={UNITS}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={50}
-                                step={1}
-                                noUnits={false}
-                            />
-                            <ColorControl
-                                label={__('Color', 'zolo-block')}
-                                color={iconColor}
-                                onChange={(v) => setAttributes({ iconColor: v })}
-                            />
-                            <ColorControl
-                                label={__('Background Color', 'zolo-block')}
-                                color={iconbgColor}
-                                onChange={(v) => setAttributes({ iconbgColor: v })}
-                            />
-                        </PanelBody>
-                        <PanelBody initialOpen={false} title={__('Image', 'zolo-block')}>
-                            <ResRangeControl
-                                label={__('Size', 'zolo-block')}
-                                controlName={IMAGE_SIZE}
-                                units={UNITS}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={100}
-                                step={1}
-                                noUnits={false}
-                            />
-                            <BorderControl
-                                label={__('Border', 'zolo-block')}
-                                controlName={IMAGE_BORDER}
-                                requiredProps={requiredProps}
-                                units={UNITS}
-                            />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-block')}
-                                controlName={IMAGE_BORDERRADIUS}
-                                units={UNITS}
-                                requiredProps={requiredProps}
-                                forBorderRadius="border-radius"
-                            />
-                            <ResRangeControl
-                                label={__('Padding', 'zolo-block')}
-                                controlName={IMAGE_PADDING}
-                                units={UNITS}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={100}
-                                step={1}
-                                noUnits={false}
-                            />
-                        </PanelBody>
+                                )}
+                                <ResRangeControl label={__('Size', 'zolo-block')} controlName={IMAGE_SIZE} requiredProps={requiredProps} />
+                                <BorderControl
+                                    label={__('Border', 'zolo-block')}
+                                    controlName={IMAGE_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-block')}
+                                    controlName={IMAGE_BORDERRADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zolo-block')}
+                                    controlName={IMAGE_PADDING}
+                                    requiredProps={requiredProps}
+                                />
+                            </PanelBody>
+                        )}
                     </>
                 }
                 advancedTab={
                     <>
-                        <PanelBody initialOpen={true} title={__('Advanced', 'zolo-block')}>
-                            Advanced
-                        </PanelBody>
+                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
                     </>
                 }
             />
