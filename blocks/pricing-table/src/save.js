@@ -37,6 +37,7 @@ const Save = ({ attributes }) => {
     });
 
     const pricingPeriod = period.length !== 0 && period.split(',');
+
     return (
         <div {...blockprops}>
             <div className={`zolo-block-wrapper ${uniqueId} ${'zolo-pricing-' + styles}`}>
@@ -62,7 +63,7 @@ const Save = ({ attributes }) => {
                                 </span>
                             )}
 
-                            {pricingPeriod.length !== 0 && (
+                            {pricingPeriod && pricingPeriod.length > 0 && (
                                 <div className="zolo-user-month">
                                     {pricingPeriod.map((name, index) => (
                                         <span className={`zolo-period text-${index}`} key={index}>

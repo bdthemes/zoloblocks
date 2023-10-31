@@ -114,10 +114,15 @@ export const GlobalStyleHanlder = (props) => {
             ${bgDeskStyle ? bgDeskStyle : ''}
             transition: all 0.3s ease-in-out;
         }
-        .parent-${uniqueId}:hover {
-            ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
-            ${overlayDeskStyle ? overlayDeskStyle : ''}
+
+        .parent-${uniqueId}:after {
+            ${overlayDeskStyle ? overlayDeskStyle : ''} 
+            transition: all 0.3s ease-in-out;
+        }
+
+        .parent-${uniqueId}:hover:after {
             ${hoverOverlayDeskStyle ? hoverOverlayDeskStyle : ''}
+            ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
         }
     `;
 
@@ -131,7 +136,11 @@ export const GlobalStyleHanlder = (props) => {
             ${overlayTabStyle ? overlayTabStyle : ''}
         }
 
-        .parent-${uniqueId}:hover {
+        .parent-${uniqueId}:after {
+            ${overlayTabStyle ? overlayTabStyle : ''}
+        }
+
+        .parent-${uniqueId}:hover:after {
             ${hoverOverlayTabStyle ? hoverOverlayTabStyle : ''}
             ${hoverBgTabStyle ? hoverBgTabStyle : ''}
         }
@@ -147,8 +156,11 @@ export const GlobalStyleHanlder = (props) => {
             ${overlayMobStyle ? overlayMobStyle : ''}
 
         }
+        .parent-${uniqueId}:after {
+            ${overlayMobStyle ? overlayMobStyle : ''}
+        }
 
-        .parent-${uniqueId}:hover {
+        .parent-${uniqueId}:hover:after {
             ${hoverOverlayMobStyle ? hoverOverlayMobStyle : ''}
             ${hoverBgMobStyle ? hoverBgMobStyle : ''}
         }

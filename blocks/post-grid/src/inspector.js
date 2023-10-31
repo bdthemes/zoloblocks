@@ -459,15 +459,6 @@ function Inspector({ attributes, setAttributes }) {
                                     normalComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Background', 'zolo-blocks')}
-                                                color={catBgColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        catBgColor: value,
-                                                    })
-                                                }
-                                            />
-                                            <ColorControl
                                                 label={__('Color', 'zolo-blocks')}
                                                 color={catColor}
                                                 onChange={(value) =>
@@ -476,25 +467,34 @@ function Inspector({ attributes, setAttributes }) {
                                                     })
                                                 }
                                             />
+                                            <ColorControl
+                                                label={__('Background', 'zolo-blocks')}
+                                                color={catBgColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        catBgColor: value,
+                                                    })
+                                                }
+                                            />
                                         </>
                                     }
                                     hoverComponents={
                                         <>
-                                            <ColorControl
-                                                label={__('Background', 'zolo-blocks')}
-                                                color={catBgHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        catBgHoverColor: value,
-                                                    })
-                                                }
-                                            />
                                             <ColorControl
                                                 label={__('Color', 'zolo-blocks')}
                                                 color={catHoverColor}
                                                 onChange={(value) =>
                                                     setAttributes({
                                                         catHoverColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Background', 'zolo-blocks')}
+                                                color={catBgHoverColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        catBgHoverColor: value,
                                                     })
                                                 }
                                             />
