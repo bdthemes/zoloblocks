@@ -119,11 +119,12 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <RangeControl
                                     value={desktopRange}
-                                    onChange={(val) =>
+                                    onChange={(val) => {
+                                        console.log(val);
                                         setAttributes({
                                             [`${prefix}${controlName}Range`]: val,
-                                        })
-                                    }
+                                        });
+                                    }}
                                     min={min || 0}
                                     max={sizeUnit === '%' ? 100 : max || 100}
                                     step={step || 1}
