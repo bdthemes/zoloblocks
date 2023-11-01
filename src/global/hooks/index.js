@@ -120,24 +120,23 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
         const isBlockJustInserted = select('core/block-editor').wasBlockJustInserted(clientId);
         const [editorType, setEditorType] = useState();
 
+        const prefix = name.split('/')[1];
         // UseEffect for initial setting
         useEffect(() => {
-            const splitName = name.split('/');
-            if (splitName && typeof splitName === 'object' && splitName.length > 1) {
-                handleUniqueId({
-                    prefix: splitName[1],
-                    uniqueId,
-                    setAttributes,
-                    clientId,
-                });
-            }
+            handleUniqueId({
+                prefix,
+                uniqueId,
+                setAttributes,
+                clientId,
+            });
         }, []);
 
         //set Unique Id globally
         useEffect(() => {
             if (uniqueId) {
+                const filteredParentClasses = parentClasses.filter((item) => !item.includes(`parent-${prefix}`));
                 setAttributes({
-                    parentClasses: [...parentClasses, `parent-${uniqueId}`],
+                    parentClasses: [...filteredParentClasses, `parent-${uniqueId}`],
                 });
             }
         }, [uniqueId]);

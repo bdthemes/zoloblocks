@@ -15,18 +15,6 @@ export const GlobalStyleHanlder = (props) => {
 
     const { uniqueId, zoloStyles, globalConfig } = attributes;
 
-    //Generate Global Styles
-
-    // generate Border
-    // const {
-    //     borderStylesDesktop: desktopBorderStyles,
-    //     borderStylesTab: tabBorderStyles,
-    //     borderStylesMobile: mobileBorderStyles,
-    // } = generateBorderStyle({
-    //     controlName: globalConfig?.border?.prefix || 'mainBorder',
-    //     attributes,
-    // });
-
     const {
         desktopBorderStyle: desktopBorderStyles,
         tabBorderStyle: tabBorderStyles,
@@ -179,9 +167,9 @@ export const GlobalStyleHanlder = (props) => {
     // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
-            desktop: desktopAllStyle + desktopGlobalStyles,
-            tab: tabAllStyle + tabGlobalStyles,
-            mobile: mobileAllStyle + mobileGlobalStyles,
+            desktop: softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles),
+            tab: softMinifyCssStrings(tabAllStyle + tabGlobalStyles),
+            mobile: softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles),
         };
         if (JSON.stringify(zoloStyles) !== JSON.stringify(styles)) {
             setAttributes({
@@ -192,7 +180,7 @@ export const GlobalStyleHanlder = (props) => {
 
     return (
         <>
-            <style>{` ${softMinifyCssStrings(allStyle)}`}</style>
+            <style>{allStyle}</style>
         </>
     );
 };
