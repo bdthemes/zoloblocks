@@ -70,7 +70,9 @@ const Save = ({ attributes }) => {
                                     <RichText.Content value={memberName} />
                                 </a>
                             ) : (
-                                <RichText.Content value={memberName} className="zolo-name" />
+                                <div className="zolo-name">
+                                    <RichText.Content value={memberName} />
+                                </div>
                             ))}
                         {showDesignation && (
                             <div className="zolo-designation">

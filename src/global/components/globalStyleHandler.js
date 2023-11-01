@@ -53,16 +53,23 @@ export const GlobalStyleHanlder = (props) => {
     // });
 
     const {
+        // main background
         backgroundStylesDesktop: bgDeskStyle,
         hoverBackgroundStylesDesktop: hoverBgDeskStyle,
+
         backgroundStylesTab: bgTabStyle,
         hoverBackgroundStylesTab: hoverBgTabStyle,
+
         backgroundStylesMobile: bgMobStyle,
         hoverBackgroundStylesMobile: hoverBgMobStyle,
+
+        // overlay
         overlayStylesDesktop: overlayDeskStyle,
         hoverOverlayStylesDesktop: hoverOverlayDeskStyle,
+
         overlayStylesTab: overlayTabStyle,
         hoverOverlayStylesTab: hoverOverlayTabStyle,
+
         overlayStylesMobile: overlayMobStyle,
         hoverOverlayStylesMobile: hoverOverlayMobStyle,
     } = generateBackgroundControlStyles({
@@ -103,6 +110,10 @@ export const GlobalStyleHanlder = (props) => {
             transition: all 0.3s ease-in-out;
         }
 
+        .parent-${uniqueId}:hover {
+            ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
+        }
+
         .parent-${uniqueId}:after {
             ${overlayDeskStyle ? overlayDeskStyle : ''} 
             transition: all 0.3s ease-in-out;
@@ -110,7 +121,6 @@ export const GlobalStyleHanlder = (props) => {
 
         .parent-${uniqueId}:hover:after {
             ${hoverOverlayDeskStyle ? hoverOverlayDeskStyle : ''}
-            ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
         }
     `;
 
@@ -121,7 +131,10 @@ export const GlobalStyleHanlder = (props) => {
             ${marginStylesTab ? marginStylesTab : ''}
             ${paddingStylesTab ? paddingStylesTab : ''}
             ${bgTabStyle ? bgTabStyle : ''}
-            ${overlayTabStyle ? overlayTabStyle : ''}
+        }
+
+        .parent-${uniqueId}:hover {
+            ${hoverBgTabStyle ? hoverBgTabStyle : ''}
         }
 
         .parent-${uniqueId}:after {
@@ -130,7 +143,6 @@ export const GlobalStyleHanlder = (props) => {
 
         .parent-${uniqueId}:hover:after {
             ${hoverOverlayTabStyle ? hoverOverlayTabStyle : ''}
-            ${hoverBgTabStyle ? hoverBgTabStyle : ''}
         }
     `;
 
@@ -141,16 +153,19 @@ export const GlobalStyleHanlder = (props) => {
             ${marginStylesMobile ? marginStylesMobile : ''}
             ${paddingStylesMobile ? paddingStylesMobile : ''}
             ${bgMobStyle ? bgMobStyle : ''}
-            ${overlayMobStyle ? overlayMobStyle : ''}
 
         }
+
+        .parent-${uniqueId}:hover {
+            ${hoverBgMobStyle ? hoverBgMobStyle : ''}
+        }
+
         .parent-${uniqueId}:after {
             ${overlayMobStyle ? overlayMobStyle : ''}
         }
 
         .parent-${uniqueId}:hover:after {
             ${hoverOverlayMobStyle ? hoverOverlayMobStyle : ''}
-            ${hoverBgMobStyle ? hoverBgMobStyle : ''}
         }
     `;
 

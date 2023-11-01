@@ -183,7 +183,13 @@ const attributes = {
     textColor: {
         type: 'string',
     },
+    textHoverColor: {
+        type: 'string',
+    },
     descColor: {
+        type: 'string',
+    },
+    descHoverColor: {
         type: 'string',
     },
     iconType: {

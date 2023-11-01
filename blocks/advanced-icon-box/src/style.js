@@ -373,34 +373,25 @@ export default function Style({ props }) {
 			${titleTextShadowStyle}
         	${titleTextStrokeStyle}
 			${titleMarginDesktop ? titleMarginDesktop : ''}
-			color: ${textColor ? textColor : ''};
-		}
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title:hover{
-			color: ${textHoverColor ? textHoverColor : ''};
+            ${textColor ? `color: ${textColor};` : ''}
+            transition: all 0.3s ease-in-out;
 		}
 		.${uniqueId} .zolo-block-desc{
 			${descTypoDesktop}
 			${descMarginDesktop}
-			color: ${descColor ? descColor : ''};
-		}
-		.${uniqueId} .zolo-block-desc:hover{
-			color: ${descHoverColor ? descHoverColor : ''};
+            ${descColor ? `color: ${descColor};` : ''}
+            transition: all 0.3s ease-in-out;
 		}
 		.${uniqueId} .zolo-block-icon-wrap i {
-			background: ${iconBackgroundColor ? iconBackgroundColor : ''};
-			color: ${iconColor ? iconColor : ''};
+            ${iconBackgroundColor ? `background: ${iconBackgroundColor};` : ''}
+            ${iconColor ? `color: ${iconColor};` : ''}
 			${iconSize}
 			${borderStyles}
 			${iconBorderRadiusDesktop}
 			${iconPaddingDesktop}
 			${iconMarginDesktop}
 			${iconBoxShadow}
-		}
-		.${uniqueId} .zolo-block-icon-wrap i:hover{
-			background: ${iconBackgroundHoverColor ? iconBackgroundHoverColor : ''};
-			color: ${iconHoverColor ? iconHoverColor : ''};
-			${iconHoverBoxShadow}
-			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''}
+            transition: all 0.3s ease-in-out;
 		}
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
@@ -415,22 +406,13 @@ export default function Style({ props }) {
 			${buttonPaddingDesktop}
 			${buttonMarginDesktop}
 			${buttonBoxShadow}
-		}
-
-		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover {
-			${buttonBGHoverDeskStyle}
-			background: ${btnBgHoverColor ? btnBgHoverColor : ''};
-			${buttonHoverBoxShadow}
-			border-color: ${btnHoverBorderColor ? btnHoverBorderColor : ''}
+            transition: all 0.3s ease-in-out;
 		}
 
 		.${uniqueId} .zolo-block-body-content .zolo-box-button i{
-			color: ${buttonIconColor};
+            ${buttonIconColor ? `color: ${buttonIconColor};` : ''}
 			${buttonIconSize}
-		}
-
-		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover i{
-			color: ${buttonIconHoverColor}
+            transition: all 0.3s ease-in-out;
 		}
 
 		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
@@ -438,9 +420,35 @@ export default function Style({ props }) {
 			${btnTypoDesktop}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover p{
-			color: ${btnHoverColor ? btnHoverColor : ''};
-		}
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-title{
+            ${textHoverColor ? `color: ${textHoverColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-desc{
+            ${descHoverColor ? `color: ${descHoverColor};` : ''}
+        }
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap i{
+            ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ''}
+            ${iconHoverColor ? `color: ${iconHoverColor};` : ''}
+			${iconHoverBoxShadow}
+            ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
+			${buttonBGHoverDeskStyle}
+            ${btnBgHoverColor ? `background: ${btnBgHoverColor};` : ''}
+			${buttonHoverBoxShadow}
+            ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button p{
+            ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
+        }
+
+        ${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button i{
+            ${buttonIconHoverColor ? `color: ${buttonIconHoverColor};` : ''}
+        }
+
        ${
            preset === 'style-1'
                ? `.zolo-block-icon-wrap {
