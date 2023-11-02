@@ -11,191 +11,170 @@ import { generateBorderStyle } from '../../helpers/border-helper';
 import { generateBoxShadowStyles } from '../../helpers/boxshadow-helper';
 
 export const GlobalStyleHanlder = (props) => {
-    const { attributes, setAttributes, desktopAllStyle, tabAllStyle, mobileAllStyle } = props;
+  const { attributes, setAttributes, desktopAllStyle, tabAllStyle, mobileAllStyle } = props;
 
-    const { uniqueId, zoloStyles, globalConfig } = attributes;
+  const { uniqueId, zoloStyles, globalConfig } = attributes;
 
-    const {
-        desktopBorderStyle: desktopBorderStyles,
-        tabBorderStyle: tabBorderStyles,
-        mobBorderStyle: mobileBorderStyles,
-    } = generateBorderStyle({
-        controlName: globalConfig?.border?.prefix || 'mainBorder',
-        attributes,
-    });
+  if (!uniqueId) {
+    return
+  }
 
-    // border-radius
-    const {
-        dimensionStylesDesktop: borderRadiusStylesDesktop,
-        dimensionStylesTab: borderRadiusStylesTab,
-        dimensionStylesMobile: borderRadiusStylesMobile,
-    } = generateDimensionStyle({
-        controlName: globalConfig?.borderRadius?.prefix || 'mainBorderRadius',
-        styleFor: 'border-radius',
-        attributes,
-    });
+  //Generate Global Styles
 
-    // box shadow
-    const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
-        controlName: globalConfig?.boxShadow?.prefix || 'mainBoxShadow',
-        attributes,
-    });
+  // generate Border
+  // const {
+  //     borderStylesDesktop: desktopBorderStyles,
+  //     borderStylesTab: tabBorderStyles,
+  //     borderStylesMobile: mobileBorderStyles,
+  // } = generateBorderStyle({
+  //     controlName: globalConfig?.border?.prefix || 'mainBorder',
+  //     attributes,
+  // });
 
-    // generate Background
-    // const {
-    //     backgroundStylesDesktop: desktopBgStyles,
-    //     backgroundStylesTab: tabBgStyles,
-    //     backgroundStylesMobile: mobileBgStyles,
-    // } = generateNormalBGControlStyles({
-    //     controlName: globalConfig?.background?.prefix || 'mainBg',
-    //     attributes,
-    //     noMainBGImg: false,
-    // });
+  const {
+    desktopBorderStyle: desktopBorderStyles,
+    tabBorderStyle: tabBorderStyles,
+    mobBorderStyle: mobileBorderStyles,
+  } = generateBorderStyle({
+    controlName: globalConfig?.border?.prefix || 'mainBorder',
+    attributes,
+  });
 
-    const {
-        // main background
-        backgroundStylesDesktop: bgDeskStyle,
-        hoverBackgroundStylesDesktop: hoverBgDeskStyle,
+  // border-radius
+  const {
+    dimensionStylesDesktop: borderRadiusStylesDesktop,
+    dimensionStylesTab: borderRadiusStylesTab,
+    dimensionStylesMobile: borderRadiusStylesMobile,
+  } = generateDimensionStyle({
+    controlName: globalConfig?.borderRadius?.prefix || 'mainBorderRadius',
+    styleFor: 'border-radius',
+    attributes,
+  });
 
-        backgroundStylesTab: bgTabStyle,
-        hoverBackgroundStylesTab: hoverBgTabStyle,
+  // box shadow
+  const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
+    controlName: globalConfig?.boxShadow?.prefix || 'mainBoxShadow',
+    attributes,
+  });
 
-        backgroundStylesMobile: bgMobStyle,
-        hoverBackgroundStylesMobile: hoverBgMobStyle,
+  // generate Background
+  // const {
+  //     backgroundStylesDesktop: desktopBgStyles,
+  //     backgroundStylesTab: tabBgStyles,
+  //     backgroundStylesMobile: mobileBgStyles,
+  // } = generateNormalBGControlStyles({
+  //     controlName: globalConfig?.background?.prefix || 'mainBg',
+  //     attributes,
+  //     noMainBGImg: false,
+  // });
 
-        // overlay
-        overlayStylesDesktop: overlayDeskStyle,
-        hoverOverlayStylesDesktop: hoverOverlayDeskStyle,
+  const {
+    backgroundStylesDesktop: bgDeskStyle,
+    hoverBackgroundStylesDesktop: hoverBgDeskStyle,
+    backgroundStylesTab: bgTabStyle,
+    hoverBackgroundStylesTab: hoverBgTabStyle,
+    backgroundStylesMobile: bgMobStyle,
+    hoverBackgroundStylesMobile: hoverBgMobStyle,
+    overlayStylesDesktop: overlayDeskStyle,
+    hoverOverlayStylesDesktop: hoverOverlayDeskStyle,
+    overlayStylesTab: overlayTabStyle,
+    hoverOverlayStylesTab: hoverOverlayTabStyle,
+    overlayStylesMobile: overlayMobStyle,
+    hoverOverlayStylesMobile: hoverOverlayMobStyle,
+  } = generateBackgroundControlStyles({
+    attributes,
+    controlName: globalConfig?.background?.prefix || 'mainBg',
+  });
 
-        overlayStylesTab: overlayTabStyle,
-        hoverOverlayStylesTab: hoverOverlayTabStyle,
+  // margin
+  const {
+    dimensionStylesDesktop: marginStylesDesktop,
+    dimensionStylesTab: marginStylesTab,
+    dimensionStylesMobile: marginStylesMobile,
+  } = generateDimensionStyle({
+    controlName: globalConfig?.margin?.prefix || 'mainMargin',
+    styleFor: 'margin',
+    attributes,
+  });
 
-        overlayStylesMobile: overlayMobStyle,
-        hoverOverlayStylesMobile: hoverOverlayMobStyle,
-    } = generateBackgroundControlStyles({
-        attributes,
-        controlName: globalConfig?.background?.prefix || 'mainBg',
-    });
+  // padding
+  const {
+    dimensionStylesDesktop: paddingStylesDesktop,
+    dimensionStylesTab: paddingStylesTab,
+    dimensionStylesMobile: paddingStylesMobile,
+  } = generateDimensionStyle({
+    controlName: globalConfig?.padding?.prefix || 'mainPadding',
+    styleFor: 'padding',
+    attributes,
+  });
 
-    // margin
-    const {
-        dimensionStylesDesktop: marginStylesDesktop,
-        dimensionStylesTab: marginStylesTab,
-        dimensionStylesMobile: marginStylesMobile,
-    } = generateDimensionStyle({
-        controlName: globalConfig?.margin?.prefix || 'mainMargin',
-        styleFor: 'margin',
-        attributes,
-    });
+  const desktopGlobalStyles = `
+    .parent-${uniqueId} {
+        ${normalBoxShadowStyle ? normalBoxShadowStyle : ''}
+        ${borderRadiusStylesDesktop ? borderRadiusStylesDesktop : ''}
+        ${desktopBorderStyles ? desktopBorderStyles : ''}
+        ${marginStylesDesktop ? marginStylesDesktop : ''}
+        ${paddingStylesDesktop ? paddingStylesDesktop : ''}
+        ${bgDeskStyle ? bgDeskStyle : ''}
+        ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
+        ${overlayDeskStyle ? overlayDeskStyle : ''}
+        ${hoverOverlayDeskStyle ? hoverOverlayDeskStyle : ''}
+    }
+  `;
 
-    // padding
-    const {
-        dimensionStylesDesktop: paddingStylesDesktop,
-        dimensionStylesTab: paddingStylesTab,
-        dimensionStylesMobile: paddingStylesMobile,
-    } = generateDimensionStyle({
-        controlName: globalConfig?.padding?.prefix || 'mainPadding',
-        styleFor: 'padding',
-        attributes,
-    });
+  const tabGlobalStyles = `
+    .parent-${uniqueId} {
+        ${borderRadiusStylesTab ? borderRadiusStylesTab : ''}
+        ${tabBorderStyles ? tabBorderStyles : ''}
+        ${marginStylesTab ? marginStylesTab : ''}
+        ${paddingStylesTab ? paddingStylesTab : ''}
+        ${bgTabStyle ? bgTabStyle : ''}
+        ${overlayTabStyle ? overlayTabStyle : ''}
+        ${hoverOverlayTabStyle ? hoverOverlayTabStyle : ''}
+        ${hoverBgTabStyle ? hoverBgTabStyle : ''}
+    }
+  `;
 
-    const desktopGlobalStyles = `
-        .parent-${uniqueId} {
-            ${normalBoxShadowStyle ? normalBoxShadowStyle : ''}
-            ${borderRadiusStylesDesktop ? borderRadiusStylesDesktop : ''}
-            ${desktopBorderStyles ? desktopBorderStyles : ''}
-            ${marginStylesDesktop ? marginStylesDesktop : ''}
-            ${paddingStylesDesktop ? paddingStylesDesktop : ''}
-            ${bgDeskStyle ? bgDeskStyle : ''}
-            transition: all 0.3s ease-in-out;
-        }
+  const mobileGlobalStyles = `
+    .parent-${uniqueId} {
+        ${borderRadiusStylesMobile ? borderRadiusStylesMobile : ''}
+        ${mobileBorderStyles ? mobileBorderStyles : ''}
+        ${marginStylesMobile ? marginStylesMobile : ''}
+        ${paddingStylesMobile ? paddingStylesMobile : ''}
+        ${bgMobStyle ? bgMobStyle : ''}
+        ${overlayMobStyle ? overlayMobStyle : ''}
+        ${hoverOverlayMobStyle ? hoverOverlayMobStyle : ''}
+        ${hoverBgMobStyle ? hoverBgMobStyle : ''}
+    }
+  `;
 
-        .parent-${uniqueId}:hover {
-            ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
-        }
-
-        .parent-${uniqueId}:after {
-            ${overlayDeskStyle ? overlayDeskStyle : ''} 
-            transition: all 0.3s ease-in-out;
-        }
-
-        .parent-${uniqueId}:hover:after {
-            ${hoverOverlayDeskStyle ? hoverOverlayDeskStyle : ''}
-        }
-    `;
-
-    const tabGlobalStyles = `
-        .parent-${uniqueId} {
-            ${borderRadiusStylesTab ? borderRadiusStylesTab : ''}
-            ${tabBorderStyles ? tabBorderStyles : ''}
-            ${marginStylesTab ? marginStylesTab : ''}
-            ${paddingStylesTab ? paddingStylesTab : ''}
-            ${bgTabStyle ? bgTabStyle : ''}
-        }
-
-        .parent-${uniqueId}:hover {
-            ${hoverBgTabStyle ? hoverBgTabStyle : ''}
-        }
-
-        .parent-${uniqueId}:after {
-            ${overlayTabStyle ? overlayTabStyle : ''}
-        }
-
-        .parent-${uniqueId}:hover:after {
-            ${hoverOverlayTabStyle ? hoverOverlayTabStyle : ''}
-        }
-    `;
-
-    const mobileGlobalStyles = `
-        .parent-${uniqueId} {
-            ${borderRadiusStylesMobile ? borderRadiusStylesMobile : ''}
-            ${mobileBorderStyles ? mobileBorderStyles : ''}
-            ${marginStylesMobile ? marginStylesMobile : ''}
-            ${paddingStylesMobile ? paddingStylesMobile : ''}
-            ${bgMobStyle ? bgMobStyle : ''}
-
-        }
-
-        .parent-${uniqueId}:hover {
-            ${hoverBgMobStyle ? hoverBgMobStyle : ''}
-        }
-
-        .parent-${uniqueId}:after {
-            ${overlayMobStyle ? overlayMobStyle : ''}
-        }
-
-        .parent-${uniqueId}:hover:after {
-            ${hoverOverlayMobStyle ? hoverOverlayMobStyle : ''}
-        }
-    `;
-
-    const allStyle = `
-		${desktopAllStyle + desktopGlobalStyles}
+  const allStyle = `
+		${softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles)}
 		@media all and (max-width: 1024px) {
-			${tabAllStyle + tabGlobalStyles}
+			${softMinifyCssStrings(tabAllStyle + tabGlobalStyles)}
 		}
 		@media all and (max-width: 767px) {
-			${mobileAllStyle + mobileGlobalStyles}
+			${softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles)}
 		}
 	`;
 
-    // Set All Style in "zoloStyles" Attribute
-    useEffect(() => {
-        const styles = {
-            desktop: softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles),
-            tab: softMinifyCssStrings(tabAllStyle + tabGlobalStyles),
-            mobile: softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles),
-        };
-        if (JSON.stringify(zoloStyles) !== JSON.stringify(styles)) {
-            setAttributes({
-                zoloStyles: { ...styles },
-            });
-        }
-    }, [attributes]);
+  // Set All Style in "zoloStyles" Attribute
+  useEffect(() => {
+    const styles = {
+      desktop: softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles),
+      tab: softMinifyCssStrings(tabAllStyle + tabGlobalStyles),
+      mobile: softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles),
+    };
+    if (JSON.stringify(zoloStyles) !== JSON.stringify(styles)) {
+      setAttributes({
+        zoloStyles: { ...styles },
+      });
+    }
+  }, [attributes]);
 
-    return (
-        <>
-            <style>{allStyle}</style>
-        </>
-    );
+  return (
+    <>
+      <style>{allStyle}</style>
+    </>
+  );
 };
