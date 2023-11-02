@@ -100,7 +100,6 @@ const attributes = {
         default: 'style-1',
     },
     ...generateResRangeAttributies(GRID_COLUMNS, {
-        defaultRange: 3,
         noUnits: true,
     }),
     ...generateResRangeAttributies(COLUMNS_GAP, {
