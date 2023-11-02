@@ -499,6 +499,15 @@ function Style({ props }) {
         ${columnDeskBorderRadius}
         ${columnBoxShadow}
       }
+
+      .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-3 .zolo-post-item{
+        background: none !important;
+      }
+
+      .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-3 .zolo-post-item .zolo-post-image::after{
+        ${columnDeskBGStyle}
+      }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-image{
         ${thumbnailHeightDesk}
       }
