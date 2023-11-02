@@ -1,0 +1,77 @@
+.wp-block-zolo-advanced-icon-box {
+    padding: 40px;
+    position: relative;
+    border-radius: 3px;
+    background: rgba(205, 210, 255, 0.123);
+    box-sizing: border-box;
+
+    .zolo-block-title {
+        font-size: 25px;
+        font-weight: 700;
+        margin: 0 0 18px;
+    }
+    .zolo-block-hover-icon {
+        display: none;
+    }
+    .zolo-block-desc {
+        font-weight: 300;
+    }
+    .zolo-block-icon-wrap {
+        display: flex;
+        margin: 0 0 20px;
+        i {
+            font-size: 24px;
+        }
+        img {
+            width: 60px;
+            height: auto;
+        }
+    }
+    .zolo-block-body-content {
+        z-index: 1;
+        position: relative;
+        .zolo-block-link-btn {
+            margin-top: 20px;
+        }
+        .zolo-box-button {
+            display: inline-flex;
+            gap: 15px;
+            align-items: center;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: 1px solid #c7c3e1;
+            border-radius: 3px;
+            padding: 10px 15px;
+            p {
+                color: #3f1a46;
+            }
+            &:hover {
+                border-color: #3f1a46;
+                background: #3f1a46;
+                p {
+                    color: #fff;
+                }
+            }
+        }
+        .zolo-box-button p {
+            margin: 0px;
+        }
+    }
+    /* icon box style 2 */
+    & .zolo-block-advanced-icon-box-style-2,
+    & .zolo-block-advanced-icon-box-style-3 {
+        .zolo-block-item {
+            display: flex;
+            grid-gap: 20px;
+        }
+        .zolo-block-icon-wrap {
+            margin: 0;
+        }
+    }
+    /* icon box style 3 */
+    & .zolo-block-advanced-icon-box-style-3 {
+        .zolo-block-item {
+            flex-direction: row-reverse;
+        }
+    }
+}

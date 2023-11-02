@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Team Child",
+    "name": "zolo/team-child",
+    "category": "zolo-blocks",
+    "keywords": ["team", "team member"],
+    "description": "Single team member",
+    "parent": ["zolo/team-grid"],
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": ""
+}

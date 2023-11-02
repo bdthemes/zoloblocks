@@ -1,0 +1,181 @@
+.wp-block-zolo-pricing-table {
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    .zolo-block-wrapper {
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        position: relative;
+    }
+    .zolo-head-content {
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+    }
+    .zolo-package-title {
+        margin: 0 0 20px;
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        font-weight: 700;
+        color: #292734;
+        text-transform: capitalize;
+    }
+    .zolo-price-info {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .zolo-user-month {
+        display: flex;
+        font-size: 14px;
+        font-weight: 300;
+        color: #34353c;
+        flex-direction: column;
+    }
+    .zolo-price {
+        font-size: 50px;
+        font-weight: 700;
+        color: #17171a;
+        .currency,
+        .fractional {
+            position: relative;
+        }
+    }
+
+    .zolo-orginal-price {
+        text-decoration: line-through;
+        padding-right: 8px;
+    }
+
+    .zolo-package-desc,
+    .zolo-features-desc {
+        font-size: 14px;
+        font-weight: 300;
+        color: #494754;
+        margin-bottom: 25px;
+    }
+
+    .zolo-link-btn {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        a {
+            &.zolo-buy-btn,
+            &.zolo-chat-btn {
+                padding: 12px;
+                font-size: 14px;
+                border-radius: 5px;
+                border: 1px solid #ddd;
+                text-transform: capitalize;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+            &.zolo-buy-btn {
+                background-color: #000;
+                color: #fff;
+                &:hover {
+                    color: #000;
+                    background-color: #fff;
+                }
+            }
+            &.zolo-chat-btn {
+                color: #000;
+                &:hover {
+                    background-color: #000;
+                    color: #fff;
+                    border: 1px solid #ddd;
+                }
+            }
+        }
+    }
+
+    .zolo-features-info {
+        border-top: 1px solid #ddd;
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+    }
+
+    .zolo-features-title {
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .zolo-item {
+        .features {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+
+    .features li {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        gap: 10px;
+        color: #524f58;
+    }
+
+    .zolo-check-icon {
+        background-color: #7aff00;
+        padding: 4px;
+        border-radius: 100%;
+        line-height: 1;
+    }
+
+    .zolo-ribbon-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: clamp(1.5rem, 4vw, 2.5rem);
+        color: #000;
+        font-size: 11px;
+        text-transform: capitalize;
+        background-color: #72fd3f;
+        padding: 4px 10px;
+        border-radius: 6px;
+    }
+
+    .zolo-featerd-item {
+        background-color: #000;
+    }
+
+    .zolo-featerd-item .zolo-buy-btn,
+    .zolo-featerd-item .zolo-chat-btn:hover {
+        background-color: #7aff00;
+        color: #000;
+        border: 1px solid #ddd;
+    }
+
+    .zolo-featerd-item .zolo-buy-btn:hover,
+    .zolo-featerd-item .zolo-chat-btn {
+        background-color: white;
+        color: #000;
+    }
+
+    .zolo-featerd-item .zolo-package-title {
+        color: #72fd3f;
+    }
+
+    .zolo-featerd-item .zolo-price,
+    .zolo-featerd-item .zolo-features-title {
+        color: #e1e1e1;
+    }
+
+    .zolo-featerd-item .zolo-user-month,
+    .zolo-featerd-item .zolo-package-desc,
+    .zolo-featerd-item .zolo-features-desc,
+    .zolo-featerd-item .features li {
+        color: #b4b5b9;
+    }
+
+    .zolo-featerd-item .zolo-check-icon {
+        color: #000;
+    }
+
+    .zolo-featerd-item .zolo-features-info {
+        border-top: 1px solid rgba(215, 218, 223, 0.322);
+    }
+}

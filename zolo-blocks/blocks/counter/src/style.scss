@@ -1,0 +1,40 @@
+.wp-block-zolo-counter {
+    overflow: hidden;
+    .zolo-counter-item {
+        padding: 40px;
+        box-sizing: border-box;
+        overflow: hidden;
+        background-color: #f7f7f7;
+        transition: all 0.3s ease;
+    }
+
+    .zolo-counter-item:hover {
+        transform: scale(0.95) rotate(-3deg);
+    }
+
+    .zolo-counter-count {
+        font-size: 30px;
+        font-weight: 800;
+        line-height: 1;
+        color: #20232a;
+        margin: 0 0 5px;
+    }
+
+    .zolo-counter-icon {
+        img {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        i {
+            color: #20232a;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+    }
+
+    .zolo-counter-title {
+        font-size: 16px;
+        color: #484a54;
+        font-weight: 600;
+    }
+}

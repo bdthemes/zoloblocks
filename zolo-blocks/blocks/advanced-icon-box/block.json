@@ -1,0 +1,16 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Advanced Icon Box",
+    "name": "zolo/advanced-icon-box",
+    "category": "zolo-blocks",
+    "keywords": ["icon", "advanced icon box"],
+    "description": "Advanced icon box description",
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": ""
+}

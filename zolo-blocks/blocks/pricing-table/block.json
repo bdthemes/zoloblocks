@@ -1,0 +1,16 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Pricing Table",
+    "name": "zolo/pricing-table",
+    "category": "zolo-blocks",
+    "keywords": ["pricing", "pricing table"],
+    "description": "Pricing table description",
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": ""
+}

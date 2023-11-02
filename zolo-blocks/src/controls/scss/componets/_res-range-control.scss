@@ -1,0 +1,21 @@
+.zb-res-range-control-wrapper {
+	position: relative;
+	.components-range-control {
+		flex-grow: 1;
+
+		.components-input-control {
+			margin-left: 8px !important;
+			width: 70px !important;
+			input {
+				height: 40px !important;
+				border: 1px solid #e9e9e9;
+				outline: none !important;
+				border-radius: 6px;
+				padding: 0 12px !important;
+			}
+			.components-input-control__backdrop {
+				border: none !important;
+			}
+		}
+	}
+}

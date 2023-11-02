@@ -1,0 +1,125 @@
+.zb-brand-grid-wrap {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.zb-brand-item {
+    position: relative;
+    height: 250px;
+    background-color: #f1f1f1;
+    overflow: hidden;
+}
+
+.zb-brand-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    .components-placeholder {
+        margin: 20px;
+    }
+}
+
+.zb-brand-image img {
+    display: block;
+    width: auto;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.zb-brand-content {
+    position: absolute;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.zb-brand-title {
+    font-size: 40px;
+    margin: 0 0 0px;
+    text-transform: capitalize;
+}
+
+.zb-brand-link {
+    font-size: 18px;
+    font-weight: 300;
+    color: #3c4356;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.zb-brand-link:hover {
+    color: #3c4;
+}
+
+.zb-brand-inner-content {
+    text-align: center;
+}
+
+/* Demo style 1 & style 2 css  */
+
+.zb-brand-style-1 .zb-brand-title,
+.zb-brand-style-2 .zb-brand-title {
+    transform: translateX(-40px);
+    transition: all 0.3s ease;
+}
+
+.zb-brand-style-1 .zb-brand-link,
+.zb-brand-style-2 .zb-brand-link {
+    transform: translateX(40px);
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.zb-brand-style-1 .zb-brand-item:hover .zb-brand-title,
+.zb-brand-style-2 .zb-brand-item:hover .zb-brand-title,
+.zb-brand-style-1 .zb-brand-item:hover .zb-brand-link,
+.zb-brand-style-2 .zb-brand-item:hover .zb-brand-link {
+    transform: translateX(0);
+}
+
+.zb-brand-style-1 .zb-brand-content,
+.zb-brand-style-2 .zb-brand-content {
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    clip-path: circle(9.2% at 50% 50%);
+}
+
+.zb-brand-style-1 .has-photo.zb-brand-item:hover .zb-brand-content {
+    opacity: 1;
+    visibility: visible;
+    clip-path: circle(70.7% at 50% 50%);
+}
+
+.zb-brand-style-2 .zb-brand-content {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.zb-brand-style-2 .zb-brand-item:hover .zb-brand-content {
+    opacity: 1;
+    visibility: visible;
+    clip-path: polygon(100% 1%, 100% 100%, 0 100%, 0 0);
+}
+
+.zb-brand-style-1 .zb-brand-icon,
+.zb-brand-style-2 .zb-brand-icon {
+    display: none;
+}
+
+.zb-brand-style-2 .zb-brand-content {
+    align-items: start;
+    justify-content: end;
+}

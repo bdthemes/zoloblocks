@@ -1,0 +1,42 @@
+// Global Style
+body .wp-block-zolo-container > .zolo-container-inner-blocks-wrap,
+body .wp-block-zolo-container > .zolo-container-inner-blocks-wrap > *,
+body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
+    min-width: unset !important;
+    position: relative;
+    width: 100%;
+}
+
+.wp-block-zolo-container .block-editor-block-list__layout > * {
+    width: 100%;
+}
+
+// block style
+.wp-block-zolo-container {
+    box-sizing: border-box;
+    figure {
+        margin: 0;
+    }
+}
+
+.wp-block-zolo-container.frontend {
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+
+    &.alignfull.zolo-root-container {
+        .zolo-container-inner-blocks-wrap {
+            display: flex;
+            position: relative;
+            box-sizing: border-box;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            width: 100%;
+        }
+    }
+
+    &.zolo-root-container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

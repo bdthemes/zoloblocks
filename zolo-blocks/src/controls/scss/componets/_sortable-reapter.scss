@@ -1,0 +1,80 @@
+.zolo-sortable-lists {
+	display: grid;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.zolo-sortable-item {
+	list-style: none;
+	z-index: initial;
+}
+
+.zolo-sortable-title-wrap {
+	border: 1px solid #d3d3d3;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	line-height: 2.5em;
+	font-size: 13px;
+	color: #555 !important;
+	height: 40px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	background: #fff;
+
+	.zolo-sortable-title {
+		flex: 12;
+		overflow: hidden;
+		padding-left: 8px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 200px;
+		padding-right: 5px;
+		display: inline-block;
+
+		svg {
+			line-height: 1;
+			display: inline-flex;
+			align-items: center;
+			margin-right: 3px;
+			position: relative;
+			top: 1px;
+		}
+	}
+
+	.zolo-drag-icon {
+		background: transparent !important;
+		border-left: 1px solid var(--rtrb-admin-color-border, #e9e9e9) !important;
+		border-right: none !important;
+		display: flex !important;
+		justify-content: center;
+		flex: 2 1 0% !important;
+		align-items: center;
+		color: #fff;
+		cursor: move;
+		height: 100%;
+	}
+
+	.zolo-trash-icon {
+		font-size: 14px;
+		border-left: 1px solid #e9e9e9;
+		line-height: 2.5em;
+		flex: 2;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		height: 100%;
+	}
+
+	.zolo-trash-icon:hover {
+		cursor: pointer;
+	}
+}
+
+.zolo-sortable-expand-body {
+	border: 1px solid #d3d3d3;
+	border-top: 0;
+	padding: 10px;
+	background: #fff;
+}
