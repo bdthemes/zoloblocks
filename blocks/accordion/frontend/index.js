@@ -1,1 +1,16 @@
-document.addEventListener("DOMContentLoaded",(function(){const o=document.querySelectorAll(".wp-block-zolo-accordion");o&&o.length>0&&o.forEach((o=>{new ZoloAccordion(o)}))}));
+/******/ (function() { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!******************************************!*\
+  !*** ./blocks/accordion/src/frontend.js ***!
+  \******************************************/
+document.addEventListener('DOMContentLoaded', function () {
+  const zoloAccordions = document.querySelectorAll('.wp-block-zolo-accordion');
+  if (zoloAccordions && zoloAccordions.length > 0) {
+    zoloAccordions.forEach(accordion => {
+      new ZoloAccordion(accordion);
+    });
+  }
+});
+/******/ })()
+;
+//# sourceMappingURL=index.js.map
