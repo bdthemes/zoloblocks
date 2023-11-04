@@ -150,6 +150,10 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
+    websiteLinkIcon: {
+        type: 'string',
+        default: 'fas fa-arrow-right',
+    },
     reviewerWebsiteLink: {
         type: 'object',
         default: {

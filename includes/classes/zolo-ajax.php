@@ -15,12 +15,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class Zolo_AJAX
-{
+class Zolo_AJAX {
     private static $instance;
 
-    public static function get_instance()
-    {
+    public static function get_instance() {
         if (null === self::$instance) {
             self::$instance = new self;
         }
@@ -30,17 +28,15 @@ class Zolo_AJAX
     /**
      * The Constructor.
      */
-    public function __construct()
-    {
+    public function __construct() {
         self::zolo_ajax_action_init();
     }
 
-    public static function zolo_ajax_action_init()
-    {
+    public static function zolo_ajax_action_init() {
         $ajax_events = array(
             'zolo_example_ajax_function'   => array(
                 'callback' => 'zolo_example_ajax_function_callback',
-                'nopriv' => true
+                'nopriv'   => true
             ),
         );
 
@@ -55,8 +51,7 @@ class Zolo_AJAX
     /**
      * Example Function
      */
-    public static function zolo_example_ajax_function_callback()
-    {
+    public static function zolo_example_ajax_function_callback() {
         if (!wp_verify_nonce($_POST['nonce'], 'nonce')) {
             die(__('Nonce did not match', 'zolo-blocks'));
         }

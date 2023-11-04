@@ -489,7 +489,7 @@ export default function Style({ props }) {
 
     // Title styles css in strings
     const titleStylesDesktop = `
-    .zolo-block-wrapper.${uniqueId} .zolo-ah-title .zolo-ah-main-title {
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
       ${titleColor ? `color: ${titleColor};` : ''}
       ${titleBgColor ? `background-color: ${titleBgColor};` : ''}
       ${titleTypoDesktop}
@@ -509,16 +509,8 @@ export default function Style({ props }) {
 
   `;
 
-    // .zolo-block-wrapper.${uniqueId}.zolo-ah-style-7 .zolo-ah-main-title {
-    //   ${titleBgColor ? `background-color: ${titleBgColor};` : ""}
-    // }
-    // .zolo-block-wrapper.${uniqueId}.zolo-ah-style-7 .zolo-ah-title::before,
-    // .zolo-block-wrapper.${uniqueId}.zolo-ah-style-7 .zolo-ah-title::after {
-    //   ${titleBorderColor ? `background-color: ${titleBorderColor};` : ""}
-    // }
-
     const titleStylesTab = `
-  .zolo-block-wrapper.${uniqueId} .zolo-ah-title .zolo-ah-main-title {
+  .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
     ${titleTypoTab}
     ${titleMarginTab}
     ${titlePaddingTab}
@@ -529,7 +521,7 @@ export default function Style({ props }) {
 `;
 
     const titleStylesMobile = `
-  .zolo-block-wrapper.${uniqueId} .zolo-ah-title .zolo-ah-main-title {
+  .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
     ${titleTypoMobile}
     ${titleMarginMobile}
     ${titlePaddingMob}

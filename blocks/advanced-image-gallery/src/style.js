@@ -52,6 +52,7 @@ import {
     ZOOM_ICON_HOVER_BOX_SHADOW,
     ZOOM_ICON_BG_COLOR,
     ZOOM_ICON_BG_HOVER_COLOR,
+    OVERLAY_BG_COLOR,
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -59,7 +60,8 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
 
-    const { uniqueId, preset, headingColor, zoomIconColor, zoomIconHoverColor, zoomIconHoverBorderColor } = attributes;
+    const { uniqueId, preset, headingColor, zoomIconColor, zoomIconHoverColor, zoomIconHoverBorderColor, imageHoverBorderColor } =
+        attributes;
 
     // column count
     const {
@@ -180,15 +182,6 @@ export default function Style({ props }) {
         mobBorderStyle: imageBorderMob,
     } = generateBorderStyle({
         controlName: IMAGE_BORDER,
-        attributes,
-    });
-
-    const {
-        desktopBorderStyle: imageHoverBorderDesk,
-        tabBorderStyle: imageHoverBorderTab,
-        mobBorderStyle: imageHoverBorderMob,
-    } = generateBorderStyle({
-        controlName: IMAGE_HOVER_BORDER,
         attributes,
     });
 
@@ -376,6 +369,17 @@ export default function Style({ props }) {
         noMainBGImg: false,
     });
 
+    // overlay BG
+    const {
+        backgroundStylesDesktop: overlayDeskBGStyle,
+        backgroundStylesTab: overlayTabBGStyle,
+        backgroundStylesMobile: overlayMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: OVERLAY_BG_COLOR,
+        attributes,
+        noMainBGImg: true,
+    });
+
     /**
      * All Style Combination
      */
@@ -410,9 +414,14 @@ export default function Style({ props }) {
 		}
 		.${uniqueId} .zolo-image-wrap:hover {
 			${imageHoverDeskBGStyle}
-			${imageHoverBorderDesk}
 			${imageHoverBoxShadow}
+            ${imageHoverBorderColor ? `border-color: ${imageHoverBorderColor};` : ''}
 		}
+
+        .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
+            ${overlayDeskBGStyle}
+        }
+
 		.${uniqueId} .zolo-title {
 			color: ${headingColor ? headingColor : ''};
 			${headingDeskBGStyle}
@@ -465,8 +474,10 @@ export default function Style({ props }) {
 	}
 	.${uniqueId} .zolo-image-wrap:hover {
 		${imageHoverTabBGStyle}
-		${imageHoverBorderTab}
 	}
+    .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
+        ${overlayTabBGStyle}
+    }
 	.${uniqueId} .zolo-title {
 		${headingTabBGStyle}
 		${headingMarginTab}
@@ -513,8 +524,10 @@ export default function Style({ props }) {
 	}
 	.${uniqueId} .zolo-image-wrap:hover {
 		${imageHoverMobBGStyle}
-		${imageHoverBorderMob}
 	}
+    .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
+        ${overlayMobBGStyle}
+    }
 	.${uniqueId} .zolo-title {
 		${headingMobBGStyle}
 		${headingMarginMob}

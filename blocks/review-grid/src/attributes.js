@@ -62,7 +62,6 @@ const attributes = {
     },
     ...generateNormalBGAttributes(REVIEW_GRID_BG),
     ...generateResRangeAttributies(GRID_COLUMNS, {
-        defaultRange: 1,
         noUnits: true,
     }),
     ...generateResRangeAttributies(COLUMNS_GAP, {

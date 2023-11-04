@@ -234,6 +234,7 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
 
             //get editor type
             global $pagenow;
+            
             $editor_type = 'edit-post';
             if ( $pagenow == 'site-editor.php' ) {
                 $editor_type = 'edit-site';

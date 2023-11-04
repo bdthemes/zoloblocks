@@ -13,22 +13,18 @@ use Zolo\Classes\Registration;
 use Zolo\API\GetPostsV1;
 
 // Exit if accessed directly.
-if (!defined('ABSPATH')) {
+if ( ! defined('ABSPATH')) {
     exit;
 }
 
-class Zolo_Blocks_Loader
-{
+class Zolo_Blocks_Loader {
     use SingletonTrait;
 
     /**
      * Constructor
      */
-    public function __construct()
-    {
-
+    public function __construct() {
         add_action('plugins_loaded', [$this, 'plugins_loaded']);
-
         add_action('init', [$this, 'init_actions']);
     }
 
@@ -39,8 +35,7 @@ class Zolo_Blocks_Loader
      *
      * @return void
      */
-    public function plugins_loaded()
-    {
+    public function plugins_loaded() {
         GetPostsV1::getInstance();
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
@@ -62,8 +57,7 @@ class Zolo_Blocks_Loader
      *
      * @return void
      */
-    public function init_actions()
-    {
+    public function init_actions() {
 
         $theme_folder = get_template();
 

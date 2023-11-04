@@ -153,6 +153,10 @@ const attributes = {
             openInNewTab: false,
         },
     },
+    websiteLinkIcon: {
+        type: 'string',
+        default: 'fas fa-arrow-right',
+    },
     showDesignation: {
         type: 'boolean',
         default: true,

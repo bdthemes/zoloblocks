@@ -31,6 +31,7 @@
     height: 100%;
     border-radius: 5px;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .zolo-image-gallery .zolo-image-wrap img {
@@ -46,7 +47,7 @@
     opacity: 0;
     z-index: 1;
     transition: all 0.3s ease-in-out;
-    background-image: linear-gradient(45deg, rgba(19, 11, 249, 0.548), transparent);
+    background: rgba(19, 11, 249, 0.548);
 }
 
 .zolo-image-gallery .zolo-item:hover .zolo-image-wrap::before {

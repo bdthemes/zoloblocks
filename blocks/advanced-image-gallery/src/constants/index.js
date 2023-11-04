@@ -33,7 +33,6 @@ export const IMAGE_BORDER = 'imageBorder';
 export const IMAGE_BORDER_RADIUS = 'imageBorderRadius';
 export const IMAGE_BOX_SHADOW = 'imageBoxShadow';
 export const IMAGE_BACKGROUND = 'imageBackground';
-export const IMAGE_HOVER_BORDER = 'imageHoverBorder';
 export const IMAGE_HOVER_BOX_SHADOW = 'imageHoverBoxShadow';
 export const IMAGE_HOVER_BACKGROUND = 'imageHoverBackground';
 export const IMAGE_PADDING = 'imagePadding';
@@ -55,3 +54,6 @@ export const ZOOM_ICON_BOX_SHADOW = 'zoomIconBoxShadow';
 export const ZOOM_ICON_BG_COLOR = 'zoomIconBgColor';
 export const ZOOM_ICON_HOVER_BOX_SHADOW = 'zoomIconHoverBoxShadow';
 export const ZOOM_ICON_BG_HOVER_COLOR = 'zoomIconBgHoverColor';
+
+// Overlay BG
+export const OVERLAY_BG_COLOR = 'overlayBgColor';

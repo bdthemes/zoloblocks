@@ -2,8 +2,11 @@
     --zb-post-hover-color: #3f1a46;
     display: grid;
     grid-gap: 30px;
+    grid-template-columns: repeat(1, 1fr);
     .zolo-post-item {
         position: relative;
+        overflow: hidden;
+        border-radius: 6px;
     }
     .wp-post-image {
         width: 100%;
@@ -15,7 +18,6 @@
     .zolo-post-image {
         position: relative;
         overflow: hidden;
-        border-radius: 6px;
     }
 
     .zolo-post-meta-box {
@@ -384,10 +386,17 @@
 
 @media (min-width: 768px) {
     .zolo-post-grid-wrap {
+        grid-template-columns: repeat(2, 1fr);
         &.zolo-post-style-5 .zolo-post-content {
             width: 60%;
             flex-direction: row;
         }
+    }
+}
+
+@media (min-width: 1024px) {
+    .zolo-post-grid-wrap {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 

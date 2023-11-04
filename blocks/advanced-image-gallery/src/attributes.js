@@ -22,7 +22,6 @@ import {
     CONTAINER_BORDER,
     CONTAINER_HOVER_BORDER,
     IMAGE_BORDER,
-    IMAGE_HOVER_BORDER,
     CONTAINER_BOX_SHADOW,
     CONTAINER_HOVER_BOX_SHADOW,
     IMAGE_BORDER_RADIUS,
@@ -45,6 +44,7 @@ import {
     ZOOM_ICON_HOVER_BOX_SHADOW,
     ZOOM_ICON_BG_COLOR,
     ZOOM_ICON_BG_HOVER_COLOR,
+    OVERLAY_BG_COLOR,
 } from './constants';
 
 const attributes = {
@@ -92,7 +92,6 @@ const attributes = {
     ...generateNormalBGAttributes(IMAGE_BACKGROUND),
     ...generateNormalBGAttributes(IMAGE_HOVER_BACKGROUND),
     ...generateBorderAttributies(IMAGE_BORDER),
-    ...generateBorderAttributies(IMAGE_HOVER_BORDER),
     ...generateDimensionAttributes(IMAGE_BORDER_RADIUS),
     ...generateBoxShadowAttributies(IMAGE_BOX_SHADOW),
     ...generateBoxShadowAttributies(IMAGE_HOVER_BOX_SHADOW),
@@ -129,6 +128,10 @@ const attributes = {
 
     //Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
+
+    //Overlay BG
+    ...generateNormalBGAttributes(OVERLAY_BG_COLOR),
+
     //Block specific Attributes
     preset: {
         type: 'string',
@@ -169,6 +172,9 @@ const attributes = {
             buttonPosition: 'left',
             buttonIconPosition: 'row-reverse',
         },
+    },
+    imageHoverBorderColor: {
+        type: 'string',
     },
 };
 

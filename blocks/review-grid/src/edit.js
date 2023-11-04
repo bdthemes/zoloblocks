@@ -112,7 +112,14 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
-                <InnerBlocks allowedBlocks={['zolo/review-child']} template={[['zolo/review-child', {}]]} renderAppender={false} />
+                <InnerBlocks
+                    allowedBlocks={['zolo/review-child']}
+                    template={[
+                        ['zolo/review-child', {}],
+                        ['zolo/review-child', {}],
+                    ]}
+                    renderAppender={false}
+                />
                 <div
                     className="appender-btn"
                     style={{

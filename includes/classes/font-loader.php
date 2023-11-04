@@ -5,20 +5,18 @@
  */
 
 // Exit if accessed directly.
-if (!defined('ABSPATH')) {
+if ( ! defined('ABSPATH') ) {
 	exit;
 }
 
-class ZB_Font_Loader
-{
+class ZB_Font_Loader {
 
 	private static $instance;
 
 	/**
 	 * Registers the plugin
 	 */
-	public static function register()
-	{
+	public static function register() {
 		if (null === self::$instance) {
 			self::$instance = new ZB_Font_Loader();
 		}
@@ -29,8 +27,7 @@ class ZB_Font_Loader
 	/**
 	 * The Constructor.
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		add_action('wp_enqueue_scripts', array($this, 'fonts_loader'));
 		add_action('admin_enqueue_scripts', array($this, 'fonts_loader'));
 		add_action('zolo_block_render_block', array($this, 'font_generator'));
@@ -52,8 +49,7 @@ class ZB_Font_Loader
 	 *
 	 * @access public
 	 */
-	public function fonts_loader()
-	{
+	public function fonts_loader() {
 		if (is_array(self::$all_fonts) && count(self::$all_fonts) > 0) {
 
 			$fonts = array_filter(array_unique(self::$all_fonts));

@@ -2,8 +2,7 @@
 
 namespace Zolo\Traits;
 
-trait SingletonTrait
-{
+trait SingletonTrait {
     /**
      * Singleton Instance
      *
@@ -17,8 +16,7 @@ trait SingletonTrait
      *
      * @return void
      */
-    private function __construct()
-    {
+    private function __construct() {
         // Don't do anything, we don't want to be initialized
     }
 
@@ -26,8 +24,7 @@ trait SingletonTrait
      * Get the singleton instance
      *
      */
-    public static function getInstance()
-    {
+    public static function getInstance() {
         if (!isset(self::$instance)) {
             self::$instance = new self();
         }
@@ -41,8 +38,7 @@ trait SingletonTrait
      *
      * @return void
      */
-    private function __clone()
-    {
+    private function __clone() {
         // Don't do anything, we don't want to be cloned
     }
 
@@ -52,8 +48,7 @@ trait SingletonTrait
      *
      * @return void
      */
-    public function __wakeup()
-    {
+    public function __wakeup() {
         // Don't do anything, we don't want to be unserialized
     }
 }

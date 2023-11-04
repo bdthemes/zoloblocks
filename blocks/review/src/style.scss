@@ -30,7 +30,8 @@
         text-decoration: none;
         text-transform: capitalize;
     }
-    a.zolo-name:hover {
+
+    .has-link.zolo-name:hover {
         color: rgba(255, 0, 0, 0.938);
     }
 
@@ -122,18 +123,14 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                transition: 0.2s;
-            }
-            svg {
                 fill: #2b3c62;
                 transition: 0.2s;
+                text-decoration: none !important;
             }
         }
-        .zolo-item:hover .zolo-link-btn a {
+        .zolo-link-btn:hover a {
             background-color: rgba(255, 0, 0, 0.938);
-            svg {
-                fill: #fff;
-            }
+            color: #fff;
         }
         .zolo-img {
             width: 100%;

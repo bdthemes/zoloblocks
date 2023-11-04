@@ -510,9 +510,14 @@ const Style = ({ props }) => {
 			${nameDeskMargin}
 			color: ${addReviewerWebsiteLink ? nameLinkColor : nameColor};
 		}
-		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-name:hover {
-			color: ${addReviewerWebsiteLink ? nameHoverColor : nameColor};
-		}
+        ${
+            addReviewerWebsiteLink
+                ? `.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-name:hover {
+                    ${nameHoverColor ? `color: ${nameHoverColor};` : ''}
+                }`
+                : ''
+        }
+
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-designation {
 			${designationTypoDesk}
 			${designationDeskMargin}
@@ -547,13 +552,14 @@ const Style = ({ props }) => {
 			${dplHoverDeskBG}
 		}
 
-		.${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn svg {
-			fill: ${dplIconColor ? dplIconColor : ''};
+		.${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn i {
+			color: ${dplIconColor ? dplIconColor : ''};
             ${dplDeskSize}
+            transition: 0.3s;
 		}
 
-		.${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn a:hover svg{
-			fill: ${dplIconHoverColor ? dplIconHoverColor : ''};
+		.${uniqueId}.wp-block-zolo-review.style-1 .zolo-link-btn a:hover i{
+			color: ${dplIconHoverColor ? dplIconHoverColor : ''};
 		}
 	`;
 
