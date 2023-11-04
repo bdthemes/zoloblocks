@@ -17,15 +17,15 @@ import { prefix } from '../constants';
  * Internal depencencies
  */
 const {
-  handleUniqueId,
-  generateResAlignmentAttributies,
-  generateResRangeAttributies,
-  generateBorderAttributies,
-  generateDimensionAttributes,
-  generateNormalBGAttributes,
-  generateBoxShadowAttributies,
-  generateTypographyAttributes,
-  generateBackgroundAttributes,
+    handleUniqueId,
+    generateResAlignmentAttributies,
+    generateResRangeAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateNormalBGAttributes,
+    generateBoxShadowAttributies,
+    generateTypographyAttributes,
+    generateBackgroundAttributes,
 } = window.zoloModule;
 
 /**
@@ -40,62 +40,62 @@ const {
  * @return {Object} settings Modified settings.
  */
 function addAttributes(settings) {
-  if (typeof settings.attributes === 'undefined') {
-    return settings;
-  }
-  if (settings.category && settings.category == 'zolo-blocks') {
-    if (settings.name === 'zolo/advanced-button') {
+    if (typeof settings.attributes === 'undefined') {
+        return settings;
     }
-    settings.attributes = {
-      ...settings.attributes,
-      uniqueId: {
-        type: 'string',
-      },
-      resMode: {
-        type: 'string',
-        default: 'Desktop',
-      },
-      parentClasses: {
-        type: 'array',
-        default: [],
-      },
-      zoloStyles: {
-        type: 'object',
-      },
-      responsiveness: {
-        type: 'object',
-        default: {
-          hideDesktop: false,
-          hideTab: false,
-          hideMobile: false,
-        },
-      },
-      customCss: {
-        type: 'string',
-      },
-      customClass: {
-        type: 'string',
-      },
-      ...(settings.attributes.globalConfig?.default?.margin &&
-        generateDimensionAttributes(settings.attributes.globalConfig.default.margin?.prefix || 'mainMargin')),
+    if (settings.category && settings.category == 'zolo-blocks') {
+        if (settings.name === 'zolo/advanced-button') {
+        }
+        settings.attributes = {
+            ...settings.attributes,
+            uniqueId: {
+                type: 'string',
+            },
+            resMode: {
+                type: 'string',
+                default: 'Desktop',
+            },
+            parentClasses: {
+                type: 'array',
+                default: [],
+            },
+            zoloStyles: {
+                type: 'object',
+            },
+            responsiveness: {
+                type: 'object',
+                default: {
+                    hideDesktop: false,
+                    hideTab: false,
+                    hideMobile: false,
+                },
+            },
+            customCss: {
+                type: 'string',
+            },
+            customClass: {
+                type: 'string',
+            },
+            ...(settings.attributes.globalConfig?.default?.margin &&
+                generateDimensionAttributes(settings.attributes.globalConfig.default.margin?.prefix || 'mainMargin')),
 
-      ...(settings.attributes.globalConfig?.default?.padding &&
-        generateDimensionAttributes(settings.attributes.globalConfig.default.padding?.prefix || 'mainPadding')),
+            ...(settings.attributes.globalConfig?.default?.padding &&
+                generateDimensionAttributes(settings.attributes.globalConfig.default.padding?.prefix || 'mainPadding')),
 
-      ...(settings.attributes.globalConfig?.default?.background &&
-        generateBackgroundAttributes(settings.attributes.globalConfig.default.background?.prefix || 'mainBg')),
+            ...(settings.attributes.globalConfig?.default?.background &&
+                generateBackgroundAttributes(settings.attributes.globalConfig.default.background?.prefix || 'mainBg')),
 
-      ...(settings.attributes.globalConfig?.default?.border &&
-        generateBorderAttributies(settings.attributes.globalConfig.default.border?.prefix || 'mainBorder')),
+            ...(settings.attributes.globalConfig?.default?.border &&
+                generateBorderAttributies(settings.attributes.globalConfig.default.border?.prefix || 'mainBorder')),
 
-      ...(settings.attributes.globalConfig?.default?.borderRadius &&
-        generateDimensionAttributes(settings.attributes.globalConfig.default.borderRadius?.prefix || 'mainBorderRadius')),
+            ...(settings.attributes.globalConfig?.default?.borderRadius &&
+                generateDimensionAttributes(settings.attributes.globalConfig.default.borderRadius?.prefix || 'mainBorderRadius')),
 
-      ...(settings.attributes.globalConfig?.default?.boxShadow &&
-        generateBoxShadowAttributies(settings.attributes.globalConfig.default.boxShadow?.prefix || 'mainBoxShadow')),
-    };
-  }
-  return settings;
+            ...(settings.attributes.globalConfig?.default?.boxShadow &&
+                generateBoxShadowAttributies(settings.attributes.globalConfig.default.boxShadow?.prefix || 'mainBoxShadow')),
+        };
+    }
+    return settings;
 }
 
 /**
@@ -106,78 +106,78 @@ function addAttributes(settings) {
  * @return {function} BlockEdit Modified block edit component.
  */
 const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
-  return (props) => {
-    const { attributes, setAttributes, isSelected, name, clientId } = props;
+    return (props) => {
+        const { attributes, setAttributes, isSelected, name, clientId } = props;
 
-    const blockType = select('core/blocks').getBlockType(name);
+        const blockType = select('core/blocks').getBlockType(name);
 
-    if (blockType.category != 'zolo-blocks') {
-      return <BlockEdit {...props} />;
-    }
+        if (blockType.category != 'zolo-blocks') {
+            return <BlockEdit {...props} />;
+        }
 
-    const { uniqueId, resMode, parentClasses, zoloStyles, customCss } = attributes;
+        const { uniqueId, resMode, parentClasses, zoloStyles, customCss } = attributes;
 
-    const isBlockJustInserted = select('core/block-editor').wasBlockJustInserted(clientId);
-    const [editorType, setEditorType] = useState();
+        const isBlockJustInserted = select('core/block-editor').wasBlockJustInserted(clientId);
+        const [editorType, setEditorType] = useState();
 
-    const prefix = name.split('/')[1]
-    // UseEffect for initial setting
-    useEffect(() => {
-      handleUniqueId({
-        prefix,
-        uniqueId,
-        setAttributes,
-        clientId,
-      });
-    }, []);
+        const prefix = name.split('/')[1];
+        // UseEffect for initial setting
+        useEffect(() => {
+            handleUniqueId({
+                prefix,
+                uniqueId,
+                setAttributes,
+                clientId,
+            });
+        }, []);
 
-    //set Unique Id globally
-    useEffect(() => {
-      if (uniqueId) {
-        const filteredParentClasses = parentClasses.filter(item => !item.includes(`parent-${prefix}`));
-        setAttributes({
-          parentClasses: [...filteredParentClasses, `parent-${uniqueId}`],
+        //set Unique Id globally
+        useEffect(() => {
+            if (uniqueId) {
+                const filteredParentClasses = parentClasses.filter((item) => !item.includes(`parent-${prefix}`));
+                setAttributes({
+                    parentClasses: [...filteredParentClasses, `parent-${uniqueId}`],
+                });
+            }
+        }, [uniqueId]);
+
+        //
+        useEffect(() => {
+            if (!zoloParams) {
+                setEditorType(false);
+                return;
+            }
+
+            if (zoloParams.editor_type === 'edit-site') {
+                setEditorType('core/edit-site');
+            } else if (zoloParams.editor_type === 'edit-post') {
+                setEditorType('core/edit-post');
+            } else {
+                setEditorType(false);
+            }
+        }, []);
+
+        //Get Device type from "__experimentalGetPreviewDeviceType" Function
+        const deviceType = useSelect((select) => {
+            if (editorType && typeof editorType === 'string') {
+                return select(editorType).__experimentalGetPreviewDeviceType();
+            }
+            return 'Desktop';
         });
-      }
-    }, [uniqueId])
 
-    //
-    useEffect(() => {
-      if (!zoloParams) {
-        setEditorType(false);
-        return;
-      }
+        // this useEffect is for setting the resMode attribute to desktop/tab/mobile depending on the added 'zolo-res-option-' class
+        useEffect(() => {
+            setAttributes({
+                resMode: deviceType,
+            });
+        }, [deviceType]);
 
-      if (zoloParams.editor_type === 'edit-site') {
-        setEditorType('core/edit-site');
-      } else if (zoloParams.editor_type === 'edit-post') {
-        setEditorType('core/edit-post');
-      } else {
-        setEditorType(false);
-      }
-    }, []);
-
-    //Get Device type from "__experimentalGetPreviewDeviceType" Function
-    const deviceType = useSelect((select) => {
-      if (editorType && typeof editorType === 'string') {
-        return select(editorType).__experimentalGetPreviewDeviceType();
-      }
-      return "Desktop";
-    });
-
-    // this useEffect is for setting the resMode attribute to desktop/tab/mobile depending on the added 'zolo-res-option-' class
-    useEffect(() => {
-      setAttributes({
-        resMode: deviceType
-      });
-    }, [deviceType]);
-
-    return (
-      <Fragment>
-        <BlockEdit {...props} />
-      </Fragment>
-    );
-  };
+        return (
+            <Fragment>
+                <BlockEdit {...props} />
+            </Fragment>
+        );
+    };
 }, 'withAdvancedControls');
 
 /**

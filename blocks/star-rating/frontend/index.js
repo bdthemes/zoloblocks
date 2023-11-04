@@ -236,7 +236,6 @@ __webpack_require__.r(__webpack_exports__);
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
   const starRatingItems = document.querySelectorAll('.zolo-star-rating');
-  console.log(starRatingItems);
   if (starRatingItems.length) {
     starRatingItems.forEach(item => {
       const ratingValue = item.dataset.rating;
