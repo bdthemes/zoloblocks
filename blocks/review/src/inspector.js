@@ -309,7 +309,7 @@ function Inspector(props) {
                             )}
                         </PanelBody>
                         {addReviewerWebsiteLink && (
-                            <PanelBody title={__('Reviewer Website', 'zolo-blocks')}>
+                            <PanelBody title={__('Reviewer Website', 'zolo-blocks')} initialOpen={false}>
                                 <IconPicker
                                     value={websiteLinkIcon}
                                     onChange={(value) => {

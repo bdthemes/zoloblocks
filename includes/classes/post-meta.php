@@ -5,24 +5,21 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-class ZB_Post_Meta
-{
-	public function __construct()
-	{
+class ZB_Post_Meta {
+	public function __construct() {
 		add_filter('init', array($this, 'register_meta'));
 	}
 
 	/**
 	 * Register meta
 	 */
-	public function register_meta()
-	{
+	public function register_meta() {
 		register_meta(
 			'post',
 			'_zb_attr',
 			array(
-				'show_in_rest' => true,
-				'single' => true,
+				'show_in_rest'  => true,
+				'single'        => true,
 				'auth_callback' => [$this, 'auth_callback'],
 			)
 		);
@@ -33,8 +30,7 @@ class ZB_Post_Meta
 	 *
 	 * @return bool True when can edit posts, else false.
 	 */
-	public function auth_callback()
-	{
+	public function auth_callback() {
 		return current_user_can('edit_posts');
 	}
 }

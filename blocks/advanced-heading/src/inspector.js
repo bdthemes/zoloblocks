@@ -328,7 +328,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Heading', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Heading', 'zolo-blocks')} initialOpen={true}>
                             <TypographyDropdown label="Typography" typoPrefixConstant={TITLE_TYPOGRAPHY} requiredProps={requiredProps} />
 
                             <ColorControl
