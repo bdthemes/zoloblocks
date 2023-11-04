@@ -120,7 +120,6 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                 <RangeControl
                   value={desktopRange}
                   onChange={(val) => {
-                    console.log(val)
                     setAttributes({
                       [`${prefix}${controlName}Range`]: val,
                     })

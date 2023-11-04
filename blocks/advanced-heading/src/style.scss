@@ -1,3 +1,7 @@
+.zolo-block-wrapper {
+    position: relative;
+}
+
 .zolo-transparent-heading-wrap {
     position: absolute;
     left: 0;
@@ -9,6 +13,10 @@
     text-transform: uppercase;
     transform: translateY(-50%);
     color: rgba(156, 156, 156);
+}
+
+.zolo-transparent-heading {
+    margin: 0;
 }
 
 .zolo-ah-subtitle {

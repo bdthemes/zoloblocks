@@ -100,7 +100,6 @@ const attributes = {
         default: 'style-1',
     },
     ...generateResRangeAttributies(GRID_COLUMNS, {
-        defaultRange: 3,
         noUnits: true,
     }),
     ...generateResRangeAttributies(COLUMNS_GAP, {
@@ -133,6 +132,18 @@ const attributes = {
     excerptindicator: {
         type: 'string',
         default: '...',
+    },
+    catColor: {
+        type: 'string',
+    },
+    catBgColor: {
+        type: 'string',
+    },
+    catHoverColor: {
+        type: 'string',
+    },
+    catBgHoverColor: {
+        type: 'string',
     },
     showReadMore: {
         type: 'boolean',

@@ -19,6 +19,9 @@ import {
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
     SUBTITLE_MARGIN,
+    SUBTITLE_PADDING,
+    SUBTITE_BORDER,
+    SUBTITLE_BORDER_RADIUS,
     SUBTITLE_TEXT_SHADOW,
     SUBTITLE_TEXT_STROKE,
     TEST_NORMAL_BG,
@@ -43,6 +46,8 @@ import {
     WRAPPER_MARGIN,
     WRAPPER_PADDING,
     WRAPPER_SHADOW,
+    TPH_X_OFFSET,
+    TPH_Y_OFFSET,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -106,6 +111,10 @@ const attributes = {
         type: 'string',
         default: 'Sub Heading Here',
     },
+    subTitleTag: {
+        type: 'string',
+        default: 'h4',
+    },
     subTitlePosition: {
         type: 'string',
         default: 'top',
@@ -130,14 +139,6 @@ const attributes = {
         type: 'string',
         default: 'Advanced Heading',
     },
-    transparentTitleXOffset: {
-        type: 'number',
-        default: 0,
-    },
-    transparentTitleYOffset: {
-        type: 'number',
-        default: 0,
-    },
     transparentTitleRotate: {
         type: 'number',
         default: 0,
@@ -150,6 +151,9 @@ const attributes = {
         type: 'string',
         default: 'top-left',
     },
+
+    ...generateResRangeAttributies(TPH_X_OFFSET),
+    ...generateResRangeAttributies(TPH_Y_OFFSET),
 
     ...generateResAlignmentAttributies(TITLE_ALIGN, {
         defaultAlign: 'left',
@@ -170,6 +174,10 @@ const attributes = {
     },
 
     subTitleColor: {
+        type: 'string',
+        default: '',
+    },
+    subTitleBgColor: {
         type: 'string',
         default: '',
     },
@@ -214,6 +222,9 @@ const attributes = {
     ...generateTextShadowAttributies(TPT_TEXT_SHADOW),
     ...generateTextStrokeAttributies(TPT_TEXT_STROKE),
 
+    ...generateBorderAttributies(SUBTITE_BORDER),
+    ...generateDimensionAttributes(SUBTITLE_BORDER_RADIUS),
+    ...generateDimensionAttributes(SUBTITLE_PADDING),
     ...generateDimensionAttributes(SUBTITLE_MARGIN),
     ...generateTextShadowAttributies(SUBTITLE_TEXT_SHADOW),
     ...generateTextStrokeAttributies(SUBTITLE_TEXT_STROKE),

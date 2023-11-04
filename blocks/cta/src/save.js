@@ -22,6 +22,7 @@ const Save = ({ attributes }) => {
         iconPosition,
         icon,
         parentClasses,
+        reversePosition,
     } = attributes;
     return (
         <div
@@ -29,7 +30,7 @@ const Save = ({ attributes }) => {
                 className: classnames(uniqueId, classArrayToStr(parentClasses)),
             })}
         >
-            <div className="zolo-call-out">
+            <div className={`zolo-call-out ${preset} ${reversePosition ? 'reserve-position' : ''}`}>
                 <div className="zolo-call-out__content">
                     {showTitle && <RichText.Content tagName={titleTag} className={`zolo-call-out__title`} value={title} />}
                     {showDescription && <RichText.Content tagName="p" className={`zolo-call-out__text`} value={description} />}

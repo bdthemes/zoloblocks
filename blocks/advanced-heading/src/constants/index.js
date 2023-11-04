@@ -41,18 +41,6 @@ export const ST_POSITION = [
     },
 ];
 
-export const HEADING_TAG = [
-    { label: __('H1', 'zolo-blocks'), value: 'h1' },
-    { label: __('H2', 'zolo-blocks'), value: 'h2' },
-    { label: __('H3', 'zolo-blocks'), value: 'h3' },
-    { label: __('H4', 'zolo-blocks'), value: 'h4' },
-    { label: __('H5', 'zolo-blocks'), value: 'h5' },
-    { label: __('H6', 'zolo-blocks'), value: 'h6' },
-    { label: __('Div', 'zolo-blocks'), value: 'div' },
-    { label: __('P', 'zolo-blocks'), value: 'p' },
-    { label: __('Span', 'zolo-blocks'), value: 'span' },
-];
-
 export const TPT_HIDE = [
     { label: 'Nothing', value: 'nothing' },
     { label: 'Tablet and Mobile', value: 'tab-mob' },
@@ -83,9 +71,13 @@ export const TITLE_SHADOW = 'titleShadow';
 export const TITLE_TEXT_SHADOW = 'titleTextShadow';
 export const TITLE_TEXT_STROKE = 'titleTextStroke';
 
+export const SUBTITLE_PADDING = 'subTitlePadding';
 export const SUBTITLE_MARGIN = 'subTitleMargin';
+export const SUBTITE_BORDER = 'subTitleBorder';
+export const SUBTITLE_BORDER_RADIUS = 'subTitleBorderRadius';
 export const SUBTITLE_TEXT_SHADOW = 'subTitleTextShadow';
 export const SUBTITLE_TEXT_STROKE = 'subTitleTextStroke';
+
 export const SEPARATOR_WIDTH = 'separatorWidth';
 export const SEPARATOR_SPACING = 'separatorSpacing';
 export const SEPARATOR_HEIGHT = 'separatorHeight';
@@ -107,3 +99,7 @@ export const WRAPPER_BORDER = 'wrapBorder';
 export const WRAPPER_SHADOW = 'wrapShadow';
 
 export const TEST_NORMAL_BG = 'testBg';
+
+// transparent heading offset
+export const TPH_X_OFFSET = 'tphXOffset';
+export const TPH_Y_OFFSET = 'tphYOffset';

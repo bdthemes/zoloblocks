@@ -20,13 +20,6 @@ const {
 } = window.zoloModule;
 
 import {
-    CONTAINER_BACKGROUND,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_HOVER_BOX_SHADOW,
-    CONTAINER_MARGIN,
-    CONTAINER_PADDING,
     ICON_BOX_ALIGNMENT,
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
@@ -82,72 +75,6 @@ export default function Style({ props }) {
         presetTwoStyles,
         presetThreeStyles,
     } = attributes;
-
-    // item background
-    const {
-        backgroundStylesDesktop: containerDeskBGStyle,
-        backgroundStylesTab: containerTabBGStyle,
-        backgroundStylesMobile: containerMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTAINER_BACKGROUND,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    // item border
-    const {
-        desktopBorderStyle: containerBorderDeskStyle,
-        tabBorderStyle: containerBorderTabStyle,
-        mobBorderStyle: containerBorderMobStyle,
-    } = generateBorderStyle({
-        controlName: CONTAINER_BORDER,
-        attributes,
-    });
-
-    // item border radius
-    const {
-        dimensionStylesDesktop: containerDeskBorderRadius,
-        dimensionStylesTab: containerTabBorderRadius,
-        dimensionStylesMobile: containerMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    // item box shadow
-    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_BOX_SHADOW,
-    });
-
-    // item hover box shadow
-    const { boxShadowStyle: containerHoverBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_HOVER_BOX_SHADOW,
-    });
-
-    // Generate Container Margin
-    const {
-        dimensionStylesDesktop: containerMarginDesk,
-        dimensionStylesTab: containerMarginTab,
-        dimensionStylesMobile: containerMarginMob,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    // Generate Container Padding
-    const {
-        dimensionStylesDesktop: containerPaddingDesk,
-        dimensionStylesTab: containerPaddingTab,
-        dimensionStylesMobile: containerPaddingMob,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
 
     // icon alignment
     const {
@@ -431,18 +358,6 @@ export default function Style({ props }) {
      * All Style Combination
      */
     const desktopAllStyle = `
-		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
-			${containerDeskBGStyle}
-			${containerBorderDeskStyle}
-			${containerDeskBorderRadius}
-			${containerBoxShadow}
-			${containerMarginDesk}
-			${containerPaddingDesk}
-		}
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover{
-            border-color: ${containerBorderHoverColor ? containerBorderHoverColor : ''};
-            ${containerHoverBoxShadow}
-        }
 		.${uniqueId} .zolo-block-icon-wrap{
 			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
@@ -458,34 +373,25 @@ export default function Style({ props }) {
 			${titleTextShadowStyle}
         	${titleTextStrokeStyle}
 			${titleMarginDesktop ? titleMarginDesktop : ''}
-			color: ${textColor ? textColor : ''};
-		}
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title:hover{
-			color: ${textHoverColor ? textHoverColor : ''};
+            ${textColor ? `color: ${textColor};` : ''}
+            transition: all 0.3s ease-in-out;
 		}
 		.${uniqueId} .zolo-block-desc{
 			${descTypoDesktop}
 			${descMarginDesktop}
-			color: ${descColor ? descColor : ''};
-		}
-		.${uniqueId} .zolo-block-desc:hover{
-			color: ${descHoverColor ? descHoverColor : ''};
+            ${descColor ? `color: ${descColor};` : ''}
+            transition: all 0.3s ease-in-out;
 		}
 		.${uniqueId} .zolo-block-icon-wrap i {
-			background: ${iconBackgroundColor ? iconBackgroundColor : ''};
-			color: ${iconColor ? iconColor : ''};
+            ${iconBackgroundColor ? `background: ${iconBackgroundColor};` : ''}
+            ${iconColor ? `color: ${iconColor};` : ''}
 			${iconSize}
 			${borderStyles}
 			${iconBorderRadiusDesktop}
 			${iconPaddingDesktop}
 			${iconMarginDesktop}
 			${iconBoxShadow}
-		}
-		.${uniqueId} .zolo-block-icon-wrap i:hover{
-			background: ${iconBackgroundHoverColor ? iconBackgroundHoverColor : ''};
-			color: ${iconHoverColor ? iconHoverColor : ''};
-			${iconHoverBoxShadow}
-			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''}
+            transition: all 0.3s ease-in-out;
 		}
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
@@ -500,22 +406,13 @@ export default function Style({ props }) {
 			${buttonPaddingDesktop}
 			${buttonMarginDesktop}
 			${buttonBoxShadow}
-		}
-
-		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover {
-			${buttonBGHoverDeskStyle}
-			background: ${btnBgHoverColor ? btnBgHoverColor : ''};
-			${buttonHoverBoxShadow}
-			border-color: ${btnHoverBorderColor ? btnHoverBorderColor : ''}
+            transition: all 0.3s ease-in-out;
 		}
 
 		.${uniqueId} .zolo-block-body-content .zolo-box-button i{
-			color: ${buttonIconColor};
+            ${buttonIconColor ? `color: ${buttonIconColor};` : ''}
 			${buttonIconSize}
-		}
-
-		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover i{
-			color: ${buttonIconHoverColor}
+            transition: all 0.3s ease-in-out;
 		}
 
 		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
@@ -523,9 +420,35 @@ export default function Style({ props }) {
 			${btnTypoDesktop}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button:hover p{
-			color: ${btnHoverColor ? btnHoverColor : ''};
-		}
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-title{
+            ${textHoverColor ? `color: ${textHoverColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-desc{
+            ${descHoverColor ? `color: ${descHoverColor};` : ''}
+        }
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap i{
+            ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ''}
+            ${iconHoverColor ? `color: ${iconHoverColor};` : ''}
+			${iconHoverBoxShadow}
+            ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
+			${buttonBGHoverDeskStyle}
+            ${btnBgHoverColor ? `background: ${btnBgHoverColor};` : ''}
+			${buttonHoverBoxShadow}
+            ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button p{
+            ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
+        }
+
+        ${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button i{
+            ${buttonIconHoverColor ? `color: ${buttonIconHoverColor};` : ''}
+        }
+
        ${
            preset === 'style-1'
                ? `.zolo-block-icon-wrap {
@@ -570,14 +493,6 @@ export default function Style({ props }) {
 		.${uniqueId}{
 			${iconAlignmentTab}
 		}
-		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
-			${containerTabBGStyle}
-			${containerBorderTabStyle}
-			${containerTabBorderRadius}
-			${containerMarginTab}
-			${containerPaddingTab}
-		}
-
 		.${uniqueId} .zolo-block-title{
 			${titleTypoTab}
 			${tabTitleTextStrokeStyle}
@@ -619,13 +534,6 @@ export default function Style({ props }) {
     const mobileAllStyle = `
 		.${uniqueId}{
 			${iconAlignmentMob}
-		}
-		.${uniqueId}.zolo-block-advanced-icon-box-${preset} .zolo-block-item{
-			${containerMobBGStyle}
-			${containerBorderMobStyle}
-			${containerMobBorderRadius}
-			${containerMarginMob}
-			${containerPaddingMob}
 		}
 		.${uniqueId} .zolo-block-title{
 			${titleTypoMobile}

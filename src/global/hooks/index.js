@@ -120,7 +120,7 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
     const isBlockJustInserted = select('core/block-editor').wasBlockJustInserted(clientId);
     const [editorType, setEditorType] = useState();
 
-    const prefix = name.split('/')[1]
+    const prefix = name.split('/')[1];
     // UseEffect for initial setting
     useEffect(() => {
       handleUniqueId({
@@ -134,12 +134,12 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
     //set Unique Id globally
     useEffect(() => {
       if (uniqueId) {
-        const filteredParentClasses = parentClasses.filter(item => !item.includes(`parent-${prefix}`));
+        const filteredParentClasses = parentClasses.filter((item) => !item.includes(`parent-${prefix}`));
         setAttributes({
           parentClasses: [...filteredParentClasses, `parent-${uniqueId}`],
         });
       }
-    }, [uniqueId])
+    }, [uniqueId]);
 
     //
     useEffect(() => {
@@ -162,13 +162,13 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
       if (editorType && typeof editorType === 'string') {
         return select(editorType).__experimentalGetPreviewDeviceType();
       }
-      return "Desktop";
+      return 'Desktop';
     });
 
     // this useEffect is for setting the resMode attribute to desktop/tab/mobile depending on the added 'zolo-res-option-' class
     useEffect(() => {
       setAttributes({
-        resMode: deviceType
+        resMode: deviceType,
       });
     }, [deviceType]);
 

@@ -29,6 +29,7 @@ export default function Edit(props) {
         title,
         titleTag,
         description,
+        reversePosition,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -40,7 +41,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                <div className="zolo-call-out">
+                <div className={`zolo-call-out ${preset} ${reversePosition ? 'reserve-position' : ''}`}>
                     <div className="zolo-call-out__content">
                         {showTitle && (
                             <RichText

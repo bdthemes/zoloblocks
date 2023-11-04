@@ -8,19 +8,15 @@ import { __ } from '@wordpress/i18n';
  * Internal depencencies
  */
 const {
-    softMinifyCssStrings,
     generateBackgroundControlStyles,
     generateBorderStyle,
     generateBoxShadowStyles,
     generateDimensionStyle,
     generateTypographyStyles,
     generateResRangeStyle,
-    DynamicTag,
     generateResAlignmentStyle,
     generateTextShadowStyles,
     generateTextStrokeStyles,
-    DisplayIcon,
-    generateNormalBGControlStyles,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
@@ -31,6 +27,9 @@ import {
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
     SUBTITLE_MARGIN,
+    SUBTITLE_PADDING,
+    SUBTITE_BORDER,
+    SUBTITLE_BORDER_RADIUS,
     SUBTITLE_TEXT_SHADOW,
     SUBTITLE_TEXT_STROKE,
     TITLE_ALIGN,
@@ -54,6 +53,8 @@ import {
     WRAPPER_MARGIN,
     WRAPPER_PADDING,
     WRAPPER_SHADOW,
+    TPH_X_OFFSET,
+    TPH_Y_OFFSET,
 } from './constants';
 import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
@@ -61,32 +62,15 @@ export default function Style({ props }) {
     const { attributes, setAttributes, name } = props;
     const {
         uniqueId,
-        zoloStyles,
 
         //settings
-        styles,
-        headingIcon,
-        enableTitleLink,
-        titleText,
-        subTitleText,
-        showSubTitle,
-        titleTagName,
-        titleLink,
-        showSeparator,
-        subTitlePosition,
-        separatorPosition,
-
-        showTransparentTitle,
-        transparentTitleText,
-        transparentTitleXOffset,
-        transparentTitleYOffset,
         transparentTitleRotate,
-        transparentTitleRotateOrigin,
         transparentTitleHide,
 
         //style
         titleColor,
         subTitleColor,
+        subTitleBgColor,
         tptColor,
         tptBgColor,
         tptOpacity,
@@ -228,6 +212,32 @@ export default function Style({ props }) {
     } = generateDimensionStyle({
         controlName: SUBTITLE_MARGIN,
         styleFor: 'margin',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: subTitlePaddingDesktop,
+        dimensionStylesTab: subTitlePaddingTab,
+        dimensionStylesMobile: subTitlePaddingMobile,
+    } = generateDimensionStyle({
+        controlName: SUBTITLE_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    const {
+        desktopBorderStyle: stBorderDesktop,
+        tabBorderStyle: stBorderTab,
+        mobBorderStyle: stBorderMob,
+    } = generateBorderStyle({
+        attributes,
+        controlName: SUBTITE_BORDER,
+    });
+    const {
+        dimensionStylesDesktop: stBorderRadiusDesktop,
+        dimensionStylesTab: stBorderRadiusTab,
+        dimensionStylesMobile: stBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: SUBTITLE_BORDER_RADIUS,
+        styleFor: 'border-radius',
         attributes,
     });
     const { textShadowStyle: subTitleTextShadowStyle } = generateTextShadowStyles({
@@ -378,6 +388,27 @@ export default function Style({ props }) {
         controlName: WRAPPER_BORDER,
     });
 
+    // Offset
+    const {
+        desktopRangeStyle: xOffsetDesk,
+        tabRangeStyle: xOffsetTab,
+        mobRangeStyle: xOffsetMob,
+    } = generateResRangeStyle({
+        controlName: TPH_X_OFFSET,
+        property: '--zb-advanced-heading-pos-x',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: yOffsetDesk,
+        tabRangeStyle: yOffsetTab,
+        mobRangeStyle: yOffsetMob,
+    } = generateResRangeStyle({
+        controlName: TPH_Y_OFFSET,
+        property: '--zb-advanced-heading-pos-y',
+        attributes,
+    });
+
     //css style
     const wrapperStylesDesktop = `
   .zolo-block-wrapper.${uniqueId}{
@@ -388,8 +419,8 @@ export default function Style({ props }) {
     ${wrapperShadow}
     transition:${wrapperShadowTransition};
     ${titleDeskAlign}
-    --zb-advanced-heading-pos-x: ${transparentTitleXOffset}px;
-    --zb-advanced-heading-pos-y: ${transparentTitleYOffset}px;
+    ${xOffsetDesk}
+    ${yOffsetDesk}
     --zb-advanced-heading-rotate: ${transparentTitleRotate}deg;
   }
   .zolo-block-wrapper.${uniqueId}:hover{
@@ -414,6 +445,7 @@ export default function Style({ props }) {
     color: #202224;
   }
 `;
+
     const wrapperStylesTab = `
   .zolo-block-wrapper.${uniqueId}{
     ${wrapperMarginTab}
@@ -421,14 +453,8 @@ export default function Style({ props }) {
     ${wrapperBackgroundStylesTab}
     ${wrapperBorderTab}
     ${titleTabAlign}
-    ${
-        transparentTitleHide === 'nothing' &&
-        `
-      --zb-advanced-heading-pos-x: 0px;
-      --zb-advanced-heading-pos-y: 0px;
-      --zb-advanced-heading-rotate: 0deg;
-    `
-    }
+    ${xOffsetTab}
+    ${yOffsetTab}
   }
   .zolo-block-wrapper.${uniqueId}:hover{
     ${wrapperHoverBackgroundStylesTab}
@@ -447,14 +473,8 @@ export default function Style({ props }) {
     ${wrapperBackgroundStylesMobile}
     ${wrapperBorderMob}
     ${titleMobAlign}
-    ${
-        transparentTitleHide === 'nothing' &&
-        `
-      --zb-advanced-heading-pos-x: 0px;
-      --zb-advanced-heading-pos-y: 0px;
-      --zb-advanced-heading-rotate: 0deg;
-    `
-    }
+    ${xOffsetMob}
+    ${yOffsetMob}
   }
   .zolo-block-wrapper.${uniqueId}:hover{
     ${wrapperHoverBackgroundStylesMobile}
@@ -559,10 +579,14 @@ export default function Style({ props }) {
     const subtitleStylesDesktop = `
   .zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
     ${subTitleColor ? `color: ${subTitleColor};` : ''}
+    ${subTitleBgColor ? `background-color: ${subTitleBgColor};` : ''}
     ${subTitleTypoDesktop}
     ${subTitleMarginDesktop}
     ${subTitleTextShadowStyle}
     ${subTitleTextStrokeStyle}
+    ${stBorderDesktop}
+    ${stBorderRadiusDesktop}
+    ${subTitlePaddingDesktop}
   }
 `;
     const subtitleStylesTab = `
@@ -570,6 +594,9 @@ export default function Style({ props }) {
     ${subTitleTypoTab}
     ${subTitleMarginTab}
     ${tabSubTitleTextStrokeStyle}
+    ${stBorderTab}
+    ${stBorderRadiusTab}
+    ${subTitlePaddingTab}
   }
 `;
     const subtitleStylesMobile = `
@@ -577,6 +604,9 @@ export default function Style({ props }) {
     ${subTitleTypoMobile}
     ${subTitleMarginMobile}
     ${mobSubTitleTextStrokeStyle}
+    ${stBorderMob}
+    ${stBorderRadiusMob}
+    ${subTitlePaddingMobile}
   }
 `;
 
@@ -640,28 +670,28 @@ export default function Style({ props }) {
 `;
 
     const desktopAllStyle = `
-  ${wrapperStylesDesktop}
-  ${titleStylesDesktop}
-  ${subtitleStylesDesktop}
-  ${transparentStylesDesktop}
-  ${separatorStylesDesktop}
-`;
+      ${wrapperStylesDesktop}
+      ${titleStylesDesktop}
+      ${subtitleStylesDesktop}
+      ${transparentStylesDesktop}
+      ${separatorStylesDesktop}
+    `;
 
     const tabletAllStyle = `
-  ${wrapperStylesTab}
-  ${titleStylesTab}
-  ${subtitleStylesTab}
-  ${transparentStylesTab}
-  ${separatorStylesTab}
-`;
+      ${wrapperStylesTab}
+      ${titleStylesTab}
+      ${subtitleStylesTab}
+      ${transparentStylesTab}
+      ${separatorStylesTab}
+    `;
 
     const mobileAllStyle = `
-  ${wrapperStylesMobile}
-  ${titleStylesMobile}
-  ${subtitleStylesMobile}
-  ${transparentStylesMobile}
-  ${separatorStylesMobile}
-`;
+      ${wrapperStylesMobile}
+      ${titleStylesMobile}
+      ${subtitleStylesMobile}
+      ${transparentStylesMobile}
+      ${separatorStylesMobile}
+    `;
 
     return (
         <>

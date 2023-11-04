@@ -39,6 +39,7 @@ import {
     PS_BORDER_RADIUS,
     TITLE_MARGIN,
     DESC_MARGIN,
+    FLEX_GAP,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -122,10 +123,16 @@ const attributes = {
     ...generateBorderAttributies(PS_BORDER),
     ...generateDimensionAttributes(PS_BORDER_RADIUS),
 
+    ...generateResRangeAttributies(FLEX_GAP),
+
     //Block specific Attributes
     preset: {
         type: 'string',
         default: '',
+    },
+    reversePosition: {
+        type: 'boolean',
+        default: false,
     },
     showTitle: {
         type: 'boolean',

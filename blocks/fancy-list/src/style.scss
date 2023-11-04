@@ -1,0 +1,66 @@
+.wp-block-zolo-fancy-list {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #f3f3f3;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: #ebf0f9;
+    }
+
+    .zb-fancy-list-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .zb-fancy-list-title {
+        margin: 0;
+        font-size: 16px;
+        color: #06031d;
+    }
+
+    .zb-fancy-icon {
+        padding: 10px;
+        display: block;
+        i {
+            transition: all 0.3s ease;
+        }
+    }
+
+    .zb-fancy-icon i {
+        display: block;
+        width: 14px;
+        height: 14px;
+    }
+
+    .zb-fancy-list-number {
+        background-color: #ffffff;
+        padding: 5px;
+        font-size: 14px;
+        width: 30px;
+        height: 30px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .zb-fancy-list-image img {
+        width: 50px;
+    }
+
+    &.style-5 {
+        flex-direction: row-reverse;
+        .zb-fancy-list-item,
+        .zb-fancy-list-content {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+    }
+}
