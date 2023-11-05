@@ -140,7 +140,7 @@ function Inspector({ attributes, setAttributes }) {
                 break;
             case 'style-5':
                 setAttributes({
-                    showExcerpt: true,
+                    showExcerpt: false,
                     showReadMore: true,
                     showThumbnail: false,
                     zolo_gridColumnsRange: 1,

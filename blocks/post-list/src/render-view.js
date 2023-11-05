@@ -25,7 +25,7 @@ function RenderView({ attributes, postResults }) {
 
       const categoriesHtml =
         post.categories.length > 0 ? (
-          <ul className="zolo-post-featured-list__category-wrap">
+          <ul className="zolo-post-category">
             {post.categories.map((item) => (
               <li dangerouslySetInnerHTML={{ __html: item }} />
             ))}
@@ -37,11 +37,11 @@ function RenderView({ attributes, postResults }) {
       const avatar = <a dangerouslySetInnerHTML={{ __html: post.avatar }} />;
       const author = (
         <div
-          className="zolo-post-featured-list__author"
+          className="zolo-post-author-name"
           dangerouslySetInnerHTML={{ __html: __('<span>by</span> ') + post.author_link }}
         />
       );
-      const date = <div className="zolo-post-featured-list__date">{post.date}</div>;
+      const date = <div className="zolo-post-date">{post.date}</div>;
       const readingTime = <div className="zolo-post-estimate">{post.reading_time}</div>;
 
       const authorInfoHtml = (
@@ -60,8 +60,9 @@ function RenderView({ attributes, postResults }) {
       );
 
       return (
-        <div className="zolo-post-featured-list__item">
-          <div className="zolo-post-featured-list__image">
+
+        <div className="zolo-post-item">
+          <div className="zolo-post-image">
             {showThumbnail && (
               <>
                 {post.thumbnail && <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
@@ -74,13 +75,14 @@ function RenderView({ attributes, postResults }) {
             )}
           </div>
 
-          <div className="zolo-post-featured-list__content">
-            <div className='zolo-post-featured-list__inner-content'>
+          <div className="zolo-post-content">
+            <div className="zolo-post-count-number"></div>
+            <div className='zolo-post-inner-content'>
 
               {showCategory && categoriesHtml}
 
               {showTitle && (
-                <DynamicTag tagName={titleTag} className="zolo-post-featured-list__title">
+                <DynamicTag tagName={titleTag} className="zolo-post-title">
                   <a href={post.permalink}>{titleLimitWords}</a>
                 </DynamicTag>
               )}
@@ -95,7 +97,7 @@ function RenderView({ attributes, postResults }) {
               )}
 
               {showMeta && (
-                <div className="zolo-post-featured-list__meta">
+                <div className="zolo-post-meta">
                   {author}
                   {date}
                 </div>
