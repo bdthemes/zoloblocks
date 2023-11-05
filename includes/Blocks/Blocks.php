@@ -142,9 +142,15 @@ return apply_filters( 'zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
-     'fancy-list' => [
+    'fancy-list' => [
         'name'             => 'fancy-list',
         'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/fancy-list/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
+    'audio-player' => [
+        'name'             => 'audio-player',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/audio-player/block.json',
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],

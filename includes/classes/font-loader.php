@@ -41,6 +41,7 @@ class ZB_Font_Loader {
                     self::$all_fonts[] = $value;
                 }
             }
+			$this->fonts_loader();
         }
     }
 
@@ -50,6 +51,7 @@ class ZB_Font_Loader {
 	 * @access public
 	 */
 	public function fonts_loader() {
+
 		if (is_array(self::$all_fonts) && count(self::$all_fonts) > 0) {
 
 			$fonts = array_filter(array_unique(self::$all_fonts));

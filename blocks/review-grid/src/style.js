@@ -6,14 +6,77 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { GlobalStyleHanlder, generateResRangeStyle, generateDimensionStyle, generateNormalBGControlStyles, generateResCounterStyle } =
-    window.zoloModule;
+const {
+    GlobalStyleHanlder,
+    generateResCounterStyle,
+    generateResAlignmentStyle,
+    generateBorderStyle,
+    generateDimensionStyle,
+    generateTypographyStyles,
+    generateResRangeStyle,
+    generateBoxShadowStyles,
+    generateNormalBGControlStyles,
+} = window.zoloModule;
 
-import { COLUMNS_GAP, GRID_COLUMNS, ROWS_GAP, REVIEW_GRID_BG, REVIEW_GRID_MARGIN, REVIEW_GRID_PADDING } from './constants';
+import {
+    COLUMNS_GAP,
+    GRID_COLUMNS,
+    ROWS_GAP,
+    REVIEW_GRID_BG,
+    REVIEW_GRID_MARGIN,
+    REVIEW_GRID_PADDING,
+    CONTAINER_BACKGROUND,
+    CONTAINER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTENT_ALIGNMENT,
+    CONTENT_BACKGROUND,
+    CONTENT_BORDER,
+    CONTENT_BORDER_RADIUS,
+    CONTENT_BOX_SHADOW,
+    CONTENT_MARGIN,
+    CONTENT_PADDING,
+    REVIEWER_DESIGNATION_MARGIN,
+    REVIEWER_NAME_MARGIN,
+    REVIEWER_PHOTO_SIZE,
+    REVIEWER_PHOTO_BG,
+    REVIEWER_PHOTO_BORDER,
+    REVIEWER_PHOTO_BORDER_RADIUS,
+    REVIEWER_PHOTO_BOX_SHADOW,
+    REVIEWER_PHOTO_MARGIN,
+    REVIEWER_PHOTO_PADDING,
+    REVIEWER_TESTIMONIAL_MARGIN,
+    ICONS_SIZE,
+    DPL_BG,
+    DPL_HOVER_BG,
+    DPL_HEIGHT,
+    DPL_WIDTH,
+    DPL_BORDER,
+    DPL_BORDER_RADIUS,
+    DPL_PADDING,
+    DPL_MARGIN,
+    DPL_ICON_SIZE,
+} from './constants';
+
+import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId } = attributes;
+    const {
+        uniqueId,
+        blurBgOpacity,
+        addReviewerWebsiteLink,
+        nameColor,
+        nameHoverColor,
+        nameLinkColor,
+        designationColor,
+        testimonialMessageColor,
+        activeRatingColor,
+        inactiveRatingColor,
+        dplIconColor,
+        dplIconHoverColor,
+        preset,
+    } = attributes;
 
     // column count
     const {
@@ -48,34 +111,378 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    // Container
+    // child global styles
     const {
-        backgroundStylesDesktop: reviewGridDeskBGStyle,
-        backgroundStylesTab: reviewGridTabBGStyle,
-        backgroundStylesMobile: reviewGridMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: REVIEW_GRID_BG,
+        desktopAlignStyle: reviewContentDeskAlignStyle,
+        tabAlignStyle: reviewContentTabAlignStyle,
+        mobAlignStyle: reviewContentMobAlignStyle,
+    } = generateResAlignmentStyle({
+        controlName: CONTENT_ALIGNMENT,
+        property: 'text-align',
         attributes,
-        noMainBGImg: false,
     });
 
     const {
-        dimensionStylesDesktop: containerDeskMargin,
-        dimensionStylesTab: containerTabMargin,
-        dimensionStylesMobile: containerMobMargin,
+        backgroundStylesDesktop: contentDeskBGStyle,
+        backgroundStylesTab: contentTabBGStyle,
+        backgroundStylesMobile: contentMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CONTENT_BACKGROUND,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        desktopBorderStyle: contentDeskBorderStyle,
+        tabBorderStyle: contentTabBorderStyle,
+        mobBorderStyle: contentMobBorderStyle,
+    } = generateBorderStyle({
+        controlName: CONTENT_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: contentDeskBorderRadius,
+        dimensionStylesTab: contentTabBorderRadius,
+        dimensionStylesMobile: contentMobBorderRadius,
     } = generateDimensionStyle({
-        controlName: REVIEW_GRID_MARGIN,
+        controlName: CONTENT_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: contentBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTENT_BOX_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: contentDeskMargin,
+        dimensionStylesTab: contentTabMargin,
+        dimensionStylesMobile: contentMobMargin,
+    } = generateDimensionStyle({
+        controlName: CONTENT_MARGIN,
         styleFor: 'margin',
         attributes,
     });
 
     const {
-        dimensionStylesDesktop: containerDeskPadding,
-        dimensionStylesTab: containerTabPadding,
-        dimensionStylesMobile: containerMobPadding,
+        dimensionStylesDesktop: contentDeskPadding,
+        dimensionStylesTab: contentTabPadding,
+        dimensionStylesMobile: contentMobPadding,
     } = generateDimensionStyle({
-        controlName: REVIEW_GRID_PADDING,
+        controlName: CONTENT_PADDING,
         styleFor: 'padding',
+        attributes,
+    });
+
+    // rating icon align
+    let ratingIconDeskAlignStyle;
+    switch (reviewContentDeskAlignStyle) {
+        case 'text-align:left;':
+            ratingIconDeskAlignStyle = 'justify-content: flex-start;';
+            break;
+        case 'text-align:center;':
+            ratingIconDeskAlignStyle = 'justify-content: center;';
+            break;
+        case 'text-align:right;':
+            ratingIconDeskAlignStyle = 'justify-content: flex-end;';
+            break;
+        default:
+            ratingIconDeskAlignStyle = 'justify-content: flex-start;';
+    }
+
+    let ratingIconTabAlignStyle;
+    switch (reviewContentTabAlignStyle) {
+        case 'text-align:left;':
+            ratingIconTabAlignStyle = 'justify-content: flex-start;';
+            break;
+        case 'text-align:center;':
+            ratingIconTabAlignStyle = 'justify-content: center;';
+            break;
+        case 'text-align:right;':
+            ratingIconTabAlignStyle = 'justify-content: flex-end;';
+            break;
+        default:
+            ratingIconTabAlignStyle = 'justify-content: flex-start;';
+    }
+
+    let ratingIconMobAlignStyle;
+    switch (reviewContentMobAlignStyle) {
+        case 'text-align:left;':
+            ratingIconMobAlignStyle = 'justify-content: flex-start;';
+            break;
+        case 'text-align:center;':
+            ratingIconMobAlignStyle = 'justify-content: center;';
+            break;
+        case 'text-align:right;':
+            ratingIconMobAlignStyle = 'justify-content: flex-end;';
+            break;
+        default:
+            ratingIconMobAlignStyle = 'justify-content: flex-start;';
+    }
+
+    // Container
+    const {
+        backgroundStylesDesktop: containerDeskBGStyle,
+        backgroundStylesTab: containerTabBGStyle,
+        backgroundStylesMobile: containerMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CONTAINER_BACKGROUND,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        desktopBorderStyle: containerDeskBorderStyle,
+        tabBorderStyle: containerTabBorderStyle,
+        mobBorderStyle: containerMobBorderStyle,
+    } = generateBorderStyle({
+        controlName: CONTAINER_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: containerDeskBorderRadius,
+        dimensionStylesTab: containerTabBorderRadius,
+        dimensionStylesMobile: containerMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_BOX_SHADOW,
+    });
+
+    // Photo
+    const {
+        desktopRangeStyle: photoDeskWidth,
+        tabRangeStyle: photoTabWidth,
+        mobRangeStyle: photoMobWidth,
+    } = generateResRangeStyle({
+        controlName: REVIEWER_PHOTO_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: photoDeskBGStyle,
+        backgroundStylesTab: photoTabBGStyle,
+        backgroundStylesMobile: photoMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: REVIEWER_PHOTO_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        desktopBorderStyle: photoDeskBorderStyle,
+        tabBorderStyle: photoTabBorderStyle,
+        mobBorderStyle: photoMobBorderStyle,
+    } = generateBorderStyle({
+        controlName: REVIEWER_PHOTO_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: photoDeskBorderRadius,
+        dimensionStylesTab: photoTabBorderRadius,
+        dimensionStylesMobile: photoMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: REVIEWER_PHOTO_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: photoBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: REVIEWER_PHOTO_BOX_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: photoDeskMargin,
+        dimensionStylesTab: photoTabMargin,
+        dimensionStylesMobile: photoMobMargin,
+    } = generateDimensionStyle({
+        controlName: REVIEWER_PHOTO_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: photoDeskPadding,
+        dimensionStylesTab: photoTabPadding,
+        dimensionStylesMobile: photoMobPadding,
+    } = generateDimensionStyle({
+        controlName: REVIEWER_PHOTO_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    // Name
+    const {
+        typoStylesDesktop: nameTypoDesk,
+        typoStylesTab: nameTypoTab,
+        typoStylesMobile: nameTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: REVIEWER_NAME_TYPOGRAPHY,
+        defaultFontSize: 20,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: nameDeskMargin,
+        dimensionStylesTab: nameTabMargin,
+        dimensionStylesMobile: nameMobMargin,
+    } = generateDimensionStyle({
+        controlName: REVIEWER_NAME_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    // Designation
+    const {
+        typoStylesDesktop: designationTypoDesk,
+        typoStylesTab: designationTypoTab,
+        typoStylesMobile: designationTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: REVIEWER_DESIGNATION_TYPOGRAPHY,
+        defaultFontSize: 16,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: designationDeskMargin,
+        dimensionStylesTab: designationTabMargin,
+        dimensionStylesMobile: designationMobMargin,
+    } = generateDimensionStyle({
+        controlName: REVIEWER_DESIGNATION_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    // Testimonial Message
+    const {
+        typoStylesDesktop: testimonialMessageTypoDesk,
+        typoStylesTab: testimonialMessageTypoTab,
+        typoStylesMobile: testimonialMessageTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: REVIEWER_MESSAGE_TYPOGRAPHY,
+        defaultFontSize: 16,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: testimonialMessageDeskMargin,
+        dimensionStylesTab: testimonialMessageTabMargin,
+        dimensionStylesMobile: testimonialMessageMobMargin,
+    } = generateDimensionStyle({
+        controlName: REVIEWER_TESTIMONIAL_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    // review icons
+    const {
+        desktopRangeStyle: ratingIconWidthDesk,
+        tabRangeStyle: ratingIconWidthTab,
+        mobRangeStyle: ratingIconWidthMob,
+    } = generateResRangeStyle({
+        controlName: ICONS_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    // Detail page link icon
+    const {
+        backgroundStylesDesktop: dplNormDeskBG,
+        backgroundStylesTab: dplNormTabBG,
+        backgroundStylesMobile: dplNormMobBG,
+    } = generateNormalBGControlStyles({
+        controlName: DPL_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        backgroundStylesDesktop: dplHoverDeskBG,
+        backgroundStylesTab: dplHoverTabBG,
+        backgroundStylesMobile: dplHoverMobBG,
+    } = generateNormalBGControlStyles({
+        controlName: DPL_HOVER_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        desktopRangeStyle: dplDeskSize,
+        tabRangeStyle: dplTabSize,
+        mobRangeStyle: dplMobSize,
+    } = generateResRangeStyle({
+        controlName: DPL_ICON_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: dplDeskHeight,
+        tabRangeStyle: dplTabHeight,
+        mobRangeStyle: dplMobHeight,
+    } = generateResRangeStyle({
+        controlName: DPL_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: dplDeskWidth,
+        tabRangeStyle: dplTabWidth,
+        mobRangeStyle: dplMobWidth,
+    } = generateResRangeStyle({
+        controlName: DPL_WIDTH,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: dplDeskBorderStyle,
+        tabBorderStyle: dplTabBorderStyle,
+        mobBorderStyle: dplMobBorderStyle,
+    } = generateBorderStyle({
+        controlName: DPL_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: dplDeskBorderRadius,
+        dimensionStylesTab: dplTabBorderRadius,
+        dimensionStylesMobile: dplMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: DPL_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: dplDeskPadding,
+        dimensionStylesTab: dplTabPadding,
+        dimensionStylesMobile: dplMobPadding,
+    } = generateDimensionStyle({
+        controlName: DPL_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: dplDeskMargin,
+        dimensionStylesTab: dplTabMargin,
+        dimensionStylesMobile: dplMobMargin,
+    } = generateDimensionStyle({
+        controlName: DPL_MARGIN,
+        styleFor: 'margin',
         attributes,
     });
 
@@ -84,19 +491,90 @@ const Style = ({ props }) => {
      */
     const desktopAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-grid {
-			${reviewGridDeskBGStyle}
-			${containerDeskMargin}
-			${containerDeskPadding}
 			grid-template-columns: repeat(${deskColumns}, 1fr);
 			${deskColumnsGap}
 			${deskRowsGap}
 		}
+
+        .${uniqueId}.wp-block-zolo-review-grid .zolo-item {
+			${reviewContentDeskAlignStyle}
+			${containerDeskBorderStyle}
+			${containerDeskBorderRadius}
+			${containerBoxShadow}
+			${containerDeskBGStyle}
+		}
+        .${uniqueId}.wp-block-zolo-review-grid .zolo-info-wrap {
+			${contentDeskMargin}
+			${contentDeskPadding}
+			${contentDeskBorderStyle}
+			${contentDeskBorderRadius}
+			${contentDeskBGStyle}
+            ${contentBoxShadow}
+		}
+        .${uniqueId}.wp-block-zolo-review-grid.style-2 .zolo-info-wrap {
+			backdrop-filter: blur(${blurBgOpacity}px);
+		}
+		.${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating {
+			${ratingIconDeskAlignStyle}
+		}
+		.${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap .zolo-img {
+			${photoDeskBorderStyle}
+			${photoDeskBorderRadius}
+			${photoBoxShadow}
+			${photoDeskMargin}
+			${photoDeskPadding}
+			${photoDeskBGStyle}
+            ${photoDeskWidth}
+		}
+        .${uniqueId}.wp-block-zolo-review-grid .zolo-meta-content .zolo-name {
+			${nameTypoDesk}
+			${nameDeskMargin}
+			color: ${addReviewerWebsiteLink ? nameLinkColor : nameColor};
+		}
+		.${uniqueId}.wp-block-zolo-review-grid .zolo-meta-content .zolo-name:hover {
+			color: ${addReviewerWebsiteLink ? nameHoverColor : nameColor};
+		}
+		.${uniqueId}.wp-block-zolo-review-grid .zolo-meta-content .zolo-designation {
+			${designationTypoDesk}
+			${designationDeskMargin}
+			${designationColor ? `color: ${designationColor};` : ''}
+		}
+		.${uniqueId}.wp-block-zolo-review-grid .zolo-meta-content .zolo-desc {
+			${testimonialMessageTypoDesk}
+			${testimonialMessageDeskMargin}
+			${testimonialMessageColor ? `color: ${testimonialMessageColor};` : ''}
+		}
+		.${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating svg {
+			${ratingIconWidthDesk}
+		}
+		.${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating .filled-star svg, .${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating .fraction-star svg {
+			${activeRatingColor ? `fill: ${activeRatingColor};` : ''}
+		}
+		.${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating .empty-star svg {
+			${inactiveRatingColor ? `fill: ${inactiveRatingColor};` : ''}
+		}
+        .${uniqueId}.wp-block-zolo-review-grid.style-1 .zolo-link-btn a {
+			${dplNormDeskBG}
+			${dplDeskBorderStyle}
+			${dplDeskBorderRadius}
+			${dplDeskPadding}
+			${dplDeskMargin}
+			${dplDeskHeight}
+			${dplDeskWidth}
+		}
+		.${uniqueId}.wp-block-zolo-review-grid.style-1 .zolo-link-btn a:hover {
+			${dplHoverDeskBG}
+		}
+		.${uniqueId}.wp-block-zolo-review-grid.style-1 .zolo-link-btn i {
+			color: ${dplIconColor ? dplIconColor : ''};
+            ${dplDeskSize}
+		}
+		.${uniqueId}.wp-block-zolo-review-grid.style-1 .zolo-link-btn a:hover i{
+			color: ${dplIconHoverColor ? dplIconHoverColor : ''};
+		}
 	`;
     const tabletAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-grid {
-			${reviewGridTabBGStyle}
-			${containerTabMargin}
-			${containerTabPadding}
 			grid-template-columns: repeat(${tabColumns}, 1fr);
 			${tabColumnsGap}
 			${tabRowsGap}
@@ -104,9 +582,6 @@ const Style = ({ props }) => {
 	`;
     const mobileAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-grid {
-			${reviewGridMobBGStyle}
-			${containerMobMargin}
-			${containerMobPadding}
 			grid-template-columns: repeat(${mobColumns}, 1fr);
 			${mobColumnsGap}
 			${mobRowsGap}

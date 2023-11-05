@@ -79,9 +79,7 @@ const attributes = {
         default: 'default',
     },
     // Generators
-    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
-        defaultAlign: 'left',
-    }),
+    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
     ...generateNormalBGAttributes(CONTENT_BACKGROUND),
     ...generateBorderAttributies(CONTENT_BORDER),
     ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
