@@ -81,9 +81,7 @@ const attributes = {
         default: 'default',
     },
     // Generators
-    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
-        defaultAlign: 'left',
-    }),
+    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
     ...generateNormalBGAttributes(CONTENT_BACKGROUND),
     ...generateBorderAttributies(CONTENT_BORDER),
     ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
@@ -176,7 +174,7 @@ const attributes = {
     testimonialMessage: {
         type: 'string',
         default:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum...',
     },
     showRating: {
         type: 'boolean',

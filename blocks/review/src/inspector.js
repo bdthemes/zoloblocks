@@ -119,18 +119,7 @@ function Inspector(props) {
         switch (selected) {
             case 'default':
                 setAttributes({
-                    showTestimonialMessage: false,
                     [`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
-                });
-                break;
-            case 'style-1':
-                setAttributes({
-                    showTestimonialMessage: false,
-                });
-                break;
-            case 'style-2':
-                setAttributes({
-                    showTestimonialMessage: false,
                 });
                 break;
             default:
@@ -152,7 +141,7 @@ function Inspector(props) {
                                 label={__('Preset Designs', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
-                                onChange={(selected) => changePremade(selected)}
+                                onChange={(selected) => setAttributes({ preset: selected })}
                             />
                             <ToggleControl
                                 label={__('Add Reviewer Website Link', 'zolo-blocks')}
