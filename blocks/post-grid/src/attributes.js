@@ -151,7 +151,7 @@ const attributes = {
     },
     readMoreBtnText: {
         type: 'string',
-        default: 'Button Text',
+        default: 'Read More',
     },
     showCategory: {
         type: 'boolean',

@@ -86,9 +86,7 @@ const attributes = {
     // Generators
     ...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_PADDING),
     ...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_MARGIN),
-    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
-        defaultAlign: 'left',
-    }),
+    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
     ...generateNormalBGAttributes(CONTENT_BG),
     ...generateBorderAttributies(CONTENT_BORDER),
     ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
@@ -219,9 +217,6 @@ const attributes = {
     },
     // block styles
     nameColor: {
-        type: 'string',
-    },
-    nameLinkColor: {
         type: 'string',
     },
     nameHoverColor: {

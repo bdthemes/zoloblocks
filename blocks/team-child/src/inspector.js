@@ -112,6 +112,9 @@ function Inspector(props) {
         objAttributes,
     };
 
+    console.log('name ', nameColor);
+    console.log('hover', nameHoverColor);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -330,11 +333,11 @@ function Inspector(props) {
                                     normalComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Link Color', 'zolo-blocks')}
-                                                color={nameLinkColor}
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={nameColor}
                                                 onChange={(color) =>
                                                     setAttributes({
-                                                        nameLinkColor: color,
+                                                        nameColor: color,
                                                     })
                                                 }
                                             />
@@ -343,7 +346,7 @@ function Inspector(props) {
                                     hoverComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Link Hover Color', 'zolo-blocks')}
+                                                label={__('Hover Color', 'zolo-blocks')}
                                                 color={nameHoverColor}
                                                 onChange={(color) =>
                                                     setAttributes({

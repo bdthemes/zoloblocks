@@ -99,7 +99,7 @@ function RenderView({ attributes, postResults }) {
                             {showReadMore && (
                                 <div className="zolo-post-link-btn">
                                     <a href={post.permalink}>
-                                        {__(readMoreBtnText)}
+                                        {__(readMoreBtnText, 'zolo-blocks')}
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="16"

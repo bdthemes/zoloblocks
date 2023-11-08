@@ -13,25 +13,53 @@ const {
     generateResRangeStyle,
     generateResCounterStyle,
     GlobalStyleHanlder,
+    generateResAlignmentStyle,
+    generateTypographyStyles,
+    generateTextShadowStyles,
+    generateTextStrokeStyles,
 } = window.zoloModule;
 
 import {
     GRID_COLUMNS,
     COLUMNS_GAP,
     ROWS_GAP,
+    CONTAINER_HEIGHT,
+    CONTENT_ALIGNMENT,
+    CONTENT_PADDING,
+    TITLE_MARGIN,
+    TITLE_TEXT_SHADOW,
+    TITLE_TEXT_STROKE,
+    LINK_MARGIN,
+    LINK_TEXT_SHADOW,
+    LINK_TEXT_STROKE,
+    BRAND_PHOTO_BORDER,
+    BRAND_PHOTO_BORDER_RADIUS,
+    BRAND_PHOTO_BOX_SHADOW,
+    BRAND_PHOTO_BG,
+    BRAND_PHOTO_PADDING,
+    BRAND_PHOTO_MARGIN,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BORDER,
     CONTAINER_BOX_SHADOW,
     CONTAINER_HOVER_BOX_SHADOW,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_PADDING,
-    CONTAINER_MARGIN,
     CONTAINER_BACKGROUND,
     CONTAINER_HOVER_BACKGROUND,
+    IMAGE_WIDTH,
 } from './constants';
+
+import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, borderHoverColor } = attributes;
+    const {
+        uniqueId,
+        textColor,
+        linkColor,
+        linkHoverColor,
+        containerHoverBorderColor,
+        contentHorizontalPosition,
+        contentVerticalPosition,
+    } = attributes;
 
     // column count
     const {
@@ -66,7 +94,61 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    // container
+    // Content Align
+    const {
+        desktopAlignStyle: brandContentDeskAlignStyle,
+        tabAlignStyle: brandContentTabAlignStyle,
+        mobAlignStyle: brandContentMobAlignStyle,
+    } = generateResAlignmentStyle({
+        controlName: CONTENT_ALIGNMENT,
+        property: 'text-align',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: contentDeskPadding,
+        dimensionStylesTab: contentTabPadding,
+        dimensionStylesMobile: contentMobPadding,
+    } = generateDimensionStyle({
+        controlName: CONTENT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    // Container
+    const {
+        desktopRangeStyle: deskContainerHeight,
+        tabRangeStyle: tabContainerHeight,
+        mobRangeStyle: mobContainerHeight,
+    } = generateResRangeStyle({
+        controlName: CONTAINER_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: containerBorderDesk,
+        tabBorderStyle: containerBorderTab,
+        mobBorderStyle: containerBorderMob,
+    } = generateBorderStyle({
+        controlName: CONTAINER_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: containerDeskBorderRadius,
+        dimensionStylesTab: containerTabBorderRadius,
+        dimensionStylesMobile: containerMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_BOX_SHADOW,
+    });
+
     const {
         backgroundStylesDesktop: containerDeskBGStyle,
         backgroundStylesTab: containerTabBGStyle,
@@ -78,6 +160,17 @@ const Style = ({ props }) => {
     });
 
     const {
+        backgroundStylesDesktop: brandPhotoDeskBGStyle,
+        backgroundStylesTab: brandPhotoTabBGStyle,
+        backgroundStylesMobile: brandPhotoMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: BRAND_PHOTO_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // Container Hover
+    const {
         backgroundStylesDesktop: containerHoverDeskBGStyle,
         backgroundStylesTab: containerHoverTabBGStyle,
         backgroundStylesMobile: containerHoverMobBGStyle,
@@ -87,53 +180,143 @@ const Style = ({ props }) => {
         noMainBGImg: false,
     });
 
+    // Container Hover Box Shadow
+    const { boxShadowStyle: brandContainerHoverBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_HOVER_BOX_SHADOW,
+    });
+
+    // Photo
     const {
-        desktopBorderStyle: containerDeskBorderStyle,
-        tabBorderStyle: containerTabBorderStyle,
-        mobBorderStyle: containerMobBorderStyle,
-    } = generateBorderStyle({
-        controlName: CONTAINER_BORDER,
+        desktopRangeStyle: deskImageWidth,
+        tabRangeStyle: tabImageWidth,
+        mobRangeStyle: mobImageWidth,
+    } = generateResRangeStyle({
+        controlName: IMAGE_WIDTH,
+        property: 'width',
         attributes,
     });
 
     const {
-        dimensionStylesDesktop: containerBorderRadiusDesk,
-        dimensionStylesTab: containerBorderRadiusTab,
-        dimensionStylesMobile: containerBorderRadiusMob,
+        desktopBorderStyle: photoBorderDesktop,
+        tabBorderStyle: photoBorderTab,
+        mobBorderStyle: photoBorderMob,
+    } = generateBorderStyle({
+        controlName: BRAND_PHOTO_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: brandPhotoBorderRadiusDesk,
+        dimensionStylesTab: brandPhotoBorderRadiusTab,
+        dimensionStylesMobile: brandPhotoBorderRadiusMob,
     } = generateDimensionStyle({
-        controlName: CONTAINER_BORDER_RADIUS,
+        controlName: BRAND_PHOTO_BORDER_RADIUS,
         styleFor: 'border-radius',
         attributes,
     });
 
+    // Photo Box Shadow
+    const { boxShadowStyle: brandPhotoBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: BRAND_PHOTO_BOX_SHADOW,
+    });
+
+    // Brand Photo Padding
     const {
-        dimensionStylesDesktop: containerPaddingDesk,
-        dimensionStylesTab: containerPaddingTab,
-        dimensionStylesMobile: containerPaddingMob,
+        dimensionStylesDesktop: brandPhotoPaddingDesk,
+        dimensionStylesTab: brandPhotoPaddingTab,
+        dimensionStylesMobile: brandPhotoPaddingMob,
     } = generateDimensionStyle({
-        controlName: CONTAINER_PADDING,
+        controlName: BRAND_PHOTO_PADDING,
         styleFor: 'padding',
         attributes,
     });
 
+    // Brand Photo Margin
     const {
-        dimensionStylesDesktop: containerMarginDesk,
-        dimensionStylesTab: containerMarginTab,
-        dimensionStylesMobile: containerMarginMob,
+        dimensionStylesDesktop: brandPhotoMaringDesk,
+        dimensionStylesTab: brandPhotoMarginTab,
+        dimensionStylesMobile: brandPhotoMarginMob,
     } = generateDimensionStyle({
-        controlName: CONTAINER_MARGIN,
+        controlName: BRAND_PHOTO_MARGIN,
         styleFor: 'margin',
         attributes,
     });
 
-    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
+    // Title Typography
+    const {
+        typoStylesDesktop: titleTypoDesk,
+        typoStylesTab: titleTypoTab,
+        typoStylesMobile: titleTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: TITLE_TYPOGRAPHY,
         attributes,
-        controlName: CONTAINER_BOX_SHADOW,
     });
 
-    const { boxShadowStyle: containerBoxShadowHover } = generateBoxShadowStyles({
+    // Link Typography
+    const {
+        typoStylesDesktop: linkTypoDesk,
+        typoStylesTab: linkTypoTab,
+        typoStylesMobile: linkTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: LINK_TYPOGRAPHY,
+        defaultFontSize: 16,
         attributes,
-        controlName: CONTAINER_HOVER_BOX_SHADOW,
+    });
+
+    // Title Margin
+    const {
+        dimensionStylesDesktop: titleMarginDesk,
+        dimensionStylesTab: titleMarginTab,
+        dimensionStylesMobile: titleMarginMob,
+    } = generateDimensionStyle({
+        controlName: TITLE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    // Link Margin
+    const {
+        dimensionStylesDesktop: linkMarginDesk,
+        dimensionStylesTab: linkMarginTab,
+        dimensionStylesMobile: linkMarginMob,
+    } = generateDimensionStyle({
+        controlName: LINK_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    // Title Text Shadow
+    const { textShadowStyle: titleTextShadow } = generateTextShadowStyles({
+        attributes,
+        controlName: TITLE_TEXT_SHADOW,
+    });
+
+    // Title Text Stroke
+    const {
+        desktopTextStrokeStyle: titleTextStrokeDesk,
+        tabTextStrokeStyle: titleTextStrokeTab,
+        mobTextStrokeStyle: titleTextStrokeMob,
+    } = generateTextStrokeStyles({
+        attributes,
+        controlName: TITLE_TEXT_STROKE,
+    });
+
+    // Link Text Shadow
+    const { textShadowStyle: linkTextShadow } = generateTextShadowStyles({
+        attributes,
+        controlName: LINK_TEXT_SHADOW,
+    });
+
+    // Link Text Stroke
+    const {
+        desktopTextStrokeStyle: linkTextStrokeDesk,
+        tabTextStrokeStyle: linkTextStrokeTab,
+        mobTextStrokeStyle: linkTextStrokeMob,
+    } = generateTextStrokeStyles({
+        attributes,
+        controlName: LINK_TEXT_STROKE,
     });
 
     /**
@@ -141,12 +324,6 @@ const Style = ({ props }) => {
      */
     const desktopAllStyle = `
         .${uniqueId}.zb-brand-grid-wrap{
-            ${containerDeskBGStyle}
-            ${containerDeskBorderStyle}
-            ${containerBorderRadiusDesk}
-            ${containerPaddingDesk}
-            ${containerMarginDesk}
-            ${containerBoxShadow}
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
             ${colGapDeskstyle}
             ${rowGapDeskstyle}
@@ -156,20 +333,56 @@ const Style = ({ props }) => {
             ${colGapDeskstyle}
             ${rowGapDeskstyle}
         }
-        .${uniqueId}.zb-brand-grid-wrap:hover{
-            ${containerHoverDeskBGStyle}
-            ${containerBoxShadowHover}
-            ${borderHoverColor ? `border-color: ${borderHoverColor};` : ''}
+        .${uniqueId} .zb-brand-item{
+            ${deskContainerHeight}
+			${containerDeskBorderRadius}
+			${containerBoxShadow}
+			${containerDeskBGStyle}
+            ${containerBorderDesk}
+		}
+		.${uniqueId} .zb-brand-item:hover{
+			${brandContainerHoverBoxShadow}
+            ${containerHoverBorderColor ? `border-color:${containerHoverBorderColor};` : ''}
+		}
+		.${uniqueId} .wp-block-zolo-brand-child .zb-brand-image img{
+            ${brandPhotoPaddingDesk}
+			${deskImageWidth}
+			${brandPhotoBorderRadiusDesk}
+			${brandPhotoBoxShadow}
+			${brandPhotoDeskBGStyle}
+			${brandPhotoMaringDesk}
+			${photoBorderDesktop}
+		}
+        .${uniqueId} .zb-brand-inner-content{
+            ${brandContentDeskAlignStyle}
         }
+		.${uniqueId} .zb-brand-content{
+			${containerHoverDeskBGStyle}
+            ${contentHorizontalPosition ? `align-items:${contentHorizontalPosition};` : ''}
+            ${contentVerticalPosition ? `justify-content:${contentVerticalPosition};` : ''}
+            ${contentDeskPadding}
+		}
+		.${uniqueId} .zb-brand-title{
+			${titleTypoDesk}
+			${titleMarginDesk}
+			${titleTextShadow}
+			${titleTextStrokeDesk}
+			color:${textColor};
+		}
+		.${uniqueId} .zb-brand-item .zb-brand-link{
+			${linkTypoDesk}
+			${linkMarginDesk}
+			${linkTextShadow}
+			${linkTextStrokeDesk}
+			color:${linkColor};
+		}
+		.${uniqueId} .zb-brand-item .zb-brand-link:hover{
+			color:${linkHoverColor};
+		}
     `;
 
     const tabletAllStyle = `
         .${uniqueId}.zb-brand-grid-wrap{
-            ${containerTabBGStyle}
-            ${containerTabBorderStyle}
-            ${containerBorderRadiusTab}
-            ${containerPaddingTab}
-            ${containerMarginTab}
             grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
             ${colGapTabStyle}
             ${rowGapTabStyle}
@@ -180,19 +393,41 @@ const Style = ({ props }) => {
             ${colGapTabStyle}
             ${rowGapTabStyle}
         }
-        .${uniqueId}.zb-brand-grid-wrap:hover{
-            ${containerHoverTabBGStyle}
+        .${uniqueId} .zb-brand-item{
+            ${tabContainerHeight}
+            ${containerTabBorderRadius}
+            ${containerTabBGStyle}
+            ${containerBorderTab}
         }
-
+        .${uniqueId} .zb-brand-image img{
+            ${brandPhotoPaddingTab}
+            ${tabImageWidth}
+            ${brandPhotoBorderRadiusTab}
+            ${brandPhotoTabBGStyle}
+            ${brandPhotoMarginTab}
+            ${photoBorderTab}
+        }
+        .${uniqueId} .zb-brand-inner-content{
+            ${brandContentTabAlignStyle}
+        }
+        .${uniqueId} .zb-brand-content{
+            ${containerHoverTabBGStyle}
+            ${contentTabPadding}
+        }
+        .${uniqueId} .zb-brand-title{
+            ${titleTypoTab}
+            ${titleMarginTab}
+            ${titleTextStrokeTab}
+        }
+        .${uniqueId} .zb-brand-link{
+            ${linkTypoTab}
+            ${linkMarginTab}
+            ${linkTextStrokeTab}
+        }
     `;
 
     const mobileAllStyle = `
         .${uniqueId}.zb-brand-grid-wrap{
-            ${containerMobBGStyle}
-            ${containerMobBorderStyle}
-            ${containerBorderRadiusMob}
-            ${containerPaddingMob}
-            ${containerMarginMob}
             grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
             ${colGapMobStyle}
             ${rowGapMobStyle}
@@ -202,8 +437,36 @@ const Style = ({ props }) => {
             ${colGapMobStyle}
             ${rowGapMobStyle}
         }
-        .${uniqueId}.zb-brand-grid-wrap:hover{
+        .${uniqueId} .zb-brand-item{
+            ${mobContainerHeight}
+            ${containerMobBorderRadius}
+            ${containerMobBGStyle}
+            ${containerBorderMob}
+        }
+        .${uniqueId} .zb-brand-image img{
+            ${brandPhotoPaddingMob}
+            ${mobImageWidth}
+            ${brandPhotoBorderRadiusMob}
+            ${brandPhotoMobBGStyle}
+            ${brandPhotoMarginMob}
+            ${photoBorderMob}
+        }
+        .${uniqueId} .zb-brand-inner-content{
+            ${brandContentMobAlignStyle}
+        }
+        .${uniqueId} .zb-brand-content{
             ${containerHoverMobBGStyle}
+            ${contentMobPadding}
+        }
+        .${uniqueId} .zb-brand-title{
+            ${titleTypoMob}
+            ${titleMarginMob}
+            ${titleTextStrokeMob}
+        }
+        .${uniqueId} .zb-brand-link{
+            ${linkTypoMob}
+            ${linkMarginMob}
+            ${linkTextStrokeMob}
         }
     `;
 
