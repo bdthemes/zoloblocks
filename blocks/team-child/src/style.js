@@ -231,7 +231,6 @@ const Style = ({ props }) => {
         typoStylesMobile: nameTypoMob,
     } = generateTypographyStyles({
         prefixConstant: TEAM_MEMBER_NAME_TYPOGRAPHY,
-        defaultFontSize: 23,
         attributes,
     });
 
@@ -252,7 +251,6 @@ const Style = ({ props }) => {
         typoStylesMobile: designationTypoMob,
     } = generateTypographyStyles({
         prefixConstant: TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 
@@ -273,7 +271,6 @@ const Style = ({ props }) => {
         typoStylesMobile: shortBioTypoMob,
     } = generateTypographyStyles({
         prefixConstant: TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 

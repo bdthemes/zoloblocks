@@ -86,9 +86,7 @@ const attributes = {
     // Generators
     ...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_PADDING),
     ...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_MARGIN),
-    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
-        defaultAlign: 'left',
-    }),
+    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
     ...generateNormalBGAttributes(CONTENT_BG),
     ...generateBorderAttributies(CONTENT_BORDER),
     ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
@@ -170,12 +168,12 @@ const attributes = {
     },
     showShortBio: {
         type: 'boolean',
-        default: false,
+        default: true,
     },
     memberShortBio: {
         type: 'string',
         default:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            'CEO at ZoloBlocks, leading innovative tech solutions for a better world.',
     },
     showSocialProfiles: {
         type: 'boolean',

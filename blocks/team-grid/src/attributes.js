@@ -50,7 +50,7 @@ const attributes = {
     },
     showShortBio: {
         type: 'boolean',
-        default: false,
+        default: true,
     },
     showSocialProfiles: {
         type: 'boolean',
