@@ -188,7 +188,7 @@ function Inspector(props) {
                                     placeholder={__('Designation..', 'zolo-blocks')}
                                 />
                             )}
-                            {showShortBio && preset !== 'style-1' && preset !== 'style-3' && (
+                            {showShortBio && (
                                 <TextareaControl
                                     label={__('Short Bio', 'zolo-blocks')}
                                     value={memberShortBio}

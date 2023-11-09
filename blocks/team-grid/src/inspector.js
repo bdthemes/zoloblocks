@@ -109,7 +109,7 @@ function Inspector(props) {
         switch (selected) {
             case 'default':
                 setAttributes({
-                    showShortBio: false,
+                    showShortBio: true,
                     showSocialProfiles: true,
                     showDetailPageIcon: true,
                     showDesignation: true,
@@ -118,23 +118,15 @@ function Inspector(props) {
                 break;
             case 'style-1':
                 setAttributes({
-                    showShortBio: false,
+                    showShortBio: true,
                     showSocialProfiles: true,
-                    showDetailPageIcon: false,
-                    showDesignation: false,
+                    showDetailPageIcon: true,
+                    showDesignation: true,
                 });
                 break;
             case 'style-2':
                 setAttributes({
                     showShortBio: true,
-                    showSocialProfiles: true,
-                    showDetailPageIcon: false,
-                    showDesignation: true,
-                });
-                break;
-            case 'style-3':
-                setAttributes({
-                    showShortBio: false,
                     showSocialProfiles: true,
                     showDetailPageIcon: true,
                     showDesignation: true,
@@ -178,17 +170,15 @@ function Inspector(props) {
                                 />
                             )}
 
-                            {preset !== 'style-1' && preset !== 'style-3' && (
-                                <ToggleControl
-                                    label={__('Show Short Bio', 'zolo-blocks')}
-                                    checked={showShortBio}
-                                    onChange={() =>
-                                        setAttributes({
-                                            showShortBio: !showShortBio,
-                                        })
-                                    }
-                                />
-                            )}
+                            <ToggleControl
+                                label={__('Show Short Bio', 'zolo-blocks')}
+                                checked={showShortBio}
+                                onChange={() =>
+                                    setAttributes({
+                                        showShortBio: !showShortBio,
+                                    })
+                                }
+                            />
                             <ToggleControl
                                 label={__('Show Designation', 'zolo-blocks')}
                                 checked={showDesignation}

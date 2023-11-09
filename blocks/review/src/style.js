@@ -310,7 +310,6 @@ const Style = ({ props }) => {
         typoStylesMobile: nameTypoMob,
     } = generateTypographyStyles({
         prefixConstant: REVIEWER_NAME_TYPOGRAPHY,
-        defaultFontSize: 20,
         attributes,
     });
 
@@ -331,7 +330,6 @@ const Style = ({ props }) => {
         typoStylesMobile: designationTypoMob,
     } = generateTypographyStyles({
         prefixConstant: REVIEWER_DESIGNATION_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 
@@ -352,7 +350,6 @@ const Style = ({ props }) => {
         typoStylesMobile: testimonialMessageTypoMob,
     } = generateTypographyStyles({
         prefixConstant: REVIEWER_MESSAGE_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 

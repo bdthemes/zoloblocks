@@ -27,6 +27,7 @@
 		font-size: 13px;
 		// box-shadow: none;
 	}
+
 	.components-base-control__label,
 	.components-input-control__label {
 		font-size: 13px !important;
@@ -115,6 +116,15 @@
 			margin-bottom: 0 !important;
 		}
 	}
+
+}
+.zolo-panel-control {
+	.components-panel__body-toggle.components-button {
+		font-weight: 700 !important;
+	}
+}
+.components-panel__body-toggle.components-button {
+	font-weight: 700 !important;
 }
 
 .zolo-tab-panel,
@@ -153,6 +163,7 @@
 		}
 	}
 }
+
 
 .zolo-image-upload-btn {
     height: 130px;
