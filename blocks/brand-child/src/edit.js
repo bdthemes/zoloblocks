@@ -96,7 +96,7 @@ export default function Edit(props) {
                     <a
                         className="zb-brand-global-link"
                         href={logoLink && logoLink.url}
-                        rel={logoLink && logoLink.openInNewTab && 'noreferer'}
+                        rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                         target={logoLink && logoLink.openInNewTab && '_blank'}
                     >
                         <div className="zb-brand-image">
@@ -187,7 +187,7 @@ export default function Edit(props) {
                                         {enableLogoLink && logoLinkType === 'logo__title' ? (
                                             <a
                                                 href={logoLink && logoLink.url}
-                                                rel={logoLink && logoLink.openInNewTab && 'noreferer'}
+                                                rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                                                 target={logoLink && logoLink.openInNewTab && '_blank'}
                                             >
                                                 <RichText
@@ -222,7 +222,7 @@ export default function Edit(props) {
                                         {enableLogoLink && logoLinkType === 'logo__label' ? (
                                             <a
                                                 href={logoLink && logoLink.url}
-                                                rel={logoLink && logoLink.openInNewTab && 'noreferer'}
+                                                rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                                                 target={logoLink && logoLink.openInNewTab && '_blank'}
                                             >
                                                 <RichText

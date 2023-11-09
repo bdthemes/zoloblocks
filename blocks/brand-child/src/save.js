@@ -27,7 +27,7 @@ const Save = ({ attributes }) => {
                 <a
                     className="zb-brand-global-link"
                     href={logoLink && logoLink.url}
-                    rel={logoLink && logoLink.openInNewTab && 'noreferer'}
+                    rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                     target={logoLink && logoLink.openInNewTab && '_blank'}
                 >
                     <div className="zb-brand-image">
@@ -77,7 +77,7 @@ const Save = ({ attributes }) => {
                                         <a
                                             className="zb-brand-link has-link"
                                             href={logoLink && logoLink.url}
-                                            rel={logoLink && logoLink.openInNewTab && 'noreferer'}
+                                            rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                                             target={logoLink && logoLink.openInNewTab && '_blank'}
                                         >
                                             <RichText.Content tagName={brandNameTag} className="zb-brand-title" value={brandTitle} />
@@ -93,7 +93,7 @@ const Save = ({ attributes }) => {
                                         <a
                                             className="zb-brand-title-link has-link"
                                             href={logoLink && logoLink.url}
-                                            rel={logoLink && logoLink.openInNewTab && 'noreferer'}
+                                            rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                                             target={logoLink && logoLink.openInNewTab && '_blank'}
                                         >
                                             <RichText.Content tagName="span" className="zb-brand-label" value={brandLabel} />

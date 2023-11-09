@@ -53,9 +53,10 @@ const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        textColor,
-        linkColor,
-        linkHoverColor,
+        nameColor,
+        nameHoverColor,
+        labelColor,
+        labelHoverColor,
         containerHoverBorderColor,
         contentHorizontalPosition,
         contentVerticalPosition,
@@ -367,17 +368,20 @@ const Style = ({ props }) => {
 			${titleMarginDesk}
 			${titleTextShadow}
 			${titleTextStrokeDesk}
-			color:${textColor};
+            ${nameColor ? `color:${nameColor};` : ''}
 		}
-		.${uniqueId} .zb-brand-item .zb-brand-link{
+		.${uniqueId} .zb-brand-title.has-link:hover{
+            ${nameHoverColor ? `color:${nameHoverColor};` : ''}
+		}
+		.${uniqueId} .zb-brand-item .zb-brand-title-link{
 			${linkTypoDesk}
 			${linkMarginDesk}
 			${linkTextShadow}
 			${linkTextStrokeDesk}
-			color:${linkColor};
+            ${labelColor ? `color:${labelColor};` : ''}
 		}
-		.${uniqueId} .zb-brand-item .zb-brand-link:hover{
-			color:${linkHoverColor};
+		.${uniqueId} .zb-brand-item .zb-brand-title-link.has-link:hover{
+            ${labelHoverColor ? `color:${labelHoverColor};` : ''}
 		}
     `;
 
