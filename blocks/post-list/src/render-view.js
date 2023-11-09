@@ -10,11 +10,9 @@ function RenderView({ attributes, postResults }) {
     showExcerpt,
     excerptWords,
     excerptindicator,
-    showReadMore,
-    readMoreBtnText,
     showCategory,
-    showAuthor,
     showMeta,
+    showCount
   } = attributes;
 
   return [
@@ -34,7 +32,6 @@ function RenderView({ attributes, postResults }) {
           ''
         );
 
-      const avatar = <a dangerouslySetInnerHTML={{ __html: post.avatar }} />;
       const author = (
         <div
           className="zolo-post-author-name"
@@ -42,25 +39,8 @@ function RenderView({ attributes, postResults }) {
         />
       );
       const date = <div className="zolo-post-date">{post.date}</div>;
-      const readingTime = <div className="zolo-post-estimate">{post.reading_time}</div>;
-
-      const authorInfoHtml = (
-        <div className="zolo-post-meta-box">
-          {avatar}
-          {author}
-        </div>
-      );
-      const dateRTimeHtml = (
-        <div className="zolo-post-dateTime">
-          {date}
-          <span>,</span>
-          {readingTime}
-          {__('Min Read', 'zolo-blocks')}
-        </div>
-      );
 
       return (
-
         <div className="zolo-post-item">
           <div className="zolo-post-image">
             {showThumbnail && (
@@ -76,9 +56,11 @@ function RenderView({ attributes, postResults }) {
           </div>
 
           <div className="zolo-post-content">
-            <div className="zolo-post-count-number"></div>
-            <div className='zolo-post-inner-content'>
+            {showCount && (
+              <div className="zolo-post-count-number"></div>
+            )}
 
+            <div className='zolo-post-inner-content'>
               {showCategory && categoriesHtml}
 
               {showTitle && (
