@@ -121,41 +121,6 @@ export default function Edit(props) {
                                 allowedTypes={['image']}
                             />
                         )}
-
-                        <div className="zolo-hover-content">
-                            <RichText
-                                className={`zolo-name ${addDetailPageLink ? 'has-link' : ''}`}
-                                value={memberName}
-                                onChange={(name) => setAttributes({ memberName: name })}
-                                placeholder={__('Name...', 'zolo-blocks')}
-                                allowedFormats={['core/bold', 'core/italic']}
-                            /> */}
-                            {/* {showDesignation && (
-                                <RichText
-                                    className="zolo-designation"
-                                    value={memberDesignation}
-                                    onChange={(designation) =>
-                                        setAttributes({
-                                            memberDesignation: designation,
-                                        })
-                                    }
-                                    placeholder={__('Designation...', 'zolo-blocks')}
-                                    allowedFormats={['core/bold', 'core/italic']}
-                                />
-                            )} */}
-
-                            {/* {addDetailPageLink && showDetailPageIcon && (
-                                <div className="zolo-link-btn">
-                                    <a
-                                        href={memberDetailPageLink && memberDetailPageLink.url}
-                                        rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer'}
-                                        target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
-                                    >
-                                        <DisplayIcon icon={detailIcon} />
-                                    </a>
-                                </div>
-                            )} */}
-                        {/* </div> */}
                     </div>
                     <div className="zolo-info-wrap">
                         <div className="zolo-content">
