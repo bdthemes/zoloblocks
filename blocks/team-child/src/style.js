@@ -619,16 +619,14 @@ const Style = ({ props }) => {
 		.${uniqueId} .zolo-name {
 			${nameTypoDesk}
 			${nameDeskMargin}
-			color: ${addDetailPageLink ? nameLinkColor : nameColor};
+            ${nameColor ? `color: ${nameColor};` : ''}
 		}
 
-        .${uniqueId} .zolo-name:hover {
-			color: ${nameHoverColor} !important;
+        .${uniqueId} .zolo-name.has-link:hover {
+            ${nameHoverColor ? `color: ${nameHoverColor};` : ''}
+        
 		}
 
-		.${uniqueId} a.zolo-name:hover {
-			color: ${nameHoverColor};
-		}
 		.${uniqueId} .zolo-designation {
 			${designationColor ? `color: ${designationColor};` : ''}
 			${designationTypoDesk}

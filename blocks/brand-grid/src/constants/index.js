@@ -12,131 +12,19 @@ export const PRESETS = [
     { label: __('Style 1', 'zolo-blocks'), value: 'zb-brand-style-2' },
 ];
 
-// container
-export const CONTAINER_BACKGROUND = 'brandContainerBackground';
-export const CONTAINER_HOVER_BACKGROUND = 'brandHoverContainerBackground';
-
-// title tag
-export const TITLE_TAG = [
+// icon types
+export const LINK_TYPES = [
     {
-        label: 'H1',
-        value: 'h1',
+        label: __('Global', 'zolo-blocks'),
+        value: 'logo__global',
     },
     {
-        label: 'H2',
-        value: 'h2',
+        label: __('Label', 'zolo-blocks'),
+        value: 'logo__label',
     },
     {
-        label: 'H3',
-        value: 'h3',
-    },
-    {
-        label: 'H4',
-        value: 'h4',
-    },
-    {
-        label: 'H5',
-        value: 'h5',
-    },
-    {
-        label: 'H6',
-        value: 'h6',
-    },
-    {
-        label: 'Span',
-        value: 'span',
-    },
-    {
-        label: 'P',
-        value: 'p',
-    },
-];
-
-// icon positions
-export const ICON_BOX_POSITIONS = [
-    {
-        label: 'Left',
-        value: 'left',
-    },
-    {
-        label: 'Right',
-        value: 'right',
-    },
-    {
-        label: 'Top',
-        value: 'top',
-    },
-    {
-        label: 'Bottom',
-        value: 'bottom',
-    },
-];
-
-// icon positions
-export const ICON_POSITIONS = [
-    {
-        label: 'Left',
-        value: 'row-reverse',
-    },
-    {
-        label: 'Right',
-        value: 'row',
-    },
-    {
-        label: 'Top',
-        value: 'column-reverse',
-    },
-    {
-        label: 'Bottom',
-        value: 'column',
-    },
-];
-
-// button positions
-export const BUTTON_POSITIONS = [
-    {
-        label: 'Left',
-        value: 'left',
-    },
-    {
-        label: 'Center',
-        value: 'center',
-    },
-    {
-        label: 'Right',
-        value: 'right',
-    },
-];
-
-// side icon positions
-export const SIDE_ICON_POSITIONS = [
-    {
-        label: 'Top',
-        value: 'left',
-    },
-    {
-        label: 'Center',
-        value: 'center',
-    },
-    {
-        label: 'Bottom',
-        value: 'end',
-    },
-];
-
-// top icon positions
-export const TOP_ICON_POSITIONS = [
-    {
-        label: 'Left',
-        value: 'left',
-    },
-    {
-        label: 'Center',
-        value: 'center',
-    },
-    {
-        label: 'Right',
-        value: 'right',
+        label: __('Title', 'zolo-blocks'),
+        value: 'logo__title',
     },
 ];
 
@@ -145,11 +33,42 @@ export const GRID_COLUMNS = 'gridColumns';
 export const COLUMNS_GAP = 'columnsGap';
 export const ROWS_GAP = 'rowsGap';
 
-// Container
-export const CONTAINER_PADDING = 'containerPadding';
-export const CONTAINER_MARGIN = 'containerMargin';
+// global style for child blocks
+// container
+export const CONTAINER_HEIGHT = 'containerHeight';
+export const CONTAINER_BACKGROUND = 'containerBackground';
 export const CONTAINER_BORDER = 'containerBorder';
-export const CONTAINER_BORDER_HOVER = 'containerBorderHover';
 export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
-export const CONTAINER_HOVER_BOX_SHADOW = 'containerBoxShadowHover';
+
+// hover
+export const CONTAINER_HOVER_BACKGROUND = 'containerHoverBackground';
+export const CONTAINER_HOVER_BOX_SHADOW = 'containerHoverBoxShadow';
+export const CONTAINER_HOVER_BORDER = 'containerHoverBorder';
+
+//  photo
+export const BRAND_PHOTO_BG = 'photoBackground';
+export const BRAND_PHOTO_BORDER = 'photoBorder';
+export const BRAND_PHOTO_BORDER_RADIUS = 'photoBorderRadius';
+export const BRAND_PHOTO_BOX_SHADOW = 'photoBoxShadow';
+export const BRAND_PHOTO_MARGIN = 'photoMargin';
+export const BRAND_PHOTO_PADDING = 'photoPadding';
+
+// title
+export const TITLE_ALIGNMENT = 'titleAlignment';
+export const TITLE_MARGIN = 'titleMargin';
+export const TITLE_TEXT_SHADOW = 'titleTextShadow';
+export const TITLE_TEXT_STROKE = 'titleTextStroke';
+
+// content
+export const CONTENT_ALIGNMENT = 'ContentAlignment';
+export const CONTENT_PADDING = 'ContentPadding';
+
+// link
+export const LINK_TEXT_SHADOW = 'linkTextShadow';
+export const LINK_MARGIN = 'linkMargin';
+export const LINK_TEXT_STROKE = 'linkTextStroke';
+
+// image
+export const IMAGE_HEIGHT = 'imageHeight';
+export const IMAGE_WIDTH = 'imageWidth';

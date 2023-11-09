@@ -2,23 +2,45 @@ const {
     generateResRangeAttributies,
     generateNormalBGAttributes,
     generateBorderAttributies,
-    generateDimensionAttributes,
     generateBoxShadowAttributies,
+    generateResAlignmentAttributies,
+    generateDimensionAttributes,
+    generateTypographyAttributes,
+    generateTextShadowAttributies,
+    generateTextStrokeAttributies,
 } = window.zoloModule;
 
 import {
     GRID_COLUMNS,
     COLUMNS_GAP,
     ROWS_GAP,
+    CONTAINER_HEIGHT,
+    TITLE_ALIGNMENT,
+    TITLE_MARGIN,
+    TITLE_TEXT_SHADOW,
+    TITLE_TEXT_STROKE,
+    LINK_TEXT_SHADOW,
+    LINK_TEXT_STROKE,
+    CONTENT_ALIGNMENT,
+    CONTENT_PADDING,
+    LINK_MARGIN,
     CONTAINER_BACKGROUND,
     CONTAINER_HOVER_BACKGROUND,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_HOVER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_PADDING,
     CONTAINER_BOX_SHADOW,
     CONTAINER_HOVER_BOX_SHADOW,
+    CONTAINER_BORDER_RADIUS,
+    BRAND_PHOTO_BORDER,
+    BRAND_PHOTO_BORDER_RADIUS,
+    BRAND_PHOTO_BOX_SHADOW,
+    BRAND_PHOTO_BG,
+    BRAND_PHOTO_PADDING,
+    BRAND_PHOTO_MARGIN,
+    IMAGE_WIDTH,
+    CONTAINER_BORDER,
 } from './constants';
+
+import * as typographyObjs from './constants/typoPrefixConstant';
+
 const attributes = {
     // global Attributes
     globalConfig: {
@@ -45,18 +67,8 @@ const attributes = {
             responsiveControls: true,
         },
     },
-    // container
-    ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
-    ...generateNormalBGAttributes(CONTAINER_HOVER_BACKGROUND),
-    ...generateBorderAttributies(CONTAINER_BORDER),
-    ...generateBorderAttributies(CONTAINER_BORDER_HOVER),
-    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
-    ...generateDimensionAttributes(CONTAINER_PADDING),
-    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
-    ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
     //grid system
     ...generateResRangeAttributies(GRID_COLUMNS, {
-        defaultRange: 1,
         noUnits: true,
     }),
     ...generateResRangeAttributies(COLUMNS_GAP, {
@@ -66,28 +78,51 @@ const attributes = {
         defaultRange: 30,
     }),
 
+    // global style for child blocks
+    // content alignment
+    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
+    ...generateDimensionAttributes(CONTENT_PADDING),
+    // container
+    ...generateResRangeAttributies(CONTAINER_HEIGHT),
+    ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
+    ...generateBorderAttributies(CONTAINER_BORDER),
+    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
+
+    // hover
+    ...generateNormalBGAttributes(CONTAINER_HOVER_BACKGROUND),
+    ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
+
+    // photo
+    ...generateDimensionAttributes(BRAND_PHOTO_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(BRAND_PHOTO_BOX_SHADOW),
+    ...generateNormalBGAttributes(BRAND_PHOTO_BG),
+    ...generateDimensionAttributes(BRAND_PHOTO_PADDING),
+    ...generateDimensionAttributes(BRAND_PHOTO_MARGIN),
+    ...generateBorderAttributies(BRAND_PHOTO_BORDER),
+
+    //title
+    ...generateDimensionAttributes(TITLE_MARGIN),
+    ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
+    ...generateResAlignmentAttributies(TITLE_ALIGNMENT),
+
+    //link margin
+    ...generateDimensionAttributes(LINK_MARGIN),
+    ...generateTextShadowAttributies(LINK_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(LINK_TEXT_STROKE),
+
+    // image
+    ...generateResRangeAttributies(IMAGE_WIDTH),
+    //typography
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
+
     //Block specific Attributes
-    preset: {
-        type: 'string',
-        default: 'zb-brand-style-1',
-    },
-    heading: {
-        type: 'string',
-        default: 'h1',
-    },
     containerBackgroundColor: {
         type: 'string',
     },
     containerBackgroundHoverColor: {
         type: 'string',
-    },
-    showBrandName: {
-        type: 'boolean',
-        default: true,
-    },
-    showBrandLink: {
-        type: 'boolean',
-        default: true,
     },
     presetOneStyles: {
         type: 'object',
@@ -110,6 +145,55 @@ const attributes = {
         default: {
             iconPosition: 'right',
         },
+    },
+    // global for child blocks
+    nameColor: {
+        type: 'string',
+    },
+    nameHoverColor: {
+        type: 'string',
+    },
+    labelColor: {
+        type: 'string',
+    },
+    labelHoverColor: {
+        type: 'string',
+    },
+    containerHoverBorderColor: {
+        type: 'string',
+    },
+    contentHorizontalPosition: {
+        type: 'string',
+        default: 'center',
+    },
+    contentVerticalPosition: {
+        type: 'string',
+        default: 'center',
+    },
+    // context
+    preset: {
+        type: 'string',
+        default: 'zb-brand-style-1',
+    },
+    brandNameTag: {
+        type: 'string',
+        default: 'h1',
+    },
+    brandNameVisible: {
+        type: 'boolean',
+        default: true,
+    },
+    brandLabelVisible: {
+        type: 'boolean',
+        default: true,
+    },
+    enableLogoLink: {
+        type: 'boolean',
+        default: false,
+    },
+    logoLinkType: {
+        type: 'string',
+        default: 'logo__label',
     },
 };
 

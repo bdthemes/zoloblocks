@@ -121,9 +121,10 @@ export default function Edit(props) {
                                 allowedTypes={['image']}
                             />
                         )}
-                        {/* <div className="zolo-hover-content"> */}
-                            {/* <RichText
-                                className="zolo-name"
+
+                        <div className="zolo-hover-content">
+                            <RichText
+                                className={`zolo-name ${addDetailPageLink ? 'has-link' : ''}`}
                                 value={memberName}
                                 onChange={(name) => setAttributes({ memberName: name })}
                                 placeholder={__('Name...', 'zolo-blocks')}

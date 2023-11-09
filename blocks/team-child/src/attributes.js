@@ -219,9 +219,6 @@ const attributes = {
     nameColor: {
         type: 'string',
     },
-    nameLinkColor: {
-        type: 'string',
-    },
     nameHoverColor: {
         type: 'string',
     },

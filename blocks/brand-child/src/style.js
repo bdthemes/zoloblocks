@@ -49,29 +49,17 @@ import {
 import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, context } = props;
+    const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        brandPhoto,
-        textColor,
-        linkColor,
-        linkHoverColor,
+        nameColor,
+        nameHoverColor,
+        labelColor,
+        labelHoverColor,
         containerHoverBorderColor,
         contentHorizontalPosition,
         contentVerticalPosition,
     } = attributes;
-
-    /**
-     * context
-     */
-    useEffect(() => {
-        setAttributes({
-            preset: context['zolo/preset'],
-            heading: context['zolo/heading'],
-            showBrandName: context['zolo/showBrandName'],
-            showBrandLink: context['zolo/showBrandLink'],
-        });
-    }, [context]);
 
     // Content Align
     const {
@@ -337,17 +325,21 @@ const Style = ({ props }) => {
 			${titleMarginDesk}
 			${titleTextShadow}
 			${titleTextStrokeDesk}
-			color:${textColor};
+			${nameColor ? `color:${nameColor};` : ''}
 		}
-		.${uniqueId}.zb-brand-item .zb-brand-link{
+        .${uniqueId} .zb-brand-title.has-link:hover{
+            ${nameHoverColor ? `color:${nameHoverColor};` : ''}
+        }
+
+		.${uniqueId}.zb-brand-item .zb-brand-title-link{
 			${linkTypoDesk}
 			${linkMarginDesk}
 			${linkTextShadow}
 			${linkTextStrokeDesk}
-			color:${linkColor};
+            ${labelColor ? `color:${labelColor};` : ''}
 		}
-		.${uniqueId}.zb-brand-item .zb-brand-link:hover{
-			color:${linkHoverColor};
+		.${uniqueId}.zb-brand-item .zb-brand-title-link.has-link:hover{
+			color:${labelHoverColor};
 		}
   	`;
 

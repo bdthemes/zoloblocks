@@ -233,7 +233,7 @@ function Inspector(props) {
                 styleTab={
                     <>
                         {preset === 'style-2' && (
-                            <PanelBody title={__('Preset Style', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody title={__('Preset', 'zolo-blocks')} initialOpen={false}>
                                 <RangeControl
                                     label={__('Blur Strength', 'zolo-blocks')}
                                     value={blurBgOpacity}

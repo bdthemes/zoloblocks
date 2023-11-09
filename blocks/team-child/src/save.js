@@ -36,7 +36,7 @@ const Save = ({ attributes }) => {
                                 href={memberDetailPageLink && memberDetailPageLink.url}
                                 rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferrer noopener'}
                                 target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
-                                className="zolo-name"
+                                className="zolo-name has-link"
                             >
                                 <RichText.Content value={memberName} />
                             </a>

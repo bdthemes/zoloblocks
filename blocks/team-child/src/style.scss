@@ -23,7 +23,7 @@
         color: #2e2e35;
         display: block;
         transition: color 0.3s ease;
-        &:hover {
+        &.has-link:hover {
             color: #00accc;
         }
     }
@@ -55,6 +55,7 @@
             text-decoration: none;
             box-sizing: content-box;
             color: #4c4c51;
+            padding: 8px;
             &::before {
                 background: #3fb8fd;
             }
@@ -110,6 +111,7 @@
             background-color: #00accc;
             transition: 500ms ease;
             text-decoration: none;
+            box-sizing: border-box;
             i,span {
                 color: #fff;
                 transition: .3s ease-out;
@@ -161,6 +163,32 @@
         .zolo-item {
             background-color: #fff;
             padding: clamp(1.563rem, 4vw, 2.5rem);
+            transform: translateY(10px);
+            opacity: 0;
+            transition:
+                transform 0.5s ease,
+                opacity 0.5s ease;
+        }
+        .zolo-social-share {
+            border-top: 0;
+            padding-top: 0;
+            margin-top: 12px;
+        }
+        &:hover {
+            .zolo-image-wrap {
+                img {
+                    transform: scale(1.1);
+                }
+            }
+            .zolo-hover-content {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    &.style-2 {
+        .zolo-item {
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             border-radius: 10px;
             text-align: center;

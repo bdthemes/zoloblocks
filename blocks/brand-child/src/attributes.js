@@ -62,20 +62,8 @@ const attributes = {
             responsiveControls: true,
         },
     },
-    // block attributes
-    isBrandName: {
-        type: 'boolean',
-        default: true,
-    },
-    isBrandLink: {
-        type: 'boolean',
-        default: true,
-    },
-
     // content alignment
-    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
-        defaultAlign: 'center',
-    }),
+    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
     ...generateDimensionAttributes(CONTENT_PADDING),
     // container
     ...generateResRangeAttributies(CONTAINER_HEIGHT),
@@ -100,9 +88,7 @@ const attributes = {
     ...generateDimensionAttributes(TITLE_MARGIN),
     ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
     ...generateTextStrokeAttributies(TITLE_TEXT_STROKE),
-    ...generateResAlignmentAttributies(TITLE_ALIGNMENT, {
-        defaultAlign: '',
-    }),
+    ...generateResAlignmentAttributies(TITLE_ALIGNMENT),
 
     //link margin
     ...generateDimensionAttributes(LINK_MARGIN),
@@ -122,36 +108,24 @@ const attributes = {
             alt: '',
         },
     },
-    brandName: {
+    brandTitle: {
         type: 'string',
         default: 'Zalando',
     },
-    brandNameTag: {
+    nameColor: {
         type: 'string',
-        default: 'h2',
+    },
+    nameHoverColor: {
+        type: 'string',
     },
     brandLabel: {
         type: 'string',
         default: 'www.zalando.com',
     },
-    brandDetailPageLink: {
-        type: 'object',
-        default: {
-            url: '#',
-            openInNewTab: false,
-        },
-    },
-    titleTag: {
-        type: 'string',
-        default: 'h2',
-    },
-    textColor: {
+    labelColor: {
         type: 'string',
     },
-    linkColor: {
-        type: 'string',
-    },
-    linkHoverColor: {
+    labelHoverColor: {
         type: 'string',
     },
     containerHoverBorderColor: {
@@ -164,6 +138,34 @@ const attributes = {
     contentVerticalPosition: {
         type: 'string',
         default: 'center',
+    },
+    // context
+    brandNameTag: {
+        type: 'string',
+        default: 'h1',
+    },
+    brandNameVisible: {
+        type: 'boolean',
+        default: true,
+    },
+    brandLabelVisible: {
+        type: 'boolean',
+        default: true,
+    },
+    enableLogoLink: {
+        type: 'boolean',
+        default: true,
+    },
+    logoLinkType: {
+        type: 'string',
+        default: 'logo__label',
+    },
+    logoLink: {
+        type: 'object',
+        default: {
+            url: '#',
+            openInNewTab: false,
+        },
     },
 };
 
