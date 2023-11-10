@@ -29,7 +29,11 @@ $html = '';
         $html .= '</div>';
 
         $html .= '<div class="zolo-post-content">';
-        $html .= '<div class="zolo-post-count-number"></div>';
+
+        if (!empty($settings['showCount'])) {
+            $html .= '<div class="zolo-post-count-number"></div>';
+        }
+
         $html .= '<div class="zolo-post-inner-content">';
 
         $html .= require __DIR__ . '/post-partials/meta/categories.php';

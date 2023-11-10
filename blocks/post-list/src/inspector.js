@@ -26,9 +26,9 @@ import {
   CAT_BORDER_RADIUS,
   CAT_MARGIN,
   CAT_PADDING,
-  AVATAR_SIZE,
-  AVATAR_BORDER,
-  AVATAR_BORDER_RADIUS,
+  COUNT_SIZE,
+  COUNT_BORDER,
+  COUNT_BORDER_RADIUS,
 } from './constants';
 
 import {
@@ -36,7 +36,7 @@ import {
   EXCERPT_TYPOGRAPHY,
   META_TYPOGRAPHY,
   CAT_TYPOGRAPHY,
-  NAME_TYPOGRAPHY,
+  COUNT_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
 import { HEADING, THUMBNAIL_SIZE } from '../../../src/global/constants';
@@ -78,10 +78,10 @@ function Inspector({ attributes, setAttributes }) {
     catColor,
     catBgHoverColor,
     catHoverColor,
-    namePrefixColor,
-    nameColor,
-    nameHoverColor,
-    namePrefixHoverColor,
+    countColor,
+    countBGColor,
+    countHoverColor,
+    countHoverBGColor,
   } = attributes;
 
   const requiredProps = {
@@ -467,23 +467,23 @@ function Inspector({ attributes, setAttributes }) {
 
                 <TypographyDropdown
                   label={__('Typography', 'zolo-blocks')}
-                  typoPrefixConstant={NAME_TYPOGRAPHY}
+                  typoPrefixConstant={COUNT_TYPOGRAPHY}
                   requiredProps={requiredProps}
                 />
 
                 <ResRangeControl
                   label={__('Size', 'zolo-blocks')}
-                  controlName={AVATAR_SIZE}
+                  controlName={COUNT_SIZE}
                   requiredProps={requiredProps}
                 />
                 <BorderControl
                   label={__('Border', 'zolo-blocks')}
-                  controlName={AVATAR_BORDER}
+                  controlName={COUNT_BORDER}
                   requiredProps={requiredProps}
                 />
                 <ResDimensionsControl
                   label={__('Border Radius', 'zolo-blocks')}
-                  controlName={AVATAR_BORDER_RADIUS}
+                  controlName={COUNT_BORDER_RADIUS}
                   requiredProps={requiredProps}
                   forBorderRadius={true}
                 />
@@ -492,20 +492,16 @@ function Inspector({ attributes, setAttributes }) {
                     <>
                       <ColorControl
                         label={__('Color', 'zolo-blocks')}
-                        color={namePrefixColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            namePrefixColor: color,
-                          })
+                        color={countColor}
+                        onChange={(countColor) =>
+                          setAttributes({ countColor })
                         }
                       />
                       <ColorControl
                         label={__('Background Color', 'zolo-blocks')}
-                        color={nameColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            nameColor: color,
-                          })
+                        color={countBGColor}
+                        onChange={(countBGColor) =>
+                          setAttributes({ countBGColor })
                         }
                       />
                     </>
@@ -514,20 +510,16 @@ function Inspector({ attributes, setAttributes }) {
                     <>
                       <ColorControl
                         label={__('Hover Color', 'zolo-blocks')}
-                        color={nameHoverColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            nameHoverColor: color,
-                          })
+                        color={countHoverColor}
+                        onChange={(countHoverColor) =>
+                          setAttributes({ countHoverColor })
                         }
                       />
                       <ColorControl
                         label={__('Hover Background Color', 'zolo-blocks')}
-                        color={namePrefixHoverColor}
-                        onChange={(color) =>
-                          setAttributes({
-                            namePrefixHoverColor: color,
-                          })
+                        color={countHoverBGColor}
+                        onChange={(countHoverBGColor) =>
+                          setAttributes({ countHoverBGColor })
                         }
                       />
                     </>

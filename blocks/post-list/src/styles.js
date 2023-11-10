@@ -21,14 +21,9 @@ import {
   CAT_BORDER_RADIUS,
   CAT_MARGIN,
   CAT_PADDING,
-  AVATAR_SIZE,
-  AVATAR_BORDER,
-  AVATAR_BORDER_RADIUS,
-  WRAPPER_MARGIN,
-  WRAPPER_PADDING,
-  WRAPPER_BG,
-  WRAPPER_BORDER,
-  WRAPPER_SHADOW,
+  COUNT_SIZE,
+  COUNT_BORDER,
+  COUNT_BORDER_RADIUS,
 } from './constants';
 
 import {
@@ -36,7 +31,7 @@ import {
   EXCERPT_TYPOGRAPHY,
   META_TYPOGRAPHY,
   CAT_TYPOGRAPHY,
-  NAME_TYPOGRAPHY,
+  COUNT_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
 const {
@@ -45,7 +40,6 @@ const {
   generateNormalBGControlStyles,
   generateBorderStyle,
   generateBoxShadowStyles,
-  generateBackgroundControlStyles,
   generateTypographyStyles,
   generateResCounterStyle,
   GlobalStyleHanlder,
@@ -63,10 +57,10 @@ function Style({ props }) {
     catColor,
     catBgHoverColor,
     catHoverColor,
-    namePrefixColor,
-    nameColor,
-    nameHoverColor,
-    namePrefixHoverColor,
+    countColor,
+    countBGColor,
+    countHoverColor,
+    countHoverBGColor,
   } = attributes;
 
   const {
@@ -305,125 +299,53 @@ function Style({ props }) {
   });
 
   const {
-    desktopRangeStyle: avatarWidthDesk,
-    tabRangeStyle: avatarWidthTab,
-    mobRangeStyle: avatarWidthMob,
+    desktopRangeStyle: countWidthDesk,
+    tabRangeStyle: countWidthTab,
+    mobRangeStyle: countWidthMob,
   } = generateResRangeStyle({
-    controlName: AVATAR_SIZE,
-    property: 'width',
+    controlName: COUNT_SIZE,
+    property: 'min-width',
     attributes,
   });
   const {
-    desktopRangeStyle: avatarHeightDesk,
-    tabRangeStyle: avatarHeightTab,
-    mobRangeStyle: avatarHeightMob,
+    desktopRangeStyle: countHeightDesk,
+    tabRangeStyle: countHeightTab,
+    mobRangeStyle: countHeightMob,
   } = generateResRangeStyle({
-    controlName: AVATAR_SIZE,
-    property: 'height',
+    controlName: COUNT_SIZE,
+    property: 'min-height',
     attributes,
   });
   const {
-    desktopBorderStyle: avatarBorderDesk,
-    tabBorderStyle: avatarBorderTab,
-    mobBorderStyle: avatarBorderMob,
+    desktopBorderStyle: countBorderDesk,
+    tabBorderStyle: countBorderTab,
+    mobBorderStyle: countBorderMob,
   } = generateBorderStyle({
-    controlName: AVATAR_BORDER,
+    controlName: COUNT_BORDER,
     attributes,
   });
   const {
-    dimensionStylesDesktop: avatarBorderRadiusDesk,
-    dimensionStylesTab: avatarBorderRadiusTab,
-    dimensionStylesMobile: avatarBorderRadiusMob,
+    dimensionStylesDesktop: countBorderRadiusDesk,
+    dimensionStylesTab: countBorderRadiusTab,
+    dimensionStylesMobile: countBorderRadiusMob,
   } = generateDimensionStyle({
-    controlName: AVATAR_BORDER_RADIUS,
+    controlName: COUNT_BORDER_RADIUS,
     styleFor: 'border-radius',
     attributes,
   });
   const {
-    typoStylesDesktop: nameTypoDesk,
-    typoStylesTab: nameTypoTab,
-    typoStylesMobile: nameTypoMob,
+    typoStylesDesktop: countTypoDesk,
+    typoStylesTab: countTypoTab,
+    typoStylesMobile: countTypoMob,
   } = generateTypographyStyles({
-    prefixConstant: NAME_TYPOGRAPHY,
+    prefixConstant: COUNT_TYPOGRAPHY,
     attributes,
-  });
-
-  //wrapper style generate
-  const {
-    dimensionStylesDesktop: wrapperMarginDesktop,
-    dimensionStylesTab: wrapperMarginTab,
-    dimensionStylesMobile: wrapperMarginMobile,
-  } = generateDimensionStyle({
-    controlName: WRAPPER_MARGIN,
-    styleFor: 'margin',
-    attributes,
-  });
-  const {
-    dimensionStylesDesktop: wrapperPaddingDesktop,
-    dimensionStylesTab: wrapperPaddingTab,
-    dimensionStylesMobile: wrapperPaddingMobile,
-  } = generateDimensionStyle({
-    controlName: WRAPPER_PADDING,
-    styleFor: 'padding',
-    attributes,
-  });
-  const {
-    backgroundStylesDesktop: wrapperBackgroundStylesDesktop,
-    hoverBackgroundStylesDesktop: wrapperHoverBackgroundStylesDesktop,
-    backgroundStylesTab: wrapperBackgroundStylesTab,
-    hoverBackgroundStylesTab: wrapperHoverBackgroundStylesTab,
-    backgroundStylesMobile: wrapperBackgroundStylesMobile,
-    hoverBackgroundStylesMobile: wrapperHoverBackgroundStylesMobile,
-    overlayStylesDesktop: wrapperOverlayStylesDesktop,
-    hoverOverlayStylesDesktop: wrapperHoverOverlayStylesDesktop,
-    overlayStylesTab: wrapperOverlayStylesTab,
-    hoverOverlayStylesTab: wrapperHoverOverlayStylesTab,
-    overlayStylesMobile: wrapperOverlayStylesMobile,
-    hoverOverlayStylesMobile: wrapperHoverOverlayStylesMobile,
-  } = generateBackgroundControlStyles({
-    attributes,
-    controlName: WRAPPER_BG,
-  });
-
-  const {
-    boxShadowStyle: wrapperShadow,
-    hoverBoxShadowstyle: wrapperHoverShadow,
-    transitionStyle: wrapperShadowTransition,
-  } = generateBoxShadowStyles({
-    attributes,
-    controlName: WRAPPER_SHADOW,
-  });
-
-  const {
-    desktopBorderStyle: wrapperBorderDesktop,
-    tabBorderStyle: wrapperBorderTab,
-    mobBorderStyle: wrapperBorderMob,
-  } = generateBorderStyle({
-    attributes,
-    controlName: WRAPPER_BORDER,
   });
 
   /**
    * All Style Combination
    */
   const desktopAllStyle = `
-      .${uniqueId}.zolo-post-featured-list-wrap {
-        ${wrapperMarginDesktop}
-        ${wrapperPaddingDesktop}
-        ${wrapperBackgroundStylesDesktop}
-        ${wrapperBorderDesktop}
-        ${wrapperShadow}
-      }
-     .${uniqueId}.zolo-post-featured-list-wrap:hover{
-        ${wrapperHoverBackgroundStylesDesktop}
-        ${wrapperHoverShadow}
-      }
-     .${uniqueId}.zolo-post-featured-list-wrap::before{
-          ${wrapperOverlayStylesDesktop}
-      }
-     .${uniqueId}.zolo-post-featured-list-wrap:hover::before{
-        ${wrapperHoverOverlayStylesDesktop}
-      }
 
       .${uniqueId}.zolo-post-featured-list-wrap{
         ${colGapDesk}
@@ -439,7 +361,6 @@ function Style({ props }) {
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-image{
         ${thumbnailHeightDesk}
       }
-
 
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-title,
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item:first-child .zolo-post-title{
@@ -495,49 +416,30 @@ function Style({ props }) {
         ${catBgHoverColor ? `background-color:${catBgHoverColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-box img{
-        ${avatarWidthDesk}
-        ${avatarHeightDesk}
-        ${avatarBorderDesk}
-        ${avatarBorderRadiusDesk}
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number::before{
+        ${countWidthDesk}
+        ${countHeightDesk}
+        ${countBorderDesk}
+        ${countBorderRadiusDesk}
+        ${countTypoDesk}
+        ${countColor ? `color:${countColor};` : ''}
+        ${countBGColor ? `background-color:${countBGColor};` : ''}
       }
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-content{
-        ${nameTypoDesk}
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number:hover::before{
+        ${countHoverColor ? `color:${countHoverColor};` : ''}
+        ${countHoverBGColor ? `background-color:${countHoverBGColor};` : ''}
       }
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-content span{
-        ${namePrefixColor ? `color:${namePrefixColor} !important;` : ''}
-      }
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-content span:hover{
-        ${namePrefixHoverColor ? `color:${namePrefixHoverColor} !important;` : ''}
-      }
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-content a{
-        ${nameColor ? `color:${nameColor} !important;` : ''}
-      }
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-content a:hover{
-        ${nameHoverColor ? `color:${nameHoverColor} !important;` : ''}
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-date,
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-author-name{
+        ${metaMarginDesk}
+        ${metaTypoDesk}
+        ${metaColor ? `color:${metaColor};` : ''}
       }
 
     `;
 
   const tabletAllStyle = `
-    .${uniqueId}.zolo-post-featured-list-wrap {
-      ${wrapperMarginTab}
-      ${wrapperPaddingTab}
-      ${wrapperBackgroundStylesTab}
-      ${wrapperBorderTab}
-    }
 
-   .${uniqueId}.zolo-post-featured-list-wrap:hover{
-      ${wrapperHoverBackgroundStylesTab}
-    }
-
-   .${uniqueId}.zolo-post-featured-list-wrap::before{
-        ${wrapperOverlayStylesTab}
-    }
-
-   .${uniqueId}.zolo-post-featured-list-wrap:hover::before{
-      ${wrapperHoverOverlayStylesTab}
-    }
 
     .${uniqueId}.zolo-post-featured-list-wrap{
       grid-template-columns:repeat(${columnCountTab}, 1fr);
@@ -592,36 +494,17 @@ function Style({ props }) {
     }
 
     .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-box img{
-      ${avatarWidthTab}
-      ${avatarHeightTab}
-      ${avatarBorderTab}
-      ${avatarBorderRadiusTab}
+      ${countWidthTab}
+      ${countHeightTab}
+      ${countBorderTab}
+      ${countBorderRadiusTab}
 
     .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-content{
-      ${nameTypoTab}
+      ${countTypoTab}
     }
   `;
 
   const mobileAllStyle = `
-    .${uniqueId}.zolo-post-featured-list-wrap {
-        ${wrapperMarginMobile}
-        ${wrapperPaddingMobile}
-        ${wrapperBackgroundStylesMobile}
-        ${wrapperBorderMob}
-      }
-
-     .${uniqueId}.zolo-post-featured-list-wrap:hover{
-        ${wrapperHoverBackgroundStylesMobile}
-      }
-
-     .${uniqueId}.zolo-post-featured-list-wrap::before{
-          ${wrapperOverlayStylesMobile}
-      }
-
-     .${uniqueId}.zolo-post-featured-list-wrap:hover::before{
-        ${wrapperHoverOverlayStylesMobile}
-      }
-
       .${uniqueId}.zolo-post-featured-list-wrap{
         grid-template-columns:repeat(${columnCountMob}, 1fr);
         ${colGapMob}
@@ -675,13 +558,13 @@ function Style({ props }) {
       }
 
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-box img{
-        ${avatarWidthMob}
-        ${avatarHeightMob}
-        ${avatarBorderMob}
-        ${avatarBorderRadiusMob}
+        ${countWidthMob}
+        ${countHeightMob}
+        ${countBorderMob}
+        ${countBorderRadiusMob}
 
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-content{
-        ${nameTypoMob}
+        ${countTypoMob}
       }
     `;
 

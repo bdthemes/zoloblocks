@@ -34,19 +34,9 @@ import {
   CAT_BORDER_RADIUS,
   CAT_MARGIN,
   CAT_PADDING,
-  READMORE_GAP,
-  READMORE_BORDER,
-  READMORE_BORDER_RADIUS,
-  READMORE_MARGIN,
-  READMORE_PADDING,
-  AVATAR_SIZE,
-  AVATAR_BORDER,
-  AVATAR_BORDER_RADIUS,
-  WRAPPER_MARGIN,
-  WRAPPER_PADDING,
-  WRAPPER_BG,
-  WRAPPER_BORDER,
-  WRAPPER_SHADOW,
+  COUNT_SIZE,
+  COUNT_BORDER,
+  COUNT_BORDER_RADIUS,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -140,7 +130,7 @@ const attributes = {
   },
   showCount: {
     type: 'boolean',
-    default: true,
+    default: false,
   },
   showMeta: {
     type: 'boolean',
@@ -150,18 +140,41 @@ const attributes = {
     type: 'boolean',
     default: false,
   },
-  // readmore button
-  readMoreColor: {
+  titleColor: {
     type: 'string',
   },
-  readMoreBgColor: {
+  titleHoverColor: {
     type: 'string',
   },
-  readMoreHoverColor: {
-    type: 'string',
+  excerptColor: {
+    type: 'string'
   },
-  readMoreBgHoverColor: {
-    type: 'string',
+  catBgColor: {
+    type: 'string'
+  },
+  catColor: {
+    type: 'string'
+  },
+  catBgHoverColor: {
+    type: 'string'
+  },
+  catHoverColor: {
+    type: 'string'
+  },
+  countColor: {
+    type: 'string'
+  },
+  countBGColor: {
+    type: 'string'
+  },
+  countHoverColor: {
+    type: 'string'
+  },
+  countHoverBGColor: {
+    type: 'string'
+  },
+  metaColor: {
+    type: 'string'
   },
   ...generateDimensionAttributes(COLUMN_PADDING),
   ...generateNormalBGAttributes(COLUMN_BG),
@@ -186,20 +199,11 @@ const attributes = {
   ...generateDimensionAttributes(CAT_MARGIN),
   ...generateDimensionAttributes(CAT_PADDING),
 
-  ...generateResRangeAttributies(AVATAR_SIZE),
-  ...generateBorderAttributies(AVATAR_BORDER),
-  ...generateDimensionAttributes(AVATAR_BORDER_RADIUS),
+  ...generateResRangeAttributies(COUNT_SIZE),
+  ...generateBorderAttributies(COUNT_BORDER),
+  ...generateDimensionAttributes(COUNT_BORDER_RADIUS),
 
   ...generateTypographyAttributes(Object.values(typographyObjs)),
-
-  //advanced tab attributes
-  ...generateDimensionAttributes(WRAPPER_MARGIN),
-  ...generateDimensionAttributes(WRAPPER_PADDING),
-  ...generateBackgroundAttributes(WRAPPER_BG, {
-    defaultBgGradient: 'linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)',
-  }),
-  ...generateBorderAttributies(WRAPPER_BORDER),
-  ...generateBoxShadowAttributies(WRAPPER_SHADOW),
 };
 
 export default attributes;

@@ -16,8 +16,7 @@ class PostList extends PostBlock
         'showExcerpt' => false,
         'excerptindicator' => '...',
         'excerptWords' => 15,
-        'showReadMore' => false,
-        'readMoreBtnText' => 'Button Text',
+        'showCount' => false,
     ];
 
     public function get_default_attributes()

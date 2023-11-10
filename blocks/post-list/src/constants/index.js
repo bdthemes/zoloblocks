@@ -39,13 +39,6 @@ export const CAT_BORDER_RADIUS = 'catBRadius';
 export const CAT_MARGIN = 'catMargin';
 export const CAT_PADDING = 'catPading';
 
-export const AVATAR_SIZE = 'avatarSize';
-export const AVATAR_BORDER = 'avatarBorder';
-export const AVATAR_BORDER_RADIUS = 'avatarBRadius';
-
-//advanced
-export const WRAPPER_MARGIN = 'wrapMargin';
-export const WRAPPER_PADDING = 'wrapPadding';
-export const WRAPPER_BG = 'wrapBg';
-export const WRAPPER_BORDER = 'wrapBorder';
-export const WRAPPER_SHADOW = 'wrapShadow';
+export const COUNT_SIZE = 'countSize';
+export const COUNT_BORDER = 'countBorder';
+export const COUNT_BORDER_RADIUS = 'countBRadius';
