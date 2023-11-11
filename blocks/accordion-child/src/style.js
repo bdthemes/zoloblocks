@@ -1,10 +1,22 @@
 /**
  * Internal depencencies
  */
-const { generateBorderStyle, generateDimensionStyle, generateResRangeStyle, generateNormalBGControlStyles, GlobalStyleHanlder } =
-    window.zoloModule;
+const {
+    generateBoxShadowStyles,
+    generateBorderStyle,
+    generateDimensionStyle,
+    generateResRangeStyle,
+    generateNormalBGControlStyles,
+    GlobalStyleHanlder,
+} = window.zoloModule;
 
 import {
+    AC_CONTAINER_BORDER,
+    AC_CONTAINER_BORDER_RADIUS,
+    AC_CONTAINER_BG,
+    AC_CONTAINER_BOX_SHADOW,
+    AC_CONTAINER_PADDING,
+    AC_CONTAINER_MARGIN,
     AC_HEADER_BORDER,
     AC_HEADER_BORDER_RADIUS,
     AC_HEADER_BG,
@@ -29,6 +41,60 @@ import {
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const { uniqueId, iconColor, iconHoverColor } = attributes;
+
+    // accordion container
+    const {
+        desktopBorderStyle: containerBorderStyles,
+        tabBorderStyle: containerBorderStylesTab,
+        mobBorderStyle: containerBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: AC_CONTAINER_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: containerBorderRadiusDesktop,
+        dimensionStylesTab: containerBorderRadiusTab,
+        dimensionStylesMobile: containerBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: AC_CONTAINER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: containerNormalBgDesktop,
+        backgroundStylesTab: containerNormalBgTab,
+        backgroundStylesMobile: containerNormalBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: AC_CONTAINER_BG,
+        attributes,
+    });
+
+    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
+        controlName: AC_CONTAINER_BOX_SHADOW,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: containerPaddingDesk,
+        dimensionStylesTab: containerPaddingTab,
+        dimensionStylesMobile: containerPaddingMob,
+    } = generateDimensionStyle({
+        controlName: AC_CONTAINER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: containerMarginDesk,
+        dimensionStylesTab: containerMarginTab,
+        dimensionStylesMobile: containerMarginMob,
+    } = generateDimensionStyle({
+        controlName: AC_CONTAINER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
 
     // accordion head
     const {
@@ -222,6 +288,14 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
+        .${uniqueId}.wp-block-zolo-accordion-child {
+            ${containerNormalBgDesktop}
+            ${containerBorderStyles}
+            ${containerBorderRadiusDesktop}
+            ${containerPaddingDesk}
+            ${containerMarginDesk}
+            ${containerBoxShadow}
+        }
         .${uniqueId} .accordion-head {
             ${achBorderDesk}
             ${achBorderRadiusDesk}
@@ -264,6 +338,14 @@ const Style = ({ props }) => {
     `;
 
     const tabletAllStyle = `
+        .${uniqueId} .wp-block-zolo-accordion-child{
+            ${containerNormalBgTab}
+            ${containerBorderStylesTab}
+            ${containerBorderRadiusTab}
+            ${containerPaddingTab}
+            ${containerMarginTab}
+            ${containerBoxShadow}
+        }
         .${uniqueId} .accordion-head {
             ${achBorderTab}
             ${achBorderRadiusTab}
@@ -300,6 +382,14 @@ const Style = ({ props }) => {
     `;
 
     const mobileAllStyle = `
+        .${uniqueId} .wp-block-zolo-accordion-child{
+            ${containerNormalBgMob}
+            ${containerBorderStylesMob}
+            ${containerBorderRadiusMob}
+            ${containerPaddingMob}
+            ${containerMarginMob}
+            ${containerBoxShadow}
+        }
         .${uniqueId} .accordion-head {
             ${achBorderMob}
             ${achBorderRadiusMob}

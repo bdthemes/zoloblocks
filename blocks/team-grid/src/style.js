@@ -149,7 +149,7 @@ const Style = ({ props }) => {
     } = generateNormalBGControlStyles({
         controlName: CONTENT_BG,
         attributes,
-        noMainBGImg: true,
+        noMainBGImg: false,
     });
 
     const {
@@ -649,7 +649,7 @@ const Style = ({ props }) => {
 		.${uniqueId} .zolo-social-share {
 			${socialDeskAlignStyle}
 		}
-		.${uniqueId} .zolo-item .zolo-hover-content .zolo-social-share {
+		.${uniqueId} .zolo-item .zolo-social-and-link-wrap {
 			${separatorColor ? `border-top-color: ${separatorColor};` : ''}
 		}
 		.${uniqueId} .zolo-image-wrap img {
@@ -700,7 +700,10 @@ const Style = ({ props }) => {
 			${iconHoverBorderColor ? `border-color: ${iconHoverBorderColor};` : ''}
 			${iconsHoverDeskBG}
 		}
-		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:before {
+			${iconsHoverDeskBG}
+		}
+		.${uniqueId} .zolo-social-share i {
 			${socialIconDesk}
 		}
 		.${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a {
@@ -716,6 +719,9 @@ const Style = ({ props }) => {
 		}
 		.${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a:hover {
 			${detailPageIconHoverColor ? `color: ${detailPageIconHoverColor};` : ''}
+			${detailPageHoverDeskBG}
+		}
+		.${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a:before {
 			${detailPageHoverDeskBG}
 		}
     `;

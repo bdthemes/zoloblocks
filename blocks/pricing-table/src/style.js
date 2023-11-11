@@ -21,7 +21,7 @@ import {
     CBTN_SHADOW,
     CBTN_HOVER_SHADOW,
     DESC_MARGIN,
-    FEATURE_ALIGN,
+    ALIGNENT,
     FEATURE_DESC_MARGIN,
     FEATURE_ICON_GAP,
     FEATURE_ICON_SIZE,
@@ -36,6 +36,8 @@ import {
     TITLE_BORDER_RADIUS,
     TITLE_MARGIN,
     TITLE_PADDING,
+    TITLE_TEXT_PADDING,
+    TITLE_BG,
     TITLE_TEXT_SHADOW,
     WRAPPER_BG,
     WRAPPER_BORDER,
@@ -130,6 +132,7 @@ const Style = ({ props }) => {
         styleFor: 'margin',
         attributes,
     });
+
     const {
         dimensionStylesDesktop: titlePaddingDesktop,
         dimensionStylesTab: titlePaddingTab,
@@ -139,6 +142,17 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
+
+    const {
+        dimensionStylesDesktop: titleTextPaddingDesk,
+        dimensionStylesTab: titleTextPaddingTab,
+        dimensionStylesMobile: titleTextPaddingMob,
+    } = generateDimensionStyle({
+        controlName: TITLE_TEXT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
     const {
         desktopBorderStyle: titleBorderDesktop,
         tabBorderStyle: titleBorderTab,
@@ -159,6 +173,15 @@ const Style = ({ props }) => {
     const { textShadowStyle: titleTextShadowStyle } = generateTextShadowStyles({
         attributes,
         controlName: TITLE_TEXT_SHADOW,
+    });
+
+    const {
+        backgroundStylesDesktop: titleTextBgDesktop,
+        backgroundStylesTab: titleTextBgTab,
+        backgroundStylesMobile: titleTextBgMob,
+    } = generateNormalBGControlStyles({
+        attributes,
+        controlName: TITLE_BG,
     });
 
     const {
@@ -325,21 +348,23 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // content alignment
     const {
-        desktopAlignStyle: featureAlignDesktop,
-        tabAlignStyle: featureAlignTab,
-        mobAlignStyle: featureAlignMob,
+        desktopAlignStyle: alignDesktop,
+        tabAlignStyle: alignTab,
+        mobAlignStyle: alignMob,
     } = generateResAlignmentStyle({
-        controlName: FEATURE_ALIGN,
+        controlName: ALIGNENT,
         property: 'justify-content',
         attributes,
     });
+
     const {
         desktopAlignStyle: featureInfoAlignDesktop,
         tabAlignStyle: featureInfoAlignTab,
         mobAlignStyle: featureInfoAlignMob,
     } = generateResAlignmentStyle({
-        controlName: FEATURE_ALIGN,
+        controlName: ALIGNENT,
         property: 'text-align',
         attributes,
     });
@@ -703,7 +728,8 @@ const Style = ({ props }) => {
       ${titleBorderRadiusDesktop}
       ${titleTextShadowStyle}
       ${titleColor ? `color: ${titleColor};` : ''}
-      ${titleBgColor ? `background-color: ${titleBgColor};` : ''}
+      ${titleTextBgDesktop}
+      ${titleTextPaddingDesk}
     }
     .${uniqueId} .zolo-package-desc{
       ${descTypoDesktop}
@@ -720,6 +746,8 @@ const Style = ({ props }) => {
       ${titleMarginTab}
       ${titleBorderTab}
       ${titleBorderRadiusTab}
+      ${titleTextBgTab}
+      ${titleTextPaddingTab}
     }
     .${uniqueId} .zolo-package-desc{
       ${descTypoTab}
@@ -735,6 +763,8 @@ const Style = ({ props }) => {
       ${titleBorderMob}
       ${titleMarginMobile}
       ${titleBorderRadiusMob}
+      ${titleTextBgMob}
+      ${titleTextPaddingMob}
     }
     .${uniqueId} .zolo-package-desc{
       ${descTypoMobile}
@@ -745,6 +775,7 @@ const Style = ({ props }) => {
     const priceStylesDesktop = `
     .${uniqueId} .zolo-price-info{
       ${priceMarginDesktop}
+      ${alignDesktop}
     }
     .${uniqueId} .zolo-price{
       ${priceTypoDesktop}
@@ -773,6 +804,7 @@ const Style = ({ props }) => {
     const priceStylesTab = `
     .${uniqueId} .zolo-price-info{
       ${priceMarginTab}
+      ${alignTab}
     }
     .${uniqueId} .zolo-price{
       ${priceTypoTab}
@@ -789,6 +821,7 @@ const Style = ({ props }) => {
     const priceStylesMob = `
     .${uniqueId} .zolo-price-info{
       ${priceMarginMobile}
+      ${alignMob}
     }
     .${uniqueId} .zolo-price{
       ${priceTypoMobile}
@@ -813,7 +846,7 @@ const Style = ({ props }) => {
       ${featureDescColor ? `color: ${featureDescColor};` : ''}
     }
 
-    .${uniqueId} .zolo-features-info{
+    .${uniqueId} .zolo-features-info, .${uniqueId} .zolo-head-content{
       ${featureInfoAlignDesktop}
     }
     .${uniqueId} .zolo-features-info{
@@ -832,7 +865,7 @@ const Style = ({ props }) => {
 
     .${uniqueId} .zolo-features-info .features li{
       ${featureTypoDesktop}
-      ${featureAlignDesktop}
+      ${alignDesktop}
       ${featureIconGapDesktop}
       ${featureColor ? `color: ${featureColor};` : ''}
     }
@@ -845,7 +878,7 @@ const Style = ({ props }) => {
       ${featureDescTypoTab}
       ${featureDescMarginTab}
     }
-    .${uniqueId} .zolo-features-info{
+    .${uniqueId} .zolo-features-info, .${uniqueId} .zolo-head-content{
       ${featureInfoAlignTab}
     }
     .${uniqueId} .zolo-features-info {
@@ -861,7 +894,7 @@ const Style = ({ props }) => {
     }
     .${uniqueId} .zolo-features-info .features li{
       ${featureTypoTab}
-      ${featureAlignTab}
+      ${alignTab}
       ${featureIconGapTab}
     }
   `;
@@ -873,7 +906,7 @@ const Style = ({ props }) => {
       ${featureDescTypoMobile}
       ${featureDescMarginMobile}
     }
-    .${uniqueId} .zolo-features-info{
+    .${uniqueId} .zolo-features-info, .${uniqueId} .zolo-head-content{
       ${featureInfoAlignMob}
     }
     .${uniqueId} .zolo-features-info {
@@ -889,7 +922,7 @@ const Style = ({ props }) => {
     }
     .${uniqueId} .zolo-features-info .features li{
       ${featureTypoMobile}
-      ${featureAlignMob}
+      ${alignMob}
       ${featureIconGapMob}
     }
   `;

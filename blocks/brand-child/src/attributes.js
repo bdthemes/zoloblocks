@@ -110,6 +110,9 @@ const attributes = {
     },
     brandTitle: {
         type: 'string',
+    },
+    brandNameText: {
+        type: 'string',
         default: 'Zalando',
     },
     nameColor: {

@@ -2,7 +2,16 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { PanelBody, TextControl, BaseControl, Button, SelectControl, ToggleControl, ColorPicker } from '@wordpress/components';
+import {
+    PanelBody,
+    TextControl,
+    BaseControl,
+    Button,
+    SelectControl,
+    ToggleControl,
+    ColorPicker,
+    TextareaControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -50,6 +59,7 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         brandPhoto,
+        brandNameText,
         brandTitle,
         nameColor,
         nameHoverColor,
@@ -126,9 +136,16 @@ function Inspector(props) {
                                 )}
                             </BaseControl>
                         </PanelBody>
+
                         <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
                             {brandNameVisible && (
                                 <>
+                                    <TextareaControl
+                                        label={__('Title', 'zolo-blocks')}
+                                        onChange={(text) => setAttributes({ brandNameText: text })}
+                                        value={brandNameText}
+                                        rows={1}
+                                    />
                                     <TextControl
                                         label={__('Title', 'zolo-blocks')}
                                         onChange={(v) =>

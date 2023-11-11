@@ -242,18 +242,6 @@ function Inspector(props) {
                         {hideIcon && (
                             <PanelBody title={__('Media', 'zolo-blocks')} initialOpen={false}>
                                 {iconType === 'icon' && (
-                                    <ColorControl
-                                        label={__('Color', 'zolo-blocks')}
-                                        color={iconColor}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                iconColor: value,
-                                            })
-                                        }
-                                    />
-                                )}
-
-                                {iconType === 'icon' && (
                                     <ResRangeControl
                                         label={__('Icon Size', 'zolo-blocks')}
                                         controlName={ICON_SIZE}
@@ -294,6 +282,17 @@ function Inspector(props) {
                                     controlName={ICON_MARGIN}
                                     requiredProps={requiredProps}
                                 />
+                                {iconType === 'icon' && (
+                                    <ColorControl
+                                        label={__('Color', 'zolo-blocks')}
+                                        color={iconColor}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                iconColor: value,
+                                            })
+                                        }
+                                    />
+                                )}
                                 <NormalBGControl requiredProps={requiredProps} controlName={ICON_BACKGROUND} noMainBGImg={true} />
                             </PanelBody>
                         )}

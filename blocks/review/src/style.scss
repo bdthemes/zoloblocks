@@ -1,107 +1,109 @@
 .wp-block-zolo-review {
-	.zolo-item {
-		display: flex;
-		align-items: center;
-		gap: clamp(2.5rem, 8vw, 6.25rem);
+    .zolo-item {
+        display: flex;
+        align-items: center;
+        gap: clamp(2.5rem, 8vw, 6.25rem);
         text-align: center;
         flex-direction: column;
-	}
+    }
 
-	.zolo-image-wrap {
-		position: relative;
-	}
+    .zolo-image-wrap {
+        position: relative;
+    }
 
-	.zolo-img {
+    .zolo-img {
         width: clamp(15.625rem, 40vw, 25rem);
         height: auto;
         border-radius: 100%;
-		max-width: none;
-		object-fit: cover;
-		display: block;
-		box-sizing: border-box;
-	}
+        max-width: none;
+        object-fit: cover;
+        display: block;
+        box-sizing: border-box;
+    }
 
-	// rating
-	.zolo-review-icon {
-		margin: 0 0 clamp(0.625rem, 1vw, 0.938rem);
-	}
+    // rating
+    .zolo-review-icon {
+        margin: 0 0 clamp(0.625rem, 1vw, 0.938rem);
+    }
 
-	.zolo-star-rating {
-		span {
-			display: inline-flex;
-			gap: 5px;
-		}
-		svg {
-			width: clamp(0.875rem, 1.5vw, 1rem);
-			fill: #ff9a00;
-		}
-	}
+    .zolo-star-rating {
+        span {
+            display: inline-flex;
+            gap: 5px;
+        }
+        svg {
+            width: clamp(0.875rem, 1.5vw, 1rem);
+            fill: #ff9a00;
+        }
+    }
 
-	.zolo-desc {
-		font-size: clamp(1.125rem, 2.5vw, 1.625rem);
-		color: #656565;
-		font-weight: 300;
-		margin: 0 0 clamp(1.875rem, 5vw, 3.125rem);
-	}
+    .zolo-desc {
+        font-size: clamp(1.125rem, 2.5vw, 1.625rem);
+        color: #656565;
+        font-weight: 300;
+        margin: 0 0 clamp(1.875rem, 5vw, 3.125rem);
+    }
 
-	.zolo-name {
-		font-size: clamp(1.25rem, 2vw, 1.625rem);
-		color: #19191c;
-		text-decoration: none;
-		font-weight: 500;
-		margin: 0 0 2px;
-		display: block;
-	}
+    .zolo-name {
+        font-size: clamp(1.25rem, 2vw, 1.625rem);
+        color: #19191c;
+        text-decoration: none;
+        font-weight: 500;
+        margin: 0 0 2px;
+        display: block;
+    }
 
-	.zolo-designation {
-		font-size: 14px;
-		color: #656565;
-	}
+    .zolo-designation {
+        font-size: 14px;
+        color: #656565;
+    }
 
-	.zolo-quote-icon {
-		position: absolute;
-		bottom: 0;
-		background-color: #4fa4d6;
-		padding: clamp(0.625rem, 1.5vw, 1rem);
-		border-radius: 100%;
-		color: #f6f6f6;
-		svg {
-			display: block;
-			width: clamp(1.563rem, 3vw, 2.5rem);
-			height: clamp(1.563rem, 3vw, 2.5rem);
-		}
-	}
+    .zolo-quote-icon {
+        position: absolute;
+        bottom: 0;
+        background-color: #4fa4d6;
+        padding: clamp(0.625rem, 1.5vw, 1rem);
+        border-radius: 100%;
+        color: #f6f6f6;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: clamp(1rem, 2vw, 1.1rem);
+    }
 
-	// style 1 css start here
-	&.default {
+    // style 1 css start here
+    &.default {
         .zolo-quote-icon {
             left: 0;
             transform: translate(clamp(1.25rem, 2vw, 1.875rem), clamp(-1.25rem, 2vw, -1.875rem));
         }
-	}
+    }
     // style 2 css start here
-	&.style-1 {
+    &.style-1 {
         .zolo-quote-icon {
             right: 0;
             transform: translate(clamp(-1.25rem, 2vw, -1.875rem), clamp(-1.25rem, 2vw, -1.875rem));
         }
-	}
+    }
 }
 
 @media (min-width: 768px) {
-	.wp-block-zolo-review {
+    .wp-block-zolo-review {
         .zolo-item {
-           text-align: left;
+            text-align: left;
         }
-		&.default {
-			.zolo-item {
-				flex-direction: row-reverse;
-			}
-		}
-		&.style-1 {
-			.zolo-item {
-				flex-direction: row;
-			}
-		}
-	}
+        &.default {
+            .zolo-item {
+                flex-direction: row-reverse;
+            }
+        }
+        &.style-1 {
+            .zolo-item {
+                flex-direction: row;
+            }
+        }
+    }
 }

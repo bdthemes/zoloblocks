@@ -18,10 +18,17 @@ const {
     TabPanelControl,
     AdvancedOptions,
     IconPicker,
+    BoxShadowControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
+    AC_CONTAINER_BORDER,
+    AC_CONTAINER_BORDER_RADIUS,
+    AC_CONTAINER_BG,
+    AC_CONTAINER_BOX_SHADOW,
+    AC_CONTAINER_PADDING,
+    AC_CONTAINER_MARGIN,
     ICONCONTAINER_WIDTH,
     ICONCONTAINER_HEIGHT,
     ICONTAINER_BG,
@@ -105,6 +112,33 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
+                        <PanelBody title={__('Accordion Container', 'zolo-blocks')} initialOpen={false}>
+                            <BorderControl
+                                label={__('Border', 'zolo-blocks')}
+                                controlName={AC_CONTAINER_BORDER}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={AC_CONTAINER_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={AC_CONTAINER_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={AC_CONTAINER_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <NormalBGControl requiredProps={requiredProps} controlName={AC_CONTAINER_BG} noMainBGImg={true} />
+                            <BoxShadowControl controlName={AC_CONTAINER_BOX_SHADOW} requiredProps={requiredProps} />
+                        </PanelBody>
                         <PanelBody initialOpen={false} title={__('Accordion Title', 'zolo-blocks')}>
                             <TabPanelControl
                                 normalComponents={

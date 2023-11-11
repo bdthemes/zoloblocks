@@ -37,7 +37,6 @@ import {
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
     DPL_BG,
-    DPL_HOVER_BG,
     DPL_HEIGHT,
     DPL_WIDTH,
     DPL_BORDER,
@@ -115,7 +114,6 @@ const attributes = {
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 
     ...generateNormalBGAttributes(DPL_BG),
-    ...generateNormalBGAttributes(DPL_HOVER_BG),
     ...generateResRangeAttributies(DPL_ICON_SIZE, {}),
     ...generateResRangeAttributies(DPL_HEIGHT, {}),
     ...generateResRangeAttributies(DPL_WIDTH, {}),
@@ -144,20 +142,13 @@ const attributes = {
         type: 'string',
         default: 'John Doe',
     },
-    addReviewerWebsiteLink: {
+    showQuoteIcon: {
         type: 'boolean',
         default: true,
     },
-    websiteLinkIcon: {
+    quoteIcon: {
         type: 'string',
-        default: 'fas fa-arrow-right',
-    },
-    reviewerWebsiteLink: {
-        type: 'object',
-        default: {
-            url: '#',
-            openInNewTab: false,
-        },
+        default: 'fas fa-quote-left',
     },
     showDesignation: {
         type: 'boolean',
@@ -173,8 +164,7 @@ const attributes = {
     },
     testimonialMessage: {
         type: 'string',
-        default:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum...',
+        default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum...',
     },
     showRating: {
         type: 'boolean',
@@ -186,12 +176,6 @@ const attributes = {
     },
     // block style
     nameColor: {
-        type: 'string',
-    },
-    nameLinkColor: {
-        type: 'string',
-    },
-    nameHoverColor: {
         type: 'string',
     },
     designationColor: {
@@ -209,9 +193,6 @@ const attributes = {
     },
     // DPL icon color
     dplIconColor: {
-        type: 'string',
-    },
-    dplIconHoverColor: {
         type: 'string',
     },
     // blur

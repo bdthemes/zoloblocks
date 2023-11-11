@@ -53,7 +53,6 @@ export const ICONS_SIZE = 'IconsSize';
 
 // Review detail page link icon
 export const DPL_BG = 'DPLBg';
-export const DPL_HOVER_BG = 'DPLHoverBg';
 export const DPL_HEIGHT = 'DPLHeight';
 export const DPL_WIDTH = 'DPLWidth';
 export const DPL_BORDER = 'DPLBorder';

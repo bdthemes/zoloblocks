@@ -28,53 +28,7 @@ const Save = ({ attributes }) => {
             })}
         >
             <div className="zolo-item">
-                <div className="zolo-image-wrap">
-                    {memberPhoto && <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} />}
-                    {/* <div className="zolo-hover-content">
-                        {addDetailPageLink ? (
-                            <a
-                                href={memberDetailPageLink && memberDetailPageLink.url}
-                                rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferrer noopener'}
-                                target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
-                                className="zolo-name has-link"
-                            >
-                                <RichText.Content value={memberName} />
-                            </a>
-                        ) : (
-                            <RichText.Content tagName="div" value={memberName} className="zolo-name" />
-                        )}
-
-                        {showDesignation && <RichText.Content tagName="div" value={memberDesignation} className="zolo-designation" />} */}
-                        {/* {showSocialProfiles && (
-                            <div className="zolo-social-share">
-                                {socialProfiles &&
-                                    socialProfiles.map((profile, index) => {
-                                        return (
-                                            <a
-                                                href={profile.link && profile.link.url}
-                                                key={index}
-                                                rel={profile.link && profile.link.openInNewTab && 'noreferer noopener'}
-                                                target={profile.link && profile.link.openInNewTab && '_blank'}
-                                            >
-                                                <DisplayIcon icon={profile.icon} />
-                                            </a>
-                                        );
-                                    })}
-                            </div>
-                        )} */}
-                        {/* {addDetailPageLink && showDetailPageIcon && (
-                            <div className="zolo-link-btn">
-                                <a
-                                    href={memberDetailPageLink && memberDetailPageLink.url}
-                                    rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
-                                    target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
-                                >
-                                    <DisplayIcon icon={detailIcon} />
-                                </a>
-                            </div>
-                        )}
-                    </div> */}
-                </div>
+                <div className="zolo-image-wrap">{memberPhoto && <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} />}</div>
                 <div className="zolo-info-wrap">
                     <div className="zolo-content">
                         {addDetailPageLink ? (
@@ -82,7 +36,7 @@ const Save = ({ attributes }) => {
                                 href={memberDetailPageLink && memberDetailPageLink.url}
                                 rel={memberDetailPageLink && memberDetailPageLink.opensInNewTab && 'noreferrer noopener'}
                                 target={memberDetailPageLink && memberDetailPageLink.opensInNewTab && '_blank'}
-                                className="zolo-name"
+                                className="zolo-name has-link"
                             >
                                 <RichText.Content value={memberName} />
                             </a>
@@ -103,10 +57,8 @@ const Save = ({ attributes }) => {
                         )}
                     </div>
 
-                   <div className="zolo-social-and-link-wrap">
-
-
-                    {showSocialProfiles && (
+                    <div className="zolo-social-and-link-wrap">
+                        {showSocialProfiles && (
                             <div className="zolo-social-share">
                                 {socialProfiles &&
                                     socialProfiles.map((profile, index) => {
@@ -124,17 +76,17 @@ const Save = ({ attributes }) => {
                             </div>
                         )}
 
-                    {addDetailPageLink && showDetailPageIcon && (
-                        <div className="zolo-link-btn">
-                            <a
-                                href={memberDetailPageLink && memberDetailPageLink.url}
-                                rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
-                                target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
-                            >
-                                <DisplayIcon icon={detailIcon} />
-                            </a>
-                        </div>
-                    )}
+                        {addDetailPageLink && showDetailPageIcon && (
+                            <div className="zolo-link-btn">
+                                <a
+                                    href={memberDetailPageLink && memberDetailPageLink.url}
+                                    rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
+                                    target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
+                                >
+                                    <DisplayIcon icon={detailIcon} />
+                                </a>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,10 +1,21 @@
 /**
  * Internal dependencies
  */
-const { generateBorderAttributies, generateDimensionAttributes, generateNormalBGAttributes, generateResRangeAttributies } =
-    window.zoloModule;
+const {
+    generateBoxShadowAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateNormalBGAttributes,
+    generateResRangeAttributies,
+} = window.zoloModule;
 
 import {
+    AC_CONTAINER_BORDER,
+    AC_CONTAINER_BORDER_RADIUS,
+    AC_CONTAINER_BG,
+    AC_CONTAINER_BOX_SHADOW,
+    AC_CONTAINER_PADDING,
+    AC_CONTAINER_MARGIN,
     AC_HEADER_BORDER,
     AC_HEADER_BORDER_RADIUS,
     AC_HEADER_BG,
@@ -53,6 +64,13 @@ const attributes = {
         },
     },
     // block attributes
+    ...generateBorderAttributies(AC_CONTAINER_BORDER),
+    ...generateDimensionAttributes(AC_CONTAINER_BORDER_RADIUS),
+    ...generateNormalBGAttributes(AC_CONTAINER_BG),
+    ...generateDimensionAttributes(AC_CONTAINER_PADDING),
+    ...generateDimensionAttributes(AC_CONTAINER_MARGIN),
+    ...generateBoxShadowAttributies(AC_CONTAINER_BOX_SHADOW),
+    // accordion header
     ...generateBorderAttributies(AC_HEADER_BORDER),
     ...generateDimensionAttributes(AC_HEADER_BORDER_RADIUS),
     ...generateNormalBGAttributes(AC_HEADER_BG),

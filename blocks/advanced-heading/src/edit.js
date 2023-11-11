@@ -92,8 +92,11 @@ const Edit = (props) => {
                             onChange={(subTitleText) => setAttributes({ subTitleText })}
                         />
                     )}
-
-                    {showSeparator && separatorPosition === 'bottom' && <div className="zolo-ah-separator"></div>}
+                    {showSeparator && separatorPosition === 'bottom' && (
+                        <div className="zolo-separator-wrapper">
+                            <div className="zolo-ah-separator"></div>
+                        </div>
+                    )}
                 </div>
             </div>
         </>

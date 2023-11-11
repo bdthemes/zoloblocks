@@ -33,11 +33,10 @@ export default function Edit(props) {
         showTestimonialMessage,
         testimonialMessage,
         memberDesignation,
-        addReviewerWebsiteLink,
-        reviewerWebsiteLink,
+        showQuoteIcon,
+        quoteIcon,
         showRating,
         rating,
-        websiteLinkIcon,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -109,11 +108,9 @@ export default function Edit(props) {
                                     allowedTypes={['image']}
                                 />
                             )}
-                            {addReviewerWebsiteLink && (
+                            {showQuoteIcon && (
                                 <div className="zolo-quote-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-quote" viewBox="0 0 16 16">
-                                    <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
-                                    </svg>
+                                    <DisplayIcon icon={quoteIcon} />
                                 </div>
                             )}
                         </div>
@@ -134,28 +131,25 @@ export default function Edit(props) {
                                                 testimonialMessage: content,
                                             })
                                         }
-                                        placeholder={__('Reviewer testimonial message', 'zolo-blocks')}
+                                        placeholder={__('message..', 'zolo-blocks')}
                                     />
                                 </div>
                             )}
-                            <div className='zolo-user-info-wrap'>
-                                {showName &&
-                                    (addReviewerWebsiteLink ? (
+                            <div className="zolo-user-info-wrap">
+                                {showName && (
+                                    <div className="zolo-name">
                                         <RichText
-                                            className="zolo-name has-link"
+                                            tagName="span"
                                             value={memberName}
                                             onChange={(content) =>
                                                 setAttributes({
                                                     memberName: content,
                                                 })
                                             }
-                                            placeholder={__('Reviewer name', 'zolo-blocks')}
+                                            placeholder={__('name..', 'zolo-blocks')}
                                         />
-                                    ) : (
-                                        <div className="zolo-name">
-                                            <RichText.Content value={memberName} />
-                                        </div>
-                                    ))}
+                                    </div>
+                                )}
                                 {showDesignation && (
                                     <div className="zolo-designation">
                                         <RichText
@@ -165,7 +159,7 @@ export default function Edit(props) {
                                                     memberDesignation: content,
                                                 })
                                             }
-                                            placeholder={__('Reviewer designation', 'zolo-blocks')}
+                                            placeholder={__('designation..', 'zolo-blocks')}
                                         />
                                     </div>
                                 )}

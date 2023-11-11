@@ -88,12 +88,6 @@ return apply_filters( 'zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => true
     ],
-    'team-member' => [
-        'name'             => 'team-member',
-        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/team-member/block.json',
-        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
-        'frontend-scripts' => false
-    ],
     'team-grid' => [
         'name'             => 'team-grid',
         'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/team-grid/block.json',

@@ -38,7 +38,11 @@ const Save = ({ className, attributes }) => {
                     </div>
                 )}
 
-                {showSeparator && separatorPosition === 'top' && <div className="zolo-ah-separator"></div>}
+                {showSeparator && separatorPosition === 'top' && (
+                    <div className="zolo-separator-wrapper">
+                        <div className="zolo-ah-separator"></div>
+                    </div>
+                )}
 
                 {showSubTitle && subTitlePosition == 'top' && (
                     <RichText.Content
@@ -74,7 +78,11 @@ const Save = ({ className, attributes }) => {
                     />
                 )}
 
-                {showSeparator && separatorPosition === 'bottom' && <div className="zolo-ah-separator"></div>}
+                {showSeparator && separatorPosition === 'bottom' && (
+                    <div className="zolo-separator-wrapper">
+                        <div className="zolo-ah-separator"></div>
+                    </div>
+                )}
             </div>
         </div>
     );
