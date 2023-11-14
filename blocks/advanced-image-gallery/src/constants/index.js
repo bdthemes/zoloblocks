@@ -54,6 +54,7 @@ export const ZOOM_ICON_BOX_SHADOW = 'zoomIconBoxShadow';
 export const ZOOM_ICON_BG_COLOR = 'zoomIconBgColor';
 export const ZOOM_ICON_HOVER_BOX_SHADOW = 'zoomIconHoverBoxShadow';
 export const ZOOM_ICON_BG_HOVER_COLOR = 'zoomIconBgHoverColor';
+export const ZOOM_ICON_SIZE = 'zoomIconSize';
 
 // Overlay BG
 export const OVERLAY_BG_COLOR = 'overlayBgColor';

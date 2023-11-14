@@ -9,7 +9,6 @@ import { __ } from '@wordpress/i18n';
  * Internal depencencies
  */
 const {
-    ResAlignmentControl,
     ResRangeControl,
     ColorControl,
     BorderControl,
@@ -27,18 +26,16 @@ const {
 
 import Sortable from './sortable';
 
-import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
-
 import objAttributes from './attributes';
 import {
     CONTENT_BG,
-    CONTENT_ALIGNMENT,
     CONTENT_PADDING,
     CONTENT_MARGIN,
     CONTENT_BORDER,
     CONTENT_BORDER_RADIUS,
     CONTENT_BOX_SHADOW,
     PHOTO_BG,
+    PHOTO_SIZE,
     TEAM_PHOTO_BORDER,
     TEAM_PHOTO_BORDER_RADIUS,
     TEAM_PHOTO_BOX_SHADOW,
@@ -78,8 +75,6 @@ function Inspector(props) {
     const {
         resMode,
         preset,
-        blurBgColor,
-        blurBgOpacity,
         memberPhoto,
         memberName,
         showDesignation,
@@ -92,7 +87,6 @@ function Inspector(props) {
         showShortBio,
         memberShortBio,
         nameColor,
-        nameLinkColor,
         nameHoverColor,
         designationColor,
         shortBioColor,
@@ -111,9 +105,6 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
-
-    console.log('name ', nameColor);
-    console.log('hover', nameHoverColor);
 
     return (
         <InspectorControls key="controls">
@@ -232,31 +223,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        {preset === 'style-2' && (
-                            <PanelBody title={__('Preset Style', 'zolo-blocks')} initialOpen={false}>
-                                <ColorControl
-                                    label={__('Blur Color', 'zolo-blocks')}
-                                    color={blurBgColor}
-                                    onChange={(color) => setAttributes({ blurBgColor: color })}
-                                />
-                                <RangeControl
-                                    label={__('Blur Strength', 'zolo-blocks')}
-                                    value={blurBgOpacity}
-                                    onChange={(v) => setAttributes({ blurBgOpacity: v })}
-                                    min={0}
-                                    max={100}
-                                />
-                            </PanelBody>
-                        )}
-                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
-                            {preset !== 'style-3' && (
-                                <ResAlignmentControl
-                                    label={__('Content Alignmet', 'zolo-blocks')}
-                                    controlName={CONTENT_ALIGNMENT}
-                                    requiredProps={requiredProps}
-                                    alignOptions={TEXT_ALIGN_OPTIONS}
-                                />
-                            )}
+                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={true}>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
@@ -280,6 +247,7 @@ function Inspector(props) {
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
                         </PanelBody>
                         <PanelBody title={__('Photo', 'zolo-blocks')} initialOpen={false}>
+                            <ResRangeControl label={__('Size', 'zolo-blocks')} controlName={PHOTO_SIZE} requiredProps={requiredProps} />
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={TEAM_PHOTO_BORDER}

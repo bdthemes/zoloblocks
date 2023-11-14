@@ -70,7 +70,7 @@ const Edit = (props) => {
                     <DynamicTag tagName={titleTagName} className="zolo-ah-title">
                         <RichText
                             tagName={enableTitleLink && titleLink ? 'a' : 'span'}
-                            className="zolo-ah-main-title"
+                            className={`zolo-ah-main-title ${enableTitleLink ? 'has-link' : ''}`}
                             value={titleText}
                             formattingControl={['bold', 'italic']}
                             onChange={(titleText) => setAttributes({ titleText })}

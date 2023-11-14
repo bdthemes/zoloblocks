@@ -224,10 +224,10 @@ export default function Edit(props) {
                                                 href={logoLink && logoLink.url}
                                                 rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                                                 target={logoLink && logoLink.openInNewTab && '_blank'}
+                                                className="zb-brand-title-link has-link"
                                             >
                                                 <RichText
                                                     tagName="span"
-                                                    className="zb-brand-title-link has-link"
                                                     value={brandLabel}
                                                     onChange={(name) =>
                                                         setAttributes({

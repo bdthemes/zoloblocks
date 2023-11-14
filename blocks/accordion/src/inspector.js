@@ -19,9 +19,13 @@ const {
     AdvancedOptions,
     IconPicker,
     BoxShadowControl,
+    TypographyDropdown,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
+
+import { TITLE_TYPO } from './constants/typoPrefixConstant';
+
 import {
     AC_CONTAINER_BORDER,
     AC_CONTAINER_BORDER_RADIUS,
@@ -94,6 +98,8 @@ function Inspector(props) {
                                             collapseIcon: value,
                                         });
                                     }}
+                                    disableDashicon={true}
+                                    showHeading={false}
                                 />
                             </BaseControl>
                             <BaseControl label={__('Expanded Icon', 'zolo-blocks')}>
@@ -105,6 +111,8 @@ function Inspector(props) {
                                             expandIcon: value,
                                         });
                                     }}
+                                    disableDashicon={true}
+                                    showHeading={false}
                                 />
                             </BaseControl>
                         </PanelBody>
@@ -140,6 +148,11 @@ function Inspector(props) {
                             <BoxShadowControl controlName={AC_CONTAINER_BOX_SHADOW} requiredProps={requiredProps} />
                         </PanelBody>
                         <PanelBody initialOpen={false} title={__('Accordion Title', 'zolo-blocks')}>
+                            <TypographyDropdown
+                                label={__('Typography', 'zolo-blocks')}
+                                typoPrefixConstant={TITLE_TYPO}
+                                requiredProps={requiredProps}
+                            />
                             <TabPanelControl
                                 normalComponents={
                                     <>

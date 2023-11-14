@@ -10,15 +10,15 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, DisplayIcon } = window.zoloModule;
 
 // import style
 import Style from './style';
-
 import Inspector from './inspector';
+
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
-    const { uniqueId, preset, parentClasses, showCaption, showLightbox, advancedGallery } = attributes;
+    const { uniqueId, preset, parentClasses, showCaption, showLightbox, advancedGallery, lightboxIcon } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -79,19 +79,7 @@ export default function Edit(props) {
                                     {showLightbox && (
                                         <a href="#" className="zolo-icon-wrap">
                                             <span className="zolo-icon">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width="16"
-                                                    height="16"
-                                                    fill="currentColor"
-                                                    class="bi bi-plus-lg"
-                                                    viewBox="0 0 16 16"
-                                                >
-                                                    <path
-                                                        fill-rule="evenodd"
-                                                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
-                                                    ></path>
-                                                </svg>
+                                                <DisplayIcon icon={lightboxIcon} />
                                             </span>
                                             <span className="zolo-icon-text">{__('zoom', 'zolo-blocks')}</span>
                                         </a>

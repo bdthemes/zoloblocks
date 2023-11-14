@@ -41,6 +41,7 @@ import {
     TEAM_DESIGNATION_MARGIN,
     TEAM_NAME_MARGIN,
     PHOTO_BG,
+    PHOTO_SIZE,
     TEAM_PHOTO_BORDER,
     TEAM_PHOTO_BORDER_RADIUS,
     TEAM_PHOTO_BOX_SHADOW,
@@ -70,12 +71,7 @@ const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        preset,
-        blurBgColor,
-        blurBgOpacity,
-        addDetailPageLink,
         nameColor,
-        nameLinkColor,
         nameHoverColor,
         designationColor,
         shortBioColor,
@@ -215,6 +211,16 @@ const Style = ({ props }) => {
         controlName: PHOTO_BG,
         attributes,
         noMainBGImg: true,
+    });
+
+    const {
+        desktopRangeStyle: photoDeskSize,
+        tabRangeStyle: photoTabSize,
+        mobRangeStyle: photoMobSize,
+    } = generateResRangeStyle({
+        controlName: PHOTO_SIZE,
+        property: 'max-width',
+        attributes,
     });
 
     const {
@@ -631,10 +637,7 @@ const Style = ({ props }) => {
 		}
 		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.default .zolo-item .zolo-hover-content,
-		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
+		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap {
             ${contentDeskBg}
 			${contentBorderDeskStyle}
 			${contentDeskBorderRadius}
@@ -642,24 +645,25 @@ const Style = ({ props }) => {
 			${contentDeskMargin}
 			${contentBoxShadow}
 		}
-		.${uniqueId}.wp-block-zolo-team-grid.style-2 .zolo-image-wrap::before {
-			background-color: ${blurBgColor};
-			backdrop-filter: blur(${blurBgOpacity}px);
-		}
 		.${uniqueId} .zolo-social-share {
 			${socialDeskAlignStyle}
 		}
 		.${uniqueId} .zolo-item .zolo-social-and-link-wrap {
 			${separatorColor ? `border-top-color: ${separatorColor};` : ''}
 		}
-		.${uniqueId} .zolo-image-wrap img {
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
+            ${teamDeskAlignStyle}
+        }
+
+		.${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
 			${photoDeskBGStyle}
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
 			${photoDeskPadding}
 			${photoDeskMargin}
 			${teamPhotoBoxShadow}
-			${preset === 'style-3' ? `width: calc(100% - ${totalDeskWidth}px );` : ''}
+            ${photoDeskSize}
 		}
 		.${uniqueId} .zolo-name {
 			${nameTypoDesk}
@@ -731,12 +735,210 @@ const Style = ({ props }) => {
             ${tabColumnsGap};
             ${tabRowsGap};
         }
+
+        .${uniqueId} {
+            ${teamMemberContainerTabPadding}
+            ${teamMemberContainerTabMargin}
+        }
+
+        .${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
+            ${teamTabAlignStyle}
+        }
+
+        .${uniqueId}.default .zolo-item .zolo-info-wrap,
+        .${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
+        .${uniqueId}.style-2 .zolo-item .zolo-info-wrap {
+            ${contentTabBg}
+            ${contentBorderTabStyle}
+            ${contentTabBorderRadius}
+            ${contentTabPadding}
+            ${contentTabMargin}
+            ${contentBoxShadow}
+        }
+
+        .${uniqueId} .zolo-social-share {
+            ${socialTabAlignStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
+            ${teamTabAlignStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
+            ${photoTabBGStyle}
+            ${photoTabBorderStyle}
+            ${photoTabBorderRadius}
+            ${photoTabPadding}
+            ${photoTabMargin}
+            ${teamPhotoBoxShadow}
+            ${photoTabSize}
+        }
+
+        .${uniqueId} .zolo-name {
+            ${nameTypoTab}
+            ${nameTabMargin}
+        }
+
+        .${uniqueId} .zolo-designation {
+            ${designationTypoTab}
+            ${designationTabMargin}
+        }
+
+        .${uniqueId} .zolo-desc {
+            ${shortBioTypoTab}
+            ${shortBioTabMargin}
+        }
+
+        .${uniqueId} .zolo-social-share {
+            ${socialIconsGapTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a {
+            ${socialIconContainerHeightTab}
+            ${socialIconContainerWidthTab}
+            ${socialIconTabBorderStyle}
+            ${socialIconsBorderRadiusTab}
+            ${socialIconsPaddingTab}
+            ${socialIconNormalBoxShadow}
+            ${iconsNormalTabBG}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:hover {
+            ${socialIconHoverBoxShadow}
+            ${iconsHoverTabBG}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:before {
+            ${iconsHoverTabBG}
+        }
+
+        .${uniqueId} .zolo-social-share i {
+            ${socialIconTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a {
+            ${detailPageNormalTabBG}
+            ${dplTabBorderStyle}
+            ${dplTabBorderRadius}
+            ${dplTabPadding}
+            ${dplTabMargin}
+            ${dplTabHeight}
+            ${dplTabWidth}
+            ${dplTabSize}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a:hover {
+            ${detailPageHoverTabBG}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a:before {
+            ${detailPageHoverTabBG}
+        }
     `;
     const mobileAllStyle = `
         .${uniqueId}.wp-block-zolo-team-grid {
             grid-template-columns: repeat(${mobColumns}, 1fr);
             ${mobColumnsGap};
             ${mobRowsGap};
+        }
+
+        .${uniqueId} {
+            ${teamMemberContainerMobPadding}
+            ${teamMemberContainerMobMargin}
+        }
+
+        .${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
+            ${teamMobAlignStyle}
+        }
+
+        .${uniqueId}.default .zolo-item .zolo-info-wrap,
+        .${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
+        .${uniqueId}.style-2 .zolo-item .zolo-info-wrap {
+            ${contentMobBg}
+            ${contentBorderMobStyle}
+            ${contentMobBorderRadius}
+            ${contentMobPadding}
+            ${contentMobMargin}
+            ${contentBoxShadow}
+        }
+
+        .${uniqueId} .zolo-social-share {
+            ${socialMobAlignStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
+            ${teamMobAlignStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
+            ${photoMobBGStyle}
+            ${photoMobBorderStyle}
+            ${photoMobBorderRadius}
+            ${photoMobPadding}
+            ${photoMobMargin}
+            ${teamPhotoBoxShadow}
+            ${photoMobSize}
+        }
+
+        .${uniqueId} .zolo-name {
+            ${nameTypoMob}
+            ${nameMobMargin}
+        }
+
+        .${uniqueId} .zolo-designation {
+            ${designationTypoMob}
+            ${designationMobMargin}
+        }
+
+        .${uniqueId} .zolo-desc {
+            ${shortBioTypoMob}
+            ${shortBioMobMargin}
+        }
+
+        .${uniqueId} .zolo-social-share {
+            ${socialIconsGapMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a {
+            ${socialIconContainerHeightMob}
+            ${socialIconContainerWidthMob}
+            ${socialIconMobBorderStyle}
+            ${socialIconsBorderRadiusMob}
+            ${socialIconsPaddingMob}
+            ${socialIconNormalBoxShadow}
+            ${iconsNormalMobBG}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:hover {
+            ${socialIconHoverBoxShadow}
+            ${iconsHoverMobBG}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:before {
+            ${iconsHoverMobBG}
+        }
+
+        .${uniqueId} .zolo-social-share i {
+            ${socialIconMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a {
+            ${detailPageNormalMobBG}
+            ${dplMobBorderStyle}
+            ${dplMobBorderRadius}
+            ${dplMobPadding}
+            ${dplMobMargin}
+            ${dplMobHeight}
+            ${dplMobWidth}
+            ${dplMobSize}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a:hover {
+            ${detailPageHoverMobBG}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a:before {
+            ${detailPageHoverMobBG}
         }
     `;
 

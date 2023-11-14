@@ -29,7 +29,6 @@ import {
     CONTAINER_BORDER,
     CONTAINER_HOVER_BORDER,
     IMAGE_BORDER,
-    IMAGE_HOVER_BORDER,
     CONTAINER_BOX_SHADOW,
     CONTAINER_HOVER_BOX_SHADOW,
     IMAGE_BORDER_RADIUS,
@@ -53,6 +52,7 @@ import {
     ZOOM_ICON_BG_COLOR,
     ZOOM_ICON_BG_HOVER_COLOR,
     OVERLAY_BG_COLOR,
+    ZOOM_ICON_SIZE,
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -369,6 +369,16 @@ export default function Style({ props }) {
         noMainBGImg: false,
     });
 
+    const {
+        desktopRangeStyle: zoomIconSizeDesk,
+        tabRangeStyle: zoomIconSizeTab,
+        mobRangeStyle: zoomIconSizeMob,
+    } = generateResRangeStyle({
+        controlName: ZOOM_ICON_SIZE,
+        property: 'font-size',
+        attributes,
+    });
+
     // overlay BG
     const {
         backgroundStylesDesktop: overlayDeskBGStyle,
@@ -432,15 +442,18 @@ export default function Style({ props }) {
 			${headingBoxShadow}
 			${headingTypoDesk}
 		}
-        .${uniqueId} .zolo-icon svg{
+
+        .${uniqueId} .zolo-icon i{
             color: ${zoomIconColor ? zoomIconColor : ''};
             ${zoomIconPaddingDesk}
             ${zoomIconBorderDesk}
             ${zoomIconBorderRadiusDesk}
             ${zoomIconBoxShadow}
             ${zoomIconDeskBGStyle}
+            ${zoomIconSizeDesk}
         }
-        .${uniqueId} .zolo-icon svg:hover{
+
+        .${uniqueId} .zolo-icon:hover i{
             color: ${zoomIconHoverColor ? zoomIconHoverColor : ''};
             border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
             ${zoomIconHoverBoxShadow}
@@ -486,14 +499,14 @@ export default function Style({ props }) {
 		${headingBorderRadiusTab}
 		${headingTypoTab}
 	}
-    .${uniqueId} .zolo-icon svg{
+    .${uniqueId} .zolo-icon i{
         ${zoomIconPaddingTab}
         ${zoomIconBorderTab}
         ${zoomIconBorderRadiusTab}
         ${zoomIconTabBGStyle}
+        ${zoomIconSizeTab}
     }
-    .${uniqueId} .zolo-icon svg:hover{
-        border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
+    .${uniqueId} .zolo-icon:hover i{
         ${zoomIconBgHoverTab}
     }
 	`;
@@ -537,14 +550,14 @@ export default function Style({ props }) {
 		${headingTypoMob}
 	}
 
-    .${uniqueId} .zolo-icon svg{
+    .${uniqueId} .zolo-icon i{
         ${zoomIconPaddingMob}
         ${zoomIconBorderMob}
         ${zoomIconBorderRadiusMob}
         ${zoomIconMobBGStyle}
+        ${zoomIconSizeMob}
     }
-    .${uniqueId} .zolo-icon svg:hover{
-        border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
+    .${uniqueId} .zolo-icon:hover i{
         ${zoomIconBgHoverMob}
     }
   	`;

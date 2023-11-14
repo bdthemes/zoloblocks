@@ -1,66 +1,48 @@
-import { BaseControl, Button, ColorPicker, Dropdown, Tooltip } from '@wordpress/components';
-import { useEffect, useState } from '@wordpress/element';
+import { Button, ColorPicker, Flex, FlexBlock, FlexItem, Popover } from '@wordpress/components';
+import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
 
-const colorBallStyles = {
-    padding: 2,
-    borderRadius: 0,
-    background: 'white',
-    border: '1px solid #ebebeb',
-};
-
-const colorStyles = {
-    height: 16,
-    width: 16,
-    borderRadius: '0%',
-    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.1)',
-};
-
-const ColorControl = ({ label, defaultColor, color, onChange }) => {
-    const [bgColor, setBgColor] = useState(null);
-
-    useEffect(() => {
-        onChange(bgColor);
-    }, [bgColor]);
-
-    useEffect(() => {
-        setBgColor(color || defaultColor);
-    }, []);
-
+const ColorControl = ({ label, defaultColor = '', color, onChange }) => {
+    const [colorPanel, setColorPanel] = useState(false);
     return (
         <div className="zb-color-control-wrapper">
-            <BaseControl label={label || ''} className="color-label">
-                <Dropdown
-                    renderToggle={({ isOpen, onToggle }) => (
-                        <Tooltip text={bgColor || 'default'}>
-                            <div className="color-ball" style={bgColor && colorBallStyles}>
-                                <div
-                                    style={{
-                                        ...colorStyles,
-                                        backgroundColor: bgColor,
-                                    }}
-                                    aria-expanded={isOpen}
-                                    onClick={onToggle}
-                                    aria-label={bgColor || 'default'}
-                                ></div>
-                            </div>
-                        </Tooltip>
-                    )}
-                    renderContent={() => (
-                        <ColorPicker
-                            color={bgColor}
-                            onChangeComplete={({ rgb }) => {
-                                setBgColor(`rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`);
-                            }}
-                        />
-                    )}
-                />
-                <ResetBtn
-                    onReset={() => {
-                        setBgColor(defaultColor);
+            <Flex>
+                <FlexBlock>{label || __('Color', 'zolo-blocks')}</FlexBlock>
+                <FlexItem>
+                    <Button
+                        className="color-ball"
+                        onClick={() => setColorPanel(true)}
+                        style={{
+                            background: color || defaultColor,
+                        }}
+                    ></Button>
+                </FlexItem>
+                <FlexItem>
+                    <ResetBtn
+                        onReset={() => {
+                            onChange(defaultColor);
+                        }}
+                    />
+                </FlexItem>
+            </Flex>
+            {colorPanel && (
+                <Popover
+                    position="bottom center"
+                    onClose={() => {
+                        setColorPanel(false);
                     }}
-                />
-            </BaseControl>
+                    onFocusOutside={() => {
+                        setColorPanel(false);
+                    }}
+                >
+                    <ColorPicker
+                        color={color}
+                        onChangeComplete={({ rgb }) => {
+                            onChange(`rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`);
+                        }}
+                    />
+                </Popover>
+            )}
         </div>
     );
 };

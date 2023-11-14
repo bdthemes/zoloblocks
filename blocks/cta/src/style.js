@@ -27,34 +27,17 @@ import {
     BUTTON_HOVER_BOX_SHADOW,
     BUTTON_PADDING,
     ICON_SIZE,
-    ICON_BORDER,
-    ICON_BORDER_RADIUS,
-    ICON_BOX_SHADOW,
-    ICON_HOVER_BOX_SHADOW,
-    ICON_PADDING,
     TITLE_MARGIN,
     DESC_MARGIN,
     FLEX_GAP,
+    ICON_TEXT_SPACING,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, TITLE_TYPO, DESC_TYPO } from './constants/typoPrefixConstant';
 
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
-    const {
-        uniqueId,
-        preset,
-        iconColor,
-        iconHoverColor,
-        iconBg,
-        iconHoverBg,
-        iconBorderHoverColor,
-        textColor,
-        textHoverColor,
-        borderHoverColor,
-        titleColor,
-        descriptionColor,
-    } = attributes;
+    const { uniqueId, textColor, textHoverColor, borderHoverColor, titleColor, descriptionColor } = attributes;
 
     // title
     const {
@@ -163,6 +146,16 @@ export default function Style({ props }) {
         attributes,
     });
 
+    const {
+        desktopRangeStyle: iconGap,
+        tabRangeStyle: iconGapTab,
+        mobRangeStyle: iconGapMob,
+    } = generateResRangeStyle({
+        controlName: ICON_TEXT_SPACING,
+        property: 'gap',
+        attributes,
+    });
+
     const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
         controlName: BUTTON_BOX_SHADOW,
         attributes,
@@ -189,52 +182,6 @@ export default function Style({ props }) {
         dimensionStylesMobile: paddingMob,
     } = generateDimensionStyle({
         controlName: BUTTON_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
-    /**
-     * Button Icon
-     */
-    const {
-        desktopBorderStyle: iconBorderDesktop,
-        tabBorderStyle: iconBorderTab,
-        mobBorderStyle: iconBorderMob,
-    } = generateBorderStyle({
-        controlName: ICON_BORDER,
-        attributes,
-    });
-
-    // generate border radius
-    const {
-        dimensionStylesDesktop: iconBorderRadiusDesktop,
-        dimensionStylesTab: iconBorderRadiusTab,
-        dimensionStylesMobile: iconBorderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: ICON_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    // box shadow
-    const { boxShadowStyle: iconNormalBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: ICON_BOX_SHADOW,
-    });
-
-    // hover box shadow
-    const { boxShadowStyle: iconHoverBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: ICON_HOVER_BOX_SHADOW,
-    });
-
-    // padding
-    const {
-        dimensionStylesDesktop: iconPaddingDesktop,
-        dimensionStylesTab: iconPaddingTab,
-        dimensionStylesMobile: iconPaddingMob,
-    } = generateDimensionStyle({
-        controlName: ICON_PADDING,
         styleFor: 'padding',
         attributes,
     });
@@ -275,11 +222,9 @@ export default function Style({ props }) {
             ${borderStyles}
             ${borderRadiusDesktop}
             ${normalBoxShadowStyle}
-        }
-
-        .wp-block-zolo-cta.${uniqueId} .zolo-text {
             ${btnTypoDesktop}
             ${paddingDesktop}
+            ${iconGap}
             ${textColor ? `color: ${textColor};` : ''}
         }
 
@@ -287,26 +232,7 @@ export default function Style({ props }) {
             ${hoverBoxShadowStyle}
 			${hoverDeskBGStyle}
 			border-color: ${borderHoverColor ? borderHoverColor : ''};
-        }
-
-        .wp-block-zolo-cta.${uniqueId} .zolo-button:hover .zolo-text {
             color: ${textHoverColor ? textHoverColor : ''};
-        }
-
-        .wp-block-zolo-cta.${uniqueId} .zolo-icon {
-            ${iconColor ? `color: ${iconColor};` : ''}
-            ${iconBg ? `background-color: ${iconBg};` : ''}
-            ${iconBorderDesktop}
-            ${iconBorderRadiusDesktop}
-            ${iconNormalBoxShadow}
-            ${iconPaddingDesktop}  
-        }
-
-        .wp-block-zolo-cta.${uniqueId} .zolo-icon:hover {
-            ${iconHoverColor ? `color: ${iconHoverColor};` : ''}
-            ${iconHoverBg ? `background-color: ${iconHoverBg};` : ''}
-            border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''};
-            ${iconHoverBoxShadow}
         }
 
         .wp-block-zolo-cta.${uniqueId} .zolo-icon i{
@@ -337,21 +263,13 @@ export default function Style({ props }) {
             ${normalTabBGStyle}
             ${borderStylesTab}
             ${borderRadiusTab}
-        }
-
-        .wp-block-zolo-cta.${uniqueId} .zolo-text {
             ${btnTypoTab}
             ${paddingTab}
+            ${iconGapTab}
         }
 
         .wp-block-zolo-cta.${uniqueId} .zolo-button:hover {
             ${hoverTabBGStyle}
-        }
-
-        .wp-block-zolo-cta.${uniqueId} .zolo-icon {
-            ${iconBorderTab}
-            ${iconBorderRadiusTab}
-            ${iconPaddingTab}
         }
 
         .wp-block-zolo-cta.${uniqueId} .zolo-icon i{
@@ -382,21 +300,13 @@ export default function Style({ props }) {
             ${normalMobBGStyle}
             ${borderStylesMob}
             ${borderRadiusMob}
-        }
-
-        .wp-block-zolo-cta.${uniqueId} .zolo-text {
             ${btnTypoMob}
             ${paddingMob}
+            ${iconGapMob}
         }
 
         .wp-block-zolo-cta.${uniqueId} .zolo-button:hover {
             ${hoverMobBGStyle}
-        }
-
-        .wp-block-zolo-cta.${uniqueId} .zolo-icon {
-            ${iconBorderMob}
-            ${iconBorderRadiusMob}
-            ${iconPaddingMob}
         }
 
         .wp-block-zolo-cta.${uniqueId} .zolo-icon i{

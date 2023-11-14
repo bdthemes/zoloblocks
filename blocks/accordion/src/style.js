@@ -12,6 +12,7 @@ const {
     generateDimensionStyle,
     generateResRangeStyle,
     generateNormalBGControlStyles,
+    generateTypographyStyles,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
@@ -45,6 +46,8 @@ import {
     AAC_BODY_BG,
     AICONTAINER_BG,
 } from './constants';
+
+import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -102,6 +105,16 @@ const Style = ({ props }) => {
     } = generateDimensionStyle({
         controlName: AC_CONTAINER_MARGIN,
         styleFor: 'margin',
+        attributes,
+    });
+
+    // Accordion Head
+    const {
+        typoStylesDesktop: titleDeskTypo,
+        typoStylesTab: titleTabTypo,
+        typoStylesMobile: titleMobTypo,
+    } = generateTypographyStyles({
+        prefixConstant: TITLE_TYPO,
         attributes,
     });
 
@@ -345,6 +358,10 @@ const Style = ({ props }) => {
             ${achNormalHBgDesktop}
         }
 
+        .${uniqueId} .accordion-head .accordion-title {
+            ${titleDeskTypo}
+        }
+
         .${uniqueId}.wp-block-zolo-accordion .accordion-toggle {
             ${icNormalDesk}
             ${borderStyles}
@@ -423,6 +440,10 @@ const Style = ({ props }) => {
             ${achNormalHBgTab}
         }
 
+        .${uniqueId} .accordion-head .accordion-title {
+            ${titleTabTypo}
+        }
+
         .${uniqueId}.wp-block-zolo-accordion .accordion-toggle {
             ${icNormalTab}
             ${borderStylesTab}
@@ -469,6 +490,10 @@ const Style = ({ props }) => {
 
         .${uniqueId} .accordion-head:hover {
             ${achNormalHBgMob}
+        }
+
+        .${uniqueId} .accordion-head .accordion-title {
+            ${titleMobTypo}
         }
 
         .${uniqueId}.wp-block-zolo-accordion .accordion-toggle {

@@ -69,13 +69,14 @@ export default function Style({ props }) {
 
         //style
         titleColor,
+        titleHoverColor,
+        titleBgColor,
         subTitleColor,
         subTitleBgColor,
         tptColor,
         tptBgColor,
         tptOpacity,
         separatorColor,
-        titleBgColor,
     } = attributes;
 
     //title style generate
@@ -436,6 +437,7 @@ export default function Style({ props }) {
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading{
     font-weight: 900;
   }
+
   .zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
     font-weight: 400;
     color: #323641;
@@ -500,6 +502,14 @@ export default function Style({ props }) {
       ${titleTextShadowStyle}
       ${titleTextStrokeStyle}
       ${titleShadow}
+    }
+
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title.has-link {
+      ${titleColor ? `color: ${titleColor};` : ''}
+    }
+
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title.has-link:hover {
+      ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
     }
 
     .zolo-block-wrapper.${uniqueId}.zolo-ah-style-6 .zolo-ah-title {

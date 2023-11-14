@@ -26,6 +26,7 @@ import {
     CONTAINER_HEIGHT,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
+    CONTENT_BG,
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
@@ -38,12 +39,6 @@ import {
     BRAND_PHOTO_BG,
     BRAND_PHOTO_PADDING,
     BRAND_PHOTO_MARGIN,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BORDER,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_HOVER_BOX_SHADOW,
-    CONTAINER_BACKGROUND,
-    CONTAINER_HOVER_BACKGROUND,
     IMAGE_WIDTH,
 } from './constants';
 
@@ -51,16 +46,8 @@ import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstan
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const {
-        uniqueId,
-        nameColor,
-        nameHoverColor,
-        labelColor,
-        labelHoverColor,
-        containerHoverBorderColor,
-        contentHorizontalPosition,
-        contentVerticalPosition,
-    } = attributes;
+    const { uniqueId, nameColor, nameHoverColor, labelColor, labelHoverColor, contentHorizontalPosition, contentVerticalPosition } =
+        attributes;
 
     // column count
     const {
@@ -115,6 +102,16 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const {
+        backgroundStylesDesktop: contentDeskBGStyle,
+        backgroundStylesTab: contentTabBGStyle,
+        backgroundStylesMobile: contentMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CONTENT_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
     // Container
     const {
         desktopRangeStyle: deskContainerHeight,
@@ -127,40 +124,6 @@ const Style = ({ props }) => {
     });
 
     const {
-        desktopBorderStyle: containerBorderDesk,
-        tabBorderStyle: containerBorderTab,
-        mobBorderStyle: containerBorderMob,
-    } = generateBorderStyle({
-        controlName: CONTAINER_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: containerDeskBorderRadius,
-        dimensionStylesTab: containerTabBorderRadius,
-        dimensionStylesMobile: containerMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_BOX_SHADOW,
-    });
-
-    const {
-        backgroundStylesDesktop: containerDeskBGStyle,
-        backgroundStylesTab: containerTabBGStyle,
-        backgroundStylesMobile: containerMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTAINER_BACKGROUND,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    const {
         backgroundStylesDesktop: brandPhotoDeskBGStyle,
         backgroundStylesTab: brandPhotoTabBGStyle,
         backgroundStylesMobile: brandPhotoMobBGStyle,
@@ -168,23 +131,6 @@ const Style = ({ props }) => {
         controlName: BRAND_PHOTO_BG,
         attributes,
         noMainBGImg: false,
-    });
-
-    // Container Hover
-    const {
-        backgroundStylesDesktop: containerHoverDeskBGStyle,
-        backgroundStylesTab: containerHoverTabBGStyle,
-        backgroundStylesMobile: containerHoverMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTAINER_HOVER_BACKGROUND,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    // Container Hover Box Shadow
-    const { boxShadowStyle: brandContainerHoverBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_HOVER_BOX_SHADOW,
     });
 
     // Photo
@@ -336,14 +282,6 @@ const Style = ({ props }) => {
         }
         .${uniqueId} .zb-brand-item{
             ${deskContainerHeight}
-			${containerDeskBorderRadius}
-			${containerBoxShadow}
-			${containerDeskBGStyle}
-            ${containerBorderDesk}
-		}
-		.${uniqueId} .zb-brand-item:hover{
-			${brandContainerHoverBoxShadow}
-            ${containerHoverBorderColor ? `border-color:${containerHoverBorderColor};` : ''}
 		}
 		.${uniqueId} .wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingDesk}
@@ -358,7 +296,7 @@ const Style = ({ props }) => {
             ${brandContentDeskAlignStyle}
         }
 		.${uniqueId} .zb-brand-content{
-			${containerHoverDeskBGStyle}
+            ${contentDeskBGStyle}
             ${contentHorizontalPosition ? `align-items:${contentHorizontalPosition};` : ''}
             ${contentVerticalPosition ? `justify-content:${contentVerticalPosition};` : ''}
             ${contentDeskPadding}
@@ -399,9 +337,6 @@ const Style = ({ props }) => {
         }
         .${uniqueId} .zb-brand-item{
             ${tabContainerHeight}
-            ${containerTabBorderRadius}
-            ${containerTabBGStyle}
-            ${containerBorderTab}
         }
         .${uniqueId} .zb-brand-image img{
             ${brandPhotoPaddingTab}
@@ -415,7 +350,7 @@ const Style = ({ props }) => {
             ${brandContentTabAlignStyle}
         }
         .${uniqueId} .zb-brand-content{
-            ${containerHoverTabBGStyle}
+            ${contentTabBGStyle}
             ${contentTabPadding}
         }
         .${uniqueId} .zb-brand-title{
@@ -443,9 +378,6 @@ const Style = ({ props }) => {
         }
         .${uniqueId} .zb-brand-item{
             ${mobContainerHeight}
-            ${containerMobBorderRadius}
-            ${containerMobBGStyle}
-            ${containerBorderMob}
         }
         .${uniqueId} .zb-brand-image img{
             ${brandPhotoPaddingMob}
@@ -459,7 +391,7 @@ const Style = ({ props }) => {
             ${brandContentMobAlignStyle}
         }
         .${uniqueId} .zb-brand-content{
-            ${containerHoverMobBGStyle}
+            ${contentMobBGStyle}
             ${contentMobPadding}
         }
         .${uniqueId} .zb-brand-title{

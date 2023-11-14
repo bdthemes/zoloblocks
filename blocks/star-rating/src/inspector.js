@@ -48,6 +48,14 @@ function Inspector(props) {
                                 checked={showTitle}
                                 onChange={() => setAttributes({ showTitle: !showTitle })}
                             />
+                            <ResAlignmentControl
+                                label={__('Alignment', 'zolo-blocks')}
+                                controlName={ITEMS_ALIGN}
+                                requiredProps={requiredProps}
+                                alignOptions={FLEX_HORIZONTAL_OPTIONS}
+                            />
+                        </PanelBody>
+                        <PanelBody title={__('Rating', 'zolo-blocks')} initialOpen={false}>
                             <RangeControl
                                 label={__('Rating', 'zolo-blocks')}
                                 value={rating}
@@ -55,12 +63,6 @@ function Inspector(props) {
                                 min={1}
                                 max={5}
                                 step={0.1}
-                            />
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zolo-blocks')}
-                                controlName={ITEMS_ALIGN}
-                                requiredProps={requiredProps}
-                                alignOptions={FLEX_HORIZONTAL_OPTIONS}
                             />
                         </PanelBody>
                         {showTitle && (
@@ -95,7 +97,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Star', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Star', 'zolo-blocks')} initialOpen={true}>
                             <ResRangeControl
                                 label={__('Size', 'zolo-blocks')}
                                 controlName={STAR_SIZE}

@@ -39,6 +39,8 @@ import objAttributes from './attributes';
 import {
     CONTAINER_HEIGHT,
     CONTENT_ALIGNMENT,
+    CONTENT_PADDING,
+    CONTENT_BG,
     TITLE_TEXT_STROKE,
     TITLE_MARGIN,
     LINK_TEXT_STROKE,
@@ -59,7 +61,6 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         brandPhoto,
-        brandNameText,
         brandTitle,
         nameColor,
         nameHoverColor,
@@ -135,17 +136,28 @@ function Inspector(props) {
                                     />
                                 )}
                             </BaseControl>
+                            <ResAlignmentControl
+                                label={__('Alignment', 'zolo-blocks')}
+                                controlName={CONTENT_ALIGNMENT}
+                                requiredProps={requiredProps}
+                                alignOptions={DEFAULT_ALIGNS}
+                            />
+                            <IconicBtnGroup
+                                label={__('Content Horizontal Position', 'zolo-blocks')}
+                                value={contentHorizontalPosition}
+                                onChange={(value) => setAttributes({ contentHorizontalPosition: value })}
+                                options={FLEX_HORIZONTAL_OPTIONS}
+                            />
+                            <IconicBtnGroup
+                                label={__('Content Vertical Position', 'zolo-blocks')}
+                                value={contentVerticalPosition}
+                                onChange={(value) => setAttributes({ contentVerticalPosition: value })}
+                                options={FLEX_ALIGN_OPTIONS}
+                            />
                         </PanelBody>
-
                         <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
                             {brandNameVisible && (
                                 <>
-                                    <TextareaControl
-                                        label={__('Title', 'zolo-blocks')}
-                                        onChange={(text) => setAttributes({ brandNameText: text })}
-                                        value={brandNameText}
-                                        rows={1}
-                                    />
                                     <TextControl
                                         label={__('Title', 'zolo-blocks')}
                                         onChange={(v) =>
@@ -196,7 +208,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
                             <ResRangeControl
                                 label={__('Height', 'zolo-blocks')}
                                 controlName={CONTAINER_HEIGHT}
@@ -204,24 +216,17 @@ function Inspector(props) {
                                 min={0}
                                 max={1000}
                             />
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zolo-blocks')}
-                                controlName={CONTENT_ALIGNMENT}
+                        </PanelBody>
+                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={CONTENT_PADDING}
                                 requiredProps={requiredProps}
-                                alignOptions={DEFAULT_ALIGNS}
+                                forBorderRadius={false}
+                                min={0}
+                                max={200}
                             />
-                            <IconicBtnGroup
-                                label={__('Horizontal Position', 'zolo-blocks')}
-                                value={contentHorizontalPosition}
-                                onChange={(value) => setAttributes({ contentHorizontalPosition: value })}
-                                options={FLEX_HORIZONTAL_OPTIONS}
-                            />
-                            <IconicBtnGroup
-                                label={__('Vertical Position', 'zolo-blocks')}
-                                value={contentVerticalPosition}
-                                onChange={(value) => setAttributes({ contentVerticalPosition: value })}
-                                options={FLEX_ALIGN_OPTIONS}
-                            />
+                            <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
                         </PanelBody>
                         <PanelBody title={__('Photo', 'zolo-blocks')} initialOpen={false}>
                             <ResRangeControl

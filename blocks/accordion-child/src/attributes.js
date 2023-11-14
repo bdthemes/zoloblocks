@@ -7,6 +7,7 @@ const {
     generateDimensionAttributes,
     generateNormalBGAttributes,
     generateResRangeAttributies,
+    generateTypographyAttributes,
 } = window.zoloModule;
 
 import {
@@ -36,6 +37,8 @@ import {
     ICONTAINER_BRADIUS,
     ICON_SIZE,
 } from './constants';
+
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
     // global Attributes
@@ -92,7 +95,7 @@ const attributes = {
     ...generateDimensionAttributes(ICONTAINER_PADDING),
     ...generateBorderAttributies(ICONTAINER_BORDER),
     ...generateDimensionAttributes(ICONTAINER_BRADIUS),
-
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
     // icon
     ...generateResRangeAttributies(ICON_SIZE),
     // Tab Icons
@@ -112,6 +115,12 @@ const attributes = {
     },
     // accordion attributes
     title: {
+        type: 'string',
+    },
+    titleColor: {
+        type: 'string',
+    },
+    titleHoverColor: {
         type: 'string',
     },
     titleTag: {

@@ -9,7 +9,7 @@ export const BLOCK_PREFIX = 'brand-grid';
 // Presets
 export const PRESETS = [
     { label: __('Default', 'zolo-blocks'), value: 'zb-brand-style-1' },
-    { label: __('Style 1', 'zolo-blocks'), value: 'zb-brand-style-2' },
+    { label: __('Preset 1', 'zolo-blocks'), value: 'zb-brand-style-2' },
 ];
 
 // icon types
@@ -36,16 +36,6 @@ export const ROWS_GAP = 'rowsGap';
 // global style for child blocks
 // container
 export const CONTAINER_HEIGHT = 'containerHeight';
-export const CONTAINER_BACKGROUND = 'containerBackground';
-export const CONTAINER_BORDER = 'containerBorder';
-export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
-export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
-
-// hover
-export const CONTAINER_HOVER_BACKGROUND = 'containerHoverBackground';
-export const CONTAINER_HOVER_BOX_SHADOW = 'containerHoverBoxShadow';
-export const CONTAINER_HOVER_BORDER = 'containerHoverBorder';
-
 //  photo
 export const BRAND_PHOTO_BG = 'photoBackground';
 export const BRAND_PHOTO_BORDER = 'photoBorder';
@@ -63,6 +53,7 @@ export const TITLE_TEXT_STROKE = 'titleTextStroke';
 // content
 export const CONTENT_ALIGNMENT = 'ContentAlignment';
 export const CONTENT_PADDING = 'ContentPadding';
+export const CONTENT_BG = 'ContentBg';
 
 // link
 export const LINK_TEXT_SHADOW = 'linkTextShadow';

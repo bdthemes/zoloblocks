@@ -7,6 +7,17 @@
     "description": "post grid view",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "excerptWords": 15,
+            "postQuery": {
+                "postsPerPage": 1,
+                "postType": "post",
+                "orderBy": "date",
+                "order": "desc"
+            }
+        }
+    },
     "supports": {
         "anchor": false,
         "customClassName": false,

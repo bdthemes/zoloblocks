@@ -59,7 +59,7 @@ export const AdvancedOptions = (props) => {
 
     return (
         <>
-            <PanelBody title={__('Spacing', 'zolo-blocks')} initialOpen={false}>
+            <PanelBody title={__('Spacing', 'zolo-blocks')} initialOpen={true}>
                 {globalConfig?.margin && (
                     <ResDimensionsControl
                         label={__('Margin', 'zolo-blocks')}

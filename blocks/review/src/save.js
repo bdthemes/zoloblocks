@@ -30,8 +30,10 @@ const Save = ({ attributes }) => {
         >
             <div className="zolo-item">
                 {showPhoto && (
-                    <div className="zolo-image-wrap">
-                        {memberPhoto && <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} className="zolo-img" />}
+                    <div className="zolo-image-quote-wrap">
+                        <div className="zolo-image-wrap">
+                            {memberPhoto && <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} className="zolo-img" />}
+                        </div>
                         {showQuoteIcon && (
                             <div className="zolo-quote-icon">
                                 <DisplayIcon icon={quoteIcon} />

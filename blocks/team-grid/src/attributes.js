@@ -23,6 +23,7 @@ import {
     CONTENT_BORDER_RADIUS,
     CONTENT_BOX_SHADOW,
     PHOTO_BG,
+    PHOTO_SIZE,
     TEAM_PHOTO_BORDER,
     TEAM_PHOTO_BORDER_RADIUS,
     TEAM_PHOTO_BOX_SHADOW,
@@ -129,6 +130,7 @@ const attributes = {
     ...generateDimensionAttributes(CONTENT_MARGIN),
     ...generateBoxShadowAttributies(CONTENT_BOX_SHADOW),
     ...generateNormalBGAttributes(PHOTO_BG),
+    ...generateResRangeAttributies(PHOTO_SIZE),
     ...generateBorderAttributies(TEAM_PHOTO_BORDER),
     ...generateDimensionAttributes(TEAM_PHOTO_BORDER_RADIUS),
     ...generateDimensionAttributes(TEAM_PHOTO_MARGIN),
@@ -159,12 +161,6 @@ const attributes = {
     ...generateDimensionAttributes(DPL_MARGIN),
     // typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
-    blurBgColor: {
-        type: 'string',
-    },
-    blurBgOpacity: {
-        type: 'number',
-    },
     nameColor: {
         type: 'string',
     },

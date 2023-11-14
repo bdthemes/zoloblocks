@@ -17,6 +17,11 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        flex: 1;
+    }
+
+    .zb-fancy-list-inner-content {
+        flex: 1;
     }
 
     .zb-fancy-list-title {
@@ -51,8 +56,14 @@
         box-sizing: border-box;
     }
 
-    .zb-fancy-list-image img {
+    .zb-fancy-list-image {
         width: 50px;
+        height: 50px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     &.style-5 {

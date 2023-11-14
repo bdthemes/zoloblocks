@@ -7,6 +7,7 @@ const {
     generateDimensionStyle,
     generateResRangeStyle,
     generateNormalBGControlStyles,
+    generateTypographyStyles,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
@@ -38,9 +39,11 @@ import {
     ICON_SIZE,
 } from './constants';
 
+import { TITLE_TYPO } from './constants/typoPrefixConstant';
+
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, iconColor, iconHoverColor } = attributes;
+    const { uniqueId, iconColor, iconHoverColor, titleColor, titleHoverColor } = attributes;
 
     // accordion container
     const {
@@ -97,6 +100,15 @@ const Style = ({ props }) => {
     });
 
     // accordion head
+    const {
+        typoStylesDesktop: titleDeskTypo,
+        typoStylesTab: titleTabTypo,
+        typoStylesMobile: titleMobTypo,
+    } = generateTypographyStyles({
+        prefixConstant: TITLE_TYPO,
+        attributes,
+    });
+
     const {
         desktopBorderStyle: achBorderDesk,
         tabBorderStyle: achBorderTab,
@@ -306,7 +318,17 @@ const Style = ({ props }) => {
         .${uniqueId} .accordion-head:hover {
             ${achNormalHBgDesktop}
         }
-        .${uniqueId}.wp-block-zolo-accordion-child .accordion-toggle {
+
+        .${uniqueId}.wp-block-zolo-accordion-child .accordion-head .accordion-title {
+            ${titleDeskTypo}
+            ${titleColor ? `color: ${titleColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-accordion-child .accordion-head .accordion-title:hover {
+            ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-accordion-child .accordion-head .accordion-toggle {
             ${icNormalDesk}
             ${borderStyles}
             ${borderRadiusDesktop}
@@ -315,7 +337,7 @@ const Style = ({ props }) => {
             ${icWidthtDesk}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .accordion-toggle:hover {
+        .${uniqueId}.wp-block-zolo-accordion-child .accordion-head .accordion-toggle:hover {
             ${icHoverDesk}
         }
 
@@ -353,9 +375,15 @@ const Style = ({ props }) => {
             ${achMarginTab}
             ${achNormalBgTab}
         }
+
         .${uniqueId} .accordion-head:hover {
             ${achNormalHBgTab}
         }
+
+        .${uniqueId}.wp-block-zolo-accordion-child .accordion-title {
+            ${titleTabTypo}
+        }
+
         .${uniqueId}.wp-block-zolo-accordion-child .accordion-toggle {
             ${icNormalTab}
             ${borderStylesTab}
@@ -399,6 +427,9 @@ const Style = ({ props }) => {
         }
         .${uniqueId} .accordion-head:hover {
             ${achNormalHBgMob}
+        }
+        .${uniqueId}.wp-block-zolo-accordion-child .accordion-title {
+            ${titleMobTypo}
         }
         .${uniqueId}.wp-block-zolo-accordion-child .accordion-toggle {
             ${icNormalMob}

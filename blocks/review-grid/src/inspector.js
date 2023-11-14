@@ -139,9 +139,9 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody initialOpen={true}>
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
-                                label={__('Preset Designs', 'zolo-blocks')}
+                                label={__('Presets', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
                                 onChange={(selected) => changePremade(selected)}
@@ -200,6 +200,8 @@ function Inspector(props) {
                                     })
                                 }
                             />
+                        </PanelBody>
+                        <PanelBody title={__('Grid', 'zolo-blocks')} initialOpen={false}>
                             <ResCounterControl
                                 label={__('Grid Columns', 'zolo-blocks')}
                                 controlName={GRID_COLUMNS}
@@ -219,7 +221,7 @@ function Inspector(props) {
                 styleTab={
                     <>
                         {preset === 'style-2' && (
-                            <PanelBody title={__('Preset Style', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody title={__('Preset Style', 'zolo-blocks')} initialOpen={true}>
                                 <RangeControl
                                     label={__('Blur Strength', 'zolo-blocks')}
                                     value={blurBgOpacity}
@@ -229,7 +231,7 @@ function Inspector(props) {
                                 />
                             </PanelBody>
                         )}
-                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Item Container', 'zolo-blocks')} initialOpen={preset === 'style-2' ? false : true}>
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={CONTAINER_BORDER}

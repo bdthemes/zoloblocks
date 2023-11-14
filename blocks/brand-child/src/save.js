@@ -96,10 +96,10 @@ const Save = ({ attributes }) => {
                                             rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                                             target={logoLink && logoLink.openInNewTab && '_blank'}
                                         >
-                                            <RichText.Content tagName="span" className="zb-brand-label" value={brandLabel} />
+                                            <RichText.Content tagName="span" value={brandLabel} />
                                         </a>
                                     ) : (
-                                        <RichText.Content tagName="span" className="zb-brand-label" value={brandLabel} />
+                                        <RichText.Content tagName="span" className="zb-brand-title-link" value={brandLabel} />
                                     )}
                                 </>
                             )}

@@ -94,6 +94,33 @@ const attributes = {
                 },
                 text: 'Facebook',
             },
+            {
+                id: 2,
+                icon: 'fab fa-twitter',
+                link: {
+                    url: '#',
+                    openInNewTab: false,
+                },
+                text: 'Twitter',
+            },
+            {
+                id: 3,
+                icon: 'fab fa-instagram',
+                link: {
+                    url: '#',
+                    openInNewTab: false,
+                },
+                text: 'Instagram',
+            },
+            {
+                id: 4,
+                icon: 'fab fa-linkedin-in',
+                link: {
+                    url: '#',
+                    openInNewTab: false,
+                },
+                text: 'Linkedin',
+            },
         ],
     },
     socialProfilesLinkTarget: {
@@ -140,9 +167,6 @@ const attributes = {
         type: 'string',
     },
     borderHoverColor: {
-        type: 'string',
-    },
-    presetBgColor: {
         type: 'string',
     },
 };

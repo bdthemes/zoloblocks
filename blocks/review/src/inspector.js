@@ -37,10 +37,6 @@ const {
 import objAttributes from './attributes';
 import {
     PRESETS,
-    CONTAINER_BACKGROUND,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
     CONTENT_BACKGROUND,
     CONTENT_BORDER,
@@ -60,7 +56,6 @@ import {
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
     DPL_BG,
-    DPL_HOVER_BG,
     DPL_HEIGHT,
     DPL_WIDTH,
     DPL_BORDER,
@@ -79,7 +74,6 @@ function Inspector(props) {
     const {
         resMode,
         preset,
-        blurBgOpacity,
         showPhoto,
         memberPhoto,
         showName,
@@ -93,14 +87,11 @@ function Inspector(props) {
         showRating,
         rating,
         nameColor,
-        nameLinkColor,
-        nameHoverColor,
         designationColor,
         testimonialMessageColor,
         activeRatingColor,
         inactiveRatingColor,
         dplIconColor,
-        dplIconHoverColor,
     } = attributes;
 
     const requiredProps = {
@@ -110,34 +101,14 @@ function Inspector(props) {
         objAttributes,
     };
 
-    /**
-     * Preset
-     */
-    const changePremade = (selected) => {
-        setAttributes({ preset: selected });
-        switch (selected) {
-            case 'default':
-                setAttributes({
-                    [`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
-                });
-                break;
-            default:
-                setAttributes({
-                    showTestimonialMessage: false,
-                    [`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
-                });
-                break;
-        }
-    };
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
-                                label={__('Preset Designs', 'zolo-blocks')}
+                                label={__('Presets', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
                                 onChange={(selected) => setAttributes({ preset: selected })}
@@ -314,33 +285,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        {preset === 'style-2' && (
-                            <PanelBody title={__('Preset Style', 'zolo-blocks')} initialOpen={false}>
-                                <RangeControl
-                                    label={__('Blur Strength', 'zolo-blocks')}
-                                    value={blurBgOpacity}
-                                    onChange={(v) => setAttributes({ blurBgOpacity: v })}
-                                    min={0}
-                                    max={100}
-                                />
-                            </PanelBody>
-                        )}
-                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={CONTAINER_BORDER}
-                                requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={CONTAINER_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                            <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
-                        </PanelBody>
-                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={true}>
                             <ResAlignmentControl
                                 label={__('Content Alignmet', 'zolo-blocks')}
                                 controlName={CONTENT_ALIGNMENT}

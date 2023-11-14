@@ -12,12 +12,6 @@ const {
 } = window.zoloModule;
 
 import {
-    CONTAINER_BACKGROUND,
-    CONTAINER_MARGIN,
-    CONTAINER_PADDING,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
     CONTENT_BACKGROUND,
     CONTENT_BORDER,
@@ -87,13 +81,6 @@ const attributes = {
     ...generateBoxShadowAttributies(CONTENT_BOX_SHADOW),
     ...generateDimensionAttributes(CONTENT_MARGIN),
     ...generateDimensionAttributes(CONTENT_PADDING),
-
-    ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
-    ...generateBorderAttributies(CONTAINER_BORDER),
-    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
-    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
-    ...generateDimensionAttributes(CONTAINER_MARGIN),
-    ...generateDimensionAttributes(CONTAINER_PADDING),
 
     ...generateResRangeAttributies(REVIEWER_PHOTO_SIZE, {}),
     ...generateNormalBGAttributes(REVIEWER_PHOTO_BG),

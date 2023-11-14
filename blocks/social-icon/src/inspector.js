@@ -59,7 +59,6 @@ function Inspector(props) {
         socialBgColor,
         socialBgHoverColor,
         borderHoverColor,
-        presetBgColor,
     } = attributes;
 
     const requiredProps = {
@@ -103,7 +102,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
@@ -120,6 +119,8 @@ function Inspector(props) {
                                 }
                                 options={ICON_STATUS}
                             />
+                        </PanelBody>
+                        <PanelBody title={__('Grid', 'zolo-blocks')} initialOpen={false}>
                             <ResCounterControl
                                 label={__('Column Number', 'zolo-blocks')}
                                 controlName={COLUMN_COUNT}
@@ -151,137 +152,116 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody initialOpen={true}>
-                            <ColorControl
-                                label={__('Preset Style', 'zolo-blocks')}
-                                color={presetBgColor}
+                        <PanelBody title={__('Social Icons', 'zolo-blocks')} initialOpen={true}>
+                            {socialText !== 'iconOnly' && (
+                                <TypographyDropdown
+                                    label={__('Text Typography', 'zolo-blocks')}
+                                    typoPrefixConstant={TEXT_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                />
+                            )}
+                            {socialText !== 'none' && (
+                                <ResRangeControl
+                                    label={__('Size', 'zolo-blocks')}
+                                    controlName={BUTTON_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                />
+                            )}
+                            {socialText === 'iconText' && (
+                                <ResRangeControl
+                                    label={__('Icon-Text Gap', 'zolo-blocks')}
+                                    controlName={ICON_TEXT_SPACING}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                />
+                            )}
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={BUTTON_BORDER} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={BTN_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <BoxShadowControl controlName={BTN_SHADOW} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={BUTTON_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <IconicBtnGroup
+                                label={__('Color Type', 'zolo-blocks')}
+                                value={socialColor}
                                 onChange={(value) =>
                                     setAttributes({
-                                        presetBgColor: value,
+                                        socialColor: value,
                                     })
                                 }
+                                options={SOCIAL_ICON_COLOR}
                             />
-                            <TabPanelControl
-                                normalComponents={
-                                    <>
-                                        {socialText !== 'none' && (
-                                            <ResRangeControl
-                                                label={__('Size', 'zolo-blocks')}
-                                                controlName={BUTTON_SIZE}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={100}
-                                                step={1}
+                            {socialColor === 'custom' && (
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={socialTextColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        socialTextColor: value,
+                                                    })
+                                                }
                                             />
-                                        )}
-
-                                        {socialText !== 'iconOnly' && (
-                                            <TypographyDropdown
-                                                label={__('Text Typography', 'zolo-blocks')}
-                                                typoPrefixConstant={TEXT_TYPOGRAPHY}
-                                                requiredProps={requiredProps}
+                                            <ColorControl
+                                                label={__('Background', 'zolo-blocks')}
+                                                color={socialBgColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        socialBgColor: value,
+                                                    })
+                                                }
                                             />
-                                        )}
-                                        {socialText === 'iconText' && (
-                                            <ResRangeControl
-                                                label={__('Icon-Text Gap', 'zolo-blocks')}
-                                                controlName={ICON_TEXT_SPACING}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={100}
-                                                step={1}
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={socialTextHoverColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        socialTextHoverColor: value,
+                                                    })
+                                                }
                                             />
-                                        )}
-
-                                        <BorderControl
-                                            label={__('Border', 'zolo-blocks')}
-                                            controlName={BUTTON_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zolo-blocks')}
-                                            controlName={BTN_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-                                        <BoxShadowControl controlName={BTN_SHADOW} requiredProps={requiredProps} />
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zolo-blocks')}
-                                            controlName={BUTTON_PADDING}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={false}
-                                        />
-                                        <IconicBtnGroup
-                                            label={__('Color Type', 'zolo-blocks')}
-                                            value={socialColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    socialColor: value,
-                                                })
-                                            }
-                                            options={SOCIAL_ICON_COLOR}
-                                        />
-                                        {socialColor === 'custom' && (
-                                            <>
-                                                <ColorControl
-                                                    label={__('Color', 'zolo-blocks')}
-                                                    color={socialTextColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            socialTextColor: value,
-                                                        })
-                                                    }
-                                                />
-                                                <ColorControl
-                                                    label={__('Background', 'zolo-blocks')}
-                                                    color={socialBgColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            socialBgColor: value,
-                                                        })
-                                                    }
-                                                />
-                                            </>
-                                        )}
-                                    </>
-                                }
-                                hoverComponents={
-                                    <>
-                                        {socialColor === 'custom' && (
-                                            <>
-                                                <ColorControl
-                                                    label={__('Color', 'zolo-blocks')}
-                                                    color={socialTextHoverColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            socialTextHoverColor: value,
-                                                        })
-                                                    }
-                                                />
-                                                <ColorControl
-                                                    label={__('Background', 'zolo-blocks')}
-                                                    color={socialBgHoverColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            socialBgHoverColor: value,
-                                                        })
-                                                    }
-                                                />
-                                            </>
-                                        )}
-                                        <ColorControl
-                                            label={__('Border Color', 'zolo-blocks')}
-                                            color={borderHoverColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    borderHoverColor: value,
-                                                })
-                                            }
-                                        />
-                                        <BoxShadowControl controlName={BTN_HOVER_SHADOW} requiredProps={requiredProps} />
-                                    </>
-                                }
-                            />
+                                            <ColorControl
+                                                label={__('Background', 'zolo-blocks')}
+                                                color={socialBgHoverColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        socialBgHoverColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Border Color', 'zolo-blocks')}
+                                                color={borderHoverColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        borderHoverColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <BoxShadowControl controlName={BTN_HOVER_SHADOW} requiredProps={requiredProps} />
+                                        </>
+                                    }
+                                />
+                            )}
                         </PanelBody>
                     </>
                 }

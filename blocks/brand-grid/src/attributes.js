@@ -23,12 +23,8 @@ import {
     LINK_TEXT_STROKE,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
+    CONTENT_BG,
     LINK_MARGIN,
-    CONTAINER_BACKGROUND,
-    CONTAINER_HOVER_BACKGROUND,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_HOVER_BOX_SHADOW,
-    CONTAINER_BORDER_RADIUS,
     BRAND_PHOTO_BORDER,
     BRAND_PHOTO_BORDER_RADIUS,
     BRAND_PHOTO_BOX_SHADOW,
@@ -36,7 +32,6 @@ import {
     BRAND_PHOTO_PADDING,
     BRAND_PHOTO_MARGIN,
     IMAGE_WIDTH,
-    CONTAINER_BORDER,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -82,16 +77,9 @@ const attributes = {
     // content alignment
     ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
     ...generateDimensionAttributes(CONTENT_PADDING),
+    ...generateNormalBGAttributes(CONTENT_BG),
     // container
     ...generateResRangeAttributies(CONTAINER_HEIGHT),
-    ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
-    ...generateBorderAttributies(CONTAINER_BORDER),
-    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
-    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
-
-    // hover
-    ...generateNormalBGAttributes(CONTAINER_HOVER_BACKGROUND),
-    ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
 
     // photo
     ...generateDimensionAttributes(BRAND_PHOTO_BORDER_RADIUS),
@@ -118,12 +106,6 @@ const attributes = {
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 
     //Block specific Attributes
-    containerBackgroundColor: {
-        type: 'string',
-    },
-    containerBackgroundHoverColor: {
-        type: 'string',
-    },
     presetOneStyles: {
         type: 'object',
         default: {
@@ -157,9 +139,6 @@ const attributes = {
         type: 'string',
     },
     labelHoverColor: {
-        type: 'string',
-    },
-    containerHoverBorderColor: {
         type: 'string',
     },
     contentHorizontalPosition: {

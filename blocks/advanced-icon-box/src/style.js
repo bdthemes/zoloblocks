@@ -54,7 +54,6 @@ export default function Style({ props }) {
     const {
         uniqueId,
         preset,
-        containerBorderHoverColor,
         textColor,
         textHoverColor,
         descColor,
@@ -74,6 +73,7 @@ export default function Style({ props }) {
         presetOneStyles,
         presetTwoStyles,
         presetThreeStyles,
+        globalLink,
     } = attributes;
 
     // icon alignment
@@ -406,19 +406,33 @@ export default function Style({ props }) {
 			${buttonPaddingDesktop}
 			${buttonMarginDesktop}
 			${buttonBoxShadow}
-            transition: all 0.3s ease-in-out;
-		}
-
-		.${uniqueId} .zolo-block-body-content .zolo-box-button i{
-            ${buttonIconColor ? `color: ${buttonIconColor};` : ''}
-			${buttonIconSize}
-            transition: all 0.3s ease-in-out;
-		}
-
-		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
             color: ${btnColor ? btnColor : ''};
 			${btnTypoDesktop}
 		}
+
+        ${
+            globalLink === true
+                ? `.${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
+                    ${buttonBGHoverDeskStyle}
+                    ${btnBgHoverColor ? `background: ${btnBgHoverColor};` : ''}
+                    ${buttonHoverBoxShadow}
+                    ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
+                    ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
+                }`
+                : ''
+        }
+
+        ${
+            globalLink === false
+                ? `.${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-box-button:hover {
+                    ${buttonBGHoverDeskStyle}
+                    ${btnBgHoverColor ? `background: ${btnBgHoverColor};` : ''}
+                    ${buttonHoverBoxShadow}
+                    ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
+                    ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
+                }`
+                : ''
+        }
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-title{
             ${textHoverColor ? `color: ${textHoverColor};` : ''}
@@ -432,21 +446,6 @@ export default function Style({ props }) {
             ${iconHoverColor ? `color: ${iconHoverColor};` : ''}
 			${iconHoverBoxShadow}
             ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
-        }
-
-        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
-			${buttonBGHoverDeskStyle}
-            ${btnBgHoverColor ? `background: ${btnBgHoverColor};` : ''}
-			${buttonHoverBoxShadow}
-            ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
-        }
-
-        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button p{
-            ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
-        }
-
-        ${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button i{
-            ${buttonIconHoverColor ? `color: ${buttonIconHoverColor};` : ''}
         }
 
        ${

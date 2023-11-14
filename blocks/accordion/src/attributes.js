@@ -7,6 +7,7 @@ const {
     generateBorderAttributies,
     generateDimensionAttributes,
     generateNormalBGAttributes,
+    generateTypographyAttributes,
 } = window.zoloModule;
 
 import {
@@ -41,6 +42,8 @@ import {
     AAC_BODY_BG,
     AICONTAINER_BG,
 } from './constants';
+
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
     // global Attributes
@@ -123,6 +126,7 @@ const attributes = {
     ...generateNormalBGAttributes(AC_HEADER_HBG),
     ...generateDimensionAttributes(AC_HEADER_PADDING),
     ...generateDimensionAttributes(AC_HEADER_MARGIN),
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
 
     // accordion body
     ...generateBorderAttributies(AC_BODY_BORDER),

@@ -173,7 +173,7 @@ const Inspector = ({ attributes, setAttributes }) => {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <ToggleControl
                                 label={__('Show Ribbon', 'zolo-blocks')}
                                 checked={showRibbon}
@@ -370,7 +370,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Item Container', 'zolo-blocks')} initialOpen={true}>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={WRAPPER_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}

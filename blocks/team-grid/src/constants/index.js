@@ -8,9 +8,9 @@ export const BLOCK_PREFIX = 'team-grid';
 
 // Presets
 export const PRESETS = [
-	{ label: __('Default', 'zolo-blocks'), value: 'default' },
-	{ label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-	{ label: __('Preset 2', 'zolo-blocks'), value: 'style-2' }
+    { label: __('Default', 'zolo-blocks'), value: 'default' },
+    { label: __('Style 1', 'zolo-blocks'), value: 'style-1' },
+    { label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
 ];
 
 // Grid Background
@@ -22,6 +22,7 @@ export const ROWS_GAP = 'rowsGap';
 
 // photo bg
 export const PHOTO_BG = 'PhotoBg';
+export const PHOTO_SIZE = 'PhotoSize';
 
 // content
 export const CONTENT_BG = 'ContentBg';
