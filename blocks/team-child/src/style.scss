@@ -23,7 +23,7 @@
         color: #2e2e35;
         display: block;
         transition: color 0.3s ease;
-        &.has-link:hover {
+        &:hover {
             color: #00accc;
         }
     }
@@ -55,6 +55,9 @@
             text-decoration: none;
             box-sizing: content-box;
             color: #4c4c51;
+            &::before {
+                background: #3fb8fd;
+            }
             &:hover {
                 color: #fff;
             }
@@ -63,6 +66,8 @@
         span {
             font-size: 14px;
             transition: 0.3s ease-out;
+            z-index: 1;
+            position: relative;
         }
     }
     .zolo-social-share,
@@ -105,8 +110,13 @@
             background-color: #00accc;
             transition: 500ms ease;
             text-decoration: none;
-            color: #fff;
-            transition: 0.3s ease-out;
+            i,
+            span {
+                color: #fff;
+                transition: 0.3s ease-out;
+                z-index: 1;
+                position: relative;
+            }
         }
     }
 
