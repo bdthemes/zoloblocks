@@ -19,6 +19,7 @@ const {
     ResCounterControl,
     ColorControl,
     TypographyDropdown,
+    IconPicker,
     AdvancedOptions,
 } = window.zoloModule;
 
@@ -50,6 +51,7 @@ import {
     ZOOM_ICON_HOVER_BOX_SHADOW,
     ZOOM_ICON_BG_HOVER_COLOR,
     OVERLAY_BG_COLOR,
+    ZOOM_ICON_SIZE,
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -66,7 +68,7 @@ function Inspector(props) {
         zoomIconHoverBorderColor,
         zoomIconHoverColor,
         imageHoverBorderColor,
-        hoverOverlayColor,
+        lightboxIcon,
     } = attributes;
 
     const requiredProps = {
@@ -136,6 +138,20 @@ function Inspector(props) {
                                 step={1}
                             />
                         </PanelBody>
+                        {showLightbox && (
+                            <PanelBody title={__('Lightbox Icon', 'zolo-blocks')} initialOpen={false}>
+                                <IconPicker
+                                    value={lightboxIcon}
+                                    onChange={(value) => {
+                                        setAttributes({
+                                            lightboxIcon: value,
+                                        });
+                                    }}
+                                    showHeading={false}
+                                    disableDashicon={true}
+                                />
+                            </PanelBody>
+                        )}
                     </>
                 }
                 styleTab={
@@ -201,6 +217,11 @@ function Inspector(props) {
                         {showCaption && (
                             <PanelBody title={__('Caption', 'zolo-blocks')} initialOpen={false}>
                                 <>
+                                    <TypographyDropdown
+                                        label={__('Typography', 'zolo-blocks')}
+                                        typoPrefixConstant={HEADING_TYPOGRAPHY}
+                                        requiredProps={requiredProps}
+                                    />
                                     <ColorControl
                                         label={__('Color', 'zolo-blocks')}
                                         color={headingColor}
@@ -209,11 +230,6 @@ function Inspector(props) {
                                                 headingColor: value,
                                             })
                                         }
-                                    />
-                                    <TypographyDropdown
-                                        label={__('Typography', 'zolo-blocks')}
-                                        typoPrefixConstant={HEADING_TYPOGRAPHY}
-                                        requiredProps={requiredProps}
                                     />
                                     <BorderControl
                                         label={__('Border', 'zolo-blocks')}
@@ -249,6 +265,14 @@ function Inspector(props) {
                         )}
                         {showLightbox && (
                             <PanelBody title={__('Lightbox Icon', 'zolo-blocks')} initialOpen={false}>
+                                <ResRangeControl
+                                    label={__('Size', 'zolo-blocks')}
+                                    controlName={ZOOM_ICON_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={200}
+                                    step={1}
+                                />
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={ZOOM_ICON_BORDER}

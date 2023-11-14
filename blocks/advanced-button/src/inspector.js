@@ -98,9 +98,9 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
-                                label={__('Preset Designs', 'zolo-blocks')}
+                                label={__('Styles', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
                                 onChange={(value) =>
@@ -193,7 +193,7 @@ function Inspector(props) {
                 styleTab={
                     <>
                         {preset !== '' && (
-                            <PanelBody title={__('Preset', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody title={__('Style Setting', 'zolo-blocks')} initialOpen={true}>
                                 {preset === 'button-1' && (
                                     <Fragment>
                                         <ResRangeControl
@@ -268,18 +268,6 @@ function Inspector(props) {
                                 )}
                                 {preset === 'button-3' && (
                                     <Fragment>
-                                        <ColorControl
-                                            label={__('Overlay Color', 'zolo-blocks')}
-                                            color={presetThreeStyles && presetThreeStyles.bgColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    presetThreeStyles: {
-                                                        ...presetThreeStyles,
-                                                        bgColor: value,
-                                                    },
-                                                })
-                                            }
-                                        />
                                         <BorderControl
                                             label={__('Border', 'zolo-blocks')}
                                             controlName={PTH_BORDER}
@@ -290,6 +278,36 @@ function Inspector(props) {
                                             controlName={PTH_BORDER_RADIUS}
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
+                                        />
+                                        <TabPanelControl
+                                            normalComponents={
+                                                <ColorControl
+                                                    label={__('Overlay Color', 'zolo-blocks')}
+                                                    color={presetThreeStyles && presetThreeStyles.bgColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            presetThreeStyles: {
+                                                                ...presetThreeStyles,
+                                                                bgColor: value,
+                                                            },
+                                                        })
+                                                    }
+                                                />
+                                            }
+                                            hoverComponents={
+                                                <ColorControl
+                                                    label={__('Overlay Color', 'zolo-blocks')}
+                                                    color={presetThreeStyles && presetThreeStyles.hoverBgColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            presetThreeStyles: {
+                                                                ...presetThreeStyles,
+                                                                hoverBgColor: value,
+                                                            },
+                                                        })
+                                                    }
+                                                />
+                                            }
                                         />
                                     </Fragment>
                                 )}
@@ -419,7 +437,7 @@ function Inspector(props) {
                                 )}
                             </PanelBody>
                         )}
-                        <PanelBody title={__('Button', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('Button', 'zolo-blocks')} initialOpen={preset !== '' ? false : true}>
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={BUTTON_TYPOGRAPHY}

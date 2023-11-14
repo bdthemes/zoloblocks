@@ -7,6 +7,11 @@
     "description": "Advanced Image Gallery Block",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "showCaption": true
+        }
+    },
     "supports": {
         "anchor": false,
         "align": ["wide", "full"],

@@ -25,6 +25,7 @@ import {
     CONTAINER_HEIGHT,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
+    CONTENT_BG,
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
@@ -37,41 +38,23 @@ import {
     BRAND_PHOTO_BG,
     BRAND_PHOTO_PADDING,
     BRAND_PHOTO_MARGIN,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BORDER,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_HOVER_BOX_SHADOW,
-    CONTAINER_BACKGROUND,
-    CONTAINER_HOVER_BACKGROUND,
     IMAGE_WIDTH,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
-    const { attributes, setAttributes, className, context } = props;
+    const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        brandPhoto,
-        textColor,
-        linkColor,
-        linkHoverColor,
+        nameColor,
+        nameHoverColor,
+        labelColor,
+        labelHoverColor,
         containerHoverBorderColor,
         contentHorizontalPosition,
         contentVerticalPosition,
     } = attributes;
-
-    /**
-     * context
-     */
-    useEffect(() => {
-        setAttributes({
-            preset: context['zolo/preset'],
-            heading: context['zolo/heading'],
-            showBrandName: context['zolo/showBrandName'],
-            showBrandLink: context['zolo/showBrandLink'],
-        });
-    }, [context]);
 
     // Content Align
     const {
@@ -93,6 +76,16 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const {
+        backgroundStylesDesktop: contentDeskBGStyle,
+        backgroundStylesTab: contentTabBGStyle,
+        backgroundStylesMobile: contentMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CONTENT_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
     // Container
     const {
         desktopRangeStyle: deskContainerHeight,
@@ -105,40 +98,6 @@ const Style = ({ props }) => {
     });
 
     const {
-        desktopBorderStyle: containerBorderDesk,
-        tabBorderStyle: containerBorderTab,
-        mobBorderStyle: containerBorderMob,
-    } = generateBorderStyle({
-        controlName: CONTAINER_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: containerDeskBorderRadius,
-        dimensionStylesTab: containerTabBorderRadius,
-        dimensionStylesMobile: containerMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_BOX_SHADOW,
-    });
-
-    const {
-        backgroundStylesDesktop: containerDeskBGStyle,
-        backgroundStylesTab: containerTabBGStyle,
-        backgroundStylesMobile: containerMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTAINER_BACKGROUND,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    const {
         backgroundStylesDesktop: brandPhotoDeskBGStyle,
         backgroundStylesTab: brandPhotoTabBGStyle,
         backgroundStylesMobile: brandPhotoMobBGStyle,
@@ -146,23 +105,6 @@ const Style = ({ props }) => {
         controlName: BRAND_PHOTO_BG,
         attributes,
         noMainBGImg: false,
-    });
-
-    // Container Hover
-    const {
-        backgroundStylesDesktop: containerHoverDeskBGStyle,
-        backgroundStylesTab: containerHoverTabBGStyle,
-        backgroundStylesMobile: containerHoverMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTAINER_HOVER_BACKGROUND,
-        attributes,
-        noMainBGImg: false,
-    });
-
-    // Container Hover Box Shadow
-    const { boxShadowStyle: brandContainerHoverBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_HOVER_BOX_SHADOW,
     });
 
     // Photo
@@ -305,14 +247,6 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
 		.${uniqueId}.zb-brand-item{
             ${deskContainerHeight}
-			${containerDeskBorderRadius}
-			${containerBoxShadow}
-			${containerDeskBGStyle}
-            ${containerBorderDesk}
-		}
-		.${uniqueId}.zb-brand-item:hover{
-			${brandContainerHoverBoxShadow}
-            ${containerHoverBorderColor ? `border-color:${containerHoverBorderColor};` : ''}
 		}
 		.${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingDesk}
@@ -327,7 +261,7 @@ const Style = ({ props }) => {
             ${brandContentDeskAlignStyle}
         }
 		.${uniqueId} .zb-brand-content{
-			${containerHoverDeskBGStyle}
+			${contentDeskBGStyle}
             ${contentHorizontalPosition ? `align-items:${contentHorizontalPosition};` : ''}
             ${contentVerticalPosition ? `justify-content:${contentVerticalPosition};` : ''}
             ${contentDeskPadding}
@@ -337,26 +271,27 @@ const Style = ({ props }) => {
 			${titleMarginDesk}
 			${titleTextShadow}
 			${titleTextStrokeDesk}
-			color:${textColor};
+			${nameColor ? `color:${nameColor};` : ''}
 		}
-		.${uniqueId}.zb-brand-item .zb-brand-link{
+        .${uniqueId} .zb-brand-title.has-link:hover{
+            ${nameHoverColor ? `color:${nameHoverColor};` : ''}
+        }
+
+		.${uniqueId}.zb-brand-item .zb-brand-title-link{
 			${linkTypoDesk}
 			${linkMarginDesk}
 			${linkTextShadow}
 			${linkTextStrokeDesk}
-			color:${linkColor};
+            ${labelColor ? `color:${labelColor};` : ''}
 		}
-		.${uniqueId}.zb-brand-item .zb-brand-link:hover{
-			color:${linkHoverColor};
+		.${uniqueId}.zb-brand-item .zb-brand-title-link.has-link:hover{
+			color:${labelHoverColor};
 		}
   	`;
 
     const tabletAllStyle = `
         .${uniqueId}.zb-brand-item{
             ${tabContainerHeight}
-            ${containerTabBorderRadius}
-            ${containerTabBGStyle}
-            ${containerBorderTab}
         }
         .${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingTab}
@@ -370,7 +305,7 @@ const Style = ({ props }) => {
             ${brandContentTabAlignStyle}
         }
         .${uniqueId} .zb-brand-content{
-            ${containerHoverTabBGStyle}
+            ${contentTabBGStyle}
             ${contentTabPadding}
         }
         .${uniqueId} .zb-brand-title{
@@ -388,9 +323,6 @@ const Style = ({ props }) => {
     const mobileAllStyle = `
         .${uniqueId}.zb-brand-item{
             ${mobContainerHeight}
-            ${containerMobBorderRadius}
-            ${containerMobBGStyle}
-            ${containerBorderMob}
         }
         .${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingMob}
@@ -404,7 +336,7 @@ const Style = ({ props }) => {
             ${brandContentMobAlignStyle}
         }
         .${uniqueId} .zb-brand-content{
-            ${containerHoverMobBGStyle}
+            ${contentMobBGStyle}
             ${contentMobPadding}
         }
         .${uniqueId} .zb-brand-title{

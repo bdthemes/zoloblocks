@@ -21,12 +21,6 @@ import {
     BUTTON_HOVER_BOX_SHADOW,
     BUTTON_PADDING,
     ICON_SIZE,
-    ICON_TEXT_SPACING,
-    ICON_BORDER,
-    ICON_BORDER_RADIUS,
-    ICON_BOX_SHADOW,
-    ICON_HOVER_BOX_SHADOW,
-    ICON_PADDING,
     PO_SWIDTH,
     PT_BORDER,
     PT_BORDER_RADIUS,
@@ -40,6 +34,7 @@ import {
     TITLE_MARGIN,
     DESC_MARGIN,
     FLEX_GAP,
+    ICON_TEXT_SPACING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -74,9 +69,6 @@ const attributes = {
         defaultAlign: 'left',
     }),
     ...generateBorderAttributies(BUTTON_BORDER),
-    ...generateResRangeAttributies(ICON_SIZE, {
-        default: 16,
-    }),
     ...generateResRangeAttributies(ICON_TEXT_SPACING, {
         default: 5,
     }),
@@ -96,11 +88,9 @@ const attributes = {
     ...generateDimensionAttributes(BUTTON_PADDING),
 
     // button icon generator
-    ...generateBorderAttributies(ICON_BORDER),
-    ...generateDimensionAttributes(ICON_BORDER_RADIUS),
-    ...generateBoxShadowAttributies(ICON_BOX_SHADOW),
-    ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
-    ...generateDimensionAttributes(ICON_PADDING),
+    ...generateResRangeAttributies(ICON_SIZE, {
+        default: 16,
+    }),
 
     // presets
     ...generateResRangeAttributies(PO_SWIDTH, {

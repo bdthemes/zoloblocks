@@ -42,16 +42,11 @@
             border: 1px solid #c7c3e1;
             border-radius: 3px;
             padding: 10px 15px;
-            p {
-                color: #3f1a46;
-                margin: 0 !important;
-            }
+            color: #3f1a46;
             &:hover {
                 border-color: #3f1a46;
                 background: #3f1a46;
-                p {
-                    color: #fff;
-                }
+                color: #fff;
             }
         }
         .zolo-box-button p {

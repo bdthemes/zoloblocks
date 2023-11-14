@@ -33,11 +33,10 @@ export default function Edit(props) {
         showTestimonialMessage,
         testimonialMessage,
         memberDesignation,
-        addReviewerWebsiteLink,
-        reviewerWebsiteLink,
+        showQuoteIcon,
+        quoteIcon,
         showRating,
         rating,
-        websiteLinkIcon,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -90,68 +89,39 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <div className="zolo-item">
                     {showPhoto && (
-                        <div className="zolo-image-wrap">
-                            {memberPhoto ? (
-                                <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} className="zolo-img" />
-                            ) : (
-                                <MediaPlaceholder
-                                    icon="format-image"
-                                    labels={{
-                                        title: __('Add Photo', 'zolo-blocks'),
-                                        instructions: '',
-                                    }}
-                                    onSelect={(media) => {
-                                        setAttributes({
-                                            memberPhoto: media,
-                                        });
-                                    }}
-                                    accept="image/*"
-                                    allowedTypes={['image']}
-                                />
-                            )}
-                            {addReviewerWebsiteLink && (
-                                <div className="zolo-link-btn">
-                                    <a
-                                        href={reviewerWebsiteLink && reviewerWebsiteLink.url}
-                                        rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && 'noreferer noopener'}
-                                        target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && '_blank'}
-                                    >
-                                        <DisplayIcon icon={websiteLinkIcon} />
-                                    </a>
+                        <div className="zolo-image-quote-wrap">
+                            <div className="zolo-image-wrap">
+                                {memberPhoto ? (
+                                    <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} className="zolo-img" />
+                                ) : (
+                                    <MediaPlaceholder
+                                        icon="format-image"
+                                        labels={{
+                                            title: __('Add Photo', 'zolo-blocks'),
+                                            instructions: '',
+                                        }}
+                                        onSelect={(media) => {
+                                            setAttributes({
+                                                memberPhoto: media,
+                                            });
+                                        }}
+                                        accept="image/*"
+                                        allowedTypes={['image']}
+                                    />
+                                )}
+                            </div>
+                            {showQuoteIcon && (
+                                <div className="zolo-quote-icon">
+                                    <DisplayIcon icon={quoteIcon} />
                                 </div>
                             )}
                         </div>
                     )}
                     <div className="zolo-info-wrap">
                         <div className="zolo-meta-content">
-                            {showName &&
-                                (addReviewerWebsiteLink ? (
-                                    <RichText
-                                        className="zolo-name has-link"
-                                        value={memberName}
-                                        onChange={(content) =>
-                                            setAttributes({
-                                                memberName: content,
-                                            })
-                                        }
-                                        placeholder={__('Reviewer name', 'zolo-blocks')}
-                                    />
-                                ) : (
-                                    <div className="zolo-name">
-                                        <RichText.Content value={memberName} />
-                                    </div>
-                                ))}
-                            {showDesignation && (
-                                <div className="zolo-designation">
-                                    <RichText
-                                        value={memberDesignation}
-                                        onChange={(content) =>
-                                            setAttributes({
-                                                memberDesignation: content,
-                                            })
-                                        }
-                                        placeholder={__('Reviewer designation', 'zolo-blocks')}
-                                    />
+                            {showRating && (
+                                <div className="zolo-review-icon">
+                                    <StarRating rating={rating} total={5} />
                                 </div>
                             )}
                             {showTestimonialMessage && (
@@ -163,16 +133,40 @@ export default function Edit(props) {
                                                 testimonialMessage: content,
                                             })
                                         }
-                                        placeholder={__('Reviewer testimonial message', 'zolo-blocks')}
+                                        placeholder={__('message..', 'zolo-blocks')}
                                     />
                                 </div>
                             )}
-                        </div>
-                        {showRating && (
-                            <div className="zolo-review-icon">
-                                <StarRating rating={rating} total={5} />
+                            <div className="zolo-user-info-wrap">
+                                {showName && (
+                                    <div className="zolo-name">
+                                        <RichText
+                                            tagName="span"
+                                            value={memberName}
+                                            onChange={(content) =>
+                                                setAttributes({
+                                                    memberName: content,
+                                                })
+                                            }
+                                            placeholder={__('name..', 'zolo-blocks')}
+                                        />
+                                    </div>
+                                )}
+                                {showDesignation && (
+                                    <div className="zolo-designation">
+                                        <RichText
+                                            value={memberDesignation}
+                                            onChange={(content) =>
+                                                setAttributes({
+                                                    memberDesignation: content,
+                                                })
+                                            }
+                                            placeholder={__('designation..', 'zolo-blocks')}
+                                        />
+                                    </div>
+                                )}
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </div>

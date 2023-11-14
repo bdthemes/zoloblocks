@@ -30,7 +30,8 @@ import {
     ICON_BORDER,
     ICON_PADDING,
     ICON_RADIUS,
-    IMAGE_SIZE,
+    IMAGE_WIDTH,
+    IMAGE_HEIGHT,
     IMAGE_BORDER,
     IMAGE_BORDERRADIUS,
     IMAGE_PADDING,
@@ -38,6 +39,7 @@ import {
     DESC_SPACING,
     ICON_BG,
     ICON_HBG,
+    GAP,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -59,6 +61,8 @@ function Inspector(props) {
         fancyListText,
         mediaType,
         mediaText,
+        mediaTextColor,
+        mediaTextBgColor,
         image,
         imageToggle,
         titleToggle,
@@ -117,9 +121,9 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <Fragment>
-                        <PanelBody initialOpen={false} title={__('General', 'zolo-block')}>
+                        <PanelBody title={__('General', 'zolo-block')} initialOpen={true}>
                             <SelectControl
-                                label={__('Preset', 'zolo-block')}
+                                label={__('Presets', 'zolo-block')}
                                 options={PRESETS}
                                 onChange={(v) => onPresetChange(v)}
                                 value={preset}
@@ -267,7 +271,7 @@ function Inspector(props) {
                 styleTab={
                     <>
                         {titleToggle && (
-                            <PanelBody title={__('Title', 'zolo-block')} initialOpen={false}>
+                            <PanelBody title={__('Title', 'zolo-block')} initialOpen={true}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-block')}
                                     typoPrefixConstant={TITLE_TYPOGRAPHY}
@@ -399,15 +403,42 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {imageToggle && (
-                            <PanelBody title={__('Media', 'zolo-block')} initialOpen={false}>
+                            <PanelBody
+                                title={mediaType === 'image' ? __('Image', 'zolo-block') : __('Text', 'zolo-block')}
+                                initialOpen={false}
+                            >
                                 {mediaType === 'text' && (
-                                    <TypographyDropdown
-                                        label={__('Typography', 'zolo-blocks')}
-                                        typoPrefixConstant={MEDIA_TYPOGRAPHY}
-                                        requiredProps={requiredProps}
-                                    />
+                                    <>
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zolo-blocks')}
+                                            typoPrefixConstant={MEDIA_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ColorControl
+                                            label={__('Color', 'zolo-block')}
+                                            color={mediaTextColor}
+                                            onChange={(v) => setAttributes({ mediaTextColor: v })}
+                                        />
+                                        <ColorControl
+                                            label={__('Background Color', 'zolo-block')}
+                                            color={mediaTextBgColor}
+                                            onChange={(v) => setAttributes({ mediaTextBgColor: v })}
+                                        />
+                                    </>
                                 )}
-                                <ResRangeControl label={__('Size', 'zolo-block')} controlName={IMAGE_SIZE} requiredProps={requiredProps} />
+                                <ResRangeControl
+                                    label={__('Width', 'zolo-block')}
+                                    controlName={IMAGE_WIDTH}
+                                    requiredProps={requiredProps}
+                                    max={500}
+                                />
+                                <ResRangeControl
+                                    label={__('Height', 'zolo-block')}
+                                    controlName={IMAGE_HEIGHT}
+                                    requiredProps={requiredProps}
+                                    max={500}
+                                />
+                                <ResRangeControl label={__('Gap', 'zolo-block')} controlName={GAP} requiredProps={requiredProps} />
                                 <BorderControl
                                     label={__('Border', 'zolo-block')}
                                     controlName={IMAGE_BORDER}

@@ -18,8 +18,19 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, context } = props;
-    const { uniqueId, parentClasses, isBrandName, isBrandLink, brandPhoto, brandName, brandNameTag, brandLabel, brandDetailPageLink } =
-        attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        brandPhoto,
+        brandTitle,
+        brandNameTag,
+        brandLabel,
+        logoLink,
+        brandNameVisible,
+        brandLabelVisible,
+        enableLogoLink,
+        logoLinkType,
+    } = attributes;
 
     // block props
     const blockProps = useBlockProps({
@@ -32,9 +43,10 @@ export default function Edit(props) {
     useEffect(() => {
         setAttributes({
             preset: context['zolo/preset'],
-            heading: context['zolo/heading'],
-            showBrandName: context['zolo/showBrandName'],
-            showBrandLink: context['zolo/showBrandLink'],
+            brandNameVisible: context['zolo/brandNameVisible'],
+            brandLabelVisible: context['zolo/brandLabelVisible'],
+            enableLogoLink: context['zolo/enableLogoLink'],
+            logoLinkType: context['zolo/logoLinkType'],
         });
     }, [context]);
 
@@ -80,66 +92,170 @@ export default function Edit(props) {
             )}
             <Style props={props} />
             <div {...blockProps}>
-                <div className="zb-brand-image">
-                    {brandPhoto ? (
-                        <img src={brandPhoto.url} alt={brandPhoto.alt || brandName} className="zolo-img" />
-                    ) : (
-                        <MediaPlaceholder
-                            onSelect={(media) => setAttributes({ brandPhoto: media })}
-                            allowedTypes={['image']}
-                            multiple={false}
-                            labels={{ title: __('Brand Photo', 'zolo-blocks') }}
-                        />
-                    )}
-                </div>
-                <div className="zb-brand-content">
-                    <div className="zb-brand-icon">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            className="bi bi-plus"
-                            viewBox="0 0 16 16"
-                        >
-                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                        </svg>
-                    </div>
-                    <div className="zb-brand-inner-content">
-                        {isBrandName && (
-                            <RichText
-                                tagName={brandNameTag}
-                                className="zb-brand-title"
-                                value={brandName}
-                                onChange={(name) =>
-                                    setAttributes({
-                                        brandName: name,
-                                    })
-                                }
-                                placeholder={__('Brand name..', 'zolo-blocks')}
-                            />
-                        )}
-                        {isBrandLink && (
-                            <a
-                                className="zb-brand-link"
-                                href={brandDetailPageLink && brandDetailPageLink.url}
-                                rel={brandDetailPageLink && brandDetailPageLink.opensInNewTab && 'noreferer'}
-                                target={brandDetailPageLink && brandDetailPageLink.opensInNewTab && '_blank'}
-                            >
-                                <RichText
-                                    tagName="span"
-                                    value={brandLabel}
-                                    onChange={(name) =>
-                                        setAttributes({
-                                            brandLabel: name,
-                                        })
-                                    }
-                                    placeholder={__('www.zalando.com', 'zolo-blocks')}
+                {enableLogoLink && logoLinkType === 'logo__global' ? (
+                    <a
+                        className="zb-brand-global-link"
+                        href={logoLink && logoLink.url}
+                        rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
+                        target={logoLink && logoLink.openInNewTab && '_blank'}
+                    >
+                        <div className="zb-brand-image">
+                            {brandPhoto ? (
+                                <img src={brandPhoto.url} alt={brandPhoto.alt || brandTitle} className="zolo-img" />
+                            ) : (
+                                <MediaPlaceholder
+                                    onSelect={(media) => setAttributes({ brandPhoto: media })}
+                                    allowedTypes={['image']}
+                                    multiple={false}
+                                    labels={{ title: __('Brand Photo', 'zolo-blocks') }}
                                 />
-                            </a>
-                        )}
-                    </div>
-                </div>
+                            )}
+                        </div>
+                        <div className="zb-brand-content">
+                            <div className="zb-brand-icon">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    className="bi bi-plus"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>
+                            </div>
+                            <div className="zb-brand-inner-content">
+                                {brandNameVisible && (
+                                    <RichText
+                                        tagName={brandNameTag}
+                                        className="zb-brand-title"
+                                        value={brandTitle}
+                                        onChange={(name) =>
+                                            setAttributes({
+                                                brandTitle: name,
+                                            })
+                                        }
+                                        placeholder={__('Brand title..', 'zolo-blocks')}
+                                    />
+                                )}
+                                {brandLabelVisible && (
+                                    <RichText
+                                        tagName="span"
+                                        className="zb-brand-link"
+                                        value={brandLabel}
+                                        onChange={(name) =>
+                                            setAttributes({
+                                                brandLabel: name,
+                                            })
+                                        }
+                                        placeholder={__('Brand label..', 'zolo-blocks')}
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </a>
+                ) : (
+                    <>
+                        <div className="zb-brand-image">
+                            {brandPhoto ? (
+                                <img src={brandPhoto.url} alt={brandPhoto.alt || brandTitle} className="zolo-img" />
+                            ) : (
+                                <MediaPlaceholder
+                                    onSelect={(media) => setAttributes({ brandPhoto: media })}
+                                    allowedTypes={['image']}
+                                    multiple={false}
+                                    labels={{ title: __('Brand Photo', 'zolo-blocks') }}
+                                />
+                            )}
+                        </div>
+                        <div className="zb-brand-content">
+                            <div className="zb-brand-icon">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    className="bi bi-plus"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>
+                            </div>
+                            <div className="zb-brand-inner-content">
+                                {brandNameVisible && (
+                                    <>
+                                        {enableLogoLink && logoLinkType === 'logo__title' ? (
+                                            <a
+                                                href={logoLink && logoLink.url}
+                                                rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
+                                                target={logoLink && logoLink.openInNewTab && '_blank'}
+                                            >
+                                                <RichText
+                                                    tagName={brandNameTag}
+                                                    className="zb-brand-title has-link"
+                                                    value={brandTitle}
+                                                    onChange={(name) =>
+                                                        setAttributes({
+                                                            brandTitle: name,
+                                                        })
+                                                    }
+                                                    placeholder={__('Brand title..', 'zolo-blocks')}
+                                                />
+                                            </a>
+                                        ) : (
+                                            <RichText
+                                                tagName={brandNameTag}
+                                                className="zb-brand-title"
+                                                value={brandTitle}
+                                                onChange={(name) =>
+                                                    setAttributes({
+                                                        brandTitle: name,
+                                                    })
+                                                }
+                                                placeholder={__('Brand title..', 'zolo-blocks')}
+                                            />
+                                        )}
+                                    </>
+                                )}
+                                {brandLabelVisible && (
+                                    <>
+                                        {enableLogoLink && logoLinkType === 'logo__label' ? (
+                                            <a
+                                                href={logoLink && logoLink.url}
+                                                rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
+                                                target={logoLink && logoLink.openInNewTab && '_blank'}
+                                                className="zb-brand-title-link has-link"
+                                            >
+                                                <RichText
+                                                    tagName="span"
+                                                    value={brandLabel}
+                                                    onChange={(name) =>
+                                                        setAttributes({
+                                                            brandLabel: name,
+                                                        })
+                                                    }
+                                                    placeholder={__('Brand label..', 'zolo-blocks')}
+                                                />
+                                            </a>
+                                        ) : (
+                                            <RichText
+                                                tagName="span"
+                                                className="zb-brand-title-link"
+                                                value={brandLabel}
+                                                onChange={(name) =>
+                                                    setAttributes({
+                                                        brandLabel: name,
+                                                    })
+                                                }
+                                                placeholder={__('Brand label..', 'zolo-blocks')}
+                                            />
+                                        )}
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
         </>
     );

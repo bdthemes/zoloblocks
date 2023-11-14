@@ -715,7 +715,6 @@ export const VariationPicker = (props) => {
                 variations={variations}
                 onSelect={(nextVariation) => {
                     blockVariationPickerOnSelect(nextVariation);
-                    console.log(nextVariation);
                 }}
             />
         </div>

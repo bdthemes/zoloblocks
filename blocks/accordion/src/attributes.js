@@ -1,10 +1,22 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes, generateNormalBGAttributes } =
-    window.zoloModule;
+const {
+    generateBoxShadowAttributies,
+    generateResRangeAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateNormalBGAttributes,
+    generateTypographyAttributes,
+} = window.zoloModule;
 
 import {
+    AC_CONTAINER_BORDER,
+    AC_CONTAINER_BORDER_RADIUS,
+    AC_CONTAINER_BG,
+    AC_CONTAINER_BOX_SHADOW,
+    AC_CONTAINER_PADDING,
+    AC_CONTAINER_MARGIN,
     AC_HEADER_BORDER,
     AC_HEADER_BORDER_RADIUS,
     AC_HEADER_BG,
@@ -30,6 +42,8 @@ import {
     AAC_BODY_BG,
     AICONTAINER_BG,
 } from './constants';
+
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
     // global Attributes
@@ -98,6 +112,13 @@ const attributes = {
         type: 'string',
     },
     // Generators
+    ...generateBorderAttributies(AC_CONTAINER_BORDER),
+    ...generateDimensionAttributes(AC_CONTAINER_BORDER_RADIUS),
+    ...generateNormalBGAttributes(AC_CONTAINER_BG),
+    ...generateDimensionAttributes(AC_CONTAINER_PADDING),
+    ...generateDimensionAttributes(AC_CONTAINER_MARGIN),
+    ...generateBoxShadowAttributies(AC_CONTAINER_BOX_SHADOW),
+    // accordion header
     ...generateBorderAttributies(AC_HEADER_BORDER),
     ...generateDimensionAttributes(AC_HEADER_BORDER_RADIUS),
     ...generateNormalBGAttributes(AC_HEADER_BG),
@@ -105,6 +126,7 @@ const attributes = {
     ...generateNormalBGAttributes(AC_HEADER_HBG),
     ...generateDimensionAttributes(AC_HEADER_PADDING),
     ...generateDimensionAttributes(AC_HEADER_MARGIN),
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
 
     // accordion body
     ...generateBorderAttributies(AC_BODY_BORDER),

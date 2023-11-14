@@ -7,6 +7,11 @@
     "description": "Advanced icon box description",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "iconBoxTitle": "Advanced Icon Box"
+        }
+    },
     "supports": {
         "anchor": false,
         "customClassName": false,

@@ -4,11 +4,11 @@ const { classArrayToStr } = window.zoloModule;
 import classnames from 'classnames';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses } = attributes;
+    const { uniqueId, preset, parentClasses } = attributes;
     return (
         <div
             {...useBlockProps.save({
-                className: classnames(uniqueId, classArrayToStr(parentClasses)),
+                className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
             })}
         >
             <InnerBlocks.Content />

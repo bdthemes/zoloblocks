@@ -70,7 +70,7 @@ const Edit = (props) => {
                     <DynamicTag tagName={titleTagName} className="zolo-ah-title">
                         <RichText
                             tagName={enableTitleLink && titleLink ? 'a' : 'span'}
-                            className="zolo-ah-main-title"
+                            className={`zolo-ah-main-title ${enableTitleLink ? 'has-link' : ''}`}
                             value={titleText}
                             formattingControl={['bold', 'italic']}
                             onChange={(titleText) => setAttributes({ titleText })}
@@ -92,8 +92,11 @@ const Edit = (props) => {
                             onChange={(subTitleText) => setAttributes({ subTitleText })}
                         />
                     )}
-
-                    {showSeparator && separatorPosition === 'bottom' && <div className="zolo-ah-separator"></div>}
+                    {showSeparator && separatorPosition === 'bottom' && (
+                        <div className="zolo-separator-wrapper">
+                            <div className="zolo-ah-separator"></div>
+                        </div>
+                    )}
                 </div>
             </div>
         </>

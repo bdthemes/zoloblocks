@@ -156,69 +156,24 @@ function Inspector({ attributes, setAttributes }) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
-                                label={__('Preset Designs', 'zolo-blocks')}
+                                label={__('Styles', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
                                 onChange={(selected) => changePremade(selected)}
                             />
-                            <ResCounterControl
-                                label={__('Column', 'zolo-blocks')}
-                                controlName={GRID_COLUMNS}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={6}
-                            />
-                            <ResRangeControl
-                                label={__('Gap', 'zolo-blocks')}
-                                controlName={COLUMNS_GAP}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
+
                             <ToggleControl
                                 label={__('Show Thumbnail', 'zolo-blocks')}
                                 checked={showThumbnail}
                                 onChange={(showThumbnail) => setAttributes({ showThumbnail })}
                             />
-                            <ResRangeControl
-                                label={__('Thumbnail Height', 'zolo-blocks')}
-                                controlName={THUMBNAIL_HEIGHT}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={600}
-                                step={1}
-                            />
-                            <SelectControl
-                                label={__('Thumbnail Image Size', 'zolo-blocks')}
-                                value={postQuery?.postThumbnail}
-                                options={THUMBNAIL_SIZE}
-                                onChange={(postThumbnail) =>
-                                    setAttributes({
-                                        postQuery: { ...postQuery, postThumbnail },
-                                    })
-                                }
-                            />
+
                             <ToggleControl
                                 label={__('Show Title', 'zolo-blocks')}
                                 checked={showTitle}
                                 onChange={(showTitle) => setAttributes({ showTitle })}
-                            />
-                            <SelectControl
-                                label={__('Title Tag', 'zolo-blocks')}
-                                value={titleTag}
-                                options={HEADING}
-                                onChange={(titleTag) => setAttributes({ titleTag })}
-                            />
-                            <RangeResetControl
-                                label={__('Title Words', 'zolo-blocks')}
-                                controlName={'titleWords'}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={100}
-                                step={1}
                             />
 
                             <ToggleControl
@@ -226,32 +181,12 @@ function Inspector({ attributes, setAttributes }) {
                                 checked={showExcerpt}
                                 onChange={(showExcerpt) => setAttributes({ showExcerpt })}
                             />
-                            <RangeResetControl
-                                label={__('Excerpt Words', 'zolo-blocks')}
-                                controlName={'excerptWords'}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={100}
-                                step={1}
-                            />
-                            <TextControl
-                                label={__(' Expansion Indicator', 'zolo-blocks')}
-                                value={excerptindicator}
-                                onChange={(excerptindicator) => setAttributes({ excerptindicator })}
-                            />
 
                             <ToggleControl
                                 label={__('Show Read More Button', 'zolo-blocks')}
                                 checked={showReadMore}
                                 onChange={(showReadMore) => setAttributes({ showReadMore })}
                             />
-                            {showReadMore && (
-                                <TextControl
-                                    label={__('Button Text', 'zolo-blocks')}
-                                    value={readMoreBtnText}
-                                    onChange={(readMoreBtnText) => setAttributes({ readMoreBtnText })}
-                                />
-                            )}
 
                             <ToggleControl
                                 label={__('Show Category', 'zolo-blocks')}
@@ -278,6 +213,89 @@ function Inspector({ attributes, setAttributes }) {
                                 }
                             />
                         </PanelBody>
+                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
+                            {showThumbnail && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Thumbnail Height', 'zolo-blocks')}
+                                        controlName={THUMBNAIL_HEIGHT}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={600}
+                                        step={1}
+                                    />
+                                    <SelectControl
+                                        label={__('Thumbnail Image Size', 'zolo-blocks')}
+                                        value={postQuery?.postThumbnail}
+                                        options={THUMBNAIL_SIZE}
+                                        onChange={(postThumbnail) =>
+                                            setAttributes({
+                                                postQuery: { ...postQuery, postThumbnail },
+                                            })
+                                        }
+                                    />
+                                </>
+                            )}
+                            {showTitle && (
+                                <>
+                                    <SelectControl
+                                        label={__('Title Tag', 'zolo-blocks')}
+                                        value={titleTag}
+                                        options={HEADING}
+                                        onChange={(titleTag) => setAttributes({ titleTag })}
+                                    />
+                                    <RangeResetControl
+                                        label={__('Title Words', 'zolo-blocks')}
+                                        controlName={'titleWords'}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={100}
+                                        step={1}
+                                    />
+                                </>
+                            )}
+                            {showExcerpt && (
+                                <>
+                                    <RangeResetControl
+                                        label={__('Excerpt Words', 'zolo-blocks')}
+                                        controlName={'excerptWords'}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={100}
+                                        step={1}
+                                    />
+                                    <TextControl
+                                        label={__(' Expansion Indicator', 'zolo-blocks')}
+                                        value={excerptindicator}
+                                        onChange={(excerptindicator) => setAttributes({ excerptindicator })}
+                                    />
+                                </>
+                            )}
+                            {showReadMore && (
+                                <TextControl
+                                    label={__('Button Text', 'zolo-blocks')}
+                                    value={readMoreBtnText}
+                                    onChange={(readMoreBtnText) => setAttributes({ readMoreBtnText })}
+                                />
+                            )}
+                        </PanelBody>
+                        <PanelBody title={__('Columns', 'zolo-blocks')} initialOpen={false}>
+                            <ResCounterControl
+                                label={__('Column', 'zolo-blocks')}
+                                controlName={GRID_COLUMNS}
+                                requiredProps={requiredProps}
+                                min={1}
+                                max={6}
+                            />
+                            <ResRangeControl
+                                label={__('Gap', 'zolo-blocks')}
+                                controlName={COLUMNS_GAP}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={100}
+                                step={1}
+                            />
+                        </PanelBody>
                         <PanelBody title={__('Query', 'zolo-blocks')} initialOpen={false}>
                             <QueryControl attributes={attributes} setAttributes={setAttributes} />
                         </PanelBody>
@@ -285,7 +303,7 @@ function Inspector({ attributes, setAttributes }) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Item Container', 'zolo-blocks')} initialOpen={true}>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={COLUMN_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}

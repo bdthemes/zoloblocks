@@ -5,9 +5,9 @@ export const BLOCK_PREFIX = 'zolo-advanced-heading';
 //settings tab
 export const STYLES = [
     { label: __('Default', 'zolo-blocks'), value: 'style-0' },
-    { label: __('Style 1', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
-    { label: __('Style 3', 'zolo-blocks'), value: 'style-3' },
+    { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
+    { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
+    { label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
 ];
 
 export const ST_POSITION = [

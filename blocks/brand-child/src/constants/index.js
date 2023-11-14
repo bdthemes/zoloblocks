@@ -8,16 +8,6 @@ export const BLOCK_PREFIX = 'brand-child';
 
 // container
 export const CONTAINER_HEIGHT = 'containerHeight';
-export const CONTAINER_BACKGROUND = 'containerBackground';
-export const CONTAINER_BORDER = 'containerBorder';
-export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
-export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
-
-// hover
-export const CONTAINER_HOVER_BACKGROUND = 'containerHoverBackground';
-export const CONTAINER_HOVER_BOX_SHADOW = 'containerHoverBoxShadow';
-export const CONTAINER_HOVER_BORDER = 'containerHoverBorder';
-
 //  photo
 export const BRAND_PHOTO_BG = 'photoBackground';
 export const BRAND_PHOTO_BORDER = 'photoBorder';
@@ -35,6 +25,7 @@ export const TITLE_TEXT_STROKE = 'titleTextStroke';
 // content
 export const CONTENT_ALIGNMENT = 'ContentAlignment';
 export const CONTENT_PADDING = 'ContentPadding';
+export const CONTENT_BG = 'ContentBg';
 
 // link
 export const LINK_TEXT_SHADOW = 'linkTextShadow';

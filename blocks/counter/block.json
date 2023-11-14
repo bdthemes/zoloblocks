@@ -7,6 +7,11 @@
     "description": "Advanced counter box description",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "titleText": "Happy Clients"
+        }
+    },
     "supports": {
         "anchor": false,
         "customClassName": false,

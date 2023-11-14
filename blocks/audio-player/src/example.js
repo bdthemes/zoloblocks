@@ -1,6 +1,6 @@
 const Example = {
     attributes: {
-        memberName: 'John Doe',
+        label: 'Button',
     },
 };
 

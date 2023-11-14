@@ -1,10 +1,22 @@
 /**
  * Internal dependencies
  */
-const { generateBorderAttributies, generateDimensionAttributes, generateNormalBGAttributes, generateResRangeAttributies } =
-    window.zoloModule;
+const {
+    generateBoxShadowAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateNormalBGAttributes,
+    generateResRangeAttributies,
+    generateTypographyAttributes,
+} = window.zoloModule;
 
 import {
+    AC_CONTAINER_BORDER,
+    AC_CONTAINER_BORDER_RADIUS,
+    AC_CONTAINER_BG,
+    AC_CONTAINER_BOX_SHADOW,
+    AC_CONTAINER_PADDING,
+    AC_CONTAINER_MARGIN,
     AC_HEADER_BORDER,
     AC_HEADER_BORDER_RADIUS,
     AC_HEADER_BG,
@@ -25,6 +37,8 @@ import {
     ICONTAINER_BRADIUS,
     ICON_SIZE,
 } from './constants';
+
+import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
     // global Attributes
@@ -53,6 +67,13 @@ const attributes = {
         },
     },
     // block attributes
+    ...generateBorderAttributies(AC_CONTAINER_BORDER),
+    ...generateDimensionAttributes(AC_CONTAINER_BORDER_RADIUS),
+    ...generateNormalBGAttributes(AC_CONTAINER_BG),
+    ...generateDimensionAttributes(AC_CONTAINER_PADDING),
+    ...generateDimensionAttributes(AC_CONTAINER_MARGIN),
+    ...generateBoxShadowAttributies(AC_CONTAINER_BOX_SHADOW),
+    // accordion header
     ...generateBorderAttributies(AC_HEADER_BORDER),
     ...generateDimensionAttributes(AC_HEADER_BORDER_RADIUS),
     ...generateNormalBGAttributes(AC_HEADER_BG),
@@ -74,7 +95,7 @@ const attributes = {
     ...generateDimensionAttributes(ICONTAINER_PADDING),
     ...generateBorderAttributies(ICONTAINER_BORDER),
     ...generateDimensionAttributes(ICONTAINER_BRADIUS),
-
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
     // icon
     ...generateResRangeAttributies(ICON_SIZE),
     // Tab Icons
@@ -94,6 +115,12 @@ const attributes = {
     },
     // accordion attributes
     title: {
+        type: 'string',
+    },
+    titleColor: {
+        type: 'string',
+    },
+    titleHoverColor: {
         type: 'string',
     },
     titleTag: {

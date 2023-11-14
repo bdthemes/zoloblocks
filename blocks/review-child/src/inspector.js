@@ -206,7 +206,7 @@ function Inspector(props) {
                             )}
                         </PanelBody>
                         {addReviewerWebsiteLink && (
-                            <PanelBody title={__('Reviewer Website', 'zolo-blocks')}>
+                            <PanelBody title={__('Reviewer Website', 'zolo-blocks')} initialOpen={false}>
                                 <LinkControl
                                     label={__('Website Link', 'zolo-blocks')}
                                     value={reviewerWebsiteLink}
@@ -233,7 +233,7 @@ function Inspector(props) {
                 styleTab={
                     <>
                         {preset === 'style-2' && (
-                            <PanelBody title={__('Preset Style', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody title={__('Preset', 'zolo-blocks')} initialOpen={false}>
                                 <RangeControl
                                     label={__('Blur Strength', 'zolo-blocks')}
                                     value={blurBgOpacity}

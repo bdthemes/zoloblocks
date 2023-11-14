@@ -172,7 +172,9 @@ const attributes = {
         type: 'string',
         default: '',
     },
-
+    titleHoverColor: {
+        type: 'string',
+    },
     subTitleColor: {
         type: 'string',
         default: '',

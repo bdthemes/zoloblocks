@@ -45,6 +45,7 @@ import {
     ZOOM_ICON_BG_COLOR,
     ZOOM_ICON_BG_HOVER_COLOR,
     OVERLAY_BG_COLOR,
+    ZOOM_ICON_SIZE,
 } from './constants';
 
 const attributes = {
@@ -114,6 +115,7 @@ const attributes = {
     ...generateBoxShadowAttributies(ZOOM_ICON_HOVER_BOX_SHADOW),
     ...generateNormalBGAttributes(ZOOM_ICON_BG_COLOR),
     ...generateNormalBGAttributes(ZOOM_ICON_BG_HOVER_COLOR),
+    ...generateResRangeAttributies(ZOOM_ICON_SIZE),
 
     // Column Count
     ...generateResCounterAttributies(COLUMN_COUNT, {
@@ -147,6 +149,10 @@ const attributes = {
     showLightbox: {
         type: 'boolean',
         default: true,
+    },
+    lightboxIcon: {
+        type: 'string',
+        default: 'fas fa-plus',
     },
     zoomIconColor: {
         type: 'string',

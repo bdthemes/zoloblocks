@@ -130,7 +130,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <ToggleControl
                                 label={__('Show Badge', 'zolo-blocks')}
                                 checked={showBadge}
@@ -397,7 +397,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Header Area', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Header Area', 'zolo-blocks')} initialOpen={true}>
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={HEADER_AREA_BORDER_RADIUS}

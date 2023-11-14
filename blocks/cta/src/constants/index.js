@@ -53,12 +53,6 @@ export const BUTTON_HOVER_BOX_SHADOW = 'buttonHoverBoxShadow';
  */
 
 export const ICON_SIZE = 'iconSize';
-export const ICON_TEXT_SPACING = 'iconTextSpacing';
-export const ICON_BORDER = 'btnIconBorder';
-export const ICON_BORDER_RADIUS = 'btnIconBorderRadius';
-export const ICON_BOX_SHADOW = 'btnIconBoxShadow';
-export const ICON_HOVER_BOX_SHADOW = 'btnIconHoverBoxShadow';
-export const ICON_PADDING = 'btnIconPadding';
 
 /**
  * Presets Styles
@@ -88,3 +82,5 @@ export const DESC_MARGIN = 'descMargin';
 
 // flex gap
 export const FLEX_GAP = 'flexGap';
+
+export const ICON_TEXT_SPACING = 'iconTextSpacing';

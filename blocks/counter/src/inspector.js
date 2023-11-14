@@ -84,7 +84,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <ToggleControl
                                 label={__('Show counter icon', 'zolo-blocks')}
                                 checked={hideIcon}
@@ -102,11 +102,16 @@ function Inspector(props) {
                                     onChange={() => setAttributes({ hideSuffix: !hideSuffix })}
                                 />
                             )}
-
                             <ToggleControl
                                 label={__('Show counter title', 'zolo-blocks')}
                                 checked={hideTitle}
                                 onChange={() => setAttributes({ hideTitle: !hideTitle })}
+                            />
+                            <ResAlignmentControl
+                                label={__('Alignment', 'zolo-blocks')}
+                                controlName={CONTENT_ALIGN}
+                                requiredProps={requiredProps}
+                                alignOptions={DEFAULT_ALIGNS}
                             />
                         </PanelBody>
                         <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
@@ -213,13 +218,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={false}>
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zolo-blocks')}
-                                controlName={CONTENT_ALIGN}
-                                requiredProps={requiredProps}
-                                alignOptions={DEFAULT_ALIGNS}
-                            />
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={CONTAINER_BORDER}
@@ -241,18 +240,6 @@ function Inspector(props) {
                         </PanelBody>
                         {hideIcon && (
                             <PanelBody title={__('Media', 'zolo-blocks')} initialOpen={false}>
-                                {iconType === 'icon' && (
-                                    <ColorControl
-                                        label={__('Color', 'zolo-blocks')}
-                                        color={iconColor}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                iconColor: value,
-                                            })
-                                        }
-                                    />
-                                )}
-
                                 {iconType === 'icon' && (
                                     <ResRangeControl
                                         label={__('Icon Size', 'zolo-blocks')}
@@ -294,6 +281,17 @@ function Inspector(props) {
                                     controlName={ICON_MARGIN}
                                     requiredProps={requiredProps}
                                 />
+                                {iconType === 'icon' && (
+                                    <ColorControl
+                                        label={__('Color', 'zolo-blocks')}
+                                        color={iconColor}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                iconColor: value,
+                                            })
+                                        }
+                                    />
+                                )}
                                 <NormalBGControl requiredProps={requiredProps} controlName={ICON_BACKGROUND} noMainBGImg={true} />
                             </PanelBody>
                         )}

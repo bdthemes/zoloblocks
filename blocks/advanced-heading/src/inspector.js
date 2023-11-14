@@ -1,6 +1,6 @@
 //wrodpress dependencies
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
+import { PanelBody, RangeControl, SelectControl, TextControl, ToggleControl, ColorPalette } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 const {
@@ -19,6 +19,7 @@ const {
     LinkControl,
     IconicBtnGroup,
     AdvancedOptions,
+    TabPanelControl,
 } = window.zoloModule;
 
 //block attributes
@@ -87,6 +88,7 @@ const Inspector = ({ attributes, setAttributes }) => {
         //design
         titleColor,
         titleBgColor,
+        titleHoverColor,
 
         subTitleColor,
         subTitleBgColor,
@@ -150,7 +152,7 @@ const Inspector = ({ attributes, setAttributes }) => {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={styles}
@@ -177,6 +179,12 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 checked={showTransparentTitle}
                                 onChange={() => setAttributes({ showTransparentTitle: !showTransparentTitle })}
                             />
+                            <ResAlignmentControl
+                                label={__('Alignmet', 'zolo-blocks')}
+                                controlName={TITLE_ALIGN}
+                                requiredProps={requiredProps}
+                                alignOptions={TEXT_ALIGN_OPTIONS}
+                            />
                         </PanelBody>
                         <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
                             <TextControl
@@ -198,12 +206,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     help={__('http://your-link.com', 'zolo-blocks')}
                                 />
                             )}
-                            <ResAlignmentControl
-                                label={__('Alignmet', 'zolo-blocks')}
-                                controlName={TITLE_ALIGN}
-                                requiredProps={requiredProps}
-                                alignOptions={TEXT_ALIGN_OPTIONS}
-                            />
                         </PanelBody>
                         {showSubTitle && (
                             <PanelBody title={__('Sub Heading', 'zolo-blocks')} initialOpen={false}>
@@ -330,25 +332,77 @@ const Inspector = ({ attributes, setAttributes }) => {
                     <>
                         <PanelBody title={__('Heading', 'zolo-blocks')} initialOpen={true}>
                             <TypographyDropdown label="Typography" typoPrefixConstant={TITLE_TYPOGRAPHY} requiredProps={requiredProps} />
+                            {!enableTitleLink && (
+                                <>
+                                    <ColorControl
+                                        label={__('Color', 'zolo-blocks')}
+                                        color={titleColor}
+                                        onChange={(val) =>
+                                            setAttributes({
+                                                titleColor: val,
+                                            })
+                                        }
+                                    />
 
-                            <ColorControl
-                                label={__('Color', 'zolo-blocks')}
-                                color={titleColor}
-                                onChange={(val) =>
-                                    setAttributes({
-                                        titleColor: val,
-                                    })
-                                }
-                            />
+                                    <ColorControl
+                                        label={__('Background', 'zolo-blocks')}
+                                        color={titleBgColor}
+                                        onChange={(val) =>
+                                            setAttributes({
+                                                titleBgColor: val,
+                                            })
+                                        }
+                                    />
+                                </>
+                            )}
+                            {enableTitleLink && (
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={titleColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        titleColor: val,
+                                                    })
+                                                }
+                                            />
 
-                            <ColorControl
-                                label={__('Background', 'zolo-blocks')}
-                                color={titleBgColor}
-                                onChange={(val) =>
-                                    setAttributes({
-                                        titleBgColor: val,
-                                    })
-                                }
+                                            <ColorControl
+                                                label={__('Background', 'zolo-blocks')}
+                                                color={titleBgColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        titleBgColor: val,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Hover Color', 'zolo-blocks')}
+                                                color={titleHoverColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        titleHoverColor: val,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                />
+                            )}
+
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={TITLE_BORDER} requiredProps={requiredProps} />
+
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={TITLE_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
                             />
 
                             <ResDimensionsControl
@@ -363,19 +417,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 requiredProps={requiredProps}
                             />
 
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={TITLE_BORDER} requiredProps={requiredProps} />
-
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={TITLE_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-
                             <BoxShadowControl controlName={TITLE_SHADOW} requiredProps={requiredProps} />
-
                             <TextShadowControl controlName={TITLE_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-
                             <TextStrokeControl controlName={TITLE_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
                         </PanelBody>
 
