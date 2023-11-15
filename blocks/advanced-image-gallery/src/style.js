@@ -443,7 +443,7 @@ export default function Style({ props }) {
 			${headingTypoDesk}
 		}
 
-        .${uniqueId} .zolo-icon i{
+        .${uniqueId} .zolo-item .zolo-icon {
             color: ${zoomIconColor ? zoomIconColor : ''};
             ${zoomIconPaddingDesk}
             ${zoomIconBorderDesk}
@@ -453,7 +453,7 @@ export default function Style({ props }) {
             ${zoomIconSizeDesk}
         }
 
-        .${uniqueId} .zolo-icon:hover i{
+        .${uniqueId}  .zolo-item .zolo-icon:hover {
             color: ${zoomIconHoverColor ? zoomIconHoverColor : ''};
             border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
             ${zoomIconHoverBoxShadow}

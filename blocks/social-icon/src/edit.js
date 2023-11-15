@@ -36,13 +36,17 @@ export default function Edit(props) {
                 {socialProfiles &&
                     socialProfiles.map((profile, index) => {
                         let socialName = Object.keys(profile.icon)[0];
+                        const iconName = profile && profile.icon.slice(7, profile.icon.length);
+
+                        console.log(iconName);
+
                         return (
                             <a
                                 href={profile.link && profile.link.url}
                                 key={index}
                                 target={profile.link && profile.link.openInNewTab && '_blank'}
                                 rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
-                                className={`zolo-social-item zolo-${socialName} ${socialColor}`}
+                                className={`zolo-social-item zolo-${socialName} ${socialColor} ${iconName}`}
                             >
                                 {socialText !== 'none' && (
                                     <span className="zolo-social-icon">

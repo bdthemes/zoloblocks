@@ -50,8 +50,7 @@ $background-color_1: rgba(204, 209, 255, 0.122);
     .zolo-call-out {
         &.style-1 {
             display: flex;
-            flex-direction: row;
-            align-items: center;
+            flex-direction: column;
             justify-content: space-between;
             gap: 20px;
             .zolo-call-out__button {
@@ -65,6 +64,17 @@ $background-color_1: rgba(204, 209, 255, 0.122);
         }
         &.reserve-position {
             flex-direction: row-reverse;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .wp-block-zolo-cta {
+        .zolo-call-out {
+            &.style-1 {
+                flex-direction: row;
+                align-items: center;
+            }
         }
     }
 }
