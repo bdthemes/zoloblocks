@@ -32,6 +32,8 @@ import {
     ICONS_PADDING,
     ICONS_SIZE,
     ICONS_SPACING,
+    ICONS_CONTAINER_MARGIN,
+    ICONS_CONTAINER_PADDING,
     TEAM_DESIGNATION_MARGIN,
     TEAM_NAME_MARGIN,
     PHOTO_BG,
@@ -274,6 +276,26 @@ const Style = ({ props }) => {
         dimensionStylesMobile: shortBioMobMargin,
     } = generateDimensionStyle({
         controlName: TEAM_SHORT_BIO_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: socialContainerDeskPadding,
+        dimensionStylesTab: socialContainerTabPadding,
+        dimensionStylesMobile: socialContainerMobPadding,
+    } = generateDimensionStyle({
+        controlName: ICONS_CONTAINER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: socialContainerDeskMargin,
+        dimensionStylesTab: socialContainerTabMargin,
+        dimensionStylesMobile: socialContainerMobMargin,
+    } = generateDimensionStyle({
+        controlName: ICONS_CONTAINER_MARGIN,
         styleFor: 'margin',
         attributes,
     });
@@ -522,6 +544,12 @@ const Style = ({ props }) => {
 			${shortBioTypoDesk}
 			${shortBioDeskMargin}
 		}
+
+        .${uniqueId}.default .zolo-social-and-link-wrap {
+            ${socialContainerDeskPadding}
+            ${socialContainerDeskMargin}
+        }
+
 		.${uniqueId} .zolo-social-share {
 			${socialIconsGapDesk}
 		}
@@ -604,6 +632,10 @@ const Style = ({ props }) => {
 			${shortBioTypoTab}
 			${shortBioTabMargin}
 		}
+        .${uniqueId}.default .zolo-social-and-link-wrap {
+            ${socialContainerTabPadding}
+            ${socialContainerTabMargin}
+        }
 		.${uniqueId} .zolo-social-share {
 			${socialIconsGapTab}
 		}
@@ -677,6 +709,10 @@ const Style = ({ props }) => {
 			${shortBioTypoMob}
 			${shortBioMobMargin}
 		}
+        .${uniqueId}.default .zolo-social-and-link-wrap {
+            ${socialContainerMobPadding}
+            ${socialContainerMobMargin}
+        }
 		.${uniqueId} .zolo-social-share {
 			${socialIconsGapMob}
 		}

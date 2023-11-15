@@ -1,6 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Advanced Image Gallery",
+    "title": "Image Gallery",
     "name": "zolo/advanced-image-gallery",
     "category": "zolo-blocks",
     "keywords": ["advanced", "image gallery"],

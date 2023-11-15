@@ -37,9 +37,6 @@ export default function Edit(props) {
                     socialProfiles.map((profile, index) => {
                         let socialName = Object.keys(profile.icon)[0];
                         const iconName = profile && profile.icon.slice(7, profile.icon.length);
-
-                        console.log(iconName);
-
                         return (
                             <a
                                 href={profile.link && profile.link.url}
