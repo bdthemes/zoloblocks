@@ -36,7 +36,7 @@
         font-weight: 700;
         text-decoration: none;
         text-transform: capitalize;
-        &:hover {
+        &.has-link:hover {
             color: rgba(255, 0, 0, 0.938);
         }
     }
@@ -125,17 +125,15 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                fill: #2b3c62;
                 transition: 0.2s;
-                svg {
-                    width: 20px;
-                }
+                text-decoration: none !important;
+                box-sizing: border-box;
             }
         }
-        .zolo-item:hover .zolo-link-btn a {
+        .zolo-item .zolo-link-btn:hover a {
             background-color: rgba(255, 0, 0, 0.938);
-            svg {
-                fill: #fff;
-            }
+            color: #fff;
         }
         .zolo-img {
             width: 100%;

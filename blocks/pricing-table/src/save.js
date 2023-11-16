@@ -30,6 +30,7 @@ const Save = ({ attributes }) => {
         chatBtnText,
         showRibbon,
         ribbonTitle,
+        ribbonPosition,
     } = attributes;
 
     const blockprops = useBlockProps.save({
@@ -45,7 +46,7 @@ const Save = ({ attributes }) => {
                     <div className="zolo-head-content">
                         <RichText.Content tagName={titleTagName} value={titleText} className="zolo-package-title" />
 
-                        {showRibbon && ribbonTitle && <div className="zolo-ribbon-btn">{ribbonTitle}</div>}
+                        {showRibbon && ribbonTitle && <div className={`zolo-ribbon-btn ${ribbonPosition}`}>{ribbonTitle}</div>}
 
                         <div className="zolo-price-info">
                             {orginalPrice && sale && (
@@ -75,6 +76,27 @@ const Save = ({ attributes }) => {
                         </div>
 
                         {showDesc && <RichText.Content tagName="div" className="zolo-package-desc" value={descText} />}
+                    </div>
+
+                    <div className="zolo-features-info">
+                        {showFeatureHeading && <RichText.Content tagName="div" value={featureTitle} className="zolo-features-title" />}
+
+                        {showFeatureDesc && <RichText.Content tagName="div" value={featureDesc} className="zolo-features-desc" />}
+
+                        {features.length !== 0 && (
+                            <ul className="features">
+                                {features.map((item, index) => (
+                                    <li key={index}>
+                                        {item.icon && (
+                                            <span className="zolo-check-icon">
+                                                <DisplayIcon icon={item.icon} />
+                                            </span>
+                                        )}
+                                        <span className="zolo-list-text">{item.text}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
 
                         <div className="zolo-link-btn">
                             {showBtn && (
@@ -98,27 +120,6 @@ const Save = ({ attributes }) => {
                                 />
                             )}
                         </div>
-                    </div>
-
-                    <div className="zolo-features-info">
-                        {showFeatureHeading && <RichText.Content tagName="div" value={featureTitle} className="zolo-features-title" />}
-
-                        {showFeatureDesc && <RichText.Content tagName="div" value={featureDesc} className="zolo-features-desc" />}
-
-                        {features.length !== 0 && (
-                            <ul className="features">
-                                {features.map((item, index) => (
-                                    <li key={index}>
-                                        {item.icon && (
-                                            <span className="zolo-check-icon">
-                                                <DisplayIcon icon={item.icon} />
-                                            </span>
-                                        )}
-                                        <span className="zolo-list-text">{item.text}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
                     </div>
                 </div>
             </div>

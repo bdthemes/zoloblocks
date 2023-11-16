@@ -135,6 +135,7 @@ const attributes = {
         type: 'object',
         default: {
             bgColor: '',
+            hoverBgColor: '',
         },
     },
     presetFourStyles: {

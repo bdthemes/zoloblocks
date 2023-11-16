@@ -6,6 +6,14 @@ import { __ } from '@wordpress/i18n';
 // Block Prefix
 export const BLOCK_PREFIX = 'slide';
 
+// accordion container
+export const AC_CONTAINER_BORDER = 'accBorder';
+export const AC_CONTAINER_BORDER_RADIUS = 'accBorderRadius';
+export const AC_CONTAINER_BOX_SHADOW = 'accBoxShadow';
+export const AC_CONTAINER_PADDING = 'accPadding';
+export const AC_CONTAINER_MARGIN = 'accMargin';
+export const AC_CONTAINER_BG = 'accBg';
+
 // accordion header
 export const AC_HEADER_BORDER = 'achBorder';
 export const AC_HEADER_BORDER_RADIUS = 'achBorderRadius';

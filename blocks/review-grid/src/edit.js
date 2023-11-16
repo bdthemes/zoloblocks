@@ -22,11 +22,11 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, parentClasses } = attributes;
+    const { uniqueId, parentClasses, preset } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
+        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), preset),
     });
 
     // column count
@@ -112,7 +112,14 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
-                <InnerBlocks allowedBlocks={['zolo/review-child']} template={[['zolo/review-child', {}]]} renderAppender={false} />
+                <InnerBlocks
+                    allowedBlocks={['zolo/review-child']}
+                    template={[
+                        ['zolo/review-child', {}],
+                        ['zolo/review-child', {}],
+                    ]}
+                    renderAppender={false}
+                />
                 <div
                     className="appender-btn"
                     style={{

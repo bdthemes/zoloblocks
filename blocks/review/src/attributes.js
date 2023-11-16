@@ -12,12 +12,6 @@ const {
 } = window.zoloModule;
 
 import {
-    CONTAINER_BACKGROUND,
-    CONTAINER_MARGIN,
-    CONTAINER_PADDING,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
     CONTENT_BACKGROUND,
     CONTENT_BORDER,
@@ -37,7 +31,6 @@ import {
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
     DPL_BG,
-    DPL_HOVER_BG,
     DPL_HEIGHT,
     DPL_WIDTH,
     DPL_BORDER,
@@ -81,22 +74,13 @@ const attributes = {
         default: 'default',
     },
     // Generators
-    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
-        defaultAlign: 'left',
-    }),
+    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
     ...generateNormalBGAttributes(CONTENT_BACKGROUND),
     ...generateBorderAttributies(CONTENT_BORDER),
     ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
     ...generateBoxShadowAttributies(CONTENT_BOX_SHADOW),
     ...generateDimensionAttributes(CONTENT_MARGIN),
     ...generateDimensionAttributes(CONTENT_PADDING),
-
-    ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
-    ...generateBorderAttributies(CONTAINER_BORDER),
-    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
-    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
-    ...generateDimensionAttributes(CONTAINER_MARGIN),
-    ...generateDimensionAttributes(CONTAINER_PADDING),
 
     ...generateResRangeAttributies(REVIEWER_PHOTO_SIZE, {}),
     ...generateNormalBGAttributes(REVIEWER_PHOTO_BG),
@@ -117,7 +101,6 @@ const attributes = {
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 
     ...generateNormalBGAttributes(DPL_BG),
-    ...generateNormalBGAttributes(DPL_HOVER_BG),
     ...generateResRangeAttributies(DPL_ICON_SIZE, {}),
     ...generateResRangeAttributies(DPL_HEIGHT, {}),
     ...generateResRangeAttributies(DPL_WIDTH, {}),
@@ -146,16 +129,13 @@ const attributes = {
         type: 'string',
         default: 'John Doe',
     },
-    addReviewerWebsiteLink: {
+    showQuoteIcon: {
         type: 'boolean',
         default: true,
     },
-    reviewerWebsiteLink: {
-        type: 'object',
-        default: {
-            url: '#',
-            openInNewTab: false,
-        },
+    quoteIcon: {
+        type: 'string',
+        default: 'fas fa-quote-left',
     },
     showDesignation: {
         type: 'boolean',
@@ -171,8 +151,7 @@ const attributes = {
     },
     testimonialMessage: {
         type: 'string',
-        default:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.',
+        default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum...',
     },
     showRating: {
         type: 'boolean',
@@ -184,12 +163,6 @@ const attributes = {
     },
     // block style
     nameColor: {
-        type: 'string',
-    },
-    nameLinkColor: {
-        type: 'string',
-    },
-    nameHoverColor: {
         type: 'string',
     },
     designationColor: {
@@ -207,9 +180,6 @@ const attributes = {
     },
     // DPL icon color
     dplIconColor: {
-        type: 'string',
-    },
-    dplIconHoverColor: {
         type: 'string',
     },
     // blur

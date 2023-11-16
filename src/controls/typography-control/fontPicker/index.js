@@ -31,8 +31,6 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
     });
 
     const onChangeValue = (select) => {
-        console.log('on font change: ', select);
-
         let selectedFont = select.label;
 
         const googleFontsAttr =

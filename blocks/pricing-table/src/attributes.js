@@ -30,7 +30,7 @@ import {
     CBTN_SHADOW,
     CBTN_HOVER_SHADOW,
     DESC_MARGIN,
-    FEATURE_ALIGN,
+    ALIGNENT,
     FEATURE_DESC_MARGIN,
     FEATURE_ICON_GAP,
     FEATURE_ICON_SIZE,
@@ -44,7 +44,9 @@ import {
     TITLE_BORDER_RADIUS,
     TITLE_MARGIN,
     TITLE_PADDING,
+    TITLE_TEXT_PADDING,
     TITLE_TEXT_SHADOW,
+    TITLE_BG,
     WRAPPER_BG,
     WRAPPER_BORDER,
     WRAPPER_BORDER_RADIUS,
@@ -307,13 +309,19 @@ const attributes = {
         type: 'string',
         default: '',
     },
+    ribbonPosition: {
+        type: 'string',
+        default: 'top__right',
+    },
 
     ...generateDimensionAttributes(TITLE_MARGIN),
     ...generateDimensionAttributes(TITLE_PADDING),
+    ...generateDimensionAttributes(TITLE_TEXT_PADDING),
     ...generateBorderAttributies(TITLE_BORDER),
     ...generateDimensionAttributes(TITLE_BORDER_RADIUS),
     ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
     ...generateDimensionAttributes(DESC_MARGIN),
+    ...generateNormalBGAttributes(TITLE_BG),
 
     //price
     ...generateDimensionAttributes(PRICE_MARGIN),
@@ -321,7 +329,7 @@ const attributes = {
     ...generateDimensionAttributes(PERIOD_MARGIN),
 
     //feature
-    ...generateResAlignmentAttributies(FEATURE_ALIGN, {
+    ...generateResAlignmentAttributies(ALIGNENT, {
         defaultAlign: 'left',
     }),
     ...generateDimensionAttributes(FEATURE_DESC_MARGIN),

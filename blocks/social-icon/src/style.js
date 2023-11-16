@@ -34,16 +34,8 @@ import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const {
-        uniqueId,
-        socialBgColor,
-        socialColor,
-        socialBgHoverColor,
-        socialTextColor,
-        socialTextHoverColor,
-        borderHoverColor,
-        presetBgColor,
-    } = attributes;
+    const { uniqueId, socialBgColor, socialColor, socialBgHoverColor, socialTextColor, socialTextHoverColor, borderHoverColor } =
+        attributes;
 
     //  button general settings
     const {
@@ -183,7 +175,7 @@ const Style = ({ props }) => {
 			${hoverShadow}
 		}
 		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item:before {
-			background-color:${presetBgColor};
+			background-color:${socialBgHoverColor};
 		}
 		.${uniqueId}.wp-block-zolo-social-icon .zolo-social-text {
 			${textTypoDesk}
@@ -200,7 +192,6 @@ const Style = ({ props }) => {
             socialColor === 'custom'
                 ? `.${uniqueId}.wp-block-zolo-social-icon .zolo-social-item:hover{
 					color:${socialTextHoverColor};
-					background:${socialBgHoverColor};
 				}`
                 : ' '
         }

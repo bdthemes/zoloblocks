@@ -7,6 +7,7 @@ import Context from './context';
 import Example from './example';
 
 import './style.scss';
+import './editor.scss';
 
 registerBlockType(metadata, {
     icon: {

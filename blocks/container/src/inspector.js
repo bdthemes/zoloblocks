@@ -8,27 +8,11 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const {
-    ResRangeControl,
-    BorderControl,
-    ResDimensionsControl,
-    NormalBGControl,
-    BoxShadowControl,
-    HeaderTabs,
-    IconicBtnGroup,
-    ResAlignmentControl,
-    AdvancedOptions,
-} = window.zoloModule;
+const { ResRangeControl, HeaderTabs, IconicBtnGroup, ResAlignmentControl, AdvancedOptions } = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
     CONTAINER_WIDTH,
-    CONTAINER_BG,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_PADDING,
-    CONTAINER_MARGIN,
     ROW_GAP,
     COLUMN_GAP,
     CONTENT_WIDTH,
@@ -46,7 +30,6 @@ import {
     FLEX_WRAPS,
     WIDTH_TYPES,
     CONTENT_WIDTH_TYPES,
-    FLEX_HORIZONTAL_OPTIONS,
     FLEX_ALIGNS_ROW,
     FLEX_JUSTIFIES_ROW,
 } from '../../../src/global/constants';
@@ -93,7 +76,7 @@ function Inspector(props) {
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             {isBlockRootParent && (
                                 <>
                                     <IconicBtnGroup

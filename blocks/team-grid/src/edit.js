@@ -21,10 +21,10 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, parentClasses } = attributes;
+    const { uniqueId, preset, parentClasses } = attributes;
 
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
+        className: classnames(className, uniqueId, classArrayToStr(parentClasses), preset),
     });
 
     // Grid Style
@@ -107,7 +107,14 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
-                <InnerBlocks allowedBlocks={['zolo/team-child']} template={[['zolo/team-child', {}]]} renderAppender={false} />
+                <InnerBlocks
+                    allowedBlocks={['zolo/team-child']}
+                    template={[
+                        ['zolo/team-child', {}],
+                        ['zolo/team-child', {}],
+                    ]}
+                    renderAppender={false}
+                />
                 <div
                     className="appender-btn"
                     style={{

@@ -22,6 +22,7 @@ const {
     HeaderTabs,
     TabPanelControl,
     AdvancedOptions,
+    IconPicker,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -90,6 +91,7 @@ function Inspector(props) {
         inactiveRatingColor,
         dplIconColor,
         dplIconHoverColor,
+        websiteLinkIcon,
     } = attributes;
 
     const requiredProps = {
@@ -202,7 +204,9 @@ function Inspector(props) {
                                     step={0.1}
                                 />
                             )}
-                            {addReviewerWebsiteLink && (
+                        </PanelBody>
+                        {addReviewerWebsiteLink && (
+                            <PanelBody title={__('Reviewer Website', 'zolo-blocks')} initialOpen={false}>
                                 <LinkControl
                                     label={__('Website Link', 'zolo-blocks')}
                                     value={reviewerWebsiteLink}
@@ -212,14 +216,24 @@ function Inspector(props) {
                                         })
                                     }
                                 />
-                            )}
-                        </PanelBody>
+                                <IconPicker
+                                    value={websiteLinkIcon}
+                                    onChange={(value) => {
+                                        setAttributes({
+                                            websiteLinkIcon: value,
+                                        });
+                                    }}
+                                    showHeading={true}
+                                    disableDashicon={true}
+                                />
+                            </PanelBody>
+                        )}
                     </>
                 }
                 styleTab={
                     <>
                         {preset === 'style-2' && (
-                            <PanelBody title={__('Preset Style', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody title={__('Preset', 'zolo-blocks')} initialOpen={false}>
                                 <RangeControl
                                     label={__('Blur Strength', 'zolo-blocks')}
                                     value={blurBgOpacity}
@@ -341,7 +355,7 @@ function Inspector(props) {
                                         normalComponents={
                                             <>
                                                 <ColorControl
-                                                    label={__('Link Color', 'zolo-blocks')}
+                                                    label={__('Color', 'zolo-blocks')}
                                                     color={nameLinkColor}
                                                     onChange={(color) =>
                                                         setAttributes({
@@ -354,7 +368,7 @@ function Inspector(props) {
                                         hoverComponents={
                                             <>
                                                 <ColorControl
-                                                    label={__('Link Hover Color', 'zolo-blocks')}
+                                                    label={__('Color', 'zolo-blocks')}
                                                     color={nameHoverColor}
                                                     onChange={(color) =>
                                                         setAttributes({

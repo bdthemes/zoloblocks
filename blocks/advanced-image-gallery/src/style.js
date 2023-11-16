@@ -29,7 +29,6 @@ import {
     CONTAINER_BORDER,
     CONTAINER_HOVER_BORDER,
     IMAGE_BORDER,
-    IMAGE_HOVER_BORDER,
     CONTAINER_BOX_SHADOW,
     CONTAINER_HOVER_BOX_SHADOW,
     IMAGE_BORDER_RADIUS,
@@ -52,6 +51,8 @@ import {
     ZOOM_ICON_HOVER_BOX_SHADOW,
     ZOOM_ICON_BG_COLOR,
     ZOOM_ICON_BG_HOVER_COLOR,
+    OVERLAY_BG_COLOR,
+    ZOOM_ICON_SIZE,
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -59,7 +60,8 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
 
-    const { uniqueId, preset, headingColor, zoomIconColor, zoomIconHoverColor, zoomIconHoverBorderColor } = attributes;
+    const { uniqueId, preset, headingColor, zoomIconColor, zoomIconHoverColor, zoomIconHoverBorderColor, imageHoverBorderColor } =
+        attributes;
 
     // column count
     const {
@@ -180,15 +182,6 @@ export default function Style({ props }) {
         mobBorderStyle: imageBorderMob,
     } = generateBorderStyle({
         controlName: IMAGE_BORDER,
-        attributes,
-    });
-
-    const {
-        desktopBorderStyle: imageHoverBorderDesk,
-        tabBorderStyle: imageHoverBorderTab,
-        mobBorderStyle: imageHoverBorderMob,
-    } = generateBorderStyle({
-        controlName: IMAGE_HOVER_BORDER,
         attributes,
     });
 
@@ -376,6 +369,27 @@ export default function Style({ props }) {
         noMainBGImg: false,
     });
 
+    const {
+        desktopRangeStyle: zoomIconSizeDesk,
+        tabRangeStyle: zoomIconSizeTab,
+        mobRangeStyle: zoomIconSizeMob,
+    } = generateResRangeStyle({
+        controlName: ZOOM_ICON_SIZE,
+        property: 'font-size',
+        attributes,
+    });
+
+    // overlay BG
+    const {
+        backgroundStylesDesktop: overlayDeskBGStyle,
+        backgroundStylesTab: overlayTabBGStyle,
+        backgroundStylesMobile: overlayMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: OVERLAY_BG_COLOR,
+        attributes,
+        noMainBGImg: true,
+    });
+
     /**
      * All Style Combination
      */
@@ -410,9 +424,14 @@ export default function Style({ props }) {
 		}
 		.${uniqueId} .zolo-image-wrap:hover {
 			${imageHoverDeskBGStyle}
-			${imageHoverBorderDesk}
 			${imageHoverBoxShadow}
+            ${imageHoverBorderColor ? `border-color: ${imageHoverBorderColor};` : ''}
 		}
+
+        .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
+            ${overlayDeskBGStyle}
+        }
+
 		.${uniqueId} .zolo-title {
 			color: ${headingColor ? headingColor : ''};
 			${headingDeskBGStyle}
@@ -423,15 +442,18 @@ export default function Style({ props }) {
 			${headingBoxShadow}
 			${headingTypoDesk}
 		}
-        .${uniqueId} .zolo-icon svg{
+
+        .${uniqueId} .zolo-icon i{
             color: ${zoomIconColor ? zoomIconColor : ''};
             ${zoomIconPaddingDesk}
             ${zoomIconBorderDesk}
             ${zoomIconBorderRadiusDesk}
             ${zoomIconBoxShadow}
             ${zoomIconDeskBGStyle}
+            ${zoomIconSizeDesk}
         }
-        .${uniqueId} .zolo-icon svg:hover{
+
+        .${uniqueId} .zolo-icon:hover i{
             color: ${zoomIconHoverColor ? zoomIconHoverColor : ''};
             border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
             ${zoomIconHoverBoxShadow}
@@ -465,8 +487,10 @@ export default function Style({ props }) {
 	}
 	.${uniqueId} .zolo-image-wrap:hover {
 		${imageHoverTabBGStyle}
-		${imageHoverBorderTab}
 	}
+    .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
+        ${overlayTabBGStyle}
+    }
 	.${uniqueId} .zolo-title {
 		${headingTabBGStyle}
 		${headingMarginTab}
@@ -475,14 +499,14 @@ export default function Style({ props }) {
 		${headingBorderRadiusTab}
 		${headingTypoTab}
 	}
-    .${uniqueId} .zolo-icon svg{
+    .${uniqueId} .zolo-icon i{
         ${zoomIconPaddingTab}
         ${zoomIconBorderTab}
         ${zoomIconBorderRadiusTab}
         ${zoomIconTabBGStyle}
+        ${zoomIconSizeTab}
     }
-    .${uniqueId} .zolo-icon svg:hover{
-        border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
+    .${uniqueId} .zolo-icon:hover i{
         ${zoomIconBgHoverTab}
     }
 	`;
@@ -513,8 +537,10 @@ export default function Style({ props }) {
 	}
 	.${uniqueId} .zolo-image-wrap:hover {
 		${imageHoverMobBGStyle}
-		${imageHoverBorderMob}
 	}
+    .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
+        ${overlayMobBGStyle}
+    }
 	.${uniqueId} .zolo-title {
 		${headingMobBGStyle}
 		${headingMarginMob}
@@ -524,14 +550,14 @@ export default function Style({ props }) {
 		${headingTypoMob}
 	}
 
-    .${uniqueId} .zolo-icon svg{
+    .${uniqueId} .zolo-icon i{
         ${zoomIconPaddingMob}
         ${zoomIconBorderMob}
         ${zoomIconBorderRadiusMob}
         ${zoomIconMobBGStyle}
+        ${zoomIconSizeMob}
     }
-    .${uniqueId} .zolo-icon svg:hover{
-        border-color: ${zoomIconHoverBorderColor ? zoomIconHoverBorderColor : ''};
+    .${uniqueId} .zolo-icon:hover i{
         ${zoomIconBgHoverMob}
     }
   	`;

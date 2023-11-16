@@ -3,7 +3,8 @@
  */
 import * as typographyObjs from './constants/typoPrefixConstants';
 import {
-    IMAGE_SIZE,
+    IMAGE_WIDTH,
+    IMAGE_HEIGHT,
     IMAGE_BORDER,
     IMAGE_BORDERRADIUS,
     IMAGE_PADDING,
@@ -15,6 +16,7 @@ import {
     ICON_PADDING,
     ICON_BG,
     ICON_HBG,
+    GAP,
 } from './constants';
 const {
     generateTypographyAttributes,
@@ -105,6 +107,12 @@ const attributes = {
         type: 'string',
         default: '1',
     },
+    mediaTextColor: {
+        type: 'string',
+    },
+    mediaTextBgColor: {
+        type: 'string',
+    },
     image: {
         type: 'object',
         default: {
@@ -135,11 +143,15 @@ const attributes = {
     ...generateNormalBGAttributes(ICON_HBG),
     ...generateResRangeAttributies(ICON_WIDTH),
     ...generateBorderAttributies(ICON_BORDER),
-    ...generateResRangeAttributies(IMAGE_SIZE),
+    ...generateResRangeAttributies(IMAGE_WIDTH),
+    ...generateResRangeAttributies(IMAGE_HEIGHT),
     ...generateBorderAttributies(IMAGE_BORDER),
     ...generateDimensionAttributes(IMAGE_BORDERRADIUS),
     ...generateDimensionAttributes(ICON_RADIUS),
     ...generateDimensionAttributes(IMAGE_PADDING),
+
+    // gap
+    ...generateResRangeAttributies(GAP),
 
     // title
     ...generateDimensionAttributes(TITLE_SPACING),

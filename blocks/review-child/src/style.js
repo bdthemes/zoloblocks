@@ -288,7 +288,6 @@ const Style = ({ props }) => {
         typoStylesMobile: nameTypoMob,
     } = generateTypographyStyles({
         prefixConstant: REVIEWER_NAME_TYPOGRAPHY,
-        defaultFontSize: 20,
         attributes,
     });
 
@@ -309,7 +308,6 @@ const Style = ({ props }) => {
         typoStylesMobile: designationTypoMob,
     } = generateTypographyStyles({
         prefixConstant: REVIEWER_DESIGNATION_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 
@@ -330,7 +328,6 @@ const Style = ({ props }) => {
         typoStylesMobile: testimonialMessageTypoMob,
     } = generateTypographyStyles({
         prefixConstant: REVIEWER_MESSAGE_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 
@@ -518,12 +515,12 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn a:hover {
 			${dplHoverDeskBG}
 		}
-		.${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn svg {
-			fill: ${dplIconColor ? dplIconColor : ''};
+		.${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn i {
+			color: ${dplIconColor ? dplIconColor : ''};
             ${dplDeskSize}
 		}
-		.${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn a:hover svg{
-			fill: ${dplIconHoverColor ? dplIconHoverColor : ''};
+		.${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn a:hover i{
+			color: ${dplIconHoverColor ? dplIconHoverColor : ''};
 		}
 	`;
 

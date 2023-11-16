@@ -18,6 +18,8 @@
 }
 
 .wp-block-zolo-profile-card {
+    box-sizing: border-box;
+    overflow: hidden;
     .zb-profile-badge {
         padding: 4px 13px;
         font-size: 11px;

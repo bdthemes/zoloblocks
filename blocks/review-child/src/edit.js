@@ -14,7 +14,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { StarRating, classArrayToStr } = window.zoloModule;
+const { StarRating, classArrayToStr, DisplayIcon } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -39,6 +39,7 @@ export default function Edit(props) {
         reviewerWebsiteLink,
         showRating,
         rating,
+        websiteLinkIcon,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -132,19 +133,7 @@ export default function Edit(props) {
                                         rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && 'noreferer noopener'}
                                         target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && '_blank'}
                                     >
-                                        <svg
-                                            clip-rule="evenodd"
-                                            fill-rule="evenodd"
-                                            stroke-linejoin="round"
-                                            stroke-miterlimit="2"
-                                            viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="m14.523 18.787s4.501-4.505 6.255-6.26c.146-.146.219-.338.219-.53s-.073-.383-.219-.53c-1.753-1.754-6.255-6.258-6.255-6.258-.144-.145-.334-.217-.524-.217-.193 0-.385.074-.532.221-.293.292-.295.766-.004 1.056l4.978 4.978h-14.692c-.414 0-.75.336-.75.75s.336.75.75.75h14.692l-4.979 4.979c-.289.289-.286.762.006 1.054.148.148.341.222.533.222.19 0 .378-.072.522-.215z"
-                                                fill-rule="nonzero"
-                                            />
-                                        </svg>
+                                        <DisplayIcon icon={websiteLinkIcon} />
                                     </a>
                                 </div>
                             )}
@@ -152,19 +141,30 @@ export default function Edit(props) {
                     )}
                     <div className="zolo-info-wrap">
                         <div className="zolo-meta-content">
-                            {showName && (
-                                <RichText
-                                    value={memberName}
-                                    onChange={(content) =>
-                                        setAttributes({
-                                            memberName: content,
-                                        })
-                                    }
-                                    className="zolo-name"
-                                    placeholder={__('Reviewer name', 'zolo-blocks')}
-                                />
-                            )}
-
+                            {showName &&
+                                (addReviewerWebsiteLink ? (
+                                    <RichText
+                                        value={memberName}
+                                        onChange={(content) =>
+                                            setAttributes({
+                                                memberName: content,
+                                            })
+                                        }
+                                        className="zolo-name has-link"
+                                        placeholder={__('Reviewer name', 'zolo-blocks')}
+                                    />
+                                ) : (
+                                    <RichText
+                                        value={memberName}
+                                        onChange={(content) =>
+                                            setAttributes({
+                                                memberName: content,
+                                            })
+                                        }
+                                        className="zolo-name"
+                                        placeholder={__('Reviewer name', 'zolo-blocks')}
+                                    />
+                                ))}
                             {showDesignation && (
                                 <div className="zolo-designation">
                                     <RichText

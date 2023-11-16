@@ -8,7 +8,7 @@ export const BLOCK_PREFIX = 'fancy-list';
 
 // Presets
 export const PRESETS = [
-    { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
+    { label: __('Default', 'zolo-blocks'), value: 'style-1' },
     { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
     { label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
     { label: __('Preset 4', 'zolo-blocks'), value: 'style-4' },
@@ -30,7 +30,11 @@ export const ICON_BG = 'iconBg';
 export const ICON_HBG = 'iconHbg';
 
 //image
-export const IMAGE_SIZE = 'imageSize';
+export const IMAGE_WIDTH = 'imageWidth';
+export const IMAGE_HEIGHT = 'imageHeight';
 export const IMAGE_BORDER = 'imageBorder';
 export const IMAGE_BORDERRADIUS = 'imageBorderRadius';
 export const IMAGE_PADDING = 'imagePadding';
+
+// gap
+export const GAP = 'gap';

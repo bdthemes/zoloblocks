@@ -7,7 +7,6 @@ import { __ } from '@wordpress/i18n';
  * Internal depencencies
  */
 const {
-    generateResAlignmentStyle,
     generateBorderStyle,
     generateDimensionStyle,
     generateTypographyStyles,
@@ -19,7 +18,6 @@ const {
 
 import {
     CONTENT_BG,
-    CONTENT_ALIGNMENT,
     CONTENT_PADDING,
     CONTENT_MARGIN,
     CONTENT_BORDER,
@@ -37,6 +35,7 @@ import {
     TEAM_DESIGNATION_MARGIN,
     TEAM_NAME_MARGIN,
     PHOTO_BG,
+    PHOTO_SIZE,
     TEAM_PHOTO_BORDER,
     TEAM_PHOTO_BORDER_RADIUS,
     TEAM_PHOTO_BOX_SHADOW,
@@ -66,12 +65,7 @@ const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        preset,
-        blurBgColor,
-        blurBgOpacity,
-        addDetailPageLink,
         nameColor,
-        nameLinkColor,
         nameHoverColor,
         designationColor,
         shortBioColor,
@@ -112,17 +106,7 @@ const Style = ({ props }) => {
     } = generateNormalBGControlStyles({
         controlName: CONTENT_BG,
         attributes,
-        noMainBGImg: true,
-    });
-
-    const {
-        desktopAlignStyle: teamDeskAlignStyle,
-        tabAlignStyle: teamTabAlignStyle,
-        mobAlignStyle: teamMobAlignStyle,
-    } = generateResAlignmentStyle({
-        controlName: CONTENT_ALIGNMENT,
-        property: 'text-align',
-        attributes,
+        noMainBGImg: false,
     });
 
     const {
@@ -181,6 +165,16 @@ const Style = ({ props }) => {
     });
 
     const {
+        desktopRangeStyle: photoDeskSize,
+        tabRangeStyle: photoTabSize,
+        mobRangeStyle: photoMobSize,
+    } = generateResRangeStyle({
+        controlName: PHOTO_SIZE,
+        property: 'max-width',
+        attributes,
+    });
+
+    const {
         desktopBorderStyle: photoDeskBorderStyle,
         tabBorderStyle: photoTabBorderStyle,
         mobBorderStyle: photoMobBorderStyle,
@@ -231,7 +225,6 @@ const Style = ({ props }) => {
         typoStylesMobile: nameTypoMob,
     } = generateTypographyStyles({
         prefixConstant: TEAM_MEMBER_NAME_TYPOGRAPHY,
-        defaultFontSize: 23,
         attributes,
     });
 
@@ -252,7 +245,6 @@ const Style = ({ props }) => {
         typoStylesMobile: designationTypoMob,
     } = generateTypographyStyles({
         prefixConstant: TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 
@@ -273,7 +265,6 @@ const Style = ({ props }) => {
         typoStylesMobile: shortBioTypoMob,
     } = generateTypographyStyles({
         prefixConstant: TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 
@@ -286,54 +277,6 @@ const Style = ({ props }) => {
         styleFor: 'margin',
         attributes,
     });
-
-    // Social Icons
-
-    // social icons alignment
-    let socialDeskAlignStyle;
-    switch (teamDeskAlignStyle) {
-        case 'text-align:left;':
-            socialDeskAlignStyle = 'justify-content: flex-start;';
-            break;
-        case 'text-align:center;':
-            socialDeskAlignStyle = 'justify-content: center;';
-            break;
-        case 'text-align:right;':
-            socialDeskAlignStyle = 'justify-content: flex-end;';
-            break;
-        default:
-            socialDeskAlignStyle = 'justify-content: flex-start;';
-    }
-
-    let socialTabAlignStyle;
-    switch (teamTabAlignStyle) {
-        case 'text-align:left;':
-            socialTabAlignStyle = 'justify-content: flex-start;';
-            break;
-        case 'text-align:center;':
-            socialTabAlignStyle = 'justify-content: center;';
-            break;
-        case 'text-align:right;':
-            socialTabAlignStyle = 'justify-content: flex-end;';
-            break;
-        default:
-            socialTabAlignStyle = 'justify-content: flex-start;';
-    }
-
-    let socialMobAlignStyle;
-    switch (teamMobAlignStyle) {
-        case 'text-align:left;':
-            socialMobAlignStyle = 'justify-content: flex-start;';
-            break;
-        case 'text-align:center;':
-            socialMobAlignStyle = 'justify-content: center;';
-            break;
-        case 'text-align:right;':
-            socialMobAlignStyle = 'justify-content: flex-end;';
-            break;
-        default:
-            socialMobAlignStyle = 'justify-content: flex-start;';
-    }
 
     const {
         backgroundStylesDesktop: iconsNormalDeskBG,
@@ -525,58 +468,6 @@ const Style = ({ props }) => {
     });
 
     /**
-     * Image Width Calculation for Style-4(Preset-3)
-     */
-
-    const paddingRegex = /padding:\s*(\d+)/;
-    const widthRegex = /width:\s*(\d+)/;
-    const borderWidthRegex = /border-width:\s*(\d+)/;
-
-    const deskPadding = socialIconsPaddingDesk || 'padding: 8px';
-    const deskMatch = paddingRegex.exec(deskPadding);
-    const dpNumber = deskMatch ? parseInt(deskMatch[1]) : 8;
-
-    const deskWidth = socialIconContainerWidthDesk || 'width: 18px';
-    const deskMatch2 = widthRegex.exec(deskWidth);
-    const dwNumber = deskMatch2 ? parseInt(deskMatch2[1]) : 18;
-
-    const deskBorderWidth = socialIconDeskBorderStyle || 'border-width: 1px';
-    const deskMatch3 = borderWidthRegex.exec(deskBorderWidth);
-    const dbNumber = deskMatch3 ? parseInt(deskMatch3[1]) : 1;
-
-    const totalDeskWidth = dpNumber + dwNumber + dbNumber !== 0 ? dpNumber * 2 + dwNumber + dbNumber * 2 : 45;
-
-    // tablet
-    const tabPadding = socialIconsPaddingTab || 'padding: 0px';
-    const tabMatch = paddingRegex.exec(tabPadding);
-    const tpNumber = tabMatch ? parseInt(tabMatch[1]) : 8;
-
-    const tabWidth = socialIconContainerWidthTab || 'width: 0px';
-    const tabMatch2 = widthRegex.exec(tabWidth);
-    const twNumber = tabMatch2 ? parseInt(tabMatch2[1]) : 18;
-
-    const tabBorderWidth = socialIconTabBorderStyle || 'border-width: 0px';
-    const tabMatch3 = borderWidthRegex.exec(tabBorderWidth);
-    const tbNumber = tabMatch3 ? parseInt(tabMatch3[1]) : 1;
-
-    const totalTabWidth = tpNumber + twNumber + tbNumber !== 0 ? tpNumber * 2 + twNumber + tbNumber * 2 : 45;
-
-    // mobile
-    const mobPadding = socialIconsPaddingMob || 'padding: 0px';
-    const mobMatch = paddingRegex.exec(mobPadding);
-    const mpNumber = mobMatch ? parseInt(mobMatch[1]) : 8;
-
-    const mobWidth = socialIconContainerWidthMob || 'width: 0px';
-    const mobMatch2 = widthRegex.exec(mobWidth);
-    const mwNumber = mobMatch2 ? parseInt(mobMatch2[1]) : 18;
-
-    const mobBorderWidth = socialIconMobBorderStyle || 'border-width: 0px';
-    const mobMatch3 = borderWidthRegex.exec(mobBorderWidth);
-    const mbNumber = mobMatch3 ? parseInt(mobMatch3[1]) : 1;
-
-    const totalMobWidth = mpNumber + mwNumber + mbNumber !== 0 ? mpNumber * 2 + mwNumber + mbNumber * 2 : 45;
-
-    /**
      * All Style Combination
      */
     const desktopAllStyle = `
@@ -584,9 +475,7 @@ const Style = ({ props }) => {
 			${teamMemberContainerDeskPadding}
 			${teamMemberContainerDeskMargin}
 		}
-		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
-			${teamDeskAlignStyle}
-		}
+
 		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
@@ -600,14 +489,7 @@ const Style = ({ props }) => {
 			${contentDeskMargin}
 			${contentBoxShadow}
 		}
-		.${uniqueId}.wp-block-zolo-team-child.style-2 .zolo-image-wrap::before {
-			background-color: ${blurBgColor};
-			backdrop-filter: blur(${blurBgOpacity}px);
-		}
-		.${uniqueId} .zolo-social-share {
-			${socialDeskAlignStyle}
-		}
-		.${uniqueId} .zolo-item .zolo-hover-content .zolo-social-share {
+		.${uniqueId} .zolo-item .zolo-social-and-link-wrap{
 			${separatorColor ? `border-top-color: ${separatorColor};` : ''}
 		}
 		.${uniqueId} .zolo-image-wrap img {
@@ -617,21 +499,19 @@ const Style = ({ props }) => {
 			${photoDeskPadding}
 			${photoDeskMargin}
 			${teamPhotoBoxShadow}
-			${preset === 'style-3' ? `width: calc(100% - ${totalDeskWidth}px );` : ''}
+            ${photoDeskSize}
 		}
 		.${uniqueId} .zolo-name {
 			${nameTypoDesk}
 			${nameDeskMargin}
-			color: ${addDetailPageLink ? nameLinkColor : nameColor};
+            ${nameColor ? `color: ${nameColor};` : ''}
 		}
 
-        .${uniqueId} .zolo-name:hover {
-			color: ${nameHoverColor} !important;
+        .${uniqueId} .zolo-name.has-link:hover {
+            ${nameHoverColor ? `color: ${nameHoverColor};` : ''}
+        
 		}
 
-		.${uniqueId} a.zolo-name:hover {
-			color: ${nameHoverColor};
-		}
 		.${uniqueId} .zolo-designation {
 			${designationColor ? `color: ${designationColor};` : ''}
 			${designationTypoDesk}
@@ -661,7 +541,10 @@ const Style = ({ props }) => {
 			${iconHoverBorderColor ? `border-color: ${iconHoverBorderColor};` : ''}
 			${iconsHoverDeskBG}
 		}
-		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
+		.${uniqueId}.wp-block-zolo-team-child .zolo-social-share a:before {
+			${iconsHoverDeskBG}
+		}
+		.${uniqueId} .zolo-social-share i {
 			${socialIconDesk}
 		}
 		.${uniqueId}.wp-block-zolo-team-child .zolo-link-btn a {
@@ -674,6 +557,9 @@ const Style = ({ props }) => {
 			${dplDeskHeight}
 			${dplDeskWidth}
 			${dplDeskSize}
+		}
+		.${uniqueId}.wp-block-zolo-team-child .zolo-link-btn a:before {
+			${detailPageHoverDeskBG}
 		}
 		.${uniqueId}.wp-block-zolo-team-child .zolo-link-btn a:hover {
 			${detailPageIconHoverColor ? `color: ${detailPageIconHoverColor};` : ''}
@@ -698,19 +584,13 @@ const Style = ({ props }) => {
 			${contentTabPadding}
 			${contentTabMargin}
 		}
-		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
-			${teamTabAlignStyle}
-		}
-		.${uniqueId} .zolo-social-share {
-			${socialTabAlignStyle}
-		}
 		.${uniqueId} .zolo-image-wrap img {
 			${photoTabBGStyle}
 			${photoTabBorderStyle}
 			${photoTabBorderRadius}
 			${photoTabPadding}
 			${photoTabMargin}
-			${preset === 'style-3' ? `width: calc(100% - ${totalTabWidth}px );` : ''}
+            ${photoTabSize}
 		}
 		.${uniqueId} .zolo-name {
 			${nameTypoTab}
@@ -738,7 +618,7 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-team-child .zolo-social-share a:hover {
 			${iconsHoverTabBG}
 		}
-		.${uniqueId} .zolo-social-share i, .${uniqueId} .zolo-social-share .dashicon {
+		.${uniqueId} .zolo-social-share i {
 			${socialIconTab}
 		}
 		.${uniqueId} .zolo-link-btn a {
@@ -750,6 +630,9 @@ const Style = ({ props }) => {
 			${dplTabHeight}
 			${dplTabWidth}
 			${dplTabSize}
+		}
+		.${uniqueId} .zolo-link-btn a:before {
+			${detailPageHoverTabBG}
 		}
 		.${uniqueId} .zolo-link-btn a:hover {
 			${detailPageHoverTabBG}
@@ -774,19 +657,13 @@ const Style = ({ props }) => {
 			${contentMobMargin}
 
 		}
-		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
-			${teamMobAlignStyle}
-		}
-		.${uniqueId} .zolo-social-share {
-			${socialMobAlignStyle}
-		}
 		.${uniqueId} .zolo-image-wrap img {
 			${photoMobBGStyle}
 			${photoMobBorderStyle}
 			${photoMobBorderRadius}
 			${photoMobPadding}
 			${photoMobMargin}
-			${preset === 'style-3' ? `width: calc(100% - ${totalMobWidth}px );` : ''}
+            ${photoMobSize}
 		}
 		.${uniqueId} .zolo-name {
 			${nameTypoMob}
@@ -826,6 +703,9 @@ const Style = ({ props }) => {
 			${dplMobHeight}
 			${dplMobWidth}
 			${dplMobSize}
+		}
+		.${uniqueId} .zolo-link-btn a:before {
+			${detailPageHoverMobBG}
 		}
 		.${uniqueId} .zolo-link-btn a:hover {
 			${detailPageHoverMobBG}

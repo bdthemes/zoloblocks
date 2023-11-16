@@ -1,6 +1,6 @@
 .zb-brand-grid-wrap {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
     box-sizing: border-box;
     overflow: hidden;
@@ -45,15 +45,14 @@
     text-transform: capitalize;
 }
 
-.zb-brand-link {
+.zb-brand-title-link {
     font-size: 18px;
     font-weight: 300;
     color: #3c4356;
-    text-decoration: none;
     transition: all 0.3s ease;
 }
 
-.zb-brand-link:hover {
+.zb-brand-title-link.has-link:hover {
     color: #3c4;
 }
 
@@ -69,8 +68,8 @@
     transition: all 0.3s ease;
 }
 
-.zb-brand-style-1 .zb-brand-link,
-.zb-brand-style-2 .zb-brand-link {
+.zb-brand-style-1 .zb-brand-title-link,
+.zb-brand-style-2 .zb-brand-title-link {
     transform: translateX(40px);
     transition: all 0.3s ease;
     display: block;
@@ -78,8 +77,8 @@
 
 .zb-brand-style-1 .zb-brand-item:hover .zb-brand-title,
 .zb-brand-style-2 .zb-brand-item:hover .zb-brand-title,
-.zb-brand-style-1 .zb-brand-item:hover .zb-brand-link,
-.zb-brand-style-2 .zb-brand-item:hover .zb-brand-link {
+.zb-brand-style-1 .zb-brand-item:hover .zb-brand-title-link,
+.zb-brand-style-2 .zb-brand-item:hover .zb-brand-title-link {
     transform: translateX(0);
 }
 
@@ -111,7 +110,7 @@
 .zb-brand-style-2 .zb-brand-item:hover .zb-brand-content {
     opacity: 1;
     visibility: visible;
-    clip-path: polygon(100% 1%, 100% 100%, 0 100%, 0 0);
+    clip-path: polygon(100% -3%, 103% 100%, 0 100%, 0 0);
 }
 
 .zb-brand-style-1 .zb-brand-icon,

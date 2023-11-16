@@ -9,7 +9,6 @@ import { __ } from '@wordpress/i18n';
  * Internal depencencies
  */
 const {
-    ResAlignmentControl,
     ResRangeControl,
     ColorControl,
     BorderControl,
@@ -27,18 +26,16 @@ const {
 
 import Sortable from './sortable';
 
-import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
-
 import objAttributes from './attributes';
 import {
     CONTENT_BG,
-    CONTENT_ALIGNMENT,
     CONTENT_PADDING,
     CONTENT_MARGIN,
     CONTENT_BORDER,
     CONTENT_BORDER_RADIUS,
     CONTENT_BOX_SHADOW,
     PHOTO_BG,
+    PHOTO_SIZE,
     TEAM_PHOTO_BORDER,
     TEAM_PHOTO_BORDER_RADIUS,
     TEAM_PHOTO_BOX_SHADOW,
@@ -78,8 +75,6 @@ function Inspector(props) {
     const {
         resMode,
         preset,
-        blurBgColor,
-        blurBgOpacity,
         memberPhoto,
         memberName,
         showDesignation,
@@ -92,7 +87,6 @@ function Inspector(props) {
         showShortBio,
         memberShortBio,
         nameColor,
-        nameLinkColor,
         nameHoverColor,
         designationColor,
         shortBioColor,
@@ -185,7 +179,7 @@ function Inspector(props) {
                                     placeholder={__('Designation..', 'zolo-blocks')}
                                 />
                             )}
-                            {showShortBio && preset !== 'style-1' && preset !== 'style-3' && (
+                            {showShortBio && (
                                 <TextareaControl
                                     label={__('Short Bio', 'zolo-blocks')}
                                     value={memberShortBio}
@@ -229,31 +223,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        {preset === 'style-2' && (
-                            <PanelBody title={__('Preset Style', 'zolo-blocks')} initialOpen={false}>
-                                <ColorControl
-                                    label={__('Blur Color', 'zolo-blocks')}
-                                    color={blurBgColor}
-                                    onChange={(color) => setAttributes({ blurBgColor: color })}
-                                />
-                                <RangeControl
-                                    label={__('Blur Strength', 'zolo-blocks')}
-                                    value={blurBgOpacity}
-                                    onChange={(v) => setAttributes({ blurBgOpacity: v })}
-                                    min={0}
-                                    max={100}
-                                />
-                            </PanelBody>
-                        )}
-                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
-                            {preset !== 'style-3' && (
-                                <ResAlignmentControl
-                                    label={__('Content Alignmet', 'zolo-blocks')}
-                                    controlName={CONTENT_ALIGNMENT}
-                                    requiredProps={requiredProps}
-                                    alignOptions={TEXT_ALIGN_OPTIONS}
-                                />
-                            )}
+                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={true}>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
@@ -277,7 +247,7 @@ function Inspector(props) {
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
                         </PanelBody>
                         <PanelBody title={__('Photo', 'zolo-blocks')} initialOpen={false}>
-                            <NormalBGControl requiredProps={requiredProps} controlName={PHOTO_BG} noMainBGImg={true} />
+                            <ResRangeControl label={__('Size', 'zolo-blocks')} controlName={PHOTO_SIZE} requiredProps={requiredProps} />
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={TEAM_PHOTO_BORDER}
@@ -302,6 +272,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+                            <NormalBGControl requiredProps={requiredProps} controlName={PHOTO_BG} noMainBGImg={true} />
                         </PanelBody>
                         <PanelBody title={__('Name', 'zolo-blocks')} initialOpen={false}>
                             <TypographyDropdown
@@ -330,11 +301,11 @@ function Inspector(props) {
                                     normalComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Link Color', 'zolo-blocks')}
-                                                color={nameLinkColor}
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={nameColor}
                                                 onChange={(color) =>
                                                     setAttributes({
-                                                        nameLinkColor: color,
+                                                        nameColor: color,
                                                     })
                                                 }
                                             />
@@ -343,7 +314,7 @@ function Inspector(props) {
                                     hoverComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Link Hover Color', 'zolo-blocks')}
+                                                label={__('Hover Color', 'zolo-blocks')}
                                                 color={nameHoverColor}
                                                 onChange={(color) =>
                                                     setAttributes({
@@ -404,16 +375,6 @@ function Inspector(props) {
                         )}
                         {showSocialProfiles && (
                             <PanelBody title={__('Social Profiles', 'zolo-blocks')} initialOpen={false}>
-                                <ResRangeControl
-                                    label={__('Icon Size', 'zolo-blocks')}
-                                    controlName={ICONS_SIZE}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResRangeControl
-                                    label={__('Icon Spacing', 'zolo-blocks')}
-                                    controlName={ICONS_SPACING}
-                                    requiredProps={requiredProps}
-                                />
                                 {preset === 'default' && (
                                     <ColorControl
                                         label={__('Separator Color', 'zolo-blocks')}
@@ -425,6 +386,16 @@ function Inspector(props) {
                                         }
                                     />
                                 )}
+                                <ResRangeControl
+                                    label={__('Icon Size', 'zolo-blocks')}
+                                    controlName={ICONS_SIZE}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResRangeControl
+                                    label={__('Icon Spacing', 'zolo-blocks')}
+                                    controlName={ICONS_SPACING}
+                                    requiredProps={requiredProps}
+                                />
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={ICONS_BORDER}
@@ -452,12 +423,12 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
-                                            <NormalBGControl requiredProps={requiredProps} controlName={ICONS_BG} noMainBGImg={true} />
                                             <BoxShadowControl
                                                 controlName={ICONS_BOX_SHADOW}
                                                 requiredProps={requiredProps}
                                                 enableTransition={false}
                                             />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={ICONS_BG} noMainBGImg={true} />
                                         </>
                                     }
                                     hoverComponents={
@@ -470,12 +441,6 @@ function Inspector(props) {
                                                         iconHoverColor: color,
                                                     })
                                                 }
-                                            />
-
-                                            <NormalBGControl
-                                                requiredProps={requiredProps}
-                                                controlName={ICONS_HOVER_BG}
-                                                noMainBGImg={true}
                                             />
                                             <ColorControl
                                                 label={__('Border Color', 'zolo-blocks')}
@@ -490,6 +455,11 @@ function Inspector(props) {
                                                 controlName={ICONS_HOVER_BOX_SHADOW}
                                                 requiredProps={requiredProps}
                                                 enableTransition={false}
+                                            />
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={ICONS_HOVER_BG}
+                                                noMainBGImg={true}
                                             />
                                         </>
                                     }

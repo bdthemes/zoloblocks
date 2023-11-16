@@ -11,6 +11,7 @@ import {
     BaseControl,
     Button,
     RangeControl,
+    CardDivider,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -26,20 +27,16 @@ const {
     TypographyDropdown,
     BoxShadowControl,
     ImageAvatar,
-    LinkControl,
     NormalBGControl,
     HeaderTabs,
     TabPanelControl,
     AdvancedOptions,
+    IconPicker,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
     PRESETS,
-    CONTAINER_BACKGROUND,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
     CONTENT_BACKGROUND,
     CONTENT_BORDER,
@@ -59,7 +56,6 @@ import {
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
     DPL_BG,
-    DPL_HOVER_BG,
     DPL_HEIGHT,
     DPL_WIDTH,
     DPL_BORDER,
@@ -78,7 +74,6 @@ function Inspector(props) {
     const {
         resMode,
         preset,
-        blurBgOpacity,
         showPhoto,
         memberPhoto,
         showName,
@@ -87,19 +82,16 @@ function Inspector(props) {
         showTestimonialMessage,
         testimonialMessage,
         memberDesignation,
-        addReviewerWebsiteLink,
-        reviewerWebsiteLink,
+        showQuoteIcon,
+        quoteIcon,
         showRating,
         rating,
         nameColor,
-        nameLinkColor,
-        nameHoverColor,
         designationColor,
         testimonialMessageColor,
         activeRatingColor,
         inactiveRatingColor,
         dplIconColor,
-        dplIconHoverColor,
     } = attributes;
 
     const requiredProps = {
@@ -109,57 +101,17 @@ function Inspector(props) {
         objAttributes,
     };
 
-    /**
-     * Preset
-     */
-    const changePremade = (selected) => {
-        setAttributes({ preset: selected });
-        switch (selected) {
-            case 'default':
-                setAttributes({
-                    showTestimonialMessage: false,
-                    [`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
-                });
-                break;
-            case 'style-1':
-                setAttributes({
-                    showTestimonialMessage: false,
-                });
-                break;
-            case 'style-2':
-                setAttributes({
-                    showTestimonialMessage: false,
-                });
-                break;
-            default:
-                setAttributes({
-                    showTestimonialMessage: false,
-                    [`${CONTENT_ALIGNMENT}ZRPAlign`]: 'left',
-                });
-                break;
-        }
-    };
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs
                 generalTab={
                     <>
-                        <PanelBody title={__('Layout', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
                             <SelectControl
-                                label={__('Preset Designs', 'zolo-blocks')}
+                                label={__('Presets', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
-                                onChange={(selected) => changePremade(selected)}
-                            />
-                            <ToggleControl
-                                label={__('Add Reviewer Website Link', 'zolo-blocks')}
-                                checked={addReviewerWebsiteLink}
-                                onChange={() =>
-                                    setAttributes({
-                                        addReviewerWebsiteLink: !addReviewerWebsiteLink,
-                                    })
-                                }
+                                onChange={(selected) => setAttributes({ preset: selected })}
                             />
                             <ToggleControl
                                 label={__('Show Photo', 'zolo-blocks')}
@@ -167,6 +119,15 @@ function Inspector(props) {
                                 onChange={() =>
                                     setAttributes({
                                         showPhoto: !showPhoto,
+                                    })
+                                }
+                            />
+                            <ToggleControl
+                                label={__('Show Quote Icon', 'zolo-blocks')}
+                                checked={showQuoteIcon}
+                                onChange={() =>
+                                    setAttributes({
+                                        showQuoteIcon: !showQuoteIcon,
                                     })
                                 }
                             />
@@ -189,7 +150,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show Testimonial Message', 'zolo-blocks')}
+                                label={__('Show Testimonial', 'zolo-blocks')}
                                 checked={showTestimonialMessage}
                                 onChange={() =>
                                     setAttributes({
@@ -281,14 +242,14 @@ function Inspector(props) {
                             )}
                             {showTestimonialMessage && (
                                 <TextareaControl
-                                    label={__('Testimonial Message', 'zolo-blocks')}
+                                    label={__('Testimonial', 'zolo-blocks')}
                                     value={testimonialMessage}
                                     onChange={(bio) =>
                                         setAttributes({
                                             testimonialMessage: bio,
                                         })
                                     }
-                                    placeholder={__('Testimonial Message..', 'zolo-blocks')}
+                                    placeholder={__('Testimonial..', 'zolo-blocks')}
                                 />
                             )}
                             {showRating && (
@@ -305,49 +266,26 @@ function Inspector(props) {
                                     step={0.1}
                                 />
                             )}
-                            {addReviewerWebsiteLink && (
-                                <LinkControl
-                                    label={__('Website Link', 'zolo-blocks')}
-                                    value={reviewerWebsiteLink}
-                                    onChange={(link) =>
-                                        setAttributes({
-                                            reviewerWebsiteLink: link,
-                                        })
-                                    }
-                                />
-                            )}
                         </PanelBody>
+                        {showQuoteIcon && (
+                            <PanelBody title={__('Quote', 'zolo-blocks')} initialOpen={false}>
+                                <IconPicker
+                                    value={quoteIcon}
+                                    onChange={(value) => {
+                                        setAttributes({
+                                            quoteIcon: value,
+                                        });
+                                    }}
+                                    showHeading={true}
+                                    disableDashicon={true}
+                                />
+                            </PanelBody>
+                        )}
                     </>
                 }
                 styleTab={
                     <>
-                        {preset === 'style-2' && (
-                            <PanelBody title={__('Preset Style', 'zolo-blocks')} initialOpen={false}>
-                                <RangeControl
-                                    label={__('Blur Strength', 'zolo-blocks')}
-                                    value={blurBgOpacity}
-                                    onChange={(v) => setAttributes({ blurBgOpacity: v })}
-                                    min={0}
-                                    max={100}
-                                />
-                            </PanelBody>
-                        )}
-                        <PanelBody title={__('Container', 'zolo-blocks')} initialOpen={false}>
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={CONTAINER_BORDER}
-                                requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={CONTAINER_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                            <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
-                        </PanelBody>
-                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={true}>
                             <ResAlignmentControl
                                 label={__('Content Alignmet', 'zolo-blocks')}
                                 controlName={CONTENT_ALIGNMENT}
@@ -423,52 +361,20 @@ function Inspector(props) {
                                     typoPrefixConstant={REVIEWER_NAME_TYPOGRAPHY}
                                     requiredProps={requiredProps}
                                 />
-                                {!addReviewerWebsiteLink && (
-                                    <ColorControl
-                                        label={__('Color', 'zolo-blocks')}
-                                        color={nameColor}
-                                        onChange={(color) =>
-                                            setAttributes({
-                                                nameColor: color,
-                                            })
-                                        }
-                                    />
-                                )}
+                                <ColorControl
+                                    label={__('Color', 'zolo-blocks')}
+                                    color={nameColor}
+                                    onChange={(color) =>
+                                        setAttributes({
+                                            nameColor: color,
+                                        })
+                                    }
+                                />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={REVIEWER_NAME_MARGIN}
                                     requiredProps={requiredProps}
                                 />
-                                {addReviewerWebsiteLink && (
-                                    <TabPanelControl
-                                        normalComponents={
-                                            <>
-                                                <ColorControl
-                                                    label={__('Link Color', 'zolo-blocks')}
-                                                    color={nameLinkColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            nameLinkColor: color,
-                                                        })
-                                                    }
-                                                />
-                                            </>
-                                        }
-                                        hoverComponents={
-                                            <>
-                                                <ColorControl
-                                                    label={__('Link Hover Color', 'zolo-blocks')}
-                                                    color={nameHoverColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            nameHoverColor: color,
-                                                        })
-                                                    }
-                                                />
-                                            </>
-                                        }
-                                    />
-                                )}
                             </PanelBody>
                         )}
 
@@ -496,7 +402,7 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {showTestimonialMessage && (
-                            <PanelBody title={__('Testimonial Message', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody title={__('Testimonial', 'zolo-blocks')} initialOpen={false}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={REVIEWER_MESSAGE_TYPOGRAPHY}
@@ -565,68 +471,44 @@ function Inspector(props) {
                                 />
                             </PanelBody>
                         )}
-                        {preset === 'style-1' && (
-                            <PanelBody title={__('Detail Page Icon', 'zolo-blocks')} initialOpen={false}>
-                                <ResRangeControl
-                                    label={__('Icon Size', 'zolo-blocks')}
-                                    controlName={DPL_ICON_SIZE}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResRangeControl
-                                    label={__('Height', 'zolo-blocks')}
-                                    controlName={DPL_HEIGHT}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResRangeControl label={__('Width', 'zolo-blocks')} controlName={DPL_WIDTH} requiredProps={requiredProps} />
-                                <BorderControl label={__('Border', 'zolo-blocks')} controlName={DPL_BORDER} requiredProps={requiredProps} />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
-                                    controlName={DPL_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zolo-blocks')}
-                                    controlName={DPL_PADDING}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zolo-blocks')}
-                                    controlName={DPL_MARGIN}
-                                    requiredProps={requiredProps}
-                                />
-                                <TabPanelControl
-                                    normalComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Icon Color', 'zolo-blocks')}
-                                                color={dplIconColor}
-                                                onChange={(color) =>
-                                                    setAttributes({
-                                                        dplIconColor: color,
-                                                    })
-                                                }
-                                            />
-                                            <NormalBGControl requiredProps={requiredProps} controlName={DPL_BG} noMainBGImg={true} />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Icon Color', 'zolo-blocks')}
-                                                color={dplIconHoverColor}
-                                                onChange={(color) =>
-                                                    setAttributes({
-                                                        dplIconHoverColor: color,
-                                                    })
-                                                }
-                                            />
-                                            <NormalBGControl requiredProps={requiredProps} controlName={DPL_HOVER_BG} noMainBGImg={true} />
-                                        </>
-                                    }
-                                />
-                            </PanelBody>
-                        )}
+
+                        <PanelBody title={__('Quote Icon', 'zolo-blocks')} initialOpen={false}>
+                            <ColorControl
+                                label={__('Icon Color', 'zolo-blocks')}
+                                color={dplIconColor}
+                                onChange={(color) =>
+                                    setAttributes({
+                                        dplIconColor: color,
+                                    })
+                                }
+                            />
+                            <ResRangeControl
+                                label={__('Icon Size', 'zolo-blocks')}
+                                controlName={DPL_ICON_SIZE}
+                                requiredProps={requiredProps}
+                            />
+                            <CardDivider />
+                            <ResRangeControl label={__('Height', 'zolo-blocks')} controlName={DPL_HEIGHT} requiredProps={requiredProps} />
+                            <ResRangeControl label={__('Width', 'zolo-blocks')} controlName={DPL_WIDTH} requiredProps={requiredProps} />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={DPL_BORDER} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={DPL_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={DPL_PADDING}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={DPL_MARGIN}
+                                requiredProps={requiredProps}
+                            />
+                            <NormalBGControl requiredProps={requiredProps} controlName={DPL_BG} noMainBGImg={true} />
+                        </PanelBody>
                     </>
                 }
                 advancedTab={

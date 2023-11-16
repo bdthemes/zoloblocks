@@ -16,10 +16,10 @@ export const PRESETS = [
 
 // photo bg
 export const PHOTO_BG = 'PhotoBg';
+export const PHOTO_SIZE = 'PhotoSize';
 
 // content
 export const CONTENT_BG = 'ContentBg';
-export const CONTENT_ALIGNMENT = 'ContentAlignment';
 export const CONTENT_PADDING = 'ContentPadding';
 export const CONTENT_MARGIN = 'ContentMargin';
 export const CONTENT_BORDER = 'ContentBorder';

@@ -198,31 +198,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     })
                                 }
                             />
-                            {/* {showPagination && (
-                                <Fragment>
-                                    <SelectControl
-                                        label={__('Pagination Type', 'zolo-blocks')}
-                                        options={PAGINATION_TYPES}
-                                        onChange={(type) =>
-                                            setAttributes({
-                                                paginationType: type,
-                                            })
-                                        }
-                                        value={paginationType}
-                                    />
-                                    {paginationType === 'bullets' && (
-                                        <ToggleControl
-                                            label={__('Dynamic Bullets', 'zolo-blocks')}
-                                            checked={dynamicBullets}
-                                            onChange={() =>
-                                                setAttributes({
-                                                    dynamicBullets: !dynamicBullets,
-                                                })
-                                            }
-                                        />
-                                    )}
-                                </Fragment>
-                            )} */}
                         </PanelBody>
                         {sliderType === 'carousel' && (
                             <PanelBody title={__('Carousel Options', 'zolo-blocks')} initialOpen={false}>
@@ -320,7 +295,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                 styleTab={
                     <Fragment>
                         {showNavigation && (
-                            <PanelBody title={__('Navigation', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody title={__('Navigation', 'zolo-blocks')} initialOpen={true}>
                                 <ResRangeControl
                                     label={__('Width', 'zolo-blocks')}
                                     controlName={NAV_WIDTH}

@@ -44,6 +44,7 @@ export default function Edit(props) {
                     }
                     .zb-brand-grid-wrap .block-editor-block-list__layout {
                         display: grid;
+                        grid-template-columns: repeat(2, 1fr);
                     }
                 `}
             </style>
@@ -53,7 +54,14 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
-                <InnerBlocks allowedBlocks={['zolo/brand-child']} template={[['zolo/brand-child', {}]]} renderAppender={false} />
+                <InnerBlocks
+                    allowedBlocks={['zolo/brand-child']}
+                    template={[
+                        ['zolo/brand-child', {}],
+                        ['zolo/brand-child', {}],
+                    ]}
+                    renderAppender={false}
+                />
                 <div className="appender-btn">
                     <Button
                         className="components-button"

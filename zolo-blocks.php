@@ -6,11 +6,10 @@
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: zolo-blocks
- * Description: Zolo Blocks for Gutenberg
+ * Description: A collection of custom Gutenberg blocks to design your webpages with ease. 
  * Domain Path: /languages
- * License: GPL3
- *
- * @package Zolo
+*  License: GPL v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

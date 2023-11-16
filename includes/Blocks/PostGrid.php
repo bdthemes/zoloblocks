@@ -6,27 +6,23 @@ use Zolo\Blocks\PostBlock;
 use Zolo\API\GetPostsV1;
 use Zolo\Helpers\ZoloHelpers;
 
-class PostGrid extends PostBlock
-{
+class PostGrid extends PostBlock {
 
     protected $default_block_attributes = [
-        'name'  => 'post-grid',
-        'preset' => 'style-1',
-        'thumbnailSize'      => '',
-        'showExcerpt' => false,
+        'preset'           => 'style-1',
+        'thumbnailSize'    => '',
+        'showExcerpt'      => false,
         'excerptindicator' => '...',
-        'excerptWords' => 15,
-        'showReadMore' => false,
-        'readMoreBtnText' => 'Button Text',
+        'excerptWords'     => 15,
+        'showReadMore'     => false,
+        'readMoreBtnText'  => 'Button Text',
     ];
 
-    public function get_default_attributes()
-    {
+    public function get_default_attributes() {
         return array_merge(parent::$default_attributes, $this->default_block_attributes);
     }
 
-    public function render($attributes)
-    {
+    public function render($attributes) {
 
         // var_dump($attributes);
 
@@ -38,9 +34,9 @@ class PostGrid extends PostBlock
 
         ob_start();
         ZoloHelpers::views('post-grid', [
-            'settings'  => $attributes,
-            'className' => '',
-            'post_results'    => $post_results,
+            'settings'     => $attributes,
+            'className'    => '',
+            'post_results' => $post_results,
             'class_object' => $this
         ]);
         return ob_get_clean();

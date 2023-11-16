@@ -431,7 +431,11 @@ export default function Style({ props }) {
 					background-color: ${presetThreeStyles && presetThreeStyles.bgColor};
 				${pthDeskBorder}
 				${pthDeskBorderRadius}
-			}`
+			}
+            .zolo-advanced-button.${uniqueId}.button-3:hover:after {
+                background-color: ${presetThreeStyles && presetThreeStyles.hoverBgColor};
+            }
+            `
                 : ''
         }
 		${

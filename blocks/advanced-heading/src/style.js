@@ -69,13 +69,14 @@ export default function Style({ props }) {
 
         //style
         titleColor,
+        titleHoverColor,
+        titleBgColor,
         subTitleColor,
         subTitleBgColor,
         tptColor,
         tptBgColor,
         tptOpacity,
         separatorColor,
-        titleBgColor,
     } = attributes;
 
     //title style generate
@@ -436,6 +437,7 @@ export default function Style({ props }) {
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading{
     font-weight: 900;
   }
+
   .zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
     font-weight: 400;
     color: #323641;
@@ -489,7 +491,7 @@ export default function Style({ props }) {
 
     // Title styles css in strings
     const titleStylesDesktop = `
-    .zolo-block-wrapper.${uniqueId} .zolo-ah-title .zolo-ah-main-title {
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
       ${titleColor ? `color: ${titleColor};` : ''}
       ${titleBgColor ? `background-color: ${titleBgColor};` : ''}
       ${titleTypoDesktop}
@@ -502,6 +504,14 @@ export default function Style({ props }) {
       ${titleShadow}
     }
 
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title.has-link {
+      ${titleColor ? `color: ${titleColor};` : ''}
+    }
+
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title.has-link:hover {
+      ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
+    }
+
     .zolo-block-wrapper.${uniqueId}.zolo-ah-style-6 .zolo-ah-title {
       -webkit-text-stroke-width: 1px;
       -webkit-text-stroke-color: ${titleColor || 'rgba(6, 6, 7, 0.919)'};
@@ -509,16 +519,8 @@ export default function Style({ props }) {
 
   `;
 
-    // .zolo-block-wrapper.${uniqueId}.zolo-ah-style-7 .zolo-ah-main-title {
-    //   ${titleBgColor ? `background-color: ${titleBgColor};` : ""}
-    // }
-    // .zolo-block-wrapper.${uniqueId}.zolo-ah-style-7 .zolo-ah-title::before,
-    // .zolo-block-wrapper.${uniqueId}.zolo-ah-style-7 .zolo-ah-title::after {
-    //   ${titleBorderColor ? `background-color: ${titleBorderColor};` : ""}
-    // }
-
     const titleStylesTab = `
-  .zolo-block-wrapper.${uniqueId} .zolo-ah-title .zolo-ah-main-title {
+  .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
     ${titleTypoTab}
     ${titleMarginTab}
     ${titlePaddingTab}
@@ -529,7 +531,7 @@ export default function Style({ props }) {
 `;
 
     const titleStylesMobile = `
-  .zolo-block-wrapper.${uniqueId} .zolo-ah-title .zolo-ah-main-title {
+  .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
     ${titleTypoMobile}
     ${titleMarginMobile}
     ${titlePaddingMob}

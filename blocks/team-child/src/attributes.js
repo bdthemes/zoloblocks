@@ -2,7 +2,6 @@
  * Internal dependencies
  */
 const {
-    generateResAlignmentAttributies,
     generateResRangeAttributies,
     generateBorderAttributies,
     generateDimensionAttributes,
@@ -13,13 +12,13 @@ const {
 
 import {
     CONTENT_BG,
-    CONTENT_ALIGNMENT,
     CONTENT_PADDING,
     CONTENT_MARGIN,
     CONTENT_BORDER,
     CONTENT_BORDER_RADIUS,
     CONTENT_BOX_SHADOW,
     PHOTO_BG,
+    PHOTO_SIZE,
     TEAM_PHOTO_BORDER,
     TEAM_PHOTO_BORDER_RADIUS,
     TEAM_PHOTO_BOX_SHADOW,
@@ -86,9 +85,6 @@ const attributes = {
     // Generators
     ...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_PADDING),
     ...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_MARGIN),
-    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
-        defaultAlign: 'left',
-    }),
     ...generateNormalBGAttributes(CONTENT_BG),
     ...generateBorderAttributies(CONTENT_BORDER),
     ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
@@ -96,6 +92,7 @@ const attributes = {
     ...generateDimensionAttributes(CONTENT_MARGIN),
     ...generateBoxShadowAttributies(CONTENT_BOX_SHADOW),
     ...generateNormalBGAttributes(PHOTO_BG),
+    ...generateResRangeAttributies(PHOTO_SIZE),
     ...generateBorderAttributies(TEAM_PHOTO_BORDER),
     ...generateDimensionAttributes(TEAM_PHOTO_BORDER_RADIUS),
     ...generateDimensionAttributes(TEAM_PHOTO_MARGIN),
@@ -127,12 +124,6 @@ const attributes = {
     // typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     //Block Specific Attributes
-    blurBgColor: {
-        type: 'string',
-    },
-    blurBgOpacity: {
-        type: 'number',
-    },
     memberPhoto: {
         type: 'object',
         default: {
@@ -170,12 +161,11 @@ const attributes = {
     },
     showShortBio: {
         type: 'boolean',
-        default: false,
+        default: true,
     },
     memberShortBio: {
         type: 'string',
-        default:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        default: 'CEO at ZoloBlocks, leading innovative tech solutions for a better world.',
     },
     showSocialProfiles: {
         type: 'boolean',
@@ -219,9 +209,6 @@ const attributes = {
     },
     // block styles
     nameColor: {
-        type: 'string',
-    },
-    nameLinkColor: {
         type: 'string',
     },
     nameHoverColor: {
