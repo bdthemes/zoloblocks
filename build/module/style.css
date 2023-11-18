@@ -1,6 +1,7 @@
 /*!********************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/controls/scss/controls.scss ***!
   \********************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
 .zolo-panel-control .zolo-tab-group {
   display: flex;
   position: relative;
@@ -1232,6 +1233,17 @@
 
 .zb-counter-note {
   font-style: italic;
+}
+
+.zolo-codemirror-wrap .ͼ1.cm-focused {
+  outline-style: solid;
+  outline-color: #001feb;
+}
+.zolo-codemirror-wrap .zolo-help-text {
+  margin-top: 8px;
+  font-size: 12px;
+  font-style: normal;
+  color: rgb(117, 117, 117);
 }
 /*!*******************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/wordpress-icon-picker/dist/style.css ***!
