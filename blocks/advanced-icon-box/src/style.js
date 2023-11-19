@@ -172,7 +172,6 @@ export default function Style({ props }) {
         typoStylesMobile: titleTypoMobile,
     } = generateTypographyStyles({
         prefixConstant: TITLE_TYPOGRAPHY,
-        defaultFontSize: 25,
         attributes,
     });
 
@@ -210,7 +209,6 @@ export default function Style({ props }) {
         typoStylesMobile: descTypoMobile,
     } = generateTypographyStyles({
         prefixConstant: DESCRIPTION_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 
@@ -221,7 +219,6 @@ export default function Style({ props }) {
         typoStylesMobile: btnTypoMobile,
     } = generateTypographyStyles({
         prefixConstant: BUTTON_TYPOGRAPHY,
-        defaultFontSize: 14,
         attributes,
     });
 
@@ -374,13 +371,11 @@ export default function Style({ props }) {
         	${titleTextStrokeStyle}
 			${titleMarginDesktop ? titleMarginDesktop : ''}
             ${textColor ? `color: ${textColor};` : ''}
-            transition: all 0.3s ease-in-out;
 		}
 		.${uniqueId} .zolo-block-desc{
 			${descTypoDesktop}
 			${descMarginDesktop}
             ${descColor ? `color: ${descColor};` : ''}
-            transition: all 0.3s ease-in-out;
 		}
 		.${uniqueId} .zolo-block-icon-wrap i {
             ${iconBackgroundColor ? `background: ${iconBackgroundColor};` : ''}
@@ -391,7 +386,6 @@ export default function Style({ props }) {
 			${iconPaddingDesktop}
 			${iconMarginDesktop}
 			${iconBoxShadow}
-            transition: all 0.3s ease-in-out;
 		}
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
