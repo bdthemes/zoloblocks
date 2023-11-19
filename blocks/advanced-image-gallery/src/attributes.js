@@ -135,10 +135,10 @@ const attributes = {
     ...generateNormalBGAttributes(OVERLAY_BG_COLOR),
 
     //Block specific Attributes
-    preset: {
-        type: 'string',
-        default: 'style-1',
-    },
+    // preset: {
+    //     type: 'string',
+    //     default: 'style-1',
+    // },
     advancedGallery: {
         type: 'array',
     },

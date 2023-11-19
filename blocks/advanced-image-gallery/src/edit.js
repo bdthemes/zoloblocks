@@ -18,7 +18,7 @@ import Inspector from './inspector';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
-    const { uniqueId, preset, parentClasses, showCaption, showLightbox, advancedGallery, lightboxIcon } = attributes;
+    const { uniqueId, parentClasses, showCaption, showLightbox, advancedGallery, lightboxIcon } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -67,7 +67,7 @@ export default function Edit(props) {
                 )}
             </BlockControls>
             <div {...blockProps}>
-                <div className={`${advancedGallery ? 'zolo-image-gallery' : 'zolo-single-image'} ${uniqueId} zolo-img-gallery-${preset}`}>
+                <div className={`${advancedGallery ? 'zolo-image-gallery' : 'zolo-single-image'} ${uniqueId}`}>
                     {advancedGallery ? (
                         advancedGallery &&
                         advancedGallery.map((image, index) => {
@@ -81,7 +81,6 @@ export default function Edit(props) {
                                             <span className="zolo-icon">
                                                 <DisplayIcon icon={lightboxIcon} />
                                             </span>
-                                            <span className="zolo-icon-text">{__('zoom', 'zolo-blocks')}</span>
                                         </a>
                                     )}
                                     {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}

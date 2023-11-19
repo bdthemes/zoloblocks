@@ -7,10 +7,10 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'advanced-image-gallery';
 
 // Presets
-export const PRESETS = [
-    { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
-];
+// export const PRESETS = [
+//     { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
+//     { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
+// ];
 
 // Grid
 export const COLUMN_COUNT = 'columnCount';
