@@ -94,44 +94,45 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
+
     /**
      * Preset
      */
-    const changePremade = (selected) => {
-        setAttributes({ preset: selected });
-        switch (selected) {
-            case 'default':
-                setAttributes({
-                    showPhoto: true,
-                    showName: true,
-                    showDesignation: true,
-                    showTestimonialMessage: true,
-                    showRating: true,
-                    addReviewerWebsiteLink: true,
-                });
-                break;
-            case 'style-1':
-                setAttributes({
-                    showTestimonialMessage: false,
-                });
-                break;
-            case 'style-2':
-                setAttributes({
-                    showTestimonialMessage: false,
-                });
-                break;
-            default:
-                setAttributes({
-                    showPhoto: true,
-                    showName: true,
-                    showDesignation: true,
-                    showTestimonialMessage: true,
-                    showRating: true,
-                    addReviewerWebsiteLink: true,
-                });
-                break;
-        }
-    };
+//     const changePremade = (selected) => {
+//         setAttributes({ preset: selected });
+//         switch (selected) {
+//             case 'default':
+//                 setAttributes({
+//                     showPhoto: true,
+//                     showName: true,
+//                     showDesignation: true,
+//                     showTestimonialMessage: true,
+//                     showRating: true,
+//                     addReviewerWebsiteLink: true,
+//                 });
+//                 break;
+//             case 'style-1':
+//                 setAttributes({
+//                     showTestimonialMessage: false,
+//                 });
+//                 break;
+//             case 'style-2':
+//                 setAttributes({
+//                     showTestimonialMessage: false,
+//                 });
+//                 break;
+//             default:
+//                 setAttributes({
+//                     showPhoto: true,
+//                     showName: true,
+//                     showDesignation: true,
+//                     showTestimonialMessage: true,
+//                     showRating: true,
+//                     addReviewerWebsiteLink: true,
+//                 });
+//                 break;
+//         }
+//     };
 
     useEffect(() => {
         // set initial panle to panel11
@@ -158,7 +159,7 @@ function Inspector(props) {
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
-                                onChange={(selected) => changePremade(selected)}
+                                onChange={(selected) => setAttributes({ preset: selected })}
                             />
                             <ToggleControl
                                 label={__('Add Reviewer Website Link', 'zolo-blocks')}

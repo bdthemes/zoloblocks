@@ -26,7 +26,6 @@ const {
 
 import objAttributes from './attributes';
 import {
-    PRESETS,
     ROW_GAP,
     COLUMNS_GAP,
     COLUMN_COUNT,
@@ -60,7 +59,6 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
-        preset,
         resMode,
         showCaption,
         showLightbox,
@@ -111,7 +109,7 @@ function Inspector(props) {
                                         preset: value,
                                     })
                                 }
-                            />
+                            /> */}
                             <ToggleControl
                                 label={__('Show photo caption', 'zolo-blocks')}
                                 checked={showCaption}

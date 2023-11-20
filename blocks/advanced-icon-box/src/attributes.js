@@ -66,16 +66,10 @@ const attributes = {
         },
     },
     // Icon
-    ...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT, {
-        defaultAlign: 'left',
-    }),
+    ...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT),
     ...generateBorderAttributies(ICON_BORDER),
-    ...generateResRangeAttributies(ICON_SIZE, {
-        default: 30,
-    }),
-    ...generateResRangeAttributies(ICON_TEXT_SPACING, {
-        default: 5,
-    }),
+    ...generateResRangeAttributies(ICON_SIZE),
+    ...generateResRangeAttributies(ICON_TEXT_SPACING),
     ...generateDimensionAttributes(ICON_BORDER_RADIUS),
     ...generateDimensionAttributes(ICON_PADDING),
     ...generateDimensionAttributes(ICON_MARGIN),
@@ -86,9 +80,7 @@ const attributes = {
     ...generateNormalBGAttributes(BUTTON_BG_COLOR),
     ...generateNormalBGAttributes(BUTTON_BG_HOVER_COLOR),
     ...generateBorderAttributies(BUTTON_BORDER),
-    ...generateResRangeAttributies(BUTTON_ICON_SIZE, {
-        default: 16,
-    }),
+    ...generateResRangeAttributies(BUTTON_ICON_SIZE),
     ...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
     ...generateDimensionAttributes(BUTTON_PADDING),
     ...generateDimensionAttributes(BUTTON_MARGIN),
@@ -108,12 +100,8 @@ const attributes = {
 
     // Image
     ...generateBorderAttributies(IMAGE_BORDER),
-    ...generateResRangeAttributies(ICON_IMAGE_SIZE, {
-        default: 16,
-    }),
-    ...generateResRangeAttributies(ICON_IMAGE_BORDER_RADIUS, {
-        default: 16,
-    }),
+    ...generateResRangeAttributies(ICON_IMAGE_SIZE),
+    ...generateResRangeAttributies(ICON_IMAGE_BORDER_RADIUS),
 
     //Block Specific Attributes
     preset: {
@@ -266,25 +254,25 @@ const attributes = {
     presetOneStyles: {
         type: 'object',
         default: {
-            contentPosition: 'left',
-            iconPosition: 'row',
-            buttonIconPosition: 'row-reverse',
+            contentPosition: '',
+            iconPosition: '',
+            buttonIconPosition: '',
         },
     },
     presetTwoStyles: {
         type: 'object',
         default: {
-            contentPosition: 'left',
-            iconPosition: 'row-reverse',
-            buttonIconPosition: 'row-reverse',
+            contentPosition: '',
+            iconPosition: '',
+            buttonIconPosition: '',
         },
     },
     presetThreeStyles: {
         type: 'object',
         default: {
-            contentPosition: 'right',
-            iconPosition: 'row-reverse',
-            buttonIconPosition: 'row-reverse',
+            contentPosition: '',
+            iconPosition: '',
+            buttonIconPosition: '',
         },
     },
 };

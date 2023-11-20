@@ -192,35 +192,35 @@ const Style = ({ props }) => {
             ratingIconDeskAlignStyle = 'justify-content: flex-start;';
     }
 
-    let ratingIconTabAlignStyle;
-    switch (reviewContentTabAlignStyle) {
-        case 'text-align:left;':
-            ratingIconTabAlignStyle = 'justify-content: flex-start;';
-            break;
-        case 'text-align:center;':
-            ratingIconTabAlignStyle = 'justify-content: center;';
-            break;
-        case 'text-align:right;':
-            ratingIconTabAlignStyle = 'justify-content: flex-end;';
-            break;
-        default:
-            ratingIconTabAlignStyle = 'justify-content: flex-start;';
-    }
+    // let ratingIconTabAlignStyle;
+    // switch (reviewContentTabAlignStyle) {
+    //     case 'text-align:left;':
+    //         ratingIconTabAlignStyle = 'justify-content: flex-start;';
+    //         break;
+    //     case 'text-align:center;':
+    //         ratingIconTabAlignStyle = 'justify-content: center;';
+    //         break;
+    //     case 'text-align:right;':
+    //         ratingIconTabAlignStyle = 'justify-content: flex-end;';
+    //         break;
+    //     default:
+    //         ratingIconTabAlignStyle = 'justify-content: flex-start;';
+    // }
 
-    let ratingIconMobAlignStyle;
-    switch (reviewContentMobAlignStyle) {
-        case 'text-align:left;':
-            ratingIconMobAlignStyle = 'justify-content: flex-start;';
-            break;
-        case 'text-align:center;':
-            ratingIconMobAlignStyle = 'justify-content: center;';
-            break;
-        case 'text-align:right;':
-            ratingIconMobAlignStyle = 'justify-content: flex-end;';
-            break;
-        default:
-            ratingIconMobAlignStyle = 'justify-content: flex-start;';
-    }
+    // let ratingIconMobAlignStyle;
+    // switch (reviewContentMobAlignStyle) {
+    //     case 'text-align:left;':
+    //         ratingIconMobAlignStyle = 'justify-content: flex-start;';
+    //         break;
+    //     case 'text-align:center;':
+    //         ratingIconMobAlignStyle = 'justify-content: center;';
+    //         break;
+    //     case 'text-align:right;':
+    //         ratingIconMobAlignStyle = 'justify-content: flex-end;';
+    //         break;
+    //     default:
+    //         ratingIconMobAlignStyle = 'justify-content: flex-start;';
+    // }
 
     // Container
     const {
@@ -329,7 +329,6 @@ const Style = ({ props }) => {
         typoStylesMobile: nameTypoMob,
     } = generateTypographyStyles({
         prefixConstant: REVIEWER_NAME_TYPOGRAPHY,
-        defaultFontSize: 20,
         attributes,
     });
 
@@ -350,7 +349,6 @@ const Style = ({ props }) => {
         typoStylesMobile: designationTypoMob,
     } = generateTypographyStyles({
         prefixConstant: REVIEWER_DESIGNATION_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 
@@ -371,7 +369,6 @@ const Style = ({ props }) => {
         typoStylesMobile: testimonialMessageTypoMob,
     } = generateTypographyStyles({
         prefixConstant: REVIEWER_MESSAGE_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 

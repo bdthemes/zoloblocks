@@ -60,7 +60,7 @@ import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
 
-    const { uniqueId, preset, headingColor, zoomIconColor, zoomIconHoverColor, zoomIconHoverBorderColor, imageHoverBorderColor } =
+    const { uniqueId, headingColor, zoomIconColor, zoomIconHoverColor, zoomIconHoverBorderColor, imageHoverBorderColor } =
         attributes;
 
     // column count
@@ -395,7 +395,7 @@ export default function Style({ props }) {
      */
 
     const desktopAllStyle = `
-		.${uniqueId}.zolo-img-gallery-${preset} {
+		.${uniqueId} {
 			${containerDeskBGStyle}
 			${containerMarginDesk}
 			${containerPaddingDesk}
@@ -404,12 +404,12 @@ export default function Style({ props }) {
 			${containerBoxShadow}
 			overflow:hidden;
 		}
-		.${uniqueId}.zolo-img-gallery-${preset}:hover {
+		.${uniqueId}:hover {
 			${containerHoverDeskBGStyle}
 			${containerHoverBorderDesk}
 			${containerBoxShadowHover}
 		}
-		.${uniqueId}.zolo-img-gallery-${preset}.zolo-image-gallery {
+		.${uniqueId}.zolo-image-gallery {
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
 			${colGapDeskstyle}
 			${rowGapDeskstyle}
@@ -462,18 +462,18 @@ export default function Style({ props }) {
   	`;
 
     const tabletAllStyle = `
-	.${uniqueId}.zolo-img-gallery-${preset} {
+	.${uniqueId} {
 		${containerTabBGStyle}
 		${containerMarginTab}
 		${containerPaddingTab}
 		${containerBorderTab}
 		${containerBorderRadiusTab}
 	}
-	.${uniqueId}.zolo-img-gallery-${preset}:hover {
+	.${uniqueId}:hover {
 		${containerHoverTabBGStyle}
 		${containerHoverBorderTab}
 	}
-	.${uniqueId}.zolo-img-gallery-${preset}.zolo-image-gallery {
+	.${uniqueId}.zolo-image-gallery {
 		grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
 		${colGapTabStyle}
 		${rowGapTabStyle}
@@ -512,18 +512,18 @@ export default function Style({ props }) {
 	`;
 
     const mobileAllStyle = `
-	.${uniqueId}.zolo-img-gallery-${preset} {
+	.${uniqueId} {
 		${containerMobBGStyle}
 		${containerMarginMob}
 		${containerPaddingMob}
 		${containerBorderMob}
 		${containerBorderRadiusMob}
 	}
-	.${uniqueId}.zolo-img-gallery-${preset}:hover {
+	.${uniqueId}:hover {
 		${containerHoverMobBGStyle}
 		${containerHoverBorderMob}
 	}
-	.${uniqueId}.zolo-img-gallery-${preset}.zolo-image-gallery {
+	.${uniqueId}.zolo-image-gallery {
 		grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
 		${colGapMobStyle}
 		${rowGapMobStyle}

@@ -1,3 +1,11 @@
+:root {
+    --zoloblocks-brand-color: #30ffd0;
+    --zoloblocks-brand-color-hover: #2be6c5;
+    --zoloblocks-button-border-radius: 3px;
+    --zolo-item-border-radius: 8px;
+}
+
+
 // Responsive show/hide css
 @media screen and (min-width: 1025px) {
     .zolo-hide-desktop {

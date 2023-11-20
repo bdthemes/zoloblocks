@@ -1,29 +1,31 @@
 .wp-block-zolo-advanced-icon-box {
-    padding: 40px;
+    padding: clamp(1.875rem, 4vw, 2.5rem);
     position: relative;
-    border-radius: 3px;
-    background: rgba(205, 210, 255, 0.123);
+    border-radius: var( --zolo-item-border-radius);
+    background: #f2f2f3;
     box-sizing: border-box;
 
     .zolo-block-title {
-        font-size: 25px;
+        font-size: clamp(1.25rem, 2.5vw, 1.3rem);
         font-weight: 700;
-        margin: 0 0 18px;
+        color: #2f2f44;
+        margin: 0 0 clamp(0.625rem, 1vw, 0.75rem);
     }
     .zolo-block-hover-icon {
         display: none;
     }
     .zolo-block-desc {
-        font-weight: 300;
+        font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+        color: #51515d;
     }
     .zolo-block-icon-wrap {
         display: flex;
-        margin: 0 0 20px;
+        margin: 0 0 clamp(0.938rem, 2.5vw, 1.75rem);
         i {
-            font-size: 24px;
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
         }
         img {
-            width: 60px;
+            width: clamp(3.125rem, 5vw, 3.75rem);
             height: auto;
         }
     }
@@ -31,22 +33,18 @@
         z-index: 1;
         position: relative;
         .zolo-block-link-btn {
-            margin-top: 20px;
+            margin-top: 10px;
         }
         .zolo-box-button {
             display: inline-flex;
-            gap: 15px;
+            gap: 8px;
             align-items: center;
             font-size: 14px;
             transition: all 0.3s ease;
-            border: 1px solid #c7c3e1;
-            border-radius: 3px;
-            padding: 10px 15px;
-            color: #3f1a46;
+            color: #141820;
+            font-weight: 700;
             &:hover {
-                border-color: #3f1a46;
-                background: #3f1a46;
-                color: #fff;
+                color: var(--zoloblocks-button-hover-color);
             }
         }
         .zolo-box-button p {
@@ -54,20 +52,26 @@
         }
     }
     /* icon box style 2 */
-    & .zolo-block-advanced-icon-box-style-2,
-    & .zolo-block-advanced-icon-box-style-3 {
+    .zolo-block-advanced-icon-box-style-2,
+    .zolo-block-advanced-icon-box-style-3 {
         .zolo-block-item {
             display: flex;
-            grid-gap: 20px;
+            grid-gap: clamp(0.625rem, 1.5vw, 1rem);
         }
         .zolo-block-icon-wrap {
             margin: 0;
         }
+        .zolo-block-body-content{
+            width: 100%;
+        }
     }
     /* icon box style 3 */
-    & .zolo-block-advanced-icon-box-style-3 {
+    .zolo-block-advanced-icon-box-style-3 {
         .zolo-block-item {
             flex-direction: row-reverse;
+        }
+        .zolo-block-body-content{
+            text-align: right;
         }
     }
 }

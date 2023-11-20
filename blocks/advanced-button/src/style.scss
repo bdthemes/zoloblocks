@@ -45,7 +45,7 @@
     box-sizing: border-box;
     cursor: pointer;
     text-align: center;
-    border-radius: 4px;
+    border-radius: var(--zoloblocks-button-border-radius);
     background-color: var(--primary-color);
     position: relative;
     padding: 12px 40px;
@@ -104,6 +104,7 @@
             transition: background-color 300ms ease-in;
             width: 100%;
             z-index: -1;
+            border-radius: var(--zoloblocks-button-border-radius);
         }
 
         &:hover {
@@ -140,6 +141,7 @@
             top: 7px;
             left: 7px;
             transition: 0.2s;
+            border-radius: var(--zoloblocks-button-border-radius);
         }
 
         &:hover {
@@ -203,6 +205,7 @@
             left: 4px;
             width: calc(100% - 1px);
             height: calc(100% - 1px);
+            border-radius: var(--zoloblocks-button-border-radius);
         }
 
         &:hover {
@@ -252,11 +255,11 @@
     &.button-7 {
         background-color: var(--color-bg8);
         border: 2px solid var(--color-b2);
-        border-radius: 8px;
+        border-radius: var(--zoloblocks-button-border-radius);
 
         &::after {
             background-color: var(--color-b2);
-            border-radius: 8px;
+            border-radius: var(--zoloblocks-button-border-radius);
             content: '';
             height: 100%;
             left: 0;
