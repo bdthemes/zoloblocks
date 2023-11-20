@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+import { Fragment, useEffect, useState, useRef } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -59,6 +59,7 @@ import {
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { use } from '@wordpress/data';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -84,6 +85,8 @@ function Inspector(props) {
         presetFourStyles,
         presetSixStyle,
         presetSevenStyles,
+        selectedPanel,
+        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -93,12 +96,27 @@ function Inspector(props) {
         objAttributes,
     };
 
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                attributes={attributes}
+                setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('General', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
+                            opened={selectedPanel === 'general'}
+                        >
                             <SelectControl
                                 label={__('Styles', 'zolo-blocks')}
                                 value={preset}
@@ -116,7 +134,11 @@ function Inspector(props) {
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Content', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'content' })}
+                            opened={selectedPanel === 'content'}
+                        >
                             {iconType !== 'iconOnly' && (
                                 <TextControl
                                     label={__('Text', 'zolo-blocks')}
@@ -193,7 +215,11 @@ function Inspector(props) {
                 styleTab={
                     <>
                         {preset !== '' && (
-                            <PanelBody title={__('Style Setting', 'zolo-blocks')} initialOpen={true}>
+                            <PanelBody
+                                title={__('Style Setting', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'styleSetting' })}
+                                opened={selectedPanel === 'styleSetting'}
+                            >
                                 {preset === 'button-1' && (
                                     <Fragment>
                                         <ResRangeControl
@@ -437,7 +463,11 @@ function Inspector(props) {
                                 )}
                             </PanelBody>
                         )}
-                        <PanelBody title={__('Button', 'zolo-blocks')} initialOpen={preset !== '' ? false : true}>
+                        <PanelBody
+                            title={__('Button', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'button_style' })}
+                            opened={selectedPanel === 'button_style'}
+                        >
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={BUTTON_TYPOGRAPHY}
@@ -512,7 +542,11 @@ function Inspector(props) {
                             />
                         </PanelBody>
                         {iconType !== 'none' && (
-                            <PanelBody title={__('Icon', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Icon', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'icon_style' })}
+                                opened={selectedPanel === 'icon_style'}
+                            >
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={ICON_BORDER}

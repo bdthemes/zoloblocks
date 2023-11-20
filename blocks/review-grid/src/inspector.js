@@ -4,6 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, ToggleControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
 
 import objAttributes from './attributes';
 import {
@@ -58,11 +59,8 @@ const {
     ResDimensionsControl,
     TypographyDropdown,
     BoxShadowControl,
-    ImageAvatar,
-    LinkControl,
     NormalBGControl,
     TabPanelControl,
-    IconPicker,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -86,7 +84,8 @@ function Inspector(props) {
         dplIconColor,
         dplIconHoverColor,
         blurBgOpacity,
-        websiteLinkIcon,
+        selectedPanel,
+        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -95,13 +94,67 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
-  
+
+    /**
+     * Preset
+     */
+//     const changePremade = (selected) => {
+//         setAttributes({ preset: selected });
+//         switch (selected) {
+//             case 'default':
+//                 setAttributes({
+//                     showPhoto: true,
+//                     showName: true,
+//                     showDesignation: true,
+//                     showTestimonialMessage: true,
+//                     showRating: true,
+//                     addReviewerWebsiteLink: true,
+//                 });
+//                 break;
+//             case 'style-1':
+//                 setAttributes({
+//                     showTestimonialMessage: false,
+//                 });
+//                 break;
+//             case 'style-2':
+//                 setAttributes({
+//                     showTestimonialMessage: false,
+//                 });
+//                 break;
+//             default:
+//                 setAttributes({
+//                     showPhoto: true,
+//                     showName: true,
+//                     showDesignation: true,
+//                     showTestimonialMessage: true,
+//                     showRating: true,
+//                     addReviewerWebsiteLink: true,
+//                 });
+//                 break;
+//         }
+//     };
+
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                setAttributes={setAttributes}
+                attributes={attributes}
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('General', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
+                            opened={selectedPanel === 'general'}
+                        >
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
@@ -163,7 +216,11 @@ function Inspector(props) {
                                 }
                             />
                         </PanelBody>
-                        <PanelBody title={__('Grid', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Grid', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'grid' })}
+                            opened={selectedPanel === 'grid'}
+                        >
                             <ResCounterControl
                                 label={__('Grid Columns', 'zolo-blocks')}
                                 controlName={GRID_COLUMNS}
@@ -183,7 +240,11 @@ function Inspector(props) {
                 styleTab={
                     <>
                         {preset === 'style-2' && (
-                            <PanelBody title={__('Preset Style', 'zolo-blocks')} initialOpen={true}>
+                            <PanelBody
+                                title={__('Preset Style', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'presetStyle' })}
+                                opened={selectedPanel === 'presetStyle'}
+                            >
                                 <RangeControl
                                     label={__('Blur Strength', 'zolo-blocks')}
                                     value={blurBgOpacity}
@@ -193,7 +254,11 @@ function Inspector(props) {
                                 />
                             </PanelBody>
                         )}
-                        <PanelBody title={__('Item Container', 'zolo-blocks')} initialOpen={preset === 'style-2' ? false : true}>
+                        <PanelBody
+                            title={__('Item Container', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'itemContainerStyle' })}
+                            opened={selectedPanel === 'itemContainerStyle'}
+                        >
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={CONTAINER_BORDER}
@@ -208,7 +273,11 @@ function Inspector(props) {
                             <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
                         </PanelBody>
-                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Content', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'contentStyle' })}
+                            opened={selectedPanel === 'contentStyle'}
+                        >
                             <ResAlignmentControl
                                 label={__('Content Alignmet', 'zolo-blocks')}
                                 controlName={CONTENT_ALIGNMENT}
@@ -238,7 +307,11 @@ function Inspector(props) {
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BACKGROUND} noMainBGImg={true} />
                         </PanelBody>
                         {showPhoto && (
-                            <PanelBody title={__('Photo', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Photo', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'photoStyle' })}
+                                opened={selectedPanel === 'photoStyle'}
+                            >
                                 <ResRangeControl
                                     label={__('Size', 'zolo-blocks')}
                                     controlName={REVIEWER_PHOTO_SIZE}
@@ -278,7 +351,11 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {showName && (
-                            <PanelBody title={__('Name', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Name', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'nameStyle' })}
+                                opened={selectedPanel === 'nameStyle'}
+                            >
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={REVIEWER_NAME_TYPOGRAPHY}
@@ -333,7 +410,11 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {showDesignation && (
-                            <PanelBody title={__('Designation', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Designation', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'designationStyle' })}
+                                opened={selectedPanel === 'designationStyle'}
+                            >
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={REVIEWER_DESIGNATION_TYPOGRAPHY}
@@ -356,7 +437,11 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {showTestimonialMessage && (
-                            <PanelBody title={__('Testimonial', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Testimonial', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'testimonialStyle' })}
+                                opened={selectedPanel === 'testimonialStyle'}
+                            >
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={REVIEWER_MESSAGE_TYPOGRAPHY}
@@ -379,7 +464,11 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {showRating && (
-                            <PanelBody title={__('Rating', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Rating', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'ratingStyle' })}
+                                opened={selectedPanel === 'ratingStyle'}
+                            >
                                 <ResRangeControl
                                     label={__('Icon Size', 'zolo-blocks')}
                                     controlName={ICONS_SIZE}
@@ -426,7 +515,11 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {preset === 'style-1' && addReviewerWebsiteLink && (
-                            <PanelBody title={__('Detail Page Icon', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Detail Page Icon', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'dpIconStyle' })}
+                                opened={selectedPanel === 'dpIconStyle'}
+                            >
                                 <ResRangeControl
                                     label={__('Icon Size', 'zolo-blocks')}
                                     controlName={DPL_ICON_SIZE}

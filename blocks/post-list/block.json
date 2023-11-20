@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Post List",
+    "name": "zolo/post-list",
+    "category": "zolo-blocks",
+    "keywords": [
+        "post",
+        "post list"
+    ],
+    "description": "post list view",
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": [
+            "wide",
+            "full"
+        ]
+    },
+    "editorScript": ""
+}

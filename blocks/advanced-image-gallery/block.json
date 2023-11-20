@@ -4,7 +4,7 @@
     "name": "zolo/advanced-image-gallery",
     "category": "zolo-blocks",
     "keywords": ["advanced", "image gallery"],
-    "description": "Advanced Image Gallery Block",
+    "description": "Image Gallery Block",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "example": {

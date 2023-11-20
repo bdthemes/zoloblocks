@@ -121,7 +121,7 @@ export default function Edit(props) {
         let breakpoints = {};
         if (sliderType === 'carousel') {
             breakpoints = {
-                1024: {
+                1025: {
                     slidesPerView: deskCol || 2,
                     spaceBetween: parseInt(deskColGap.slice(0, -1)) || 30,
                 },

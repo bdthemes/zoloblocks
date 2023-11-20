@@ -4,6 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, TextControl, RangeControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -28,7 +29,19 @@ import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS } from '../../../src/g
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, rating, showTitle, title, titleTag, titleColor, titlePosition, activeStarColor, inactiveStarColor } = attributes;
+    const {
+        resMode,
+        rating,
+        showTitle,
+        title,
+        titleTag,
+        titleColor,
+        titlePosition,
+        activeStarColor,
+        inactiveStarColor,
+        selectedPanel,
+        selectedTab,
+    } = attributes;
 
     const requiredProps = {
         attributes,
@@ -37,12 +50,27 @@ function Inspector(props) {
         objAttributes,
     };
 
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                attributes={attributes}
+                setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('General', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
+                            opened={selectedPanel === 'general'}
+                        >
                             <ToggleControl
                                 label={__('Show Star Title', 'zolo-blocks')}
                                 checked={showTitle}
@@ -55,7 +83,11 @@ function Inspector(props) {
                                 alignOptions={FLEX_HORIZONTAL_OPTIONS}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Rating', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Rating', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'rating' })}
+                            opened={selectedPanel === 'rating'}
+                        >
                             <RangeControl
                                 label={__('Rating', 'zolo-blocks')}
                                 value={rating}
@@ -66,7 +98,11 @@ function Inspector(props) {
                             />
                         </PanelBody>
                         {showTitle && (
-                            <PanelBody title={__('Title', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Title', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'title' })}
+                                opened={selectedPanel === 'title'}
+                            >
                                 <TextControl
                                     label={__('Text', 'zolo-blocks')}
                                     value={title}
@@ -97,7 +133,11 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Star', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('Star', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'starStyle' })}
+                            opened={selectedPanel === 'starStyle'}
+                        >
                             <ResRangeControl
                                 label={__('Size', 'zolo-blocks')}
                                 controlName={STAR_SIZE}
@@ -134,7 +174,11 @@ function Inspector(props) {
                             />
                         </PanelBody>
                         {showTitle && (
-                            <PanelBody title={__('Title', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Title', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'titleStyle' })}
+                                opened={selectedPanel === 'titleStyle'}
+                            >
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={TITLE_TYPO}
