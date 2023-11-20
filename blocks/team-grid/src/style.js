@@ -38,6 +38,8 @@ import {
     ICONS_PADDING,
     ICONS_SIZE,
     ICONS_SPACING,
+    ICONS_CONTAINER_PADDING,
+    ICONS_CONTAINER_MARGIN,
     TEAM_DESIGNATION_MARGIN,
     TEAM_NAME_MARGIN,
     PHOTO_BG,
@@ -477,6 +479,26 @@ const Style = ({ props }) => {
         controlName: ICONS_HOVER_BOX_SHADOW,
     });
 
+    const {
+        dimensionStylesDesktop: socialContainerDeskPadding,
+        dimensionStylesTab: socialContainerTabPadding,
+        dimensionStylesMobile: socialContainerMobPadding,
+    } = generateDimensionStyle({
+        controlName: ICONS_CONTAINER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: socialContainerDeskMargin,
+        dimensionStylesTab: socialContainerTabMargin,
+        dimensionStylesMobile: socialContainerMobMargin,
+    } = generateDimensionStyle({
+        controlName: ICONS_CONTAINER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
     // detail page
     const {
         backgroundStylesDesktop: detailPageNormalDeskBG,
@@ -650,6 +672,8 @@ const Style = ({ props }) => {
 		}
 		.${uniqueId} .zolo-item .zolo-social-and-link-wrap {
 			${separatorColor ? `border-top-color: ${separatorColor};` : ''}
+            ${socialContainerDeskPadding}
+            ${socialContainerDeskMargin}
 		}
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
@@ -760,6 +784,11 @@ const Style = ({ props }) => {
             ${socialTabAlignStyle}
         }
 
+        .${uniqueId} .zolo-item .zolo-social-and-link-wrap {
+            ${socialContainerTabPadding}
+            ${socialContainerTabMargin}
+		}
+
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
             ${teamTabAlignStyle}
         }
@@ -861,6 +890,11 @@ const Style = ({ props }) => {
             ${contentMobMargin}
             ${contentBoxShadow}
         }
+
+        .${uniqueId} .zolo-item .zolo-social-and-link-wrap {
+            ${socialContainerMobPadding}
+            ${socialContainerMobMargin}
+		}
 
         .${uniqueId} .zolo-social-share {
             ${socialMobAlignStyle}

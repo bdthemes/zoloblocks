@@ -11,6 +11,7 @@ import {
     ToggleControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
 
 const {
     BackgroundControl,
@@ -159,6 +160,9 @@ const Inspector = ({ attributes, setAttributes }) => {
         //ribbon style
         ribbonColor,
         separatorColor,
+        //tab & panel
+        selectedPanel,
+        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -168,12 +172,27 @@ const Inspector = ({ attributes, setAttributes }) => {
         objAttributes,
     };
 
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                attributes={attributes}
+                setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('General', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
+                            opened={selectedPanel === 'general'}
+                        >
                             <ToggleControl
                                 label={__('Show Ribbon', 'zolo-blocks')}
                                 checked={showRibbon}
@@ -197,7 +216,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                             />
                         </PanelBody>
                         {showRibbon && (
-                            <PanelBody title={__('Ribbon', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Ribbon', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'ribbon' })}
+                                opened={selectedPanel === 'ribbon'}
+                            >
                                 <TextControl
                                     label={__('Title', 'zolo-blocks')}
                                     value={ribbonTitle}
@@ -241,7 +264,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                             </PanelBody>
                         )}
 
-                        <PanelBody title={__('Header', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Header', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'header' })}
+                            opened={selectedPanel === 'header'}
+                        >
                             <TextControl
                                 label={__('Title', 'zolo-blocks')}
                                 value={titleText}
@@ -268,7 +295,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                             )}
                         </PanelBody>
 
-                        <PanelBody title={__('Price', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Price', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'price' })}
+                            opened={selectedPanel === 'price'}
+                        >
                             <TextControl
                                 label={__('Prefix', 'zolo-blocks')}
                                 value={pricePrefix}
@@ -302,7 +333,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                             />
                         </PanelBody>
 
-                        <PanelBody title={__('Features', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Features', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'features' })}
+                            opened={selectedPanel === 'features'}
+                        >
                             <ToggleControl
                                 label={__('Show Title', 'zolo-blocks')}
                                 checked={showFeatureHeading}
@@ -339,7 +374,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                         </PanelBody>
 
                         {showBtn && (
-                            <PanelBody title={__('Primary Button', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Primary Button', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'primaryBtn' })}
+                                opened={selectedPanel === 'primaryBtn'}
+                            >
                                 <TextControl
                                     label={__('Button Text', 'zolo-blocks')}
                                     value={buttonText}
@@ -353,7 +392,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                             </PanelBody>
                         )}
                         {showChatBtn && (
-                            <PanelBody title={__('Chat Button', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Chat Button', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'chatBtn' })}
+                                opened={selectedPanel === 'chatBtn'}
+                            >
                                 <TextControl
                                     label={__('Button Text', 'zolo-blocks')}
                                     value={chatBtnText}
@@ -370,7 +413,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Item Container', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('Item Container', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'itemContainerStyle' })}
+                            opened={selectedPanel === 'itemContainerStyle'}
+                        >
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={WRAPPER_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
@@ -383,14 +430,22 @@ const Inspector = ({ attributes, setAttributes }) => {
                             <BoxShadowControl controlName={WRAPPER_SHADOW} requiredProps={requiredProps} />
                             <BackgroundControl controlName={WRAPPER_BG} requiredProps={requiredProps} />
                         </PanelBody>
-                        <PanelBody title={__('Header', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Header', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'headerStyle' })}
+                            opened={selectedPanel === 'headerStyle'}
+                        >
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={TITLE_PADDING}
                                 requiredProps={requiredProps}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Header Content', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Header Content', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'headerContentStyle' })}
+                            opened={selectedPanel === 'headerContentStyle'}
+                        >
                             <TypographyDropdown
                                 label={__('Title Typography', 'zolo-blocks')}
                                 typoPrefixConstant={TITLE_TYPOGRAPHY}
@@ -455,7 +510,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 </>
                             )}
                         </PanelBody>
-                        <PanelBody title={__('Pricing', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Pricing', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'pricingStyle' })}
+                            opened={selectedPanel === 'pricingStyle'}
+                        >
                             <TypographyDropdown label="Typography" typoPrefixConstant={PRICE_TYPOGRAPHY} requiredProps={requiredProps} />
 
                             <ColorControl
@@ -583,7 +642,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 </>
                             )}
                         </PanelBody>
-                        <PanelBody title={__('Separator', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Separator', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'separatorStyle' })}
+                            opened={selectedPanel === 'separatorStyle'}
+                        >
                             <ResRangeControl
                                 label={__('Width', 'zolo-blocks')}
                                 controlName={SEPARATOR_WIDTH}
@@ -602,7 +665,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 }
                             />
                         </PanelBody>
-                        <PanelBody title={__('Features', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Features', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'featuresStyle' })}
+                            opened={selectedPanel === 'featuresStyle'}
+                        >
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={FEATURE_PADDING}
@@ -610,7 +677,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 forBorderRadius={false}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Features Content', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Features Content', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'featuresContentStyle' })}
+                            opened={selectedPanel === 'featuresContentStyle'}
+                        >
                             {showFeatureHeading && (
                                 <>
                                     <TypographyDropdown
@@ -738,7 +809,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                         </PanelBody>
 
                         {showBtn && (
-                            <PanelBody title={__('Primary Button', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Primary Button', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'primaryBtnStyle' })}
+                                opened={selectedPanel === 'primaryBtnStyle'}
+                            >
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={BTN_TYPOGRAPHY}
@@ -811,7 +886,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                             </PanelBody>
                         )}
                         {showChatBtn && (
-                            <PanelBody title={__('Chat Button', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Chat Button', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'chatBtnStyle' })}
+                                opened={selectedPanel === 'chatBtnStyle'}
+                            >
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={CBTN_TYPOGRAPHY}
@@ -889,7 +968,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                             </PanelBody>
                         )}
 
-                        <PanelBody title={__('Ribbon', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Ribbon', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'ribbonStyle' })}
+                            opened={selectedPanel === 'ribbonStyle'}
+                        >
                             <TypographyDropdown label="Typography" typoPrefixConstant={RIBBON_TYPOGRAPHY} requiredProps={requiredProps} />
                             <ColorControl
                                 label={__('Color', 'zolo-blocks')}

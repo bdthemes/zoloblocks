@@ -5,6 +5,7 @@ const { __ } = wp.i18n;
 const { InspectorControls } = wp.blockEditor;
 const { PanelBody, RangeControl, ToggleControl, SelectControl, BaseControl } = wp.components;
 const { Fragment } = wp.element;
+const { useEffect } = wp.element;
 
 /**
  * Internal dependencies
@@ -75,6 +76,8 @@ const Inspector = ({ attributes, setAttributes }) => {
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
+        selectedPanel,
+        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -84,12 +87,27 @@ const Inspector = ({ attributes, setAttributes }) => {
         objAttributes,
     };
 
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
+
     return (
         <InspectorControls>
             <HeaderTabs
+                attributes={attributes}
+                setAttributes={setAttributes}
                 generalTab={
                     <Fragment>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('General', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
+                            opened={selectedPanel === 'general'}
+                        >
                             <IconicBtnGroup
                                 label={__('Slider Type', 'zolo-blocks')}
                                 value={sliderType}
@@ -100,7 +118,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 ]}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Slider Container', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Slider Container', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'container' })}
+                            opened={selectedPanel === 'container'}
+                        >
                             <ResRangeControl
                                 label={__('Slider Height', 'zolo-blocks')}
                                 controlName={SLIDER_HEIGHT}
@@ -109,7 +131,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 max={1000}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Slider Content', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Slider Content', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'content' })}
+                            opened={selectedPanel === 'content'}
+                        >
                             <ResRangeControl
                                 label={__('Content Max Width', 'zolo-blocks')}
                                 controlName={CONTENT_WIDTH}
@@ -124,7 +150,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 forBorderRadius={false}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Slider Options', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Slider Options', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'sliderOptions' })}
+                            opened={selectedPanel === 'sliderOptions'}
+                        >
                             <RangeControl
                                 label={__('Speed', 'zolo-blocks')}
                                 value={speed}
@@ -200,7 +230,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                             />
                         </PanelBody>
                         {sliderType === 'carousel' && (
-                            <PanelBody title={__('Carousel Options', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Carousel Options', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'carouselOptions' })}
+                                opened={selectedPanel === 'carouselOptions'}
+                            >
                                 <ResCounterControl
                                     label={__('Column Number', 'zolo-blocks')}
                                     controlName={COLUMNS}
@@ -220,7 +254,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                             </PanelBody>
                         )}
                         {sliderType === 'slider' && (
-                            <PanelBody title={__('Slider Effects', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Slider Effects', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'sliderEffects' })}
+                                opened={selectedPanel === 'sliderEffects'}
+                            >
                                 <SelectControl
                                     label={__('Select Effect', 'zolo-blocks')}
                                     value={sliderEffect}
@@ -234,7 +272,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                             </PanelBody>
                         )}
                         {sliderType === 'carousel' && (
-                            <PanelBody title={__('Carousel Effects', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Carousel Effects', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'carouselEffects' })}
+                                opened={selectedPanel === 'carouselEffects'}
+                            >
                                 <SelectControl
                                     label={__('Select Effect', 'zolo-blocks')}
                                     options={CAROUSEL_EFFECTS}
@@ -249,7 +291,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                         )}
                         {showNavigation && (
                             <>
-                                <PanelBody title={__('Navigation', 'zolo-blocks')} initialOpen={false}>
+                                <PanelBody
+                                    title={__('Navigation', 'zolo-blocks')}
+                                    onToggle={(value) => value === true && setAttributes({ selectedPanel: 'navigtation' })}
+                                    opened={selectedPanel === 'navigtation'}
+                                >
                                     <ToggleControl
                                         label={__('Custom Navigation Icons', 'zolo-blocks')}
                                         checked={customNavIcon}
@@ -295,7 +341,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                 styleTab={
                     <Fragment>
                         {showNavigation && (
-                            <PanelBody title={__('Navigation', 'zolo-blocks')} initialOpen={true}>
+                            <PanelBody
+                                title={__('Navigation', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'navigationStyle' })}
+                                opened={selectedPanel === 'navigationStyle'}
+                            >
                                 <ResRangeControl
                                     label={__('Width', 'zolo-blocks')}
                                     controlName={NAV_WIDTH}
@@ -370,7 +420,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                         )}
                         {showPagination && (
                             <Fragment>
-                                <PanelBody title={__('Pagination', 'zolo-blocks')} initialOpen={false}>
+                                <PanelBody
+                                    title={__('Pagination', 'zolo-blocks')}
+                                    onToggle={(value) => value === true && setAttributes({ selectedPanel: 'paginationStyle' })}
+                                    opened={selectedPanel === 'paginationStyle'}
+                                >
                                     <ResRangeControl
                                         label={__('Space Between', 'zolo-blocks')}
                                         controlName={PAG_SPACING}

@@ -4,6 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -15,7 +16,7 @@ import { SLIDE_PADDING, SLIDE_BORDER, SLIDE_BORDER_RADIUS } from './constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode } = attributes;
+    const { resMode, selectedPanel, selectedTab } = attributes;
 
     const requiredProps = {
         resMode,
@@ -24,17 +25,28 @@ function Inspector(props) {
         objAttributes,
     };
 
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                attributes={attributes}
+                setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody initialOpen={true}>{__('No settings available. Move to Style Tab', 'zolo-blocks')}</PanelBody>
+                        <PanelBody>{__('No settings available. Move to Style Tab', 'zolo-blocks')}</PanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                        <PanelBody initialOpen={true}>
+                        <PanelBody>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={SLIDE_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}

@@ -29,11 +29,30 @@
 
     button.components-button.block-editor-block-variation-picker__variation.is-secondary.has-icon {
         background: #f9f9f9;
-        border: 1px solid #e0e0e0 !important;
+        border: 1px solid #cacaca !important;
     }
 
     .block-editor-block-variation-picker__variation path {
         fill: #7183ff !important;
+    }
+
+    .block-editor-block-variation-picker.has-many-variations .components-placeholder__fieldset {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .block-editor-block-variation-picker__variations.block-editor-block-variation-picker__variations {
+        justify-content: center !important;
+        display: grid !important;
+        grid-template-columns: repeat(7, 1fr) !important;
+        li {
+            width: 100% !important;
+        }
+    }
+
+    .components-placeholder__instructions {
+        width: 100% !important;
+        text-align: center !important;
     }
 }
 

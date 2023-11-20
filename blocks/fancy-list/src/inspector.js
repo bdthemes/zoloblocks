@@ -4,6 +4,7 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { Fragment, useEffect } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -71,6 +72,8 @@ function Inspector(props) {
         iconColor,
         iconHColor,
         iconHBColor,
+        selectedPanel,
+        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -79,6 +82,15 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
+
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
 
     const onPresetChange = (selected) => {
         setAttributes({ preset: selected });
@@ -119,9 +131,15 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                attributes={attributes}
+                setAttributes={setAttributes}
                 generalTab={
                     <Fragment>
-                        <PanelBody title={__('General', 'zolo-block')} initialOpen={true}>
+                        <PanelBody
+                            title={__('General', 'zolo-block')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
+                            opened={selectedPanel === 'general'}
+                        >
                             <SelectControl
                                 label={__('Presets', 'zolo-block')}
                                 options={PRESETS}
@@ -158,7 +176,11 @@ function Inspector(props) {
                             />
                         </PanelBody>
                         {(!titleToggle && !textToggle) || (
-                            <PanelBody initialOpen={false} title={__('Content', 'zolo-block')}>
+                            <PanelBody
+                                title={__('Content', 'zolo-block')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'content' })}
+                                opened={selectedPanel === 'content'}
+                            >
                                 {titleToggle && (
                                     <TextControl
                                         label={__('Title', 'zolo-block')}
@@ -179,7 +201,11 @@ function Inspector(props) {
                         )}
 
                         {iconToggle && (
-                            <PanelBody initialOpen={false} title={__('Icon', 'zolo-block')}>
+                            <PanelBody
+                                title={__('Icon', 'zolo-block')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'icon' })}
+                                opened={selectedPanel === 'icon'}
+                            >
                                 {iconToggle && (
                                     <IconPicker
                                         title={__('Icon picker', 'zolo-block')}
@@ -192,7 +218,11 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {imageToggle && (
-                            <PanelBody initialOpen={false} title={__('Media', 'zolo-block')}>
+                            <PanelBody
+                                title={__('Media', 'zolo-block')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'media' })}
+                                opened={selectedPanel === 'media'}
+                            >
                                 <IconicBtnGroup
                                     label={__('Media Type', 'zolo-blocks')}
                                     value={mediaType}
@@ -271,7 +301,11 @@ function Inspector(props) {
                 styleTab={
                     <>
                         {titleToggle && (
-                            <PanelBody title={__('Title', 'zolo-block')} initialOpen={true}>
+                            <PanelBody
+                                title={__('Title', 'zolo-block')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'titleStyle' })}
+                                opened={selectedPanel === 'titleStyle'}
+                            >
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-block')}
                                     typoPrefixConstant={TITLE_TYPOGRAPHY}
@@ -320,7 +354,11 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {textToggle && (
-                            <PanelBody title={__('Description', 'zolo-block')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Description', 'zolo-block')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'descriptionStyle' })}
+                                opened={selectedPanel === 'descriptionStyle'}
+                            >
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-block')}
                                     typoPrefixConstant={TEXT_TYPOGRAPHY}
@@ -359,7 +397,11 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {iconToggle && (
-                            <PanelBody title={__('Icon', 'zolo-block')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Icon', 'zolo-block')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'iconStyle' })}
+                                opened={selectedPanel === 'iconStyle'}
+                            >
                                 <ResRangeControl label={__('Size', 'zolo-block')} controlName={ICON_WIDTH} requiredProps={requiredProps} />
                                 <BorderControl label={__('Border')} controlName={ICON_BORDER} requiredProps={requiredProps} />
                                 <ResDimensionsControl
@@ -405,7 +447,8 @@ function Inspector(props) {
                         {imageToggle && (
                             <PanelBody
                                 title={mediaType === 'image' ? __('Image', 'zolo-block') : __('Text', 'zolo-block')}
-                                initialOpen={false}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'mediaStyle' })}
+                                opened={selectedPanel === 'mediaStyle'}
                             >
                                 {mediaType === 'text' && (
                                     <>

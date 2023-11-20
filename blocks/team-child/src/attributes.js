@@ -36,6 +36,8 @@ import {
     ICONS_HOVER_BOX_SHADOW,
     ICONS_BG,
     ICONS_HOVER_BG,
+    ICONS_CONTAINER_PADDING,
+    ICONS_CONTAINER_MARGIN,
     DETAIL_PAGE_LINK_BG,
     DETAIL_PAGE_LINK_HOVER_BG,
     DPL_HEIGHT,
@@ -101,6 +103,8 @@ const attributes = {
     ...generateDimensionAttributes(TEAM_DESIGNATION_MARGIN),
     ...generateDimensionAttributes(TEAM_NAME_MARGIN),
 
+    ...generateDimensionAttributes(ICONS_CONTAINER_PADDING),
+    ...generateDimensionAttributes(ICONS_CONTAINER_MARGIN),
     ...generateNormalBGAttributes(ICONS_BG),
     ...generateNormalBGAttributes(ICONS_HOVER_BG),
     ...generateBorderAttributies(ICONS_BORDER),

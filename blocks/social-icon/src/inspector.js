@@ -21,7 +21,7 @@ import Sortable from './sortable';
  * WordPress depencencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-
+import { useEffect } from '@wordpress/element';
 import { PanelBody, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -59,6 +59,8 @@ function Inspector(props) {
         socialBgColor,
         socialBgHoverColor,
         borderHoverColor,
+        selectedPanel,
+        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -97,12 +99,27 @@ function Inspector(props) {
         }
     };
 
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                attributes={attributes}
+                setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('General', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
+                            opened={selectedPanel === 'general'}
+                        >
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
@@ -120,7 +137,11 @@ function Inspector(props) {
                                 options={ICON_STATUS}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Grid', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Grid', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'grid' })}
+                            opened={selectedPanel === 'grid'}
+                        >
                             <ResCounterControl
                                 label={__('Column Number', 'zolo-blocks')}
                                 controlName={COLUMN_COUNT}
@@ -145,14 +166,22 @@ function Inspector(props) {
                                 step={1}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Social Profiles', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Social Profiles', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'socialProfiles' })}
+                            opened={selectedPanel === 'socialProfiles'}
+                        >
                             <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
                         </PanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Social Icons', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('Social Icons', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'socialIconsStyle' })}
+                            opened={selectedPanel === 'socialIconsStyle'}
+                        >
                             {socialText !== 'iconOnly' && (
                                 <TypographyDropdown
                                     label={__('Text Typography', 'zolo-blocks')}

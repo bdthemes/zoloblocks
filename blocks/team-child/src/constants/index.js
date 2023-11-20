@@ -55,14 +55,15 @@ export const ICONS_BG = 'IconsBg';
 export const ICONS_HOVER_BG = 'IconsHoverBg';
 export const ICONS_SIZE = 'IconsSize';
 export const ICONS_SPACING = 'IconsSpacing';
-
 export const ICONS_BORDER = 'IconsBorder';
 export const ICONS_BORDER_RADIUS = 'IconsBorderRadius';
-
 export const ICONS_PADDING = 'IconsPadding';
-
 export const ICONS_BOX_SHADOW = 'IconsBoxShadow';
 export const ICONS_HOVER_BOX_SHADOW = 'IconsHoverBoxShadow';
+
+// social icon container
+export const ICONS_CONTAINER_PADDING = 'IconsContainerPadding';
+export const ICONS_CONTAINER_MARGIN = 'IconsContainerMargin';
 
 // detailPageLink
 export const DETAIL_PAGE_LINK_BG = 'DetailPageLinkBg';

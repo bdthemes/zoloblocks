@@ -4,6 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -69,6 +70,8 @@ function Inspector(props) {
         zoomIconHoverColor,
         imageHoverBorderColor,
         lightboxIcon,
+        selectedPanel,
+        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -77,12 +80,28 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
+
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                attributes={attributes}
+                setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('General', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
+                            opened={selectedPanel === 'general'}
+                        >
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
@@ -113,7 +132,11 @@ function Inspector(props) {
                                 help={__('This option will only work at the frontend', 'zolo-blocks')}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Grid', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Grid', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'grid' })}
+                            opened={selectedPanel === 'grid'}
+                        >
                             <ResCounterControl
                                 label={__('Columns', 'zolo-blocks')}
                                 controlName={COLUMN_COUNT}
@@ -139,7 +162,11 @@ function Inspector(props) {
                             />
                         </PanelBody>
                         {showLightbox && (
-                            <PanelBody title={__('Lightbox Icon', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Lightbox Icon', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'lightboxIcon' })}
+                                opened={selectedPanel === 'lightboxIcon'}
+                            >
                                 <IconPicker
                                     value={lightboxIcon}
                                     onChange={(value) => {
@@ -156,7 +183,11 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Image', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('Image', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'imageStyle' })}
+                            opened={selectedPanel === 'imageStyle'}
+                        >
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={IMAGE_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
@@ -215,7 +246,11 @@ function Inspector(props) {
                             />
                         </PanelBody>
                         {showCaption && (
-                            <PanelBody title={__('Caption', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Caption', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'captionStyle' })}
+                                opened={selectedPanel === 'captionStyle'}
+                            >
                                 <>
                                     <TypographyDropdown
                                         label={__('Typography', 'zolo-blocks')}
@@ -264,7 +299,11 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {showLightbox && (
-                            <PanelBody title={__('Lightbox Icon', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Lightbox Icon', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'lightboxIconStyle' })}
+                                opened={selectedPanel === 'lightboxIconStyle'}
+                            >
                                 <ResRangeControl
                                     label={__('Size', 'zolo-blocks')}
                                     controlName={ZOOM_ICON_SIZE}
@@ -348,7 +387,11 @@ function Inspector(props) {
                                 />
                             </PanelBody>
                         )}
-                        <PanelBody title={__('Overlay Background', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Overlay Background', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'overlayBgStyle' })}
+                            opened={selectedPanel === 'overlayBgStyle'}
+                        >
                             <NormalBGControl requiredProps={requiredProps} controlName={OVERLAY_BG_COLOR} noMainBGImg={true} />
                         </PanelBody>
                     </>

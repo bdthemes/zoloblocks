@@ -5,6 +5,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TextControl, TextareaControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -71,6 +72,8 @@ function Inspector(props) {
         borderHoverColor,
         preset,
         reversePosition,
+        selectedPanel,
+        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -80,12 +83,27 @@ function Inspector(props) {
         objAttributes,
     };
 
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                attributes={attributes}
+                setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('General', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
+                            opened={selectedPanel === 'general'}
+                        >
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
@@ -118,7 +136,11 @@ function Inspector(props) {
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Content', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'content' })}
+                            opened={selectedPanel === 'content'}
+                        >
                             {showTitle && (
                                 <>
                                     <TextControl
@@ -202,7 +224,11 @@ function Inspector(props) {
                 styleTab={
                     <>
                         {preset !== '' && (
-                            <PanelBody title={__('Preset', 'zolo-blocks')} initialOpen={true}>
+                            <PanelBody
+                                title={__('Preset', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'presetStyle' })}
+                                opened={selectedPanel === 'presetStyle'}
+                            >
                                 <ToggleControl
                                     label={__('Reserve item position', 'zolo-blocks')}
                                     checked={reversePosition}
@@ -224,7 +250,11 @@ function Inspector(props) {
                         )}
                         {showTitle && (
                             <>
-                                <PanelBody title={__('Title', 'zolo-blocks')} initialOpen={preset !== '' ? false : true}>
+                                <PanelBody
+                                    title={__('Title', 'zolo-blocks')}
+                                    onToggle={(value) => value === true && setAttributes({ selectedPanel: 'titleStyle' })}
+                                    opened={selectedPanel === 'titleStyle'}
+                                >
                                     <ColorControl
                                         label={__('Color', 'zolo-blocks')}
                                         color={titleColor}
@@ -250,7 +280,11 @@ function Inspector(props) {
                         )}
                         {showDescription && (
                             <>
-                                <PanelBody title={__('Description', 'zolo-blocks')} initialOpen={false}>
+                                <PanelBody
+                                    title={__('Description', 'zolo-blocks')}
+                                    onToggle={(value) => value === true && setAttributes({ selectedPanel: 'descriptionStyle' })}
+                                    opened={selectedPanel === 'descriptionStyle'}
+                                >
                                     <ColorControl
                                         label={__('Color', 'zolo-blocks')}
                                         color={descriptionColor}
@@ -274,7 +308,11 @@ function Inspector(props) {
                                 </PanelBody>
                             </>
                         )}
-                        <PanelBody title={__('Button', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Button', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'btnStyle' })}
+                            opened={selectedPanel === 'btnStyle'}
+                        >
                             {iconType !== 'none' && (
                                 <>
                                     <ResRangeControl

@@ -35,9 +35,7 @@ const attributes = {
         },
     },
     // Generators
-    ...generateResAlignmentAttributies(ITEMS_ALIGN, {
-        defaultAlign: 'flex-start',
-    }),
+    ...generateResAlignmentAttributies(ITEMS_ALIGN),
     ...generateResRangeAttributies(STAR_SIZE),
     ...generateResRangeAttributies(TITLE_GAP),
     ...generateTypographyAttributes(Object.values(typographyObjs)),

@@ -51,6 +51,11 @@ export const ICONS_BORDER_RADIUS = 'IconsBorderRadius';
 export const ICONS_PADDING = 'IconsPadding';
 export const ICONS_BOX_SHADOW = 'IconsBoxShadow';
 export const ICONS_HOVER_BOX_SHADOW = 'IconsHoverBoxShadow';
+
+// social icon container
+export const ICONS_CONTAINER_PADDING = 'IconsContainerPadding';
+export const ICONS_CONTAINER_MARGIN = 'IconsContainerMargin';
+
 // detailPageLink
 export const DETAIL_PAGE_LINK_BG = 'DetailPageLinkBg';
 export const DETAIL_PAGE_LINK_HOVER_BG = 'DetailPageLinkHoverBg';
