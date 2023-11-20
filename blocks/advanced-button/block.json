@@ -3,14 +3,20 @@
     "title": "Advanced Button",
     "name": "zolo/advanced-button",
     "category": "zolo-blocks",
-    "keywords": ["button", "advanced button"],
+    "keywords": [
+        "button",
+        "advanced button"
+    ],
     "description": "Advanced button description",
     "apiVersion": 3,
     "textdomain": "zolo-blocks",
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": ["wide", "full"]
+        "align": [
+            "wide",
+            "full"
+        ]
     },
-    "editorScript": ""
+    "editorScript": "zolo-block-editor-script"
 }

@@ -3,7 +3,9 @@
     "title": "Accordion",
     "name": "zolo/accordion",
     "category": "zolo-blocks",
-    "keywords": ["Accordion"],
+    "keywords": [
+        "Accordion"
+    ],
     "description": "Build accordion and FAQs section",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
@@ -11,5 +13,5 @@
         "anchor": false,
         "customClassName": false
     },
-    "editorScript": ""
+    "editorScript": "zolo-block-editor-script"
 }

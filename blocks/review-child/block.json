@@ -3,8 +3,13 @@
     "title": "Review Child",
     "name": "zolo/review-child",
     "category": "zolo-blocks",
-    "parent": ["zolo/review-grid"],
-    "keywords": ["Rating", "Review"],
+    "parent": [
+        "zolo/review-grid"
+    ],
+    "keywords": [
+        "Rating",
+        "Review"
+    ],
     "description": "Single review block",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
@@ -12,5 +17,5 @@
         "anchor": false,
         "customClassName": false
     },
-    "editorScript": ""
+    "editorScript": "zolo-block-editor-script"
 }

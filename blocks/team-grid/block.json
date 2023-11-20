@@ -4,14 +4,20 @@
     "icon": "grid-view",
     "name": "zolo/team-grid",
     "category": "zolo-blocks",
-    "keywords": ["team", "team grid"],
+    "keywords": [
+        "team",
+        "team grid"
+    ],
     "description": "Team members grid view",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": ["wide", "full"]
+        "align": [
+            "wide",
+            "full"
+        ]
     },
-    "editorScript": ""
+    "editorScript": "zolo-block-editor-script"
 }

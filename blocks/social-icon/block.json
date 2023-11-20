@@ -3,7 +3,10 @@
     "title": "Social Icon",
     "name": "zolo/social-icon",
     "category": "zolo-blocks",
-    "keywords": ["icon", "advanced icon"],
+    "keywords": [
+        "icon",
+        "advanced icon"
+    ],
     "description": "Advanced icon description",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
@@ -15,7 +18,10 @@
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": ["wide", "full"]
+        "align": [
+            "wide",
+            "full"
+        ]
     },
-    "editorScript": ""
+    "editorScript": "zolo-block-editor-script"
 }

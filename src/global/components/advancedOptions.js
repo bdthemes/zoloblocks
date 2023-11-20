@@ -27,7 +27,7 @@ import BoxShadowControl from '../../controls/boxshadow-control';
 export const AdvancedOptions = (props) => {
   const { attributes, setAttributes, requiredProps } = props;
 
-  const { uniqueId, customCss, responsiveness, parentClasses, customClass, zoloStyles, globalConfig, selectedPanel } = attributes;
+  const { uniqueId, customCss, responsiveness, parentClasses, customClass, zoloStyles, globalConfig, selectedExtraPanel } = attributes;
 
   const handleResponsiveness = (key, value, classname) => {
     let updatedClasses = [...parentClasses, classname];
@@ -61,8 +61,8 @@ export const AdvancedOptions = (props) => {
     <>
       <PanelBody
         title={__('Spacing', 'zolo-blocks')}
-        onToggle={(value) => value === true && setAttributes({ selectedPanel: 'panel31' })}
-        opened={selectedPanel === 'panel31'}
+        onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel31' })}
+        opened={selectedExtraPanel === 'panel31' || selectedExtraPanel === 'first'}
       >
         {globalConfig?.margin && (
           <ResDimensionsControl
@@ -84,8 +84,8 @@ export const AdvancedOptions = (props) => {
       {globalConfig?.background && (
         <PanelBody
           title={__('Background', 'zolo-blocks')}
-          onToggle={(value) => value === true && setAttributes({ selectedPanel: 'panel32' })}
-          opened={selectedPanel === 'panel32'}
+          onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel32' })}
+          opened={selectedExtraPanel === 'panel32'}
         >
           <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps} />
         </PanelBody>
@@ -93,8 +93,8 @@ export const AdvancedOptions = (props) => {
       {(globalConfig?.border || globalConfig?.borderRadius || globalConfig?.boxShadow) && (
         <PanelBody
           title={__('Border', 'zolo-blocks')}
-          onToggle={(value) => value === true && setAttributes({ selectedPanel: 'panel33' })}
-          opened={selectedPanel === 'panel33'}
+          onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel33' })}
+          opened={selectedExtraPanel === 'panel33'}
         >
           {globalConfig?.border && (
             <BorderControl
@@ -127,8 +127,8 @@ export const AdvancedOptions = (props) => {
         <>
           <PanelBody
             title={__('Responsive Control', 'zolo-blocks')}
-            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'panel34' })}
-            opened={selectedPanel === 'panel34'}
+            onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel34' })}
+            opened={selectedExtraPanel === 'panel34'}
           >
             <ToggleControl
               label={__('Hide on Desktop', 'zolo-blocks')}
@@ -150,8 +150,8 @@ export const AdvancedOptions = (props) => {
       )}
       <PanelBody
         title={__('Custom Class', 'zolo-blocks')}
-        onToggle={(value) => value === true && setAttributes({ selectedPanel: 'panel35' })}
-        opened={selectedPanel === 'panel35'}
+        onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel35' })}
+        opened={selectedExtraPanel === 'panel35'}
       >
         <TextControl
           label={__('Add Custom Class', 'zolo-blocks')}

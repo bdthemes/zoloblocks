@@ -3,14 +3,20 @@
     "title": "Brand Grid",
     "name": "zolo/brand-grid",
     "category": "zolo-blocks",
-    "keywords": ["grid", "brand"],
+    "keywords": [
+        "grid",
+        "brand"
+    ],
     "description": "Brand grid block description",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": ["wide", "full"]
+        "align": [
+            "wide",
+            "full"
+        ]
     },
-    "editorScript": ""
+    "editorScript": "zolo-block-editor-script"
 }
