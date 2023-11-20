@@ -4,6 +4,7 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { CardDivider, PanelBody, TextControl, TextareaControl, ToggleControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -46,6 +47,8 @@ function Inspector(props) {
         FlexDirectionZRPAlign,
         TABFlexDirectionZRPAlign,
         MOBFlexDirectionZRPAlign,
+        selectedPanel,
+        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -71,12 +74,27 @@ function Inspector(props) {
     else if (resMode === 'Mobile') justifyContentOptions = isRowDirectionMob;
     justifyContentOptions ? (justifyContentOptions = FLEX_JUSTIFIES_ROW) : (justifyContentOptions = FLEX_JUSTIFIES);
 
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                attributes={attributes}
+                setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('General', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
+                            opened={selectedPanel === 'general'}
+                        >
                             {isBlockRootParent && (
                                 <>
                                     <IconicBtnGroup
@@ -133,7 +151,11 @@ function Inspector(props) {
                                 max={1000}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Flex Properties', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Flex Properties', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'flex_property' })}
+                            opened={selectedPanel === 'flex_property'}
+                        >
                             <ResAlignmentControl
                                 label={__('Direction', 'zolo-blocks')}
                                 controlName={FLEX_DIRECTION}
@@ -165,7 +187,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody initialOpen={true}>
+                        <PanelBody>
                             <ResRangeControl
                                 label={__('Row Gap', 'zolo-blocks')}
                                 controlName={ROW_GAP}

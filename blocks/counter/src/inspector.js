@@ -4,6 +4,8 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, ToggleControl, TextControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
+
 /**
  * Internal depencencies
  */
@@ -72,6 +74,8 @@ function Inspector(props) {
         iconColor,
         textColor,
         suffixColor,
+        selectedPanel,
+        selectedTab,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -79,12 +83,28 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
+
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                attributes={attributes}
+                setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('General', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
+                            opened={selectedPanel === 'general'}
+                        >
                             <ToggleControl
                                 label={__('Show counter icon', 'zolo-blocks')}
                                 checked={hideIcon}
@@ -114,7 +134,11 @@ function Inspector(props) {
                                 alignOptions={DEFAULT_ALIGNS}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Content', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'content' })}
+                            opened={selectedPanel === 'content'}
+                        >
                             {hideCounter && (
                                 <>
                                     <TextControl
@@ -140,7 +164,11 @@ function Inspector(props) {
                             )}
                         </PanelBody>
                         {hideIcon && (
-                            <PanelBody title={__('Icon', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Icon', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'icon' })}
+                                opened={selectedPanel === 'icon'}
+                            >
                                 <>
                                     <IconicBtnGroup
                                         label={__('Type', 'zolo-blocks')}
@@ -218,7 +246,11 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('Container', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'containerStyle' })}
+                            opened={selectedPanel === 'containerStyle'}
+                        >
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={CONTAINER_BORDER}
@@ -239,7 +271,11 @@ function Inspector(props) {
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
                         </PanelBody>
                         {hideIcon && (
-                            <PanelBody title={__('Media', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Media', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'mediaStyle' })}
+                                opened={selectedPanel === 'mediaStyle'}
+                            >
                                 {iconType === 'icon' && (
                                     <ResRangeControl
                                         label={__('Icon Size', 'zolo-blocks')}
@@ -296,7 +332,11 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {hideCounter && (
-                            <PanelBody title={__('Counter', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Counter', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'counterStyle' })}
+                                opened={selectedPanel === 'counterStyle'}
+                            >
                                 <ColorControl
                                     label={__('Number Color', 'zolo-blocks')}
                                     color={textColor}
@@ -351,7 +391,11 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         {hideTitle && (
-                            <PanelBody title={__('Title', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Title', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'titleStyle' })}
+                                opened={selectedPanel === 'titleStyle'}
+                            >
                                 <ColorControl
                                     label={__('Color', 'zolo-blocks')}
                                     color={titleTextColor}

@@ -3,6 +3,8 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, SelectControl, TextControl, ToggleControl, ColorPalette } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
+
 const {
     BackgroundControl,
     BorderControl,
@@ -96,6 +98,8 @@ const Inspector = ({ attributes, setAttributes }) => {
         tptBgColor,
         tptOpacity,
         separatorColor,
+        selectedPanel,
+        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -147,12 +151,27 @@ const Inspector = ({ attributes, setAttributes }) => {
         }
     };
 
+    useEffect(() => {
+        // set initial panle to panel11
+        if (!selectedPanel) {
+            setAttributes({
+                selectedPanel: 'general',
+            });
+        }
+    }, [selectedPanel, selectedTab]);
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                attributes={attributes}
+                setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody title={__('General', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('General', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
+                            opened={selectedPanel === 'general'}
+                        >
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={styles}
@@ -186,7 +205,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
                         </PanelBody>
-                        <PanelBody title={__('Content', 'zolo-blocks')} initialOpen={false}>
+                        <PanelBody
+                            title={__('Content', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'content' })}
+                            opened={selectedPanel === 'content'}
+                        >
                             <TextControl
                                 label={__('Main Heading', 'zolo-blocks')}
                                 value={titleText}
@@ -208,7 +231,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                             )}
                         </PanelBody>
                         {showSubTitle && (
-                            <PanelBody title={__('Sub Heading', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Sub Heading', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'subHeading' })}
+                                opened={selectedPanel === 'subHeading'}
+                            >
                                 <TextControl
                                     label={__('Text', 'zolo-blocks')}
                                     value={subTitleText}
@@ -234,7 +261,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                         )}
 
                         {showSeparator && (
-                            <PanelBody title={__('Separator', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Separator', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'separator' })}
+                                opened={selectedPanel === 'separator'}
+                            >
                                 <IconicBtnGroup
                                     label={__('Separator Position', 'zolo-blocks')}
                                     value={separatorPosition}
@@ -254,7 +285,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                             </PanelBody>
                         )}
                         {showTransparentTitle && (
-                            <PanelBody title={__('Transparent Heading', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Transparent Heading', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'transparentHeading' })}
+                                opened={selectedPanel === 'transparentHeading'}
+                            >
                                 <TextControl
                                     label={__('Text', 'zolo-blocks')}
                                     value={transparentTitleText}
@@ -330,7 +365,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                 }
                 styleTab={
                     <>
-                        <PanelBody title={__('Heading', 'zolo-blocks')} initialOpen={true}>
+                        <PanelBody
+                            title={__('Heading', 'zolo-blocks')}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'headingStyle' })}
+                            opened={selectedPanel === 'headingStyle'}
+                        >
                             <TypographyDropdown label="Typography" typoPrefixConstant={TITLE_TYPOGRAPHY} requiredProps={requiredProps} />
                             {!enableTitleLink && (
                                 <>
@@ -423,7 +462,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                         </PanelBody>
 
                         {showSubTitle && (
-                            <PanelBody title={__('Sub Heading', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Sub Heading', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'subheadingStyle' })}
+                                opened={selectedPanel === 'subheadingStyle'}
+                            >
                                 <TypographyDropdown
                                     label="Typography"
                                     typoPrefixConstant={SUBTITLE_TYPOGRAPHY}
@@ -489,7 +532,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                         )}
 
                         {showSeparator && (
-                            <PanelBody title={__('Separator', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Separator', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'separatorStyle' })}
+                                opened={selectedPanel === 'separatorStyle'}
+                            >
                                 <ColorControl
                                     label={__('Color', 'zolo-blocks')}
                                     color={separatorColor}
@@ -527,7 +574,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                         )}
 
                         {showTransparentTitle && (
-                            <PanelBody title={__('Advanced Heading', 'zolo-blocks')} initialOpen={false}>
+                            <PanelBody
+                                title={__('Advanced Heading', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'advancedHeadingStyle' })}
+                                opened={selectedPanel === 'advancedHeadingStyle'}
+                            >
                                 <TypographyDropdown
                                     label="Typography"
                                     typoPrefixConstant={TRANSPARENT_TYPOGRAPHY}
@@ -597,23 +648,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                 advancedTab={
                     <>
                         <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
-                        {/* <PanelBody title={__('Wrapper Margin & Padding', 'zolo-blocks')} initialOpen={true}>
-              <ResDimensionsControl label="Margin" controlName={WRAPPER_MARGIN} requiredProps={requiredProps} />
-              <ResDimensionsControl label="Padding" controlName={WRAPPER_PADDING} requiredProps={requiredProps} />
-            </PanelBody>
-
-            <PanelBody title={__('Background', 'zolo-blocks')} initialOpen={false}>
-              <BackgroundControl controlName={WRAPPER_BG} requiredProps={requiredProps} />
-            </PanelBody>
-
-            <PanelBody title={__('Border & BoxShadow', 'zolo-blocks')} initialOpen={false}>
-              <BorderControl
-                label={__('Border', 'zolo-blocks')}
-                controlName={WRAPPER_BORDER}
-                requiredProps={requiredProps}
-              />
-              <BoxShadowControl controlName={WRAPPER_SHADOW} requiredProps={requiredProps} />
-            </PanelBody> */}
                     </>
                 }
             />

@@ -2,7 +2,7 @@
 
 $date = '';
 
-if (!empty($settings['showMeta']) && 'post-grid' == $settings['name']) {
+if (!empty($settings['showMeta'])) {
     $date .= sprintf(
         '<div class="zolo-post-date">
             <div class="zolo-post-dateTime">
@@ -15,8 +15,6 @@ if (!empty($settings['showMeta']) && 'post-grid' == $settings['name']) {
         $result->reading_time,
         __('Min Read', 'zolo-blocks')
     );
-} elseif (!empty($settings['showMeta']) && 'post-list' == $settings['name']) {
-    $date .= sprintf('<div class="zolo-post-date"> %1$s </div>', $result->date);
 }
 
 return $date;
