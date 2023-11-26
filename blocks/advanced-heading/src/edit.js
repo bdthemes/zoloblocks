@@ -1,5 +1,6 @@
 //WordPress dependencies
 import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 //external dependencies
 import classnames from 'classnames';
 //internal dependencies
@@ -13,6 +14,7 @@ const Edit = (props) => {
     const { attributes, setAttributes, isSelected } = props;
     const {
         uniqueId,
+        preview,
         parentClasses,
         styles,
         headingIcon,
@@ -35,6 +37,11 @@ const Edit = (props) => {
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.heading} alt={__('Heading Preview', 'zolo-blocks')} />;
+    }
 
     return (
         <>

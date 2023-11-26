@@ -3,7 +3,7 @@
     position: relative;
     overflow: hidden;
     .zolo-block-wrapper {
-        border-radius: 6px;
+        border-radius: var(--zolo-item-border-radius);
         border: 1px solid #ddd;
         position: relative;
     }
@@ -12,10 +12,11 @@
     }
     .zolo-package-title {
         margin: 0 0 20px;
-        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        font-size: clamp(1.5rem, 3vw, 1.75rem);
         font-weight: 700;
         color: #292734;
         text-transform: capitalize;
+        line-height: 1.3;
     }
 
     span.zolo-package-title {
@@ -38,6 +39,7 @@
         font-size: 50px;
         font-weight: 700;
         color: #17171a;
+        line-height: 1;
         .currency,
         .fractional {
             position: relative;
@@ -49,12 +51,15 @@
         padding-right: 8px;
     }
 
+    .zolo-package-desc {
+        margin-top: 20px;
+    }
+
     .zolo-package-desc,
     .zolo-features-desc {
         font-size: 14px;
-        font-weight: 300;
+        font-weight: 400;
         color: #494754;
-        margin-bottom: 25px;
     }
 
     .zolo-link-btn {
@@ -69,25 +74,24 @@
                 padding: 12px;
                 font-size: 14px;
                 border-radius: 5px;
-                border: 1px solid #ddd;
+                color: #000;
+                border-width: 2px;
+                border-style: solid;
+                border-color: var(--zoloblocks-brand-color);
                 text-transform: capitalize;
                 text-decoration: none;
                 transition: all 0.3s ease;
+
             }
             &.zolo-buy-btn {
-                background-color: #000;
-                color: #fff;
+                background-color: var(--zoloblocks-brand-color);
                 &:hover {
-                    color: #000;
-                    background-color: #fff;
+                    background-color: transparent
                 }
             }
             &.zolo-chat-btn {
-                color: #000;
                 &:hover {
-                    background-color: #000;
-                    color: #fff;
-                    border: 1px solid #ddd;
+                    background-color: var(--zoloblocks-brand-color);
                 }
             }
         }
@@ -99,14 +103,18 @@
     }
 
     .zolo-features-title {
-        font-size: 16px;
+        font-size: clamp(1.125rem, 2vw, 1.25rem);
         font-weight: 700;
         text-transform: uppercase;
     }
 
+    .zolo-features-desc {
+        margin-top: 10px;
+    }
+
     .zolo-item {
         .features {
-            margin: 0;
+            margin: 20px 0 0;
             padding: 0;
             list-style: none;
             display: flex;
@@ -124,22 +132,27 @@
     }
 
     .zolo-check-icon {
-        background-color: #7aff00;
-        padding: 4px;
-        border-radius: 100%;
+        background-color: var(--zoloblocks-brand-color);
+        border-radius: 50%;
         line-height: 1;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
     }
 
     .zolo-ribbon-btn {
         position: absolute;
         top: 0;
-        margin: clamp(1.5rem, 4vw, 2.5rem);
+        margin: 20px;
         color: #000;
-        font-size: 11px;
+        font-size: 12px;
         text-transform: capitalize;
-        background-color: #72fd3f;
+        background-color: var(--zoloblocks-brand-color);
         padding: 4px 10px;
-        border-radius: 6px;
+        border-radius: var(--zoloblocks-button-border-radius);
         &.top__right {
             right: 0;
             left: auto;
@@ -156,7 +169,7 @@
 
     .zolo-featerd-item .zolo-buy-btn,
     .zolo-featerd-item .zolo-chat-btn:hover {
-        background-color: #7aff00;
+        background-color: var(--zoloblocks-brand-color);
         color: #000;
         border: 1px solid #ddd;
     }

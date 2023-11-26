@@ -15,6 +15,7 @@ import Style from './style';
 const Edit = (props) => {
     const { attributes, setAttributes, isSelected } = props;
     const {
+        preview,
         uniqueId,
         parentClasses,
         //layout
@@ -58,6 +59,11 @@ const Edit = (props) => {
     });
 
     const pricingPeriod = period.length !== 0 && period.split(',');
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.pricingTable} alt={__('Pricing Table Preview', 'zolo-blocks')} />;
+    }
 
     return (
         <>

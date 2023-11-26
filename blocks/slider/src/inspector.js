@@ -5,8 +5,6 @@ const { __ } = wp.i18n;
 const { InspectorControls } = wp.blockEditor;
 const { PanelBody, RangeControl, ToggleControl, SelectControl, BaseControl } = wp.components;
 const { Fragment } = wp.element;
-const { useEffect } = wp.element;
-
 /**
  * Internal dependencies
  */
@@ -86,15 +84,6 @@ const Inspector = ({ attributes, setAttributes }) => {
         setAttributes,
         objAttributes,
     };
-
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
 
     return (
         <InspectorControls>

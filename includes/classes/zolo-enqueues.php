@@ -86,7 +86,7 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
                 ZOLO_VERSION
             );
 
-            if ( ! is_admin() && has_block( 'zolo/advanced-image-gallery' ) ) {
+            if ( ! is_admin() && has_block( 'zolo/image-gallery' ) ) {
                 // enqueue style for frontend
                 wp_enqueue_style( 'zolo-maginific-popup', ZOLO_ADMIN_URL . 'assets/css/magnific-popup/magnific-popup.css', [], ZOLO_VERSION );
 
@@ -250,7 +250,28 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
                 'get_taxonomies' => ZoloHelpers::get_taxonomies(),
                 'all_term_list'  => ZoloHelpers::get_all_taxonomy(),
                 'zolo_nonce'     => wp_create_nonce( 'zolo-nonce' ),
-                'editor_type'    => $editor_type
+                'editor_type'    => $editor_type,
+                'blocksPreview' => [
+                    'button'       => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/advanced-button.svg',
+                    'heading'      => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/advanced-heading.svg',
+                    'iconBox'      => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/advanced-icon-box.svg',
+                    'imageGallery' => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/image-gallery.svg',
+                    'postGrid'     => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/post-grid.svg',
+                    'postList'     => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/post-list.svg',
+                    'pricingTable' => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/pricing-table.svg',
+                    'socialLinks'  => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/social-links.svg',
+                    'teamGrid'     => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/team-grid.svg',
+                    'brandGrid'    => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/brand-grid.svg',
+                    'review'       => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/review.svg',
+                    'reviewGrid'  => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/review-grid.svg',
+                    'profileCard' => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/profile-card.svg',
+                    'counter'      => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/counter.svg',
+                    'slider'       => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/slider.svg',
+                    'starRating'  => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/star-rating.svg',
+                    'accordion'    => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/accordion.svg',
+                    'cta'          => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/call-to-action.svg',
+                    'fancyList'   => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/fancy-list.svg',
+                ]
             ] );
         }
     }

@@ -13,14 +13,13 @@ import { createBlock } from '@wordpress/blocks';
  * Internal dependencies
  */
 import Inspector from './inspector';
-const { generateResRangeStyle, generateResCounterStyle, classArrayToStr } = window.zoloModule;
+const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayIcon } = window.zoloModule;
 
 // Constants
 import { COLUMNS, COLUMNS_GAP } from './constants';
 
 // import style
 import Style from './style';
-import { DisplayIcon } from 'wordpress-icon-picker';
 
 /**
  * Edit function
@@ -29,6 +28,7 @@ import { DisplayIcon } from 'wordpress-icon-picker';
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
     const {
+        preview,
         uniqueId,
         parentClasses,
         slideItems,
@@ -49,6 +49,11 @@ export default function Edit(props) {
         prevNavIcon,
         nextNavIcon,
     } = attributes;
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.slider} alt={__('Slider Preview', 'zolo-blocks')} />;
+    }
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),

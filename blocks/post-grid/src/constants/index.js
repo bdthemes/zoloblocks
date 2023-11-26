@@ -47,10 +47,11 @@ export const READMORE_PADDING = 'readMorePadding';
 export const AVATAR_SIZE = 'avatarSize';
 export const AVATAR_BORDER = 'avatarBorder';
 export const AVATAR_BORDER_RADIUS = 'avatarBRadius';
+export const AVATAR_GAP = 'avatarGap';
 
-//advanced
-export const WRAPPER_MARGIN = 'wrapMargin';
-export const WRAPPER_PADDING = 'wrapPadding';
-export const WRAPPER_BG = 'wrapBg';
-export const WRAPPER_BORDER = 'wrapBorder';
-export const WRAPPER_SHADOW = 'wrapShadow';
+// pagination
+export const PAG_BORDER = 'pagBorder';
+export const PAG_BORDER_RADIUS = 'pagBRadius';
+export const PAG_MARGIN = 'pagMargin';
+export const PAG_PADDING = 'pagPadding';
+export const PAG_ALIGN = 'pagAlign';

@@ -7,8 +7,9 @@ const {
     generateDimensionAttributes,
     generateBoxShadowAttributies,
     generateNormalBGAttributes,
-    generateBackgroundAttributes,
     generateTypographyAttributes,
+    generateResCounterAttributies,
+    generateResAlignmentAttributies,
 } = window.zoloModule;
 
 import {
@@ -39,14 +40,15 @@ import {
     READMORE_BORDER_RADIUS,
     READMORE_MARGIN,
     READMORE_PADDING,
+    AVATAR_GAP,
     AVATAR_SIZE,
     AVATAR_BORDER,
     AVATAR_BORDER_RADIUS,
-    WRAPPER_MARGIN,
-    WRAPPER_PADDING,
-    WRAPPER_BG,
-    WRAPPER_BORDER,
-    WRAPPER_SHADOW,
+    PAG_BORDER,
+    PAG_BORDER_RADIUS,
+    PAG_MARGIN,
+    PAG_ALIGN,
+    PAG_PADDING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -94,17 +96,12 @@ const attributes = {
     postQuery: {
         type: 'object',
     },
-    //layout
-    preset: {
-        type: 'string',
-        default: 'style-1',
-    },
-    ...generateResRangeAttributies(GRID_COLUMNS, {
-        noUnits: true,
+    ...generateResCounterAttributies(GRID_COLUMNS, {
+        deskRange: 3,
+        tabRange: 2,
+        mobRange: 1,
     }),
-    ...generateResRangeAttributies(COLUMNS_GAP, {
-        defaultRange: 30,
-    }),
+    ...generateResRangeAttributies(COLUMNS_GAP),
     showThumbnail: {
         type: 'boolean',
         default: true,
@@ -113,6 +110,12 @@ const attributes = {
     showTitle: {
         type: 'boolean',
         default: true,
+    },
+    titleColor: {
+        type: 'string',
+    },
+    titleHoverColor: {
+        type: 'string',
     },
     titleTag: {
         type: 'string',
@@ -132,6 +135,9 @@ const attributes = {
     excerptindicator: {
         type: 'string',
         default: '...',
+    },
+    excerptColor: {
+        type: 'string',
     },
     catColor: {
         type: 'string',
@@ -161,15 +167,47 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
+    namePrefixColor: {
+        type: 'string',
+    },
+    namePrefixHoverColor: {
+        type: 'string',
+    },
+    nameColor: {
+        type: 'string',
+    },
+    nameHoverColor: {
+        type: 'string',
+    },
     showMeta: {
         type: 'boolean',
         default: true,
+    },
+    metaColor: {
+        type: 'string',
     },
     showPagination: {
         type: 'boolean',
         default: false,
     },
+    // post meta
+    showReadingTime: {
+        type: 'boolean',
+        default: false,
+    },
     // readmore button
+    showReadmoreText: {
+        type: 'boolean',
+        default: false,
+    },
+    showReadmoreIcon: {
+        type: 'boolean',
+        default: true,
+    },
+    readMoreIcon: {
+        type: 'string',
+        default: 'fas fa-arrow-right',
+    },
     readMoreColor: {
         type: 'string',
     },
@@ -180,6 +218,22 @@ const attributes = {
         type: 'string',
     },
     readMoreBgHoverColor: {
+        type: 'string',
+    },
+    // pagination
+    pagColor: {
+        type: 'string',
+    },
+    pagBgColor: {
+        type: 'string',
+    },
+    apagColor: {
+        type: 'string',
+    },
+    apagBgColor: {
+        type: 'string',
+    },
+    pagSeparatorColor: {
         type: 'string',
     },
     ...generateDimensionAttributes(COLUMN_PADDING),
@@ -214,17 +268,16 @@ const attributes = {
     ...generateResRangeAttributies(AVATAR_SIZE),
     ...generateBorderAttributies(AVATAR_BORDER),
     ...generateDimensionAttributes(AVATAR_BORDER_RADIUS),
+    ...generateResRangeAttributies(AVATAR_GAP),
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 
-    //advanced tab attributes
-    ...generateDimensionAttributes(WRAPPER_MARGIN),
-    ...generateDimensionAttributes(WRAPPER_PADDING),
-    ...generateBackgroundAttributes(WRAPPER_BG, {
-        defaultBgGradient: 'linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)',
-    }),
-    ...generateBorderAttributies(WRAPPER_BORDER),
-    ...generateBoxShadowAttributies(WRAPPER_SHADOW),
+    // pagination
+    ...generateBorderAttributies(PAG_BORDER),
+    ...generateDimensionAttributes(PAG_BORDER_RADIUS),
+    ...generateDimensionAttributes(PAG_MARGIN),
+    ...generateDimensionAttributes(PAG_PADDING),
+    ...generateResAlignmentAttributies(PAG_ALIGN),
 };
 
 export default attributes;

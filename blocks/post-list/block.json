@@ -3,20 +3,20 @@
     "title": "Post List",
     "name": "zolo/post-list",
     "category": "zolo-blocks",
-    "keywords": [
-        "post",
-        "post list"
-    ],
+    "keywords": ["post", "post list"],
     "description": "post list view",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": [
-            "wide",
-            "full"
-        ]
+        "align": ["wide", "full"]
     },
     "editorScript": ""
 }

@@ -4,7 +4,6 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, ToggleControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
 
 import objAttributes from './attributes';
 import {
@@ -23,6 +22,7 @@ import {
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
+    CONTAINER_PADDING,
     REVIEWER_PHOTO_SIZE,
     REVIEWER_PHOTO_BG,
     REVIEWER_PHOTO_BORDER,
@@ -76,7 +76,6 @@ function Inspector(props) {
         showRating,
         nameColor,
         nameHoverColor,
-        nameLinkColor,
         designationColor,
         testimonialMessageColor,
         activeRatingColor,
@@ -94,53 +93,6 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
-    /**
-     * Preset
-     */
-    const changePremade = (selected) => {
-        setAttributes({ preset: selected });
-        switch (selected) {
-            case 'default':
-                setAttributes({
-                    showPhoto: true,
-                    showName: true,
-                    showDesignation: true,
-                    showTestimonialMessage: true,
-                    showRating: true,
-                    addReviewerWebsiteLink: true,
-                });
-                break;
-            case 'style-1':
-                setAttributes({
-                    showTestimonialMessage: false,
-                });
-                break;
-            case 'style-2':
-                setAttributes({
-                    showTestimonialMessage: false,
-                });
-                break;
-            default:
-                setAttributes({
-                    showPhoto: true,
-                    showName: true,
-                    showDesignation: true,
-                    showTestimonialMessage: true,
-                    showRating: true,
-                    addReviewerWebsiteLink: true,
-                });
-                break;
-        }
-    };
-
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
 
     return (
         <InspectorControls key="controls">
@@ -158,7 +110,7 @@ function Inspector(props) {
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
                                 options={PRESETS}
-                                onChange={(selected) => changePremade(selected)}
+                                onChange={(selected) => setAttributes({ preset: selected })}
                             />
                             <ToggleControl
                                 label={__('Add Reviewer Website Link', 'zolo-blocks')}
@@ -226,6 +178,11 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 min={1}
                                 max={5}
+                                defaults={{
+                                    deskRange: 3,
+                                    tabRange: 2,
+                                    mobRange: 1,
+                                }}
                             />
                             <ResRangeControl
                                 label={__('Columns Gap', 'zolo-blocks')}
@@ -268,6 +225,12 @@ function Inspector(props) {
                                 controlName={CONTAINER_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={CONTAINER_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
                             />
                             <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
@@ -382,10 +345,10 @@ function Inspector(props) {
                                             <>
                                                 <ColorControl
                                                     label={__('Color', 'zolo-blocks')}
-                                                    color={nameLinkColor}
+                                                    color={nameColor}
                                                     onChange={(color) =>
                                                         setAttributes({
-                                                            nameLinkColor: color,
+                                                            nameColor: color,
                                                         })
                                                     }
                                                 />

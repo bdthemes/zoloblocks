@@ -4,7 +4,6 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, ToggleControl, TextControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -29,6 +28,7 @@ const {
 
 import objAttributes from './attributes';
 import {
+    PRESETS,
     CONTENT_ALIGN,
     COUNTER_MARGIN,
     COUNTER_GAP,
@@ -58,6 +58,7 @@ import { HEADING, ICON_BOX_OPTIONS, DEFAULT_ALIGNS } from '../../../src/global/c
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
+        preset,
         hideIcon,
         hideTitle,
         hideCounter,
@@ -84,15 +85,6 @@ function Inspector(props) {
         objAttributes,
     };
 
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -105,6 +97,16 @@ function Inspector(props) {
                             onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
                             opened={selectedPanel === 'general'}
                         >
+                            <SelectControl
+                                label={__('Preset', 'zolo-blocks')}
+                                options={PRESETS}
+                                onChange={(preset) => {
+                                    setAttributes({
+                                        preset,
+                                    });
+                                }}
+                                value={preset}
+                            />
                             <ToggleControl
                                 label={__('Show counter icon', 'zolo-blocks')}
                                 checked={hideIcon}

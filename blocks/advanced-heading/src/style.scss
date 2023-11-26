@@ -36,6 +36,9 @@
 
     .zolo-ah-main-title {
         display: inline-block;
+        &:hover {
+            text-decoration: none;
+        }
     }
 }
 

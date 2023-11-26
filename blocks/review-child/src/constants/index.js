@@ -20,6 +20,7 @@ export const CONTAINER_BACKGROUND = 'reviewContainerBackground';
 export const CONTAINER_BORDER = 'reviewContainerBorder';
 export const CONTAINER_BORDER_RADIUS = 'reviewContainerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'reviewContainerBoxShadow';
+export const CONTAINER_PADDING = 'reviewContainerPadding';
 
 // review photo
 export const REVIEWER_PHOTO_SIZE = 'reviewPhotoSize';

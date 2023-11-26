@@ -5,7 +5,7 @@
     "category": "zolo-blocks",
     "keywords": ["Slide", "Slider", "Carousel"],
     "description": "Act as child block for slider",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zolo-blocks",
     "parent": ["zolo/slider"],
     "supports": {

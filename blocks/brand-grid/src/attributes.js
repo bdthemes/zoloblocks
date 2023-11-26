@@ -8,6 +8,7 @@ const {
     generateTypographyAttributes,
     generateTextShadowAttributies,
     generateTextStrokeAttributies,
+    generateResCounterAttributies,
 } = window.zoloModule;
 
 import {
@@ -63,8 +64,10 @@ const attributes = {
         },
     },
     //grid system
-    ...generateResRangeAttributies(GRID_COLUMNS, {
-        noUnits: true,
+    ...generateResCounterAttributies(GRID_COLUMNS, {
+        deskRange: 4,
+        tabRange: 2,
+        mobRange: 1,
     }),
     ...generateResRangeAttributies(COLUMNS_GAP, {
         defaultRange: 30,

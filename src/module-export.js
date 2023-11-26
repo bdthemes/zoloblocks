@@ -28,6 +28,8 @@ export { default as SortableItem } from './controls/sortable-control/sortableite
 export { default as ResCounterControl } from './controls/res-counter-control';
 export { default as QueryControl } from './controls/query-control';
 export { default as Pagination } from './controls/pagination';
+export { default as ZoloIconPicker } from './controls/zolo-icon-picker';
+export { default as DisplayZoloIcon } from './controls/display-zolo-icon';
 export { AdvancedOptions } from './global/components/advancedOptions';
 export { GlobalStyleHanlder } from './global/components/globalStyleHandler';
 

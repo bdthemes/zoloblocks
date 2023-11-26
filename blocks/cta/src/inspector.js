@@ -5,7 +5,6 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TextControl, TextareaControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
-import { useEffect } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -21,7 +20,7 @@ const {
     TabPanelControl,
     NormalBGControl,
     BoxShadowControl,
-    IconPicker,
+    ZoloIconPicker,
     LinkControl,
     IconicBtnGroup,
     AdvancedOptions,
@@ -82,15 +81,6 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
-
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
 
     return (
         <InspectorControls key="controls">
@@ -193,15 +183,14 @@ function Inspector(props) {
                             />
                             {iconType !== 'none' && (
                                 <Fragment>
-                                    <IconPicker
+                                    <ZoloIconPicker
+                                        label={__('Select Icon', 'zolo-blocks')}
                                         value={icon}
                                         onChange={(value) => {
                                             setAttributes({
                                                 icon: value,
                                             });
                                         }}
-                                        showHeading={true}
-                                        disableDashicon={true}
                                     />
 
                                     {iconType !== 'iconOnly' && (

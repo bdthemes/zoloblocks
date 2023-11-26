@@ -21,7 +21,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, preset, parentClasses } = attributes;
+    const { preview, uniqueId, preset, parentClasses } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(className, uniqueId, classArrayToStr(parentClasses), preset),
@@ -67,6 +67,11 @@ export default function Edit(props) {
         wp.data.dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
     };
 
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.teamGrid} alt={__('Team Grid Preview', 'zolo-blocks')} />;
+    }
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -110,6 +115,7 @@ export default function Edit(props) {
                 <InnerBlocks
                     allowedBlocks={['zolo/team-child']}
                     template={[
+                        ['zolo/team-child', {}],
                         ['zolo/team-child', {}],
                         ['zolo/team-child', {}],
                     ]}

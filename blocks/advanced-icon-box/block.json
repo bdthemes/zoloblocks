@@ -5,12 +5,13 @@
     "category": "zolo-blocks",
     "keywords": ["icon", "advanced icon box"],
     "description": "Advanced icon box description",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zolo-blocks",
     "example": {
         "attributes": {
-            "iconBoxTitle": "Advanced Icon Box"
-        }
+            "preview": true
+        },
+        "viewportWidth": 400
     },
     "supports": {
         "anchor": false,
