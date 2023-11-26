@@ -4,14 +4,14 @@
 import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'zolo-post-grid';
 export const PRESETS = [
-  // { label: __('Default', 'zolo-blocks'), value: 'default' },
-  { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-  { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
-  { label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
-  { label: __('Preset 4', 'zolo-blocks'), value: 'style-4' },
-  { label: __('Preset 5', 'zolo-blocks'), value: 'style-5' },
+    // { label: __('Default', 'zolo-blocks'), value: 'default' },
+    { label: __('Defualt', 'zolo-blocks'), value: 'style-1' },
+    { label: __('Preset 1', 'zolo-blocks'), value: 'style-2' },
+    { label: __('Preset 2', 'zolo-blocks'), value: 'style-3' },
+    { label: __('Preset 3', 'zolo-blocks'), value: 'style-4' },
+    { label: __('Preset 4', 'zolo-blocks'), value: 'style-5' },
 ];
-export const GRID_COLUMNS = 'gridColumns';
+
 export const COLUMNS_GAP = 'columnsGap';
 export const THUMBNAIL_HEIGHT = 'thumbHeight';
 
@@ -42,3 +42,10 @@ export const CAT_PADDING = 'catPading';
 export const COUNT_SIZE = 'countSize';
 export const COUNT_BORDER = 'countBorder';
 export const COUNT_BORDER_RADIUS = 'countBRadius';
+
+// pagination
+export const PAG_BORDER = 'pagBorder';
+export const PAG_BORDER_RADIUS = 'pagBRadius';
+export const PAG_MARGIN = 'pagMargin';
+export const PAG_PADDING = 'pagPadding';
+export const PAG_ALIGN = 'pagAlign';

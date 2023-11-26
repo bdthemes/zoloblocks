@@ -1,239 +1,241 @@
 .zolo-post-featured-list-wrap {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+    position: relative;
+    counter-reset: number-count;
 
-	display: grid;
-	grid-template-columns: repeat(1, 1fr);
-	grid-gap: 20px;
-	position: relative;
-	counter-reset: number-count;
+    .zolo-post-item {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.938rem, 3vw, 1.25rem);
+        overflow: hidden;
+        &:hover img {
+            transform: scale(1.1);
+        }
+        &:first-child {
+            position: relative;
+            .zolo-post-content {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: clamp(1.563rem, 4vw, 1.875rem);
+                width: auto;
+                z-index: 1;
+            }
+            .zolo-post-image {
+                width: 100%;
+                height: clamp(18.75rem, 30vw, 25rem);
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    background: linear-gradient(45deg, black, transparent);
+                    z-index: 1;
+                }
+            }
 
-	.zolo-post-item {
-		display: flex;
-		align-items: center;
-		gap: clamp(0.938rem, 3vw, 1.25rem);
+            .zolo-post-title {
+                font-size: clamp(1.25rem, 3vw, 1.375rem);
+                margin: 0 0 10px;
+                a {
+                    color: #ececec;
+                }
+            }
 
-		&:hover img {
-			transform: scale(1.1);
-		}
+            .zolo-post-category {
+                margin: 0 0 18px;
+                a {
+                    padding: 6px 12px;
+                    color: #000;
+                    border-radius: var(--zoloblocks-button-border-radius);
+                    font-size: 12px;
+                    background-color: var(--zoloblocks-brand-color);
 
-		&:first-child {
-			position: relative;
+                    &:hover {
+                        background-color: var(--zoloblocks-brand-color-hover);
+                    }
+                }
+            }
 
-			.zolo-post-content {
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				padding: clamp(1.563rem, 4vw, 1.875rem);
-				width: auto;
-				z-index: 1;
-			}
+            .zolo-post-meta {
+                color: #d0d0d8;
+            }
 
-			.zolo-post-image {
-				width: 100%;
-				height: clamp(18.75rem, 30vw, 25rem);
+            .zolo-post-author-name a {
+                color: #ececec;
+            }
+        }
+    }
 
-				&::before {
-					content: '';
-					position: absolute;
-					top: 0;
-					left: 0;
-					height: 100%;
-					width: 100%;
-					background: linear-gradient(45deg, black, transparent);
-					z-index: 1;
-				}
-			}
+    .zolo-post-meta-box img {
+        display: none;
+    }
 
-			.zolo-post-title {
-				font-size: clamp(1.25rem, 3vw, 1.375rem);
-				margin: 0 0 14px;
+    .zolo-post-image {
+        position: relative;
+        width: 70%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: var(--zolo-item-border-radius);
 
-				a {
-					color: #ececec;
-				}
-			}
+        img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+    }
+    .zolo-post-content {
+        width: 100%;
+        .zolo-post-title {
+            font-size: clamp(0.938rem, 1.5vw, 1.2rem);
+            margin: 0 0 4px;
+            line-height: 1.4;
+        }
+        .zolo-post-category {
+            gap: 7px;
+            margin: 0 0 6px;
+            padding: 0;
+            list-style: none;
+        }
 
-			.zolo-post-category {
-				margin: 0 0 15px;
+        .zolo-post-category,
+        .zolo-post-meta,
+        .zolo-post-meta-box {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-				a {
-					padding: 6px 12px;
-					color: #ebebec;
-					border-radius: 3px;
-					font-size: 12px;
-					background-color: #e81010ef;
+        .zolo-post-meta,
+        .zolo-post-category a {
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            color: #696a70;
+        }
+        .zolo-post-meta {
+            gap: 8px;
+        }
+        .zolo-post-count-number {
+            counter-increment: number-count;
+            position: relative;
+            &:before {
+                content: counter(number-count);
+                background-color: var(--zoloblocks-brand-color);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                font-weight: 500;
+                min-width: clamp(2.5rem, 5vw, 3.125rem);
+                min-height: clamp(2.5rem, 5vw, 3.125rem);
+            }
+        }
 
-					&:hover {
-						background-color: #d20808ef;
-					}
-				}
+        .zolo-post-author-name {
+            a {
+                color: currentColor;
+            }
+        }
+    }
 
-			}
+    .zolo-post-desc p {
+        font-size: 14px;
+        margin: 0 0 4px;
+        color: #6b6b71;
+    }
 
-			.zolo-post-meta {
-				color: #d0d0d8;
-			}
+    .zolo-post-title a,
+    .zolo-post-author-name a,
+    .zolo-post-category a {
+        color: #2a292c;
+        text-decoration: none;
+        transition: 0.3s ease;
+    }
 
-			.zolo-post-author-name a {
-				color: #ececec;
-			}
+    .zolo-post-item:first-child .zolo-post-desc p {
+        font-size: 16px;
+        margin: 0 0 10px;
+        color: #d0d0d8;
+    }
 
-		}
-	}
+    .zolo-post-title a:hover,
+    .zolo-post-author-name a:hover,
+    .zolo-post-category a:hover,
+    .zolo-post-item:first-child .zolo-post-title a:hover,
+    .zolo-post-item:first-child .zolo-post-author-name a:hover {
+        color: var(--zoloblocks-brand-color-hover);
+    }
 
-	.zolo-post-image {
-		position: relative;
-		width: 70%;
-		height: 100%;
-		overflow: hidden;
+    &.zolo-post-style-1 .zolo-post-count-number,
+    &.zolo-post-style-2 .zolo-post-count-number,
+    &.zolo-post-style-3 .zolo-post-image,
+    &.zolo-post-style-4 .zolo-post-image,
+    &.zolo-post-style-5 .zolo-post-image {
+        display: none;
+    }
 
-		img {
-			width: 100%;
-			height: 100%;
-			display: block;
-			object-fit: cover;
-			transition: transform .3s ease;
-		}
-	}
+    &.zolo-post-style-2 .zolo-post-item,
+    &.zolo-post-style-4 .zolo-post-content {
+        flex-direction: row-reverse;
+        text-align: right;
+    }
 
-	.zolo-post-content {
-		width: 100%;
+    &.zolo-post-style-3,
+    &.zolo-post-style-4,
+    &.zolo-post-style-5 {
+        background-color: #f8f8f8;
+        padding-bottom: clamp(1.563rem, 4vw, 1.875rem);
+        border-bottom-left-radius: var(--zolo-item-border-radius);
+        border-bottom-right-radius: var(--zolo-item-border-radius);
+        .zolo-post-item {
+            &:first-child {
+                .zolo-post-image {
+                    display: block;
+                }
+            }
+        }
+        .zolo-post-content {
+            display: inline-flex;
+            gap: clamp(0.938rem, 3vw, 1.25rem);
+        }
+    }
 
-		.zolo-post-title {
-			font-size: clamp(0.938rem, 1.5vw, 1rem);
-			margin: 0 0 8px;
-		}
+    &.zolo-post-style-3,
+    &.zolo-post-style-4 {
+        .zolo-post-item:first-child .zolo-post-image {
+            display: block;
+        }
+        .zolo-post-content {
+            align-items: center;
+        }
+        .zolo-post-item:first-child {
+            padding: 0;
+        }
+        .zolo-post-item,
+        .zolo-post-item {
+            padding: 0 clamp(1.563rem, 4vw, 1.875rem);
+        }
+    }
 
-		.zolo-post-category {
-			gap: 7px;
-			margin: 0 0 clamp(0.313rem, 1vw, 0.625rem);
-			padding: 0;
-			list-style: none;
-		}
-
-		.zolo-post-category,
-		.zolo-post-meta {
-			display: inline-flex;
-			align-items: center;
-			flex-wrap: wrap;
-		}
-
-		.zolo-post-meta,
-		.zolo-post-category a {
-			font-size: clamp(0.75rem, 1.5vw, 0.875rem);
-			color: #88898f;
-		}
-
-		.zolo-post-meta {
-			gap: 10px;
-		}
-
-		.zolo-post-count-number {
-			counter-increment: number-count;
-			position: relative;
-
-			&:before {
-				content: counter(number-count);
-				background-color: #d9dcf9;
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				border-radius: 50%;
-				font-weight: 500;
-				min-width: clamp(2.5rem, 5vw, 3.125rem);
-				min-height: clamp(2.5rem, 5vw, 3.125rem);
-			}
-		}
-	}
-
-	.zolo-post-title a,
-	.zolo-post-author-name a,
-	.zolo-post-category a {
-		color: #2a292c;
-		text-decoration: none;
-		transition: .3s ease;
-	}
-
-	.zolo-post-title a:hover,
-	.zolo-post-author-name a:hover,
-	.zolo-post-category a:hover,
-	.zolo-post-item:first-child .zolo-post-title a:hover,
-	.zolo-post-item:first-child .zolo-post-author-name a:hover {
-		color: #f00;
-	}
-
-	&.zolo-post-style-1 .zolo-post-count-number,
-	&.zolo-post-style-2 .zolo-post-count-number,
-	&.zolo-post-style-3 .zolo-post-image,
-	&.zolo-post-style-4 .zolo-post-image,
-	&.zolo-post-style-5 .zolo-post-image {
-		display: none;
-	}
-
-	&.zolo-post-style-2 .zolo-post-item,
-	&.zolo-post-style-4 .zolo-post-content {
-		flex-direction: row-reverse;
-		text-align: right;
-	}
-
-	&.zolo-post-style-3,
-	&.zolo-post-style-4 {
-		background-color: #fff;
-		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-		padding-bottom: clamp(1.563rem, 4vw, 1.875rem);
-	}
-
-	&.zolo-post-style-3 .zolo-post-item:first-child .zolo-post-image,
-	&.zolo-post-style-4 .zolo-post-item:first-child .zolo-post-image,
-	&.zolo-post-style-5 .zolo-post-item:first-child .zolo-post-image {
-		display: block;
-	}
-
-	&.zolo-post-style-3 .zolo-post-content,
-	&.zolo-post-style-4 .zolo-post-content,
-	&.zolo-post-style-5 .zolo-post-content {
-		display: inline-flex;
-		gap: clamp(0.938rem, 3vw, 1.25rem);
-	}
-
-	&.zolo-post-style-3,
-	&.zolo-post-style-4 {
-		background-color: #fff;
-		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-		padding-bottom: clamp(1.563rem, 4vw, 1.875rem);
-
-		.zolo-post-item:first-child .zolo-post-image {
-			display: block;
-		}
-
-		.zolo-post-content {
-			align-items: center;
-		}
-
-		.zolo-post-item:first-child {
-			padding: 0;
-		}
-
-		.zolo-post-item,
-		.zolo-post-item {
-			padding: 0 clamp(1.563rem, 4vw, 1.875rem);
-		}
-	}
-
-	&.zolo-post-style-5 {
-		.zolo-post-content {
-			flex-direction: column;
-		}
-
-		.zolo-post-item {
-			padding-bottom: 20px;
-			border-bottom: 1px solid #ddd;
-
-			&:first-child,
-			&:nth-last-child(1) {
-				padding-bottom: 0;
-				border-bottom: 0;
-			}
-		}
-	}
+    &.zolo-post-style-5 {
+        .zolo-post-content {
+            flex-direction: column;
+            padding: 0 30px;
+        }
+        .zolo-post-item {
+            padding-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+            &:first-child,
+            &:nth-last-child(1) {
+                padding-bottom: 0;
+                border-bottom: 0;
+            }
+        }
+    }
 }

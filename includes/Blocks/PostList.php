@@ -10,13 +10,13 @@ class PostList extends PostBlock
 {
 
     protected $default_block_attributes = [
-        'name'   => 'post-list',
-        'preset' => 'style-1',
-        'thumbnailSize'      => '',
-        'showExcerpt' => false,
+        'name'             => 'post-list',
+        'preset'           => 'style-1',
+        'thumbnailSize'    => '',
+        'showExcerpt'      => false,
         'excerptindicator' => '...',
-        'excerptWords' => 15,
-        'showCount' => false,
+        'excerptWords'     => 15,
+        'showCount'        => false,
     ];
 
     public function get_default_attributes()
@@ -37,9 +37,9 @@ class PostList extends PostBlock
 
         ob_start();
         ZoloHelpers::views('post-list', [
-            'settings'  => $attributes,
-            'className' => '',
-            'post_results'    => $post_results,
+            'settings'     => $attributes,
+            'className'    => '',
+            'post_results' => $post_results,
             'class_object' => $this
         ]);
         return ob_get_clean();

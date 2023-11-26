@@ -1,3 +1,10 @@
+:root {
+    --zoloblocks-brand-color: #30ffd0;
+    --zoloblocks-brand-color-hover: #2be6c5;
+    --zoloblocks-button-border-radius: 3px;
+    --zolo-item-border-radius: 10px;
+}
+
 // Responsive show/hide css
 @media screen and (min-width: 1025px) {
     .zolo-hide-desktop {
@@ -6,14 +13,15 @@
 }
 
 // tablet view
-@media all and (max-width: 1024px) {
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
     .zolo-hide-tab {
         display: none !important;
     }
 }
 
 // mobile view
-@media all and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .zolo-hide-mobile {
         display: none !important;
     }

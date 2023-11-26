@@ -19,7 +19,9 @@ import Style from './style';
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
     const {
+        preview,
         uniqueId,
+        preset,
         parentClasses,
         hideIcon,
         hideTitle,
@@ -37,6 +39,11 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.counter} alt={__('Counter Preview', 'zolo-blocks')} />;
+    }
 
     return (
         <>
@@ -78,7 +85,7 @@ export default function Edit(props) {
             </BlockControls>
             <Style props={props} />
             <div {...blockProps}>
-                <div class="zolo-counter-wrap">
+                <div class={`zolo-counter-wrap ${preset}`}>
                     <div class="zolo-counter-item">
                         {hideIcon && (
                             <div class="zolo-counter-icon">

@@ -9,7 +9,7 @@
         "player"
     ],
     "description": "Play audio files in stylic ways.",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zolo-blocks",
     "supports": {
         "anchor": false,

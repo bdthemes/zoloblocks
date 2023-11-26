@@ -9,6 +9,7 @@ const {
     generateBoxShadowAttributies,
     generateTypographyAttributes,
     generateNormalBGAttributes,
+    generateResCounterAttributies,
 } = window.zoloModule;
 
 import {
@@ -109,8 +110,13 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
-    ...generateResRangeAttributies(GRID_COLUMNS, {
+    ...generateResCounterAttributies(GRID_COLUMNS, {
         noUnits: true,
+        defauts: {
+            deskRange: 3,
+            tabRange: 2,
+            mobRange: 1,
+        },
     }),
     ...generateResRangeAttributies(COLUMNS_GAP, {
         defaultRange: 30,

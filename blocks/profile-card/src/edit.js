@@ -22,6 +22,7 @@ import Style from './style';
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
     const {
+        preview,
         uniqueId,
         parentClasses,
         preset,
@@ -49,6 +50,11 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId} ${preset ? preset : ''}`, classArrayToStr(parentClasses)),
     });
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.profileCard} alt={__('Profile Card Preview', 'zolo-blocks')} />;
+    }
 
     return (
         <>
@@ -169,7 +175,6 @@ export default function Edit(props) {
                         {showBio && (
                             <div className="zb-profile-card-bio">
                                 <RichText
-                                    tagName="p"
                                     value={bio}
                                     onChange={(content) => setAttributes({ bio: content })}
                                     placeholder={__('Bio', 'zolo-blocks')}

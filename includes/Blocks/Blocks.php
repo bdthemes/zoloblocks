@@ -1,6 +1,7 @@
 <?php
 
 require_once ZOLO_DIR_PATH . 'includes/Blocks/PostGrid.php';
+require_once ZOLO_DIR_PATH . 'includes/Blocks/PostList.php';
 
 return apply_filters( 'zolo_blocks_list_data', [
     'container' => [
@@ -27,9 +28,9 @@ return apply_filters( 'zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => false
     ],
-    'advanced-image-gallery' => [
-        'name'             => 'advanced-image-gallery',
-        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/advanced-image-gallery/block.json',
+    'image-gallery' => [
+        'name'             => 'image-gallery',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/image-gallery/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => false
     ],
@@ -51,6 +52,13 @@ return apply_filters( 'zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => false,
         'class' => '\Zolo\Blocks\PostGrid'
+    ],
+    'post-list' => [
+        'name'             => 'post-list',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/post-list/block.json',
+        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-scripts' => false,
+        'class' => '\Zolo\Blocks\PostList'
     ],
     'pricing-table' => [
         'name'             => 'pricing-table',
@@ -82,9 +90,9 @@ return apply_filters( 'zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
-    'social-icon' => [
-        'name'             => 'social-icon',
-        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/social-icon/block.json',
+    'social-links' => [
+        'name'             => 'social-links',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/social-links/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => true
     ],

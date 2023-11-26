@@ -27,7 +27,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, parentClasses, showTitle, title, titleTag, titlePosition, rating } = attributes;
+    const { preview, uniqueId, parentClasses, showTitle, title, titleTag, titlePosition, rating } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -42,6 +42,11 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zolo-blocks')} />;
+    }
 
     return (
         <>

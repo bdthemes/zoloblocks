@@ -10,6 +10,12 @@
     "description": "Advanced button description",
     "apiVersion": 3,
     "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
     "supports": {
         "anchor": false,
         "customClassName": false,

@@ -5,7 +5,6 @@ import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, ToggleControl, TextControl, TextareaControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
-import { useEffect } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -20,18 +19,19 @@ const {
     TypographyDropdown,
     TabPanelControl,
     IconPicker,
+    ZoloIconPicker,
     BoxShadowControl,
     HeaderTabs,
     IconicBtnGroup,
     LinkControl,
     NormalBGControl,
     ImageAvatar,
+    ResAlignmentControl,
     AdvancedOptions,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
-    TITLE_TAG,
     TITLE_MARGIN,
     DESCRIPTION_MARGIN,
     PRESETS,
@@ -57,10 +57,11 @@ import {
     ICON_IMAGE_SIZE,
     IMAGE_BORDER,
     ICON_IMAGE_BORDER_RADIUS,
+    CONTENT_ALIGNMENT,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { DEFAULT_ALIGNS, ICON_BOX_OPTIONS, FLEX_ALIGN_OPTIONS, POSITIONS } from '../../../src/global/constants';
+import { DEFAULT_ALIGNS, ICON_BOX_OPTIONS, FLEX_ALIGN_OPTIONS, POSITIONS, HEADING } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -95,6 +96,7 @@ function Inspector(props) {
         buttonText,
         buttonLink,
         globalLink,
+        iconPosition,
         presetOneStyles,
         presetTwoStyles,
         presetThreeStyles,
@@ -107,15 +109,6 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
-
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
 
     return (
         <InspectorControls key="controls">
@@ -167,7 +160,7 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Show CTA', 'zolo-blocks')}
+                                label={__('Show Button', 'zolo-blocks')}
                                 checked={showButton}
                                 onChange={() =>
                                     setAttributes({
@@ -178,7 +171,7 @@ function Inspector(props) {
                             {showButton && (
                                 <>
                                     <ToggleControl
-                                        label={__('Show CTA Icon', 'zolo-blocks')}
+                                        label={__('Show Button Icon', 'zolo-blocks')}
                                         checked={showButtonIcon}
                                         onChange={() =>
                                             setAttributes({
@@ -197,21 +190,13 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
-                            {preset === 'style-1' && (
-                                <IconicBtnGroup
-                                    label={__('Content Alignment', 'zolo-blocks')}
-                                    value={presetOneStyles.contentPosition}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            presetOneStyles: {
-                                                ...presetOneStyles,
-                                                contentPosition: value,
-                                            },
-                                        })
-                                    }
-                                    options={DEFAULT_ALIGNS}
-                                />
-                            )}
+
+                            <ResAlignmentControl
+                                label={__('Content Alignment', 'zolo-blocks')}
+                                controlName={CONTENT_ALIGNMENT}
+                                requiredProps={requiredProps}
+                                alignOptions={DEFAULT_ALIGNS}
+                            />
                         </PanelBody>
                         <PanelBody
                             title={__('Content', 'zolo-blocks')}
@@ -232,14 +217,14 @@ function Inspector(props) {
                                     />
                                     {iconType === 'icon' && (
                                         <Fragment>
-                                            <IconPicker
+                                            <ZoloIconPicker
+                                                label={__('Select Icon', 'zolo-blocks')}
                                                 value={mainIcon}
                                                 onChange={(value) =>
                                                     setAttributes({
                                                         mainIcon: value,
                                                     })
                                                 }
-                                                disableDashicon={true}
                                             />
                                         </Fragment>
                                     )}
@@ -346,17 +331,25 @@ function Inspector(props) {
                                 onToggle={(value) => value === true && setAttributes({ selectedPanel: 'btnIcon' })}
                                 opened={selectedPanel === 'btnIcon'}
                             >
-                                <Fragment>
-                                    <IconPicker
-                                        value={buttonIcon}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                buttonIcon: value,
-                                            })
-                                        }
-                                        disableDashicon={true}
-                                    />
-                                </Fragment>
+                                <ZoloIconPicker
+                                    label={__('Select Icon', 'zolo-blocks')}
+                                    value={buttonIcon}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            buttonIcon: value,
+                                        })
+                                    }
+                                />
+                                <IconicBtnGroup
+                                    label={__('Position', 'zolo-blocks')}
+                                    value={iconPosition}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            iconPosition: value,
+                                        })
+                                    }
+                                    options={POSITIONS}
+                                />
                             </PanelBody>
                         )}
                     </>
@@ -365,7 +358,7 @@ function Inspector(props) {
                     <>
                         {iconType == 'icon' && (
                             <PanelBody
-                                title={__('Icon', 'zolo-blocks')}
+                                title={__('Main Icon', 'zolo-blocks')}
                                 onToggle={(value) => value === true && setAttributes({ selectedPanel: 'iconStyle' })}
                                 opened={selectedPanel === 'iconStyle'}
                             >
@@ -509,10 +502,11 @@ function Inspector(props) {
                                         controlName={IMAGE_BORDER}
                                         requiredProps={requiredProps}
                                     />
-                                    <ResRangeControl
+                                    <ResDimensionsControl
                                         label={__('Border Radius', 'zolo-blocks')}
                                         controlName={ICON_IMAGE_BORDER_RADIUS}
                                         requiredProps={requiredProps}
+                                        forBorderRadius={true}
                                     />
                                 </>
                             </PanelBody>
@@ -524,7 +518,7 @@ function Inspector(props) {
                         >
                             <SelectControl
                                 label={__('Title Tag', 'zolo-blocks')}
-                                options={TITLE_TAG}
+                                options={HEADING}
                                 onChange={(tag) => {
                                     setAttributes({
                                         titleTag: tag,
@@ -620,7 +614,7 @@ function Inspector(props) {
                         {showButton && (
                             <>
                                 <PanelBody
-                                    title={__('CTA', 'zolo-blocks')}
+                                    title={__('Button', 'zolo-blocks')}
                                     onToggle={(value) => value === true && setAttributes({ selectedPanel: 'ctaStyle' })}
                                     opened={selectedPanel === 'ctaStyle'}
                                 >
@@ -714,7 +708,7 @@ function Inspector(props) {
 
                         {showButton && showButtonIcon && (
                             <PanelBody
-                                title={__('CTA Icon', 'zolo-blocks')}
+                                title={__('Button Icon', 'zolo-blocks')}
                                 onToggle={(value) => value === true && setAttributes({ selectedPanel: 'ctaIconStyle' })}
                                 opened={selectedPanel === 'ctaIconStyle'}
                             >
@@ -734,79 +728,6 @@ function Inspector(props) {
                                     max={100}
                                     step={1}
                                 />
-                                {preset === 'style-1' && (
-                                    <IconicBtnGroup
-                                        label={__('Position', 'zolo-blocks')}
-                                        value={presetOneStyles.iconPosition}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                presetOneStyles: {
-                                                    ...presetOneStyles,
-                                                    iconPosition: value,
-                                                },
-                                            })
-                                        }
-                                        options={POSITIONS}
-                                    />
-                                )}
-                                {preset === 'style-2' && (
-                                    <IconicBtnGroup
-                                        label={__('Position', 'zolo-blocks')}
-                                        value={presetTwoStyles.iconPosition}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                presetTwoStyles: {
-                                                    ...presetTwoStyles,
-                                                    iconPosition: value,
-                                                },
-                                            })
-                                        }
-                                        options={POSITIONS}
-                                    />
-                                )}
-                                {preset === 'style-3' && (
-                                    <IconicBtnGroup
-                                        label={__('Position', 'zolo-blocks')}
-                                        value={presetThreeStyles.iconPosition}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                presetThreeStyles: {
-                                                    ...presetThreeStyles,
-                                                    iconPosition: value,
-                                                },
-                                            })
-                                        }
-                                        options={POSITIONS}
-                                    />
-                                )}
-                                {/* <TabPanelControl
-                                    normalComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={buttonIconColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        buttonIconColor: value,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={buttonIconHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        buttonIconHoverColor: value,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                /> */}
                             </PanelBody>
                         )}
                     </>

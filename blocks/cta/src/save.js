@@ -4,7 +4,7 @@ import classnames from 'classnames';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
@@ -46,7 +46,7 @@ const Save = ({ attributes }) => {
                             {iconType !== 'iconOnly' && <RichText.Content tagName="span" className="zolo-text" value={label} />}
                             {iconType !== 'none' && (
                                 <span className="zolo-icon">
-                                    <DisplayIcon icon={icon} />
+                                    <DisplayZoloIcon icon={icon} />
                                 </span>
                             )}
                         </a>

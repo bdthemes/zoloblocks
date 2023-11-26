@@ -96,11 +96,13 @@ const attributes = {
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 
     // Image
-    ...generateResRangeAttributies(ICON_IMAGE_SIZE, {
-        default: 16,
-    }),
+    ...generateResRangeAttributies(ICON_IMAGE_SIZE),
 
     //Block Specific Attributes
+    preset: {
+        type: 'string',
+        default: '',
+    },
     hideIcon: {
         type: 'boolean',
         default: true,

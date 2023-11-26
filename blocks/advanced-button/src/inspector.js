@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment, useEffect, useState, useRef } from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -59,7 +59,6 @@ import {
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { use } from '@wordpress/data';
 
 function Inspector(props) {
   const { attributes, setAttributes } = props;

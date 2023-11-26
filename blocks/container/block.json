@@ -1,5 +1,5 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Container",
     "name": "zolo/container",
@@ -9,6 +9,12 @@
     ],
     "description": "A container block for other blocks",
     "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 740
+    },
     "supports": {
         "anchor": false,
         "customClassName": false,

@@ -58,6 +58,11 @@ const Style = ({ props }) => {
         controlName: GRID_COLUMNS,
         attributes,
         noProperty: true,
+        defaults: {
+            deskRange: 4,
+            tabRange: 2,
+            mobRange: 1,
+        },
     });
 
     // column gap

@@ -16,7 +16,6 @@ $parentClasses = implode(' ', $parentClasses);
 $wrapper_class .= ' ' . $parentClasses;
 
 $html = '';
-
 ?>
 
 <div class="<?php echo esc_attr($wrapper_class); ?>">
@@ -25,7 +24,7 @@ $html = '';
         $html .= '<div class="zolo-post-item">';
 
         $html .= '<div class="zolo-post-image">';
-        $html .= require __DIR__ . '/post-partials/thumbnail.php';
+            $html .= require __DIR__ . '/post-partials/thumbnail.php';
         $html .= '</div>';
 
         $html .= '<div class="zolo-post-content">';
@@ -58,7 +57,9 @@ $html = '';
 </div>
 
 <?php if (!empty($settings['postQuery']['showPagination']) && !empty($post_results['total_page'])) { ?>
-    <div class="zolo-pagination-nav">
-        <?php echo ZoloHelpers::pagination($post_results['total_page']); ?>
+    <div class="zolo-pagination-wrap <?php echo esc_attr($settings['uniqueId'] ?? '')?>">
+        <div class="zolo-pagination-nav">
+            <?php echo ZoloHelpers::pagination($post_results['total_page']); ?>
+        </div>
     </div>
 <?php } ?>

@@ -29,10 +29,11 @@ const Save = ({ attributes }) => {
             })}
         >
             <div className="zolo-item">
+            <div className='zolo-review-img-meta-wrap'>
                 {showPhoto && (
                     <div className="zolo-image-wrap">
                         {memberPhoto && <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} className="zolo-img" />}
-                        {addReviewerWebsiteLink && (
+                        {/* {addReviewerWebsiteLink && (
                             <div className="zolo-link-btn">
                                 <a
                                     href={reviewerWebsiteLink && reviewerWebsiteLink.url}
@@ -42,30 +43,38 @@ const Save = ({ attributes }) => {
                                     <DisplayIcon icon={websiteLinkIcon} />
                                 </a>
                             </div>
-                        )}
+                        )} */}
                     </div>
                 )}
-
-                <div className="zolo-info-wrap">
-                    <div className="zolo-meta-content">
-                        {showName &&
-                            (addReviewerWebsiteLink ? (
-                                <a
-                                    href={reviewerWebsiteLink && reviewerWebsiteLink.url}
-                                    rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && 'noreferer noopener'}
-                                    target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && '_blank'}
-                                    className="zolo-name has-link"
-                                >
-                                    <RichText.Content value={memberName} />
-                                </a>
-                            ) : (
-                                <div className="zolo-name">
-                                    <RichText.Content value={memberName} />
-                                </div>
-                            ))}
+                <div className='zolo-review-meta-content'>
+                      {showName &&
+                        (addReviewerWebsiteLink ? (
+                            <a
+                                href={reviewerWebsiteLink && reviewerWebsiteLink.url}
+                                rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && 'noreferer noopener'}
+                                target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && '_blank'}
+                                className="zolo-name has-link"
+                            >
+                                <RichText.Content value={memberName} />
+                            </a>
+                        ) : (
+                            <div className="zolo-name">
+                                <RichText.Content value={memberName} />
+                            </div>
+                        ))}
                         {showDesignation && (
                             <div className="zolo-designation">
                                 <RichText.Content value={memberDesignation} />
+                            </div>
+                        )}
+                </div>
+                </div>
+
+                <div className="zolo-info-wrap">
+                    <div className="zolo-meta-content">
+                        {showRating && (
+                            <div className="zolo-review-icon">
+                                <div className="zolo-rating-child" data-rating={rating}></div>
                             </div>
                         )}
 
@@ -75,11 +84,7 @@ const Save = ({ attributes }) => {
                             </div>
                         )}
                     </div>
-                    {showRating && (
-                        <div className="zolo-review-icon">
-                            <div className="zolo-rating-child" data-rating={rating}></div>
-                        </div>
-                    )}
+
                 </div>
             </div>
         </div>

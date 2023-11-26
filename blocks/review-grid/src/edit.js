@@ -22,7 +22,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, parentClasses, preset } = attributes;
+    const { preview, uniqueId, parentClasses, preset } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -71,6 +71,11 @@ export default function Edit(props) {
         wp.data.dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
     };
 
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.reviewGrid} alt={__('Review Grid Preview', 'zolo-blocks')} />;
+    }
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -115,6 +120,7 @@ export default function Edit(props) {
                 <InnerBlocks
                     allowedBlocks={['zolo/review-child']}
                     template={[
+                        ['zolo/review-child', {}],
                         ['zolo/review-child', {}],
                         ['zolo/review-child', {}],
                     ]}

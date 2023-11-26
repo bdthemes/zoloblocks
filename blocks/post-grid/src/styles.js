@@ -29,11 +29,12 @@ import {
     AVATAR_SIZE,
     AVATAR_BORDER,
     AVATAR_BORDER_RADIUS,
-    WRAPPER_MARGIN,
-    WRAPPER_PADDING,
-    WRAPPER_BG,
-    WRAPPER_BORDER,
-    WRAPPER_SHADOW,
+    AVATAR_GAP,
+    PAG_BORDER,
+    PAG_BORDER_RADIUS,
+    PAG_MARGIN,
+    PAG_PADDING,
+    PAG_ALIGN,
 } from './constants';
 
 import {
@@ -43,6 +44,7 @@ import {
     CAT_TYPOGRAPHY,
     READMORE_TYPOGRAPHY,
     NAME_TYPOGRAPHY,
+    PAG_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
 const {
@@ -51,10 +53,10 @@ const {
     generateNormalBGControlStyles,
     generateBorderStyle,
     generateBoxShadowStyles,
-    generateBackgroundControlStyles,
     generateTypographyStyles,
     generateResCounterStyle,
     GlobalStyleHanlder,
+    generateResAlignmentStyle,
 } = window.zoloModule;
 
 function Style({ props }) {
@@ -77,6 +79,11 @@ function Style({ props }) {
         nameColor,
         nameHoverColor,
         namePrefixHoverColor,
+        pagColor,
+        pagBgColor,
+        apagColor,
+        apagBgColor,
+        pagSeparatorColor,
     } = attributes;
 
     const {
@@ -87,6 +94,11 @@ function Style({ props }) {
         controlName: GRID_COLUMNS,
         attributes,
         noProperty: true,
+        defaults: {
+            deskRange: 3,
+            tabRange: 2,
+            mobRange: 1,
+        },
     });
 
     const {
@@ -213,7 +225,6 @@ function Style({ props }) {
         typoStylesMobile: titleTypoMob,
     } = generateTypographyStyles({
         prefixConstant: TITLE_TYPOGRAPHY,
-        defaultFontSize: 22,
         attributes,
     });
     const {
@@ -322,6 +333,7 @@ function Style({ props }) {
         prefixConstant: READMORE_TYPOGRAPHY,
         attributes,
     });
+
     const {
         desktopRangeStyle: readMoreGapDesk,
         tabRangeStyle: readMoreGapTab,
@@ -331,6 +343,7 @@ function Style({ props }) {
         property: 'gap',
         attributes,
     });
+
     const {
         desktopBorderStyle: readMoreBorderDesk,
         tabBorderStyle: readMoreBorderTab,
@@ -393,6 +406,7 @@ function Style({ props }) {
         controlName: AVATAR_BORDER,
         attributes,
     });
+
     const {
         dimensionStylesDesktop: avatarBorderRadiusDesk,
         dimensionStylesTab: avatarBorderRadiusTab,
@@ -402,6 +416,17 @@ function Style({ props }) {
         styleFor: 'border-radius',
         attributes,
     });
+
+    const {
+        desktopRangeStyle: authorGapDesk,
+        tabRangeStyle: authorGapTab,
+        mobRangeStyle: authorGapMob,
+    } = generateResRangeStyle({
+        controlName: AVATAR_GAP,
+        property: 'gap',
+        attributes,
+    });
+
     const {
         typoStylesDesktop: nameTypoDesk,
         typoStylesTab: nameTypoTab,
@@ -411,87 +436,74 @@ function Style({ props }) {
         attributes,
     });
 
-    //wrapper style generate
+    // Pagination
     const {
-        dimensionStylesDesktop: wrapperMarginDesktop,
-        dimensionStylesTab: wrapperMarginTab,
-        dimensionStylesMobile: wrapperMarginMobile,
-    } = generateDimensionStyle({
-        controlName: WRAPPER_MARGIN,
-        styleFor: 'margin',
+        desktopBorderStyle: pagBorderDesk,
+        tabBorderStyle: pagBorderTab,
+        mobBorderStyle: pagBorderMob,
+    } = generateBorderStyle({
+        controlName: PAG_BORDER,
         attributes,
     });
+
     const {
-        dimensionStylesDesktop: wrapperPaddingDesktop,
-        dimensionStylesTab: wrapperPaddingTab,
-        dimensionStylesMobile: wrapperPaddingMobile,
+        dimensionStylesDesktop: pagBorderRadiusDesk,
+        dimensionStylesTab: pagBorderRadiusTab,
+        dimensionStylesMobile: pagBorderRadiusMob,
     } = generateDimensionStyle({
-        controlName: WRAPPER_PADDING,
+        controlName: PAG_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: pagTypoDesk,
+        typoStylesTab: pagTypoTab,
+        typoStylesMobile: pagTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: PAG_TYPOGRAPHY,
+        attributes,
+    });
+
+    const {
+        desktopAlignStyle: pagAlignDesk,
+        tabAlignStyle: pagAlignTab,
+        mobAlignStyle: pagAlignMob,
+    } = generateResAlignmentStyle({
+        controlName: PAG_ALIGN,
+        property: 'text-align',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: pagPaddingDesk,
+        dimensionStylesTab: pagPaddingTab,
+        dimensionStylesMobile: pagPaddingMob,
+    } = generateDimensionStyle({
+        controlName: PAG_PADDING,
         styleFor: 'padding',
         attributes,
     });
-    const {
-        backgroundStylesDesktop: wrapperBackgroundStylesDesktop,
-        hoverBackgroundStylesDesktop: wrapperHoverBackgroundStylesDesktop,
-        backgroundStylesTab: wrapperBackgroundStylesTab,
-        hoverBackgroundStylesTab: wrapperHoverBackgroundStylesTab,
-        backgroundStylesMobile: wrapperBackgroundStylesMobile,
-        hoverBackgroundStylesMobile: wrapperHoverBackgroundStylesMobile,
-        overlayStylesDesktop: wrapperOverlayStylesDesktop,
-        hoverOverlayStylesDesktop: wrapperHoverOverlayStylesDesktop,
-        overlayStylesTab: wrapperOverlayStylesTab,
-        hoverOverlayStylesTab: wrapperHoverOverlayStylesTab,
-        overlayStylesMobile: wrapperOverlayStylesMobile,
-        hoverOverlayStylesMobile: wrapperHoverOverlayStylesMobile,
-    } = generateBackgroundControlStyles({
-        attributes,
-        controlName: WRAPPER_BG,
-    });
 
     const {
-        boxShadowStyle: wrapperShadow,
-        hoverBoxShadowstyle: wrapperHoverShadow,
-        transitionStyle: wrapperShadowTransition,
-    } = generateBoxShadowStyles({
+        dimensionStylesDesktop: pagMarginDesk,
+        dimensionStylesTab: pagMarginTab,
+        dimensionStylesMobile: pagMarginMob,
+    } = generateDimensionStyle({
+        controlName: PAG_MARGIN,
+        styleFor: 'padding',
         attributes,
-        controlName: WRAPPER_SHADOW,
-    });
-
-    const {
-        desktopBorderStyle: wrapperBorderDesktop,
-        tabBorderStyle: wrapperBorderTab,
-        mobBorderStyle: wrapperBorderMob,
-    } = generateBorderStyle({
-        attributes,
-        controlName: WRAPPER_BORDER,
     });
 
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
-      .${uniqueId}.zolo-post-grid-wrap {
-        ${wrapperMarginDesktop}
-        ${wrapperPaddingDesktop}
-        ${wrapperBackgroundStylesDesktop}
-        ${wrapperBorderDesktop}
-        ${wrapperShadow}
-      }
-     .${uniqueId}.zolo-post-grid-wrap:hover{
-        ${wrapperHoverBackgroundStylesDesktop}
-        ${wrapperHoverShadow}
-      }
-     .${uniqueId}.zolo-post-grid-wrap::before{
-          ${wrapperOverlayStylesDesktop}
-      }
-     .${uniqueId}.zolo-post-grid-wrap:hover::before{
-        ${wrapperHoverOverlayStylesDesktop}
-      }
-
       .${uniqueId}.zolo-post-grid-wrap{
         grid-template-columns:repeat(${columnCountDesk}, 1fr);
         ${colGapDesk}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-item{
         ${columnDeskPadding}
         ${columnDeskBGStyle}
@@ -512,17 +524,19 @@ function Style({ props }) {
         ${thumbnailHeightDesk}
       }
 
-
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-title{
         ${titleMarginDesk}
         ${titleTypoDesk}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-title a{
         ${titleColor ? `color:${titleColor};` : ''}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-title a:hover{
         ${titleHoverColor ? `color:${titleHoverColor};` : ''}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-desc p{
         ${excerptMarginDesk}
         ${excerptTypoDesk}
@@ -548,6 +562,7 @@ function Style({ props }) {
         ${catGapDesk}
         ${catMarginDesk}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-category a{
         ${catTypoDesk}
         ${catPaddingDesk}
@@ -556,13 +571,16 @@ function Style({ props }) {
         ${catColor ? `color:${catColor};` : ''}
         ${catBgColor ? `background-color:${catBgColor};` : ''}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-category a:hover{
         ${catHoverColor ? `color:${catHoverColor};` : ''}
         ${catBgHoverColor ? `background-color:${catBgHoverColor};` : ''}
       }
+
       .${uniqueId}.zolo-post-grid-wrap  .zolo-post-link-btn{
         ${readMoreMarginDesk}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-link-btn a{
         ${readMoreGapDesk}
         ${readMoreTypoDesk}
@@ -572,9 +590,14 @@ function Style({ props }) {
         ${readMoreColor ? `color:${readMoreColor};` : ''}
         ${readMoreBgColor ? `background-color:${readMoreBgColor};` : ''}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-link-btn a:hover{
         ${readMoreHoverColor ? `color:${readMoreHoverColor};` : ''}
         ${readMoreBgHoverColor ? `background-color:${readMoreBgHoverColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-box{
+        ${authorGapDesk}
       }
 
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-box img{
@@ -583,44 +606,61 @@ function Style({ props }) {
         ${avatarBorderDesk}
         ${avatarBorderRadiusDesk}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content{
         ${nameTypoDesk}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content span{
         ${namePrefixColor ? `color:${namePrefixColor} !important;` : ''}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content span:hover{
         ${namePrefixHoverColor ? `color:${namePrefixHoverColor} !important;` : ''}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content a{
         ${nameColor ? `color:${nameColor} !important;` : ''}
       }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content a:hover{
         ${nameHoverColor ? `color:${nameHoverColor} !important;` : ''}
+      }
+
+      .${uniqueId}.zolo-pagination-wrap {
+        ${pagAlignDesk}
+        ${pagMarginDesk}
+      }
+
+      .${uniqueId}.zolo-pagination-wrap .zolo-pagination-nav{
+        ${pagBorderDesk}
+        ${pagBorderRadiusDesk}
+      }
+
+      .${uniqueId}.zolo-pagination-wrap .page-numbers {
+        ${pagTypoDesk}
+        ${pagPaddingDesk}
+        ${pagColor ? `color:${pagColor};` : ''}
+        ${pagBgColor ? `background-color:${pagBgColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-pagination-wrap .page-numbers + .page-numbers {
+        border-left: 1px solid ${pagSeparatorColor ? pagSeparatorColor : '#d9d9d9'};
+      }
+
+      .${uniqueId}.zolo-pagination-wrap .page-numbers.current {
+        ${apagColor ? `color:${apagColor};` : ''}
+        ${apagBgColor ? `background-color:${apagBgColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-pagination-wrap .page-numbers:hover {
+        ${apagColor ? `color:${apagColor};` : ''}
+        ${apagBgColor ? `background-color:${apagBgColor};` : ''}
       }
 
     `;
 
     const tabletAllStyle = `
-    .${uniqueId}.zolo-post-grid-wrap {
-      ${wrapperMarginTab}
-      ${wrapperPaddingTab}
-      ${wrapperBackgroundStylesTab}
-      ${wrapperBorderTab}
-    }
-
-   .${uniqueId}.zolo-post-grid-wrap:hover{
-      ${wrapperHoverBackgroundStylesTab}
-    }
-
-   .${uniqueId}.zolo-post-grid-wrap::before{
-        ${wrapperOverlayStylesTab}
-    }
-
-   .${uniqueId}.zolo-post-grid-wrap:hover::before{
-      ${wrapperHoverOverlayStylesTab}
-    }
-
     .${uniqueId}.zolo-post-grid-wrap{
       grid-template-columns:repeat(${columnCountTab}, 1fr);
       ${colGapTab}
@@ -685,6 +725,10 @@ function Style({ props }) {
       ${readMoreBorderRadiusTab}
     }
 
+    .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-box{
+      ${authorGapTab}
+    }
+
     .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-box img{
       ${avatarWidthTab}
       ${avatarHeightTab}
@@ -694,28 +738,24 @@ function Style({ props }) {
     .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content{
       ${nameTypoTab}
     }
+
+    .${uniqueId}.zolo-pagination-wrap {
+      ${pagAlignTab}
+      ${pagMarginTab}
+    }
+
+    .${uniqueId}.zolo-pagination-wrap .zolo-pagination-nav{
+      ${pagBorderTab}
+      ${pagBorderRadiusTab}
+    }
+
+    .${uniqueId}.zolo-pagination-wrap .page-numbers {
+      ${pagTypoTab}
+      ${pagPaddingTab}
+    }
   `;
 
     const mobileAllStyle = `
-    .${uniqueId}.zolo-post-grid-wrap {
-        ${wrapperMarginMobile}
-        ${wrapperPaddingMobile}
-        ${wrapperBackgroundStylesMobile}
-        ${wrapperBorderMob}
-      }
-
-     .${uniqueId}.zolo-post-grid-wrap:hover{
-        ${wrapperHoverBackgroundStylesMobile}
-      }
-
-     .${uniqueId}.zolo-post-grid-wrap::before{
-          ${wrapperOverlayStylesMobile}
-      }
-
-     .${uniqueId}.zolo-post-grid-wrap:hover::before{
-        ${wrapperHoverOverlayStylesMobile}
-      }
-
       .${uniqueId}.zolo-post-grid-wrap{
         grid-template-columns:repeat(${columnCountMob}, 1fr);
         ${colGapMob}
@@ -780,6 +820,10 @@ function Style({ props }) {
         ${readMoreBorderRadiusMob}
       }
 
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-box{
+        ${authorGapMob}
+      }
+
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-box img{
         ${avatarWidthMob}
         ${avatarHeightMob}
@@ -788,6 +832,21 @@ function Style({ props }) {
 
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content{
         ${nameTypoMob}
+      }
+
+      .${uniqueId}.zolo-pagination-wrap {
+        ${pagAlignMob}
+        ${pagMarginMob}
+      }
+
+      .${uniqueId}.zolo-pagination-wrap .zolo-pagination-nav{
+        ${pagBorderMob}
+        ${pagBorderRadiusMob}
+      }
+  
+      .${uniqueId}.zolo-pagination-wrap .page-numbers {
+        ${pagTypoMob}
+        ${pagPaddingMob}
       }
     `;
 

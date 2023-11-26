@@ -8,12 +8,13 @@
         "advanced counter box"
     ],
     "description": "Advanced counter box description",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zolo-blocks",
     "example": {
         "attributes": {
-            "titleText": "Happy Clients"
-        }
+            "preview": true
+        },
+        "viewportWidth": 410
     },
     "supports": {
         "anchor": false,

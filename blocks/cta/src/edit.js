@@ -8,7 +8,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
@@ -16,6 +16,7 @@ import Style from './style';
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
     const {
+        preview,
         uniqueId,
         preset,
         label,
@@ -35,6 +36,11 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.cta} alt={__('Call to Action Preview', 'zolo-blocks')} />;
+    }
 
     return (
         <>
@@ -77,7 +83,7 @@ export default function Edit(props) {
                                 )}
                                 {iconType !== 'none' && (
                                     <span className="zolo-icon">
-                                        <DisplayIcon icon={icon} />
+                                        <DisplayZoloIcon icon={icon} />
                                     </span>
                                 )}
                             </div>
