@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, ToggleControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
+
 import {
     TEAM_MEMBER_NAME_TYPOGRAPHY,
     TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
@@ -139,15 +139,6 @@ function Inspector(props) {
         }
     };
 
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -232,6 +223,11 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 min={1}
                                 max={5}
+                                defauts={{
+                                    deskRange: 3,
+                                    tabRange: 2,
+                                    mobRange: 1,
+                                }}
                             />
                             <ResRangeControl
                                 label={__('Columns Gap', 'zolo-blocks')}

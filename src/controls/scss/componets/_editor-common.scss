@@ -164,3 +164,10 @@
     border-radius: 6px;
     background-color: #f2f2f2;
 }
+
+// editor
+.zolo-editor a:active,
+.zolo-editor a:focus {
+    pointer-events: none !important;
+    cursor: pointer !important;
+}

@@ -5,6 +5,7 @@ import classnames from 'classnames';
 const Save = ({ attributes }) => {
     const {
         uniqueId,
+        preset,
         parentClasses,
         hideIcon,
         hideTitle,
@@ -25,7 +26,7 @@ const Save = ({ attributes }) => {
 
     return (
         <div {...blockProps}>
-            <div class="zolo-counter-wrap">
+            <div class={`zolo-counter-wrap ${preset}`}>
                 <div class="zolo-counter-item">
                     {hideIcon && (
                         <div class="zolo-counter-icon">

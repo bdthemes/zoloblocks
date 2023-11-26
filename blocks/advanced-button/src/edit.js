@@ -8,18 +8,23 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayIcon } = window.zoloModule;
+const { classArrayToStr, DisplayIcon, DisplayZoloIcon } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
-    const { uniqueId, preset, label, parentClasses, iconType, icon, iconPosition } = attributes;
+    const { uniqueId, preview, preset, label, parentClasses, iconType, icon, iconPosition, link } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.button} alt={__('Button Preview', 'zolo-blocks')} />;
+    }
 
     return (
         <>
@@ -27,7 +32,12 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blockProps}>
                 <div className={`zolo-block-wrapper zolo-advanced-button ${uniqueId} ${preset}`}>
-                    <div className={`zolo-button ${iconPosition}`}>
+                    <a
+                        className={`zolo-button ${iconPosition}`}
+                        href={link && link.url}
+                        rel={link && link.openInNewTab && 'noreferrer noopener'}
+                        target={link && link.openInNewTab && '_blank'}
+                    >
                         {iconType !== 'iconOnly' && (
                             <RichText
                                 tagName="span"
@@ -38,8 +48,8 @@ export default function Edit(props) {
                                 allowedFormats={[]}
                             />
                         )}
-                        {iconType !== 'none' && <DisplayIcon icon={icon} />}
-                    </div>
+                        {iconType !== 'none' && <DisplayZoloIcon icon={icon} />}
+                    </a>
                 </div>
             </div>
         </>

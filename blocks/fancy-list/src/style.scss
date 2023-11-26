@@ -2,16 +2,12 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    background-color: #f3f3f3;
+    background-color: #f2f2f3;
     justify-content: space-between;
-    padding: 20px;
+    padding: 30px;
     box-sizing: border-box;
     overflow: hidden;
-    transition: all 0.3s ease;
-
-    &:hover {
-        background-color: #ebf0f9;
-    }
+    border-radius: var(--zolo-item-border-radius);
 
     .zb-fancy-list-content {
         display: flex;
@@ -26,43 +22,42 @@
 
     .zb-fancy-list-title {
         margin: 0;
-        font-size: 16px;
+        font-size: 20px;
         color: #06031d;
     }
 
-    .zb-fancy-icon {
-        padding: 10px;
-        display: block;
-        i {
-            transition: all 0.3s ease;
-        }
+    .zb-fancy-list-text {
+        font-size: 14px;
+        color: #595760;
+        font-weight: 400;
     }
 
-    .zb-fancy-icon i {
-        display: block;
-        width: 14px;
-        height: 14px;
+    .zb-fancy-icon,
+    .zb-fancy-list-number {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffff;
+        border-radius: var(--zoloblocks-button-border-radius);
     }
 
     .zb-fancy-list-number {
-        background-color: #ffffff;
-        padding: 5px;
-        font-size: 14px;
-        width: 30px;
-        height: 30px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
         box-sizing: border-box;
+        border-radius: var(--zoloblocks-button-border-radius);
     }
 
     .zb-fancy-list-image {
         width: 50px;
         height: 50px;
+        border-radius: var(--zolo-item-border-radius);
+        overflow: hidden;
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
     }
 

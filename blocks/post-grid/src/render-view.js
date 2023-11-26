@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-const { DynamicTag } = window.zoloModule;
+const { DynamicTag, DisplayIcon } = window.zoloModule;
 function RenderView({ attributes, postResults }) {
     const {
         preset,
@@ -11,10 +11,14 @@ function RenderView({ attributes, postResults }) {
         excerptWords,
         excerptindicator,
         showReadMore,
+        showReadmoreText,
+        showReadmoreIcon,
         readMoreBtnText,
+        readMoreIcon,
         showCategory,
         showAuthor,
         showMeta,
+        showReadingTime,
     } = attributes;
 
     return [
@@ -53,9 +57,13 @@ function RenderView({ attributes, postResults }) {
                 const dateRTimeHtml = (
                     <div className="zolo-post-dateTime">
                         {date}
-                        <span>,</span>
-                        {readingTime}
-                        {__('Min Read', 'zolo-blocks')}
+                        {showReadingTime && (
+                            <>
+                                <span>//</span>
+                                {readingTime}
+                                {__('Min Read', 'zolo-blocks')}
+                            </>
+                        )}
                     </div>
                 );
 
@@ -99,20 +107,8 @@ function RenderView({ attributes, postResults }) {
                             {showReadMore && (
                                 <div className="zolo-post-link-btn">
                                     <a href={post.permalink}>
-                                        {__(readMoreBtnText, 'zolo-blocks')}
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="16"
-                                            height="16"
-                                            fill="currentColor"
-                                            className="bi bi-arrow-right"
-                                            viewBox="0 0 16 16"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
-                                            ></path>
-                                        </svg>
+                                        {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zolo-blocks')}</>}
+                                        {showReadmoreIcon && readMoreIcon && <DisplayIcon icon={readMoreIcon} />}
                                     </a>
                                 </div>
                             )}

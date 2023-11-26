@@ -16,6 +16,7 @@ import {
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
+    CONTAINER_PADDING,
     CONTENT_ALIGNMENT,
     CONTENT_BACKGROUND,
     CONTENT_BORDER,
@@ -90,6 +91,7 @@ const attributes = {
     ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
     ...generateBorderAttributies(CONTAINER_BORDER),
     ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
+    ...generateDimensionAttributes(CONTAINER_PADDING),
     ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
 
     ...generateResRangeAttributies(REVIEWER_PHOTO_SIZE, {}),

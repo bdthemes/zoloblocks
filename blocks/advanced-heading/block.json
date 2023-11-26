@@ -5,8 +5,14 @@
     "category": "zolo-blocks",
     "keywords": ["heading", "advanced heading"],
     "description": "Advanced heading description",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 400
+    },
     "supports": {
         "anchor": false,
         "align": ["wide", "full"],

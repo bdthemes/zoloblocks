@@ -3,7 +3,6 @@ import metadata from '../block.json';
 import attributes from './attributes';
 import Edit from './edit';
 import Save from './save';
-import Example from './example';
 import { variations } from './variations';
 import './editor.scss';
 import './style.scss';
@@ -21,7 +20,6 @@ registerBlockType(metadata, {
             </svg>
         ),
     },
-    example: Example,
     attributes,
     variations,
     edit: Edit,

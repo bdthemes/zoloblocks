@@ -67,7 +67,7 @@ const Save = ({ attributes }) => {
                     </div>
                     {showBio && (
                         <div className="zb-profile-card-bio">
-                            <RichText.Content tagName="p" value={bio} />
+                            <RichText.Content value={bio} />
                         </div>
                     )}
                     {showStatus && (

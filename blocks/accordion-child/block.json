@@ -5,7 +5,7 @@
     "category": "zolo-blocks",
     "keywords": ["Accordion"],
     "description": "Act as child block for accordion",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zolo-blocks",
     "parent": ["zolo/accordion"],
     "supports": {

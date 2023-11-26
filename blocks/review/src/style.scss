@@ -16,9 +16,9 @@
     .zolo-image-wrap {
         position: relative;
         box-sizing: border-box;
-        width: clamp(12.5rem, 25vw, 25rem);
-        height: clamp(12.5rem, 25vw, 25rem);
-        min-width: clamp(12.5rem, 25vw, 25rem);
+        width: clamp(12.5rem, 32vw, 25rem);
+        height: clamp(12.5rem, 32vw, 25rem);
+        min-width: clamp(12.5rem, 32vw, 25rem);
         border-radius: 50%;
         overflow: hidden;
     }
@@ -86,14 +86,14 @@
     &.default {
         .zolo-quote-icon {
             left: 0;
-            transform: translate(clamp(1.25rem, 2vw, 1.875rem), clamp(-1.25rem, 2vw, -1.875rem));
+            transform: translate(40%, -8%);
         }
     }
     // style 2 css start here
     &.style-1 {
         .zolo-quote-icon {
             right: 0;
-            transform: translate(clamp(-1.25rem, 2vw, -1.875rem), clamp(-1.25rem, 2vw, -1.875rem));
+            transform: translate(-40%, -8%);
         }
     }
 }
@@ -107,10 +107,31 @@
             .zolo-item {
                 flex-direction: row-reverse;
             }
+            .zolo-quote-icon {
+                transform: translate(20px, -10px);
+            }
         }
         &.style-1 {
             .zolo-item {
                 flex-direction: row;
+            }
+            .zolo-quote-icon {
+                transform: translate(-20px, -10px);
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .wp-block-zolo-review {
+        &.default {
+            .zolo-quote-icon {
+                transform: translate(40px, -30px);
+            }
+        }
+        &.style-1 {
+            .zolo-quote-icon {
+                transform: translate(-40px, -30px);
             }
         }
     }

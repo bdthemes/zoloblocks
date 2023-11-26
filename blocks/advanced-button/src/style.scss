@@ -40,18 +40,20 @@
 }
 
 .zolo-advanced-button {
-    white-space: nowrap;
-    transition: 0.2s ease-in;
-    box-sizing: border-box;
-    cursor: pointer;
-    text-align: center;
-    border-radius: var(--zoloblocks-button-border-radius);
-    background-color: var(--primary-color);
-    position: relative;
-    padding: 12px 40px;
+    // overflow: hidden;
+    .zolo-button {
+        white-space: nowrap;
+        transition: 0.2s ease-in;
+        box-sizing: border-box;
+        cursor: pointer;
+        text-align: center;
+        border-radius: var(--zoloblocks-button-border-radius);
+        background-color: var(--primary-color);
+        position: relative;
 
-    &:hover {
-        background-color: var(--hover-color);
+        &:hover {
+            background-color: var(--hover-color);
+        }
     }
 
     .zolo-button-content {
@@ -64,24 +66,26 @@
 
     .zolo-button {
         gap: 8px;
-
-        i,
-        span.dashicon {
-            color: #fff;
-        }
+        padding: 12px 40px;
     }
 
     /*
     * Button Style: 01
 	*/
     &.button-1 {
-        background-color: var(--primary-color);
-        border: 1px solid var(--primary-color);
-        box-shadow: var(--secondary-color) 4px 4px 0 0, var(--primary-color) 4px 4px 0 1px;
+        .zolo-button {
+            background-color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            box-shadow:
+                var(--secondary-color) 4px 4px 0 0,
+                var(--primary-color) 4px 4px 0 1px;
 
-        &:hover {
-            background-color: var(--hover-color);
-            box-shadow: var(--secondary-color) 4px 4px 0 0, var(--hover-color) 4px 4px 0 1px;
+            &:hover {
+                background-color: var(--hover-color);
+                box-shadow:
+                    var(--secondary-color) 4px 4px 0 0,
+                    var(--hover-color) 4px 4px 0 1px;
+            }
         }
     }
 
@@ -89,27 +93,29 @@
 	* Button Style: 02
 	*/
     &.button-2 {
-        background-color: transparent;
-        border: 1px solid var(--color-b1);
-        position: relative;
-        touch-action: manipulation;
+        .zolo-button {
+            background-color: transparent;
+            border: 1px solid var(--color-b1);
+            position: relative;
+            touch-action: manipulation;
 
-        &::before {
-            background-color: var(--color-bg1);
-            content: '';
-            height: calc(100% + 3px);
-            position: absolute;
-            right: -7px;
-            top: -9px;
-            transition: background-color 300ms ease-in;
-            width: 100%;
-            z-index: -1;
-            border-radius: var(--zoloblocks-button-border-radius);
-        }
-
-        &:hover {
             &::before {
-                background-color: var(--color-bg2);
+                background-color: var(--color-bg1);
+                content: '';
+                height: calc(100% + 3px);
+                position: absolute;
+                right: -7px;
+                top: -9px;
+                transition: background-color 300ms ease-in;
+                width: 100%;
+                z-index: -1;
+                border-radius: var(--zoloblocks-button-border-radius);
+            }
+
+            &:hover {
+                &::before {
+                    background-color: var(--color-bg2);
+                }
             }
         }
 
@@ -126,28 +132,30 @@
 		* Button Style: 03
 		*/
     &.button-3 {
-        outline: 0;
-        border: 1px solid var(--primary-color);
-        position: relative;
-        background-color: transparent;
+        .zolo-button {
+            outline: 0;
+            border: 1px solid var(--primary-color);
+            position: relative;
+            background-color: transparent;
 
-        &::after {
-            content: '';
-            background-color: var(--color-bg3);
-            width: 100%;
-            z-index: -1;
-            position: absolute;
-            height: 100%;
-            top: 7px;
-            left: 7px;
-            transition: 0.2s;
-            border-radius: var(--zoloblocks-button-border-radius);
-        }
-
-        &:hover {
             &::after {
-                top: 0;
-                left: 0;
+                content: '';
+                background-color: var(--color-bg3);
+                width: 100%;
+                z-index: -1;
+                position: absolute;
+                height: 100%;
+                top: 7px;
+                left: 7px;
+                transition: 0.2s;
+                border-radius: var(--zoloblocks-button-border-radius);
+            }
+
+            &:hover {
+                &::after {
+                    top: 0;
+                    left: 0;
+                }
             }
         }
 
@@ -164,28 +172,30 @@
 	* Button Style: 04
 	*/
     &.button-4 {
-        background: var(--color-bg4);
-        box-shadow: 6px 0px 0px var(--color-bg5);
-        outline: transparent;
-        position: relative;
-
-        &::after {
-            content: 'ALTERNATE TEXT';
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+        .zolo-button {
             background: var(--color-bg4);
-            text-shadow: -3px -3px 0px var(--color-bg6);
-            clip-path: var(--slice-0);
-        }
+            box-shadow: 6px 0px 0px var(--color-bg5);
+            outline: transparent;
+            position: relative;
 
-        &:hover {
             &::after {
-                animation: 1s glitch;
-                animation-timing-function: steps(2, end);
+                content: 'ALTERNATE TEXT';
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--color-bg4);
+                text-shadow: -3px -3px 0px var(--color-bg6);
+                clip-path: var(--slice-0);
+            }
+
+            &:hover {
+                &::after {
+                    animation: 1s glitch;
+                    animation-timing-function: steps(2, end);
+                }
             }
         }
     }
@@ -194,24 +204,26 @@
 	* Button Style: 05
 	*/
     &.button-5 {
-        background-color: var(--color-bg7);
-        transform: rotate(-2deg);
+        .zolo-button {
+            background-color: var(--color-bg7);
+            transform: rotate(-2deg);
 
-        &::after {
-            content: '';
-            position: absolute;
-            border: 1px solid var(--primary-color);
-            bottom: 4px;
-            left: 4px;
-            width: calc(100% - 1px);
-            height: calc(100% - 1px);
-            border-radius: var(--zoloblocks-button-border-radius);
-        }
-
-        &:hover {
             &::after {
-                bottom: 2px;
-                left: 2px;
+                content: '';
+                position: absolute;
+                border: 1px solid var(--primary-color);
+                bottom: 4px;
+                left: 4px;
+                width: calc(100% - 1px);
+                height: calc(100% - 1px);
+                border-radius: var(--zoloblocks-button-border-radius);
+            }
+
+            &:hover {
+                &::after {
+                    bottom: 2px;
+                    left: 2px;
+                }
             }
         }
 
@@ -224,20 +236,22 @@
 	* Button Style: 06
 	*/
     &.button-6 {
-        background-color: var(--secondary-color);
-        border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-        border-style: solid;
-        border-width: 2px;
-        box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
-        border-bottom-left-radius: 15px 255px;
-        border-bottom-right-radius: 225px 15px;
-        border-top-left-radius: 255px 15px;
-        border-top-right-radius: 15px 225px;
-        touch-action: manipulation;
+        .zolo-button {
+            background-color: var(--secondary-color);
+            border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+            border-style: solid;
+            border-width: 2px;
+            box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+            border-bottom-left-radius: 15px 255px;
+            border-bottom-right-radius: 225px 15px;
+            border-top-left-radius: 255px 15px;
+            border-top-right-radius: 15px 225px;
+            touch-action: manipulation;
 
-        &:hover {
-            box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
-            transform: translate3d(0, 2px, 0);
+            &:hover {
+                box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
+                transform: translate3d(0, 2px, 0);
+            }
         }
 
         .zolo-button-content {
@@ -253,27 +267,29 @@
 	* Button Style: 07
 	*/
     &.button-7 {
-        background-color: var(--color-bg8);
-        border: 2px solid var(--color-b2);
-        border-radius: var(--zoloblocks-button-border-radius);
-
-        &::after {
-            background-color: var(--color-b2);
+        .zolo-button {
+            background-color: var(--color-bg8);
+            border: 2px solid var(--color-b2);
             border-radius: var(--zoloblocks-button-border-radius);
-            content: '';
-            height: 100%;
-            left: 0;
-            width: 100%;
-            position: absolute;
-            top: 0;
-            transform: translate(8px, 8px);
-            transition: transform 0.2s ease-out;
-            z-index: -1;
-        }
 
-        &:hover {
             &::after {
-                transform: translate(0, 0);
+                background-color: var(--color-b2);
+                border-radius: var(--zoloblocks-button-border-radius);
+                content: '';
+                height: 100%;
+                left: 0;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                transform: translate(8px, 8px);
+                transition: transform 0.2s ease-out;
+                z-index: -1;
+            }
+
+            &:hover {
+                &::after {
+                    transform: translate(0, 0);
+                }
             }
         }
 
@@ -288,7 +304,6 @@
         justify-content: center;
         text-align: center;
         text-decoration: none;
-
         &.top {
             flex-direction: column-reverse;
         }
@@ -310,6 +325,14 @@
     .zolo-button-icon {
         width: 20px;
         display: block;
+    }
+
+    .zolo__display-icon svg {
+        width: 16px;
+        height: 16px;
+        display: block;
+        fill: #fff;
+        box-sizing: content-box;
     }
 }
 

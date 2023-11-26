@@ -17,7 +17,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, clientId, isSelected } = props;
-    const { uniqueId, preset, parentClasses } = attributes;
+    const { preview, uniqueId, preset, parentClasses } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -32,6 +32,11 @@ export default function Edit(props) {
         const newBlock = wp.blocks.createBlock('zolo/brand-child', {});
         wp.data.dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
     };
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.brandGrid} alt={__('Brand Grid Preview', 'zolo-blocks')} />;
+    }
 
     return (
         <>

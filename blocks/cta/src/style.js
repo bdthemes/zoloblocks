@@ -46,7 +46,6 @@ export default function Style({ props }) {
         typoStylesMobile: titleMobTypo,
     } = generateTypographyStyles({
         prefixConstant: TITLE_TYPO,
-        defaultFontSize: 26,
         attributes,
     });
 
@@ -142,7 +141,17 @@ export default function Style({ props }) {
         mobRangeStyle: iconSizeMob,
     } = generateResRangeStyle({
         controlName: ICON_SIZE,
-        property: 'font-size',
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: iconHSize,
+        tabRangeStyle: iconHSizeTab,
+        mobRangeStyle: iconHSizeMob,
+    } = generateResRangeStyle({
+        controlName: ICON_SIZE,
+        property: 'height',
         attributes,
     });
 
@@ -172,7 +181,6 @@ export default function Style({ props }) {
         typoStylesMobile: btnTypoMob,
     } = generateTypographyStyles({
         prefixConstant: BUTTON_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 
@@ -235,12 +243,18 @@ export default function Style({ props }) {
             color: ${textHoverColor ? textHoverColor : ''};
         }
 
-        .wp-block-zolo-cta.${uniqueId} .zolo-icon i{
+        .wp-block-zolo-cta.${uniqueId} .zolo-icon svg{
             ${iconSize}
+            ${iconHSize}
+           ${textColor ? `fill: ${textColor};` : ''}
         }
 
         .wp-block-zolo-cta.${uniqueId} .zolo-call-out.style-1 {
             ${flexGap}
+        }
+
+        .wp-block-zolo-cta.${uniqueId} .zolo-button:hover .zolo-icon svg{
+            ${textHoverColor ? `fill: ${textHoverColor};` : ''}
         }
 
   	`;
@@ -272,8 +286,9 @@ export default function Style({ props }) {
             ${hoverTabBGStyle}
         }
 
-        .wp-block-zolo-cta.${uniqueId} .zolo-icon i{
+        .wp-block-zolo-cta.${uniqueId} .zolo-icon svg{
             ${iconSizeTab}
+            ${iconHSizeTab}
         }
 
         .wp-block-zolo-cta.${uniqueId} .zolo-call-out.style-1 {
@@ -309,8 +324,9 @@ export default function Style({ props }) {
             ${hoverMobBGStyle}
         }
 
-        .wp-block-zolo-cta.${uniqueId} .zolo-icon i{
+        .wp-block-zolo-cta.${uniqueId} .zolo-icon svg{
             ${iconSizeMob}
+            ${iconHSizeMob}
         }
 
         .wp-block-zolo-cta.${uniqueId} .zolo-call-out.style-1 {

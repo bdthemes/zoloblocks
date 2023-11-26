@@ -49,8 +49,12 @@ $html = '';
     <?php echo wp_kses($html, 'post'); ?>
 </div>
 
-<?php if (!empty($settings['postQuery']['showPagination']) && !empty($post_results['total_page'])) { ?>
-    <div class="zolo-pagination-nav">
-        <?php echo ZoloHelpers::pagination($post_results['total_page']); ?>
+<?php if (!empty($settings['postQuery']['showPagination']) && !empty($post_results['total_page'])) { 
+    
+    ?>
+    <div class="zolo-pagination-wrap <?php echo esc_attr($settings['uniqueId'] ?? '')?>">
+        <div class="zolo-pagination-nav">
+            <?php echo ZoloHelpers::pagination($post_results['total_page']); ?>
+        </div>
     </div>
 <?php } ?>

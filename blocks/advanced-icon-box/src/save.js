@@ -4,7 +4,7 @@ import classnames from 'classnames';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
@@ -45,7 +45,7 @@ const Save = ({ attributes }) => {
                         {showMainIcon && (
                             <div className={`zolo-block-icon-wrap`}>
                                 {iconType == 'icon' ? (
-                                    <DisplayIcon icon={mainIcon} />
+                                    <DisplayZoloIcon icon={mainIcon} />
                                 ) : (
                                     iconTypeImage && <img src={iconTypeImage.url} alt={iconTypeImage.alt || iconBoxTitle} />
                                 )}
@@ -58,14 +58,10 @@ const Save = ({ attributes }) => {
                                 <div className={`zolo-block-link-btn`}>
                                     <div className={`zolo-box-button`} href={buttonLink}>
                                         <RichText.Content value={buttonText} />
-                                        {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
+                                        {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}
                                     </div>
                                 </div>
                             )}
-                        </div>
-
-                        <div className="zolo-block-hover-icon">
-                            <DisplayIcon icon={mainIcon} />
                         </div>
                     </div>
                 </a>
@@ -75,7 +71,7 @@ const Save = ({ attributes }) => {
                         {showMainIcon && (
                             <div className={`zolo-block-icon-wrap`}>
                                 {iconType == 'icon' ? (
-                                    <DisplayIcon icon={mainIcon} />
+                                    <DisplayZoloIcon icon={mainIcon} />
                                 ) : (
                                     iconTypeImage && <img src={iconTypeImage.url} alt={iconTypeImage.alt || iconBoxTitle} />
                                 )}
@@ -88,24 +84,17 @@ const Save = ({ attributes }) => {
                             {showButton && (
                                 <div className={`zolo-block-link-btn`}>
                                     <a
-                                        className={`zolo-icon-link`}
+                                        className="zolo-box-button"
                                         href={buttonLink && buttonLink.url}
                                         target={buttonLink && buttonLink.openInNewTab && '_blank'}
                                         rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
                                     >
-                                        <div className={`zolo-box-button`}>
-                                            <RichText.Content tagName="p" value={buttonText} />
-                                            {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
-                                        </div>
+                                        <RichText.Content tagName="span" value={buttonText} />
+                                        {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}
                                     </a>
                                 </div>
                             )}
                         </div>
-                        {showMainIcon && (
-                            <div className="zolo-block-hover-icon">
-                                <DisplayIcon icon={mainIcon} />
-                            </div>
-                        )}
                     </div>
                 </div>
             )}

@@ -44,6 +44,7 @@ import {
     BUTTON_PADDING,
     ICON_IMAGE_SIZE,
     IMAGE_BORDER,
+    CONTENT_ALIGNMENT,
     ICON_IMAGE_BORDER_RADIUS,
 } from './constants';
 
@@ -53,7 +54,6 @@ export default function Style({ props }) {
     const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        preset,
         textColor,
         textHoverColor,
         descColor,
@@ -64,17 +64,24 @@ export default function Style({ props }) {
         iconBorderHoverColor,
         iconBackgroundColor,
         iconBackgroundHoverColor,
+        iconPosition,
         btnColor,
         btnHoverColor,
         btnBgHoverColor,
         btnHoverBorderColor,
-        buttonIconColor,
-        buttonIconHoverColor,
         presetOneStyles,
-        presetTwoStyles,
-        presetThreeStyles,
         globalLink,
     } = attributes;
+
+    const {
+        desktopAlignStyle: contentDeskAlign,
+        tabAlignStyle: contentTabAlign,
+        mobAlignStyle: contentMobAlign,
+    } = generateResAlignmentStyle({
+        controlName: CONTENT_ALIGNMENT,
+        property: 'text-align',
+        attributes,
+    });
 
     // icon alignment
     const {
@@ -250,7 +257,17 @@ export default function Style({ props }) {
         mobRangeStyle: iconSizeMob,
     } = generateResRangeStyle({
         controlName: ICON_SIZE,
-        property: 'font-size',
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: iconHSize,
+        tabRangeStyle: iconHSizeTab,
+        mobRangeStyle: iconHSizeMob,
+    } = generateResRangeStyle({
+        controlName: ICON_SIZE,
+        property: 'height',
         attributes,
     });
 
@@ -294,7 +311,17 @@ export default function Style({ props }) {
         mobRangeStyle: buttonIconSizeMob,
     } = generateResRangeStyle({
         controlName: BUTTON_ICON_SIZE,
-        property: 'font-size',
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: buttonIconHSize,
+        tabRangeStyle: buttonIconHSizeTab,
+        mobRangeStyle: buttonIconHSizeMob,
+    } = generateResRangeStyle({
+        controlName: BUTTON_ICON_SIZE,
+        property: 'height',
         attributes,
     });
 
@@ -342,12 +369,12 @@ export default function Style({ props }) {
 
     // generate image border radius
     const {
-        desktopRangeStyle: iconImageBorderRadiusDesk,
-        tabRangeStyle: iconImageBorderRadiusTab,
-        mobRangeStyle: iconImageBorderRadiusMob,
-    } = generateResRangeStyle({
+        dimensionStylesDesktop: iconImageBorderRadiusDesk,
+        dimensionStylesTab: iconImageBorderRadiusTab,
+        dimensionStylesMobile: iconImageBorderRadiusMob,
+    } = generateDimensionStyle({
         controlName: ICON_IMAGE_BORDER_RADIUS,
-        property: 'border-radius',
+        styleFor: 'border-radius',
         attributes,
     });
 
@@ -355,16 +382,22 @@ export default function Style({ props }) {
      * All Style Combination
      */
     const desktopAllStyle = `
+        .${uniqueId}{
+            ${iconAlignmentDesktop}
+        }
 		.${uniqueId} .zolo-block-icon-wrap{
 			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
 		}
-		.${uniqueId} .zolo-block-body-content{
-			text-align: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
+
+		.${uniqueId} .zolo-block-item{
+			${contentDeskAlign}
 		}
+
 		.${uniqueId} .zolo-block-link-btn{
 			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 		}
+
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{
 			${titleTypoDesktop}
 			${titleTextShadowStyle}
@@ -372,26 +405,31 @@ export default function Style({ props }) {
 			${titleMarginDesktop ? titleMarginDesktop : ''}
             ${textColor ? `color: ${textColor};` : ''}
 		}
+
 		.${uniqueId} .zolo-block-desc{
 			${descTypoDesktop}
 			${descMarginDesktop}
             ${descColor ? `color: ${descColor};` : ''}
 		}
-		.${uniqueId} .zolo-block-icon-wrap i {
+
+		.${uniqueId} .zolo-block-icon-wrap svg {
             ${iconBackgroundColor ? `background: ${iconBackgroundColor};` : ''}
-            ${iconColor ? `color: ${iconColor};` : ''}
+            ${iconColor ? `fill: ${iconColor};` : ''}
 			${iconSize}
+            ${iconHSize}
 			${borderStyles}
 			${iconBorderRadiusDesktop}
 			${iconPaddingDesktop}
 			${iconMarginDesktop}
 			${iconBoxShadow}
 		}
+        
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
 			${iconImageBorderDesk}
 			${iconImageBorderRadiusDesk}
 		}
+
 		.${uniqueId} .zolo-block-body-content .zolo-box-button {
 			${buttonBGDeskStyle}
 			${gapDesk}
@@ -402,6 +440,14 @@ export default function Style({ props }) {
 			${buttonBoxShadow}
             color: ${btnColor ? btnColor : ''};
 			${btnTypoDesktop}
+            flex-direction: ${iconPosition};
+		}
+
+
+        .${uniqueId} .zolo-block-body-content .zolo-box-button svg{
+			${buttonIconSize}
+            ${buttonIconHSize}
+            ${btnColor ? `fill: ${btnColor};` : ''}
 		}
 
         ${
@@ -412,7 +458,17 @@ export default function Style({ props }) {
                     ${buttonHoverBoxShadow}
                     ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
                     ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
-                }`
+                } 
+                .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button svg{
+                    ${btnHoverColor ? `fill: ${btnHoverColor};` : ''}
+                }
+                .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap svg{
+                    ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ''}
+                    ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
+                    ${iconHoverBoxShadow}
+                    ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
+                }        
+                `
                 : ''
         }
 
@@ -424,7 +480,17 @@ export default function Style({ props }) {
                     ${buttonHoverBoxShadow}
                     ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
                     ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
-                }`
+                }
+                .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-box-button:hover svg{
+                    ${btnHoverColor ? `fill: ${btnHoverColor};` : ''}
+                }
+                .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-block-icon-wrap svg:hover {
+                    ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ''}
+                    ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
+                    ${iconHoverBoxShadow}
+                    ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
+                }        
+                `
                 : ''
         }
 
@@ -435,133 +501,147 @@ export default function Style({ props }) {
         .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-desc{
             ${descHoverColor ? `color: ${descHoverColor};` : ''}
         }
-        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap i{
-            ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ''}
-            ${iconHoverColor ? `color: ${iconHoverColor};` : ''}
-			${iconHoverBoxShadow}
-            ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
-        }
-
-       ${
-           preset === 'style-1'
-               ? `.zolo-block-icon-wrap {
-                        justify-content: ${presetOneStyles && presetOneStyles.contentPosition};
-                } .zolo-box-button {
-                    flex-direction: ${presetOneStyles && presetOneStyles.iconPosition};
-                }`
-               : ''
-       }
-       ${
-           preset === 'style-2'
-               ? `.${uniqueId}
-               .zolo-block-body-content {
-                text-align: ${presetTwoStyles && presetTwoStyles.contentPosition};
-                } .${uniqueId}
-				.zolo-block-link-btn {
-                    justify-content: ${presetTwoStyles && presetTwoStyles.contentPosition};
-                }
-                .zolo-box-button{
-					flex-direction: ${presetTwoStyles && presetTwoStyles.iconPosition};
-				}`
-               : ''
-       }
-       ${
-           preset === 'style-3'
-               ? `.${uniqueId}
-               .zolo-block-body-content {
-                text-align: ${presetThreeStyles && presetThreeStyles.contentPosition};
-                } .${uniqueId}
-				.zolo-block-link-btn {
-                    justify-content: ${presetThreeStyles && presetThreeStyles.contentPosition};
-                }
-                .zolo-box-button{
-					flex-direction: ${presetThreeStyles && presetThreeStyles.iconPosition};
-				}`
-               : ''
-       }
-
   	`;
 
     const tabletAllStyle = `
 		.${uniqueId}{
 			${iconAlignmentTab}
 		}
+
+        .${uniqueId} .zolo-block-item{
+			${contentTabAlign}
+		}
+
 		.${uniqueId} .zolo-block-title{
 			${titleTypoTab}
 			${tabTitleTextStrokeStyle}
 			${titleMarginTab}
 		}
+
 		.${uniqueId} .zolo-block-desc{
 			${descMarginTab}
 			${descTypoTab}
 		}
-		.${uniqueId} .zolo-block-icon-wrap i {
+
+		.${uniqueId} .zolo-block-icon-wrap svg {
 			${iconSizeTab}
+            ${iconHSizeTab}
 			${borderStylesTab}
 			${iconBorderRadiusTab}
 			${iconPaddingTab}
 			${iconMarginTab}
 			background: ${iconBackgroundColor ? iconBackgroundColor : ''};
-			color: ${iconColor ? iconColor : ''};
 		}
+
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeTab}
 			${iconImageBorderTab}
 			${iconImageBorderRadiusTab}
 		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button i{
-			${buttonIconSizeTab}
-		}
+
 		.${uniqueId} .zolo-block-body-content .zolo-box-button {
+            ${buttonBGTabStyle}
 			${gapTab}
 			${buttonBorderStylesTab}
 			${buttonBorderRadiusTab}
 			${buttonPaddingTab}
 			${buttonMarginTab}
 		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
+
+        .${uniqueId} .zolo-block-body-content .zolo-box-button svg{
+			${buttonIconSizeTab}
+            ${buttonIconHSizeTab}
+		}
+
+		.${uniqueId} .zolo-block-body-content .zolo-box-button{
 			${btnTypoTab}
 		}
+
+        ${
+            globalLink === true
+                ? `.${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
+                    ${buttonBGHoverTabStyle}
+                }`
+                : ''
+        }
+
+        ${
+            globalLink === false
+                ? `.${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-box-button:hover {
+                    ${buttonBGHoverTabStyle}
+                }`
+                : ''
+        }
 	`;
 
     const mobileAllStyle = `
 		.${uniqueId}{
 			${iconAlignmentMob}
 		}
+
+        .${uniqueId} .zolo-block-item{
+			${contentMobAlign}
+		}
+
 		.${uniqueId} .zolo-block-title{
 			${titleTypoMobile}
 			${mobTitleTextStrokeStyle}
 			${titleMarginMob}
 		}
+
 		.${uniqueId} .zolo-block-desc{
 			${descMarginMob}
 			${descTypoMobile}
 		}
-		.${uniqueId} .zolo-block-icon-wrap i {
+
+		.${uniqueId} .zolo-block-icon-wrap svg {
 			${iconSizeMob}
+            ${iconHSizeMob}
 			${borderStylesMob}
 			${iconBorderRadiusMob}
 			${iconPaddingMob}
 			${iconMarginMob}
 		}
+
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeMob}
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button i{
-			${buttonIconSizeMob}
-		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button {
+        
+        .${uniqueId} .zolo-block-body-content .zolo-box-button {
+            ${buttonBGMobStyle}
 			${gapMob}
 			${buttonBorderStylesMob}
 			${buttonBorderRadiusMob}
 			${buttonPaddingMob}
 			${buttonMarginMob}
 		}
-		.${uniqueId} .zolo-block-body-content .zolo-box-button p{
+
+		.${uniqueId} .zolo-block-body-content .zolo-box-button svg{
+			${buttonIconSizeMob}
+            ${buttonIconHSizeMob}
+		}
+
+		.${uniqueId} .zolo-block-body-content .zolo-box-button {
 			${btnTypoMobile}
 		}
+
+        ${
+            globalLink === true
+                ? `.${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
+                    ${buttonBGHoverMobStyle}
+                }`
+                : ''
+        }
+
+        ${
+            globalLink === false
+                ? `.${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-box-button:hover {
+                    ${buttonBGHoverMobStyle}
+                }`
+                : ''
+        }
   	`;
 
     return (

@@ -22,6 +22,7 @@ import Style from './style';
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
     const {
+        preview,
         uniqueId,
         preset,
         parentClasses,
@@ -44,6 +45,11 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId} ${preset ? preset : ''}`, classArrayToStr(parentClasses)),
     });
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.review} alt={__('Review Preview', 'zolo-blocks')} />;
+    }
 
     return (
         <>

@@ -11,7 +11,6 @@ import {
     ToggleControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
 
 const {
     BackgroundControl,
@@ -171,15 +170,6 @@ const Inspector = ({ attributes, setAttributes }) => {
         resMode,
         objAttributes,
     };
-
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
 
     return (
         <InspectorControls key="controls">

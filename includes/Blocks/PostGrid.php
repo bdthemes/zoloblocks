@@ -15,7 +15,7 @@ class PostGrid extends PostBlock {
         'excerptindicator' => '...',
         'excerptWords'     => 15,
         'showReadMore'     => false,
-        'readMoreBtnText'  => 'Button Text',
+        'readMoreBtnText'  => 'Read More',
     ];
 
     public function get_default_attributes() {

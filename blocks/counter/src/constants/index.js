@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'zolo-counter';
 // Presets
 export const PRESETS = [
-    { label: __('Default', 'zolo-blocks'), value: 'style-0' },
+    { label: __('Default', 'zolo-blocks'), value: '' },
     { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
     { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
 ];

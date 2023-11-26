@@ -4,7 +4,6 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { PanelBody, TextControl, TextareaControl, BaseControl, Button, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -39,6 +38,7 @@ import {
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
+    CONTAINER_PADDING,
     REVIEWER_PHOTO_SIZE,
     REVIEWER_PHOTO_BG,
     REVIEWER_PHOTO_BORDER,
@@ -103,15 +103,6 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
-
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
 
     return (
         <InspectorControls key="controls">
@@ -270,7 +261,7 @@ function Inspector(props) {
                             </PanelBody>
                         )}
                         <PanelBody
-                            title={__('Container', 'zolo-blocks')}
+                            title={__('Item Container', 'zolo-blocks')}
                             onToggle={(value) => value === true && setAttributes({ selectedPanel: 'containerStyle' })}
                             opened={selectedPanel === 'containerStyle'}
                         >
@@ -284,6 +275,12 @@ function Inspector(props) {
                                 controlName={CONTAINER_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={CONTAINER_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
                             />
                             <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />

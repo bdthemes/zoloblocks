@@ -9,6 +9,7 @@ const {
     generateBoxShadowAttributies,
     generateTypographyAttributes,
     generateNormalBGAttributes,
+    generateResCounterAttributies,
 } = window.zoloModule;
 
 import {
@@ -21,6 +22,7 @@ import {
     CONTAINER_BACKGROUND,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
+    CONTAINER_PADDING,
     CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
     CONTENT_BACKGROUND,
@@ -109,8 +111,13 @@ const attributes = {
         default: true,
     },
     ...generateNormalBGAttributes(REVIEW_GRID_BG),
-    ...generateResRangeAttributies(GRID_COLUMNS, {
+    ...generateResCounterAttributies(GRID_COLUMNS, {
         noUnits: true,
+        defaults: {
+            deskRange: 3,
+            tabRange: 2,
+            mobRange: 1,
+        },
     }),
     ...generateResRangeAttributies(COLUMNS_GAP, {
         defaultRange: 30,
@@ -135,6 +142,7 @@ const attributes = {
     ...generateBorderAttributies(CONTAINER_BORDER),
     ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
     ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
+    ...generateDimensionAttributes(CONTAINER_PADDING),
 
     ...generateResRangeAttributies(REVIEWER_PHOTO_SIZE, {}),
     ...generateNormalBGAttributes(REVIEWER_PHOTO_BG),
@@ -170,9 +178,6 @@ const attributes = {
         type: 'string',
     },
     nameColor: {
-        type: 'string',
-    },
-    nameLinkColor: {
         type: 'string',
     },
     nameHoverColor: {

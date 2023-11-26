@@ -163,7 +163,6 @@ const Style = ({ props }) => {
         typoStylesMobile: badgeTypoMob,
     } = generateTypographyStyles({
         prefixConstant: BADGE_TYPO,
-        defaultFontSize: 11,
         attributes,
     });
 
@@ -274,7 +273,6 @@ const Style = ({ props }) => {
         typoStylesMobile: nameTypoMob,
     } = generateTypographyStyles({
         prefixConstant: PROFILE_NAME,
-        defaultFontSize: 28,
         attributes,
     });
 
@@ -295,7 +293,6 @@ const Style = ({ props }) => {
         typoStylesMobile: userNameTypoMob,
     } = generateTypographyStyles({
         prefixConstant: PROFILE_USERNAME,
-        defaultFontSize: 18,
         attributes,
     });
 
@@ -316,7 +313,6 @@ const Style = ({ props }) => {
         typoStylesMobile: emailTypoMob,
     } = generateTypographyStyles({
         prefixConstant: EMAIL_TYPO,
-        defaultFontSize: 18,
         attributes,
     });
 
@@ -337,7 +333,6 @@ const Style = ({ props }) => {
         typoStylesMobile: bioTypoMob,
     } = generateTypographyStyles({
         prefixConstant: BIO_TYPO,
-        defaultFontSize: 18,
         attributes,
     });
 
@@ -369,7 +364,6 @@ const Style = ({ props }) => {
         typoStylesMobile: counterTypoMob,
     } = generateTypographyStyles({
         prefixConstant: NUMBER_TYPO,
-        defaultFontSize: 18,
         attributes,
     });
 
@@ -380,7 +374,6 @@ const Style = ({ props }) => {
         typoStylesMobile: labelTypoMob,
     } = generateTypographyStyles({
         prefixConstant: LABEL_TYPO,
-        defaultFontSize: 14,
         attributes,
     });
 
@@ -402,7 +395,6 @@ const Style = ({ props }) => {
         typoStylesMobile: btnTypoMob,
     } = generateTypographyStyles({
         prefixConstant: BTN_TYPO,
-        defaultFontSize: 12,
         attributes,
     });
 

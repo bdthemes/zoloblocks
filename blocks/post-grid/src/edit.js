@@ -14,7 +14,7 @@ import Style from './styles';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
-    const { uniqueId, parentClasses, postQuery, preset, page } = attributes;
+    const { preview, uniqueId, parentClasses, postQuery, preset, page } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -87,6 +87,11 @@ export default function Edit(props) {
         ];
     }
 
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.postGrid} alt={__('Post Grid Preview', 'zolo-blocks')} />;
+    }
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -95,7 +100,15 @@ export default function Edit(props) {
                 <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults} />
             </div>
             {postQuery?.showPagination && pageTotal > 1 && (
-                <Pagination total={pageTotal} current={page || 1} prevText="" nextText="" onClickPage={(page) => setAttributes({ page })} />
+                <div className={`zolo-pagination-wrap ${uniqueId}`}>
+                    <Pagination
+                        total={pageTotal}
+                        current={page || 1}
+                        prevText=""
+                        nextText=""
+                        onClickPage={(page) => setAttributes({ page })}
+                    />
+                </div>
             )}
         </>
     );

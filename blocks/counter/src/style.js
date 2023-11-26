@@ -132,7 +132,6 @@ const Style = ({ props }) => {
         typoStylesMobile: counterTypoMobile,
     } = generateTypographyStyles({
         prefixConstant: COUNTER_TYPOGRAPHY,
-        defaultFontSize: 25,
         attributes,
     });
 
@@ -167,7 +166,6 @@ const Style = ({ props }) => {
         typoStylesMobile: titleTypoMobile,
     } = generateTypographyStyles({
         prefixConstant: TITLE_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
 

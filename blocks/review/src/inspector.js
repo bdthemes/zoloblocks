@@ -14,7 +14,6 @@ import {
     CardDivider,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -103,15 +102,6 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
-
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
 
     return (
         <InspectorControls key="controls">

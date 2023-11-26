@@ -1,7 +1,6 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TextControl, ToggleControl, CardDivider, BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
 import objAttributes from './attributes';
 
 import {
@@ -36,6 +35,12 @@ import {
     AVATAR_SIZE,
     AVATAR_BORDER,
     AVATAR_BORDER_RADIUS,
+    AVATAR_GAP,
+    PAG_BORDER,
+    PAG_BORDER_RADIUS,
+    PAG_MARGIN,
+    PAG_PADDING,
+    PAG_ALIGN,
 } from './constants';
 
 import {
@@ -45,9 +50,10 @@ import {
     CAT_TYPOGRAPHY,
     READMORE_TYPOGRAPHY,
     NAME_TYPOGRAPHY,
+    PAG_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
-import { HEADING, THUMBNAIL_SIZE } from '../../../src/global/constants';
+import { DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE } from '../../../src/global/constants';
 
 const {
     ResDimensionsControl,
@@ -63,6 +69,8 @@ const {
     TypographyDropdown,
     ResCounterControl,
     AdvancedOptions,
+    IconPicker,
+    ResAlignmentControl,
 } = window.zoloModule;
 
 function Inspector({ attributes, setAttributes }) {
@@ -88,6 +96,9 @@ function Inspector({ attributes, setAttributes }) {
         catColor,
         catBgHoverColor,
         catHoverColor,
+        showReadmoreText,
+        showReadmoreIcon,
+        readMoreIcon,
         readMoreBgColor,
         readMoreColor,
         readMoreBgHoverColor,
@@ -96,8 +107,15 @@ function Inspector({ attributes, setAttributes }) {
         nameColor,
         nameHoverColor,
         namePrefixHoverColor,
+        pagColor,
+        pagBgColor,
+        apagColor,
+        apagBgColor,
+        pagSeparatorColor,
         selectedPanel,
         selectedTab,
+        // post meta
+        showReadingTime,
     } = attributes;
 
     const requiredProps = {
@@ -155,15 +173,6 @@ function Inspector({ attributes, setAttributes }) {
         }
     };
 
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -183,44 +192,49 @@ function Inspector({ attributes, setAttributes }) {
                                 onChange={(selected) => changePremade(selected)}
                             />
 
-                            <ToggleControl
+                            {/* <ToggleControl
                                 label={__('Show Thumbnail', 'zolo-blocks')}
                                 checked={showThumbnail}
                                 onChange={(showThumbnail) => setAttributes({ showThumbnail })}
-                            />
+                            /> */}
 
                             <ToggleControl
                                 label={__('Show Title', 'zolo-blocks')}
                                 checked={showTitle}
-                                onChange={(showTitle) => setAttributes({ showTitle })}
+                                onChange={() => setAttributes({ showTitle: !showTitle })}
                             />
 
                             <ToggleControl
                                 label={__('Show Excerpt', 'zolo-blocks')}
                                 checked={showExcerpt}
-                                onChange={(showExcerpt) => setAttributes({ showExcerpt })}
+                                onChange={() => setAttributes({ showExcerpt: !showExcerpt })}
                             />
 
                             <ToggleControl
                                 label={__('Show Read More Button', 'zolo-blocks')}
                                 checked={showReadMore}
-                                onChange={(showReadMore) => setAttributes({ showReadMore })}
+                                onChange={() => setAttributes({ showReadMore: !showReadMore })}
                             />
 
                             <ToggleControl
                                 label={__('Show Category', 'zolo-blocks')}
                                 checked={showCategory}
-                                onChange={(showCategory) => setAttributes({ showCategory })}
+                                onChange={() => setAttributes({ showCategory: !showCategory })}
                             />
                             <ToggleControl
                                 label={__('Show Author', 'zolo-blocks')}
                                 checked={showAuthor}
-                                onChange={(showAuthor) => setAttributes({ showAuthor })}
+                                onChange={() => setAttributes({ showAuthor: !showAuthor })}
                             />
                             <ToggleControl
                                 label={__('Show Meta', 'zolo-blocks')}
                                 checked={showMeta}
-                                onChange={(showMeta) => setAttributes({ showMeta })}
+                                onChange={() => setAttributes({ showMeta: !showMeta })}
+                            />
+                            <ToggleControl
+                                label={__('Show Reading Time', 'zolo-blocks')}
+                                checked={showReadingTime}
+                                onChange={() => setAttributes({ showReadingTime: !showReadingTime })}
                             />
                             <ToggleControl
                                 label={__('Show Pagination', 'zolo-blocks')}
@@ -237,28 +251,6 @@ function Inspector({ attributes, setAttributes }) {
                             onToggle={(value) => value === true && setAttributes({ selectedPanel: 'content' })}
                             opened={selectedPanel === 'content'}
                         >
-                            {showThumbnail && (
-                                <>
-                                    <ResRangeControl
-                                        label={__('Thumbnail Height', 'zolo-blocks')}
-                                        controlName={THUMBNAIL_HEIGHT}
-                                        requiredProps={requiredProps}
-                                        min={0}
-                                        max={600}
-                                        step={1}
-                                    />
-                                    <SelectControl
-                                        label={__('Thumbnail Image Size', 'zolo-blocks')}
-                                        value={postQuery?.postThumbnail}
-                                        options={THUMBNAIL_SIZE}
-                                        onChange={(postThumbnail) =>
-                                            setAttributes({
-                                                postQuery: { ...postQuery, postThumbnail },
-                                            })
-                                        }
-                                    />
-                                </>
-                            )}
                             {showTitle && (
                                 <>
                                     <SelectControl
@@ -294,14 +286,43 @@ function Inspector({ attributes, setAttributes }) {
                                     />
                                 </>
                             )}
-                            {showReadMore && (
-                                <TextControl
-                                    label={__('Button Text', 'zolo-blocks')}
-                                    value={readMoreBtnText}
-                                    onChange={(readMoreBtnText) => setAttributes({ readMoreBtnText })}
-                                />
-                            )}
                         </PanelBody>
+                        {showReadMore && (
+                            <PanelBody
+                                title={__('Read More Button', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'readMoreBtn' })}
+                                opened={selectedPanel === 'readMoreBtn'}
+                            >
+                                <ToggleControl
+                                    label={__('Show Text', 'zolo-blocks')}
+                                    checked={showReadmoreText}
+                                    onChange={(showReadmoreText) => setAttributes({ showReadmoreText })}
+                                />
+                                <ToggleControl
+                                    label={__('Show Icon', 'zolo-blocks')}
+                                    checked={showReadmoreIcon}
+                                    onChange={(showReadmoreIcon) => setAttributes({ showReadmoreIcon })}
+                                />
+
+                                {showReadmoreText && (
+                                    <TextControl
+                                        label={__('Button Text', 'zolo-blocks')}
+                                        value={readMoreBtnText}
+                                        onChange={(readMoreBtnText) => setAttributes({ readMoreBtnText })}
+                                    />
+                                )}
+
+                                {showReadmoreIcon && (
+                                    <IconPicker
+                                        label={__('Read More Icon', 'zolo-blocks')}
+                                        value={readMoreIcon}
+                                        onChange={(readMoreIcon) => setAttributes({ readMoreIcon })}
+                                        disableDashicon={true}
+                                    />
+                                )}
+                            </PanelBody>
+                        )}
+
                         <PanelBody
                             title={__('Columns', 'zolo-blocks')}
                             onToggle={(value) => value === true && setAttributes({ selectedPanel: 'columns' })}
@@ -313,6 +334,11 @@ function Inspector({ attributes, setAttributes }) {
                                 requiredProps={requiredProps}
                                 min={1}
                                 max={6}
+                                defaults={{
+                                    deskRange: 3,
+                                    tabRange: 2,
+                                    mobRange: 1,
+                                }}
                             />
                             <ResRangeControl
                                 label={__('Gap', 'zolo-blocks')}
@@ -361,6 +387,26 @@ function Inspector({ attributes, setAttributes }) {
                                 onToggle={(value) => value === true && setAttributes({ selectedPanel: 'thumbnailStyle' })}
                                 opened={selectedPanel === 'thumbnailStyle'}
                             >
+                                <ResRangeControl
+                                    label={__('Content Height', 'zolo-blocks')}
+                                    controlName={THUMBNAIL_HEIGHT}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={600}
+                                    step={1}
+                                />
+                                {showThumbnail && (
+                                    <SelectControl
+                                        label={__('Thumbnail Size', 'zolo-blocks')}
+                                        value={postQuery?.postThumbnail}
+                                        options={THUMBNAIL_SIZE}
+                                        onChange={(postThumbnail) =>
+                                            setAttributes({
+                                                postQuery: { ...postQuery, postThumbnail },
+                                            })
+                                        }
+                                    />
+                                )}
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={THUMBNAIL_BORDER}
@@ -674,7 +720,7 @@ function Inspector({ attributes, setAttributes }) {
                             >
                                 <ResRangeControl
                                     label={__('Gap', 'zolo-blocks')}
-                                    controlName={READMORE_GAP}
+                                    controlName={AVATAR_GAP}
                                     requiredProps={requiredProps}
                                     min={0}
                                     max={100}
@@ -754,6 +800,107 @@ function Inspector({ attributes, setAttributes }) {
                                         }
                                     />
                                 </BaseControl>
+                            </PanelBody>
+                        )}
+                        {postQuery?.showPagination && (
+                            <PanelBody
+                                title={__('Pagination', 'zolo-blocks')}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'paginationStyle' })}
+                                opened={selectedPanel === 'paginationStyle'}
+                            >
+                                <ResAlignmentControl
+                                    label={__('Alignment', 'zolo-blocks')}
+                                    controlName={PAG_ALIGN}
+                                    requiredProps={requiredProps}
+                                    alignOptions={DEFAULT_ALIGNS}
+                                />
+                                <TypographyDropdown
+                                    label={__('Typography', 'zolo-blocks')}
+                                    typoPrefixConstant={PAG_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                />
+                                <BorderControl label={__('Border', 'zolo-blocks')} controlName={PAG_BORDER} requiredProps={requiredProps} />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={PAG_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zolo-blocks')}
+                                    controlName={PAG_PADDING}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zolo-blocks')}
+                                    controlName={PAG_MARGIN}
+                                    requiredProps={requiredProps}
+                                />
+                                <TabPanelControl
+                                    options={[
+                                        {
+                                            value: 'normal',
+                                            label: __('Normal', 'zolo-blocks'),
+                                        },
+                                        {
+                                            value: 'hover',
+                                            label: __('Active', 'zolo-blocks'),
+                                        },
+                                    ]}
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={pagColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        pagColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Background', 'zolo-blocks')}
+                                                color={pagBgColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        pagBgColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Separator', 'zolo-blocks')}
+                                                color={pagSeparatorColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        pagSeparatorColor: color,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={apagColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        apagColor: color,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Background', 'zolo-blocks')}
+                                                color={apagBgColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        apagBgColor: color,
+                                                    })
+                                                }
+                                            />
+                                        </>
+                                    }
+                                />
                             </PanelBody>
                         )}
                     </>

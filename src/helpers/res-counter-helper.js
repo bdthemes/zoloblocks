@@ -1,63 +1,37 @@
 import { prefix } from '../global/constants';
 
 export const generateResCounterAttributies = (controlName, defaults = {}) => {
-	const { defaultRange } = defaults;
-	const desktopRange = defaultRange
-		? {
-				[`${prefix}${controlName}Range`]: {
-					type: 'number',
-					default: defaultRange,
-				},
-		  }
-		: {
-				[`${prefix}${controlName}Range`]: {
-					type: 'number',
-				},
-		  };
+    const { deskRange, tabRange, mobRange } = defaults;
 
-	return {
-		...desktopRange,
-		[`${prefix}TAB${controlName}Range`]: {
-			type: 'number',
-		},
-		[`${prefix}MOB${controlName}Range`]: {
-			type: 'number',
-		},
-	};
+    return {
+        [`${prefix}${controlName}Range`]: {
+            type: 'number',
+            default: deskRange,
+        },
+        [`${prefix}TAB${controlName}Range`]: {
+            type: 'number',
+            default: tabRange,
+        },
+        [`${prefix}MOB${controlName}Range`]: {
+            type: 'number',
+            default: mobRange,
+        },
+    };
 };
 
-export const generateResCounterStyle = ({
-	controlName,
-	property = '',
-	attributes,
-	noProperty = false,
-}) => {
-	const {
-		[`${prefix}${controlName}Range`]: desktopRange,
-		[`${prefix}TAB${controlName}Range`]: tabRange,
-		[`${prefix}MOB${controlName}Range`]: mobRange,
-	} = attributes;
+export const generateResCounterStyle = ({ controlName, property = '', attributes, noProperty = false, defaults = {} }) => {
+    const {
+        [`${prefix}${controlName}Range`]: desktopRange = defaults.deskRange || 3,
+        [`${prefix}TAB${controlName}Range`]: tabRange = defaults.tabRange || 2,
+        [`${prefix}MOB${controlName}Range`]: mobRange = defaults.mobRange || 1,
+    } = attributes;
 
-	const desktopRangeStyle =
-		desktopRange || desktopRange == 0
-			? (noProperty ? '' : property + ':') +
-			  desktopRange +
-			  (noProperty ? '' : ';')
-			: '';
+    const desktopRangeStyle =
+        desktopRange || desktopRange == 0 ? (noProperty ? '' : property + ':') + desktopRange + (noProperty ? '' : ';') : '';
 
-	const tabRangeStyle =
-		tabRange || tabRange == 0
-			? (noProperty ? '' : property + ':') +
-			  tabRange +
-			  (noProperty ? '' : ';')
-			: '';
+    const tabRangeStyle = tabRange || tabRange == 0 ? (noProperty ? '' : property + ':') + tabRange + (noProperty ? '' : ';') : '';
 
-	const mobRangeStyle =
-		mobRange || mobRange == 0
-			? (noProperty ? '' : property + ':') +
-			  mobRange +
-			  (noProperty ? '' : ';')
-			: '';
+    const mobRangeStyle = mobRange || mobRange == 0 ? (noProperty ? '' : property + ':') + mobRange + (noProperty ? '' : ';') : '';
 
-	return { desktopRangeStyle, tabRangeStyle, mobRangeStyle };
+    return { desktopRangeStyle, tabRangeStyle, mobRangeStyle };
 };

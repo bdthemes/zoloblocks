@@ -1,9 +1,13 @@
 .wp-block-zolo-advanced-icon-box {
     padding: clamp(1.875rem, 4vw, 2.5rem);
     position: relative;
-    border-radius: var( --zolo-item-border-radius);
-    background: #f2f2f3;
+    border-radius: var(--zolo-item-border-radius);
+    background-color: #f2f2f3;
     box-sizing: border-box;
+    overflow: hidden;
+    a {
+        text-decoration: none;
+    }
 
     .zolo-block-title {
         font-size: clamp(1.25rem, 2.5vw, 1.3rem);
@@ -11,30 +15,35 @@
         color: #2f2f44;
         margin: 0 0 clamp(0.625rem, 1vw, 0.75rem);
     }
-    .zolo-block-hover-icon {
-        display: none;
-    }
+
     .zolo-block-desc {
         font-size: clamp(0.75rem, 1.5vw, 0.875rem);
         color: #51515d;
     }
+
     .zolo-block-icon-wrap {
-        display: flex;
         margin: 0 0 clamp(0.938rem, 2.5vw, 1.75rem);
-        i {
-            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-        }
         img {
             width: clamp(3.125rem, 5vw, 3.75rem);
             height: auto;
         }
+        svg {
+            display: inline-block;
+            width: clamp(1.125rem, 5vw, 2.75rem);
+            height: clamp(1.125rem, 5vw, 2.75rem);
+            transition: 0.2s ease-in-out;
+            box-sizing: content-box;
+        }
     }
+
     .zolo-block-body-content {
         z-index: 1;
         position: relative;
+
         .zolo-block-link-btn {
             margin-top: 10px;
         }
+
         .zolo-box-button {
             display: inline-flex;
             gap: 8px;
@@ -46,11 +55,16 @@
             &:hover {
                 color: var(--zoloblocks-button-hover-color);
             }
-        }
-        .zolo-box-button p {
-            margin: 0px;
+
+            svg {
+                width: 16px;
+                height: 16px;
+                fill: #000;
+                display: block;
+            }
         }
     }
+
     /* icon box style 2 */
     .zolo-block-advanced-icon-box-style-2,
     .zolo-block-advanced-icon-box-style-3 {
@@ -58,10 +72,12 @@
             display: flex;
             grid-gap: clamp(0.625rem, 1.5vw, 1rem);
         }
+
         .zolo-block-icon-wrap {
             margin: 0;
         }
-        .zolo-block-body-content{
+
+        .zolo-block-body-content {
             width: 100%;
         }
     }
@@ -70,7 +86,8 @@
         .zolo-block-item {
             flex-direction: row-reverse;
         }
-        .zolo-block-body-content{
+
+        .zolo-block-body-content {
             text-align: right;
         }
     }

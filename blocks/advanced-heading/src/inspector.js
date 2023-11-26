@@ -3,10 +3,8 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, SelectControl, TextControl, ToggleControl, ColorPalette } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
 
 const {
-    BackgroundControl,
     BorderControl,
     BoxShadowControl,
     ColorControl,
@@ -150,15 +148,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                 return false;
         }
     };
-
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
 
     return (
         <InspectorControls key="controls">

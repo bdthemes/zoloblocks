@@ -4,7 +4,7 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment, useEffect } from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -82,15 +82,6 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
-
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
 
     const onPresetChange = (selected) => {
         setAttributes({ preset: selected });

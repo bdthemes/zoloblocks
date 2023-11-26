@@ -8,15 +8,16 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, isSelected } = props;
+    const { attributes, setAttributes, isSelected } = props;
     const {
         uniqueId,
+        preview,
         preset,
         parentClasses,
         titleTag,
@@ -32,12 +33,18 @@ export default function Edit(props) {
         iconBoxTitle,
         iconBoxDescription,
         buttonText,
+        buttonLink,
     } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.iconBox} alt={__('Icon Box Preview', 'zolo-blocks')} />;
+    }
 
     return (
         <>
@@ -84,7 +91,7 @@ export default function Edit(props) {
                         {showMainIcon && (
                             <div className={`zolo-block-icon-wrap`}>
                                 {iconType == 'icon' ? (
-                                    <DisplayIcon icon={mainIcon} />
+                                    <DisplayZoloIcon icon={mainIcon} />
                                 ) : iconTypeImage ? (
                                     <img src={iconTypeImage.url} alt={iconTypeImage.alt || 'Team Member'} />
                                 ) : (
@@ -135,10 +142,15 @@ export default function Edit(props) {
                             )}
                             {showButton && (
                                 <div className={`zolo-block-link-btn`}>
-                                    <div className={`zolo-box-button`}>
+                                    <a
+                                        className={`zolo-box-button`}
+                                        href={buttonLink && buttonLink.url}
+                                        target={buttonLink && buttonLink.openInNewTab && '_blank'}
+                                        rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
+                                    >
                                         <RichText
                                             value={buttonText}
-                                            tagName="p"
+                                            tagName="span"
                                             onChange={(text) =>
                                                 setAttributes({
                                                     buttonText: text,
@@ -147,16 +159,11 @@ export default function Edit(props) {
                                             placeholder={__('Read More', 'zolo-blocks')}
                                             allowedFormats={['core/bold', 'core/italic']}
                                         />
-                                        {showButtonIcon && <DisplayIcon icon={buttonIcon} />}
-                                    </div>
+                                        {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}
+                                    </a>
                                 </div>
                             )}
                         </div>
-                        {showMainIcon && (
-                            <div className="zolo-block-hover-icon">
-                                <DisplayIcon icon={mainIcon} />
-                            </div>
-                        )}
                     </div>
                 </div>
             </div>

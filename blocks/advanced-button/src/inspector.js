@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment, useEffect, useState, useRef } from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -24,6 +24,7 @@ const {
     LinkControl,
     IconicBtnGroup,
     AdvancedOptions,
+    ZoloIconPicker,
 } = window.zoloModule;
 
 import { TEXT_ALIGN_OPTIONS, ICON_POSITIONS, ICON_STATUS } from '../../../src/global/constants';
@@ -59,7 +60,6 @@ import {
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { use } from '@wordpress/data';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -95,15 +95,6 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
-
-    useEffect(() => {
-        // set initial panle to panel11
-        if (!selectedPanel) {
-            setAttributes({
-                selectedPanel: 'general',
-            });
-        }
-    }, [selectedPanel, selectedTab]);
 
     return (
         <InspectorControls key="controls">
@@ -164,17 +155,15 @@ function Inspector(props) {
                             />
                             {iconType !== 'none' && (
                                 <Fragment>
-                                    <IconPicker
+                                    <ZoloIconPicker
+                                        label={__('Select Icon', 'zolo-blocks')}
                                         value={icon}
                                         onChange={(value) => {
                                             setAttributes({
                                                 icon: value,
                                             });
                                         }}
-                                        showHeading={true}
-                                        disableDashicon={true}
                                     />
-
                                     {iconType !== 'iconOnly' && (
                                         <IconicBtnGroup
                                             label={__('Position', 'zolo-blocks')}
@@ -187,25 +176,23 @@ function Inspector(props) {
                                             options={ICON_POSITIONS}
                                         />
                                     )}
-                                    {iconType !== 'none' && (
-                                        <Fragment>
-                                            <ResRangeControl
-                                                label={__('Icon Size', 'zolo-blocks')}
-                                                controlName={ICON_SIZE}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={100}
-                                                step={1}
-                                            />
-                                            <ResRangeControl
-                                                label={__('Gap', 'zolo-blocks')}
-                                                controlName={ICON_TEXT_SPACING}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={100}
-                                                step={1}
-                                            />
-                                        </Fragment>
+                                    <ResRangeControl
+                                        label={__('Icon Size', 'zolo-blocks')}
+                                        controlName={ICON_SIZE}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                    />
+                                    {iconType !== 'iconOnly' && (
+                                        <ResRangeControl
+                                            label={__('Gap', 'zolo-blocks')}
+                                            controlName={ICON_TEXT_SPACING}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                        />
                                     )}
                                 </Fragment>
                             )}

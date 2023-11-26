@@ -27,10 +27,14 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { uniqueId, parentClasses, totalItems } = attributes;
+    const { preview, uniqueId, parentClasses, totalItems } = attributes;
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.accordion} alt={__('Accordion Preview', 'zolo-blocks')} />;
+    }
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
-
     const blockProps = useBlockProps({
         className: classnames(className, uniqueId, classArrayToStr(parentClasses)),
     });

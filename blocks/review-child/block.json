@@ -6,7 +6,7 @@
     "parent": ["zolo/review-grid"],
     "keywords": ["Rating", "Review"],
     "description": "Single review block",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "textdomain": "zolo-blocks",
     "supports": {
         "anchor": false,
