@@ -148,11 +148,11 @@
         margin-top: -30px;
         background-color: rgba(243, 255, 252, 0.992);
         border-radius: 30px 30px var(--zolo-item-border-radius) var(--zolo-item-border-radius);
-        display: inline-block;
+        display: flex;
+        flex-direction: column;
         text-align: center;
         box-sizing: border-box;
         padding: 0 20px 40px;
-        width: 100%;
     }
 
     .zb-profile-image {

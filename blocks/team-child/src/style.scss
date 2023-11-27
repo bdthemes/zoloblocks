@@ -23,9 +23,6 @@
         color: #2e2e35;
         display: block;
         transition: color 0.3s ease;
-        &:hover {
-            color: var(--zoloblocks-brand-color-hover);
-        }
     }
 
     // designation
@@ -62,12 +59,13 @@
                 background-color: var(--zoloblocks-brand-color-hover);
             }
         }
-        i,
-        span {
-            font-size: 14px;
+        svg {
+            height: 14px;
+            width: 14px;
             transition: 0.3s ease-out;
             z-index: 1;
             position: relative;
+            display: block;
         }
     }
     .zolo-social-share,
@@ -92,9 +90,11 @@
             transition: 500ms ease;
             text-decoration: none;
             border-radius: var(--zoloblocks-button-border-radius);
-            i,
-            span {
-                color: #000;
+            svg {
+                height: 16px;
+                width: 16px;
+                display: block;
+                fill: #000;
                 transition: 0.3s ease-out;
                 z-index: 1;
                 position: relative;

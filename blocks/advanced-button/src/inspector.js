@@ -20,7 +20,6 @@ const {
     TabPanelControl,
     NormalBGControl,
     BoxShadowControl,
-    IconPicker,
     LinkControl,
     IconicBtnGroup,
     AdvancedOptions,
@@ -86,6 +85,8 @@ function Inspector(props) {
         presetSixStyle,
         presetSevenStyles,
         selectedPanel,
+        selectedStylePanel,
+        selectedExtraPanel,
         selectedTab,
     } = attributes;
 
@@ -106,7 +107,7 @@ function Inspector(props) {
                         <PanelBody
                             title={__('General', 'zolo-blocks')}
                             onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
-                            opened={selectedPanel === 'general'}
+                            opened={selectedPanel === 'general' || selectedPanel === 'first'}
                         >
                             <SelectControl
                                 label={__('Styles', 'zolo-blocks')}
@@ -452,8 +453,8 @@ function Inspector(props) {
                         )}
                         <PanelBody
                             title={__('Button', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'button_style' })}
-                            opened={selectedPanel === 'button_style'}
+                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'styleSetting' })}
+                            opened={selectedStylePanel === 'styleSetting'}
                         >
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
@@ -531,8 +532,8 @@ function Inspector(props) {
                         {iconType !== 'none' && (
                             <PanelBody
                                 title={__('Icon', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'icon_style' })}
-                                opened={selectedPanel === 'icon_style'}
+                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'iconStyle' })}
+                                opened={selectedStylePanel === 'iconStyle'}
                             >
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}

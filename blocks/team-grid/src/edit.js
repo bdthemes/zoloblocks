@@ -128,7 +128,7 @@ export default function Edit(props) {
                     }}
                 >
                     <Button
-                        className="components-button"
+                        className="zolo-appender-btn"
                         label={__('Add Team Member', 'zolo-blocks')}
                         icon="insert"
                         variant="primary"

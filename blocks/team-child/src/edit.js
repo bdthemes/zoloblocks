@@ -12,7 +12,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -28,7 +28,6 @@ export default function Edit(props) {
         memberPhoto,
         memberName,
         addDetailPageLink,
-        showDetailPageIcon,
         memberDetailPageLink,
         showDesignation,
         memberDesignation,
@@ -51,7 +50,6 @@ export default function Edit(props) {
         setAttributes({
             preset: context['zolo/preset'],
             addDetailPageLink: context['zolo/addDetailPageLink'],
-            showDetailPageIcon: context['zolo/showDetailPageIcon'],
             showDesignation: context['zolo/showDesignation'],
             showShortBio: context['zolo/showShortBio'],
             showSocialProfiles: context['zolo/showSocialProfiles'],
@@ -125,7 +123,7 @@ export default function Edit(props) {
                     <div className="zolo-info-wrap">
                         <div className="zolo-content">
                             <RichText
-                                className={`zolo-name ${addDetailPageLink ? 'has-link' : ''}`}
+                                className={`zolo-name`}
                                 value={memberName}
                                 onChange={(name) => setAttributes({ memberName: name })}
                                 placeholder={__('Name...', 'zolo-blocks')}
@@ -171,20 +169,20 @@ export default function Edit(props) {
                                                     rel={profile.link && profile.link.openInNewTab && 'noreferer noopener'}
                                                     target={profile.link && profile.link.openInNewTab && '_blank'}
                                                 >
-                                                    <DisplayIcon icon={profile.icon} />
+                                                    <DisplayZoloIcon icon={profile.icon} />
                                                 </a>
                                             );
                                         })}
                                 </div>
                             )}
-                            {addDetailPageLink && showDetailPageIcon && (
+                            {addDetailPageLink && (
                                 <div className="zolo-link-btn">
                                     <a
                                         href={memberDetailPageLink && memberDetailPageLink.url}
                                         rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer'}
                                         target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
                                     >
-                                        <DisplayIcon icon={detailIcon} />
+                                        <DisplayZoloIcon icon={detailIcon} />
                                     </a>
                                 </div>
                             )}

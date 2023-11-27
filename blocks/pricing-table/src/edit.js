@@ -7,7 +7,7 @@ import classnames from 'classnames';
 import Inspector from './inspector';
 import './style.scss';
 
-const { DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 // import style
 import Style from './style';
@@ -153,7 +153,7 @@ const Edit = (props) => {
                                         <li key={index}>
                                             {item.icon && (
                                                 <span className="zolo-check-icon">
-                                                    <DisplayIcon icon={item.icon} />
+                                                    <DisplayZoloIcon icon={item.icon} />
                                                 </span>
                                             )}
                                             <span className="zolo-list-text">{item.text}</span>

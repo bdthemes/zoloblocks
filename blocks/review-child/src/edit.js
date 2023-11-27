@@ -14,7 +14,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { StarRating, classArrayToStr, DisplayIcon } = window.zoloModule;
+const { StarRating, classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -106,7 +106,7 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <Style props={props} />
                 <div className="zolo-item">
-                    <div className='zolo-review-img-meta-wrap'>
+                    <div className="zolo-review-img-meta-wrap">
                         {showPhoto && (
                             <div className="zolo-image-wrap">
                                 {memberPhoto ? (
@@ -127,45 +127,40 @@ export default function Edit(props) {
                                         allowedTypes={['image']}
                                     />
                                 )}
-                                {/* {addReviewerWebsiteLink && (
-                                    <div className="zolo-link-btn">
-                                        <a
-                                            href={reviewerWebsiteLink && reviewerWebsiteLink.url}
-                                            rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && 'noreferer noopener'}
-                                            target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && '_blank'}
-                                        >
-                                            <DisplayIcon icon={websiteLinkIcon} />
-                                        </a>
-                                    </div>
-                                )} */}
                             </div>
                         )}
 
-                        <div className='zolo-review-meta-content'>
-                        {showName &&
-                            (addReviewerWebsiteLink ? (
-                                <RichText
-                                    value={memberName}
-                                    onChange={(content) =>
-                                        setAttributes({
-                                            memberName: content,
-                                        })
-                                    }
-                                    className="zolo-name has-link"
-                                    placeholder={__('Reviewer name', 'zolo-blocks')}
-                                />
-                            ) : (
-                                <RichText
-                                    value={memberName}
-                                    onChange={(content) =>
-                                        setAttributes({
-                                            memberName: content,
-                                        })
-                                    }
-                                    className="zolo-name"
-                                    placeholder={__('Reviewer name', 'zolo-blocks')}
-                                />
-                            ))}
+                        <div className="zolo-review-meta-content">
+                            {showName &&
+                                (addReviewerWebsiteLink ? (
+                                    <a
+                                        href={reviewerWebsiteLink && reviewerWebsiteLink.url}
+                                        rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && 'noreferer noopener'}
+                                        target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && '_blank'}
+                                        className="zolo-name has-link"
+                                    >
+                                        <RichText
+                                            value={memberName}
+                                            onChange={(content) =>
+                                                setAttributes({
+                                                    memberName: content,
+                                                })
+                                            }
+                                            placeholder={__('Reviewer name', 'zolo-blocks')}
+                                        />
+                                    </a>
+                                ) : (
+                                    <RichText
+                                        value={memberName}
+                                        onChange={(content) =>
+                                            setAttributes({
+                                                memberName: content,
+                                            })
+                                        }
+                                        className="zolo-name"
+                                        placeholder={__('Reviewer name', 'zolo-blocks')}
+                                    />
+                                ))}
                             {showDesignation && (
                                 <div className="zolo-designation">
                                     <RichText
@@ -181,7 +176,7 @@ export default function Edit(props) {
                             )}
                         </div>
                     </div>
-                
+
                     <div className="zolo-info-wrap">
                         <div className="zolo-meta-content">
                             {showRating && (

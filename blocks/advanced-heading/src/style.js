@@ -96,7 +96,6 @@ export default function Style({ props }) {
         typoStylesMobile: titleTypoMobile,
     } = generateTypographyStyles({
         prefixConstant: TITLE_TYPOGRAPHY,
-        defaultFontSize: 25,
         attributes,
     });
     const {
@@ -203,7 +202,6 @@ export default function Style({ props }) {
         typoStylesMobile: subTitleTypoMobile,
     } = generateTypographyStyles({
         prefixConstant: SUBTITLE_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
     const {
@@ -262,7 +260,6 @@ export default function Style({ props }) {
         typoStylesMobile: transparentTypoMobile,
     } = generateTypographyStyles({
         prefixConstant: TRANSPARENT_TYPOGRAPHY,
-        defaultFontSize: 55,
         attributes,
     });
 
@@ -433,18 +430,6 @@ export default function Style({ props }) {
   }
   .zolo-block-wrapper.${uniqueId}:hover::before{
     ${wrapperHoverOverlayStylesDesktop}
-  }
-  .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading{
-    font-weight: 900;
-  }
-
-  .zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
-    font-weight: 400;
-    color: #323641;
-  }
-  .zolo-block-wrapper.${uniqueId} .zolo-ah-title{
-    font-weight: 500;
-    color: #202224;
   }
 `;
 

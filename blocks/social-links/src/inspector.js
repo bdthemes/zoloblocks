@@ -39,6 +39,8 @@ import {
     SOCIAL_ICON_COLOR,
     BTN_SHADOW,
     BTN_HOVER_SHADOW,
+    PT_ICON_HEIGHT,
+    PT_ICON_WIDTH,
 } from './constants';
 
 import { ICON_STATUS } from '../../../src/global/constants';
@@ -60,6 +62,8 @@ function Inspector(props) {
         borderHoverColor,
         selectedPanel,
         selectedTab,
+        iconBgColor,
+        iconBgHoverColor,
     } = attributes;
 
     const requiredProps = {
@@ -180,14 +184,36 @@ function Inspector(props) {
                                 />
                             )}
                             {socialText !== 'none' && (
-                                <ResRangeControl
-                                    label={__('Size', 'zolo-blocks')}
-                                    controlName={BUTTON_SIZE}
-                                    requiredProps={requiredProps}
-                                    min={0}
-                                    max={100}
-                                    step={1}
-                                />
+                                <>
+                                    <ResRangeControl
+                                        label={__('Icon Size', 'zolo-blocks')}
+                                        controlName={BUTTON_SIZE}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                    />
+                                    {preset === 'preset-3' && (
+                                        <>
+                                            <ResRangeControl
+                                                label={__('Width', 'zolo-blocks')}
+                                                controlName={PT_ICON_WIDTH}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={500}
+                                                step={1}
+                                            />
+                                            <ResRangeControl
+                                                label={__('Height', 'zolo-blocks')}
+                                                controlName={PT_ICON_HEIGHT}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={500}
+                                                step={1}
+                                            />
+                                        </>
+                                    )}
+                                </>
                             )}
                             {socialText === 'iconText' && (
                                 <ResRangeControl
@@ -206,7 +232,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl controlName={BTN_SHADOW} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={BUTTON_PADDING}
@@ -245,6 +270,19 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                            {socialText !== 'none' && preset === 'preset-3' && (
+                                                <ColorControl
+                                                    label={__('Icon Background', 'zolo-blocks')}
+                                                    color={iconBgColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            iconBgColor: value,
+                                                        })
+                                                    }
+                                                />
+                                            )}
+
+                                            <BoxShadowControl controlName={BTN_SHADOW} requiredProps={requiredProps} />
                                         </>
                                     }
                                     hoverComponents={
@@ -267,6 +305,18 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                            {socialText !== 'none' && preset === 'preset-3' && (
+                                                <ColorControl
+                                                    label={__('Icon Background', 'zolo-blocks')}
+                                                    color={iconBgHoverColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            iconBgHoverColor: value,
+                                                        })
+                                                    }
+                                                />
+                                            )}
+
                                             <ColorControl
                                                 label={__('Border Color', 'zolo-blocks')}
                                                 color={borderHoverColor}

@@ -78,7 +78,6 @@ function Inspector(props) {
         resMode,
         preset,
         addDetailPageLink,
-        showDetailPageIcon,
         showDesignation,
         showShortBio,
         showSocialProfiles,
@@ -113,7 +112,6 @@ function Inspector(props) {
                 setAttributes({
                     showShortBio: true,
                     showSocialProfiles: true,
-                    showDetailPageIcon: true,
                     showDesignation: true,
                     addDetailPageLink: true,
                 });
@@ -122,7 +120,6 @@ function Inspector(props) {
                 setAttributes({
                     showShortBio: true,
                     showSocialProfiles: true,
-                    showDetailPageIcon: true,
                     showDesignation: true,
                 });
                 break;
@@ -130,7 +127,6 @@ function Inspector(props) {
                 setAttributes({
                     showShortBio: true,
                     showSocialProfiles: true,
-                    showDetailPageIcon: true,
                     showDesignation: true,
                 });
                 break;
@@ -166,18 +162,6 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            {addDetailPageLink && (
-                                <ToggleControl
-                                    label={__('Show Detail Page Link Icon', 'zolo-blocks')}
-                                    checked={showDetailPageIcon}
-                                    onChange={() =>
-                                        setAttributes({
-                                            showDetailPageIcon: !showDetailPageIcon,
-                                        })
-                                    }
-                                />
-                            )}
-
                             <ToggleControl
                                 label={__('Show Short Bio', 'zolo-blocks')}
                                 checked={showShortBio}
@@ -492,20 +476,20 @@ function Inspector(props) {
                                         hoverComponents={
                                             <>
                                                 <ColorControl
-                                                    label={__('Color', 'zolo-blocks')}
-                                                    color={iconHoverColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            iconHoverColor: color,
-                                                        })
-                                                    }
-                                                />
-                                                <ColorControl
                                                     label={__('Border Color', 'zolo-blocks')}
                                                     color={iconHoverBorderColor}
                                                     onChange={(color) =>
                                                         setAttributes({
                                                             iconHoverBorderColor: color,
+                                                        })
+                                                    }
+                                                />
+                                                <ColorControl
+                                                    label={__('Color', 'zolo-blocks')}
+                                                    color={iconHoverColor}
+                                                    onChange={(color) =>
+                                                        setAttributes({
+                                                            iconHoverColor: color,
                                                         })
                                                     }
                                                 />
@@ -525,7 +509,7 @@ function Inspector(props) {
                                 </PanelBody>
                             </>
                         )}
-                        {showDetailPageIcon && (
+                        {addDetailPageLink && (
                             <PanelBody
                                 title={__('Details Page Link', 'zolo-blocks')}
                                 onToggle={(value) => value === true && setAttributes({ selectedPanel: 'dpLinkStyle' })}

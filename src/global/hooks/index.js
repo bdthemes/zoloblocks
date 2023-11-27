@@ -68,6 +68,15 @@ function addAttributes(settings) {
             },
             selectedPanel: {
                 type: 'string',
+                default: 'first',
+            },
+            selectedStylePanel: {
+                type: 'string',
+                default: 'first',
+            },
+            selectedExtraPanel: {
+                type: 'string',
+                default: 'first',
             },
             selectedTab: {
                 type: 'string',
@@ -126,10 +135,40 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
             return <BlockEdit {...props} />;
         }
 
-        const { uniqueId, resMode, parentClasses, zoloStyles, customCss } = attributes;
+        const {
+            uniqueId,
+            resMode,
+            parentClasses,
+            zoloStyles,
+            customCss,
+            selectedPanel,
+            selectedStylePanel,
+            selectedExtraPanel,
+            selectedTab,
+        } = attributes;
 
         const isBlockJustInserted = select('core/block-editor').wasBlockJustInserted(clientId);
         const [editorType, setEditorType] = useState();
+
+        const localStoreKey = uniqueId + 'loaded';
+
+        window.onbeforeunload = function () {
+            localStorage.clear();
+        };
+        //Handle Tab and Panel initial Open state
+        useEffect(() => {
+            const isPageLoadedStore = localStorage.getItem(localStoreKey);
+
+            if (!isPageLoadedStore) {
+                setAttributes({
+                    selectedPanel: 'first',
+                    selectedStylePanel: 'first',
+                    selectedExtraPanel: 'first',
+                    selectedTab: 'basic',
+                });
+                localStorage.setItem(localStoreKey, true);
+            }
+        }, []);
 
         const prefix = name.split('/')[1];
         // UseEffect for initial setting

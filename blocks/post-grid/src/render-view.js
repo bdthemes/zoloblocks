@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-const { DynamicTag, DisplayIcon } = window.zoloModule;
+const { DynamicTag, DisplayZoloIcon } = window.zoloModule;
 function RenderView({ attributes, postResults }) {
     const {
         preset,
@@ -108,7 +108,7 @@ function RenderView({ attributes, postResults }) {
                                 <div className="zolo-post-link-btn">
                                     <a href={post.permalink}>
                                         {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zolo-blocks')}</>}
-                                        {showReadmoreIcon && readMoreIcon && <DisplayIcon icon={readMoreIcon} />}
+                                        {showReadmoreIcon && readMoreIcon && <DisplayZoloIcon icon={readMoreIcon} />}
                                     </a>
                                 </div>
                             )}

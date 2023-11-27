@@ -401,16 +401,6 @@ const Style = ({ props }) => {
     });
 
     const {
-        desktopRangeStyle: socialIconDesk,
-        tabRangeStyle: socialIconTab,
-        mobRangeStyle: socialIconMob,
-    } = generateResRangeStyle({
-        controlName: ICONS_SIZE,
-        property: 'font-size',
-        attributes,
-    });
-
-    const {
         desktopRangeStyle: socialIconContainerHeightDesk,
         tabRangeStyle: socialIconContainerHeightTab,
         mobRangeStyle: socialIconContainerHeightMob,
@@ -526,7 +516,17 @@ const Style = ({ props }) => {
         mobRangeStyle: dplMobSize,
     } = generateResRangeStyle({
         controlName: DPL_ICON_SIZE,
-        property: 'font-size',
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: dplDeskHSize,
+        tabRangeStyle: dplTabHSize,
+        mobRangeStyle: dplMobHSize,
+    } = generateResRangeStyle({
+        controlName: DPL_ICON_SIZE,
+        property: 'height',
         attributes,
     });
 
@@ -588,58 +588,6 @@ const Style = ({ props }) => {
         styleFor: 'margin',
         attributes,
     });
-
-    /**
-     * Image Width Calculation for Style-4(Preset-3)
-     */
-
-    const paddingRegex = /padding:\s*(\d+)/;
-    const widthRegex = /width:\s*(\d+)/;
-    const borderWidthRegex = /border-width:\s*(\d+)/;
-
-    const deskPadding = socialIconsPaddingDesk || 'padding: 8px';
-    const deskMatch = paddingRegex.exec(deskPadding);
-    const dpNumber = deskMatch ? parseInt(deskMatch[1]) : 8;
-
-    const deskWidth = socialIconContainerWidthDesk || 'width: 18px';
-    const deskMatch2 = widthRegex.exec(deskWidth);
-    const dwNumber = deskMatch2 ? parseInt(deskMatch2[1]) : 18;
-
-    const deskBorderWidth = socialIconDeskBorderStyle || 'border-width: 1px';
-    const deskMatch3 = borderWidthRegex.exec(deskBorderWidth);
-    const dbNumber = deskMatch3 ? parseInt(deskMatch3[1]) : 1;
-
-    const totalDeskWidth = dpNumber + dwNumber + dbNumber !== 0 ? dpNumber * 2 + dwNumber + dbNumber * 2 : 45;
-
-    // tablet
-    const tabPadding = socialIconsPaddingTab || 'padding: 0px';
-    const tabMatch = paddingRegex.exec(tabPadding);
-    const tpNumber = tabMatch ? parseInt(tabMatch[1]) : 8;
-
-    const tabWidth = socialIconContainerWidthTab || 'width: 0px';
-    const tabMatch2 = widthRegex.exec(tabWidth);
-    const twNumber = tabMatch2 ? parseInt(tabMatch2[1]) : 18;
-
-    const tabBorderWidth = socialIconTabBorderStyle || 'border-width: 0px';
-    const tabMatch3 = borderWidthRegex.exec(tabBorderWidth);
-    const tbNumber = tabMatch3 ? parseInt(tabMatch3[1]) : 1;
-
-    const totalTabWidth = tpNumber + twNumber + tbNumber !== 0 ? tpNumber * 2 + twNumber + tbNumber * 2 : 45;
-
-    // mobile
-    const mobPadding = socialIconsPaddingMob || 'padding: 0px';
-    const mobMatch = paddingRegex.exec(mobPadding);
-    const mpNumber = mobMatch ? parseInt(mobMatch[1]) : 8;
-
-    const mobWidth = socialIconContainerWidthMob || 'width: 0px';
-    const mobMatch2 = widthRegex.exec(mobWidth);
-    const mwNumber = mobMatch2 ? parseInt(mobMatch2[1]) : 18;
-
-    const mobBorderWidth = socialIconMobBorderStyle || 'border-width: 0px';
-    const mobMatch3 = borderWidthRegex.exec(mobBorderWidth);
-    const mbNumber = mobMatch3 ? parseInt(mobMatch3[1]) : 1;
-
-    const totalMobWidth = mpNumber + mwNumber + mbNumber !== 0 ? mpNumber * 2 + mwNumber + mbNumber * 2 : 45;
 
     /**
      * All Style Combination
@@ -709,48 +657,58 @@ const Style = ({ props }) => {
 			${shortBioTypoDesk}
 			${shortBioDeskMargin}
 		}
+        
 		.${uniqueId} .zolo-social-share {
 			${socialIconsGapDesk}
 		}
+
 		.${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a {
-			${socialIconContainerHeightDesk}
-			${socialIconContainerWidthDesk}
 			${socialIconDeskBorderStyle}
 			${socialIconsBorderRadiusDesk}
 			${socialIconsPaddingDesk}
 			${socialIconNormalBoxShadow}
-			${iconColor ? `color: ${iconColor};` : ''}
 			${iconsNormalDeskBG}
 		}
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share svg{
+			${socialIconContainerHeightDesk}
+			${socialIconContainerWidthDesk}
+            ${iconColor ? `fill: ${iconColor};` : ''}
+        }
+
 		.${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:hover {
 			${socialIconHoverBoxShadow}
-			${iconHoverColor ? `color: ${iconHoverColor};` : ''}
 			${iconHoverBorderColor ? `border-color: ${iconHoverBorderColor};` : ''}
 			${iconsHoverDeskBG}
 		}
-        .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:before {
-			${iconsHoverDeskBG}
+
+
+		.${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:hover svg {
+			${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
 		}
-		.${uniqueId} .zolo-social-share i {
-			${socialIconDesk}
-		}
+
 		.${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a {
 			${detailPageNormalDeskBG}
-			${detailPageIconColor ? `color: ${detailPageIconColor};` : ''}
 			${dplDeskBorderStyle}
 			${dplDeskBorderRadius}
 			${dplDeskPadding}
 			${dplDeskMargin}
 			${dplDeskHeight}
 			${dplDeskWidth}
+		}
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn svg {
 			${dplDeskSize}
-		}
-		.${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a:hover {
-			${detailPageIconHoverColor ? `color: ${detailPageIconHoverColor};` : ''}
+            ${dplDeskHSize}
+            ${detailPageIconColor ? `fill: ${detailPageIconColor};` : ''}
+        }
+
+		.${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn:hover a{
 			${detailPageHoverDeskBG}
 		}
-		.${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a:before {
-			${detailPageHoverDeskBG}
+
+		.${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn:hover svg{
+			${detailPageIconHoverColor ? `fill: ${detailPageIconHoverColor};` : ''}
 		}
     `;
     const tabletAllStyle = `
@@ -823,13 +781,16 @@ const Style = ({ props }) => {
         }
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a {
-            ${socialIconContainerHeightTab}
-            ${socialIconContainerWidthTab}
             ${socialIconTabBorderStyle}
             ${socialIconsBorderRadiusTab}
             ${socialIconsPaddingTab}
             ${socialIconNormalBoxShadow}
             ${iconsNormalTabBG}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share svg {
+            ${socialIconContainerHeightTab}
+            ${socialIconContainerWidthTab}
         }
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:hover {
@@ -839,10 +800,6 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:before {
             ${iconsHoverTabBG}
-        }
-
-        .${uniqueId} .zolo-social-share i {
-            ${socialIconTab}
         }
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a {
@@ -934,13 +891,16 @@ const Style = ({ props }) => {
         }
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a {
-            ${socialIconContainerHeightMob}
-            ${socialIconContainerWidthMob}
             ${socialIconMobBorderStyle}
             ${socialIconsBorderRadiusMob}
             ${socialIconsPaddingMob}
             ${socialIconNormalBoxShadow}
             ${iconsNormalMobBG}
+        }
+
+        .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share svg {
+            ${socialIconContainerHeightMob}
+            ${socialIconContainerWidthMob}
         }
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:hover {
@@ -950,10 +910,6 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:before {
             ${iconsHoverMobBG}
-        }
-
-        .${uniqueId} .zolo-social-share i {
-            ${socialIconMob}
         }
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a {

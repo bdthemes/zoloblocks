@@ -10,7 +10,7 @@ import { __ } from '@wordpress/i18n';
  */
 import classnames from 'classnames';
 
-const { DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -28,7 +28,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.socialLinks} alt={__('Pricing Table Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.socialLinks} alt={__('Social Links Preview', 'zolo-blocks')} />;
     }
 
     return (
@@ -41,7 +41,7 @@ export default function Edit(props) {
                 {socialProfiles &&
                     socialProfiles.map((profile, index) => {
                         let socialName = Object.keys(profile.icon)[0];
-                        const iconName = profile && profile.icon.slice(7, profile.icon.length);
+                        const iconName = profile && profile.text && profile.text.toLowerCase();
                         return (
                             <a
                                 href={profile.link && profile.link.url}
@@ -52,7 +52,7 @@ export default function Edit(props) {
                             >
                                 {socialText !== 'none' && (
                                     <span className="zolo-social-icon">
-                                        <DisplayIcon icon={profile.icon} />
+                                        <DisplayZoloIcon icon={profile.icon} />
                                     </span>
                                 )}
                                 {socialText !== 'iconOnly' && <span className="zolo-social-text">{profile.text}</span>}

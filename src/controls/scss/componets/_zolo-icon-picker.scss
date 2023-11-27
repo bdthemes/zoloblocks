@@ -1,25 +1,64 @@
+.zolo-icons-wrap {
+    padding: 0 30px 30px 30px;
+    overflow-y: scroll;
+    height: 475px;
+    min-height: 475px;
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: 5px;
+        border-radius: 10px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        border-radius: 10px;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #aeaeae; 
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+    }
+}
+
 .zolo__icons-grid {
-    display: flex;
+    display: grid;
     gap: 15px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    grid-template-columns: repeat(7,1fr);
+    position: relative;
 
     .single__icon {
-        width: 61px;
-        height: 50px;
-        border: 1px solid #ccc;
-        border-radius: 2px;
+        height: 70px;
+        border: 1px solid #ececf1;
+        border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         margin: 0;
         padding: 0 !important;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        &:hover {
+            svg {
+                color: #001feb;
+            }
+        }
         svg {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
+            color: #5d5b65;
         }
     }
+}
+
+.zolo-icons-title {
+    margin: 0 0 20px;
 }
 
 .zolo__single-preview-icon {
@@ -28,15 +67,13 @@
 }
 
 .zolo__modal.components-modal__frame {
-    width: 900px;
-    height: 550px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-
+    width: 1024px;
+    min-width: 1024px;
+    height: auto;
+    min-height: auto;
     .components-modal__header {
-        border-bottom: 1px solid #e0e0e0;
-        padding: 25px;
-        height: 60px;
+        border-bottom: 1px solid #ececf1;
+        padding: 25px 30px;
     }
 
     .components-modal__content {
@@ -44,50 +81,69 @@
     }
 
     .components-modal__content {
-        margin-top: 60px;
+        overflow: hidden;
     }
 
     .modal__content {
         width: calc(100% - 180px);
         box-sizing: border-box;
-        padding: 25px;
+        // padding: 25px;
         box-sizing: border-box;
     }
 
     .category__button {
-        display: block;
-        padding: 10px 25px;
+        padding: 20px 30px;
         width: 100%;
+        height: auto;
         font-size: 14px;
         text-align: left;
         border-radius: 0 !important;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        svg {
+            display: block;
+        }
+        &:hover {
+            color: #001feb;
+        }
+
         &:focus {
             outline: none !important;
             box-shadow: none !important;
         }
     }
 
-    .category__button + .category__button {
-        border-top: 1px solid #eeeeee;
+    .zolo-custom-icon {
+        border-top: 1px solid #ececf1;
+        padding: 30px;
+        margin: 0;
+        text-align: center;
+        color: #34363b;
+        strong {
+            color: #001feb;
+        }
     }
 
     .category__button.active {
-        background: #f8f8f8;
+        background: #e9e8f3;
         border-radius: 0 !important;
-        color: #055179;
+        color:  #001feb;
         font-weight: 500;
     }
 
     .search__input {
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        margin-bottom: 15px;
+        border: 1px solid #ececf1;
+        border-radius: 4px;
         display: flex;
         align-items: center;
+        margin: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         input {
             border: none;
             width: calc(100% - 40px);
-            padding: 5px 15px;
+            padding: 10px 14px;
             &:focus {
                 outline: none !important;
                 box-shadow: none !important;
@@ -95,9 +151,9 @@
         }
 
         svg {
-            width: 18px;
-            height: 18px;
-            margin: 0 10px;
+            width: 14px;
+            height: 14px;
+            margin: 0 15px;
         }
     }
 }
@@ -113,7 +169,7 @@
 .zolo-picker__button {
     width: 100%;
     height: 180px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #ececf1;
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -124,6 +180,17 @@
         outline: none !important;
         box-shadow: none !important;
     }
+}
+
+.zolo__not_found {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 180px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #858596;
 }
 
 .zolo-picker__button.active:after {
@@ -159,12 +226,12 @@
 }
 
 .zolo-categories__sidebar {
-    width: 180px;
-    min-width: 180px;
-    height: 550px;
-    position: sticky;
-    border-right: 1px solid #e0e0e0;
-    top: 0;
+    width: 280px;
+    min-width: 280px;
+    height: 585px;
+    min-height: 585px;
+    border-right: 1px solid #ececf1;
+    padding-top: 30px;
 }
 
 // Display Icon

@@ -1,7 +1,7 @@
 /**
  * Internal depencencies
  */
-const { DisplayIcon } = window.zoloModule;
+const { DisplayZoloIcon } = window.zoloModule;
 
 import classnames from 'classnames';
 
@@ -19,7 +19,7 @@ const Save = ({ attributes }) => {
             {socialProfiles &&
                 socialProfiles.map((profile, index) => {
                     let socialName = Object.keys(profile.icon)[0];
-                    const iconName = profile && profile.icon.slice(7, profile.icon.length);
+                    const iconName = profile && profile.text && profile.text.toLowerCase();
                     return (
                         <a
                             href={profile.link && profile.link.url}
@@ -30,7 +30,7 @@ const Save = ({ attributes }) => {
                         >
                             {socialText !== 'none' && (
                                 <span className="zolo-social-icon">
-                                    <DisplayIcon icon={profile.icon} />
+                                    <DisplayZoloIcon icon={profile.icon} />
                                 </span>
                             )}
                             {socialText !== 'iconOnly' && <span className="zolo-social-text">{profile.text}</span>}

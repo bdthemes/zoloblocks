@@ -15,31 +15,38 @@
     color: rgba(156, 156, 156);
 }
 
-.zolo-transparent-heading {
-    margin: 0;
-}
+.zolo-advanced-heading {
+    .zolo-ah-subtitle {
+        margin: 0 0 4px;
+        font-size: 16px;
+        color: #323641;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
 
-.zolo-ah-subtitle {
-    margin: 0 0 4px;
-    font-size: 16px;
-    color: #323641;
-    font-weight: 500;
-    text-transform: capitalize;
-}
-
-.zolo-ah-title {
-    font-size: 35px;
-    margin: 0;
-    font-weight: 700;
-    color: #202224;
-    text-transform: capitalize;
-
-    .zolo-ah-main-title {
+    .zolo-ah-title {
+        font-size: 35px;
+        margin: 0;
+        font-weight: 700;
+        color: #202224;
+        text-transform: capitalize;
         display: inline-block;
-        &:hover {
-            text-decoration: none;
+        z-index: 1;
+        position: relative;
+        .zolo-ah-main-title {
+            display: inline-block;
+            &:hover {
+                text-decoration: none;
+            }
         }
     }
+
+    .zolo-transparent-heading {
+        margin: 0;
+        font-size: 60px;
+        font-weight: 900;
+    }
+
 }
 
 .zolo-ah-style-3 .zolo-ah-title {

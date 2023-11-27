@@ -69,7 +69,7 @@ const {
     TypographyDropdown,
     ResCounterControl,
     AdvancedOptions,
-    IconPicker,
+    ZoloIconPicker,
     ResAlignmentControl,
 } = window.zoloModule;
 
@@ -313,11 +313,10 @@ function Inspector({ attributes, setAttributes }) {
                                 )}
 
                                 {showReadmoreIcon && (
-                                    <IconPicker
+                                    <ZoloIconPicker
                                         label={__('Read More Icon', 'zolo-blocks')}
                                         value={readMoreIcon}
                                         onChange={(readMoreIcon) => setAttributes({ readMoreIcon })}
-                                        disableDashicon={true}
                                     />
                                 )}
                             </PanelBody>

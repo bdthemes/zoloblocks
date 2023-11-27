@@ -138,7 +138,7 @@ export default function Edit(props) {
             </BlockControls>
             <div {...blockProps}>
                 <div {...innerBlocksProps} />
-                <Button icon="plus" variant="primary" onClick={() => appendBlock()}>
+                <Button icon="plus" className="zolo-appender-btn" variant="primary" onClick={() => appendBlock()}>
                     {__('Add Accordion', 'zolo-blocks')}
                 </Button>
             </div>

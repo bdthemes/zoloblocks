@@ -28,14 +28,26 @@ import {
     BLOCK_MARGIN,
     BTN_SHADOW,
     BTN_HOVER_SHADOW,
+    PT_ICON_WIDTH,
+    PT_ICON_HEIGHT,
 } from './constants';
 
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, socialBgColor, socialColor, socialBgHoverColor, socialTextColor, socialTextHoverColor, borderHoverColor } =
-        attributes;
+    const {
+        preset,
+        uniqueId,
+        socialBgColor,
+        socialColor,
+        socialBgHoverColor,
+        socialTextColor,
+        socialTextHoverColor,
+        borderHoverColor,
+        iconBgColor,
+        iconBgHoverColor,
+    } = attributes;
 
     //  button general settings
     const {
@@ -44,7 +56,17 @@ const Style = ({ props }) => {
         mobRangeStyle: buttonSizeMob,
     } = generateResRangeStyle({
         controlName: BUTTON_SIZE,
-        property: 'font-size',
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: buttonHSize,
+        tabRangeStyle: buttonHSizeTab,
+        mobRangeStyle: buttonHSizeMob,
+    } = generateResRangeStyle({
+        controlName: BUTTON_SIZE,
+        property: 'height',
         attributes,
     });
 
@@ -83,7 +105,6 @@ const Style = ({ props }) => {
         typoStylesMobile: textTypoMob,
     } = generateTypographyStyles({
         prefixConstant: TEXT_TYPOGRAPHY,
-        defaultFontSize: 14,
         attributes,
     });
 
@@ -152,6 +173,26 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // preset 3 icon
+    const {
+        desktopRangeStyle: ptIconWidth,
+        tabRangeStyle: ptIconWidthTab,
+        mobRangeStyle: ptIconWidthMob,
+    } = generateResRangeStyle({
+        controlName: PT_ICON_WIDTH,
+        property: 'width',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: ptIconHeight,
+        tabRangeStyle: ptIconHeightTab,
+        mobRangeStyle: ptIconHeightMob,
+    } = generateResRangeStyle({
+        controlName: PT_ICON_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -168,15 +209,12 @@ const Style = ({ props }) => {
 			${gapDesktop}
 			${btnRadiusDesk}
 			${normalShadow}
+
+		}
+        .${uniqueId}.wp-block-zolo-social-links .zolo-social-item svg{
 			${buttonSize}
-		}
-		.${uniqueId}.wp-block-zolo-social-links .zolo-social-item:hover {
-			border-color:${borderHoverColor};
-			${hoverShadow}
-		}
-		.${uniqueId}.wp-block-zolo-social-links .zolo-social-item:before {
-			background-color:${socialBgHoverColor};
-		}
+            ${buttonHSize}
+        }
 		.${uniqueId}.wp-block-zolo-social-links .zolo-social-text {
 			${textTypoDesk}
 		}
@@ -185,14 +223,34 @@ const Style = ({ props }) => {
                 ? `.${uniqueId}.wp-block-zolo-social-links .zolo-social-item{
 					color:${socialTextColor};
 					background:${socialBgColor};
-				}`
+				} .${uniqueId}.wp-block-zolo-social-links .zolo-social-item svg{
+                    fill:${socialTextColor};
+                }`
                 : ' '
         }
 		${
             socialColor === 'custom'
                 ? `.${uniqueId}.wp-block-zolo-social-links .zolo-social-item:hover{
 					color:${socialTextHoverColor};
+                    border-color:${borderHoverColor};
+                    background:${socialBgHoverColor};
+                    ${hoverShadow}
+				}
+                .${uniqueId}.wp-block-zolo-social-links .zolo-social-item:hover svg{
+					fill:${socialTextHoverColor};
 				}`
+                : ' '
+        }
+
+        ${
+            socialColor === 'custom' && preset === 'preset-3'
+                ? `.${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-icon{
+           background:${iconBgColor};
+           ${ptIconWidth}
+              ${ptIconHeight}
+        } .${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-item:hover .zolo-social-icon {
+            background:${iconBgHoverColor};
+         }`
                 : ' '
         }
   	`;
@@ -208,11 +266,23 @@ const Style = ({ props }) => {
 			${paddingTab}
 			${gapTablet}
 			${btnRadiusTab}
-			${buttonSizeTab}
+
 		}
+        .${uniqueId}.wp-block-zolo-social-links .zolo-social-item svg {
+			${buttonSizeTab}
+            ${buttonHSizeTab}
+        }
 		.${uniqueId}.wp-block-zolo-social-links .zolo-social-text {
 			${textTypoTab}
 		}
+        ${
+            socialColor === 'custom' && preset === 'preset-3'
+                ? `.${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-icon{
+                ${ptIconWidthTab}
+                ${ptIconHeightTab}
+        }`
+                : ' '
+        }
 	`;
 
     const mobileAllStyle = `
@@ -222,16 +292,31 @@ const Style = ({ props }) => {
 			${rowGapMobStyle}
 			grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
 		}
+
 		.${uniqueId}.wp-block-zolo-social-links .zolo-social-item {
 			${borderStylesMob}
 			${paddingMob}
 			${gapMobile}
 			${btnRadiusMob}
-			${buttonSizeMob}
 		}
+
+        .${uniqueId}.wp-block-zolo-social-links .zolo-social-item svg{ 
+            ${buttonSizeMob}
+            ${buttonHSizeMob}
+        }
+
 		.${uniqueId}.wp-block-zolo-social-links .zolo-social-text {
 			${textTypoMob}
 		}
+
+        ${
+            socialColor === 'custom' && preset === 'preset-3'
+                ? `.${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-icon{
+                ${ptIconWidthMob}
+                ${ptIconHeightMob}
+        }`
+                : ' '
+        }
   	`;
 
     return (

@@ -346,7 +346,7 @@ function Inspector(props) {
                                             return (
                                                 <div className="dnd-container no-trash" key={index}>
                                                     <SortableItem key={item.id} id={item.id}>
-                                                        <PanelBody title={item.label}>
+                                                        <PanelBody title={item.label} initialOpen={false}>
                                                             <TextControl
                                                                 label={__('Number', 'zolo-blocks')}
                                                                 value={item && item.number}

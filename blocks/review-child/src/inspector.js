@@ -22,7 +22,6 @@ const {
     HeaderTabs,
     TabPanelControl,
     AdvancedOptions,
-    IconPicker,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -228,16 +227,6 @@ function Inspector(props) {
                                             reviewerWebsiteLink: link,
                                         })
                                     }
-                                />
-                                <IconPicker
-                                    value={websiteLinkIcon}
-                                    onChange={(value) => {
-                                        setAttributes({
-                                            websiteLinkIcon: value,
-                                        });
-                                    }}
-                                    showHeading={true}
-                                    disableDashicon={true}
                                 />
                             </PanelBody>
                         )}

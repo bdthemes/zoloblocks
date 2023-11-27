@@ -1,5 +1,5 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 import classNames from 'classnames';
 
 const Save = ({ attributes }) => {
@@ -10,7 +10,6 @@ const Save = ({ attributes }) => {
         memberPhoto,
         memberName,
         addDetailPageLink,
-        showDetailPageIcon,
         memberDetailPageLink,
         showDesignation,
         memberDesignation,
@@ -31,20 +30,9 @@ const Save = ({ attributes }) => {
                 <div className="zolo-image-wrap">{memberPhoto && <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} />}</div>
                 <div className="zolo-info-wrap">
                     <div className="zolo-content">
-                        {addDetailPageLink ? (
-                            <a
-                                href={memberDetailPageLink && memberDetailPageLink.url}
-                                rel={memberDetailPageLink && memberDetailPageLink.opensInNewTab && 'noreferrer noopener'}
-                                target={memberDetailPageLink && memberDetailPageLink.opensInNewTab && '_blank'}
-                                className="zolo-name has-link"
-                            >
-                                <RichText.Content value={memberName} />
-                            </a>
-                        ) : (
-                            <div className="zolo-name">
-                                <RichText.Content value={memberName} />
-                            </div>
-                        )}
+                        <div className="zolo-name">
+                            <RichText.Content value={memberName} />
+                        </div>
                         {showDesignation && (
                             <div className="zolo-designation">
                                 <RichText.Content value={memberDesignation} />
@@ -69,21 +57,21 @@ const Save = ({ attributes }) => {
                                                 rel={profile.link && profile.link.openInNewTab && 'noreferer noopener'}
                                                 target={profile.link && profile.link.openInNewTab && '_blank'}
                                             >
-                                                <DisplayIcon icon={profile.icon} />
+                                                <DisplayZoloIcon icon={profile.icon} />
                                             </a>
                                         );
                                     })}
                             </div>
                         )}
 
-                        {addDetailPageLink && showDetailPageIcon && (
+                        {addDetailPageLink && (
                             <div className="zolo-link-btn">
                                 <a
                                     href={memberDetailPageLink && memberDetailPageLink.url}
                                     rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
                                     target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}
                                 >
-                                    <DisplayIcon icon={detailIcon} />
+                                    <DisplayZoloIcon icon={detailIcon} />
                                 </a>
                             </div>
                         )}

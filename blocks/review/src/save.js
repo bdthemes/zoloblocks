@@ -1,6 +1,6 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-const { classArrayToStr, DisplayIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
@@ -36,7 +36,7 @@ const Save = ({ attributes }) => {
                         </div>
                         {showQuoteIcon && (
                             <div className="zolo-quote-icon">
-                                <DisplayIcon icon={quoteIcon} />
+                                <DisplayZoloIcon icon={quoteIcon} />
                             </div>
                         )}
                     </div>

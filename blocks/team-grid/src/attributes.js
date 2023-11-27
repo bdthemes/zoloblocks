@@ -94,10 +94,6 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
-    showDetailPageIcon: {
-        type: 'boolean',
-        default: true,
-    },
     showDesignation: {
         type: 'boolean',
         default: true,

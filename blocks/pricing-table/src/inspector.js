@@ -756,12 +756,6 @@ const Inspector = ({ attributes, setAttributes }) => {
                             />
 
                             <CardDivider />
-                            <ResDimensionsControl
-                                label={__('Icon Padding', 'zolo-blocks')}
-                                controlName={FEATURE_ICON_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
                             <ColorControl
                                 label={__('Icon Color', 'zolo-blocks')}
                                 color={featureIconColor}
@@ -795,6 +789,12 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 min={0}
                                 max={100}
                                 step={1}
+                            />
+                            <ResDimensionsControl
+                                label={__('Icon Padding', 'zolo-blocks')}
+                                controlName={FEATURE_ICON_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
                             />
                         </PanelBody>
 

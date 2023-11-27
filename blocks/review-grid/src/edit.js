@@ -133,7 +133,7 @@ export default function Edit(props) {
                     }}
                 >
                     <Button
-                        className="components-button"
+                        className="zolo-appender-btn"
                         label={__('Add Review', 'zolo-blocks')}
                         icon="insert"
                         variant="primary"

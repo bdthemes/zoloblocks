@@ -335,7 +335,16 @@ const Style = ({ props }) => {
         mobRangeStyle: featureIconSizeMob,
     } = generateResRangeStyle({
         controlName: FEATURE_ICON_SIZE,
-        property: 'font-size',
+        property: 'width',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: featureIconHSizeDesktop,
+        tabRangeStyle: featureIconHSizeTab,
+        mobRangeStyle: featureIconHSizeMob,
+    } = generateResRangeStyle({
+        controlName: FEATURE_ICON_SIZE,
+        property: 'height',
         attributes,
     });
     const {
@@ -856,11 +865,16 @@ const Style = ({ props }) => {
       ${featureItemGapDesktop}
       ${featureMarginDesktop}
     }
+
     .${uniqueId} .zolo-features-info .zolo-check-icon{
-      ${featureIconColor ? `color: ${featureIconColor};` : ''}
       ${featureIconBgColor ? `background-color: ${featureIconBgColor};` : ''}
-      ${featureIconSizeDesktop}
       ${featureIconDeskPadding}
+    }
+
+    .${uniqueId} .zolo-features-info .zolo-check-icon svg{
+      ${featureIconColor ? `fill: ${featureIconColor};` : ''}
+      ${featureIconSizeDesktop}
+      ${featureIconHSizeDesktop}
     }
 
     .${uniqueId} .zolo-features-info .features li{
@@ -889,8 +903,12 @@ const Style = ({ props }) => {
       ${featureMarginTab}
     }
     .${uniqueId} .zolo-features-info .zolo-check-icon{
-      ${featureIconSizeTab}
+
       ${featureIconTabPadding}
+    }
+    .${uniqueId} .zolo-features-info .zolo-check-icon svg{
+      ${featureIconSizeTab}
+      ${featureIconHSizeTab}
     }
     .${uniqueId} .zolo-features-info .features li{
       ${featureTypoTab}
@@ -917,8 +935,11 @@ const Style = ({ props }) => {
       ${featureMarginMobile}
     }
     .${uniqueId} .zolo-features-info .zolo-check-icon{
-      ${featureIconSizeMob}
       ${featureIconMobPadding}
+    }
+    .${uniqueId} .zolo-features-info .zolo-check-icon svg{
+      ${featureIconSizeMob}
+      ${featureIconHSizeMob}
     }
     .${uniqueId} .zolo-features-info .features li{
       ${featureTypoMobile}

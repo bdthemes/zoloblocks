@@ -21,7 +21,7 @@ const {
     HeaderTabs,
     LinkControl,
     AdvancedOptions,
-    IconPicker,
+    ZoloIconPicker,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -82,14 +82,12 @@ function Inspector(props) {
         showDesignation,
         memberDesignation,
         addDetailPageLink,
-        showDetailPageIcon,
         memberDetailPageLink,
         showSocialProfiles,
         socialProfiles,
         showShortBio,
         memberShortBio,
         nameColor,
-        nameHoverColor,
         designationColor,
         shortBioColor,
         separatorColor,
@@ -222,18 +220,16 @@ function Inspector(props) {
                                 <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
                             </PanelBody>
                         )}
-                        {showDetailPageIcon && (
+                        {addDetailPageLink && (
                             <PanelBody
                                 title={__('Details Page Icon', 'zolo-blocks')}
                                 onToggle={(value) => value === true && setAttributes({ selectedPanel: 'dpIconStyle' })}
                                 opened={selectedPanel === 'dpIconStyle'}
                             >
-                                <IconPicker
+                                <ZoloIconPicker
                                     label={__('Select Icon', 'zolo-blocks')}
-                                    icon={detailIcon}
                                     onChange={(icon) => setAttributes({ detailIcon: icon })}
                                     value={detailIcon}
-                                    disableDashicon={true}
                                 />
                             </PanelBody>
                         )}
@@ -310,52 +306,20 @@ function Inspector(props) {
                                 typoPrefixConstant={TEAM_MEMBER_NAME_TYPOGRAPHY}
                                 requiredProps={requiredProps}
                             />
-                            {!addDetailPageLink && (
-                                <ColorControl
-                                    label={__('Color', 'zolo-blocks')}
-                                    color={nameColor}
-                                    onChange={(color) =>
-                                        setAttributes({
-                                            nameColor: color,
-                                        })
-                                    }
-                                />
-                            )}
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={nameColor}
+                                onChange={(color) =>
+                                    setAttributes({
+                                        nameColor: color,
+                                    })
+                                }
+                            />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={TEAM_NAME_MARGIN}
                                 requiredProps={requiredProps}
                             />
-                            {addDetailPageLink && (
-                                <TabPanelControl
-                                    normalComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={nameColor}
-                                                onChange={(color) =>
-                                                    setAttributes({
-                                                        nameColor: color,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Hover Color', 'zolo-blocks')}
-                                                color={nameHoverColor}
-                                                onChange={(color) =>
-                                                    setAttributes({
-                                                        nameHoverColor: color,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                />
-                            )}
                         </PanelBody>
                         {showDesignation && (
                             <PanelBody
@@ -482,25 +446,16 @@ function Inspector(props) {
                                                         })
                                                     }
                                                 />
+                                                <NormalBGControl requiredProps={requiredProps} controlName={ICONS_BG} noMainBGImg={true} />
                                                 <BoxShadowControl
                                                     controlName={ICONS_BOX_SHADOW}
                                                     requiredProps={requiredProps}
                                                     enableTransition={false}
                                                 />
-                                                <NormalBGControl requiredProps={requiredProps} controlName={ICONS_BG} noMainBGImg={true} />
                                             </>
                                         }
                                         hoverComponents={
                                             <>
-                                                <ColorControl
-                                                    label={__('Color', 'zolo-blocks')}
-                                                    color={iconHoverColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            iconHoverColor: color,
-                                                        })
-                                                    }
-                                                />
                                                 <ColorControl
                                                     label={__('Border Color', 'zolo-blocks')}
                                                     color={iconHoverBorderColor}
@@ -510,15 +465,24 @@ function Inspector(props) {
                                                         })
                                                     }
                                                 />
-                                                <BoxShadowControl
-                                                    controlName={ICONS_HOVER_BOX_SHADOW}
-                                                    requiredProps={requiredProps}
-                                                    enableTransition={false}
+                                                <ColorControl
+                                                    label={__('Color', 'zolo-blocks')}
+                                                    color={iconHoverColor}
+                                                    onChange={(color) =>
+                                                        setAttributes({
+                                                            iconHoverColor: color,
+                                                        })
+                                                    }
                                                 />
                                                 <NormalBGControl
                                                     requiredProps={requiredProps}
                                                     controlName={ICONS_HOVER_BG}
                                                     noMainBGImg={true}
+                                                />
+                                                <BoxShadowControl
+                                                    controlName={ICONS_HOVER_BOX_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
                                                 />
                                             </>
                                         }
@@ -526,7 +490,7 @@ function Inspector(props) {
                                 </PanelBody>
                             </>
                         )}
-                        {showDetailPageIcon && (
+                        {addDetailPageLink && (
                             <PanelBody
                                 title={__('Details Page Link', 'zolo-blocks')}
                                 onToggle={(value) => value === true && setAttributes({ selectedPanel: 'dpLinkStyle' })}

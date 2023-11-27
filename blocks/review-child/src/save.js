@@ -1,6 +1,6 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-const { classArrayToStr, DisplayIcon } = window.zoloModule;
+const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
@@ -19,7 +19,6 @@ const Save = ({ attributes }) => {
         reviewerWebsiteLink,
         showRating,
         rating,
-        websiteLinkIcon,
     } = attributes;
 
     return (
@@ -29,45 +28,34 @@ const Save = ({ attributes }) => {
             })}
         >
             <div className="zolo-item">
-            <div className='zolo-review-img-meta-wrap'>
-                {showPhoto && (
-                    <div className="zolo-image-wrap">
-                        {memberPhoto && <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} className="zolo-img" />}
-                        {/* {addReviewerWebsiteLink && (
-                            <div className="zolo-link-btn">
+                <div className="zolo-review-img-meta-wrap">
+                    {showPhoto && (
+                        <div className="zolo-image-wrap">
+                            {memberPhoto && <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} className="zolo-img" />}
+                        </div>
+                    )}
+                    <div className="zolo-review-meta-content">
+                        {showName &&
+                            (addReviewerWebsiteLink ? (
                                 <a
                                     href={reviewerWebsiteLink && reviewerWebsiteLink.url}
                                     rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && 'noreferer noopener'}
                                     target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && '_blank'}
+                                    className="zolo-name has-link"
                                 >
-                                    <DisplayIcon icon={websiteLinkIcon} />
+                                    <RichText.Content value={memberName} />
                                 </a>
-                            </div>
-                        )} */}
-                    </div>
-                )}
-                <div className='zolo-review-meta-content'>
-                      {showName &&
-                        (addReviewerWebsiteLink ? (
-                            <a
-                                href={reviewerWebsiteLink && reviewerWebsiteLink.url}
-                                rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && 'noreferer noopener'}
-                                target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && '_blank'}
-                                className="zolo-name has-link"
-                            >
-                                <RichText.Content value={memberName} />
-                            </a>
-                        ) : (
-                            <div className="zolo-name">
-                                <RichText.Content value={memberName} />
-                            </div>
-                        ))}
+                            ) : (
+                                <div className="zolo-name">
+                                    <RichText.Content value={memberName} />
+                                </div>
+                            ))}
                         {showDesignation && (
                             <div className="zolo-designation">
                                 <RichText.Content value={memberDesignation} />
                             </div>
                         )}
-                </div>
+                    </div>
                 </div>
 
                 <div className="zolo-info-wrap">
@@ -84,7 +72,6 @@ const Save = ({ attributes }) => {
                             </div>
                         )}
                     </div>
-
                 </div>
             </div>
         </div>

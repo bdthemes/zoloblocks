@@ -72,14 +72,20 @@
         background-color: #4fa4d6;
         padding: clamp(0.625rem, 1.5vw, 1rem);
         border-radius: 100%;
-        color: #f6f6f6;
-        width: 25px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: clamp(1rem, 2vw, 1.1rem);
+        box-sizing: content-box;
+        svg {
+            width: 24px;
+            height: 24px;
+            fill: #f6f6f6;
+            display: block;
+            box-sizing: content-box;
+        }
     }
 
     // style 1 css start here
@@ -122,16 +128,16 @@
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
     .wp-block-zolo-review {
         &.default {
             .zolo-quote-icon {
-                transform: translate(40px, -30px);
+                transform: translate(30px, -30px);
             }
         }
         &.style-1 {
             .zolo-quote-icon {
-                transform: translate(-40px, -30px);
+                transform: translate(-30px, -30px);
             }
         }
     }

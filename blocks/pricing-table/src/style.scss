@@ -81,12 +81,11 @@
                 text-transform: capitalize;
                 text-decoration: none;
                 transition: all 0.3s ease;
-
             }
             &.zolo-buy-btn {
                 background-color: var(--zoloblocks-brand-color);
                 &:hover {
-                    background-color: transparent
+                    background-color: transparent;
                 }
             }
             &.zolo-chat-btn {
@@ -129,6 +128,12 @@
         font-size: 14px;
         gap: 10px;
         color: #524f58;
+        svg {
+            width: 13px;
+            height: 13px;
+            fill: #000;
+            display: block;
+        }
     }
 
     .zolo-check-icon {

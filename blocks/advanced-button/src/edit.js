@@ -8,7 +8,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayIcon, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';

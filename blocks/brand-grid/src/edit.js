@@ -64,12 +64,14 @@ export default function Edit(props) {
                     template={[
                         ['zolo/brand-child', {}],
                         ['zolo/brand-child', {}],
+                        ['zolo/brand-child', {}],
+                        ['zolo/brand-child', {}],
                     ]}
                     renderAppender={false}
                 />
                 <div className="appender-btn">
                     <Button
-                        className="components-button"
+                        className="zolo-appender-btn"
                         label={__('Add Brand', 'zolo-blocks')}
                         icon="insert"
                         variant="primary"

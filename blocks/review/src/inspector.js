@@ -31,7 +31,7 @@ const {
     HeaderTabs,
     TabPanelControl,
     AdvancedOptions,
-    IconPicker,
+    ZoloIconPicker,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -285,15 +285,14 @@ function Inspector(props) {
                                 onToggle={(value) => value === true && setAttributes({ selectedPanel: 'quote' })}
                                 opened={selectedPanel === 'quote'}
                             >
-                                <IconPicker
+                                <ZoloIconPicker
+                                    label={__('Select Icon', 'zolo-blocks')}
                                     value={quoteIcon}
                                     onChange={(value) => {
                                         setAttributes({
                                             quoteIcon: value,
                                         });
                                     }}
-                                    showHeading={true}
-                                    disableDashicon={true}
                                 />
                             </PanelBody>
                         )}
