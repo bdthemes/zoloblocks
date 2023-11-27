@@ -3,14 +3,21 @@
     "title": "Audio Player",
     "name": "zolo/audio-player",
     "category": "zolo-blocks",
-    "keywords": ["audio player", "audio", "player"],
+    "keywords": [
+        "audio player",
+        "audio",
+        "player"
+    ],
     "description": "Play audio files in stylic ways.",
     "apiVersion": 3,
     "textdomain": "zolo-blocks",
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": ["wide", "full"]
+        "align": [
+            "wide",
+            "full"
+        ]
     },
-    "editorScript": ""
+    "editorScript": "zolo-block-editor-script"
 }

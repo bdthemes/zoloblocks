@@ -3,7 +3,10 @@
     "title": "Review Grid",
     "name": "zolo/review-grid",
     "category": "zolo-blocks",
-    "keywords": ["review", "review grid"],
+    "keywords": [
+        "review",
+        "review grid"
+    ],
     "description": "Review grid view",
     "apiVersion": 3,
     "textdomain": "zolo-blocks",
@@ -16,7 +19,10 @@
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": ["wide", "full"]
+        "align": [
+            "wide",
+            "full"
+        ]
     },
-    "editorScript": ""
+    "editorScript": "zolo-block-editor-script"
 }

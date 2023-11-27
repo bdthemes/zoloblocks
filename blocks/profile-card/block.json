@@ -3,7 +3,10 @@
     "title": "Profile Card",
     "name": "zolo/profile-card",
     "category": "zolo-blocks",
-    "keywords": ["Profile", "Card"],
+    "keywords": [
+        "Profile",
+        "Card"
+    ],
     "description": "Profile Card",
     "apiVersion": 3,
     "textdomain": "zolo-blocks",
@@ -16,7 +19,10 @@
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": ["wide", "full"]
+        "align": [
+            "wide",
+            "full"
+        ]
     },
-    "editorScript": ""
+    "editorScript": "zolo-block-editor-script"
 }

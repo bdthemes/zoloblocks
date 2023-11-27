@@ -3,7 +3,10 @@
     "title": "Advanced Heading",
     "name": "zolo/advanced-heading",
     "category": "zolo-blocks",
-    "keywords": ["heading", "advanced heading"],
+    "keywords": [
+        "heading",
+        "advanced heading"
+    ],
     "description": "Advanced heading description",
     "apiVersion": 3,
     "textdomain": "zolo-blocks",
@@ -15,8 +18,11 @@
     },
     "supports": {
         "anchor": false,
-        "align": ["wide", "full"],
+        "align": [
+            "wide",
+            "full"
+        ],
         "customClassName": false
     },
-    "editorScript": ""
+    "editorScript": "zolo-block-editor-script"
 }
