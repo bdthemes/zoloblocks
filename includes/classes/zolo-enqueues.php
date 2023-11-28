@@ -40,11 +40,11 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
          * Constructor
          */
         public function __construct() {
-
+            add_action( 'enqueue_block_assets', [$this, 'editor_assets_loader'] );
             add_action( 'enqueue_block_editor_assets', [$this, 'editor_assets_loader'] );
 
             // enqueue style for both editor and frontend
-            add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
+            add_action( 'enqueue_block_assets', [$this, 'block_assets_loader'] );
         }
 
         /**
@@ -62,7 +62,7 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
 
             //Register vendor bundle
             $dependency_path  = ZOLO_DIR_PATH . 'vendor-bundle/index.asset.php';
-            $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
+            $script_dependecy = file_exists( $dependency_path ) ? include $dependency_path : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
             ];
@@ -139,6 +139,9 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
          * @return void
          */
         public function editor_assets_loader() {
+            if ( ! is_admin() ) {
+                return;
+            }
             //Register vendor bundle
             $dependency_path  = ZOLO_DIR_PATH . 'vendor-bundle/index.asset.php';
             $script_dependecy = file_exists( $dependency_path ) ? include $dependency_path : [
@@ -147,6 +150,22 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
             ];
 
             $version = $script_dependecy['version'];
+
+            // Swiper Scripts and Styles
+            wp_register_style(
+                'zolo-swiper-editor-style',
+                ZOLO_ADMIN_URL . 'assets/css/swiper/swiper-bundle.min.css',
+                [],
+                ZOLO_VERSION
+            );
+
+            wp_register_script(
+                'zolo-swiper-editor-script',
+                ZOLO_ADMIN_URL . 'assets/js/swiper/swiper-bundle.min.js',
+                [],
+                ZOLO_VERSION,
+                true
+            );
 
             // Enqueue vendor bundle Scripts
             wp_register_script(
@@ -191,13 +210,14 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
                     'wp-element',
                     'wp-components',
                     'zolo-block-editor-dependency',
-                    'zolo-block-modules'
+                    'zolo-block-modules',
+                    'zolo-swiper-editor-script'
                 ]
             );
 
             // Enqueue Scripts
             wp_enqueue_script(
-                'zolo-block-editor',
+                'zolo-block-editor-script',
                 ZOLO_ADMIN_URL . 'build/dist/index.js',
                 $script_dependecy,
                 $version,
@@ -211,30 +231,15 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
                 [
                     'wp-edit-blocks',
                     'zolo-block-common-style',
-                    'zolo-fontawesome'
+                    'zolo-fontawesome',
+                    'zolo-swiper-editor-style'
                 ],
                 ZOLO_VERSION
             );
 
-            // Swiper Scripts and Styles
-            wp_enqueue_style(
-                'zolo-swiper-editor-style',
-                ZOLO_ADMIN_URL . 'assets/css/swiper/swiper-bundle.min.css',
-                [],
-                ZOLO_VERSION
-            );
-
-            wp_enqueue_script(
-                'zolo-swiper-editor-script',
-                ZOLO_ADMIN_URL . 'assets/js/swiper/swiper-bundle.min.js',
-                [],
-                ZOLO_VERSION,
-                true
-            );
-
             //get editor type
             global $pagenow;
-            
+
             $editor_type = 'edit-post';
             if ( $pagenow == 'site-editor.php' ) {
                 $editor_type = 'edit-site';
@@ -243,7 +248,7 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
             }
 
             //this file use for js
-            wp_localize_script( 'zolo-block-editor', 'zoloParams', [
+            wp_localize_script( 'zolo-block-editor-script', 'zoloParams', [
                 'ajaxurl'        => admin_url( 'admin-ajax.php' ),
                 'post_types'     => ZoloHelpers::get_post_types(),
                 'get_users'      => ZoloHelpers::get_all_users(),

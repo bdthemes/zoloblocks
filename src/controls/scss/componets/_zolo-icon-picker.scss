@@ -102,6 +102,9 @@
         align-items: center;
         gap: 8px;
 
+        &:nth-last-child(1) {
+            border-bottom: 1px solid #ececf1;
+        }
         svg {
             display: block;
         }
@@ -116,11 +119,15 @@
     }
 
     .zolo-custom-icon {
-        border-top: 1px solid #ececf1;
-        padding: 30px;
+        padding: 14px;
         margin: 0;
         text-align: center;
         color: #34363b;
+        background-color: #c5dfff;
+        margin: 24px;
+        border-radius: 4px;
+        font-size: 13px;
+        color: #2f2f3f;
         strong {
             color: #001feb;
         }

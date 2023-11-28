@@ -165,6 +165,7 @@ function Inspector(props) {
                                             });
                                         }}
                                     />
+
                                     {iconType !== 'iconOnly' && (
                                         <IconicBtnGroup
                                             label={__('Position', 'zolo-blocks')}
@@ -177,23 +178,25 @@ function Inspector(props) {
                                             options={ICON_POSITIONS}
                                         />
                                     )}
-                                    <ResRangeControl
-                                        label={__('Icon Size', 'zolo-blocks')}
-                                        controlName={ICON_SIZE}
-                                        requiredProps={requiredProps}
-                                        min={0}
-                                        max={100}
-                                        step={1}
-                                    />
-                                    {iconType !== 'iconOnly' && (
-                                        <ResRangeControl
-                                            label={__('Gap', 'zolo-blocks')}
-                                            controlName={ICON_TEXT_SPACING}
-                                            requiredProps={requiredProps}
-                                            min={0}
-                                            max={100}
-                                            step={1}
-                                        />
+                                    {iconType !== 'none' && (
+                                        <Fragment>
+                                            <ResRangeControl
+                                                label={__('Icon Size', 'zolo-blocks')}
+                                                controlName={ICON_SIZE}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={100}
+                                                step={1}
+                                            />
+                                            <ResRangeControl
+                                                label={__('Gap', 'zolo-blocks')}
+                                                controlName={ICON_TEXT_SPACING}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={100}
+                                                step={1}
+                                            />
+                                        </Fragment>
                                     )}
                                 </Fragment>
                             )}
@@ -206,7 +209,7 @@ function Inspector(props) {
                             <PanelBody
                                 title={__('Style Setting', 'zolo-blocks')}
                                 onToggle={(value) => value === true && setAttributes({ selectedPanel: 'styleSetting' })}
-                                opened={selectedPanel === 'styleSetting'}
+                                opened={selectedStylePanel === 'styleSetting'}
                             >
                                 {preset === 'button-1' && (
                                     <Fragment>
@@ -453,8 +456,8 @@ function Inspector(props) {
                         )}
                         <PanelBody
                             title={__('Button', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'styleSetting' })}
-                            opened={selectedStylePanel === 'styleSetting'}
+                            onToggle={(value) => value === true && setAttributes({ selectedStylePanel: 'button_style' })}
+                            opened={selectedStylePanel === 'button_style' || selectedStylePanel === 'first'}
                         >
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
@@ -532,8 +535,8 @@ function Inspector(props) {
                         {iconType !== 'none' && (
                             <PanelBody
                                 title={__('Icon', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'iconStyle' })}
-                                opened={selectedStylePanel === 'iconStyle'}
+                                onToggle={(value) => value === true && setAttributes({ selectedStylePanel: 'icon_style' })}
+                                opened={selectedStylePanel === 'icon_style'}
                             >
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}

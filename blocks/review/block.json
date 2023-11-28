@@ -3,7 +3,10 @@
     "title": "Review",
     "name": "zolo/review",
     "category": "zolo-blocks",
-    "keywords": ["Rating", "Review"],
+    "keywords": [
+        "Rating",
+        "Review"
+    ],
     "description": "Single review block",
     "apiVersion": 3,
     "textdomain": "zolo-blocks",
@@ -16,7 +19,10 @@
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": ["wide", "full"]
+        "align": [
+            "wide",
+            "full"
+        ]
     },
-    "editorScript": ""
+    "editorScript": "zolo-block-editor-script"
 }

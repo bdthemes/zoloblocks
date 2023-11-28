@@ -3,7 +3,10 @@
     "title": "star Rating",
     "name": "zolo/star-rating",
     "category": "zolo-blocks",
-    "keywords": ["rating", "star rating"],
+    "keywords": [
+        "rating",
+        "star rating"
+    ],
     "description": "Show star rating",
     "apiVersion": 3,
     "textdomain": "zolo-blocks",
@@ -16,7 +19,10 @@
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": ["wide", "full"]
+        "align": [
+            "wide",
+            "full"
+        ]
     },
-    "editorScript": ""
+    "editorScript": "zolo-block-editor-script"
 }
