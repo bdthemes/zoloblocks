@@ -2,146 +2,167 @@ import { BaseControl, PanelBody, SelectControl, TextControl, __experimentalNumbe
 import { __ } from '@wordpress/i18n';
 import Select2 from 'react-select';
 import { SORT_ORDER, ORDER_BY, PRINT_TAXONOMY } from '../../global/constants';
+import Select2AjaxControl from './../select2-ajax-control';
 
 const QueryControl = ({ attributes, setAttributes }) => {
-    const { postQuery } = attributes;
+  const { postQuery } = attributes;
 
-    const allTermList = zoloParams.all_term_list;
-    const allTaxonomyList = zoloParams.get_taxonomies;
+  const allTermList = zoloParams.all_term_list;
+  const allTaxonomyList = zoloParams.get_taxonomies;
 
-    let tpgAllTaxonomies = new Set();
-    for (let tax in allTaxonomyList) {
-        let value = allTaxonomyList[tax];
-        if (postQuery && postQuery.postType && postQuery.postType === value.object_type[0]) {
-            tpgAllTaxonomies.add({
-                value: value.name,
-                name: value.label,
-            });
-        }
+  let tpgAllTaxonomies = new Set();
+  for (let tax in allTaxonomyList) {
+    let value = allTaxonomyList[tax];
+    if (postQuery && postQuery.postType && postQuery.postType === value.object_type[0]) {
+      tpgAllTaxonomies.add({
+        value: value.name,
+        name: value.label,
+      });
     }
-    tpgAllTaxonomies = [...tpgAllTaxonomies];
+  }
+  tpgAllTaxonomies = [...tpgAllTaxonomies];
 
-    const changeTaxonomy = (terms, name) => {
-        let postTaxonomies = {
-            ...postQuery.postTaxonomies,
-            [name]: {
-                name: name,
-                options: terms,
-            },
-        };
-        setAttributes({ postQuery: { ...postQuery, postTaxonomies } });
+  const changeTaxonomy = (terms, name) => {
+    let postTaxonomies = {
+      ...postQuery.postTaxonomies,
+      [name]: {
+        name: name,
+        options: terms,
+      },
     };
+    setAttributes({ postQuery: { ...postQuery, postTaxonomies } });
+  };
 
-    //get post types
-    const PostType = [];
-    let getPostType = zoloParams.post_types;
-    for (let p in getPostType) {
-        PostType.push({ value: p, label: __(getPostType[p], 'zolo-blocks') });
-    }
-    const POSTS_TYPE = PostType;
-    //get authors
-    const AUTHOR_LISTS = zoloParams.get_users;
+  //get post types
+  const PostType = [];
+  let getPostType = zoloParams.post_types;
+  for (let p in getPostType) {
+    PostType.push({ value: p, label: __(getPostType[p], 'zolo-blocks') });
+  }
+  const POSTS_TYPE = PostType;
+  //get authors
+  const AUTHOR_LISTS = zoloParams.get_users;
 
-    return (
-        <>
-            <SelectControl
-                label={__('Source', 'zolo-blocks')}
-                value={postQuery.postType}
-                options={POSTS_TYPE}
-                onChange={(postType) => setAttributes({ postQuery: { ...postQuery, postType } })}
-            />
+  return (
+    <>
+      <SelectControl
+        label={__('Source', 'zolo-blocks')}
+        value={postQuery.postType}
+        options={POSTS_TYPE}
+        onChange={(postType) => setAttributes({ postQuery: { ...postQuery, postType } })}
+      />
 
-            <BaseControl label={__('By Author', 'zolo-block')}>
-                <Select2
-                    classNamePrefix="zolo-select"
-                    options={AUTHOR_LISTS}
-                    value={postQuery.postAuthors}
-                    onChange={(postAuthors) => setAttributes({ postQuery: { ...postQuery, postAuthors } })}
-                    isMulti={true}
-                    closeMenuOnSelect={false}
-                />
-            </BaseControl>
+      <BaseControl label={__('By Author', 'zolo-block')}>
+        <Select2
+          classNamePrefix="zolo-select"
+          options={AUTHOR_LISTS}
+          value={postQuery.postAuthors}
+          onChange={(postAuthors) => setAttributes({ postQuery: { ...postQuery, postAuthors } })}
+          isMulti={true}
+          closeMenuOnSelect={false}
+        />
+      </BaseControl>
 
-            <TextControl
-                label={__('Include Only', 'zolo-blocks')}
-                value={postQuery.postInclude}
-                onChange={(postInclude) => setAttributes({ postQuery: { ...postQuery, postInclude } })}
-                autocomplete="off"
-            />
+      {/* <TextControl
+        label={__('Include Only', 'zolo-blocks')}
+        value={postQuery.postInclude}
+        onChange={(postInclude) => setAttributes({ postQuery: { ...postQuery, postInclude } })}
+        autocomplete="off"
+      /> */}
 
-            <TextControl
-                label={__('Exclude', 'zolo-blocks')}
-                autocomplete="off"
-                value={postQuery.postExclude}
-                onChange={(postExclude) => {
-                    setAttributes({ postQuery: { ...postQuery, postExclude } });
-                }}
-            />
+      <Select2AjaxControl
+        label={__('Include Only', 'zolo-blocks')}
+        placeholder={__('Search...', 'zolo-blocks')}
+        sourceName='post_type'
+        sourceType='post'
+        isMulti={true}
+        value={postQuery?.postInclude || []}
+        onChange={(postInclude) => setAttributes({ postQuery: { ...postQuery, postInclude } })}
+      />
 
-            {tpgAllTaxonomies.map((tax, index) => (
-                <BaseControl label={__('By ', 'zolo-blocks') + tax.name} key={index}>
-                    <Select2
-                        classNamePrefix="zolo-select"
-                        options={PRINT_TAXONOMY(allTermList[tax.value])}
-                        value={
-                            Object.keys(postQuery.postTaxonomies).length > 0
-                                ? postQuery.postTaxonomies[tax.value] !== undefined
-                                    ? postQuery.postTaxonomies[tax.value].options
-                                    : []
-                                : []
-                        }
-                        onChange={(value) => changeTaxonomy(value, tax.value)}
-                        isMulti={true}
-                        closeMenuOnSelect={false}
-                    />
-                </BaseControl>
-            ))}
+      {/* <TextControl
+        label={__('Exclude', 'zolo-blocks')}
+        autocomplete="off"
+        value={postQuery.postExclude}
+        onChange={(postExclude) => {
+          setAttributes({ postQuery: { ...postQuery, postExclude } });
+        }}
+      /> */}
 
-            <NumberControl
-                isShiftStepEnabled
-                label={__('Post Per Page', 'zolo-blocks')}
-                max={100}
-                min={-1}
-                value={postQuery.postPerPage}
-                onChange={(postPerPage) => {
-                    setAttributes({ postQuery: { ...postQuery, postPerPage } });
-                }}
-                shiftStep={10}
-                step={1}
-            />
+      <Select2AjaxControl
+        label={__('Exclude', 'zolo-blocks')}
+        placeholder={__('Search...', 'zolo-blocks')}
+        sourceName='post_type'
+        sourceType='post'
+        isMulti={true}
+        value={postQuery?.postExclude || []}
+        onChange={(postExclude) => setAttributes({ postQuery: { ...postQuery, postExclude } })}
+      />
 
-            <NumberControl
-                isShiftStepEnabled
-                label={__('Offset', 'zolo-blocks')}
-                max={100}
-                min={0}
-                value={postQuery.postOffset}
-                onChange={(postOffset) => {
-                    setAttributes({ postQuery: { ...postQuery, postOffset } });
-                }}
-                shiftStep={10}
-                step={1}
-            />
+      {tpgAllTaxonomies.map((tax, index) => (
+        <BaseControl label={__('By ', 'zolo-blocks') + tax.name} key={index}>
+          <Select2
+            classNamePrefix="zolo-select"
+            options={PRINT_TAXONOMY(allTermList[tax.value])}
+            value={
+              Object.keys(postQuery.postTaxonomies).length > 0
+                ? postQuery.postTaxonomies[tax.value] !== undefined
+                  ? postQuery.postTaxonomies[tax.value].options
+                  : []
+                : []
+            }
+            onChange={(value) => changeTaxonomy(value, tax.value)}
+            isMulti={true}
+            closeMenuOnSelect={false}
+          />
+        </BaseControl>
+      ))}
 
-            <SelectControl
-                label={__('Order By', 'zolo-blocks')}
-                value={postQuery.postOrderby}
-                onChange={(postOrderby) => {
-                    setAttributes({ postQuery: { ...postQuery, postOrderby } });
-                }}
-                options={ORDER_BY}
-            />
+      <NumberControl
+        isShiftStepEnabled
+        label={__('Post Per Page', 'zolo-blocks')}
+        max={100}
+        min={-1}
+        value={postQuery.postPerPage}
+        onChange={(postPerPage) => {
+          setAttributes({ postQuery: { ...postQuery, postPerPage } });
+        }}
+        shiftStep={10}
+        step={1}
+      />
 
-            <SelectControl
-                label={__('Sort Order', 'zolo-blocks')}
-                value={postQuery.postOrder}
-                onChange={(postOrder) => {
-                    setAttributes({ postQuery: { ...postQuery, postOrder } });
-                }}
-                options={SORT_ORDER}
-            />
-        </>
-    );
+      <NumberControl
+        isShiftStepEnabled
+        label={__('Offset', 'zolo-blocks')}
+        max={100}
+        min={0}
+        value={postQuery.postOffset}
+        onChange={(postOffset) => {
+          setAttributes({ postQuery: { ...postQuery, postOffset } });
+        }}
+        shiftStep={10}
+        step={1}
+      />
+
+      <SelectControl
+        label={__('Order By', 'zolo-blocks')}
+        value={postQuery.postOrderby}
+        onChange={(postOrderby) => {
+          setAttributes({ postQuery: { ...postQuery, postOrderby } });
+        }}
+        options={ORDER_BY}
+      />
+
+      <SelectControl
+        label={__('Sort Order', 'zolo-blocks')}
+        value={postQuery.postOrder}
+        onChange={(postOrder) => {
+          setAttributes({ postQuery: { ...postQuery, postOrder } });
+        }}
+        options={SORT_ORDER}
+      />
+    </>
+  );
 };
 
 export default QueryControl;

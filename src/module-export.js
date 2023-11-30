@@ -30,6 +30,7 @@ export { default as QueryControl } from './controls/query-control';
 export { default as Pagination } from './controls/pagination';
 export { AdvancedOptions } from './global/components/advancedOptions';
 export { GlobalStyleHanlder } from './global/components/globalStyleHandler';
+export { default as Select2AjaxControl } from './controls/select2-ajax-control';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';

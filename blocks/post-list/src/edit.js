@@ -26,8 +26,8 @@ export default function Edit(props) {
       setAttributes({
         postQuery: {
           postType: 'post',
-          postInclude: '',
-          postExclude: '',
+          postInclude: [],
+          postExclude: [],
           postAuthors: [],
           postTaxonomies: {},
           postPerPage: 6,
