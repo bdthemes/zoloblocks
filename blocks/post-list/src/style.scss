@@ -51,7 +51,7 @@
                 margin: 0 0 18px;
                 a {
                     padding: 6px 12px;
-                    color: #000;
+                    color: var(--zoloblocks-brand-button-color);
                     border-radius: var(--zoloblocks-button-border-radius);
                     font-size: 12px;
                     background-color: var(--zoloblocks-brand-color);
@@ -126,6 +126,7 @@
             position: relative;
             &:before {
                 content: counter(number-count);
+                color: var(--zoloblocks-brand-button-color);
                 background-color: var(--zoloblocks-brand-color);
                 display: inline-flex;
                 align-items: center;
@@ -189,7 +190,8 @@
     &.zolo-post-style-3,
     &.zolo-post-style-4,
     &.zolo-post-style-5 {
-        background-color: #f8f8f8;
+        background-color: var(--zoloblocks-item-bg-color);
+        border: 1px solid var(--zoloblocks-item-border-color);
         padding-bottom: clamp(1.563rem, 4vw, 1.875rem);
         border-bottom-left-radius: var(--zolo-item-border-radius);
         border-bottom-right-radius: var(--zolo-item-border-radius);

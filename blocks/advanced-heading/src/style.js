@@ -22,7 +22,6 @@ const {
 
 //block constants
 import {
-    SEPARATOR_ALIGN,
     SEPARATOR_HEIGHT,
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
@@ -77,6 +76,7 @@ export default function Style({ props }) {
         tptBgColor,
         tptOpacity,
         separatorColor,
+        presetBg,
     } = attributes;
 
     //title style generate
@@ -156,16 +156,6 @@ export default function Style({ props }) {
     });
 
     //separator style generate
-    const {
-        desktopAlignStyle: separatorDeskAlign,
-        tabAlignStyle: separatorTabAlign,
-        mobAlignStyle: separatorMobAlign,
-    } = generateResAlignmentStyle({
-        controlName: SEPARATOR_ALIGN,
-        property: 'justify-content',
-        attributes,
-    });
-
     const {
         desktopRangeStyle: separatorWidthDesktop,
         tabRangeStyle: separatorWidthTab,
@@ -489,6 +479,10 @@ export default function Style({ props }) {
       ${titleShadow}
     }
 
+    .zolo-block-wrapper.${uniqueId}.zolo-ah-style-3 .zolo-ah-title {
+      background-image: url(${presetBg ? presetBg.url : ''});
+    }
+
     .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title.has-link {
       ${titleColor ? `color: ${titleColor};` : ''}
     }
@@ -528,9 +522,6 @@ export default function Style({ props }) {
 
     // separator styles css in strings
     const separatorStylesDesktop = `
-    .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper{
-      ${separatorDeskAlign}
-    }
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       border-style: none none solid;
       ${separatorColor ? `border-color: ${separatorColor};` : ''}
@@ -541,9 +532,6 @@ export default function Style({ props }) {
 `;
 
     const separatorStylesTab = `
-    .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper{
-      ${separatorTabAlign}
-    }
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       ${separatorHeightTab}
       ${separatorWidthTab}
@@ -552,9 +540,6 @@ export default function Style({ props }) {
 `;
 
     const separatorStylesMobile = `
-    .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper{
-      ${separatorMobAlign}
-    }
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       ${separatorHeightMob}
       ${separatorWidthMob}

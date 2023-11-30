@@ -4,8 +4,10 @@
     overflow: hidden;
     .zolo-block-wrapper {
         border-radius: var(--zolo-item-border-radius);
-        border: 1px solid #ddd;
+        // border: 1px solid #ddd;
         position: relative;
+        background-color: var(--zoloblocks-item-bg-color);
+        border: 1px solid var(--zoloblocks-item-border-color);
     }
     .zolo-head-content {
         padding: clamp(1.5rem, 4vw, 2.5rem);
@@ -74,7 +76,7 @@
                 padding: 12px;
                 font-size: 14px;
                 border-radius: 5px;
-                color: #000;
+                color: var(--zoloblocks-brand-button-color);
                 border-width: 2px;
                 border-style: solid;
                 border-color: var(--zoloblocks-brand-color);
@@ -85,11 +87,14 @@
             &.zolo-buy-btn {
                 background-color: var(--zoloblocks-brand-color);
                 &:hover {
+                    color: var(--zoloblocks-brand-text-color);
                     background-color: transparent;
                 }
             }
             &.zolo-chat-btn {
+                color: var(--zoloblocks-brand-text-color);
                 &:hover {
+                    color: var(--zoloblocks-brand-button-color);
                     background-color: var(--zoloblocks-brand-color);
                 }
             }
@@ -131,7 +136,7 @@
         svg {
             width: 13px;
             height: 13px;
-            fill: #000;
+            fill: var(--zoloblocks-brand-button-color);
             display: block;
         }
     }
@@ -152,7 +157,7 @@
         position: absolute;
         top: 0;
         margin: 20px;
-        color: #000;
+        color: var(--zoloblocks-brand-button-color);
         font-size: 12px;
         text-transform: capitalize;
         background-color: var(--zoloblocks-brand-color);

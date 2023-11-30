@@ -13,6 +13,7 @@ const {
     BoxShadowControl,
     TypographyDropdown,
     AdvancedOptions,
+    ZoloPanelBody,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -109,11 +110,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody
-                            title={__('General', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
-                            opened={selectedPanel === 'general'}
-                        >
+                        <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
@@ -130,12 +127,8 @@ function Inspector(props) {
                                 }
                                 options={ICON_STATUS}
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Grid', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'grid' })}
-                            opened={selectedPanel === 'grid'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
                             <ResCounterControl
                                 label={__('Column Number', 'zolo-blocks')}
                                 controlName={COLUMN_COUNT}
@@ -159,23 +152,15 @@ function Inspector(props) {
                                 max={100}
                                 step={1}
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Social Profiles', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'socialProfiles' })}
-                            opened={selectedPanel === 'socialProfiles'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Social Profiles', 'zolo-blocks')} panelProps={props}>
                             <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
-                        </PanelBody>
+                        </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                        <PanelBody
-                            title={__('Social Icons', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'socialIconsStyle' })}
-                            opened={selectedPanel === 'socialIconsStyle'}
-                        >
+                        <ZoloPanelBody title={__('Social Icons', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             {socialText !== 'iconOnly' && (
                                 <TypographyDropdown
                                     label={__('Text Typography', 'zolo-blocks')}
@@ -331,7 +316,7 @@ function Inspector(props) {
                                     }
                                 />
                             )}
-                        </PanelBody>
+                        </ZoloPanelBody>
                     </>
                 }
                 advancedTab={

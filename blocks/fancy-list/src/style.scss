@@ -2,7 +2,8 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    background-color: #f2f2f3;
+    background-color: var(--zoloblocks-item-bg-color);
+    border: 1px solid var(--zoloblocks-item-border-color);
     justify-content: space-between;
     padding: 30px;
     box-sizing: border-box;

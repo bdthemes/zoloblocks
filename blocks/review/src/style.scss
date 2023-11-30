@@ -69,7 +69,7 @@
     .zolo-quote-icon {
         position: absolute;
         bottom: 0;
-        background-color: #4fa4d6;
+        background-color: var(--zoloblocks-brand-color);
         padding: clamp(0.625rem, 1.5vw, 1rem);
         border-radius: 100%;
         width: 30px;

@@ -1,6 +1,6 @@
 //wrodpress dependencies
-import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, SelectControl, TextControl, ToggleControl, ColorPalette } from '@wordpress/components';
+import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
+import { Button, RangeControl, SelectControl, TextControl, ToggleControl, BaseControl } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
@@ -20,6 +20,8 @@ const {
     IconicBtnGroup,
     AdvancedOptions,
     TabPanelControl,
+    ZoloPanelBody,
+    ImageAvatar,
 } = window.zoloModule;
 
 //block attributes
@@ -27,7 +29,6 @@ import objAttributes from './attributes';
 
 //block constants
 import {
-    SEPARATOR_ALIGN,
     SEPARATOR_HEIGHT,
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
@@ -64,7 +65,8 @@ import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from '.
 
 import { TEXT_ALIGN_OPTIONS, DEFAULT_ALIGNS, FLEX_HORIZONTAL_OPTIONS, HEADING } from '../../../src/global/constants';
 
-const Inspector = ({ attributes, setAttributes }) => {
+const Inspector = (props) => {
+    const { attributes, setAttributes } = props;
     const {
         resMode,
         //settings
@@ -89,6 +91,7 @@ const Inspector = ({ attributes, setAttributes }) => {
         titleColor,
         titleBgColor,
         titleHoverColor,
+        presetBg,
 
         subTitleColor,
         subTitleBgColor,
@@ -156,11 +159,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody
-                            title={__('General', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
-                            opened={selectedPanel === 'general'}
-                        >
+                        <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={styles}
@@ -193,12 +192,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Content', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'content' })}
-                            opened={selectedPanel === 'content'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             <TextControl
                                 label={__('Main Heading', 'zolo-blocks')}
                                 value={titleText}
@@ -218,13 +213,9 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     help={__('http://your-link.com', 'zolo-blocks')}
                                 />
                             )}
-                        </PanelBody>
+                        </ZoloPanelBody>
                         {showSubTitle && (
-                            <PanelBody
-                                title={__('Sub Heading', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'subHeading' })}
-                                opened={selectedPanel === 'subHeading'}
-                            >
+                            <ZoloPanelBody title={__('Sub Heading', 'zolo-blocks')} panelProps={props}>
                                 <TextControl
                                     label={__('Text', 'zolo-blocks')}
                                     value={subTitleText}
@@ -246,15 +237,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     }
                                     options={ST_POSITION}
                                 />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
 
                         {showSeparator && (
-                            <PanelBody
-                                title={__('Separator', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'separator' })}
-                                opened={selectedPanel === 'separator'}
-                            >
+                            <ZoloPanelBody title={__('Separator', 'zolo-blocks')} panelProps={props}>
                                 <IconicBtnGroup
                                     label={__('Separator Position', 'zolo-blocks')}
                                     value={separatorPosition}
@@ -265,20 +252,10 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     }
                                     options={ST_POSITION}
                                 />
-                                <ResAlignmentControl
-                                    label={__('Separator Alignmet', 'zolo-blocks')}
-                                    controlName={SEPARATOR_ALIGN}
-                                    requiredProps={requiredProps}
-                                    alignOptions={FLEX_HORIZONTAL_OPTIONS}
-                                />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
                         {showTransparentTitle && (
-                            <PanelBody
-                                title={__('Transparent Heading', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'transparentHeading' })}
-                                opened={selectedPanel === 'transparentHeading'}
-                            >
+                            <ZoloPanelBody title={__('Transparent Heading', 'zolo-blocks')} panelProps={props}>
                                 <TextControl
                                     label={__('Text', 'zolo-blocks')}
                                     value={transparentTitleText}
@@ -348,17 +325,13 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         })
                                     }
                                 />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
                     </>
                 }
                 styleTab={
                     <>
-                        <PanelBody
-                            title={__('Heading', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'headingStyle' })}
-                            opened={selectedPanel === 'headingStyle'}
-                        >
+                        <ZoloPanelBody title={__('Heading', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <TypographyDropdown label="Typography" typoPrefixConstant={TITLE_TYPOGRAPHY} requiredProps={requiredProps} />
                             {!enableTitleLink && (
                                 <>
@@ -424,6 +397,52 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 />
                             )}
 
+                            <BaseControl label={__('Background Image', 'zolo-blocks')}>
+                                {presetBg ? (
+                                    <ImageAvatar
+                                        imageUrl={presetBg && presetBg.url}
+                                        onDeleteImage={() =>
+                                            setAttributes({
+                                                presetBg: null,
+                                            })
+                                        }
+                                        imageId={presetBg && presetBg.id}
+                                        onEditImage={(url, id) => {
+                                            setAttributes({
+                                                presetBg: {
+                                                    url,
+                                                    id,
+                                                },
+                                            });
+                                        }}
+                                    />
+                                ) : (
+                                    <MediaUpload
+                                        onSelect={(media) => {
+                                            setAttributes({
+                                                presetBg: media,
+                                            });
+                                        }}
+                                        allowedTypes={['image']}
+                                        value={presetBg && presetBg.id}
+                                        render={({ open }) => (
+                                            <Button className="zolo-image-upload-btn" onClick={open}>
+                                                <svg
+                                                    width="24"
+                                                    height="24"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fillRule="evenodd"
+                                                    clipRule="evenodd"
+                                                >
+                                                    <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
+                                                </svg>
+                                                {__(' Upload', 'zolo-blocks')}
+                                            </Button>
+                                        )}
+                                    />
+                                )}
+                            </BaseControl>
+
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={TITLE_BORDER} requiredProps={requiredProps} />
 
                             <ResDimensionsControl
@@ -448,14 +467,10 @@ const Inspector = ({ attributes, setAttributes }) => {
                             <BoxShadowControl controlName={TITLE_SHADOW} requiredProps={requiredProps} />
                             <TextShadowControl controlName={TITLE_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <TextStrokeControl controlName={TITLE_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
-                        </PanelBody>
+                        </ZoloPanelBody>
 
                         {showSubTitle && (
-                            <PanelBody
-                                title={__('Sub Heading', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'subheadingStyle' })}
-                                opened={selectedPanel === 'subheadingStyle'}
-                            >
+                            <ZoloPanelBody title={__('Sub Heading', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label="Typography"
                                     typoPrefixConstant={SUBTITLE_TYPOGRAPHY}
@@ -517,15 +532,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     requiredProps={requiredProps}
                                     enableTransition={false}
                                 />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
 
                         {showSeparator && (
-                            <PanelBody
-                                title={__('Separator', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'separatorStyle' })}
-                                opened={selectedPanel === 'separatorStyle'}
-                            >
+                            <ZoloPanelBody title={__('Separator', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <ColorControl
                                     label={__('Color', 'zolo-blocks')}
                                     color={separatorColor}
@@ -559,15 +570,11 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     max={50}
                                     step={1}
                                 />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
 
                         {showTransparentTitle && (
-                            <PanelBody
-                                title={__('Advanced Heading', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'advancedHeadingStyle' })}
-                                opened={selectedPanel === 'advancedHeadingStyle'}
-                            >
+                            <ZoloPanelBody title={__('Advanced Heading', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label="Typography"
                                     typoPrefixConstant={TRANSPARENT_TYPOGRAPHY}
@@ -630,7 +637,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                     max={1}
                                     step={0.01}
                                 />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
                     </>
                 }

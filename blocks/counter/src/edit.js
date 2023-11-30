@@ -9,7 +9,7 @@ import CountUp from 'react-countup';
 /**
  * Internal depencencies
  */
-const { DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -90,7 +90,7 @@ export default function Edit(props) {
                         {hideIcon && (
                             <div class="zolo-counter-icon">
                                 {iconType === 'icon' ? (
-                                    <DisplayIcon icon={counterIcon} />
+                                    <DisplayZoloIcon icon={counterIcon} />
                                 ) : (
                                     iconTypeImage && <img src={iconTypeImage.url} alt={iconTypeImage.alt || titleText} />
                                 )}

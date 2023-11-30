@@ -24,6 +24,7 @@ const {
     LinkControl,
     IconicBtnGroup,
     AdvancedOptions,
+    ZoloPanelBody,
 } = window.zoloModule;
 
 import { HEADING, TEXT_ALIGN_OPTIONS, ICON_STATUS } from '../../../src/global/constants';
@@ -89,11 +90,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody
-                            title={__('General', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
-                            opened={selectedPanel === 'general'}
-                        >
+                        <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
@@ -125,12 +122,8 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Content', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'content' })}
-                            opened={selectedPanel === 'content'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             {showTitle && (
                                 <>
                                     <TextControl
@@ -207,17 +200,13 @@ function Inspector(props) {
                                     )}
                                 </Fragment>
                             )}
-                        </PanelBody>
+                        </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
                         {preset !== '' && (
-                            <PanelBody
-                                title={__('Preset', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'presetStyle' })}
-                                opened={selectedPanel === 'presetStyle'}
-                            >
+                            <ZoloPanelBody title={__('Preset', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                                 <ToggleControl
                                     label={__('Reserve item position', 'zolo-blocks')}
                                     checked={reversePosition}
@@ -235,15 +224,11 @@ function Inspector(props) {
                                     max={100}
                                     step={1}
                                 />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
                         {showTitle && (
                             <>
-                                <PanelBody
-                                    title={__('Title', 'zolo-blocks')}
-                                    onToggle={(value) => value === true && setAttributes({ selectedPanel: 'titleStyle' })}
-                                    opened={selectedPanel === 'titleStyle'}
-                                >
+                                <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                     <ColorControl
                                         label={__('Color', 'zolo-blocks')}
                                         color={titleColor}
@@ -264,16 +249,12 @@ function Inspector(props) {
                                         requiredProps={requiredProps}
                                         forBorderRadius={false}
                                     />
-                                </PanelBody>
+                                </ZoloPanelBody>
                             </>
                         )}
                         {showDescription && (
                             <>
-                                <PanelBody
-                                    title={__('Description', 'zolo-blocks')}
-                                    onToggle={(value) => value === true && setAttributes({ selectedPanel: 'descriptionStyle' })}
-                                    opened={selectedPanel === 'descriptionStyle'}
-                                >
+                                <ZoloPanelBody title={__('Description', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                     <ColorControl
                                         label={__('Color', 'zolo-blocks')}
                                         color={descriptionColor}
@@ -294,14 +275,10 @@ function Inspector(props) {
                                         requiredProps={requiredProps}
                                         forBorderRadius={false}
                                     />
-                                </PanelBody>
+                                </ZoloPanelBody>
                             </>
                         )}
-                        <PanelBody
-                            title={__('Button', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'btnStyle' })}
-                            opened={selectedPanel === 'btnStyle'}
-                        >
+                        <ZoloPanelBody title={__('Button', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             {iconType !== 'none' && (
                                 <>
                                     <ResRangeControl
@@ -389,7 +366,7 @@ function Inspector(props) {
                                     </>
                                 }
                             />
-                        </PanelBody>
+                        </ZoloPanelBody>
                     </>
                 }
                 advancedTab={

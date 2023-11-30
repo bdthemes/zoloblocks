@@ -24,11 +24,11 @@
         padding: 4px 13px;
         font-size: 11px;
         border-radius: var(--zoloblocks-button-border-radius);
-        color: #000;
+        color: #f8f8f8;
         font-weight: 700;
         display: inline-block;
         text-transform: uppercase;
-        border: 1px solid #8e8f8f;
+        border: 1px solid #cccccc;
     }
 
     .zb-profile-name {
@@ -102,6 +102,7 @@
         transition: all 0.3s ease;
         margin: 0 0 20px;
         &:hover {
+            color: var(--zoloblocks-brand-button-color);
             border-color: var(--zoloblocks-brand-color);
             background-color: var(--zoloblocks-brand-color);
         }
@@ -119,12 +120,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            box-sizing: content-box;
             &:hover {
+                color: var(--zoloblocks-brand-button-color);
                 border-color: var(--zoloblocks-brand-color);
                 background-color: var(--zoloblocks-brand-color);
+                svg {
+                    fill: var(--zoloblocks-brand-button-color);
+                }
             }
-            i {
-                font-size: 14px;
+            svg {
+                width: 16px;
+                height: 16px;
+                fill: #000;
+                display: block;
             }
         }
     }
@@ -146,7 +155,8 @@
 
     .zb-profile-bottom-content {
         margin-top: -30px;
-        background-color: rgba(243, 255, 252, 0.992);
+        background-color: var(--zoloblocks-item-bg-color);
+        border: 1px solid var(--zoloblocks-item-border-color);
         border-radius: 30px 30px var(--zolo-item-border-radius) var(--zolo-item-border-radius);
         display: flex;
         flex-direction: column;

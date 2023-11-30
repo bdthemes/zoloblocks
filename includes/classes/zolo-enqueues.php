@@ -120,15 +120,15 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
             }
 
             // accordion Scripts and Styles
-            if ( ! is_admin() && has_block( 'zolo/accordion' ) ) {
+            // if ( ! is_admin() && has_block( 'zolo/accordion' ) ) {
                 wp_enqueue_script(
-                    'zolo-accordion-editor-script',
-                    ZOLO_ADMIN_URL . 'assets/js/accordion/accordion.js',
+                    'zolo-accordion-script',
+                    ZOLO_ADMIN_URL . 'assets/js/accordion/accordion.min.js',
                     [],
                     ZOLO_VERSION,
                     true
                 );
-            }
+            // }
         }
 
         /**
@@ -256,7 +256,7 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
                 'all_term_list'  => ZoloHelpers::get_all_taxonomy(),
                 'zolo_nonce'     => wp_create_nonce( 'zolo-nonce' ),
                 'editor_type'    => $editor_type,
-                'blocksPreview' => [
+                'blocksPreview'  => [
                     'button'       => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/advanced-button.svg',
                     'heading'      => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/advanced-heading.svg',
                     'iconBox'      => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/advanced-icon-box.svg',
@@ -268,15 +268,23 @@ if ( ! class_exists( 'Zolo_Block_Enqueue' ) ) {
                     'teamGrid'     => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/team-grid.svg',
                     'brandGrid'    => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/brand-grid.svg',
                     'review'       => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/review.svg',
-                    'reviewGrid'  => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/review-grid.svg',
-                    'profileCard' => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/profile-card.svg',
+                    'reviewGrid'   => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/review-grid.svg',
+                    'profileCard'  => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/profile-card.svg',
                     'counter'      => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/counter.svg',
                     'slider'       => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/slider.svg',
-                    'starRating'  => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/star-rating.svg',
+                    'starRating'   => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/star-rating.svg',
                     'accordion'    => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/accordion.svg',
                     'cta'          => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/call-to-action.svg',
-                    'fancyList'   => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/fancy-list.svg',
+                    'fancyList'    => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/blocks-preview/fancy-list.svg',
                 ]
+            ] );
+
+            // placeholder photos
+            wp_localize_script( 'zolo-block-editor-script', 'zoloPlaceholders', [
+                'placeholder'   => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/images/placeholder.svg',
+                'adavtarSquare' => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/images/avatar-square.svg',
+                'adavtarRound'  => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/images/avatar-round.svg',
+                'presetBg'      => trailingslashit( ZOLO_ADMIN_URL ) . 'assets/images/preset-bg.jpg',
             ] );
         }
     }

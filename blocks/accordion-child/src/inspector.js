@@ -19,6 +19,7 @@ const {
     BoxShadowControl,
     AdvancedOptions,
     TypographyDropdown,
+    ZoloPanelBody,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -70,11 +71,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody
-                            title={__('General', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
-                            opened={selectedPanel === 'general'}
-                        >
+                        <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props}>
                             <TextControl
                                 label={__('Accordion Title', 'zolo-blocks')}
                                 onChange={(text) =>
@@ -84,15 +81,16 @@ function Inspector(props) {
                                 }
                                 value={title}
                             />
-                        </PanelBody>
+                        </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                        <PanelBody
+                        <ZoloPanelBody
                             title={__('Accordion Container', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'containerStyle' })}
-                            opened={selectedPanel === 'containerStyle'}
+                            firstOpen={true}
+                            stylePanel={true}
+                            panelProps={props}
                         >
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
@@ -119,12 +117,8 @@ function Inspector(props) {
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={AC_CONTAINER_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={AC_CONTAINER_BOX_SHADOW} requiredProps={requiredProps} />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Accordion Title', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'titleStyle' })}
-                            opened={selectedPanel === 'titleStyle'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Accordion Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={TITLE_TYPO}
@@ -158,12 +152,8 @@ function Inspector(props) {
                                     </>
                                 }
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Accordion Head', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'headStyle' })}
-                            opened={selectedPanel === 'headStyle'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Accordion Head', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={AC_HEADER_BORDER}
@@ -197,12 +187,8 @@ function Inspector(props) {
                                     <NormalBGControl requiredProps={requiredProps} controlName={AC_HEADER_HBG} noMainBGImg={true} />
                                 }
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Accordion Icon', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'iconStyle' })}
-                            opened={selectedPanel === 'iconStyle'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Accordion Icon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ResRangeControl label={__('Size', 'zolo-blocks')} controlName={ICON_SIZE} requiredProps={requiredProps} />
                             <ResRangeControl
                                 label={__('Width', 'zolo-blocks')}
@@ -261,12 +247,8 @@ function Inspector(props) {
                                     </>
                                 }
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Accordion Body', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'bodyStyle' })}
-                            opened={selectedPanel === 'bodyStyle'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Accordion Body', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={AC_BODY_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
@@ -287,7 +269,7 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={AC_BODY_BG} noMainBGImg={true} />
-                        </PanelBody>
+                        </ZoloPanelBody>
                     </>
                 }
                 advancedTab={

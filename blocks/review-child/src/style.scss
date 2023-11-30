@@ -6,7 +6,8 @@
     }
 
     .zolo-item {
-        background-color: #f2f2f3;
+        background-color: var(--zoloblocks-item-bg-color);
+        border: 1px solid var(--zoloblocks-item-border-color);
         padding: clamp(1.875rem, 4vw, 2.5rem);
         border-radius: var(--zolo-item-border-radius);
     }

@@ -254,7 +254,17 @@ const Style = ({ props }) => {
         mobRangeStyle: iconSizeMob,
     } = generateResRangeStyle({
         controlName: ICON_SIZE,
-        property: 'font-size',
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: iconHSize,
+        tabRangeStyle: iconHSizeTab,
+        mobRangeStyle: iconHSizeMob,
+    } = generateResRangeStyle({
+        controlName: ICON_SIZE,
+        property: 'height',
         attributes,
     });
 
@@ -307,19 +317,20 @@ const Style = ({ props }) => {
             ${titleTextStrokeStyle}
         }
 
-        .${uniqueId} .zolo-counter-icon i, .${uniqueId} .zolo-counter-icon img {
+        .${uniqueId} .zolo-counter-icon svg {
+            ${iconSize}
+            ${iconHSize}
+			${iconColor ? `fill: ${iconColor}` : ''};	
+		}
+
+        .${uniqueId} .zolo-counter-icon svg, .${uniqueId} .zolo-counter-icon img {
 			${borderStyles}
 			${iconBorderRadiusDesktop}
 			${iconPaddingDesktop}
 			${iconMarginDesktop}
 			${iconBoxShadow}
             ${mediaBgDesk}
-			${iconColor ? `color: ${iconColor}` : ''};	
 		}
-
-        .${uniqueId} .zolo-counter-icon i {
-			${iconSize}
-        }
 
         .${uniqueId} .zolo-counter-icon img {
             ${iconImageWidthDesk}
@@ -355,7 +366,7 @@ const Style = ({ props }) => {
             ${tabTitleTextStrokeStyle}
         }
 
-        .${uniqueId} .zolo-counter-icon i, .${uniqueId} .zolo-counter-icon img {
+        .${uniqueId} .zolo-counter-icon svg, .${uniqueId} .zolo-counter-icon img {
             ${borderStylesTab}
             ${iconBorderRadiusTab}
             ${iconPaddingTab}
@@ -364,8 +375,9 @@ const Style = ({ props }) => {
             ${mediaBgTab}
         }
 
-        .${uniqueId} .zolo-counter-icon i {
+        .${uniqueId} .zolo-counter-icon svg {
             ${iconSizeTab}
+            ${iconHSizeTab}
         }
 
         .${uniqueId} .zolo-counter-icon img {
@@ -402,7 +414,7 @@ const Style = ({ props }) => {
             ${mobTitleTextStrokeStyle}
         }
 
-        .${uniqueId} .zolo-counter-icon i, .${uniqueId} .zolo-counter-icon img {
+        .${uniqueId} .zolo-counter-icon svg, .${uniqueId} .zolo-counter-icon img {
             ${borderStylesMob}
             ${iconBorderRadiusMob}
             ${iconPaddingMob}
@@ -411,8 +423,9 @@ const Style = ({ props }) => {
             ${mediaBgMob}
         }
 
-        .${uniqueId} .zolo-counter-icon i {
+        .${uniqueId} .zolo-counter-icon svg {
             ${iconSizeMob}
+            ${iconHSizeMob}
         }
 
         .${uniqueId} .zolo-counter-icon img {

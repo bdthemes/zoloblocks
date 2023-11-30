@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, BlockControls, useInnerBlocksProps } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
+import { useEffect, useRef } from '@wordpress/element';
 import { Button, ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -27,7 +27,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, totalItems } = attributes;
+    const { preview, uniqueId, parentClasses, addNewAccordion } = attributes;
 
     // preview image
     if (preview) {
@@ -36,52 +36,29 @@ export default function Edit(props) {
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(className, uniqueId, 'zolo-accordion-wrap accordion-container', classArrayToStr(parentClasses)),
     });
 
-    // get inner blocks array
-    const innerBlocks = wp.data.select('core/block-editor').getBlocksByClientId(clientId)[0] || [];
-    const innerBlocksArray = innerBlocks && innerBlocks.innerBlocks;
-    // set total items
-    setAttributes({
-        totalItems: innerBlocksArray && innerBlocksArray.length,
-    });
+    const accordionRef = useRef(null);
 
     useEffect(() => {
-        // Define a function to handle accordion item click
-        const handleAccordionItemClick = (event) => {
-            const accordionBody = event.target.closest('.zolo-accordion-wrapper').querySelector('.accordion-body');
-            const toggleButton = event.target.closest('.zolo-accordion-wrapper').querySelector('.accordion-toggle');
-            const accordionHead = event.target.closest('.zolo-accordion-wrapper').querySelector('.accordion-head');
-            accordionBody.classList.toggle('zolo-active');
-            toggleButton.classList.toggle('zolo-active');
-            accordionHead.classList.toggle('zolo-active');
+        let options = {
+            duration: 400,
+            showMultiple: false,
+            // openOnInit: [0],
         };
-
-        // Add event listener to the block when it is inserted into the DOM
-        const accordionItems = document.querySelectorAll('.zolo-accordion-wrapper');
-        accordionItems.forEach((item) => {
-            const accordionHead = item.querySelector('.accordion-head');
-            const accordionToggle = item.querySelector('.accordion-toggle');
-            accordionHead.addEventListener('click', handleAccordionItemClick);
-            accordionToggle.addEventListener('click', handleAccordionItemClick);
-        });
-
-        // Clean up the event listeners when the block is removed from the DOM
-        return () => {
-            accordionItems.forEach((item) => {
-                const accordionHead = item.querySelector('.accordion-head');
-                const accordionToggle = item.querySelector('.accordion-toggle');
-                accordionHead.removeEventListener('click', handleAccordionItemClick);
-                accordionToggle.removeEventListener('click', handleAccordionItemClick);
-            });
-        };
-    }, [totalItems]);
+        if (accordionRef.current) {
+            // new Accordion(accordionRef.current, options);
+        }
+    }, [addNewAccordion]);
 
     const innerBlocksProps = useInnerBlocksProps(
-        {},
         {
-            allowedBlocks: ['zolo/accordion-child'],
+            className: `zolo-accordion-wrap accordion-container`,
+            slot: 'container-start',
+        },
+        {
+            allowedBlocks: ['zolo/slide'],
             template: [
                 [
                     'zolo/accordion-child',
@@ -93,14 +70,14 @@ export default function Edit(props) {
                 [
                     'zolo/accordion-child',
                     {
-                        title: 'Accordion Title',
+                        title: 'Accordion Title 2',
                         titleTag: 'h3',
                     },
                 ],
                 [
                     'zolo/accordion-child',
                     {
-                        title: 'Accordion Title',
+                        title: 'Accordion Title 3',
                         titleTag: 'h3',
                     },
                 ],
@@ -114,33 +91,31 @@ export default function Edit(props) {
     // add new accordion item
     const childBlocks = wp.data.select('core/block-editor').getBlocks(clientId);
     const appendBlock = () => {
-        const newBlock = wp.blocks.createBlock('zolo/accordion-child', {});
+        const newBlock = wp.blocks.createBlock('zolo/accordion-child', {
+            title: 'Accordion New Title',
+            titleTag: 'h3',
+        });
         wp.data.dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
+        setAttributes({ addNewAccordion: !addNewAccordion });
     };
 
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-            <style>{`
-                .${uniqueId} .accordion-body.zolo-active {
-                    display: block !important;
-                    visibility: visible;
-                    opacity: 1;
-                    height: auto;
-               }
-            `}</style>
-
             <BlockControls>
                 <ToolbarGroup>
                     <ToolbarButton icon="plus" label={__('Add Accordion', 'zolo-blocks')} onClick={() => appendBlock()} />
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
-                <div {...innerBlocksProps} />
-                <Button icon="plus" className="zolo-appender-btn" variant="primary" onClick={() => appendBlock()}>
+                <div {...innerBlocksProps} ref={accordionRef} />
+                <button className="zolo-appender-btn" onClick={() => appendBlock()}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                    </svg>
                     {__('Add Accordion', 'zolo-blocks')}
-                </Button>
+                </button>
             </div>
         </>
     );

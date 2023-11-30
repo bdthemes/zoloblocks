@@ -63,17 +63,17 @@
         justify-content: center;
         box-sizing: border-box;
         text-decoration: none;
-        background-color: #333;
+        background-color: var(--zoloblocks-brand-color);
         transition: all 0.2s ease;
         svg {
             width: 16px;
             height: 16px;
-            fill: #fff;
+            fill: var(--zoloblocks-brand-button-color);
             display: block;
             transition: all 0.2s ease;
         }
         &:hover {
-            background-color: #000;
+            background-color: var(--zoloblocks-brand-color-hover);
         }
         &.original {
             &.facebook,
@@ -405,21 +405,21 @@
         }
 
         .zolo-social-item {
-            border-color: #333;
+            border-color: var(--zoloblocks-brand-color);
             color: #000;
             .zolo-social-icon {
-                color: #fff;
-                background-color: #333;
+                color: var(--zoloblocks-brand-button-color);
+                background-color: var(--zoloblocks-brand-color);
             }
             &:hover {
-                color: #fff;
-                background-color: #000;
+                color: var(--zoloblocks-brand-button-color);
+                background-color: var(--zoloblocks-brand-color-hover);
             }
         }
 
         .zolo-social-item.original {
             .zolo-social-icon {
-                color: #fff;
+                color: var(--zoloblocks-brand-button-color);
             }
             &.snapchat {
                 .zolo-social-icon {
@@ -433,7 +433,7 @@
             }
             &:hover {
                 .zolo-social-text {
-                    color: #fff;
+                    color: var(--zoloblocks-brand-button-color);
                 }
             }
         }

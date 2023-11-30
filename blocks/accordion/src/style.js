@@ -195,7 +195,17 @@ const Style = ({ props }) => {
         mobRangeStyle: iconSizeMob,
     } = generateResRangeStyle({
         controlName: ICON_SIZE,
-        property: 'font-size',
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: iconHSizeDesk,
+        tabRangeStyle: iconHSizeTab,
+        mobRangeStyle: iconHSizeMob,
+    } = generateResRangeStyle({
+        controlName: ICON_SIZE,
+        property: 'height',
         attributes,
     });
 
@@ -346,7 +356,7 @@ const Style = ({ props }) => {
             ${containerMarginDesk}
             ${containerBoxShadow}
         }
-        .${uniqueId} .accordion-head {
+        .${uniqueId} .zolo-accordion-head-item {
             ${achNormalBgDesktop}
             ${achBorderDesk}
             ${achBorderRadiusDesk}
@@ -354,15 +364,15 @@ const Style = ({ props }) => {
             ${achMarginDesk}
         }
 
-        .${uniqueId} .accordion-head:hover {
+        .${uniqueId} .zolo-accordion-head-item:hover {
             ${achNormalHBgDesktop}
         }
 
-        .${uniqueId} .accordion-head .accordion-title {
+        .${uniqueId} .zolo-accordion-head-item .zolo-accordion-head-title  {
             ${titleDeskTypo}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-toggle {
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-toggle {
             ${icNormalDesk}
             ${borderStyles}
             ${borderRadiusDesktop}
@@ -371,20 +381,21 @@ const Style = ({ props }) => {
             ${icWidthtDesk}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-toggle:hover {
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item:hover .zolo-accordion-toggle {
             ${icHoverDesk}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-toggle i {
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-toggle svg {
             ${iconSizeDesk}
-            ${iconColor ? `color: ${iconColor};` : ''}
+            ${iconHSizeDesk}
+            ${iconColor ? `fill: ${iconColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-toggle:hover i {
-            ${iconHoverColor ? `color: ${iconHoverColor};` : ''}
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item:hover .zolo-accordion-toggle svg {
+            ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
         }
 
-        .${uniqueId} .accordion-body-inner {
+        .${uniqueId} .zolo-accordion-inner {
             ${acbBorderDesk}
             ${acbBorderRadiusDesk}
             ${acbPaddingDesk}
@@ -392,28 +403,32 @@ const Style = ({ props }) => {
             ${acbNormalBgDesktop}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-head.zolo-active {
+        .${uniqueId}.wp-block-zolo-accordion .wp-block-zolo-accordion-child.is-active .zolo-accordion-head-item {
             ${aachNormalBgDesktop}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-head .accordion-title{
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item .zolo-accordion-head-title{
             ${titleColor ? `color: ${titleColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-head .accordion-title:hover{
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item:hover .zolo-accordion-head-title{
             ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-head.zolo-active .accordion-title{
+        .${uniqueId}.wp-block-zolo-accordion .wp-block-zolo-accordion-child.is-active .zolo-accordion-head-title{
             ${atitleColor ? `color: ${atitleColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-toggle.zolo-active {
+        .${uniqueId}.wp-block-zolo-accordion .wp-block-zolo-accordion-child.is-active .zolo-accordion-toggle {
             ${aaiNormalBgDesktop}
-            ${aiconColor ? `color: ${aiconColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-body.zolo-active {
+
+        .${uniqueId}.wp-block-zolo-accordion .wp-block-zolo-accordion-child.is-active .zolo-accordion-toggle svg{
+            ${aiconColor ? `fill: ${aiconColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-accordion .wp-block-zolo-accordion-child.is-active .zolo-accordion-inner {
             ${aacbNormalBgDesktop}
         }
 
@@ -428,7 +443,7 @@ const Style = ({ props }) => {
             ${containerMarginTab}
             ${containerBoxShadow}
         }
-        .${uniqueId} .accordion-head {
+        .${uniqueId} .zolo-accordion-head-item {
             ${achNormalBgTab}
             ${achBorderTab}
             ${achBorderRadiusTab}
@@ -436,15 +451,15 @@ const Style = ({ props }) => {
             ${achMarginTab}
         }
 
-        .${uniqueId} .accordion-head:hover {
+        .${uniqueId} .zolo-accordion-head-item:hover {
             ${achNormalHBgTab}
         }
 
-        .${uniqueId} .accordion-head .accordion-title {
+        .${uniqueId} .zolo-accordion-head-item .zolo-accordion-head-title {
             ${titleTabTypo}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-toggle {
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-toggle {
             ${icNormalTab}
             ${borderStylesTab}
             ${borderRadiusTab}
@@ -453,15 +468,15 @@ const Style = ({ props }) => {
             ${icWidthTab}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-toggle:hover {
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item:hover .zolo-accordion-toggle {
             ${icHoverTab}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-toggle i {
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-toggle svg {
             ${iconSizeTab}
         }
 
-        .${uniqueId} .accordion-body-inner {
+        .${uniqueId} .zolo-accordion-inner {
             ${acbBorderTab}
             ${acbBorderRadiusTab}
             ${acbPaddingTab}
@@ -480,7 +495,7 @@ const Style = ({ props }) => {
             ${containerBoxShadow}
         }
         
-        .${uniqueId} .accordion-head {
+        .${uniqueId} .zolo-accordion-head-item {
             ${achNormalBgMob}
             ${achBorderMob}
             ${achBorderRadiusMob}
@@ -488,15 +503,15 @@ const Style = ({ props }) => {
             ${achMarginMob}
         }
 
-        .${uniqueId} .accordion-head:hover {
+        .${uniqueId} .zolo-accordion-head-item:hover {
             ${achNormalHBgMob}
         }
 
-        .${uniqueId} .accordion-head .accordion-title {
+        .${uniqueId} .zolo-accordion-head-item .zolo-accordion-head-title {
             ${titleMobTypo}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-toggle {
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-toggle {
             ${icNormalMob}
             ${borderStylesMob}
             ${borderRadiusMob}
@@ -505,15 +520,15 @@ const Style = ({ props }) => {
             ${icWidthMob}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-toggle:hover {
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item:hover .zolo-accordion-toggle {
             ${icHoverMob}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .accordion-toggle i {
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-toggle svg {
             ${iconSizeMob}
         }
 
-        .${uniqueId} .accordion-body-inner {
+        .${uniqueId} .zolo-accordion-inner {
             ${acbBorderMob}
             ${acbBorderRadiusMob}
             ${acbPaddingMob}

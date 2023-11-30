@@ -3,7 +3,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (zoloAccordions && zoloAccordions.length > 0) {
         zoloAccordions.forEach((accordion) => {
-            new ZoloAccordion(accordion);
+            new Accordion(accordion, {
+                duration: 400,
+                showMultiple: false,
+                // openOnInit: [0],
+            });
         });
     }
 });

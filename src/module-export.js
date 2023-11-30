@@ -32,6 +32,7 @@ export { default as ZoloIconPicker } from './controls/zolo-icon-picker';
 export { default as DisplayZoloIcon } from './controls/display-zolo-icon';
 export { AdvancedOptions } from './global/components/advancedOptions';
 export { GlobalStyleHanlder } from './global/components/globalStyleHandler';
+export { default as ZoloPanelBody } from './controls/zolo-panelbody';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';

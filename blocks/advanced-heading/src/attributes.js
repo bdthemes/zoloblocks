@@ -14,7 +14,6 @@ const {
 
 //block constants
 import {
-    SEPARATOR_ALIGN,
     SEPARATOR_HEIGHT,
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
@@ -48,6 +47,7 @@ import {
     WRAPPER_SHADOW,
     TPH_X_OFFSET,
     TPH_Y_OFFSET,
+    TITLE_BG,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -158,9 +158,6 @@ const attributes = {
     ...generateResAlignmentAttributies(TITLE_ALIGN, {
         defaultAlign: 'left',
     }),
-    ...generateResAlignmentAttributies(SEPARATOR_ALIGN, {
-        defaultAlign: 'flex-start',
-    }),
     ...generateResAlignmentAttributies(TPT_ALIGNMENT),
 
     //design tab attributes
@@ -174,6 +171,14 @@ const attributes = {
     },
     titleHoverColor: {
         type: 'string',
+    },
+    presetBg: {
+        type: 'object',
+        default: {
+            id: '',
+            url: zoloPlaceholders.presetBg,
+            alt: '',
+        },
     },
     subTitleColor: {
         type: 'string',

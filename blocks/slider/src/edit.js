@@ -13,7 +13,7 @@ import { createBlock } from '@wordpress/blocks';
  * Internal dependencies
  */
 import Inspector from './inspector';
-const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayIcon } = window.zoloModule;
+const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 // Constants
 import { COLUMNS, COLUMNS_GAP } from './constants';
@@ -29,6 +29,7 @@ export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
     const {
         preview,
+        resMode,
         uniqueId,
         parentClasses,
         slideItems,
@@ -148,8 +149,8 @@ export default function Edit(props) {
             autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
             navigation: showNavigation
                 ? {
-                      nextEl: customNavIcon ? '.swiper-zolo-next' : '.swiper-button-next',
-                      prevEl: customNavIcon ? '.swiper-zolo-prev' : '.swiper-button-prev',
+                      nextEl: customNavIcon ? `.${uniqueId} .swiper-zolo-next` : `.${uniqueId} .swiper-button-next`,
+                      prevEl: customNavIcon ? `.${uniqueId} .swiper-zolo-prev` : `.${uniqueId} .swiper-button-prev`,
                   }
                 : false,
             pagination: showPagination
@@ -187,7 +188,11 @@ export default function Edit(props) {
         carouselEffect,
         sliderEffect,
         slideItems,
+        customNavIcon,
+        prevNavIcon,
+        nextNavIcon,
         addNewSlideBlock,
+        resMode,
     ]);
 
     const innerBlocksProps = useInnerBlocksProps(
@@ -236,10 +241,10 @@ export default function Edit(props) {
                                 {customNavIcon && (
                                     <>
                                         <div className="swiper-nav-button swiper-zolo-prev">
-                                            <DisplayIcon icon={prevNavIcon} />
+                                            <DisplayZoloIcon icon={prevNavIcon} />
                                         </div>
                                         <div className="swiper-nav-button swiper-zolo-next">
-                                            <DisplayIcon icon={nextNavIcon} />
+                                            <DisplayZoloIcon icon={nextNavIcon} />
                                         </div>
                                     </>
                                 )}

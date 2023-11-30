@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { ResRangeControl, HeaderTabs, IconicBtnGroup, ResAlignmentControl, AdvancedOptions } = window.zoloModule;
+const { ResRangeControl, HeaderTabs, IconicBtnGroup, ResAlignmentControl, AdvancedOptions, ZoloPanelBody } = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
@@ -80,11 +80,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody
-                            title={__('General', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
-                            opened={selectedPanel === 'general'}
-                        >
+                        <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
                             {isBlockRootParent && (
                                 <>
                                     <IconicBtnGroup
@@ -140,12 +136,8 @@ function Inspector(props) {
                                 min={0}
                                 max={1000}
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Flex Properties', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'flex_property' })}
-                            opened={selectedPanel === 'flex_property'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Flex Properties', 'zolo-blocks')} panelProps={props}>
                             <ResAlignmentControl
                                 label={__('Direction', 'zolo-blocks')}
                                 controlName={FLEX_DIRECTION}
@@ -172,12 +164,12 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={FLEX_WRAPS}
                             />
-                        </PanelBody>
+                        </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                        <PanelBody>
+                        <ZoloPanelBody title={__('Container Gap','zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ResRangeControl
                                 label={__('Row Gap', 'zolo-blocks')}
                                 controlName={ROW_GAP}
@@ -194,7 +186,7 @@ function Inspector(props) {
                                 max={500}
                                 step={1}
                             />
-                        </PanelBody>
+                        </ZoloPanelBody>
                     </>
                 }
                 advancedTab={

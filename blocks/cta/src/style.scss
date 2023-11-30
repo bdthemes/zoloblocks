@@ -1,7 +1,8 @@
 .wp-block-zolo-cta {
     padding: 30px;
     border-radius: var(--zolo-item-border-radius);
-    background-color: #f2f2f3;
+    background-color: var(--zoloblocks-item-bg-color);
+    border: 1px solid var(--zoloblocks-item-border-color);
     box-sizing: border-box;
     overflow: hidden;
     .zolo-call-out__title {
@@ -29,17 +30,21 @@
         align-items: center;
         transition: all 0.2s cubic-bezier(0.7, 0, 0.3, 1);
         border-radius: var(--zoloblocks-button-border-radius);
-        color: #212126;
+        color: var(--zoloblocks-brand-button-color);
         font-weight: 500;
         border: 2px solid var(--zoloblocks-brand-color);
         &:hover {
+            color: var(--zoloblocks-brand-text-color);
             background-color: transparent;
+            svg {
+                fill: var(--zoloblocks-brand-text-color);
+            }
         }
 
         svg {
             width: 16px;
             height: 16px;
-            fill: #212126;
+            fill: var(--zoloblocks-brand-button-color);
             display: block;
         }
     }

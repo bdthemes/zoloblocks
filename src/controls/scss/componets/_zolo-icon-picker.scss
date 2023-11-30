@@ -3,24 +3,20 @@
     overflow-y: scroll;
     height: 475px;
     min-height: 475px;
-
     /* width */
     &::-webkit-scrollbar {
         width: 5px;
         border-radius: 10px;
     }
-    
     /* Track */
     &::-webkit-scrollbar-track {
         background: #f1f1f1; 
         border-radius: 10px;
     }
-    
     /* Handle */
     &::-webkit-scrollbar-thumb {
         background: #aeaeae; 
     }
-    
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
         background: #555; 
@@ -44,7 +40,9 @@
         margin: 0;
         padding: 0 !important;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: border .3s ease;
         &:hover {
+            border-color: #dbdbdd;
             svg {
                 color: #001feb;
             }
@@ -53,6 +51,13 @@
             width: 24px;
             height: 24px;
             color: #5d5b65;
+        }
+        &.active {
+            border-color: #b9befd;
+            border-width: 2px;
+            svg {
+                color: #001feb;
+            }
         }
     }
 }
@@ -87,7 +92,6 @@
     .modal__content {
         width: calc(100% - 180px);
         box-sizing: border-box;
-        // padding: 25px;
         box-sizing: border-box;
     }
 
@@ -107,6 +111,7 @@
         }
         svg {
             display: block;
+            fill: none;
         }
         &:hover {
             color: #001feb;
@@ -123,7 +128,7 @@
         margin: 0;
         text-align: center;
         color: #34363b;
-        background-color: #c5dfff;
+        background-color: #d7e7fb;
         margin: 24px;
         border-radius: 4px;
         font-size: 13px;
@@ -137,7 +142,6 @@
         background: #e9e8f3;
         border-radius: 0 !important;
         color:  #001feb;
-        font-weight: 500;
     }
 
     .search__input {
@@ -249,4 +253,10 @@
         width: 16px;
         height: 16px;
     }
+}
+
+.zolo-picker__button {
+    border-radius: 6px !important;
+    height: 130px !important;
+    background-color: #f2f2f2;
 }

@@ -1,42 +1,48 @@
 .wp-block-zolo-counter {
-	.zolo-counter-item {
-		padding: 40px;
-		box-sizing: border-box;
-		overflow: hidden;
-		background-color: #f2f2f3;
-		border-radius: var(--zolo-item-border-radius);
-		text-align: center;
-	}
+    .zolo-counter-item {
+        padding: 40px;
+        box-sizing: border-box;
+        overflow: hidden;
+        background-color: var(--zoloblocks-item-bg-color);
+        border: 1px solid var(--zoloblocks-item-border-color);
+        border-radius: var(--zolo-item-border-radius);
+        text-align: center;
+    }
 
-	.zolo-counter-count {
-		font-size: 30px;
-		font-weight: 800;
-		line-height: 1;
-		color: #20232a;
-		margin: 0 0 10px;
-		display: inline-block;
-	}
+    .zolo-counter-count {
+        font-size: 30px;
+        font-weight: 800;
+        line-height: 1;
+        color: #20232a;
+        margin: 0 0 10px;
+        display: inline-block;
+    }
 
-	.zolo-counter-icon {
-		img {
-			max-width: 100%;
-			box-sizing: border-box;
-		}
+    .zolo-counter-icon {
+        img {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
 
-		i {
-			color: #20232a;
-			margin-bottom: 15px;
-			box-sizing: border-box;
-			font-size: 30px;
-		}
-	}
+        .zolo__display-icon {
+            display: inline-block;
+        }
 
-	.zolo-counter-title {
-		font-size: 16px;
-		color: #484a54;
-		font-weight: 600;
-		margin: 0;
-	}
+        svg {
+            fill: #20232a;
+            margin-bottom: 15px;
+            box-sizing: content-box;
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    .zolo-counter-title {
+        font-size: 16px;
+        color: #484a54;
+        font-weight: 600;
+        margin: 0;
+    }
 
     .zolo-counter-wrap {
         &.style-1,
@@ -49,21 +55,13 @@
             }
             .zolo-counter-icon {
                 margin: 0;
-                i {
-                    font-size: 18px;
-                    padding: 14px;
-                    background-color: #d8d9df;
-                    border-radius: var(--zoloblocks-button-border-radius);
-                }
-            } 
+            }
         }
         &.style-2 {
             .zolo-counter-item {
-               flex-direction: row-reverse;
-               text-align: right;
+                flex-direction: row-reverse;
+                text-align: right;
             }
         }
     }
-    
 }
-

@@ -30,7 +30,6 @@
         font-weight: 700;
         color: #202224;
         text-transform: capitalize;
-        display: inline-block;
         z-index: 1;
         position: relative;
         .zolo-ah-main-title {
@@ -46,17 +45,17 @@
         font-size: 60px;
         font-weight: 900;
     }
-
 }
 
 .zolo-ah-style-3 .zolo-ah-title {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-image: url(https://www.elementpack.pro/demo/wp-content/uploads/2018/02/bg1.jpg);
+    background-position: center;
+    background-size: cover;
 }
 
 .zolo-separator-wrapper {
-    display: flex;
+    display: inline-flex;
 }
 
 .zolo-transform-origin-top-left {
