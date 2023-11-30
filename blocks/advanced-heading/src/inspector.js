@@ -48,7 +48,6 @@ import {
     TITLE_SHADOW,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
-    TPT_ALIGNMENT,
     TPT_BORDER,
     TPT_BORDER_RADIUS,
     TPT_HIDE,
@@ -268,13 +267,6 @@ const Inspector = (props) => {
                                         'This heading will show as style as background and you can move and style many way.',
                                         'zolo-blocks'
                                     )}
-                                />
-
-                                <ResAlignmentControl
-                                    label={__('Alignmet', 'zolo-blocks')}
-                                    controlName={TPT_ALIGNMENT}
-                                    requiredProps={requiredProps}
-                                    alignOptions={DEFAULT_ALIGNS}
                                 />
 
                                 <ResRangeControl

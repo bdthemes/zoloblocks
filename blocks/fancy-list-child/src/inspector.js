@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
+import { SelectControl, TextControl, TextareaControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 
@@ -52,7 +52,6 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         resMode,
-        preset,
         headingTag,
         titleColor,
         titleHColor,
@@ -73,8 +72,6 @@ function Inspector(props) {
         iconColor,
         iconHColor,
         iconHBColor,
-        selectedPanel,
-        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -84,42 +81,6 @@ function Inspector(props) {
         objAttributes,
     };
 
-    const onPresetChange = (selected) => {
-        setAttributes({ preset: selected });
-        switch (selected) {
-            case 'style-1':
-                setAttributes({
-                    imageToggle: false,
-                    textToggle: false,
-                });
-                break;
-
-            case 'style-2':
-                setAttributes({
-                    textToggle: false,
-                    imageToggle: true,
-                    mediaType: 'text',
-                });
-                break;
-
-            case 'style-3':
-                setAttributes({
-                    imageToggle: false,
-                    textToggle: true,
-                });
-                break;
-
-            case 'style-4':
-                setAttributes({
-                    imageToggle: true,
-                    mediaType: 'image',
-                });
-                break;
-            default:
-                return false;
-        }
-    };
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -127,7 +88,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <Fragment>
-                        <ZoloPanelBody title={__('General', 'zolo-block')} panelProps={props} firstOpen={true}>
+                        {/* <ZoloPanelBody title={__('General', 'zolo-block')} panelProps={props} firstOpen={true}>
                             <SelectControl
                                 label={__('Presets', 'zolo-block')}
                                 options={PRESETS}
@@ -162,7 +123,114 @@ function Inspector(props) {
                                     setAttributes({ iconToggle: !iconToggle });
                                 }}
                             />
+                        </ZoloPanelBody> */}
+                        <ZoloPanelBody title={__('Content', 'zolo-block')} panelProps={props} firstOpen={true}>
+                            {titleToggle && (
+                                <TextControl
+                                    label={__('Title', 'zolo-block')}
+                                    value={fancyTitle}
+                                    onChange={(v) => setAttributes({ fancyTitle: v })}
+                                    placeholder="title.."
+                                />
+                            )}
+                            {textToggle && (
+                                <TextareaControl
+                                    label={__('Description', 'zolo-block')}
+                                    value={fancyListText}
+                                    onChange={(v) => setAttributes({ fancyListText: v })}
+                                    placeholder="description text.."
+                                />
+                            )}
                         </ZoloPanelBody>
+
+                        {iconToggle && (
+                            <ZoloPanelBody title={__('Icon', 'zolo-block')} panelProps={props}>
+                                {iconToggle && (
+                                    <IconPicker
+                                        title={__('Icon picker', 'zolo-block')}
+                                        value={fancyIcon}
+                                        onChange={(v) => setAttributes({ fancyIcon: v })}
+                                        showHeading={false}
+                                        disableDashicon={true}
+                                    />
+                                )}
+                            </ZoloPanelBody>
+                        )}
+                        {imageToggle && (
+                            <ZoloPanelBody title={__('Media', 'zolo-block')} panelProps={props}>
+                                <IconicBtnGroup
+                                    label={__('Media Type', 'zolo-blocks')}
+                                    value={mediaType}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            mediaType: value,
+                                        })
+                                    }
+                                    options={[
+                                        {
+                                            label: __('Text', 'zolo-blocks'),
+                                            value: 'text',
+                                        },
+                                        {
+                                            label: __('Image', 'zolo-blocks'),
+                                            value: 'image',
+                                        },
+                                    ]}
+                                />
+                                {mediaType === 'image' &&
+                                    (image ? (
+                                        <ImageAvatar
+                                            imageUrl={image && image.url}
+                                            onDeleteImage={() =>
+                                                setAttributes({
+                                                    image: null,
+                                                })
+                                            }
+                                            imageId={image && image.id}
+                                            onEditImage={(url, id) => {
+                                                setAttributes({
+                                                    image: {
+                                                        url,
+                                                        id,
+                                                    },
+                                                });
+                                            }}
+                                        />
+                                    ) : (
+                                        <MediaUpload
+                                            onSelect={(media) => {
+                                                setAttributes({
+                                                    image: media,
+                                                });
+                                            }}
+                                            allowedTypes={['image']}
+                                            value={image && image.id}
+                                            render={({ open }) => (
+                                                <Button className="zolo-image-upload-btn" onClick={open}>
+                                                    <svg
+                                                        width="24"
+                                                        height="24"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fillRule="evenodd"
+                                                        clipRule="evenodd"
+                                                    >
+                                                        <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
+                                                    </svg>
+                                                    {__(' Upload Photo', 'zolo-blocks')}
+                                                </Button>
+                                            )}
+                                        />
+                                    ))}
+                                {mediaType === 'text' && (
+                                    <TextControl
+                                        label={__('Text', 'zolo-block')}
+                                        value={mediaText}
+                                        onChange={(v) => setAttributes({ mediaText: v })}
+                                        placeholder="1"
+                                    />
+                                )}
+                            </ZoloPanelBody>
+                        )}
                     </Fragment>
                 }
                 styleTab={

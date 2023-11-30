@@ -1,11 +1,12 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Slider",
-    "name": "zolo/slider",
+    "title": "Fancy list Child",
+    "name": "zolo/fancy-list-child",
     "category": "zolo-blocks",
-    "keywords": ["Slide", "Slider", "Carousel"],
-    "description": "Show content in sliding mode",
+    "keywords": ["fancy", "fancy list"],
+    "description": "Single fancy list",
     "apiVersion": 3,
+    "parent": ["zolo/fancy-list"],
     "textdomain": "zolo-blocks",
     "example": {
         "attributes": {

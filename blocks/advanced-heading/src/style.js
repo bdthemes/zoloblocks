@@ -39,7 +39,6 @@ import {
     TITLE_SHADOW,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
-    TPT_ALIGNMENT,
     TPT_BORDER,
     TPT_BORDER_RADIUS,
     TPT_MARGIN,
@@ -250,16 +249,6 @@ export default function Style({ props }) {
         typoStylesMobile: transparentTypoMobile,
     } = generateTypographyStyles({
         prefixConstant: TRANSPARENT_TYPOGRAPHY,
-        attributes,
-    });
-
-    const {
-        desktopAlignStyle: tptAlignmentDesktop,
-        tabAlignStyle: tptAlignmentTab,
-        mobAlignStyle: tptAlignmentMob,
-    } = generateResAlignmentStyle({
-        controlName: TPT_ALIGNMENT,
-        property: 'text-align',
         attributes,
     });
 
@@ -584,9 +573,6 @@ export default function Style({ props }) {
 
     //transparent styles css
     const transparentStylesDesktop = `
-  .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
-    ${tptAlignmentDesktop}
-  }
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
     ${tptColor ? `color: ${tptColor};` : ''}
     ${tptBgColor ? `background-color: ${tptBgColor};` : ''}
@@ -612,7 +598,6 @@ export default function Style({ props }) {
 
     const transparentStylesTab = `
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
-    ${tptAlignmentTab}
     ${transparentTitleHide === 'tab-mob' && `display:none`}
   }
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
@@ -628,7 +613,6 @@ export default function Style({ props }) {
 
     const transparentStylesMobile = `
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
-    ${tptAlignmentMob}
     ${(transparentTitleHide === 'tab-mob' || transparentTitleHide === 'mob') && `display:none`}
   }
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {

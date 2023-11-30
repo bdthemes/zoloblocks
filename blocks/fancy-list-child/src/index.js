@@ -19,7 +19,7 @@ registerBlockType(metadata, {
             </svg>
         ),
     },
-    providesContext: Context,
+    usesContext: Context,
     attributes,
     edit: Edit,
     save: Save,

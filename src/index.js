@@ -29,5 +29,6 @@ import '../blocks/star-rating/src';
 import '../blocks/accordion-child/src';
 import '../blocks/accordion/src';
 import '../blocks/cta/src';
+import '../blocks/fancy-list-child/src';
 import '../blocks/fancy-list/src';
 // import '../blocks/audio-player/src';

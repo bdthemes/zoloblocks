@@ -145,7 +145,7 @@ const attributes = {
     },
     transparentTitleHide: {
         type: 'string',
-        default: 'tab-mob',
+        default: 'nothing',
     },
     transparentTitleRotateOrigin: {
         type: 'string',
@@ -158,8 +158,6 @@ const attributes = {
     ...generateResAlignmentAttributies(TITLE_ALIGN, {
         defaultAlign: 'left',
     }),
-    ...generateResAlignmentAttributies(TPT_ALIGNMENT),
-
     //design tab attributes
     titleColor: {
         type: 'string',

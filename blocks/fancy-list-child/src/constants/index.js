@@ -15,11 +15,6 @@ export const PRESETS = [
     { label: __('Preset 5', 'zolo-blocks'), value: 'style-5' },
 ];
 
-// Grid Background
-export const GRID_COLUMNS = 'gridColumns';
-export const COLUMNS_GAP = 'columnsGap';
-export const ROWS_GAP = 'rowsGap';
-
 // title
 export const TITLE_SPACING = 'titleSpacing';
 

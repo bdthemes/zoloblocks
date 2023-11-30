@@ -58,7 +58,6 @@ export const TPT_ROTATE_ORIGIN = [
     { label: 'Bottom Right', value: 'bottom-right' },
 ];
 
-export const TPT_ALIGNMENT = 'tpAlign';
 //style tab
 export const TITLE_ALIGN = 'titleAlign';
 export const TITLE_MARGIN = 'titleMargin';

@@ -17,9 +17,6 @@ import {
     ICON_BG,
     ICON_HBG,
     GAP,
-    GRID_COLUMNS,
-    COLUMNS_GAP,
-    ROWS_GAP,
 } from './constants';
 const {
     generateTypographyAttributes,
@@ -27,7 +24,6 @@ const {
     generateBorderAttributies,
     generateDimensionAttributes,
     generateNormalBGAttributes,
-    generateResCounterAttributies,
 } = window.zoloModule;
 
 const attributes = {
@@ -59,9 +55,17 @@ const attributes = {
     preset: {
         type: 'string',
     },
+    fancyTitle: {
+        type: 'string',
+        default: 'Fancy Title',
+    },
     titleToggle: {
         type: 'boolean',
         default: true,
+    },
+    fancyListText: {
+        type: 'string',
+        default: 'Fancy list description goes here.',
     },
     textToggle: {
         type: 'boolean',
@@ -87,15 +91,35 @@ const attributes = {
     desHcolor: {
         type: 'string',
     },
+    fancyIcon: {
+        type: 'string',
+        default: 'fab fa-apple',
+    },
     imageToggle: {
         type: 'boolean',
         default: false,
+    },
+    mediaType: {
+        type: 'string',
+        default: 'text',
+    },
+    mediaText: {
+        type: 'string',
+        default: '1',
     },
     mediaTextColor: {
         type: 'string',
     },
     mediaTextBgColor: {
         type: 'string',
+    },
+    image: {
+        type: 'object',
+        default: {
+            url: zoloPlaceholders.placeholder,
+            id: '',
+            alt: '',
+        },
     },
     iconToggle: {
         type: 'boolean',
@@ -113,20 +137,6 @@ const attributes = {
     iconHBColor: {
         type: 'string',
     },
-    ...generateResCounterAttributies(GRID_COLUMNS, {
-        noUnits: true,
-        defauts: {
-            deskRange: 2,
-            tabRange: 2,
-            mobRange: 1,
-        },
-    }),
-    ...generateResRangeAttributies(COLUMNS_GAP, {
-        defaultRange: 15,
-    }),
-    ...generateResRangeAttributies(ROWS_GAP, {
-        defaultRange: 15,
-    }),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateDimensionAttributes(ICON_PADDING),
     ...generateNormalBGAttributes(ICON_BG),
