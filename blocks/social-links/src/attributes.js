@@ -58,7 +58,7 @@ const attributes = {
     ...generateBoxShadowAttributies(BTN_HOVER_SHADOW),
     // column count
     ...generateResCounterAttributies(COLUMN_COUNT, {
-        defaultRange: 4,
+        defaultRange: 5,
     }),
     //columns gaps
     ...generateResRangeAttributies(COLUMNS_GAP),
@@ -82,6 +82,10 @@ const attributes = {
     preset: {
         type: 'string',
         default: 'preset-1',
+    },
+    layout: {
+        type: 'string',
+        default: 'flex',
     },
     socialText: {
         type: 'string',
@@ -175,7 +179,13 @@ const attributes = {
         type: 'string',
     },
     // preset 3 icon
+    iconColor: {
+        type: 'string',
+    },
     iconBgColor: {
+        type: 'string',
+    },
+    iconHoverColor: {
         type: 'string',
     },
     iconBgHoverColor: {

@@ -52,7 +52,7 @@ class Registration {
 
                     wp_register_script(
                         'zolo-' . $block['name'] . '-frontend',
-                        ZOLO_ADMIN_URL . 'blocks/' . $block['name'] . '/frontend/index.js',
+                        trailingslashit(ZOLO_ADMIN_URL) . 'blocks/' . $block['name'] . '/frontend/index.js',
                         $args['dependencies'],
                         $args['version'],
                         true
@@ -135,7 +135,7 @@ class Registration {
      * @return array
      */
     public static function block_list() {
-        $blocks = require_once ZOLO_DIR_PATH . 'includes/Blocks/Blocks.php';
+        $blocks = require_once trailingslashit(ZOLO_DIR_PATH) . 'includes/Blocks/Blocks.php';
         return $blocks;
     }
 
@@ -148,11 +148,11 @@ class Registration {
      */
     public function register_block_category($categories, $post) {
         $updatedCat  = [];
-        $eb_category = [
+        $zb_category = [
             'slug'  => 'zolo-blocks',
             'title' => __('Zolo Blocks', 'zolo-blocks')
         ];
-        $updatedCat[0] = $eb_category;
+        $updatedCat[0] = $zb_category;
         $updatedCat    = array_merge($updatedCat, $categories);
         return $updatedCat;
     }

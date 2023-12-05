@@ -206,9 +206,14 @@ function Inspector(props) {
                 styleTab={
                     <>
                         {preset !== '' && (
-                            <ZoloPanelBody title={__('Preset', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody
+                                title={__('Flex Direction', 'zolo-blocks')}
+                                firstOpen={true}
+                                stylePanel={true}
+                                panelProps={props}
+                            >
                                 <ToggleControl
-                                    label={__('Reserve item position', 'zolo-blocks')}
+                                    label={__('Reverse flex Direction', 'zolo-blocks')}
                                     checked={reversePosition}
                                     onChange={() =>
                                         setAttributes({
@@ -228,7 +233,12 @@ function Inspector(props) {
                         )}
                         {showTitle && (
                             <>
-                                <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                                <ZoloPanelBody
+                                    title={__('Title', 'zolo-blocks')}
+                                    stylePanel={true}
+                                    panelProps={props}
+                                    firstOpen={preset === '' ? true : false}
+                                >
                                     <ColorControl
                                         label={__('Color', 'zolo-blocks')}
                                         color={titleColor}

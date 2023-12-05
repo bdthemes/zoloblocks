@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { PanelBody, TextControl, BaseControl, Button, SelectControl } from '@wordpress/components';
+import { TextControl, BaseControl, Button, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -10,7 +10,6 @@ import { __ } from '@wordpress/i18n';
  */
 const {
     HeaderTabs,
-    ResAlignmentControl,
     BorderControl,
     BoxShadowControl,
     NormalBGControl,
@@ -22,7 +21,6 @@ const {
     ImageAvatar,
     ResRangeControl,
     LinkControl,
-    IconicBtnGroup,
     AdvancedOptions,
     ZoloPanelBody,
 } = window.zoloModule;
@@ -30,7 +28,12 @@ const {
 import objAttributes from './attributes';
 import {
     CONTAINER_HEIGHT,
-    CONTENT_ALIGNMENT,
+    CONTAINER_BG,
+    CONTAINER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_MARGIN,
+    CONTAINER_PADDING,
     CONTENT_PADDING,
     CONTENT_BG,
     TITLE_TEXT_STROKE,
@@ -47,7 +50,7 @@ import {
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS, FLEX_HORIZONTAL_OPTIONS, HEADING } from '../../../src/global/constants';
+import { HEADING } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -62,14 +65,10 @@ function Inspector(props) {
         resMode,
         labelColor,
         labelHoverColor,
-        contentHorizontalPosition,
-        contentVerticalPosition,
         brandNameVisible,
         brandLabelVisible,
         enableLogoLink,
         logoLinkType,
-        selectedPanel,
-        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -132,24 +131,6 @@ function Inspector(props) {
                                     />
                                 )}
                             </BaseControl>
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zolo-blocks')}
-                                controlName={CONTENT_ALIGNMENT}
-                                requiredProps={requiredProps}
-                                alignOptions={DEFAULT_ALIGNS}
-                            />
-                            <IconicBtnGroup
-                                label={__('Content Horizontal Position', 'zolo-blocks')}
-                                value={contentHorizontalPosition}
-                                onChange={(value) => setAttributes({ contentHorizontalPosition: value })}
-                                options={FLEX_HORIZONTAL_OPTIONS}
-                            />
-                            <IconicBtnGroup
-                                label={__('Content Vertical Position', 'zolo-blocks')}
-                                value={contentVerticalPosition}
-                                onChange={(value) => setAttributes({ contentVerticalPosition: value })}
-                                options={FLEX_ALIGN_OPTIONS}
-                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             {brandNameVisible && (
@@ -211,6 +192,33 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 min={0}
                                 max={1000}
+                            />
+                            <BorderControl
+                                label={__('Border', 'zolo-blocks')}
+                                controlName={CONTAINER_BORDER}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={CONTAINER_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                            <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BG} noMainBGImg={false} />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={CONTAINER_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                                min={0}
+                                max={100}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={CONTAINER_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zolo-blocks')} stylePanel={true} panelProps={props}>

@@ -4,11 +4,11 @@
 import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'zolo-post-grid';
 export const PRESETS = [
-    { label: __('Default', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Style 1', 'zolo-blocks'), value: 'style-2' },
-    { label: __('Style 2', 'zolo-blocks'), value: 'style-3' },
-    { label: __('Style 3', 'zolo-blocks'), value: 'style-4' },
-    { label: __('Style 4', 'zolo-blocks'), value: 'style-5' },
+    { label: __('Style 1', 'zolo-blocks'), value: 'style-1' },
+    { label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
+    { label: __('Style 3', 'zolo-blocks'), value: 'style-3' },
+    { label: __('Style 4', 'zolo-blocks'), value: 'style-4' },
+    { label: __('Style 5', 'zolo-blocks'), value: 'style-5' },
 ];
 export const GRID_COLUMNS = 'gridColumns';
 export const COLUMNS_GAP = 'columnsGap';

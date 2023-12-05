@@ -34,6 +34,12 @@ import {
     ROWS_GAP,
     LINK_TYPES,
     CONTAINER_HEIGHT,
+    CONTAINER_BG,
+    CONTAINER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_MARGIN,
+    CONTAINER_PADDING,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
     CONTENT_BG,
@@ -185,6 +191,33 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 min={0}
                                 max={1000}
+                            />
+                            <BorderControl
+                                label={__('Border', 'zolo-blocks')}
+                                controlName={CONTAINER_BORDER}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={CONTAINER_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                            <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BG} noMainBGImg={false} />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={CONTAINER_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                                min={0}
+                                max={100}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={CONTAINER_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zolo-blocks')} stylePanel={true} panelProps={props}>

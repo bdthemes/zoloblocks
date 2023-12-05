@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { BorderControl, ResDimensionsControl, HeaderTabs, AdvancedOptions } = window.zoloModule;
+const { BorderControl, ResDimensionsControl, HeaderTabs, AdvancedOptions, ZoloPanelBody } = window.zoloModule;
 
 import objAttributes from './attributes';
 import { SLIDE_PADDING, SLIDE_BORDER, SLIDE_BORDER_RADIUS } from './constants';
@@ -36,7 +36,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <PanelBody>
+                        <ZoloPanelBody firstOpen={true} panelProps={props}>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={SLIDE_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
@@ -50,7 +50,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                        </PanelBody>
+                        </ZoloPanelBody>
                     </>
                 }
                 advancedTab={

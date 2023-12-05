@@ -218,7 +218,7 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             {showBadge && (
                                 <TextControl
                                     label={__('Badge Text', 'zolo-blocks')}

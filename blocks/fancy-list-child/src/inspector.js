@@ -12,7 +12,7 @@ import { Fragment } from '@wordpress/element';
 const {
     HeaderTabs,
     ColorControl,
-    IconPicker,
+    ZoloIconPicker,
     TabPanelControl,
     ImageAvatar,
     TypographyDropdown,
@@ -88,42 +88,6 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <Fragment>
-                        {/* <ZoloPanelBody title={__('General', 'zolo-block')} panelProps={props} firstOpen={true}>
-                            <SelectControl
-                                label={__('Presets', 'zolo-block')}
-                                options={PRESETS}
-                                onChange={(v) => onPresetChange(v)}
-                                value={preset}
-                            />
-                            <ToggleControl
-                                label={__('Show title', 'zolo-block')}
-                                checked={titleToggle}
-                                onChange={() => {
-                                    setAttributes({ titleToggle: !titleToggle });
-                                }}
-                            />
-                            <ToggleControl
-                                label={__('Show description', 'zolo-block')}
-                                checked={textToggle}
-                                onChange={() => {
-                                    setAttributes({ textToggle: !textToggle });
-                                }}
-                            />
-                            <ToggleControl
-                                label={__('Show media', 'zolo-block')}
-                                checked={imageToggle}
-                                onChange={() => {
-                                    setAttributes({ imageToggle: !imageToggle });
-                                }}
-                            />
-                            <ToggleControl
-                                label={__('Enable Icon', 'zolo-block')}
-                                checked={iconToggle}
-                                onChange={() => {
-                                    setAttributes({ iconToggle: !iconToggle });
-                                }}
-                            />
-                        </ZoloPanelBody> */}
                         <ZoloPanelBody title={__('Content', 'zolo-block')} panelProps={props} firstOpen={true}>
                             {titleToggle && (
                                 <TextControl
@@ -146,37 +110,16 @@ function Inspector(props) {
                         {iconToggle && (
                             <ZoloPanelBody title={__('Icon', 'zolo-block')} panelProps={props}>
                                 {iconToggle && (
-                                    <IconPicker
-                                        title={__('Icon picker', 'zolo-block')}
+                                    <ZoloIconPicker
+                                        label={__('Select Icon', 'zolo-block')}
                                         value={fancyIcon}
                                         onChange={(v) => setAttributes({ fancyIcon: v })}
-                                        showHeading={false}
-                                        disableDashicon={true}
                                     />
                                 )}
                             </ZoloPanelBody>
                         )}
                         {imageToggle && (
                             <ZoloPanelBody title={__('Media', 'zolo-block')} panelProps={props}>
-                                <IconicBtnGroup
-                                    label={__('Media Type', 'zolo-blocks')}
-                                    value={mediaType}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            mediaType: value,
-                                        })
-                                    }
-                                    options={[
-                                        {
-                                            label: __('Text', 'zolo-blocks'),
-                                            value: 'text',
-                                        },
-                                        {
-                                            label: __('Image', 'zolo-blocks'),
-                                            value: 'image',
-                                        },
-                                    ]}
-                                />
                                 {mediaType === 'image' &&
                                     (image ? (
                                         <ImageAvatar
@@ -253,7 +196,7 @@ function Inspector(props) {
                                     value={headingTag}
                                 />
                                 <ResDimensionsControl
-                                    label={__('Spacing', 'zolo-block')}
+                                    label={__('Margin', 'zolo-block')}
                                     controlName={TITLE_SPACING}
                                     requiredProps={requiredProps}
                                     max={100}
@@ -292,7 +235,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                 />
                                 <ResDimensionsControl
-                                    label={__('Spacing', 'zolo-block')}
+                                    label={__('Margin', 'zolo-block')}
                                     controlName={DESC_SPACING}
                                     requiredProps={requiredProps}
                                     max={100}

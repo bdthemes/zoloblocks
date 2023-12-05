@@ -59,13 +59,13 @@ if (!class_exists('Zolo_Block_Enqueue')) {
         {
             wp_enqueue_style(
                 'zolo-block-common-style',
-                ZOLO_ADMIN_URL . 'build/dist/style.css',
+                trailingslashit(ZOLO_ADMIN_URL) . 'build/dist/style.css',
                 [],
                 ZOLO_VERSION
             );
 
             //Register vendor bundle
-            $dependency_path  = ZOLO_DIR_PATH . 'vendor-bundle/index.asset.php';
+            $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'vendor-bundle/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
@@ -76,7 +76,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // Enqueue vendor bundle Scripts
             wp_register_script(
                 'zolo-block-editor-dependency',
-                ZOLO_ADMIN_URL . 'vendor-bundle/index.js',
+                trailingslashit(ZOLO_ADMIN_URL) . 'vendor-bundle/index.js',
                 $script_dependecy['dependencies'],
                 $version,
                 true
@@ -85,19 +85,19 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // enqueue fontawesome icons
             wp_enqueue_style(
                 'zolo-fontawesome',
-                ZOLO_ADMIN_URL . 'assets/css/fontawesome/css/fontawesome.min.css',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/fontawesome/css/fontawesome.min.css',
                 [],
                 ZOLO_VERSION
             );
 
             if (!is_admin() && has_block('zolo/image-gallery')) {
                 // enqueue style for frontend
-                wp_enqueue_style('zolo-maginific-popup', ZOLO_ADMIN_URL . 'assets/css/magnific-popup/magnific-popup.css', [], ZOLO_VERSION);
+                wp_enqueue_style('zolo-maginific-popup', trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/magnific-popup/magnific-popup.css', [], ZOLO_VERSION);
 
                 // enqueue magnific popup for frontend
                 wp_enqueue_script(
                     'zolo-maginific-popup',
-                    ZOLO_ADMIN_URL . 'assets/js/magnific-popup/jquery.magnific-popup.min.js',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/magnific-popup/jquery.magnific-popup.min.js',
                     ['jquery'],
                     ZOLO_VERSION,
                     true
@@ -106,7 +106,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 // enqueue scripts for frontend
                 wp_enqueue_script(
                     'zolo-popup-scripts',
-                    ZOLO_ADMIN_URL . 'assets/js/scripts.js',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/scripts.js',
                     ['jquery', 'zolo-maginific-popup'],
                     ZOLO_VERSION,
                     true
@@ -117,14 +117,14 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             if (!is_admin() && has_block('zolo/slider')) {
                 wp_enqueue_style(
                     'zolo-swiper-editor-style',
-                    ZOLO_ADMIN_URL . 'assets/css/swiper/swiper-bundle.min.css',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
                     [],
                     ZOLO_VERSION
                 );
 
                 wp_enqueue_script(
                     'zolo-swiper-editor-script',
-                    ZOLO_ADMIN_URL . 'assets/js/swiper/swiper-bundle.min.js',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/swiper/swiper-bundle.min.js',
                     [],
                     ZOLO_VERSION,
                     true
@@ -135,11 +135,12 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // if ( ! is_admin() && has_block( 'zolo/accordion' ) ) {
             wp_enqueue_script(
                 'zolo-accordion-script',
-                ZOLO_ADMIN_URL . 'assets/js/accordion/accordion.min.js',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/accordion/accordion.min.js',
                 [],
                 ZOLO_VERSION,
                 true
             );
+            // }
         }
 
         /**
@@ -155,7 +156,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 return;
             }
             //Register vendor bundle
-            $dependency_path  = ZOLO_DIR_PATH . 'vendor-bundle/index.asset.php';
+            $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'vendor-bundle/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
@@ -166,14 +167,14 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // Swiper Scripts and Styles
             wp_register_style(
                 'zolo-swiper-editor-style',
-                ZOLO_ADMIN_URL . 'assets/css/swiper/swiper-bundle.min.css',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
                 [],
                 ZOLO_VERSION
             );
 
             wp_register_script(
                 'zolo-swiper-editor-script',
-                ZOLO_ADMIN_URL . 'assets/js/swiper/swiper-bundle.min.js',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/swiper/swiper-bundle.min.js',
                 [],
                 ZOLO_VERSION,
                 true
@@ -182,7 +183,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // Enqueue vendor bundle Scripts
             wp_register_script(
                 'zolo-block-editor-dependency',
-                ZOLO_ADMIN_URL . 'vendor-bundle/index.js',
+                trailingslashit(ZOLO_ADMIN_URL) . 'vendor-bundle/index.js',
                 $script_dependecy['dependencies'],
                 $version,
                 true
@@ -200,13 +201,13 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // Enqueue Modules Scripts
             wp_register_script(
                 'zolo-block-modules',
-                ZOLO_ADMIN_URL . 'build/module/index.js',
+                trailingslashit(ZOLO_ADMIN_URL) . 'build/module/index.js',
                 $script_dependecy['dependencies'],
                 $version,
                 true
             );
 
-            $dependency_path  = ZOLO_DIR_PATH . 'build/dist/index.asset.php';
+            $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'build/dist/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
                 'dependencies' => [],
                 'version'      => ZOLO_VERSION
@@ -230,7 +231,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // Enqueue Scripts
             wp_enqueue_script(
                 'zolo-block-editor-script',
-                ZOLO_ADMIN_URL . 'build/dist/index.js',
+                trailingslashit(ZOLO_ADMIN_URL) . 'build/dist/index.js',
                 $script_dependecy,
                 $version,
                 true
@@ -239,7 +240,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // Controls Editor style.
             wp_enqueue_style(
                 'zolo-block-control-editor-style',
-                ZOLO_ADMIN_URL . 'build/module/style.css',
+                trailingslashit(ZOLO_ADMIN_URL) . 'build/module/style.css',
                 [
                     'wp-edit-blocks',
                     'zolo-block-common-style',
@@ -293,10 +294,16 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             // placeholder photos
             wp_localize_script('zolo-block-editor-script', 'zoloPlaceholders', [
-                'placeholder'   => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/placeholder.svg',
-                'adavtarSquare' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/avatar-square.svg',
-                'adavtarRound'  => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/avatar-round.svg',
-                'presetBg'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/preset-bg.jpg',
+                'placeholder'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/placeholder.svg',
+                'placeholderTwo'   => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/placeholder-2.svg',
+                'placeholderThree' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/placeholder-3.svg',
+                'placeholderFour'  => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/placeholder-4.svg',
+                'placeholderFive'  => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/placeholder-5.svg',
+                'placeholderSix'   => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/placeholder-6.svg',
+                'avatarSquare'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/avatar-square.svg',
+                'avatarRound'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/avatar-round.svg',
+                'presetBg'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/preset-bg.jpg',
+                'brand'            => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/brand.svg',
             ]);
         }
     }

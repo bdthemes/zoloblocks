@@ -1,5 +1,5 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 import classnames from 'classnames';
 
 const Save = ({ attributes }) => {
@@ -42,11 +42,7 @@ const Save = ({ attributes }) => {
                     {textToggle == true && <RichText.Content tagName="div" className="zb-fancy-list-text" value={fancyListText} />}
                 </div>
             </div>
-            {iconToggle == true && (
-                <div>
-                    <div className="zb-fancy-icon">{fancyIcon && <DisplayIcon icon={fancyIcon} />}</div>
-                </div>
-            )}
+            {iconToggle == true && <div className="zb-fancy-icon">{fancyIcon && <DisplayZoloIcon icon={fancyIcon} />}</div>}
         </div>
     );
 };

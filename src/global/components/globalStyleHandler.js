@@ -13,7 +13,7 @@ import { generateBoxShadowStyles } from '../../helpers/boxshadow-helper';
 export const GlobalStyleHanlder = (props) => {
     const { attributes, setAttributes, desktopAllStyle, tabAllStyle, mobileAllStyle } = props;
 
-    const { uniqueId, zoloStyles, globalConfig } = attributes;
+    const { uniqueId, zIndex, zoloStyles, globalConfig } = attributes;
 
     if (!uniqueId) {
         return;
@@ -112,6 +112,7 @@ export const GlobalStyleHanlder = (props) => {
           ${marginStylesDesktop ? marginStylesDesktop : ''}
           ${paddingStylesDesktop ? paddingStylesDesktop : ''}
           ${bgDeskStyle ? bgDeskStyle : ''}
+          ${zIndex ? `z-index: ${zIndex};` : ''}
           transition: all 0.3s ease-in-out;
       }
 

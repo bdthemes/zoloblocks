@@ -22,7 +22,7 @@ import Sortable from './sortable';
  * WordPress depencencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -61,8 +61,9 @@ function Inspector(props) {
         socialBgColor,
         socialBgHoverColor,
         borderHoverColor,
-        selectedPanel,
-        selectedTab,
+        layout,
+        iconColor,
+        iconHoverColor,
         iconBgColor,
         iconBgHoverColor,
     } = attributes;
@@ -128,25 +129,54 @@ function Inspector(props) {
                                 options={ICON_STATUS}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
-                            <ResCounterControl
-                                label={__('Column Number', 'zolo-blocks')}
-                                controlName={COLUMN_COUNT}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={6}
+                        <ZoloPanelBody title={__('Layout', 'zolo-blocks')} panelProps={props}>
+                            <IconicBtnGroup
+                                label={__('Layout Type', 'zolo-blocks')}
+                                value={layout}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        layout: value,
+                                    })
+                                }
+                                options={[
+                                    {
+                                        label: __('Flex', 'zolo-blocks'),
+                                        value: 'flex',
+                                    },
+                                    {
+                                        label: __('Grid', 'zolo-blocks'),
+                                        value: 'grid',
+                                    },
+                                ]}
                             />
+                            {layout === 'grid' && (
+                                <>
+                                    <ResCounterControl
+                                        label={__('Column Number', 'zolo-blocks')}
+                                        controlName={COLUMN_COUNT}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={10}
+                                        defaults={{
+                                            deskRange: 5,
+                                            tabRange: 3,
+                                            mobRange: 2,
+                                        }}
+                                    />
+                                    <ResRangeControl
+                                        label={__('Row Gap', 'zolo-blocks')}
+                                        controlName={ROW_GAP}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                    />
+                                </>
+                            )}
+
                             <ResRangeControl
                                 label={__('Columns Gap', 'zolo-blocks')}
                                 controlName={COLUMNS_GAP}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
-                            <ResRangeControl
-                                label={__('Row Gap', 'zolo-blocks')}
-                                controlName={ROW_GAP}
                                 requiredProps={requiredProps}
                                 min={0}
                                 max={100}
@@ -160,7 +190,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Social Icons', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Social Icons', 'zolo-blocks')} stylePanel={true} panelProps={props} firstOpen={true}>
                             {socialText !== 'iconOnly' && (
                                 <TypographyDropdown
                                     label={__('Text Typography', 'zolo-blocks')}
@@ -256,15 +286,26 @@ function Inspector(props) {
                                                 }
                                             />
                                             {socialText !== 'none' && preset === 'preset-3' && (
-                                                <ColorControl
-                                                    label={__('Icon Background', 'zolo-blocks')}
-                                                    color={iconBgColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            iconBgColor: value,
-                                                        })
-                                                    }
-                                                />
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Icon Color', 'zolo-blocks')}
+                                                        color={iconColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                iconColor: value,
+                                                            })
+                                                        }
+                                                    />
+                                                    <ColorControl
+                                                        label={__('Icon Background', 'zolo-blocks')}
+                                                        color={iconBgColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                iconBgColor: value,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
                                             )}
 
                                             <BoxShadowControl controlName={BTN_SHADOW} requiredProps={requiredProps} />
@@ -291,15 +332,26 @@ function Inspector(props) {
                                                 }
                                             />
                                             {socialText !== 'none' && preset === 'preset-3' && (
-                                                <ColorControl
-                                                    label={__('Icon Background', 'zolo-blocks')}
-                                                    color={iconBgHoverColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            iconBgHoverColor: value,
-                                                        })
-                                                    }
-                                                />
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Icon Color', 'zolo-blocks')}
+                                                        color={iconHoverColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                iconHoverColor: value,
+                                                            })
+                                                        }
+                                                    />
+                                                    <ColorControl
+                                                        label={__('Icon Background', 'zolo-blocks')}
+                                                        color={iconBgHoverColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                iconBgHoverColor: value,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
                                             )}
 
                                             <ColorControl

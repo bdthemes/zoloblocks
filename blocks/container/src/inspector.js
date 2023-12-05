@@ -169,7 +169,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Container Gap','zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Container Gap', 'zolo-blocks')} stylePanel={true} firstOpen={true} panelProps={props}>
                             <ResRangeControl
                                 label={__('Row Gap', 'zolo-blocks')}
                                 controlName={ROW_GAP}

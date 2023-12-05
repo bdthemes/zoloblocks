@@ -92,7 +92,10 @@ const attributes = {
         type: 'object',
         default: {},
     },
-
+    metaSeparator: {
+        type: 'string',
+        default: '//',
+    },
     postQuery: {
         type: 'object',
     },
@@ -168,9 +171,6 @@ const attributes = {
         default: true,
     },
     namePrefixColor: {
-        type: 'string',
-    },
-    namePrefixHoverColor: {
         type: 'string',
     },
     nameColor: {

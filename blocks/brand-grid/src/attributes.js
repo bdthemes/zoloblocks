@@ -16,6 +16,12 @@ import {
     COLUMNS_GAP,
     ROWS_GAP,
     CONTAINER_HEIGHT,
+    CONTAINER_BG,
+    CONTAINER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_MARGIN,
+    CONTAINER_PADDING,
     TITLE_ALIGNMENT,
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
@@ -83,6 +89,12 @@ const attributes = {
     ...generateNormalBGAttributes(CONTENT_BG),
     // container
     ...generateResRangeAttributies(CONTAINER_HEIGHT),
+    ...generateNormalBGAttributes(CONTAINER_BG),
+    ...generateBorderAttributies(CONTAINER_BORDER),
+    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
+    ...generateDimensionAttributes(CONTAINER_MARGIN),
+    ...generateDimensionAttributes(CONTAINER_PADDING),
 
     // photo
     ...generateDimensionAttributes(BRAND_PHOTO_BORDER_RADIUS),

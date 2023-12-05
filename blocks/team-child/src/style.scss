@@ -158,10 +158,6 @@
         }
         .zolo-image-wrap {
             margin: 0 0 20px;
-            img {
-                width: clamp(4.375rem, 8vw, 6.25rem);
-                height: clamp(4.375rem, 8vw, 6.25rem);
-            }
         }
         .zolo-social-and-link-wrap {
             display: flex;
@@ -184,9 +180,8 @@
         .zolo-image-wrap {
             display: flex;
             flex-direction: row-reverse;
-            img {
-                width: calc(100% - clamp(3.125rem, 5vw, 3.75rem));
-            }
+            width: calc(100% - clamp(3.125rem, 5vw, 3.75rem));
+            margin-left: clamp(3.125rem, 5vw, 3.75rem);
         }
         .zolo-social-share {
             flex-direction: column;

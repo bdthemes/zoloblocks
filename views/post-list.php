@@ -1,27 +1,35 @@
 <?php
 
-use  Zolo\Helpers\ZoloHelpers;
+    use  Zolo\Helpers\ZoloHelpers;
 
-$topclass = 'zolo-post-featured-list-wrap';
-if (!empty($settings['preset'])) {
-    $topclass .= ' zolo-post-' . $settings['preset'];
-}
-$wrapper_class = ZoloHelpers::get_wrapper_class($settings, $topclass);
+    $topclass = 'zolo-post-featured-list-wrap';
+    if (!empty($settings['preset'])) {
+        $topclass .= ' zolo-post-' . $settings['preset'];
+    }
+    $wrapper_class = ZoloHelpers::get_wrapper_class($settings, $topclass);
 
-// get parent classes
-$parentClasses = $settings['parentClasses'] ?? [];
-// convert to string
-$parentClasses = implode(' ', $parentClasses);
-// add parent classes to wrapper class
-$wrapper_class .= ' ' . $parentClasses;
+    // get parent classes
+    $parentClasses = $settings['parentClasses'] ?? [];
+    // convert to string
+    $parentClasses = implode(' ', $parentClasses);
+    // add parent classes to wrapper class
+    $wrapper_class .= ' ' . $parentClasses;
 
-$html = '';
+    $html = '';
+    $i = 0;
+
+    $metaSeparator = !empty($settings['metaSeparator']) ? $settings['metaSeparator'] : '//';
+
 ?>
 
 <div class="<?php echo esc_attr($wrapper_class); ?>">
     <?php foreach ($post_results['posts'] as $result) {
+        $i++;
+        $featuredPostClass = $i === 1 ? 'featured-post' : '';
+
         $result = (object)$result;
-        $html .= '<div class="zolo-post-item">';
+
+        $html .= '<div class="zolo-post-item '.$featuredPostClass.'">';
 
         $html .= '<div class="zolo-post-image">';
             $html .= require __DIR__ . '/post-partials/thumbnail.php';
@@ -38,13 +46,19 @@ $html = '';
         $html .= require __DIR__ . '/post-partials/meta/categories.php';
         $html .= require __DIR__ . '/post-partials/title.php';
 
-        $html .= '<div class="zolo-post-meta">';
-        $html .= require __DIR__ . '/post-partials/meta/author.php';
-        $html .= require __DIR__ . '/post-partials/meta/date.php';
-        $html .= '</div>';
+        if(!empty($settings['showMeta'])){
+            $html .= '<div class="zolo-post-meta">';
+                $html .= require __DIR__ . '/post-partials/meta/author.php';
+                $html .= '<span class="meta-separator">'.$metaSeparator.'</span>';
+                $html .= require __DIR__ . '/post-partials/meta/date.php';
+                if(!empty($settings['showReadingTime'])){
+                    $html .= '<span class="meta-separator">'.$metaSeparator.'</span>';
+                    $html .= require __DIR__ . '/post-partials/meta/reading-time.php';
+                }
+            $html .= '</div>';
+        }
 
         $html .= require __DIR__ . '/post-partials/content.php';
-
 
         $html .= '</div>';
         $html .= '</div>';

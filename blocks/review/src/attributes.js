@@ -117,7 +117,7 @@ const attributes = {
         type: 'object',
         default: {
             id: '',
-            url: 'https://placehold.co/70x70',
+            url: zoloPlaceholders.avatarRound,
             alt: '',
         },
     },

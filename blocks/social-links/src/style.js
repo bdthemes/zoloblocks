@@ -45,6 +45,8 @@ const Style = ({ props }) => {
         socialTextColor,
         socialTextHoverColor,
         borderHoverColor,
+        iconColor,
+        iconHoverColor,
         iconBgColor,
         iconBgHoverColor,
     } = attributes;
@@ -138,6 +140,11 @@ const Style = ({ props }) => {
         controlName: COLUMN_COUNT,
         attributes,
         noProperty: true,
+        defaults: {
+            deskRange: 5,
+            tabRange: 3,
+            mobRange: 2,
+        },
     });
 
     // column gap
@@ -245,12 +252,20 @@ const Style = ({ props }) => {
         ${
             socialColor === 'custom' && preset === 'preset-3'
                 ? `.${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-icon{
-           background:${iconBgColor};
-           ${ptIconWidth}
-              ${ptIconHeight}
-        } .${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-item:hover .zolo-social-icon {
-            background:${iconBgHoverColor};
-         }`
+                    background:${iconBgColor};
+                    ${ptIconWidth}
+                    ${ptIconHeight}
+                } 
+                .${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-item svg{
+                    fill:${iconColor};
+                }
+                .${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-item:hover .zolo-social-icon {
+                    background:${iconBgHoverColor};
+                }
+                .${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-item:hover svg{
+                    fill:${iconHoverColor};
+                }
+         `
                 : ' '
         }
   	`;

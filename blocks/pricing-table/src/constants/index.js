@@ -13,6 +13,16 @@ export const RIBBON_ALIGN = [
     { label: __(<Dashicon icon={'editor-justify'} />), value: 'justify' },
 ];
 
+export const BTNS_POSITIONS = [
+    { label: __('Middle', 'zolo-blocks'), value: 'middle' },
+    { label: __('Bottom', 'zolo-blocks'), value: 'bottom' },
+];
+
+export const BTNS_DIRECTIONS = [
+    { label: __('Column', 'zolo-blocks'), value: 'column' },
+    { label: __('Row', 'zolo-blocks'), value: 'row' },
+];
+
 export const ALIGNENT = 'alignment';
 
 //header style

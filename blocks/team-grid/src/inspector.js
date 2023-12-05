@@ -241,7 +241,13 @@ function Inspector(props) {
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Photo', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <ResRangeControl label={__('Size', 'zolo-blocks')} controlName={PHOTO_SIZE} requiredProps={requiredProps} />
+                            <ResRangeControl
+                                label={__('Size', 'zolo-blocks')}
+                                controlName={PHOTO_SIZE}
+                                requiredProps={requiredProps}
+                                min={10}
+                                max={1000}
+                            />
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={TEAM_PHOTO_BORDER}

@@ -71,7 +71,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
                             <TextControl
                                 label={__('Accordion Title', 'zolo-blocks')}
                                 onChange={(text) =>

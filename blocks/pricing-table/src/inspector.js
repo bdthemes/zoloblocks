@@ -85,6 +85,8 @@ import {
     RIBBON_BG,
     RIBBON_POSITIONS,
     SEPARATOR_WIDTH,
+    BTNS_POSITIONS,
+    BTNS_DIRECTIONS,
 } from './constants';
 import {
     BTN_TYPOGRAPHY,
@@ -161,9 +163,9 @@ const Inspector = (props) => {
         //ribbon style
         ribbonColor,
         separatorColor,
-        //tab & panel
-        selectedPanel,
-        selectedTab,
+        // extra
+        btnsPosition,
+        btnsDirection,
     } = attributes;
 
     const requiredProps = {
@@ -202,6 +204,30 @@ const Inspector = (props) => {
                                 requiredProps={requiredProps}
                                 alignOptions={DEFAULT_ALIGNS}
                             />
+                            {(showBtn || showChatBtn) && (
+                                <>
+                                    <IconicBtnGroup
+                                        label={__('Buttons Position', 'zolo-blocks')}
+                                        value={btnsPosition}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                btnsPosition: value,
+                                            })
+                                        }
+                                        options={BTNS_POSITIONS}
+                                    />
+                                    <IconicBtnGroup
+                                        label={__('Buttons Direction', 'zolo-blocks')}
+                                        value={btnsDirection}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                btnsDirection: value,
+                                            })
+                                        }
+                                        options={BTNS_DIRECTIONS}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
                         {showRibbon && (
                             <ZoloPanelBody title={__('Ribbon', 'zolo-blocks')} panelProps={props}>

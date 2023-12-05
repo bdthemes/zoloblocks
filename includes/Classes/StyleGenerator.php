@@ -39,9 +39,8 @@ class StyleGenerator {
         if ( isset( $block['blockName'] ) && str_contains( $block['blockName'], 'zolo/' ) ) {
             do_action('zolo_block_render_block', $block);
             if ( isset( $block['attrs']['zoloStyles'] ) ) {
-                $style         = $this::zolo_generate_style( $block['attrs']['zoloStyles'] );
-
-                // minify style string
+                $style = $this::zolo_generate_style( $block['attrs']['zoloStyles'] );
+                  // minify style string
                 $style = preg_replace( '/\s+/', ' ', $style );
 
                 $block_content = sprintf(

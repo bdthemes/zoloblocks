@@ -28,6 +28,13 @@ import {
     PAG_MARGIN,
     PAG_PADDING,
     PAG_ALIGN,
+    FTHUMB_HEIGHT,
+    FCONTENT_PADDING,
+    FCONTAINER_PADDING,
+    FCONTAINER_BG,
+    FCONTAINER_BORDER,
+    FCONTAINER_BORDER_RADIUS,
+    FCONTAINER_SHADOW,
 } from './constants';
 
 import {
@@ -37,6 +44,10 @@ import {
     CAT_TYPOGRAPHY,
     COUNT_TYPOGRAPHY,
     PAG_TYPOGRAPHY,
+    FTITLE_TYPOGRAPHY,
+    FEXCERPT_TYPOGRAPHY,
+    FMETA_TYPOGRAPHY,
+    FCAT_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
 const {
@@ -71,8 +82,128 @@ function Style({ props }) {
         apagColor,
         apagBgColor,
         pagSeparatorColor,
+        authorPrefixColor,
+        authorColor,
+        authorHoverColor,
+
+        // featured post
+        ftitleColor,
+        ftitleHoverColor,
+        fexcerptColor,
+        fmetaColor,
+        fcatBgColor,
+        fcatColor,
+        fcatBgHoverColor,
+        fcatHoverColor,
+        fauthorPrefixColor,
+        fauthorColor,
+        fauthorHoverColor,
+        fcountColor,
+        fcountBGColor,
     } = attributes;
 
+    // Featured Post
+
+    const {
+        desktopRangeStyle: fthumbHeightDesk,
+        tabRangeStyle: fthumbHeightTab,
+        mobRangeStyle: fthumbHeightMob,
+    } = generateResRangeStyle({
+        controlName: FTHUMB_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: ftitleTypoDesk,
+        typoStylesTab: ftitleTypoTab,
+        typoStylesMobile: ftitleTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: FTITLE_TYPOGRAPHY,
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: fexcerptTypoDesk,
+        typoStylesTab: fexcerptTypoTab,
+        typoStylesMobile: fexcerptTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: FEXCERPT_TYPOGRAPHY,
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: fmetaTypoDesk,
+        typoStylesTab: fmetaTypoTab,
+        typoStylesMobile: fmetaTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: FMETA_TYPOGRAPHY,
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: fcatTypoDesk,
+        typoStylesTab: fcatTypoTab,
+        typoStylesMobile: fcatTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: FCAT_TYPOGRAPHY,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: fcontentDeskPadding,
+        dimensionStylesTab: fcontentTabPadding,
+        dimensionStylesMobile: fcontentMobPadding,
+    } = generateDimensionStyle({
+        controlName: FCONTENT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: fcontainerDeskPadding,
+        dimensionStylesTab: fcontainerTabPadding,
+        dimensionStylesMobile: fcontainerMobPadding,
+    } = generateDimensionStyle({
+        controlName: FCONTAINER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    const {
+        backgroundStylesDesktop: fcontainerDeskBGStyle,
+        backgroundStylesTab: fcontainerTabBGStyle,
+        backgroundStylesMobile: fcontainerMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: FCONTAINER_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        desktopBorderStyle: fcontainerDeskBorderStyle,
+        tabBorderStyle: fcontainerTabBorderStyle,
+        mobBorderStyle: fcontainerMobBorderStyle,
+    } = generateBorderStyle({
+        controlName: FCONTAINER_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: fcontainerDeskBorderRadius,
+        dimensionStylesTab: fcontainerTabBorderRadius,
+        dimensionStylesMobile: fcontainerMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: FCONTAINER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: fcontainerBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: FCONTAINER_SHADOW,
+    });
+
+    // column gap
     const {
         desktopRangeStyle: colGapDesk,
         tabRangeStyle: colGapTab,
@@ -415,23 +546,95 @@ function Style({ props }) {
         ${columnDeskBorderRadius}
         ${columnBoxShadow}
       }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post {
+        ${fcontainerDeskPadding}
+        ${fcontainerDeskBGStyle}
+        ${fcontainerDeskBorderStyle}
+        ${fcontainerDeskBorderRadius}
+        ${fcontainerBoxShadow}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-content{
+        ${fcontentDeskPadding}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-image{
+        ${fthumbHeightDesk}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-title {
+        ${ftitleTypoDesk}
+        ${ftitleColor ? `color:${ftitleColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-title a{
+        ${ftitleColor ? `color:${ftitleColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-title:hover a {
+        ${ftitleHoverColor ? `color:${ftitleHoverColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-desc p{
+        ${fexcerptTypoDesk}
+        ${fexcerptColor ? `color:${fexcerptColor};` : ''}
+      }
+      
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta,
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-author-name,
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-date,
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .meta-separator {
+        ${fmetaTypoDesk}
+        ${fmetaColor ? `color:${fmetaColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-author-name span {
+        ${fauthorPrefixColor ? `color:${fauthorPrefixColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-author-name a {
+        ${fauthorColor ? `color:${fauthorColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-author-name a:hover {
+        ${fauthorHoverColor ? `color:${fauthorHoverColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-count-number {
+        ${fcountColor ? `color:${fcountColor};` : ''}
+        ${fcountBGColor ? `background-color:${fcountBGColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-category a {
+        ${fcatTypoDesk}
+        ${fcatColor ? `color:${fcatColor};` : ''}
+        ${fcatBgColor ? `background-color:${fcatBgColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-category a:hover {
+        ${fcatHoverColor ? `color:${fcatHoverColor};` : ''}
+        ${fcatBgHoverColor ? `background-color:${fcatBgHoverColor};` : ''}
+      }
+
+
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-image{
         ${thumbnailHeightDesk}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-title,
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item:first-child .zolo-post-title{
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-title{
         ${titleMarginDesk}
         ${titleTypoDesk}
       }
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-title a,
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item:first-child .zolo-post-title a{
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-title a{
         ${titleColor ? `color:${titleColor};` : ''}
       }
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-title a:hover,
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item:first-child .zolo-post-title a:hover{
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-title a:hover {
         ${titleHoverColor ? `color:${titleHoverColor};` : ''}
       }
+
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-desc p{
         ${excerptMarginDesk}
         ${excerptTypoDesk}
@@ -453,13 +656,11 @@ function Style({ props }) {
         ${metaColor ? `color:${metaColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category,
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item:first-child .zolo-post-category{
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category{
         ${catGapDesk}
         ${catMarginDesk}
       }
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category a,
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item:first-child .zolo-post-category a{
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category a{
         ${catTypoDesk}
         ${catPaddingDesk}
         ${catBorderDesk}
@@ -467,8 +668,7 @@ function Style({ props }) {
         ${catColor ? `color:${catColor};` : ''}
         ${catBgColor ? `background-color:${catBgColor};` : ''}
       }
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category a:hover,
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item:first-child .zolo-post-category a:hover{
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category a:hover{
         ${catHoverColor ? `color:${catHoverColor};` : ''}
         ${catBgHoverColor ? `background-color:${catBgHoverColor};` : ''}
       }
@@ -487,12 +687,24 @@ function Style({ props }) {
         ${countHoverBGColor ? `background-color:${countHoverBGColor};` : ''}
       }
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-date,
+      .${uniqueId}.zolo-post-featured-list-wrap .meta-separator,
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-author-name{
         ${metaMarginDesk}
         ${metaTypoDesk}
         ${metaColor ? `color:${metaColor};` : ''}
       }
 
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta .zolo-post-author-name span{
+        ${authorPrefixColor ? `color:${authorPrefixColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta .zolo-post-author-name a{
+        ${authorColor ? `color:${authorColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta .zolo-post-author-name a:hover{
+        ${authorHoverColor ? `color:${authorHoverColor};` : ''}
+      }
 
       .${uniqueId}.zolo-pagination-wrap {
         ${pagAlignDesk}
@@ -532,11 +744,45 @@ function Style({ props }) {
       ${colGapTab}
     }
 
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-content{
+      ${fcontentTabPadding}
+    }
+
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-image{
+      ${fthumbHeightTab}
+    }
+
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-title {
+      ${ftitleTypoTab}
+    }
+
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-desc p{
+      ${fexcerptTypoTab}
+    }
+
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta,
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-author-name,
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-date,
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .meta-separator {
+      ${fmetaTypoTab}
+    }
+
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-category a {
+      ${fcatTypoTab}
+    }
+
     .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item{
       ${columnTabPadding}
       ${columnTabBGStyle}
       ${columnTabBorderStyle}
       ${columnTabBorderRadius}
+    }
+
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post {
+      ${fcontainerTabPadding}
+      ${fcontainerTabBGStyle}
+      ${fcontainerTabBorderStyle}
+      ${fcontainerTabBorderRadius}
     }
 
     .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-image{
@@ -610,11 +856,45 @@ function Style({ props }) {
         ${colGapMob}
       }
 
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-content{
+        ${fcontentMobPadding}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-image{
+        ${fthumbHeightMob}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-title {
+        ${ftitleTypoMob}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-desc p{
+        ${fexcerptTypoMob}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta,
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-author-name,
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-date,
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .meta-separator {
+        ${fmetaTypoMob}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-category a {
+        ${fcatTypoMob}
+      }
+
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item{
         ${columnMobPadding}
         ${columnMobBGStyle}
         ${columnMobBorderStyle}
         ${columnMobBorderRadius}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post {
+        ${fcontainerMobPadding}
+        ${fcontainerMobBGStyle}
+        ${fcontainerMobBorderStyle}
+        ${fcontainerMobBorderRadius}
       }
 
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-image{

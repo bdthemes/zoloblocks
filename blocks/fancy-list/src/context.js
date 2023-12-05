@@ -4,6 +4,7 @@ const Context = {
     'zolo/textToggle': 'textToggle',
     'zolo/imageToggle': 'imageToggle',
     'zolo/iconToggle': 'iconToggle',
+    'zolo/mediaType': 'mediaType',
 };
 
 export default Context;

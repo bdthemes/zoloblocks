@@ -18,6 +18,14 @@ export const PRESETS = [
 export const PHOTO_BG = 'PhotoBg';
 export const PHOTO_SIZE = 'PhotoSize';
 
+// item
+export const ITEM_BG = 'ItemBg';
+export const ITEM_PADDING = 'ItemPadding';
+export const ITEM_MARGIN = 'ItemMargin';
+export const ITEM_BORDER = 'ItemBorder';
+export const ITEM_BORDER_RADIUS = 'ItemBorderRadius';
+export const ITEM_BOX_SHADOW = 'ItemBoxShadow';
+
 // content
 export const CONTENT_BG = 'ContentBg';
 export const CONTENT_PADDING = 'ContentPadding';
@@ -28,26 +36,12 @@ export const CONTENT_BOX_SHADOW = 'ContentBoxShadow';
 
 //  border
 export const TEAM_PHOTO_BORDER = 'PhotoBorder';
-
-//  border radius
 export const TEAM_PHOTO_BORDER_RADIUS = 'PhotoBorderRadius';
-
-// box shadow
 export const TEAM_PHOTO_BOX_SHADOW = 'PhotoBoxShadow';
-
-//  margin
 export const TEAM_PHOTO_MARGIN = 'PhotoMargin';
-
-//  padding
 export const TEAM_PHOTO_PADDING = 'PhotoPadding';
-
-// name margin
 export const TEAM_NAME_MARGIN = 'NameMargin';
-
-// designation margin
 export const TEAM_DESIGNATION_MARGIN = 'DesignationMargin';
-
-// short bio margin
 export const TEAM_SHORT_BIO_MARGIN = 'ShortBioMargin';
 
 // social icons

@@ -21,7 +21,7 @@
     box-sizing: border-box;
     overflow: hidden;
     .zb-profile-badge {
-        padding: 4px 13px;
+        padding: 7px 14px;
         font-size: 11px;
         border-radius: var(--zoloblocks-button-border-radius);
         color: #f8f8f8;
@@ -29,6 +29,7 @@
         display: inline-block;
         text-transform: uppercase;
         border: 1px solid #cccccc;
+        line-height: 1;
     }
 
     .zb-profile-name {

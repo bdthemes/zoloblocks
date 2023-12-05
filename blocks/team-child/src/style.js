@@ -55,6 +55,12 @@ import {
     DPL_ICON_SIZE,
     TEAM_MEMBER_CONTAINER_PADDING,
     TEAM_MEMBER_CONTAINER_MARGIN,
+    ITEM_BG,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BORDER,
+    ITEM_BORDER_RADIUS,
+    ITEM_BOX_SHADOW,
 } from './constants';
 
 import {
@@ -68,7 +74,6 @@ const Style = ({ props }) => {
     const {
         uniqueId,
         nameColor,
-        nameHoverColor,
         designationColor,
         shortBioColor,
         separatorColor,
@@ -96,6 +101,61 @@ const Style = ({ props }) => {
         dimensionStylesMobile: teamMemberContainerMobMargin,
     } = generateDimensionStyle({
         controlName: TEAM_MEMBER_CONTAINER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    // item
+    const {
+        backgroundStylesDesktop: itemDeskBg,
+        backgroundStylesTab: itemTabBg,
+        backgroundStylesMobile: itemMobBg,
+    } = generateNormalBGControlStyles({
+        controlName: ITEM_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        desktopBorderStyle: itemBorderDeskStyle,
+        tabBorderStyle: itemBorderTabStyle,
+        mobBorderStyle: itemBorderMobStyle,
+    } = generateBorderStyle({
+        controlName: ITEM_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: itemDeskBorderRadius,
+        dimensionStylesTab: itemTabBorderRadius,
+        dimensionStylesMobile: itemMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: ITEM_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: itemBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: ITEM_BOX_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: itemDeskPadding,
+        dimensionStylesTab: itemTabPadding,
+        dimensionStylesMobile: itemMobPadding,
+    } = generateDimensionStyle({
+        controlName: ITEM_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: itemDeskMargin,
+        dimensionStylesTab: itemTabMargin,
+        dimensionStylesMobile: itemMobMargin,
+    } = generateDimensionStyle({
+        controlName: ITEM_MARGIN,
         styleFor: 'margin',
         attributes,
     });
@@ -321,16 +381,6 @@ const Style = ({ props }) => {
     });
 
     const {
-        desktopRangeStyle: socialIconDesk,
-        tabRangeStyle: socialIconTab,
-        mobRangeStyle: socialIconMob,
-    } = generateResRangeStyle({
-        controlName: ICONS_SIZE,
-        property: 'font-size',
-        attributes,
-    });
-
-    const {
         desktopRangeStyle: socialIconContainerHeightDesk,
         tabRangeStyle: socialIconContainerHeightTab,
         mobRangeStyle: socialIconContainerHeightMob,
@@ -508,6 +558,15 @@ const Style = ({ props }) => {
 			${teamMemberContainerDeskMargin}
 		}
 
+        .${uniqueId}.wp-block-zolo-team-child .zolo-item {
+            ${itemDeskBg}
+			${itemBorderDeskStyle}
+			${itemDeskBorderRadius}
+			${itemDeskPadding}
+			${itemDeskMargin}
+			${itemBoxShadow}
+		}
+
 		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
@@ -613,6 +672,13 @@ const Style = ({ props }) => {
 			${teamMemberContainerTabPadding}
 			${teamMemberContainerTabMargin}
 		}
+        .${uniqueId}.wp-block-zolo-team-child .zolo-item {
+            ${itemTabBg}
+			${itemBorderTabStyle}
+			${itemTabBorderRadius}
+			${itemTabPadding}
+			${itemTabMargin}
+		}
 		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
@@ -699,6 +765,13 @@ const Style = ({ props }) => {
 		.${uniqueId} {
 			${teamMemberContainerMobPadding}
 			${teamMemberContainerMobMargin}
+		}
+        .${uniqueId}.wp-block-zolo-team-child .zolo-item {
+            ${itemMobBg}
+			${itemBorderMobStyle}
+			${itemMobBorderRadius}
+			${itemMobPadding}
+			${itemMobMargin}
 		}
 		.${uniqueId}.default .zolo-item .zolo-info-wrap,
 		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
