@@ -7,14 +7,14 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'advanced-button';
 // Presets
 export const PRESETS = [
-    { label: __('Default', 'zolo-blocks'), value: '' },
-    { label: __('Style 1', 'zolo-blocks'), value: 'button-1' },
-    { label: __('Style 2', 'zolo-blocks'), value: 'button-2' },
-    { label: __('Style 3', 'zolo-blocks'), value: 'button-3' },
-    { label: __('Style 4', 'zolo-blocks'), value: 'button-4' },
-    { label: __('Style 5', 'zolo-blocks'), value: 'button-5' },
-    { label: __('Style 6', 'zolo-blocks'), value: 'button-6' },
-    { label: __('Style 7', 'zolo-blocks'), value: 'button-7' },
+    { label: __('Style 1', 'zolo-blocks'), value: '' },
+    { label: __('Style 2', 'zolo-blocks'), value: 'button-1' },
+    { label: __('Style 3', 'zolo-blocks'), value: 'button-2' },
+    { label: __('Style 4', 'zolo-blocks'), value: 'button-3' },
+    { label: __('Style 5', 'zolo-blocks'), value: 'button-4' },
+    { label: __('Style 6', 'zolo-blocks'), value: 'button-5' },
+    { label: __('Style 7', 'zolo-blocks'), value: 'button-6' },
+    { label: __('Style 8', 'zolo-blocks'), value: 'button-7' },
 ];
 
 /**

@@ -34,14 +34,14 @@
         transition: all cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
     }
 
-    .zolo-post-meta-content {
+    .zolo-post-author-name {
         display: inline-flex;
         flex-direction: column;
         font-size: clamp(0.75rem, 1.5vw, 0.875rem);
         text-transform: capitalize;
     }
 
-    .zolo-post-meta-content a {
+    .zolo-post-author-name a {
         font-weight: 600;
         text-decoration: none;
         color: #fff;
@@ -84,7 +84,7 @@
     }
 
     .zolo-post-title a:hover,
-    .zolo-post-meta-content a:hover {
+    .zolo-post-author-name a:hover {
         color: var(--zoloblocks-brand-color-hover);
     }
 
@@ -172,11 +172,11 @@
         opacity: 1;
     }
 
-    &.zolo-post-style-1 .zolo-post-meta-content,
-    &.zolo-post-style-2 .zolo-post-meta-content,
-    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-meta-content,
-    &.zolo-post-style-4 .zolo-post-meta-content,
-    &.zolo-post-style-5 .zolo-post-meta-content {
+    &.zolo-post-style-1 .zolo-post-author-name,
+    &.zolo-post-style-2 .zolo-post-author-name,
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-author-name,
+    &.zolo-post-style-4 .zolo-post-author-name,
+    &.zolo-post-style-5 .zolo-post-author-name {
         color: #e5e6ed;
     }
 
@@ -256,7 +256,7 @@
     &.zolo-post-style-2 .zolo-post-desc p,
     &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-dateTime,
     &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-desc p,
-    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-meta-content a {
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-author-name a {
         color: #e5e6ed;
     }
 
@@ -291,7 +291,7 @@
     }
 
     .zolo-post-dateTime,
-    .zolo-post-meta-content span,
+    .zolo-post-author-name span,
     .zolo-post-desc p {
         transition: color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
     }
@@ -308,8 +308,8 @@
         z-index: 9;
     }
 
-    &.zolo-post-style-3 .zolo-post-meta-content,
-    &.zolo-post-style-3 .zolo-post-meta-content a {
+    &.zolo-post-style-3 .zolo-post-author-name,
+    &.zolo-post-style-3 .zolo-post-author-name a {
         color: #111013;
     }
 
@@ -381,8 +381,8 @@
         padding: 0;
     }
 
-    &.zolo-post-style-5 .zolo-post-meta-content,
-    &.zolo-post-style-5 .zolo-post-meta-content a {
+    &.zolo-post-style-5 .zolo-post-author-name,
+    &.zolo-post-style-5 .zolo-post-author-name a {
         color: #111013;
     }
 

@@ -1,5 +1,4 @@
 <?php
-
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
 	exit;
@@ -7,7 +6,7 @@ if (!defined('ABSPATH')) {
 
 class ZB_Post_Meta {
 	public function __construct() {
-		add_filter('init', array($this, 'register_meta'));
+		add_filter('init', [ $this, 'register_meta']);
 	}
 
 	/**

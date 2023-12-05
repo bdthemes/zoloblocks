@@ -6,6 +6,7 @@ const {
     generateDimensionStyle,
     GlobalStyleHanlder,
     generateNormalBGControlStyles,
+    generateResCounterStyle,
 } = window.zoloModule;
 
 import {
@@ -23,6 +24,9 @@ import {
     ICON_BG,
     ICON_HBG,
     GAP,
+    COLUMNS,
+    COLUMNS_GAP,
+    ROWS_GAP,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -32,6 +36,46 @@ const Style = ({ props }) => {
     const { uniqueId, titleColor, titleHColor, dscColor, desHcolor, iconColor, iconHColor, iconHBColor, mediaTextColor, mediaTextBgColor } =
         attributes;
 
+    // Grid Columns
+    const {
+        desktopRangeStyle: deskColumns,
+        tabRangeStyle: tabColumns,
+        mobRangeStyle: mobColumns,
+    } = generateResCounterStyle({
+        controlName: COLUMNS,
+        attributes,
+        noProperty: true,
+        defaults: {
+            deskRange: 2,
+            tabRange: 1,
+            mobRange: 1,
+        },
+    });
+
+    console.log('deskColumns', deskColumns);
+    console.log('tabColumns', tabColumns);
+    console.log('mobColumns', mobColumns);
+
+    const {
+        desktopRangeStyle: deskColumnsGap,
+        tabRangeStyle: tabColumnsGap,
+        mobRangeStyle: mobColumnsGap,
+    } = generateResRangeStyle({
+        controlName: COLUMNS_GAP,
+        property: 'grid-column-gap',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: deskRowsGap,
+        tabRangeStyle: tabRowsGap,
+        mobRangeStyle: mobRowsGap,
+    } = generateResRangeStyle({
+        controlName: ROWS_GAP,
+        property: 'grid-row-gap',
+        attributes,
+    });
+
     // icon
     const {
         desktopRangeStyle: DeskIconWidth,
@@ -39,7 +83,18 @@ const Style = ({ props }) => {
         mobRangeStyle: mobIconWidth,
     } = generateResRangeStyle({
         controlName: ICON_WIDTH,
-        property: 'font-size',
+        property: 'width',
+        attributes,
+        noUnits: false,
+    });
+
+    const {
+        desktopRangeStyle: DeskIconHeight,
+        tabRangeStyle: TabIconHeight,
+        mobRangeStyle: mobIconHeight,
+    } = generateResRangeStyle({
+        controlName: ICON_WIDTH,
+        property: 'height',
         attributes,
         noUnits: false,
     });
@@ -201,13 +256,23 @@ const Style = ({ props }) => {
 
     //  All Style Combination
     const desktopAllStyle = `
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon i {
+        .${uniqueId}.wp-block-zolo-fancy-list .zolo-fancy-list-container {
+            grid-template-columns: repeat(${deskColumns}, 1fr);
+            ${deskColumnsGap}
+            ${deskRowsGap}
+        }
+
+        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon {
+            ${deskiconpadding} 
+            ${iconNoramlBGStyle}
+            ${DesktopIconBorder}
+            ${deskiconRadius}
+        }
+
+        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon svg {
+            ${iconColor ? `fill:${iconColor};` : ''}
             ${DeskIconWidth}
-             ${deskiconpadding} 
-             ${iconNoramlBGStyle}
-             ${DesktopIconBorder}
-             ${deskiconRadius}
-             ${iconColor ? `color:${iconColor};` : ''}
+            ${DeskIconHeight}
         }
 
         .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-content {
@@ -243,26 +308,38 @@ const Style = ({ props }) => {
             ${dscColor ? `color:${dscColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list:hover .zb-fancy-list-title {
+        .${uniqueId}.wp-block-zolo-fancy-list .wp-block-zolo-fancy-list-child:hover .zb-fancy-list-title {
             ${titleHColor ? `color:${titleHColor};` : ''}
         }
-        .${uniqueId}.wp-block-zolo-fancy-list:hover .zb-fancy-list-text {
+        .${uniqueId}.wp-block-zolo-fancy-list .wp-block-zolo-fancy-list-child:hover .zb-fancy-list-text {
             ${desHcolor ? `color:${desHcolor};` : ''}
         }
-        .${uniqueId}.wp-block-zolo-fancy-list:hover .zb-fancy-icon i {
-            ${iconHColor ? `color:${iconHColor};` : ''}
+        .${uniqueId}.wp-block-zolo-fancy-list .wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
             ${iconHoverBGStyle}
             ${iconHBColor ? `border-color:${iconHBColor};` : ''}
+        }
+        .${uniqueId}.wp-block-zolo-fancy-list .wp-block-zolo-fancy-list-child:hover .zb-fancy-icon svg{
+            ${iconHColor ? `fill:${iconHColor};` : ''}
         }
 	`;
 
     const tabletAllStyle = `
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon i {
-            ${TabIconWidth}
+        .${uniqueId}.wp-block-zolo-fancy-list .zolo-fancy-list-container {
+            grid-template-columns: repeat(${tabColumns}, 1fr);
+            ${tabColumnsGap}
+            ${tabRowsGap}
+        }
+
+        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon {
             ${tabiconpadding} 
             ${iconNormalTabBGStyle}
             ${TabIconBorder}
             ${tabiconRadius}
+        }
+
+        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon svg {
+            ${TabIconWidth}
+            ${TabIconHeight}
         }
 
         .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-content {
@@ -291,25 +368,34 @@ const Style = ({ props }) => {
             ${descTabSpacing}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list:hover .zb-fancy-icon i {
+        .${uniqueId}.wp-block-zolo-fancy-list .wp-block-zolo-fancy-list-child:hover .zb-fancy-icon{
             ${iconHoverTabBGStyle}
         }
 	`;
 
     const mobileAllStyle = `	
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon i {
-            ${mobIconWidth}
+        .${uniqueId}.wp-block-zolo-fancy-list .zolo-fancy-list-container {
+            grid-template-columns: repeat(${mobColumns}, 1fr);
+            ${mobColumnsGap}
+            ${mobRowsGap}
+        }
+        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon {
             ${mobiconpadding} 
             ${iconNormalMobBGStyle}
             ${MobIconBorder}
             ${mobiconRadius}
         }
 
+        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon svg {
+            ${mobIconWidth}
+            ${mobIconHeight}
+        }
+
         .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-content {
             ${mobGap}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list:hover .zb-fancy-icon i {
+        .${uniqueId}.wp-block-zolo-fancy-list .wp-block-zolo-fancy-list-child:hover .zb-fancy-icon{
             ${iconHoverMobBGStyle}
         }
 

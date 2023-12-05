@@ -19,6 +19,7 @@ function RenderView({ attributes, postResults }) {
         showAuthor,
         showMeta,
         showReadingTime,
+        metaSeparator,
     } = attributes;
 
     return [
@@ -41,7 +42,7 @@ function RenderView({ attributes, postResults }) {
                 const avatar = <a dangerouslySetInnerHTML={{ __html: post.avatar }} />;
                 const author = (
                     <div
-                        className="zolo-post-meta-content"
+                        className="zolo-post-author-name"
                         dangerouslySetInnerHTML={{ __html: __('<span>posted by</span>') + post.author_link }}
                     />
                 );
@@ -59,7 +60,7 @@ function RenderView({ attributes, postResults }) {
                         {date}
                         {showReadingTime && (
                             <>
-                                <span>//</span>
+                                <span className="meta-separator">{metaSeparator}</span>
                                 {readingTime}
                                 {__('Min Read', 'zolo-blocks')}
                             </>

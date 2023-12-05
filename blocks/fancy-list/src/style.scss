@@ -1,8 +1,9 @@
 .wp-block-zolo-fancy-list {
+    box-sizing: border-box;
     .zolo-fancy-list-container {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        // grid-template-columns: repeat(2, 1fr);
         align-items: center;
-        gap: 15px;
+        // gap: 15px;
     }
 }

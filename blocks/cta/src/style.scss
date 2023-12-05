@@ -71,7 +71,9 @@
             }
         }
         &.reserve-position {
-            flex-direction: row-reverse;
+            &.style-1 {
+                flex-direction: row-reverse;
+            }
         }
     }
 }

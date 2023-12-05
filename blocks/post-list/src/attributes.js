@@ -41,6 +41,13 @@ import {
     PAG_MARGIN,
     PAG_ALIGN,
     PAG_PADDING,
+    FTHUMB_HEIGHT,
+    FCONTENT_PADDING,
+    FCONTAINER_PADDING,
+    FCONTAINER_BG,
+    FCONTAINER_BORDER,
+    FCONTAINER_BORDER_RADIUS,
+    FCONTAINER_SHADOW,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -76,6 +83,10 @@ const attributes = {
         type: 'string',
         default: 'style-1',
     },
+    metaSeparator: {
+        type: 'string',
+        default: '//',
+    },
     showExcerpt: {
         type: 'boolean',
         default: false,
@@ -84,23 +95,13 @@ const attributes = {
         type: 'object',
         default: {},
     },
-
     postQuery: {
         type: 'object',
     },
-    //layout
-    preset: {
-        type: 'string',
-        default: 'style-1',
-    },
-    ...generateResRangeAttributies(COLUMNS_GAP, {
-        defaultRange: 30,
-    }),
     showThumbnail: {
         type: 'boolean',
         default: true,
     },
-    ...generateResRangeAttributies(THUMBNAIL_HEIGHT),
     showTitle: {
         type: 'boolean',
         default: true,
@@ -141,6 +142,10 @@ const attributes = {
         default: true,
     },
     showPagination: {
+        type: 'boolean',
+        default: false,
+    },
+    showReadingTime: {
         type: 'boolean',
         default: false,
     },
@@ -196,12 +201,73 @@ const attributes = {
     pagSeparatorColor: {
         type: 'string',
     },
+    authorPrefixColor: {
+        type: 'string',
+    },
+    authorColor: {
+        type: 'string',
+    },
+    authorHoverColor: {
+        type: 'string',
+    },
+    // featured post
+    ftitleColor: {
+        type: 'string',
+    },
+    ftitleHoverColor: {
+        type: 'string',
+    },
+    fexcerptColor: {
+        type: 'string',
+    },
+    fcatBgColor: {
+        type: 'string',
+    },
+    fcatColor: {
+        type: 'string',
+    },
+    fcatBgHoverColor: {
+        type: 'string',
+    },
+    fcatHoverColor: {
+        type: 'string',
+    },
+    fmetaColor: {
+        type: 'string',
+    },
+    fcountColor: {
+        type: 'string',
+    },
+    fcountBGColor: {
+        type: 'string',
+    },
+    fauthorPrefixColor: {
+        type: 'string',
+    },
+    fauthorColor: {
+        type: 'string',
+    },
+    fauthorHoverColor: {
+        type: 'string',
+    },
+
+    ...generateResRangeAttributies(COLUMNS_GAP, {
+        defaultRange: 30,
+    }),
     ...generateDimensionAttributes(COLUMN_PADDING),
     ...generateNormalBGAttributes(COLUMN_BG),
     ...generateBorderAttributies(COLUMN_BORDER),
     ...generateDimensionAttributes(COLUMN_BORDER_RADIUS),
     ...generateBoxShadowAttributies(COLUMN_SHADOW),
 
+    ...generateDimensionAttributes(FCONTAINER_PADDING),
+    ...generateNormalBGAttributes(FCONTAINER_BG),
+    ...generateBorderAttributies(FCONTAINER_BORDER),
+    ...generateDimensionAttributes(FCONTAINER_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(FCONTAINER_SHADOW),
+
+    ...generateResRangeAttributies(FTHUMB_HEIGHT),
+    ...generateResRangeAttributies(THUMBNAIL_HEIGHT),
     ...generateDimensionAttributes(THUMBNAIL_MARGIN),
     ...generateDimensionAttributes(THUMBNAIL_PADDING),
     ...generateBorderAttributies(THUMBNAIL_BORDER),
@@ -231,6 +297,9 @@ const attributes = {
     ...generateDimensionAttributes(PAG_MARGIN),
     ...generateDimensionAttributes(PAG_PADDING),
     ...generateResAlignmentAttributies(PAG_ALIGN),
+
+    // featured post
+    ...generateDimensionAttributes(FCONTENT_PADDING),
 };
 
 export default attributes;

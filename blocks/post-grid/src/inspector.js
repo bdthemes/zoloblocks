@@ -108,14 +108,12 @@ function Inspector(props) {
         namePrefixColor,
         nameColor,
         nameHoverColor,
-        namePrefixHoverColor,
         pagColor,
         pagBgColor,
         apagColor,
         apagBgColor,
         pagSeparatorColor,
-        selectedPanel,
-        selectedTab,
+        metaSeparator,
         // post meta
         showReadingTime,
     } = attributes;
@@ -190,12 +188,6 @@ function Inspector(props) {
                                 onChange={(selected) => changePremade(selected)}
                             />
 
-                            {/* <ToggleControl
-                                label={__('Show Thumbnail', 'zolo-blocks')}
-                                checked={showThumbnail}
-                                onChange={(showThumbnail) => setAttributes({ showThumbnail })}
-                            /> */}
-
                             <ToggleControl
                                 label={__('Show Title', 'zolo-blocks')}
                                 checked={showTitle}
@@ -229,11 +221,13 @@ function Inspector(props) {
                                 checked={showMeta}
                                 onChange={() => setAttributes({ showMeta: !showMeta })}
                             />
-                            <ToggleControl
-                                label={__('Show Reading Time', 'zolo-blocks')}
-                                checked={showReadingTime}
-                                onChange={() => setAttributes({ showReadingTime: !showReadingTime })}
-                            />
+                            {showMeta && (
+                                <ToggleControl
+                                    label={__('Show Reading Time', 'zolo-blocks')}
+                                    checked={showReadingTime}
+                                    onChange={() => setAttributes({ showReadingTime: !showReadingTime })}
+                                />
+                            )}
                             <ToggleControl
                                 label={__('Show Pagination', 'zolo-blocks')}
                                 checked={postQuery?.showPagination}
@@ -280,6 +274,13 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
+                            {showMeta && showReadingTime && (
+                                <TextControl
+                                    label={__('Meta Separator', 'zolo-blocks')}
+                                    value={metaSeparator}
+                                    onChange={(value) => setAttributes({ metaSeparator: value })}
+                                />
+                            )}
                         </ZoloPanelBody>
                         {showReadMore && (
                             <ZoloPanelBody title={__('Read More Button', 'zolo-blocks')} panelProps={props}>
@@ -312,7 +313,7 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
 
-                        <ZoloPanelBody title={__('Columns', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
                             <ResCounterControl
                                 label={__('Column', 'zolo-blocks')}
                                 controlName={GRID_COLUMNS}
@@ -733,15 +734,6 @@ function Inspector(props) {
                                                     onChange={(color) =>
                                                         setAttributes({
                                                             nameHoverColor: color,
-                                                        })
-                                                    }
-                                                />
-                                                <ColorControl
-                                                    label={__('Prefix Hover Color', 'zolo-blocks')}
-                                                    color={namePrefixHoverColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            namePrefixHoverColor: color,
                                                         })
                                                     }
                                                 />

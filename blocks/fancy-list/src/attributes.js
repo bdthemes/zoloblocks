@@ -17,7 +17,7 @@ import {
     ICON_BG,
     ICON_HBG,
     GAP,
-    GRID_COLUMNS,
+    COLUMNS,
     COLUMNS_GAP,
     ROWS_GAP,
 } from './constants';
@@ -91,6 +91,10 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+    mediaType: {
+        type: 'string',
+        default: 'text',
+    },
     mediaTextColor: {
         type: 'string',
     },
@@ -113,13 +117,10 @@ const attributes = {
     iconHBColor: {
         type: 'string',
     },
-    ...generateResCounterAttributies(GRID_COLUMNS, {
-        noUnits: true,
-        defauts: {
-            deskRange: 2,
-            tabRange: 2,
-            mobRange: 1,
-        },
+    ...generateResCounterAttributies(COLUMNS, {
+        deskRange: 2,
+        tabRange: 1,
+        mobRange: 1,
     }),
     ...generateResRangeAttributies(COLUMNS_GAP, {
         defaultRange: 15,

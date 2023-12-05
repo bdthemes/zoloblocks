@@ -314,6 +314,16 @@ const attributes = {
         default: 'top__right',
     },
 
+    // extra
+    btnsPosition: {
+        type: 'string',
+        default: 'bottom',
+    },
+    btnsDirection: {
+        type: 'string',
+        default: 'column',
+    },
+
     ...generateDimensionAttributes(TITLE_MARGIN),
     ...generateDimensionAttributes(TITLE_PADDING),
     ...generateDimensionAttributes(TITLE_TEXT_PADDING),

@@ -37,9 +37,10 @@
 			height: 32px;
 			min-height: auto !important;
 			padding: 2px 8px;
-			// background: #fff;
+			// background: #000;
 			padding: 0.5rem 1rem;
-			&--is-focused {
+			&--is-focused,
+			&--is-selected {
 				color: #fff !important;
 				background-color: #3d87f6 !important;
 			}
@@ -138,12 +139,10 @@
 	&::-webkit-scrollbar {
 		width: 3px;
 	}
-
 	/* Track */
 	&::-webkit-scrollbar-track {
 		background: #fff;
 	}
-
 	/* Handle */
 	&::-webkit-scrollbar-thumb {
 		background: #e2e2e2;

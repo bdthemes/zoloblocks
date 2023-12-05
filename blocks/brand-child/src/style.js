@@ -1,15 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import classnames from 'classnames';
 /**
  * Internal depencencies
  */
 const {
-    generateResAlignmentStyle,
     generateDimensionStyle,
     generateTypographyStyles,
     generateTextShadowStyles,
@@ -23,7 +19,12 @@ const {
 
 import {
     CONTAINER_HEIGHT,
-    CONTENT_ALIGNMENT,
+    CONTAINER_BG,
+    CONTAINER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_MARGIN,
+    CONTAINER_PADDING,
     CONTENT_PADDING,
     CONTENT_BG,
     TITLE_MARGIN,
@@ -45,27 +46,8 @@ import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstan
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const {
-        uniqueId,
-        nameColor,
-        nameHoverColor,
-        labelColor,
-        labelHoverColor,
-        containerHoverBorderColor,
-        contentHorizontalPosition,
-        contentVerticalPosition,
-    } = attributes;
+    const { uniqueId, nameColor, nameHoverColor, labelColor, labelHoverColor } = attributes;
 
-    // Content Align
-    const {
-        desktopAlignStyle: brandContentDeskAlignStyle,
-        tabAlignStyle: brandContentTabAlignStyle,
-        mobAlignStyle: brandContentMobAlignStyle,
-    } = generateResAlignmentStyle({
-        controlName: CONTENT_ALIGNMENT,
-        property: 'text-align',
-        attributes,
-    });
     const {
         dimensionStylesDesktop: contentDeskPadding,
         dimensionStylesTab: contentTabPadding,
@@ -95,6 +77,60 @@ const Style = ({ props }) => {
         controlName: CONTAINER_HEIGHT,
         property: 'height',
         attributes,
+    });
+
+    const {
+        desktopBorderStyle: containerBorderDesk,
+        tabBorderStyle: containerBorderTab,
+        mobBorderStyle: containerBorderMob,
+    } = generateBorderStyle({
+        controlName: CONTAINER_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: containerBorderRadiusDesk,
+        dimensionStylesTab: containerBorderRadiusTab,
+        dimensionStylesMobile: containerBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_BOX_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: containerPaddingDesk,
+        dimensionStylesTab: containerPaddingTab,
+        dimensionStylesMobile: containerPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: containerMarginDesk,
+        dimensionStylesTab: containerMarginTab,
+        dimensionStylesMobile: containerMarginMob,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: containerDeskBGStyle,
+        backgroundStylesTab: containerTabBGStyle,
+        backgroundStylesMobile: containerMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CONTAINER_BG,
+        attributes,
+        noMainBGImg: false,
     });
 
     const {
@@ -247,6 +283,12 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
 		.${uniqueId}.zb-brand-item{
             ${deskContainerHeight}
+            ${containerBorderDesk}
+            ${containerBorderRadiusDesk}
+            ${containerBoxShadow}
+            ${containerPaddingDesk}
+            ${containerMarginDesk}
+            ${containerDeskBGStyle}
 		}
 		.${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingDesk}
@@ -257,13 +299,9 @@ const Style = ({ props }) => {
 			${brandPhotoMaringDesk}
 			${photoBorderDesktop}
 		}
-        .${uniqueId} .zb-brand-inner-content{
-            ${brandContentDeskAlignStyle}
-        }
+
 		.${uniqueId} .zb-brand-content{
 			${contentDeskBGStyle}
-            ${contentHorizontalPosition ? `align-items:${contentHorizontalPosition};` : ''}
-            ${contentVerticalPosition ? `justify-content:${contentVerticalPosition};` : ''}
             ${contentDeskPadding}
 		}
 		.${uniqueId} .zb-brand-title{
@@ -292,6 +330,11 @@ const Style = ({ props }) => {
     const tabletAllStyle = `
         .${uniqueId}.zb-brand-item{
             ${tabContainerHeight}
+            ${containerBorderTab}
+            ${containerBorderRadiusTab}
+            ${containerTabBGStyle}
+            ${containerPaddingTab}
+            ${containerMarginTab}
         }
         .${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingTab}
@@ -300,9 +343,6 @@ const Style = ({ props }) => {
             ${brandPhotoTabBGStyle}
             ${brandPhotoMarginTab}
             ${photoBorderTab}
-        }
-        .${uniqueId} .zb-brand-inner-content{
-            ${brandContentTabAlignStyle}
         }
         .${uniqueId} .zb-brand-content{
             ${contentTabBGStyle}
@@ -323,6 +363,11 @@ const Style = ({ props }) => {
     const mobileAllStyle = `
         .${uniqueId}.zb-brand-item{
             ${mobContainerHeight}
+            ${containerBorderMob}
+            ${containerBorderRadiusMob}
+            ${containerMobBGStyle}
+            ${containerPaddingMob}
+            ${containerMarginMob}
         }
         .${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingMob}
@@ -331,9 +376,6 @@ const Style = ({ props }) => {
             ${brandPhotoMobBGStyle}
             ${brandPhotoMarginMob}
             ${photoBorderMob}
-        }
-        .${uniqueId} .zb-brand-inner-content{
-            ${brandContentMobAlignStyle}
         }
         .${uniqueId} .zb-brand-content{
             ${contentMobBGStyle}

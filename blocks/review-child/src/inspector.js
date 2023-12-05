@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { PanelBody, TextControl, TextareaControl, BaseControl, Button, RangeControl } from '@wordpress/components';
+import { TextControl, TextareaControl, BaseControl, Button, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -50,15 +50,6 @@ import {
     REVIEWER_DESIGNATION_MARGIN,
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
-    DPL_BG,
-    DPL_HOVER_BG,
-    DPL_HEIGHT,
-    DPL_WIDTH,
-    DPL_BORDER,
-    DPL_BORDER_RADIUS,
-    DPL_PADDING,
-    DPL_MARGIN,
-    DPL_ICON_SIZE,
 } from './constants';
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -68,8 +59,6 @@ import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
-        preset,
-        blurBgOpacity,
         resMode,
         showPhoto,
         memberPhoto,
@@ -90,11 +79,6 @@ function Inspector(props) {
         testimonialMessageColor,
         activeRatingColor,
         inactiveRatingColor,
-        dplIconColor,
-        dplIconHoverColor,
-        websiteLinkIcon,
-        selectedPanel,
-        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -227,17 +211,6 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        {preset === 'style-2' && (
-                            <ZoloPanelBody title={__('Preset', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                                <RangeControl
-                                    label={__('Blur Strength', 'zolo-blocks')}
-                                    value={blurBgOpacity}
-                                    onChange={(v) => setAttributes({ blurBgOpacity: v })}
-                                    min={0}
-                                    max={100}
-                                />
-                            </ZoloPanelBody>
-                        )}
                         <ZoloPanelBody title={__('Item Container', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
@@ -295,7 +268,7 @@ function Inspector(props) {
                                     controlName={REVIEWER_PHOTO_SIZE}
                                     requiredProps={requiredProps}
                                     min={1}
-                                    max={2000}
+                                    max={1000}
                                 />
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
@@ -471,72 +444,6 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
-                                        </>
-                                    }
-                                />
-                            </ZoloPanelBody>
-                        )}
-                        {preset === 'style-1' && addReviewerWebsiteLink && (
-                            <ZoloPanelBody
-                                title={__('Detail Page Icon', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'dpIconStyle' })}
-                                opened={selectedPanel === 'dpIconStyle'}
-                            >
-                                <ResRangeControl
-                                    label={__('Icon Size', 'zolo-blocks')}
-                                    controlName={DPL_ICON_SIZE}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResRangeControl
-                                    label={__('Height', 'zolo-blocks')}
-                                    controlName={DPL_HEIGHT}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResRangeControl label={__('Width', 'zolo-blocks')} controlName={DPL_WIDTH} requiredProps={requiredProps} />
-                                <BorderControl label={__('Border', 'zolo-blocks')} controlName={DPL_BORDER} requiredProps={requiredProps} />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
-                                    controlName={DPL_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zolo-blocks')}
-                                    controlName={DPL_PADDING}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zolo-blocks')}
-                                    controlName={DPL_MARGIN}
-                                    requiredProps={requiredProps}
-                                />
-                                <TabPanelControl
-                                    normalComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Icon Color', 'zolo-blocks')}
-                                                color={dplIconColor}
-                                                onChange={(color) =>
-                                                    setAttributes({
-                                                        dplIconColor: color,
-                                                    })
-                                                }
-                                            />
-                                            <NormalBGControl requiredProps={requiredProps} controlName={DPL_BG} noMainBGImg={true} />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Icon Color', 'zolo-blocks')}
-                                                color={dplIconHoverColor}
-                                                onChange={(color) =>
-                                                    setAttributes({
-                                                        dplIconHoverColor: color,
-                                                    })
-                                                }
-                                            />
-                                            <NormalBGControl requiredProps={requiredProps} controlName={DPL_HOVER_BG} noMainBGImg={true} />
                                         </>
                                     }
                                 />

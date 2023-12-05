@@ -31,6 +31,8 @@ const Save = ({ attributes }) => {
         showRibbon,
         ribbonTitle,
         ribbonPosition,
+        btnsPosition,
+        btnsDirection,
     } = attributes;
 
     const blockprops = useBlockProps.save({
@@ -76,6 +78,35 @@ const Save = ({ attributes }) => {
                         </div>
 
                         {showDesc && <RichText.Content tagName="div" className="zolo-package-desc" value={descText} />}
+
+                        {btnsPosition === 'middle' && (
+                            <>
+                                {(showBtn || showChatBtn) && (
+                                    <div className={`zolo-link-btn ${btnsDirection}`}>
+                                        {showBtn && (
+                                            <RichText.Content
+                                                tagName="a"
+                                                className="zolo-buy-btn"
+                                                value={buttonText}
+                                                href={buttonLink && buttonLink.url ? buttonLink.url : '# '}
+                                                target={buttonLink && buttonLink.openInNewTab && '_blank'}
+                                                rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
+                                            />
+                                        )}
+                                        {showChatBtn && (
+                                            <RichText.Content
+                                                tagName="a"
+                                                className="zolo-chat-btn"
+                                                value={chatBtnText}
+                                                href={chatBtnLink && chatBtnLink.url ? chatBtnLink.url : '# '}
+                                                target={chatBtnLink && chatBtnLink.openInNewTab && '_blank'}
+                                                rel={chatBtnLink && chatBtnLink.openInNewTab && 'noopener noreferrer'}
+                                            />
+                                        )}
+                                    </div>
+                                )}
+                            </>
+                        )}
                     </div>
 
                     <div className="zolo-features-info">
@@ -97,29 +128,34 @@ const Save = ({ attributes }) => {
                                 ))}
                             </ul>
                         )}
-
-                        <div className="zolo-link-btn">
-                            {showBtn && (
-                                <RichText.Content
-                                    tagName="a"
-                                    className="zolo-buy-btn"
-                                    value={buttonText}
-                                    href={buttonLink && buttonLink.url ? buttonLink.url : '# '}
-                                    target={buttonLink && buttonLink.openInNewTab && '_blank'}
-                                    rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
-                                />
-                            )}
-                            {showChatBtn && (
-                                <RichText.Content
-                                    tagName="a"
-                                    className="zolo-chat-btn"
-                                    value={chatBtnText}
-                                    href={chatBtnLink && chatBtnLink.url ? chatBtnLink.url : '# '}
-                                    target={chatBtnLink && chatBtnLink.openInNewTab && '_blank'}
-                                    rel={chatBtnLink && chatBtnLink.openInNewTab && 'noopener noreferrer'}
-                                />
-                            )}
-                        </div>
+                        {btnsPosition === 'bottom' && (
+                            <>
+                                {(showBtn || showChatBtn) && (
+                                    <div className={`zolo-link-btn ${btnsDirection}`}>
+                                        {showBtn && (
+                                            <RichText.Content
+                                                tagName="a"
+                                                className="zolo-buy-btn"
+                                                value={buttonText}
+                                                href={buttonLink && buttonLink.url ? buttonLink.url : '# '}
+                                                target={buttonLink && buttonLink.openInNewTab && '_blank'}
+                                                rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
+                                            />
+                                        )}
+                                        {showChatBtn && (
+                                            <RichText.Content
+                                                tagName="a"
+                                                className="zolo-chat-btn"
+                                                value={chatBtnText}
+                                                href={chatBtnLink && chatBtnLink.url ? chatBtnLink.url : '# '}
+                                                target={chatBtnLink && chatBtnLink.openInNewTab && '_blank'}
+                                                rel={chatBtnLink && chatBtnLink.openInNewTab && 'noopener noreferrer'}
+                                            />
+                                        )}
+                                    </div>
+                                )}
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

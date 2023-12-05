@@ -39,7 +39,18 @@ const Style = ({ props }) => {
         mobRangeStyle: mobIconWidth,
     } = generateResRangeStyle({
         controlName: ICON_WIDTH,
-        property: 'font-size',
+        property: 'width',
+        attributes,
+        noUnits: false,
+    });
+
+    const {
+        desktopRangeStyle: DeskIconHeight,
+        tabRangeStyle: TabIconHeight,
+        mobRangeStyle: mobIconHeight,
+    } = generateResRangeStyle({
+        controlName: ICON_WIDTH,
+        property: 'height',
         attributes,
         noUnits: false,
     });
@@ -201,20 +212,24 @@ const Style = ({ props }) => {
 
     //  All Style Combination
     const desktopAllStyle = `
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon i {
-            ${DeskIconWidth}
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-icon {
              ${deskiconpadding} 
              ${iconNoramlBGStyle}
              ${DesktopIconBorder}
              ${deskiconRadius}
-             ${iconColor ? `color:${iconColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-content {
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
+            ${DeskIconWidth}
+            ${DeskIconHeight}
+             ${iconColor ? `fill:${iconColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-content {
             ${deskGap}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-image, .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-image, .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${deskImageWidth}
             ${deskImageHeight}
             ${DesktopimageBorder}
@@ -222,12 +237,12 @@ const Style = ({ props }) => {
             ${deskImagepadding}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${mediaTextColor ? `color:${mediaTextColor};` : ''}
             ${mediaTextBgColor ? `background-color:${mediaTextBgColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${deskMediaTypo}
         }
 
@@ -243,33 +258,39 @@ const Style = ({ props }) => {
             ${dscColor ? `color:${dscColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list:hover .zb-fancy-list-title {
+        .${uniqueId}.wp-block-zolo-fancy-list-child:hover .zb-fancy-list-title {
             ${titleHColor ? `color:${titleHColor};` : ''}
         }
-        .${uniqueId}.wp-block-zolo-fancy-list:hover .zb-fancy-list-text {
+        .${uniqueId}.wp-block-zolo-fancy-list-child:hover .zb-fancy-list-text {
             ${desHcolor ? `color:${desHcolor};` : ''}
         }
-        .${uniqueId}.wp-block-zolo-fancy-list:hover .zb-fancy-icon i {
-            ${iconHColor ? `color:${iconHColor};` : ''}
+        .${uniqueId}.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
             ${iconHoverBGStyle}
             ${iconHBColor ? `border-color:${iconHBColor};` : ''}
+        }
+        .${uniqueId}.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon svg {
+            ${iconHColor ? `fill:${iconHColor};` : ''}
         }
 	`;
 
     const tabletAllStyle = `
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon i {
-            ${TabIconWidth}
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-icon i {
             ${tabiconpadding} 
             ${iconNormalTabBGStyle}
             ${TabIconBorder}
             ${tabiconRadius}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-content {
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
+            ${TabIconWidth}
+            ${TabIconHeight}
+        }
+
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-content {
             ${tabGap}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-image, .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-image, .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${tabImageWidth}
             ${tabImageHeight}
             ${TabImageBorder}
@@ -277,7 +298,7 @@ const Style = ({ props }) => {
             ${tabImagepadding}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${tabMediaTypo}
         }
 
@@ -291,29 +312,33 @@ const Style = ({ props }) => {
             ${descTabSpacing}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list:hover .zb-fancy-icon i {
+        .${uniqueId}.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
             ${iconHoverTabBGStyle}
         }
 	`;
 
     const mobileAllStyle = `	
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon i {
-            ${mobIconWidth}
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-icon {
             ${mobiconpadding} 
             ${iconNormalMobBGStyle}
             ${MobIconBorder}
             ${mobiconRadius}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-content {
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
+            ${mobIconWidth}
+            ${mobIconHeight}
+        }
+
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-content {
             ${mobGap}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list:hover .zb-fancy-icon i {
+        .${uniqueId}.wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
             ${iconHoverMobBGStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-image, .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-image, .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${mobImageWidth}
             ${mobImageHeight}
             ${MobImageBorder}
@@ -321,7 +346,7 @@ const Style = ({ props }) => {
             ${mobImagepadding}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-number {
             ${mobMediaTypo}
         }
 

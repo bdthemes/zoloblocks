@@ -3,13 +3,8 @@
     "title": "Review Child",
     "name": "zolo/review-child",
     "category": "zolo-blocks",
-    "parent": [
-        "zolo/review-grid"
-    ],
-    "keywords": [
-        "Rating",
-        "Review"
-    ],
+    "parent": ["zolo/review-grid"],
+    "keywords": ["Rating", "Review"],
     "description": "Single review block",
     "apiVersion": 3,
     "textdomain": "zolo-blocks",

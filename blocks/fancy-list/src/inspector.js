@@ -12,17 +12,16 @@ import { Fragment } from '@wordpress/element';
 const {
     HeaderTabs,
     ColorControl,
-    IconPicker,
     TabPanelControl,
-    ImageAvatar,
     TypographyDropdown,
     BorderControl,
     ResRangeControl,
     ResDimensionsControl,
-    IconicBtnGroup,
     NormalBGControl,
     AdvancedOptions,
     ZoloPanelBody,
+    IconicBtnGroup,
+    ResCounterControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -42,6 +41,9 @@ import {
     ICON_BG,
     ICON_HBG,
     GAP,
+    COLUMNS,
+    COLUMNS_GAP,
+    ROWS_GAP,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -58,14 +60,9 @@ function Inspector(props) {
         titleHColor,
         dscColor,
         desHcolor,
-        fancyIcon,
-        fancyTitle,
-        fancyListText,
         mediaType,
-        mediaText,
         mediaTextColor,
         mediaTextBgColor,
-        image,
         imageToggle,
         titleToggle,
         textToggle,
@@ -73,8 +70,6 @@ function Inspector(props) {
         iconColor,
         iconHColor,
         iconHBColor,
-        selectedPanel,
-        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -163,6 +158,49 @@ function Inspector(props) {
                                 }}
                             />
                         </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
+                            <ResCounterControl
+                                label={__('Column', 'zolo-blocks')}
+                                controlName={COLUMNS}
+                                requiredProps={requiredProps}
+                                min={1}
+                                max={3}
+                                defaults={{
+                                    deskRange: 2,
+                                    tabRange: 1,
+                                    mobRange: 1,
+                                }}
+                            />
+                            <ResRangeControl
+                                label={__('Columns Gap', 'zolo-blocks')}
+                                controlName={COLUMNS_GAP}
+                                requiredProps={requiredProps}
+                            />
+                            <ResRangeControl label={__('Rows Gap', 'zolo-blocks')} controlName={ROWS_GAP} requiredProps={requiredProps} />
+                        </ZoloPanelBody>
+                        {imageToggle && (
+                            <ZoloPanelBody title={__('Media', 'zolo-block')} panelProps={props}>
+                                <IconicBtnGroup
+                                    label={__('Media Type', 'zolo-blocks')}
+                                    value={mediaType}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            mediaType: value,
+                                        })
+                                    }
+                                    options={[
+                                        {
+                                            label: __('Text', 'zolo-blocks'),
+                                            value: 'text',
+                                        },
+                                        {
+                                            label: __('Image', 'zolo-blocks'),
+                                            value: 'image',
+                                        },
+                                    ]}
+                                />
+                            </ZoloPanelBody>
+                        )}
                     </Fragment>
                 }
                 styleTab={
@@ -185,7 +223,7 @@ function Inspector(props) {
                                     value={headingTag}
                                 />
                                 <ResDimensionsControl
-                                    label={__('Spacing', 'zolo-block')}
+                                    label={__('Margin', 'zolo-block')}
                                     controlName={TITLE_SPACING}
                                     requiredProps={requiredProps}
                                     max={100}
@@ -224,7 +262,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                 />
                                 <ResDimensionsControl
-                                    label={__('Spacing', 'zolo-block')}
+                                    label={__('Margin', 'zolo-block')}
                                     controlName={DESC_SPACING}
                                     requiredProps={requiredProps}
                                     max={100}

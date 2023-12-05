@@ -65,10 +65,20 @@
 
     .zolo-link-btn {
         display: flex;
-        flex-direction: column;
         gap: 10px;
         text-align: center;
         margin-top: clamp(1.5rem, 4vw, 2.5rem);
+        &.row {
+            flex-direction: row;
+            align-items: center;
+            .zolo-buy-btn,
+            .zolo-chat-btn {
+                width: 100%;
+            }
+        }
+        &.column {
+            flex-direction: column;
+        }
         a {
             &.zolo-buy-btn,
             &.zolo-chat-btn {

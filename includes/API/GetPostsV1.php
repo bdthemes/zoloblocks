@@ -56,8 +56,8 @@ class GetPostsV1 {
 
 
         if (isset($data['postInclude']) && !empty($data['postInclude'])) {
-            $post_ids = explode(',', $data['postInclude']);
-            $post_ids = array_map('trim', $post_ids);
+            $post_ids         = explode(',', $data['postInclude']);
+            $post_ids         = array_map('trim', $post_ids);
             $args['post__in'] = $post_ids;
             if ($excluded_ids != null && is_array($excluded_ids)) {
                 $args['post__in'] = array_diff($post_ids, $excluded_ids);

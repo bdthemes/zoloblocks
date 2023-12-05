@@ -12,7 +12,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { softMinifyCssStrings, DisplayIcon, classArrayToStr } = window.zoloModule;
+const { softMinifyCssStrings, DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 
@@ -63,6 +63,7 @@ export default function Edit(props) {
             textToggle: context['zolo/textToggle'],
             imageToggle: context['zolo/imageToggle'],
             iconToggle: context['zolo/iconToggle'],
+            mediaType: context['zolo/mediaType'],
         });
     }, [context]);
 
@@ -105,11 +106,7 @@ export default function Edit(props) {
                         )}
                     </div>
                 </div>
-                {iconToggle == true && (
-                    <div>
-                        <div className="zb-fancy-icon">{fancyIcon && <DisplayIcon icon={fancyIcon} />}</div>
-                    </div>
-                )}
+                {iconToggle == true && <div className="zb-fancy-icon">{fancyIcon && <DisplayZoloIcon icon={fancyIcon} />}</div>}
             </div>
         </>
     );

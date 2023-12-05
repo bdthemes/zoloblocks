@@ -219,6 +219,11 @@ const attributes = {
     },
     iconTypeImage: {
         type: 'object',
+        default: {
+            id: '',
+            url: zoloPlaceholders.placeholder,
+            alt: '',
+        },
     },
     iconBoxTitle: {
         type: 'string',

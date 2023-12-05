@@ -52,9 +52,14 @@
 }
 
 .wp-block-zolo-social-links {
-    display: flex;
-    flex-wrap: wrap;
-    grid-gap: 10px;
+    gap: 10px;
+    &.flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &.grid {
+        display: grid;
+    }
     .zolo-social-item {
         border-radius: var(--zoloblocks-button-border-radius);
         font-size: 16px;
@@ -407,6 +412,7 @@
         .zolo-social-item {
             border-color: var(--zoloblocks-brand-color);
             color: #000;
+            justify-content: flex-start;
             .zolo-social-icon {
                 color: var(--zoloblocks-brand-button-color);
                 background-color: var(--zoloblocks-brand-color);
