@@ -25,49 +25,65 @@ import Style from './style';
  */
 
 export default function Edit(props) {
-    const { attributes, setAttributes, isSelected, context } = props;
-    const { uniqueId, collapseIcon, expandIcon, title, titleTag, parentClasses } = attributes;
+  const { attributes, setAttributes, isSelected, context } = props;
+  const { uniqueId, collapseIcon, expandIcon, title, titleTag, parentClasses } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    const blockProps = useBlockProps({
-        className: classnames(uniqueId, 'zolo-accordion-item ac', classArrayToStr(parentClasses)),
+  // this useEffect is for creating a unique id for each block's unique className by a random unique number
+  const blockProps = useBlockProps({
+    className: classnames(uniqueId, classArrayToStr(parentClasses)),
+  });
+
+  /**
+   * context
+   */
+  useEffect(() => {
+    setAttributes({
+      collapseIcon: context['zolo/collapseIcon'],
+      expandIcon: context['zolo/expandIcon'],
+      titleTag: context['zolo/titleTag'],
     });
+  }, [context]);
 
-    /**
-     * context
-     */
-    useEffect(() => {
-        setAttributes({
-            collapseIcon: context['zolo/collapseIcon'],
-            expandIcon: context['zolo/expandIcon'],
-            titleTag: context['zolo/titleTag'],
-        });
-    }, [context]);
-    return (
-        <>
-            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            <Style props={props} />
 
-            <div {...blockProps}>
-                <button type="button" className="ac-trigger zolo-accordion-head-item">
-                    <RichText
-                        tagName={titleTag}
-                        className="zolo-accordion-head-title"
-                        value={title}
-                        onChange={(value) => setAttributes({ title: value })}
-                        placeholder={__('Accordion Title', 'zolo-blocks')}
-                    />
-                    <div className="zolo-accordion-toggle">
-                        <div className="zolo-accordion-collapsed-mode">{collapseIcon && <DisplayZoloIcon icon={collapseIcon} />}</div>
-                        <div className="zolo-accordion-expanded-mode">{expandIcon && <DisplayZoloIcon icon={expandIcon} />}</div>
-                    </div>
-                </button>
-                <div className="zolo-accordion-panel ac-panel">
-                    <div className="zolo-accordion-inner">
-                        <InnerBlocks template={[['core/paragraph', { placeholder: 'Accordion Content' }]]} />
-                    </div>
-                </div>
+
+  return (
+    <>
+      {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
+      <Style props={props} />
+      <div className='ac zolo-accordion-item'>
+        <div {...blockProps}>
+
+          {/* <h2 className="ac-header">
+          <button className="ac-trigger">Lorem ipsum dolor sit amet.</button>
+        </h2>
+        <div className="ac-panel">
+          <p className="ac-text">Nulla et sodales nisl. Nam auctor quis odio eu congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div> */}
+
+
+          <button type="button" className="ac-trigger zolo-accordion-head-item">
+            <RichText
+              tagName={titleTag}
+              className="zolo-accordion-head-title"
+              value={title}
+              onChange={(value) => setAttributes({ title: value })}
+              placeholder={__('Accordion Title', 'zolo-blocks')}
+            />
+            <div className="zolo-accordion-toggle">
+              <div className="zolo-accordion-collapsed-mode">{collapseIcon && <DisplayZoloIcon icon={collapseIcon} />}</div>
+              <div className="zolo-accordion-expanded-mode">{expandIcon && <DisplayZoloIcon icon={expandIcon} />}</div>
             </div>
-        </>
-    );
+          </button>
+          <div className="zolo-accordion-panel ac-panel">
+            <div className="zolo-accordion-inner">
+              <InnerBlocks template={[['core/paragraph', { placeholder: 'Accordion Content' }]]} />
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </>
+  );
 }
