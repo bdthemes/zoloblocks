@@ -26,157 +26,117 @@ import Style from './style';
  */
 
 export default function Edit(props) {
-  const { attributes, setAttributes, className, clientId, isSelected } = props;
-  const { preview, uniqueId, parentClasses, addNewAccordion } = attributes;
+    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { preview, uniqueId, parentClasses } = attributes;
 
-  // preview image
-  if (preview) {
-    return <img src={zoloParams.blocksPreview.accordion} alt={__('Accordion Preview', 'zolo-blocks')} />;
-  }
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.accordion} alt={__('Accordion Preview', 'zolo-blocks')} />;
+    }
 
+    const acContainerRef = useRef(null);
+    const acInstanceRef = useRef(null);
+    const [delayedInit, setDelayedInit] = useState(true);
 
-  const acContainerRef = useRef(null);
-  const acInstanceRef = useRef(null)
-  const [delayedInit, setDelayedInit] = useState(true);
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            if (acContainerRef.current) {
+                acInstanceRef.current = new Accordion(acContainerRef.current, {
+                    duration: 400,
+                    showMultiple: false,
+                });
+            }
+            setDelayedInit(false);
+        }, 200);
 
-  // const accordionInit = function (accordionE, accordionOptions) {
-  //   let options = Object.assign({}, accordionOptions);
-  //   console.log(accordionE);
-  //   //const acAlreadyInit = accordionE.getElementsByClassName('js-enabled');
+        // Cleanup on component unmount
+        return () => {
+            clearTimeout(timeoutId);
+            if (acInstanceRef.current) {
+                acInstanceRef.current.destroy();
+            }
+        };
+    }, [delayedInit]);
 
+    const innerBlocksProps = useInnerBlocksProps(
+        {
+            className: `accordion-container`,
+            slot: 'container-start',
+        },
+        {
+            allowedBlocks: ['zolo/accordion-child'],
+            template: [
+                [
+                    'zolo/accordion-child',
+                    {
+                        title: 'Accordion Title',
+                        titleTag: 'h3',
+                    },
+                ],
+                [
+                    'zolo/accordion-child',
+                    {
+                        title: 'Accordion Title 2',
+                        titleTag: 'h3',
+                    },
+                ],
+                [
+                    'zolo/accordion-child',
+                    {
+                        title: 'Accordion Title 3',
+                        titleTag: 'h3',
+                    },
+                ],
+            ],
+            templateLock: false,
+            renderAppender: false,
+            orientation: 'horizontal',
+        }
+    );
 
-  //   let myAccordion = new Accordion(accordionE, options);
-
-
-  //   if (addAccordion) {
-  //     console.log("update");
-  //     myAccordion.update();
-
-  //     //myAccordion = new Accordion(accordionE, options);
-  //     setAddAccordion(false);
-  //   }
-  //   //myAccordion.detachEvents();
-  //   // else {
-  //   //   console.log("new");
-  //   //   new Accordion(accordionE);
-  //   // }
-
-  // };
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (acContainerRef.current) {
-        acInstanceRef.current = new Accordion(acContainerRef.current, {
-          duration: 400,
-          showMultiple: false,
+    // add new accordion item
+    const childBlocks = wp.data.select('core/block-editor').getBlocks(clientId);
+    const appendBlock = () => {
+        const newBlock = wp.blocks.createBlock('zolo/accordion-child', {
+            title: 'Accordion New Title',
+            titleTag: 'h3',
         });
-      }
-      setDelayedInit(false);
-    }, 1000);
+        wp.data.dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
 
-    // Cleanup on component unmount
-    return () => {
-      clearTimeout(timeoutId);
-      if (acInstanceRef.current) {
-        acInstanceRef.current.destroy();
-      }
+        if (acInstanceRef.current) {
+            acInstanceRef.current.update();
+        }
     };
-  }, [delayedInit]);
 
-
-  const innerBlocksProps = useInnerBlocksProps(
-    {
-      className: `accordion-container`,
-      slot: 'container-start',
-    },
-    {
-      allowedBlocks: ['zolo/accordion-child'],
-      template: [
-        [
-          'zolo/accordion-child',
-          {
-            title: 'Accordion Title',
-            titleTag: 'h3',
-          },
-        ],
-        [
-          'zolo/accordion-child',
-          {
-            title: 'Accordion Title 2',
-            titleTag: 'h3',
-          },
-        ],
-        [
-          'zolo/accordion-child',
-          {
-            title: 'Accordion Title 3',
-            titleTag: 'h3',
-          },
-        ],
-      ],
-      templateLock: false,
-      renderAppender: false,
-      orientation: 'horizontal',
-    }
-  );
-
-  // add new accordion item
-  const childBlocks = wp.data.select('core/block-editor').getBlocks(clientId);
-  const appendBlock = () => {
-    const newBlock = wp.blocks.createBlock('zolo/accordion-child', {
-      title: 'Accordion New Title',
-      titleTag: 'h3',
+    // this useEffect is for creating a unique id for each block's unique className by a random unique number
+    const blockProps = useBlockProps({
+        className: classnames(className, uniqueId, 'zolo-accordion-wrap', classArrayToStr(parentClasses)),
     });
-    wp.data.dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
 
-    if (acInstanceRef.current) {
-      acInstanceRef.current.update();
-    }
-  };
-
-  // this useEffect is for creating a unique id for each block's unique className by a random unique number
-  const blockProps = useBlockProps({
-    className: classnames(className, uniqueId, 'zolo-accordion-wrap', classArrayToStr(parentClasses)),
-  });
-
-
-  // if (delayedInit) {
-  //   return [
-  //     isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />,
-
-  //     <div className="zolo-spinner">
-  //       <Spinner />
-  //     </div>
-
-  //   ];
-  // }
-
-  return (
-    <>
-      {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-      <Style props={props} />
-      <BlockControls>
-        <ToolbarGroup>
-          <ToolbarButton icon="plus" label={__('Add Accordion', 'zolo-blocks')} onClick={() => appendBlock()} />
-        </ToolbarGroup>
-      </BlockControls>
-      <div {...blockProps}>
-
-        {console.log({ delayedInit })}
-
-        {!delayedInit ? (
-          <>
-            <div {...innerBlocksProps} ref={acContainerRef} />
-            <button className="zolo-appender-btn" onClick={() => appendBlock()}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-              </svg>
-              {__('Add Accordion', 'zolo-blocks')}
-            </button>
-          </>
-        ) : <Spinner />}
-
-      </div>
-    </>
-  );
+    return (
+        <>
+            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
+            <Style props={props} />
+            <BlockControls>
+                <ToolbarGroup>
+                    <ToolbarButton icon="plus" label={__('Add Accordion', 'zolo-blocks')} onClick={() => appendBlock()} />
+                </ToolbarGroup>
+            </BlockControls>
+            <div {...blockProps}>
+                {!delayedInit ? (
+                    <>
+                        <div {...innerBlocksProps} ref={acContainerRef} />
+                        <button className="zolo-appender-btn" onClick={() => appendBlock()}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                            </svg>
+                            {__('Add Accordion', 'zolo-blocks')}
+                        </button>
+                    </>
+                ) : (
+                    <Spinner />
+                )}
+            </div>
+        </>
+    );
 }

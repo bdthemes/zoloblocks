@@ -1,3 +1,4 @@
+import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 const { DynamicTag } = window.zoloModule;
 function RenderView({ attributes, postResults }) {
@@ -73,7 +74,9 @@ function RenderView({ attributes, postResults }) {
 
                                 {showTitle && (
                                     <DynamicTag tagName={titleTag} className="zolo-post-title">
-                                        <a href={post.permalink}>{titleLimitWords}</a>
+                                        <a href={post.permalink}>
+                                            <RawHTML>{titleLimitWords}</RawHTML>
+                                        </a>
                                     </DynamicTag>
                                 )}
                                 {showMeta && (
@@ -92,7 +95,7 @@ function RenderView({ attributes, postResults }) {
                                 {showExcerpt && (
                                     <div className="zolo-post-desc">
                                         <p>
-                                            {excerptLimitWords}
+                                            <RawHTML>{excerptLimitWords}</RawHTML>
                                             {excerptindicator}
                                         </p>
                                     </div>

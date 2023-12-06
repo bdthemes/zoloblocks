@@ -62,7 +62,7 @@ import {
 } from './constants';
 import { SUBTITLE_TYPOGRAPHY, TITLE_TYPOGRAPHY, TRANSPARENT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
-import { TEXT_ALIGN_OPTIONS, DEFAULT_ALIGNS, FLEX_HORIZONTAL_OPTIONS, HEADING } from '../../../src/global/constants';
+import { TEXT_ALIGN_OPTIONS, HEADING } from '../../../src/global/constants';
 
 const Inspector = (props) => {
     const { attributes, setAttributes } = props;
@@ -98,8 +98,6 @@ const Inspector = (props) => {
         tptBgColor,
         tptOpacity,
         separatorColor,
-        selectedPanel,
-        selectedTab,
     } = attributes;
 
     const requiredProps = {

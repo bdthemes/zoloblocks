@@ -198,11 +198,11 @@ const attributes = {
     // readmore button
     showReadmoreText: {
         type: 'boolean',
-        default: false,
+        default: true,
     },
     showReadmoreIcon: {
         type: 'boolean',
-        default: true,
+        default: false,
     },
     readMoreIcon: {
         type: 'string',

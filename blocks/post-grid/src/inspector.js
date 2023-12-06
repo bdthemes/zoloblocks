@@ -284,16 +284,16 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         {showReadMore && (
                             <ZoloPanelBody title={__('Read More Button', 'zolo-blocks')} panelProps={props}>
-                                <ToggleControl
+                                {/* <ToggleControl
                                     label={__('Show Text', 'zolo-blocks')}
                                     checked={showReadmoreText}
                                     onChange={(showReadmoreText) => setAttributes({ showReadmoreText })}
-                                />
-                                <ToggleControl
+                                /> */}
+                                {/* <ToggleControl
                                     label={__('Show Icon', 'zolo-blocks')}
                                     checked={showReadmoreIcon}
                                     onChange={(showReadmoreIcon) => setAttributes({ showReadmoreIcon })}
-                                />
+                                /> */}
 
                                 {showReadmoreText && (
                                     <TextControl
@@ -303,13 +303,13 @@ function Inspector(props) {
                                     />
                                 )}
 
-                                {showReadmoreIcon && (
+                                {/* {showReadmoreIcon && (
                                     <ZoloIconPicker
                                         label={__('Read More Icon', 'zolo-blocks')}
                                         value={readMoreIcon}
                                         onChange={(readMoreIcon) => setAttributes({ readMoreIcon })}
                                     />
-                                )}
+                                )} */}
                             </ZoloPanelBody>
                         )}
 

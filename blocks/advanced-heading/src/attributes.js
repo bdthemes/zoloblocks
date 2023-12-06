@@ -32,7 +32,6 @@ import {
     TITLE_SHADOW,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
-    TPT_ALIGNMENT,
     TPT_BORDER,
     TPT_BORDER_RADIUS,
     TPT_MARGIN,
@@ -47,7 +46,6 @@ import {
     WRAPPER_SHADOW,
     TPH_X_OFFSET,
     TPH_Y_OFFSET,
-    TITLE_BG,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 

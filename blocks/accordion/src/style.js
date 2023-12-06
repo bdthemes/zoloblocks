@@ -403,7 +403,7 @@ const Style = ({ props }) => {
             ${acbNormalBgDesktop}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .wp-block-zolo-accordion-child.is-active .zolo-accordion-head-item {
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-item.is-active .zolo-accordion-head-item {
             ${aachNormalBgDesktop}
         }
 
@@ -415,20 +415,20 @@ const Style = ({ props }) => {
             ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .wp-block-zolo-accordion-child.is-active .zolo-accordion-head-title{
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-item.is-active .zolo-accordion-head-title{
             ${atitleColor ? `color: ${atitleColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .wp-block-zolo-accordion-child.is-active .zolo-accordion-toggle {
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-item.is-active .zolo-accordion-toggle {
             ${aaiNormalBgDesktop}
         }
 
 
-        .${uniqueId}.wp-block-zolo-accordion .wp-block-zolo-accordion-child.is-active .zolo-accordion-toggle svg{
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-item.is-active .zolo-accordion-toggle svg{
             ${aiconColor ? `fill: ${aiconColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion .wp-block-zolo-accordion-child.is-active .zolo-accordion-inner {
+        .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-item.is-active .zolo-accordion-inner {
             ${aacbNormalBgDesktop}
         }
 
