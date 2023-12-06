@@ -14,7 +14,6 @@ const {
 
 //block constants
 import {
-    SEPARATOR_ALIGN,
     SEPARATOR_HEIGHT,
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
@@ -33,7 +32,6 @@ import {
     TITLE_SHADOW,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
-    TPT_ALIGNMENT,
     TPT_BORDER,
     TPT_BORDER_RADIUS,
     TPT_MARGIN,
@@ -145,7 +143,7 @@ const attributes = {
     },
     transparentTitleHide: {
         type: 'string',
-        default: 'tab-mob',
+        default: 'nothing',
     },
     transparentTitleRotateOrigin: {
         type: 'string',
@@ -158,11 +156,6 @@ const attributes = {
     ...generateResAlignmentAttributies(TITLE_ALIGN, {
         defaultAlign: 'left',
     }),
-    ...generateResAlignmentAttributies(SEPARATOR_ALIGN, {
-        defaultAlign: 'flex-start',
-    }),
-    ...generateResAlignmentAttributies(TPT_ALIGNMENT),
-
     //design tab attributes
     titleColor: {
         type: 'string',
@@ -174,6 +167,14 @@ const attributes = {
     },
     titleHoverColor: {
         type: 'string',
+    },
+    presetBg: {
+        type: 'object',
+        default: {
+            id: '',
+            url: zoloPlaceholders.presetBg,
+            alt: '',
+        },
     },
     subTitleColor: {
         type: 'string',

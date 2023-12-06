@@ -13,6 +13,7 @@ const {
     BoxShadowControl,
     TypographyDropdown,
     AdvancedOptions,
+    ZoloPanelBody,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -21,7 +22,7 @@ import Sortable from './sortable';
  * WordPress depencencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -39,6 +40,8 @@ import {
     SOCIAL_ICON_COLOR,
     BTN_SHADOW,
     BTN_HOVER_SHADOW,
+    PT_ICON_HEIGHT,
+    PT_ICON_WIDTH,
 } from './constants';
 
 import { ICON_STATUS } from '../../../src/global/constants';
@@ -58,8 +61,11 @@ function Inspector(props) {
         socialBgColor,
         socialBgHoverColor,
         borderHoverColor,
-        selectedPanel,
-        selectedTab,
+        layout,
+        iconColor,
+        iconHoverColor,
+        iconBgColor,
+        iconBgHoverColor,
     } = attributes;
 
     const requiredProps = {
@@ -105,11 +111,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody
-                            title={__('General', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
-                            opened={selectedPanel === 'general'}
-                        >
+                        <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
@@ -126,19 +128,52 @@ function Inspector(props) {
                                 }
                                 options={ICON_STATUS}
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Grid', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'grid' })}
-                            opened={selectedPanel === 'grid'}
-                        >
-                            <ResCounterControl
-                                label={__('Column Number', 'zolo-blocks')}
-                                controlName={COLUMN_COUNT}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={6}
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Layout', 'zolo-blocks')} panelProps={props}>
+                            <IconicBtnGroup
+                                label={__('Layout Type', 'zolo-blocks')}
+                                value={layout}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        layout: value,
+                                    })
+                                }
+                                options={[
+                                    {
+                                        label: __('Flex', 'zolo-blocks'),
+                                        value: 'flex',
+                                    },
+                                    {
+                                        label: __('Grid', 'zolo-blocks'),
+                                        value: 'grid',
+                                    },
+                                ]}
                             />
+                            {layout === 'grid' && (
+                                <>
+                                    <ResCounterControl
+                                        label={__('Column Number', 'zolo-blocks')}
+                                        controlName={COLUMN_COUNT}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={10}
+                                        defaults={{
+                                            deskRange: 5,
+                                            tabRange: 3,
+                                            mobRange: 2,
+                                        }}
+                                    />
+                                    <ResRangeControl
+                                        label={__('Row Gap', 'zolo-blocks')}
+                                        controlName={ROW_GAP}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                    />
+                                </>
+                            )}
+
                             <ResRangeControl
                                 label={__('Columns Gap', 'zolo-blocks')}
                                 controlName={COLUMNS_GAP}
@@ -147,31 +182,15 @@ function Inspector(props) {
                                 max={100}
                                 step={1}
                             />
-                            <ResRangeControl
-                                label={__('Row Gap', 'zolo-blocks')}
-                                controlName={ROW_GAP}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Social Profiles', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'socialProfiles' })}
-                            opened={selectedPanel === 'socialProfiles'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Social Profiles', 'zolo-blocks')} panelProps={props}>
                             <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
-                        </PanelBody>
+                        </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                        <PanelBody
-                            title={__('Social Icons', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'socialIconsStyle' })}
-                            opened={selectedPanel === 'socialIconsStyle'}
-                        >
+                        <ZoloPanelBody title={__('Social Icons', 'zolo-blocks')} stylePanel={true} panelProps={props} firstOpen={true}>
                             {socialText !== 'iconOnly' && (
                                 <TypographyDropdown
                                     label={__('Text Typography', 'zolo-blocks')}
@@ -180,14 +199,36 @@ function Inspector(props) {
                                 />
                             )}
                             {socialText !== 'none' && (
-                                <ResRangeControl
-                                    label={__('Size', 'zolo-blocks')}
-                                    controlName={BUTTON_SIZE}
-                                    requiredProps={requiredProps}
-                                    min={0}
-                                    max={100}
-                                    step={1}
-                                />
+                                <>
+                                    <ResRangeControl
+                                        label={__('Icon Size', 'zolo-blocks')}
+                                        controlName={BUTTON_SIZE}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                    />
+                                    {preset === 'preset-3' && (
+                                        <>
+                                            <ResRangeControl
+                                                label={__('Width', 'zolo-blocks')}
+                                                controlName={PT_ICON_WIDTH}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={500}
+                                                step={1}
+                                            />
+                                            <ResRangeControl
+                                                label={__('Height', 'zolo-blocks')}
+                                                controlName={PT_ICON_HEIGHT}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={500}
+                                                step={1}
+                                            />
+                                        </>
+                                    )}
+                                </>
                             )}
                             {socialText === 'iconText' && (
                                 <ResRangeControl
@@ -206,7 +247,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl controlName={BTN_SHADOW} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={BUTTON_PADDING}
@@ -245,6 +285,30 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                            {socialText !== 'none' && preset === 'preset-3' && (
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Icon Color', 'zolo-blocks')}
+                                                        color={iconColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                iconColor: value,
+                                                            })
+                                                        }
+                                                    />
+                                                    <ColorControl
+                                                        label={__('Icon Background', 'zolo-blocks')}
+                                                        color={iconBgColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                iconBgColor: value,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            )}
+
+                                            <BoxShadowControl controlName={BTN_SHADOW} requiredProps={requiredProps} />
                                         </>
                                     }
                                     hoverComponents={
@@ -267,6 +331,29 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
+                                            {socialText !== 'none' && preset === 'preset-3' && (
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Icon Color', 'zolo-blocks')}
+                                                        color={iconHoverColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                iconHoverColor: value,
+                                                            })
+                                                        }
+                                                    />
+                                                    <ColorControl
+                                                        label={__('Icon Background', 'zolo-blocks')}
+                                                        color={iconBgHoverColor}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                iconBgHoverColor: value,
+                                                            })
+                                                        }
+                                                    />
+                                                </>
+                                            )}
+
                                             <ColorControl
                                                 label={__('Border Color', 'zolo-blocks')}
                                                 color={borderHoverColor}
@@ -281,7 +368,7 @@ function Inspector(props) {
                                     }
                                 />
                             )}
-                        </PanelBody>
+                        </ZoloPanelBody>
                     </>
                 }
                 advancedTab={

@@ -1,8 +1,6 @@
 <?php
-
 /**
  * Zolo Blocks Loader.
- *
  * @package Zolo
  */
 
@@ -40,10 +38,10 @@ class Zolo_Blocks_Loader {
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
-        require_once ZOLO_DIR_PATH . '/includes/Classes/zolo-ajax.php';
-        require_once ZOLO_DIR_PATH . '/includes/Classes/zolo-enqueues.php';
-        require_once ZOLO_DIR_PATH . '/includes/Classes/font-loader.php';
-        require_once ZOLO_DIR_PATH . '/includes/Classes/post-meta.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/zolo-ajax.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/zolo-enqueues.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/font-loader.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/post-meta.php';
 
         if (is_admin()) {
             //Load Admin required files
@@ -52,9 +50,7 @@ class Zolo_Blocks_Loader {
 
     /**
      * Init actions
-     *
      * @since 0.0.1
-     *
      * @return void
      */
     public function init_actions() {

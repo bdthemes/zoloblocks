@@ -75,12 +75,16 @@ const Save = ({ attributes }) => {
                                 <>
                                     {enableLogoLink && logoLinkType === 'logo__title' ? (
                                         <a
-                                            className="zb-brand-link has-link"
+                                            className="zb-brand-link"
                                             href={logoLink && logoLink.url}
                                             rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                                             target={logoLink && logoLink.openInNewTab && '_blank'}
                                         >
-                                            <RichText.Content tagName={brandNameTag} className="zb-brand-title" value={brandTitle} />
+                                            <RichText.Content
+                                                tagName={brandNameTag}
+                                                className="zb-brand-title has-link"
+                                                value={brandTitle}
+                                            />
                                         </a>
                                     ) : (
                                         <RichText.Content tagName={brandNameTag} className="zb-brand-title" value={brandTitle} />

@@ -1,5 +1,5 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 import classnames from 'classnames';
 
 const Save = ({ attributes }) => {
@@ -31,7 +31,7 @@ const Save = ({ attributes }) => {
                     {hideIcon && (
                         <div class="zolo-counter-icon">
                             {iconType == 'icon' ? (
-                                <DisplayIcon icon={counterIcon} />
+                                <DisplayZoloIcon icon={counterIcon} />
                             ) : (
                                 iconTypeImage && <img src={iconTypeImage.url} alt={iconTypeImage.alt || titleText} />
                             )}

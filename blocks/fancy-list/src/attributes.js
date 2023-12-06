@@ -17,6 +17,9 @@ import {
     ICON_BG,
     ICON_HBG,
     GAP,
+    COLUMNS,
+    COLUMNS_GAP,
+    ROWS_GAP,
 } from './constants';
 const {
     generateTypographyAttributes,
@@ -24,6 +27,7 @@ const {
     generateBorderAttributies,
     generateDimensionAttributes,
     generateNormalBGAttributes,
+    generateResCounterAttributies,
 } = window.zoloModule;
 
 const attributes = {
@@ -55,17 +59,9 @@ const attributes = {
     preset: {
         type: 'string',
     },
-    fancyTitle: {
-        type: 'string',
-        default: 'Fancy Title',
-    },
     titleToggle: {
         type: 'boolean',
         default: true,
-    },
-    fancyListText: {
-        type: 'string',
-        default: 'Fancy list description goes here.',
     },
     textToggle: {
         type: 'boolean',
@@ -91,10 +87,6 @@ const attributes = {
     desHcolor: {
         type: 'string',
     },
-    fancyIcon: {
-        type: 'string',
-        default: 'fab fa-apple',
-    },
     imageToggle: {
         type: 'boolean',
         default: false,
@@ -103,23 +95,11 @@ const attributes = {
         type: 'string',
         default: 'text',
     },
-    mediaText: {
-        type: 'string',
-        default: '1',
-    },
     mediaTextColor: {
         type: 'string',
     },
     mediaTextBgColor: {
         type: 'string',
-    },
-    image: {
-        type: 'object',
-        default: {
-            url: 'https://via.placeholder.com/150',
-            id: '',
-            alt: '',
-        },
     },
     iconToggle: {
         type: 'boolean',
@@ -137,6 +117,17 @@ const attributes = {
     iconHBColor: {
         type: 'string',
     },
+    ...generateResCounterAttributies(COLUMNS, {
+        deskRange: 2,
+        tabRange: 1,
+        mobRange: 1,
+    }),
+    ...generateResRangeAttributies(COLUMNS_GAP, {
+        defaultRange: 15,
+    }),
+    ...generateResRangeAttributies(ROWS_GAP, {
+        defaultRange: 15,
+    }),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateDimensionAttributes(ICON_PADDING),
     ...generateNormalBGAttributes(ICON_BG),

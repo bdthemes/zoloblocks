@@ -1,4 +1,4 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
 const { DisplayIcon, classArrayToStr } = window.zoloModule;
 import classnames from 'classnames';
 
@@ -26,27 +26,9 @@ const Save = ({ attributes }) => {
 
     return (
         <div {...blockProps}>
-            <div className="zb-fancy-list-content">
-                {imageToggle && (
-                    <>
-                        {mediaType === 'image' && image && (
-                            <div className="zb-fancy-list-image">
-                                <img src={image.url} alt={image.url || fancyTitle} className={`wp-image-${image.id}`} />
-                            </div>
-                        )}
-                        {mediaType === 'text' && <div className="zb-fancy-list-number">{mediaText}</div>}
-                    </>
-                )}
-                <div className="zb-fancy-list-inner-content">
-                    {titleToggle == true && <RichText.Content tagName={headingTag} className="zb-fancy-list-title" value={fancyTitle} />}
-                    {textToggle == true && <RichText.Content tagName="div" className="zb-fancy-list-text" value={fancyListText} />}
-                </div>
+            <div className="zolo-fancy-list-container">
+                <InnerBlocks.Content />
             </div>
-            {iconToggle == true && (
-                <div>
-                    <div className="zb-fancy-icon">{fancyIcon && <DisplayIcon icon={fancyIcon} />}</div>
-                </div>
-            )}
         </div>
     );
 };

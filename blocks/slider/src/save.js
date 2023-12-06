@@ -4,7 +4,7 @@
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 const { Fragment } = wp.element;
 import classnames from 'classnames';
-const { classArrayToStr, DisplayIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 /**
  * Save function
@@ -36,10 +36,10 @@ export default function save({ attributes }) {
                             {customNavIcon && (
                                 <>
                                     <div className="swiper-nav-button swiper-zolo-prev">
-                                        <DisplayIcon icon={prevNavIcon} />
+                                        <DisplayZoloIcon icon={prevNavIcon} />
                                     </div>
                                     <div className="swiper-nav-button swiper-zolo-next">
-                                        <DisplayIcon icon={nextNavIcon} />
+                                        <DisplayZoloIcon icon={nextNavIcon} />
                                     </div>
                                 </>
                             )}

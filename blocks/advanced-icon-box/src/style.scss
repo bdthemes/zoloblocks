@@ -2,7 +2,8 @@
     padding: clamp(1.875rem, 4vw, 2.5rem);
     position: relative;
     border-radius: var(--zolo-item-border-radius);
-    background-color: #f2f2f3;
+    background-color: var(--zoloblocks-item-bg-color);
+    border: 1px solid var(--zoloblocks-item-border-color);
     box-sizing: border-box;
     overflow: hidden;
     a {
@@ -75,6 +76,7 @@
 
         .zolo-block-icon-wrap {
             margin: 0;
+            display: flex;
         }
 
         .zolo-block-body-content {

@@ -17,9 +17,10 @@ const {
     HeaderTabs,
     TabPanelControl,
     AdvancedOptions,
-    IconPicker,
+    ZoloIconPicker,
     BoxShadowControl,
     TypographyDropdown,
+    ZoloPanelBody,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -90,11 +91,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody
-                            title={__('Accordion Title', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'title' })}
-                            opened={selectedPanel === 'title'}
-                        >
+                        <ZoloPanelBody title={__('Accordion Title', 'zolo-blocks')} firstOpen={true} panelProps={props}>
                             <SelectControl
                                 label={__('Title Tag', 'zolo-blocks')}
                                 value={titleTag}
@@ -105,47 +102,39 @@ function Inspector(props) {
                                     });
                                 }}
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Accordion Icons', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'icons' })}
-                            opened={selectedPanel === 'icons'}
-                        >
-                            <BaseControl label={__('Collapsed Icon', 'zolo-blocks')}>
-                                <IconPicker
-                                    value={collapseIcon}
-                                    onChange={(value) => {
-                                        console.log(value);
-                                        setAttributes({
-                                            collapseIcon: value,
-                                        });
-                                    }}
-                                    disableDashicon={true}
-                                    showHeading={false}
-                                />
-                            </BaseControl>
-                            <BaseControl label={__('Expanded Icon', 'zolo-blocks')}>
-                                <IconPicker
-                                    value={expandIcon}
-                                    onChange={(value) => {
-                                        console.log(value);
-                                        setAttributes({
-                                            expandIcon: value,
-                                        });
-                                    }}
-                                    disableDashicon={true}
-                                    showHeading={false}
-                                />
-                            </BaseControl>
-                        </PanelBody>
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Accordion Icons', 'zolo-blocks')} panelProps={props}>
+                            <ZoloIconPicker
+                                label={__('Collapsed Icon', 'zolo-blocks')}
+                                value={collapseIcon}
+                                onChange={(value) => {
+                                    console.log(value);
+                                    setAttributes({
+                                        collapseIcon: value,
+                                    });
+                                }}
+                            />
+
+                            <ZoloIconPicker
+                                label={__('Expanded Icon', 'zolo-blocks')}
+                                value={expandIcon}
+                                onChange={(value) => {
+                                    console.log(value);
+                                    setAttributes({
+                                        expandIcon: value,
+                                    });
+                                }}
+                            />
+                        </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                        <PanelBody
+                        <ZoloPanelBody
                             title={__('Accordion Container', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'containerStyle' })}
-                            opened={selectedPanel === 'containerStyle'}
+                            firstOpen={true}
+                            stylePanel={true}
+                            panelProps={props}
                         >
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
@@ -172,12 +161,8 @@ function Inspector(props) {
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={AC_CONTAINER_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={AC_CONTAINER_BOX_SHADOW} requiredProps={requiredProps} />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Accordion Title', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'titleStyle' })}
-                            opened={selectedPanel === 'titleStyle'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Accordion Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={TITLE_TYPO}
@@ -211,12 +196,8 @@ function Inspector(props) {
                                     </>
                                 }
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Accordion Head', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'headStyle' })}
-                            opened={selectedPanel === 'headStyle'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Accordion Head', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={AC_HEADER_BORDER}
@@ -250,12 +231,8 @@ function Inspector(props) {
                                     <NormalBGControl requiredProps={requiredProps} controlName={AC_HEADER_HBG} noMainBGImg={true} />
                                 }
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Accordion Icon', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'iconStyle' })}
-                            opened={selectedPanel === 'iconStyle'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Accordion Icon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ResRangeControl label={__('Size', 'zolo-blocks')} controlName={ICON_SIZE} requiredProps={requiredProps} />
                             <ResRangeControl
                                 label={__('Width', 'zolo-blocks')}
@@ -314,12 +291,8 @@ function Inspector(props) {
                                     </>
                                 }
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Accordion Body', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'bodyStyle' })}
-                            opened={selectedPanel === 'bodyStyle'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Accordion Body', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={AC_BODY_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
@@ -340,12 +313,8 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={AC_BODY_BG} noMainBGImg={true} />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Active Accordion', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'activeAccordionStyle' })}
-                            opened={selectedPanel === 'activeAccordionStyle'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Active Accordion', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ColorControl
                                 label={__('Title Color', 'zolo-blocks')}
                                 color={atitleColor}
@@ -377,7 +346,7 @@ function Inspector(props) {
                             <BaseControl label={__('Accordion Body', 'zolo-blocks')}>
                                 <NormalBGControl requiredProps={requiredProps} controlName={AAC_BODY_BG} noMainBGImg={true} />
                             </BaseControl>
-                        </PanelBody>
+                        </ZoloPanelBody>
                     </>
                 }
                 advancedTab={

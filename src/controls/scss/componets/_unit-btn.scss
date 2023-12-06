@@ -9,8 +9,8 @@
 
 .zb-units-switchers {
 	position: relative;
-	width: 26px;
-	height: 26px;
+	width: 22px;
+	height: 22px;
 }
 
 .zb-units-switchers-wrap {
@@ -49,7 +49,7 @@
 	transition: all 0.3s;
 	font-size: 11px !important;
 	line-height: 0;
-	height: 26px;
+	height: 22px;
 	&.active {
 		transform: scale(1);
 		opacity: 1;

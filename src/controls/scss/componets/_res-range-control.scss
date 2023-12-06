@@ -4,10 +4,11 @@
 		flex-grow: 1;
 
 		.components-input-control {
-			margin-left: 8px !important;
-			width: 70px !important;
+			margin: 0 !important;
+			width: auto !important;
 			input {
-				height: 40px !important;
+				height: 35px !important;
+				min-height: 35px !important;
 				border: 1px solid #e9e9e9;
 				outline: none !important;
 				border-radius: 6px;

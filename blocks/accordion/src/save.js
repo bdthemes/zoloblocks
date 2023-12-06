@@ -6,7 +6,7 @@ const Save = ({ attributes }) => {
     const { uniqueId, parentClasses } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, 'zolo-accordion-wrap accordion-container', classArrayToStr(parentClasses)),
     });
 
     return (

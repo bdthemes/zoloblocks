@@ -143,6 +143,38 @@ const attributes = {
     // },
     advancedGallery: {
         type: 'array',
+        default: [
+            {
+                id: '',
+                url: zoloPlaceholders.placeholder,
+                alt: '',
+            },
+            {
+                id: '',
+                url: zoloPlaceholders.placeholderTwo,
+                alt: '',
+            },
+            {
+                id: '',
+                url: zoloPlaceholders.placeholderThree,
+                alt: '',
+            },
+            {
+                id: '',
+                url: zoloPlaceholders.placeholderFour,
+                alt: '',
+            },
+            {
+                id: '',
+                url: zoloPlaceholders.placeholderFive,
+                alt: '',
+            },
+            {
+                id: '',
+                url: zoloPlaceholders.placeholderSix,
+                alt: '',
+            },
+        ],
     },
     showCaption: {
         type: 'boolean',

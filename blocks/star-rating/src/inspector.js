@@ -17,6 +17,7 @@ const {
     TabPanelControl,
     IconicBtnGroup,
     AdvancedOptions,
+    ZoloPanelBody,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -56,11 +57,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody
-                            title={__('General', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
-                            opened={selectedPanel === 'general'}
-                        >
+                        <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
                             <ToggleControl
                                 label={__('Show Star Title', 'zolo-blocks')}
                                 checked={showTitle}
@@ -72,12 +69,8 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={FLEX_HORIZONTAL_OPTIONS}
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Rating', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'rating' })}
-                            opened={selectedPanel === 'rating'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Rating', 'zolo-blocks')} panelProps={props}>
                             <RangeControl
                                 label={__('Rating', 'zolo-blocks')}
                                 value={rating}
@@ -86,13 +79,9 @@ function Inspector(props) {
                                 max={5}
                                 step={0.1}
                             />
-                        </PanelBody>
+                        </ZoloPanelBody>
                         {showTitle && (
-                            <PanelBody
-                                title={__('Title', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'title' })}
-                                opened={selectedPanel === 'title'}
-                            >
+                            <ZoloPanelBody title={__('Title', 'zolo-blocks')} panelProps={props}>
                                 <TextControl
                                     label={__('Text', 'zolo-blocks')}
                                     value={title}
@@ -117,17 +106,13 @@ function Inspector(props) {
                                     }
                                     options={ICON_POSITIONS}
                                 />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
                     </>
                 }
                 styleTab={
                     <>
-                        <PanelBody
-                            title={__('Star', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'starStyle' })}
-                            opened={selectedPanel === 'starStyle'}
-                        >
+                        <ZoloPanelBody title={__('Star', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <ResRangeControl
                                 label={__('Size', 'zolo-blocks')}
                                 controlName={STAR_SIZE}
@@ -162,13 +147,9 @@ function Inspector(props) {
                                     />
                                 }
                             />
-                        </PanelBody>
+                        </ZoloPanelBody>
                         {showTitle && (
-                            <PanelBody
-                                title={__('Title', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'titleStyle' })}
-                                opened={selectedPanel === 'titleStyle'}
-                            >
+                            <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={TITLE_TYPO}
@@ -187,7 +168,7 @@ function Inspector(props) {
                                     max={100}
                                     step={1}
                                 />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
                     </>
                 }

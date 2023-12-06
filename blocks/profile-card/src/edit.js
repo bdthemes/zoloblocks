@@ -12,7 +12,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -247,7 +247,7 @@ export default function Edit(props) {
                                                     rel={profile.link.openInNewTab && 'noopener noreferer'}
                                                     target={profile.link.openInNewTab && '_blank'}
                                                 >
-                                                    <DisplayIcon icon={profile.icon} />
+                                                    <DisplayZoloIcon icon={profile.icon} />
                                                 </a>
                                             );
                                         })}

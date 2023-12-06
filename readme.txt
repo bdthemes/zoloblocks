@@ -2,10 +2,10 @@
 Contributors: BdThemes
 Tags: zoloblocks, blocks, gutenberg blocks, custom block, gutenberg
 Requires at least: 6.0
-Tested up to: 6.4
-Stable tag: 0.0.3
+Tested up to: 6.4.1
+Stable tag: 0.0.1
 Requires PHP: 7.4
-License: GPLv2 or later
+License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 ZoloBlocks comes with a number of amazing custom Gutenberg blocks to  extend the power of editing and designing in Gutenberg block editor.
@@ -44,7 +44,7 @@ These blocks are responsive. So, don't worry about it.
 
 = Will these slow down my site? =
 
-Not at all. You have optimised all of these blocks for better performance.
+Not at all. We have optimised all of these blocks for better performance.
 
 
 == Screenshots ==

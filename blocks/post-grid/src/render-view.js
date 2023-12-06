@@ -1,5 +1,6 @@
+import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-const { DynamicTag, DisplayIcon } = window.zoloModule;
+const { DynamicTag, DisplayZoloIcon } = window.zoloModule;
 function RenderView({ attributes, postResults }) {
     const {
         preset,
@@ -19,6 +20,7 @@ function RenderView({ attributes, postResults }) {
         showAuthor,
         showMeta,
         showReadingTime,
+        metaSeparator,
     } = attributes;
 
     return [
@@ -41,7 +43,7 @@ function RenderView({ attributes, postResults }) {
                 const avatar = <a dangerouslySetInnerHTML={{ __html: post.avatar }} />;
                 const author = (
                     <div
-                        className="zolo-post-meta-content"
+                        className="zolo-post-author-name"
                         dangerouslySetInnerHTML={{ __html: __('<span>posted by</span>') + post.author_link }}
                     />
                 );
@@ -59,7 +61,7 @@ function RenderView({ attributes, postResults }) {
                         {date}
                         {showReadingTime && (
                             <>
-                                <span>//</span>
+                                <span className="meta-separator">{metaSeparator}</span>
                                 {readingTime}
                                 {__('Min Read', 'zolo-blocks')}
                             </>
@@ -91,13 +93,15 @@ function RenderView({ attributes, postResults }) {
                                 {showCategory && categoriesHtml}
                                 {showTitle && (
                                     <DynamicTag tagName={titleTag} className="zolo-post-title">
-                                        <a href={post.permalink}>{titleLimitWords}</a>
+                                        <a href={post.permalink}>
+                                            <RawHTML>{titleLimitWords}</RawHTML>
+                                        </a>
                                     </DynamicTag>
                                 )}
                                 {showExcerpt && (
                                     <div className="zolo-post-desc">
                                         <p>
-                                            {excerptLimitWords}
+                                            <RawHTML>{excerptLimitWords}</RawHTML>
                                             {excerptindicator}
                                         </p>
                                     </div>
@@ -108,7 +112,7 @@ function RenderView({ attributes, postResults }) {
                                 <div className="zolo-post-link-btn">
                                     <a href={post.permalink}>
                                         {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zolo-blocks')}</>}
-                                        {showReadmoreIcon && readMoreIcon && <DisplayIcon icon={readMoreIcon} />}
+                                        {showReadmoreIcon && readMoreIcon && <DisplayZoloIcon icon={readMoreIcon} />}
                                     </a>
                                 </div>
                             )}

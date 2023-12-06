@@ -7,7 +7,7 @@ import classnames from 'classnames';
 import Inspector from './inspector';
 import './style.scss';
 
-const { DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 // import style
 import Style from './style';
@@ -49,6 +49,10 @@ const Edit = (props) => {
         showRibbon,
         ribbonTitle,
         ribbonPosition,
+
+        // extra
+        btnsPosition,
+        btnsDirection,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -123,6 +127,34 @@ const Edit = (props) => {
                                     allowedFormats={['bold', 'italic', 'strikethrough']}
                                 />
                             )}
+                            {btnsPosition === 'middle' && (
+                                <>
+                                    {(showBtn || showChatBtn) && (
+                                        <div className={`zolo-link-btn ${btnsDirection}`}>
+                                            {showBtn && (
+                                                <RichText
+                                                    tagName="a"
+                                                    className="zolo-buy-btn"
+                                                    value={buttonText}
+                                                    onChange={(text) => setAttributes({ buttonText: text })}
+                                                    placeholder={__('Button Text', 'zolo-blocks')}
+                                                    allowedFormats={[]}
+                                                />
+                                            )}
+                                            {showChatBtn && (
+                                                <RichText
+                                                    tagName="a"
+                                                    className="zolo-chat-btn"
+                                                    value={chatBtnText}
+                                                    onChange={(text) => setAttributes({ chatBtnText: text })}
+                                                    placeholder={__('Button Text', 'zolo-blocks')}
+                                                    allowedFormats={[]}
+                                                />
+                                            )}
+                                        </div>
+                                    )}
+                                </>
+                            )}
                         </div>
 
                         <div className="zolo-features-info">
@@ -153,7 +185,7 @@ const Edit = (props) => {
                                         <li key={index}>
                                             {item.icon && (
                                                 <span className="zolo-check-icon">
-                                                    <DisplayIcon icon={item.icon} />
+                                                    <DisplayZoloIcon icon={item.icon} />
                                                 </span>
                                             )}
                                             <span className="zolo-list-text">{item.text}</span>
@@ -162,28 +194,34 @@ const Edit = (props) => {
                                 </ul>
                             )}
 
-                            <div className="zolo-link-btn">
-                                {showBtn && (
-                                    <RichText
-                                        tagName="a"
-                                        className="zolo-buy-btn"
-                                        value={buttonText}
-                                        onChange={(text) => setAttributes({ buttonText: text })}
-                                        placeholder={__('Button Text', 'zolo-blocks')}
-                                        allowedFormats={[]}
-                                    />
-                                )}
-                                {showChatBtn && (
-                                    <RichText
-                                        tagName="a"
-                                        className="zolo-chat-btn"
-                                        value={chatBtnText}
-                                        onChange={(text) => setAttributes({ chatBtnText: text })}
-                                        placeholder={__('Button Text', 'zolo-blocks')}
-                                        allowedFormats={[]}
-                                    />
-                                )}
-                            </div>
+                            {btnsPosition === 'bottom' && (
+                                <>
+                                    {(showBtn || showChatBtn) && (
+                                        <div className={`zolo-link-btn ${btnsDirection}`}>
+                                            {showBtn && (
+                                                <RichText
+                                                    tagName="a"
+                                                    className="zolo-buy-btn"
+                                                    value={buttonText}
+                                                    onChange={(text) => setAttributes({ buttonText: text })}
+                                                    placeholder={__('Button Text', 'zolo-blocks')}
+                                                    allowedFormats={[]}
+                                                />
+                                            )}
+                                            {showChatBtn && (
+                                                <RichText
+                                                    tagName="a"
+                                                    className="zolo-chat-btn"
+                                                    value={chatBtnText}
+                                                    onChange={(text) => setAttributes({ chatBtnText: text })}
+                                                    placeholder={__('Button Text', 'zolo-blocks')}
+                                                    allowedFormats={[]}
+                                                />
+                                            )}
+                                        </div>
+                                    )}
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

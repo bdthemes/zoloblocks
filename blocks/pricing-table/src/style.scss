@@ -4,8 +4,9 @@
     overflow: hidden;
     .zolo-block-wrapper {
         border-radius: var(--zolo-item-border-radius);
-        border: 1px solid #ddd;
         position: relative;
+        background-color: var(--zoloblocks-item-bg-color);
+        border: 1px solid var(--zoloblocks-item-border-color);
     }
     .zolo-head-content {
         padding: clamp(1.5rem, 4vw, 2.5rem);
@@ -64,33 +65,45 @@
 
     .zolo-link-btn {
         display: flex;
-        flex-direction: column;
         gap: 10px;
         text-align: center;
         margin-top: clamp(1.5rem, 4vw, 2.5rem);
+        &.row {
+            flex-direction: row;
+            align-items: center;
+            .zolo-buy-btn,
+            .zolo-chat-btn {
+                width: 100%;
+            }
+        }
+        &.column {
+            flex-direction: column;
+        }
         a {
             &.zolo-buy-btn,
             &.zolo-chat-btn {
                 padding: 12px;
                 font-size: 14px;
                 border-radius: 5px;
-                color: #000;
+                color: var(--zoloblocks-brand-button-color);
                 border-width: 2px;
                 border-style: solid;
                 border-color: var(--zoloblocks-brand-color);
                 text-transform: capitalize;
                 text-decoration: none;
                 transition: all 0.3s ease;
-
             }
             &.zolo-buy-btn {
                 background-color: var(--zoloblocks-brand-color);
                 &:hover {
-                    background-color: transparent
+                    color: var(--zoloblocks-brand-text-color);
+                    background-color: transparent;
                 }
             }
             &.zolo-chat-btn {
+                color: var(--zoloblocks-brand-text-color);
                 &:hover {
+                    color: var(--zoloblocks-brand-button-color);
                     background-color: var(--zoloblocks-brand-color);
                 }
             }
@@ -129,6 +142,12 @@
         font-size: 14px;
         gap: 10px;
         color: #524f58;
+        svg {
+            width: 13px;
+            height: 13px;
+            fill: var(--zoloblocks-brand-button-color);
+            display: block;
+        }
     }
 
     .zolo-check-icon {
@@ -147,7 +166,7 @@
         position: absolute;
         top: 0;
         margin: 20px;
-        color: #000;
+        color: var(--zoloblocks-brand-button-color);
         font-size: 12px;
         text-transform: capitalize;
         background-color: var(--zoloblocks-brand-color);

@@ -78,7 +78,6 @@ function Style({ props }) {
         namePrefixColor,
         nameColor,
         nameHoverColor,
-        namePrefixHoverColor,
         pagColor,
         pagBgColor,
         apagColor,
@@ -607,23 +606,19 @@ function Style({ props }) {
         ${avatarBorderRadiusDesk}
       }
 
-      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content{
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-author-name{
         ${nameTypoDesk}
       }
 
-      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content span{
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-author-name span{
         ${namePrefixColor ? `color:${namePrefixColor} !important;` : ''}
       }
 
-      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content span:hover{
-        ${namePrefixHoverColor ? `color:${namePrefixHoverColor} !important;` : ''}
-      }
-
-      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content a{
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-author-name a{
         ${nameColor ? `color:${nameColor} !important;` : ''}
       }
 
-      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content a:hover{
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-author-name a:hover{
         ${nameHoverColor ? `color:${nameHoverColor} !important;` : ''}
       }
 
@@ -735,7 +730,7 @@ function Style({ props }) {
       ${avatarBorderTab}
       ${avatarBorderRadiusTab}
 
-    .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content{
+    .${uniqueId}.zolo-post-grid-wrap .zolo-post-author-name{
       ${nameTypoTab}
     }
 
@@ -830,7 +825,7 @@ function Style({ props }) {
         ${avatarBorderMob}
         ${avatarBorderRadiusMob}
 
-      .${uniqueId}.zolo-post-grid-wrap .zolo-post-meta-content{
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-author-name{
         ${nameTypoMob}
       }
 

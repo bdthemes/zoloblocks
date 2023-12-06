@@ -63,7 +63,6 @@
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        color: #1c1b25;
         z-index: 1;
         position: relative;
         overflow: hidden;
@@ -79,8 +78,10 @@
             }
         }
         &:hover {
-            color: #000;
             background-color: var(--zoloblocks-brand-color);
+            svg {
+                fill: var(--zoloblocks-brand-button-color);
+            }
         }
     }
     .zolo-title {

@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -43,28 +43,28 @@ export default function Edit(props) {
             titleTag: context['zolo/titleTag'],
         });
     }, [context]);
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-            <div {...blockProps}>
-                <div className="zolo-accordion-wrapper">
-                    <div className="accordion-head">
-                        <RichText
+            <div className="ac zolo-accordion-item">
+                <div {...blockProps}>
+                    <button type="button" className="ac-trigger zolo-accordion-head-item">
+                        <RichText.Content
                             tagName={titleTag}
-                            className="accordion-title"
+                            className="zolo-accordion-head-title"
                             value={title}
-                            onChange={(value) => setAttributes({ title: value })}
-                            placeholder={__('Title', 'zolo-blocks')}
+                            placeholder={__('Accordion Title', 'zolo-blocks')}
                         />
-                        <button className="accordion-toggle" aria-label="Toggle">
-                            <div className="collapsed-mode">{collapseIcon && <DisplayIcon icon={collapseIcon} />}</div>
-                            <div className="expanded-mode">{expandIcon && <DisplayIcon icon={expandIcon} />}</div>
-                        </button>
-                    </div>
-                    <div className="accordion-body">
-                        <div className="accordion-body-inner">
-                            <InnerBlocks />
+                        <div className="zolo-accordion-toggle">
+                            <div className="zolo-accordion-collapsed-mode">{collapseIcon && <DisplayZoloIcon icon={collapseIcon} />}</div>
+                            <div className="zolo-accordion-expanded-mode">{expandIcon && <DisplayZoloIcon icon={expandIcon} />}</div>
+                        </div>
+                    </button>
+                    <div className="zolo-accordion-panel ac-panel">
+                        <div className="zolo-accordion-inner">
+                            <InnerBlocks template={[['core/paragraph', { placeholder: 'Accordion Content' }]]} />
                         </div>
                     </div>
                 </div>

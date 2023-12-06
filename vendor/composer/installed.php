@@ -3,7 +3,7 @@
         'name' => 'zolo/zolo-blocks',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'ea45480b0e8b7ed306b43ba2e2bc00a42987a6d5',
+        'reference' => '0289c281c19511da987bdf0fecde0210eb378fc9',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'zolo/zolo-blocks' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'ea45480b0e8b7ed306b43ba2e2bc00a42987a6d5',
+            'reference' => '0289c281c19511da987bdf0fecde0210eb378fc9',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

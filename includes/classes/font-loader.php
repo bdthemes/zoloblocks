@@ -99,30 +99,7 @@ class ZB_Font_Loader {
 				
 						wp_enqueue_style($font_handle);
 					}
-				}  
-
-				// if (!empty($gfonts)) {
-				// 	$font_array = explode('|', $gfonts);
-					
-				// 	foreach ($font_array as $font) {
-				// 		if (empty($font)) {
-				// 			continue;
-				// 		}
-
-				// 		$query_args = ['family' => $font];
-				// 		$font_handle = 'zolo-block-fonts';
-				
-				// 		wp_register_style(
-				// 			$font_handle,
-				// 			add_query_arg($query_args, '//fonts.googleapis.com/css'),
-				// 			[],
-				// 			ZOLO_VERSION,
-				// 			'all'
-				// 		);
-				
-				// 		wp_enqueue_style($font_handle);
-				// 	}
-				// }  
+				}
 
 				// Reset.
 				$gfonts = '';

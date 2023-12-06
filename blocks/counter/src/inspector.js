@@ -16,7 +16,7 @@ const {
     TextShadowControl,
     TextStrokeControl,
     TypographyDropdown,
-    IconPicker,
+    ZoloIconPicker,
     BoxShadowControl,
     HeaderTabs,
     IconicBtnGroup,
@@ -24,6 +24,7 @@ const {
     ImageAvatar,
     AdvancedOptions,
     ResAlignmentControl,
+    ZoloPanelBody,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -92,11 +93,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody
-                            title={__('General', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
-                            opened={selectedPanel === 'general'}
-                        >
+                        <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
                                 label={__('Preset', 'zolo-blocks')}
                                 options={PRESETS}
@@ -135,12 +132,8 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={DEFAULT_ALIGNS}
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Content', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'content' })}
-                            opened={selectedPanel === 'content'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             {hideCounter && (
                                 <>
                                     <TextControl
@@ -164,13 +157,9 @@ function Inspector(props) {
                                     onChange={(titleText) => setAttributes({ titleText })}
                                 />
                             )}
-                        </PanelBody>
+                        </ZoloPanelBody>
                         {hideIcon && (
-                            <PanelBody
-                                title={__('Icon', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'icon' })}
-                                opened={selectedPanel === 'icon'}
-                            >
+                            <ZoloPanelBody title={__('Icon', 'zolo-blocks')} panelProps={props}>
                                 <>
                                     <IconicBtnGroup
                                         label={__('Type', 'zolo-blocks')}
@@ -183,14 +172,14 @@ function Inspector(props) {
                                         options={ICON_BOX_OPTIONS}
                                     />
                                     {iconType === 'icon' && (
-                                        <IconPicker
+                                        <ZoloIconPicker
+                                            label={__('Select Icon', 'zolo-blocks')}
                                             value={counterIcon}
                                             onChange={(value) =>
                                                 setAttributes({
                                                     counterIcon: value,
                                                 })
                                             }
-                                            disableDashicon={true}
                                         />
                                     )}
 
@@ -242,17 +231,13 @@ function Inspector(props) {
                                         </BaseControl>
                                     )}
                                 </>
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
                     </>
                 }
                 styleTab={
                     <>
-                        <PanelBody
-                            title={__('Container', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'containerStyle' })}
-                            opened={selectedPanel === 'containerStyle'}
-                        >
+                        <ZoloPanelBody title={__('Container', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={CONTAINER_BORDER}
@@ -271,13 +256,9 @@ function Inspector(props) {
                             />
                             <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
-                        </PanelBody>
+                        </ZoloPanelBody>
                         {hideIcon && (
-                            <PanelBody
-                                title={__('Media', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'mediaStyle' })}
-                                opened={selectedPanel === 'mediaStyle'}
-                            >
+                            <ZoloPanelBody title={__('Media', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 {iconType === 'icon' && (
                                     <ResRangeControl
                                         label={__('Icon Size', 'zolo-blocks')}
@@ -331,14 +312,10 @@ function Inspector(props) {
                                     />
                                 )}
                                 <NormalBGControl requiredProps={requiredProps} controlName={ICON_BACKGROUND} noMainBGImg={true} />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
                         {hideCounter && (
-                            <PanelBody
-                                title={__('Counter', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'counterStyle' })}
-                                opened={selectedPanel === 'counterStyle'}
-                            >
+                            <ZoloPanelBody title={__('Counter', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <ColorControl
                                     label={__('Number Color', 'zolo-blocks')}
                                     color={textColor}
@@ -390,14 +367,10 @@ function Inspector(props) {
                                     controlName={COUNTER_MARGIN}
                                     requiredProps={requiredProps}
                                 />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
                         {hideTitle && (
-                            <PanelBody
-                                title={__('Title', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'titleStyle' })}
-                                opened={selectedPanel === 'titleStyle'}
-                            >
+                            <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <ColorControl
                                     label={__('Color', 'zolo-blocks')}
                                     color={titleTextColor}
@@ -429,7 +402,7 @@ function Inspector(props) {
                                     controlName={TITLE_MARGIN}
                                     requiredProps={requiredProps}
                                 />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
                     </>
                 }

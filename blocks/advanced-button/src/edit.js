@@ -9,7 +9,7 @@ import { Fragment, useEffect, useState, useRef } from '@wordpress/element';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayIcon, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';

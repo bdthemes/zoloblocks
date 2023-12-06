@@ -50,16 +50,8 @@ import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MES
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const {
-        uniqueId,
-        blurBgOpacity,
-        nameColor,
-        designationColor,
-        testimonialMessageColor,
-        activeRatingColor,
-        inactiveRatingColor,
-        dplIconColor,
-    } = attributes;
+    const { uniqueId, nameColor, designationColor, testimonialMessageColor, activeRatingColor, inactiveRatingColor, dplIconColor } =
+        attributes;
 
     // content align
     const {
@@ -345,7 +337,17 @@ const Style = ({ props }) => {
         mobRangeStyle: dplMobSize,
     } = generateResRangeStyle({
         controlName: DPL_ICON_SIZE,
-        property: 'font-size',
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: dplDeskHSize,
+        tabRangeStyle: dplTabHSize,
+        mobRangeStyle: dplMobHSize,
+    } = generateResRangeStyle({
+        controlName: DPL_ICON_SIZE,
+        property: 'height',
         attributes,
     });
 
@@ -424,10 +426,6 @@ const Style = ({ props }) => {
             ${contentBoxShadow}
 		}
 
-        .${uniqueId}.wp-block-zolo-review.style-2 .zolo-info-wrap {
-			backdrop-filter: blur(${blurBgOpacity}px);
-		}
-
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating {
 			${ratingIconDeskAlignStyle}
 		}
@@ -477,9 +475,13 @@ const Style = ({ props }) => {
 			${dplDeskMargin}
 			${dplDeskHeight}
 			${dplDeskWidth}
-            ${dplIconColor ? `color: ${dplIconColor};` : ''}
-            ${dplDeskSize}
 		}
+
+        .${uniqueId}.wp-block-zolo-review .zolo-quote-icon svg{
+            ${dplDeskSize}
+            ${dplDeskHSize}
+            ${dplIconColor ? `fill: ${dplIconColor};` : ''}
+        }
 	`;
 
     const tabletAllStyle = `
@@ -521,7 +523,7 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating svg {
 			${ratingIconWidthTab}
 		}
-        .${uniqueId}.wp-block-zolo-review .zolo-link-btn a {
+        .${uniqueId}.wp-block-zolo-review .zolo-quote-icon {
 			${dplNormTabBG}
 			${dplTabBorderStyle}
 			${dplTabBorderRadius}
@@ -529,8 +531,12 @@ const Style = ({ props }) => {
 			${dplTabMargin}
 			${dplTabHeight}
 			${dplTabWidth}
-            ${dplTabSize}
 		}
+
+        .${uniqueId}.wp-block-zolo-review .zolo-quote-icon svg{
+            ${dplTabSize}
+            ${dplTabHSize}
+        }
 	`;
 
     const mobileAllStyle = `
@@ -572,7 +578,7 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating svg {
 			${ratingIconWidthMob}
 		}
-        .${uniqueId}.wp-block-zolo-review .zolo-link-btn a {
+        .${uniqueId}.wp-block-zolo-review .zolo-quote-icon {
 			${dplNormMobBG}
 			${dplMobBorderStyle}
 			${dplMobBorderRadius}
@@ -580,8 +586,12 @@ const Style = ({ props }) => {
 			${dplMobMargin}
 			${dplMobHeight}
 			${dplMobWidth}
-            ${dplMobSize}
 		}
+
+        .${uniqueId}.wp-block-zolo-review .zolo-quote-icon svg{
+            ${dplMobSize}
+            ${dplMobHSize}
+        }
 	`;
 
     return (

@@ -74,7 +74,7 @@ class ZoloHelpers {
     }
 
     protected static function get_views_path($name) {
-        $file = ZOLO_DIR_PATH . 'views/' . $name . '.php';
+        $file = trailingslashit(ZOLO_DIR_PATH) . 'views/' . $name . '.php';
 
         if (file_exists($file)) {
             return $file;
@@ -238,5 +238,13 @@ class ZoloHelpers {
                 'next_text' => sprintf('<span>%1$s</span>', __('next', 'zolo-blocks')),
             ));
         }
+    }
+
+    public static function render_svg_html($viewBox, $path) {
+        return sprintf(
+            '<svg xmlns="https://www.w3.org/2000/svg" viewBox="%s" width="1em" height="1em" fill="currentColor"><path d="%s"></path></svg>',
+            esc_attr($viewBox),
+            esc_attr($path)
+        );
     }
 }

@@ -8,7 +8,7 @@ import Inspector from './inspector';
 import Style from './style';
 import './style.scss';
 
-const { DynamicTag, DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DynamicTag, classArrayToStr } = window.zoloModule;
 
 const Edit = (props) => {
     const { attributes, setAttributes, isSelected } = props;
@@ -17,7 +17,6 @@ const Edit = (props) => {
         preview,
         parentClasses,
         styles,
-        headingIcon,
         enableTitleLink,
         titleText,
         subTitleText,
@@ -49,8 +48,6 @@ const Edit = (props) => {
             <Style props={props} />
             <div {...blockProps}>
                 <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
-                    <DisplayIcon icon={headingIcon} />
-
                     {showTransparentTitle && (
                         <div className="zolo-transparent-heading-wrap">
                             <h3 className={`zolo-transparent-heading zolo-transform-origin-${transparentTitleRotateOrigin}`}>

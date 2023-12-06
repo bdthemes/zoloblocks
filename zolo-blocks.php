@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Zolo Blocks
  * Plugin URI: https://bdthemes.com/
- * Version: 0.0.3
+ * Version: 0.0.1
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: zolo-blocks
@@ -77,7 +77,7 @@ final class Zolo_Blocks {
      * Include required files
      */
     public function includes() {
-        require_once ZOLO_DIR_PATH . 'includes/zolo-blocks-loader.php';
+        require_once trailingslashit( ZOLO_DIR_PATH ) . 'includes/zolo-blocks-loader.php';
     }
 }
 

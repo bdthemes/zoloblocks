@@ -10,7 +10,7 @@ import { __ } from '@wordpress/i18n';
  */
 import classnames from 'classnames';
 
-const { DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -19,16 +19,16 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
-    const { preview, uniqueId, preset, parentClasses, socialText, socialProfiles, socialColor } = attributes;
+    const { preview, uniqueId, preset, parentClasses, socialText, socialProfiles, socialColor, layout } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${preset} ${uniqueId}`, classArrayToStr(parentClasses)),
+        className: classnames(className, `${preset} ${uniqueId}`, layout, classArrayToStr(parentClasses)),
     });
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.socialLinks} alt={__('Pricing Table Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.socialLinks} alt={__('Social Links Preview', 'zolo-blocks')} />;
     }
 
     return (
@@ -41,7 +41,7 @@ export default function Edit(props) {
                 {socialProfiles &&
                     socialProfiles.map((profile, index) => {
                         let socialName = Object.keys(profile.icon)[0];
-                        const iconName = profile && profile.icon.slice(7, profile.icon.length);
+                        const iconName = profile && profile.text && profile.text.toLowerCase();
                         return (
                             <a
                                 href={profile.link && profile.link.url}
@@ -52,7 +52,7 @@ export default function Edit(props) {
                             >
                                 {socialText !== 'none' && (
                                     <span className="zolo-social-icon">
-                                        <DisplayIcon icon={profile.icon} />
+                                        <DisplayZoloIcon icon={profile.icon} />
                                     </span>
                                 )}
                                 {socialText !== 'iconOnly' && <span className="zolo-social-text">{profile.text}</span>}

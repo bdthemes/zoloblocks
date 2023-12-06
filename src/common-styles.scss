@@ -1,8 +1,36 @@
 :root {
-    --zoloblocks-brand-color: #30ffd0;
-    --zoloblocks-brand-color-hover: #2be6c5;
+    --zoloblocks-brand-color: #3f8efc;
+    --zoloblocks-brand-color-hover:  #2667ff;
+    --zoloblocks-brand-text-color: #3f8efc;
+    --zoloblocks-brand-button-color: #ffffff;
     --zoloblocks-button-border-radius: 3px;
     --zolo-item-border-radius: 10px;
+    --zoloblocks-item-bg-color: rgba(251,253,255,1);
+    --zoloblocks-item-border-color: rgba(12, 11, 12, 0.07);
+}
+
+.zolo-appender-btn {
+    margin-top: 30px;
+    color: #000;
+    background-color: #d9d9d9;
+    border-radius: var(--zoloblocks-button-border-radius);
+    padding: 8px 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 0;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+    svg {
+        width: 24px;
+        height: 24px;
+        display: block;
+    }
+    &:hover {
+        background-color: #b3b3b3;
+    }
 }
 
 // Responsive show/hide css

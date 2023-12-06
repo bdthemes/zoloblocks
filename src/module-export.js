@@ -9,7 +9,6 @@ export { default as BoxShadowControl } from './controls/boxshadow-control';
 export { default as ColorControl } from './controls/color-control';
 export { default as ResDimensionsControl } from './controls/dimensions-control';
 export { default as GradientControl } from './controls/gradient-control';
-export { IconPicker, DisplayIcon } from './controls/icon-picker';
 export { default as ImageAvatar } from './controls/image-avatar';
 export { default as NormalBGControl } from './controls/normal-bg-control';
 export { default as RangeResetControl } from './controls/range-reset-control';
@@ -32,6 +31,7 @@ export { default as ZoloIconPicker } from './controls/zolo-icon-picker';
 export { default as DisplayZoloIcon } from './controls/display-zolo-icon';
 export { AdvancedOptions } from './global/components/advancedOptions';
 export { GlobalStyleHanlder } from './global/components/globalStyleHandler';
+export { default as ZoloPanelBody } from './controls/zolo-panelbody';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';

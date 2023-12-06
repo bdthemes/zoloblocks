@@ -7,49 +7,52 @@
     left: 0;
     right: 0;
     top: 50%;
-    margin: 0;
-    font-size: 70px;
-    font-weight: 900;
-    text-transform: uppercase;
     transform: translateY(-50%);
     color: rgba(156, 156, 156);
 }
 
-.zolo-transparent-heading {
-    margin: 0;
-}
+.zolo-advanced-heading {
+    .zolo-ah-subtitle {
+        margin: 0 0 4px;
+        font-size: 16px;
+        color: #323641;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
 
-.zolo-ah-subtitle {
-    margin: 0 0 4px;
-    font-size: 16px;
-    color: #323641;
-    font-weight: 500;
-    text-transform: capitalize;
-}
-
-.zolo-ah-title {
-    font-size: 35px;
-    margin: 0;
-    font-weight: 700;
-    color: #202224;
-    text-transform: capitalize;
-
-    .zolo-ah-main-title {
-        display: inline-block;
-        &:hover {
-            text-decoration: none;
+    .zolo-ah-title {
+        font-size: clamp(1.5rem, 4vw, 2.25rem);
+        margin: 0;
+        font-weight: 700;
+        color: #202224;
+        text-transform: capitalize;
+        z-index: 1;
+        position: relative;
+        .zolo-ah-main-title {
+            display: inline-block;
+            &:hover {
+                text-decoration: none;
+            }
         }
+    }
+
+    .zolo-transparent-heading {
+        margin: 0;
+        font-size: clamp(2.25rem, 7vw, 4.375rem);
+        text-transform: uppercase;
+        font-weight: 900;
     }
 }
 
 .zolo-ah-style-3 .zolo-ah-title {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-image: url(https://www.elementpack.pro/demo/wp-content/uploads/2018/02/bg1.jpg);
+    background-position: center;
+    background-size: contain;
 }
 
 .zolo-separator-wrapper {
-    display: flex;
+    display: inline-flex;
 }
 
 .zolo-transform-origin-top-left {

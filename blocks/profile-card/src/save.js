@@ -1,5 +1,5 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DisplayIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 import classNames from 'classnames';
 
 const Save = ({ attributes }) => {
@@ -115,7 +115,7 @@ const Save = ({ attributes }) => {
                                                 rel={profile.link.openInNewTab && 'noopener noreferer'}
                                                 target={profile.link.openInNewTab && '_blank'}
                                             >
-                                                <DisplayIcon icon={profile.icon} />
+                                                <DisplayZoloIcon icon={profile.icon} />
                                             </a>
                                         );
                                     })}

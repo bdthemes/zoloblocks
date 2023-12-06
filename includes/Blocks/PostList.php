@@ -6,8 +6,7 @@ use Zolo\Blocks\PostBlock;
 use Zolo\API\GetPostsV1;
 use Zolo\Helpers\ZoloHelpers;
 
-class PostList extends PostBlock
-{
+class PostList extends PostBlock {
 
     protected $default_block_attributes = [
         'name'             => 'post-list',

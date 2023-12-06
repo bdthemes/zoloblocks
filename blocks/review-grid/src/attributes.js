@@ -42,15 +42,6 @@ import {
     REVIEWER_DESIGNATION_MARGIN,
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
-    DPL_BG,
-    DPL_HOVER_BG,
-    DPL_HEIGHT,
-    DPL_WIDTH,
-    DPL_BORDER,
-    DPL_BORDER_RADIUS,
-    DPL_PADDING,
-    DPL_MARGIN,
-    DPL_ICON_SIZE,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -84,7 +75,7 @@ const attributes = {
     // block attributes
     preset: {
         type: 'string',
-        default: 'default',
+        default: 'style-1',
     },
     addReviewerWebsiteLink: {
         type: 'boolean',
@@ -162,15 +153,6 @@ const attributes = {
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 
-    ...generateNormalBGAttributes(DPL_BG),
-    ...generateNormalBGAttributes(DPL_HOVER_BG),
-    ...generateResRangeAttributies(DPL_ICON_SIZE, {}),
-    ...generateResRangeAttributies(DPL_HEIGHT, {}),
-    ...generateResRangeAttributies(DPL_WIDTH, {}),
-    ...generateBorderAttributies(DPL_BORDER),
-    ...generateDimensionAttributes(DPL_BORDER_RADIUS),
-    ...generateDimensionAttributes(DPL_PADDING),
-    ...generateDimensionAttributes(DPL_MARGIN),
     containerBg: {
         type: 'string',
     },
@@ -195,17 +177,6 @@ const attributes = {
     },
     inactiveRatingColor: {
         type: 'string',
-    },
-    // DPL icon color
-    dplIconColor: {
-        type: 'string',
-    },
-    dplIconHoverColor: {
-        type: 'string',
-    },
-    // blur
-    blurBgOpacity: {
-        type: 'number',
     },
 };
 

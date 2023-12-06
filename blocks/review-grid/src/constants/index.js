@@ -5,9 +5,9 @@ import { __ } from '@wordpress/i18n';
 
 // Presets
 export const PRESETS = [
-    { label: __('Default', 'zolo-blocks'), value: 'default' },
     { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
     { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
+    { label: __('Preset 3', 'zolo-blocks'), value: 'default' },
 ];
 
 // Block Prefix
@@ -65,14 +65,3 @@ export const REVIEWER_TESTIMONIAL_MARGIN = 'reviewTestimonialMessageMargin';
 
 // review icons
 export const ICONS_SIZE = 'reviewIconsSize';
-
-// Review detail page link icon
-export const DPL_BG = 'DPLBg';
-export const DPL_HOVER_BG = 'DPLHoverBg';
-export const DPL_HEIGHT = 'DPLHeight';
-export const DPL_WIDTH = 'DPLWidth';
-export const DPL_BORDER = 'DPLBorder';
-export const DPL_BORDER_RADIUS = 'DPLBorderRadius';
-export const DPL_PADDING = 'DPLPadding';
-export const DPL_MARGIN = 'DPLMargin';
-export const DPL_ICON_SIZE = 'DPLIconSize';

@@ -1,6 +1,6 @@
 .wp-block-zolo-slide {
     box-sizing: border-box;
-    background-color: #f5f5f5;
+    background-color: var(--zoloblocks-item-bg-color);
     position: relative;
     z-index: 1;
     &::before {

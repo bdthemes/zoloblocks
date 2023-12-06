@@ -12,13 +12,18 @@ const {
 
 import {
     CONTAINER_HEIGHT,
+    CONTAINER_BG,
+    CONTAINER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_MARGIN,
+    CONTAINER_PADDING,
     TITLE_ALIGNMENT,
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
     LINK_TEXT_SHADOW,
     LINK_TEXT_STROKE,
-    CONTENT_ALIGNMENT,
     CONTENT_PADDING,
     CONTENT_BG,
     LINK_MARGIN,
@@ -60,11 +65,17 @@ const attributes = {
         },
     },
     // content alignment
-    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
     ...generateDimensionAttributes(CONTENT_PADDING),
     ...generateNormalBGAttributes(CONTENT_BG),
     // container
     ...generateResRangeAttributies(CONTAINER_HEIGHT),
+    ...generateNormalBGAttributes(CONTAINER_BG),
+    ...generateBorderAttributies(CONTAINER_BORDER),
+    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
+    ...generateDimensionAttributes(CONTAINER_MARGIN),
+    ...generateDimensionAttributes(CONTAINER_PADDING),
+
     // photo
     ...generateDimensionAttributes(BRAND_PHOTO_BORDER_RADIUS),
     ...generateBoxShadowAttributies(BRAND_PHOTO_BOX_SHADOW),
@@ -92,7 +103,7 @@ const attributes = {
         type: 'object',
         default: {
             id: '',
-            url: 'https://placehold.co/600x600',
+            url: zoloPlaceholders.brand,
             alt: '',
         },
     },
@@ -115,14 +126,6 @@ const attributes = {
     },
     labelHoverColor: {
         type: 'string',
-    },
-    contentHorizontalPosition: {
-        type: 'string',
-        default: 'center',
-    },
-    contentVerticalPosition: {
-        type: 'string',
-        default: 'center',
     },
     // context
     brandNameTag: {

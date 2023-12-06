@@ -22,7 +22,6 @@ const {
 
 //block constants
 import {
-    SEPARATOR_ALIGN,
     SEPARATOR_HEIGHT,
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
@@ -40,7 +39,6 @@ import {
     TITLE_SHADOW,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
-    TPT_ALIGNMENT,
     TPT_BORDER,
     TPT_BORDER_RADIUS,
     TPT_MARGIN,
@@ -77,6 +75,7 @@ export default function Style({ props }) {
         tptBgColor,
         tptOpacity,
         separatorColor,
+        presetBg,
     } = attributes;
 
     //title style generate
@@ -96,7 +95,6 @@ export default function Style({ props }) {
         typoStylesMobile: titleTypoMobile,
     } = generateTypographyStyles({
         prefixConstant: TITLE_TYPOGRAPHY,
-        defaultFontSize: 25,
         attributes,
     });
     const {
@@ -158,16 +156,6 @@ export default function Style({ props }) {
 
     //separator style generate
     const {
-        desktopAlignStyle: separatorDeskAlign,
-        tabAlignStyle: separatorTabAlign,
-        mobAlignStyle: separatorMobAlign,
-    } = generateResAlignmentStyle({
-        controlName: SEPARATOR_ALIGN,
-        property: 'justify-content',
-        attributes,
-    });
-
-    const {
         desktopRangeStyle: separatorWidthDesktop,
         tabRangeStyle: separatorWidthTab,
         mobRangeStyle: separatorWidthMob,
@@ -203,7 +191,6 @@ export default function Style({ props }) {
         typoStylesMobile: subTitleTypoMobile,
     } = generateTypographyStyles({
         prefixConstant: SUBTITLE_TYPOGRAPHY,
-        defaultFontSize: 16,
         attributes,
     });
     const {
@@ -262,17 +249,6 @@ export default function Style({ props }) {
         typoStylesMobile: transparentTypoMobile,
     } = generateTypographyStyles({
         prefixConstant: TRANSPARENT_TYPOGRAPHY,
-        defaultFontSize: 55,
-        attributes,
-    });
-
-    const {
-        desktopAlignStyle: tptAlignmentDesktop,
-        tabAlignStyle: tptAlignmentTab,
-        mobAlignStyle: tptAlignmentMob,
-    } = generateResAlignmentStyle({
-        controlName: TPT_ALIGNMENT,
-        property: 'text-align',
         attributes,
     });
 
@@ -434,18 +410,6 @@ export default function Style({ props }) {
   .zolo-block-wrapper.${uniqueId}:hover::before{
     ${wrapperHoverOverlayStylesDesktop}
   }
-  .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading{
-    font-weight: 900;
-  }
-
-  .zolo-block-wrapper.${uniqueId} .zolo-ah-subtitle {
-    font-weight: 400;
-    color: #323641;
-  }
-  .zolo-block-wrapper.${uniqueId} .zolo-ah-title{
-    font-weight: 500;
-    color: #202224;
-  }
 `;
 
     const wrapperStylesTab = `
@@ -504,6 +468,10 @@ export default function Style({ props }) {
       ${titleShadow}
     }
 
+    .zolo-block-wrapper.${uniqueId}.zolo-ah-style-3 .zolo-ah-title {
+      background-image: url(${presetBg ? presetBg.url : ''});
+    }
+
     .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title.has-link {
       ${titleColor ? `color: ${titleColor};` : ''}
     }
@@ -543,9 +511,6 @@ export default function Style({ props }) {
 
     // separator styles css in strings
     const separatorStylesDesktop = `
-    .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper{
-      ${separatorDeskAlign}
-    }
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       border-style: none none solid;
       ${separatorColor ? `border-color: ${separatorColor};` : ''}
@@ -556,9 +521,6 @@ export default function Style({ props }) {
 `;
 
     const separatorStylesTab = `
-    .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper{
-      ${separatorTabAlign}
-    }
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       ${separatorHeightTab}
       ${separatorWidthTab}
@@ -567,9 +529,6 @@ export default function Style({ props }) {
 `;
 
     const separatorStylesMobile = `
-    .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper{
-      ${separatorMobAlign}
-    }
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       ${separatorHeightMob}
       ${separatorWidthMob}
@@ -614,9 +573,6 @@ export default function Style({ props }) {
 
     //transparent styles css
     const transparentStylesDesktop = `
-  .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
-    ${tptAlignmentDesktop}
-  }
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
     ${tptColor ? `color: ${tptColor};` : ''}
     ${tptBgColor ? `background-color: ${tptBgColor};` : ''}
@@ -642,7 +598,6 @@ export default function Style({ props }) {
 
     const transparentStylesTab = `
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
-    ${tptAlignmentTab}
     ${transparentTitleHide === 'tab-mob' && `display:none`}
   }
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {
@@ -658,7 +613,6 @@ export default function Style({ props }) {
 
     const transparentStylesMobile = `
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading-wrap{
-    ${tptAlignmentMob}
     ${(transparentTitleHide === 'tab-mob' || transparentTitleHide === 'mob') && `display:none`}
   }
   .zolo-block-wrapper.${uniqueId} .zolo-transparent-heading {

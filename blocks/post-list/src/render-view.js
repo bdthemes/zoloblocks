@@ -1,3 +1,4 @@
+import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 const { DynamicTag } = window.zoloModule;
 function RenderView({ attributes, postResults }) {
@@ -13,11 +14,13 @@ function RenderView({ attributes, postResults }) {
         showCategory,
         showMeta,
         showCount,
+        showReadingTime,
+        metaSeparator,
     } = attributes;
 
     return [
         postResults.length > 0 &&
-            postResults.map((post) => {
+            postResults.map((post, index) => {
                 const titleLimitWords = titleWords > 0 ? post.title.trim().split(' ', titleWords).join(' ') : post.title;
                 const excerptLimitWords = excerptWords > 0 ? post.excerpt.trim().split(' ', excerptWords).join(' ') : post.excerpt;
 
@@ -35,13 +38,21 @@ function RenderView({ attributes, postResults }) {
                 const author = (
                     <div
                         className="zolo-post-author-name"
-                        dangerouslySetInnerHTML={{ __html: __('<span>by</span> ') + post.author_link }}
+                        dangerouslySetInnerHTML={{ __html: __('<span>Posted by</span> ') + post.author_link }}
                     />
                 );
                 const date = <div className="zolo-post-date">{post.date}</div>;
+                const readingTime = <div className="zolo-post-estimate">{post.reading_time}</div>;
+
+                const readingTimeHtml = (
+                    <div className="zolo-post-reading-time">
+                        {readingTime}
+                        {__('Min Read', 'zolo-blocks')}
+                    </div>
+                );
 
                 return (
-                    <div className="zolo-post-item">
+                    <div className={`zolo-post-item ${index === 0 ? 'featured-post' : ''}`}>
                         <div className="zolo-post-image">
                             {showThumbnail && (
                                 <>
@@ -63,23 +74,30 @@ function RenderView({ attributes, postResults }) {
 
                                 {showTitle && (
                                     <DynamicTag tagName={titleTag} className="zolo-post-title">
-                                        <a href={post.permalink}>{titleLimitWords}</a>
+                                        <a href={post.permalink}>
+                                            <RawHTML>{titleLimitWords}</RawHTML>
+                                        </a>
                                     </DynamicTag>
                                 )}
-
-                                {showExcerpt && (
-                                    <div className="zolo-post-desc">
-                                        <p>
-                                            {excerptLimitWords}
-                                            {excerptindicator}
-                                        </p>
-                                    </div>
-                                )}
-
                                 {showMeta && (
                                     <div className="zolo-post-meta">
                                         {author}
+                                        <span className="meta-separator">{metaSeparator}</span>
                                         {date}
+                                        {showReadingTime && (
+                                            <>
+                                                <span className="meta-separator">{metaSeparator}</span>
+                                                {readingTimeHtml}
+                                            </>
+                                        )}
+                                    </div>
+                                )}
+                                {showExcerpt && (
+                                    <div className="zolo-post-desc">
+                                        <p>
+                                            <RawHTML>{excerptLimitWords}</RawHTML>
+                                            {excerptindicator}
+                                        </p>
                                     </div>
                                 )}
                             </div>

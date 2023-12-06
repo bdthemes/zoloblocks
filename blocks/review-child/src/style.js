@@ -41,15 +41,6 @@ import {
     REVIEWER_PHOTO_PADDING,
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
-    DPL_BG,
-    DPL_HOVER_BG,
-    DPL_HEIGHT,
-    DPL_WIDTH,
-    DPL_BORDER,
-    DPL_BORDER_RADIUS,
-    DPL_PADDING,
-    DPL_MARGIN,
-    DPL_ICON_SIZE,
 } from './constants';
 
 import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -67,8 +58,6 @@ const Style = ({ props }) => {
         testimonialMessageColor,
         activeRatingColor,
         inactiveRatingColor,
-        dplIconColor,
-        dplIconHoverColor,
     } = attributes;
 
     // content
@@ -363,96 +352,6 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    // Detail page link icon
-    const {
-        backgroundStylesDesktop: dplNormDeskBG,
-        backgroundStylesTab: dplNormTabBG,
-        backgroundStylesMobile: dplNormMobBG,
-    } = generateNormalBGControlStyles({
-        controlName: DPL_BG,
-        attributes,
-        noMainBGImg: true,
-    });
-
-    const {
-        backgroundStylesDesktop: dplHoverDeskBG,
-        backgroundStylesTab: dplHoverTabBG,
-        backgroundStylesMobile: dplHoverMobBG,
-    } = generateNormalBGControlStyles({
-        controlName: DPL_HOVER_BG,
-        attributes,
-        noMainBGImg: true,
-    });
-
-    const {
-        desktopRangeStyle: dplDeskSize,
-        tabRangeStyle: dplTabSize,
-        mobRangeStyle: dplMobSize,
-    } = generateResRangeStyle({
-        controlName: DPL_ICON_SIZE,
-        property: 'width',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: dplDeskHeight,
-        tabRangeStyle: dplTabHeight,
-        mobRangeStyle: dplMobHeight,
-    } = generateResRangeStyle({
-        controlName: DPL_HEIGHT,
-        property: 'height',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: dplDeskWidth,
-        tabRangeStyle: dplTabWidth,
-        mobRangeStyle: dplMobWidth,
-    } = generateResRangeStyle({
-        controlName: DPL_WIDTH,
-        property: 'width',
-        attributes,
-    });
-
-    const {
-        desktopBorderStyle: dplDeskBorderStyle,
-        tabBorderStyle: dplTabBorderStyle,
-        mobBorderStyle: dplMobBorderStyle,
-    } = generateBorderStyle({
-        controlName: DPL_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: dplDeskBorderRadius,
-        dimensionStylesTab: dplTabBorderRadius,
-        dimensionStylesMobile: dplMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: DPL_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: dplDeskPadding,
-        dimensionStylesTab: dplTabPadding,
-        dimensionStylesMobile: dplMobPadding,
-    } = generateDimensionStyle({
-        controlName: DPL_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: dplDeskMargin,
-        dimensionStylesTab: dplTabMargin,
-        dimensionStylesMobile: dplMobMargin,
-    } = generateDimensionStyle({
-        controlName: DPL_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
     /**
      * All Style Combination
      */
@@ -515,25 +414,6 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .empty-star svg {
 			${inactiveRatingColor ? `fill: ${inactiveRatingColor};` : ''}
 		}
-        .${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn a {
-			${dplNormDeskBG}
-			${dplDeskBorderStyle}
-			${dplDeskBorderRadius}
-			${dplDeskPadding}
-			${dplDeskMargin}
-			${dplDeskHeight}
-			${dplDeskWidth}
-		}
-		.${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn a:hover {
-			${dplHoverDeskBG}
-		}
-		.${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn i {
-			color: ${dplIconColor ? dplIconColor : ''};
-            ${dplDeskSize}
-		}
-		.${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn a:hover i{
-			color: ${dplIconHoverColor ? dplIconHoverColor : ''};
-		}
 	`;
 
     const tabletAllStyle = `
@@ -577,19 +457,6 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
 			${ratingIconWidthTab}
 		}
-        .${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn a {
-			${dplNormTabBG}
-			${dplTabBorderStyle}
-			${dplTabBorderRadius}
-			${dplTabPadding}
-			${dplTabMargin}
-			${dplTabHeight}
-			${dplTabWidth}
-			${dplTabSize}
-		}
-        .${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn a:hover {
-			${dplHoverTabBG}
-		}
 	`;
 
     const mobileAllStyle = `
@@ -632,19 +499,6 @@ const Style = ({ props }) => {
 		}
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
 			${ratingIconWidthMob}
-		}
-        .${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn a {
-			${dplNormMobBG}
-			${dplMobBorderStyle}
-			${dplMobBorderRadius}
-			${dplMobPadding}
-			${dplMobMargin}
-			${dplMobHeight}
-			${dplMobWidth}
-			${dplMobSize}
-		}
-        .${uniqueId}.wp-block-zolo-review-child.style-1 .zolo-link-btn a:hover {
-			${dplHoverMobBG}
 		}
 	`;
 

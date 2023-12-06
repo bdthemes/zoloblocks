@@ -1,12 +1,10 @@
-import { Dashicon } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'zolo-advanced-heading';
 
 //settings tab
 export const STYLES = [
-    { label: __('Default', 'zolo-blocks'), value: 'style-0' },
-    { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
+    { label: __('Preset 1', 'zolo-blocks'), value: 'style-0' },
+    { label: __('Preset 2', 'zolo-blocks'), value: 'style-1' },
     { label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
 ];
 
@@ -60,7 +58,6 @@ export const TPT_ROTATE_ORIGIN = [
     { label: 'Bottom Right', value: 'bottom-right' },
 ];
 
-export const TPT_ALIGNMENT = 'tpAlign';
 //style tab
 export const TITLE_ALIGN = 'titleAlign';
 export const TITLE_MARGIN = 'titleMargin';

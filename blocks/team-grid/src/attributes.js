@@ -94,10 +94,6 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
-    showDetailPageIcon: {
-        type: 'boolean',
-        default: true,
-    },
     showDesignation: {
         type: 'boolean',
         default: true,
@@ -128,9 +124,7 @@ const attributes = {
     // global settings for child blocks
     ...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_PADDING),
     ...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_MARGIN),
-    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT, {
-        defaultAlign: 'left',
-    }),
+    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
     ...generateNormalBGAttributes(CONTENT_BG),
     ...generateBorderAttributies(CONTENT_BORDER),
     ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),

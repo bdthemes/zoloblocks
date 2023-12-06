@@ -24,6 +24,12 @@ import {
     COLUMNS_GAP,
     ROWS_GAP,
     CONTAINER_HEIGHT,
+    CONTAINER_BG,
+    CONTAINER_BORDER,
+    CONTAINER_BORDER_RADIUS,
+    CONTAINER_BOX_SHADOW,
+    CONTAINER_MARGIN,
+    CONTAINER_PADDING,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
     CONTENT_BG,
@@ -129,6 +135,61 @@ const Style = ({ props }) => {
     });
 
     const {
+        desktopBorderStyle: containerBorderDesk,
+        tabBorderStyle: containerBorderTab,
+        mobBorderStyle: containerBorderMob,
+    } = generateBorderStyle({
+        controlName: CONTAINER_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: containerBorderRadiusDesk,
+        dimensionStylesTab: containerBorderRadiusTab,
+        dimensionStylesMobile: containerBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_BOX_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: containerPaddingDesk,
+        dimensionStylesTab: containerPaddingTab,
+        dimensionStylesMobile: containerPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: containerMarginDesk,
+        dimensionStylesTab: containerMarginTab,
+        dimensionStylesMobile: containerMarginMob,
+    } = generateDimensionStyle({
+        controlName: CONTAINER_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: containerDeskBGStyle,
+        backgroundStylesTab: containerTabBGStyle,
+        backgroundStylesMobile: containerMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CONTAINER_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // Photo
+    const {
         backgroundStylesDesktop: brandPhotoDeskBGStyle,
         backgroundStylesTab: brandPhotoTabBGStyle,
         backgroundStylesMobile: brandPhotoMobBGStyle,
@@ -138,7 +199,6 @@ const Style = ({ props }) => {
         noMainBGImg: false,
     });
 
-    // Photo
     const {
         desktopRangeStyle: deskImageWidth,
         tabRangeStyle: tabImageWidth,
@@ -287,6 +347,12 @@ const Style = ({ props }) => {
         }
         .${uniqueId} .zb-brand-item{
             ${deskContainerHeight}
+            ${containerBorderDesk}
+            ${containerBorderRadiusDesk}
+            ${containerBoxShadow}
+            ${containerPaddingDesk}
+            ${containerMarginDesk}
+            ${containerDeskBGStyle}
 		}
 		.${uniqueId} .wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingDesk}
@@ -297,13 +363,15 @@ const Style = ({ props }) => {
 			${brandPhotoMaringDesk}
 			${photoBorderDesktop}
 		}
-        .${uniqueId} .zb-brand-inner-content{
+        .${uniqueId}.zb-brand-grid-wrap.wp-block-zolo-brand-grid .zb-brand-inner-content{
             ${brandContentDeskAlignStyle}
         }
-		.${uniqueId} .zb-brand-content{
-            ${contentDeskBGStyle}
+		.${uniqueId}.zb-brand-grid-wrap.wp-block-zolo-brand-grid .zb-brand-content{
             ${contentHorizontalPosition ? `align-items:${contentHorizontalPosition};` : ''}
             ${contentVerticalPosition ? `justify-content:${contentVerticalPosition};` : ''}
+		}
+		.${uniqueId} .zb-brand-content{
+            ${contentDeskBGStyle}
             ${contentDeskPadding}
 		}
 		.${uniqueId} .zb-brand-title{
@@ -342,6 +410,11 @@ const Style = ({ props }) => {
         }
         .${uniqueId} .zb-brand-item{
             ${tabContainerHeight}
+            ${containerBorderTab}
+            ${containerBorderRadiusTab}
+            ${containerPaddingTab}
+            ${containerMarginTab}
+            ${containerTabBGStyle}
         }
         .${uniqueId} .zb-brand-image img{
             ${brandPhotoPaddingTab}
@@ -383,6 +456,11 @@ const Style = ({ props }) => {
         }
         .${uniqueId} .zb-brand-item{
             ${mobContainerHeight}
+            ${containerBorderMob}
+            ${containerBorderRadiusMob}
+            ${containerPaddingMob}
+            ${containerMarginMob}
+            ${containerMobBGStyle}
         }
         .${uniqueId} .zb-brand-image img{
             ${brandPhotoPaddingMob}

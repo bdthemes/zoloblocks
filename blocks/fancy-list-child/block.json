@@ -1,0 +1,23 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Fancy list Child",
+    "name": "zolo/fancy-list-child",
+    "category": "zolo-blocks",
+    "keywords": ["fancy", "fancy list"],
+    "description": "Single fancy list",
+    "apiVersion": 3,
+    "parent": ["zolo/fancy-list"],
+    "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "zolo-block-editor-script"
+}

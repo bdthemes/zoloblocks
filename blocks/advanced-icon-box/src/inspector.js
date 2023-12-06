@@ -18,7 +18,6 @@ const {
     TextStrokeControl,
     TypographyDropdown,
     TabPanelControl,
-    IconPicker,
     ZoloIconPicker,
     BoxShadowControl,
     HeaderTabs,
@@ -28,6 +27,7 @@ const {
     ImageAvatar,
     ResAlignmentControl,
     AdvancedOptions,
+    ZoloPanelBody,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -117,11 +117,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody
-                            title={__('General', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'general' })}
-                            opened={selectedPanel === 'general'}
-                        >
+                        <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
@@ -197,16 +193,12 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={DEFAULT_ALIGNS}
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Content', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'content' })}
-                            opened={selectedPanel === 'content'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             {showMainIcon && (
                                 <>
                                     <IconicBtnGroup
-                                        label={__('Type', 'zolo-blocks')}
+                                        label={__('Media Type', 'zolo-blocks')}
                                         value={iconType}
                                         onChange={(value) =>
                                             setAttributes({
@@ -323,14 +315,10 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
-                        </PanelBody>
+                        </ZoloPanelBody>
 
                         {showButton && showButtonIcon && (
-                            <PanelBody
-                                title={__('Button Icon', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'btnIcon' })}
-                                opened={selectedPanel === 'btnIcon'}
-                            >
+                            <ZoloPanelBody title={__('Button Icon', 'zolo-blocks')} panelProps={props}>
                                 <ZoloIconPicker
                                     label={__('Select Icon', 'zolo-blocks')}
                                     value={buttonIcon}
@@ -350,133 +338,14 @@ function Inspector(props) {
                                     }
                                     options={POSITIONS}
                                 />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
                     </>
                 }
                 styleTab={
                     <>
-                        {iconType == 'icon' && (
-                            <PanelBody
-                                title={__('Main Icon', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'iconStyle' })}
-                                opened={selectedPanel === 'iconStyle'}
-                            >
-                                <ResRangeControl
-                                    label={__('Icon Size', 'zolo-blocks')}
-                                    controlName={ICON_SIZE}
-                                    requiredProps={requiredProps}
-                                    min={0}
-                                    max={100}
-                                    step={1}
-                                />
-                                {(preset == 'style-2' || preset == 'style-3') && (
-                                    <IconicBtnGroup
-                                        label={__('Icon Alignment', 'zolo-blocks')}
-                                        value={iconAlignment}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                iconAlignment: value,
-                                            })
-                                        }
-                                        options={FLEX_ALIGN_OPTIONS}
-                                    />
-                                )}
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={ICON_BORDER}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
-                                    controlName={ICON_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zolo-blocks')}
-                                    controlName={ICON_MARGIN}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zolo-blocks')}
-                                    controlName={ICON_PADDING}
-                                    requiredProps={requiredProps}
-                                />
-
-                                <TabPanelControl
-                                    normalComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={iconColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        iconColor: value,
-                                                    })
-                                                }
-                                            />
-                                            <ColorControl
-                                                label={__('Background', 'zolo-blocks')}
-                                                color={iconBackgroundColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        iconBackgroundColor: value,
-                                                    })
-                                                }
-                                            />
-                                            <BoxShadowControl
-                                                controlName={ICON_BOX_SHADOW}
-                                                requiredProps={requiredProps}
-                                                enableTransition={false}
-                                            />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Border Color', 'zolo-blocks')}
-                                                color={iconBorderHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        iconBorderHoverColor: value,
-                                                    })
-                                                }
-                                            />
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={iconHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        iconHoverColor: value,
-                                                    })
-                                                }
-                                            />
-                                            <ColorControl
-                                                label={__('Background', 'zolo-blocks')}
-                                                color={iconBackgroundHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        iconBackgroundHoverColor: value,
-                                                    })
-                                                }
-                                            />
-                                            <BoxShadowControl
-                                                controlName={ICON_HOVER_BOX_SHADOW}
-                                                requiredProps={requiredProps}
-                                                enableTransition={false}
-                                            />
-                                        </>
-                                    }
-                                />
-                            </PanelBody>
-                        )}
-                        {iconType == 'image' && (
-                            <PanelBody
-                                title={__('Image', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'imageStyle' })}
-                                opened={selectedPanel === 'imageStyle'}
-                            >
+                        <ZoloPanelBody title={__('Media', 'zolo-blocks')} panelProps={props} stylePanel={true} firstOpen={true}>
+                            {iconType === 'image' && (
                                 <>
                                     <ResRangeControl
                                         label={__('Image Size', 'zolo-blocks')}
@@ -509,13 +378,120 @@ function Inspector(props) {
                                         forBorderRadius={true}
                                     />
                                 </>
-                            </PanelBody>
-                        )}
-                        <PanelBody
-                            title={__('Title', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'titleStyle' })}
-                            opened={selectedPanel === 'titleStyle'}
-                        >
+                            )}
+                            {iconType == 'icon' && (
+                                <>
+                                    <ResRangeControl
+                                        label={__('Icon Size', 'zolo-blocks')}
+                                        controlName={ICON_SIZE}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                    />
+                                    {(preset == 'style-2' || preset == 'style-3') && (
+                                        <IconicBtnGroup
+                                            label={__('Icon Alignment', 'zolo-blocks')}
+                                            value={iconAlignment}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    iconAlignment: value,
+                                                })
+                                            }
+                                            options={FLEX_ALIGN_OPTIONS}
+                                        />
+                                    )}
+                                    <BorderControl
+                                        label={__('Border', 'zolo-blocks')}
+                                        controlName={ICON_BORDER}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Border Radius', 'zolo-blocks')}
+                                        controlName={ICON_BORDER_RADIUS}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={true}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Margin', 'zolo-blocks')}
+                                        controlName={ICON_MARGIN}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Padding', 'zolo-blocks')}
+                                        controlName={ICON_PADDING}
+                                        requiredProps={requiredProps}
+                                    />
+
+                                    <TabPanelControl
+                                        normalComponents={
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zolo-blocks')}
+                                                    color={iconColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            iconColor: value,
+                                                        })
+                                                    }
+                                                />
+                                                <ColorControl
+                                                    label={__('Background', 'zolo-blocks')}
+                                                    color={iconBackgroundColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            iconBackgroundColor: value,
+                                                        })
+                                                    }
+                                                />
+                                                <BoxShadowControl
+                                                    controlName={ICON_BOX_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                            </>
+                                        }
+                                        hoverComponents={
+                                            <>
+                                                <ColorControl
+                                                    label={__('Border Color', 'zolo-blocks')}
+                                                    color={iconBorderHoverColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            iconBorderHoverColor: value,
+                                                        })
+                                                    }
+                                                />
+                                                <ColorControl
+                                                    label={__('Color', 'zolo-blocks')}
+                                                    color={iconHoverColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            iconHoverColor: value,
+                                                        })
+                                                    }
+                                                />
+                                                <ColorControl
+                                                    label={__('Background', 'zolo-blocks')}
+                                                    color={iconBackgroundHoverColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            iconBackgroundHoverColor: value,
+                                                        })
+                                                    }
+                                                />
+                                                <BoxShadowControl
+                                                    controlName={ICON_HOVER_BOX_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                    enableTransition={false}
+                                                />
+                                            </>
+                                        }
+                                    />
+                                </>
+                            )}
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Title', 'zolo-blocks')} panelProps={props} stylePanel={true}>
                             <SelectControl
                                 label={__('Title Tag', 'zolo-blocks')}
                                 options={HEADING}
@@ -566,12 +542,8 @@ function Inspector(props) {
                                     </>
                                 }
                             />
-                        </PanelBody>
-                        <PanelBody
-                            title={__('Description', 'zolo-blocks')}
-                            onToggle={(value) => value === true && setAttributes({ selectedPanel: 'descriptionStyle' })}
-                            opened={selectedPanel === 'descriptionStyle'}
-                        >
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Description', 'zolo-blocks')} panelProps={props} stylePanel={true}>
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={DESCRIPTION_TYPOGRAPHY}
@@ -610,14 +582,10 @@ function Inspector(props) {
                                     </>
                                 }
                             />
-                        </PanelBody>
+                        </ZoloPanelBody>
                         {showButton && (
                             <>
-                                <PanelBody
-                                    title={__('Button', 'zolo-blocks')}
-                                    onToggle={(value) => value === true && setAttributes({ selectedPanel: 'ctaStyle' })}
-                                    opened={selectedPanel === 'ctaStyle'}
-                                >
+                                <ZoloPanelBody title={__('Button', 'zolo-blocks')} panelProps={props} stylePanel={true}>
                                     <TypographyDropdown
                                         label={__('Typography', 'zolo-blocks')}
                                         typoPrefixConstant={BUTTON_TYPOGRAPHY}
@@ -702,16 +670,12 @@ function Inspector(props) {
                                             </>
                                         }
                                     />
-                                </PanelBody>
+                                </ZoloPanelBody>
                             </>
                         )}
 
                         {showButton && showButtonIcon && (
-                            <PanelBody
-                                title={__('Button Icon', 'zolo-blocks')}
-                                onToggle={(value) => value === true && setAttributes({ selectedPanel: 'ctaIconStyle' })}
-                                opened={selectedPanel === 'ctaIconStyle'}
-                            >
+                            <ZoloPanelBody title={__('Button Icon', 'zolo-blocks')} panelProps={props} stylePanel={true}>
                                 <ResRangeControl
                                     label={__('Icon Size', 'zolo-blocks')}
                                     controlName={BUTTON_ICON_SIZE}
@@ -728,7 +692,7 @@ function Inspector(props) {
                                     max={100}
                                     step={1}
                                 />
-                            </PanelBody>
+                            </ZoloPanelBody>
                         )}
                     </>
                 }

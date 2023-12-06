@@ -12,7 +12,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { StarRating, classArrayToStr, DisplayIcon } = window.zoloModule;
+const { StarRating, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -118,7 +118,7 @@ export default function Edit(props) {
                             </div>
                             {showQuoteIcon && (
                                 <div className="zolo-quote-icon">
-                                    <DisplayIcon icon={quoteIcon} />
+                                    <DisplayZoloIcon icon={quoteIcon} />
                                 </div>
                             )}
                         </div>
