@@ -340,6 +340,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={COUNTER_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 {hideSuffix && (
                                     <ResRangeControl
@@ -394,6 +395,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={TITLE_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <TextShadowControl controlName={TITLE_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                                 <TextStrokeControl controlName={TITLE_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />

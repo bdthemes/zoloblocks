@@ -52,10 +52,6 @@ const Style = ({ props }) => {
         },
     });
 
-    console.log('deskColumns', deskColumns);
-    console.log('tabColumns', tabColumns);
-    console.log('mobColumns', mobColumns);
-
     const {
         desktopRangeStyle: deskColumnsGap,
         tabRangeStyle: tabColumnsGap,

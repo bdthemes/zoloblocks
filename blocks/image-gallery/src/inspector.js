@@ -229,6 +229,7 @@ function Inspector(props) {
                                         label={__('Typography', 'zolo-blocks')}
                                         typoPrefixConstant={HEADING_TYPOGRAPHY}
                                         requiredProps={requiredProps}
+                                        max={36}
                                     />
                                     <ColorControl
                                         label={__('Color', 'zolo-blocks')}
@@ -278,7 +279,7 @@ function Inspector(props) {
                                     controlName={ZOOM_ICON_SIZE}
                                     requiredProps={requiredProps}
                                     min={1}
-                                    max={200}
+                                    max={36}
                                     step={1}
                                 />
                                 <BorderControl

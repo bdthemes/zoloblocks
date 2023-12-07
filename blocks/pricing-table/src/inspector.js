@@ -469,6 +469,7 @@ const Inspector = (props) => {
                                         label="Typography"
                                         typoPrefixConstant={DESC_TYPOGRAPHY}
                                         requiredProps={requiredProps}
+                                        max={36}
                                     />
 
                                     <ColorControl
@@ -489,7 +490,12 @@ const Inspector = (props) => {
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Pricing', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <TypographyDropdown label="Typography" typoPrefixConstant={PRICE_TYPOGRAPHY} requiredProps={requiredProps} />
+                            <TypographyDropdown
+                                label="Typography"
+                                typoPrefixConstant={PRICE_TYPOGRAPHY}
+                                requiredProps={requiredProps}
+                                max={36}
+                            />
 
                             <ColorControl
                                 label={__('Color', 'zolo-blocks')}
@@ -567,6 +573,7 @@ const Inspector = (props) => {
                                         label="Typography"
                                         typoPrefixConstant={ORGINAL_PRICE_TYPOGRAPHY}
                                         requiredProps={requiredProps}
+                                        max={36}
                                     />
 
                                     <ColorControl
@@ -597,6 +604,7 @@ const Inspector = (props) => {
                                         label="Typography"
                                         typoPrefixConstant={PERIOD_TYPOGRAPHY}
                                         requiredProps={requiredProps}
+                                        max={36}
                                     />
 
                                     <ColorControl
@@ -671,6 +679,7 @@ const Inspector = (props) => {
                                         label="Typography"
                                         typoPrefixConstant={FEATURE_DESC_TYPOGRAPHY}
                                         requiredProps={requiredProps}
+                                        max={36}
                                     />
 
                                     <ColorControl
@@ -699,7 +708,12 @@ const Inspector = (props) => {
                                     </BaseControl>
                                 </>
                             )}
-                            <TypographyDropdown label="Typography" typoPrefixConstant={FEATURE_TYPOGRAPHY} requiredProps={requiredProps} />
+                            <TypographyDropdown
+                                label="Typography"
+                                typoPrefixConstant={FEATURE_TYPOGRAPHY}
+                                requiredProps={requiredProps}
+                                max={36}
+                            />
 
                             <ColorControl
                                 label={__('Color', 'zolo-blocks')}
@@ -776,6 +790,7 @@ const Inspector = (props) => {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={BTN_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
@@ -849,6 +864,7 @@ const Inspector = (props) => {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={CBTN_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
@@ -923,7 +939,12 @@ const Inspector = (props) => {
                         )}
 
                         <ZoloPanelBody title={__('Ribbon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <TypographyDropdown label="Typography" typoPrefixConstant={RIBBON_TYPOGRAPHY} requiredProps={requiredProps} />
+                            <TypographyDropdown
+                                label="Typography"
+                                typoPrefixConstant={RIBBON_TYPOGRAPHY}
+                                requiredProps={requiredProps}
+                                max={36}
+                            />
                             <ColorControl
                                 label={__('Color', 'zolo-blocks')}
                                 color={ribbonColor}

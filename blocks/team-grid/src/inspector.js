@@ -333,6 +333,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={TEAM_MEMBER_DESIGNATION_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ColorControl
                                     label={__('Color', 'zolo-blocks')}
@@ -356,6 +357,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ColorControl
                                     label={__('Color', 'zolo-blocks')}

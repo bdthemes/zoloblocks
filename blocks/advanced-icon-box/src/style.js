@@ -69,7 +69,6 @@ export default function Style({ props }) {
         btnHoverColor,
         btnBgHoverColor,
         btnHoverBorderColor,
-        presetOneStyles,
         globalLink,
     } = attributes;
 
@@ -386,16 +385,11 @@ export default function Style({ props }) {
             ${iconAlignmentDesktop}
         }
 		.${uniqueId} .zolo-block-icon-wrap{
-			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
 		}
 
 		.${uniqueId} .zolo-block-item{
 			${contentDeskAlign}
-		}
-
-		.${uniqueId} .zolo-block-link-btn{
-			justify-content: ${presetOneStyles ? presetOneStyles.contentPosition : 'left'};
 		}
 
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{

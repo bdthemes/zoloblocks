@@ -462,6 +462,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={EXCERPT_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ColorControl
                                     label={__('Color', 'zolo-blocks')}
@@ -486,6 +487,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={META_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ColorControl
                                     label={__('Color', 'zolo-blocks')}
@@ -506,6 +508,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={CAT_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResRangeControl
                                     label={__('Gap', 'zolo-blocks')}
@@ -587,6 +590,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={READMORE_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResRangeControl
                                     label={__('Gap', 'zolo-blocks')}

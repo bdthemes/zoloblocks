@@ -178,7 +178,7 @@ function Inspector(props) {
                                                 controlName={ICON_SIZE}
                                                 requiredProps={requiredProps}
                                                 min={0}
-                                                max={100}
+                                                max={36}
                                                 step={1}
                                             />
                                             <ResRangeControl
@@ -203,6 +203,7 @@ function Inspector(props) {
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={BUTTON_TYPOGRAPHY}
                                 requiredProps={requiredProps}
+                                max={36}
                             />
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={BUTTON_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl

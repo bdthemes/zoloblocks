@@ -465,6 +465,7 @@ const Inspector = (props) => {
                                     label="Typography"
                                     typoPrefixConstant={SUBTITLE_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={64}
                                 />
 
                                 <ColorControl

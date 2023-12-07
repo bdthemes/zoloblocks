@@ -278,6 +278,7 @@ function Inspector(props) {
                                         label={__('Typography', 'zolo-blocks')}
                                         typoPrefixConstant={DESC_TYPO}
                                         requiredProps={requiredProps}
+                                        max={36}
                                     />
                                     <ResDimensionsControl
                                         label={__('Margin', 'zolo-blocks')}
@@ -313,6 +314,7 @@ function Inspector(props) {
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={BUTTON_TYPOGRAPHY}
                                 requiredProps={requiredProps}
+                                max={36}
                             />
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={BUTTON_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl

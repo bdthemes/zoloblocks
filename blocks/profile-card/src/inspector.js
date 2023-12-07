@@ -423,6 +423,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={BADGE_TYPO}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zolo-blocks')}
@@ -540,6 +541,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={PROFILE_USERNAME}
                                     requiredProps={requiredProps}
+                                    max={64}
                                 />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
@@ -565,6 +567,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={EMAIL_TYPO}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
@@ -590,6 +593,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={BIO_TYPO}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
@@ -615,6 +619,7 @@ function Inspector(props) {
                                     label={__('Number Typography', 'zolo-blocks')}
                                     typoPrefixConstant={NUMBER_TYPO}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <CardDivider />
                                 <ColorControl
@@ -630,6 +635,7 @@ function Inspector(props) {
                                     label={__('Label Typography', 'zolo-blocks')}
                                     typoPrefixConstant={LABEL_TYPO}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <CardDivider />
                                 <ResRangeControl
@@ -652,6 +658,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={BTN_TYPO}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <TabPanelControl
                                     normalComponents={

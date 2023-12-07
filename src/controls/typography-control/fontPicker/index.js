@@ -18,7 +18,7 @@ import { googleFonts } from './googleFonts';
 const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className, ...props }) => {
     const id = `inspector-zb-font-family-${instanceId}`;
     const fonts = [
-        { value: '', label: __('Default', 'zolo-blocks') },
+        { value: 'Default', label: __('Default', 'zolo-blocks') },
         { value: 'Arial', label: 'Arial' },
         { value: 'Helvetica', label: 'Helvetica' },
         { value: 'Times-New-Roman', label: 'Times New Roman' },
@@ -32,13 +32,24 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
 
     const onChangeValue = (select) => {
         let selectedFont = select.label;
-
         const googleFontsAttr =
             ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic';
         const link = document.createElement('link');
         link.rel = 'stylesheet';
 
         if (selectedFont) {
+            // skip if default OR Arial, Helvetica, Times New Roman, Georgia
+            if (
+                selectedFont === 'Default' ||
+                selectedFont === 'Arial' ||
+                selectedFont === 'Helvetica' ||
+                selectedFont === 'Times-New-Roman' ||
+                selectedFont === 'Georgia'
+            ) {
+                onChange(selectedFont);
+                return;
+            }
+
             link.href = 'https://fonts.googleapis.com/css?family=' + selectedFont.replace(/ /g, '+') + googleFontsAttr;
             document.head.appendChild(link);
         }

@@ -196,6 +196,7 @@ function Inspector(props) {
                                     label={__('Text Typography', 'zolo-blocks')}
                                     typoPrefixConstant={TEXT_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                             )}
                             {socialText !== 'none' && (

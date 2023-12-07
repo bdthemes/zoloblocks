@@ -199,7 +199,6 @@ function Inspector(props) {
                                     label={__('Margin', 'zolo-block')}
                                     controlName={TITLE_SPACING}
                                     requiredProps={requiredProps}
-                                    max={100}
                                 />
                                 <TabPanelControl
                                     normalComponents={
@@ -233,6 +232,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-block')}
                                     typoPrefixConstant={TEXT_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-block')}
@@ -322,6 +322,7 @@ function Inspector(props) {
                                             label={__('Typography', 'zolo-blocks')}
                                             typoPrefixConstant={MEDIA_TYPOGRAPHY}
                                             requiredProps={requiredProps}
+                                            max={36}
                                         />
                                         <ColorControl
                                             label={__('Color', 'zolo-block')}

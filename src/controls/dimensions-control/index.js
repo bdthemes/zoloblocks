@@ -6,7 +6,7 @@ import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
 import LinkUnlink from '../link-unlink';
 
-const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadius, units }) => {
+const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadius, units, max = null }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
 
     const {
@@ -85,6 +85,7 @@ const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadi
                     </UnitsBtn>
 
                     <DimensionControl
+                        max={max}
                         top={dimensionTop}
                         right={dimensionRight}
                         bottom={dimensionBottom}
@@ -131,6 +132,7 @@ const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadi
                     </UnitsBtn>
 
                     <DimensionControl
+                        max={max}
                         top={TABdimensionTop}
                         right={TABdimensionRight}
                         bottom={TABdimensionBottom}
@@ -177,6 +179,7 @@ const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadi
                     </UnitsBtn>
 
                     <DimensionControl
+                        max={max}
                         top={MOBdimensionTop}
                         right={MOBdimensionRight}
                         bottom={MOBdimensionBottom}

@@ -61,7 +61,7 @@ const Borders = ({ top, right, bottom, left, onChange, neededProps, children }) 
                             value={parseInt(borders.top) || parseInt(borders.right) || parseInt(borders.bottom) || parseInt(borders.left)}
                             onChange={(value) => setLinkedBorders(value.toString())}
                             min={0}
-                            max={100}
+                            max={25}
                         />
                     )}
                     {!isLinked && (

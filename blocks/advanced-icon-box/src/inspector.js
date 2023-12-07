@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, ToggleControl, TextControl, TextareaControl, BaseControl, Button } from '@wordpress/components';
+import { SelectControl, ToggleControl, TextControl, TextareaControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 
@@ -97,11 +97,6 @@ function Inspector(props) {
         buttonLink,
         globalLink,
         iconPosition,
-        presetOneStyles,
-        presetTwoStyles,
-        presetThreeStyles,
-        selectedPanel,
-        selectedTab,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -548,6 +543,7 @@ function Inspector(props) {
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={DESCRIPTION_TYPOGRAPHY}
                                 requiredProps={requiredProps}
+                                max={36}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
@@ -590,6 +586,7 @@ function Inspector(props) {
                                         label={__('Typography', 'zolo-blocks')}
                                         typoPrefixConstant={BUTTON_TYPOGRAPHY}
                                         requiredProps={requiredProps}
+                                        max={36}
                                     />
                                     <BorderControl
                                         label={__('Border', 'zolo-blocks')}

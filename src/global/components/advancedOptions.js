@@ -72,6 +72,7 @@ export const AdvancedOptions = (props) => {
                         controlName={globalConfig.margin.prefix || 'mainMargin'}
                         requiredProps={requiredProps}
                         forBorderRadius={false}
+                        max={200}
                     />
                 )}
                 {globalConfig?.padding && (
@@ -80,6 +81,7 @@ export const AdvancedOptions = (props) => {
                         controlName={globalConfig.padding.prefix || 'mainPadding'}
                         requiredProps={requiredProps}
                         forBorderRadius={false}
+                        max={200}
                     />
                 )}
             </PanelBody>
@@ -159,7 +161,7 @@ export const AdvancedOptions = (props) => {
                     label={__('Set Z Index ', 'zolo-blocks')}
                     value={zIndex}
                     onChange={(value) => setAttributes({ zIndex: value })}
-                    min={-1}
+                    min={0}
                     max={100}
                     help={__('Set the z-index for the section', 'zolo-blocks')}
                 />

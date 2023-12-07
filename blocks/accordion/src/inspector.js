@@ -108,7 +108,6 @@ function Inspector(props) {
                                 label={__('Collapsed Icon', 'zolo-blocks')}
                                 value={collapseIcon}
                                 onChange={(value) => {
-                                    console.log(value);
                                     setAttributes({
                                         collapseIcon: value,
                                     });
@@ -119,7 +118,6 @@ function Inspector(props) {
                                 label={__('Expanded Icon', 'zolo-blocks')}
                                 value={expandIcon}
                                 onChange={(value) => {
-                                    console.log(value);
                                     setAttributes({
                                         expandIcon: value,
                                     });

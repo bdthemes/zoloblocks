@@ -329,6 +329,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={LINK_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 {!(enableLogoLink && logoLinkType == 'logo__label') && (
                                     <ColorControl
