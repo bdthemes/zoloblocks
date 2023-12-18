@@ -53,9 +53,9 @@ const Borders = ({ top, right, bottom, left, onChange, neededProps, children }) 
 
     return (
         <div className="zb-dimension-container">
-            <WithResDeviceBtn label={label} requiredProps={neededProps} controlName={controlName}>
+            <WithResDeviceBtn label={label} requiredProps={neededProps} controlName={controlName} noResetBtn={true}>
                 {children}
-                <div className="input-container">
+                <div className={`input-container ${isLinked ? 'input-grouped' : 'input-separated'}`}>
                     {isLinked && (
                         <RangeControl
                             value={parseInt(borders.top) || parseInt(borders.right) || parseInt(borders.bottom) || parseInt(borders.left)}
@@ -68,7 +68,6 @@ const Borders = ({ top, right, bottom, left, onChange, neededProps, children }) 
                         <>
                             <div className="input-wrap">
                                 <input type="number" name="top" value={borders.top} onChange={onInputChange} />
-
                                 <label className="input-label">{__('Top', 'zolo-blocks')}</label>
                             </div>
 

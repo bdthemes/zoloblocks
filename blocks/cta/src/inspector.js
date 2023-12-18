@@ -316,7 +316,22 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 max={36}
                             />
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={BUTTON_BORDER} requiredProps={requiredProps} />
+                            <BorderControl
+                                label={__('Border', 'zolo-blocks')}
+                                controlName={BUTTON_BORDER}
+                                requiredProps={requiredProps}
+                                hoverControl={
+                                    <ColorControl
+                                        label={__('Border Color', 'zolo-blocks')}
+                                        color={borderHoverColor}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                borderHoverColor: value,
+                                            })
+                                        }
+                                    />
+                                }
+                            />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={BUTTON_BORDER_RADIUS}
@@ -347,15 +362,6 @@ function Inspector(props) {
                                 }
                                 hoverComponents={
                                     <>
-                                        <ColorControl
-                                            label={__('Border Color', 'zolo-blocks')}
-                                            color={borderHoverColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    borderHoverColor: value,
-                                                })
-                                            }
-                                        />
                                         <ColorControl
                                             label={__('Color', 'zolo-blocks')}
                                             color={textHoverColor}

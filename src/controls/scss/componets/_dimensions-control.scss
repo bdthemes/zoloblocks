@@ -10,6 +10,9 @@
 			flex-direction: row;
 			justify-content: space-between;
 			gap: 5px;
+			&.input-grouped {
+				display: block;
+			}
 			.input-wrap {
 				input {
 					padding: 0 8px !important;

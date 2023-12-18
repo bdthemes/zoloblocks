@@ -43,13 +43,13 @@ class ZoloHelpers {
     /**
      * Isset Check
      */
-    public static function zolo_isset_check($value, $default = '') {
-        if (isset($_POST[$value])) {
-            return $_POST[$value];
-        } else {
-            return $default;
-        }
-    }
+    // public static function zolo_isset_check($value, $default = '') {
+    //     if (isset($_POST[$value])) {
+    //         return $_POST[$value];
+    //     } else {
+    //         return $default;
+    //     }
+    // }
 
     /**
      * check isset & not empty and return data

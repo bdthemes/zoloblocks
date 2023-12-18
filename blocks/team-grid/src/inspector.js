@@ -415,6 +415,17 @@ function Inspector(props) {
                                         label={__('Border', 'zolo-blocks')}
                                         controlName={ICONS_BORDER}
                                         requiredProps={requiredProps}
+                                        hoverControl={
+                                            <ColorControl
+                                                label={__('Border Color', 'zolo-blocks')}
+                                                color={iconHoverBorderColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        iconHoverBorderColor: color,
+                                                    })
+                                                }
+                                            />
+                                        }
                                     />
                                     <ResDimensionsControl
                                         label={__('Border Radius', 'zolo-blocks')}
@@ -448,15 +459,6 @@ function Inspector(props) {
                                         }
                                         hoverComponents={
                                             <>
-                                                <ColorControl
-                                                    label={__('Border Color', 'zolo-blocks')}
-                                                    color={iconHoverBorderColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            iconHoverBorderColor: color,
-                                                        })
-                                                    }
-                                                />
                                                 <ColorControl
                                                     label={__('Color', 'zolo-blocks')}
                                                     color={iconHoverColor}

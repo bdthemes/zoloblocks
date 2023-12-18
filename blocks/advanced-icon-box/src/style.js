@@ -46,6 +46,14 @@ import {
     IMAGE_BORDER,
     CONTENT_ALIGNMENT,
     ICON_IMAGE_BORDER_RADIUS,
+    ITEM_BG,
+    ITEM_HOVER_BG,
+    ITEM_BORDER,
+    ITEM_BRADIUS,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BOX_SHADOW,
+    ITEM_HBOX_SHADOW,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -54,6 +62,7 @@ export default function Style({ props }) {
     const { attributes, setAttributes } = props;
     const {
         uniqueId,
+        itemHBorderColor,
         textColor,
         textHoverColor,
         descColor,
@@ -72,6 +81,78 @@ export default function Style({ props }) {
         globalLink,
     } = attributes;
 
+    // item
+
+    const {
+        dimensionStylesDesktop: itemRadiusDesk,
+        dimensionStylesTab: itemRadiusTab,
+        dimensionStylesMobile: itemRadiusMob,
+    } = generateDimensionStyle({
+        controlName: ITEM_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: itemBorderDesk,
+        tabBorderStyle: itemBorderTab,
+        mobBorderStyle: itemBorderMob,
+    } = generateBorderStyle({
+        controlName: ITEM_BORDER,
+        attributes,
+    });
+
+    const { boxShadowStyle: itemBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: ITEM_BOX_SHADOW,
+    });
+
+    const { boxShadowStyle: itemHBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: ITEM_HBOX_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: itemPaddingDesk,
+        dimensionStylesTab: itemPaddingTab,
+        dimensionStylesMobile: itemPaddingMob,
+    } = generateDimensionStyle({
+        controlName: ITEM_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: itemMarginDesk,
+        dimensionStylesTab: itemMarginTab,
+        dimensionStylesMobile: itemMarginMob,
+    } = generateDimensionStyle({
+        controlName: ITEM_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: itemBgDesk,
+        backgroundStylesTab: itemBgTab,
+        backgroundStylesMobile: itemBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: ITEM_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: itemHBgDesk,
+        backgroundStylesTab: itemHBgTab,
+        backgroundStylesMobile: itemHBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: ITEM_HOVER_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // content
     const {
         desktopAlignStyle: contentDeskAlign,
         tabAlignStyle: contentTabAlign,
@@ -381,6 +462,22 @@ export default function Style({ props }) {
      * All Style Combination
      */
     const desktopAllStyle = `
+
+        .${uniqueId}.zolo-block-advanced-icon-box {
+            ${itemBgDesk}
+            ${itemBorderDesk}
+            ${itemRadiusDesk}
+            ${itemBoxShadow}
+            ${itemPaddingDesk}
+            ${itemMarginDesk}
+        }
+
+        .${uniqueId}.zolo-block-advanced-icon-box:hover {
+            ${itemHBoxShadow}
+            ${itemHBgDesk}
+            ${itemHBorderColor ? `border-color: ${itemHBorderColor};` : ''}
+        }
+
         .${uniqueId}{
             ${iconAlignmentDesktop}
         }
@@ -498,6 +595,18 @@ export default function Style({ props }) {
   	`;
 
     const tabletAllStyle = `
+        .${uniqueId}.zolo-block-advanced-icon-box {
+            ${itemBgTab}
+            ${itemBorderTab}
+            ${itemRadiusTab}
+            ${itemPaddingTab}
+            ${itemMarginTab}
+        }
+
+        .${uniqueId}.zolo-block-advanced-icon-box:hover {
+            ${itemHBgTab}
+        }
+
 		.${uniqueId}{
 			${iconAlignmentTab}
 		}
@@ -506,7 +615,7 @@ export default function Style({ props }) {
 			${contentTabAlign}
 		}
 
-		.${uniqueId} .zolo-block-title{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{
 			${titleTypoTab}
 			${tabTitleTextStrokeStyle}
 			${titleMarginTab}
@@ -569,6 +678,17 @@ export default function Style({ props }) {
 	`;
 
     const mobileAllStyle = `
+        .${uniqueId}.zolo-block-advanced-icon-box {
+            ${itemBgMob}
+            ${itemBorderMob}
+            ${itemRadiusMob}
+            ${itemPaddingMob}
+            ${itemMarginMob}
+        }
+
+        .${uniqueId}.zolo-block-advanced-icon-box:hover {
+            ${itemHBgMob}
+        }
 		.${uniqueId}{
 			${iconAlignmentMob}
 		}
@@ -577,7 +697,7 @@ export default function Style({ props }) {
 			${contentMobAlign}
 		}
 
-		.${uniqueId} .zolo-block-title{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item .zolo-block-title{
 			${titleTypoMobile}
 			${mobTitleTextStrokeStyle}
 			${titleMarginMob}

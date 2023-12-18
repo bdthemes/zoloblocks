@@ -85,10 +85,6 @@ function Inspector(props) {
         presetFourStyles,
         presetSixStyle,
         presetSevenStyles,
-        selectedPanel,
-        selectedStylePanel,
-        selectedExtraPanel,
-        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -205,7 +201,22 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 max={36}
                             />
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={BUTTON_BORDER} requiredProps={requiredProps} />
+                            <BorderControl
+                                label={__('Border', 'zolo-blocks')}
+                                controlName={BUTTON_BORDER}
+                                requiredProps={requiredProps}
+                                hoverControl={
+                                    <ColorControl
+                                        label={__('Border Color', 'zolo-blocks')}
+                                        color={borderHoverColor}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                borderHoverColor: value,
+                                            })
+                                        }
+                                    />
+                                }
+                            />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={BUTTON_BORDER_RADIUS}
@@ -253,16 +264,6 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             controlName={BUTTON_HOVER_BG_COLOR}
                                             noMainBGImg={false}
-                                        />
-
-                                        <ColorControl
-                                            label={__('Border Color', 'zolo-blocks')}
-                                            color={borderHoverColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    borderHoverColor: value,
-                                                })
-                                            }
                                         />
                                         <BoxShadowControl
                                             controlName={BUTTON_HOVER_BOX_SHADOW}

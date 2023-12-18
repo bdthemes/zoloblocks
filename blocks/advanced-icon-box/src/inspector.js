@@ -58,6 +58,14 @@ import {
     IMAGE_BORDER,
     ICON_IMAGE_BORDER_RADIUS,
     CONTENT_ALIGNMENT,
+    ITEM_BG,
+    ITEM_HOVER_BG,
+    ITEM_BORDER,
+    ITEM_BRADIUS,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BOX_SHADOW,
+    ITEM_HBOX_SHADOW,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -67,6 +75,7 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         preset,
+        itemHBorderColor,
         titleTag,
         resMode,
         showButtonIcon,
@@ -339,7 +348,59 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Media', 'zolo-blocks')} panelProps={props} stylePanel={true} firstOpen={true}>
+                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} panelProps={props} stylePanel={true} firstOpen={true}>
+                            <BorderControl
+                                label={__('Border', 'zolo-blocks')}
+                                controlName={ITEM_BORDER}
+                                requiredProps={requiredProps}
+                                hoverControl={
+                                    <ColorControl
+                                        label={__('Border Color', 'zolo-blocks')}
+                                        color={itemHBorderColor}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                itemHBorderColor: value,
+                                            })
+                                        }
+                                    />
+                                }
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={ITEM_BRADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={ITEM_MARGIN}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={ITEM_PADDING}
+                                requiredProps={requiredProps}
+                            />
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={false} />
+                                        <BoxShadowControl controlName={ITEM_BOX_SHADOW} requiredProps={requiredProps} />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={ITEM_HOVER_BG} noMainBGImg={false} />
+                                        <BoxShadowControl
+                                            controlName={ITEM_HBOX_SHADOW}
+                                            requiredProps={requiredProps}
+                                            enableTransition={true}
+                                        />
+                                    </>
+                                }
+                            />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Media', 'zolo-blocks')} panelProps={props} stylePanel={true}>
                             {iconType === 'image' && (
                                 <>
                                     <ResRangeControl

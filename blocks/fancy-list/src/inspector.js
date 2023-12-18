@@ -297,7 +297,18 @@ function Inspector(props) {
                         {iconToggle && (
                             <ZoloPanelBody title={__('Icon', 'zolo-block')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl label={__('Size', 'zolo-block')} controlName={ICON_WIDTH} requiredProps={requiredProps} />
-                                <BorderControl label={__('Border')} controlName={ICON_BORDER} requiredProps={requiredProps} />
+                                <BorderControl
+                                    label={__('Border')}
+                                    controlName={ICON_BORDER}
+                                    requiredProps={requiredProps}
+                                    hoverControl={
+                                        <ColorControl
+                                            label={__('Border Color', 'zolo-block')}
+                                            color={iconHBColor}
+                                            onChange={(v) => setAttributes({ iconHBColor: v })}
+                                        />
+                                    }
+                                />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-block')}
                                     controlName={ICON_RADIUS}
@@ -327,11 +338,7 @@ function Inspector(props) {
                                                 color={iconHColor}
                                                 onChange={(v) => setAttributes({ iconHColor: v })}
                                             />
-                                            <ColorControl
-                                                label={__('Border Color', 'zolo-block')}
-                                                color={iconHBColor}
-                                                onChange={(v) => setAttributes({ iconHBColor: v })}
-                                            />
+
                                             <NormalBGControl requiredProps={requiredProps} controlName={ICON_HBG} noMainBGImg={true} />
                                         </>
                                     }

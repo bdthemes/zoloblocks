@@ -792,6 +792,22 @@ const Inspector = (props) => {
                                     requiredProps={requiredProps}
                                     max={36}
                                 />
+                                <BorderControl
+                                    label={__('Border', 'zolo-blocks')}
+                                    controlName={BTN_BORDER}
+                                    requiredProps={requiredProps}
+                                    hoverControl={
+                                        <ColorControl
+                                            label={__('Border Color', 'zolo-blocks')}
+                                            color={btnHoverBorderColor}
+                                            onChange={(val) =>
+                                                setAttributes({
+                                                    btnHoverBorderColor: val,
+                                                })
+                                            }
+                                        />
+                                    }
+                                />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
                                     controlName={BTN_RADIUS}
@@ -822,11 +838,7 @@ const Inspector = (props) => {
                                                     })
                                                 }
                                             />
-                                            <BorderControl
-                                                label={__('Border', 'zolo-blocks')}
-                                                controlName={BTN_BORDER}
-                                                requiredProps={requiredProps}
-                                            />
+
                                             <BoxShadowControl controlName={BTN_SHADOW} requiredProps={requiredProps} />
                                             <NormalBGControl noMainBGImg={true} controlName={BTN_NORMAL_BG} requiredProps={requiredProps} />
                                         </>
@@ -842,15 +854,7 @@ const Inspector = (props) => {
                                                     })
                                                 }
                                             />
-                                            <ColorControl
-                                                label={__('Border Color', 'zolo-blocks')}
-                                                color={btnHoverBorderColor}
-                                                onChange={(val) =>
-                                                    setAttributes({
-                                                        btnHoverBorderColor: val,
-                                                    })
-                                                }
-                                            />
+
                                             <BoxShadowControl controlName={BTN_HOVER_SHADOW} requiredProps={requiredProps} />
                                             <NormalBGControl noMainBGImg={true} controlName={BTN_HOVER_BG} requiredProps={requiredProps} />
                                         </>
@@ -865,6 +869,22 @@ const Inspector = (props) => {
                                     typoPrefixConstant={CBTN_TYPOGRAPHY}
                                     requiredProps={requiredProps}
                                     max={36}
+                                />
+                                <BorderControl
+                                    label={__('Border', 'zolo-blocks')}
+                                    controlName={CBTN_BORDER}
+                                    requiredProps={requiredProps}
+                                    hoverControl={
+                                        <ColorControl
+                                            label={__('Border Color', 'zolo-blocks')}
+                                            color={chatBtnHoverBorderColor}
+                                            onChange={(val) =>
+                                                setAttributes({
+                                                    chatBtnHoverBorderColor: val,
+                                                })
+                                            }
+                                        />
+                                    }
                                 />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
@@ -897,11 +917,7 @@ const Inspector = (props) => {
                                                     })
                                                 }
                                             />
-                                            <BorderControl
-                                                label={__('Border', 'zolo-blocks')}
-                                                controlName={CBTN_BORDER}
-                                                requiredProps={requiredProps}
-                                            />
+
                                             <BoxShadowControl controlName={CBTN_SHADOW} requiredProps={requiredProps} />
                                             <NormalBGControl
                                                 noMainBGImg={true}
@@ -921,15 +937,7 @@ const Inspector = (props) => {
                                                     })
                                                 }
                                             />
-                                            <ColorControl
-                                                label={__('Border Color', 'zolo-blocks')}
-                                                color={chatBtnHoverBorderColor}
-                                                onChange={(val) =>
-                                                    setAttributes({
-                                                        chatBtnHoverBorderColor: val,
-                                                    })
-                                                }
-                                            />
+
                                             <BoxShadowControl controlName={CBTN_HOVER_SHADOW} requiredProps={requiredProps} />
                                             <NormalBGControl noMainBGImg={true} controlName={CBTN_HOVER_BG} requiredProps={requiredProps} />
                                         </>

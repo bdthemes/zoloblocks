@@ -458,7 +458,6 @@ export default function Style({ props }) {
     .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
       ${titleColor ? `color: ${titleColor};` : ''}
       ${titleBgColor ? `background-color: ${titleBgColor};` : ''}
-      ${titleTypoDesktop}
       ${titleMarginDesktop}
       ${titlePaddingDesktop}
       ${titleBorderDesktop}
@@ -466,6 +465,10 @@ export default function Style({ props }) {
       ${titleTextShadowStyle}
       ${titleTextStrokeStyle}
       ${titleShadow}
+    }
+
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title {
+      ${titleTypoDesktop}
     }
 
     .zolo-block-wrapper.${uniqueId}.zolo-ah-style-3 .zolo-ah-title {
@@ -489,23 +492,27 @@ export default function Style({ props }) {
 
     const titleStylesTab = `
   .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
-    ${titleTypoTab}
     ${titleMarginTab}
     ${titlePaddingTab}
     ${titleBorderTab}
     ${titleBorderRadiusTab}
     ${tabTitleTextStrokeStyle}
   }
+  .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title {
+    ${titleTypoTab}
+  }
 `;
 
     const titleStylesMobile = `
   .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
-    ${titleTypoMobile}
     ${titleMarginMobile}
     ${titlePaddingMob}
     ${titleBorderMob}
     ${titleBorderRadiusMob}
     ${mobTitleTextStrokeStyle}
+  }
+  .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title {
+    ${titleTypoMobile}
   }
 `;
 

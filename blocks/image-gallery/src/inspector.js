@@ -165,7 +165,22 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Image', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={IMAGE_BORDER} requiredProps={requiredProps} />
+                            <BorderControl
+                                label={__('Border', 'zolo-blocks')}
+                                controlName={IMAGE_BORDER}
+                                requiredProps={requiredProps}
+                                hoverControl={
+                                    <ColorControl
+                                        label={__('Border Hover Color', 'zolo-blocks')}
+                                        color={imageHoverBorderColor}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                imageHoverBorderColor: value,
+                                            })
+                                        }
+                                    />
+                                }
+                            />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={IMAGE_BORDER_RADIUS}
@@ -199,15 +214,6 @@ function Inspector(props) {
                                 }
                                 hoverComponents={
                                     <>
-                                        <ColorControl
-                                            label={__('Border Hover Color', 'zolo-blocks')}
-                                            color={imageHoverBorderColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    imageHoverBorderColor: value,
-                                                })
-                                            }
-                                        />
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={IMAGE_HOVER_BACKGROUND}
@@ -286,6 +292,17 @@ function Inspector(props) {
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={ZOOM_ICON_BORDER}
                                     requiredProps={requiredProps}
+                                    hoverControl={
+                                        <ColorControl
+                                            label={__('Border Hover Color', 'zolo-blocks')}
+                                            color={zoomIconHoverBorderColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    zoomIconHoverBorderColor: value,
+                                                })
+                                            }
+                                        />
+                                    }
                                 />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
@@ -324,15 +341,6 @@ function Inspector(props) {
                                     }
                                     hoverComponents={
                                         <>
-                                            <ColorControl
-                                                label={__('Border Hover Color', 'zolo-blocks')}
-                                                color={zoomIconHoverBorderColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        zoomIconHoverBorderColor: value,
-                                                    })
-                                                }
-                                            />
                                             <ColorControl
                                                 label={__('Color', 'zolo-blocks')}
                                                 color={zoomIconHoverColor}
