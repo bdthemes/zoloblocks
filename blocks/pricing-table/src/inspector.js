@@ -194,7 +194,7 @@ const Inspector = (props) => {
                                 onChange={() => setAttributes({ showBtn: !showBtn })}
                             />
                             <ToggleControl
-                                label={__('Show Chat Button', 'zolo-blocks')}
+                                label={__('Show Secondary Button', 'zolo-blocks')}
                                 checked={showChatBtn}
                                 onChange={() => setAttributes({ showChatBtn: !showChatBtn })}
                             />
@@ -386,7 +386,7 @@ const Inspector = (props) => {
                             </ZoloPanelBody>
                         )}
                         {showChatBtn && (
-                            <ZoloPanelBody title={__('Chat Button', 'zolo-blocks')} panelProps={props}>
+                            <ZoloPanelBody title={__('Secondary Button', 'zolo-blocks')} panelProps={props}>
                                 <TextControl
                                     label={__('Button Text', 'zolo-blocks')}
                                     value={chatBtnText}
@@ -494,7 +494,7 @@ const Inspector = (props) => {
                                 label="Typography"
                                 typoPrefixConstant={PRICE_TYPOGRAPHY}
                                 requiredProps={requiredProps}
-                                max={36}
+                                max={72}
                             />
 
                             <ColorControl
@@ -523,7 +523,7 @@ const Inspector = (props) => {
                                         controlName={'prefixSize'}
                                         requiredProps={requiredProps}
                                         min={0}
-                                        max={100}
+                                        max={72}
                                         step={1}
                                     />
                                     <RangeResetControl
@@ -820,12 +820,15 @@ const Inspector = (props) => {
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zolo-blocks')}
-                                    controlName={BTN_MARGIN}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={false}
-                                />
+                                {btnsDirection === 'column' && (
+                                    <ResDimensionsControl
+                                        label={__('Margin', 'zolo-blocks')}
+                                        controlName={BTN_MARGIN}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                )}
+
                                 <TabPanelControl
                                     normalComponents={
                                         <>
@@ -863,7 +866,7 @@ const Inspector = (props) => {
                             </ZoloPanelBody>
                         )}
                         {showChatBtn && (
-                            <ZoloPanelBody title={__('Chat Button', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Secondary Button', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={CBTN_TYPOGRAPHY}
@@ -898,13 +901,14 @@ const Inspector = (props) => {
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zolo-blocks')}
-                                    controlName={CBTN_MARGIN}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={false}
-                                />
-
+                                {btnsDirection === 'column' && (
+                                    <ResDimensionsControl
+                                        label={__('Margin', 'zolo-blocks')}
+                                        controlName={CBTN_MARGIN}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                )}
                                 <TabPanelControl
                                     normalComponents={
                                         <>

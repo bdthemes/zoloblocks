@@ -80,6 +80,15 @@ const attributes = {
         type: 'number',
         default: 1,
     },
+    // first item
+    keepFirstOpen: {
+        type: 'boolean',
+        default: false,
+    },
+    allowMultiple: {
+        type: 'boolean',
+        default: false,
+    },
     // Tab Icons
     collapseIcon: {
         type: 'string',

@@ -26,7 +26,7 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
 
     return (
         <>
-            <div className="zolo-box-shadow">
+            <div className="zolo-box-shadow zolo-text-shadow">
                 <div className="zolo-label-area">
                     <UnitsBtn
                         selectedUnit={strokeUnitVal}

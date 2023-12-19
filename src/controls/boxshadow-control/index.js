@@ -52,20 +52,8 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                 </label>
                 <button onClick={() => setDisplayPanel(true)} className="zolo-panel-opener-btn">
                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="4.63635" y="4.63635" width="14.7273" height="14.7273" rx="0.2" stroke="#4D4D4D" strokeWidth="1.5" />
-                        <rect x={3} y={3} width="3.27273" height="3.27273" rx="0.2" fill="white" stroke="#4D4D4D" strokeWidth="1.5" />
-                        <rect x="17.7273" y={3} width="3.27273" height="3.27273" rx="0.2" fill="white" stroke="#4D4D4D" strokeWidth="1.5" />
-                        <rect x={3} y="17.7273" width="3.27273" height="3.27273" rx="0.2" fill="white" stroke="#4D4D4D" strokeWidth="1.5" />
-                        <rect
-                            x="17.7273"
-                            y="17.7273"
-                            width="3.27273"
-                            height="3.27273"
-                            rx="0.2"
-                            fill="white"
-                            stroke="#4D4D4D"
-                            strokeWidth="1.5"
-                        />
+                        <rect x={3} y={3} width="14.8235" height="14.8235" stroke="#4D4D4D" strokeWidth="1.5" />
+                        <path d="M21 21H4.58826V17.8236H17.8236V4.58826H21V21Z" fill="#4D4D4D" />
                     </svg>
                 </button>
             </div>

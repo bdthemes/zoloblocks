@@ -25,7 +25,9 @@
         }
 
         .zolo__display-icon {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         svg {
@@ -55,6 +57,9 @@
             }
             .zolo-counter-icon {
                 margin: 0;
+                svg {
+                    margin-bottom: 0;
+                }
             }
         }
         &.style-2 {

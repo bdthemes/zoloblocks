@@ -57,10 +57,7 @@
     // rating
     .zolo-star-rating {
         display: inline-flex;
-        span {
-            display: inline-flex;
-            gap: 5px;
-        }
+        gap: 3px;
         svg {
             width: 16px;
             fill: #ff9a00;
@@ -141,5 +138,4 @@
             margin-top: 12px;
         }
     }
-
 }

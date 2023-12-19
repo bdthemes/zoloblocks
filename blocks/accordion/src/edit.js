@@ -27,7 +27,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses } = attributes;
+    const { preview, uniqueId, parentClasses, keepFirstOpen, allowMultiple } = attributes;
 
     // preview image
     if (preview) {
@@ -44,6 +44,7 @@ export default function Edit(props) {
                 acInstanceRef.current = new Accordion(acContainerRef.current, {
                     duration: 400,
                     showMultiple: false,
+                    // openOnInit: keepFirstOpen ? [0] : [],
                 });
             }
             setDelayedInit(false);

@@ -5,6 +5,9 @@
     border-radius: 10px;
     overflow: hidden;
     transition: all 0.2s ease;
+}
+
+.zolo-accordion-item {
     &.js-enabled {
         .zolo-accordion-panel {
             visibility: hidden;

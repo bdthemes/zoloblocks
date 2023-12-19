@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, BaseControl, SelectControl, CardDivider } from '@wordpress/components';
+import { ToggleControl, BaseControl, SelectControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -73,8 +73,8 @@ function Inspector(props) {
         titleColor,
         titleHoverColor,
         atitleColor,
-        selectedPanel,
-        selectedTab,
+        keepFirstOpen,
+        allowMultiple,
     } = attributes;
 
     const requiredProps = {
@@ -91,7 +91,21 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('Accordion Title', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                        <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                            <ToggleControl
+                                label={__('Keep first item open initially', 'zolo-blocks')}
+                                checked={keepFirstOpen}
+                                onChange={() => setAttributes({ keepFirstOpen: !keepFirstOpen })}
+                                help={__('This feature works on the frontend only.', 'zolo-blocks')}
+                            />
+                            <ToggleControl
+                                label={__('Allow multiple open at a time', 'zolo-blocks')}
+                                checked={allowMultiple}
+                                onChange={() => setAttributes({ allowMultiple: !allowMultiple })}
+                                help={__('This feature works on the frontend only.', 'zolo-blocks')}
+                            />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Accordion Title', 'zolo-blocks')} panelProps={props}>
                             <SelectControl
                                 label={__('Title Tag', 'zolo-blocks')}
                                 value={titleTag}

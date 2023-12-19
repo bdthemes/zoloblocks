@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, ToggleControl, TextControl, BaseControl, Button } from '@wordpress/components';
+import { SelectControl, ToggleControl, TextControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -76,9 +76,8 @@ function Inspector(props) {
         iconColor,
         textColor,
         suffixColor,
-        selectedPanel,
-        selectedTab,
     } = attributes;
+
     const requiredProps = {
         attributes,
         setAttributes,
@@ -126,12 +125,14 @@ function Inspector(props) {
                                 checked={hideTitle}
                                 onChange={() => setAttributes({ hideTitle: !hideTitle })}
                             />
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zolo-blocks')}
-                                controlName={CONTENT_ALIGN}
-                                requiredProps={requiredProps}
-                                alignOptions={DEFAULT_ALIGNS}
-                            />
+                            {preset === '' && (
+                                <ResAlignmentControl
+                                    label={__('Alignment', 'zolo-blocks')}
+                                    controlName={CONTENT_ALIGN}
+                                    requiredProps={requiredProps}
+                                    alignOptions={DEFAULT_ALIGNS}
+                                />
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             {hideCounter && (
@@ -260,47 +261,6 @@ function Inspector(props) {
                         {hideIcon && (
                             <ZoloPanelBody title={__('Media', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 {iconType === 'icon' && (
-                                    <ResRangeControl
-                                        label={__('Icon Size', 'zolo-blocks')}
-                                        controlName={ICON_SIZE}
-                                        requiredProps={requiredProps}
-                                        min={1}
-                                        max={500}
-                                        step={1}
-                                    />
-                                )}
-                                {iconType === 'image' && (
-                                    <ResRangeControl
-                                        label={__('Image Size', 'zolo-blocks')}
-                                        controlName={ICON_IMAGE_SIZE}
-                                        requiredProps={requiredProps}
-                                        min={1}
-                                        max={500}
-                                    />
-                                )}
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={ICON_BORDER}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
-                                    controlName={ICON_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
-                                <BoxShadowControl controlName={ICON_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zolo-blocks')}
-                                    controlName={ICON_PADDING}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Margin', 'zolo-blocks')}
-                                    controlName={ICON_MARGIN}
-                                    requiredProps={requiredProps}
-                                />
-                                {iconType === 'icon' && (
                                     <ColorControl
                                         label={__('Color', 'zolo-blocks')}
                                         color={iconColor}
@@ -312,6 +272,47 @@ function Inspector(props) {
                                     />
                                 )}
                                 <NormalBGControl requiredProps={requiredProps} controlName={ICON_BACKGROUND} noMainBGImg={true} />
+                                <BoxShadowControl controlName={ICON_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                                <BorderControl
+                                    label={__('Border', 'zolo-blocks')}
+                                    controlName={ICON_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={ICON_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                {iconType === 'icon' && (
+                                    <ResRangeControl
+                                        label={__('Icon Size', 'zolo-blocks')}
+                                        controlName={ICON_SIZE}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={100}
+                                        step={1}
+                                    />
+                                )}
+                                {iconType === 'image' && (
+                                    <ResRangeControl
+                                        label={__('Image Size', 'zolo-blocks')}
+                                        controlName={ICON_IMAGE_SIZE}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={200}
+                                    />
+                                )}
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zolo-blocks')}
+                                    controlName={ICON_PADDING}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zolo-blocks')}
+                                    controlName={ICON_MARGIN}
+                                    requiredProps={requiredProps}
+                                />
                             </ZoloPanelBody>
                         )}
                         {hideCounter && (

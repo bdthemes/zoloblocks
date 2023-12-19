@@ -63,35 +63,9 @@ const NormalBGControl = ({ controlName, requiredProps, noMainBGImg = false }) =>
                     </label>
                     <button onClick={() => setDisplayPanel(true)} className="zolo-panel-opener-btn">
                         <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="4.63635" y="4.63635" width="14.7273" height="14.7273" rx="0.2" stroke="#4D4D4D" strokeWidth="1.5" />
-                            <rect x={3} y={3} width="3.27273" height="3.27273" rx="0.2" fill="white" stroke="#4D4D4D" strokeWidth="1.5" />
-                            <rect
-                                x="17.7273"
-                                y={3}
-                                width="3.27273"
-                                height="3.27273"
-                                rx="0.2"
-                                fill="white"
-                                stroke="#4D4D4D"
-                                strokeWidth="1.5"
-                            />
-                            <rect
-                                x={3}
-                                y="17.7273"
-                                width="3.27273"
-                                height="3.27273"
-                                rx="0.2"
-                                fill="white"
-                                stroke="#4D4D4D"
-                                strokeWidth="1.5"
-                            />
-                            <rect
-                                x="17.7273"
-                                y="17.7273"
-                                width="3.27273"
-                                height="3.27273"
-                                rx="0.2"
-                                fill="white"
+                            <rect x={9} y={9} width={12} height={12} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
+                            <path
+                                d="M9 15H5C3.89543 15 3 14.1046 3 13V5C3 3.89543 3.89543 3 5 3H13C14.1046 3 15 3.89543 15 5V9"
                                 stroke="#4D4D4D"
                                 strokeWidth="1.5"
                             />
@@ -153,12 +127,12 @@ const NormalBGControl = ({ controlName, requiredProps, noMainBGImg = false }) =>
                                                             icon="format-image"
                                                             onClick={open}
                                                         />
-                                                        <span
+                                                        {/* <span
                                                             style={{
                                                                 padding: '10px 0',
                                                                 display: 'block',
                                                             }}
-                                                        ></span>
+                                                        ></span> */}
                                                     </>
                                                 )
                                             }
