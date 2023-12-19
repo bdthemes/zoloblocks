@@ -76,8 +76,6 @@ const Inspector = (props) => {
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
-        selectedPanel,
-        selectedTab,
     } = attributes;
 
     const requiredProps = {

@@ -8,6 +8,7 @@
 }
 
 .zolo-accordion-item {
+    box-sizing: border-box;
     &.js-enabled {
         .zolo-accordion-panel {
             visibility: hidden;

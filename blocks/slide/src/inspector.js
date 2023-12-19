@@ -36,7 +36,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody firstOpen={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} panelProps={props} stylePanel={true}>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={SLIDE_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}

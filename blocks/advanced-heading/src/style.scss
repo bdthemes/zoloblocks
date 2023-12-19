@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.wp-block-zolo-advanced-heading {
+    box-sizing: border-box;
+}
+
 .zolo-transparent-heading-wrap {
     position: absolute;
     left: 0;
@@ -21,18 +25,20 @@
     }
 
     .zolo-ah-title {
-        font-size: clamp(1.5rem, 4vw, 2.25rem);
         margin: 0;
+    }
+
+    .zolo-ah-main-title,
+    .zolo-ah-title {
+        font-size: clamp(1.5rem, 4vw, 2.25rem);
         font-weight: 700;
         color: #202224;
         text-transform: capitalize;
         z-index: 1;
         position: relative;
-        .zolo-ah-main-title {
-            display: inline-block;
-            &:hover {
-                text-decoration: none;
-            }
+        display: block;
+        &:hover {
+            text-decoration: none;
         }
     }
 

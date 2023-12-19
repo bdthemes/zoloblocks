@@ -456,7 +456,6 @@ export default function Style({ props }) {
     // Title styles css in strings
     const titleStylesDesktop = `
     .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
-      ${titleColor ? `color: ${titleColor};` : ''}
       ${titleBgColor ? `background-color: ${titleBgColor};` : ''}
       ${titleMarginDesktop}
       ${titlePaddingDesktop}
@@ -467,8 +466,9 @@ export default function Style({ props }) {
       ${titleShadow}
     }
 
-    .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title {
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title, .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
       ${titleTypoDesktop}
+      ${titleColor ? `color: ${titleColor};` : ''}
     }
 
     .zolo-block-wrapper.${uniqueId}.zolo-ah-style-3 .zolo-ah-title {

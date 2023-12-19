@@ -70,6 +70,7 @@
 }
 
 .zolo-background-control-popover {
+    z-index: 999;
     .components-popover__content {
         padding: 15px;
         width: 250px;
@@ -94,5 +95,9 @@
     }
     .components-input-control__backdrop {
         border: none !important;
+    }
+
+    .components-base-control {
+        margin-bottom: 24px;
     }
 }
