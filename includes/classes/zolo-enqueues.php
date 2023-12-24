@@ -17,8 +17,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
     /**
      * Class Zolo_Block_Enqueue.
      */
-    final class Zolo_Block_Enqueue
-    {
+    final class Zolo_Block_Enqueue {
 
         /**
          * Member Variable
@@ -30,8 +29,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
         /**
          *  Initiator
          */
-        public static function get_instance()
-        {
+        public static function get_instance() {
             if (!isset(self::$instance)) {
                 self::$instance = new self();
             }
@@ -41,8 +39,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
         /**
          * Constructor
          */
-        public function __construct()
-        {
+        public function __construct() {
             add_action('enqueue_block_assets', [$this, 'editor_assets_loader']);
             add_action('enqueue_block_editor_assets', [$this, 'editor_assets_loader']);
 
@@ -55,8 +52,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @since 0.0.1
          * @return void
          */
-        public function block_assets_loader()
-        {
+        public function block_assets_loader() {
             wp_enqueue_style(
                 'zolo-block-common-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'build/dist/style.css',
@@ -82,7 +78,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 true
             );
 
-            // popup 
+            // popup
             if (!is_admin() && has_block('zolo/image-gallery')) {
                 // enqueue style for frontend
                 wp_enqueue_style('zolo-maginific-popup', trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/magnific-popup/magnific-popup.css', [], ZOLO_VERSION);
@@ -134,6 +130,9 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 true
             );
             // }
+
+            // social share Scripts and Styles
+            wp_enqueue_script('zolo-social-hare', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/sharer/sharer.min.js', ['jquery'], ZOLO_VERSION, true);
         }
 
         /**
@@ -143,8 +142,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          *
          * @return void
          */
-        public function editor_assets_loader()
-        {
+        public function editor_assets_loader() {
             if (!is_admin()) {
                 return;
             }
