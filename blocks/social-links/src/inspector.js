@@ -193,7 +193,7 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('Social Icons', 'zolo-blocks')} stylePanel={true} panelProps={props} firstOpen={true}>
                             {socialText !== 'iconOnly' && (
                                 <TypographyDropdown
-                                    label={__('Text Typography', 'zolo-blocks')}
+                                    label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={TEXT_TYPOGRAPHY}
                                     requiredProps={requiredProps}
                                     max={36}
@@ -201,14 +201,6 @@ function Inspector(props) {
                             )}
                             {socialText !== 'none' && (
                                 <>
-                                    <ResRangeControl
-                                        label={__('Icon Size', 'zolo-blocks')}
-                                        controlName={BUTTON_SIZE}
-                                        requiredProps={requiredProps}
-                                        min={0}
-                                        max={100}
-                                        step={1}
-                                    />
                                     {preset === 'preset-3' && (
                                         <>
                                             <ResRangeControl
@@ -233,7 +225,7 @@ function Inspector(props) {
                             )}
                             {socialText === 'iconText' && (
                                 <ResRangeControl
-                                    label={__('Icon-Text Gap', 'zolo-blocks')}
+                                    label={__('Gap', 'zolo-blocks')}
                                     controlName={ICON_TEXT_SPACING}
                                     requiredProps={requiredProps}
                                     min={0}
@@ -241,7 +233,14 @@ function Inspector(props) {
                                     step={1}
                                 />
                             )}
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={BUTTON_BORDER} requiredProps={requiredProps} />
+                            {socialColor === 'custom' && (
+                                <BorderControl
+                                    label={__('Border', 'zolo-blocks')}
+                                    controlName={BUTTON_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                            )}
+
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
                                 controlName={BTN_BORDER_RADIUS}

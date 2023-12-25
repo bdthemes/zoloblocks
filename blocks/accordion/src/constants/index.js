@@ -30,8 +30,6 @@ export const AC_BODY_MARGIN = 'acbMargin';
 export const AC_BODY_BG = 'acbBg';
 
 // accordion icon
-export const ICONCONTAINER_WIDTH = 'iContainerWidth';
-export const ICONCONTAINER_HEIGHT = 'iContainerHeight';
 export const ICONTAINER_BG = 'iContainerBg';
 export const ICONTAINER_PADDING = 'iContainerPadding';
 export const ICONTAINER_BORDER = 'iContainerBorder';

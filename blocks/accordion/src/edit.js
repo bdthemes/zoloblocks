@@ -27,7 +27,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, keepFirstOpen, allowMultiple } = attributes;
+    const { preview, uniqueId, parentClasses } = attributes;
 
     // preview image
     if (preview) {
@@ -70,7 +70,7 @@ export default function Edit(props) {
                 [
                     'zolo/accordion-child',
                     {
-                        title: 'Accordion Title',
+                        title: 'Accordion Title 1',
                         titleTag: 'h3',
                     },
                 ],

@@ -36,7 +36,7 @@ import {
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, navColor, navHoverColor } = attributes;
+    const { uniqueId, navColor, navHoverColor, navHoverBorderColor } = attributes;
 
     // slider height
     const {
@@ -283,6 +283,11 @@ const Style = ({ props }) => {
             ${deskContentWidth}
             ${contentPaddingDesktop}
         }
+
+        .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev:hover {
+            border-color: ${navHoverBorderColor} !important;
+        }
+
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev,
         .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev {
             ${navBorderStyles}
@@ -291,7 +296,6 @@ const Style = ({ props }) => {
             ${navDeskWidth}
             ${navDeskHeight}
         }
-
         .${uniqueId}.wp-block-zolo-slider .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-button-prev:hover,
         .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev:hover {
             ${navHoverBGStyle}

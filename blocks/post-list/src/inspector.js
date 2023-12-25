@@ -1,10 +1,11 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { CardDivider, PanelBody, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
+import { CardDivider, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
 import {
     PRESETS,
+    CONTENT_ALIGN,
     COLUMNS_GAP,
     THUMBNAIL_HEIGHT,
     COLUMN_PADDING,
@@ -38,9 +39,11 @@ import {
     FCONTENT_PADDING,
     FCONTAINER_PADDING,
     FCONTAINER_BG,
+    FCONTAINER_OVERLAY,
     FCONTAINER_BORDER,
     FCONTAINER_BORDER_RADIUS,
     FCONTAINER_SHADOW,
+    META_SPACE,
 } from './constants';
 
 import {
@@ -56,7 +59,7 @@ import {
     FCAT_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
-import { DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE } from '../../../src/global/constants';
+import { DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE, TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 const {
     ResDimensionsControl,
@@ -226,6 +229,12 @@ function Inspector(props) {
                                     })
                                 }
                             />
+                            <ResAlignmentControl
+                                label={__('Button Alignment', 'zolo-blocks')}
+                                controlName={CONTENT_ALIGN}
+                                requiredProps={requiredProps}
+                                alignOptions={TEXT_ALIGN_OPTIONS}
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             <SelectControl
@@ -336,6 +345,12 @@ function Inspector(props) {
                                         />
                                         <NormalBGControl requiredProps={requiredProps} controlName={FCONTAINER_BG} noMainBGImg={true} />
                                         <BoxShadowControl controlName={FCONTAINER_SHADOW} requiredProps={requiredProps} />
+                                        <NormalBGControl
+                                            label={__('Overlay', 'zolo-blocks')}
+                                            requiredProps={requiredProps}
+                                            controlName={FCONTAINER_OVERLAY}
+                                            noMainBGImg={true}
+                                        />
                                     </>
                                 }
                             />
@@ -604,6 +619,14 @@ function Inspector(props) {
                                                     color={metaColor}
                                                     onChange={(metaColor) => setAttributes({ metaColor })}
                                                 />
+                                                <ResRangeControl
+                                                    label={__('Space', 'zolo-blocks')}
+                                                    controlName={META_SPACE}
+                                                    requiredProps={requiredProps}
+                                                    min={0}
+                                                    max={100}
+                                                    step={1}
+                                                />
                                                 <ResDimensionsControl
                                                     label={__('Margin', 'zolo-blocks')}
                                                     controlName={META_MARGIN}
@@ -862,7 +885,7 @@ function Inspector(props) {
                         )}
 
                         {showCount && 'style-1' !== preset && 'style-2' !== preset && (
-                            <ZoloPanelBody title={__('Count', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Counter', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     options={[
                                         {
@@ -881,7 +904,6 @@ function Inspector(props) {
                                                 typoPrefixConstant={COUNT_TYPOGRAPHY}
                                                 requiredProps={requiredProps}
                                             />
-
                                             <ResRangeControl
                                                 label={__('Size', 'zolo-blocks')}
                                                 controlName={COUNT_SIZE}

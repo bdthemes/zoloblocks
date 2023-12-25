@@ -3,6 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { Button, PanelBody, TextControl } from '@wordpress/components';
+import { cloneDeep } from 'lodash';
 
 /**
  * Internal depencencies
@@ -10,6 +11,8 @@ import { Button, PanelBody, TextControl } from '@wordpress/components';
 const { ZoloIconPicker, SortableItem, SortableControl } = window.zoloModule;
 
 const Sortable = ({ features, setAttributes }) => {
+    const deepCloneFeatures = cloneDeep(features);
+
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
@@ -35,15 +38,15 @@ const Sortable = ({ features, setAttributes }) => {
                 </Button>
             </div>
             <SortableControl defaultItems={features} attributeName="features" setAttributes={setAttributes}>
-                {features &&
-                    features.map((feature, index) => {
+                {deepCloneFeatures &&
+                    deepCloneFeatures.map((feature, index) => {
                         return (
                             <div className="dnd-container" key={index}>
                                 <Button
                                     className="dnd-trash"
                                     icon="trash"
                                     onClick={() => {
-                                        const newItems = [...features];
+                                        const newItems = [...deepCloneFeatures];
                                         newItems.splice(index, 1);
                                         setAttributes({
                                             features: newItems,
@@ -56,7 +59,7 @@ const Sortable = ({ features, setAttributes }) => {
                                             label={__('Text', 'zolo-blocks')}
                                             value={feature.text}
                                             onChange={(value) => {
-                                                const newItems = [...features];
+                                                const newItems = [...deepCloneFeatures];
                                                 newItems[index].text = value;
                                                 setAttributes({
                                                     features: newItems,
@@ -67,7 +70,7 @@ const Sortable = ({ features, setAttributes }) => {
                                             label={__('Icon', 'zolo-blocks')}
                                             value={feature.icon}
                                             onChange={(value) => {
-                                                const newItems = [...features];
+                                                const newItems = [...deepCloneFeatures];
                                                 newItems[index].icon = value;
                                                 setAttributes({
                                                     features: newItems,

@@ -18,6 +18,7 @@ const Save = ({ attributes }) => {
         iconToggle,
         mediaType,
         mediaText,
+        zoloId,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -25,7 +26,12 @@ const Save = ({ attributes }) => {
     });
 
     return (
-        <div {...blockProps}>
+        <div
+            {...blockProps}
+            {...(zoloId && {
+                id: zoloId,
+            })}
+        >
             <div className="zolo-fancy-list-container">
                 <InnerBlocks.Content />
             </div>

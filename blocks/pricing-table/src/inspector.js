@@ -414,7 +414,7 @@ const Inspector = (props) => {
                             <ResDimensionsControl label="Margin" controlName={WRAPPER_MARGIN} requiredProps={requiredProps} />
                             <ResDimensionsControl label="Padding" controlName={WRAPPER_PADDING} requiredProps={requiredProps} />
                             <BoxShadowControl controlName={WRAPPER_SHADOW} requiredProps={requiredProps} />
-                            <BackgroundControl controlName={WRAPPER_BG} requiredProps={requiredProps} />
+                            <BackgroundControl controlName={WRAPPER_BG} requiredProps={requiredProps} noOverlay={true} />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Header', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ResDimensionsControl

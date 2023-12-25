@@ -55,6 +55,12 @@ import {
     DPL_PADDING,
     DPL_MARGIN,
     DPL_ICON_SIZE,
+    ITEM_BG,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BORDER,
+    ITEM_BORDER_RADIUS,
+    ITEM_BOX_SHADOW,
 } from './constants';
 
 const {
@@ -217,7 +223,31 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={ITEM_BORDER} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={ITEM_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={ITEM_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={ITEM_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={false} />
+                            <BoxShadowControl controlName={ITEM_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                        </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
@@ -225,7 +255,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl controlName={CONTENT_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={CONTENT_PADDING}
@@ -239,6 +268,7 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
+                            <BoxShadowControl controlName={CONTENT_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Photo', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ResRangeControl
@@ -259,7 +289,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl controlName={TEAM_PHOTO_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={TEAM_PHOTO_PADDING}
@@ -273,6 +302,7 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={PHOTO_BG} noMainBGImg={true} />
+                            <BoxShadowControl controlName={TEAM_PHOTO_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Name', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
@@ -390,17 +420,6 @@ function Inspector(props) {
                                     />
                                 </ZoloPanelBody>
                                 <ZoloPanelBody title={__('Social Profiles', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                                    {preset === 'default' && (
-                                        <ColorControl
-                                            label={__('Separator Color', 'zolo-blocks')}
-                                            color={separatorColor}
-                                            onChange={(color) =>
-                                                setAttributes({
-                                                    separatorColor: color,
-                                                })
-                                            }
-                                        />
-                                    )}
                                     <ResRangeControl
                                         label={__('Icon Size', 'zolo-blocks')}
                                         controlName={ICONS_SIZE}
@@ -449,6 +468,17 @@ function Inspector(props) {
                                                         })
                                                     }
                                                 />
+                                                {preset !== 'style-2' && (
+                                                    <ColorControl
+                                                        label={__('Separator Color', 'zolo-blocks')}
+                                                        color={separatorColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                separatorColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                )}
                                                 <BoxShadowControl
                                                     controlName={ICONS_BOX_SHADOW}
                                                     requiredProps={requiredProps}

@@ -6,6 +6,7 @@ const {
     generateDimensionStyle,
     GlobalStyleHanlder,
     generateNormalBGControlStyles,
+    generateBoxShadowStyles,
 } = window.zoloModule;
 
 import {
@@ -23,6 +24,12 @@ import {
     ICON_BG,
     ICON_HBG,
     GAP,
+    ITEM_BG,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BORDER,
+    ITEM_BORDER_RADIUS,
+    ITEM_BOX_SHADOW,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -31,6 +38,61 @@ const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const { uniqueId, titleColor, titleHColor, dscColor, desHcolor, iconColor, iconHColor, iconHBColor, mediaTextColor, mediaTextBgColor } =
         attributes;
+
+    // item
+    const {
+        backgroundStylesDesktop: itemDeskBg,
+        backgroundStylesTab: itemTabBg,
+        backgroundStylesMobile: itemMobBg,
+    } = generateNormalBGControlStyles({
+        controlName: ITEM_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        desktopBorderStyle: itemBorderDeskStyle,
+        tabBorderStyle: itemBorderTabStyle,
+        mobBorderStyle: itemBorderMobStyle,
+    } = generateBorderStyle({
+        controlName: ITEM_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: itemDeskBorderRadius,
+        dimensionStylesTab: itemTabBorderRadius,
+        dimensionStylesMobile: itemMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: ITEM_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: itemBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: ITEM_BOX_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: itemDeskPadding,
+        dimensionStylesTab: itemTabPadding,
+        dimensionStylesMobile: itemMobPadding,
+    } = generateDimensionStyle({
+        controlName: ITEM_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: itemDeskMargin,
+        dimensionStylesTab: itemTabMargin,
+        dimensionStylesMobile: itemMobMargin,
+    } = generateDimensionStyle({
+        controlName: ITEM_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
 
     // icon
     const {
@@ -218,6 +280,14 @@ const Style = ({ props }) => {
              ${DesktopIconBorder}
              ${deskiconRadius}
         }
+         .${uniqueId}.wp-block-zolo-fancy-list-child {
+            ${itemDeskBg}
+			${itemBorderDeskStyle}
+			${itemDeskBorderRadius}
+			${itemDeskPadding}
+			${itemDeskMargin}
+			${itemBoxShadow}
+		}
 
         .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
             ${DeskIconWidth}
@@ -280,6 +350,14 @@ const Style = ({ props }) => {
             ${TabIconBorder}
             ${tabiconRadius}
         }
+         .${uniqueId}.wp-block-zolo-fancy-list-child  {
+            ${itemTabBg}
+			${itemBorderTabStyle}
+			${itemTabBorderRadius}
+			${itemTabPadding}
+			${itemTabMargin}
+			${itemBoxShadow}
+		}
 
         .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
             ${TabIconWidth}
@@ -324,6 +402,14 @@ const Style = ({ props }) => {
             ${MobIconBorder}
             ${mobiconRadius}
         }
+          .${uniqueId}.wp-block-zolo-fancy-list-child {
+            ${itemMobBg}
+			${itemBorderMobStyle}
+			${itemMobBorderRadius}
+			${itemMobPadding}
+			${itemMobMargin}
+			${itemBoxShadow}
+		}
 
         .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
             ${mobIconWidth}

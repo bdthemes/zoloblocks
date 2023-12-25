@@ -37,17 +37,23 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                         })
                     }
                 >
-                    <ResetBtn
-                        onReset={() => {
-                            setAttributes({
-                                [`${controlName}shadowUnit`]: 'px',
-                                [`${controlName}shadowColor`]: '',
-                                [`${controlName}hShadow`]: '',
-                                [`${controlName}vShadow`]: '',
-                                [`${controlName}blur`]: '',
-                            });
-                        }}
-                    />
+                    {(shadowColor ||
+                        (hShadow && hShadow !== 0 && hShadow !== 'undefined' && hShadow !== '') ||
+                        (vShadow && vShadow !== 0 && vShadow !== 'undefined' && vShadow !== '') ||
+                        (blur && blur !== 0 && blur !== 'undefined' && blur !== '')) && (
+                        <ResetBtn
+                            onReset={() => {
+                                setAttributes({
+                                    [`${controlName}shadowUnit`]: 'px',
+                                    [`${controlName}shadowColor`]: '',
+                                    [`${controlName}hShadow`]: '',
+                                    [`${controlName}vShadow`]: '',
+                                    [`${controlName}blur`]: '',
+                                });
+                            }}
+                        />
+                    )}
+
                     <ColorBtn
                         color={shadowColor}
                         onChange={(value) =>

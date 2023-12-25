@@ -3,6 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { Button, PanelBody, TextControl } from '@wordpress/components';
+import { cloneDeep } from 'lodash';
 
 /**
  * Internal depencencies
@@ -10,6 +11,8 @@ import { Button, PanelBody, TextControl } from '@wordpress/components';
 const { ZoloIconPicker, LinkControl, SortableItem, SortableControl } = window.zoloModule;
 
 const Sortable = ({ socialProfiles, setAttributes }) => {
+    const deepCloneSocialProfiles = cloneDeep(socialProfiles);
+
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
@@ -39,15 +42,15 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                 </Button>
             </div>
             <SortableControl defaultItems={socialProfiles} attributeName="socialProfiles" setAttributes={setAttributes}>
-                {socialProfiles &&
-                    socialProfiles.map((profile, index) => {
+                {deepCloneSocialProfiles &&
+                    deepCloneSocialProfiles.map((profile, index) => {
                         return (
                             <div className="dnd-container" key={index}>
                                 <Button
                                     className="dnd-trash"
                                     icon="trash"
                                     onClick={() => {
-                                        const newItems = [...socialProfiles];
+                                        const newItems = [...deepCloneSocialProfiles];
                                         newItems.splice(index, 1);
                                         setAttributes({
                                             socialProfiles: newItems,
@@ -61,7 +64,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                             label={__('Title', 'zolo-blocks')}
                                             value={profile.title}
                                             onChange={(value) => {
-                                                const newItems = [...socialProfiles];
+                                                const newItems = [...deepCloneSocialProfiles];
                                                 newItems[index].title = value;
                                                 setAttributes({
                                                     socialProfiles: newItems,
@@ -72,7 +75,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                             label={__('Select Icon', 'zolo-blocks')}
                                             value={profile.icon}
                                             onChange={(value) => {
-                                                const newItems = [...socialProfiles];
+                                                const newItems = [...deepCloneSocialProfiles];
                                                 newItems[index].icon = value;
                                                 setAttributes({
                                                     socialProfiles: newItems,
@@ -83,7 +86,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                             label={__('Link', 'zolo-blocks')}
                                             value={profile.link}
                                             onChange={(value) => {
-                                                const newItems = [...socialProfiles];
+                                                const newItems = [...deepCloneSocialProfiles];
                                                 newItems[index].link = value;
                                                 setAttributes({
                                                     socialProfiles: newItems,

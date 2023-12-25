@@ -57,13 +57,12 @@ import {
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
     DPL_BG,
-    DPL_HEIGHT,
-    DPL_WIDTH,
     DPL_BORDER,
     DPL_BORDER_RADIUS,
     DPL_PADDING,
     DPL_MARGIN,
     DPL_ICON_SIZE,
+    CONTENT_GAP,
 } from './constants';
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -93,8 +92,6 @@ function Inspector(props) {
         activeRatingColor,
         inactiveRatingColor,
         dplIconColor,
-        selectedPanel,
-        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -325,7 +322,14 @@ function Inspector(props) {
                                     controlName={REVIEWER_PHOTO_SIZE}
                                     requiredProps={requiredProps}
                                     min={1}
-                                    max={2000}
+                                    max={1000}
+                                />
+                                <ResRangeControl
+                                    label={__('Gap', 'zolo-blocks')}
+                                    controlName={CONTENT_GAP}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={200}
                                 />
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
@@ -338,12 +342,6 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
-                                <BoxShadowControl
-                                    controlName={REVIEWER_PHOTO_BOX_SHADOW}
-                                    requiredProps={requiredProps}
-                                    enableTransition={false}
-                                />
-                                <NormalBGControl requiredProps={requiredProps} controlName={REVIEWER_PHOTO_BG} noMainBGImg={true} />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zolo-blocks')}
                                     controlName={REVIEWER_PHOTO_PADDING}
@@ -356,6 +354,12 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
+                                <BoxShadowControl
+                                    controlName={REVIEWER_PHOTO_BOX_SHADOW}
+                                    requiredProps={requiredProps}
+                                    enableTransition={false}
+                                />
+                                <NormalBGControl requiredProps={requiredProps} controlName={REVIEWER_PHOTO_BG} noMainBGImg={true} />
                             </ZoloPanelBody>
                         )}
                         {showName && (
@@ -494,8 +498,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                             />
                             <CardDivider />
-                            <ResRangeControl label={__('Height', 'zolo-blocks')} controlName={DPL_HEIGHT} requiredProps={requiredProps} />
-                            <ResRangeControl label={__('Width', 'zolo-blocks')} controlName={DPL_WIDTH} requiredProps={requiredProps} />
+
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={DPL_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}

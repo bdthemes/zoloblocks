@@ -5,6 +5,8 @@ import { fontsseControl } from '@wordpress/components';
 import { withInstanceId } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
+import WebFont from 'webfontloader';
+
 /**
  * External Dependencies
  */
@@ -18,7 +20,7 @@ import { googleFonts } from './googleFonts';
 const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className, ...props }) => {
     const id = `inspector-zb-font-family-${instanceId}`;
     const fonts = [
-        { value: 'Default', label: __('Default', 'zolo-blocks') },
+        { value: '', label: __('Default', 'zolo-blocks') },
         { value: 'Arial', label: 'Arial' },
         { value: 'Helvetica', label: 'Helvetica' },
         { value: 'Times-New-Roman', label: 'Times New Roman' },
@@ -32,10 +34,16 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
 
     const onChangeValue = (select) => {
         let selectedFont = select.label;
-        const googleFontsAttr =
-            ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic';
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
+
+        // const googleFontsAttr =
+        //   ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic';
+
+        // if (selectedFont) {
+        //   const link = document.createElement('link');
+        //   link.rel = 'stylesheet';
+        //   link.href = 'https://fonts.googleapis.com/css?family=' + selectedFont.replace(/ /g, '+') + googleFontsAttr;
+        //   document.head.appendChild(link);
+        // }
 
         if (selectedFont) {
             // skip if default OR Arial, Helvetica, Times New Roman, Georgia
@@ -49,11 +57,14 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
                 onChange(selectedFont);
                 return;
             }
-
-            link.href = 'https://fonts.googleapis.com/css?family=' + selectedFont.replace(/ /g, '+') + googleFontsAttr;
-            document.head.appendChild(link);
         }
-
+        let webFontConfig = {
+            google: {
+                families: [selectedFont],
+            },
+            context: frames['editor-canvas'],
+        };
+        WebFont.load(webFontConfig);
         onChange(selectedFont);
     };
 

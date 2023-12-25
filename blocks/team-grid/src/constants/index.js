@@ -8,10 +8,18 @@ export const BLOCK_PREFIX = 'team-grid';
 
 // Presets
 export const PRESETS = [
-    { label: __('Style 1', 'zolo-blocks'), value: 'default' },
-    { label: __('Style 2', 'zolo-blocks'), value: 'style-1' },
+    { label: __('Style 1', 'zolo-blocks'), value: 'style-1' },
+    { label: __('Style 2', 'zolo-blocks'), value: 'default' },
     { label: __('Style 3', 'zolo-blocks'), value: 'style-2' },
 ];
+
+// item
+export const ITEM_BG = 'ItemBg';
+export const ITEM_PADDING = 'ItemPadding';
+export const ITEM_MARGIN = 'ItemMargin';
+export const ITEM_BORDER = 'ItemBorder';
+export const ITEM_BORDER_RADIUS = 'ItemBorderRadius';
+export const ITEM_BOX_SHADOW = 'ItemBoxShadow';
 
 // Grid Background
 export const GRID_COLUMNS = 'gridColumns';

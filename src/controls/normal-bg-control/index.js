@@ -9,7 +9,7 @@ import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 
-const NormalBGControl = ({ controlName, requiredProps, noMainBGImg = false }) => {
+const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg = false }) => {
     const { setAttributes, attributes, resMode } = requiredProps;
     const {
         //attributes for background type normal start
@@ -57,7 +57,7 @@ const NormalBGControl = ({ controlName, requiredProps, noMainBGImg = false }) =>
             <div className="zolo-control-container zolo-border-control">
                 <div className="zolo-control-flex">
                     <label className="zolo-control-label" htmlFor="zolo-control-label">
-                        {__('Background', 'zolo-blocks')}
+                        {label || __('Background', 'zolo-blocks')}
                     </label>
                     <Dropdown
                         className="zolo-background-control-popover-dropdown"

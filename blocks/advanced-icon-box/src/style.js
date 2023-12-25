@@ -541,48 +541,22 @@ export default function Style({ props }) {
             ${btnColor ? `fill: ${btnColor};` : ''}
 		}
 
-        ${
-            globalLink === true
-                ? `.${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
-                    ${buttonBGHoverDeskStyle}
-                    ${btnBgHoverColor ? `background: ${btnBgHoverColor};` : ''}
-                    ${buttonHoverBoxShadow}
-                    ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
-                    ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
-                } 
-                .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button svg{
-                    ${btnHoverColor ? `fill: ${btnHoverColor};` : ''}
-                }
-                .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap svg{
-                    ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ''}
-                    ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
-                    ${iconHoverBoxShadow}
-                    ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
-                }        
-                `
-                : ''
-        }
-
-        ${
-            globalLink === false
-                ? `.${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-box-button:hover {
-                    ${buttonBGHoverDeskStyle}
-                    ${btnBgHoverColor ? `background: ${btnBgHoverColor};` : ''}
-                    ${buttonHoverBoxShadow}
-                    ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
-                    ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
-                }
-                .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-box-button:hover svg{
-                    ${btnHoverColor ? `fill: ${btnHoverColor};` : ''}
-                }
-                .${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-block-icon-wrap svg:hover {
-                    ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ''}
-                    ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
-                    ${iconHoverBoxShadow}
-                    ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
-                }        
-                `
-                : ''
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
+                ${buttonBGHoverDeskStyle}
+                ${btnBgHoverColor ? `background: ${btnBgHoverColor};` : ''}
+                ${buttonHoverBoxShadow}
+                ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
+                ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
+            } 
+            .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button svg{
+                ${btnHoverColor ? `fill: ${btnHoverColor};` : ''}
+            }
+            .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-icon-wrap svg{
+                ${iconBackgroundHoverColor ? `background: ${iconBackgroundHoverColor};` : ''}
+                ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
+                ${iconHoverBoxShadow}
+                ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
+            } 
         }
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-title{
@@ -660,20 +634,8 @@ export default function Style({ props }) {
 			${btnTypoTab}
 		}
 
-        ${
-            globalLink === true
-                ? `.${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
-                    ${buttonBGHoverTabStyle}
-                }`
-                : ''
-        }
-
-        ${
-            globalLink === false
-                ? `.${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-box-button:hover {
-                    ${buttonBGHoverTabStyle}
-                }`
-                : ''
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
+            ${buttonBGHoverTabStyle}
         }
 	`;
 
@@ -741,20 +703,8 @@ export default function Style({ props }) {
 			${btnTypoMobile}
 		}
 
-        ${
-            globalLink === true
-                ? `.${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
-                    ${buttonBGHoverMobStyle}
-                }`
-                : ''
-        }
-
-        ${
-            globalLink === false
-                ? `.${uniqueId}.wp-block-zolo-advanced-icon-box .zolo-box-button:hover {
-                    ${buttonBGHoverMobStyle}
-                }`
-                : ''
+        .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
+            ${buttonBGHoverMobStyle}
         }
   	`;
 

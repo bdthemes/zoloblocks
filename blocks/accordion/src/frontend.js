@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (zoloAccordions && zoloAccordions.length > 0) {
         zoloAccordions.forEach((accordion) => {
             // options
-            const firstItemOpen = accordion.dataset.firstitem === 'true' ? true : false;
+            const initialOpen = accordion.dataset.initialopen ? parseInt(accordion.dataset.initialopen) : 0;
             const allowMultiple = accordion.dataset.multiple === 'true' ? true : false;
 
             new Accordion(accordion, {
                 duration: 400,
                 showMultiple: allowMultiple ? true : false,
-                openOnInit: firstItemOpen ? [0] : [],
+                openOnInit: initialOpen ? [initialOpen - 1] : [],
             });
         });
     }

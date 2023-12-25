@@ -55,6 +55,12 @@ import {
     DPL_ICON_SIZE,
     TEAM_MEMBER_CONTAINER_PADDING,
     TEAM_MEMBER_CONTAINER_MARGIN,
+    ITEM_BG,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BORDER,
+    ITEM_BORDER_RADIUS,
+    ITEM_BOX_SHADOW,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -88,7 +94,7 @@ const attributes = {
     // block attributes
     preset: {
         type: 'string',
-        default: 'default',
+        default: 'style-1',
     },
     addDetailPageLink: {
         type: 'boolean',
@@ -120,6 +126,13 @@ const attributes = {
     ...generateResRangeAttributies(ROWS_GAP, {
         defaultRange: 30,
     }),
+    // item
+    ...generateNormalBGAttributes(ITEM_BG),
+    ...generateBorderAttributies(ITEM_BORDER),
+    ...generateDimensionAttributes(ITEM_BORDER_RADIUS),
+    ...generateDimensionAttributes(ITEM_PADDING),
+    ...generateDimensionAttributes(ITEM_MARGIN),
+    ...generateBoxShadowAttributies(ITEM_BOX_SHADOW),
 
     // global settings for child blocks
     ...generateDimensionAttributes(TEAM_MEMBER_CONTAINER_PADDING),

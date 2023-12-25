@@ -11,8 +11,18 @@ const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
  */
 
 export default function save({ attributes }) {
-    const { uniqueId, parentClasses, sliderOptions, breakpoints, showPagination, showNavigation, customNavIcon, prevNavIcon, nextNavIcon } =
-        attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        sliderOptions,
+        breakpoints,
+        showPagination,
+        showNavigation,
+        customNavIcon,
+        prevNavIcon,
+        nextNavIcon,
+        zoloId,
+    } = attributes;
 
     // Block Props
     const blockProps = useBlockProps.save({
@@ -20,7 +30,14 @@ export default function save({ attributes }) {
     });
 
     return (
-        <div {...blockProps} data-swiper-options={JSON.stringify(sliderOptions)} data-swiper-breakpoints={JSON.stringify(breakpoints)}>
+        <div
+            {...blockProps}
+            {...(zoloId && {
+                id: zoloId,
+            })}
+            data-swiper-options={JSON.stringify(sliderOptions)}
+            data-swiper-breakpoints={JSON.stringify(breakpoints)}
+        >
             <div className="swiper">
                 <div className="swiper-wrapper">
                     <InnerBlocks.Content />

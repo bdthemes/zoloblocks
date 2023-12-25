@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl } from '@wordpress/components';
+import { ToggleControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -36,7 +36,6 @@ import {
     IMAGE_HOVER_BOX_SHADOW,
     IMAGE_HOVER_BACKGROUND,
     IMAGE_PADDING,
-    IMAGE_MARGIN,
     HEADING_BORDER,
     HEADING_BACKGROUND,
     HEADING_MARGIN,
@@ -52,6 +51,7 @@ import {
     ZOOM_ICON_BG_HOVER_COLOR,
     OVERLAY_BG_COLOR,
     ZOOM_ICON_SIZE,
+    MPA_ANIMATIONS,
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -68,8 +68,7 @@ function Inspector(props) {
         zoomIconHoverColor,
         imageHoverBorderColor,
         lightboxIcon,
-        selectedPanel,
-        selectedTab,
+        entranceAnimation,
     } = attributes;
 
     const requiredProps = {
@@ -87,16 +86,6 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
-                            {/* <SelectControl
-                                label={__('Presets', 'zolo-blocks')}
-                                value={preset}
-                                options={PRESETS}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        preset: value,
-                                    })
-                                }
-                            /> */}
                             <ToggleControl
                                 label={__('Show photo caption', 'zolo-blocks')}
                                 checked={showCaption}
@@ -148,17 +137,32 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         {showLightbox && (
-                            <ZoloPanelBody title={__('Lightbox Icon', 'zolo-blocks')} panelProps={props}>
-                                <ZoloIconPicker
-                                    label={__('Select Icon', 'zolo-blocks')}
-                                    value={lightboxIcon}
-                                    onChange={(value) => {
-                                        setAttributes({
-                                            lightboxIcon: value,
-                                        });
-                                    }}
-                                />
-                            </ZoloPanelBody>
+                            <>
+                                <ZoloPanelBody title={__('Lightbox Animation', 'zolo-blocks')} panelProps={props}>
+                                    <SelectControl
+                                        label={__('Select Animation', 'zolo-blocks')}
+                                        value={entranceAnimation}
+                                        options={MPA_ANIMATIONS}
+                                        onChange={(v) => {
+                                            setAttributes({
+                                                entranceAnimation: v,
+                                            });
+                                        }}
+                                        help={__('This option will only work at the frontend', 'zolo-blocks')}
+                                    />
+                                </ZoloPanelBody>
+                                <ZoloPanelBody title={__('Lightbox Icon', 'zolo-blocks')} panelProps={props}>
+                                    <ZoloIconPicker
+                                        label={__('Select Icon', 'zolo-blocks')}
+                                        value={lightboxIcon}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                lightboxIcon: value,
+                                            });
+                                        }}
+                                    />
+                                </ZoloPanelBody>
+                            </>
                         )}
                     </>
                 }
@@ -188,12 +192,6 @@ function Inspector(props) {
                                 forBorderRadius={true}
                             />
 
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={IMAGE_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={IMAGE_PADDING}

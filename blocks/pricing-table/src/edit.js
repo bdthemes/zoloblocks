@@ -88,7 +88,11 @@ const Edit = (props) => {
                                 allowedFormats={['bold', 'italic', 'strikethrough']}
                             />
 
-                            {showRibbon && ribbonTitle && <div className={`zolo-ribbon-btn ${ribbonPosition}`}>{ribbonTitle}</div>}
+                            {showRibbon && ribbonTitle && (
+                                <div className={`zolo-ribbon-btn ${ribbonPosition}`}>
+                                    <RichText tagName="span" value={ribbonTitle} onChange={(v) => setAttributes({ ribbonTitle: v })} />
+                                </div>
+                            )}
 
                             <div className="zolo-price-info">
                                 {orginalPrice && sale && (

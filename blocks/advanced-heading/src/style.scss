@@ -4,6 +4,7 @@
 
 .wp-block-zolo-advanced-heading {
     box-sizing: border-box;
+    position: relative;
 }
 
 .zolo-transparent-heading-wrap {
@@ -35,7 +36,7 @@
         color: #202224;
         text-transform: capitalize;
         z-index: 1;
-        position: relative;
+        // position: relative;
         display: block;
         &:hover {
             text-decoration: none;
@@ -47,6 +48,12 @@
         font-size: clamp(2.25rem, 7vw, 4.375rem);
         text-transform: uppercase;
         font-weight: 900;
+    }
+
+    .zolo-ah-separator {
+        border-color: var(--zoloblocks-brand-color);
+        border-width: 3px;
+        width: 80px;
     }
 }
 

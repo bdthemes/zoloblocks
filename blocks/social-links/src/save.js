@@ -8,12 +8,15 @@ import classnames from 'classnames';
 import { useBlockProps } from '@wordpress/block-editor';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, preset, socialProfiles, socialColor, socialText, layout } = attributes;
+    const { uniqueId, preset, socialProfiles, socialColor, socialText, layout, zoloId } = attributes;
 
     return (
         <div
             {...useBlockProps.save({
                 className: classnames(`${preset} ${uniqueId} ${layout}`),
+            })}
+            {...(zoloId && {
+                id: zoloId,
             })}
         >
             {socialProfiles &&

@@ -60,7 +60,7 @@ export default function Edit(props) {
             slot: 'container-start',
         },
         {
-            template: [['core/paragraph']],
+            template: [['zolo/advanced-icon-box']],
             templateLock: false,
             orientation: 'horizontal',
         }

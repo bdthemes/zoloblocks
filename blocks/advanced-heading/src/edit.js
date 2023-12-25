@@ -28,6 +28,7 @@ const Edit = (props) => {
         subTitlePosition,
         separatorPosition,
         showTransparentTitle,
+        transparentTag,
         transparentTitleText,
         transparentTitleRotateOrigin,
     } = attributes;
@@ -50,9 +51,12 @@ const Edit = (props) => {
                 <div className={`zolo-block-wrapper zolo-advanced-heading ${'zolo-ah-' + styles} ${uniqueId}`}>
                     {showTransparentTitle && (
                         <div className="zolo-transparent-heading-wrap">
-                            <h3 className={`zolo-transparent-heading zolo-transform-origin-${transparentTitleRotateOrigin}`}>
+                            <DynamicTag
+                                tagName={transparentTag}
+                                className={`zolo-transparent-heading zolo-transform-origin-${transparentTitleRotateOrigin}`}
+                            >
                                 {transparentTitleText}
-                            </h3>
+                            </DynamicTag>
                         </div>
                     )}
 

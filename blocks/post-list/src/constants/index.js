@@ -54,9 +54,12 @@ export const FCONTENT_PADDING = 'fcontentPadding';
 
 export const FCONTAINER_PADDING = 'fcontainerPadding';
 export const FCONTAINER_BG = 'fcontainerBg';
+export const FCONTAINER_OVERLAY = 'fcontainerOverlay';
 export const FCONTAINER_BORDER = 'fcontainerBorder';
 export const FCONTAINER_BORDER_RADIUS = 'fcontainerBRadius';
 export const FCONTAINER_SHADOW = 'fcontainerShadow';
+
+export const CONTENT_ALIGN = 'contentAlign';
 
 // pagination
 export const PAG_BORDER = 'pagBorder';
@@ -64,3 +67,6 @@ export const PAG_BORDER_RADIUS = 'pagBRadius';
 export const PAG_MARGIN = 'pagMargin';
 export const PAG_PADDING = 'pagPadding';
 export const PAG_ALIGN = 'pagAlign';
+
+// meta space
+export const META_SPACE = 'metaSpace';

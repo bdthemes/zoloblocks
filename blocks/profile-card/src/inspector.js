@@ -4,6 +4,7 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { CardDivider, PanelBody, TextControl, TextareaControl, ToggleControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { cloneDeep } from 'lodash';
 
 /**
  * Internal depencencies
@@ -117,8 +118,6 @@ function Inspector(props) {
         iconColor,
         iconHoverColor,
         iconHoverBorderColor,
-        selectedPanel,
-        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -127,6 +126,8 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
+
+    const deepCloneStatusItems = cloneDeep(statusItems);
 
     return (
         <InspectorControls key="controls">
@@ -330,8 +331,8 @@ function Inspector(props) {
                         {showStatus && (
                             <ZoloPanelBody title={__('Status', 'zolo-blocks')} panelProps={props}>
                                 <SortableControl defaultItems={statusItems} attributeName="statusItems" setAttributes={setAttributes}>
-                                    {statusItems &&
-                                        statusItems.map((item, index) => {
+                                    {deepCloneStatusItems &&
+                                        deepCloneStatusItems.map((item, index) => {
                                             return (
                                                 <div className="dnd-container no-trash" key={index}>
                                                     <SortableItem key={item.id} id={item.id}>
@@ -340,7 +341,7 @@ function Inspector(props) {
                                                                 label={__('Number', 'zolo-blocks')}
                                                                 value={item && item.number}
                                                                 onChange={(value) => {
-                                                                    let newStatusItems = [...statusItems];
+                                                                    let newStatusItems = [...deepCloneStatusItems];
                                                                     newStatusItems[index].number = value;
                                                                     setAttributes({
                                                                         statusItems: newStatusItems,
@@ -352,7 +353,7 @@ function Inspector(props) {
                                                                 label={__('Label', 'zolo-blocks')}
                                                                 value={item && item.label}
                                                                 onChange={(value) => {
-                                                                    let newStatusItems = [...statusItems];
+                                                                    let newStatusItems = [...deepCloneStatusItems];
                                                                     newStatusItems[index].label = value;
                                                                     setAttributes({
                                                                         statusItems: newStatusItems,

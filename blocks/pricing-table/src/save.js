@@ -33,6 +33,7 @@ const Save = ({ attributes }) => {
         ribbonPosition,
         btnsPosition,
         btnsDirection,
+        zoloId,
     } = attributes;
 
     const blockprops = useBlockProps.save({
@@ -42,7 +43,12 @@ const Save = ({ attributes }) => {
     const pricingPeriod = period.length !== 0 && period.split(',');
 
     return (
-        <div {...blockprops}>
+        <div
+            {...blockprops}
+            {...(zoloId && {
+                id: zoloId,
+            })}
+        >
             <div className={`zolo-block-wrapper ${uniqueId} ${'zolo-pricing-' + styles}`}>
                 <div className="zolo-item">
                     <div className="zolo-head-content">

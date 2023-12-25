@@ -4,14 +4,18 @@ import classnames from 'classnames';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayIcon, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, preset, label, link, iconType, iconPosition, icon, parentClasses } = attributes;
+    const { uniqueId, preset, label, link, iconType, iconPosition, icon, parentClasses, zoloId } = attributes;
+
     return (
         <div
             {...useBlockProps.save({
                 className: classnames(uniqueId, classArrayToStr(parentClasses)),
+            })}
+            {...(zoloId && {
+                id: zoloId,
             })}
         >
             <div className={`zolo-block-wrapper zolo-advanced-button ${uniqueId} ${preset}`}>

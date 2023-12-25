@@ -37,15 +37,17 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                             })
                         }
                     >
-                        <ResetBtn
-                            onReset={() => {
-                                setAttributes({
-                                    [strokeUnitAttr]: 'px',
-                                    [`${controlName}strokeColor`]: '',
-                                    [strokeWidthAttr]: '',
-                                });
-                            }}
-                        />
+                        {(strokeColor || strokeWidthVal !== 0) && strokeWidthVal !== 'undefined' && strokeWidthVal !== '' && (
+                            <ResetBtn
+                                onReset={() => {
+                                    setAttributes({
+                                        [strokeUnitAttr]: 'px',
+                                        [`${controlName}strokeColor`]: '',
+                                        [strokeWidthAttr]: '',
+                                    });
+                                }}
+                            />
+                        )}
                         <ColorBtn
                             color={strokeColor}
                             onChange={(value) =>
@@ -55,6 +57,7 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                             }
                         />
                     </UnitsBtn>
+
                     <WithResDeviceBtn
                         label={label || __('Text Stroke', 'zolo-blocks')}
                         requiredProps={requiredProps}

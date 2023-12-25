@@ -50,12 +50,30 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                 <label className="zolo-control-label" htmlFor="zolo-control-label">
                     {label || __('Box Shadow', 'zolo-blocks')}
                 </label>
-                <button onClick={() => setDisplayPanel(true)} className="zolo-panel-opener-btn">
-                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x={3} y={3} width="14.8235" height="14.8235" stroke="#4D4D4D" strokeWidth="1.5" />
-                        <path d="M21 21H4.58826V17.8236H17.8236V4.58826H21V21Z" fill="#4D4D4D" />
-                    </svg>
-                </button>
+                <div className="zolo-flex">
+                    {(shadowType !== 'none' || shadowColor || hOffset || vOffset || blur || spread) && (
+                        <ResetBtn
+                            onReset={() => {
+                                setAttributes({
+                                    [`${controlName}shadowType`]: 'none',
+                                    [`${controlName}shadowUnit`]: 'px',
+                                    [`${controlName}shadowColor`]: '',
+                                    [`${controlName}hOffset`]: '',
+                                    [`${controlName}vOffset`]: '',
+                                    [`${controlName}blur`]: '',
+                                    [`${controlName}spread`]: '',
+                                });
+                            }}
+                        />
+                    )}
+
+                    <button onClick={() => setDisplayPanel(true)} className="zolo-panel-opener-btn">
+                        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x={3} y={3} width="14.8235" height="14.8235" stroke="#4D4D4D" strokeWidth="1.5" />
+                            <path d="M21 21H4.58826V17.8236H17.8236V4.58826H21V21Z" fill="#4D4D4D" />
+                        </svg>
+                    </button>
+                </div>
             </div>
             {displayPanel && (
                 <Popover className="zolo-dimensions-control-popover" position="bottom left" onFocusOutside={() => setDisplayPanel(false)}>

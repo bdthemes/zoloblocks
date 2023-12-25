@@ -11,10 +11,10 @@
 
 .zolo-appender-btn {
     margin-top: 30px;
-    color: #000;
-    background-color: #d9d9d9;
+    color: var(--zoloblocks-brand-button-color);
+    background-color: var(--zoloblocks-brand-color);
     border-radius: var(--zoloblocks-button-border-radius);
-    padding: 8px 12px;
+    padding: 10px 16px;
     font-weight: 700;
     text-transform: uppercase;
     border: 0;
@@ -29,7 +29,7 @@
         display: block;
     }
     &:hover {
-        background-color: #b3b3b3;
+        background-color: var(--zoloblocks-brand-color-hover);
     }
 }
 

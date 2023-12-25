@@ -4,7 +4,7 @@ import { prefix } from '../../global/constants';
 import { ButtonGroup, Button, SelectControl, Popover } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
-
+import classNames from 'classnames';
 import TabPanelControl from '../tabpanel-control';
 
 import { BORDER_TYPES, SEPERATOR_STYLES } from '../../global/constants';
@@ -70,6 +70,29 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
         setIsLinked(!isLinked);
     };
 
+    const hasValue =
+        borderType !== 'none' ||
+        borderTop ||
+        borderRight ||
+        borderBottom ||
+        borderLeft ||
+        borderColor ||
+        TABborderTop ||
+        TABborderRight ||
+        TABborderBottom ||
+        TABborderLeft ||
+        TABborderStyle ||
+        TABborderColor ||
+        MOBborderUnit ||
+        MOBborderTop ||
+        MOBborderRight ||
+        MOBborderBottom ||
+        MOBborderLeft ||
+        MOBborderStyle ||
+        MOBborderColor
+            ? true
+            : false;
+
     return (
         <>
             <div className="zolo-control-container zolo-border-control">
@@ -77,42 +100,82 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                     <label className="zolo-control-label" htmlFor="zolo-control-label">
                         {label}
                     </label>
-                    <button onClick={() => setDisplayPanel(true)} className="zolo-panel-opener-btn">
-                        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="4.63635" y="4.63635" width="14.7273" height="14.7273" rx="0.2" stroke="#4D4D4D" strokeWidth="1.5" />
-                            <rect x={3} y={3} width="3.27273" height="3.27273" rx="0.2" fill="white" stroke="#4D4D4D" strokeWidth="1.5" />
-                            <rect
-                                x="17.7273"
-                                y={3}
-                                width="3.27273"
-                                height="3.27273"
-                                rx="0.2"
-                                fill="white"
-                                stroke="#4D4D4D"
-                                strokeWidth="1.5"
+                    <div className="zolo-flex">
+                        {hasValue && (
+                            <ResetBtn
+                                customClass="zb-reset-has-value"
+                                onReset={() => {
+                                    setAttributes({
+                                        [`${prefix}${controlName}BorderType`]: 'none',
+                                        [`${prefix}${controlName}Unit`]: 'px',
+                                        [`${prefix}${controlName}Top`]: '',
+                                        [`${prefix}${controlName}Right`]: '',
+                                        [`${prefix}${controlName}Bottom`]: '',
+                                        [`${prefix}${controlName}Left`]: '',
+                                        [`${prefix}${controlName}BorderStyle`]: '',
+                                        [`${prefix}${controlName}BorderColor`]: '',
+                                    });
+                                }}
                             />
-                            <rect
-                                x={3}
-                                y="17.7273"
-                                width="3.27273"
-                                height="3.27273"
-                                rx="0.2"
-                                fill="white"
-                                stroke="#4D4D4D"
-                                strokeWidth="1.5"
-                            />
-                            <rect
-                                x="17.7273"
-                                y="17.7273"
-                                width="3.27273"
-                                height="3.27273"
-                                rx="0.2"
-                                fill="white"
-                                stroke="#4D4D4D"
-                                strokeWidth="1.5"
-                            />
-                        </svg>
-                    </button>
+                        )}
+
+                        <button
+                            onClick={() => setDisplayPanel(true)}
+                            className={classNames('zolo-panel-opener-btn', `${hasValue ? 'zb-has-value' : ''}`)}
+                        >
+                            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect
+                                    x="4.63635"
+                                    y="4.63635"
+                                    width="14.7273"
+                                    height="14.7273"
+                                    rx="0.2"
+                                    stroke="#4D4D4D"
+                                    strokeWidth="1.5"
+                                />
+                                <rect
+                                    x={3}
+                                    y={3}
+                                    width="3.27273"
+                                    height="3.27273"
+                                    rx="0.2"
+                                    fill="white"
+                                    stroke="#4D4D4D"
+                                    strokeWidth="1.5"
+                                />
+                                <rect
+                                    x="17.7273"
+                                    y={3}
+                                    width="3.27273"
+                                    height="3.27273"
+                                    rx="0.2"
+                                    fill="white"
+                                    stroke="#4D4D4D"
+                                    strokeWidth="1.5"
+                                />
+                                <rect
+                                    x={3}
+                                    y="17.7273"
+                                    width="3.27273"
+                                    height="3.27273"
+                                    rx="0.2"
+                                    fill="white"
+                                    stroke="#4D4D4D"
+                                    strokeWidth="1.5"
+                                />
+                                <rect
+                                    x="17.7273"
+                                    y="17.7273"
+                                    width="3.27273"
+                                    height="3.27273"
+                                    rx="0.2"
+                                    fill="white"
+                                    stroke="#4D4D4D"
+                                    strokeWidth="1.5"
+                                />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
                 {displayPanel && (
                     <Popover

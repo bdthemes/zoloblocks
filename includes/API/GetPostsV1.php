@@ -137,7 +137,7 @@ class GetPostsV1 {
                 $post['tags']         = self::zolo_get_terms($post_id, 'post_tag');
                 $post["author"]       = get_the_author();
                 $post["author_link"]  = get_the_author_link();
-                $post["avatar"]       = get_avatar(get_the_author(), 50, '', 'avatar');
+                $post["avatar"]       = get_avatar(get_the_author_meta('ID'), 50);
                 $results[]            = $post;
             }
 

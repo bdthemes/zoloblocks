@@ -18,6 +18,7 @@ const Save = ({ attributes }) => {
         counterIcon,
         iconType,
         iconTypeImage,
+        zoloId,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -25,7 +26,12 @@ const Save = ({ attributes }) => {
     });
 
     return (
-        <div {...blockProps}>
+        <div
+            {...blockProps}
+            {...(zoloId && {
+                id: zoloId,
+            })}
+        >
             <div class={`zolo-counter-wrap ${preset}`}>
                 <div class="zolo-counter-item">
                     {hideIcon && (

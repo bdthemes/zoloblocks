@@ -177,14 +177,16 @@ function Inspector(props) {
                                                 max={36}
                                                 step={1}
                                             />
-                                            <ResRangeControl
-                                                label={__('Gap', 'zolo-blocks')}
-                                                controlName={ICON_TEXT_SPACING}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={100}
-                                                step={1}
-                                            />
+                                            {iconType !== 'iconOnly' && (
+                                                <ResRangeControl
+                                                    label={__('Gap', 'zolo-blocks')}
+                                                    controlName={ICON_TEXT_SPACING}
+                                                    requiredProps={requiredProps}
+                                                    min={0}
+                                                    max={100}
+                                                    step={1}
+                                                />
+                                            )}
                                         </Fragment>
                                     )}
                                 </Fragment>
@@ -280,6 +282,17 @@ function Inspector(props) {
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={ICON_BORDER}
                                     requiredProps={requiredProps}
+                                    hoverControl={
+                                        <ColorControl
+                                            label={__('Border Color', 'zolo-blocks')}
+                                            color={iconBorderHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    iconBorderHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                    }
                                 />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
@@ -332,15 +345,7 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
-                                            <ColorControl
-                                                label={__('Border Color', 'zolo-blocks')}
-                                                color={iconBorderHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        iconBorderHoverColor: value,
-                                                    })
-                                                }
-                                            />
+
                                             <ColorControl
                                                 label={__('Background', 'zolo-blocks')}
                                                 color={iconHoverBg}

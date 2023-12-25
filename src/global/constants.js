@@ -816,17 +816,17 @@ export const BACKGROUND_TYPES = [
 ];
 
 export const BOX_SHADOW_TYPES = [
+    // {
+    //     label: __('None', 'zolo-blocks'),
+    //     value: 'none',
+    // },
     {
-        label: __('None', 'zolo-blocks'),
-        value: 'none',
+        label: __('Outer', 'zolo-blocks'),
+        value: 'outset',
     },
     {
         label: __('Inner', 'zolo-blocks'),
         value: 'inset',
-    },
-    {
-        label: __('Outer', 'zolo-blocks'),
-        value: 'outset',
     },
 ];
 

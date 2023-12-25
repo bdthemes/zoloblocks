@@ -15,6 +15,7 @@ import {
     BaseControl,
     TabPanel,
     RangeControl,
+    FormTokenField,
 } from '@wordpress/components';
 
 /**
@@ -24,12 +25,24 @@ import BackgroundControl from '../../controls/background-control';
 import ResDimensionsControl from '../../controls/dimensions-control';
 import BorderControl from '../../controls/border-control';
 import BoxShadowControl from '../../controls/boxshadow-control';
+import RangeResetControl from '../../controls/range-reset-control';
 
 export const AdvancedOptions = (props) => {
     const { attributes, setAttributes, requiredProps } = props;
 
-    const { uniqueId, customCss, responsiveness, parentClasses, zIndex, customClass, zoloStyles, globalConfig, selectedExtraPanel } =
-        attributes;
+    const {
+        uniqueId,
+        customCss,
+        responsiveness,
+        parentClasses,
+        zIndex,
+        customClass,
+        customClasses,
+        zoloStyles,
+        globalConfig,
+        selectedExtraPanel,
+        zoloId,
+    } = attributes;
 
     const handleResponsiveness = (key, value, classname) => {
         let updatedClasses = [...parentClasses, classname];
@@ -49,13 +62,15 @@ export const AdvancedOptions = (props) => {
         });
     };
 
-    const handleCustomClass = (classname) => {
+    // handle custom classes
+    const handleCustomClasses = (classname) => {
+        const updatedClassesString = classname.join(' ');
         const updatedClasses = parentClasses.filter(function (e) {
             return e !== customClass;
         });
         setAttributes({
-            customClass: classname,
-            parentClasses: [...updatedClasses, classname],
+            customClass: updatedClassesString,
+            parentClasses: [...updatedClasses, updatedClassesString],
         });
     };
 
@@ -157,24 +172,39 @@ export const AdvancedOptions = (props) => {
                 onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel35' })}
                 opened={selectedExtraPanel === 'panel35'}
             >
-                <RangeControl
+                <RangeResetControl
                     label={__('Set Z Index ', 'zolo-blocks')}
-                    value={zIndex}
-                    onChange={(value) => setAttributes({ zIndex: value })}
+                    controlName={'zIndex'}
+                    requiredProps={requiredProps}
                     min={0}
                     max={100}
+                    step={1}
                     help={__('Set the z-index for the section', 'zolo-blocks')}
                 />
             </PanelBody>
             <PanelBody
-                title={__('Custom Class', 'zolo-blocks')}
+                title={__('Custom Attributes', 'zolo-blocks')}
                 onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel36' })}
                 opened={selectedExtraPanel === 'panel36'}
             >
                 <TextControl
+                    label={__('Add Wrapper ID', 'zolo-blocks')}
+                    onChange={(value) => {
+                        const id = value.replace(/\s/g, '_');
+                        setAttributes({ zoloId: id });
+                    }}
+                    value={zoloId}
+                    help={__('Add an ID to the block wrapper.', 'zolo-blocks')}
+                />
+                <FormTokenField
                     label={__('Add Custom Class', 'zolo-blocks')}
-                    onChange={(value) => handleCustomClass(value)}
-                    value={customClass}
+                    value={customClasses}
+                    onChange={(tokens) => {
+                        // replace spaces with dashes
+                        const updatedTokens = tokens.map((token) => token.replace(/\s/g, '-'));
+                        setAttributes({ customClasses: updatedTokens });
+                        handleCustomClasses(updatedTokens);
+                    }}
                     help={__('Add custom class(es) to the block. Separate multiple classes with a space.', 'zolo-blocks')}
                 />
             </PanelBody>

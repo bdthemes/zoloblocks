@@ -19,11 +19,15 @@ $metaSeparator = !empty($settings['metaSeparator']) ? $settings['metaSeparator']
 
 $html = '';
 
-//var_dump($settings['icon']);
+$wrapperId = $settings['zoloId'] ?? '';
+
 ?>
 
-<div class="<?php echo esc_attr($wrapper_class); ?>">
-
+<div class="<?php echo esc_attr($wrapper_class); ?>"
+    <?php if (!empty($wrapperId)) { ?>
+        id="<?php echo esc_attr($wrapperId); ?>"
+    <?php } ?>
+>
     <?php foreach ($post_results['posts'] as $result) {
         $result = (object)$result;
         $html .= '<div class="zolo-post-item">';

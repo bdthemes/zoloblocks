@@ -1,7 +1,8 @@
 .wp-block-zolo-slider {
     box-sizing: border-box;
     overflow: hidden;
-    .wp-block-zolo-slide {
+
+    .swiper-slide {
         height: clamp(21.875rem, 50vw, 34.375rem);
     }
 
@@ -42,7 +43,6 @@
     }
 
     .swiper-nav-button {
-
         position: absolute;
         top: 50%;
         z-index: 1;

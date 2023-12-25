@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { SelectControl, TextControl, TextareaControl, Button } from '@wordpress/components';
+import { SelectControl, TextControl, TextareaControl, Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 
@@ -23,6 +23,8 @@ const {
     NormalBGControl,
     AdvancedOptions,
     ZoloPanelBody,
+    BoxShadowControl,
+    LinkControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -42,6 +44,12 @@ import {
     ICON_BG,
     ICON_HBG,
     GAP,
+    ITEM_BG,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BORDER,
+    ITEM_BORDER_RADIUS,
+    ITEM_BOX_SHADOW,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -59,6 +67,8 @@ function Inspector(props) {
         desHcolor,
         fancyIcon,
         fancyTitle,
+        fancyLinkToggle,
+        fancyLink,
         fancyListText,
         mediaType,
         mediaText,
@@ -105,7 +115,22 @@ function Inspector(props) {
                                     placeholder="description text.."
                                 />
                             )}
+
+                            <ToggleControl
+                                label={__('Enable Link', 'zolo-block')}
+                                checked={fancyLinkToggle}
+                                onChange={() => setAttributes({ fancyLinkToggle: !fancyLinkToggle })}
+                            />
                         </ZoloPanelBody>
+                        {fancyLinkToggle && (
+                            <ZoloPanelBody title={__('Link', 'zolo-block')} panelProps={props}>
+                                <LinkControl
+                                    label={__('Select Link', 'zolo-block')}
+                                    value={fancyLink}
+                                    onChange={(v) => setAttributes({ fancyLink: v })}
+                                />
+                            </ZoloPanelBody>
+                        )}
 
                         {iconToggle && (
                             <ZoloPanelBody title={__('Icon', 'zolo-block')} panelProps={props}>
@@ -178,8 +203,31 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
+                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={ITEM_BORDER} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={ITEM_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <BoxShadowControl controlName={ITEM_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={ITEM_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={ITEM_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={false} />
+                        </ZoloPanelBody>
                         {titleToggle && (
-                            <ZoloPanelBody title={__('Title', 'zolo-block')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Title', 'zolo-block')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-block')}
                                     typoPrefixConstant={TITLE_TYPOGRAPHY}

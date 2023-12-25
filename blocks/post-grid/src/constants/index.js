@@ -25,7 +25,7 @@ export const THUMBNAIL_BORDER = 'thumbBorder';
 export const THUMBNAIL_BORDER_RADIUS = 'thumbBRadius';
 export const THUMBNAIL_BG = 'thumbBg';
 export const THUMBNAIL_BOX_SHADOW = 'thumbShadow';
-export const THUMBNAIL_PADDING = 'thumbPadding';
+
 export const THUMBNAIL_MARGIN = 'thumbMargin';
 
 export const TITLE_MARGIN = 'titleMargin';
@@ -55,3 +55,6 @@ export const PAG_BORDER_RADIUS = 'pagBRadius';
 export const PAG_MARGIN = 'pagMargin';
 export const PAG_PADDING = 'pagPadding';
 export const PAG_ALIGN = 'pagAlign';
+
+// post meta
+export const META_SPACE = 'metaSpace';

@@ -82,6 +82,7 @@ const Inspector = (props) => {
         separatorPosition,
 
         showTransparentTitle,
+        transparentTag,
         transparentTitleText,
         transparentTitleHide,
         transparentTitleRotateOrigin,
@@ -267,6 +268,13 @@ const Inspector = (props) => {
                                     )}
                                 />
 
+                                <SelectControl
+                                    label={__('Heading Tag', 'zolo-blocks')}
+                                    options={HEADING}
+                                    onChange={(value) => setAttributes({ transparentTag: value })}
+                                    value={transparentTag}
+                                />
+
                                 <ResRangeControl
                                     label={__('X Offset', 'zolo-blocks')}
                                     requiredProps={requiredProps}
@@ -322,7 +330,11 @@ const Inspector = (props) => {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Heading', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <TypographyDropdown label="Typography" typoPrefixConstant={TITLE_TYPOGRAPHY} requiredProps={requiredProps} />
+                            <TypographyDropdown
+                                label={__('Typography', 'zolo-blocks')}
+                                typoPrefixConstant={TITLE_TYPOGRAPHY}
+                                requiredProps={requiredProps}
+                            />
                             {!enableTitleLink && (
                                 <>
                                     <ColorControl
@@ -331,16 +343,6 @@ const Inspector = (props) => {
                                         onChange={(val) =>
                                             setAttributes({
                                                 titleColor: val,
-                                            })
-                                        }
-                                    />
-
-                                    <ColorControl
-                                        label={__('Background', 'zolo-blocks')}
-                                        color={titleBgColor}
-                                        onChange={(val) =>
-                                            setAttributes({
-                                                titleBgColor: val,
                                             })
                                         }
                                     />
@@ -620,15 +622,10 @@ const Inspector = (props) => {
                                 <TextShadowControl controlName={TPT_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
 
                                 <TextStrokeControl controlName={TPT_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
-
-                                <RangeControl
+                                <RangeResetControl
                                     label={__('Opacity', 'zolo-blocks')}
-                                    value={tptOpacity}
-                                    onChange={(tptOpacity) =>
-                                        setAttributes({
-                                            tptOpacity,
-                                        })
-                                    }
+                                    controlName="tptOpacity"
+                                    requiredProps={requiredProps}
                                     min={0.05}
                                     max={1}
                                     step={0.01}

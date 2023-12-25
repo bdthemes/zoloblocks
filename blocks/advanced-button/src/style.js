@@ -382,22 +382,29 @@ export default function Style({ props }) {
 			color: ${textHoverColor ? textHoverColor : ''};
 		}
 
-		.zolo-advanced-button.${uniqueId} .zolo-button svg {
+        .zolo-advanced-button.${uniqueId} .zolo-button .zolo__display-icon {
 			${iconHeight}
 			${iconWidth}
 			${iconBorderDesktop}
 			${iconBorderRadiusDesktop}
 			${iconNormalBoxShadow}
 			${iconPaddingDesktop}
+            background: ${iconBg ? iconBg : ''};
+        }
+
+		.zolo-advanced-button.${uniqueId} .zolo-button svg {
 			fill: ${iconColor ? iconColor : ''};
-			background: ${iconBg ? iconBg : ''};
 		}
 
-		.zolo-advanced-button.${uniqueId} .zolo-button:hover svg {
+		.zolo-advanced-button.${uniqueId} .zolo-button:hover .zolo__display-icon {
 			${iconHoverBoxShadow}
-			fill: ${iconHoverColor ? iconHoverColor : ''};
 			background: ${iconHoverBg ? iconHoverBg : ''};
 			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''};
+		}
+
+
+		.zolo-advanced-button.${uniqueId} .zolo-button:hover svg {
+			fill: ${iconHoverColor ? iconHoverColor : ''};
 		}
 
 		${

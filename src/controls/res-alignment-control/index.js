@@ -2,6 +2,8 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import IconicBtnGroup from '../iconic-btn-group';
 
 import { DEFAULT_ALIGNS } from '../../global/constants';
+import classNames from 'classnames';
+import ResetBtn from '../reset-btn';
 
 const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions, customClass = '' }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
@@ -14,9 +16,20 @@ const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions, 
 
     const defaultAlign = alignOptions && Array.isArray(alignOptions) ? alignOptions : DEFAULT_ALIGNS;
     return (
-        <div className={`zb-res-alignment-control-wrapper ${customClass}`}>
+        <div className={classNames('zb-res-alignment-control-wrapper', customClass)}>
             {resMode == 'Desktop' && (
-                <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
+                <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
+                    {desktopAlignment && (
+                        <ResetBtn
+                            customClass="zb-align-reset-btn"
+                            onReset={() => {
+                                setAttributes({
+                                    [`${controlName}ZRPAlign`]: '',
+                                });
+                            }}
+                        />
+                    )}
+
                     <IconicBtnGroup
                         onChange={(newAlign) => {
                             setAttributes({
@@ -30,7 +43,17 @@ const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions, 
             )}
 
             {resMode == 'Tablet' && (
-                <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
+                <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
+                    {tabletAlignment && (
+                        <ResetBtn
+                            customClass="zb-align-reset-btn"
+                            onReset={() => {
+                                setAttributes({
+                                    [`TAB${controlName}ZRPAlign`]: '',
+                                });
+                            }}
+                        />
+                    )}
                     <IconicBtnGroup
                         onChange={(newAlign) => {
                             setAttributes({
@@ -44,7 +67,17 @@ const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions, 
             )}
 
             {resMode == 'Mobile' && (
-                <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
+                <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
+                    {mobileAlignment && (
+                        <ResetBtn
+                            customClass="zb-align-reset-btn"
+                            onReset={() => {
+                                setAttributes({
+                                    [`MOB${controlName}ZRPAlign`]: '',
+                                });
+                            }}
+                        />
+                    )}
                     <IconicBtnGroup
                         onChange={(newAlign) => {
                             setAttributes({

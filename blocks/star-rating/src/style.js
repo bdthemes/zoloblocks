@@ -84,7 +84,7 @@ const Style = ({ props }) => {
             ${deskHeight}
             ${activeStarColor ? `fill: ${activeStarColor};` : ''}
         }
-        .${uniqueId} .zolo-star-rating .empty-star svg {
+        .${uniqueId} .zolo-star-rating svg.empty-star {
             ${inactiveStarColor ? `fill: ${inactiveStarColor};` : ''}
         }
     `;

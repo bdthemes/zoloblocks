@@ -8,6 +8,16 @@ const ColorControl = ({ label, defaultColor = '', color, onChange }) => {
         <div className="zb-color-control-wrapper">
             <Flex>
                 <FlexBlock>{label || __('Color', 'zolo-blocks')}</FlexBlock>
+                {color && (
+                    <FlexItem>
+                        <ResetBtn
+                            customClass="zb-reset-has-value"
+                            onReset={() => {
+                                onChange(defaultColor);
+                            }}
+                        />
+                    </FlexItem>
+                )}
                 <FlexItem>
                     <Button
                         className="color-ball"
@@ -16,13 +26,6 @@ const ColorControl = ({ label, defaultColor = '', color, onChange }) => {
                             background: color || defaultColor,
                         }}
                     ></Button>
-                </FlexItem>
-                <FlexItem>
-                    <ResetBtn
-                        onReset={() => {
-                            onChange(defaultColor);
-                        }}
-                    />
                 </FlexItem>
             </Flex>
             {colorPanel && (

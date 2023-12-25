@@ -22,6 +22,7 @@ const {
     ZoloPanelBody,
     IconicBtnGroup,
     ResCounterControl,
+    BoxShadowControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -44,6 +45,12 @@ import {
     COLUMNS,
     COLUMNS_GAP,
     ROWS_GAP,
+    ITEM_BG,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BORDER,
+    ITEM_BORDER_RADIUS,
+    ITEM_BOX_SHADOW,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -205,8 +212,31 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
+                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={ITEM_BORDER} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={ITEM_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={ITEM_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={ITEM_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={false} />
+                            <BoxShadowControl controlName={ITEM_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                        </ZoloPanelBody>
                         {titleToggle && (
-                            <ZoloPanelBody title={__('Title', 'zolo-block')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Title', 'zolo-block')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-block')}
                                     typoPrefixConstant={TITLE_TYPOGRAPHY}

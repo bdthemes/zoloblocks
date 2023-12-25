@@ -19,12 +19,16 @@ const Save = ({ attributes }) => {
         reviewerWebsiteLink,
         showRating,
         rating,
+        zoloId,
     } = attributes;
 
     return (
         <div
             {...useBlockProps.save({
                 className: classnames(uniqueId, `${preset ? preset : ''}`, classArrayToStr(parentClasses)),
+            })}
+            {...(zoloId && {
+                id: zoloId,
             })}
         >
             <div className="zolo-item">
