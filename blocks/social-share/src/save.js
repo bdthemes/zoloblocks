@@ -20,13 +20,14 @@ const Save = ({ attributes }) => {
                 socialProfiles.map((profile, index) => {
                     let socialName = Object.keys(profile.icon)[0];
                     const iconName = profile && profile.text && profile.text.toLowerCase();
+                    const tags = profile.tags && profile.tags.join(',');
                     return (
                         <div
                             key={index}
+                            data-hashtags={tags}
                             type='button'
                             data-sharer={profile.text.toLowerCase()}
                             data-url={profile.link && profile.link.url}
-                            // data-link={profile.link && profile.link.openInNewTab && '_blank'}
                             data-title={profile.text}
                             data-blank={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
                             className={`zolo-social-item zolo-${socialName} ${socialColor} ${iconName}`}

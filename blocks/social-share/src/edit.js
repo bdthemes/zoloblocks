@@ -42,10 +42,12 @@ export default function Edit(props) {
                     socialProfiles.map((profile, index) => {
                         let socialName = Object.keys(profile.icon)[0];
                         const iconName = profile && profile.text && profile.text.toLowerCase();
+                        const tags = profile.tags && profile.tags.join(',');
                         return (
                             <div
                                 key={index}
-                                type='button'
+                                type="button"
+                                data-hashtags={tags}
                                 data-sharer={profile.text.toLowerCase()}
                                 data-url={profile.link && profile.link.url}
                                 data-title={profile.text}

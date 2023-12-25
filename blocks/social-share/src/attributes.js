@@ -102,6 +102,7 @@ const attributes = {
                     openInNewTab: false,
                 },
                 text: 'Facebook',
+                tags: ['facebook', 'fb'],
             },
             {
                 id: 2,
@@ -111,6 +112,7 @@ const attributes = {
                     openInNewTab: false,
                 },
                 text: 'Twitter',
+                tags: ['twitter', 'tw'],
             },
             {
                 id: 3,
@@ -120,6 +122,7 @@ const attributes = {
                     openInNewTab: false,
                 },
                 text: 'Linkedin',
+                tags: ['linkedin', 'in'],
             },
             {
                 id: 4,
@@ -129,6 +132,7 @@ const attributes = {
                     openInNewTab: false,
                 },
                 text: 'Pinterest',
+                tags: ['pinterest', 'pin'],
             },
         ],
     },

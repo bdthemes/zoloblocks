@@ -4,7 +4,7 @@
 const { ZoloIconPicker, SortableControl, SortableItem, LinkControl } = window.zoloModule;
 
 const { __ } = wp.i18n;
-const { Button, PanelBody, TextControl } = wp.components;
+const { Button, PanelBody, TextControl, FormTokenField } = wp.components;
 
 const Sortable = ({ socialProfiles, setAttributes }) => {
     return (
@@ -38,6 +38,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
             <SortableControl defaultItems={socialProfiles} attributeName="socialProfiles" setAttributes={setAttributes}>
                 {socialProfiles &&
                     socialProfiles.map((profile, index) => {
+                        console.log(profile);
                         return (
                             <div className="dnd-container" key={index}>
                                 <Button
@@ -87,6 +88,20 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                                     socialProfiles: newItems,
                                                 });
                                             }}
+                                        />
+
+                                        <FormTokenField
+                                            label="Has Tags"
+                                            value={profile.tags}
+                                           onChange={(value) => {
+                                                const newItems = [...socialProfiles];
+                                                newItems[index].tags = value;
+                                                console.log(newItems);
+                                                setAttributes({
+                                                    socialProfiles: newItems,
+                                                });
+                                            }
+                                        }
                                         />
                                     </PanelBody>
                                 </SortableItem>

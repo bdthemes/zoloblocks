@@ -132,9 +132,10 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // }
 
             // social share Scripts and Styles
-            wp_enqueue_script('zolo-social-hare', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/sharer/sharer.min.js', ['jquery'], ZOLO_VERSION, true);
+            if (!is_admin() && has_block('zolo/social-share')) {
+                wp_enqueue_script('zolo-social-share', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/sharer/sharer.min.js', [], ZOLO_VERSION, true);
+            }
         }
-
         /**
          * Load Block Editor Assets
          *
