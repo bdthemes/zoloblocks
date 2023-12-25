@@ -21,7 +21,16 @@ import '../blocks/image-gallery/src';
 import '../blocks/post-grid/src';
 import '../blocks/post-list/src';
 import '../blocks/pricing-table/src';
+<<<<<<< HEAD
 import '../blocks/profile-card/src';
+=======
+import '../blocks/social-links/src';
+import '../blocks/social-share/src';
+import '../blocks/team-grid/src';
+import '../blocks/brand-child/src';
+import '../blocks/brand-grid/src';
+import '../blocks/team-child/src';
+>>>>>>> zakaria-dev
 import '../blocks/review/src';
 import '../blocks/review-child/src';
 import '../blocks/review-grid/src';
