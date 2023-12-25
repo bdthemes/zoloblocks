@@ -6,7 +6,7 @@ import { Fragment } from '@wordpress/element';
 
 import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
+import { cloneDeep } from 'lodash';
 import classnames from 'classnames';
 
 /**
@@ -55,6 +55,8 @@ export default function Edit(props) {
     if (preview) {
         return <img src={zoloParams.blocksPreview.profileCard} alt={__('Profile Card Preview', 'zolo-blocks')} />;
     }
+
+    const deepCloneStatusItems = cloneDeep(statusItems);
 
     return (
         <>
@@ -181,11 +183,11 @@ export default function Edit(props) {
                                 />
                             </div>
                         )}
-                        {showStatus && (
+                        {deepCloneStatusItems && (
                             <div className="zb-profile-status">
-                                {statusItems &&
-                                    statusItems.length > 0 &&
-                                    statusItems.map((item, index) => {
+                                {deepCloneStatusItems &&
+                                    deepCloneStatusItems.length > 0 &&
+                                    deepCloneStatusItems.map((item, index) => {
                                         return (
                                             <div className="zb-profile-status-item" key={index}>
                                                 <RichText
@@ -193,7 +195,7 @@ export default function Edit(props) {
                                                     className="zb-profile-status-count"
                                                     value={item && item.number}
                                                     onChange={(content) => {
-                                                        let newStatusItems = [...statusItems];
+                                                        let newStatusItems = [...deepCloneStatusItems];
                                                         newStatusItems[index].number = content;
                                                         setAttributes({
                                                             statusItems: newStatusItems,
@@ -207,7 +209,7 @@ export default function Edit(props) {
                                                     className="zb-profile-status-text"
                                                     value={item && item.label}
                                                     onChange={(content) => {
-                                                        let newStatusItems = [...statusItems];
+                                                        let newStatusItems = [...deepCloneStatusItems];
                                                         newStatusItems[index].label = content;
                                                         setAttributes({
                                                             statusItems: newStatusItems,

@@ -26,6 +26,7 @@ const Save = ({ attributes }) => {
         buttonText,
         buttonLink,
         globalLink,
+        zoloId,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -33,7 +34,12 @@ const Save = ({ attributes }) => {
     });
 
     return (
-        <div {...blockProps}>
+        <div
+            {...blockProps}
+            {...(zoloId && {
+                id: zoloId,
+            })}
+        >
             {globalLink === true ? (
                 <a
                     href={buttonLink && buttonLink.url}

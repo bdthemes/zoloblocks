@@ -10,6 +10,7 @@ const Save = ({ attributes }) => {
         image,
         headingTag,
         fancyTitle,
+        fancyLink,
         fancyListText,
         fancyIcon,
         imageToggle,
@@ -18,6 +19,7 @@ const Save = ({ attributes }) => {
         iconToggle,
         mediaType,
         mediaText,
+        zoloId,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -25,7 +27,12 @@ const Save = ({ attributes }) => {
     });
 
     return (
-        <div {...blockProps}>
+        <div
+            {...blockProps}
+            {...(zoloId && {
+                id: zoloId,
+            })}
+        >
             <div className="zb-fancy-list-content">
                 {imageToggle && (
                     <>

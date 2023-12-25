@@ -1,4 +1,11 @@
-import { BaseControl, PanelBody, SelectControl, TextControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import {
+    BaseControl,
+    PanelBody,
+    SelectControl,
+    TextControl,
+    __experimentalNumberControl as NumberControl,
+    __experimentalInputControl as InputControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import Select2 from 'react-select';
 import { SORT_ORDER, ORDER_BY, PRINT_TAXONOMY } from '../../global/constants';
@@ -10,6 +17,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
     const allTaxonomyList = zoloParams.get_taxonomies;
 
     let tpgAllTaxonomies = new Set();
+
     for (let tax in allTaxonomyList) {
         let value = allTaxonomyList[tax];
         if (postQuery && postQuery.postType && postQuery.postType === value.object_type[0]) {
@@ -19,6 +27,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
             });
         }
     }
+
     tpgAllTaxonomies = [...tpgAllTaxonomies];
 
     const changeTaxonomy = (terms, name) => {
@@ -29,6 +38,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
                 options: terms,
             },
         };
+
         setAttributes({ postQuery: { ...postQuery, postTaxonomies } });
     };
 
@@ -97,30 +107,30 @@ const QueryControl = ({ attributes, setAttributes }) => {
                 </BaseControl>
             ))}
 
-            <NumberControl
-                isShiftStepEnabled
+            <InputControl
                 label={__('Post Per Page', 'zolo-blocks')}
-                max={100}
-                min={-1}
                 value={postQuery.postPerPage}
                 onChange={(postPerPage) => {
                     setAttributes({ postQuery: { ...postQuery, postPerPage } });
                 }}
-                shiftStep={10}
-                step={1}
+                type="number"
+                min={1}
+                max={99}
+                labelPosition="edge"
+                __unstableInputWidth="64px"
             />
 
-            <NumberControl
-                isShiftStepEnabled
+            <InputControl
                 label={__('Offset', 'zolo-blocks')}
-                max={100}
-                min={0}
                 value={postQuery.postOffset}
                 onChange={(postOffset) => {
                     setAttributes({ postQuery: { ...postQuery, postOffset } });
                 }}
-                shiftStep={10}
-                step={1}
+                type="number"
+                min={1}
+                max={99}
+                labelPosition="edge"
+                __unstableInputWidth="64px"
             />
 
             <SelectControl

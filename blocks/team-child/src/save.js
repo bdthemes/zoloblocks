@@ -18,12 +18,16 @@ const Save = ({ attributes }) => {
         showSocialProfiles,
         socialProfiles,
         detailIcon,
+        zoloId,
     } = attributes;
 
     return (
         <div
             {...useBlockProps.save({
                 className: classNames(uniqueId + ` ${preset ? preset : ''}`, classArrayToStr(parentClasses)),
+            })}
+            {...(zoloId && {
+                id: zoloId,
             })}
         >
             <div className="zolo-item">

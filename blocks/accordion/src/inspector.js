@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, BaseControl, SelectControl, CardDivider } from '@wordpress/components';
+import { ToggleControl, BaseControl, SelectControl, CardDivider, __experimentalInputControl as InputControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -34,8 +34,6 @@ import {
     AC_CONTAINER_BOX_SHADOW,
     AC_CONTAINER_PADDING,
     AC_CONTAINER_MARGIN,
-    ICONCONTAINER_WIDTH,
-    ICONCONTAINER_HEIGHT,
     ICONTAINER_BG,
     ICONTAINER_HBG,
     ICONTAINER_PADDING,
@@ -73,8 +71,8 @@ function Inspector(props) {
         titleColor,
         titleHoverColor,
         atitleColor,
-        selectedPanel,
-        selectedTab,
+        initialOpen,
+        allowMultiple,
     } = attributes;
 
     const requiredProps = {
@@ -91,7 +89,30 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('Accordion Title', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                        <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                            <InputControl
+                                label={__('Initial open item', 'zolo-blocks')}
+                                value={initialOpen}
+                                onChange={(nextValue) =>
+                                    setAttributes({
+                                        initialOpen: nextValue,
+                                    })
+                                }
+                                type="number"
+                                min={1}
+                                max={99}
+                                labelPosition="edge"
+                                __unstableInputWidth="64px"
+                            />
+
+                            <ToggleControl
+                                label={__('Allow multiple open at a time', 'zolo-blocks')}
+                                checked={allowMultiple}
+                                onChange={() => setAttributes({ allowMultiple: !allowMultiple })}
+                                help={__('This feature works on the frontend only.', 'zolo-blocks')}
+                            />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Accordion Title', 'zolo-blocks')} panelProps={props}>
                             <SelectControl
                                 label={__('Title Tag', 'zolo-blocks')}
                                 value={titleTag}
@@ -108,7 +129,6 @@ function Inspector(props) {
                                 label={__('Collapsed Icon', 'zolo-blocks')}
                                 value={collapseIcon}
                                 onChange={(value) => {
-                                    console.log(value);
                                     setAttributes({
                                         collapseIcon: value,
                                     });
@@ -119,7 +139,6 @@ function Inspector(props) {
                                 label={__('Expanded Icon', 'zolo-blocks')}
                                 value={expandIcon}
                                 onChange={(value) => {
-                                    console.log(value);
                                     setAttributes({
                                         expandIcon: value,
                                     });
@@ -130,12 +149,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody
-                            title={__('Accordion Container', 'zolo-blocks')}
-                            firstOpen={true}
-                            stylePanel={true}
-                            panelProps={props}
-                        >
+                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={AC_CONTAINER_BORDER}
@@ -162,42 +176,12 @@ function Inspector(props) {
                             <NormalBGControl requiredProps={requiredProps} controlName={AC_CONTAINER_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={AC_CONTAINER_BOX_SHADOW} requiredProps={requiredProps} />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Accordion Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Accordion Head', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
-                                label={__('Typography', 'zolo-blocks')}
+                                label={__('Title Typography', 'zolo-blocks')}
                                 typoPrefixConstant={TITLE_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <TabPanelControl
-                                normalComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
-                                            color={titleColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    titleColor: value,
-                                                })
-                                            }
-                                        />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
-                                            color={titleHoverColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    titleHoverColor: value,
-                                                })
-                                            }
-                                        />
-                                    </>
-                                }
-                            />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Accordion Head', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={AC_HEADER_BORDER}
@@ -224,26 +208,36 @@ function Inspector(props) {
                             <TabPanelControl
                                 normalComponents={
                                     <>
+                                        <ColorControl
+                                            label={__('Title Color', 'zolo-blocks')}
+                                            color={titleColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    titleColor: value,
+                                                })
+                                            }
+                                        />
                                         <NormalBGControl requiredProps={requiredProps} controlName={AC_HEADER_BG} noMainBGImg={true} />
                                     </>
                                 }
                                 hoverComponents={
-                                    <NormalBGControl requiredProps={requiredProps} controlName={AC_HEADER_HBG} noMainBGImg={true} />
+                                    <>
+                                        <ColorControl
+                                            label={__('Title Color', 'zolo-blocks')}
+                                            color={titleHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    titleHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={AC_HEADER_HBG} noMainBGImg={true} />
+                                    </>
                                 }
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Accordion Icon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ResRangeControl label={__('Size', 'zolo-blocks')} controlName={ICON_SIZE} requiredProps={requiredProps} />
-                            <ResRangeControl
-                                label={__('Width', 'zolo-blocks')}
-                                controlName={ICONCONTAINER_WIDTH}
-                                requiredProps={requiredProps}
-                            />
-                            <ResRangeControl
-                                label={__('Height', 'zolo-blocks')}
-                                controlName={ICONCONTAINER_HEIGHT}
-                                requiredProps={requiredProps}
-                            />
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={ICONTAINER_BORDER}

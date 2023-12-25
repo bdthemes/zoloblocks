@@ -37,6 +37,14 @@ import {
     IMAGE_BORDER,
     ICON_IMAGE_BORDER_RADIUS,
     CONTENT_ALIGNMENT,
+    ITEM_BG,
+    ITEM_HOVER_BG,
+    ITEM_BORDER,
+    ITEM_BRADIUS,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BOX_SHADOW,
+    ITEM_HBOX_SHADOW,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -66,6 +74,15 @@ const attributes = {
             responsiveControls: true,
         },
     },
+    // item
+    ...generateBorderAttributies(ITEM_BORDER),
+    ...generateDimensionAttributes(ITEM_BRADIUS),
+    ...generateDimensionAttributes(ITEM_PADDING),
+    ...generateDimensionAttributes(ITEM_MARGIN),
+    ...generateBoxShadowAttributies(ITEM_BOX_SHADOW),
+    ...generateBoxShadowAttributies(ITEM_HBOX_SHADOW),
+    ...generateNormalBGAttributes(ITEM_BG),
+    ...generateNormalBGAttributes(ITEM_HOVER_BG),
     // Icon
     ...generateResAlignmentAttributies(ICON_BOX_ALIGNMENT),
     ...generateBorderAttributies(ICON_BORDER),
@@ -106,7 +123,10 @@ const attributes = {
 
     // content alignment
     ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
-
+    // item
+    itemHBorderColor: {
+        type: 'string',
+    },
     //Block Specific Attributes
     preset: {
         type: 'string',

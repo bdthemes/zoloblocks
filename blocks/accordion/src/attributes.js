@@ -28,8 +28,6 @@ import {
     AC_BODY_BG,
     AC_BODY_PADDING,
     AC_BODY_MARGIN,
-    ICONCONTAINER_WIDTH,
-    ICONCONTAINER_HEIGHT,
     ICONTAINER_BG,
     ICONTAINER_HBG,
     ICONTAINER_PADDING,
@@ -79,6 +77,15 @@ const attributes = {
     totalItems: {
         type: 'number',
         default: 1,
+    },
+    // first item
+    initialOpen: {
+        type: 'string',
+        default: '1',
+    },
+    allowMultiple: {
+        type: 'boolean',
+        default: false,
     },
     // Tab Icons
     collapseIcon: {
@@ -138,8 +145,6 @@ const attributes = {
     ...generateDimensionAttributes(AC_BODY_PADDING),
     ...generateDimensionAttributes(AC_BODY_MARGIN),
     // icon container
-    ...generateResRangeAttributies(ICONCONTAINER_WIDTH),
-    ...generateResRangeAttributies(ICONCONTAINER_HEIGHT),
     ...generateNormalBGAttributes(ICONTAINER_BG),
     ...generateNormalBGAttributes(AICONTAINER_BG),
     ...generateNormalBGAttributes(ICONTAINER_HBG),

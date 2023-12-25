@@ -61,7 +61,7 @@ const attributes = {
             boxShadow: {
                 prefix: 'mainBoxShadow',
             },
-            responsiveControls: true,
+            responsiveControls: false,
         },
     },
     // content alignment
@@ -109,7 +109,7 @@ const attributes = {
     },
     brandTitle: {
         type: 'string',
-        default: 'Zalando',
+        default: 'zoloblocks',
     },
     nameColor: {
         type: 'string',
@@ -119,7 +119,7 @@ const attributes = {
     },
     brandLabel: {
         type: 'string',
-        default: 'www.zalando.com',
+        default: 'www.your-brand.com',
     },
     labelColor: {
         type: 'string',

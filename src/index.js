@@ -6,29 +6,38 @@ import './global/hooks';
 
 //Import Blocks
 import '../blocks/container/src';
+import '../blocks/accordion/src';
+import '../blocks/accordion-child/src';
 import '../blocks/advanced-button/src';
 import '../blocks/advanced-heading/src';
 import '../blocks/advanced-icon-box/src';
+import '../blocks/brand-child/src';
+import '../blocks/brand-grid/src';
+import '../blocks/cta/src';
+import '../blocks/counter/src';
+import '../blocks/fancy-list/src';
+import '../blocks/fancy-list-child/src';
 import '../blocks/image-gallery/src';
 import '../blocks/post-grid/src';
 import '../blocks/post-list/src';
 import '../blocks/pricing-table/src';
+<<<<<<< HEAD
+import '../blocks/profile-card/src';
+=======
 import '../blocks/social-links/src';
 import '../blocks/social-share/src';
 import '../blocks/team-grid/src';
 import '../blocks/brand-child/src';
 import '../blocks/brand-grid/src';
 import '../blocks/team-child/src';
+>>>>>>> zakaria-dev
 import '../blocks/review/src';
-import '../blocks/review-grid/src';
 import '../blocks/review-child/src';
-import '../blocks/profile-card/src';
-import '../blocks/counter/src';
+import '../blocks/review-grid/src';
 import '../blocks/slide/src';
 import '../blocks/slider/src';
+import '../blocks/social-links/src';
 import '../blocks/star-rating/src';
-import '../blocks/accordion-child/src';
-import '../blocks/accordion/src';
-import '../blocks/cta/src';
-import '../blocks/fancy-list-child/src';
-import '../blocks/fancy-list/src';
+import '../blocks/team-child/src';
+import '../blocks/team-grid/src';
+// import '../blocks/audio-player/src';

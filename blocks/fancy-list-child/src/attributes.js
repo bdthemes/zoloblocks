@@ -17,6 +17,12 @@ import {
     ICON_BG,
     ICON_HBG,
     GAP,
+    ITEM_BG,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BORDER,
+    ITEM_BORDER_RADIUS,
+    ITEM_BOX_SHADOW,
 } from './constants';
 const {
     generateTypographyAttributes,
@@ -24,6 +30,7 @@ const {
     generateBorderAttributies,
     generateDimensionAttributes,
     generateNormalBGAttributes,
+    generateBoxShadowAttributies,
 } = window.zoloModule;
 
 const attributes = {
@@ -49,7 +56,7 @@ const attributes = {
             boxShadow: {
                 prefix: 'mainBoxShadow',
             },
-            responsiveControls: true,
+            responsiveControls: false,
         },
     },
     preset: {
@@ -58,6 +65,14 @@ const attributes = {
     fancyTitle: {
         type: 'string',
         default: 'Fancy Title',
+    },
+    fancyLinkToggle: {
+        type: 'boolean',
+        default: false,
+    },
+    fancyLink: {
+        type: 'object',
+        default: { url: '#', newTab: '_blank' },
     },
     titleToggle: {
         type: 'boolean',
@@ -94,7 +109,7 @@ const attributes = {
     fancyIcon: {
         type: 'string',
         default:
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>',
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>',
     },
     imageToggle: {
         type: 'boolean',
@@ -138,6 +153,14 @@ const attributes = {
     iconHBColor: {
         type: 'string',
     },
+    // item
+    ...generateNormalBGAttributes(ITEM_BG),
+    ...generateBorderAttributies(ITEM_BORDER),
+    ...generateDimensionAttributes(ITEM_BORDER_RADIUS),
+    ...generateDimensionAttributes(ITEM_PADDING),
+    ...generateDimensionAttributes(ITEM_MARGIN),
+    ...generateBoxShadowAttributies(ITEM_BOX_SHADOW),
+
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateDimensionAttributes(ICON_PADDING),
     ...generateNormalBGAttributes(ICON_BG),

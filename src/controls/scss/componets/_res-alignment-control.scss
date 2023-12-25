@@ -21,4 +21,14 @@
             padding: 5px 5px !important;
         }
     }
+
+    .zb-deive-wrapper {
+        position: relative;
+    }
+
+    .zb-reset-button.zb-align-reset-btn {
+        position: absolute;
+        top: 3px;
+        right: 0;
+    }
 }

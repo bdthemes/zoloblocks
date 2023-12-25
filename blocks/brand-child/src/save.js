@@ -15,12 +15,16 @@ const Save = ({ attributes }) => {
         enableLogoLink,
         logoLinkType,
         brandLabel,
+        zoloId,
     } = attributes;
 
     return (
         <div
             {...useBlockProps.save({
                 className: classnames(`zb-brand-item ${brandPhoto ? 'has-photo' : ''} ${uniqueId}`, classArrayToStr(parentClasses)),
+            })}
+            {...(zoloId && {
+                id: zoloId,
             })}
         >
             {enableLogoLink && logoLinkType === 'logo__global' ? (

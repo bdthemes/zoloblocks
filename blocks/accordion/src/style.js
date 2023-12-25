@@ -23,8 +23,6 @@ import {
     AC_CONTAINER_BOX_SHADOW,
     AC_CONTAINER_PADDING,
     AC_CONTAINER_MARGIN,
-    ICONCONTAINER_WIDTH,
-    ICONCONTAINER_HEIGHT,
     ICONTAINER_BG,
     ICONTAINER_HBG,
     ICONTAINER_PADDING,
@@ -165,26 +163,6 @@ const Style = ({ props }) => {
     } = generateDimensionStyle({
         controlName: ICONTAINER_PADDING,
         styleFor: 'padding',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: icHeightDesk,
-        tabRangeStyle: icHeightTab,
-        mobRangeStyle: icHeightMob,
-    } = generateResRangeStyle({
-        controlName: ICONCONTAINER_HEIGHT,
-        property: 'height',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: icWidthtDesk,
-        tabRangeStyle: icWidthTab,
-        mobRangeStyle: icWidthMob,
-    } = generateResRangeStyle({
-        controlName: ICONCONTAINER_WIDTH,
-        property: 'width',
         attributes,
     });
 
@@ -377,8 +355,6 @@ const Style = ({ props }) => {
             ${borderStyles}
             ${borderRadiusDesktop}
             ${icPaddingDesk}
-            ${icHeightDesk}
-            ${icWidthtDesk}
         }
 
         .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item:hover .zolo-accordion-toggle {
@@ -464,8 +440,6 @@ const Style = ({ props }) => {
             ${borderStylesTab}
             ${borderRadiusTab}
             ${icPaddingTab}
-            ${icHeightTab}
-            ${icWidthTab}
         }
 
         .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item:hover .zolo-accordion-toggle {
@@ -474,6 +448,7 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-toggle svg {
             ${iconSizeTab}
+            ${iconHSizeTab}
         }
 
         .${uniqueId} .zolo-accordion-inner {
@@ -516,8 +491,6 @@ const Style = ({ props }) => {
             ${borderStylesMob}
             ${borderRadiusMob}
             ${icPaddingMob}
-            ${icHeightMob}
-            ${icWidthMob}
         }
 
         .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-head-item:hover .zolo-accordion-toggle {
@@ -526,6 +499,7 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-accordion .zolo-accordion-toggle svg {
             ${iconSizeMob}
+            ${iconHSizeMob}
         }
 
         .${uniqueId} .zolo-accordion-inner {

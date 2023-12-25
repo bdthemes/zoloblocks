@@ -37,7 +37,6 @@ import {
     IMAGE_HOVER_BOX_SHADOW,
     IMAGE_HOVER_BACKGROUND,
     IMAGE_PADDING,
-    IMAGE_MARGIN,
     HEADING_BORDER,
     HEADING_BACKGROUND,
     HEADING_MARGIN,
@@ -229,16 +228,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    const {
-        dimensionStylesDesktop: imageMarginDesk,
-        dimensionStylesTab: imageMarginTab,
-        dimensionStylesMobile: imageMarginMob,
-    } = generateDimensionStyle({
-        controlName: IMAGE_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
     const { boxShadowStyle: imageBoxShadow } = generateBoxShadowStyles({
         attributes,
         controlName: IMAGE_BOX_SHADOW,
@@ -416,7 +405,6 @@ export default function Style({ props }) {
 			${containerBorderDesk}
 			${containerBorderRadiusDesk}
 			${containerBoxShadow}
-			overflow:hidden;
 		}
 		.${uniqueId}:hover {
 			${containerHoverDeskBGStyle}
@@ -433,7 +421,6 @@ export default function Style({ props }) {
 			${imageBorderDesk}
 			${imageBorderRadiusDesk}
 			${imageBoxShadow}
-			${imageMarginDesk}
 			${imagePaddingDesk}
 		}
 		.${uniqueId} .zolo-image-wrap:hover {
@@ -503,7 +490,6 @@ export default function Style({ props }) {
 		${imageTabBGStyle}
 		${imageBorderTab}
 		${imageBorderRadiusTab}
-		${imageMarginTab}
 		${imagePaddingTab}
 	}
 	.${uniqueId} .zolo-image-wrap:hover {
@@ -556,7 +542,6 @@ export default function Style({ props }) {
 		${imageMobBGStyle}
 		${imageBorderMob}
 		${imageBorderRadiusMob}
-		${imageMarginMob}
 		${imagePaddingMob}
 	}
 	.${uniqueId} .zolo-image-wrap:hover {

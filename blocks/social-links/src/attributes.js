@@ -17,7 +17,6 @@ import {
     COLUMN_COUNT,
     COLUMNS_GAP,
     ROW_GAP,
-    BUTTON_SIZE,
     BLOCK_MARGIN,
     PT_ICON_WIDTH,
     PT_ICON_HEIGHT,
@@ -67,7 +66,6 @@ const attributes = {
 
     //button
     ...generateDimensionAttributes(BUTTON_PADDING),
-    ...generateResRangeAttributies(BUTTON_SIZE),
     //icon spacing
     ...generateResRangeAttributies(ICON_TEXT_SPACING),
 

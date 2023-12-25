@@ -1,10 +1,14 @@
-.zolo-accordion-item {
+.wp-block-zolo-accordion-child {
     margin-top: 8px;
     border: 1px solid var(--zoloblocks-item-border-color);
     box-sizing: border-box;
     border-radius: 10px;
     overflow: hidden;
     transition: all 0.2s ease;
+}
+
+.zolo-accordion-item {
+    box-sizing: border-box;
     &.js-enabled {
         .zolo-accordion-panel {
             visibility: hidden;
@@ -55,6 +59,7 @@
 
     .zolo-accordion-inner {
         padding: 20px;
+        overflow: hidden;
     }
 
     .zolo-accordion-expanded-mode {

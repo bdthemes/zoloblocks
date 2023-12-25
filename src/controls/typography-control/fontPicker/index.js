@@ -5,6 +5,8 @@ import { fontsseControl } from '@wordpress/components';
 import { withInstanceId } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
+import WebFont from 'webfontloader';
+
 /**
  * External Dependencies
  */
@@ -33,16 +35,36 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
     const onChangeValue = (select) => {
         let selectedFont = select.label;
 
-        const googleFontsAttr =
-            ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic';
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
+        // const googleFontsAttr =
+        //   ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic';
+
+        // if (selectedFont) {
+        //   const link = document.createElement('link');
+        //   link.rel = 'stylesheet';
+        //   link.href = 'https://fonts.googleapis.com/css?family=' + selectedFont.replace(/ /g, '+') + googleFontsAttr;
+        //   document.head.appendChild(link);
+        // }
 
         if (selectedFont) {
-            link.href = 'https://fonts.googleapis.com/css?family=' + selectedFont.replace(/ /g, '+') + googleFontsAttr;
-            document.head.appendChild(link);
+            // skip if default OR Arial, Helvetica, Times New Roman, Georgia
+            if (
+                selectedFont === 'Default' ||
+                selectedFont === 'Arial' ||
+                selectedFont === 'Helvetica' ||
+                selectedFont === 'Times-New-Roman' ||
+                selectedFont === 'Georgia'
+            ) {
+                onChange(selectedFont);
+                return;
+            }
         }
-
+        let webFontConfig = {
+            google: {
+                families: [selectedFont],
+            },
+            context: frames['editor-canvas'],
+        };
+        WebFont.load(webFontConfig);
         onChange(selectedFont);
     };
 

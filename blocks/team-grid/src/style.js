@@ -61,6 +61,12 @@ import {
     DPL_ICON_SIZE,
     TEAM_MEMBER_CONTAINER_PADDING,
     TEAM_MEMBER_CONTAINER_MARGIN,
+    ITEM_BG,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BORDER,
+    ITEM_BORDER_RADIUS,
+    ITEM_BOX_SHADOW,
 } from './constants';
 
 import {
@@ -588,6 +594,60 @@ const Style = ({ props }) => {
         styleFor: 'margin',
         attributes,
     });
+    // item
+    const {
+        backgroundStylesDesktop: itemDeskBg,
+        backgroundStylesTab: itemTabBg,
+        backgroundStylesMobile: itemMobBg,
+    } = generateNormalBGControlStyles({
+        controlName: ITEM_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        desktopBorderStyle: itemBorderDeskStyle,
+        tabBorderStyle: itemBorderTabStyle,
+        mobBorderStyle: itemBorderMobStyle,
+    } = generateBorderStyle({
+        controlName: ITEM_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: itemDeskBorderRadius,
+        dimensionStylesTab: itemTabBorderRadius,
+        dimensionStylesMobile: itemMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: ITEM_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: itemBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: ITEM_BOX_SHADOW,
+    });
+
+    const {
+        dimensionStylesDesktop: itemDeskPadding,
+        dimensionStylesTab: itemTabPadding,
+        dimensionStylesMobile: itemMobPadding,
+    } = generateDimensionStyle({
+        controlName: ITEM_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: itemDeskMargin,
+        dimensionStylesTab: itemTabMargin,
+        dimensionStylesMobile: itemMobMargin,
+    } = generateDimensionStyle({
+        controlName: ITEM_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
 
     /**
      * All Style Combination
@@ -598,6 +658,14 @@ const Style = ({ props }) => {
             ${deskColumnsGap};
             ${deskRowsGap};
         }
+          .${uniqueId}.wp-block-zolo-team-grid .zolo-item {
+            ${itemDeskBg}
+			${itemBorderDeskStyle}
+			${itemDeskBorderRadius}
+			${itemDeskPadding}
+			${itemDeskMargin}
+			${itemBoxShadow}
+		}
         .${uniqueId} {
 			${teamMemberContainerDeskPadding}
 			${teamMemberContainerDeskMargin}
@@ -623,17 +691,15 @@ const Style = ({ props }) => {
             ${socialContainerDeskPadding}
             ${socialContainerDeskMargin}
 		}
-
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
             ${teamDeskAlignStyle}
+            ${photoDeskMargin}
         }
-
 		.${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
 			${photoDeskBGStyle}
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
 			${photoDeskPadding}
-			${photoDeskMargin}
 			${teamPhotoBoxShadow}
             ${photoDeskSize}
 		}
@@ -717,6 +783,14 @@ const Style = ({ props }) => {
             ${tabColumnsGap};
             ${tabRowsGap};
         }
+         .${uniqueId}.wp-block-zolo-team-grid .zolo-item {
+            ${itemTabBg}
+			${itemBorderTabStyle}
+			${itemTabBorderRadius}
+			${itemTabPadding}
+			${itemTabMargin}
+			${itemBoxShadow}
+		}
 
         .${uniqueId} {
             ${teamMemberContainerTabPadding}
@@ -749,6 +823,7 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
             ${teamTabAlignStyle}
+            ${photoTabMargin}
         }
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
@@ -756,7 +831,6 @@ const Style = ({ props }) => {
             ${photoTabBorderStyle}
             ${photoTabBorderRadius}
             ${photoTabPadding}
-            ${photoTabMargin}
             ${teamPhotoBoxShadow}
             ${photoTabSize}
         }
@@ -827,7 +901,14 @@ const Style = ({ props }) => {
             ${mobColumnsGap};
             ${mobRowsGap};
         }
-
+         .${uniqueId}.wp-block-zolo-team-grid .zolo-item {
+            ${itemDeskBg}
+			${itemBorderMobStyle}
+			${itemMobBorderRadius}
+			${itemMobPadding}
+			${itemMobMargin}
+			${itemBoxShadow}
+		}
         .${uniqueId} {
             ${teamMemberContainerMobPadding}
             ${teamMemberContainerMobMargin}
@@ -859,6 +940,7 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
             ${teamMobAlignStyle}
+            ${photoMobMargin}
         }
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
@@ -866,7 +948,6 @@ const Style = ({ props }) => {
             ${photoMobBorderStyle}
             ${photoMobBorderRadius}
             ${photoMobPadding}
-            ${photoMobMargin}
             ${teamPhotoBoxShadow}
             ${photoMobSize}
         }

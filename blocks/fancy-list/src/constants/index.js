@@ -15,6 +15,14 @@ export const PRESETS = [
     { label: __('Preset 5', 'zolo-blocks'), value: 'style-5' },
 ];
 
+// item
+export const ITEM_BG = 'ItemBg';
+export const ITEM_PADDING = 'ItemPadding';
+export const ITEM_MARGIN = 'ItemMargin';
+export const ITEM_BORDER = 'ItemBorder';
+export const ITEM_BORDER_RADIUS = 'ItemBorderRadius';
+export const ITEM_BOX_SHADOW = 'ItemBoxShadow';
+
 // Grid Background
 export const COLUMNS = 'gridColumns';
 export const COLUMNS_GAP = 'columnsGap';

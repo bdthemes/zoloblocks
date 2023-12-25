@@ -4,6 +4,7 @@
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { CardDivider, PanelBody, TextControl, TextareaControl, ToggleControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { cloneDeep } from 'lodash';
 
 /**
  * Internal depencencies
@@ -117,8 +118,6 @@ function Inspector(props) {
         iconColor,
         iconHoverColor,
         iconHoverBorderColor,
-        selectedPanel,
-        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -127,6 +126,8 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
+
+    const deepCloneStatusItems = cloneDeep(statusItems);
 
     return (
         <InspectorControls key="controls">
@@ -330,8 +331,8 @@ function Inspector(props) {
                         {showStatus && (
                             <ZoloPanelBody title={__('Status', 'zolo-blocks')} panelProps={props}>
                                 <SortableControl defaultItems={statusItems} attributeName="statusItems" setAttributes={setAttributes}>
-                                    {statusItems &&
-                                        statusItems.map((item, index) => {
+                                    {deepCloneStatusItems &&
+                                        deepCloneStatusItems.map((item, index) => {
                                             return (
                                                 <div className="dnd-container no-trash" key={index}>
                                                     <SortableItem key={item.id} id={item.id}>
@@ -340,7 +341,7 @@ function Inspector(props) {
                                                                 label={__('Number', 'zolo-blocks')}
                                                                 value={item && item.number}
                                                                 onChange={(value) => {
-                                                                    let newStatusItems = [...statusItems];
+                                                                    let newStatusItems = [...deepCloneStatusItems];
                                                                     newStatusItems[index].number = value;
                                                                     setAttributes({
                                                                         statusItems: newStatusItems,
@@ -352,7 +353,7 @@ function Inspector(props) {
                                                                 label={__('Label', 'zolo-blocks')}
                                                                 value={item && item.label}
                                                                 onChange={(value) => {
-                                                                    let newStatusItems = [...statusItems];
+                                                                    let newStatusItems = [...deepCloneStatusItems];
                                                                     newStatusItems[index].label = value;
                                                                     setAttributes({
                                                                         statusItems: newStatusItems,
@@ -423,6 +424,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={BADGE_TYPO}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zolo-blocks')}
@@ -540,6 +542,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={PROFILE_USERNAME}
                                     requiredProps={requiredProps}
+                                    max={64}
                                 />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
@@ -565,6 +568,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={EMAIL_TYPO}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
@@ -590,6 +594,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={BIO_TYPO}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
@@ -615,6 +620,7 @@ function Inspector(props) {
                                     label={__('Number Typography', 'zolo-blocks')}
                                     typoPrefixConstant={NUMBER_TYPO}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <CardDivider />
                                 <ColorControl
@@ -630,6 +636,7 @@ function Inspector(props) {
                                     label={__('Label Typography', 'zolo-blocks')}
                                     typoPrefixConstant={LABEL_TYPO}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <CardDivider />
                                 <ResRangeControl
@@ -652,6 +659,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={BTN_TYPO}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <TabPanelControl
                                     normalComponents={
@@ -748,6 +756,17 @@ function Inspector(props) {
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={ICONS_BORDER}
                                     requiredProps={requiredProps}
+                                    hoverControl={
+                                        <ColorControl
+                                            label={__('Border Color', 'zolo-blocks')}
+                                            color={iconHoverBorderColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    iconHoverBorderColor: color,
+                                                })
+                                            }
+                                        />
+                                    }
                                 />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
@@ -795,15 +814,6 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 controlName={ICONS_HOVER_BG}
                                                 noMainBGImg={true}
-                                            />
-                                            <ColorControl
-                                                label={__('Border Color', 'zolo-blocks')}
-                                                color={iconHoverBorderColor}
-                                                onChange={(color) =>
-                                                    setAttributes({
-                                                        iconHoverBorderColor: color,
-                                                    })
-                                                }
                                             />
                                         </>
                                     }

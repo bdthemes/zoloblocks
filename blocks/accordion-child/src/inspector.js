@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl } from '@wordpress/components';
+import { TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -30,8 +30,6 @@ import {
     AC_CONTAINER_BOX_SHADOW,
     AC_CONTAINER_PADDING,
     AC_CONTAINER_MARGIN,
-    ICONCONTAINER_WIDTH,
-    ICONCONTAINER_HEIGHT,
     ICONTAINER_BG,
     ICONTAINER_HBG,
     ICONTAINER_PADDING,
@@ -55,7 +53,7 @@ import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, title, iconColor, iconHoverColor, titleColor, titleHoverColor, selectedPanel, selectedTab } = attributes;
+    const { resMode, title, iconColor, iconHoverColor, titleColor, titleHoverColor } = attributes;
 
     const requiredProps = {
         resMode,
@@ -86,12 +84,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody
-                            title={__('Accordion Container', 'zolo-blocks')}
-                            firstOpen={true}
-                            stylePanel={true}
-                            panelProps={props}
-                        >
+                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={AC_CONTAINER_BORDER}
@@ -118,42 +111,12 @@ function Inspector(props) {
                             <NormalBGControl requiredProps={requiredProps} controlName={AC_CONTAINER_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={AC_CONTAINER_BOX_SHADOW} requiredProps={requiredProps} />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Accordion Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Accordion Head', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
-                                label={__('Typography', 'zolo-blocks')}
+                                label={__('Title Typography', 'zolo-blocks')}
                                 typoPrefixConstant={TITLE_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <TabPanelControl
-                                normalComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
-                                            color={titleColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    titleColor: value,
-                                                })
-                                            }
-                                        />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
-                                            color={titleHoverColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    titleHoverColor: value,
-                                                })
-                                            }
-                                        />
-                                    </>
-                                }
-                            />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Accordion Head', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={AC_HEADER_BORDER}
@@ -180,26 +143,36 @@ function Inspector(props) {
                             <TabPanelControl
                                 normalComponents={
                                     <>
+                                        <ColorControl
+                                            label={__('Title Color', 'zolo-blocks')}
+                                            color={titleColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    titleColor: value,
+                                                })
+                                            }
+                                        />
                                         <NormalBGControl requiredProps={requiredProps} controlName={AC_HEADER_BG} noMainBGImg={true} />
                                     </>
                                 }
                                 hoverComponents={
-                                    <NormalBGControl requiredProps={requiredProps} controlName={AC_HEADER_HBG} noMainBGImg={true} />
+                                    <>
+                                        <ColorControl
+                                            label={__('Title Color', 'zolo-blocks')}
+                                            color={titleHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    titleHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={AC_HEADER_HBG} noMainBGImg={true} />
+                                    </>
                                 }
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Accordion Icon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ResRangeControl label={__('Size', 'zolo-blocks')} controlName={ICON_SIZE} requiredProps={requiredProps} />
-                            <ResRangeControl
-                                label={__('Width', 'zolo-blocks')}
-                                controlName={ICONCONTAINER_WIDTH}
-                                requiredProps={requiredProps}
-                            />
-                            <ResRangeControl
-                                label={__('Height', 'zolo-blocks')}
-                                controlName={ICONCONTAINER_HEIGHT}
-                                requiredProps={requiredProps}
-                            />
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={ICONTAINER_BORDER}

@@ -238,7 +238,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl controlName={ITEM_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={ITEM_PADDING}
@@ -252,6 +251,7 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={false} />
+                            <BoxShadowControl controlName={ITEM_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
@@ -261,7 +261,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl controlName={CONTENT_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={CONTENT_PADDING}
@@ -275,6 +274,7 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
+                            <BoxShadowControl controlName={CONTENT_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Photo', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ResRangeControl
@@ -295,7 +295,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl controlName={TEAM_PHOTO_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={TEAM_PHOTO_PADDING}
@@ -309,6 +308,7 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={PHOTO_BG} noMainBGImg={true} />
+                            <BoxShadowControl controlName={TEAM_PHOTO_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Name', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
@@ -417,6 +417,17 @@ function Inspector(props) {
                                         label={__('Border', 'zolo-blocks')}
                                         controlName={ICONS_BORDER}
                                         requiredProps={requiredProps}
+                                        hoverControl={
+                                            <ColorControl
+                                                label={__('Border Color', 'zolo-blocks')}
+                                                color={iconHoverBorderColor}
+                                                onChange={(color) =>
+                                                    setAttributes({
+                                                        iconHoverBorderColor: color,
+                                                    })
+                                                }
+                                            />
+                                        }
                                     />
                                     <ResDimensionsControl
                                         label={__('Border Radius', 'zolo-blocks')}
@@ -450,15 +461,6 @@ function Inspector(props) {
                                         }
                                         hoverComponents={
                                             <>
-                                                <ColorControl
-                                                    label={__('Border Color', 'zolo-blocks')}
-                                                    color={iconHoverBorderColor}
-                                                    onChange={(color) =>
-                                                        setAttributes({
-                                                            iconHoverBorderColor: color,
-                                                        })
-                                                    }
-                                                />
                                                 <ColorControl
                                                     label={__('Color', 'zolo-blocks')}
                                                     color={iconHoverColor}

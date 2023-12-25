@@ -3,14 +3,19 @@ import classnames from 'classnames';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, title, titleTag, parentClasses, collapseIcon, expandIcon } = attributes;
+    const { uniqueId, title, titleTag, parentClasses, collapseIcon, expandIcon, zoloId } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, 'zolo-accordion-item ac', classArrayToStr(parentClasses)),
     });
 
     return (
-        <div {...blockProps}>
+        <div
+            {...blockProps}
+            {...(zoloId && {
+                id: zoloId,
+            })}
+        >
             <button type="button" className="ac-trigger zolo-accordion-head-item">
                 <RichText.Content tagName={titleTag} className="zolo-accordion-head-title" value={title} />
                 <div className="zolo-accordion-toggle">

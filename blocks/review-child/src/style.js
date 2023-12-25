@@ -408,10 +408,10 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
 			${ratingIconWidthDesk}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .filled-star svg, .${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .fraction-star svg {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
 			${activeRatingColor ? `fill: ${activeRatingColor};` : ''}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating .empty-star svg {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg.empty-star {
 			${inactiveRatingColor ? `fill: ${inactiveRatingColor};` : ''}
 		}
 	`;

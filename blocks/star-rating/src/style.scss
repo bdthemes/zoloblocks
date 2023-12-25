@@ -20,10 +20,14 @@
         }
     }
 
-    .zolo-star-rating svg {
-        width: 18px;
-        height: 18px;
-        fill: #f0ad4e;
+    .zolo-star-rating {
+        display: inline-flex;
+        gap: 3px;
+        svg {
+            width: 18px;
+            height: 18px;
+            fill: #f0ad4e;
+        }
     }
 
     .start-rating-title {

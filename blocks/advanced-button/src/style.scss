@@ -37,6 +37,7 @@
 .wp-block-zolo-advanced-button {
     position: relative;
     z-index: 1;
+    box-sizing: border-box;
 }
 
 .zolo-advanced-button {
@@ -300,12 +301,15 @@
         display: block;
     }
 
-    .zolo__display-icon svg {
-        width: 16px;
-        height: 16px;
+    .zolo__display-icon {
         display: block;
-        fill: #fff;
-        box-sizing: content-box;
+        svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+            fill: #fff;
+            box-sizing: content-box;
+        }
     }
 }
 

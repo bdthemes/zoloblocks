@@ -60,7 +60,32 @@ export default function Edit(props) {
         },
         {
             allowedBlocks: ['zolo/fancy-list-child'],
-            template: [['zolo/fancy-list-child'], ['zolo/fancy-list-child'], ['zolo/fancy-list-child'], ['zolo/fancy-list-child']],
+            template: [
+                [
+                    'zolo/fancy-list-child',
+                    {
+                        fancyTitle: 'Fancy Title #1',
+                    },
+                ],
+                [
+                    'zolo/fancy-list-child',
+                    {
+                        fancyTitle: 'Fancy Title #2',
+                    },
+                ],
+                [
+                    'zolo/fancy-list-child',
+                    {
+                        fancyTitle: 'Fancy Title #3',
+                    },
+                ],
+                [
+                    'zolo/fancy-list-child',
+                    {
+                        fancyTitle: 'Fancy Title #4',
+                    },
+                ],
+            ],
             templateLock: false,
             renderAppender: false,
             orientation: 'horizontal',

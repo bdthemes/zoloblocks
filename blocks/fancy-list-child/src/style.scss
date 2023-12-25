@@ -35,8 +35,6 @@
 
     .zb-fancy-icon,
     .zb-fancy-list-number {
-        width: 35px;
-        height: 35px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -45,10 +43,18 @@
         border-radius: var(--zoloblocks-button-border-radius);
         transition: all 0.3s ease-in-out;
     }
+    
+    .zb-fancy-icon {
+        padding: 10px;
+    }
+
+    .zb-fancy-list-number {
+        padding: 7px 17px;
+    }
 
     .zb-fancy-icon svg {
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
         fill: var(--zoloblocks-brand-button-color);
         display: block;
     }

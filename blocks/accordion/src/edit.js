@@ -44,6 +44,7 @@ export default function Edit(props) {
                 acInstanceRef.current = new Accordion(acContainerRef.current, {
                     duration: 400,
                     showMultiple: false,
+                    // openOnInit: keepFirstOpen ? [0] : [],
                 });
             }
             setDelayedInit(false);
@@ -69,7 +70,7 @@ export default function Edit(props) {
                 [
                     'zolo/accordion-child',
                     {
-                        title: 'Accordion Title',
+                        title: 'Accordion Title 1',
                         titleTag: 'h3',
                     },
                 ],

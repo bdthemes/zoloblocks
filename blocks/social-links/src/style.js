@@ -23,7 +23,6 @@ import {
     COLUMNS_GAP,
     ROW_GAP,
     BUTTON_PADDING,
-    BUTTON_SIZE,
     ICON_TEXT_SPACING,
     BLOCK_MARGIN,
     BTN_SHADOW,
@@ -52,26 +51,6 @@ const Style = ({ props }) => {
     } = attributes;
 
     //  button general settings
-    const {
-        desktopRangeStyle: buttonSize,
-        tabRangeStyle: buttonSizeTab,
-        mobRangeStyle: buttonSizeMob,
-    } = generateResRangeStyle({
-        controlName: BUTTON_SIZE,
-        property: 'width',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: buttonHSize,
-        tabRangeStyle: buttonHSizeTab,
-        mobRangeStyle: buttonHSizeMob,
-    } = generateResRangeStyle({
-        controlName: BUTTON_SIZE,
-        property: 'height',
-        attributes,
-    });
-
     const {
         desktopBorderStyle: borderStyles,
         tabBorderStyle: borderStylesTab,
@@ -190,6 +169,7 @@ const Style = ({ props }) => {
         property: 'width',
         attributes,
     });
+
     const {
         desktopRangeStyle: ptIconHeight,
         tabRangeStyle: ptIconHeightTab,
@@ -211,25 +191,19 @@ const Style = ({ props }) => {
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
 		}
 		.${uniqueId}.wp-block-zolo-social-links .zolo-social-item {
-			${borderStyles}
 			${paddingDesktop}
 			${gapDesktop}
 			${btnRadiusDesk}
-			${normalShadow}
+            ${textTypoDesk}
 
-		}
-        .${uniqueId}.wp-block-zolo-social-links .zolo-social-item svg{
-			${buttonSize}
-            ${buttonHSize}
-        }
-		.${uniqueId}.wp-block-zolo-social-links .zolo-social-text {
-			${textTypoDesk}
 		}
 		${
             socialColor === 'custom'
                 ? `.${uniqueId}.wp-block-zolo-social-links .zolo-social-item{
 					color:${socialTextColor};
 					background:${socialBgColor};
+                    ${borderStyles}
+                    ${normalShadow}
 				} .${uniqueId}.wp-block-zolo-social-links .zolo-social-item svg{
                     fill:${socialTextColor};
                 }`
@@ -250,11 +224,9 @@ const Style = ({ props }) => {
         }
 
         ${
-            socialColor === 'custom' && preset === 'preset-3'
+            socialColor === 'custom'
                 ? `.${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-icon{
                     background:${iconBgColor};
-                    ${ptIconWidth}
-                    ${ptIconHeight}
                 } 
                 .${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-item svg{
                     fill:${iconColor};
@@ -265,6 +237,16 @@ const Style = ({ props }) => {
                 .${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-item:hover svg{
                     fill:${iconHoverColor};
                 }
+         `
+                : ' '
+        }
+
+        ${
+            preset === 'preset-3'
+                ? `.${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-icon{
+                    ${ptIconWidth}
+                    ${ptIconHeight}
+                } 
          `
                 : ' '
         }
@@ -281,17 +263,10 @@ const Style = ({ props }) => {
 			${paddingTab}
 			${gapTablet}
 			${btnRadiusTab}
-
-		}
-        .${uniqueId}.wp-block-zolo-social-links .zolo-social-item svg {
-			${buttonSizeTab}
-            ${buttonHSizeTab}
-        }
-		.${uniqueId}.wp-block-zolo-social-links .zolo-social-text {
-			${textTypoTab}
+            ${textTypoTab}
 		}
         ${
-            socialColor === 'custom' && preset === 'preset-3'
+            preset === 'preset-3'
                 ? `.${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-icon{
                 ${ptIconWidthTab}
                 ${ptIconHeightTab}
@@ -307,25 +282,15 @@ const Style = ({ props }) => {
 			${rowGapMobStyle}
 			grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
 		}
-
 		.${uniqueId}.wp-block-zolo-social-links .zolo-social-item {
 			${borderStylesMob}
 			${paddingMob}
 			${gapMobile}
 			${btnRadiusMob}
+            ${textTypoMob}
 		}
-
-        .${uniqueId}.wp-block-zolo-social-links .zolo-social-item svg{ 
-            ${buttonSizeMob}
-            ${buttonHSizeMob}
-        }
-
-		.${uniqueId}.wp-block-zolo-social-links .zolo-social-text {
-			${textTypoMob}
-		}
-
         ${
-            socialColor === 'custom' && preset === 'preset-3'
+            preset === 'preset-3'
                 ? `.${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-icon{
                 ${ptIconWidthMob}
                 ${ptIconHeightMob}

@@ -1,4 +1,5 @@
 import {
+    CONTENT_ALIGN,
     COLUMNS_GAP,
     THUMBNAIL_HEIGHT,
     COLUMN_PADDING,
@@ -32,9 +33,11 @@ import {
     FCONTENT_PADDING,
     FCONTAINER_PADDING,
     FCONTAINER_BG,
+    FCONTAINER_OVERLAY,
     FCONTAINER_BORDER,
     FCONTAINER_BORDER_RADIUS,
     FCONTAINER_SHADOW,
+    META_SPACE,
 } from './constants';
 
 import {
@@ -102,8 +105,18 @@ function Style({ props }) {
         fcountBGColor,
     } = attributes;
 
-    // Featured Post
+    // content align
+    const {
+        desktopAlignStyle: contetnAlignDesk,
+        tabAlignStyle: contetnAlignTab,
+        mobAlignStyle: contetnAlignMob,
+    } = generateResAlignmentStyle({
+        controlName: CONTENT_ALIGN,
+        property: 'text-align',
+        attributes,
+    });
 
+    // Featured Post
     const {
         desktopRangeStyle: fthumbHeightDesk,
         tabRangeStyle: fthumbHeightTab,
@@ -175,6 +188,16 @@ function Style({ props }) {
         backgroundStylesMobile: fcontainerMobBGStyle,
     } = generateNormalBGControlStyles({
         controlName: FCONTAINER_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        backgroundStylesDesktop: fcontainerDeskOverlayStyle,
+        backgroundStylesTab: fcontainerTabOverlayStyle,
+        backgroundStylesMobile: fcontainerMobOverlayStyle,
+    } = generateNormalBGControlStyles({
+        controlName: FCONTAINER_OVERLAY,
         attributes,
         noMainBGImg: true,
     });
@@ -434,16 +457,27 @@ function Style({ props }) {
         mobRangeStyle: countWidthMob,
     } = generateResRangeStyle({
         controlName: COUNT_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: countMinWidthDesk,
+        tabRangeStyle: countMinWidthTab,
+        mobRangeStyle: countMinWidthMob,
+    } = generateResRangeStyle({
+        controlName: COUNT_SIZE,
         property: 'min-width',
         attributes,
     });
+
     const {
         desktopRangeStyle: countHeightDesk,
         tabRangeStyle: countHeightTab,
         mobRangeStyle: countHeightMob,
     } = generateResRangeStyle({
         controlName: COUNT_SIZE,
-        property: 'min-height',
+        property: 'height',
         attributes,
     });
     const {
@@ -531,6 +565,17 @@ function Style({ props }) {
         attributes,
     });
 
+    // post meta space
+    const {
+        desktopRangeStyle: metaSpaceDesk,
+        tabRangeStyle: metaSpaceTab,
+        mobRangeStyle: metaSpaceMob,
+    } = generateResRangeStyle({
+        controlName: META_SPACE,
+        property: 'gap',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -553,6 +598,18 @@ function Style({ props }) {
         ${fcontainerDeskBorderStyle}
         ${fcontainerDeskBorderRadius}
         ${fcontainerBoxShadow}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-image::before{
+        ${fcontainerDeskOverlayStyle}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item .zolo-post-meta {
+        ${metaSpaceDesk}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item .zolo-post-content{
+        ${contetnAlignDesk}
       }
 
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-content{
@@ -582,9 +639,7 @@ function Style({ props }) {
       }
       
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta,
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-author-name,
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-date,
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .meta-separator {
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-author-name {
         ${fmetaTypoDesk}
         ${fmetaColor ? `color:${fmetaColor};` : ''}
       }
@@ -616,7 +671,6 @@ function Style({ props }) {
         ${fcatHoverColor ? `color:${fcatHoverColor};` : ''}
         ${fcatBgHoverColor ? `background-color:${fcatBgHoverColor};` : ''}
       }
-
 
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-image{
         ${thumbnailHeightDesk}
@@ -650,12 +704,6 @@ function Style({ props }) {
         ${thumbBoxShadow}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-dateTime{
-        ${metaTypoDesk}
-        ${metaMarginDesk}
-        ${metaColor ? `color:${metaColor};` : ''}
-      }
-
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category{
         ${catGapDesk}
         ${catMarginDesk}
@@ -673,23 +721,34 @@ function Style({ props }) {
         ${catBgHoverColor ? `background-color:${catBgHoverColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number::before{
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number {
         ${countWidthDesk}
         ${countHeightDesk}
+        ${countMinWidthDesk}
         ${countBorderDesk}
         ${countBorderRadiusDesk}
-        ${countTypoDesk}
-        ${countColor ? `color:${countColor};` : ''}
         ${countBGColor ? `background-color:${countBGColor};` : ''}
       }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number::before{
+        ${countTypoDesk}
+        ${countColor ? `color:${countColor};` : ''}
+      }
+
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number:hover::before{
         ${countHoverColor ? `color:${countHoverColor};` : ''}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number:hover{
         ${countHoverBGColor ? `background-color:${countHoverBGColor};` : ''}
       }
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-date,
-      .${uniqueId}.zolo-post-featured-list-wrap .meta-separator,
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-author-name{
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta {
         ${metaMarginDesk}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta,
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-author-name{
         ${metaTypoDesk}
         ${metaColor ? `color:${metaColor};` : ''}
       }
@@ -744,6 +803,10 @@ function Style({ props }) {
       ${colGapTab}
     }
 
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item .zolo-post-content{
+      ${contetnAlignTab}
+    }
+
     .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-content{
       ${fcontentTabPadding}
     }
@@ -760,10 +823,16 @@ function Style({ props }) {
       ${fexcerptTypoTab}
     }
 
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-image::before{
+      ${fcontainerTabOverlayStyle}
+    }
+
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item .zolo-post-meta {
+      ${metaSpaceTab}
+    }
+
     .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta,
-    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-author-name,
-    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-date,
-    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .meta-separator {
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta .zolo-post-author-name {
       ${fmetaTypoTab}
     }
 
@@ -808,9 +877,13 @@ function Style({ props }) {
       ${thumbBorderRadiusTab}
     }
 
-    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-dateTime{
-      ${metaTypoTab}
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta {
       ${metaMarginTab}
+    }
+
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta,
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-author-name{
+      ${metaTypoTab}
     }
 
     .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category{
@@ -825,11 +898,13 @@ function Style({ props }) {
       ${catBorderRadiusTab}
     }
 
-    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-box img{
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number {
       ${countWidthTab}
       ${countHeightTab}
+      ${countMinWidthTab}
       ${countBorderTab}
       ${countBorderRadiusTab}
+    }
 
     .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-content{
       ${countTypoTab}
@@ -856,6 +931,10 @@ function Style({ props }) {
         ${colGapMob}
       }
 
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item .zolo-post-content{
+        ${contetnAlignMob}
+      }
+
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-content{
         ${fcontentMobPadding}
       }
@@ -870,6 +949,14 @@ function Style({ props }) {
 
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-desc p{
         ${fexcerptTypoMob}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-image::before{
+        ${fcontainerMobOverlayStyle}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item .zolo-post-meta {
+        ${metaSpaceMob}
       }
 
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-meta,
@@ -920,9 +1007,13 @@ function Style({ props }) {
         ${thumbBorderRadiusMob}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-dateTime{
-        ${metaTypoMob}
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta {
         ${metaMarginMob}
+      }
+
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta,
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-author-name{
+        ${metaTypoMob}
       }
 
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category{
@@ -937,9 +1028,10 @@ function Style({ props }) {
         ${catBorderRadiusMob}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-meta-box img{
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number{
         ${countWidthMob}
         ${countHeightMob}
+        ${countMinWidthMob}
         ${countBorderMob}
         ${countBorderRadiusMob}
 

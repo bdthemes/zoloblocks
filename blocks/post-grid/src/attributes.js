@@ -21,7 +21,7 @@ import {
     COLUMN_BORDER,
     COLUMN_BORDER_RADIUS,
     COLUMN_SHADOW,
-    THUMBNAIL_PADDING,
+    
     THUMBNAIL_MARGIN,
     THUMBNAIL_BG,
     THUMBNAIL_BORDER,
@@ -49,6 +49,7 @@ import {
     PAG_MARGIN,
     PAG_ALIGN,
     PAG_PADDING,
+    META_SPACE,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -244,7 +245,7 @@ const attributes = {
     ...generateBoxShadowAttributies(COLUMN_SHADOW),
 
     ...generateDimensionAttributes(THUMBNAIL_MARGIN),
-    ...generateDimensionAttributes(THUMBNAIL_PADDING),
+    
     ...generateBorderAttributies(THUMBNAIL_BORDER),
     ...generateDimensionAttributes(THUMBNAIL_BORDER_RADIUS),
     ...generateNormalBGAttributes(THUMBNAIL_BG),
@@ -279,6 +280,9 @@ const attributes = {
     ...generateDimensionAttributes(PAG_MARGIN),
     ...generateDimensionAttributes(PAG_PADDING),
     ...generateResAlignmentAttributies(PAG_ALIGN),
+
+    // post meta
+    ...generateResRangeAttributies(META_SPACE),
 };
 
 export default attributes;

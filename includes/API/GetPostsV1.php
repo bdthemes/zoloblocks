@@ -129,15 +129,15 @@ class GetPostsV1 {
                 $post['title']        = get_the_title();
                 $post["thumbnail"]    = get_the_post_thumbnail($post_id, $postThumbnail);
                 $post['permalink']    = get_permalink();
-                $post['excerpt']      = strip_tags(get_the_excerpt());
-                $post['content']      = strip_tags(get_the_content());
+                $post['excerpt']      = wp_strip_all_tags(get_the_excerpt());
+                $post['content']      = wp_strip_all_tags(get_the_content());
                 $post['date']         = get_the_date();
                 $post['reading_time'] = self::content_reading_time($content);
                 $post['categories']   = self::zolo_get_terms($post_id, 'category');
                 $post['tags']         = self::zolo_get_terms($post_id, 'post_tag');
                 $post["author"]       = get_the_author();
                 $post["author_link"]  = get_the_author_link();
-                $post["avatar"]       = get_avatar(get_the_author(), 50, '', 'avatar');
+                $post["avatar"]       = get_avatar(get_the_author_meta('ID'), 50);
                 $results[]            = $post;
             }
 
@@ -165,7 +165,7 @@ class GetPostsV1 {
         // Set the average reading speed in words per minute
         $reading_speed = 200;
         // Calculate the word count of the content
-        $word_count = str_word_count(strip_tags($content));
+        $word_count = str_word_count(wp_strip_all_tags($content));
         // Calculate the reading time in minutes
         $reading_time = round($word_count / $reading_speed);
         // Set a minimum reading time of 1 minute

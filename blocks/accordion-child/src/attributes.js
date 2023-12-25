@@ -28,8 +28,6 @@ import {
     AC_BODY_BG,
     AC_BODY_PADDING,
     AC_BODY_MARGIN,
-    ICONCONTAINER_WIDTH,
-    ICONCONTAINER_HEIGHT,
     ICONTAINER_BG,
     ICONTAINER_HBG,
     ICONTAINER_PADDING,
@@ -63,7 +61,7 @@ const attributes = {
             boxShadow: {
                 prefix: 'mainBoxShadow',
             },
-            responsiveControls: true,
+            responsiveControls: false,
         },
     },
     // block attributes
@@ -87,9 +85,8 @@ const attributes = {
     ...generateNormalBGAttributes(AC_BODY_BG),
     ...generateDimensionAttributes(AC_BODY_PADDING),
     ...generateDimensionAttributes(AC_BODY_MARGIN),
+
     // icon container
-    ...generateResRangeAttributies(ICONCONTAINER_WIDTH),
-    ...generateResRangeAttributies(ICONCONTAINER_HEIGHT),
     ...generateNormalBGAttributes(ICONTAINER_BG),
     ...generateNormalBGAttributes(ICONTAINER_HBG),
     ...generateDimensionAttributes(ICONTAINER_PADDING),

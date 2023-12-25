@@ -31,13 +31,12 @@ import {
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
     DPL_BG,
-    DPL_HEIGHT,
-    DPL_WIDTH,
     DPL_BORDER,
     DPL_BORDER_RADIUS,
     DPL_PADDING,
     DPL_MARGIN,
     DPL_ICON_SIZE,
+    CONTENT_GAP,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -102,12 +101,15 @@ const attributes = {
 
     ...generateNormalBGAttributes(DPL_BG),
     ...generateResRangeAttributies(DPL_ICON_SIZE, {}),
-    ...generateResRangeAttributies(DPL_HEIGHT, {}),
-    ...generateResRangeAttributies(DPL_WIDTH, {}),
+
     ...generateBorderAttributies(DPL_BORDER),
     ...generateDimensionAttributes(DPL_BORDER_RADIUS),
     ...generateDimensionAttributes(DPL_PADDING),
     ...generateDimensionAttributes(DPL_MARGIN),
+
+    // Gap
+    ...generateResRangeAttributies(CONTENT_GAP),
+
     //Block Specific Attributes
     showPhoto: {
         type: 'boolean',
