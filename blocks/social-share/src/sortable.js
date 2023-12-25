@@ -38,7 +38,6 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
             <SortableControl defaultItems={socialProfiles} attributeName="socialProfiles" setAttributes={setAttributes}>
                 {socialProfiles &&
                     socialProfiles.map((profile, index) => {
-                        console.log(profile);
                         return (
                             <div className="dnd-container" key={index}>
                                 <Button
@@ -96,7 +95,6 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                            onChange={(value) => {
                                                 const newItems = [...socialProfiles];
                                                 newItems[index].tags = value;
-                                                console.log(newItems);
                                                 setAttributes({
                                                     socialProfiles: newItems,
                                                 });
