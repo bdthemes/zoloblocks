@@ -14,6 +14,7 @@ import '../blocks/post-grid/src';
 import '../blocks/post-list/src';
 import '../blocks/pricing-table/src';
 import '../blocks/social-links/src';
+import '../blocks/social-share/src';
 import '../blocks/team-grid/src';
 import '../blocks/brand-child/src';
 import '../blocks/brand-grid/src';

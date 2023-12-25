@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Social Share",
+    "name": "zolo/social-share",
+    "category": "zolo-blocks",
+    "keywords": ["icon", "social share", "social"],
+    "description": "Social Share Block",
+    "apiVersion": 3,
+    "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": ""
+}
