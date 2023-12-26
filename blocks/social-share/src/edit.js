@@ -12,15 +12,19 @@ import classnames from 'classnames';
 
 const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
+import { zoloArraysMergeIfUniqueValue } from '../../../src/helpers/helper';
+
 import Inspector from './inspector';
 
 // import style
 import Style from './style';
 
+import { socialMediaInfo } from './constants';
+
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
-    const { preview, uniqueId, preset, parentClasses, socialText, socialProfiles, socialColor, layout } = attributes;
-
+    const { preview, uniqueId, preset, parentClasses, socialText, socialMedia, socialColor, layout } = attributes;
+    const socialMediaInfoFiltered = zoloArraysMergeIfUniqueValue(socialMedia, socialMediaInfo, 'value');
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
         className: classnames(className, `${preset} ${uniqueId}`, layout, classArrayToStr(parentClasses)),
@@ -38,31 +42,33 @@ export default function Edit(props) {
             <Style props={props} />
 
             <div {...blockProps}>
-                {socialProfiles &&
-                    socialProfiles.map((profile, index) => {
-                        let socialName = Object.keys(profile.icon)[0];
-                        const iconName = profile && profile.text && profile.text.toLowerCase();
-                        const tags = profile.tags && profile.tags.join(',');
+                {
+                    socialMediaInfoFiltered &&
+                    socialMediaInfoFiltered.map((brand, index) => {
+                        let socialName = Object.keys(brand.icon)[0];
+                        const tags = brand.tags && brand.tags.join(',');
+                        const socialLabel = brand.customLabel ? brand.customLabel : brand.label;
                         return (
                             <div
                                 key={index}
                                 type="button"
                                 data-hashtags={tags}
-                                data-sharer={profile.text.toLowerCase()}
-                                data-url={profile.link && profile.link.url}
-                                data-title={profile.text}
-                                data-blank={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
-                                className={`zolo-social-item zolo-${socialName} ${socialColor} ${iconName}`}
+                                data-sharer={brand.value}
+                                data-url={brand.link && brand.link.url}
+                                data-title={brand.label}
+                                className={`zolo-social-item zolo-${socialName} ${socialColor} ${brand.value}`}
                             >
                                 {socialText !== 'none' && (
                                     <span className="zolo-social-icon">
-                                        <DisplayZoloIcon icon={profile.icon} />
+                                        <DisplayZoloIcon icon={brand.icon} />
                                     </span>
                                 )}
-                                {socialText !== 'iconOnly' && <span className="zolo-social-text">{profile.text}</span>}
+                                {socialText !== 'iconOnly' && <span className="zolo-social-text">{socialLabel}</span>}
                             </div>
                         );
-                    })}
+                    }
+                    )
+                }
             </div>
         </>
     );

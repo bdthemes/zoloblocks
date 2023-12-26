@@ -107,3 +107,21 @@ export const classArrayToStr = (classes) => {
 
   return uniqueClasses.join(' ');
 };
+
+
+export const zoloArraysMergeIfUniqueValue = (array1, array2) => {
+        // Create a new array to store the merged results
+        let mergedArray = [];
+        // Iterate over the first array
+        array1.forEach((item1) => {
+            // Find the corresponding item in the second array based on ID
+            let matchingItem = array2.find((item2) => item2.value === item1.value);
+            // If a match is found, merge the properties
+            if (matchingItem) {
+                let mergedItem = {...matchingItem, ...item1 };
+                mergedArray.push(mergedItem);
+            }
+        });
+
+        return mergedArray;
+    }

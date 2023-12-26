@@ -54,7 +54,7 @@ function Inspector(props) {
         preset,
         resMode,
         socialText,
-        socialProfiles,
+        socialMedia,
         socialColor,
         socialTextColor,
         socialTextHoverColor,
@@ -183,8 +183,8 @@ function Inspector(props) {
                                 step={1}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Social Profiles', 'zolo-blocks')} panelProps={props}>
-                            <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
+                        <ZoloPanelBody title={__('Social Media', 'zolo-blocks')} panelProps={props}>
+                            <Sortable socialMedia={socialMedia} setAttributes={setAttributes} />
                         </ZoloPanelBody>
                     </>
                 }
