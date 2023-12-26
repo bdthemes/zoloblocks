@@ -101,23 +101,11 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             // popup
             if (!is_admin() && has_block('zolo/image-gallery')) {
-                // enqueue style for frontend
-                wp_enqueue_style('zolo-maginific-popup', trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/magnific-popup/magnific-popup.css', [], ZOLO_VERSION);
-
                 // enqueue magnific popup for frontend
                 wp_enqueue_script(
-                    'zolo-maginific-popup',
-                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/magnific-popup/jquery.magnific-popup.min.js',
-                    ['jquery'],
-                    ZOLO_VERSION,
-                    true
-                );
-
-                // enqueue scripts for frontend
-                wp_enqueue_script(
-                    'zolo-popup-scripts',
-                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/scripts.js',
-                    ['jquery', 'zolo-maginific-popup'],
+                    'zolo-fslightbox-popup',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lightbox/fslightbox.js',
+                    [],
                     ZOLO_VERSION,
                     true
                 );

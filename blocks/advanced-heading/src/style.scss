@@ -27,6 +27,7 @@
 
     .zolo-ah-title {
         margin: 0;
+        position: relative;
     }
 
     .zolo-ah-main-title,
@@ -36,7 +37,6 @@
         color: #202224;
         text-transform: capitalize;
         z-index: 1;
-        // position: relative;
         display: block;
         &:hover {
             text-decoration: none;

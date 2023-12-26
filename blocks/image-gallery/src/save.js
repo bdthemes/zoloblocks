@@ -1,6 +1,6 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
 import classnames from 'classnames';
 
 const Save = ({ attributes }) => {
@@ -20,11 +20,13 @@ const Save = ({ attributes }) => {
                 {advancedGallery &&
                     advancedGallery.map((image, index) => {
                         return (
-                            <a
+                            <DynamicTag
+                                tagName={showLightbox ? 'a' : 'div'}
                                 className="zolo-item"
                                 key={index}
-                                href={image.url}
                                 {...(showLightbox && {
+                                    href: image.url,
+                                    'data-fslightbox': 'data-fslightbox',
                                     'data-effect': entranceAnimation,
                                 })}
                             >
@@ -39,7 +41,7 @@ const Save = ({ attributes }) => {
                                     </div>
                                 )}
                                 {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
-                            </a>
+                            </DynamicTag>
                         );
                     })}
             </div>

@@ -125,10 +125,6 @@ const attributes = {
         type: 'string',
         default: 'bottom',
     },
-    align: {
-        type: 'string',
-        default: 'left',
-    },
     showTransparentTitle: {
         type: 'boolean',
         default: false,

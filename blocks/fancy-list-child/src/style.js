@@ -316,13 +316,13 @@ const Style = ({ props }) => {
             ${deskMediaTypo}
         }
 
-        .${uniqueId} .zb-fancy-list-title{
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-title{
             ${desktitletypo}
             ${titleDeskSpacing}
             ${titleColor ? `color:${titleColor};` : ''}
         }
 
-        .${uniqueId} .zb-fancy-list-text{
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-text{
             ${deskdesctypo}
             ${descDeskSpacing}
             ${dscColor ? `color:${dscColor};` : ''}
@@ -380,12 +380,12 @@ const Style = ({ props }) => {
             ${tabMediaTypo}
         }
 
-      .${uniqueId} .zb-fancy-list-title{
+      .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-title{
             ${tabtitletypo}
             ${titleTabSpacing}
         }
 
-        .${uniqueId} .zb-fancy-list-text{
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-text{
             ${tabdesctypo}
             ${descTabSpacing}
         }
@@ -436,12 +436,12 @@ const Style = ({ props }) => {
             ${mobMediaTypo}
         }
 
-        .${uniqueId} .zb-fancy-list-title{
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-title{
             ${mobtitletypo}
             ${titleMobSpacing}
         }
 
-        .${uniqueId} .zb-fancy-list-text{
+        .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-list-text{
             ${mobdesctypo}
             ${descMobSpacing}
         }

@@ -2,21 +2,15 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
-
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-
 import classnames from 'classnames';
 
 /**
  * Internal depencencies
  */
-const { softMinifyCssStrings, DisplayZoloIcon, classArrayToStr } = window.zoloModule;
-
-import { BLOCK_PREFIX } from './constants';
-
-import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY } from './constants/typoPrefixConstants';
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DynamicTag } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -42,6 +36,8 @@ export default function Edit(props) {
         textToggle,
         iconToggle,
         dscTag,
+        fancyLinkToggle,
+        fancyLink,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -72,7 +68,17 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <BlockControls></BlockControls>
-            <div {...blockProps}>
+            <DynamicTag
+                tagName={fancyLinkToggle ? 'a' : 'div'}
+                {...blockProps}
+                {...(fancyLinkToggle && {
+                    href: fancyLink.url,
+                    ...(fancyLink.openInNewTab && {
+                        target: '_blank',
+                        rel: 'noreferrer noopener',
+                    }),
+                })}
+            >
                 <div className="zb-fancy-list-content">
                     {imageToggle && (
                         <>
@@ -107,7 +113,7 @@ export default function Edit(props) {
                     </div>
                 </div>
                 {iconToggle == true && <div className="zb-fancy-icon">{fancyIcon && <DisplayZoloIcon icon={fancyIcon} />}</div>}
-            </div>
+            </DynamicTag>
         </>
     );
 }

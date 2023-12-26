@@ -561,17 +561,7 @@ function Inspector(props) {
                                 }}
                                 value={titleTag}
                             />
-                            {!globalLink && (
-                                <ColorControl
-                                    label={__('Color', 'zolo-blocks')}
-                                    color={textColor}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            textColor: value,
-                                        })
-                                    }
-                                />
-                            )}
+
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
                                 typoPrefixConstant={TITLE_TYPOGRAPHY}
@@ -584,36 +574,35 @@ function Inspector(props) {
                             />
                             <TextShadowControl controlName={TITLE_TEXT_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <TextStrokeControl controlName={TITLE_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
-                            {globalLink && (
-                                <TabPanelControl
-                                    normalComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={textColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        textColor: value,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={textHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        textHoverColor: value,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                />
-                            )}
+
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zolo-blocks')}
+                                            color={textColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    textColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zolo-blocks')}
+                                            color={textHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    textHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Description', 'zolo-blocks')} panelProps={props} stylePanel={true}>
                             <TypographyDropdown
