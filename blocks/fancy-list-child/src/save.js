@@ -1,5 +1,5 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, DynamicTag } = window.zoloModule;
 import classnames from 'classnames';
 
 const Save = ({ attributes }) => {
@@ -10,7 +10,6 @@ const Save = ({ attributes }) => {
         image,
         headingTag,
         fancyTitle,
-        fancyLink,
         fancyListText,
         fancyIcon,
         imageToggle,
@@ -20,6 +19,8 @@ const Save = ({ attributes }) => {
         mediaType,
         mediaText,
         zoloId,
+        fancyLinkToggle,
+        fancyLink,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -27,10 +28,18 @@ const Save = ({ attributes }) => {
     });
 
     return (
-        <div
+        <DynamicTag
+            tagName={fancyLinkToggle ? 'a' : 'div'}
             {...blockProps}
             {...(zoloId && {
                 id: zoloId,
+            })}
+            {...(fancyLinkToggle && {
+                href: fancyLink.url,
+                ...(fancyLink.openInNewTab && {
+                    target: '_blank',
+                    rel: 'noreferrer noopener',
+                }),
             })}
         >
             <div className="zb-fancy-list-content">
@@ -50,7 +59,7 @@ const Save = ({ attributes }) => {
                 </div>
             </div>
             {iconToggle == true && <div className="zb-fancy-icon">{fancyIcon && <DisplayZoloIcon icon={fancyIcon} />}</div>}
-        </div>
+        </DynamicTag>
     );
 };
 

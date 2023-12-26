@@ -115,22 +115,19 @@ function Inspector(props) {
                                     placeholder="description text.."
                                 />
                             )}
-
                             <ToggleControl
-                                label={__('Enable Link', 'zolo-block')}
+                                label={__('Add item link', 'zolo-block')}
                                 checked={fancyLinkToggle}
                                 onChange={() => setAttributes({ fancyLinkToggle: !fancyLinkToggle })}
                             />
-                        </ZoloPanelBody>
-                        {fancyLinkToggle && (
-                            <ZoloPanelBody title={__('Link', 'zolo-block')} panelProps={props}>
+                            {fancyLinkToggle && (
                                 <LinkControl
-                                    label={__('Select Link', 'zolo-block')}
+                                    label={__('Enter link', 'zolo-block')}
                                     value={fancyLink}
                                     onChange={(v) => setAttributes({ fancyLink: v })}
                                 />
-                            </ZoloPanelBody>
-                        )}
+                            )}
+                        </ZoloPanelBody>
 
                         {iconToggle && (
                             <ZoloPanelBody title={__('Icon', 'zolo-block')} panelProps={props}>

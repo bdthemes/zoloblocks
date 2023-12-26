@@ -60,7 +60,15 @@ export default function Edit(props) {
             slot: 'container-start',
         },
         {
-            template: [['zolo/advanced-icon-box']],
+            template: [
+                [
+                    'zolo/advanced-heading',
+                    {
+                        titleText: 'Slide Title',
+                        titleAlignZRPAlign: 'center',
+                    },
+                ],
+            ],
             templateLock: false,
             orientation: 'horizontal',
         }

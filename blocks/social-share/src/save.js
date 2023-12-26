@@ -4,40 +4,42 @@
 const { DisplayZoloIcon } = window.zoloModule;
 
 import classnames from 'classnames';
+import { socialMediaInfo } from './constants';
 
 import { useBlockProps } from '@wordpress/block-editor';
+import { zoloArraysMergeIfUniqueValue } from '../../../src/helpers/helper';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, preset, socialProfiles, socialColor, socialText, layout } = attributes;
+    const { uniqueId, preset, socialMedia, socialColor, socialText, layout } = attributes;
 
+    const socialMediaInfoFiltered = zoloArraysMergeIfUniqueValue(socialMedia, socialMediaInfo, 'value');
     return (
         <div
             {...useBlockProps.save({
                 className: classnames(`${preset} ${uniqueId} ${layout}`),
             })}
         >
-            {socialProfiles &&
-                socialProfiles.map((profile, index) => {
-                    let socialName = Object.keys(profile.icon)[0];
-                    const iconName = profile && profile.text && profile.text.toLowerCase();
-                    const tags = profile.tags && profile.tags.join(',');
+            {socialMediaInfoFiltered &&
+                socialMediaInfoFiltered.map((brand, index) => {
+                    let socialName = Object.keys(brand.icon)[0];
+                    const tags = brand.tags && brand.tags.join(',');
+                    const socialLabel = brand.customLabel ? brand.customLabel : brand.label;
                     return (
                         <div
                             key={index}
+                            type="button"
                             data-hashtags={tags}
-                            type='button'
-                            data-sharer={profile.text.toLowerCase()}
-                            data-url={profile.link && profile.link.url}
-                            data-title={profile.text}
-                            data-blank={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
-                            className={`zolo-social-item zolo-${socialName} ${socialColor} ${iconName}`}
+                            data-sharer={brand.value}
+                            data-url={brand.link && brand.link.url}
+                            data-title={brand.label}
+                            className={`zolo-social-item zolo-${socialName} ${socialColor} ${brand.value}`}
                         >
                             {socialText !== 'none' && (
                                 <span className="zolo-social-icon">
-                                    <DisplayZoloIcon icon={profile.icon} />
+                                    <DisplayZoloIcon icon={brand.icon} />
                                 </span>
                             )}
-                            {socialText !== 'iconOnly' && <span className="zolo-social-text">{profile.text}</span>}
+                            {socialText !== 'iconOnly' && <span className="zolo-social-text">{socialLabel}</span>}
                         </div>
                     );
                 })}

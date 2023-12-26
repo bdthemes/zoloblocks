@@ -335,7 +335,7 @@ const Style = ({ props }) => {
             ${deskiconRadius}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon svg {
+        .${uniqueId} .zb-fancy-icon svg {
             ${iconColor ? `fill:${iconColor};` : ''}
             ${DeskIconWidth}
             ${DeskIconHeight}
@@ -345,7 +345,7 @@ const Style = ({ props }) => {
             ${deskGap}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-image, .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId} .zb-fancy-list-image, .${uniqueId} .zb-fancy-list-number {
             ${deskImageWidth}
             ${deskImageHeight}
             ${DesktopimageBorder}
@@ -353,12 +353,12 @@ const Style = ({ props }) => {
             ${deskImagepadding}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId} .zb-fancy-list-number {
             ${mediaTextColor ? `color:${mediaTextColor};` : ''}
             ${mediaTextBgColor ? `background-color:${mediaTextBgColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId} .zb-fancy-list-number {
             ${deskMediaTypo}
         }
 
@@ -374,17 +374,17 @@ const Style = ({ props }) => {
             ${dscColor ? `color:${dscColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .wp-block-zolo-fancy-list-child:hover .zb-fancy-list-title {
+        .${uniqueId} .wp-block-zolo-fancy-list-child:hover .zb-fancy-list-title {
             ${titleHColor ? `color:${titleHColor};` : ''}
         }
-        .${uniqueId}.wp-block-zolo-fancy-list .wp-block-zolo-fancy-list-child:hover .zb-fancy-list-text {
+        .${uniqueId} .wp-block-zolo-fancy-list-child:hover .zb-fancy-list-text {
             ${desHcolor ? `color:${desHcolor};` : ''}
         }
-        .${uniqueId}.wp-block-zolo-fancy-list .wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
+        .${uniqueId}  .wp-block-zolo-fancy-list-child:hover .zb-fancy-icon {
             ${iconHoverBGStyle}
             ${iconHBColor ? `border-color:${iconHBColor};` : ''}
         }
-        .${uniqueId}.wp-block-zolo-fancy-list .wp-block-zolo-fancy-list-child:hover .zb-fancy-icon svg{
+        .${uniqueId} .wp-block-zolo-fancy-list-child:hover .zb-fancy-icon svg{
             ${iconHColor ? `fill:${iconHColor};` : ''}
         }
 	`;
@@ -411,16 +411,16 @@ const Style = ({ props }) => {
             ${tabiconRadius}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon svg {
+        .${uniqueId} .zb-fancy-icon svg {
             ${TabIconWidth}
             ${TabIconHeight}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-content {
+        .${uniqueId} .zb-fancy-list-content {
             ${tabGap}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-image, .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId} .zb-fancy-list-image, .${uniqueId} .zb-fancy-list-number {
             ${tabImageWidth}
             ${tabImageHeight}
             ${TabImageBorder}
@@ -428,7 +428,7 @@ const Style = ({ props }) => {
             ${tabImagepadding}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId} .zb-fancy-list-number {
             ${tabMediaTypo}
         }
 
@@ -442,7 +442,7 @@ const Style = ({ props }) => {
             ${descTabSpacing}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .wp-block-zolo-fancy-list-child:hover .zb-fancy-icon{
+        .${uniqueId} .wp-block-zolo-fancy-list-child:hover .zb-fancy-icon{
             ${iconHoverTabBGStyle}
         }
 	`;
@@ -468,20 +468,20 @@ const Style = ({ props }) => {
             ${mobiconRadius}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-icon svg {
+        .${uniqueId} .zb-fancy-icon svg {
             ${mobIconWidth}
             ${mobIconHeight}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-content {
+        .${uniqueId} .zb-fancy-list-content {
             ${mobGap}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .wp-block-zolo-fancy-list-child:hover .zb-fancy-icon{
+        .${uniqueId} .wp-block-zolo-fancy-list-child:hover .zb-fancy-icon{
             ${iconHoverMobBGStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-image, .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId} .zb-fancy-list-image, .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
             ${mobImageWidth}
             ${mobImageHeight}
             ${MobImageBorder}
@@ -489,7 +489,7 @@ const Style = ({ props }) => {
             ${mobImagepadding}
         }
 
-        .${uniqueId}.wp-block-zolo-fancy-list .zb-fancy-list-number {
+        .${uniqueId} .zb-fancy-list-number {
             ${mobMediaTypo}
         }
 

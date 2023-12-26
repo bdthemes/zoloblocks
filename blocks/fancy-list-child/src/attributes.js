@@ -72,7 +72,10 @@ const attributes = {
     },
     fancyLink: {
         type: 'object',
-        default: { url: '#', newTab: '_blank' },
+        default: {
+            url: '#',
+            openInNewTab: false,
+        },
     },
     titleToggle: {
         type: 'boolean',

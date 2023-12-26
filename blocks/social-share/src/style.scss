@@ -1,12 +1,10 @@
 :root {
     --facebook: #3b5998;
     --facebook-hover: #2d4373;
-    // --instagram-bg: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
-    // --instagram-hover: radial-gradient(circle, rgba(252, 70, 107, 1) 0%, rgba(63, 94, 251, 1)  100%);
     --instagram: #e4405f;
     --instagram-hover: #df2a67;
-    --twitter: #00acee;
-    --twitter-hover: #1da1f2;
+    --twitter: #000;
+    --twitter-hover: rgba(12, 21, 27, 0.969);
     --linkedin: #0072b1;
     --linkedin-hover: #006097;
     --behance: #053eff;
@@ -49,6 +47,12 @@
     --slack-hover: #3b0d3a;
     --discord: #7289da;
     --discord-hover: #5a72c7;
+    --meetup: #f64060;
+    --meetup-hover: #e61e4d;
+    --wechat: #1aad19;
+    --wechat-hover: #1b9e18;
+    --quora: #b92b27;
+    --quora-hover: #a82a26;
 }
 
 .wp-block-zolo-social-share {

@@ -138,7 +138,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         {showLightbox && (
                             <>
-                                <ZoloPanelBody title={__('Lightbox Animation', 'zolo-blocks')} panelProps={props}>
+                                {/* <ZoloPanelBody title={__('Lightbox Animation', 'zolo-blocks')} panelProps={props}>
                                     <SelectControl
                                         label={__('Select Animation', 'zolo-blocks')}
                                         value={entranceAnimation}
@@ -150,7 +150,7 @@ function Inspector(props) {
                                         }}
                                         help={__('This option will only work at the frontend', 'zolo-blocks')}
                                     />
-                                </ZoloPanelBody>
+                                </ZoloPanelBody> */}
                                 <ZoloPanelBody title={__('Lightbox Icon', 'zolo-blocks')} panelProps={props}>
                                     <ZoloIconPicker
                                         label={__('Select Icon', 'zolo-blocks')}
