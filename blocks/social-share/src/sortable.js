@@ -10,8 +10,8 @@ const { __ } = wp.i18n;
 const { Button, PanelBody, TextControl, FormTokenField } = wp.components;
 import { socialMediaInfo } from "./constants";
 
+// uppercase first letter of string
 const Sortable = ({ socialMedia, setAttributes }) => {
-
     const SocialMediaOptions = socialMediaInfo.map((item) => {
         return {
             label: item.label,
@@ -19,10 +19,16 @@ const Sortable = ({ socialMedia, setAttributes }) => {
         };
     }
     );
+
+    function capitalizeWords(str) {
+        return str.replace(/\b\w/g, function (match) {
+            return match.toUpperCase();
+        });
+    }
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
-                <div className="repeater-label">{__('Add a Profile', 'zolo-blocks')}</div>
+                <div className="repeater-label">{__('Add a Media', 'zolo-blocks')}</div>
                 <Button
                     onClick={() => {
                         setAttributes({
@@ -31,6 +37,13 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                                 {
                                     id: socialMedia.length + 1,
                                     value: 'facebook',
+                                    customLabel: '',
+                                    link: {
+                                        url: 'https://bdthemes.com',
+                                        openInNewTab: false,
+                                    },
+                                    tags: [],
+
                                 },
                             ],
                         });
@@ -45,8 +58,7 @@ const Sortable = ({ socialMedia, setAttributes }) => {
             <SortableControl defaultItems={socialMedia} attributeName="socialMedia" setAttributes={setAttributes}>
                 {socialMedia &&
                     socialMedia.map((profile, index) => {
-                        // console.log(profile);
-                        return (
+                      return (
                             <div className="dnd-container" key={index}>
                                 <Button
                                     className="dnd-trash"
@@ -58,9 +70,9 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                                     }}
                                 />
                                 <SortableItem key={profile.id} id={profile.id}>
-                                    <PanelBody title={profile.value || 'Title'} initialOpen={false}>
+                                    <PanelBody title={capitalizeWords(profile.value) || 'Title'} initialOpen={false}>
                                         <SelectControl
-                                            label={__('Social Media', 'zolo-blocks')}
+                                            label={__('Select Media', 'zolo-blocks')}
                                             value={profile.value}
                                             options={SocialMediaOptions}
                                             onChange={(value) => {
@@ -73,21 +85,20 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                                                 // console.log(newItems);
                                             }}
                                         />
-
-                                        {/* <TextControl
-                                            label={__('Title', 'zolo-blocks')}
-                                            value={profile.text}
+                                        <TextControl
+                                            label={__('Custom Label', 'zolo-blocks')}
+                                            value={profile.customLabel}
                                             onChange={(v) =>
                                                 setAttributes({
                                                     socialMedia: socialMedia.map((profile, i) => {
                                                         if (index === i) {
-                                                            profile.text = v;
+                                                            profile.customLabel = v;
                                                         }
                                                         return profile;
                                                     }),
                                                 })
                                             }
-                                        /> */}
+                                        />
                                         <LinkControl
                                             label={__('Link', 'zolo-blocks')}
                                             value={profile.link}
@@ -103,14 +114,13 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                                         <FormTokenField
                                             label="Has Tags"
                                             value={profile.tags}
-                                           onChange={(value) => {
+                                            onChange={(value) => {
                                                 const newItems = [...socialMedia];
                                                 newItems[index].tags = value;
                                                 setAttributes({
                                                     socialMedia: newItems,
                                                 });
-                                            }
-                                        }
+                                            }}
                                         />
                                     </PanelBody>
                                 </SortableItem>
@@ -118,78 +128,6 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                         );
                     })}
             </SortableControl>
-            {/* <SortableControl defaultItems={socialProfiles} attributeName="socialProfiles" setAttributes={setAttributes}>
-                {socialProfiles &&
-                    socialProfiles.map((profile, index) => {
-                        return (
-                            <div className="dnd-container" key={index}>
-                                <Button
-                                    className="dnd-trash"
-                                    icon="trash"
-                                    onClick={() => {
-                                        setAttributes({
-                                            socialProfiles: socialProfiles.filter((profile, i) => index !== i),
-                                        });
-                                    }}
-                                />
-                                <SortableItem key={profile.id} id={profile.id}>
-                                    <PanelBody title={profile.text || 'Title'} initialOpen={false}>
-                                        <TextControl
-                                            label={__('Title', 'zolo-blocks')}
-                                            value={profile.text}
-                                            onChange={(v) =>
-                                                setAttributes({
-                                                    socialProfiles: socialProfiles.map((profile, i) => {
-                                                        if (index === i) {
-                                                            profile.text = v;
-                                                        }
-                                                        return profile;
-                                                    }),
-                                                })
-                                            }
-                                        />
-                                        <ZoloIconPicker
-                                            label={__('Select Icon', 'zolo-blocks')}
-                                            value={profile.icon}
-                                            onChange={(value) => {
-                                                const newItems = [...socialProfiles];
-                                                newItems[index].icon = value;
-                                                setAttributes({
-                                                    socialProfiles: newItems,
-                                                });
-                                            }}
-                                        />
-
-                                        <LinkControl
-                                            label={__('Link', 'zolo-blocks')}
-                                            value={profile.link}
-                                            onChange={(value) => {
-                                                const newItems = [...socialProfiles];
-                                                newItems[index].link = value;
-                                                setAttributes({
-                                                    socialProfiles: newItems,
-                                                });
-                                            }}
-                                        />
-
-                                        <FormTokenField
-                                            label="Has Tags"
-                                            value={profile.tags}
-                                           onChange={(value) => {
-                                                const newItems = [...socialProfiles];
-                                                newItems[index].tags = value;
-                                                setAttributes({
-                                                    socialProfiles: newItems,
-                                                });
-                                            }
-                                        }
-                                        />
-                                    </PanelBody>
-                                </SortableItem>
-                            </div>
-                        );
-                    })}
-            </SortableControl> */}
         </div>
     );
 };
