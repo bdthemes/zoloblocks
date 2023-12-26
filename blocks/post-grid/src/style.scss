@@ -57,6 +57,10 @@
 
     .zolo-post-link-btn {
         margin-top: 20px;
+        .zolo__display-icon {
+            display: inline-flex;
+            align-items: center;
+        }
     }
 
     .zolo-post-dateTime {

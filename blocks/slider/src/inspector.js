@@ -69,6 +69,7 @@ const Inspector = (props) => {
         showNavigation,
         navColor,
         navHoverColor,
+        navHoverBorderColor,
         showPagination,
         speed,
         carouselEffect,
@@ -76,8 +77,6 @@ const Inspector = (props) => {
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
-        selectedPanel,
-        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -315,7 +314,20 @@ const Inspector = (props) => {
                                         { label: 'vh', value: 'vh' },
                                     ]}
                                 />
-                                <BorderControl label={__('Border', 'zolo-blocks')} controlName={NAV_BORDER} requiredProps={requiredProps} />
+                                <BorderControl
+                                    label={__('Border', 'zolo-blocks')}
+                                    controlName={NAV_BORDER}
+                                    requiredProps={requiredProps}
+                                    hoverControl={
+                                        <Fragment>
+                                            <ColorControl
+                                                label={__('Border Color', 'zolo-blocks')}
+                                                color={navHoverBorderColor}
+                                                onChange={(color) => setAttributes({ navHoverBorderColor: color })}
+                                            />
+                                        </Fragment>
+                                    }
+                                />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
                                     controlName={NAV_BORDER_RADIUS}

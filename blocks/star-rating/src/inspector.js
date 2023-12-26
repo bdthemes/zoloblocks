@@ -29,19 +29,7 @@ import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS } from '../../../src/g
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const {
-        resMode,
-        rating,
-        showTitle,
-        title,
-        titleTag,
-        titleColor,
-        titlePosition,
-        activeStarColor,
-        inactiveStarColor,
-        selectedPanel,
-        selectedTab,
-    } = attributes;
+    const { resMode, rating, showTitle, title, titleTag, titleColor, titlePosition, activeStarColor, inactiveStarColor } = attributes;
 
     const requiredProps = {
         attributes,
@@ -121,6 +109,7 @@ function Inspector(props) {
                                 max={100}
                                 step={1}
                             />
+
                             <TabPanelControl
                                 options={[
                                     {

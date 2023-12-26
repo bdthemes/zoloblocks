@@ -1,14 +1,13 @@
-import { SelectControl } from "@wordpress/components";
+import { SelectControl } from '@wordpress/components';
 
 /**
  * Internal depencencies
  */
 const { ZoloIconPicker, SortableControl, SortableItem, LinkControl } = window.zoloModule;
 
-
 const { __ } = wp.i18n;
 const { Button, PanelBody, TextControl, FormTokenField } = wp.components;
-import { socialMediaInfo } from "./constants";
+import { socialMediaInfo } from './constants';
 
 // uppercase first letter of string
 const Sortable = ({ socialMedia, setAttributes }) => {
@@ -17,8 +16,7 @@ const Sortable = ({ socialMedia, setAttributes }) => {
             label: item.label,
             value: item.value,
         };
-    }
-    );
+    });
 
     function capitalizeWords(str) {
         return str.replace(/\b\w/g, function (match) {
@@ -43,7 +41,6 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                                         openInNewTab: false,
                                     },
                                     tags: [],
-
                                 },
                             ],
                         });
@@ -58,7 +55,7 @@ const Sortable = ({ socialMedia, setAttributes }) => {
             <SortableControl defaultItems={socialMedia} attributeName="socialMedia" setAttributes={setAttributes}>
                 {socialMedia &&
                     socialMedia.map((profile, index) => {
-                      return (
+                        return (
                             <div className="dnd-container" key={index}>
                                 <Button
                                     className="dnd-trash"

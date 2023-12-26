@@ -1,10 +1,14 @@
-.zolo-accordion-item {
+.wp-block-zolo-accordion-child {
     margin-top: 8px;
     border: 1px solid var(--zoloblocks-item-border-color);
     box-sizing: border-box;
     border-radius: 10px;
     overflow: hidden;
     transition: all 0.2s ease;
+}
+
+.zolo-accordion-item {
+    box-sizing: border-box;
     &.js-enabled {
         .zolo-accordion-panel {
             visibility: hidden;
@@ -32,12 +36,13 @@
         width: 100%;
         cursor: pointer;
         border: 0;
-        padding: 20px;
+        padding: 15px 20px;
         background-color: var(--zoloblocks-item-bg-color);
         transition: color 0.25s ease;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 10px;
     }
 
     .zolo-accordion-head-title {
@@ -45,6 +50,7 @@
         color: #111;
         font-size: 18px;
         transition: all 0.2s ease;
+        text-align: left;
     }
 
     .zolo-accordion-panel {
@@ -55,6 +61,7 @@
 
     .zolo-accordion-inner {
         padding: 20px;
+        overflow: hidden;
     }
 
     .zolo-accordion-expanded-mode {

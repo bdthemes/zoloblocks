@@ -37,13 +37,12 @@ import {
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
     DPL_BG,
-    DPL_HEIGHT,
-    DPL_WIDTH,
     DPL_BORDER,
     DPL_BORDER_RADIUS,
     DPL_PADDING,
     DPL_MARGIN,
     DPL_ICON_SIZE,
+    CONTENT_GAP,
 } from './constants';
 
 import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -249,6 +248,17 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // content gap
+    const {
+        desktopRangeStyle: contentDeskGap,
+        tabRangeStyle: contentTabGap,
+        mobRangeStyle: contentMobGap,
+    } = generateResRangeStyle({
+        controlName: CONTENT_GAP,
+        property: 'gap',
+        attributes,
+    });
+
     // Name
     const {
         typoStylesDesktop: nameTypoDesk,
@@ -352,26 +362,6 @@ const Style = ({ props }) => {
     });
 
     const {
-        desktopRangeStyle: dplDeskHeight,
-        tabRangeStyle: dplTabHeight,
-        mobRangeStyle: dplMobHeight,
-    } = generateResRangeStyle({
-        controlName: DPL_HEIGHT,
-        property: 'height',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: dplDeskWidth,
-        tabRangeStyle: dplTabWidth,
-        mobRangeStyle: dplMobWidth,
-    } = generateResRangeStyle({
-        controlName: DPL_WIDTH,
-        property: 'width',
-        attributes,
-    });
-
-    const {
         desktopBorderStyle: dplDeskBorderStyle,
         tabBorderStyle: dplTabBorderStyle,
         mobBorderStyle: dplMobBorderStyle,
@@ -416,6 +406,7 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
 		.${uniqueId}.wp-block-zolo-review .zolo-item {
 			${reviewContentDeskAlignStyle}
+            ${contentDeskGap}
 		}
         .${uniqueId}.wp-block-zolo-review .zolo-info-wrap {
 			${contentDeskMargin}
@@ -460,10 +451,10 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating svg {
 			${ratingIconWidthDesk}
 		}
-		.${uniqueId}.wp-block-zolo-review .zolo-star-rating .filled-star svg, .${uniqueId}.wp-block-zolo-review .zolo-star-rating .fraction-star svg{
+		.${uniqueId}.wp-block-zolo-review .zolo-star-rating svg {
 			${activeRatingColor ? `fill: ${activeRatingColor};` : ''}
 		}
-		.${uniqueId}.wp-block-zolo-review .zolo-star-rating .empty-star svg{
+		.${uniqueId}.wp-block-zolo-review .zolo-star-rating svg.empty-star {
 			${inactiveRatingColor ? `fill: ${inactiveRatingColor};` : ''}
 		}
 
@@ -473,8 +464,7 @@ const Style = ({ props }) => {
 			${dplDeskBorderRadius}
 			${dplDeskPadding}
 			${dplDeskMargin}
-			${dplDeskHeight}
-			${dplDeskWidth}
+			
 		}
 
         .${uniqueId}.wp-block-zolo-review .zolo-quote-icon svg{
@@ -487,6 +477,7 @@ const Style = ({ props }) => {
     const tabletAllStyle = `
 		.${uniqueId}.wp-block-zolo-review .zolo-item {
 			${reviewContentTabAlignStyle}
+            ${contentTabGap}
 		}
 		.${uniqueId}.wp-block-zolo-review .zolo-info-wrap {
 			${contentTabMargin}
@@ -529,8 +520,7 @@ const Style = ({ props }) => {
 			${dplTabBorderRadius}
 			${dplTabPadding}
 			${dplTabMargin}
-			${dplTabHeight}
-			${dplTabWidth}
+			
 		}
 
         .${uniqueId}.wp-block-zolo-review .zolo-quote-icon svg{
@@ -542,6 +532,7 @@ const Style = ({ props }) => {
     const mobileAllStyle = `
 		.${uniqueId}.wp-block-zolo-review .zolo-item {
 			${reviewContentMobAlignStyle}
+            ${contentMobGap}
 		}
         .${uniqueId}.wp-block-zolo-review .zolo-info-wrap {
 			${contentMobMargin}
@@ -584,8 +575,7 @@ const Style = ({ props }) => {
 			${dplMobBorderRadius}
 			${dplMobPadding}
 			${dplMobMargin}
-			${dplMobHeight}
-			${dplMobWidth}
+			
 		}
 
         .${uniqueId}.wp-block-zolo-review .zolo-quote-icon svg{

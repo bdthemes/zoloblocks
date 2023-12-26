@@ -14,7 +14,6 @@ export { default as NormalBGControl } from './controls/normal-bg-control';
 export { default as RangeResetControl } from './controls/range-reset-control';
 export { default as ResAlignmentControl } from './controls/res-alignment-control';
 export { default as ResRangeControl } from './controls/res-range-control';
-export { default as ResetControl } from './controls/reset-control';
 export { default as TextShadowControl } from './controls/textshadow-control';
 export { default as TextStrokeControl } from './controls/textstroke-control';
 export { default as TypographyDropdown } from './controls/typography-control';

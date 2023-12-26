@@ -36,7 +36,6 @@ export const IMAGE_BACKGROUND = 'imageBackground';
 export const IMAGE_HOVER_BOX_SHADOW = 'imageHoverBoxShadow';
 export const IMAGE_HOVER_BACKGROUND = 'imageHoverBackground';
 export const IMAGE_PADDING = 'imagePadding';
-export const IMAGE_MARGIN = 'imageMargin';
 
 // Heading
 export const HEADING_BORDER = 'headingBorder';
@@ -58,3 +57,31 @@ export const ZOOM_ICON_SIZE = 'zoomIconSize';
 
 // Overlay BG
 export const OVERLAY_BG_COLOR = 'overlayBgColor';
+
+// MPA Animations
+export const MPA_ANIMATIONS = [
+    {
+        label: __('Zoom In', 'zolo-blocks'),
+        value: 'mfp-zoom-in',
+    },
+    {
+        label: __('Zoom Out', 'zolo-blocks'),
+        value: 'mfp-zoom-out',
+    },
+    {
+        label: __('Newspaper', 'zolo-blocks'),
+        value: 'mfp-newspaper',
+    },
+    {
+        label: __('Horizontal Move', 'zolo-blocks'),
+        value: 'mfp-move-horizontal',
+    },
+    {
+        label: __('Move from Top', 'zolo-blocks'),
+        value: 'mfp-move-from-top',
+    },
+    {
+        label: __('3D Unfold', 'zolo-blocks'),
+        value: 'mfp-3d-unfold',
+    },
+];

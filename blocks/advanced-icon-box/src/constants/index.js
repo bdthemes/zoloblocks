@@ -49,3 +49,14 @@ export const DESCRIPTION_MARGIN = 'descMargin';
 export const ICON_IMAGE_SIZE = 'iconImageSize';
 export const IMAGE_BORDER = 'imageBorder';
 export const ICON_IMAGE_BORDER_RADIUS = 'iconImageBorderRadius';
+
+
+// item 
+export const ITEM_BG = 'itemBg';
+export const ITEM_HOVER_BG = 'itemHoverBg';
+export const ITEM_BORDER = 'itemBorder';
+export const ITEM_BRADIUS = 'itemBorderRadius';
+export const ITEM_PADDING = 'itemPadding';
+export const ITEM_MARGIN = 'itemMargin'; 
+export const ITEM_BOX_SHADOW = 'itemBoxShadow';
+export const ITEM_HBOX_SHADOW = 'itemHoverShadow';

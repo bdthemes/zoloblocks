@@ -16,24 +16,27 @@ namespace Zolo\Helpers;
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
-if ( !defined('ABSPATH') ) {
+if (!defined('ABSPATH')) {
     exit;
 }
 
-class ZoloHelpers {
+class ZoloHelpers
+{
     use SingletonTrait;
 
     /**
      * Filter Blocks
      */
-    public static function filter_blocks($block) {
+    public static function filter_blocks($block)
+    {
         return isset($block['visibility']) ? $block['visibility'] : false;
     }
 
     /**
      * array of object to string
      */
-    public static function array_column_from_json($arr, $handle, $json = true) {
+    public static function array_column_from_json($arr, $handle, $json = true)
+    {
         $arr = $json ? json_decode($arr, true) : $arr;
         $arr = array_column($arr, $handle);
 
@@ -43,25 +46,27 @@ class ZoloHelpers {
     /**
      * Isset Check
      */
-    public static function zolo_isset_check($value, $default = '') {
-        if (isset($_POST[$value])) {
-            return $_POST[$value];
-        } else {
-            return $default;
-        }
-    }
+    // public static function zolo_isset_check($value, $default = '') {
+    //     if (isset($_POST[$value])) {
+    //         return $_POST[$value];
+    //     } else {
+    //         return $default;
+    //     }
+    // }
 
     /**
      * check isset & not empty and return data
      */
-    public static function get_data($arr, $key, $default = null) {
+    public static function get_data($arr, $key, $default = null)
+    {
         return isset($arr[$key]) && !empty($arr[$key]) ? $arr[$key] : $default;
     }
 
     /**
      * Is Gutenberg Editor
      */
-    public static function zolo_is_gutenberg_editor($pagenow, $param) {
+    public static function zolo_is_gutenberg_editor($pagenow, $param)
+    {
         if ($pagenow == 'post-new.php' || $pagenow == 'post.php' || $pagenow == 'site-editor.php') {
             return true;
         }
@@ -73,7 +78,8 @@ class ZoloHelpers {
         return false;
     }
 
-    protected static function get_views_path($name) {
+    protected static function get_views_path($name)
+    {
         $file = trailingslashit(ZOLO_DIR_PATH) . 'views/' . $name . '.php';
 
         if (file_exists($file)) {
@@ -90,7 +96,8 @@ class ZoloHelpers {
      * @param array $data
      * @return void
      */
-    public static function views($name, $data = []) {
+    public static function views($name, $data = [])
+    {
         $__file = self::get_views_path($name);
 
         extract($data);
@@ -99,7 +106,8 @@ class ZoloHelpers {
         }
     }
 
-    public static function get_post_types() {
+    public static function get_post_types()
+    {
         $post_types = get_post_types(
             [
                 'public'            => true,
@@ -116,7 +124,8 @@ class ZoloHelpers {
         return array_diff_key($post_types, $excluded_types);
     }
 
-    public static function get_all_users() {
+    public static function get_all_users()
+    {
         $users   = [];
         $authors = get_users(apply_filters('zolo_author_arg', []));
         if (!empty($authors)) {
@@ -127,7 +136,8 @@ class ZoloHelpers {
         return $users;
     }
 
-    public static function get_taxonomies() {
+    public static function get_taxonomies()
+    {
         $get_tax_object = get_taxonomies([], 'objects');
         $exclude_tax    = self::get_excluded_taxonomy();
         foreach ($exclude_tax as $_tax) {
@@ -154,7 +164,8 @@ class ZoloHelpers {
         return $all_taxonomies;
     }
 
-    public static function get_excluded_taxonomy() {
+    public static function get_excluded_taxonomy()
+    {
         return apply_filters('zolo_exclude_taxonomy', [
             'post_format',
             'nav_menu',
@@ -169,7 +180,8 @@ class ZoloHelpers {
         ]);
     }
 
-    public static function get_terms_by_texonomy($cat = 'category') {
+    public static function get_terms_by_texonomy($cat = 'category')
+    {
         $terms = get_terms([
             'taxonomy'   => $cat,
             'hide_empty' => true,
@@ -185,7 +197,8 @@ class ZoloHelpers {
         return $options;
     }
 
-    public static function get_wrapper_class($settings = [], $class_name = '') {
+    public static function get_wrapper_class($settings = [], $class_name = '')
+    {
         $wrap_class = '';
 
         if (isset($settings['uniqueId'])) {
@@ -199,7 +212,8 @@ class ZoloHelpers {
         return $wrap_class;
     }
 
-    public static function removeHtmlTagContents($contant, $tags) {
+    public static function removeHtmlTagContents($contant, $tags)
+    {
         if (is_array($tags)) {
             foreach ($tags as $tag) {
                 $contant = preg_replace(
@@ -218,7 +232,8 @@ class ZoloHelpers {
         return $contant;
     }
 
-    public static function pagination($max_pages) {
+    public static function pagination($max_pages)
+    {
         global $paged;
 
         if (!empty(get_query_var('page')) || !empty(get_query_var('paged'))) {
@@ -240,11 +255,34 @@ class ZoloHelpers {
         }
     }
 
-    public static function render_svg_html($viewBox, $path) {
+    public static function render_svg_html($viewBox, $path)
+    {
         return sprintf(
             '<svg xmlns="https://www.w3.org/2000/svg" viewBox="%s" width="1em" height="1em" fill="currentColor"><path d="%s"></path></svg>',
             esc_attr($viewBox),
             esc_attr($path)
         );
+    }
+
+    public static function wp_kses_allowed_svg()
+    {
+        $defaults = wp_kses_allowed_html('post');
+        $svg_args = [
+            'svg'   => [
+                'class'           => true,
+                'aria-hidden'     => true,
+                'aria-labelledby' => true,
+                'role'            => true,
+                'xmlns'           => true,
+                'width'           => true,
+                'height'          => true,
+                'viewbox'         => true,
+            ],
+            'g'     => ['fill' => true],
+            'title' => ['title' => true],
+            'path'  => ['d' => true, 'fill' => true,],
+        ];
+
+        return array_merge($defaults, $svg_args);
     }
 }

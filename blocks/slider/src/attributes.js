@@ -99,6 +99,9 @@ const attributes = {
     navHoverColor: {
         type: 'string',
     },
+    navHoverBorderColor: {
+        type: 'string',
+    },
     showPagination: {
         type: 'boolean',
         default: true,

@@ -7,7 +7,6 @@ import {
     COLUMN_BORDER,
     COLUMN_BORDER_RADIUS,
     COLUMN_SHADOW,
-    THUMBNAIL_PADDING,
     THUMBNAIL_MARGIN,
     THUMBNAIL_BG,
     THUMBNAIL_BORDER,
@@ -35,6 +34,7 @@ import {
     PAG_MARGIN,
     PAG_PADDING,
     PAG_ALIGN,
+    META_SPACE,
 } from './constants';
 
 import {
@@ -171,16 +171,6 @@ function Style({ props }) {
     } = generateDimensionStyle({
         controlName: THUMBNAIL_MARGIN,
         styleFor: 'margin',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: thumbPaddingDesk,
-        dimensionStylesTab: thumbPaddingTab,
-        dimensionStylesMobile: thumbPaddingMob,
-    } = generateDimensionStyle({
-        controlName: THUMBNAIL_PADDING,
-        styleFor: 'padding',
         attributes,
     });
 
@@ -494,6 +484,17 @@ function Style({ props }) {
         attributes,
     });
 
+    // post meta space
+    const {
+        desktopRangeStyle: metaSpaceDesk,
+        tabRangeStyle: metaSpaceTab,
+        mobRangeStyle: metaSpaceMob,
+    } = generateResRangeStyle({
+        controlName: META_SPACE,
+        property: 'gap',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -509,6 +510,10 @@ function Style({ props }) {
         ${columnDeskBorderStyle}
         ${columnDeskBorderRadius}
         ${columnBoxShadow}
+      }
+
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-dateTime, .${uniqueId}.zolo-post-grid-wrap .zolo-post-secount-dateTime {
+        ${metaSpaceDesk}
       }
 
       .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-3 .zolo-post-item{
@@ -544,7 +549,7 @@ function Style({ props }) {
 
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-image{
         ${thumbMarginDesk}
-        ${thumbPaddingDesk}
+       
         ${thumbBgDesk}
         ${thumbBorderDesk}
         ${thumbBorderRadiusDesk}
@@ -685,7 +690,6 @@ function Style({ props }) {
 
     .${uniqueId}.zolo-post-grid-wrap .zolo-post-image{
       ${thumbMarginTab}
-      ${thumbPaddingTab}
       ${thumbBgTab}
       ${thumbBorderTab}
       ${thumbBorderRadiusTab}
@@ -780,7 +784,6 @@ function Style({ props }) {
 
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-image{
         ${thumbMarginMob}
-        ${thumbPaddingMob}
         ${thumbBgMob}
         ${thumbBorderMob}
         ${thumbBorderRadiusMob}

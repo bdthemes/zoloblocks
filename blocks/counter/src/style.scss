@@ -55,6 +55,9 @@
             }
             .zolo-counter-icon {
                 margin: 0;
+                svg {
+                    margin-bottom: 0;
+                }
             }
         }
         &.style-2 {

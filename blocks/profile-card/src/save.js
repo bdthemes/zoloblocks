@@ -26,6 +26,7 @@ const Save = ({ attributes }) => {
         followButtonLink,
         showSocialProfiles,
         socialProfiles,
+        zoloId,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -33,7 +34,12 @@ const Save = ({ attributes }) => {
     });
 
     return (
-        <div {...blockProps}>
+        <div
+            {...blockProps}
+            {...(zoloId && {
+                id: zoloId,
+            })}
+        >
             <div className="zb-profile-item">
                 <div className="zb-profile-header-content">
                     {showBadge && (

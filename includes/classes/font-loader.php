@@ -29,13 +29,14 @@ class ZB_Font_Loader {
 	 */
 	public function __construct() {
 		add_action('wp_enqueue_scripts', array($this, 'fonts_loader'));
-		add_action('admin_enqueue_scripts', array($this, 'fonts_loader'));
+		add_action('enqueue_block_editor_assets', array($this, 'fonts_loader'), 9999);
 		add_action('zolo_block_render_block', array($this, 'font_generator'));
 	}
 
     public function font_generator($block) {
         if (isset($block['attrs']) && is_array($block['attrs'])) {
             $attributes = $block['attrs'];
+			
             foreach ($attributes as $key => $value) {
                 if (!empty($value) && strpos($key, 'zolo_') === 0 && strpos($key, 'FontFamily') !== false) {
                     self::$all_fonts[] = $value;
@@ -56,7 +57,7 @@ class ZB_Font_Loader {
 
 			$fonts = array_filter(array_unique(self::$all_fonts));
 
-			if (!empty($fonts)) {
+			if (!empty($fonts) ) {
 
 				$system = array(
 					'Arial',
@@ -73,6 +74,12 @@ class ZB_Font_Loader {
 				$gfonts_attr = ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic';
 
 				foreach ($fonts as $font) {
+
+					// Check if font is Default
+					if( strpos( $font, 'Default' ) !== false ) {
+						continue;
+					}
+
 					if (!in_array($font, $system, true) && !empty($font)) {
 						$gfonts .= str_replace(' ', '+', trim($font)) . $gfonts_attr . '|';
 					}
@@ -82,13 +89,16 @@ class ZB_Font_Loader {
 					$font_array = explode('|', $gfonts);
 					
 					foreach ($font_array as $font) {
-						if (empty($font)) {
+
+						if (empty($font) ) {
 							continue;
 						}
 
+						
+
 						$query_args = ['family' => $font];
 						$font_handle = 'zolo-block-fonts-' . sanitize_title($font);
-				
+
 						wp_register_style(
 							$font_handle,
 							add_query_arg($query_args, '//fonts.googleapis.com/css'),

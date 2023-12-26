@@ -125,13 +125,13 @@ const attributes = {
         type: 'string',
         default: 'bottom',
     },
-    align: {
-        type: 'string',
-        default: 'left',
-    },
     showTransparentTitle: {
         type: 'boolean',
         default: false,
+    },
+    transparentTag: {
+        type: 'string',
+        default: 'h2',
     },
     transparentTitleText: {
         type: 'string',
@@ -153,9 +153,7 @@ const attributes = {
     ...generateResRangeAttributies(TPH_X_OFFSET),
     ...generateResRangeAttributies(TPH_Y_OFFSET),
 
-    ...generateResAlignmentAttributies(TITLE_ALIGN, {
-        defaultAlign: 'left',
-    }),
+    ...generateResAlignmentAttributies(TITLE_ALIGN),
     //design tab attributes
     titleColor: {
         type: 'string',
@@ -201,12 +199,8 @@ const attributes = {
         type: 'string',
         default: '',
     },
-    ...generateResRangeAttributies(SEPARATOR_WIDTH, {
-        defaultRange: 70,
-    }),
-    ...generateResRangeAttributies(SEPARATOR_HEIGHT, {
-        defaultRange: 3,
-    }),
+    ...generateResRangeAttributies(SEPARATOR_WIDTH),
+    ...generateResRangeAttributies(SEPARATOR_HEIGHT),
     ...generateResRangeAttributies(SEPARATOR_SPACING),
 
     ...generateDimensionAttributes(TITLE_MARGIN),

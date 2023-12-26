@@ -17,7 +17,6 @@ import {
     THUMBNAIL_BORDER_RADIUS,
     THUMBNAIL_BOX_SHADOW,
     THUMBNAIL_MARGIN,
-    THUMBNAIL_PADDING,
     THUMBNAIL_BG,
     TITLE_MARGIN,
     EXCERPT_MARGIN,
@@ -41,6 +40,7 @@ import {
     PAG_MARGIN,
     PAG_PADDING,
     PAG_ALIGN,
+    META_SPACE,
 } from './constants';
 
 import {
@@ -284,16 +284,16 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         {showReadMore && (
                             <ZoloPanelBody title={__('Read More Button', 'zolo-blocks')} panelProps={props}>
-                                {/* <ToggleControl
+                                <ToggleControl
                                     label={__('Show Text', 'zolo-blocks')}
                                     checked={showReadmoreText}
                                     onChange={(showReadmoreText) => setAttributes({ showReadmoreText })}
-                                /> */}
-                                {/* <ToggleControl
+                                />
+                                <ToggleControl
                                     label={__('Show Icon', 'zolo-blocks')}
                                     checked={showReadmoreIcon}
                                     onChange={(showReadmoreIcon) => setAttributes({ showReadmoreIcon })}
-                                /> */}
+                                />
 
                                 {showReadmoreText && (
                                     <TextControl
@@ -303,13 +303,13 @@ function Inspector(props) {
                                     />
                                 )}
 
-                                {/* {showReadmoreIcon && (
+                                {showReadmoreIcon && (
                                     <ZoloIconPicker
                                         label={__('Read More Icon', 'zolo-blocks')}
                                         value={readMoreIcon}
                                         onChange={(readMoreIcon) => setAttributes({ readMoreIcon })}
                                     />
-                                )} */}
+                                )}
                             </ZoloPanelBody>
                         )}
 
@@ -392,12 +392,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zolo-blocks')}
-                                    controlName={THUMBNAIL_PADDING}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={false}
-                                />
+
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={THUMBNAIL_MARGIN}
@@ -462,6 +457,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={EXCERPT_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ColorControl
                                     label={__('Color', 'zolo-blocks')}
@@ -486,11 +482,20 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={META_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ColorControl
                                     label={__('Color', 'zolo-blocks')}
                                     color={metaColor}
                                     onChange={(metaColor) => setAttributes({ metaColor })}
+                                />
+                                <ResRangeControl
+                                    label={__('Space', 'zolo-blocks')}
+                                    controlName={META_SPACE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
                                 />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
@@ -506,6 +511,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={CAT_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResRangeControl
                                     label={__('Gap', 'zolo-blocks')}
@@ -587,6 +593,7 @@ function Inspector(props) {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={READMORE_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={36}
                                 />
                                 <ResRangeControl
                                     label={__('Gap', 'zolo-blocks')}

@@ -5,8 +5,11 @@ const { ZoloIconPicker, SortableControl, SortableItem, LinkControl } = window.zo
 
 const { __ } = wp.i18n;
 const { Button, PanelBody, TextControl } = wp.components;
+import { cloneDeep } from 'lodash';
 
 const Sortable = ({ socialProfiles, setAttributes }) => {
+    const deepCloneProfiles = cloneDeep(socialProfiles);
+
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
@@ -36,8 +39,8 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                 </Button>
             </div>
             <SortableControl defaultItems={socialProfiles} attributeName="socialProfiles" setAttributes={setAttributes}>
-                {socialProfiles &&
-                    socialProfiles.map((profile, index) => {
+                {deepCloneProfiles &&
+                    deepCloneProfiles.map((profile, index) => {
                         return (
                             <div className="dnd-container" key={index}>
                                 <Button
@@ -54,22 +57,19 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                         <TextControl
                                             label={__('Title', 'zolo-blocks')}
                                             value={profile.text}
-                                            onChange={(v) =>
+                                            onChange={(v) => {
+                                                const newItems = [...deepCloneProfiles];
+                                                newItems[index].text = v;
                                                 setAttributes({
-                                                    socialProfiles: socialProfiles.map((profile, i) => {
-                                                        if (index === i) {
-                                                            profile.text = v;
-                                                        }
-                                                        return profile;
-                                                    }),
-                                                })
-                                            }
+                                                    socialProfiles: newItems,
+                                                });
+                                            }}
                                         />
                                         <ZoloIconPicker
                                             label={__('Select Icon', 'zolo-blocks')}
                                             value={profile.icon}
                                             onChange={(value) => {
-                                                const newItems = [...socialProfiles];
+                                                const newItems = [...deepCloneProfiles];
                                                 newItems[index].icon = value;
                                                 setAttributes({
                                                     socialProfiles: newItems,
@@ -81,7 +81,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                             label={__('Link', 'zolo-blocks')}
                                             value={profile.link}
                                             onChange={(value) => {
-                                                const newItems = [...socialProfiles];
+                                                const newItems = [...deepCloneProfiles];
                                                 newItems[index].link = value;
                                                 setAttributes({
                                                     socialProfiles: newItems,

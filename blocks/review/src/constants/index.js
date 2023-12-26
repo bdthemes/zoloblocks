@@ -44,10 +44,11 @@ export const ICONS_SIZE = 'IconsSize';
 
 // Review detail page link icon
 export const DPL_BG = 'DPLBg';
-export const DPL_HEIGHT = 'DPLHeight';
-export const DPL_WIDTH = 'DPLWidth';
 export const DPL_BORDER = 'DPLBorder';
 export const DPL_BORDER_RADIUS = 'DPLBorderRadius';
 export const DPL_PADDING = 'DPLPadding';
 export const DPL_MARGIN = 'DPLMargin';
 export const DPL_ICON_SIZE = 'DPLIconSize';
+
+// GAP
+export const CONTENT_GAP = 'ContentGap';

@@ -1,11 +1,19 @@
 .wp-block-zolo-advanced-icon-box {
-    padding: clamp(1.875rem, 4vw, 2.5rem);
     position: relative;
-    border-radius: var(--zolo-item-border-radius);
-    background-color: var(--zoloblocks-item-bg-color);
-    border: 1px solid var(--zoloblocks-item-border-color);
     box-sizing: border-box;
-    overflow: hidden;
+    // overflow: hidden;
+
+    .zolo-block-advanced-icon-box {
+        padding: clamp(1.875rem, 4vw, 2.5rem);
+        border-radius: var(--zolo-item-border-radius);
+        background-color: var(--zoloblocks-item-bg-color);
+        border: 1px solid var(--zoloblocks-item-border-color);
+        box-sizing: border-box;
+        // overflow: hidden;
+        display: block;
+        transition: all 0.3s ease;
+    }
+
     a {
         text-decoration: none;
     }
@@ -15,6 +23,7 @@
         font-weight: 700;
         color: #2f2f44;
         margin: 0 0 clamp(0.625rem, 1vw, 0.75rem);
+        line-height: 1.2;
     }
 
     .zolo-block-desc {
@@ -23,7 +32,7 @@
     }
 
     .zolo-block-icon-wrap {
-        margin: 0 0 clamp(0.938rem, 2.5vw, 1.75rem);
+        margin: 0 0 clamp(0.938rem, 2.3vw, 1.3rem);
         img {
             width: clamp(3.125rem, 5vw, 3.75rem);
             height: auto;
@@ -34,6 +43,7 @@
             height: clamp(1.125rem, 5vw, 2.75rem);
             transition: 0.2s ease-in-out;
             box-sizing: content-box;
+            fill: var(--zoloblocks-brand-color);
         }
     }
 

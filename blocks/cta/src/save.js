@@ -23,11 +23,15 @@ const Save = ({ attributes }) => {
         icon,
         parentClasses,
         reversePosition,
+        zoloId,
     } = attributes;
     return (
         <div
             {...useBlockProps.save({
                 className: classnames(uniqueId, classArrayToStr(parentClasses)),
+            })}
+            {...(zoloId && {
+                id: zoloId,
             })}
         >
             <div className={`zolo-call-out ${preset} ${reversePosition ? 'reserve-position' : ''}`}>

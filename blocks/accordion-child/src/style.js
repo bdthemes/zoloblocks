@@ -29,8 +29,6 @@ import {
     AC_BODY_BG,
     AC_BODY_PADDING,
     AC_BODY_MARGIN,
-    ICONCONTAINER_WIDTH,
-    ICONCONTAINER_HEIGHT,
     ICONTAINER_BG,
     ICONTAINER_HBG,
     ICONTAINER_PADDING,
@@ -265,26 +263,6 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    const {
-        desktopRangeStyle: icHeightDesk,
-        tabRangeStyle: icHeightTab,
-        mobRangeStyle: icHeightMob,
-    } = generateResRangeStyle({
-        controlName: ICONCONTAINER_HEIGHT,
-        property: 'height',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: icWidthtDesk,
-        tabRangeStyle: icWidthTab,
-        mobRangeStyle: icWidthMob,
-    } = generateResRangeStyle({
-        controlName: ICONCONTAINER_WIDTH,
-        property: 'width',
-        attributes,
-    });
-
     // accordion icon
     const {
         desktopRangeStyle: iconSizeDesk,
@@ -343,8 +321,6 @@ const Style = ({ props }) => {
             ${borderStyles}
             ${borderRadiusDesktop}
             ${icPaddingDesk}
-            ${icHeightDesk}
-            ${icWidthtDesk}
         }
 
         .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-toggle {
@@ -400,8 +376,6 @@ const Style = ({ props }) => {
             ${borderStylesTab}
             ${borderRadiusTab}
             ${icPaddingTab}
-            ${icHeightTab}
-            ${icWidthTab}
         }
 
         .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-toggle {
@@ -449,8 +423,6 @@ const Style = ({ props }) => {
             ${borderStylesMob}
             ${borderRadiusMob}
             ${icPaddingMob}
-            ${icHeightMob}
-            ${icWidthMob}
         }
         .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-toggle {
             ${icHoverMob}

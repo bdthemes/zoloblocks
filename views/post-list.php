@@ -20,9 +20,15 @@
 
     $metaSeparator = !empty($settings['metaSeparator']) ? $settings['metaSeparator'] : '//';
 
+    $wrapperId = $settings['zoloId'] ?? '';
+
 ?>
 
-<div class="<?php echo esc_attr($wrapper_class); ?>">
+<div class="<?php echo esc_attr($wrapper_class); ?>" 
+    <?php if (!empty($wrapperId)) { ?>
+        id="<?php echo esc_attr($wrapperId); ?>"
+    <?php } ?>
+>
     <?php foreach ($post_results['posts'] as $result) {
         $i++;
         $featuredPostClass = $i === 1 ? 'featured-post' : '';

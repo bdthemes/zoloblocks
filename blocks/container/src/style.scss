@@ -40,3 +40,8 @@ body .wp-block-zolo-container > *:not(.wp-block-zolo-container):not(.wp-block) {
         margin-right: auto;
     }
 }
+
+.zolo-container-variation-picker .block-editor-block-variation-picker__variations.block-editor-block-variation-picker__variations>li {
+    margin: 0 5px;
+}
+

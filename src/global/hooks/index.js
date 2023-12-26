@@ -12,6 +12,7 @@ import { createHigherOrderComponent } from '@wordpress/compose';
 import { select, useSelect, withSelect } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
 import { prefix } from '../constants';
+import WebFont from 'webfontloader';
 
 /**
  * Internal depencencies
@@ -99,6 +100,13 @@ function addAttributes(settings) {
             customClass: {
                 type: 'string',
             },
+            customClasses: {
+                type: 'array',
+                default: [],
+            },
+            zoloId: {
+                type: 'string',
+            },
             ...(settings.attributes.globalConfig?.default?.margin &&
                 generateDimensionAttributes(settings.attributes.globalConfig.default.margin?.prefix || 'mainMargin')),
 
@@ -182,6 +190,26 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
                 setAttributes,
                 clientId,
             });
+
+            //Load google fonts in editor
+            let googleFontFamily = [];
+            for (var key in attributes) {
+                if (/^(\w+)FontFamily/.test(key) && attributes[key]) {
+                    googleFontFamily.push(
+                        attributes[key] +
+                            ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
+                    );
+                }
+            }
+            if (googleFontFamily.length > 0) {
+                let webFontConfig = {
+                    google: {
+                        families: googleFontFamily,
+                    },
+                    context: frames['editor-canvas'],
+                };
+                WebFont.load(webFontConfig);
+            }
         }, []);
 
         //set Unique Id globally

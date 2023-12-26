@@ -53,6 +53,27 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function block_assets_loader() {
+            // override css 
+            if( ! is_admin( ) ) {
+                wp_enqueue_style(
+                    'zolo-block-override-style',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/override/frontend-override.css',
+                    [],
+                    ZOLO_VERSION
+                );
+            }
+
+            // magnific popup animations 
+            if( has_block( 'zolo/image-gallery' ) ) {
+                wp_enqueue_style(
+                    'zolo-maginific-popup-animations',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/magnific-popup/mpa-animations.css',
+                    [],
+                    ZOLO_VERSION
+                );
+            }
+
+            // Enqueue common style
             wp_enqueue_style(
                 'zolo-block-common-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'build/dist/style.css',
@@ -80,23 +101,11 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             // popup
             if (!is_admin() && has_block('zolo/image-gallery')) {
-                // enqueue style for frontend
-                wp_enqueue_style('zolo-maginific-popup', trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/magnific-popup/magnific-popup.css', [], ZOLO_VERSION);
-
                 // enqueue magnific popup for frontend
                 wp_enqueue_script(
-                    'zolo-maginific-popup',
-                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/magnific-popup/jquery.magnific-popup.min.js',
-                    ['jquery'],
-                    ZOLO_VERSION,
-                    true
-                );
-
-                // enqueue scripts for frontend
-                wp_enqueue_script(
-                    'zolo-popup-scripts',
-                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/scripts.js',
-                    ['jquery', 'zolo-maginific-popup'],
+                    'zolo-fslightbox-popup',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lightbox/fslightbox.js',
+                    [],
                     ZOLO_VERSION,
                     true
                 );
@@ -121,15 +130,15 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // accordion Scripts and Styles
-            // if ( ! is_admin() && has_block( 'zolo/accordion' ) ) {
-            wp_enqueue_script(
-                'zolo-accordion-script',
-                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/accordion/accordion.min.js',
-                [],
-                ZOLO_VERSION,
-                true
-            );
-            // }
+            if ( ! is_admin() && has_block( 'zolo/accordion' ) ) {
+                wp_enqueue_script(
+                    'zolo-accordion-script',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/accordion/accordion.min.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
+            }
 
             // social share Scripts and Styles
             if (!is_admin() && has_block('zolo/social-share')) {
@@ -147,6 +156,15 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             if (!is_admin()) {
                 return;
             }
+
+            // override css
+            wp_enqueue_style(
+                'zolo-block-override-style',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/override/editor-override.css',
+                [],
+                ZOLO_VERSION
+            );
+
             //Register vendor bundle
             $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'vendor-bundle/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
@@ -239,6 +257,15 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'zolo-swiper-editor-style'
                 ],
                 ZOLO_VERSION
+            );
+
+            // accordion 
+            wp_enqueue_script(
+                'zolo-accordion-editor-script',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/accordion/accordion.min.js',
+                [],
+                ZOLO_VERSION,
+                true
             );
 
             //get editor type

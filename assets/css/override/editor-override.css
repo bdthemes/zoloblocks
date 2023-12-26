@@ -1,0 +1,9 @@
+/* Zoloblocks Container Block Navigation isuue fix for editor view only (not in frontend)  */
+.zolo-root-container .wp-block-navigation__container {
+    flex-grow: inherit;
+    flex-wrap: nowrap;
+}
+
+.zolo-root-container .wp-block-navigation-item__label {
+    white-space: nowrap !important;
+}

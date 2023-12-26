@@ -323,7 +323,7 @@ const Style = ({ props }) => {
 			${iconColor ? `fill: ${iconColor}` : ''};	
 		}
 
-        .${uniqueId} .zolo-counter-icon svg, .${uniqueId} .zolo-counter-icon img {
+        .${uniqueId} .zolo-counter-icon .zolo__display-icon, .${uniqueId} .zolo-counter-icon img {
 			${borderStyles}
 			${iconBorderRadiusDesktop}
 			${iconPaddingDesktop}
@@ -366,7 +366,7 @@ const Style = ({ props }) => {
             ${tabTitleTextStrokeStyle}
         }
 
-        .${uniqueId} .zolo-counter-icon svg, .${uniqueId} .zolo-counter-icon img {
+        .${uniqueId} .zolo-counter-icon .zolo__display-icon, .${uniqueId} .zolo-counter-icon img {
             ${borderStylesTab}
             ${iconBorderRadiusTab}
             ${iconPaddingTab}
@@ -414,7 +414,7 @@ const Style = ({ props }) => {
             ${mobTitleTextStrokeStyle}
         }
 
-        .${uniqueId} .zolo-counter-icon svg, .${uniqueId} .zolo-counter-icon img {
+        .${uniqueId} .zolo-counter-icon .zolo__display-icon, .${uniqueId} .zolo-counter-icon img {
             ${borderStylesMob}
             ${iconBorderRadiusMob}
             ${iconPaddingMob}

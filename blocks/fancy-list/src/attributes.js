@@ -20,6 +20,12 @@ import {
     COLUMNS,
     COLUMNS_GAP,
     ROWS_GAP,
+    ITEM_BG,
+    ITEM_PADDING,
+    ITEM_MARGIN,
+    ITEM_BORDER,
+    ITEM_BORDER_RADIUS,
+    ITEM_BOX_SHADOW,
 } from './constants';
 const {
     generateTypographyAttributes,
@@ -28,6 +34,7 @@ const {
     generateDimensionAttributes,
     generateNormalBGAttributes,
     generateResCounterAttributies,
+    generateBoxShadowAttributies,
 } = window.zoloModule;
 
 const attributes = {
@@ -128,6 +135,15 @@ const attributes = {
     ...generateResRangeAttributies(ROWS_GAP, {
         defaultRange: 15,
     }),
+
+    // item
+    ...generateNormalBGAttributes(ITEM_BG),
+    ...generateBorderAttributies(ITEM_BORDER),
+    ...generateDimensionAttributes(ITEM_BORDER_RADIUS),
+    ...generateDimensionAttributes(ITEM_PADDING),
+    ...generateDimensionAttributes(ITEM_MARGIN),
+    ...generateBoxShadowAttributies(ITEM_BOX_SHADOW),
+
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateDimensionAttributes(ICON_PADDING),
     ...generateNormalBGAttributes(ICON_BG),

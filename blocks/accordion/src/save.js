@@ -3,14 +3,21 @@ import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses } = attributes;
+    const { uniqueId, parentClasses, initialOpen, allowMultiple, zoloId } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, 'zolo-accordion-wrap accordion-container', classArrayToStr(parentClasses)),
     });
 
     return (
-        <div {...blockProps}>
+        <div
+            {...blockProps}
+            data-initialOpen={initialOpen}
+            data-multiple={allowMultiple}
+            {...(zoloId && {
+                id: zoloId,
+            })}
+        >
             <InnerBlocks.Content />
         </div>
     );

@@ -78,9 +78,7 @@ const attributes = {
     ...generateTextStrokeAttributies(COUNTER_TEXT_STROKE),
     // Icon
     ...generateBorderAttributies(ICON_BORDER),
-    ...generateResRangeAttributies(ICON_SIZE, {
-        default: 30,
-    }),
+    ...generateResRangeAttributies(ICON_SIZE),
     ...generateDimensionAttributes(ICON_BORDER_RADIUS),
     ...generateDimensionAttributes(ICON_PADDING),
     ...generateDimensionAttributes(ICON_MARGIN),

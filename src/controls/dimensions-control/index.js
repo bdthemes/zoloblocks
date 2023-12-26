@@ -6,7 +6,7 @@ import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
 import LinkUnlink from '../link-unlink';
 
-const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadius, units }) => {
+const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadius, units, max = null }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
 
     const {
@@ -72,19 +72,23 @@ const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadi
                             icon={<LinkUnlink isLinked={isLinked} />}
                             onClick={onButtonClick}
                         />
-                        <ResetBtn
-                            onReset={() => {
-                                setAttributes({
-                                    [`${prefix}${controlName}Top`]: '',
-                                    [`${prefix}${controlName}Right`]: '',
-                                    [`${prefix}${controlName}Bottom`]: '',
-                                    [`${prefix}${controlName}Left`]: '',
-                                });
-                            }}
-                        />
+                        {(dimensionTop || dimensionRight || dimensionBottom || dimensionLeft) && (
+                            <ResetBtn
+                                customClass="zb-reset-has-value"
+                                onReset={() => {
+                                    setAttributes({
+                                        [`${prefix}${controlName}Top`]: '',
+                                        [`${prefix}${controlName}Right`]: '',
+                                        [`${prefix}${controlName}Bottom`]: '',
+                                        [`${prefix}${controlName}Left`]: '',
+                                    });
+                                }}
+                            />
+                        )}
                     </UnitsBtn>
 
                     <DimensionControl
+                        max={max}
                         top={dimensionTop}
                         right={dimensionRight}
                         bottom={dimensionBottom}
@@ -118,19 +122,22 @@ const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadi
                             icon={<LinkUnlink isLinked={isLinked} />}
                             onClick={onButtonClick}
                         />
-                        <ResetBtn
-                            onReset={() => {
-                                setAttributes({
-                                    [`${prefix}TAB${controlName}Top`]: '',
-                                    [`${prefix}TAB${controlName}Right`]: '',
-                                    [`${prefix}TAB${controlName}Bottom`]: '',
-                                    [`${prefix}TAB${controlName}Left`]: '',
-                                });
-                            }}
-                        />
+                        {(TABdimensionTop || TABdimensionRight || TABdimensionBottom || TABdimensionLeft) && (
+                            <ResetBtn
+                                onReset={() => {
+                                    setAttributes({
+                                        [`${prefix}TAB${controlName}Top`]: '',
+                                        [`${prefix}TAB${controlName}Right`]: '',
+                                        [`${prefix}TAB${controlName}Bottom`]: '',
+                                        [`${prefix}TAB${controlName}Left`]: '',
+                                    });
+                                }}
+                            />
+                        )}
                     </UnitsBtn>
 
                     <DimensionControl
+                        max={max}
                         top={TABdimensionTop}
                         right={TABdimensionRight}
                         bottom={TABdimensionBottom}
@@ -164,19 +171,22 @@ const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadi
                             icon={<LinkUnlink isLinked={isLinked} />}
                             onClick={onButtonClick}
                         />
-                        <ResetBtn
-                            onReset={() => {
-                                setAttributes({
-                                    [`${prefix}MOB${controlName}Top`]: '',
-                                    [`${prefix}MOB${controlName}Right`]: '',
-                                    [`${prefix}MOB${controlName}Bottom`]: '',
-                                    [`${prefix}MOB${controlName}Left`]: '',
-                                });
-                            }}
-                        />
+                        {(MOBdimensionTop || MOBdimensionRight || MOBdimensionBottom || MOBdimensionLeft) && (
+                            <ResetBtn
+                                onReset={() => {
+                                    setAttributes({
+                                        [`${prefix}MOB${controlName}Top`]: '',
+                                        [`${prefix}MOB${controlName}Right`]: '',
+                                        [`${prefix}MOB${controlName}Bottom`]: '',
+                                        [`${prefix}MOB${controlName}Left`]: '',
+                                    });
+                                }}
+                            />
+                        )}
                     </UnitsBtn>
 
                     <DimensionControl
+                        max={max}
                         top={MOBdimensionTop}
                         right={MOBdimensionRight}
                         bottom={MOBdimensionBottom}

@@ -6,6 +6,7 @@ import { __ } from '@wordpress/i18n';
 
 const WithResDeviceBtn = ({ label, requiredProps, children, controlName, noResetBtn = false, noResponsive = false }) => {
     const { resMode, objAttributes, setAttributes } = requiredProps;
+
     const [switcherIsOpen, setSwitcherIsOpen] = useState(false);
     const [device, setDevice] = useState(() => resMode || 'Desktop');
     const devicesRef = useRef();
@@ -13,7 +14,6 @@ const WithResDeviceBtn = ({ label, requiredProps, children, controlName, noReset
 
     const onClickHandler = (_device) => {
         const editor_type = `core/${zoloParams?.editor_type || 'edit-post'}`;
-
         setAttributes({ resMode: _device });
         setDevice(_device);
         dispatch(editor_type).__experimentalSetPreviewDeviceType(_device);
@@ -21,8 +21,6 @@ const WithResDeviceBtn = ({ label, requiredProps, children, controlName, noReset
     };
 
     useClickOutside(devicesRef, closeDevices);
-
-    // const onReset =
 
     return (
         <div className={`zb-deive-wrapper`}>

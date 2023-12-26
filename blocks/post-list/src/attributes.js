@@ -12,6 +12,7 @@ const {
 } = window.zoloModule;
 
 import {
+    CONTENT_ALIGN,
     COLUMNS_GAP,
     THUMBNAIL_HEIGHT,
     COLUMN_PADDING,
@@ -45,9 +46,11 @@ import {
     FCONTENT_PADDING,
     FCONTAINER_PADDING,
     FCONTAINER_BG,
+    FCONTAINER_OVERLAY,
     FCONTAINER_BORDER,
     FCONTAINER_BORDER_RADIUS,
     FCONTAINER_SHADOW,
+    META_SPACE,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -251,6 +254,8 @@ const attributes = {
         type: 'string',
     },
 
+    ...generateResAlignmentAttributies(CONTENT_ALIGN),
+
     ...generateResRangeAttributies(COLUMNS_GAP, {
         defaultRange: 30,
     }),
@@ -262,6 +267,7 @@ const attributes = {
 
     ...generateDimensionAttributes(FCONTAINER_PADDING),
     ...generateNormalBGAttributes(FCONTAINER_BG),
+    ...generateNormalBGAttributes(FCONTAINER_OVERLAY),
     ...generateBorderAttributies(FCONTAINER_BORDER),
     ...generateDimensionAttributes(FCONTAINER_BORDER_RADIUS),
     ...generateBoxShadowAttributies(FCONTAINER_SHADOW),
@@ -300,6 +306,9 @@ const attributes = {
 
     // featured post
     ...generateDimensionAttributes(FCONTENT_PADDING),
+
+    // post meta
+    ...generateResRangeAttributies(META_SPACE),
 };
 
 export default attributes;
