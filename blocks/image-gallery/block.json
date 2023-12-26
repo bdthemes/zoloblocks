@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Image Gallery",
+    "name": "zolo/image-gallery",
+    "category": "zolo-blocks",
+    "keywords": ["gallery", "image gallery"],
+    "description": "Image Gallery Block",
+    "apiVersion": 3,
+    "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "supports": {
+        "anchor": false,
+        "align": ["wide", "full"],
+        "customClassName": false
+    },
+    "editorScript": ""
+}

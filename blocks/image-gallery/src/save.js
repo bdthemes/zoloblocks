@@ -1,0 +1,52 @@
+import { useBlockProps } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
+const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
+import classnames from 'classnames';
+
+const Save = ({ attributes }) => {
+    const { uniqueId, parentClasses, advancedGallery, showCaption, showLightbox, lightboxIcon, entranceAnimation, zoloId } = attributes;
+
+    const blockProps = useBlockProps.save({
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+    });
+    return (
+        <div
+            {...blockProps}
+            {...(zoloId && {
+                id: zoloId,
+            })}
+        >
+            <div className={`zolo-image-gallery ${uniqueId}`}>
+                {advancedGallery &&
+                    advancedGallery.map((image, index) => {
+                        return (
+                            <DynamicTag
+                                tagName={showLightbox ? 'a' : 'div'}
+                                className="zolo-item"
+                                key={index}
+                                {...(showLightbox && {
+                                    href: image.url,
+                                    'data-fslightbox': 'data-fslightbox',
+                                    'data-effect': entranceAnimation,
+                                })}
+                            >
+                                <div className="zolo-image-wrap">
+                                    <img src={image.url} alt={image.alt || image.caption || 'Gallery'} className={`wp-image-${image.id}`} />
+                                </div>
+                                {showLightbox && (
+                                    <div className="zolo-icon-wrap">
+                                        <span className="zolo-icon">
+                                            <DisplayZoloIcon icon={lightboxIcon} />
+                                        </span>
+                                    </div>
+                                )}
+                                {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
+                            </DynamicTag>
+                        );
+                    })}
+            </div>
+        </div>
+    );
+};
+
+export default Save;

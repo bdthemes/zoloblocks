@@ -1,0 +1,262 @@
+.zolo-icons-wrap {
+    padding: 0 30px 30px 30px;
+    overflow-y: scroll;
+    height: 475px;
+    min-height: 475px;
+    /* width */
+    &::-webkit-scrollbar {
+        width: 5px;
+        border-radius: 10px;
+    }
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        border-radius: 10px;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #aeaeae; 
+    }
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+    }
+}
+
+.zolo__icons-grid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(7,1fr);
+    position: relative;
+
+    .single__icon {
+        height: 70px;
+        border: 1px solid #ececf1;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin: 0;
+        padding: 0 !important;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: border .3s ease;
+        &:hover {
+            border-color: #dbdbdd;
+            svg {
+                color: #001feb;
+            }
+        }
+        svg {
+            width: 24px;
+            height: 24px;
+            color: #5d5b65;
+        }
+        &.active {
+            border-color: #b9befd;
+            border-width: 2px;
+            svg {
+                color: #001feb;
+            }
+        }
+    }
+}
+
+.zolo-icons-title {
+    margin: 0 0 20px;
+}
+
+.zolo__single-preview-icon {
+    height: 25px;
+    width: 25px;
+}
+
+.zolo__modal.components-modal__frame {
+    width: 1024px;
+    min-width: 1024px;
+    height: auto;
+    min-height: auto;
+    .components-modal__header {
+        border-bottom: 1px solid #ececf1;
+        padding: 25px 30px;
+    }
+
+    .components-modal__content {
+        padding: 0;
+    }
+
+    .components-modal__content {
+        overflow: hidden;
+    }
+
+    .modal__content {
+        width: calc(100% - 180px);
+        box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .category__button {
+        padding: 20px 30px;
+        width: 100%;
+        height: auto;
+        font-size: 14px;
+        text-align: left;
+        border-radius: 0 !important;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        &:nth-last-child(1) {
+            border-bottom: 1px solid #ececf1;
+        }
+        svg {
+            display: block;
+            fill: none;
+        }
+        &:hover {
+            color: #001feb;
+        }
+
+        &:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    }
+
+    .zolo-custom-icon {
+        padding: 14px;
+        margin: 0;
+        text-align: center;
+        color: #34363b;
+        background-color: #d7e7fb;
+        margin: 24px;
+        border-radius: 4px;
+        font-size: 13px;
+        color: #2f2f3f;
+        strong {
+            color: #001feb;
+        }
+    }
+
+    .category__button.active {
+        background: #e9e8f3;
+        border-radius: 0 !important;
+        color:  #001feb;
+    }
+
+    .search__input {
+        border: 1px solid #ececf1;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        margin: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        input {
+            border: none;
+            width: calc(100% - 40px);
+            padding: 10px 14px;
+            &:focus {
+                outline: none !important;
+                box-shadow: none !important;
+            }
+        }
+
+        svg {
+            width: 14px;
+            height: 14px;
+            margin: 0 15px;
+        }
+    }
+}
+
+.zolo-icon-preview {
+    margin-bottom: 16px;
+    label {
+        display: block;
+        margin: 0 0 8px;
+    }
+}
+
+.zolo-picker__button {
+    width: 100%;
+    height: 180px;
+    border: 1px solid #ececf1;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    font-size: 13px;
+    font-weight: 600;
+    &:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+.zolo__not_found {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 180px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #858596;
+}
+
+.zolo-picker__button.active:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    content: 'Change Icon';
+    padding: 8px;
+    background: #e0e0e0;
+    font-size: 14px;
+    text-transform: capitalize;
+    line-height: 1;
+    font-weight: 400;
+    transition: 0.3s;
+    transform: translateY(30px);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.zolo-picker__button:hover:after {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.zolo-modal__wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+}
+
+.zolo-categories__sidebar {
+    width: 280px;
+    min-width: 280px;
+    height: 585px;
+    min-height: 585px;
+    border-right: 1px solid #ececf1;
+    padding-top: 30px;
+}
+
+// Display Icon
+.zolo__display-icon {
+    display: inline;
+    svg {
+        display: block;
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.zolo-picker__button {
+    border-radius: 6px !important;
+    height: 130px !important;
+    background-color: #f2f2f2;
+}
