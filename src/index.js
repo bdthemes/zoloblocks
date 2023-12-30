@@ -20,6 +20,7 @@ import '../blocks/counter/src';
 import '../blocks/fancy-list-child/src';
 import '../blocks/fancy-list/src';
 import '../blocks/image-gallery/src';
+import '../blocks/google-map/src';
 import '../blocks/post-grid/src';
 import '../blocks/post-list/src';
 import '../blocks/pricing-table/src';
