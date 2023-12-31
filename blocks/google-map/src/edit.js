@@ -62,7 +62,7 @@ export default function Edit(props) {
                  }}
              >
                  <div className={classnames('google-maps-wrapper')}>
-                     <GoogleMap attributes={attributes} setAttributes={setAttributes} />
+                     <GoogleMap attributes={attributes} />
                  </div>
              </div>
          </>

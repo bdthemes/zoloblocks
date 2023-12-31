@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { APIProvider, Map, Pin, InfoWindow, Marker, useAutocomplete } from '@vis.gl/react-google-maps';
 
-function GoogleMap({ attributes, setAttributes = null }) {
+function GoogleMapFrontend(props) {
+    console.log('props', props);
 
 
 
@@ -24,12 +25,15 @@ function GoogleMap({ attributes, setAttributes = null }) {
         // height,
         // language,
         zoom,
-        latitude,
-        longitude,
-        mapType,
+        center,
+        // mapType,
         apiKey,
         // mapId,
-    } = attributes;
+    } = props;
+
+    const {latitude, longitude} = center;
+
+
     const position = { lat: latitude, lng: longitude };
     const [open, setOpen] = useState(false);
     // const styles = [
@@ -196,11 +200,11 @@ function GoogleMap({ attributes, setAttributes = null }) {
 
     return (
         <APIProvider apiKey={apiKey}>
-            <div style={{ height:'450px', width: '100%' }}>
+            <div style={{ height: '450px', width: '100%' }}>
                 <Map
                     // styles={styles}
-                    zoom={zoom}
-                    center={position}
+                    zoom={parseInt(zoom)}
+                    center={center}
                     // mapId={mapId}
                     // mapTypeId={mapType}
                     // scaleControl={scaleControl}
@@ -213,20 +217,10 @@ function GoogleMap({ attributes, setAttributes = null }) {
                     // mapTypeControl={mapTypeControl}
                     // zoomControl={zoomControl}
                     // disableDoubleClickZoom={true}
-                >
-                    <Marker position={position} onClick={() => setOpen(true)}>
-                        <Pin background={'grey'} borderColor={'green'} glyphColor={'purple'} />
-                    </Marker>
-
-                    {open && (
-                        <InfoWindow position={position} onCloseClick={() => setOpen(false)}>
-                            <p>Popup text will goes here!</p>
-                        </InfoWindow>
-                    )}
-                </Map>
+                ></Map>
             </div>
         </APIProvider>
     );
 }
 
-export default GoogleMap;
+export default GoogleMapFrontend;
