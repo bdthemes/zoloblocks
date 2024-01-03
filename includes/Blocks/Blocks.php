@@ -168,4 +168,10 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => ['zolo-google-map-frontend', 'zolo-block-editor-dependency']
     ],
+    'flipbox-child' => [
+        'name'             => 'flipbox-child',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/flipbox-child/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-flipbox-child-frontend', 'zolo-block-editor-dependency']
+    ],
 ]);
