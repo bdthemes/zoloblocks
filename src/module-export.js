@@ -30,6 +30,7 @@ export { default as ZoloIconPicker } from './controls/zolo-icon-picker';
 export { default as DisplayZoloIcon } from './controls/display-zolo-icon';
 export { AdvancedOptions } from './global/components/advancedOptions';
 export { GlobalStyleHanlder } from './global/components/globalStyleHandler';
+export { default as ResGapControl } from './controls/gap-control';
 export { default as ZoloPanelBody } from './controls/zolo-panelbody';
 
 //Export Helpers
@@ -46,3 +47,4 @@ export { generateTextShadowAttributies, generateTextShadowStyles } from './helpe
 export { generateTextStrokeAttributies, generateTextStrokeStyles } from './helpers/textstroke-helper';
 export { generateTypographyAttributes, generateTypographyStyles } from './helpers/typoHelpers';
 export { generateResCounterAttributies, generateResCounterStyle } from './helpers/res-counter-helper';
+export { generateGapAttributes, generateGapStyle } from './helpers/gap-helper';

@@ -93,6 +93,7 @@ function addAttributes(settings) {
             },
             customCss: {
                 type: 'string',
+                default: '',
             },
             zIndex: {
                 type: 'number',

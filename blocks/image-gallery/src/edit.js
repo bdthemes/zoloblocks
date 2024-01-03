@@ -52,20 +52,10 @@ export default function Edit(props) {
                                     <ToolbarButton
                                         className="components-toolbar__control"
                                         label={__('Replace Photo', 'zolo-blocks')}
-                                        icon="update"
+                                        icon="edit"
                                         onClick={open}
                                     />
                                 )}
-                            />
-                            <ToolbarButton
-                                className="components-toolbar__control"
-                                label={__('Remove Photo', 'zolo-blocks')}
-                                icon="trash"
-                                onClick={() => {
-                                    setAttributes({
-                                        advancedGallery: advancedGallery.null,
-                                    });
-                                }}
                             />
                         </ToolbarGroup>
                     </Fragment>

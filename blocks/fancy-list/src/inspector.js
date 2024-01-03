@@ -23,6 +23,7 @@ const {
     IconicBtnGroup,
     ResCounterControl,
     BoxShadowControl,
+    ResGapControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -43,8 +44,7 @@ import {
     ICON_HBG,
     GAP,
     COLUMNS,
-    COLUMNS_GAP,
-    ROWS_GAP,
+    GRID_GAP,
     ITEM_BG,
     ITEM_PADDING,
     ITEM_MARGIN,
@@ -178,12 +178,12 @@ function Inspector(props) {
                                     mobRange: 1,
                                 }}
                             />
-                            <ResRangeControl
-                                label={__('Columns Gap', 'zolo-blocks')}
-                                controlName={COLUMNS_GAP}
+                            <ResGapControl
+                                label={__('Gap', 'zolo-blocks')}
+                                controlName={GRID_GAP}
                                 requiredProps={requiredProps}
+                                max={200}
                             />
-                            <ResRangeControl label={__('Rows Gap', 'zolo-blocks')} controlName={ROWS_GAP} requiredProps={requiredProps} />
                         </ZoloPanelBody>
                         {imageToggle && (
                             <ZoloPanelBody title={__('Media', 'zolo-block')} panelProps={props}>

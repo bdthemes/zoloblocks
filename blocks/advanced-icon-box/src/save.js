@@ -4,7 +4,7 @@ import classnames from 'classnames';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
@@ -30,81 +30,61 @@ const Save = ({ attributes }) => {
     } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), 'zolo-block-advanced-icon-box', preset),
     });
 
     return (
-        <div
+        <DynamicTag
             {...blockProps}
             {...(zoloId && {
                 id: zoloId,
             })}
+            tagName={globalLink === true ? 'a' : 'div'}
+            {...(globalLink === true && {
+                href: buttonLink && buttonLink.url,
+                target: buttonLink && buttonLink.openInNewTab && '_blank',
+                rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
+            })}
         >
-            {globalLink === true ? (
-                <a
-                    href={buttonLink && buttonLink.url}
-                    target={buttonLink && buttonLink.openInNewTab && '_blank'}
-                    rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
-                    className={`zolo-block-advanced-icon-box ${uniqueId} zolo-block-advanced-icon-box-${preset}`}
-                >
-                    <div className="zolo-block-item">
-                        {showMainIcon && (
-                            <div className={`zolo-block-icon-wrap`}>
-                                {iconType == 'icon' ? (
-                                    <DisplayZoloIcon icon={mainIcon} />
-                                ) : (
-                                    iconTypeImage && <img src={iconTypeImage.url} alt={iconTypeImage.alt || iconBoxTitle} />
-                                )}
-                            </div>
+            <div className="zolo-block-item">
+                {showMainIcon && (
+                    <div className={`zolo-block-icon-wrap`}>
+                        {iconType == 'icon' ? (
+                            <DisplayZoloIcon icon={mainIcon} />
+                        ) : (
+                            iconTypeImage && (
+                                <img
+                                    src={iconTypeImage.url}
+                                    alt={iconTypeImage.alt || iconBoxTitle}
+                                    className={`wp-image-${iconTypeImage.id}`}
+                                    loading="lazy"
+                                />
+                            )
                         )}
-                        <div className="zolo-block-body-content">
-                            {showHeading && <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />}
-                            {showDesc && <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />}
-                            {showButton && (
-                                <div className={`zolo-block-link-btn`}>
-                                    <div className={`zolo-box-button`} href={buttonLink}>
-                                        <RichText.Content value={buttonText} />
-                                        {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
                     </div>
-                </a>
-            ) : (
-                <div className={`zolo-block-advanced-icon-box ${uniqueId} zolo-block-advanced-icon-box-${preset}`}>
-                    <div className="zolo-block-item">
-                        {showMainIcon && (
-                            <div className={`zolo-block-icon-wrap`}>
-                                {iconType == 'icon' ? (
-                                    <DisplayZoloIcon icon={mainIcon} />
-                                ) : (
-                                    iconTypeImage && <img src={iconTypeImage.url} alt={iconTypeImage.alt || iconBoxTitle} />
-                                )}
-                            </div>
-                        )}
-
-                        <div className="zolo-block-body-content">
-                            {showHeading && <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />}
-                            {showDesc && <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />}
-                            {showButton && (
-                                <div className={`zolo-block-link-btn`}>
-                                    <a
-                                        className="zolo-box-button"
-                                        href={buttonLink && buttonLink.url}
-                                        target={buttonLink && buttonLink.openInNewTab && '_blank'}
-                                        rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
-                                    >
-                                        <RichText.Content tagName="span" value={buttonText} />
-                                        {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}
-                                    </a>
-                                </div>
-                            )}
+                )}
+                <div className="zolo-block-body-content">
+                    {showHeading && <RichText.Content value={iconBoxTitle} tagName={titleTag} className={`zolo-block-title`} />}
+                    {showDesc && <RichText.Content value={iconBoxDescription} tagName="div" className={`zolo-block-desc`} />}
+                    {showButton && (
+                        <div className={`zolo-block-link-btn`}>
+                            <DynamicTag
+                                tagName={globalLink === true ? 'div' : 'a'}
+                                className="zolo-box-button"
+                                {...(globalLink !== true && {
+                                    href: buttonLink && buttonLink.url,
+                                    target: buttonLink && buttonLink.openInNewTab && '_blank',
+                                    rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
+                                })}
+                            >
+                                <RichText.Content tagName="span" value={buttonText} />
+                                {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}
+                            </DynamicTag>
                         </div>
-                    </div>
+                    )}
                 </div>
-            )}
-        </div>
+            </div>
+        </DynamicTag>
     );
 };
 

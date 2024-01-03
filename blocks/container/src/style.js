@@ -2,16 +2,7 @@ import { useEffect } from '@wordpress/element';
 /**
  * Internal depencencies
  */
-const {
-    softMinifyCssStrings,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateResRangeStyle,
-    generateBoxShadowStyles,
-    generateNormalBGControlStyles,
-    generateResAlignmentStyle,
-    GlobalStyleHanlder,
-} = window.zoloModule;
+const { generateResRangeStyle, generateResAlignmentStyle, generateGapStyle, GlobalStyleHanlder } = window.zoloModule;
 
 import {
     CONTENT_WIDTH,
@@ -21,14 +12,7 @@ import {
     FLEX_WRAP,
     FLEX_JUSTIFY,
     FLEX_ALIGN,
-    CONTAINER_BG,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_PADDING,
-    CONTAINER_MARGIN,
-    ROW_GAP,
-    COLUMN_GAP,
+    CONTAINER_GAP,
 } from './constants';
 
 const Style = ({ props }) => {
@@ -68,45 +52,13 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    //spacing style
-    const {
-        dimensionStylesDesktop: containerDeskPadding,
-        dimensionStylesTab: containerTabPadding,
-        dimensionStylesMobile: containerMobPadding,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: containerDeskMargin,
-        dimensionStylesTab: containerTabMargin,
-        dimensionStylesMobile: containerMobMargin,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
     // row and column
     const {
-        desktopRangeStyle: rowDeskGap,
-        tabRangeStyle: rowTabGap,
-        mobRangeStyle: rowMobGap,
-    } = generateResRangeStyle({
-        controlName: ROW_GAP,
-        property: 'row-gap',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: columnDeskGap,
-        tabRangeStyle: columnTabGap,
-        mobRangeStyle: columnMobGap,
-    } = generateResRangeStyle({
-        controlName: COLUMN_GAP,
-        property: 'column-gap',
+        gapStylesDesktop: containerDeskGap,
+        gapStylesTab: containerTabGap,
+        gapStylesMobile: containerMobGap,
+    } = generateGapStyle({
+        controlName: CONTAINER_GAP,
         attributes,
     });
 
@@ -189,15 +141,12 @@ const Style = ({ props }) => {
         }
 
         .${uniqueId} {
-            ${containerDeskPadding}
             ${containerDeskMinHeight}
-            ${containerDeskMargin}
         }
 
         .${uniqueId + editorFlexSelector},
         .${uniqueId + flexSelector}{
-            ${rowDeskGap}
-            ${columnDeskGap}
+            ${containerDeskGap}
             ${flexDirectionDesk}
             ${flexWrapDesk}
             ${flexJustifyDesk}
@@ -227,15 +176,12 @@ const Style = ({ props }) => {
         }
 
         .${uniqueId} {
-            ${containerTabPadding}
             ${containerTabMinHeight}
-            ${containerTabMargin}
         }
 
         .${uniqueId + editorFlexSelector},
         .${uniqueId + flexSelector}{
-            ${rowTabGap}
-            ${columnTabGap}
+            ${containerTabGap}
             ${flexDirectionTab}
             ${flexWrapTab}
             ${flexJustifyTab}
@@ -265,15 +211,12 @@ const Style = ({ props }) => {
         }
 
         .${uniqueId} {
-            ${containerMobPadding}
             ${containerMobMinHeight}
-            ${containerMobMargin}
         }
 
         .${uniqueId + editorFlexSelector},
         .${uniqueId + flexSelector}{
-            ${rowMobGap}
-            ${columnMobGap}
+            ${containerMobGap}  
             ${flexDirectionMob}
             ${flexWrapMob}
             ${flexJustifyMob}

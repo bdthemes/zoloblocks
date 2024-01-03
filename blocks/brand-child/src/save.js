@@ -59,7 +59,14 @@ const Save = ({ attributes }) => {
             ) : (
                 <>
                     <div className="zb-brand-image">
-                        {brandPhoto && <img src={brandPhoto.url} alt={brandPhoto.alt || brandTitle} className="zolo-img" />}
+                        {brandPhoto && (
+                            <img
+                                src={brandPhoto.url}
+                                alt={brandPhoto.alt || brandTitle}
+                                className={`zolo-img wp-image-${brandPhoto.id}`}
+                                loading="lazy"
+                            />
+                        )}
                     </div>
                     <div className="zb-brand-content">
                         <div className="zb-brand-icon">

@@ -13,6 +13,7 @@ const {
     BoxShadowControl,
     TypographyDropdown,
     AdvancedOptions,
+    ResGapControl,
     ZoloPanelBody,
 } = window.zoloModule;
 
@@ -34,8 +35,6 @@ import {
     BUTTON_PADDING,
     COLUMN_COUNT,
     COLUMNS_GAP,
-    ROW_GAP,
-    BUTTON_SIZE,
     ICON_TEXT_SPACING,
     SOCIAL_ICON_COLOR,
     BTN_SHADOW,
@@ -163,24 +162,13 @@ function Inspector(props) {
                                             mobRange: 2,
                                         }}
                                     />
-                                    <ResRangeControl
-                                        label={__('Row Gap', 'zolo-blocks')}
-                                        controlName={ROW_GAP}
-                                        requiredProps={requiredProps}
-                                        min={0}
-                                        max={100}
-                                        step={1}
-                                    />
                                 </>
                             )}
-
-                            <ResRangeControl
-                                label={__('Columns Gap', 'zolo-blocks')}
+                            <ResGapControl
+                                label={__('Gap', 'zolo-blocks')}
                                 controlName={COLUMNS_GAP}
                                 requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
+                                max={200}
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Social Profiles', 'zolo-blocks')} panelProps={props}>

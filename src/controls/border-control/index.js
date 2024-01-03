@@ -71,7 +71,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
     };
 
     const hasValue =
-        borderType !== 'none' ||
+        borderType ||
         borderTop ||
         borderRight ||
         borderBottom ||
@@ -106,7 +106,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                 customClass="zb-reset-has-value"
                                 onReset={() => {
                                     setAttributes({
-                                        [`${prefix}${controlName}BorderType`]: 'none',
+                                        [`${prefix}${controlName}BorderType`]: '',
                                         [`${prefix}${controlName}Unit`]: 'px',
                                         [`${prefix}${controlName}Top`]: '',
                                         [`${prefix}${controlName}Right`]: '',
@@ -207,7 +207,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                         <ResetBtn
                                                             onReset={() => {
                                                                 setAttributes({
-                                                                    [`${prefix}${controlName}BorderType`]: 'none',
+                                                                    [`${prefix}${controlName}BorderType`]: '',
                                                                     [`${prefix}${controlName}Unit`]: 'px',
                                                                     [`${prefix}${controlName}Top`]: '',
                                                                     [`${prefix}${controlName}Right`]: '',
@@ -296,7 +296,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                         <ResetBtn
                                                             onReset={() => {
                                                                 setAttributes({
-                                                                    [`${prefix}TAB${controlName}BorderType`]: 'none',
+                                                                    [`${prefix}TAB${controlName}BorderType`]: '',
                                                                     [`${prefix}TAB${controlName}Unit`]: 'px',
                                                                     [`${prefix}TAB${controlName}Top`]: '',
                                                                     [`${prefix}TAB${controlName}Right`]: '',
@@ -386,7 +386,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                         <ResetBtn
                                                             onReset={() => {
                                                                 setAttributes({
-                                                                    [`${prefix}MOB${controlName}BorderType`]: 'none',
+                                                                    [`${prefix}MOB${controlName}BorderType`]: '',
                                                                     [`${prefix}MOB${controlName}Unit`]: 'px',
                                                                     [`${prefix}MOB${controlName}Top`]: '',
                                                                     [`${prefix}MOB${controlName}Right`]: '',
@@ -482,7 +482,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                             <ResetBtn
                                                 onReset={() => {
                                                     setAttributes({
-                                                        [`${prefix}${controlName}BorderType`]: 'none',
+                                                        [`${prefix}${controlName}BorderType`]: '',
                                                         [`${prefix}${controlName}Unit`]: 'px',
                                                         [`${prefix}${controlName}Top`]: '',
                                                         [`${prefix}${controlName}Right`]: '',
@@ -569,7 +569,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                             <ResetBtn
                                                 onReset={() => {
                                                     setAttributes({
-                                                        [`${prefix}TAB${controlName}BorderType`]: 'none',
+                                                        [`${prefix}TAB${controlName}BorderType`]: '',
                                                         [`${prefix}TAB${controlName}Unit`]: 'px',
                                                         [`${prefix}TAB${controlName}Top`]: '',
                                                         [`${prefix}TAB${controlName}Right`]: '',
@@ -659,7 +659,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                             <ResetBtn
                                                 onReset={() => {
                                                     setAttributes({
-                                                        [`${prefix}MOB${controlName}BorderType`]: 'none',
+                                                        [`${prefix}MOB${controlName}BorderType`]: '',
                                                         [`${prefix}MOB${controlName}Unit`]: 'px',
                                                         [`${prefix}MOB${controlName}Top`]: '',
                                                         [`${prefix}MOB${controlName}Right`]: '',

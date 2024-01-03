@@ -72,6 +72,7 @@ const {
     ZoloIconPicker,
     ResAlignmentControl,
     ZoloPanelBody,
+    ResGapControl,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -326,13 +327,11 @@ function Inspector(props) {
                                     mobRange: 1,
                                 }}
                             />
-                            <ResRangeControl
+                            <ResGapControl
                                 label={__('Gap', 'zolo-blocks')}
                                 controlName={COLUMNS_GAP}
                                 requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
+                                max={200}
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Query', 'zolo-blocks')} panelProps={props}>

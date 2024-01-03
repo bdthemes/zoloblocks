@@ -30,8 +30,7 @@ export const LINK_TYPES = [
 
 // Grid
 export const GRID_COLUMNS = 'gridColumns';
-export const COLUMNS_GAP = 'columnsGap';
-export const ROWS_GAP = 'rowsGap';
+export const GRID_GAP = 'gridGap';
 
 // global style for child blocks
 // container

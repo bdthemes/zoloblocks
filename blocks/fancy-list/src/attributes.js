@@ -18,8 +18,7 @@ import {
     ICON_HBG,
     GAP,
     COLUMNS,
-    COLUMNS_GAP,
-    ROWS_GAP,
+    GRID_GAP,
     ITEM_BG,
     ITEM_PADDING,
     ITEM_MARGIN,
@@ -35,6 +34,7 @@ const {
     generateNormalBGAttributes,
     generateResCounterAttributies,
     generateBoxShadowAttributies,
+    generateGapAttributes,
 } = window.zoloModule;
 
 const attributes = {
@@ -129,11 +129,9 @@ const attributes = {
         tabRange: 1,
         mobRange: 1,
     }),
-    ...generateResRangeAttributies(COLUMNS_GAP, {
+    ...generateGapAttributes(GRID_GAP, {
         defaultRange: 15,
-    }),
-    ...generateResRangeAttributies(ROWS_GAP, {
-        defaultRange: 15,
+        defaultUnit: 'px',
     }),
 
     // item

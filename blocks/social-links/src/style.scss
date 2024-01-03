@@ -1,59 +1,5 @@
-:root {
-    --facebook: #3b5998;
-    --facebook-hover: #2d4373;
-    --instagram: #e4405f;
-    --instagram-hover: #df2a67;
-    --twitter: #000;
-    --twitter-hover: rgba(12, 21, 27, 0.969);
-    --linkedin: #0072b1;
-    --linkedin-hover: #006097;
-    --behance: #053eff;
-    --behance-hover: #043aeb;
-    --pinterest: #c8232c;
-    --pinterest-hover: #bd2130;
-    --dribbble: #ea4c89;
-    --dribble-hover: #d03d71;
-    --whatsapp: #25d366;
-    --whatsapp-hover: #1da851;
-    --youtube: #ff0000;
-    --youtube-hover: #d50730;
-    --tumblr: #35465c;
-    --tumblr-hover: #2c3e50;
-    --reddit: #ff4500;
-    --reddit-hover: #ff5700;
-    --snapchat: #fffc00;
-    --snapchat-hover: #f0ed15;
-    --telegram: #0088cc;
-    --telegram-hover: #007bb5;
-    --vimeo: #1ab7ea;
-    --vimeo-hover: #1ca7dc;
-    --skype: #00aff0;
-    --skype-hover: #0097d0;
-    --spotify: #1db954;
-    --spotify-hover: #1ed760;
-    --soundcloud: #ff5500;
-    --soundcloud-hover: #ff7700;
-    --github: #333;
-    --github-hover: #000;
-    --twitch: #6441a5;
-    --twitch-hover: #4b367c;
-    --medium: #000;
-    --medium-hover: #332d2d;
-    --xing: #006567;
-    --xing-hover: #00524a;
-    --flickr: #ff0084;
-    --flickr-hover: #da0372;
-    --slack: #4a154b;
-    --slack-hover: #3b0d3a;
-    --discord: #7289da;
-    --discord-hover: #5a72c7;
-    --meetup: #f64060;
-    --meetup-hover: #e61e4d;
-    --wechat: #1aad19;
-    --wechat-hover: #1b9e18;
-    --quora: #b92b27;
-    --quora-hover: #a82a26;
-}
+
+@import 'src/social-brand-color.scss';
 
 .wp-block-zolo-social-links {
     gap: 10px;
@@ -398,6 +344,11 @@
         .zolo-social-item.original {
             &.snapchat {
                 color: #000;
+                .zolo-social-icon {
+                    svg {
+                        fill: #000;
+                    }
+                }
             }
         }
         .zolo-social-icon {
@@ -423,6 +374,7 @@
     &.preset-2 {
         .zolo-social-item {
             padding: 10px;
+            gap: 10px;
         }
     }
 
@@ -466,7 +418,9 @@
             }
             &.snapchat {
                 .zolo-social-icon {
-                    color: #000;
+                   svg {
+                          fill: #000;
+                   }
                 }
                 &:hover {
                     .zolo-social-text {

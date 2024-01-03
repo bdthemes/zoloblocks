@@ -14,13 +14,13 @@ const {
     generateDimensionStyle,
     generateBoxShadowStyles,
     generateTypographyStyles,
+    generateGapStyle,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
 import {
     COLUMN_COUNT,
-    COLUMNS_GAP,
-    ROW_GAP,
+    COLUMN_GAP,
     CONTAINER_BACKGROUND,
     CONTAINER_HOVER_BACKGROUND,
     CONTAINER_MARGIN,
@@ -78,24 +78,13 @@ export default function Style({ props }) {
     });
 
     // column gap
-    const {
-        desktopRangeStyle: colGapDeskstyle,
-        tabRangeStyle: colGapTabStyle,
-        mobRangeStyle: colGapMobStyle,
-    } = generateResRangeStyle({
-        controlName: COLUMNS_GAP,
-        property: 'column-gap',
-        attributes,
-    });
 
-    // row gap
     const {
-        desktopRangeStyle: rowGapDeskstyle,
-        tabRangeStyle: rowGapTabStyle,
-        mobRangeStyle: rowGapMobStyle,
-    } = generateResRangeStyle({
-        controlName: ROW_GAP,
-        property: 'row-gap',
+        gapStylesDesktop: deskGridGap,
+        gapStylesTab: tabGridGap,
+        gapStylesMobile: mobGridGap,
+    } = generateGapStyle({
+        controlName: COLUMN_GAP,
         attributes,
     });
 
@@ -413,8 +402,7 @@ export default function Style({ props }) {
 		}
 		.${uniqueId}.zolo-image-gallery {
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
-			${colGapDeskstyle}
-			${rowGapDeskstyle}
+			${deskGridGap}
 		}
 		.${uniqueId} .zolo-image-wrap {
 			${imageDeskBGStyle}
@@ -483,8 +471,7 @@ export default function Style({ props }) {
 	}
 	.${uniqueId}.zolo-image-gallery {
 		grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
-		${colGapTabStyle}
-		${rowGapTabStyle}
+		${tabGridGap}
 	}
 	.${uniqueId} .zolo-image-wrap {
 		${imageTabBGStyle}
@@ -535,8 +522,7 @@ export default function Style({ props }) {
 	}
 	.${uniqueId}.zolo-image-gallery {
 		grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
-		${colGapMobStyle}
-		${rowGapMobStyle}
+		${mobGridGap}
 	}
 	.${uniqueId} .zolo-image-wrap {
 		${imageMobBGStyle}

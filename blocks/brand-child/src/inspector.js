@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { TextControl, BaseControl, Button, SelectControl } from '@wordpress/components';
+import { TextControl, BaseControl, Button, SelectControl, TextareaControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**

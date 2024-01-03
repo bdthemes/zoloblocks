@@ -78,34 +78,42 @@
     .components-input-control__backdrop {
         border: none !important;
     }
+     .components-input-control__backdrop,
+     select,
+     input { 
+        height: 35px !important;
+        min-height: 35px !important;
+        outline: none !important;
+        border-radius: 6px !important;
+        padding: 0 10px !important;
+        box-shadow: none !important;
+    }
+     select,
+     input {
+        border: 1px solid #e9e9e9 !important;
+        &:focus {
+            border-color: #001feb !important;
+        }
+    }
 
     .components-base-control {
         margin-bottom: 24px;
     }
 }
 
-.zolo-background-control-popover .components-input-control__backdrop,
-.zolo-background-control-popover select,
-.zolo-background-control-popover input,
-.components-input-control__container .components-input-control__backdrop,
-.components-input-control__container .components-input-control__input { 
+.components-popover .components-input-control__container .components-input-control__backdrop,
+.components-popover .components-input-control__container .components-input-control__input {
     height: 35px !important;
     min-height: 35px !important;
-    outline: none !important;
-    border-radius: 6px !important;
-    padding: 0 10px !important;
-    box-shadow: none !important;
+    border-color: #e9e9e9 !important;
+    border-radius: 4px !important;
 }
-.zolo-background-control-popover select,
-.zolo-background-control-popover input,
-.components-input-control__container .components-input-control__backdrop,
-.components-input-control__container .components-input-control__container {
-    border: 1px solid #e9e9e9 !important;
-    &:focus {
-        border-color: #001feb !important;
-    }
-}
+// .components-input-control__container .components-input-control__backdrop:focus,
+// .components-input-control__container .components-input-control__input:focus {
+    
+//     border-color: #001feb !important;
+// }
 
-.components-input-control__container {
+.components-popover .components-input-control__container {
    width: 100% !important;
 }

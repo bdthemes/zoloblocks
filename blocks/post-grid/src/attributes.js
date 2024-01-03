@@ -10,6 +10,7 @@ const {
     generateTypographyAttributes,
     generateResCounterAttributies,
     generateResAlignmentAttributies,
+    generateGapAttributes,
 } = window.zoloModule;
 
 import {
@@ -21,7 +22,6 @@ import {
     COLUMN_BORDER,
     COLUMN_BORDER_RADIUS,
     COLUMN_SHADOW,
-    
     THUMBNAIL_MARGIN,
     THUMBNAIL_BG,
     THUMBNAIL_BORDER,
@@ -105,7 +105,9 @@ const attributes = {
         tabRange: 2,
         mobRange: 1,
     }),
-    ...generateResRangeAttributies(COLUMNS_GAP),
+    ...generateGapAttributes(COLUMNS_GAP, {
+        defaultUnit: 'px',
+    }),
     showThumbnail: {
         type: 'boolean',
         default: true,
@@ -245,7 +247,7 @@ const attributes = {
     ...generateBoxShadowAttributies(COLUMN_SHADOW),
 
     ...generateDimensionAttributes(THUMBNAIL_MARGIN),
-    
+
     ...generateBorderAttributies(THUMBNAIL_BORDER),
     ...generateDimensionAttributes(THUMBNAIL_BORDER_RADIUS),
     ...generateNormalBGAttributes(THUMBNAIL_BG),

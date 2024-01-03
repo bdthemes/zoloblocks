@@ -57,6 +57,7 @@ const {
     generateResCounterStyle,
     GlobalStyleHanlder,
     generateResAlignmentStyle,
+    generateGapStyle,
 } = window.zoloModule;
 
 function Style({ props }) {
@@ -101,12 +102,11 @@ function Style({ props }) {
     });
 
     const {
-        desktopRangeStyle: colGapDesk,
-        tabRangeStyle: colGapTab,
-        mobRangeStyle: colGapMob,
-    } = generateResRangeStyle({
+        gapStylesDesktop: colGapDesk,
+        gapStylesTab: colGapTab,
+        gapStylesMobile: colGapMob,
+    } = generateGapStyle({
         controlName: COLUMNS_GAP,
-        property: 'grid-gap',
         attributes,
     });
 

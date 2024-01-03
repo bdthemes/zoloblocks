@@ -50,7 +50,6 @@ export const COLUMN_COUNT = 'columnCount';
 //columns Number
 export const COLUMNS_NUMBER = 'columns';
 export const COLUMNS_GAP = 'columnsGap';
-export const ROW_GAP = 'rowGap';
 
 //button
 export const BUTTON_PADDING = 'btnPadding';

@@ -24,12 +24,6 @@ import {
     CONTAINER_PADDING,
     CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
-    CONTENT_BACKGROUND,
-    CONTENT_BORDER,
-    CONTENT_BORDER_RADIUS,
-    CONTENT_BOX_SHADOW,
-    CONTENT_MARGIN,
-    CONTENT_PADDING,
     REVIEWER_DESIGNATION_MARGIN,
     REVIEWER_NAME_MARGIN,
     REVIEWER_PHOTO_SIZE,
@@ -68,60 +62,6 @@ const Style = ({ props }) => {
     } = generateResAlignmentStyle({
         controlName: CONTENT_ALIGNMENT,
         property: 'text-align',
-        attributes,
-    });
-
-    const {
-        backgroundStylesDesktop: contentDeskBGStyle,
-        backgroundStylesTab: contentTabBGStyle,
-        backgroundStylesMobile: contentMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTENT_BACKGROUND,
-        attributes,
-        noMainBGImg: true,
-    });
-
-    const {
-        desktopBorderStyle: contentDeskBorderStyle,
-        tabBorderStyle: contentTabBorderStyle,
-        mobBorderStyle: contentMobBorderStyle,
-    } = generateBorderStyle({
-        controlName: CONTENT_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: contentDeskBorderRadius,
-        dimensionStylesTab: contentTabBorderRadius,
-        dimensionStylesMobile: contentMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: CONTENT_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const { boxShadowStyle: contentBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTENT_BOX_SHADOW,
-    });
-
-    const {
-        dimensionStylesDesktop: contentDeskMargin,
-        dimensionStylesTab: contentTabMargin,
-        dimensionStylesMobile: contentMobMargin,
-    } = generateDimensionStyle({
-        controlName: CONTENT_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: contentDeskPadding,
-        dimensionStylesTab: contentTabPadding,
-        dimensionStylesMobile: contentMobPadding,
-    } = generateDimensionStyle({
-        controlName: CONTENT_PADDING,
-        styleFor: 'padding',
         attributes,
     });
 
@@ -364,14 +304,7 @@ const Style = ({ props }) => {
 			${containerDeskBGStyle}
             ${containerDeskPadding}
 		}
-        .${uniqueId}.wp-block-zolo-review-child .zolo-info-wrap {
-			${contentDeskMargin}
-			${contentDeskPadding}
-			${contentDeskBorderStyle}
-			${contentDeskBorderRadius}
-			${contentDeskBGStyle}
-            ${contentBoxShadow}
-		}
+      
         .${uniqueId}.wp-block-zolo-review-child.style-2 .zolo-info-wrap {
 			backdrop-filter: blur(${blurBgOpacity}px);
 		}
@@ -424,13 +357,7 @@ const Style = ({ props }) => {
 			${containerTabBGStyle}
             ${containerTabPadding}
 		}
-        .${uniqueId}.wp-block-zolo-review-child .zolo-info-wrap {
-			${contentTabMargin}
-			${contentTabPadding}
-			${contentTabBorderStyle}
-			${contentTabBorderRadius}
-			${contentTabBGStyle}
-		}
+      
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating {
 			${ratingIconTabAlignStyle}
 		}
@@ -467,13 +394,7 @@ const Style = ({ props }) => {
 			${containerMobBGStyle}
             ${containerMobPadding}
 		}
-        .${uniqueId}.wp-block-zolo-review-child .zolo-info-wrap {
-			${contentMobMargin}
-			${contentMobPadding}
-			${contentMobBorderStyle}
-			${contentMobBorderRadius}
-			${contentMobBGStyle}
-		}
+   
 		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating {
 			${ratingIconMobAlignStyle}
 		}

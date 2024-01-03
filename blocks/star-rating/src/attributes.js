@@ -1,8 +1,7 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateDimensionAttributes, generateTypographyAttributes, generateResAlignmentAttributies } =
-    window.zoloModule;
+const { generateResRangeAttributies, generateTypographyAttributes, generateResAlignmentAttributies } = window.zoloModule;
 
 import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
 

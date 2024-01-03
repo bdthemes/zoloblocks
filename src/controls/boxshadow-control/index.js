@@ -51,17 +51,18 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                     {label || __('Box Shadow', 'zolo-blocks')}
                 </label>
                 <div className="zolo-flex">
-                    {(shadowType !== 'none' || shadowColor || hOffset || vOffset || blur || spread) && (
+                    {((shadowType !== 'outset' && (hOffset !== 0 || vOffset !== 0 || blur !== 0 || spread !== 0)) ||
+                        (shadowType === 'outset' && (hOffset !== 0 || vOffset !== 0 || blur !== 0 || spread !== 0))) && (
                         <ResetBtn
                             onReset={() => {
                                 setAttributes({
-                                    [`${controlName}shadowType`]: 'none',
+                                    [`${controlName}shadowType`]: 'outset',
                                     [`${controlName}shadowUnit`]: 'px',
-                                    [`${controlName}shadowColor`]: '',
-                                    [`${controlName}hOffset`]: '',
-                                    [`${controlName}vOffset`]: '',
-                                    [`${controlName}blur`]: '',
-                                    [`${controlName}spread`]: '',
+                                    [`${controlName}shadowColor`]: '#7C7C7C',
+                                    [`${controlName}hOffset`]: 0,
+                                    [`${controlName}vOffset`]: 0,
+                                    [`${controlName}blur`]: 0,
+                                    [`${controlName}spread`]: 0,
                                 });
                             }}
                         />
@@ -91,13 +92,13 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                 <ResetBtn
                                     onReset={() => {
                                         setAttributes({
-                                            [`${controlName}shadowType`]: 'none',
+                                            [`${controlName}shadowType`]: 'outset',
                                             [`${controlName}shadowUnit`]: 'px',
-                                            [`${controlName}shadowColor`]: '',
-                                            [`${controlName}hOffset`]: '',
-                                            [`${controlName}vOffset`]: '',
-                                            [`${controlName}blur`]: '',
-                                            [`${controlName}spread`]: '',
+                                            [`${controlName}shadowColor`]: '#7C7C7C',
+                                            [`${controlName}hOffset`]: 0,
+                                            [`${controlName}vOffset`]: 0,
+                                            [`${controlName}blur`]: 0,
+                                            [`${controlName}spread`]: 0,
                                         });
                                     }}
                                 />

@@ -59,7 +59,7 @@ function RenderView({ attributes, postResults }) {
                                     {post.thumbnail && <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
                                     {!post.thumbnail && (
                                         <a href={post.permalink}>
-                                            <img src="https://via.placeholder.com/380x440.png" alt="No Image Available" />
+                                            <img src={zoloPlaceholders.placeholder} alt="Thumbnail Placeholder" />
                                         </a>
                                     )}
                                 </>

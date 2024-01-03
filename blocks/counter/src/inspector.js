@@ -259,7 +259,7 @@ function Inspector(props) {
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
                         </ZoloPanelBody>
                         {hideIcon && (
-                            <ZoloPanelBody title={__('Media', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Icon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 {iconType === 'icon' && (
                                     <ColorControl
                                         label={__('Color', 'zolo-blocks')}
@@ -271,19 +271,6 @@ function Inspector(props) {
                                         }
                                     />
                                 )}
-                                <NormalBGControl requiredProps={requiredProps} controlName={ICON_BACKGROUND} noMainBGImg={true} />
-                                <BoxShadowControl controlName={ICON_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={ICON_BORDER}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
-                                    controlName={ICON_BORDER_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
                                 {iconType === 'icon' && (
                                     <ResRangeControl
                                         label={__('Icon Size', 'zolo-blocks')}
@@ -303,6 +290,17 @@ function Inspector(props) {
                                         max={200}
                                     />
                                 )}
+                                <BorderControl
+                                    label={__('Border', 'zolo-blocks')}
+                                    controlName={ICON_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={ICON_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zolo-blocks')}
                                     controlName={ICON_PADDING}
@@ -313,6 +311,8 @@ function Inspector(props) {
                                     controlName={ICON_MARGIN}
                                     requiredProps={requiredProps}
                                 />
+                                <NormalBGControl requiredProps={requiredProps} controlName={ICON_BACKGROUND} noMainBGImg={true} />
+                                <BoxShadowControl controlName={ICON_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             </ZoloPanelBody>
                         )}
                         {hideCounter && (
@@ -373,15 +373,6 @@ function Inspector(props) {
                         )}
                         {hideTitle && (
                             <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                                <ColorControl
-                                    label={__('Color', 'zolo-blocks')}
-                                    color={titleTextColor}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            titleTextColor: value,
-                                        })
-                                    }
-                                />
                                 <SelectControl
                                     label={__('Tag', 'zolo-blocks')}
                                     options={HEADING}
@@ -391,6 +382,15 @@ function Inspector(props) {
                                         });
                                     }}
                                     value={titleTag}
+                                />
+                                <ColorControl
+                                    label={__('Color', 'zolo-blocks')}
+                                    color={titleTextColor}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            titleTextColor: value,
+                                        })
+                                    }
                                 />
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}

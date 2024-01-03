@@ -17,12 +17,12 @@ const {
     generateTypographyStyles,
     generateTextShadowStyles,
     generateTextStrokeStyles,
+    generateGapStyle,
 } = window.zoloModule;
 
 import {
     GRID_COLUMNS,
-    COLUMNS_GAP,
-    ROWS_GAP,
+    GRID_GAP,
     CONTAINER_HEIGHT,
     CONTAINER_BG,
     CONTAINER_BORDER,
@@ -73,23 +73,11 @@ const Style = ({ props }) => {
 
     // column gap
     const {
-        desktopRangeStyle: colGapDeskstyle,
-        tabRangeStyle: colGapTabStyle,
-        mobRangeStyle: colGapMobStyle,
-    } = generateResRangeStyle({
-        controlName: COLUMNS_GAP,
-        property: 'column-gap',
-        attributes,
-    });
-
-    // row gap
-    const {
-        desktopRangeStyle: rowGapDeskstyle,
-        tabRangeStyle: rowGapTabStyle,
-        mobRangeStyle: rowGapMobStyle,
-    } = generateResRangeStyle({
-        controlName: ROWS_GAP,
-        property: 'row-gap',
+        gapStylesDesktop: colGapDeskstyle,
+        gapStylesTab: colGapTabStyle,
+        gapStylesMobile: colGapMobStyle,
+    } = generateGapStyle({
+        controlName: GRID_GAP,
         attributes,
     });
 
@@ -338,12 +326,10 @@ const Style = ({ props }) => {
         .${uniqueId}.zb-brand-grid-wrap{
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
             ${colGapDeskstyle}
-            ${rowGapDeskstyle}
         }
         .${uniqueId}.zb-brand-grid-wrap .block-editor-block-list__layout{
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
             ${colGapDeskstyle}
-            ${rowGapDeskstyle}
         }
         .${uniqueId} .zb-brand-item{
             ${deskContainerHeight}
@@ -400,13 +386,11 @@ const Style = ({ props }) => {
         .${uniqueId}.zb-brand-grid-wrap{
             grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
             ${colGapTabStyle}
-            ${rowGapTabStyle}
 
         }
         .${uniqueId}.zb-brand-grid-wrap .block-editor-block-list__layout{
             grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
             ${colGapTabStyle}
-            ${rowGapTabStyle}
         }
         .${uniqueId} .zb-brand-item{
             ${tabContainerHeight}
@@ -447,12 +431,10 @@ const Style = ({ props }) => {
         .${uniqueId}.zb-brand-grid-wrap{
             grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
             ${colGapMobStyle}
-            ${rowGapMobStyle}
         }
         .${uniqueId}.zb-brand-grid-wrap .block-editor-block-list__layout{
             grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
             ${colGapMobStyle}
-            ${rowGapMobStyle}
         }
         .${uniqueId} .zb-brand-item{
             ${mobContainerHeight}

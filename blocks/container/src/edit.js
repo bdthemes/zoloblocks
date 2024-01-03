@@ -8,9 +8,6 @@ import { useSelect } from '@wordpress/data';
 /**
  * Internal depencencies
  */
-const { softMinifyCssStrings, handleUniqueId } = window.zoloModule;
-
-import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
 
 import { VariationPicker } from './variations';

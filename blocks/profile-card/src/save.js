@@ -51,7 +51,16 @@ const Save = ({ attributes }) => {
                 <div className="zb-profile-bottom-content">
                     <div className="zb-profile-meta-wrap">
                         {showPhoto && (
-                            <div className="zb-profile-image">{photo && <img src={photo.url} alt={photo.alt || 'profile card'} />}</div>
+                            <div className="zb-profile-image">
+                                {photo && (
+                                    <img
+                                        src={photo.url}
+                                        alt={photo.alt || 'profile card'}
+                                        className={`wp-image-${photo.id}`}
+                                        loading="lazy"
+                                    />
+                                )}
+                            </div>
                         )}
                         <div className="zb-profile-info">
                             {showName && (

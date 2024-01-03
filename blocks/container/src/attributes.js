@@ -1,25 +1,11 @@
 /**
  * Internal dependencies
  */
-const {
-    generateResRangeAttributies,
-    generateBorderAttributies,
-    generateDimensionAttributes,
-    generateBoxShadowAttributies,
-    generateNormalBGAttributes,
-    generateResAlignmentAttributies,
-} = window.zoloModule;
+const { generateResRangeAttributies, generateResAlignmentAttributies, generateGapAttributes } = window.zoloModule;
 
 import {
     CONTAINER_WIDTH,
-    CONTAINER_BG,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_BOX_SHADOW,
-    CONTAINER_PADDING,
-    CONTAINER_MARGIN,
-    ROW_GAP,
-    COLUMN_GAP,
+    CONTAINER_GAP,
     CONTENT_WIDTH,
     MIN_HEIGHT,
     FLEX_DIRECTION,
@@ -75,6 +61,11 @@ const attributes = {
         type: 'string',
         default: 'alignwide',
     },
+    // container gap
+    ...generateGapAttributes(CONTAINER_GAP, {
+        defaultRange: 20,
+        defaultUnit: 'px',
+    }),
     // New Generators
     ...generateResRangeAttributies(CONTAINER_WIDTH, {
         defaultRange: 100,
@@ -98,29 +89,6 @@ const attributes = {
     }),
     ...generateResAlignmentAttributies(FLEX_WRAP, {
         defaultAlign: 'nowrap',
-    }),
-
-    // container
-    ...generateNormalBGAttributes(CONTAINER_BG),
-    ...generateBorderAttributies(CONTAINER_BORDER),
-    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
-    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
-    ...generateDimensionAttributes(CONTAINER_PADDING, {
-        top: 10,
-        bottom: 10,
-        left: 10,
-        right: 10,
-    }),
-    ...generateDimensionAttributes(CONTAINER_MARGIN),
-
-    // row & column
-    ...generateResRangeAttributies(ROW_GAP, {
-        defaultRange: 20,
-        defaultUnit: 'px',
-    }),
-    ...generateResRangeAttributies(COLUMN_GAP, {
-        defaultRange: 20,
-        defaultUnit: 'px',
     }),
 };
 

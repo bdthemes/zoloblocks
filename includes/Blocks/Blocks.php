@@ -162,11 +162,17 @@ return apply_filters( 'zolo_blocks_list_data', [
     //     'frontend-styles'  => ['zolo-block-common-style'],
     //     'frontend-scripts' => false
     // ],
-       'audio-player' => [
-        'name'             => 'audio-player',
-        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/audio-player/block.json',
+    //    'audio-player' => [
+    //     'name'             => 'audio-player',
+    //     'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/audio-player/block.json',
+    //     'frontend-styles'  => ['zolo-block-common-style'],
+    //     'frontend-scripts' => ['zolo-audio-player-frontend','zolo-block-editor-dependency']
+    // ],
+      'progress-bar-child' => [
+        'name'             => 'progress-bar-child',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/progress-bar-child/block.json',
         'frontend-styles'  => ['zolo-block-common-style'],
-        'frontend-scripts' => ['zolo-audio-player-frontend','zolo-block-editor-dependency']
+        'frontend-scripts' => false
     ],
 ]);
 

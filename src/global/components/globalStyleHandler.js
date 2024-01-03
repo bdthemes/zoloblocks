@@ -3,7 +3,7 @@
  */
 import { useEffect, useState } from '@wordpress/element';
 
-import { softMinifyCssStrings } from '../../helpers/helper';
+import { softMinifyCssStrings, customCssZoloToBlockId, addPrefixToSelector } from '../../helpers/helper';
 import { generateNormalBGControlStyles } from '../../helpers/normal-bg-helpers';
 import { generateBackgroundControlStyles } from '../../helpers/backgroundHelpers';
 import { generateDimensionStyle } from '../../helpers/dimension-helper';
@@ -13,7 +13,7 @@ import { generateBoxShadowStyles } from '../../helpers/boxshadow-helper';
 export const GlobalStyleHanlder = (props) => {
     const { attributes, setAttributes, desktopAllStyle, tabAllStyle, mobileAllStyle } = props;
 
-    const { uniqueId, zIndex, zoloStyles, globalConfig } = attributes;
+    const { uniqueId, zIndex, zoloStyles, globalConfig, customCss } = attributes;
 
     if (!uniqueId) {
         return;
@@ -175,8 +175,11 @@ export const GlobalStyleHanlder = (props) => {
       }
   `;
 
+    const blockWriteCss = customCss ? customCss.replace(/{{ZOLO}}/g, `.${uniqueId}`) : '';
+
     const allStyle = `
 		${softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles)}
+        ${blockWriteCss}
 		@media all and (max-width: 1024px) {
 			${softMinifyCssStrings(tabAllStyle + tabGlobalStyles)}
 		}
@@ -191,6 +194,7 @@ export const GlobalStyleHanlder = (props) => {
             desktop: softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles),
             tab: softMinifyCssStrings(tabAllStyle + tabGlobalStyles),
             mobile: softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles),
+            customCss: blockWriteCss,
         };
         if (JSON.stringify(zoloStyles) !== JSON.stringify(styles)) {
             setAttributes({

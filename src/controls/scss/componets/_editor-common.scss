@@ -147,7 +147,6 @@
             box-shadow: none !important;
         }
     }
-
 }
 
 .zolo-panel-control {
@@ -222,4 +221,62 @@
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+// gallery placeholder setting panel
+.zolo-gallery-items {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 3px;
+
+    .zolo-gallery-item {
+        width: 100%;
+        height: 60px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.zolo-gallery-wrapper {
+    .replace-btn-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.2s;
+    }
+
+    button.zolo-replace-btn {
+        border: none;
+        border-radius: 3px;
+        padding: 10px 16px;
+        background: #021feb;
+        color: #fff;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .zolo-gallery-items:hover .replace-btn-wrapper {
+        visibility: visible;
+        opacity: 1;
+    }
 }

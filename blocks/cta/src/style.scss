@@ -19,6 +19,7 @@
 
     .zolo-call-out__content {
         margin: 0 0 15px;
+        width: 100%;
     }
 
     .zolo-button {
@@ -40,7 +41,6 @@
                 fill: var(--zoloblocks-brand-text-color);
             }
         }
-
         svg {
             width: 16px;
             height: 16px;

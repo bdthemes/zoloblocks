@@ -15,13 +15,13 @@ const {
     generateTypographyStyles,
     generateBoxShadowStyles,
     generateNormalBGControlStyles,
+    generateGapStyle,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
 import {
-    COLUMNS_GAP,
     GRID_COLUMNS,
-    ROWS_GAP,
+    GRID_GAP,
     CONTENT_BG,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
@@ -108,26 +108,13 @@ const Style = ({ props }) => {
     });
 
     const {
-        desktopRangeStyle: deskColumnsGap,
-        tabRangeStyle: tabColumnsGap,
-        mobRangeStyle: mobColumnsGap,
-    } = generateResRangeStyle({
-        controlName: COLUMNS_GAP,
-        property: 'grid-column-gap',
+        gapStylesDesktop: deskGridGap,
+        gapStylesTab: tabGridGap,
+        gapStylesMobile: mobGridGap,
+    } = generateGapStyle({
+        controlName: GRID_GAP,
         attributes,
     });
-
-    const {
-        desktopRangeStyle: deskRowsGap,
-        tabRangeStyle: tabRowsGap,
-        mobRangeStyle: mobRowsGap,
-    } = generateResRangeStyle({
-        controlName: ROWS_GAP,
-        property: 'grid-row-gap',
-        attributes,
-    });
-
-    // Global style for child blocks
 
     // Container padding + margin
     const {
@@ -655,8 +642,7 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-team-grid {
             grid-template-columns: repeat(${deskColumns}, 1fr);
-            ${deskColumnsGap};
-            ${deskRowsGap};
+            ${deskGridGap};
         }
           .${uniqueId}.wp-block-zolo-team-grid .zolo-item {
             ${itemDeskBg}
@@ -780,8 +766,7 @@ const Style = ({ props }) => {
     const tabletAllStyle = `
         .${uniqueId}.wp-block-zolo-team-grid {
             grid-template-columns: repeat(${tabColumns}, 1fr);
-            ${tabColumnsGap};
-            ${tabRowsGap};
+            ${tabGridGap};
         }
          .${uniqueId}.wp-block-zolo-team-grid .zolo-item {
             ${itemTabBg}
@@ -898,8 +883,7 @@ const Style = ({ props }) => {
     const mobileAllStyle = `
         .${uniqueId}.wp-block-zolo-team-grid {
             grid-template-columns: repeat(${mobColumns}, 1fr);
-            ${mobColumnsGap};
-            ${mobRowsGap};
+            ${mobGridGap};
         }
          .${uniqueId}.wp-block-zolo-team-grid .zolo-item {
             ${itemDeskBg}

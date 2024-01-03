@@ -16,24 +16,18 @@ const {
     generateResRangeStyle,
     generateBoxShadowStyles,
     generateNormalBGControlStyles,
+    generateGapStyle,
 } = window.zoloModule;
 
 import {
-    COLUMNS_GAP,
     GRID_COLUMNS,
-    ROWS_GAP,
+    GRID_GAP,
     CONTAINER_BACKGROUND,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_PADDING,
     CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
-    CONTENT_BACKGROUND,
-    CONTENT_BORDER,
-    CONTENT_BORDER_RADIUS,
-    CONTENT_BOX_SHADOW,
-    CONTENT_MARGIN,
-    CONTENT_PADDING,
     REVIEWER_DESIGNATION_MARGIN,
     REVIEWER_NAME_MARGIN,
     REVIEWER_PHOTO_SIZE,
@@ -80,23 +74,11 @@ const Style = ({ props }) => {
 
     // Grid Columns Gap
     const {
-        desktopRangeStyle: deskColumnsGap,
-        tabRangeStyle: tabColumnsGap,
-        mobRangeStyle: mobColumnsGap,
-    } = generateResRangeStyle({
-        controlName: COLUMNS_GAP,
-        property: 'grid-column-gap',
-        attributes,
-    });
-
-    // Grid Rows Gap
-    const {
-        desktopRangeStyle: deskRowsGap,
-        tabRangeStyle: tabRowsGap,
-        mobRangeStyle: mobRowsGap,
-    } = generateResRangeStyle({
-        controlName: ROWS_GAP,
-        property: 'grid-row-gap',
+        gapStylesDesktop: deskGridGap,
+        gapStylesTab: tabGridGap,
+        gapStylesMobile: mobGridGap,
+    } = generateGapStyle({
+        controlName: GRID_GAP,
         attributes,
     });
 
@@ -108,60 +90,6 @@ const Style = ({ props }) => {
     } = generateResAlignmentStyle({
         controlName: CONTENT_ALIGNMENT,
         property: 'text-align',
-        attributes,
-    });
-
-    const {
-        backgroundStylesDesktop: contentDeskBGStyle,
-        backgroundStylesTab: contentTabBGStyle,
-        backgroundStylesMobile: contentMobBGStyle,
-    } = generateNormalBGControlStyles({
-        controlName: CONTENT_BACKGROUND,
-        attributes,
-        noMainBGImg: true,
-    });
-
-    const {
-        desktopBorderStyle: contentDeskBorderStyle,
-        tabBorderStyle: contentTabBorderStyle,
-        mobBorderStyle: contentMobBorderStyle,
-    } = generateBorderStyle({
-        controlName: CONTENT_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: contentDeskBorderRadius,
-        dimensionStylesTab: contentTabBorderRadius,
-        dimensionStylesMobile: contentMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: CONTENT_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const { boxShadowStyle: contentBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTENT_BOX_SHADOW,
-    });
-
-    const {
-        dimensionStylesDesktop: contentDeskMargin,
-        dimensionStylesTab: contentTabMargin,
-        dimensionStylesMobile: contentMobMargin,
-    } = generateDimensionStyle({
-        controlName: CONTENT_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: contentDeskPadding,
-        dimensionStylesTab: contentTabPadding,
-        dimensionStylesMobile: contentMobPadding,
-    } = generateDimensionStyle({
-        controlName: CONTENT_PADDING,
-        styleFor: 'padding',
         attributes,
     });
 
@@ -368,8 +296,7 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-grid {
 			grid-template-columns: repeat(${deskColumns}, 1fr);
-			${deskColumnsGap}
-			${deskRowsGap}
+			${deskGridGap}
 		}
 
         .${uniqueId}.wp-block-zolo-review-grid .zolo-item {
@@ -380,14 +307,7 @@ const Style = ({ props }) => {
 			${containerDeskBGStyle}
             ${containerDeskPadding}
 		}
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-info-wrap {
-			${contentDeskMargin}
-			${contentDeskPadding}
-			${contentDeskBorderStyle}
-			${contentDeskBorderRadius}
-			${contentDeskBGStyle}
-            ${contentBoxShadow}
-		}
+    
 		.${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating {
 			${ratingIconDeskAlignStyle}
 		}
@@ -431,8 +351,7 @@ const Style = ({ props }) => {
     const tabletAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-grid {
 			grid-template-columns: repeat(${tabColumns}, 1fr);
-			${tabColumnsGap}
-			${tabRowsGap}
+			${tabGridGap}
 		}
 
         .${uniqueId}.wp-block-zolo-review-grid .zolo-item {
@@ -444,13 +363,6 @@ const Style = ({ props }) => {
             ${containerTabPadding}
         }   
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-info-wrap {
-            ${contentTabMargin}
-            ${contentTabPadding}
-            ${contentTabBorderStyle}
-            ${contentTabBorderRadius}
-            ${contentTabBGStyle}
-        }
 
         .${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating {
             ${ratingIconDeskAlignStyle}
@@ -487,8 +399,7 @@ const Style = ({ props }) => {
     const mobileAllStyle = `
 		.${uniqueId}.wp-block-zolo-review-grid {
 			grid-template-columns: repeat(${mobColumns}, 1fr);
-			${mobColumnsGap}
-			${mobRowsGap}
+			${mobGridGap}
 		}
 
         .${uniqueId}.wp-block-zolo-review-grid .zolo-item {
@@ -500,13 +411,7 @@ const Style = ({ props }) => {
             ${containerMobPadding}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-info-wrap {
-            ${contentMobMargin}
-            ${contentMobPadding}
-            ${contentMobBorderStyle}
-            ${contentMobBorderRadius}
-            ${contentMobBGStyle}
-        }
+       
 
         .${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating {
             ${ratingIconDeskAlignStyle}

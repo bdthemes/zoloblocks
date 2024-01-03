@@ -25,8 +25,7 @@ export const ITEM_BOX_SHADOW = 'ItemBoxShadow';
 
 // Grid Background
 export const COLUMNS = 'gridColumns';
-export const COLUMNS_GAP = 'columnsGap';
-export const ROWS_GAP = 'rowsGap';
+export const GRID_GAP = 'gridGap';
 
 // title
 export const TITLE_SPACING = 'titleSpacing';

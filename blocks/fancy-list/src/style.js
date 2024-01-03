@@ -8,6 +8,7 @@ const {
     generateNormalBGControlStyles,
     generateResCounterStyle,
     generateBoxShadowStyles,
+    generateGapStyle,
 } = window.zoloModule;
 
 import {
@@ -26,8 +27,7 @@ import {
     ICON_HBG,
     GAP,
     COLUMNS,
-    COLUMNS_GAP,
-    ROWS_GAP,
+    GRID_GAP,
     ITEM_BG,
     ITEM_PADDING,
     ITEM_MARGIN,
@@ -115,22 +115,11 @@ const Style = ({ props }) => {
     });
 
     const {
-        desktopRangeStyle: deskColumnsGap,
-        tabRangeStyle: tabColumnsGap,
-        mobRangeStyle: mobColumnsGap,
-    } = generateResRangeStyle({
-        controlName: COLUMNS_GAP,
-        property: 'grid-column-gap',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: deskRowsGap,
-        tabRangeStyle: tabRowsGap,
-        mobRangeStyle: mobRowsGap,
-    } = generateResRangeStyle({
-        controlName: ROWS_GAP,
-        property: 'grid-row-gap',
+        gapStylesDesktop: deskGridGap,
+        gapStylesTab: tabGridGap,
+        gapStylesMobile: mobGridGap,
+    } = generateGapStyle({
+        controlName: GRID_GAP,
         attributes,
     });
 
@@ -316,8 +305,7 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-fancy-list .zolo-fancy-list-container {
             grid-template-columns: repeat(${deskColumns}, 1fr);
-            ${deskColumnsGap}
-            ${deskRowsGap}
+            ${deskGridGap}
         }
         .${uniqueId} .wp-block-zolo-fancy-list-child {
             ${itemDeskBg}
@@ -392,8 +380,7 @@ const Style = ({ props }) => {
     const tabletAllStyle = `
         .${uniqueId}.wp-block-zolo-fancy-list .zolo-fancy-list-container {
             grid-template-columns: repeat(${tabColumns}, 1fr);
-            ${tabColumnsGap}
-            ${tabRowsGap}
+            ${tabGridGap}
         }
         .${uniqueId}.wp-block-zolo-fancy-list  {
             ${itemTabBg}
@@ -450,8 +437,7 @@ const Style = ({ props }) => {
     const mobileAllStyle = `	
         .${uniqueId}.wp-block-zolo-fancy-list .zolo-fancy-list-container {
             grid-template-columns: repeat(${mobColumns}, 1fr);
-            ${mobColumnsGap}
-            ${mobRowsGap}
+            ${mobGridGap}
         }
          .${uniqueId}.wp-block-zolo-fancy-list {
             ${itemMobBg}

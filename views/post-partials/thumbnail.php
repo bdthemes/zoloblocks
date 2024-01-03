@@ -2,6 +2,8 @@
 
 $thumbnailHTML = '';
 
+$placeholderImage = trailingslashit( ZOLO_ADMIN_URL ) . 'assets/images/placeholder.svg';
+
 if (!empty($settings['showThumbnail'])) {
     $thumbnail = $result->thumbnail;
     if (!empty($thumbnail)) {
@@ -14,9 +16,9 @@ if (!empty($settings['showThumbnail'])) {
         );
     } else {
         $permalink = $result->permalink ?? '#';
-        $thumbnailHTML .= '<a href="' . $permalink . '">
-        <img src="https://via.placeholder.com/380x440.png" alt="No Image Available" />
-      </a>';
+        $thumbnailHTML .= '<a href="' . $permalink . '">';
+        $thumbnailHTML .= "<img src='.$placeholderImage.' alt='Placeholder image'>";
+        $thumbnailHTML .= '</a>';
     }
 }
 

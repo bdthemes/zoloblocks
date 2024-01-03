@@ -84,18 +84,6 @@ export default function Edit(props) {
                                 )}
                             />
                         </ToolbarGroup>
-                        <ToolbarGroup>
-                            <ToolbarButton
-                                className="components-toolbar__control"
-                                label={__('Remove Photo', 'zolo-blocks')}
-                                icon="trash"
-                                onClick={() => {
-                                    setAttributes({
-                                        photo: null,
-                                    });
-                                }}
-                            />
-                        </ToolbarGroup>
                     </Fragment>
                 )}
             </BlockControls>

@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
+import { SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -23,6 +23,7 @@ const {
     ResAlignmentControl,
     TextStrokeControl,
     TypographyDropdown,
+    ResGapControl,
     ZoloPanelBody,
 } = window.zoloModule;
 
@@ -30,8 +31,7 @@ import objAttributes from './attributes';
 import {
     PRESETS,
     GRID_COLUMNS,
-    COLUMNS_GAP,
-    ROWS_GAP,
+    GRID_GAP,
     LINK_TYPES,
     CONTAINER_HEIGHT,
     CONTAINER_BG,
@@ -162,22 +162,12 @@ function Inspector(props) {
                                     mobRange: 1,
                                 }}
                             />
-                            <ResRangeControl
-                                label={__('Columns Gap', 'zolo-blocks')}
-                                controlName={COLUMNS_GAP}
+                            <ResGapControl
+                                label={__('Gap', 'zolo-blocks')}
+                                controlName={GRID_GAP}
                                 requiredProps={requiredProps}
                                 min={0}
-                                max={100}
-                                step={1}
-                            />
-
-                            <ResRangeControl
-                                label={__('Row Gap', 'zolo-blocks')}
-                                controlName={ROWS_GAP}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
+                                max={200}
                             />
                         </ZoloPanelBody>
                     </>

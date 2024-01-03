@@ -8,12 +8,6 @@ export const BLOCK_PREFIX = 'reviewChild';
 
 // content
 export const CONTENT_ALIGNMENT = 'ContentAlignment';
-export const CONTENT_BACKGROUND = 'ContentBackground';
-export const CONTENT_BORDER = 'ContentBorder';
-export const CONTENT_BORDER_RADIUS = 'ContentBorderRadius';
-export const CONTENT_BOX_SHADOW = 'ContentBoxShadow';
-export const CONTENT_MARGIN = 'ContentMargin';
-export const CONTENT_PADDING = 'ContentPadding';
 
 // container
 export const CONTAINER_BACKGROUND = 'reviewContainerBackground';

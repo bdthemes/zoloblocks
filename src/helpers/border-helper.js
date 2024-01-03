@@ -59,7 +59,7 @@ export const generateBorderAttributies = (controlName, defaults = {}) => {
     const desktopType = {
         [`${prefix}${controlName}BorderType`]: {
             type: 'string',
-            default: 'none',
+            default: '',
         },
     };
 
@@ -212,12 +212,24 @@ export const generateBorderStyle = ({ controlName, attributes }) => {
 		`;
     }
 
-    if (deskBorderType !== 'none') {
-        desktopBorderStyle = `
-			border-style:${type === 'solid' ? 'solid' : deskBorderStyle};
+    if (deskBorderType !== 'none' && deskBorderType !== '' && deskBorderType !== undefined) {
+        if (deskBorderType === 'solid') {
+            desktopBorderStyle = `
+			border-style: solid;
 			border-color:${deskBorderColor};
 			${deskBorderWidth}
 		`;
+        } else {
+            desktopBorderStyle = `
+            border-style:${deskBorderStyle ? deskBorderStyle : 'dashed'};
+            border-color:${deskBorderColor};
+            ${deskBorderWidth}
+        `;
+        }
+    } else if (deskBorderType === 'none') {
+        desktopBorderStyle = `
+            border: none;
+        `;
     }
 
     // Tab border style
@@ -240,12 +252,24 @@ export const generateBorderStyle = ({ controlName, attributes }) => {
 		`;
     }
 
-    if (tabBorderType !== 'none') {
+    if (tabBorderType !== 'none' && tabBorderType !== '' && tabBorderType !== undefined) {
+        if (tabBorderType === 'solid') {
+            tabBorderStyle = `
+                border-style: solid;
+                border-color:${tabBorderColor};
+                ${tabBorderWidth}
+            `;
+        } else {
+            tabBorderStyle = `
+                border-style:${tabletBorderStyle ? tabletBorderStyle : 'dashed'};
+                border-color:${tabBorderColor};
+                ${tabBorderWidth}
+            `;
+        }
+    } else if (tabBorderType === 'none') {
         tabBorderStyle = `
-			border-style:${tabBorderType === 'solid' ? 'solid' : tabletBorderStyle};
-			border-color:${tabBorderColor};
-			${tabBorderWidth}
-		`;
+            border: none;
+        `;
     }
 
     // Mobile border style
@@ -268,12 +292,24 @@ export const generateBorderStyle = ({ controlName, attributes }) => {
 		`;
     }
 
-    if (mobBorderType !== 'none') {
+    if (mobBorderType !== 'none' && mobBorderType !== '' && mobBorderType !== undefined) {
+        if (mobBorderType === 'solid') {
+            mobBorderStyle = `
+                border-style: solid;
+                border-color:${mobBorderColor};
+                ${mobBorderWidth}
+            `;
+        } else {
+            mobBorderStyle = `
+                border-style:${mobileBorderStyle ? mobileBorderStyle : 'dashed'};
+                border-color:${mobBorderColor};
+                ${mobBorderWidth}
+            `;
+        }
+    } else if (mobBorderType === 'none') {
         mobBorderStyle = `
-			border-style:${mobBorderType === 'solid' ? 'solid' : mobileBorderStyle};
-			border-color:${mobBorderColor};
-			${mobBorderWidth}
-		`;
+            border: none;
+        `;
     }
 
     return { desktopBorderStyle, tabBorderStyle, mobBorderStyle };

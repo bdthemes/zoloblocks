@@ -51,9 +51,6 @@ const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min
         });
     }, [isLinked]);
 
-    const dimensionValue =
-        parseInt(dimensions.top) || parseInt(dimensions.right) || parseInt(dimensions.bottom) || parseInt(dimensions.left);
-
     return (
         <div className="zb-dimension-container">
             <WithResDeviceBtn label={label} requiredProps={neededProps} controlName={controlName}>

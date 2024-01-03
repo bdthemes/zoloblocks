@@ -37,7 +37,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                     {resMode == 'Desktop' && (
                         <>
                             <div className="zb-units-wrapper">
-                                {desktopRange && (
+                                {desktopRange !== undefined && desktopRange !== '' && desktopRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
                                             setAttributes({
@@ -67,7 +67,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                     {resMode == 'Tablet' && (
                         <>
                             <div className="zb-units-wrapper">
-                                {tabRange && (
+                                {tabRange !== undefined && tabRange !== '' && tabRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
                                             setAttributes({
@@ -96,7 +96,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                     {resMode == 'Mobile' && (
                         <>
                             <div className="zb-units-wrapper">
-                                {mobRange && (
+                                {mobRange !== undefined && mobRange !== '' && mobRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
                                             setAttributes({
@@ -135,7 +135,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                                     })
                                 }
                             >
-                                {desktopRange && (
+                                {desktopRange !== undefined && desktopRange !== '' && desktopRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
                                             setAttributes({
@@ -173,7 +173,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                                     })
                                 }
                             >
-                                {tabRange && (
+                                {tabRange !== undefined && tabRange !== '' && tabRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
                                             setAttributes({
@@ -210,7 +210,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                                     })
                                 }
                             >
-                                {mobRange && (
+                                {mobRange !== undefined && mobRange !== '' && mobRange !== 0 && (
                                     <ResetBtn
                                         onReset={() => {
                                             setAttributes({

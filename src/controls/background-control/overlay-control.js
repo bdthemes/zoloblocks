@@ -131,6 +131,14 @@ const OverlayControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                         if ('normal' === tab.name) {
                             return (
                                 <>
+                                    <RangeControl
+                                        label={__('Overlay Opacity', 'zolo-blocks')}
+                                        value={ovl_opacity}
+                                        onChange={(v) => setAttributes({ [`${controlName}ovl_opacity`]: v })}
+                                        min={0}
+                                        max={1}
+                                        step={0.1}
+                                    />
                                     <BaseControl label={__('Background Type', 'zolo-blocks')}>
                                         <ButtonGroup>
                                             {BACKGROUND_TYPES.map(({ value, label }) => (
@@ -1178,6 +1186,18 @@ const OverlayControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                         } else {
                             return (
                                 <>
+                                    <RangeControl
+                                        label={__('Overlay Opacity', 'zolo-blocks')}
+                                        value={hov_ovl_opacity}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                [`hov_${controlName}ovl_opacity`]: v,
+                                            })
+                                        }
+                                        min={0}
+                                        max={1}
+                                        step={0.1}
+                                    />
                                     <BaseControl label={__('Background Type', 'zolo-blocks')}>
                                         <ButtonGroup>
                                             {BACKGROUND_TYPES.map(({ value, label }) => (

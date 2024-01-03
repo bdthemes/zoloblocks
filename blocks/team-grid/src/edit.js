@@ -10,9 +10,9 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, generateResRangeStyle, generateResCounterStyle } = window.zoloModule;
+const { classArrayToStr, generateGapStyle, generateResCounterStyle } = window.zoloModule;
 
-import { COLUMNS_GAP, GRID_COLUMNS, ROWS_GAP } from './constants';
+import { GRID_COLUMNS, GRID_GAP } from './constants';
 
 import Inspector from './inspector';
 
@@ -39,22 +39,11 @@ export default function Edit(props) {
     });
 
     const {
-        desktopRangeStyle: deskColumnsGap,
-        tabRangeStyle: tabColumnsGap,
-        mobRangeStyle: mobColumnsGap,
-    } = generateResRangeStyle({
-        controlName: COLUMNS_GAP,
-        property: 'grid-column-gap',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: deskRowsGap,
-        tabRangeStyle: tabRowsGap,
-        mobRangeStyle: mobRowsGap,
-    } = generateResRangeStyle({
-        controlName: ROWS_GAP,
-        property: 'grid-row-gap',
+        gapStylesDesktop: deskGridGap,
+        gapStylesTab: tabGridGap,
+        gapStylesMobile: mobGridGap,
+    } = generateGapStyle({
+        controlName: GRID_GAP,
         attributes,
     });
 
@@ -82,21 +71,18 @@ export default function Edit(props) {
 				.${uniqueId}.wp-block-zolo-team-grid .block-editor-block-list__layout {
 					display: grid;
 					grid-template-columns: repeat(${deskColumns}, 1fr);
-					${deskColumnsGap};
-					${deskRowsGap};
+					${deskGridGap};
 				}
 				@media all and (max-width: 1024px) {
 					.${uniqueId}.wp-block-zolo-team-grid .block-editor-block-list__layout {
 						grid-template-columns: repeat(${tabColumns}, 1fr);
-						${tabColumnsGap};
-						${tabRowsGap};
+						${tabGridGap};
 					}
 				}
 				@media all and (max-width: 767px) {
 					.${uniqueId}.wp-block-zolo-team-grid .block-editor-block-list__layout {
 						grid-template-columns: repeat(${mobColumns}, 1fr);
-						${mobColumnsGap};
-						${mobRowsGap};
+						${mobGridGap};
 					}
 				}
 			`}</style>

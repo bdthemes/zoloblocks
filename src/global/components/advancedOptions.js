@@ -26,6 +26,7 @@ import ResDimensionsControl from '../../controls/dimensions-control';
 import BorderControl from '../../controls/border-control';
 import BoxShadowControl from '../../controls/boxshadow-control';
 import RangeResetControl from '../../controls/range-reset-control';
+import CustomCSSControl from '../../controls/customcss-control';
 
 export const AdvancedOptions = (props) => {
     const { attributes, setAttributes, requiredProps } = props;
@@ -155,7 +156,7 @@ export const AdvancedOptions = (props) => {
                             onChange={() => handleResponsiveness('hideDesktop', !responsiveness.hideDesktop, 'zolo-hide-desktop')}
                         />
                         <ToggleControl
-                            label={__('Hide on Tab', 'zolo-blocks')}
+                            label={__('Hide on Tablet', 'zolo-blocks')}
                             checked={responsiveness?.hideTab || false}
                             onChange={() => handleResponsiveness('hideTab', !responsiveness.hideTab, 'zolo-hide-tab')}
                         />
@@ -207,6 +208,13 @@ export const AdvancedOptions = (props) => {
                     }}
                     help={__('Add custom class(es) to the block. Separate multiple classes with a space.', 'zolo-blocks')}
                 />
+            </PanelBody>
+            <PanelBody
+                title={__('Custom CSS', 'zolo-blocks')}
+                onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel37' })}
+                opened={selectedExtraPanel === 'panel37'}
+            >
+                <CustomCSSControl attributes={attributes} setAttributes={setAttributes} />
             </PanelBody>
         </>
     );

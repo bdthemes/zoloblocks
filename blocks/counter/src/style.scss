@@ -19,6 +19,10 @@
     }
 
     .zolo-counter-icon {
+        .zolo__display-icon {
+            margin-bottom: 15px;
+        }
+
         img {
             max-width: 100%;
             box-sizing: border-box;
@@ -30,7 +34,6 @@
 
         svg {
             fill: #20232a;
-            margin-bottom: 15px;
             box-sizing: content-box;
             width: 30px;
             height: 30px;

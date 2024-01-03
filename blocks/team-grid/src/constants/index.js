@@ -23,10 +23,7 @@ export const ITEM_BOX_SHADOW = 'ItemBoxShadow';
 
 // Grid Background
 export const GRID_COLUMNS = 'gridColumns';
-export const COLUMNS_GAP = 'columnsGap';
-export const ROWS_GAP = 'rowsGap';
-
-// global settings for child blocks
+export const GRID_GAP = 'gridGap';
 
 // photo bg
 export const PHOTO_BG = 'PhotoBg';

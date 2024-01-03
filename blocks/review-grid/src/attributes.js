@@ -10,12 +10,12 @@ const {
     generateTypographyAttributes,
     generateNormalBGAttributes,
     generateResCounterAttributies,
+    generateGapAttributes,
 } = window.zoloModule;
 
 import {
     GRID_COLUMNS,
-    COLUMNS_GAP,
-    ROWS_GAP,
+    GRID_GAP,
     REVIEW_GRID_BG,
     REVIEW_GRID_PADDING,
     REVIEW_GRID_MARGIN, // child global styles
@@ -25,12 +25,6 @@ import {
     CONTAINER_PADDING,
     CONTAINER_BOX_SHADOW,
     CONTENT_ALIGNMENT,
-    CONTENT_BACKGROUND,
-    CONTENT_BORDER,
-    CONTENT_BORDER_RADIUS,
-    CONTENT_BOX_SHADOW,
-    CONTENT_MARGIN,
-    CONTENT_PADDING,
     REVIEWER_PHOTO_SIZE,
     REVIEWER_PHOTO_BG,
     REVIEWER_PHOTO_BORDER,
@@ -110,11 +104,8 @@ const attributes = {
             mobRange: 1,
         },
     }),
-    ...generateResRangeAttributies(COLUMNS_GAP, {
-        defaultRange: 30,
-    }),
-    ...generateResRangeAttributies(ROWS_GAP, {
-        defaultRange: 50,
+    ...generateGapAttributes(GRID_GAP, {
+        defaultUnit: 'px',
     }),
     ...generateDimensionAttributes(REVIEW_GRID_MARGIN),
     ...generateDimensionAttributes(REVIEW_GRID_PADDING),
@@ -122,12 +113,6 @@ const attributes = {
     // child global styles
     // Generators
     ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
-    ...generateNormalBGAttributes(CONTENT_BACKGROUND),
-    ...generateBorderAttributies(CONTENT_BORDER),
-    ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
-    ...generateBoxShadowAttributies(CONTENT_BOX_SHADOW),
-    ...generateDimensionAttributes(CONTENT_MARGIN),
-    ...generateDimensionAttributes(CONTENT_PADDING),
 
     ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
     ...generateBorderAttributies(CONTAINER_BORDER),

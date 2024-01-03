@@ -463,16 +463,18 @@ export default function Style({ props }) {
      */
     const desktopAllStyle = `
 
-        .${uniqueId}.zolo-block-advanced-icon-box {
+    .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item {
             ${itemBgDesk}
             ${itemBorderDesk}
             ${itemRadiusDesk}
             ${itemBoxShadow}
             ${itemPaddingDesk}
             ${itemMarginDesk}
+            
         }
+        
 
-        .${uniqueId}.zolo-block-advanced-icon-box:hover {
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover {
             ${itemHBoxShadow}
             ${itemHBgDesk}
             ${itemHBorderColor ? `border-color: ${itemHBorderColor};` : ''}
@@ -569,11 +571,11 @@ export default function Style({ props }) {
   	`;
 
     const tabletAllStyle = `
-        .${uniqueId}.zolo-block-advanced-icon-box {
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
             ${itemBgTab}
             ${itemBorderTab}
             ${itemRadiusTab}
-            ${itemPaddingTab}
+            ${itemPaddingTab}f
             ${itemMarginTab}
         }
 
@@ -640,7 +642,7 @@ export default function Style({ props }) {
 	`;
 
     const mobileAllStyle = `
-        .${uniqueId}.zolo-block-advanced-icon-box {
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
             ${itemBgMob}
             ${itemBorderMob}
             ${itemRadiusMob}

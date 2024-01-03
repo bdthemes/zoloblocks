@@ -36,7 +36,14 @@ const Save = ({ attributes }) => {
                 {showPhoto && (
                     <div className="zolo-image-quote-wrap">
                         <div className="zolo-image-wrap">
-                            {memberPhoto && <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} className="zolo-img" />}
+                            {memberPhoto && (
+                                <img
+                                    src={memberPhoto.url}
+                                    alt={memberPhoto.alt || memberName}
+                                    className={`zolo-img wp-image-${memberPhoto.id}`}
+                                    loading="lazy"
+                                />
+                            )}
                         </div>
                         {showQuoteIcon && (
                             <div className="zolo-quote-icon">

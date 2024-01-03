@@ -5,6 +5,7 @@ const {
     generateDimensionAttributes,
     generateBoxShadowAttributies,
     generateTypographyAttributes,
+    generateGapAttributes,
 } = window.zoloModule;
 
 import {
@@ -16,7 +17,6 @@ import {
     ICON_TEXT_SPACING,
     COLUMN_COUNT,
     COLUMNS_GAP,
-    ROW_GAP,
     BUTTON_SIZE,
     BLOCK_MARGIN,
     PT_ICON_WIDTH,
@@ -61,10 +61,9 @@ const attributes = {
         defaultRange: 5,
     }),
     //columns gaps
-    ...generateResRangeAttributies(COLUMNS_GAP),
-    //row gaps
-    ...generateResRangeAttributies(ROW_GAP),
-
+    ...generateGapAttributes(COLUMNS_GAP, {
+        defaultUnit: 'px',
+    }),
     //button
     ...generateDimensionAttributes(BUTTON_PADDING),
     ...generateResRangeAttributies(BUTTON_SIZE),

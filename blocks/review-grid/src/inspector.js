@@ -9,15 +9,8 @@ import objAttributes from './attributes';
 import {
     PRESETS,
     GRID_COLUMNS,
-    COLUMNS_GAP,
-    ROWS_GAP,
+    GRID_GAP,
     CONTENT_ALIGNMENT,
-    CONTENT_BACKGROUND,
-    CONTENT_BORDER,
-    CONTENT_BORDER_RADIUS,
-    CONTENT_BOX_SHADOW,
-    CONTENT_MARGIN,
-    CONTENT_PADDING,
     CONTAINER_BACKGROUND,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
@@ -53,6 +46,7 @@ const {
     NormalBGControl,
     TabPanelControl,
     ZoloPanelBody,
+    ResGapControl,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -163,18 +157,24 @@ function Inspector(props) {
                                     mobRange: 1,
                                 }}
                             />
-                            <ResRangeControl
-                                label={__('Columns Gap', 'zolo-blocks')}
-                                controlName={COLUMNS_GAP}
+                            <ResGapControl
+                                label={__('Gap', 'zolo-blocks')}
+                                controlName={GRID_GAP}
                                 requiredProps={requiredProps}
+                                max={200}
                             />
-                            <ResRangeControl label={__('Rows Gap', 'zolo-blocks')} controlName={ROWS_GAP} requiredProps={requiredProps} />
                         </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Item Container', 'zolo-blocks')} stylePanel={true} panelProps={props} firstOpen={true}>
+                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} stylePanel={true} panelProps={props} firstOpen={true}>
+                            <ResAlignmentControl
+                                label={__('Content Alignmet', 'zolo-blocks')}
+                                controlName={CONTENT_ALIGNMENT}
+                                requiredProps={requiredProps}
+                                alignOptions={DEFAULT_ALIGNS}
+                            />
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={CONTAINER_BORDER}
@@ -195,35 +195,7 @@ function Inspector(props) {
                             <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <ResAlignmentControl
-                                label={__('Content Alignmet', 'zolo-blocks')}
-                                controlName={CONTENT_ALIGNMENT}
-                                requiredProps={requiredProps}
-                                alignOptions={DEFAULT_ALIGNS}
-                            />
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={CONTENT_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={CONTENT_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={CONTENT_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <BoxShadowControl controlName={CONTENT_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                            <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BACKGROUND} noMainBGImg={true} />
-                        </ZoloPanelBody>
+
                         {showPhoto && (
                             <ZoloPanelBody title={__('Photo', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
@@ -344,7 +316,7 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
                         {showTestimonialMessage && (
-                            <ZoloPanelBody title={__('Testimonial', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Review Text', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={REVIEWER_MESSAGE_TYPOGRAPHY}

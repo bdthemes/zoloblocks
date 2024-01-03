@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, TextControl, RangeControl, SelectControl } from '@wordpress/components';
+import { ToggleControl, TextControl, RangeControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -24,7 +24,6 @@ import objAttributes from './attributes';
 
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
 import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
-
 import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS } from '../../../src/global/constants';
 
 function Inspector(props) {

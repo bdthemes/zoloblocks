@@ -1,20 +1,19 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { CardDivider, PanelBody, TextControl, TextareaControl, ToggleControl, BaseControl, Button } from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
-const { ResRangeControl, HeaderTabs, IconicBtnGroup, ResAlignmentControl, AdvancedOptions, ZoloPanelBody } = window.zoloModule;
+const { ResRangeControl, HeaderTabs, IconicBtnGroup, ResAlignmentControl, AdvancedOptions, ZoloPanelBody, ResGapControl } =
+    window.zoloModule;
 
 import objAttributes from './attributes';
 import {
     CONTAINER_WIDTH,
-    ROW_GAP,
-    COLUMN_GAP,
+    CONTAINER_GAP,
     CONTENT_WIDTH,
     MIN_HEIGHT,
     FLEX_DIRECTION,
@@ -34,8 +33,6 @@ import {
     FLEX_JUSTIFIES_ROW,
 } from '../../../src/global/constants';
 
-import { Fragment } from 'react';
-
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
@@ -46,8 +43,6 @@ function Inspector(props) {
         FlexDirectionZRPAlign,
         TABFlexDirectionZRPAlign,
         MOBFlexDirectionZRPAlign,
-        selectedPanel,
-        selectedTab,
     } = attributes;
 
     const requiredProps = {
@@ -170,21 +165,11 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Container Gap', 'zolo-blocks')} stylePanel={true} firstOpen={true} panelProps={props}>
-                            <ResRangeControl
-                                label={__('Row Gap', 'zolo-blocks')}
-                                controlName={ROW_GAP}
+                            <ResGapControl
+                                label={__('Gap', 'zolo-blocks')}
+                                controlName={CONTAINER_GAP}
                                 requiredProps={requiredProps}
-                                min={0}
-                                max={500}
-                                step={1}
-                            />
-                            <ResRangeControl
-                                label={__('Column Gap', 'zolo-blocks')}
-                                controlName={COLUMN_GAP}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={500}
-                                step={1}
+                                max={200}
                             />
                         </ZoloPanelBody>
                     </>

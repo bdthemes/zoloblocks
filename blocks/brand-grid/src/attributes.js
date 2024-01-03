@@ -9,12 +9,12 @@ const {
     generateTextShadowAttributies,
     generateTextStrokeAttributies,
     generateResCounterAttributies,
+    generateGapAttributes,
 } = window.zoloModule;
 
 import {
     GRID_COLUMNS,
-    COLUMNS_GAP,
-    ROWS_GAP,
+    GRID_GAP,
     CONTAINER_HEIGHT,
     CONTAINER_BG,
     CONTAINER_BORDER,
@@ -75,14 +75,10 @@ const attributes = {
         tabRange: 2,
         mobRange: 1,
     }),
-    ...generateResRangeAttributies(COLUMNS_GAP, {
+    ...generateGapAttributes(GRID_GAP, {
         defaultRange: 30,
+        defaultUnit: 'px',
     }),
-    ...generateResRangeAttributies(ROWS_GAP, {
-        defaultRange: 30,
-    }),
-
-    // global style for child blocks
     // content alignment
     ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
     ...generateDimensionAttributes(CONTENT_PADDING),

@@ -788,7 +788,7 @@ export const HEADING = [
 ];
 
 export const BORDER_TYPES = [
-    // { label: __('None', 'zolo-blocks'), value: 'none' },
+    { label: __('None', 'zolo-blocks'), value: 'none' },
     { label: __('Solid', 'zolo-blocks'), value: 'solid' },
     { label: __('Custom', 'zolo-blocks'), value: 'custom' },
 ];
@@ -816,10 +816,6 @@ export const BACKGROUND_TYPES = [
 ];
 
 export const BOX_SHADOW_TYPES = [
-    // {
-    //     label: __('None', 'zolo-blocks'),
-    //     value: 'none',
-    // },
     {
         label: __('Outer', 'zolo-blocks'),
         value: 'outset',

@@ -14,8 +14,7 @@ export const BLOCK_PREFIX = 'advanced-image-gallery';
 
 // Grid
 export const COLUMN_COUNT = 'columnCount';
-export const COLUMNS_GAP = 'columnsGap';
-export const ROW_GAP = 'rowGap';
+export const COLUMN_GAP = 'columnGap';
 
 // Container
 export const CONTAINER_BORDER = 'containerBorder';

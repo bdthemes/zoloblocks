@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { ToggleControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -22,12 +22,12 @@ const {
     ZoloIconPicker,
     AdvancedOptions,
     ZoloPanelBody,
+    ResGapControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 import {
-    ROW_GAP,
-    COLUMNS_GAP,
+    COLUMN_GAP,
     COLUMN_COUNT,
     IMAGE_BORDER,
     IMAGE_BORDER_RADIUS,
@@ -60,6 +60,7 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         resMode,
+        advancedGallery,
         showCaption,
         showLightbox,
         headingColor,
@@ -68,7 +69,6 @@ function Inspector(props) {
         zoomIconHoverColor,
         imageHoverBorderColor,
         lightboxIcon,
-        entranceAnimation,
     } = attributes;
 
     const requiredProps = {
@@ -105,6 +105,41 @@ function Inspector(props) {
                                 }
                                 help={__('This option will only work at the frontend', 'zolo-blocks')}
                             />
+                            <div className="zolo-gallery-wrapper">
+                                <label className="zolo-control-label" htmlFor="zolo-control-label">
+                                    {__('Gallery Photos', 'zolo-blocks')}
+                                </label>
+                                <div className="zolo-gallery-items">
+                                    <div className="replace-btn-wrapper">
+                                        <MediaUpload
+                                            onSelect={(media) => {
+                                                setAttributes({
+                                                    advancedGallery: media,
+                                                });
+                                            }}
+                                            allowedTypes={['image']}
+                                            multiple={true}
+                                            gallery={true}
+                                            value={advancedGallery && advancedGallery.map((image) => image.id)}
+                                            render={({ open }) => (
+                                                <button className="zolo-replace-btn" onClick={open}>
+                                                    {__('Replace Photos', 'zolo-blocks')}
+                                                </button>
+                                            )}
+                                        />
+                                    </div>
+                                    {advancedGallery &&
+                                        advancedGallery.length > 0 &&
+                                        advancedGallery &&
+                                        advancedGallery.map((image, index) => {
+                                            return (
+                                                <div className="zolo-gallery-item" key={index}>
+                                                    <img src={image.url} alt={image.alt || image.caption} />
+                                                </div>
+                                            );
+                                        })}
+                                </div>
+                            </div>
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
                             <ResCounterControl
@@ -119,50 +154,25 @@ function Inspector(props) {
                                     mobRange: 1,
                                 }}
                             />
-                            <ResRangeControl
-                                label={__('Column Gap', 'zolo-blocks')}
-                                controlName={COLUMNS_GAP}
+                            <ResGapControl
+                                label={__('Gap', 'zolo-blocks')}
+                                controlName={COLUMN_GAP}
                                 requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
-                            <ResRangeControl
-                                label={__('Row Gap', 'zolo-blocks')}
-                                controlName={ROW_GAP}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
+                                max={200}
                             />
                         </ZoloPanelBody>
                         {showLightbox && (
-                            <>
-                                {/* <ZoloPanelBody title={__('Lightbox Animation', 'zolo-blocks')} panelProps={props}>
-                                    <SelectControl
-                                        label={__('Select Animation', 'zolo-blocks')}
-                                        value={entranceAnimation}
-                                        options={MPA_ANIMATIONS}
-                                        onChange={(v) => {
-                                            setAttributes({
-                                                entranceAnimation: v,
-                                            });
-                                        }}
-                                        help={__('This option will only work at the frontend', 'zolo-blocks')}
-                                    />
-                                </ZoloPanelBody> */}
-                                <ZoloPanelBody title={__('Lightbox Icon', 'zolo-blocks')} panelProps={props}>
-                                    <ZoloIconPicker
-                                        label={__('Select Icon', 'zolo-blocks')}
-                                        value={lightboxIcon}
-                                        onChange={(value) => {
-                                            setAttributes({
-                                                lightboxIcon: value,
-                                            });
-                                        }}
-                                    />
-                                </ZoloPanelBody>
-                            </>
+                            <ZoloPanelBody title={__('Lightbox Icon', 'zolo-blocks')} panelProps={props}>
+                                <ZoloIconPicker
+                                    label={__('Select Icon', 'zolo-blocks')}
+                                    value={lightboxIcon}
+                                    onChange={(value) => {
+                                        setAttributes({
+                                            lightboxIcon: value,
+                                        });
+                                    }}
+                                />
+                            </ZoloPanelBody>
                         )}
                     </>
                 }

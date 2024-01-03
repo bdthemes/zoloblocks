@@ -41,7 +41,7 @@ class StyleGenerator {
             if ( isset( $block['attrs']['zoloStyles'] ) ) {
                 $style = $this::zolo_generate_style( $block['attrs']['zoloStyles'] );
                   // minify style string
-                $style = preg_replace( '/\s+/', ' ', $style );
+                // $style = preg_replace( '/\s+/', ' ', $style );
 
                 $block_content = sprintf(
                     '<style>%1$s</style>%2$s',
@@ -73,6 +73,10 @@ class StyleGenerator {
                 '@media all and (max-width: 767px) {%1$s}',
                 $style['mobile']
             );
+        }
+
+        if (!empty($style['customCss']) && strlen($style['customCss']) > 0) {
+            $css .= $style['customCss'];
         }
 
         return $css;

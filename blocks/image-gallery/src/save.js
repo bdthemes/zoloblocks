@@ -31,7 +31,12 @@ const Save = ({ attributes }) => {
                                 })}
                             >
                                 <div className="zolo-image-wrap">
-                                    <img src={image.url} alt={image.alt || image.caption || 'Gallery'} className={`wp-image-${image.id}`} />
+                                    <img
+                                        src={image.url}
+                                        alt={image.alt || image.caption || 'Gallery'}
+                                        className={`wp-image-${image.id}`}
+                                        loading="lazy"
+                                    />
                                 </div>
                                 {showLightbox && (
                                     <div className="zolo-icon-wrap">

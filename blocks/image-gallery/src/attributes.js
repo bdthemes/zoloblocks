@@ -6,14 +6,14 @@ const {
     generateBorderAttributies,
     generateBoxShadowAttributies,
     generateResCounterAttributies,
+    generateGapAttributes,
 } = window.zoloModule;
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
 import {
     COLUMN_COUNT,
-    COLUMNS_GAP,
-    ROW_GAP,
+    COLUMN_GAP,
     CONTAINER_BACKGROUND,
     CONTAINER_HOVER_BACKGROUND,
     CONTAINER_MARGIN,
@@ -123,10 +123,9 @@ const attributes = {
     }),
 
     //Columns Gaps
-    ...generateResRangeAttributies(COLUMNS_GAP),
-
-    //Row Gaps
-    ...generateResRangeAttributies(ROW_GAP),
+    ...generateGapAttributes(COLUMN_GAP, {
+        defaultUnit: 'px',
+    }),
 
     //Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),

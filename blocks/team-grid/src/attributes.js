@@ -10,12 +10,12 @@ const {
     generateTypographyAttributes,
     generateNormalBGAttributes,
     generateResCounterAttributies,
+    generateGapAttributes,
 } = window.zoloModule;
 
 import {
     GRID_COLUMNS,
-    COLUMNS_GAP,
-    ROWS_GAP,
+    GRID_GAP,
     CONTENT_BG,
     CONTENT_ALIGNMENT,
     CONTENT_PADDING,
@@ -120,11 +120,9 @@ const attributes = {
             mobRange: 1,
         },
     }),
-    ...generateResRangeAttributies(COLUMNS_GAP, {
+    ...generateGapAttributes(GRID_GAP, {
         defaultRange: 30,
-    }),
-    ...generateResRangeAttributies(ROWS_GAP, {
-        defaultRange: 30,
+        defaultUnit: 'px',
     }),
     // item
     ...generateNormalBGAttributes(ITEM_BG),

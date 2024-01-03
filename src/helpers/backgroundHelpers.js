@@ -649,28 +649,28 @@ export const generateBackgroundAttributes = (controlName, defaults = {}) => {
                           ...mainBgiAttrs,
                       }
                 : noOverlayBGImg === true && noMainBGImg === true
-                ? {
-                      ...mainWithoutBgiAttrs,
-                      ...ovlWithoutBgiAttrs,
-                  }
-                : noOverlayBGImg === true && noMainBGImg === false
-                ? {
-                      ...mainWithoutBgiAttrs,
-                      ...mainBgiAttrs,
-                      ...ovlWithoutBgiAttrs,
-                  }
-                : noOverlayBGImg === false && noMainBGImg === true
-                ? {
-                      ...mainWithoutBgiAttrs,
-                      ...ovlWithoutBgiAttrs,
-                      ...ovlBgiAttrs,
-                  }
-                : {
-                      ...mainWithoutBgiAttrs,
-                      ...mainBgiAttrs,
-                      ...ovlWithoutBgiAttrs,
-                      ...ovlBgiAttrs,
-                  };
+                  ? {
+                        ...mainWithoutBgiAttrs,
+                        ...ovlWithoutBgiAttrs,
+                    }
+                  : noOverlayBGImg === true && noMainBGImg === false
+                    ? {
+                          ...mainWithoutBgiAttrs,
+                          ...mainBgiAttrs,
+                          ...ovlWithoutBgiAttrs,
+                      }
+                    : noOverlayBGImg === false && noMainBGImg === true
+                      ? {
+                            ...mainWithoutBgiAttrs,
+                            ...ovlWithoutBgiAttrs,
+                            ...ovlBgiAttrs,
+                        }
+                      : {
+                            ...mainWithoutBgiAttrs,
+                            ...mainBgiAttrs,
+                            ...ovlWithoutBgiAttrs,
+                            ...ovlBgiAttrs,
+                        };
     }
 
     return result;
@@ -903,16 +903,16 @@ export const generateBackgroundControlStyles = ({
           backgroundSize && backgroundSize !== 'custom'
               ? `background-size: ${backgroundSize};`
               : backgroundSize === 'custom'
-              ? `background-size: ${bgImgCustomSize}${bgImgCustomSizeUnit} auto;`
-              : ' '
+                ? `background-size: ${bgImgCustomSize}${bgImgCustomSizeUnit} auto;`
+                : ' '
       }
 
       ${
           bgImgPos && bgImgPos !== 'custom'
               ? `background-position: ${bgImgPos};`
               : bgImgPos === 'custom'
-              ? `background-position: ${bgImgcustomPosX}${bgImgcustomPosXUnit} ${bgImgcustomPosY}${bgImgcustomPosYUnit};`
-              : ' '
+                ? `background-position: ${bgImgcustomPosX}${bgImgcustomPosXUnit} ${bgImgcustomPosY}${bgImgcustomPosYUnit};`
+                : ' '
       }
 
       ${bgImgAttachment ? `background-attachment: ${bgImgAttachment};` : ' '}
@@ -933,7 +933,7 @@ export const generateBackgroundControlStyles = ({
           : ' '
   }	
 
-  ${backgroundColor ? `background-color: ${backgroundColor};` : ' '}
+  ${backgroundColor && backgroundType === 'classic' ? `background-color: ${backgroundColor};` : ' '}
   
   ${
       forButton === true
@@ -984,16 +984,16 @@ export const generateBackgroundControlStyles = ({
             hov_backgroundSize && hov_backgroundSize !== 'custom'
                 ? `background-size: ${hov_backgroundSize};`
                 : hov_backgroundSize === 'custom'
-                ? `background-size: ${hov_bgImgCustomSize}${hov_bgImgCustomSizeUnit} auto;`
-                : ' '
+                  ? `background-size: ${hov_bgImgCustomSize}${hov_bgImgCustomSizeUnit} auto;`
+                  : ' '
         }
   
         ${
             hov_bgImgPos && hov_bgImgPos !== 'custom'
                 ? `background-position: ${hov_bgImgPos};`
                 : hov_bgImgPos === 'custom'
-                ? `background-position: ${hov_bgImgcustomPosX}${hov_bgImgcustomPosXUnit} ${hov_bgImgcustomPosY}${hov_bgImgcustomPosYUnit};`
-                : ' '
+                  ? `background-position: ${hov_bgImgcustomPosX}${hov_bgImgcustomPosXUnit} ${hov_bgImgcustomPosY}${hov_bgImgcustomPosYUnit};`
+                  : ' '
         }
   
         ${hov_bgImgAttachment ? `background-attachment: ${hov_bgImgAttachment};` : ' '}
@@ -1004,7 +1004,7 @@ export const generateBackgroundControlStyles = ({
             : ' '
     }
   
-    ${hov_backgroundColor ? `background-color: ${hov_backgroundColor};` : ' '}
+    ${hov_backgroundColor && hov_backgroundType === 'classic' ? `background-color: ${hov_backgroundColor};` : ' '}
   
   `;
 
@@ -1016,16 +1016,16 @@ export const generateBackgroundControlStyles = ({
               TABbackgroundSize && TABbackgroundSize !== 'custom'
                   ? `background-size: ${TABbackgroundSize};`
                   : TABbackgroundSize === 'custom'
-                  ? `background-size: ${TABbgImgCustomSize}${TABbgImgCustomSizeUnit} auto;`
-                  : ' '
+                    ? `background-size: ${TABbgImgCustomSize}${TABbgImgCustomSizeUnit} auto;`
+                    : ' '
           }
   
           ${
               TABbgImgPos && TABbgImgPos !== 'custom'
                   ? `background-position: ${TABbgImgPos};`
                   : TABbgImgPos === 'custom'
-                  ? `background-position: ${TABbgImgcustomPosX}${TABbgImgcustomPosXUnit} ${TABbgImgcustomPosY}${TABbgImgcustomPosYUnit};`
-                  : ' '
+                    ? `background-position: ${TABbgImgcustomPosX}${TABbgImgcustomPosXUnit} ${TABbgImgcustomPosY}${TABbgImgcustomPosYUnit};`
+                    : ' '
           }
   
           ${TABbgImgRepeat ? `background-repeat: ${TABbgImgRepeat};` : ' '}
@@ -1044,16 +1044,16 @@ export const generateBackgroundControlStyles = ({
             hov_TABbackgroundSize && hov_TABbackgroundSize !== 'custom'
                 ? `background-size: ${hov_TABbackgroundSize};`
                 : hov_TABbackgroundSize === 'custom'
-                ? `background-size: ${hov_TABbgImgCustomSize}${hov_TABbgImgCustomSizeUnit} auto;`
-                : ' '
+                  ? `background-size: ${hov_TABbgImgCustomSize}${hov_TABbgImgCustomSizeUnit} auto;`
+                  : ' '
         }
   
         ${
             hov_TABbgImgPos && hov_TABbgImgPos !== 'custom'
                 ? `background-position: ${hov_TABbgImgPos};`
                 : hov_TABbgImgPos === 'custom'
-                ? `background-position: ${hov_TABbgImgcustomPosX}${hov_TABbgImgcustomPosXUnit} ${hov_TABbgImgcustomPosY}${hov_TABbgImgcustomPosYUnit};`
-                : ' '
+                  ? `background-position: ${hov_TABbgImgcustomPosX}${hov_TABbgImgcustomPosXUnit} ${hov_TABbgImgcustomPosY}${hov_TABbgImgcustomPosYUnit};`
+                  : ' '
         }
   
         ${hov_TABbgImgRepeat ? `background-repeat: ${hov_TABbgImgRepeat};` : ' '}
@@ -1072,16 +1072,16 @@ export const generateBackgroundControlStyles = ({
               MOBbackgroundSize && MOBbackgroundSize !== 'custom'
                   ? `background-size: ${MOBbackgroundSize};`
                   : MOBbackgroundSize === 'custom'
-                  ? `background-size: ${MOBbgImgCustomSize}${MOBbgImgCustomSizeUnit} auto;`
-                  : ' '
+                    ? `background-size: ${MOBbgImgCustomSize}${MOBbgImgCustomSizeUnit} auto;`
+                    : ' '
           }
   
           ${
               MOBbgImgPos && MOBbgImgPos !== 'custom'
                   ? `background-position: ${MOBbgImgPos};`
                   : MOBbgImgPos === 'custom'
-                  ? `background-position: ${MOBbgImgcustomPosX}${MOBbgImgcustomPosXUnit} ${MOBbgImgcustomPosY}${MOBbgImgcustomPosYUnit};`
-                  : ' '
+                    ? `background-position: ${MOBbgImgcustomPosX}${MOBbgImgcustomPosXUnit} ${MOBbgImgcustomPosY}${MOBbgImgcustomPosYUnit};`
+                    : ' '
           }
   
           ${MOBbgImgRepeat ? `background-repeat: ${MOBbgImgRepeat};` : ' '}
@@ -1100,16 +1100,16 @@ export const generateBackgroundControlStyles = ({
             hov_MOBbackgroundSize && hov_MOBbackgroundSize !== 'custom'
                 ? `background-size: ${hov_MOBbackgroundSize};`
                 : hov_MOBbackgroundSize === 'custom'
-                ? `background-size: ${hov_MOBbgImgCustomSize}${hov_MOBbgImgCustomSizeUnit} auto;`
-                : ' '
+                  ? `background-size: ${hov_MOBbgImgCustomSize}${hov_MOBbgImgCustomSizeUnit} auto;`
+                  : ' '
         }
     
         ${
             hov_MOBbgImgPos && hov_MOBbgImgPos !== 'custom'
                 ? `background-position: ${hov_MOBbgImgPos};`
                 : hov_MOBbgImgPos === 'custom'
-                ? `background-position: ${hov_MOBbgImgcustomPosX}${hov_MOBbgImgcustomPosXUnit} ${hov_MOBbgImgcustomPosY}${hov_MOBbgImgcustomPosYUnit};`
-                : ' '
+                  ? `background-position: ${hov_MOBbgImgcustomPosX}${hov_MOBbgImgcustomPosXUnit} ${hov_MOBbgImgcustomPosY}${hov_MOBbgImgcustomPosYUnit};`
+                  : ' '
         }
     
         ${hov_MOBbgImgRepeat ? `background-repeat: ${hov_MOBbgImgRepeat};` : ' '}
@@ -1142,7 +1142,7 @@ export const generateBackgroundControlStyles = ({
                     : ' '
             }
            
-            ${overlayColor ? `background-color: ${overlayColor};` : ' '}
+            ${overlayColor && overlayType === 'classic' ? `background-color: ${overlayColor};` : ' '}
             ${ovl_opacity || ovl_opacity === 0 ? `opacity: ${ovl_opacity};` : ' '}
             ${ovl_blendMode ? `mix-blend-mode: ${ovl_blendMode};` : ' '}
             ${
@@ -1159,16 +1159,16 @@ export const generateBackgroundControlStyles = ({
                 ovl_backgroundSize && ovl_backgroundSize !== 'custom'
                     ? `background-size: ${ovl_backgroundSize};`
                     : ovl_backgroundSize === 'custom'
-                    ? `background-size: ${ovl_bgImgCustomSize}${ovl_bgImgCustomSizeUnit} auto;`
-                    : ' '
+                      ? `background-size: ${ovl_bgImgCustomSize}${ovl_bgImgCustomSizeUnit} auto;`
+                      : ' '
             }
   
             ${
                 ovl_bgImgPos && ovl_bgImgPos !== 'custom'
                     ? `background-position: ${ovl_bgImgPos};`
                     : ovl_bgImgPos === 'custom'
-                    ? `background-position: ${ovl_bgImgcustomPosX}${ovl_bgImgcustomPosXUnit} ${ovl_bgImgcustomPosY}${ovl_bgImgcustomPosYUnit};`
-                    : ' '
+                      ? `background-position: ${ovl_bgImgcustomPosX}${ovl_bgImgcustomPosXUnit} ${ovl_bgImgcustomPosY}${ovl_bgImgcustomPosYUnit};`
+                      : ' '
             }
   
             ${ovl_bgImgAttachment ? `background-attachment: ${ovl_bgImgAttachment};` : ' '}
@@ -1199,7 +1199,7 @@ export const generateBackgroundControlStyles = ({
                 : ' '
         }
   
-        ${hov_overlayColor ? `background-color: ${hov_overlayColor};` : ' '}
+        ${hov_overlayColor && hov_overlayType === 'classic' ? `background-color: ${hov_overlayColor};` : ' '}
         ${hov_ovl_opacity || hov_ovl_opacity === 0 ? `opacity: ${hov_ovl_opacity};` : ' '}
         ${hov_ovl_blendMode ? `mix-blend-mode: ${hov_ovl_blendMode};` : ' '}
         ${
@@ -1216,16 +1216,16 @@ export const generateBackgroundControlStyles = ({
               hov_ovl_backgroundSize && hov_ovl_backgroundSize !== 'custom'
                   ? `background-size: ${hov_ovl_backgroundSize};`
                   : hov_ovl_backgroundSize === 'custom'
-                  ? `background-size: ${hov_ovl_bgImgCustomSize}${hov_ovl_bgImgCustomSizeUnit} auto;`
-                  : ' '
+                    ? `background-size: ${hov_ovl_bgImgCustomSize}${hov_ovl_bgImgCustomSizeUnit} auto;`
+                    : ' '
           }
     
           ${
               hov_ovl_bgImgPos && hov_ovl_bgImgPos !== 'custom'
                   ? `background-position: ${hov_ovl_bgImgPos};`
                   : hov_ovl_bgImgPos === 'custom'
-                  ? `background-position: ${hov_ovl_bgImgcustomPosX}${hov_ovl_bgImgcustomPosXUnit} ${hov_ovl_bgImgcustomPosY}${hov_ovl_bgImgcustomPosYUnit};`
-                  : ' '
+                    ? `background-position: ${hov_ovl_bgImgcustomPosX}${hov_ovl_bgImgcustomPosXUnit} ${hov_ovl_bgImgcustomPosY}${hov_ovl_bgImgcustomPosYUnit};`
+                    : ' '
           }
     
           ${hov_ovl_bgImgAttachment ? `background-attachment: ${hov_ovl_bgImgAttachment};` : ' '}
@@ -1251,16 +1251,16 @@ export const generateBackgroundControlStyles = ({
             TABovl_backgroundSize && TABovl_backgroundSize !== 'custom'
                 ? `background-size: ${TABovl_backgroundSize};`
                 : TABovl_backgroundSize === 'custom'
-                ? `background-size: ${TABovl_bgImgCustomSize}${TABovl_bgImgCustomSizeUnit} auto;`
-                : ' '
+                  ? `background-size: ${TABovl_bgImgCustomSize}${TABovl_bgImgCustomSizeUnit} auto;`
+                  : ' '
         }
   
           ${
               TABovl_bgImgPos && TABovl_bgImgPos !== 'custom'
                   ? `background-position: ${TABovl_bgImgPos};`
                   : TABovl_bgImgPos === 'custom'
-                  ? `background-position: ${TABovl_bgImgcustomPosX}${TABovl_bgImgcustomPosXUnit} ${TABovl_bgImgcustomPosY}${TABovl_bgImgcustomPosYUnit};`
-                  : ' '
+                    ? `background-position: ${TABovl_bgImgcustomPosX}${TABovl_bgImgcustomPosXUnit} ${TABovl_bgImgcustomPosY}${TABovl_bgImgcustomPosYUnit};`
+                    : ' '
           }
   
           ${TABovl_bgImgRepeat ? `background-repeat: ${TABovl_bgImgRepeat};` : ' '}
@@ -1279,16 +1279,16 @@ export const generateBackgroundControlStyles = ({
           hov_TABovl_backgroundSize && hov_TABovl_backgroundSize !== 'custom'
               ? `background-size: ${hov_TABovl_backgroundSize};`
               : hov_TABovl_backgroundSize === 'custom'
-              ? `background-size: ${hov_TABovl_bgImgCustomSize}${hov_TABovl_bgImgCustomSizeUnit} auto;`
-              : ' '
+                ? `background-size: ${hov_TABovl_bgImgCustomSize}${hov_TABovl_bgImgCustomSizeUnit} auto;`
+                : ' '
       }
   
         ${
             hov_TABovl_bgImgPos && hov_TABovl_bgImgPos !== 'custom'
                 ? `background-position: ${hov_TABovl_bgImgPos};`
                 : hov_TABovl_bgImgPos === 'custom'
-                ? `background-position: ${hov_TABovl_bgImgcustomPosX}${hov_TABovl_bgImgcustomPosXUnit} ${hov_TABovl_bgImgcustomPosY}${hov_TABovl_bgImgcustomPosYUnit};`
-                : ' '
+                  ? `background-position: ${hov_TABovl_bgImgcustomPosX}${hov_TABovl_bgImgcustomPosXUnit} ${hov_TABovl_bgImgcustomPosY}${hov_TABovl_bgImgcustomPosYUnit};`
+                  : ' '
         }
   
         ${hov_TABovl_bgImgRepeat ? `background-repeat: ${hov_TABovl_bgImgRepeat};` : ' '}
@@ -1307,16 +1307,16 @@ export const generateBackgroundControlStyles = ({
             MOBovl_backgroundSize && MOBovl_backgroundSize !== 'custom'
                 ? `background-size: ${MOBovl_backgroundSize};`
                 : MOBovl_backgroundSize === 'custom'
-                ? `background-size: ${MOBovl_bgImgCustomSize}${MOBovl_bgImgCustomSizeUnit} auto;`
-                : ' '
+                  ? `background-size: ${MOBovl_bgImgCustomSize}${MOBovl_bgImgCustomSizeUnit} auto;`
+                  : ' '
         }
   
         ${
             MOBovl_bgImgPos && MOBovl_bgImgPos !== 'custom'
                 ? `background-position: ${MOBovl_bgImgPos};`
                 : MOBovl_bgImgPos === 'custom'
-                ? `background-position: ${MOBovl_bgImgcustomPosX}${MOBovl_bgImgcustomPosXUnit} ${MOBovl_bgImgcustomPosY}${MOBovl_bgImgcustomPosYUnit};`
-                : ' '
+                  ? `background-position: ${MOBovl_bgImgcustomPosX}${MOBovl_bgImgcustomPosXUnit} ${MOBovl_bgImgcustomPosY}${MOBovl_bgImgcustomPosYUnit};`
+                  : ' '
         }
   
         ${MOBovl_bgImgRepeat ? `background-repeat: ${MOBovl_bgImgRepeat};` : ' '}
@@ -1334,16 +1334,16 @@ export const generateBackgroundControlStyles = ({
             hov_MOBovl_backgroundSize && hov_MOBovl_backgroundSize !== 'custom'
                 ? `background-size: ${hov_MOBovl_backgroundSize};`
                 : hov_MOBovl_backgroundSize === 'custom'
-                ? `background-size: ${hov_MOBovl_bgImgCustomSize}${hov_MOBovl_bgImgCustomSizeUnit} auto;`
-                : ' '
+                  ? `background-size: ${hov_MOBovl_bgImgCustomSize}${hov_MOBovl_bgImgCustomSizeUnit} auto;`
+                  : ' '
         }
   
         ${
             hov_MOBovl_bgImgPos && hov_MOBovl_bgImgPos !== 'custom'
                 ? `background-position: ${hov_MOBovl_bgImgPos};`
                 : hov_MOBovl_bgImgPos === 'custom'
-                ? `background-position: ${hov_MOBovl_bgImgcustomPosX}${hov_MOBovl_bgImgcustomPosXUnit} ${hov_MOBovl_bgImgcustomPosY}${hov_MOBovl_bgImgcustomPosYUnit};`
-                : ' '
+                  ? `background-position: ${hov_MOBovl_bgImgcustomPosX}${hov_MOBovl_bgImgcustomPosXUnit} ${hov_MOBovl_bgImgcustomPosY}${hov_MOBovl_bgImgcustomPosYUnit};`
+                  : ' '
         }
   
         ${hov_MOBovl_bgImgRepeat ? `background-repeat: ${hov_MOBovl_bgImgRepeat};` : ' '}

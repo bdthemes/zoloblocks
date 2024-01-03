@@ -39,7 +39,14 @@ const Save = ({ attributes }) => {
                             {iconType == 'icon' ? (
                                 <DisplayZoloIcon icon={counterIcon} />
                             ) : (
-                                iconTypeImage && <img src={iconTypeImage.url} alt={iconTypeImage.alt || titleText} />
+                                iconTypeImage && (
+                                    <img
+                                        src={iconTypeImage.url}
+                                        alt={iconTypeImage.alt || titleText}
+                                        className={`wp-image-${iconTypeImage.id}`}
+                                        loading="lazy"
+                                    />
+                                )
                             )}
                         </div>
                     )}

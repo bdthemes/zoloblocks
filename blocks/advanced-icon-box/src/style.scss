@@ -1,15 +1,15 @@
 .wp-block-zolo-advanced-icon-box {
     position: relative;
     box-sizing: border-box;
+    display: block;
     // overflow: hidden;
 
-    .zolo-block-advanced-icon-box {
+    .zolo-block-item {
         padding: clamp(1.875rem, 4vw, 2.5rem);
         border-radius: var(--zolo-item-border-radius);
         background-color: var(--zoloblocks-item-bg-color);
         border: 1px solid var(--zoloblocks-item-border-color);
         box-sizing: border-box;
-        // overflow: hidden;
         display: block;
         transition: all 0.3s ease;
     }
@@ -50,11 +50,9 @@
     .zolo-block-body-content {
         z-index: 1;
         position: relative;
-
         .zolo-block-link-btn {
             margin-top: 10px;
         }
-
         .zolo-box-button {
             display: inline-flex;
             gap: 8px;
@@ -66,7 +64,6 @@
             &:hover {
                 color: var(--zoloblocks-button-hover-color);
             }
-
             svg {
                 width: 16px;
                 height: 16px;
@@ -77,8 +74,8 @@
     }
 
     /* icon box style 2 */
-    .zolo-block-advanced-icon-box-style-2,
-    .zolo-block-advanced-icon-box-style-3 {
+    &.style-2,
+    &.style-3 {
         .zolo-block-item {
             display: flex;
             grid-gap: clamp(0.625rem, 1.5vw, 1rem);
@@ -94,7 +91,7 @@
         }
     }
     /* icon box style 3 */
-    .zolo-block-advanced-icon-box-style-3 {
+    &.style-3 {
         .zolo-block-item {
             flex-direction: row-reverse;
         }

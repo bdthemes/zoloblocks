@@ -13,6 +13,7 @@ const {
     generateDimensionStyle,
     generateBoxShadowStyles,
     generateTypographyStyles,
+    generateGapStyle,
     GlobalStyleHanlder,
 } = window.zoloModule;
 
@@ -21,7 +22,6 @@ import {
     BTN_BORDER_RADIUS,
     COLUMN_COUNT,
     COLUMNS_GAP,
-    ROW_GAP,
     BUTTON_PADDING,
     BUTTON_SIZE,
     ICON_TEXT_SPACING,
@@ -149,23 +149,11 @@ const Style = ({ props }) => {
 
     // column gap
     const {
-        desktopRangeStyle: colGapDeskstyle,
-        tabRangeStyle: colGapTabStyle,
-        mobRangeStyle: colGapMobStyle,
-    } = generateResRangeStyle({
+        gapStylesDesktop: colGapDeskstyle,
+        gapStylesTab: colGapTabStyle,
+        gapStylesMobile: colGapMobStyle,
+    } = generateGapStyle({
         controlName: COLUMNS_GAP,
-        property: 'column-gap',
-        attributes,
-    });
-
-    // row gap
-    const {
-        desktopRangeStyle: rowGapDeskstyle,
-        tabRangeStyle: rowGapTabStyle,
-        mobRangeStyle: rowGapMobStyle,
-    } = generateResRangeStyle({
-        controlName: ROW_GAP,
-        property: 'row-gap',
         attributes,
     });
 
@@ -207,7 +195,6 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-social-share {
 			${blockDeskMargin}
 			${colGapDeskstyle}
-			${rowGapDeskstyle}
 			grid-template-columns:repeat(${columnCountDeskstyle}, 1fr);
 		}
 		.${uniqueId}.wp-block-zolo-social-share .zolo-social-item {
@@ -273,7 +260,6 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-social-share{
 			${blockTabMargin}
 			${colGapTabStyle}
-			${rowGapTabStyle}
 			grid-template-columns:repeat(${columnCountTabStyle}, 1fr);
 		}
 		.${uniqueId}.wp-block-zolo-social-share .zolo-social-item {
@@ -304,7 +290,6 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-social-share{
 			${blockMobMargin}
 			${colGapMobStyle}
-			${rowGapMobStyle}
 			grid-template-columns:repeat(${columnCountMobStyle}, 1fr);
 		}
 

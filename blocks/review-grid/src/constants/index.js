@@ -15,12 +15,7 @@ export const BLOCK_PREFIX = 'reviewGrid';
 
 // Grid Columns
 export const GRID_COLUMNS = 'gridColumns';
-
-// Columns Gap
-export const COLUMNS_GAP = 'columnsGap';
-
-// Rows Gap
-export const ROWS_GAP = 'rowsGap';
+export const GRID_GAP = 'gridGap';
 
 // conatainer
 export const REVIEW_GRID_BG = 'reviewGridBg';
@@ -31,12 +26,6 @@ export const REVIEW_GRID_MARGIN = 'reviewGridMargin';
 
 // content
 export const CONTENT_ALIGNMENT = 'ContentAlignment';
-export const CONTENT_BACKGROUND = 'ContentBackground';
-export const CONTENT_BORDER = 'ContentBorder';
-export const CONTENT_BORDER_RADIUS = 'ContentBorderRadius';
-export const CONTENT_BOX_SHADOW = 'ContentBoxShadow';
-export const CONTENT_MARGIN = 'ContentMargin';
-export const CONTENT_PADDING = 'ContentPadding';
 
 // container
 export const CONTAINER_BACKGROUND = 'reviewContainerBackground';

@@ -3,7 +3,7 @@
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 /**
@@ -15,6 +15,7 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
+import { DynamicTag } from '../../../src/helpers/helper';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, context } = props;
@@ -30,6 +31,7 @@ export default function Edit(props) {
         brandLabelVisible,
         enableLogoLink,
         logoLinkType,
+        brandText,
     } = attributes;
 
     // block props
@@ -75,18 +77,6 @@ export default function Edit(props) {
                                 )}
                             />
                         </ToolbarGroup>
-                        <ToolbarGroup>
-                            <ToolbarButton
-                                className="components-toolbar__control"
-                                label={__('Remove Photo', 'zolo-blocks')}
-                                icon="trash"
-                                onClick={() => {
-                                    setAttributes({
-                                        brandPhoto: null,
-                                    });
-                                }}
-                            />
-                        </ToolbarGroup>
                     </Fragment>
                 </BlockControls>
             )}
@@ -126,29 +116,29 @@ export default function Edit(props) {
                             </div>
                             <div className="zb-brand-inner-content">
                                 {brandNameVisible && (
-                                    <RichText
+                                    <RichText.Content
                                         tagName={brandNameTag}
                                         className="zb-brand-title"
                                         value={brandTitle}
-                                        onChange={(name) =>
-                                            setAttributes({
-                                                brandTitle: name,
-                                            })
-                                        }
-                                        placeholder={__('Brand title..', 'zolo-blocks')}
+                                        // onChange={(name) =>
+                                        //     setAttributes({
+                                        //         brandTitle: name,
+                                        //     })
+                                        // }
+                                        // placeholder={__('Brand title..', 'zolo-blocks')}
                                     />
                                 )}
                                 {brandLabelVisible && (
-                                    <RichText
+                                    <RichText.Content
                                         tagName="span"
                                         className="zb-brand-link"
                                         value={brandLabel}
-                                        onChange={(name) =>
-                                            setAttributes({
-                                                brandLabel: name,
-                                            })
-                                        }
-                                        placeholder={__('Brand label..', 'zolo-blocks')}
+                                        // onChange={(name) =>
+                                        //     setAttributes({
+                                        //         brandLabel: name,
+                                        //     })
+                                        // }
+                                        // placeholder={__('Brand label..', 'zolo-blocks')}
                                     />
                                 )}
                             </div>
@@ -190,29 +180,29 @@ export default function Edit(props) {
                                                 rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                                                 target={logoLink && logoLink.openInNewTab && '_blank'}
                                             >
-                                                <RichText
+                                                <RichText.Content
                                                     tagName={brandNameTag}
                                                     className="zb-brand-title has-link"
                                                     value={brandTitle}
-                                                    onChange={(name) =>
-                                                        setAttributes({
-                                                            brandTitle: name,
-                                                        })
-                                                    }
-                                                    placeholder={__('Brand title..', 'zolo-blocks')}
+                                                    // onChange={(name) =>
+                                                    //     setAttributes({
+                                                    //         brandTitle: name,
+                                                    //     })
+                                                    // }
+                                                    // placeholder={__('Brand title..', 'zolo-blocks')}
                                                 />
                                             </a>
                                         ) : (
-                                            <RichText
+                                            <RichText.Content
                                                 tagName={brandNameTag}
                                                 className="zb-brand-title"
                                                 value={brandTitle}
-                                                onChange={(name) =>
-                                                    setAttributes({
-                                                        brandTitle: name,
-                                                    })
-                                                }
-                                                placeholder={__('Brand title..', 'zolo-blocks')}
+                                                // onChange={(name) =>
+                                                //     setAttributes({
+                                                //         brandTitle: name,
+                                                //     })
+                                                // }
+                                                // placeholder={__('Brand title..', 'zolo-blocks')}
                                             />
                                         )}
                                     </>
@@ -226,28 +216,28 @@ export default function Edit(props) {
                                                 target={logoLink && logoLink.openInNewTab && '_blank'}
                                                 className="zb-brand-title-link has-link"
                                             >
-                                                <RichText
+                                                <RichText.Content
                                                     tagName="span"
                                                     value={brandLabel}
-                                                    onChange={(name) =>
-                                                        setAttributes({
-                                                            brandLabel: name,
-                                                        })
-                                                    }
-                                                    placeholder={__('Brand label..', 'zolo-blocks')}
+                                                    // onChange={(name) =>
+                                                    //     setAttributes({
+                                                    //         brandLabel: name,
+                                                    //     })
+                                                    // }
+                                                    // placeholder={__('Brand label..', 'zolo-blocks')}
                                                 />
                                             </a>
                                         ) : (
-                                            <RichText
+                                            <RichText.Content
                                                 tagName="span"
                                                 className="zb-brand-title-link"
                                                 value={brandLabel}
-                                                onChange={(name) =>
-                                                    setAttributes({
-                                                        brandLabel: name,
-                                                    })
-                                                }
-                                                placeholder={__('Brand label..', 'zolo-blocks')}
+                                                // onChange={(name) =>
+                                                //     setAttributes({
+                                                //         brandLabel: name,
+                                                //     })
+                                                // }
+                                                // placeholder={__('Brand label..', 'zolo-blocks')}
                                             />
                                         )}
                                     </>

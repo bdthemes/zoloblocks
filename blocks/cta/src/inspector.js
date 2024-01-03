@@ -123,6 +123,27 @@ function Inspector(props) {
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
                         </ZoloPanelBody>
+                        {preset === 'style-1' && (
+                            <ZoloPanelBody title={__('Flex Direction', 'zolo-blocks')} panelProps={props}>
+                                <ToggleControl
+                                    label={__('Flex Reverse Direction', 'zolo-blocks')}
+                                    checked={reversePosition}
+                                    onChange={() =>
+                                        setAttributes({
+                                            reversePosition: !reversePosition,
+                                        })
+                                    }
+                                />
+                                <ResRangeControl
+                                    label={__('Gap', 'zolo-blocks')}
+                                    controlName={FLEX_GAP}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                />
+                            </ZoloPanelBody>
+                        )}
                         <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             {showTitle && (
                                 <>
@@ -205,32 +226,6 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        {preset !== '' && (
-                            <ZoloPanelBody
-                                title={__('Flex Direction', 'zolo-blocks')}
-                                firstOpen={true}
-                                stylePanel={true}
-                                panelProps={props}
-                            >
-                                <ToggleControl
-                                    label={__('Reverse flex Direction', 'zolo-blocks')}
-                                    checked={reversePosition}
-                                    onChange={() =>
-                                        setAttributes({
-                                            reversePosition: !reversePosition,
-                                        })
-                                    }
-                                />
-                                <ResRangeControl
-                                    label={__('Gap', 'zolo-blocks')}
-                                    controlName={FLEX_GAP}
-                                    requiredProps={requiredProps}
-                                    min={0}
-                                    max={100}
-                                    step={1}
-                                />
-                            </ZoloPanelBody>
-                        )}
                         {showTitle && (
                             <>
                                 <ZoloPanelBody
