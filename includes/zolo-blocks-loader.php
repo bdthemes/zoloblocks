@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zolo Blocks Loader.
  * @package Zolo
@@ -11,7 +12,7 @@ use Zolo\Classes\Registration;
 use Zolo\API\GetPostsV1;
 
 // Exit if accessed directly.
-if ( ! defined('ABSPATH')) {
+if (!defined('ABSPATH')) {
     exit;
 }
 
@@ -38,10 +39,14 @@ class Zolo_Blocks_Loader {
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/zolo-ajax.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/zolo-enqueues.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/font-loader.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/post-meta.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . 'includes/classes/zolo-ajax.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . 'includes/classes/zolo-enqueues.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . 'includes/classes/font-loader.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . 'includes/classes/post-meta.php';
+        // die(ZOLO_DIR_PATH);
+
+        // die(trailingslashit(ZOLO_DIR_PATH) . '/includes/classes/post-meta.php');
+
 
         if (is_admin()) {
             //Load Admin required files

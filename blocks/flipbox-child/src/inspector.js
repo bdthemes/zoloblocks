@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { PanelBody, TextControl, TextareaControl, BaseControl, Button, RangeControl } from '@wordpress/components';
+import { PanelBody, TextControl, TextareaControl, BaseControl, Button, RangeControl, ButtonGroup , ToggleControl} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -71,6 +71,8 @@ import {
     ITEM_BORDER,
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
+    FLIPBLOX_SIDE,
+    LINK_TYPE
 } from './constants';
 
 import {
@@ -104,6 +106,47 @@ function Inspector(props) {
         detailPageIconColor,
         detailPageIconHoverColor,
         detailIcon,
+        parentClasses,
+        isHover,
+        flipType,
+        selectedSide,
+        frontIconOrImage,
+        frontIcon,
+        frontImageUrl,
+        backIconOrImage,
+        backIcon,
+        backImageUrl,
+        showFrontTitle,
+        frontTitle,
+        showFrontContent,
+        frontContent,
+        showBackTitle,
+        backTitle,
+        showBackContent,
+        backContent,
+        linkType,
+        buttonText,
+        buttonIcon,
+        buttonIconPos,
+        link,
+        linkOpenNewTab,
+        frontTitleColor,
+        backTitleColor,
+        frontContentColor,
+        backContentColor,
+        frontIconColor,
+        backIconColor,
+        buttonStyle,
+        buttonClasses,
+        buttonBackground,
+        buttonColor,
+        frontIconBackground,
+        backIconBackground,
+        transitionSpeed,
+        displayButtonIcon,
+        align,
+        contentPosition,
+        classHook,
     } = attributes;
 
     const requiredProps = {
@@ -121,111 +164,181 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
-                            <BaseControl label={__('Photo', 'zolo-blocks')}>
-                                {memberPhoto ? (
-                                    <ImageAvatar
-                                        imageUrl={memberPhoto && memberPhoto.url}
-                                        onDeleteImage={() =>
+                        <BaseControl label={__('Selected Side', 'zolo-blocks')}>
+                            <ButtonGroup className="zolo-button-group">
+                                {
+                                        FLIPBLOX_SIDE.map((item) => (
+                                            <Button
+                                                isLarge
+                                                isPrimary={selectedSide === item.value}
+                                                aria-pressed={selectedSide === item.value}
+                                                onClick={() => setAttributes({ selectedSide: item.value })}
+                                            >
+                                                {item.label}
+                                            </Button>
+                                            ))
+                                }
+
+                                </ButtonGroup>
+                            </BaseControl>
+                        </ZoloPanelBody>
+                        {selectedSide === "front" && (
+                            <>
+                                <ZoloPanelBody title={__('Icon', 'zolo-block')} panelProps={props}>
+                                    {/* {iconToggle && ( */}
+                                        <ZoloIconPicker
+                                            label={__('Select Icon', 'zolo-block')}
+                                            value={frontIcon}
+                                            onChange={(v) => setAttributes({ frontIcon: v })}
+                                        />
+                                    {/* )} */}
+                                </ZoloPanelBody>
+                                <ZoloPanelBody title={__('Flipbox Content', 'zolo-block')} panelProps={props}>
+
+                                    <ToggleControl
+                                        label={__("Show Title?", "zolo-blocks")}
+                                        checked={showFrontTitle}
+                                        onChange={() => {
+                                            setAttributes({ showFrontTitle: !showFrontTitle });
+                                        }}
+                                    />
+                                    {showFrontTitle && (
+                                        <TextControl
+                                            label={__("Front Title", "zolo-blocks")}
+                                            value={frontTitle}
+                                            onChange={(newText) =>
+                                                setAttributes({ frontTitle: newText })
+                                            }
+                                        />
+                                    )}
+                                    <ToggleControl
+                                        label={__("Show Content?", "zolo-blocks")}
+                                        checked={showFrontContent}
+                                        onChange={() => {
                                             setAttributes({
-                                                memberPhoto: null,
-                                            })
-                                        }
-                                        imageId={memberPhoto && memberPhoto.id}
-                                        onEditImage={(url, id) => {
-                                            setAttributes({
-                                                memberPhoto: {
-                                                    url,
-                                                    id,
-                                                },
+                                                showFrontContent: !showFrontContent,
                                             });
                                         }}
                                     />
-                                ) : (
-                                    <MediaUpload
-                                        onSelect={(media) => {
-                                            setAttributes({
-                                                memberPhoto: media,
-                                            });
-                                        }}
-                                        allowedTypes={['image']}
-                                        value={memberPhoto && memberPhoto.id}
-                                        render={({ open }) => (
-                                            <Button className="zolo-image-upload-btn" onClick={open}>
-                                                <svg
-                                                    width="24"
-                                                    height="24"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fillRule="evenodd"
-                                                    clipRule="evenodd"
-                                                >
-                                                    <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
-                                                </svg>
-                                                {__(' Upload Photo', 'zolo-blocks')}
-                                            </Button>
-                                        )}
+                                    {showFrontContent && (
+                                        <TextareaControl
+                                            label={__("Front Content", "zolo-blocks")}
+                                            value={frontContent}
+                                            onChange={(newText) =>
+                                                setAttributes({ frontContent: newText })
+                                            }
+                                        />
+                                    )}
+                                </ZoloPanelBody>
+                            </>
+                        )}
+
+                        {selectedSide === "back" && (
+                            <>
+                                <ToggleControl
+                                    label={__("Show Title?", "zolo-blocks")}
+                                    checked={showBackTitle}
+                                    onChange={() => {
+                                        setAttributes({ showBackTitle: !showBackTitle });
+                                    }}
+                                />
+                                {showBackTitle && (
+                                    <TextControl
+                                        label={__("Back Title", "zolo-blocks")}
+                                        value={backTitle}
+                                        onChange={(newText) =>
+                                            setAttributes({ backTitle: newText })
+                                        }
                                     />
                                 )}
+                                <ToggleControl
+                                    label={__("Show Content?", "zolo-blocks")}
+                                    checked={showBackContent}
+                                    onChange={() => {
+                                        setAttributes({
+                                            showBackContent: !showBackContent,
+                                        });
+                                    }}
+                                />
+                                {showBackContent && (
+                                    <TextareaControl
+                                        label={__("Back Content", "zolo-blocks")}
+                                        value={backContent}
+                                        onChange={(newText) =>
+                                            setAttributes({ backContent: newText })
+                                        }
+                                    />
+                                )}
+                            </>
+                        )}
+                        <ZoloPanelBody
+                            title={__("Link Settings", "zolo-blocks")}
+                            initialOpen={false}
+                           panelProps={props}
+                        >
+                            {/* <PanelRow>
+                                <em>
+                                    {__(
+                                        "Note: Link settings will only work on back side.",
+                                        "zolo-blocks"
+                                    )}
+                                </em>
+                            </PanelRow> */}
+                            <BaseControl
+                                label={__("Link Type", "zolo-blocks")}
+                                id="zolo-flipbox-link-type"
+                            >
+                                <ButtonGroup id="zolo-flipbox-link-type">
+                                    {LINK_TYPE.map((item, index) => (
+                                        <Button
+                                            key={index}
+                                            isPrimary={linkType === item.value}
+                                            isSecondary={linkType !== item.value}
+                                            onClick={() => {
+                                                setAttributes({ linkType: item.value })
+                                                    // handleButtonStyle(buttonStyle);
+                                            }}
+                                        >
+                                            {item.label}
+                                        </Button>
+                                    ))}
+                                </ButtonGroup>
                             </BaseControl>
+
                             <TextControl
-                                label={__('Name', 'zolo-blocks')}
-                                onChange={(name) =>
+                                label={__("Link", "zolo-blocks")}
+                                value={link}
+                                placeholder="https://your-link.com"
+                                onChange={(newLink) => setAttributes({ link: newLink })}
+                            />
+                            <ToggleControl
+                                label={__("Open in New Tab", "zolo-blocks")}
+                                checked={linkOpenNewTab}
+                                onChange={() =>
                                     setAttributes({
-                                        memberName: name,
+                                        linkOpenNewTab: !linkOpenNewTab,
                                     })
                                 }
-                                value={memberName}
-                                placeholder={__('Name..', 'zolo-blocks')}
                             />
-                            {showDesignation && (
-                                <TextControl
-                                    label={__('Designation', 'zolo-blocks')}
-                                    onChange={(d) =>
-                                        setAttributes({
-                                            memberDesignation: d,
-                                        })
-                                    }
-                                    value={memberDesignation}
-                                    placeholder={__('Designation..', 'zolo-blocks')}
-                                />
-                            )}
-                            {showShortBio && (
-                                <TextareaControl
-                                    label={__('Short Bio', 'zolo-blocks')}
-                                    value={memberShortBio}
-                                    onChange={(bio) =>
-                                        setAttributes({
-                                            memberShortBio: bio,
-                                        })
-                                    }
-                                    placeholder={__('Short Bio..', 'zolo-blocks')}
-                                />
-                            )}
-                            {addDetailPageLink && (
-                                <LinkControl
-                                    label={__('Detail Page Link', 'zolo-blocks')}
-                                    value={memberDetailPageLink}
-                                    onChange={(link) =>
-                                        setAttributes({
-                                            memberDetailPageLink: link,
-                                        })
-                                    }
-                                />
+
+                            {linkType === "button" && (
+                                <>
+                                    <TextControl
+                                        label={__("Button Text", "zolo-blocks")}
+                                        value={buttonText}
+                                        onChange={(newText) =>
+                                            setAttributes({ buttonText: newText })
+                                        }
+                                    />
+                                    {/* <SelectControl
+                                        label={__("Button Style", "zolo-blocks")}
+                                        value={buttonStyle}
+                                        options={BUTTON_STYLES}
+                                        onChange={(newStyle) => handleButtonStyle(newStyle)}
+                                    /> */}
+                                </>
                             )}
                         </ZoloPanelBody>
-                        {showSocialProfiles && (
-                            <ZoloPanelBody title={__('Social Profiles', 'zolo-blocks')} panelProps={props}>
-                                <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
-                            </ZoloPanelBody>
-                        )}
-                        {addDetailPageLink && (
-                            <ZoloPanelBody title={__('Details Page Icon', 'zolo-blocks')} panelProps={props}>
-                                <ZoloIconPicker
-                                    label={__('Select Icon', 'zolo-blocks')}
-                                    onChange={(icon) => setAttributes({ detailIcon: icon })}
-                                    value={detailIcon}
-                                />
-                            </ZoloPanelBody>
-                        )}
                     </>
                 }
                 styleTab={

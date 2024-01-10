@@ -1,8 +1,8 @@
-.zolo-flip-box_wrap {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 20px;
-}
+// .zolo-flip-box_wrap {
+//     display: grid;
+//     grid-template-columns: repeat(1, 1fr);
+//     grid-gap: 20px;
+// }
 
 .zolo-flip-box_item {
     position: relative;
@@ -16,6 +16,7 @@
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
 }
+
 
 .zolo-flip-box_inner-item,
 .zolo-flip-box_face {
@@ -288,13 +289,13 @@
     transform: translateX(0) translateY(100%);
 }
 
-@media (min-width:768px) {
-    .zolo-flip-box_wrap {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-@media (min-width:1024px) {
-    .zolo-flip-box_wrap {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
+// @media (min-width:768px) {
+//     .zolo-flip-box_wrap {
+//         grid-template-columns: repeat(2, 1fr);
+//     }
+// }
+// @media (min-width:1024px) {
+//     .zolo-flip-box_wrap {
+//         grid-template-columns: repeat(3, 1fr);
+//     }
+// }

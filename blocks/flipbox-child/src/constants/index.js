@@ -14,6 +14,17 @@ export const PRESETS = [
     { label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
 ];
 
+export const FLIPBLOX_SIDE = [
+    { label: __('Front', 'zolo-blocks'), value: 'front' },
+    { label: __('Back', 'zolo-blocks'), value: 'back' },
+];
+
+export const LINK_TYPE = [
+    { label: __('Box', 'zolo-blocks'), value: 'box' },
+    { label: __('Title', 'zolo-blocks'), value: 'title' },
+    { label: __('Button', 'zolo-blocks'), value: 'button' },
+];
+
 // photo bg
 export const PHOTO_BG = 'PhotoBg';
 export const PHOTO_SIZE = 'PhotoSize';

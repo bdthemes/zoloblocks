@@ -143,118 +143,180 @@ const attributes = {
     // typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     //Block Specific Attributes
-    memberPhoto: {
-        type: 'object',
-        default: {
-            id: '',
-            url: zoloPlaceholders.avatarSquare,
-            alt: '',
+        flipboxStyle: {
+            type: "string",
+            default: "default",
         },
-    },
-    memberName: {
-        type: 'string',
-        default: 'John Doe',
-    },
-    addDetailPageLink: {
-        type: 'boolean',
-        default: true,
-    },
-    memberDetailPageLink: {
-        type: 'object',
-        default: {
-            url: '#',
-            openInNewTab: false,
+        isHover: {
+            type: "boolean",
+            default: false,
         },
-    },
-    showDesignation: {
-        type: 'boolean',
-        default: true,
-    },
-    memberDesignation: {
-        type: 'string',
-        default: 'CEO at ZoloBlocks',
-    },
-    showShortBio: {
-        type: 'boolean',
-        default: true,
-    },
-    memberShortBio: {
-        type: 'string',
-        default: 'CEO at ZoloBlocks, leading innovative tech solutions for a better world.',
-    },
-    showSocialProfiles: {
-        type: 'boolean',
-        default: true,
-    },
-    socialProfiles: {
-        type: 'array',
-        default: [
-            {
-                id: 1,
-                title: 'Facebook',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>',
-                link: {
-                    url: '#',
-                    openInNewTab: false,
-                },
-            },
-            {
-                id: 2,
-                title: 'Twitter',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg>',
-                link: {
-                    url: '#',
-                    openInNewTab: false,
-                },
-            },
-            {
-                id: 3,
-                title: 'Instagram',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg>',
-                link: {
-                    url: '#',
-                    openInNewTab: false,
-                },
-            },
-        ],
-    },
-    detailIcon: {
-        type: 'string',
-        default:
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>',
-    },
-    // block styles
-    nameColor: {
-        type: 'string',
-    },
-    nameHoverColor: {
-        type: 'string',
-    },
-    designationColor: {
-        type: 'string',
-    },
-    shortBioColor: {
-        type: 'string',
-    },
-    // social icons
-    separatorColor: {
-        type: 'string',
-    },
-    iconColor: {
-        type: 'string',
-    },
-    iconHoverColor: {
-        type: 'string',
-    },
-    iconHoverBorderColor: {
-        type: 'string',
-    },
-    detailPageIconColor: {
-        type: 'string',
-    },
-    detailPageIconHoverColor: {
-        type: 'string',
-    },
+        flipType: {
+            type: "string",
+            source: "attribute",
+            selector: ".zolo-flipbox-container",
+            attribute: "data-flip-type",
+            default: "flip-left",
+        },
+        selectedSide: {
+            type: "string",
+            default: "front",
+        },
+        frontIconOrImage: {
+            type: "string",
+            default: "icon",
+        },
+        frontIcon: {
+            type: "attribute",
+            selector: "zolo-flipbox-icon-wrapper-front",
+            attribute: "data-icon",
+            default: "fab fa-rev",
+        },
+        btnIcon: {
+            type: "attribute",
+            selector: "zolo-flipbox-icon-wrapper-front",
+            attribute: "data-icon",
+            default: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>',
+        },
+        frontImageUrl: {
+            type: "attribute",
+            selector: "zolo-flipbox-front-image-container img",
+            attribute: "src",
+        },
+        frontImageId: {
+            type: "string",
+            default: null,
+        },
+        backIconOrImage: {
+            type: "string",
+            default: "icon",
+        },
+        backIcon: {
+            type: "attribute",
+            selector: "flipbox-icon-wrapper-back",
+            attribute: "data-icon",
+            default: "fab fa-rev",
+        },
+        backImageUrl: {
+            type: "attribute",
+            selector: "back-image-container img",
+            attribute: "src",
+        },
+        backImageId: {
+            type: "string",
+            default: null,
+        },
+        showFrontTitle: {
+            type: "boolean",
+            default: true,
+        },
+        frontTitle: {
+            type: "string",
+            selector: "zolo-flipbox-front-title",
+            default: "Front Title Here",
+        },
+        showFrontContent: {
+            type: "boolean",
+            default: true,
+        },
+        frontContent: {
+            type: "string",
+            selector: "zolo-flipbox-front-content",
+            default: "Front Content Here",
+        },
+        showBackTitle: {
+            type: "boolean",
+            default: true,
+        },
+        backTitle: {
+            type: "string",
+            selector: "zolo-flipbox-back-title",
+            default: "Back Title Here",
+        },
+        showBackContent: {
+            type: "boolean",
+            default: true,
+        },
+        backContent: {
+            type: "string",
+            selector: "zolo-flipbox-back-content",
+            default: "Back Content Here",
+        },
+        linkType: {
+            type: "string",
+            default: "box",
+        },
+        buttonText: {
+            type: "string",
+            default: "Click Here",
+        },
+        buttonIcon: {
+            type: "string",
+        },
+        buttonIconPos: {
+            type: "string",
+            default: "before",
+        },
+        link: {
+            type: "string",
+        },
+        frontTitleColor: {
+            type: "string",
+        },
+        backTitleColor: {
+            type: "string",
+        },
+        frontContentColor: {
+            type: "string",
+        },
+        backContentColor: {
+            type: "string",
+        },
+        frontIconColor: {
+            type: "string",
+        },
+        backIconColor: {
+            type: "string",
+        },
+        buttonStyle: {
+            type: "string",
+            default: "styleOne",
+        },
+        buttonClasses: {
+            type: "string",
+            default: "",
+        },
+        buttonBackground: {
+            type: "string",
+        },
+        buttonColor: {
+            type: "string",
+        },
+        frontIconBackground: {
+            type: "string",
+        },
+        backIconBackground: {
+            type: "string",
+        },
+        transitionSpeed: {
+            type: "number",
+        },
+        displayButtonIcon: {
+            type: "boolean",
+            default: false,
+        },
+        align: {
+            type: "string",
+            default: "center",
+        },
+        contentPosition: {
+            type: "string",
+            default: "center",
+        },
+        linkOpenNewTab: {
+            type: "boolean",
+            default: false,
+        },
 };
 
 export default attributes;
