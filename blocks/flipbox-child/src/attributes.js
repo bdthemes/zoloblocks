@@ -143,180 +143,187 @@ const attributes = {
     // typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     //Block Specific Attributes
-        flipboxStyle: {
-            type: "string",
-            default: "default",
-        },
-        isHover: {
-            type: "boolean",
-            default: false,
-        },
-        flipType: {
-            type: "string",
-            source: "attribute",
-            selector: ".zolo-flipbox-container",
-            attribute: "data-flip-type",
-            default: "flip-left",
-        },
-        selectedSide: {
-            type: "string",
-            default: "front",
-        },
-        frontIconOrImage: {
-            type: "string",
-            default: "icon",
-        },
-        frontIcon: {
-            type: "attribute",
-            selector: "zolo-flipbox-icon-wrapper-front",
-            attribute: "data-icon",
-            default: "fab fa-rev",
-        },
-        btnIcon: {
-            type: "attribute",
-            selector: "zolo-flipbox-icon-wrapper-front",
-            attribute: "data-icon",
-            default: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>',
-        },
-        frontImageUrl: {
-            type: "attribute",
-            selector: "zolo-flipbox-front-image-container img",
-            attribute: "src",
-        },
-        frontImageId: {
-            type: "string",
-            default: null,
-        },
-        backIconOrImage: {
-            type: "string",
-            default: "icon",
-        },
-        backIcon: {
-            type: "attribute",
-            selector: "flipbox-icon-wrapper-back",
-            attribute: "data-icon",
-            default: "fab fa-rev",
-        },
-        backImageUrl: {
-            type: "attribute",
-            selector: "back-image-container img",
-            attribute: "src",
-        },
-        backImageId: {
-            type: "string",
-            default: null,
-        },
-        showFrontTitle: {
-            type: "boolean",
-            default: true,
-        },
-        frontTitle: {
-            type: "string",
-            selector: "zolo-flipbox-front-title",
-            default: "Front Title Here",
-        },
-        showFrontContent: {
-            type: "boolean",
-            default: true,
-        },
-        frontContent: {
-            type: "string",
-            selector: "zolo-flipbox-front-content",
-            default: "Front Content Here",
-        },
-        showBackTitle: {
-            type: "boolean",
-            default: true,
-        },
-        backTitle: {
-            type: "string",
-            selector: "zolo-flipbox-back-title",
-            default: "Back Title Here",
-        },
-        showBackContent: {
-            type: "boolean",
-            default: true,
-        },
-        backContent: {
-            type: "string",
-            selector: "zolo-flipbox-back-content",
-            default: "Back Content Here",
-        },
-        linkType: {
-            type: "string",
-            default: "box",
-        },
-        buttonText: {
-            type: "string",
-            default: "Click Here",
-        },
-        buttonIcon: {
-            type: "string",
-        },
-        buttonIconPos: {
-            type: "string",
-            default: "before",
-        },
-        link: {
-            type: "string",
-        },
-        frontTitleColor: {
-            type: "string",
-        },
-        backTitleColor: {
-            type: "string",
-        },
-        frontContentColor: {
-            type: "string",
-        },
-        backContentColor: {
-            type: "string",
-        },
-        frontIconColor: {
-            type: "string",
-        },
-        backIconColor: {
-            type: "string",
-        },
-        buttonStyle: {
-            type: "string",
-            default: "styleOne",
-        },
-        buttonClasses: {
-            type: "string",
-            default: "",
-        },
-        buttonBackground: {
-            type: "string",
-        },
-        buttonColor: {
-            type: "string",
-        },
-        frontIconBackground: {
-            type: "string",
-        },
-        backIconBackground: {
-            type: "string",
-        },
-        transitionSpeed: {
-            type: "number",
-        },
-        displayButtonIcon: {
-            type: "boolean",
-            default: false,
-        },
-        align: {
-            type: "string",
-            default: "center",
-        },
-        contentPosition: {
-            type: "string",
-            default: "center",
-        },
-        linkOpenNewTab: {
-            type: "boolean",
-            default: false,
-        },
+    flipboxStyle: {
+        type: "string",
+        default: "default",
+    },
+    isHover: {
+        type: "boolean",
+        default: false,
+    },
+    flipType: {
+        type: "string",
+        source: "attribute",
+        selector: ".zolo-flipbox-container",
+        attribute: "data-flip-type",
+        default: "flip-left",
+    },
+    selectedSide: {
+        type: "string",
+        default: "front",
+    },
+    frontIconOrImage: {
+        type: "string",
+        default: "icon",
+    },
+    frontIcon: {
+        type: "attribute",
+        selector: "zolo-flipbox-icon-wrapper-front",
+        attribute: "data-icon",
+        default: "fab fa-rev",
+    },
+    frontImageUrl: {
+        type: "attribute",
+        selector: "zolo-flipbox-front-image-container img",
+        attribute: "src",
+    },
+    frontImageId: {
+        type: "string",
+        default: null,
+    },
+    backIconOrImage: {
+        type: "string",
+        default: "icon",
+    },
+    backIcon: {
+        type: "attribute",
+        selector: "flipbox-icon-wrapper-back",
+        attribute: "data-icon",
+        default: "fab fa-rev",
+    },
+    backImageUrl: {
+        type: "attribute",
+        selector: "back-image-container img",
+        attribute: "src",
+    },
+    backImageId: {
+        type: "string",
+        default: null,
+    },
+    showFrontIcon: {
+        type: "boolean",
+        default: true,
+    },
+    showFrontTitle: {
+        type: "boolean",
+        default: true,
+    },
+    frontTitle: {
+        type: "string",
+        selector: "zolo-flipbox-front-title",
+        default: "Front Title Here",
+    },
+    showFrontContent: {
+        type: "boolean",
+        default: true,
+    },
+    frontContent: {
+        type: "string",
+        selector: "zolo-flipbox-front-content",
+        default: "Front Content Here",
+    },
+    showBackIcon: {
+        type: "boolean",
+        default: false,
+    },
+    showBackTitle: {
+        type: "boolean",
+        default: true,
+    },
+    backTitle: {
+        type: "string",
+        selector: "zolo-flipbox-back-title",
+        default: "Back Title Here",
+    },
+    showBackContent: {
+        type: "boolean",
+        default: true,
+    },
+    backContent: {
+        type: "string",
+        selector: "zolo-flipbox-back-content",
+        default: "Back Content Here",
+    },
+    linkType: {
+        type: "string",
+        default: "box",
+    },
+    showBackLinkBtn: {
+        type: "boolean",
+        default: false,
+    },
+    buttonText: {
+        type: "string",
+        default: "Click Here",
+    },
+    buttonIcon: {
+        type: "attribute",
+        default: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>',
+    },
+    buttonIconPos: {
+        type: "string",
+        default: "before",
+    },
+    link: {
+        type: "string",
+    },
+    frontTitleColor: {
+        type: "string",
+    },
+    backTitleColor: {
+        type: "string",
+    },
+    frontContentColor: {
+        type: "string",
+    },
+    backContentColor: {
+        type: "string",
+    },
+    frontIconColor: {
+        type: "string",
+    },
+    backIconColor: {
+        type: "string",
+    },
+    buttonStyle: {
+        type: "string",
+        default: "styleOne",
+    },
+    buttonClasses: {
+        type: "string",
+        default: "",
+    },
+    buttonBackground: {
+        type: "string",
+    },
+    buttonColor: {
+        type: "string",
+    },
+    frontIconBackground: {
+        type: "string",
+    },
+    backIconBackground: {
+        type: "string",
+    },
+    transitionSpeed: {
+        type: "number",
+    },
+    displayButtonIcon: {
+        type: "boolean",
+        default: false,
+    },
+    align: {
+        type: "string",
+        default: "center",
+    },
+    contentPosition: {
+        type: "string",
+        default: "center",
+    },
+    linkOpenNewTab: {
+        type: "boolean",
+        default: false,
+    },
 };
 
 export default attributes;

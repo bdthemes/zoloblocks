@@ -31,20 +31,22 @@ export default function Edit(props) {
         selectedSide,
         frontIconOrImage,
         frontIcon,
-        btnIcon,
         frontImageUrl,
         backIconOrImage,
         backIcon,
         backImageUrl,
+        showFrontIcon,
         showFrontTitle,
         frontTitle,
         showFrontContent,
         frontContent,
+        showBackIcon,
         showBackTitle,
         backTitle,
         showBackContent,
         backContent,
         linkType,
+        showBackLinkBtn,
         buttonText,
         buttonIcon,
         buttonIconPos,
@@ -139,11 +141,13 @@ export default function Edit(props) {
                                     <img src="https://demo.elementpack.pro/wp-content/uploads/2020/07/01-2-1-1.jpg" alt="image" />
                                 </div>
                                 <div className="zolo-flip-box-content zolo-flip-box_front-content">
-                                    <div className="zolo-flip-box_icon">
-                                        <span className="zolo-flip-box_inner-icon">
-                                            {frontIcon && <DisplayZoloIcon icon={frontIcon} />}
-                                        </span>
-                                    </div>
+                                   {showFrontIcon && (
+                                        <div className="zolo-flip-box_icon">
+                                            <span className="zolo-flip-box_inner-icon">
+                                                {frontIcon && <DisplayZoloIcon icon={frontIcon} />}
+                                            </span>
+                                        </div>
+                                    )}
                                     {showFrontTitle && (
                                         linkType === "title" && link ? (
                                             <a href={link ? link : "#"} className="title-link">
@@ -162,6 +166,13 @@ export default function Edit(props) {
                             </div>
                             <div className="zolo-flip-box_face zolo-flip-box_back">
                                 <div className="zolo-flip-box-content zolo-flip-box_back-content">
+                                    {showBackIcon && (
+                                        <div className="zolo-flip-box_icon">
+                                            <span className="zolo-flip-box_inner-icon">
+                                                {backIcon && <DisplayZoloIcon icon={backIcon} />}
+                                            </span>
+                                        </div>
+                                    )}
                                     {showBackTitle && (
                                         linkType === "title" && link ? (
                                             <a href={link ? link : "#"} className="title-link">
@@ -177,10 +188,10 @@ export default function Edit(props) {
                                         <p className="zolo-flip-box_desc">{backContent}</p>
                                     )}
                                     <div className="zolo-flip-box_link-button-wrap">
-                                        {linkType === "button" && (
+                                        {(linkType === "button" && showBackLinkBtn) && (
                                             <a href={link ? link : "#"} className="zolo-flip-box_link-btn">
                                                 <span>{buttonText}</span>
-                                                {btnIcon && <DisplayZoloIcon icon={btnIcon} />}
+                                                {buttonIcon && <DisplayZoloIcon icon={buttonIcon} />}
                                             </a>
                                         )}
                                     </div>
