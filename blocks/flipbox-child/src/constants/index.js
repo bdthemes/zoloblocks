@@ -4,15 +4,7 @@
 import { __ } from '@wordpress/i18n';
 
 // Block Prefix
-export const BLOCK_PREFIX = 'team-member';
-
-// Presets
-export const PRESETS = [
-    { label: __('Default', 'zolo-blocks'), value: 'default' },
-    { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
-    { label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
-];
+export const BLOCK_PREFIX = 'flipbox-child';
 
 export const FLIPBLOX_SIDE = [
     { label: __('Front', 'zolo-blocks'), value: 'front' },
@@ -24,6 +16,21 @@ export const LINK_TYPE = [
     { label: __('Title', 'zolo-blocks'), value: 'title' },
     { label: __('Button', 'zolo-blocks'), value: 'button' },
 ];
+
+export const FRONT_ICON_SIZE = 'FrontIconSize';
+export const FRONT_ICON_BORDER = 'FrontIconBorder';
+export const FRONT_ICON_BG = 'FrontIconBg';
+export const FRONT_ICON_HBG = 'FrontIconHoverBg';
+export const FRONT_ICON_BORDER_RADIUS = 'FrontIconBorderRadius';
+export const FRONT_ICON_PADDING = 'FrontIconPadding';
+
+
+export const FRONT_ICON_SPACING = 'FrontIconSpacing';
+export const FRONT_ICON_MARGIN = 'FrontIconMargin';
+export const FRONT_ICON_BOX_SHADOW = 'FrontIconBoxShadow';
+export const FRONT_ICON_HOVER_BOX_SHADOW = 'FrontIconHoverBoxShadow';
+export const FRONT_TITLE_MARGIN = 'FrontTitleMargin';
+
 
 // photo bg
 export const PHOTO_BG = 'PhotoBg';

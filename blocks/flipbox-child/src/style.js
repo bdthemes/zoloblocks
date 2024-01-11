@@ -61,18 +61,27 @@ import {
     ITEM_BORDER,
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
+    //flipbox
+    FRONT_ICON_BORDER,
+    FRONT_ICON_BORDER_RADIUS,
+    FRONT_ICON_PADDING,
+    FRONT_ICON_BG,
+    FRONT_ICON_HBG,
+    FRONT_ICON_MARGIN,
+    FRONT_ICON_SIZE,
+    FRONT_TITLE_MARGIN,
 } from './constants';
 
 import {
-    TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
-    TEAM_MEMBER_NAME_TYPOGRAPHY,
-    TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
+    FRONT_TITLE_TYPOGRAPHY,
+    FRONT_CONTENT_TYPOGRAPHY,
 } from './constants/typoPrefixConstants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
         uniqueId,
+        frontIconColor,
         nameColor,
         designationColor,
         shortBioColor,
@@ -82,6 +91,9 @@ const Style = ({ props }) => {
         iconHoverBorderColor,
         detailPageIconColor,
         detailPageIconHoverColor,
+        //FLIPBOX
+        frontTitleColor,
+        frontContentColor,
     } = attributes;
 
     // Container padding + margin
@@ -104,6 +116,111 @@ const Style = ({ props }) => {
         styleFor: 'margin',
         attributes,
     });
+
+    // flipbox icon
+
+    const {
+        dimensionStylesDesktop: frontIconDeskSizeHeight,
+        dimensionStylesTab: frontIconTabSizeHeight,
+        dimensionStylesMobile: frontIconMobSizeHeight,
+    } = generateDimensionStyle({
+        controlName: FRONT_ICON_SIZE,
+        styleFor: 'height',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: frontIconDeskSizeWidth,
+        dimensionStylesTab: frontIconTabSizeWidth,
+        dimensionStylesMobile: frontIconMobSizeWidth,
+    } = generateDimensionStyle({
+        controlName: FRONT_ICON_SIZE,
+        styleFor: 'width',
+        attributes,
+    });
+    const {
+        desktopBorderStyle: frontIconBorderDeskStyle,
+        tabBorderStyle: frontIconBorderTabStyle,
+        mobBorderStyle: frontIconBorderMobStyle,
+    } = generateBorderStyle({
+        controlName: FRONT_ICON_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: frontIconDeskBorderRadius,
+        dimensionStylesTab: frontIconTabBorderRadius,
+        dimensionStylesMobile: frontIconMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: FRONT_ICON_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: frontIconDeskPadding,
+        dimensionStylesTab: frontIconTabPadding,
+        dimensionStylesMobile: frontIconMobPadding,
+    } = generateDimensionStyle({
+        controlName: FRONT_ICON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: frontIconDeskMargin,
+        dimensionStylesTab: frontIconTabMargin,
+        dimensionStylesMobile: frontIconMobMargin,
+    } = generateDimensionStyle({
+        controlName: FRONT_ICON_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+    const {
+        backgroundStylesDesktop: frontIconDeskBg,
+        backgroundStylesTab: frontIconTabBg,
+        backgroundStylesMobile: frontIconMobBg,
+    } = generateNormalBGControlStyles({
+        controlName: FRONT_ICON_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+    const {
+        backgroundStylesDesktop: frontIconDeskHoverBg,
+        backgroundStylesTab: frontIconTabHoverBg,
+        backgroundStylesMobile: frontIconMobHoverBg,
+    } = generateNormalBGControlStyles({
+        controlName: FRONT_ICON_HBG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // flipbox front title
+    const {
+        typoStylesDesktop: frontTitleTypoDesk,
+        typoStylesTab: frontTitleTypoTab,
+        typoStylesMobile: frontTitleTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: FRONT_TITLE_TYPOGRAPHY,
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: frontTitleDeskMargin,
+        dimensionStylesTab: frontTitleTabMargin,
+        dimensionStylesMobile: frontTitleMobMargin,
+    } = generateDimensionStyle({
+        controlName: FRONT_TITLE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    // FLIPBOX FRONT CONTENT
+        const {
+            typoStylesDesktop: frontContentTypoDesk,
+            typoStylesTab: frontContentTypoTab,
+            typoStylesMobile: frontContentTypoMob,
+        } = generateTypographyStyles({
+            prefixConstant: FRONT_CONTENT_TYPOGRAPHY,
+            attributes,
+        });
 
     // item
     const {
@@ -280,15 +397,7 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    // Name
-    const {
-        typoStylesDesktop: nameTypoDesk,
-        typoStylesTab: nameTypoTab,
-        typoStylesMobile: nameTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: TEAM_MEMBER_NAME_TYPOGRAPHY,
-        attributes,
-    });
+
 
     const {
         dimensionStylesDesktop: nameDeskMargin,
@@ -300,15 +409,6 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    // Designation
-    const {
-        typoStylesDesktop: designationTypoDesk,
-        typoStylesTab: designationTypoTab,
-        typoStylesMobile: designationTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
-        attributes,
-    });
 
     const {
         dimensionStylesDesktop: designationDeskMargin,
@@ -320,15 +420,6 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    // Short bio
-    const {
-        typoStylesDesktop: shortBioTypoDesk,
-        typoStylesTab: shortBioTypoTab,
-        typoStylesMobile: shortBioTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: TEAM_MEMBER_SHORT_BIO_TYPOGRAPHY,
-        attributes,
-    });
 
     const {
         dimensionStylesDesktop: shortBioDeskMargin,
@@ -557,115 +648,32 @@ const Style = ({ props }) => {
 			${teamMemberContainerDeskPadding}
 			${teamMemberContainerDeskMargin}
 		}
+        .${uniqueId}.wp-block-zolo-flipbox-child .zolo-flip-box_inner-icon {
+            ${frontIconDeskBg}
+            ${frontIconBorderDeskStyle}
+            ${frontIconDeskBorderRadius}
+            ${frontIconDeskPadding}
+            ${frontIconDeskMargin}
 
-        .${uniqueId}.wp-block-zolo-team-child .zolo-item {
-            ${itemDeskBg}
-			${itemBorderDeskStyle}
-			${itemDeskBorderRadius}
-			${itemDeskPadding}
-			${itemDeskMargin}
-			${itemBoxShadow}
-		}
-
-		.${uniqueId}.default .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.default .zolo-item .zolo-hover-content,
-		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
-            ${contentDeskBg}
-			${contentBorderDeskStyle}
-			${contentDeskBorderRadius}
-			${contentDeskPadding}
-			${contentDeskMargin}
-			${contentBoxShadow}
-		}
-		.${uniqueId} .zolo-item .zolo-social-and-link-wrap{
-			${separatorColor ? `border-top-color: ${separatorColor};` : ''}
-		}
-        .${uniqueId} .zolo-image-wrap {
-			${photoDeskMargin}
         }
-		.${uniqueId} .zolo-image-wrap img {
-			${photoDeskBGStyle}
-			${photoDeskBorderStyle}
-			${photoDeskBorderRadius}
-			${photoDeskPadding}
-			${teamPhotoBoxShadow}
-            ${photoDeskSize}
-		}
-		.${uniqueId} .zolo-name {
-			${nameTypoDesk}
-			${nameDeskMargin}
-            ${nameColor ? `color: ${nameColor};` : ''}
-		}
+        .${uniqueId}.wp-block-zolo-flipbox-child:hover {
+            ${frontIconDeskHoverBg}
 
-		.${uniqueId} .zolo-designation {
-			${designationColor ? `color: ${designationColor};` : ''}
-			${designationTypoDesk}
-			${designationDeskMargin}
-		}
-		.${uniqueId} .zolo-desc {
-			${shortBioColor && shortBioColor !== '' ? `color: ${shortBioColor};` : ''}
-			${shortBioTypoDesk}
-			${shortBioDeskMargin}
-		}
-
-        .${uniqueId}.default .zolo-social-and-link-wrap {
-            ${socialContainerDeskPadding}
-            ${socialContainerDeskMargin}
         }
-
-		.${uniqueId}.wp-block-zolo-team-child .zolo-social-share {
-			${socialIconsGapDesk}
-		}
-
-		.${uniqueId}.wp-block-zolo-team-child .zolo-social-share a {
-			${socialIconDeskBorderStyle}
-			${socialIconsBorderRadiusDesk}
-			${socialIconsPaddingDesk}
-			${socialIconNormalBoxShadow}
-			${iconsNormalDeskBG}
-		}
-
-        .${uniqueId}.wp-block-zolo-team-child .zolo-social-share svg {
-			${socialIconContainerHeightDesk}
-			${socialIconContainerWidthDesk}
-            ${iconColor ? `fill: ${iconColor};` : ''}
+        .${uniqueId}.wp-block-zolo-flipbox-child .zolo-flip-box_inner-icon svg {
+            ${frontIconDeskSizeHeight}
+            ${frontIconDeskSizeWidth}
+            ${frontIconColor ? `fill: ${frontIconColor};` : ''}
         }
-
-		.${uniqueId}.wp-block-zolo-team-child .zolo-social-share a:hover {
-			${socialIconHoverBoxShadow}
-			${iconHoverBorderColor ? `border-color: ${iconHoverBorderColor};` : ''}
-			${iconsHoverDeskBG}
+        .${uniqueId} .zolo-flip-box_title {
+            ${frontTitleColor ? `color: ${frontTitleColor};` : ''}
+            ${frontTitleTypoDesk}
+            ${frontTitleDeskMargin}
 		}
+        .${uniqueId} .zolo-flip-box_desc {
+            ${frontContentColor ? `color: ${frontContentColor};` : ''}
+            ${frontContentTypoDesk}
 
-        .${uniqueId}.wp-block-zolo-team-child .zolo-social-share a:hover svg{
-			${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
-		}
-
-		.${uniqueId}.wp-block-zolo-team-child .zolo-link-btn a {
-			${detailPageNormalDeskBG}
-			${dplDeskBorderStyle}
-			${dplDeskBorderRadius}
-			${dplDeskPadding}
-			${dplDeskMargin}
-			${dplDeskHeight}
-			${dplDeskWidth}
-		}
-
-        .${uniqueId}.wp-block-zolo-team-child .zolo-link-btn svg {
-			${detailPageIconColor ? `fill: ${detailPageIconColor};` : ''}
-            ${dplDeskSize}
-            ${dplDeskHSize}
-		}
-
-		.${uniqueId}.wp-block-zolo-team-child .zolo-link-btn a:hover {
-			${detailPageHoverDeskBG}
-		}
-
-		.${uniqueId}.wp-block-zolo-team-child .zolo-link-btn a:hover svg{
-			${detailPageIconHoverColor ? `fill: ${detailPageIconHoverColor};` : ''}
 		}
 	`;
 
