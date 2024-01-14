@@ -1,13 +1,13 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Flipbox Child",
-    "name": "zolo/flipbox-child",
+    "title": "Flipbox",
+    "name": "zolo/flipbox",
     "category": "zolo-blocks",
     "keywords": [
         "team",
         "team member"
     ],
-    "description": "Single flipbox child block",
+    "description": "Single flipbox block",
     "apiVersion": 3,
     "textdomain": "zolo-blocks",
     "supports": {

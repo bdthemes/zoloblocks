@@ -24,6 +24,7 @@ export default function Edit(props) {
     const {
         uniqueId,
         preset,
+        flipEffect,
         parentClasses,
         memberPhoto,
         isHover,
@@ -93,7 +94,6 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
 
-
             {/* <BlockControls>
                 {memberPhoto && (
                     <Fragment>
@@ -133,35 +133,33 @@ export default function Edit(props) {
             </BlockControls> */}
 
             <div {...blockProps}>
-                <div className="zolo-flip-box_wrap zolo-flip-box_animation_style-1">
-                    <div className={`zolo-flip-box_item ${isHover || selectedSide === "back" ? " zolo-flip-box_active" : "zolo-flip-box_hover"}`} >
+                <div className={`zolo-flip-box_wrap zolo-flip-box_animation_style-${flipEffect}`}>
+                    <div className={`zolo-flip-box_item ${
+                            isHover || selectedSide === 'back' ? ' zolo-flip-box_active' : 'zolo-flip-box_hover'
+                        }`}
+                    >
                         <div className="zolo-flip-box_inner-item">
                             <div className="zolo-flip-box_face zolo-flip-box_front">
                                 <div className="zolo-flip-box_img">
                                     <img src="https://demo.elementpack.pro/wp-content/uploads/2020/07/01-2-1-1.jpg" alt="image" />
                                 </div>
                                 <div className="zolo-flip-box-content zolo-flip-box_front-content">
-                                   {showFrontIcon && (
+                                    {showFrontIcon && (
                                         <div className="zolo-flip-box_icon">
                                             <span className="zolo-flip-box_inner-icon">
                                                 {frontIcon && <DisplayZoloIcon icon={frontIcon} />}
                                             </span>
                                         </div>
                                     )}
-                                    {showFrontTitle && (
-                                        linkType === "title" && link ? (
-                                            <a href={link ? link : "#"} className="title-link">
-                                                <h3 className="zolo-flip-box_title">
-                                                    {frontTitle}
-                                                </h3>
+                                    {showFrontTitle &&
+                                        (linkType === 'title' && link ? (
+                                            <a href={link ? link : '#'} className="title-link">
+                                                <h3 className="zolo-flip-box_title">{frontTitle}</h3>
                                             </a>
                                         ) : (
                                             <h3 className="zolo-flip-box_title">{frontTitle}</h3>
-                                        )
-                                    )}
-                                    {showFrontContent && (
-                                        <p className="zolo-flip-box_desc">{frontContent}</p>
-                                    )}
+                                        ))}
+                                    {showFrontContent && <p className="zolo-flip-box_desc">{frontContent}</p>}
                                 </div>
                             </div>
                             <div className="zolo-flip-box_face zolo-flip-box_back">
@@ -173,23 +171,18 @@ export default function Edit(props) {
                                             </span>
                                         </div>
                                     )}
-                                    {showBackTitle && (
-                                        linkType === "title" && link ? (
-                                            <a href={link ? link : "#"} className="title-link">
-                                                <h3 className="zolo-flip-box_title">
-                                                    {backTitle}
-                                                </h3>
+                                    {showBackTitle &&
+                                        (linkType === 'title' && link ? (
+                                            <a href={link ? link : '#'} className="title-link">
+                                                <h3 className="zolo-flip-box_title">{backTitle}</h3>
                                             </a>
                                         ) : (
                                             <h3 className="zolo-flip-box_title">{backTitle}</h3>
-                                        )
-                                    )}
-                                    {showBackContent && (
-                                        <p className="zolo-flip-box_desc">{backContent}</p>
-                                    )}
+                                        ))}
+                                    {showBackContent && <p className="zolo-flip-box_desc">{backContent}</p>}
                                     <div className="zolo-flip-box_link-button-wrap">
-                                        {(linkType === "button" && showBackLinkBtn) && (
-                                            <a href={link ? link : "#"} className="zolo-flip-box_link-btn">
+                                        {linkType === 'button' && showBackLinkBtn && (
+                                            <a href={link ? link : '#'} className="zolo-flip-box_link-btn">
                                                 <span>{buttonText}</span>
                                                 {buttonIcon && <DisplayZoloIcon icon={buttonIcon} />}
                                             </a>

@@ -19,7 +19,7 @@ import '../blocks/cta/src';
 import '../blocks/counter/src';
 import '../blocks/fancy-list-child/src';
 import '../blocks/fancy-list/src';
-import '../blocks/flipbox-child/src';
+import '../blocks/flipbox/src';
 import '../blocks/image-gallery/src';
 import '../blocks/google-map/src';
 import '../blocks/post-grid/src';

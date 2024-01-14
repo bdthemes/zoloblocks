@@ -2,7 +2,17 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { PanelBody, TextControl, TextareaControl, BaseControl, Button, RangeControl, ButtonGroup, ToggleControl } from '@wordpress/components';
+import {
+    PanelBody,
+    TextControl,
+    TextareaControl,
+    BaseControl,
+    Button,
+    RangeControl,
+    ButtonGroup,
+    ToggleControl,
+    SelectControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -13,6 +23,7 @@ const {
     ColorControl,
     BorderControl,
     ResDimensionsControl,
+    RangeResetControl,
     TypographyDropdown,
     NormalBGControl,
     BoxShadowControl,
@@ -25,97 +36,54 @@ const {
     ZoloPanelBody,
 } = window.zoloModule;
 
-import Sortable from './sortable';
-
 import objAttributes from './attributes';
 import {
-    CONTENT_BG,
-    CONTENT_PADDING,
-    CONTENT_MARGIN,
-    CONTENT_BORDER,
-    CONTENT_BORDER_RADIUS,
-    CONTENT_BOX_SHADOW,
-    PHOTO_BG,
-    PHOTO_SIZE,
-    TEAM_PHOTO_BORDER,
-    TEAM_PHOTO_BORDER_RADIUS,
-    TEAM_PHOTO_BOX_SHADOW,
-    TEAM_PHOTO_MARGIN,
-    TEAM_PHOTO_PADDING,
-    TEAM_NAME_MARGIN,
-    TEAM_DESIGNATION_MARGIN,
-    TEAM_SHORT_BIO_MARGIN,
-    ICONS_BG,
-    ICONS_HOVER_BG,
-    ICONS_SIZE,
-    ICONS_SPACING,
-    ICONS_BORDER,
-    ICONS_BORDER_RADIUS,
-    ICONS_PADDING,
-    ICONS_BOX_SHADOW,
-    ICONS_HOVER_BOX_SHADOW,
-    ICONS_CONTAINER_PADDING,
-    ICONS_CONTAINER_MARGIN,
-    DETAIL_PAGE_LINK_BG,
-    DETAIL_PAGE_LINK_HOVER_BG,
-    DPL_HEIGHT,
-    DPL_WIDTH,
-    DPL_BORDER,
-    DPL_BORDER_RADIUS,
-    DPL_PADDING,
-    DPL_MARGIN,
-    DPL_ICON_SIZE,
-    ITEM_BG,
-    ITEM_PADDING,
-    ITEM_MARGIN,
-    ITEM_BORDER,
-    ITEM_BORDER_RADIUS,
-    ITEM_BOX_SHADOW,
     // flipbox
     FLIPBLOX_SIDE,
     LINK_TYPE,
+    FLIPBOX_HEIGHT,
+    FLIP_EFFECT,
+    FLIP_TRIGGER_TYPE,
+    FLIPBOX_BORDER_RADIUS,
+
+    FRONT_ITEMS_BORDER,
+    FRONT_ITEMS_PADDING,
+    FRONT_ITEMS_BG,
+    BACK_ITEMS_BORDER,
+    BACK_ITEMS_PADDING,
+    BACK_ITEMS_BG,
+
+    FRONT_ICON_SIZE,
     FRONT_ICON_BORDER,
     FRONT_ICON_BORDER_RADIUS,
-    FRONT_ICON_PADDING,
     FRONT_ICON_BG,
+    FRONT_ICON_PADDING,
     FRONT_ICON_HBG,
-    FRONT_ICON_SIZE,
     FRONT_TITLE_MARGIN,
+    BACK_ICON_SIZE,
+    BACK_ICON_BORDER,
+    BACK_ICON_BG,
+    BACK_ICON_HBG,
+    BACK_ICON_BORDER_RADIUS,
+    BACK_ICON_PADDING,
+    BACK_ICON_MARGIN,
+    BACK_TITLE_MARGIN,
 } from './constants';
 
 import {
     FRONT_TITLE_TYPOGRAPHY,
     FRONT_CONTENT_TYPOGRAPHY,
+    BACK_TITLE_TYPOGRAPHY,
+    BACK_CONTENT_TYPOGRAPHY,
 } from './constants/typoPrefixConstants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         resMode,
-        preset,
-        showDesignation,
-        addDetailPageLink,
-        showSocialProfiles,
-        showShortBio,
-        nameColor,
-        designationColor,
-        shortBioColor,
-        separatorColor,
-        iconColor,
-        iconHoverColor,
-        iconHoverBorderColor,
-        detailPageIconColor,
-        detailPageIconHoverColor,
-        parentClasses,
-        isHover,
-        flipType,
         selectedSide,
-        frontIconOrImage,
         frontIcon,
-        frontImageUrl,
-        backIconOrImage,
         backIcon,
-        backImageUrl,
         showFrontIcon,
         showFrontTitle,
         frontTitle,
@@ -147,10 +115,13 @@ function Inspector(props) {
         frontIconBackground,
         backIconBackground,
         transitionSpeed,
+        flipDuration,
         displayButtonIcon,
         align,
         contentPosition,
         classHook,
+        flipEffect,
+        triggerType,
     } = attributes;
 
     const requiredProps = {
@@ -159,6 +130,15 @@ function Inspector(props) {
         attributes,
         objAttributes,
     };
+
+    const flipEffectOptions = FLIP_EFFECT.map((item) => ({
+        label: item.label,
+        value: item.value,
+    }));
+    const triggerTypeOptions = FLIP_TRIGGER_TYPE.map((item) => ({
+        label: item.label,
+        value: item.value,
+    }));
 
     return (
         <InspectorControls key="controls">
@@ -366,6 +346,86 @@ function Inspector(props) {
                                 </ZoloPanelBody>
                             </>
                         )}
+
+                        {/* general settings  */}
+                        <ZoloPanelBody title={__('General Settings', 'zolo-blocks')} initialOpen={false} panelProps={props}>
+                            <ResRangeControl
+                                label={__('Height', 'zolo-blocks')}
+                                controlName={FLIPBOX_HEIGHT}
+                                requiredProps={requiredProps}
+                                min={200}
+                                max={1000}
+                                defaultVal={300}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={FLIPBOX_BORDER_RADIUS}
+                                requiredProps={requiredProps}
+                            />
+
+                            <SelectControl
+                                label={__('Flip Effect', 'zolo-blocks')}
+                                value={flipEffect}
+                                options={flipEffectOptions}
+                                onChange={(flipEffect) => {
+                                    setAttributes({ flipEffect });
+                                }}
+                            />
+                            <RangeResetControl
+                                label={__('Duration (ms)', 'zolo-blocks')}
+                                controlName={'flipDuration'}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={5000}
+                                defaultVal={600}
+                                step={1}
+                            />
+
+                            <SelectControl
+                                label={__('Trigger Type', 'zolo-blocks')}
+                                value={triggerType}
+                                options={triggerTypeOptions}
+                                onChange={(triggerType) => {
+                                    setAttributes({ triggerType });
+                                }}
+                            />
+
+                            {/* <BaseControl label={__('Alignment', 'zolo-blocks')}>
+                                <ButtonGroup className="zolo-button-group">
+                                    {['left', 'center', 'right'].map((item) => (
+                                        <Button
+                                            isLarge
+                                            isPrimary={align === item}
+                                            aria-pressed={align === item}
+                                            showBackLinkBtn
+                                            onClick={() => setAttributes({ align: item })}
+                                        >
+                                            {item}
+                                        </Button>
+                                    ))}
+                                </ButtonGroup>
+                            </BaseControl>
+                            <BaseControl label={__('Content Position', 'zolo-blocks')}>
+                                <ButtonGroup className="zolo-button-group">
+                                    {['top', 'middle', 'bottom'].map((item) => (
+                                        <Button
+                                            isLarge
+                                            isPrimary={contentPosition === item}
+                                            aria-pressed={contentPosition === item}
+                                            showBackLinkBtn
+                                            onClick={() => setAttributes({ contentPosition: item })}
+                                        >
+                                            {item}
+                                        </Button>
+                                    ))}
+                                </ButtonGroup>
+                            </BaseControl>
+                            <TextControl
+                                label={__('Class', 'zolo-blocks')}
+                                value={classHook}
+                                onChange={(newText) => setAttributes({ classHook: newText })}
+                            /> */}
+                        </ZoloPanelBody>
                     </>
                 }
                 styleTab={
@@ -390,6 +450,20 @@ function Inspector(props) {
 
                         {selectedSide === 'front' && (
                             <>
+                                <ZoloPanelBody title={__('Items', 'zolo-block')} panelProps={props}>
+                                    <BorderControl
+                                        label={__('Border', 'zolo-blocks')}
+                                        controlName={FRONT_ITEMS_BORDER}
+                                        requiredProps={requiredProps}
+                                    />
+
+                                    <ResDimensionsControl
+                                        label={__('Padding', 'zolo-blocks')}
+                                        controlName={FRONT_ITEMS_PADDING}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <NormalBGControl requiredProps={requiredProps} controlName={FRONT_ITEMS_BG} noMainBGImg={false} />
+                                </ZoloPanelBody>
                                 {showFrontIcon && (
                                     <ZoloPanelBody title={__('Icon', 'zolo-block')} panelProps={props}>
                                         {showFrontIcon && (
@@ -428,37 +502,6 @@ function Inspector(props) {
                                                     controlName={FRONT_ICON_BG}
                                                     noMainBGImg={false}
                                                 />
-
-                                                {/* <TabPanelControl
-                                                    normalComponents={
-                                                        <>
-                                                            <ColorControl
-                                                                label={__('Color', 'zolo-block')}
-                                                                color={frontIconColor}
-                                                                onChange={(v) => setAttributes({ frontIconColor: v })}
-                                                            />
-                                                            <NormalBGControl
-                                                                requiredProps={requiredProps}
-                                                                controlName={FRONT_ICON_BG}
-                                                                noMainBGImg={true}
-                                                            />
-                                                        </>
-                                                    }
-                                                    hoverComponents={
-                                                        <>
-                                                            <ColorControl
-                                                                label={__('Color', 'zolo-block')}
-                                                                color={frontIconHoverColor}
-                                                                onChange={(v) => setAttributes({ frontIconHoverColor: v })}
-                                                            />
-                                                            <NormalBGControl
-                                                                requiredProps={requiredProps}
-                                                                controlName={FRONT_ICON_HBG}
-                                                                noMainBGImg={true}
-                                                            />
-                                                        </>
-                                                    }
-                                                /> */}
                                             </>
                                         )}
                                     </ZoloPanelBody>
@@ -506,174 +549,107 @@ function Inspector(props) {
                                 )}
                             </>
                         )}
-                        {/* {selectedSide === 'back' && (
+                        {selectedSide === 'back' && (
                             <>
-                                {showFrontIcon && (
+                                <ZoloPanelBody title={__('Items', 'zolo-block')} panelProps={props}>
+                                    <BorderControl
+                                        label={__('Border', 'zolo-blocks')}
+                                        controlName={BACK_ITEMS_BORDER}
+                                        requiredProps={requiredProps}
+                                    />
+
+                                    <ResDimensionsControl
+                                        label={__('Padding', 'zolo-blocks')}
+                                        controlName={BACK_ITEMS_PADDING}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <NormalBGControl requiredProps={requiredProps} controlName={BACK_ITEMS_BG} noMainBGImg={false} />
+                                </ZoloPanelBody>
+                                {showBackIcon && (
                                     <ZoloPanelBody title={__('Icon', 'zolo-block')} panelProps={props}>
-                                        {showFrontIcon && (
+                                        {showBackIcon && (
                                             <>
                                                 <ResDimensionsControl
                                                     label={__('Size', 'zolo-blocks')}
-                                                    controlName={FRONT_ICON_SIZE}
+                                                    controlName={BACK_ICON_SIZE}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <BorderControl
                                                     label={__('Border', 'zolo-blocks')}
-                                                    controlName={FRONT_ICON_BORDER}
+                                                    controlName={BACK_ICON_BORDER}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <ResDimensionsControl
                                                     label={__('Border Radius', 'zolo-blocks')}
-                                                    controlName={FRONT_ICON_BORDER_RADIUS}
+                                                    controlName={BACK_ICON_BORDER_RADIUS}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <ResDimensionsControl
                                                     label={__('Padding', 'zolo-blocks')}
-                                                    controlName={FRONT_ICON_PADDING}
+                                                    controlName={BACK_ICON_PADDING}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <ColorControl
                                                     label={__('Color', 'zolo-blocks')}
-                                                    color={frontIconColor}
+                                                    color={backIconColor}
                                                     onChange={(color) =>
                                                         setAttributes({
-                                                            frontIconColor: color,
+                                                            backIconColor: color,
                                                         })
                                                     }
                                                 />
                                                 <NormalBGControl
                                                     requiredProps={requiredProps}
-                                                    controlName={FRONT_ICON_BG}
+                                                    controlName={BACK_ICON_BG}
                                                     noMainBGImg={false}
                                                 />
                                             </>
                                         )}
                                     </ZoloPanelBody>
                                 )}
-                                {showFrontTitle && (
+                                {showBackTitle && (
                                     <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                         <TypographyDropdown
                                             label={__('Typography', 'zolo-blocks')}
-                                            typoPrefixConstant={FRONT_TITLE_TYPOGRAPHY}
+                                            typoPrefixConstant={BACK_TITLE_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
                                         <ColorControl
                                             label={__('Color', 'zolo-blocks')}
-                                            color={frontTitleColor}
+                                            color={backTitleColor}
                                             onChange={(color) =>
                                                 setAttributes({
-                                                    frontTitleColor: color,
+                                                    backTitleColor: color,
                                                 })
                                             }
                                         />
                                         <ResDimensionsControl
                                             label={__('Margin', 'zolo-blocks')}
-                                            controlName={FRONT_TITLE_MARGIN}
+                                            controlName={BACK_TITLE_MARGIN}
                                             requiredProps={requiredProps}
                                         />
                                     </ZoloPanelBody>
                                 )}
-                                {showFrontContent && (
+                                {showBackContent && (
                                     <ZoloPanelBody title={__('Content', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                         <TypographyDropdown
                                             label={__('Typography', 'zolo-blocks')}
-                                            typoPrefixConstant={FRONT_CONTENT_TYPOGRAPHY}
+                                            typoPrefixConstant={BACK_CONTENT_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
                                         <ColorControl
                                             label={__('Color', 'zolo-blocks')}
-                                            color={frontContentColor}
+                                            color={backContentColor}
                                             onChange={(color) =>
                                                 setAttributes({
-                                                    frontContentColor: color,
+                                                    backContentColor: color,
                                                 })
                                             }
                                         />
                                     </ZoloPanelBody>
                                 )}
                             </>
-                        )} */}
-
-                        {/* <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={ITEM_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={ITEM_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={ITEM_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={ITEM_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={false} />
-                            <BoxShadowControl controlName={ITEM_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={CONTENT_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={CONTENT_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={CONTENT_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <NormalBGControl requiredProps={requiredProps} controlName={CONTENT_BG} noMainBGImg={false} />
-                            <BoxShadowControl controlName={CONTENT_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Photo', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <ResRangeControl
-                                label={__('Size', 'zolo-blocks')}
-                                controlName={PHOTO_SIZE}
-                                requiredProps={requiredProps}
-                                min={10}
-                                max={1000}
-                            />
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={TEAM_PHOTO_BORDER}
-                                requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
-                                controlName={TEAM_PHOTO_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={TEAM_PHOTO_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={TEAM_PHOTO_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <NormalBGControl requiredProps={requiredProps} controlName={PHOTO_BG} noMainBGImg={true} />
-                            <BoxShadowControl controlName={TEAM_PHOTO_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                        </ZoloPanelBody> */}
+                        )}
                     </>
                 }
                 advancedTab={
