@@ -3,12 +3,10 @@
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
-    PanelBody,
     TextControl,
     TextareaControl,
     BaseControl,
     Button,
-    RangeControl,
     ButtonGroup,
     ToggleControl,
     SelectControl,
@@ -648,11 +646,6 @@ function Inspector(props) {
                                                         controlName={BACK_LINK_HBG}
                                                         noMainBGImg={false}
                                                     />
-                                                    {/* <BoxShadowControl
-                                                        controlName={ICON_HOVER_BOX_SHADOW}
-                                                        requiredProps={requiredProps}
-                                                        enableTransition={false}
-                                                    /> */}
                                                 </>
                                             }
                                         />

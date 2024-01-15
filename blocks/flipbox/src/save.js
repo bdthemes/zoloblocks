@@ -1,4 +1,4 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 import classnames from 'classnames';
 
@@ -6,11 +6,8 @@ const Save = ({ attributes }) => {
  const {
      uniqueId,
      zoloId,
-     preset,
      flipEffect,
      parentClasses,
-     isHover,
-     selectedSide,
      frontIcon,
      backIcon,
      showFrontIcon,

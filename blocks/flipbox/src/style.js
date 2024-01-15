@@ -11,7 +11,6 @@ const {
     generateDimensionStyle,
     generateTypographyStyles,
     generateResRangeStyle,
-    generateBoxShadowStyles,
     generateNormalBGControlStyles,
     GlobalStyleHanlder,
 } = window.zoloModule;
@@ -208,15 +207,6 @@ const Style = ({ props }) => {
         attributes,
         noMainBGImg: false,
     });
-    const {
-        backgroundStylesDesktop: frontIconDeskHoverBg,
-        backgroundStylesTab: frontIconTabHoverBg,
-        backgroundStylesMobile: frontIconMobHoverBg,
-    } = generateNormalBGControlStyles({
-        controlName: FRONT_ICON_HBG,
-        attributes,
-        noMainBGImg: false,
-    });
 
     // flipbox icon back
 
@@ -281,15 +271,6 @@ const Style = ({ props }) => {
         backgroundStylesMobile: backIconMobBg,
     } = generateNormalBGControlStyles({
         controlName: BACK_ICON_BG,
-        attributes,
-        noMainBGImg: false,
-    });
-    const {
-        backgroundStylesDesktop: backIconDeskHoverBg,
-        backgroundStylesTab: backIconTabHoverBg,
-        backgroundStylesMobile: backIconMobHoverBg,
-    } = generateNormalBGControlStyles({
-        controlName: BACK_ICON_HBG,
         attributes,
         noMainBGImg: false,
     });
@@ -637,7 +618,7 @@ const Style = ({ props }) => {
         }
         .${uniqueId}.wp-block-zolo-flipbox .zolo-flip-box_back .zolo-flip-box_link-btn:hover {
             ${backLinkHoverColor ? `color: ${backLinkHoverColor};` : ''}
-            ${backLinkTabHBg}
+            ${backLinkMobHBg}
 		}
 
 	`;

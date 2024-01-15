@@ -1,10 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, BlockControls, MediaPlaceholder, MediaUpload, AlignmentToolbar } from '@wordpress/block-editor';
-import { Fragment, useEffect } from '@wordpress/element';
+import { useBlockProps} from '@wordpress/block-editor';
 
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import classnames from 'classnames';
@@ -50,19 +48,6 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });
-
-    /**
-     * context
-     */
-    // useEffect(() => {
-    //     setAttributes({
-    //         preset: context['zolo/preset'],
-    //         addDetailPageLink: context['zolo/addDetailPageLink'],
-    //         showDesignation: context['zolo/showDesignation'],
-    //         showShortBio: context['zolo/showShortBio'],
-    //         showSocialProfiles: context['zolo/showSocialProfiles'],
-    //     });
-    // }, [context]);
 
     return (
         <>
