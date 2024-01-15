@@ -1,9 +1,3 @@
-// .zolo-flip-box_wrap {
-//     display: grid;
-//     grid-template-columns: repeat(1, 1fr);
-//     grid-gap: 20px;
-// }
-
 .zolo-flip-box_item {
     position: relative;
     perspective: 1200px;
@@ -125,6 +119,11 @@
     transition: all 0.3s ease 0s;
     text-transform: uppercase;
     border-radius: 4px;
+    .zolo__display-icon svg{
+        width: 1em;
+        height: 1em;
+        display: block;
+    }
 }
 
 .zolo-flip-box_link-btn svg,

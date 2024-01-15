@@ -26,11 +26,8 @@ const {
     RangeResetControl,
     TypographyDropdown,
     NormalBGControl,
-    BoxShadowControl,
-    ImageAvatar,
     TabPanelControl,
     HeaderTabs,
-    LinkControl,
     AdvancedOptions,
     ZoloIconPicker,
     ZoloPanelBody,
@@ -40,7 +37,6 @@ import objAttributes from './attributes';
 import {
     // flipbox
     FLIPBLOX_SIDE,
-    LINK_TYPE,
     FLIPBOX_HEIGHT,
     FLIP_EFFECT,
     FLIP_TRIGGER_TYPE,
@@ -58,16 +54,18 @@ import {
     FRONT_ICON_BORDER_RADIUS,
     FRONT_ICON_BG,
     FRONT_ICON_PADDING,
-    FRONT_ICON_HBG,
     FRONT_TITLE_MARGIN,
     BACK_ICON_SIZE,
     BACK_ICON_BORDER,
     BACK_ICON_BG,
-    BACK_ICON_HBG,
     BACK_ICON_BORDER_RADIUS,
     BACK_ICON_PADDING,
-    BACK_ICON_MARGIN,
     BACK_TITLE_MARGIN,
+    BACK_LINK_BORDER,
+    BACK_LINK_BORDER_RADIUS,
+    BACK_LINK_PADDING,
+    BACK_LINK_BG,
+    BACK_LINK_HBG,
 } from './constants';
 
 import {
@@ -75,6 +73,7 @@ import {
     FRONT_CONTENT_TYPOGRAPHY,
     BACK_TITLE_TYPOGRAPHY,
     BACK_CONTENT_TYPOGRAPHY,
+    BACK_LINK_TYPOGRAPHY,
 } from './constants/typoPrefixConstants';
 
 function Inspector(props) {
@@ -94,11 +93,12 @@ function Inspector(props) {
         backTitle,
         showBackContent,
         showBackLinkBtn,
+        showBackLinkBtnIcon,
+        backLinkColor,
+        backLinkHoverColor,
         backContent,
-        linkType,
         buttonText,
         buttonIcon,
-        buttonIconPos,
         link,
         linkOpenNewTab,
         frontTitleColor,
@@ -106,20 +106,7 @@ function Inspector(props) {
         frontContentColor,
         backContentColor,
         frontIconColor,
-        frontIconHoverColor,
         backIconColor,
-        buttonStyle,
-        buttonClasses,
-        buttonBackground,
-        buttonColor,
-        frontIconBackground,
-        backIconBackground,
-        transitionSpeed,
-        flipDuration,
-        displayButtonIcon,
-        align,
-        contentPosition,
-        classHook,
         flipEffect,
         triggerType,
     } = attributes;
@@ -224,6 +211,17 @@ function Inspector(props) {
                                             });
                                         }}
                                     />
+                                    {showBackLinkBtn && (
+                                        <ToggleControl
+                                            label={__('Show Button Icon?', 'zolo-blocks')}
+                                            checked={showBackLinkBtnIcon}
+                                            onChange={() => {
+                                                setAttributes({
+                                                    showBackLinkBtnIcon: !showBackLinkBtnIcon,
+                                                });
+                                            }}
+                                        />
+                                    )}
                                 </>
                             )}
                         </ZoloPanelBody>
@@ -294,56 +292,35 @@ function Inspector(props) {
                                     </ZoloPanelBody>
                                 )}
 
-                                <ZoloPanelBody title={__('Link Settings', 'zolo-blocks')} initialOpen={false} panelProps={props}>
-                                    <BaseControl label={__('Link Type', 'zolo-blocks')} id="zolo-flipbox-link-type">
-                                        <ButtonGroup id="zolo-flipbox-link-type">
-                                            {LINK_TYPE.map((item, index) => (
-                                                <Button
-                                                    key={index}
-                                                    isPrimary={linkType === item.value}
-                                                    isSecondary={linkType !== item.value}
-                                                    onClick={() => {
-                                                        setAttributes({ linkType: item.value });
-                                                    }}
-                                                >
-                                                    {item.label}
-                                                </Button>
-                                            ))}
-                                        </ButtonGroup>
-                                    </BaseControl>
-
-                                    <TextControl
-                                        label={__('Link', 'zolo-blocks')}
-                                        value={link}
-                                        placeholder="https://your-link.com"
-                                        onChange={(newLink) => setAttributes({ link: newLink })}
-                                    />
-                                    <ToggleControl
-                                        label={__('Open in New Tab', 'zolo-blocks')}
-                                        checked={linkOpenNewTab}
-                                        onChange={() =>
-                                            setAttributes({
-                                                linkOpenNewTab: !linkOpenNewTab,
-                                            })
-                                        }
-                                    />
-
-                                    {linkType === 'button' && (
-                                        <>
-                                            <TextControl
-                                                label={__('Button Text', 'zolo-blocks')}
-                                                value={buttonText}
-                                                onChange={(newText) => setAttributes({ buttonText: newText })}
-                                            />
-                                            {/* {iconToggle && ( */}
-                                            <ZoloIconPicker
-                                                label={__('Select Icon', 'zolo-block')}
-                                                value={buttonIcon}
-                                                onChange={(v) => setAttributes({ buttonIcon: v })}
-                                            />
-                                        </>
-                                    )}
-                                </ZoloPanelBody>
+                                {showBackLinkBtn && (
+                                    <ZoloPanelBody title={__('Button', 'zolo-blocks')} initialOpen={false} panelProps={props}>
+                                        <TextControl
+                                            label={__('Button Text', 'zolo-blocks')}
+                                            value={buttonText}
+                                            onChange={(newText) => setAttributes({ buttonText: newText })}
+                                        />
+                                        <TextControl
+                                            label={__('Link', 'zolo-blocks')}
+                                            value={link}
+                                            placeholder="https://your-link.com"
+                                            onChange={(newLink) => setAttributes({ link: newLink })}
+                                        />
+                                        <ToggleControl
+                                            label={__('Open in New Tab', 'zolo-blocks')}
+                                            checked={linkOpenNewTab}
+                                            onChange={() =>
+                                                setAttributes({
+                                                    linkOpenNewTab: !linkOpenNewTab,
+                                                })
+                                            }
+                                        />
+                                        <ZoloIconPicker
+                                            label={__('Select Icon', 'zolo-block')}
+                                            value={buttonIcon}
+                                            onChange={(v) => setAttributes({ buttonIcon: v })}
+                                        />
+                                    </ZoloPanelBody>
+                                )}
                             </>
                         )}
 
@@ -389,42 +366,6 @@ function Inspector(props) {
                                     setAttributes({ triggerType });
                                 }}
                             />
-
-                            {/* <BaseControl label={__('Alignment', 'zolo-blocks')}>
-                                <ButtonGroup className="zolo-button-group">
-                                    {['left', 'center', 'right'].map((item) => (
-                                        <Button
-                                            isLarge
-                                            isPrimary={align === item}
-                                            aria-pressed={align === item}
-                                            showBackLinkBtn
-                                            onClick={() => setAttributes({ align: item })}
-                                        >
-                                            {item}
-                                        </Button>
-                                    ))}
-                                </ButtonGroup>
-                            </BaseControl>
-                            <BaseControl label={__('Content Position', 'zolo-blocks')}>
-                                <ButtonGroup className="zolo-button-group">
-                                    {['top', 'middle', 'bottom'].map((item) => (
-                                        <Button
-                                            isLarge
-                                            isPrimary={contentPosition === item}
-                                            aria-pressed={contentPosition === item}
-                                            showBackLinkBtn
-                                            onClick={() => setAttributes({ contentPosition: item })}
-                                        >
-                                            {item}
-                                        </Button>
-                                    ))}
-                                </ButtonGroup>
-                            </BaseControl>
-                            <TextControl
-                                label={__('Class', 'zolo-blocks')}
-                                value={classHook}
-                                onChange={(newText) => setAttributes({ classHook: newText })}
-                            /> */}
                         </ZoloPanelBody>
                     </>
                 }
@@ -644,6 +585,75 @@ function Inspector(props) {
                                                 setAttributes({
                                                     backContentColor: color,
                                                 })
+                                            }
+                                        />
+                                    </ZoloPanelBody>
+                                )}
+                                {showBackLinkBtn && (
+                                    <ZoloPanelBody title={__('Button', 'zolo-block')} panelProps={props}>
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={BACK_LINK_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zolo-blocks')}
+                                            controlName={BACK_LINK_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                        />
+
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zolo-blocks')}
+                                            controlName={BACK_LINK_PADDING}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zolo-blocks')}
+                                            typoPrefixConstant={BACK_LINK_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <TabPanelControl
+                                            normalComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zolo-blocks')}
+                                                        color={backLinkColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                backLinkColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                    <NormalBGControl
+                                                        requiredProps={requiredProps}
+                                                        controlName={BACK_LINK_BG}
+                                                        noMainBGImg={false}
+                                                    />
+                                                </>
+                                            }
+                                            hoverComponents={
+                                                <>
+                                                    <ColorControl
+                                                        label={__('Color', 'zolo-blocks')}
+                                                        color={backLinkHoverColor}
+                                                        onChange={(color) =>
+                                                            setAttributes({
+                                                                backLinkHoverColor: color,
+                                                            })
+                                                        }
+                                                    />
+                                                    <NormalBGControl
+                                                        requiredProps={requiredProps}
+                                                        controlName={BACK_LINK_HBG}
+                                                        noMainBGImg={false}
+                                                    />
+                                                    {/* <BoxShadowControl
+                                                        controlName={ICON_HOVER_BOX_SHADOW}
+                                                        requiredProps={requiredProps}
+                                                        enableTransition={false}
+                                                    /> */}
+                                                </>
                                             }
                                         />
                                     </ZoloPanelBody>

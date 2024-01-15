@@ -23,19 +23,12 @@ export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, context } = props;
     const {
         uniqueId,
-        preset,
         flipEffect,
         parentClasses,
-        memberPhoto,
         isHover,
-        flipType,
         selectedSide,
-        frontIconOrImage,
         frontIcon,
-        frontImageUrl,
-        backIconOrImage,
         backIcon,
-        backImageUrl,
         showFrontIcon,
         showFrontTitle,
         frontTitle,
@@ -46,95 +39,39 @@ export default function Edit(props) {
         backTitle,
         showBackContent,
         backContent,
-        linkType,
         showBackLinkBtn,
         buttonText,
         buttonIcon,
-        buttonIconPos,
+        showBackLinkBtnIcon,
         link,
-        frontTitleColor,
-        backTitleColor,
-        frontContentColor,
-        backContentColor,
-        frontIconColor,
-        backIconColor,
-        buttonStyle,
-        buttonClasses,
-        buttonBackground,
-        buttonColor,
-        frontIconBackground,
-        backIconBackground,
-        transitionSpeed,
-        displayButtonIcon,
-        align,
-        contentPosition,
-        classHook,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId} ${preset ? preset : ''}`, classArrayToStr(parentClasses)),
+        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });
 
     /**
      * context
      */
-    useEffect(() => {
-        setAttributes({
-            preset: context['zolo/preset'],
-            addDetailPageLink: context['zolo/addDetailPageLink'],
-            showDesignation: context['zolo/showDesignation'],
-            showShortBio: context['zolo/showShortBio'],
-            showSocialProfiles: context['zolo/showSocialProfiles'],
-        });
-    }, [context]);
+    // useEffect(() => {
+    //     setAttributes({
+    //         preset: context['zolo/preset'],
+    //         addDetailPageLink: context['zolo/addDetailPageLink'],
+    //         showDesignation: context['zolo/showDesignation'],
+    //         showShortBio: context['zolo/showShortBio'],
+    //         showSocialProfiles: context['zolo/showSocialProfiles'],
+    //     });
+    // }, [context]);
 
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-
-            {/* <BlockControls>
-                {memberPhoto && (
-                    <Fragment>
-                        <ToolbarGroup>
-                            <MediaUpload
-                                onSelect={(media) => {
-                                    setAttributes({
-                                        memberPhoto: media,
-                                    });
-                                }}
-                                allowedTypes={['image']}
-                                value={memberPhoto && memberPhoto.id}
-                                render={({ open }) => (
-                                    <ToolbarButton
-                                        className="components-toolbar__control"
-                                        label={__('Replace Photo', 'zolo-blocks')}
-                                        icon="edit"
-                                        onClick={open}
-                                    />
-                                )}
-                            />
-                        </ToolbarGroup>
-                        <ToolbarGroup>
-                            <ToolbarButton
-                                className="components-toolbar__control"
-                                label={__('Remove Photo', 'zolo-blocks')}
-                                icon="trash"
-                                onClick={() => {
-                                    setAttributes({
-                                        memberPhoto: null,
-                                    });
-                                }}
-                            />
-                        </ToolbarGroup>
-                    </Fragment>
-                )}
-            </BlockControls> */}
-
             <div {...blockProps}>
                 <div className={`zolo-flip-box_wrap zolo-flip-box_animation_style-${flipEffect}`}>
-                    <div className={`zolo-flip-box_item ${
+                    <div
+                        className={`zolo-flip-box_item ${
                             isHover || selectedSide === 'back' ? ' zolo-flip-box_active' : 'zolo-flip-box_hover'
                         }`}
                     >
@@ -152,13 +89,8 @@ export default function Edit(props) {
                                         </div>
                                     )}
                                     {showFrontTitle &&
-                                        (linkType === 'title' && link ? (
-                                            <a href={link ? link : '#'} className="title-link">
-                                                <h3 className="zolo-flip-box_title">{frontTitle}</h3>
-                                            </a>
-                                        ) : (
-                                            <h3 className="zolo-flip-box_title">{frontTitle}</h3>
-                                        ))}
+                                         <h3 className="zolo-flip-box_title">{frontTitle}</h3>
+                                       }
                                     {showFrontContent && <p className="zolo-flip-box_desc">{frontContent}</p>}
                                 </div>
                             </div>
@@ -172,7 +104,7 @@ export default function Edit(props) {
                                         </div>
                                     )}
                                     {showBackTitle &&
-                                        (linkType === 'title' && link ? (
+                                        ( link ? (
                                             <a href={link ? link : '#'} className="title-link">
                                                 <h3 className="zolo-flip-box_title">{backTitle}</h3>
                                             </a>
@@ -181,10 +113,10 @@ export default function Edit(props) {
                                         ))}
                                     {showBackContent && <p className="zolo-flip-box_desc">{backContent}</p>}
                                     <div className="zolo-flip-box_link-button-wrap">
-                                        {linkType === 'button' && showBackLinkBtn && (
+                                        {showBackLinkBtn && (
                                             <a href={link ? link : '#'} className="zolo-flip-box_link-btn">
                                                 <span>{buttonText}</span>
-                                                {buttonIcon && <DisplayZoloIcon icon={buttonIcon} />}
+                                                {(buttonIcon && showBackLinkBtnIcon) && <DisplayZoloIcon icon={buttonIcon} />}
                                             </a>
                                         )}
                                     </div>

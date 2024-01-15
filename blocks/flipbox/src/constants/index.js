@@ -35,22 +35,19 @@ export const FLIP_TRIGGER_TYPE = [
     { label: __('Click', 'zolo-blocks'), value: 'click' },
 ];
 
- //FRONT ITEMS
- export const FLIPBOX_HEIGHT = 'FlipboxHeight';
- export const FLIPBOX_BORDER_RADIUS = 'FrontItemsBorderRadius';
-
+//FRONT ITEMS
+export const FLIPBOX_HEIGHT = 'FlipboxHeight';
+export const FLIPBOX_BORDER_RADIUS = 'FrontItemsBorderRadius';
 export const FRONT_ITEMS_BORDER = 'FrontItemsBorder';
 export const FRONT_ITEMS_BG = 'FrontItemsBg';
 export const FRONT_ITEMS_PADDING = 'FrontItemsPadding';
 
+//BACK ITEMS
 export const BACK_ITEMS_BORDER = 'BackItemsBorder';
 export const BACK_ITEMS_BG = 'BackItemsBg';
 export const BACK_ITEMS_PADDING = 'BackItemsPadding';
 
-
-
-
-
+// FRONT ICON
 export const FRONT_ICON_SIZE = 'FrontIconSize';
 export const FRONT_ICON_BORDER = 'FrontIconBorder';
 export const FRONT_ICON_BORDER_RADIUS = 'FrontIconBorderRadius';
@@ -60,7 +57,7 @@ export const FRONT_ICON_HBG = 'FrontIconHoverBg';
 export const FRONT_ICON_MARGIN = 'FrontIconMargin';
 export const FRONT_TITLE_MARGIN = 'FrontTitleMargin';
 
-
+// BACK ICON
 export const BACK_ICON_SIZE = 'BackIconSize';
 export const BACK_ICON_BORDER = 'BackIconBorder';
 export const BACK_ICON_BORDER_RADIUS = 'BackIconBorderRadius';
@@ -70,5 +67,10 @@ export const BACK_ICON_HBG = 'BackIconHoverBg';
 export const BACK_ICON_MARGIN = 'BackIconMargin';
 export const BACK_TITLE_MARGIN = 'BackTitleMargin';
 
-
+// BACK LINK BUTTON
+export const BACK_LINK_BORDER = 'BackLinkBorder';
+export const BACK_LINK_BORDER_RADIUS = 'BackLinkBorderRadius';
+export const BACK_LINK_BG = 'BackLinkBg';
+export const BACK_LINK_HBG = 'BackLinkHBg';
+export const BACK_LINK_PADDING = 'BackLinkPadding';
 
