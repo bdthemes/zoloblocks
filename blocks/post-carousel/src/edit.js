@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState, useRef } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import { Spinner } from '@wordpress/components';
 import classnames from 'classnames';
@@ -12,7 +12,6 @@ import { useDispatch } from '@wordpress/data';
 
 const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
-import { useRef } from 'react';
 
 // Constants
 import { COLUMNS, COLUMNS_GAP } from './constants';
@@ -22,6 +21,7 @@ export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
     // Slider Ref
     const postCarouselRef = useRef(null);
+
     const dispatch = useDispatch();
     const {
         uniqueId,
@@ -50,7 +50,7 @@ export default function Edit(props) {
     } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId} zolo-post-grid-wrap zolo-post-${preset}`, classArrayToStr(parentClasses)),
+        className: classnames(className, `${uniqueId} zolo-post-carousel-wrap zolo-post-${preset}`, classArrayToStr(parentClasses)),
     });
 
 
@@ -108,7 +108,7 @@ export default function Edit(props) {
     //slider initialize
     useEffect(() => {
         let breakpoints = {};
-        if (sliderType === 'carousel') {
+        // if (sliderType === 'carousel') {
             breakpoints = {
                 1025: {
                     slidesPerView: deskCol || 2,
@@ -122,13 +122,13 @@ export default function Edit(props) {
                     slidesPerView: mobCol || 1,
                     spaceBetween: parseInt(mobColGap.slice(0, -1)) || 0,
                 },
-            };
+            // };
         }
 
         let options = {
             loop: infiniteLoop,
             speed: speed * 100,
-            effect: sliderType === 'carousel' ? carouselEffect : sliderEffect,
+            effect: carouselEffect,
             autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
             navigation: showNavigation
                 ? {
@@ -144,7 +144,7 @@ export default function Edit(props) {
                       dynamicBullets: dynamicBullets,
                   }
                 : false,
-            effect: sliderType === 'carousel' ? carouselEffect : sliderEffect,
+            effect: carouselEffect,
             breakpoints: breakpoints,
         };
 
@@ -152,8 +152,10 @@ export default function Edit(props) {
         if(postCarouselRef.current){
             zoloSliderInit(postCarouselRef.current, options);
         }
+        console.log(options)
 
     }, [
+        postCarouselRef.current,
         sliderType,
         deskCol,
         tabCol,
@@ -179,6 +181,12 @@ export default function Edit(props) {
         addNewSlideBlock,
         resMode,
     ]);
+
+        // useEffect(() => {
+        //     if (postCarouselRef.current) {
+        //         zoloSliderInit(postCarouselRef.current, attributes.sliderOptions);
+        //     }
+        // }, [postCarouselRef.current]);
 
     const [postResults, setPostResults] = useState([]);
     const [dataSuccess, setDataSuccess] = useState(true);
@@ -231,7 +239,6 @@ export default function Edit(props) {
         return <img src={zoloParams.blocksPreview.postCarousel} alt={__('Post Carousel Preview', 'zolo-blocks')} />;
     }
 
-
      function handleClick() {
          postCarouselRef.current.focus();
          console.log(postCarouselRef.current);
@@ -245,7 +252,7 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blockProps}>
                 <div className="swiper" ref={postCarouselRef}>
-                    <button onClick={handleClick}>Click</button>
+                    {/* <button onClick={handleClick}>Click</button> */}
                     <div className="swiper-wrapper">
                         <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults} />
                     </div>

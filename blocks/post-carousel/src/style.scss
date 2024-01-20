@@ -1,8 +1,6 @@
-.zolo-post-grid-wrap {
+.zolo-post-carousel-wrap {
+    padding: 20px;
     // --zoloblocks-brand-color-hover: #3f1a46;
-    display: grid;
-    grid-gap: 30px;
-    grid-template-columns: repeat(1, 1fr);
     .zolo-post-item {
         position: relative;
         overflow: hidden;
@@ -412,7 +410,7 @@
 }
 
 @media (min-width: 768px) {
-    .zolo-post-grid-wrap {
+    .zolo-post-carosel-wrap {
         &.zolo-post-style-5 .zolo-post-content {
             width: 60%;
             flex-direction: row;
@@ -443,24 +441,3 @@
     }
 }
 // pagination css  end
-
-@media (min-width: 768px) {
-    .zolo-post-grid-wrap {
-        &.zolo-post-style-1,
-        &.zolo-post-style-2,
-        &.zolo-post-style-3,
-        &.zolo-post-style-4 {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-}
-
-@media (min-width: 1024px) {
-    .zolo-post-grid-wrap {
-        &.zolo-post-style-1,
-        &.zolo-post-style-2,
-        &.zolo-post-style-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-}

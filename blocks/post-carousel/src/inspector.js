@@ -2,10 +2,13 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TextControl, ToggleControl, CardDivider, BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
+import { RangeControl } from '@wordpress/components';
 
 import {
     PRESETS,
+    COLUMNS,
     COLUMNS_GAP,
+    CAROUSEL_EFFECTS,
     THUMBNAIL_HEIGHT,
     COLUMN_PADDING,
     COLUMN_BG,
@@ -115,6 +118,23 @@ function Inspector(props) {
         metaSeparator,
         // post meta
         showReadingTime,
+        // slider
+        sliderType,
+        autoplay,
+        autoplayDelay,
+        pauseOnMouseEnter,
+        infiniteLoop,
+        showNavigation,
+        navColor,
+        navHoverColor,
+        navHoverBorderColor,
+        showPagination,
+        speed,
+        carouselEffect,
+        sliderEffect,
+        customNavIcon,
+        prevNavIcon,
+        nextNavIcon,
     } = attributes;
 
     const requiredProps = {
@@ -187,6 +207,16 @@ function Inspector(props) {
                                 onChange={(selected) => changePremade(selected)}
                             />
 
+                            <SelectControl
+                                label={__('Select Effect', 'zolo-blocks')}
+                                options={CAROUSEL_EFFECTS}
+                                onChange={(effect) =>
+                                    setAttributes({
+                                        carouselEffect: effect,
+                                    })
+                                }
+                                value={carouselEffect}
+                            />
                             <ToggleControl
                                 label={__('Show Title', 'zolo-blocks')}
                                 checked={showTitle}
@@ -228,50 +258,52 @@ function Inspector(props) {
                                 />
                             )}
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
-                            {showTitle && (
-                                <>
-                                    <SelectControl
-                                        label={__('Title Tag', 'zolo-blocks')}
-                                        value={titleTag}
-                                        options={HEADING}
-                                        onChange={(titleTag) => setAttributes({ titleTag })}
-                                    />
-                                    <RangeResetControl
-                                        label={__('Title Words', 'zolo-blocks')}
-                                        controlName={'titleWords'}
-                                        requiredProps={requiredProps}
-                                        min={1}
-                                        max={100}
-                                        step={1}
-                                    />
-                                </>
-                            )}
-                            {showExcerpt && (
-                                <>
-                                    <RangeResetControl
-                                        label={__('Excerpt Words', 'zolo-blocks')}
-                                        controlName={'excerptWords'}
-                                        requiredProps={requiredProps}
-                                        min={1}
-                                        max={100}
-                                        step={1}
-                                    />
+                        {(showTitle || showExcerpt) && (
+                            <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
+                                {showTitle && (
+                                    <>
+                                        <SelectControl
+                                            label={__('Title Tag', 'zolo-blocks')}
+                                            value={titleTag}
+                                            options={HEADING}
+                                            onChange={(titleTag) => setAttributes({ titleTag })}
+                                        />
+                                        <RangeResetControl
+                                            label={__('Title Words', 'zolo-blocks')}
+                                            controlName={'titleWords'}
+                                            requiredProps={requiredProps}
+                                            min={1}
+                                            max={100}
+                                            step={1}
+                                        />
+                                    </>
+                                )}
+                                {showExcerpt && (
+                                    <>
+                                        <RangeResetControl
+                                            label={__('Excerpt Words', 'zolo-blocks')}
+                                            controlName={'excerptWords'}
+                                            requiredProps={requiredProps}
+                                            min={1}
+                                            max={100}
+                                            step={1}
+                                        />
+                                        <TextControl
+                                            label={__(' Expansion Indicator', 'zolo-blocks')}
+                                            value={excerptindicator}
+                                            onChange={(excerptindicator) => setAttributes({ excerptindicator })}
+                                        />
+                                    </>
+                                )}
+                                {showMeta && showReadingTime && (
                                     <TextControl
-                                        label={__(' Expansion Indicator', 'zolo-blocks')}
-                                        value={excerptindicator}
-                                        onChange={(excerptindicator) => setAttributes({ excerptindicator })}
+                                        label={__('Meta Separator', 'zolo-blocks')}
+                                        value={metaSeparator}
+                                        onChange={(value) => setAttributes({ metaSeparator: value })}
                                     />
-                                </>
-                            )}
-                            {showMeta && showReadingTime && (
-                                <TextControl
-                                    label={__('Meta Separator', 'zolo-blocks')}
-                                    value={metaSeparator}
-                                    onChange={(value) => setAttributes({ metaSeparator: value })}
-                                />
-                            )}
-                        </ZoloPanelBody>
+                                )}
+                            </ZoloPanelBody>
+                        )}
                         {showReadMore && (
                             <ZoloPanelBody title={__('Read More Button', 'zolo-blocks')} panelProps={props}>
                                 <ToggleControl
@@ -302,19 +334,99 @@ function Inspector(props) {
                                 )}
                             </ZoloPanelBody>
                         )}
-
-                        <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
-                            <ResRangeControl
-                                label={__('Gap', 'zolo-blocks')}
-                                controlName={COLUMNS_GAP}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
-                        </ZoloPanelBody>
                         <ZoloPanelBody title={__('Query', 'zolo-blocks')} panelProps={props}>
                             <QueryControl attributes={attributes} setAttributes={setAttributes} />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Carousel Options', 'zolo-blocks')} panelProps={props}>
+                            <ResCounterControl
+                                label={__('Column Number', 'zolo-blocks')}
+                                controlName={COLUMNS}
+                                requiredProps={requiredProps}
+                                min={2}
+                                max={5}
+                            />
+                            <ResRangeControl
+                                label={__('Column Gap', 'zolo-blocks')}
+                                controlName={COLUMNS_GAP}
+                                requiredProps={requiredProps}
+                                min={1}
+                                max={100}
+                                step={1}
+                                noUnits={true}
+                            />
+                            <RangeControl
+                                label={__('Speed', 'zolo-blocks')}
+                                value={speed}
+                                onChange={(v) =>
+                                    setAttributes({
+                                        speed: v,
+                                    })
+                                }
+                                min={1}
+                                max={100}
+                                help={__('Speed: ', 'zolo-blocks') + speed * 100 + 'ms'}
+                            />
+                            <ToggleControl
+                                label={__('Infinite Loop', 'zolo-blocks')}
+                                checked={infiniteLoop}
+                                onChange={() =>
+                                    setAttributes({
+                                        infiniteLoop: !infiniteLoop,
+                                    })
+                                }
+                            />
+                            <ToggleControl
+                                label={__('Autoplay', 'zolo-blocks')}
+                                checked={autoplay}
+                                onChange={() =>
+                                    setAttributes({
+                                        autoplay: !autoplay,
+                                    })
+                                }
+                            />
+                            {autoplay && (
+                                <Fragment>
+                                    <RangeControl
+                                        label={__('Autoplay Delay', 'zolo-blocks')}
+                                        value={autoplayDelay}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                autoplayDelay: v,
+                                            })
+                                        }
+                                        min={1}
+                                        max={100}
+                                        help={__('Autoplay Dealy: ', 'zolo-blocks') + autoplayDelay * 100 + 'ms'}
+                                    />
+                                    <ToggleControl
+                                        label={__('Pause on Mouse Enter', 'zolo-blocks')}
+                                        checked={pauseOnMouseEnter}
+                                        onChange={() =>
+                                            setAttributes({
+                                                pauseOnMouseEnter: !pauseOnMouseEnter,
+                                            })
+                                        }
+                                    />
+                                </Fragment>
+                            )}
+                            <ToggleControl
+                                label={__('Show Navigation', 'zolo-blocks')}
+                                checked={showNavigation}
+                                onChange={() =>
+                                    setAttributes({
+                                        showNavigation: !showNavigation,
+                                    })
+                                }
+                            />
+                            <ToggleControl
+                                label={__('Show Pagination', 'zolo-blocks')}
+                                checked={showPagination}
+                                onChange={() =>
+                                    setAttributes({
+                                        showPagination: !showPagination,
+                                    })
+                                }
+                            />
                         </ZoloPanelBody>
                     </>
                 }
