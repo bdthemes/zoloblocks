@@ -53,6 +53,13 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-scripts' => false,
         'class' => '\Zolo\Blocks\PostGrid'
     ],
+    'post-carousel' => [
+        'name'             => 'post-carousel',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/post-carousel/block.json',
+        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-slider-frontend'],
+        'class' => '\Zolo\Blocks\PostCarousel'
+    ],
     'post-list' => [
         'name'             => 'post-list',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/post-list/block.json',
