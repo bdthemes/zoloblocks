@@ -23,6 +23,7 @@ function RenderView({ attributes, postResults }) {
         metaSeparator,
     } = attributes;
 
+    console.log('showReadmore', showReadMore);
     return [
         postResults.length > 0 &&
             postResults.map((post) => {

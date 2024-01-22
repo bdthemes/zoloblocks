@@ -1,5 +1,5 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TextControl, ToggleControl, CardDivider, BaseControl } from '@wordpress/components';
+import { SelectControl, TextControl, ToggleControl, CardDivider, BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { RangeControl } from '@wordpress/components';
@@ -39,10 +39,24 @@ import {
     AVATAR_GAP,
     PAG_BORDER,
     PAG_BORDER_RADIUS,
-    PAG_MARGIN,
-    PAG_PADDING,
-    PAG_ALIGN,
     META_SPACE,
+    NAV_WIDTH,
+    NAV_HEIGHT,
+    NAV_BORDER,
+    NAV_BORDER_RADIUS,
+    NAV_ICON_SIZE,
+    NAV_BG,
+    NAV_HOVER_BG,
+    PAG_WIDTH,
+    PAG_HEIGHT,
+    PAG_SPACING,
+    PAG_BOTTOM_SPACING,
+    PAG_BG,
+    APAG_WIDTH,
+    APAG_HEIGHT,
+    APAG_BG,
+    APAG_BORDER,
+    APAG_BORDER_RADIUS,
 } from './constants';
 
 import {
@@ -52,10 +66,9 @@ import {
     CAT_TYPOGRAPHY,
     READMORE_TYPOGRAPHY,
     NAME_TYPOGRAPHY,
-    PAG_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
-import { DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE } from '../../../src/global/constants';
+import {HEADING, THUMBNAIL_SIZE } from '../../../src/global/constants';
 
 const {
     ResDimensionsControl,
@@ -72,7 +85,6 @@ const {
     ResCounterControl,
     AdvancedOptions,
     ZoloIconPicker,
-    ResAlignmentControl,
     ZoloPanelBody,
 } = window.zoloModule;
 
@@ -110,16 +122,8 @@ function Inspector(props) {
         namePrefixColor,
         nameColor,
         nameHoverColor,
-        pagColor,
-        pagBgColor,
-        apagColor,
-        apagBgColor,
-        pagSeparatorColor,
         metaSeparator,
-        // post meta
         showReadingTime,
-        // slider
-        sliderType,
         autoplay,
         autoplayDelay,
         pauseOnMouseEnter,
@@ -131,7 +135,6 @@ function Inspector(props) {
         showPagination,
         speed,
         carouselEffect,
-        sliderEffect,
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
@@ -169,22 +172,6 @@ function Inspector(props) {
                     showReadMore: false,
                     showThumbnail: true,
                     zolo_gridColumnsRange: 3,
-                });
-                break;
-            case 'style-4':
-                setAttributes({
-                    showExcerpt: false,
-                    showReadMore: false,
-                    showThumbnail: true,
-                    zolo_gridColumnsRange: 2,
-                });
-                break;
-            case 'style-5':
-                setAttributes({
-                    showExcerpt: true,
-                    showReadMore: true,
-                    showThumbnail: false,
-                    zolo_gridColumnsRange: 1,
                 });
                 break;
             default:
@@ -309,7 +296,7 @@ function Inspector(props) {
                                 <ToggleControl
                                     label={__('Show Text', 'zolo-blocks')}
                                     checked={showReadmoreText}
-                                    onChange={(showReadmoreText) => setAttributes({ showReadmoreText })}
+                                    onChange={() => setAttributes({ showReadmoreText: !showReadmoreText })}
                                 />
                                 <ToggleControl
                                     label={__('Show Icon', 'zolo-blocks')}
@@ -428,6 +415,43 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
+                        {showNavigation && (
+                            <>
+                                <ZoloPanelBody title={__('Navigation', 'zolo-blocks')} panelProps={props}>
+                                    <ToggleControl
+                                        label={__('Custom Navigation Icons', 'zolo-blocks')}
+                                        checked={customNavIcon}
+                                        onChange={() =>
+                                            setAttributes({
+                                                customNavIcon: !customNavIcon,
+                                            })
+                                        }
+                                    />
+                                    {customNavIcon && (
+                                        <>
+                                            <ZoloIconPicker
+                                                label={__('Select Prev Icon', 'zolo-blocks')}
+                                                value={prevNavIcon}
+                                                onChange={(value) => {
+                                                    setAttributes({
+                                                        prevNavIcon: value,
+                                                    });
+                                                }}
+                                            />
+                                            <ZoloIconPicker
+                                                label={__('Select Next Icon', 'zolo-blocks')}
+                                                value={nextNavIcon}
+                                                onChange={(value) => {
+                                                    setAttributes({
+                                                        nextNavIcon: value,
+                                                    });
+                                                }}
+                                            />
+                                        </>
+                                    )}
+                                </ZoloPanelBody>
+                            </>
+                        )}
                     </>
                 }
                 styleTab={
@@ -839,6 +863,196 @@ function Inspector(props) {
                                     />
                                 </BaseControl>
                             </ZoloPanelBody>
+                        )}
+
+                        {showNavigation && (
+                            <ZoloPanelBody title={__('Navigation', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                                <ResRangeControl
+                                    label={__('Width', 'zolo-blocks')}
+                                    controlName={NAV_WIDTH}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={100}
+                                />
+                                <ResRangeControl
+                                    label={__('Height', 'zolo-blocks')}
+                                    controlName={NAV_HEIGHT}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={100}
+                                    units={[
+                                        { label: 'px', value: 'px' },
+                                        { label: '%', value: '%' },
+                                        { label: 'em', value: 'em' },
+                                        { label: 'vh', value: 'vh' },
+                                    ]}
+                                />
+                                <BorderControl
+                                    label={__('Border', 'zolo-blocks')}
+                                    controlName={NAV_BORDER}
+                                    requiredProps={requiredProps}
+                                    hoverControl={
+                                        <Fragment>
+                                            <ColorControl
+                                                label={__('Border Color', 'zolo-blocks')}
+                                                color={navHoverBorderColor}
+                                                onChange={(color) => setAttributes({ navHoverBorderColor: color })}
+                                            />
+                                        </Fragment>
+                                    }
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={NAV_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResRangeControl
+                                    label={__('Icon Size', 'zolo-blocks')}
+                                    controlName={NAV_ICON_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={100}
+                                />
+                                <TabPanelControl
+                                    normalComponents={
+                                        <Fragment>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={navColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        navColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl
+                                                label={__('Background', 'zolo-blocks')}
+                                                controlName={NAV_BG}
+                                                requiredProps={requiredProps}
+                                                noMainBGImg={true}
+                                            />
+                                        </Fragment>
+                                    }
+                                    hoverComponents={
+                                        <Fragment>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={navHoverColor}
+                                                onChange={(color) => setAttributes({ navHoverColor: color })}
+                                            />
+                                            <NormalBGControl
+                                                label={__('Background', 'zolo-blocks')}
+                                                controlName={NAV_HOVER_BG}
+                                                requiredProps={requiredProps}
+                                                noMainBGImg={true}
+                                            />
+                                        </Fragment>
+                                    }
+                                />
+                            </ZoloPanelBody>
+                        )}
+                        {showPagination && (
+                            <Fragment>
+                                <ZoloPanelBody title={__('Pagination', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                                    <ResRangeControl
+                                        label={__('Space Between', 'zolo-blocks')}
+                                        controlName={PAG_SPACING}
+                                        requiredProps={requiredProps}
+                                        min={0}
+                                        max={100}
+                                    />
+                                    <ResRangeControl
+                                        label={__('Bottom Spacing', 'zolo-blocks')}
+                                        controlName={PAG_BOTTOM_SPACING}
+                                        requiredProps={requiredProps}
+                                        min={-100}
+                                        max={100}
+                                    />
+                                    <TabPanelControl
+                                        options={[
+                                            {
+                                                value: 'normal',
+                                                label: __('Normal', 'zolo-blocks'),
+                                            },
+                                            {
+                                                value: 'hover',
+                                                label: __('Active', 'zolo-blocks'),
+                                            },
+                                        ]}
+                                        normalComponents={
+                                            <Fragment>
+                                                <ResRangeControl
+                                                    label={__('Width', 'zolo-blocks')}
+                                                    controlName={PAG_WIDTH}
+                                                    requiredProps={requiredProps}
+                                                    min={1}
+                                                    max={100}
+                                                />
+                                                <ResRangeControl
+                                                    label={__('Height', 'zolo-blocks')}
+                                                    controlName={PAG_HEIGHT}
+                                                    requiredProps={requiredProps}
+                                                    min={1}
+                                                    max={100}
+                                                />
+                                                <BorderControl
+                                                    label={__('Border', 'zolo-blocks')}
+                                                    controlName={PAG_BORDER}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Border Radius', 'zolo-blocks')}
+                                                    controlName={PAG_BORDER_RADIUS}
+                                                    requiredProps={requiredProps}
+                                                    forBorderRadius={true}
+                                                />
+                                                <NormalBGControl
+                                                    label={__('Background', 'zolo-blocks')}
+                                                    controlName={PAG_BG}
+                                                    requiredProps={requiredProps}
+                                                    noMainBGImg={true}
+                                                />
+                                            </Fragment>
+                                        }
+                                        hoverComponents={
+                                            <Fragment>
+                                                <ResRangeControl
+                                                    label={__('Width', 'zolo-blocks')}
+                                                    controlName={APAG_WIDTH}
+                                                    requiredProps={requiredProps}
+                                                    min={1}
+                                                    max={100}
+                                                />
+                                                <ResRangeControl
+                                                    label={__('Height', 'zolo-blocks')}
+                                                    controlName={APAG_HEIGHT}
+                                                    requiredProps={requiredProps}
+                                                    min={1}
+                                                    max={100}
+                                                />
+                                                <BorderControl
+                                                    label={__('Border', 'zolo-blocks')}
+                                                    controlName={APAG_BORDER}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Border Radius', 'zolo-blocks')}
+                                                    controlName={APAG_BORDER_RADIUS}
+                                                    requiredProps={requiredProps}
+                                                    forBorderRadius={true}
+                                                />
+                                                <NormalBGControl
+                                                    label={__('Background', 'zolo-blocks')}
+                                                    controlName={APAG_BG}
+                                                    requiredProps={requiredProps}
+                                                    noMainBGImg={true}
+                                                />
+                                            </Fragment>
+                                        }
+                                    />
+                                </ZoloPanelBody>
+                            </Fragment>
                         )}
                     </>
                 }

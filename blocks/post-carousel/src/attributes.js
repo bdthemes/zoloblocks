@@ -9,10 +9,9 @@ const {
     generateNormalBGAttributes,
     generateTypographyAttributes,
     generateResCounterAttributies,
-    generateResAlignmentAttributies,
 } = window.zoloModule;
-
 import {
+    COLUMNS,
     COLUMNS_GAP,
     THUMBNAIL_HEIGHT,
     COLUMN_PADDING,
@@ -20,12 +19,11 @@ import {
     COLUMN_BORDER,
     COLUMN_BORDER_RADIUS,
     COLUMN_SHADOW,
-
-    THUMBNAIL_MARGIN,
-    THUMBNAIL_BG,
     THUMBNAIL_BORDER,
     THUMBNAIL_BORDER_RADIUS,
     THUMBNAIL_BOX_SHADOW,
+    THUMBNAIL_MARGIN,
+    THUMBNAIL_BG,
     TITLE_MARGIN,
     EXCERPT_MARGIN,
     META_MARGIN,
@@ -39,11 +37,30 @@ import {
     READMORE_BORDER_RADIUS,
     READMORE_MARGIN,
     READMORE_PADDING,
-    AVATAR_GAP,
     AVATAR_SIZE,
     AVATAR_BORDER,
     AVATAR_BORDER_RADIUS,
+    AVATAR_GAP,
+    PAG_BORDER,
+    PAG_BORDER_RADIUS,
     META_SPACE,
+    NAV_WIDTH,
+    NAV_HEIGHT,
+    NAV_BORDER,
+    NAV_BORDER_RADIUS,
+    NAV_ICON_SIZE,
+    NAV_BG,
+    NAV_HOVER_BG,
+    PAG_WIDTH,
+    PAG_HEIGHT,
+    PAG_SPACING,
+    PAG_BOTTOM_SPACING,
+    PAG_BG,
+    APAG_WIDTH,
+    APAG_HEIGHT,
+    APAG_BG,
+    APAG_BORDER,
+    APAG_BORDER_RADIUS,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -249,6 +266,33 @@ const attributes = {
 
     // post meta
     ...generateResRangeAttributies(META_SPACE),
+
+    // Generator
+    ...generateResCounterAttributies(COLUMNS),
+    ...generateResRangeAttributies(COLUMNS_GAP),
+    ...generateResRangeAttributies(NAV_WIDTH),
+    ...generateResRangeAttributies(NAV_HEIGHT),
+    ...generateBorderAttributies(NAV_BORDER),
+    ...generateDimensionAttributes(NAV_BORDER_RADIUS),
+    ...generateNormalBGAttributes(NAV_BG),
+    ...generateNormalBGAttributes(NAV_HOVER_BG),
+    ...generateResRangeAttributies(NAV_ICON_SIZE),
+
+    // pagination
+    ...generateResRangeAttributies(PAG_WIDTH),
+    ...generateResRangeAttributies(PAG_HEIGHT),
+    ...generateBorderAttributies(PAG_BORDER),
+    ...generateDimensionAttributes(PAG_BORDER_RADIUS),
+    ...generateNormalBGAttributes(PAG_BG),
+    ...generateResRangeAttributies(PAG_SPACING),
+    ...generateResRangeAttributies(PAG_BOTTOM_SPACING),
+
+    // active pagination
+    ...generateResRangeAttributies(APAG_WIDTH),
+    ...generateResRangeAttributies(APAG_HEIGHT),
+    ...generateBorderAttributies(APAG_BORDER),
+    ...generateDimensionAttributes(APAG_BORDER_RADIUS),
+    ...generateNormalBGAttributes(APAG_BG),
     // swiper options
     uniqueId: {
         type: 'string',

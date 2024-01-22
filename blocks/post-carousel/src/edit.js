@@ -7,11 +7,8 @@ import classnames from 'classnames';
 import Inspector from './inspector';
 import RenderView from './render-view';
 import './style.scss';
-// import { useRef } from '@wordpress/element';
-import { useDispatch } from '@wordpress/data';
 
 const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
-
 
 // Constants
 import { COLUMNS, COLUMNS_GAP } from './constants';
@@ -22,7 +19,6 @@ export default function Edit(props) {
     // Slider Ref
     const postCarouselRef = useRef(null);
 
-    const dispatch = useDispatch();
     const {
         uniqueId,
         parentClasses,
@@ -52,8 +48,6 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId} zolo-post-carousel-wrap zolo-post-${preset}`, classArrayToStr(parentClasses)),
     });
-
-
 
     // columns count
     const {
@@ -109,21 +103,21 @@ export default function Edit(props) {
     useEffect(() => {
         let breakpoints = {};
         // if (sliderType === 'carousel') {
-            breakpoints = {
-                1025: {
-                    slidesPerView: deskCol || 2,
-                    spaceBetween: parseInt(deskColGap.slice(0, -1)) || 30,
-                },
-                768: {
-                    slidesPerView: tabCol || 2,
-                    spaceBetween: parseInt(tabColGap.slice(0, -1)) || 30,
-                },
-                320: {
-                    slidesPerView: mobCol || 1,
-                    spaceBetween: parseInt(mobColGap.slice(0, -1)) || 0,
-                },
+        breakpoints = {
+            1025: {
+                slidesPerView: deskCol || 2,
+                spaceBetween: parseInt(deskColGap.slice(0, -1)) || 30,
+            },
+            768: {
+                slidesPerView: tabCol || 2,
+                spaceBetween: parseInt(tabColGap.slice(0, -1)) || 30,
+            },
+            320: {
+                slidesPerView: mobCol || 1,
+                spaceBetween: parseInt(mobColGap.slice(0, -1)) || 0,
+            },
             // };
-        }
+        };
 
         let options = {
             loop: infiniteLoop,
@@ -149,11 +143,9 @@ export default function Edit(props) {
         };
 
         setAttributes({ sliderOptions: options });
-        if(postCarouselRef.current){
+        if (postCarouselRef.current) {
             zoloSliderInit(postCarouselRef.current, options);
         }
-        console.log(options)
-
     }, [
         postCarouselRef.current,
         sliderType,
@@ -182,20 +174,10 @@ export default function Edit(props) {
         resMode,
     ]);
 
-        // useEffect(() => {
-        //     if (postCarouselRef.current) {
-        //         zoloSliderInit(postCarouselRef.current, attributes.sliderOptions);
-        //     }
-        // }, [postCarouselRef.current]);
-
     const [postResults, setPostResults] = useState([]);
     const [dataSuccess, setDataSuccess] = useState(true);
-    const [pageTotal, setPageTotal] = useState(0);
 
     useEffect(() => {
-        let paginationLimit = 0;
-        paginationLimit = postQuery?.postPerPage;
-
         const apiData = {
             zolo_nonce: zoloParams.zolo_nonce,
             attributes: attributes,
@@ -239,24 +221,43 @@ export default function Edit(props) {
         return <img src={zoloParams.blocksPreview.postCarousel} alt={__('Post Carousel Preview', 'zolo-blocks')} />;
     }
 
-     function handleClick() {
-         postCarouselRef.current.focus();
-         console.log(postCarouselRef.current);
-        // zoloSliderInit(postCarouselRef.current, attributes.sliderOptions);
-
-     }
-
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
                 <div className="swiper" ref={postCarouselRef}>
-                    {/* <button onClick={handleClick}>Click</button> */}
                     <div className="swiper-wrapper">
                         <RenderView attributes={attributes} setAttributes={setAttributes} postResults={postResults} />
                     </div>
                 </div>
+                {showPagination && <div class="swiper-pagination swiper-pagination-position-bottom"></div>}
+                {showNavigation && (
+                    <Fragment>
+                        <div
+                            className={`swiper-navigation-wrap  swiper-navigation-position-center ${
+                                customNavIcon ? 'zolo-custom-nav' : ''
+                            }`}
+                        >
+                            {customNavIcon && (
+                                <>
+                                    <div className="swiper-nav-button swiper-zolo-prev">
+                                        <DisplayZoloIcon icon={prevNavIcon} />
+                                    </div>
+                                    <div className="swiper-nav-button swiper-zolo-next">
+                                        <DisplayZoloIcon icon={nextNavIcon} />
+                                    </div>
+                                </>
+                            )}
+                            {!customNavIcon && (
+                                <>
+                                    <div className="swiper-nav-button swiper-button-prev"></div>
+                                    <div className="swiper-nav-button swiper-button-next"></div>
+                                </>
+                            )}
+                        </div>
+                    </Fragment>
+                )}
             </div>
         </>
     );

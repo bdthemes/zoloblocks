@@ -29,6 +29,25 @@ import {
     AVATAR_BORDER_RADIUS,
     AVATAR_GAP,
     META_SPACE,
+    NAV_WIDTH,
+    NAV_HEIGHT,
+    NAV_BORDER,
+    NAV_BORDER_RADIUS,
+    NAV_BG,
+    NAV_HOVER_BG,
+    NAV_ICON_SIZE,
+    PAG_WIDTH,
+    PAG_HEIGHT,
+    PAG_BORDER,
+    PAG_BORDER_RADIUS,
+    PAG_BG,
+    PAG_SPACING,
+    PAG_BOTTOM_SPACING,
+    APAG_WIDTH,
+    APAG_HEIGHT,
+    APAG_BORDER,
+    APAG_BORDER_RADIUS,
+    APAG_BG,
 } from './constants';
 
 import {
@@ -48,9 +67,7 @@ const {
     generateBorderStyle,
     generateBoxShadowStyles,
     generateTypographyStyles,
-    generateResCounterStyle,
     GlobalStyleHanlder,
-    generateResAlignmentStyle,
 } = window.zoloModule;
 
 function Style({ props }) {
@@ -72,8 +89,10 @@ function Style({ props }) {
         namePrefixColor,
         nameColor,
         nameHoverColor,
+        navColor,
+        navHoverColor,
+        navHoverBorderColor,
     } = attributes;
-
 
     const {
         desktopRangeStyle: colGapDesk,
@@ -410,15 +429,229 @@ function Style({ props }) {
         attributes,
     });
 
+    // carousel start
+    // Navigation
+    const {
+        desktopRangeStyle: navDeskWidth,
+        tabRangeStyle: navTabWidth,
+        mobRangeStyle: navMobWidth,
+    } = generateResRangeStyle({
+        controlName: NAV_WIDTH,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: navDeskHeight,
+        tabRangeStyle: navTabHeight,
+        mobRangeStyle: navMobHeight,
+    } = generateResRangeStyle({
+        controlName: NAV_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: navBorderStyles,
+        tabBorderStyle: navBorderStylesTab,
+        mobBorderStyle: navBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: NAV_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: navBorderRadiusDesktop,
+        dimensionStylesTab: navBorderRadiusTab,
+        dimensionStylesMobile: navBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: NAV_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: navNormalBGStyle,
+        backgroundStylesTab: navNormalBGStyleTab,
+        backgroundStylesMobile: navNormalBGStyleMob,
+    } = generateNormalBGControlStyles({
+        controlName: NAV_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        backgroundStylesDesktop: navHoverBGStyle,
+        backgroundStylesTab: navHoverBGStyleTab,
+        backgroundStylesMobile: navHoverBGStyleMob,
+    } = generateNormalBGControlStyles({
+        controlName: NAV_HOVER_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    // navigation icon
+    const {
+        desktopRangeStyle: navDeskSize,
+        tabRangeStyle: navTabSize,
+        mobRangeStyle: navMobSize,
+    } = generateResRangeStyle({
+        controlName: NAV_ICON_SIZE,
+        property: 'font-size',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: cnavDeskSize,
+        tabRangeStyle: cnavTabSize,
+        mobRangeStyle: cnavMobSize,
+    } = generateResRangeStyle({
+        controlName: NAV_ICON_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: cnavDeskHSize,
+        tabRangeStyle: cnavTabHSize,
+        mobRangeStyle: cnavMobHSize,
+    } = generateResRangeStyle({
+        controlName: NAV_ICON_SIZE,
+        property: 'height',
+        attributes,
+    });
+
+    // Pagination
+    const {
+        desktopRangeStyle: pagDeskWidth,
+        tabRangeStyle: pagTabWidth,
+        mobRangeStyle: pagMobWidth,
+    } = generateResRangeStyle({
+        controlName: PAG_WIDTH,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: pagDeskHeight,
+        tabRangeStyle: pagTabHeight,
+        mobRangeStyle: pagMobHeight,
+    } = generateResRangeStyle({
+        controlName: PAG_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: pagBorderStyles,
+        tabBorderStyle: pagBorderStylesTab,
+        mobBorderStyle: pagBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: PAG_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: pagBorderRadiusDesktop,
+        dimensionStylesTab: pagBorderRadiusTab,
+        dimensionStylesMobile: pagBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: PAG_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: pagNormalBGStyle,
+        backgroundStylesTab: pagNormalBGStyleTab,
+        backgroundStylesMobile: pagNormalBGStyleMob,
+    } = generateNormalBGControlStyles({
+        controlName: PAG_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        desktopRangeStyle: pagSpacingDesktop,
+        tabRangeStyle: pagSpacingTab,
+        mobRangeStyle: pagSpacingMob,
+    } = generateResRangeStyle({
+        controlName: PAG_SPACING,
+        property: 'gap',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: pagBottomSpacingDesktop,
+        tabRangeStyle: pagBottomSpacingTab,
+        mobRangeStyle: pagBottomSpacingMob,
+    } = generateResRangeStyle({
+        controlName: PAG_BOTTOM_SPACING,
+        property: 'bottom',
+        attributes,
+    });
+
+    // Active Pagination
+    const {
+        desktopRangeStyle: apagDeskWidth,
+        tabRangeStyle: apagTabWidth,
+        mobRangeStyle: apagMobWidth,
+    } = generateResRangeStyle({
+        controlName: APAG_WIDTH,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: apagDeskHeight,
+        tabRangeStyle: apagTabHeight,
+        mobRangeStyle: apagMobHeight,
+    } = generateResRangeStyle({
+        controlName: APAG_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: apagBorderStyles,
+        tabBorderStyle: apagBorderStylesTab,
+        mobBorderStyle: apagBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: APAG_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: apagBorderRadiusDesktop,
+        dimensionStylesTab: apagBorderRadiusTab,
+        dimensionStylesMobile: apagBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: APAG_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: apagNormalBGStyle,
+        backgroundStylesTab: apagNormalBGStyleTab,
+        backgroundStylesMobile: apagNormalBGStyleMob,
+    } = generateNormalBGControlStyles({
+        controlName: APAG_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    console.log(pagBottomSpacingDesktop);
+    //carousel end
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
-      .${uniqueId}.zolo-post-carosel-wrap{
+      .${uniqueId}.zolo-post-carousel-wrap{
         ${colGapDesk}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-item{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-item{
         ${columnDeskPadding}
         ${columnDeskBGStyle}
         ${columnDeskBorderStyle}
@@ -426,42 +659,42 @@ function Style({ props }) {
         ${columnBoxShadow}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-dateTime, .${uniqueId}.zolo-post-carosel-wrap .zolo-post-secount-dateTime {
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-dateTime, .${uniqueId}.zolo-post-carousel-wrap .zolo-post-secount-dateTime {
         ${metaSpaceDesk}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap.zolo-post-style-3 .zolo-post-item{
+      .${uniqueId}.zolo-post-carousel-wrap.zolo-post-style-3 .zolo-post-item{
         background: none !important;
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap.zolo-post-style-3 .zolo-post-item .zolo-post-image::after{
+      .${uniqueId}.zolo-post-carousel-wrap.zolo-post-style-3 .zolo-post-item .zolo-post-image::after{
         ${columnDeskBGStyle}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-image{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-image{
         ${thumbnailHeightDesk}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-title{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-title{
         ${titleMarginDesk}
         ${titleTypoDesk}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-title a{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-title a{
         ${titleColor ? `color:${titleColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-title a:hover{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-title a:hover{
         ${titleHoverColor ? `color:${titleHoverColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-desc p{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-desc p{
         ${excerptMarginDesk}
         ${excerptTypoDesk}
         ${excerptColor ? `color:${excerptColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-image{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-image{
         ${thumbMarginDesk}
 
         ${thumbBgDesk}
@@ -470,18 +703,18 @@ function Style({ props }) {
         ${thumbBoxShadow}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-dateTime{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-dateTime{
         ${metaTypoDesk}
         ${metaMarginDesk}
         ${metaColor ? `color:${metaColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-category{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-category{
         ${catGapDesk}
         ${catMarginDesk}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-category a{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-category a{
         ${catTypoDesk}
         ${catPaddingDesk}
         ${catBorderDesk}
@@ -490,16 +723,16 @@ function Style({ props }) {
         ${catBgColor ? `background-color:${catBgColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-category a:hover{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-category a:hover{
         ${catHoverColor ? `color:${catHoverColor};` : ''}
         ${catBgHoverColor ? `background-color:${catBgHoverColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap  .zolo-post-link-btn{
+      .${uniqueId}.zolo-post-carousel-wrap  .zolo-post-link-btn{
         ${readMoreMarginDesk}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-link-btn a{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-link-btn a{
         ${readMoreGapDesk}
         ${readMoreTypoDesk}
         ${readMorePaddingDesk}
@@ -509,96 +742,152 @@ function Style({ props }) {
         ${readMoreBgColor ? `background-color:${readMoreBgColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-link-btn a:hover{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-link-btn a:hover{
         ${readMoreHoverColor ? `color:${readMoreHoverColor};` : ''}
         ${readMoreBgHoverColor ? `background-color:${readMoreBgHoverColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-meta-box{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-meta-box{
         ${authorGapDesk}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-meta-box img{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-meta-box img{
         ${avatarWidthDesk}
         ${avatarHeightDesk}
         ${avatarBorderDesk}
         ${avatarBorderRadiusDesk}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-author-name{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-author-name{
         ${nameTypoDesk}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-author-name span{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-author-name span{
         ${namePrefixColor ? `color:${namePrefixColor} !important;` : ''}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-author-name a{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-author-name a{
         ${nameColor ? `color:${nameColor} !important;` : ''}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-author-name a:hover{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-author-name a:hover{
         ${nameHoverColor ? `color:${nameHoverColor} !important;` : ''}
       }
+.${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-prev:hover {
+            border-color: ${navHoverBorderColor} !important;
+        }
 
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev,
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-next, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-prev {
+            ${navBorderStyles}
+            ${navBorderRadiusDesktop}
+            ${navNormalBGStyle}
+            ${navDeskWidth}
+            ${navDeskHeight}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev:hover,
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-prev:hover {
+            ${navHoverBGStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next:after, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev:after {
+            color: ${navColor};
+            ${navDeskSize}
+        }
+
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-next svg, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-prev svg {
+            fill: ${navColor};
+            ${cnavDeskSize}
+            ${cnavDeskHSize}
+        }
+
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next:hover:after, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev:hover:after, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-next:hover i, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-prev:hover i {
+            color: ${navHoverColor};
+        }
+
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-next:hover svg, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-prev:hover svg {
+            fill: ${navHoverColor};
+        }
+
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination-bullets {
+            ${pagSpacingDesktop}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination {
+            ${pagBottomSpacingDesktop}
+        }
+
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination-bullets .swiper-pagination-bullet {
+            ${pagDeskWidth}
+            ${pagDeskHeight}
+            ${pagBorderStyles}
+            ${pagBorderRadiusDesktop}
+            ${pagNormalBGStyle}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
+            ${apagDeskWidth}
+            ${apagDeskHeight}
+            ${apagBorderStyles}
+            ${apagBorderRadiusDesktop}
+            ${apagNormalBGStyle}
+        }
     `;
 
     const tabletAllStyle = `
-    .${uniqueId}.zolo-post-carosel-wrap{
+    .${uniqueId}.zolo-post-carousel-wrap{
       ${colGapTab}
     }
 
-    .${uniqueId}.zolo-post-carosel-wrap .zolo-post-item{
+    .${uniqueId}.zolo-post-carousel-wrap .zolo-post-item{
       ${columnTabPadding}
       ${columnTabBGStyle}
       ${columnTabBorderStyle}
       ${columnTabBorderRadius}
     }
 
-    .${uniqueId}.zolo-post-carosel-wrap .zolo-post-image{
+    .${uniqueId}.zolo-post-carousel-wrap .zolo-post-image{
       ${thumbnailHeightTab}
     }
 
 
-    .${uniqueId}.zolo-post-carosel-wrap .zolo-post-title{
+    .${uniqueId}.zolo-post-carousel-wrap .zolo-post-title{
       ${titleMarginTab}
       ${titleTypoTab}
     }
 
-    .${uniqueId}.zolo-post-carosel-wrap .zolo-post-desc p{
+    .${uniqueId}.zolo-post-carousel-wrap .zolo-post-desc p{
       ${excerptMarginTab}
       ${excerptTypoTab}
     }
 
-    .${uniqueId}.zolo-post-carosel-wrap .zolo-post-image{
+    .${uniqueId}.zolo-post-carousel-wrap .zolo-post-image{
       ${thumbMarginTab}
       ${thumbBgTab}
       ${thumbBorderTab}
       ${thumbBorderRadiusTab}
     }
 
-    .${uniqueId}.zolo-post-carosel-wrap .zolo-post-dateTime{
+    .${uniqueId}.zolo-post-carousel-wrap .zolo-post-dateTime{
       ${metaTypoTab}
       ${metaMarginTab}
     }
 
-    .${uniqueId}.zolo-post-carosel-wrap .zolo-post-category{
+    .${uniqueId}.zolo-post-carousel-wrap .zolo-post-category{
       ${catGapTab}
       ${catMarginTab}
     }
 
-    .${uniqueId}.zolo-post-carosel-wrap .zolo-post-category a{
+    .${uniqueId}.zolo-post-carousel-wrap .zolo-post-category a{
       ${catTypoTab}
       ${catPaddingTab}
       ${catBorderTab}
       ${catBorderRadiusTab}
     }
 
-    .${uniqueId}.zolo-post-carosel-wrap  .zolo-post-link-btn{
+    .${uniqueId}.zolo-post-carousel-wrap  .zolo-post-link-btn{
       ${readMoreMarginTab}
     }
 
-    .${uniqueId}.zolo-post-carosel-wrap .zolo-post-link-btn a{
+    .${uniqueId}.zolo-post-carousel-wrap .zolo-post-link-btn a{
       ${readMoreGapTab}
       ${readMoreTypoTab}
       ${readMorePaddingTab}
@@ -606,77 +895,113 @@ function Style({ props }) {
       ${readMoreBorderRadiusTab}
     }
 
-    .${uniqueId}.zolo-post-carosel-wrap .zolo-post-meta-box{
+    .${uniqueId}.zolo-post-carousel-wrap .zolo-post-meta-box{
       ${authorGapTab}
     }
 
-    .${uniqueId}.zolo-post-carosel-wrap .zolo-post-meta-box img{
+    .${uniqueId}.zolo-post-carousel-wrap .zolo-post-meta-box img{
       ${avatarWidthTab}
       ${avatarHeightTab}
       ${avatarBorderTab}
       ${avatarBorderRadiusTab}
 
-    .${uniqueId}.zolo-post-carosel-wrap .zolo-post-author-name{
+    .${uniqueId}.zolo-post-carousel-wrap .zolo-post-author-name{
       ${nameTypoTab}
     }
+
+    .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev {
+            ${navTabWidth}
+            ${navTabHeight}
+            ${navBorderStylesTab}
+            ${navBorderRadiusTab}
+            ${navNormalBGStyleTab}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev:hover {
+            ${navHoverBGStyleTab}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next:after, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev:after {
+            ${navTabSize}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-next svg, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-prev svg {
+            ${cnavTabSize}
+            ${cnavTabHSize}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination-bullet {
+            ${pagTabWidth}
+            ${pagTabHeight}
+            ${pagBorderStylesTab}
+            ${pagBorderRadiusTab}
+            ${pagNormalBGStyleTab}
+            ${pagSpacingTab}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination {
+            ${pagBottomSpacingTab}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
+            ${apagTabWidth}
+            ${apagTabHeight}
+            ${apagBorderStylesTab}
+            ${apagBorderRadiusTab}
+            ${apagNormalBGStyleTab}
+        }
   `;
 
     const mobileAllStyle = `
-      .${uniqueId}.zolo-post-carosel-wrap{
+      .${uniqueId}.zolo-post-carousel-wrap{
         ${colGapMob}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-item{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-item{
         ${columnMobPadding}
         ${columnMobBGStyle}
         ${columnMobBorderStyle}
         ${columnMobBorderRadius}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-image{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-image{
         ${thumbnailHeightMob}
       }
 
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-title{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-title{
         ${titleMarginMob}
         ${titleTypoMob}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-desc p{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-desc p{
         ${excerptMarginMob}
         ${excerptTypoMob}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-image{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-image{
         ${thumbMarginMob}
         ${thumbBgMob}
         ${thumbBorderMob}
         ${thumbBorderRadiusMob}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-dateTime{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-dateTime{
         ${metaTypoMob}
         ${metaMarginMob}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-category{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-category{
         ${catGapMob}
         ${catMarginMob}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-category a{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-category a{
         ${catTypoMob}
         ${catPaddingMob}
         ${catBorderMob}
         ${catBorderRadiusMob}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap  .zolo-post-link-btn{
+      .${uniqueId}.zolo-post-carousel-wrap  .zolo-post-link-btn{
         ${readMoreMarginMob}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-link-btn a{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-link-btn a{
         ${readMoreGapMob}
         ${readMoreTypoMob}
         ${readMorePaddingMob}
@@ -684,19 +1009,54 @@ function Style({ props }) {
         ${readMoreBorderRadiusMob}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-meta-box{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-meta-box{
         ${authorGapMob}
       }
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-meta-box img{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-meta-box img{
         ${avatarWidthMob}
         ${avatarHeightMob}
         ${avatarBorderMob}
         ${avatarBorderRadiusMob}
 
-      .${uniqueId}.zolo-post-carosel-wrap .zolo-post-author-name{
+      .${uniqueId}.zolo-post-carousel-wrap .zolo-post-author-name{
         ${nameTypoMob}
       }
+      .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev {
+            ${navMobWidth}
+            ${navMobHeight}
+            ${navBorderStylesMob}
+            ${navBorderRadiusMob}
+            ${navNormalBGStyleMob}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev:hover {
+            ${navHoverBGStyleMob}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next:after, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev:after {
+            ${navMobSize}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-next svg, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-prev svg {
+            ${cnavMobSize}
+            ${cnavMobHSize}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination-bullet {
+            ${pagMobWidth}
+            ${pagMobHeight}
+            ${pagBorderStylesMob}
+            ${pagBorderRadiusMob}
+            ${pagNormalBGStyleMob}
+            ${pagSpacingMob}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination {
+            ${pagBottomSpacingMob}
+        }
+        .${uniqueId}.wp-block-zolo-post-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
+            ${apagMobWidth}
+            ${apagMobHeight}
+            ${apagBorderStylesMob}
+            ${apagBorderRadiusMob}
+            ${apagNormalBGStyleMob}
+        }
     `;
 
     return (

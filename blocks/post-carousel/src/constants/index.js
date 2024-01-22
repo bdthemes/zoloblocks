@@ -2,13 +2,11 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-export const BLOCK_PREFIX = 'zolo-post-carosel';
+export const BLOCK_PREFIX = 'zolo-post-carousel';
 export const PRESETS = [
     { label: __('Style 1', 'zolo-blocks'), value: 'style-1' },
     { label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
     { label: __('Style 3', 'zolo-blocks'), value: 'style-3' },
-    // { label: __('Style 4', 'zolo-blocks'), value: 'style-4' },
-    // { label: __('Style 5', 'zolo-blocks'), value: 'style-5' },
 ];
 export const CAROUSEL_EFFECTS = [
     { label: __('Slide', 'zolo-blocks'), value: 'slide' },
@@ -56,3 +54,30 @@ export const AVATAR_BORDER_RADIUS = 'avatarBRadius';
 export const AVATAR_GAP = 'avatarGap';
 // post meta
 export const META_SPACE = 'metaSpace';
+
+
+
+// Navigation settings
+export const NAV_WIDTH = 'navWidth';
+export const NAV_HEIGHT = 'navHeight';
+export const NAV_BORDER = 'navBorder';
+export const NAV_BORDER_RADIUS = 'navBorderRadius';
+export const NAV_BG = 'navBg';
+export const NAV_HOVER_BG = 'navHoverBg';
+export const NAV_ICON_SIZE = 'navIconSize';
+
+// Pagination settings
+export const PAG_WIDTH = 'pagWidth';
+export const PAG_HEIGHT = 'pagHeight';
+export const PAG_BORDER = 'pagBorder';
+export const PAG_BORDER_RADIUS = 'pagBorderRadius';
+export const PAG_BG = 'pagBg';
+export const PAG_SPACING = 'pagSpacing';
+export const PAG_BOTTOM_SPACING = 'pagBottomSpacing';
+
+// Active Pagination
+export const APAG_WIDTH = 'apagWidth';
+export const APAG_HEIGHT = 'apagHeight';
+export const APAG_BORDER = 'apagBorder';
+export const APAG_BORDER_RADIUS = 'apagBorderRadius';
+export const APAG_BG = 'apagBg';
