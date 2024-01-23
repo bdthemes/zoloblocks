@@ -53,8 +53,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function block_assets_loader() {
-            // override css 
-            if( ! is_admin( ) ) {
+            // override css
+            if (!is_admin()) {
                 wp_enqueue_style(
                     'zolo-block-override-style',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/override/frontend-override.css',
@@ -63,8 +63,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 );
             }
 
-            // magnific popup animations 
-            if( has_block( 'zolo/image-gallery' ) ) {
+            // magnific popup animations
+            if (has_block('zolo/image-gallery')) {
                 wp_enqueue_style(
                     'zolo-maginific-popup-animations',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/magnific-popup/mpa-animations.css',
@@ -112,7 +112,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // Swiper Scripts and Styles
-            if (!is_admin() && has_block('zolo/slider')) {
+            if (!is_admin() && (has_block('zolo/slider') || has_block('zolo/post-carousel'))) {
                 wp_enqueue_style(
                     'zolo-swiper-editor-style',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
@@ -130,7 +130,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // accordion Scripts and Styles
-            if ( ! is_admin() && has_block( 'zolo/accordion' ) ) {
+            if (!is_admin() && has_block('zolo/accordion')) {
                 wp_enqueue_script(
                     'zolo-accordion-script',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/accordion/accordion.min.js',
@@ -259,7 +259,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            // accordion 
+            // accordion
             wp_enqueue_script(
                 'zolo-accordion-editor-script',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/accordion/accordion.min.js',

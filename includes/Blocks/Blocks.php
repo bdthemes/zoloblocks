@@ -57,7 +57,7 @@ return apply_filters('zolo_blocks_list_data', [
         'name'             => 'post-carousel',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/post-carousel/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
-        'frontend-scripts' => ['zolo-slider-frontend'],
+        'frontend-scripts' => ['zolo-post-carousel-frontend'],
         'class' => '\Zolo\Blocks\PostCarousel'
     ],
     'post-list' => [

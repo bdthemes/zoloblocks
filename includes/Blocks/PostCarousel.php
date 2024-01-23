@@ -30,10 +30,10 @@ class PostCarousel extends PostBlock {
 
         $postQuery = $attributes['postQuery'] ?? [];
 
-        $post_results = apply_filters('zolo_post_grid_results', GetPostsV1::zolo_posts_query($postQuery));
+        $post_results = apply_filters('zolo_post_carousel_results', GetPostsV1::zolo_posts_query($postQuery));
 
         ob_start();
-        ZoloHelpers::views('post-grid', [
+        ZoloHelpers::views('post-carousel', [
             'settings'     => $attributes,
             'className'    => '',
             'post_results' => $post_results,
