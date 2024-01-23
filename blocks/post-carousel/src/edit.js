@@ -85,7 +85,7 @@ export default function Edit(props) {
                     postOrderby: 'date',
                     postOrder: 'desc',
                     postThumbnail: '',
-                    showPagination: false,
+                    // showPagination: false,
                 },
             });
         }
@@ -102,9 +102,8 @@ export default function Edit(props) {
     //slider initialize
     useEffect(() => {
         let breakpoints = {};
-        // if (sliderType === 'carousel') {
         breakpoints = {
-            1025: {
+            1024: {
                 slidesPerView: deskCol || 2,
                 spaceBetween: parseInt(deskColGap.slice(0, -1)) || 30,
             },
@@ -112,11 +111,10 @@ export default function Edit(props) {
                 slidesPerView: tabCol || 2,
                 spaceBetween: parseInt(tabColGap.slice(0, -1)) || 30,
             },
-            320: {
+            640: {
                 slidesPerView: mobCol || 1,
                 spaceBetween: parseInt(mobColGap.slice(0, -1)) || 0,
             },
-            // };
         };
 
         let options = {
@@ -138,7 +136,6 @@ export default function Edit(props) {
                       dynamicBullets: dynamicBullets,
                   }
                 : false,
-            effect: carouselEffect,
             breakpoints: breakpoints,
         };
 
@@ -235,9 +232,7 @@ export default function Edit(props) {
                 {showNavigation && (
                     <Fragment>
                         <div
-                            className={`swiper-navigation-wrap  swiper-navigation-position-center ${
-                                customNavIcon ? 'zolo-custom-nav' : ''
-                            }`}
+                            className={`swiper-navigation-wrap swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}
                         >
                             {customNavIcon && (
                                 <>

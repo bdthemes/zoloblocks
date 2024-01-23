@@ -193,10 +193,6 @@ const attributes = {
     metaColor: {
         type: 'string',
     },
-    showPagination: {
-        type: 'boolean',
-        default: false,
-    },
     // post meta
     showReadingTime: {
         type: 'boolean',

@@ -647,9 +647,6 @@ function Style({ props }) {
      * All Style Combination
      */
     const desktopAllStyle = `
-      .${uniqueId}.zolo-post-carousel-wrap{
-        ${colGapDesk}
-      }
 
       .${uniqueId}.zolo-post-carousel-wrap .zolo-post-item{
         ${columnDeskPadding}
@@ -833,10 +830,6 @@ function Style({ props }) {
     `;
 
     const tabletAllStyle = `
-    .${uniqueId}.zolo-post-carousel-wrap{
-      ${colGapTab}
-    }
-
     .${uniqueId}.zolo-post-carousel-wrap .zolo-post-item{
       ${columnTabPadding}
       ${columnTabBGStyle}
@@ -947,10 +940,6 @@ function Style({ props }) {
   `;
 
     const mobileAllStyle = `
-      .${uniqueId}.zolo-post-carousel-wrap{
-        ${colGapMob}
-      }
-
       .${uniqueId}.zolo-post-carousel-wrap .zolo-post-item{
         ${columnMobPadding}
         ${columnMobBGStyle}
