@@ -5,7 +5,7 @@
     "category": "zolo-blocks",
     "keywords": ["progress bar", "bar", "progress"],
     "description": "Single progress bar item",
-    "apiVersion": 3,
+    "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "example": {
         "attributes": {
@@ -13,6 +13,7 @@
         },
         "viewportWidth": 410
     },
+    "parent": ["zolo/progress-bar"],
     "supports": {
         "anchor": false,
         "customClassName": false,

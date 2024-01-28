@@ -15,6 +15,7 @@ export const PRESETS = [
     { label: __('Style 6', 'zolo-blocks'), value: 'button-5' },
     { label: __('Style 7', 'zolo-blocks'), value: 'button-6' },
     { label: __('Style 8', 'zolo-blocks'), value: 'button-7' },
+    { label: __('Style 9', 'zolo-blocks'), value: 'button-8' },
 ];
 
 /**
@@ -48,6 +49,10 @@ export const ICON_PADDING = 'btnIconPadding';
 
 export const PO_SWIDTH = 'presetOSWidth';
 
+export const PT_BG = 'ptBG';
+export const PTH_BG = 'pthBG';
+export const PFTH_BG = 'pfthBG';
+
 export const PT_BORDER = 'presetTBorder';
 export const PT_BORDER_RADIUS = 'presetTRadius';
 
@@ -61,3 +66,7 @@ export const PFV_BORDER_RADIUS = 'presetFVRadius';
 
 export const PS_BORDER = 'presetSBorder';
 export const PS_BORDER_RADIUS = 'presetSRadius';
+
+export const PSE_BORDER = 'pseBorder';
+export const PSE_BRADIUS = 'pseBradius';
+export const PSE_BG = 'pseBG';

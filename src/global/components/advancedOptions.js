@@ -27,6 +27,7 @@ import BorderControl from '../../controls/border-control';
 import BoxShadowControl from '../../controls/boxshadow-control';
 import RangeResetControl from '../../controls/range-reset-control';
 import CustomCSSControl from '../../controls/customcss-control';
+import OverlayControl from '../../controls/overflow-control';
 
 export const AdvancedOptions = (props) => {
     const { attributes, setAttributes, requiredProps } = props;
@@ -43,6 +44,7 @@ export const AdvancedOptions = (props) => {
         globalConfig,
         selectedExtraPanel,
         zoloId,
+        overflow,
     } = attributes;
 
     const handleResponsiveness = (key, value, classname) => {
@@ -168,6 +170,18 @@ export const AdvancedOptions = (props) => {
                     </PanelBody>
                 </>
             )}
+            <PanelBody
+                title={__('Overflow', 'zolo-blocks')}
+                onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel38' })}
+                opened={selectedExtraPanel === 'panel38'}
+            >
+                <OverlayControl
+                    value={overflow}
+                    onChange={(v) => {
+                        setAttributes({ overflow: v });
+                    }}
+                />
+            </PanelBody>
             <PanelBody
                 title={__('Z Index', 'zolo-blocks')}
                 onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel35' })}

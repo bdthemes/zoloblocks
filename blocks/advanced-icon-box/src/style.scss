@@ -82,7 +82,6 @@
         }
 
         .zolo-block-icon-wrap {
-            margin: 0;
             display: flex;
         }
 
@@ -96,8 +95,8 @@
             flex-direction: row-reverse;
         }
 
-        .zolo-block-body-content {
-            text-align: right;
-        }
+        // .zolo-block-body-content {
+        //     text-align: right;
+        // }
     }
 }

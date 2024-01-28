@@ -105,6 +105,10 @@ const attributes = {
             alt: '',
         },
     },
+    imageRes: {
+        type: 'string',
+        default: 'full',
+    },
     showName: {
         type: 'boolean',
         default: true,

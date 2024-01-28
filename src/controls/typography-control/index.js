@@ -18,7 +18,7 @@ import { fontStyleOptions, fontWeightOptions, LHLS_UNITS, sizeUnitTypes, textDec
 //googlefonts
 import { googleFonts } from './fontPicker/googleFonts';
 
-const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultFontSize, max = 72 }) => {
+const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultFontSize, max = 136 }) => {
     const { attributes, setAttributes, resMode, objAttributes } = requiredProps;
 
     const {

@@ -21,6 +21,7 @@ const Save = ({ attributes }) => {
         zoloId,
         fancyLinkToggle,
         fancyLink,
+        imageRes,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -39,6 +40,7 @@ const Save = ({ attributes }) => {
                 ...(fancyLink.openInNewTab && {
                     target: '_blank',
                     rel: 'noreferrer noopener',
+                    title: fancyTitle,
                 }),
             })}
         >
@@ -47,7 +49,11 @@ const Save = ({ attributes }) => {
                     <>
                         {mediaType === 'image' && image && (
                             <div className="zb-fancy-list-image">
-                                <img src={image.url} alt={image.url || fancyTitle} className={`wp-image-${image.id}`} />
+                                <img
+                                    src={image.sizes && image.sizes[imageRes] ? image.sizes[imageRes].url : image.url}
+                                    alt={image.url || fancyTitle}
+                                    className={`wp-image-${image.id}`}
+                                />
                             </div>
                         )}
                         {mediaType === 'text' && <div className="zb-fancy-list-number">{mediaText}</div>}

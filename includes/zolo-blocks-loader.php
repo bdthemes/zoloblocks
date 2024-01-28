@@ -43,6 +43,11 @@ class Zolo_Blocks_Loader {
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/font-loader.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/post-meta.php';
 
+        // Load Admin files
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Dashboard.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Assets.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Settings.php';
+
         if (is_admin()) {
             //Load Admin required files
         }

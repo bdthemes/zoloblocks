@@ -15,10 +15,11 @@ const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 // import style
 import Style from './style';
 import Inspector from './inspector';
+import { useEffect } from 'react';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
-    const { preview, uniqueId, parentClasses, showCaption, showLightbox, advancedGallery, lightboxIcon } = attributes;
+    const { preview, uniqueId, parentClasses, showCaption, showLightbox, advancedGallery, lightboxIcon, imageSize } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -69,7 +70,10 @@ export default function Edit(props) {
                             return (
                                 <div className="zolo-item" key={index}>
                                     <div className="zolo-image-wrap">
-                                        <img src={image.url} alt={image.alt || image.caption} />
+                                        <img
+                                            src={image.sizes && image.sizes[imageSize] ? image.sizes[imageSize].url : image.url}
+                                            alt={image.alt}
+                                        />
                                     </div>
                                     {showLightbox && (
                                         <a href="#" className="zolo-icon-wrap">

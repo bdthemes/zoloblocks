@@ -4,16 +4,10 @@
 const { __ } = wp.i18n;
 export const BLOCK_PREFIX = 'slider';
 
-// Carousel Columns
-export const COLUMNS = 'sliderColumns';
-export const COLUMNS_GAP = 'sliderColumnsGap';
-
-// slider item
-export const SLIDER_HEIGHT = 'sliderHeight';
-
 // slider content
 export const CONTENT_WIDTH = 'contentWidth';
 export const CONTENT_PADDING = 'contentPadding';
+export const SLIDER_HEIGHT = 'sliderHeight';
 
 // Pagination Types
 export const PAGINATION_TYPES = [
@@ -26,14 +20,6 @@ export const PAGINATION_TYPES = [
 export const SLIDER_EFFECTS = [
     { label: __('Slide', 'zolo-blocks'), value: 'slide' },
     { label: __('Fade', 'zolo-blocks'), value: 'fade' },
-    { label: __('Cube', 'zolo-blocks'), value: 'cube' },
-    { label: __('Coverflow', 'zolo-blocks'), value: 'coverflow' },
-    { label: __('Flip', 'zolo-blocks'), value: 'flip' },
-];
-
-// Carousel Effects
-export const CAROUSEL_EFFECTS = [
-    { label: __('Slide', 'zolo-blocks'), value: 'slide' },
     { label: __('Cube', 'zolo-blocks'), value: 'cube' },
     { label: __('Coverflow', 'zolo-blocks'), value: 'coverflow' },
     { label: __('Flip', 'zolo-blocks'), value: 'flip' },
@@ -55,6 +41,7 @@ export const PAG_BORDER = 'pagBorder';
 export const PAG_BORDER_RADIUS = 'pagBorderRadius';
 export const PAG_BG = 'pagBg';
 export const PAG_SPACING = 'pagSpacing';
+export const PAG_VERTICAL_OFFSET = 'pagVerticalOffset';
 
 // Active Pagination
 export const APAG_WIDTH = 'apagWidth';

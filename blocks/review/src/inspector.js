@@ -33,6 +33,9 @@ const {
     AdvancedOptions,
     ZoloIconPicker,
     ZoloPanelBody,
+    ImageSizes,
+    ObjectFitControl,
+    OverflowControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -92,6 +95,9 @@ function Inspector(props) {
         activeRatingColor,
         inactiveRatingColor,
         dplIconColor,
+        imageRes,
+        objectFit,
+        photoOverflow,
     } = attributes;
 
     const requiredProps = {
@@ -172,51 +178,55 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             {showPhoto && (
-                                <BaseControl label={__('Photo', 'zolo-blocks')}>
-                                    {memberPhoto ? (
-                                        <ImageAvatar
-                                            imageUrl={memberPhoto && memberPhoto.url}
-                                            onDeleteImage={() =>
-                                                setAttributes({
-                                                    memberPhoto: null,
-                                                })
-                                            }
-                                            imageId={memberPhoto && memberPhoto.id}
-                                            onEditImage={(url, id) => {
-                                                setAttributes({
-                                                    memberPhoto: {
-                                                        url: url,
-                                                        id: id,
-                                                    },
-                                                });
-                                            }}
-                                        />
-                                    ) : (
-                                        <MediaUpload
-                                            onSelect={(media) => {
-                                                setAttributes({
-                                                    memberPhoto: media,
-                                                });
-                                            }}
-                                            allowedTypes={['image']}
-                                            value={memberPhoto && memberPhoto.id}
-                                            render={({ open }) => (
-                                                <Button className="zolo-image-upload-btn" onClick={open}>
-                                                    <svg
-                                                        width="24"
-                                                        height="24"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        fillRule="evenodd"
-                                                        clipRule="evenodd"
-                                                    >
-                                                        <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
-                                                    </svg>
-                                                    {__(' Upload Photo', 'zolo-blocks')}
-                                                </Button>
-                                            )}
-                                        />
-                                    )}
-                                </BaseControl>
+                                <>
+                                    <BaseControl label={__('Photo', 'zolo-blocks')}>
+                                        {memberPhoto ? (
+                                            <ImageAvatar
+                                                imageUrl={memberPhoto && memberPhoto.url}
+                                                onDeleteImage={() =>
+                                                    setAttributes({
+                                                        memberPhoto: null,
+                                                    })
+                                                }
+                                                imageId={memberPhoto && memberPhoto.id}
+                                                onEditImage={(media) => {
+                                                    setAttributes({
+                                                        memberPhoto: media,
+                                                    });
+                                                }}
+                                            />
+                                        ) : (
+                                            <MediaUpload
+                                                onSelect={(media) => {
+                                                    setAttributes({
+                                                        memberPhoto: media,
+                                                    });
+                                                }}
+                                                allowedTypes={['image']}
+                                                value={memberPhoto && memberPhoto.id}
+                                                render={({ open }) => (
+                                                    <Button className="zolo-image-upload-btn" onClick={open}>
+                                                        <svg
+                                                            width="24"
+                                                            height="24"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            fillRule="evenodd"
+                                                            clipRule="evenodd"
+                                                        >
+                                                            <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
+                                                        </svg>
+                                                        {__(' Upload Photo', 'zolo-blocks')}
+                                                    </Button>
+                                                )}
+                                            />
+                                        )}
+                                    </BaseControl>
+                                    <ImageSizes
+                                        label={__('Photo Resolution', 'zolo-blocks')}
+                                        value={imageRes}
+                                        onChange={(value) => setAttributes({ imageRes: value })}
+                                    />
+                                </>
                             )}
                             {showName && (
                                 <TextControl
@@ -323,6 +333,12 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     min={1}
                                     max={1000}
+                                />
+                                <ObjectFitControl value={objectFit} onChange={(value) => setAttributes({ objectFit: value })} />
+                                <OverflowControl
+                                    label={__('Overflow', 'zolo-blocks')}
+                                    value={photoOverflow}
+                                    onChange={(value) => setAttributes({ photoOverflow: value })}
                                 />
                                 <ResRangeControl
                                     label={__('Gap', 'zolo-blocks')}

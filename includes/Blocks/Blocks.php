@@ -32,7 +32,7 @@ return apply_filters( 'zolo_blocks_list_data', [
         'name'             => 'image-gallery',
         'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/image-gallery/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
-        'frontend-scripts' => false
+        'frontend-scripts' => ['zolo-image-gallery-frontend']
     ],
     'brand-child' => [
         'name'             => 'brand-child',
@@ -45,6 +45,13 @@ return apply_filters( 'zolo_blocks_list_data', [
         'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/brand-grid/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => false
+    ],
+    'post-carousel' => [
+        'name'             => 'post-carousel',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/post-carousel/block.json',
+        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-post-carousel-frontend'],
+        'class' => '\Zolo\Blocks\PostCarousel'
     ],
     'post-grid' => [
         'name'             => 'post-grid',
@@ -156,23 +163,35 @@ return apply_filters( 'zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
-    // 'audio-player' => [
-    //     'name'             => 'audio-player',
-    //     'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/audio-player/block.json',
-    //     'frontend-styles'  => ['zolo-block-common-style'],
-    //     'frontend-scripts' => false
-    // ],
-    //    'audio-player' => [
-    //     'name'             => 'audio-player',
-    //     'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/audio-player/block.json',
-    //     'frontend-styles'  => ['zolo-block-common-style'],
-    //     'frontend-scripts' => ['zolo-audio-player-frontend','zolo-block-editor-dependency']
-    // ],
-      'progress-bar-child' => [
+    'progress-bar' => [
+        'name'             => 'progress-bar',
+        'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/progress-bar/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-progress-bar-frontend']
+    ],
+    'progress-bar-child' => [
         'name'             => 'progress-bar-child',
         'metadata'         => trailingslashit( ZOLO_DIR_PATH ) . 'blocks/progress-bar-child/block.json',
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
+    ],
+    'google-map' => [
+        'name'             => 'google-map',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/google-map/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-google-map-frontend', 'zolo-block-editor-dependency']
+    ],
+    'flipbox' => [
+        'name'             => 'flipbox',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/flipbox/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-flipbox-frontend']
+    ],
+    'countdown' => [
+        'name'             => 'countdown',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/countdown/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-countdown-frontend']
     ],
 ]);
 

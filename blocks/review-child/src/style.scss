@@ -24,9 +24,14 @@
         position: relative;
     }
 
+    .zolo-image-wrap {
+        width: 70px;
+        height: 70px;
+    }
+
     .zolo-img {
         height: 100%;
-        width: 70px;
+        width: 100%;
         object-fit: cover;
         display: block;
         box-sizing: border-box;

@@ -19,6 +19,7 @@ const Save = ({ attributes }) => {
         socialProfiles,
         detailIcon,
         zoloId,
+        imageRes,
     } = attributes;
 
     return (
@@ -31,7 +32,15 @@ const Save = ({ attributes }) => {
             })}
         >
             <div className="zolo-item">
-                <div className="zolo-image-wrap">{memberPhoto && <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} />}</div>
+                <div className="zolo-image-wrap">
+                    {memberPhoto && (
+                        <img
+                            src={memberPhoto.sizes && memberPhoto.sizes[imageRes] ? memberPhoto.sizes[imageRes].url : memberPhoto.url}
+                            alt={memberPhoto.alt || memberName}
+                            className={`wp-image-${memberPhoto.id}`}
+                        />
+                    )}
+                </div>
                 <div className="zolo-info-wrap">
                     <div className="zolo-content">
                         <div className="zolo-name">
@@ -60,6 +69,7 @@ const Save = ({ attributes }) => {
                                                 key={index}
                                                 rel={profile.link && profile.link.openInNewTab && 'noreferer noopener'}
                                                 target={profile.link && profile.link.openInNewTab && '_blank'}
+                                                title={profile.title}
                                             >
                                                 <DisplayZoloIcon icon={profile.icon} />
                                             </a>

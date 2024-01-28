@@ -41,6 +41,7 @@ import {
     PAG_PADDING,
     PAG_ALIGN,
     META_SPACE,
+    CONTENT_PADDING,
 } from './constants';
 
 import {
@@ -356,6 +357,14 @@ function Inspector(props) {
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={COLUMN_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={COLUMN_SHADOW} requiredProps={requiredProps} />
+                        </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={CONTENT_PADDING}
+                                requiredProps={requiredProps}
+                            />
                         </ZoloPanelBody>
 
                         {showThumbnail && (

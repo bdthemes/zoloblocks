@@ -3,7 +3,7 @@ Contributors: BdThemes
 Tags: zoloblocks, blocks, gutenberg blocks, custom block, gutenberg
 Requires at least: 6.0
 Tested up to: 6.4.2
-Stable tag: 0.0.9
+Stable tag: 1.0.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,20 +12,20 @@ ZoloBlocks comes with a number of amazing custom Gutenberg blocks to  extend the
 
 == Description ==
 
-ZoloBlocks comes with a number of amazing custom Gutenberg blocks to  extend the power of editing and designing in Gutenberg block editor. You can design any layout without writing a line of codes. 
+ZoloBlocks comes with a number of amazing custom Gutenberg blocks to  extend the power of editing and designing in Gutenberg block editor. You can design any layout without writing a line of codes.
 
 **Key Features**
 
 * Simple, light-weight, and super-fast
 * Built with Gutenberg native components
 * Optimised for SEO and Performance
-* Highly Customisable with a lots of options 
+* Highly Customisable with a lots of options
 * 20+ custom blocks with full setting controls
 * Clean UI for setting panels
-* Eye-catching design 
+* Eye-catching design
 * Drag and drop use
-* Simple and easy to use 
-* No need to have any coding knowledge 
+* Simple and easy to use
+* No need to have any coding knowledge
 
 == Installation ==
 
@@ -50,9 +50,34 @@ Not at all. We have optimised all of these blocks for better performance.
 == Screenshots ==
 
 
+
 == Changelog ==
 
-= 0.0.1 = 
+= 1.0.0 =
+
+= Added =
+
+* Admin Dashboard added
+* Progressbar block added
+* Flipbox block added
+* Google Map block added
+* Global overflow control added
+* Object fit control added
+* Image resolution control added
+
+= Updated =
+
+* Carousel portion removed from Slider block
+* Advanced Button block style improved
+* Accessibility improved
+
+= Fixed =
+
+* Overflow hidded issue fixed
+* Slider issue fixed
+
+
+= 0.0.1 =
 * Initial Release
 
 

@@ -1,0 +1,419 @@
+.zolo-post-carousel {
+    position: relative;
+    box-sizing: border-box;
+    // overflow: hidden;
+    .zolo-post-item {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .zolo-post-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--zolo-item-border-radius);
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            vertical-align: middle;
+            transition: all cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
+        }
+    }
+
+    .zolo-post-meta-box {
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: clamp(0.438rem, 1vw, 0.75rem);
+        padding: clamp(1.25rem, 2vw, 1.875rem);
+        background: linear-gradient(360deg, rgba(17, 16, 19, 0.721) 0%, rgba(17, 16, 19, 0) 100%);
+        transition: all cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
+    }
+
+    .zolo-post-author-name {
+        display: inline-flex;
+        flex-direction: column;
+        font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+        text-transform: capitalize;
+    }
+
+    .zolo-post-author-name a {
+        font-weight: 600;
+        text-decoration: none;
+        color: #fff;
+        transition: color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
+    }
+
+    .zolo-post-meta-box img {
+        width: clamp(2.5rem, 4vw, 3.125rem);
+        height: clamp(2.5rem, 4vw, 3.125rem);
+        border-radius: 50%;
+        display: block;
+    }
+
+    .zolo-post-link-btn {
+        margin-top: 20px;
+        .zolo__display-icon {
+            display: inline-flex;
+            align-items: center;
+        }
+    }
+
+    .zolo-post-dateTime {
+        margin-top: 10px;
+    }
+
+    .zolo-post-dateTime,
+    .zolo-post-secount-dateTime {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: clamp(0.5rem, 1vw, 0.625rem);
+        font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+    }
+
+    .zolo-post-title {
+        margin: clamp(0.75rem, 1vw, 0.938rem) 0 0;
+        font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+        font-weight: 700;
+    }
+
+    .zolo-post-title a {
+        text-decoration: none;
+        transition: color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
+    }
+
+    .zolo-post-title a:hover,
+    .zolo-post-author-name a:hover {
+        color: var(--zoloblocks-brand-color-hover);
+    }
+
+    .zolo-post-desc {
+        margin-top: 10px;
+        p {
+            margin: 0;
+            color: #656566;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+        }
+    }
+
+    .zolo-post-category {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .zolo-post-category a {
+        font-size: clamp(0.625rem, 1vw, 0.75rem);
+        padding: clamp(0.313rem, 0.8vw, 0.438rem) clamp(0.75rem, 1.5vw, 0.875rem);
+        display: inline;
+        font-weight: 300;
+        border-radius: var(--zoloblocks-button-border-radius);
+        text-decoration: none;
+        text-transform: capitalize;
+        transition:
+            color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s,
+            background-color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
+    }
+
+    .zolo-post-category a:hover {
+        color: #fff;
+        background-color: var(--zoloblocks-brand-color-hover);
+    }
+
+    .zolo-post-link-btn a {
+        font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+        text-transform: capitalize;
+        color: #494c56;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: var(--zoloblocks-button-border-radius);
+        transition: all cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
+        justify-content: center;
+    }
+
+    .zolo-post-link-btn a:hover {
+        color: var(--zoloblocks-brand-color-hover);
+    }
+
+    .zolo-post-link-btn a svg,
+    .zolo-post-link-btn a i {
+        width: 14px;
+        height: 14px;
+        font-size: 14px;
+    }
+
+    &.zolo-post-style-1 .zolo-post-image,
+    &.zolo-post-style-2 .zolo-post-image,
+    &.zolo-post-style-3 .zolo-post-image {
+        height: clamp(21.875rem, 25vw, 18.75rem);
+    }
+
+    /* global css end  */
+    &.zolo-post-style-1 .zolo-post-meta-box {
+        bottom: 0;
+        opacity: 0;
+        transform: translateY(6%);
+    }
+
+    &.zolo-post-style-1 .zolo-post-item:hover .zolo-post-meta-box,
+    &.zolo-post-style-2 .zolo-post-item:hover .zolo-post-meta-box {
+        transform: none;
+        opacity: 1;
+    }
+
+    &.zolo-post-style-1 .zolo-post-author-name,
+    &.zolo-post-style-2 .zolo-post-author-name,
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-author-name{
+        color: #e5e6ed;
+    }
+
+    &.zolo-post-style-1 .zolo-post-item:hover .wp-post-image,
+    &.zolo-post-style-2 .zolo-post-item:hover .wp-post-image,
+    &.zolo-post-style-3 .zolo-post-item:hover .wp-post-image {
+        transform: scale(103.5%);
+    }
+
+    &.zolo-post-style-1 .zolo-post-dateTime {
+        color: #36384a;
+    }
+
+    &.zolo-post-style-1 .zolo-post-content {
+        padding-top: 25px;
+    }
+
+    &.zolo-post-style-1 .zolo-post-title a,
+    &.zolo-post-style-3 .zolo-post-title a {
+        color: #111013;
+    }
+
+    &.zolo-post-style-1 .zolo-post-link-btn a,
+    &.zolo-post-style-2 .zolo-post-link-btn a,
+    &.zolo-post-style-3 .zolo-post-link-btn a,
+    &.zolo-post-style-1 .zolo-post-secount-dateTime,
+    &.zolo-post-style-2 .zolo-post-secount-dateTime,
+    &.zolo-post-style-3 .zolo-post-secount-dateTime,
+    &.zolo-post-style-1 .zolo-post-category a {
+        color: #000;
+        background-color: #ecf2fe;
+    }
+
+    &.zolo-post-style-2 .zolo-post-content,
+    &.zolo-post-style-3 .zolo-post-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 30px;
+        z-index: 1;
+    }
+
+    &.zolo-post-style-2 .zolo-post-meta-box {
+        top: 0;
+        opacity: 0;
+        transform: translateY(-6%);
+        background: transparent;
+    }
+
+    &.zolo-post-style-2 .zolo-post-image:before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(7, 4, 34, 0.69), transparent);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    &.zolo-post-style-2 .zolo-post-category a,
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-category a {
+        color: #fff;
+        background-color: rgba(236, 235, 254, 0.28);
+    }
+
+    &.zolo-post-style-2 .zolo-post-dateTime,
+    &.zolo-post-style-2 .zolo-post-desc p,
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-dateTime,
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-desc p,
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-author-name a {
+        color: #e5e6ed;
+    }
+
+    &.zolo-post-style-2 .zolo-post-title a,
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-title a {
+        color: #e5e6ed;
+    }
+
+    &.zolo-post-style-3 .zolo-post-image:before,
+    &.zolo-post-style-3 .zolo-post-image:after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+        transition:
+            background cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s,
+            opacity cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
+    }
+
+    &.zolo-post-style-3 .zolo-post-image:before {
+        background: linear-gradient(45deg, rgba(7, 4, 34, 0.69), transparent);
+    }
+
+    &.zolo-post-style-3 .zolo-post-image::after {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0.62);
+        backdrop-filter: contrast(7) blur(15px);
+    }
+
+    .zolo-post-dateTime,
+    .zolo-post-author-name span,
+    .zolo-post-desc p {
+        transition: color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
+    }
+
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-image::after {
+        opacity: 0;
+        background: transparent;
+    }
+
+    &.zolo-post-style-3 .zolo-post-meta-box {
+        top: 0;
+        opacity: 1;
+        background: transparent;
+        z-index: 9;
+    }
+
+    &.zolo-post-style-3 .zolo-post-author-name,
+    &.zolo-post-style-3 .zolo-post-author-name a {
+        color: #111013;
+    }
+
+    &.zolo-post-style-3 .zolo-post-category a {
+        color: #000;
+        background-color: #d7d8dd61;
+    }
+
+    // navigation css start
+    &.zolo-post-style-1 {
+        .swiper-nav-button {
+            top: 40%;
+        }
+    }
+
+    .swiper-pagination-bullet {
+        margin: 0 !important;
+    }
+
+    .swiper-pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        bottom: auto;
+        z-index: 11;
+        .swiper-pagination-bullet {
+            background-color: transparent;
+            width: 8px;
+            height: 8px;
+            border: 1px solid var(--zoloblocks-brand-color);
+            transition: all 0.3s ease;
+
+            &.swiper-pagination-bullet-active {
+                transform: scale(1.3);
+                background-color: var(--zoloblocks-brand-color);
+            }
+        }
+    }
+
+    .swiper-nav-button {
+        position: absolute;
+        top: 50%;
+        z-index: 1;
+        transform: translateY(-50%);
+        width: clamp(2.188rem, 6vw, 3.125rem);
+        height: clamp(2.188rem, 6vw, 3.125rem);
+        color: #000;
+        fill: #000;
+        background-color: #fff;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        &:hover {
+            fill: var(--zoloblocks-brand-button-color);
+            color: var(--zoloblocks-brand-button-color);
+            background-color: var(--zoloblocks-brand-color);
+        }
+
+        &:after {
+            font-size: clamp(0.625rem, 1.5vw, 0.875rem);
+        }
+        &.swiper-zolo-next,
+        &.swiper-button-next {
+            right: -25px;
+        }
+        &.swiper-zolo-prev,
+        &.swiper-button-prev {
+            left: -25px;
+        }
+    }
+
+    // custom navigation icon
+    .swiper-zolo-prev {
+        .zolo__display-icon {
+            display: inline-block;
+        }
+    }
+
+    .swiper-zolo-prev,
+    .swiper-zolo-next {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
+    }
+}
+// pagination css  start
+.zolo-pagination-nav {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+    .page-numbers {
+        transition: 0.2s;
+        font-size: 14px;
+        padding: 8px 15px;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: #f0f0f4;
+        cursor: pointer;
+        + .page-numbers {
+            border-left: 1px solid #d9d9d9;
+        }
+        &.current {
+            background-color: #c5c5c5;
+        }
+    }
+}
+// pagination css  end
+.zolo-post-carousel {
+
+}

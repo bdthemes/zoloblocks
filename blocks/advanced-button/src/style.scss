@@ -59,6 +59,7 @@
 
     .zolo-button-content {
         color: var(--secondary-color);
+        z-index: 1;
     }
 
     .zolo-button-icon {
@@ -75,17 +76,33 @@
 	*/
     &.button-1 {
         .zolo-button {
-            background-color: var(--primary-color);
-            border: 1px solid var(--primary-color);
-            box-shadow:
-                var(--secondary-color) 4px 4px 0 0,
-                var(--primary-color) 4px 4px 0 1px;
-
+            overflow: hidden;
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #000;
+                transform-origin: 50% 100%;
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                transition: clip-path 0.2s, -webkit-clip-path 0.2s;
+                transition-timing-function: cubic-bezier(0.7, 0, 0.2, 1);
+            }
             &:hover {
-                background-color: var(--hover-color);
-                box-shadow:
-                    var(--secondary-color) 4px 4px 0 0,
-                    var(--hover-color) 4px 4px 0 1px;
+                &::before {
+                    transition-duration: 0.3s;
+                    clip-path: polygon(0 0, 100% 0, 0 0, 0% 100%);
+                }
+                .zolo-button-content,
+                .zolo__display-icon {
+                    animation: MoveUpInitial 0.2s forwards, MoveUpEnd 0.2s forwards 0.2s;
+                }
+            }
+            .zolo-button-content,
+            .zolo__display-icon {
+                overflow: hidden;
             }
         }
     }
@@ -95,27 +112,35 @@
 	*/
     &.button-2 {
         .zolo-button {
-            background-color: transparent;
-            border: 1px solid var(--color-b1);
-            position: relative;
-            touch-action: manipulation;
-
+          background-color: unset;
+            &::after {
+                border: 1px solid var(--zoloblocks-brand-color);
+                transition: transform 0.3s cubic-bezier(0.2,1,0.7,1);
+                border-radius: 0px;
+                transform: scale3d(0.85, 0.65, 1);
+            }
             &::before {
                 background-color: var(--zoloblocks-brand-color);
+                transition: transform 0.3s cubic-bezier(0.2,1,0.7,1);
+            }
+
+            &::before,
+            &::after {
                 content: '';
-                height: calc(100% + 3px);
                 position: absolute;
-                right: -7px;
-                top: -9px;
-                transition: background-color 300ms ease-in;
+                top: 0;
+                left: 0;
                 width: 100%;
-                z-index: -1;
+                height: 100%;
                 border-radius: var(--zoloblocks-button-border-radius);
             }
 
             &:hover {
                 &::before {
-                    background-color: var(--zoloblocks-brand-color-hover);
+                    transform: scale3d(0.9, 0.8, 1);
+                }
+                &::after {
+                    transform: scale3d(1,1,1);
                 }
             }
         }
@@ -126,29 +151,32 @@
 		*/
     &.button-3 {
         .zolo-button {
-            outline: 0;
-            border: 1px solid var(--primary-color);
-            position: relative;
-            background-color: transparent;
-
-            &::after {
-                content: '';
-                background-color: var(--zoloblocks-brand-color);
-                width: 100%;
-                z-index: -1;
+            overflow: hidden;
+            &::before {
                 position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
                 height: 100%;
-                top: 7px;
-                left: 7px;
-                transition: 0.2s;
-                border-radius: var(--zoloblocks-button-border-radius);
+                content: '';
+                background: #000;
+                transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+                transform-origin: 100% 50%;
             }
 
             &:hover {
-                &::after {
-                    top: 0;
-                    left: 0;
+                &::before {
+                    transform: scale3d(0,1,1);
+                    transform-origin: 0% 50%;
                 }
+                .zolo-button-content,
+                .zolo__display-icon {
+                    animation: MoveUpInitial 0.2s forwards, MoveUpEnd 0.2s forwards 0.2s;
+                }
+            }
+            .zolo-button-content,
+            .zolo__display-icon {
+                overflow: hidden;
             }
         }
     }
@@ -272,6 +300,47 @@
         }
     }
 
+    /*
+	* Button Style: 08
+	*/
+    &.button-8 {
+        --button-8-color: #000;
+        .zolo-button {
+                position: relative;
+                &::before,
+                &::after {
+                  content: "";
+                  width: 100%;
+                  height: 100%;
+                  position: absolute;
+                  z-index: -1;
+                  border: 2px solid var(--button-8-color);
+                  transition: all .25s ease-out;
+                  border-radius: var(--zoloblocks-button-border-radius);
+                  pointer-events: none;
+                }
+                &::before {
+                  background-color: var(--button-8-color);
+                  top: -6px;
+                  left: -6px;
+                }
+                &::after {
+                  bottom: -6px;
+                  right: -6px;
+                }
+                &:hover {
+                  &::before {
+                    top: 6px;
+                    left: 6px;
+                  }
+                  &::after {
+                    bottom: 6px;
+                    right: 6px;
+                  }
+                }
+        }
+    }
+
     .zolo-button {
         display: inline-flex;
         align-items: center;
@@ -303,6 +372,8 @@
 
     .zolo__display-icon {
         display: block;
+        z-index: 1;
+        position: relative;
         svg {
             width: 16px;
             height: 16px;
@@ -368,5 +439,19 @@
     100% {
         clip-path: var(--slice-1);
         transform: translate(0);
+    }
+}
+@keyframes MoveUpInitial {
+    100% {
+        transform: translate3d(0,-105%,0);
+    }
+}
+@keyframes MoveUpEnd {
+    0% {
+        transform: translate3d(0,100%,0);
+    }
+    
+    100% {
+        transform: translate3d(0,0,0);
     }
 }

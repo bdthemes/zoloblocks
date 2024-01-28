@@ -35,7 +35,8 @@ export const CONTAINER_BOX_SHADOW = 'reviewContainerBoxShadow';
 export const CONTAINER_PADDING = 'reviewContainerPadding';
 
 // review photo
-export const REVIEWER_PHOTO_SIZE = 'reviewPhotoSize';
+export const REVIEWER_PHOTO_WIDTH = 'reviewPhotoWidth';
+export const REVIEWER_PHOTO_HEIGHT = 'reviewPhotoHeight';
 export const REVIEWER_PHOTO_BG = 'reviewPhotoBackground';
 export const REVIEWER_PHOTO_BORDER = 'reviewPhotoBorder';
 export const REVIEWER_PHOTO_BORDER_RADIUS = 'reviewPhotoBorderRadius';

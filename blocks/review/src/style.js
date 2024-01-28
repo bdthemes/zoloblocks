@@ -49,8 +49,17 @@ import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MES
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, nameColor, designationColor, testimonialMessageColor, activeRatingColor, inactiveRatingColor, dplIconColor } =
-        attributes;
+    const {
+        uniqueId,
+        nameColor,
+        designationColor,
+        testimonialMessageColor,
+        activeRatingColor,
+        inactiveRatingColor,
+        dplIconColor,
+        objectFit,
+        photoOverflow,
+    } = attributes;
 
     // content align
     const {
@@ -420,6 +429,7 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-review .zolo-star-rating {
 			${ratingIconDeskAlignStyle}
 		}
+
 		.${uniqueId}.wp-block-zolo-review .zolo-image-wrap {
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
@@ -430,7 +440,12 @@ const Style = ({ props }) => {
 			${photoDeskWidth}
             ${photoDeskMinWidth}
             ${photoDeskHeight}
+            ${photoOverflow ? `overflow: ${photoOverflow};` : ''}
 		}
+
+        .${uniqueId}.wp-block-zolo-review .zolo-image-wrap .zolo-img {
+            ${objectFit ? `object-fit: ${objectFit};` : ''}
+        }
 
 		.${uniqueId}.wp-block-zolo-review .zolo-meta-content .zolo-name {
 			${nameTypoDesk}

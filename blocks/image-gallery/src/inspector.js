@@ -23,6 +23,7 @@ const {
     AdvancedOptions,
     ZoloPanelBody,
     ResGapControl,
+    ImageSizes,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -69,6 +70,10 @@ function Inspector(props) {
         zoomIconHoverColor,
         imageHoverBorderColor,
         lightboxIcon,
+        imageSize,
+        entranceAnimation,
+        showLightboxThumb,
+        showThumbCaption,
     } = attributes;
 
     const requiredProps = {
@@ -140,6 +145,11 @@ function Inspector(props) {
                                         })}
                                 </div>
                             </div>
+                            <ImageSizes
+                                label={__('Thumb Resolution', 'zolo-blocks')}
+                                value={imageSize}
+                                onChange={(value) => setAttributes({ imageSize: value })}
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
                             <ResCounterControl
@@ -162,13 +172,33 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         {showLightbox && (
-                            <ZoloPanelBody title={__('Lightbox Icon', 'zolo-blocks')} panelProps={props}>
+                            <ZoloPanelBody title={__('Lightbox Settings', 'zolo-blocks')} panelProps={props}>
+                                <ToggleControl
+                                    label={__('Show Thumbnails', 'zolo-blocks')}
+                                    checked={showLightboxThumb}
+                                    onChange={() => setAttributes({ showLightboxThumb: !showLightboxThumb })}
+                                />
+                                <ToggleControl
+                                    label={__('Show Caption', 'zolo-blocks')}
+                                    checked={showThumbCaption}
+                                    onChange={() => setAttributes({ showThumbCaption: !showThumbCaption })}
+                                />
                                 <ZoloIconPicker
-                                    label={__('Select Icon', 'zolo-blocks')}
+                                    label={__('Lightbox Opener Icon', 'zolo-blocks')}
                                     value={lightboxIcon}
                                     onChange={(value) => {
                                         setAttributes({
                                             lightboxIcon: value,
+                                        });
+                                    }}
+                                />
+                                <SelectControl
+                                    label={__('Entrance Animation', 'zolo-blocks')}
+                                    value={entranceAnimation}
+                                    options={MPA_ANIMATIONS}
+                                    onChange={(v) => {
+                                        setAttributes({
+                                            entranceAnimation: v,
                                         });
                                     }}
                                 />

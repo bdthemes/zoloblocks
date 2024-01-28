@@ -9,6 +9,10 @@
         flex-direction: column;
     }
 
+    .zolo-info-wrap {
+        width: 100%;
+    }
+
     .zolo-image-quote-wrap {
         position: relative;
     }
@@ -70,8 +74,6 @@
         background-color: var(--zoloblocks-brand-color);
         padding: clamp(0.625rem, 1.5vw, 1rem);
         border-radius: 100%;
-        // width: 30px;
-        // height: 30px;
         text-align: center;
         display: flex;
         align-items: center;

@@ -25,6 +25,7 @@ import {
     ICON_HBG,
     GAP,
     ITEM_BG,
+    ITEM_BG_HOVER,
     ITEM_PADDING,
     ITEM_MARGIN,
     ITEM_BORDER,
@@ -46,6 +47,15 @@ const Style = ({ props }) => {
         backgroundStylesMobile: itemMobBg,
     } = generateNormalBGControlStyles({
         controlName: ITEM_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+    const {
+        backgroundStylesDesktop: itemDeskBgHover,
+        backgroundStylesTab: itemTabBgHover,
+        backgroundStylesMobile: itemMobBgHover,
+    } = generateNormalBGControlStyles({
+        controlName: ITEM_BG_HOVER,
         attributes,
         noMainBGImg: false,
     });
@@ -288,6 +298,10 @@ const Style = ({ props }) => {
 			${itemDeskMargin}
 			${itemBoxShadow}
 		}
+         .${uniqueId}.wp-block-zolo-fancy-list-child:hover {
+            ${itemDeskBgHover}
+            
+		}
 
         .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
             ${DeskIconWidth}
@@ -358,6 +372,9 @@ const Style = ({ props }) => {
 			${itemTabMargin}
 			${itemBoxShadow}
 		}
+         .${uniqueId}.wp-block-zolo-fancy-list-child:hover {
+            ${itemTabBgHover}
+		}
 
         .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {
             ${TabIconWidth}
@@ -409,6 +426,9 @@ const Style = ({ props }) => {
 			${itemMobPadding}
 			${itemMobMargin}
 			${itemBoxShadow}
+		}
+        .${uniqueId}.wp-block-zolo-fancy-list-child:hover {
+            ${itemMobBgHover}
 		}
 
         .${uniqueId}.wp-block-zolo-fancy-list-child .zb-fancy-icon svg {

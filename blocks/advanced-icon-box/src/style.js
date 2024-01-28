@@ -487,7 +487,7 @@ export default function Style({ props }) {
 			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
 		}
 
-		.${uniqueId} .zolo-block-item{
+		.wp-block-zolo-advanced-icon-box.${uniqueId} .zolo-block-item{
 			${contentDeskAlign}
 		}
 
@@ -505,6 +505,10 @@ export default function Style({ props }) {
             ${descColor ? `color: ${descColor};` : ''}
 		}
 
+        .${uniqueId} .zolo-block-icon-wrap {
+			${iconMarginDesktop}
+        }
+
 		.${uniqueId} .zolo-block-icon-wrap svg {
             ${iconBackgroundColor ? `background: ${iconBackgroundColor};` : ''}
             ${iconColor ? `fill: ${iconColor};` : ''}
@@ -513,7 +517,6 @@ export default function Style({ props }) {
 			${borderStyles}
 			${iconBorderRadiusDesktop}
 			${iconPaddingDesktop}
-			${iconMarginDesktop}
 			${iconBoxShadow}
 		}
         
@@ -535,7 +538,6 @@ export default function Style({ props }) {
 			${btnTypoDesktop}
             flex-direction: ${iconPosition};
 		}
-
 
         .${uniqueId} .zolo-block-body-content .zolo-box-button svg{
 			${buttonIconSize}
@@ -602,13 +604,16 @@ export default function Style({ props }) {
 			${descTypoTab}
 		}
 
+        .${uniqueId} .zolo-block-icon-wrap {
+			${iconMarginTab}
+        }
+
 		.${uniqueId} .zolo-block-icon-wrap svg {
 			${iconSizeTab}
             ${iconHSizeTab}
 			${borderStylesTab}
 			${iconBorderRadiusTab}
 			${iconPaddingTab}
-			${iconMarginTab}
 			background: ${iconBackgroundColor ? iconBackgroundColor : ''};
 		}
 
@@ -672,12 +677,15 @@ export default function Style({ props }) {
 			${descTypoMobile}
 		}
 
+        .${uniqueId} .zolo-block-icon-wrap {
+			${iconPaddingMob}
+        }
+
 		.${uniqueId} .zolo-block-icon-wrap svg {
 			${iconSizeMob}
             ${iconHSizeMob}
 			${borderStylesMob}
 			${iconBorderRadiusMob}
-			${iconPaddingMob}
 			${iconMarginMob}
 		}
 

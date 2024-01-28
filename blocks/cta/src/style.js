@@ -31,13 +31,32 @@ import {
     DESC_MARGIN,
     FLEX_GAP,
     ICON_TEXT_SPACING,
+    ICON_S_SIZE,
+    ICON_TEXT_S_SPACING,
+    BUTTON_S_BORDER,
+    BUTTON_S_BORDER_RADIUS,
+    BUTTON_S_PADDING,
+    BUTTON_S_BG,
+    BUTTON_S_BOX_SHADOW,
+    BUTTON_HOVER_S_BG_COLOR,
+    BUTTON_HOVER_S_BOX_SHADOW,
 } from './constants';
 
-import { BUTTON_TYPOGRAPHY, TITLE_TYPO, DESC_TYPO } from './constants/typoPrefixConstant';
+import { BUTTON_TYPOGRAPHY, BUTTON_S_TYPOGRAPHY, TITLE_TYPO, DESC_TYPO } from './constants/typoPrefixConstant';
 
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
-    const { uniqueId, textColor, textHoverColor, borderHoverColor, titleColor, descriptionColor } = attributes;
+    const {
+        uniqueId,
+        textColor,
+        textHoverColor,
+        borderHoverColor,
+        titleColor,
+        descriptionColor,
+        SborderHoverColor,
+        StextColor,
+        SHoverColor,
+    } = attributes;
 
     // title
     const {
@@ -102,6 +121,16 @@ export default function Style({ props }) {
         noMainBGImg: false,
     });
 
+    const {
+        backgroundStylesDesktop: SnormalDeskBGStyle,
+        backgroundStylesTab: SnormalTabBGStyle,
+        backgroundStylesMobile: SnormalMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: BUTTON_S_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
     // hover background
     const {
         backgroundStylesDesktop: hoverDeskBGStyle,
@@ -109,6 +138,16 @@ export default function Style({ props }) {
         backgroundStylesMobile: hoverMobBGStyle,
     } = generateNormalBGControlStyles({
         controlName: BUTTON_HOVER_BG_COLOR,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: ShoverDeskBGStyle,
+        backgroundStylesTab: ShoverTabBGStyle,
+        backgroundStylesMobile: ShoverMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: BUTTON_HOVER_S_BG_COLOR,
         attributes,
         noMainBGImg: false,
     });
@@ -123,6 +162,15 @@ export default function Style({ props }) {
         attributes,
     });
 
+    const {
+        desktopBorderStyle: SborderStyles,
+        tabBorderStyle: SborderStylesTab,
+        mobBorderStyle: SborderStylesMob,
+    } = generateBorderStyle({
+        controlName: BUTTON_S_BORDER,
+        attributes,
+    });
+
     // generate border radius
     const {
         dimensionStylesDesktop: borderRadiusDesktop,
@@ -130,6 +178,15 @@ export default function Style({ props }) {
         dimensionStylesMobile: borderRadiusMob,
     } = generateDimensionStyle({
         controlName: BUTTON_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: SborderRadiusDesktop,
+        dimensionStylesTab: SborderRadiusTab,
+        dimensionStylesMobile: SborderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: BUTTON_S_BORDER_RADIUS,
         styleFor: 'border-radius',
         attributes,
     });
@@ -154,6 +211,26 @@ export default function Style({ props }) {
         property: 'height',
         attributes,
     });
+    //Secondary Button
+    const {
+        desktopRangeStyle: SiconSize,
+        tabRangeStyle: SiconSizeTab,
+        mobRangeStyle: SiconSizeMob,
+    } = generateResRangeStyle({
+        controlName: ICON_S_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: SiconHSize,
+        tabRangeStyle: SiconHSizeTab,
+        mobRangeStyle: SiconHSizeMob,
+    } = generateResRangeStyle({
+        controlName: ICON_S_SIZE,
+        property: 'height',
+        attributes,
+    });
 
     const {
         desktopRangeStyle: iconGap,
@@ -164,15 +241,33 @@ export default function Style({ props }) {
         property: 'gap',
         attributes,
     });
+    const {
+        desktopRangeStyle: SiconGap,
+        tabRangeStyle: SiconGapTab,
+        mobRangeStyle: SiconGapMob,
+    } = generateResRangeStyle({
+        controlName: ICON_TEXT_S_SPACING,
+        property: 'gap',
+        attributes,
+    });
 
     const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
         controlName: BUTTON_BOX_SHADOW,
+        attributes,
+    });
+    const { boxShadowStyle: SnormalBoxShadowStyle } = generateBoxShadowStyles({
+        controlName: BUTTON_S_BOX_SHADOW,
         attributes,
     });
 
     const { boxShadowStyle: hoverBoxShadowStyle } = generateBoxShadowStyles({
         attributes,
         controlName: BUTTON_HOVER_BOX_SHADOW,
+    });
+
+    const { boxShadowStyle: ShoverBoxShadowStyle } = generateBoxShadowStyles({
+        attributes,
+        controlName: BUTTON_HOVER_S_BOX_SHADOW,
     });
 
     const {
@@ -185,11 +280,29 @@ export default function Style({ props }) {
     });
 
     const {
+        typoStylesDesktop: SbtnTypoDesktop,
+        typoStylesTab: SbtnTypoTab,
+        typoStylesMobile: SbtnTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: BUTTON_S_TYPOGRAPHY,
+        attributes,
+    });
+
+    const {
         dimensionStylesDesktop: paddingDesktop,
         dimensionStylesTab: paddingTab,
         dimensionStylesMobile: paddingMob,
     } = generateDimensionStyle({
         controlName: BUTTON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: SpaddingDesktop,
+        dimensionStylesTab: SpaddingTab,
+        dimensionStylesMobile: SpaddingMob,
+    } = generateDimensionStyle({
+        controlName: BUTTON_S_PADDING,
         styleFor: 'padding',
         attributes,
     });
@@ -225,7 +338,7 @@ export default function Style({ props }) {
             ${descDeskMargin}
         }
 
-        .wp-block-zolo-cta.${uniqueId} .zolo-button {
+        .wp-block-zolo-cta.${uniqueId} .primary{
             ${normalDeskBGStyle}
             ${borderStyles}
             ${borderRadiusDesktop}
@@ -236,25 +349,50 @@ export default function Style({ props }) {
             ${textColor ? `color: ${textColor};` : ''}
         }
 
-        .wp-block-zolo-cta.${uniqueId} .zolo-button:hover {
+         .wp-block-zolo-cta.${uniqueId} .secondary {
+            ${SnormalDeskBGStyle}
+            ${SborderStyles}
+            ${SborderRadiusDesktop}
+            ${SnormalBoxShadowStyle}
+            ${SbtnTypoDesktop}
+            ${SpaddingDesktop}
+            ${SiconGap}
+            ${StextColor ? `color: ${StextColor};` : ''}
+        }
+
+        .wp-block-zolo-cta.${uniqueId} .primary:hover {
             ${hoverBoxShadowStyle}
 			${hoverDeskBGStyle}
 			border-color: ${borderHoverColor ? borderHoverColor : ''};
             color: ${textHoverColor ? textHoverColor : ''};
         }
+          .wp-block-zolo-cta.${uniqueId} .secondary:hover {
+            ${ShoverBoxShadowStyle}
+			${ShoverDeskBGStyle}
+			border-color: ${SborderHoverColor ? SborderHoverColor : ''};
+            color: ${SHoverColor ? SHoverColor : ''};
+        }
 
-        .wp-block-zolo-cta.${uniqueId} .zolo-icon svg{
-            ${iconSize}
-            ${iconHSize}
+        .wp-block-zolo-cta.${uniqueId} .primary-icon svg{
+           ${iconSize}
+           ${iconHSize}
            ${textColor ? `fill: ${textColor};` : ''}
+        }
+        .wp-block-zolo-cta.${uniqueId} .secondary-icon svg{
+            ${SiconSize}
+            ${SiconHSize}
+            ${StextColor ? `fill: ${StextColor};` : ''}
         }
 
         .wp-block-zolo-cta.${uniqueId} .zolo-call-out.style-1 {
             ${flexGap}
         }
 
-        .wp-block-zolo-cta.${uniqueId} .zolo-button:hover .zolo-icon svg{
+        .wp-block-zolo-cta.${uniqueId} .primary:hover .primary-icon svg{
             ${textHoverColor ? `fill: ${textHoverColor};` : ''}
+        }
+        .wp-block-zolo-cta.${uniqueId} .secondary:hover .secondary-icon svg{
+            ${SHoverColor ? `fill: ${SHoverColor};` : ''}
         }
 
   	`;
@@ -273,7 +411,7 @@ export default function Style({ props }) {
             ${buttonAlignmentTab}
         }
 
-        .wp-block-zolo-cta.${uniqueId} .zolo-button {
+        .wp-block-zolo-cta.${uniqueId} .primary {
             ${normalTabBGStyle}
             ${borderStylesTab}
             ${borderRadiusTab}
@@ -282,13 +420,29 @@ export default function Style({ props }) {
             ${iconGapTab}
         }
 
-        .wp-block-zolo-cta.${uniqueId} .zolo-button:hover {
-            ${hoverTabBGStyle}
+        .wp-block-zolo-cta.${uniqueId} .secondary{
+            ${SnormalTabBGStyle}
+            ${SborderStylesTab}
+            ${SborderRadiusTab}
+            ${SbtnTypoTab}
+            ${SpaddingTab}
+            ${SiconGapTab}
         }
 
-        .wp-block-zolo-cta.${uniqueId} .zolo-icon svg{
+        .wp-block-zolo-cta.${uniqueId} .primary:hover {
+            ${hoverTabBGStyle}
+        }
+          .wp-block-zolo-cta.${uniqueId} .secondary:hover {
+            ${ShoverTabBGStyle}
+        }
+
+        .wp-block-zolo-cta.${uniqueId} .primary-icon svg{
             ${iconSizeTab}
             ${iconHSizeTab}
+        }
+        .wp-block-zolo-cta.${uniqueId} .secondary-icon svg{
+            ${SiconSizeTab}
+            ${SiconHSizeTab}
         }
 
         .wp-block-zolo-cta.${uniqueId} .zolo-call-out.style-1 {
@@ -311,7 +465,7 @@ export default function Style({ props }) {
             ${buttonAlignmentMob}
         }
 
-        .wp-block-zolo-cta.${uniqueId} .zolo-button {
+        .wp-block-zolo-cta.${uniqueId} .primary {
             ${normalMobBGStyle}
             ${borderStylesMob}
             ${borderRadiusMob}
@@ -319,14 +473,29 @@ export default function Style({ props }) {
             ${paddingMob}
             ${iconGapMob}
         }
-
-        .wp-block-zolo-cta.${uniqueId} .zolo-button:hover {
-            ${hoverMobBGStyle}
+        .wp-block-zolo-cta.${uniqueId} .secondary{
+            ${SnormalMobBGStyle}
+            ${SborderStylesMob}
+            ${SborderRadiusMob}
+            ${SbtnTypoMob}
+            ${SpaddingMob}
+            ${SiconGapMob}
         }
 
-        .wp-block-zolo-cta.${uniqueId} .zolo-icon svg{
+        .wp-block-zolo-cta.${uniqueId} .primary:hover {
+            ${hoverMobBGStyle}
+        }
+         .wp-block-zolo-cta.${uniqueId} .secondary:hover {
+            ${ShoverMobBGStyle}
+        }
+
+        .wp-block-zolo-cta.${uniqueId} .primary-icon svg{
             ${iconSizeMob}
             ${iconHSizeMob}
+        }
+        .wp-block-zolo-cta.${uniqueId} .secondary-icon svg{
+            ${SiconSizeMob}
+            ${SiconHSizeMob}
         }
 
         .wp-block-zolo-cta.${uniqueId} .zolo-call-out.style-1 {

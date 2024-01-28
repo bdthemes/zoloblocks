@@ -13,7 +13,7 @@ import { generateBoxShadowStyles } from '../../helpers/boxshadow-helper';
 export const GlobalStyleHanlder = (props) => {
     const { attributes, setAttributes, desktopAllStyle, tabAllStyle, mobileAllStyle } = props;
 
-    const { uniqueId, zIndex, zoloStyles, globalConfig, customCss } = attributes;
+    const { uniqueId, zIndex, overflow, zoloStyles, globalConfig, customCss } = attributes;
 
     if (!uniqueId) {
         return;
@@ -106,14 +106,15 @@ export const GlobalStyleHanlder = (props) => {
 
     const desktopGlobalStyles = `
       .parent-${uniqueId} {
-          ${normalBoxShadowStyle ? normalBoxShadowStyle : ''}
-          ${borderRadiusStylesDesktop ? borderRadiusStylesDesktop : ''}
-          ${desktopBorderStyles ? desktopBorderStyles : ''}
-          ${marginStylesDesktop ? marginStylesDesktop : ''}
-          ${paddingStylesDesktop ? paddingStylesDesktop : ''}
-          ${bgDeskStyle ? bgDeskStyle : ''}
-          ${zIndex ? `z-index: ${zIndex};` : ''}
-          transition: all 0.3s ease-in-out;
+        ${normalBoxShadowStyle ? normalBoxShadowStyle : ''}
+        ${borderRadiusStylesDesktop ? borderRadiusStylesDesktop : ''}
+        ${desktopBorderStyles ? desktopBorderStyles : ''}
+        ${marginStylesDesktop ? marginStylesDesktop : ''}
+        ${paddingStylesDesktop ? paddingStylesDesktop : ''}
+        ${bgDeskStyle ? bgDeskStyle : ''}
+        ${zIndex ? `z-index: ${zIndex};` : ''}
+        ${overflow ? `overflow: ${overflow};` : ''}
+        transition: all 0.3s ease-in-out;
       }
 
       .parent-${uniqueId}:hover {

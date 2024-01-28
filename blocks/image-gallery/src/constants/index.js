@@ -60,27 +60,27 @@ export const OVERLAY_BG_COLOR = 'overlayBgColor';
 // MPA Animations
 export const MPA_ANIMATIONS = [
     {
-        label: __('Zoom In', 'zolo-blocks'),
-        value: 'mfp-zoom-in',
-    },
-    {
-        label: __('Zoom Out', 'zolo-blocks'),
-        value: 'mfp-zoom-out',
+        label: __('Zoom', 'zolo-blocks'),
+        value: 'zolo-zoom-in',
     },
     {
         label: __('Newspaper', 'zolo-blocks'),
-        value: 'mfp-newspaper',
+        value: 'zolo-newspaper',
     },
     {
-        label: __('Horizontal Move', 'zolo-blocks'),
-        value: 'mfp-move-horizontal',
+        label: __('Move Zorizontal', 'zolo-blocks'),
+        value: 'zolo-move-horizontal',
     },
     {
-        label: __('Move from Top', 'zolo-blocks'),
-        value: 'mfp-move-from-top',
+        label: __('Move Top', 'zolo-blocks'),
+        value: 'zolo-move-form-top',
     },
     {
-        label: __('3D Unfold', 'zolo-blocks'),
-        value: 'mfp-3d-unfold',
+        label: __('3d Unfold', 'zolo-blocks'),
+        value: 'zolo-3d-unfold',
+    },
+    {
+        label: __('Zoom Out', 'zolo-blocks'),
+        value: 'zolo-zoom-out',
     },
 ];

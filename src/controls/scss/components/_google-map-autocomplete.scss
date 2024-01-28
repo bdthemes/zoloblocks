@@ -1,0 +1,43 @@
+// Google Map AutoComplete Style
+.zolo-google-map-autocomplete {
+    position: relative;
+    margin-bottom: 24px;
+
+    .zolo-suggested-places {
+        position: absolute;
+        top: 62px;
+        left: 0;
+        width: 100%;
+        max-height: 200px;
+        overflow: scroll;
+        background: #fff;
+        padding: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #f0f0f0;
+        box-sizing: border-box;
+    }
+
+    .zolo-suggested-place {
+        list-style: none;
+        padding: 0 12px;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-wrap: balance;
+
+        + .zolo-suggested-place {
+            margin-top: 5px;
+            padding-top: 5px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        svg {
+            width: 12px;
+            height: 12px;
+            min-width: 12px;
+            fill: #bcbcbc;
+        }
+    }
+}

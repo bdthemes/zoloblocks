@@ -30,8 +30,8 @@
         margin-bottom: clamp(1.25rem, 6vw, 3.125rem);
         .swiper-pagination-bullet {
             background-color: transparent;
-            width: clamp(0.75rem, 1.5vw, 0.875rem);
-            height: clamp(0.75rem, 1.5vw, 0.875rem);
+            width: 8px;
+            height: 8px;
             border: 1px solid var(--zoloblocks-brand-color);
             transition: all 0.3s ease;
 
@@ -51,9 +51,9 @@
         margin: 0 clamp(1.25rem, 6vw, 3.125rem);
         width: clamp(2.188rem, 6vw, 3.125rem);
         height: clamp(2.188rem, 6vw, 3.125rem);
-        border: 1px solid var(--zoloblocks-brand-color);
-        color: var(--zoloblocks-brand-color);
-        fill: var(--zoloblocks-brand-color);
+        color: #000;
+        fill: #000;
+        background-color: #c4c4d2;
         border-radius: 50%;
         transition: all 0.3s ease;
         &:hover {

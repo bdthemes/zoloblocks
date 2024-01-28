@@ -27,6 +27,7 @@ import {
     PAG_BORDER_RADIUS,
     PAG_BG,
     PAG_SPACING,
+    PAG_VERTICAL_OFFSET,
     APAG_WIDTH,
     APAG_HEIGHT,
     APAG_BORDER,
@@ -183,6 +184,16 @@ const Style = ({ props }) => {
         attributes,
     });
 
+     const {
+         desktopRangeStyle: pagBottomSpacingDesktop,
+         tabRangeStyle: pagBottomSpacingTab,
+         mobRangeStyle: pagBottomSpacingMob,
+     } = generateResRangeStyle({
+         controlName: PAG_VERTICAL_OFFSET,
+         property: 'bottom',
+         attributes,
+     });
+
     const {
         desktopBorderStyle: pagBorderStyles,
         tabBorderStyle: pagBorderStylesTab,
@@ -320,6 +331,10 @@ const Style = ({ props }) => {
             fill: ${navHoverColor};
         }
 
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination {
+            ${pagBottomSpacingDesktop}
+        }
+
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullets {
             ${pagSpacingDesktop}
         }
@@ -364,6 +379,9 @@ const Style = ({ props }) => {
             ${cnavTabSize}
             ${cnavTabHSize}
         }
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination {
+            ${pagBottomSpacingTab}
+        }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullet {
             ${pagTabWidth}
             ${pagTabHeight}
@@ -404,6 +422,9 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-slider .swiper-zolo-next svg, .${uniqueId}.wp-block-zolo-slider .swiper-zolo-prev svg {
             ${cnavMobSize}
             ${cnavMobHSize}
+        }
+        .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullet {
+           ${pagBottomSpacingMob}
         }
         .${uniqueId}.wp-block-zolo-slider .swiper-pagination-bullet {
             ${pagMobWidth}

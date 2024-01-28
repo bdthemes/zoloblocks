@@ -148,3 +148,33 @@ export const addPrefixToSelector = (cssString = '', prefix) => {
 
     return modifiedCssString;
 };
+
+export const getContrastRatio = (color1, color2) => {
+    // Helper function to convert any color format to RGBA
+    function getColorValues(color) {
+        const canvas = document.createElement('canvas');
+        canvas.width = canvas.height = 1;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = color;
+        ctx.fillRect(0, 0, 1, 1);
+        const data = ctx.getImageData(0, 0, 1, 1).data;
+        return { r: data[0], g: data[1], b: data[2], a: data[3] / 255 };
+    }
+
+    // Helper function to calculate luminance
+    function getLuminance(color) {
+        return 0.2126 * color.r + 0.7152 * color.g + 0.0722 * color.b;
+    }
+
+    // Convert colors to RGBA format
+    const color1RGBA = typeof color1 === 'string' ? getColorValues(color1) : color1;
+    const color2RGBA = typeof color2 === 'string' ? getColorValues(color2) : color2;
+
+    // Calculate the contrast ratio
+    const luminance1 = getLuminance(color1RGBA) + 0.05;
+    const luminance2 = getLuminance(color2RGBA) + 0.05;
+
+    const contrastRatio = luminance1 > luminance2 ? luminance1 / luminance2 : luminance2 / luminance1;
+
+    return contrastRatio.toFixed(2); // Return the contrast ratio rounded to two decimal places
+};

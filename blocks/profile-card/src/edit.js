@@ -44,6 +44,7 @@ export default function Edit(props) {
         followButtonText,
         showSocialProfiles,
         socialProfiles,
+        imageRes,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -102,7 +103,10 @@ export default function Edit(props) {
                             {showPhoto && (
                                 <div className="zb-profile-image">
                                     {photo ? (
-                                        <img src={photo.url} alt={photo.alt || 'profile card'} />
+                                        <img
+                                            src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url}
+                                            alt={photo.alt || 'profile card'}
+                                        />
                                     ) : (
                                         <MediaUpload
                                             onSelect={(media) => {
@@ -236,6 +240,7 @@ export default function Edit(props) {
                                                     key={index}
                                                     rel={profile.link.openInNewTab && 'noopener noreferer'}
                                                     target={profile.link.openInNewTab && '_blank'}
+                                                    title={profile.title}
                                                 >
                                                     <DisplayZoloIcon icon={profile.icon} />
                                                 </a>

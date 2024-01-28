@@ -1,0 +1,24 @@
+.wp-block-zolo-google-map {
+    .zolo-gmap-wrapper {
+        height: clamp(18.75rem, 50vw, 43.75rem);
+        .gm-style-iw.gm-style-iw-c {
+            max-width: 300px !important;
+            line-height: 1.4;
+            padding: 15px;
+            top: -35px;
+        }
+
+        .gm-style-iw-tc {
+            top: -35px;
+        }
+
+        button.gm-ui-hover-effect {
+            top: 0 !important;
+            right: 0 !important;
+        }
+
+        .zolo-gmap-marker-info {
+            margin-top: 10px;
+        }
+    }
+}

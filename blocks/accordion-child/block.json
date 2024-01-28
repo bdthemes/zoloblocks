@@ -3,15 +3,11 @@
     "title": "Single Accordion",
     "name": "zolo/accordion-child",
     "category": "zolo-blocks",
-    "keywords": [
-        "Accordion"
-    ],
+    "keywords": ["Accordion"],
     "description": "Act as child block for accordion",
-    "apiVersion": 3,
+    "apiVersion": 2,
     "textdomain": "zolo-blocks",
-    "parent": [
-        "zolo/accordion"
-    ],
+    "parent": ["zolo/accordion"],
     "supports": {
         "anchor": false,
         "customClassName": false

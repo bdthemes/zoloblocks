@@ -5,7 +5,7 @@
     "category": "zolo-blocks",
     "keywords": ["gallery", "image gallery"],
     "description": "Image Gallery Block",
-    "apiVersion": 3,
+    "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "example": {
         "attributes": {

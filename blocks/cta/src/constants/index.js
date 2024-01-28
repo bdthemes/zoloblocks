@@ -54,6 +54,17 @@ export const BUTTON_HOVER_BOX_SHADOW = 'buttonHoverBoxShadow';
 
 export const ICON_SIZE = 'iconSize';
 
+// secondary button
+export const ICON_S_SIZE = 'iconSizeSecondary';
+export const ICON_TEXT_S_SPACING = 'iconTextSecondary';
+export const BUTTON_S_BORDER = 'borderSecondary';
+export const BUTTON_S_BORDER_RADIUS = 'borderRadiusSecondary';
+export const BUTTON_S_PADDING = 'paddingSecondary';
+export const BUTTON_S_BG = 'bgSecondary';
+export const BUTTON_S_BOX_SHADOW = 'boxShadowSecondary';
+export const BUTTON_HOVER_S_BG_COLOR = 'hBgColorSecondary';
+export const BUTTON_HOVER_S_BOX_SHADOW = 'hBoxShadowSecondary';
+
 /**
  * Presets Styles
  */

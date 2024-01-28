@@ -35,6 +35,7 @@ import {
     PAG_PADDING,
     PAG_ALIGN,
     META_SPACE,
+    CONTENT_PADDING,
 } from './constants';
 
 import {
@@ -495,6 +496,18 @@ function Style({ props }) {
         attributes,
     });
 
+    // post content wrapper
+
+    const {
+        dimensionStylesDesktop: contentPaddingDesk,
+        dimensionStylesTab: contentPaddingTab,
+        dimensionStylesMobile: contentPaddingMob,
+    } = generateDimensionStyle({
+        controlName: CONTENT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -510,6 +523,10 @@ function Style({ props }) {
         ${columnDeskBorderStyle}
         ${columnDeskBorderRadius}
         ${columnBoxShadow}
+      }
+
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-item .zolo-post-content{
+        ${contentPaddingDesk}
       }
 
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-dateTime, .${uniqueId}.zolo-post-grid-wrap .zolo-post-secount-dateTime {
@@ -549,7 +566,6 @@ function Style({ props }) {
 
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-image{
         ${thumbMarginDesk}
-       
         ${thumbBgDesk}
         ${thumbBorderDesk}
         ${thumbBorderRadiusDesk}
@@ -673,6 +689,10 @@ function Style({ props }) {
       ${columnTabBorderRadius}
     }
 
+    .${uniqueId}.zolo-post-grid-wrap .zolo-post-item .zolo-post-content{
+      ${contentPaddingTab}
+    }
+
     .${uniqueId}.zolo-post-grid-wrap .zolo-post-image{
       ${thumbnailHeightTab}
     }
@@ -752,6 +772,10 @@ function Style({ props }) {
       ${pagTypoTab}
       ${pagPaddingTab}
     }
+
+    .${uniqueId}.zolo-post-grid-wrap .zolo-post-dateTime, .${uniqueId}.zolo-post-grid-wrap .zolo-post-secount-dateTime {
+      ${metaSpaceTab}
+    }
   `;
 
     const mobileAllStyle = `
@@ -765,6 +789,10 @@ function Style({ props }) {
         ${columnMobBGStyle}
         ${columnMobBorderStyle}
         ${columnMobBorderRadius}
+      }
+
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-item .zolo-post-content{
+        ${contentPaddingMob}
       }
 
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-image{
@@ -845,6 +873,10 @@ function Style({ props }) {
       .${uniqueId}.zolo-pagination-wrap .page-numbers {
         ${pagTypoMob}
         ${pagPaddingMob}
+      }
+
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-dateTime, .${uniqueId}.zolo-post-grid-wrap .zolo-post-secount-dateTime {
+        ${metaSpaceMob}
       }
     `;
 

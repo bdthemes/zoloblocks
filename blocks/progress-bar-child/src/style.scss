@@ -1,8 +1,7 @@
 :root {
     --zolo-progress-border-radius: 5px;
     --zolo-progress-bar-height: 10px;
-    --zolo-progress-bar-color: #0072ff;
-    --zolo-progress-bar-percent: 60%;
+    --zolo-progress-bar-color: #0d76df;
     --zolo-progress-bar-height-3: 30px;
     --zolo-progress-bar-width_style-4: 30px;
 }
@@ -18,21 +17,15 @@
         margin: 0;
         padding: 0;
     }
+
+    display: flex;
+    gap: 8px;
+    position: relative;
+
     .zolo-container {
         display: flow-root;
         box-sizing: content-box;
         max-width: 800px;
-    }
-    .zolo-progress-bars-wrap {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-gap: 20px;
-    }
-
-    .zolo-progress-bar_item {
-        display: flex;
-        gap: 8px;
-        position: relative;
     }
 
     .zolo-progress-bar_content {
@@ -58,8 +51,10 @@
             height 0.6s ease;
     }
 
-    .active .zolo-progress-bar__progress-bar {
-        width: var(--zolo-progress-bar-percent);
+    .zolo-progress-bar__title,
+    .zolo-progress-bar_percent {
+        font-size: clamp(12px, 1.5vw, 14px);
+        line-height: 1;
     }
 
     .zolo-progress-bar__title,
@@ -69,29 +64,29 @@
     }
 
     /* progress bars style 1 css here */
-    &.style-1 .zolo-progress-bar_item {
+    &.style-1 {
         flex-direction: column;
     }
     /* progress bars style 2 css here */
-    &.style-2 .zolo-progress-bar_item {
+    &.style-2 {
         flex-direction: column-reverse;
     }
     /* progress bars style 3 css here */
-    &.style-3 .zolo-progress-bar_item,
-    &.style-4 .zolo-progress-bar_item,
-    &.style-5 .zolo-progress-bar_item {
+    &.style-3,
+    &.style-4 {
         display: block;
     }
-
-    &.style-3 .zolo-progress-bar_content {
-        top: 50%;
-        left: calc(var(--zolo-progress-bar-percent) / 2);
-        transform: translate(-50%, -50%);
+    &.style-3 {
+        .zolo-progress-bar_content {
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+        }
     }
 
+
     &.style-3 .zolo-progress-bar_content,
-    &.style-4 .zolo-progress-bar_content,
-    &.style-5 .zolo-progress-bar_content {
+    &.style-4 .zolo-progress-bar_content {
         position: absolute;
         line-height: 1;
         justify-content: inherit;
@@ -100,36 +95,20 @@
 
     &.style-3 .zolo-progress-bar__title,
     &.style-3 .zolo-progress-bar_percent,
-    &.style-4 .zolo-progress-bar__title,
-    &.style-5 .zolo-progress-bar__title,
-    &.style-5 .zolo-progress-bar_percent {
+    &.style-4 .zolo-progress-bar__title{
         color: #fff;
-        font-size: 14px;
-    }
-
-    &.style-4 .zolo-progress-bar_percent {
-        font-size: 14px;
     }
 
     &.style-3 .zolo-progress-bar__progress-bar,
     &.style-3 .zolo-progress-bar__progress,
     &.style-4 .zolo-progress-bar__progress-bar,
-    &.style-4 .zolo-progress-bar__progress,
-    &.style-5 .zolo-progress-bar__progress-bar,
-    &.style-5 .zolo-progress-bar__progress {
+    &.style-4 .zolo-progress-bar__progress {
         border-radius: 15px;
     }
 
     &.style-3 .zolo-progress-bar__progress,
     &.style-4 .zolo-progress-bar__progress {
         height: var(--zolo-progress-bar-height-3);
-    }
-
-    &.style-5 .zolo-progress-bar__progress {
-        width: var(--zolo-progress-bar-width_style-4);
-        height: 500px;
-        display: flex;
-        flex-direction: column-reverse;
     }
 
     &.style-4 .zolo-progress-bar_content {
@@ -139,35 +118,5 @@
         justify-content: space-between;
         left: 0;
         right: 0;
-    }
-
-    &.style-5 .zolo-progress-bar_content {
-        top: inherit;
-        bottom: calc(var(--zolo-progress-bar-percent) / 2);
-        left: calc(var(--zolo-progress-bar-width_style-4) / 2);
-        transform: translate(-50%, -50%) rotate(-90deg);
-    }
-
-    &.style-5 .zolo-progress-bar__progress-bar {
-        width: 100%;
-        height: 0;
-    }
-
-    &.style-5 .active .zolo-progress-bar__progress-bar {
-        height: var(--zolo-progress-bar-percent);
-        width: 100%;
-    }
-
-    &.style-3 .zolo-progress-bar_content,
-    &.style-4 .zolo-progress-bar_content,
-    &.style-5 .zolo-progress-bar_content {
-        opacity: 0;
-        transition: opacity 0.6s ease;
-    }
-
-    &.style-3 .active .zolo-progress-bar_content,
-    &.style-4 .active .zolo-progress-bar_content,
-    &.style-5 .active .zolo-progress-bar_content {
-        opacity: 1;
     }
 }

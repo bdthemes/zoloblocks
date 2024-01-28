@@ -3,11 +3,9 @@
     "title": "Accordion",
     "name": "zolo/accordion",
     "category": "zolo-blocks",
-    "keywords": [
-        "Accordion"
-    ],
+    "keywords": ["Accordion"],
     "description": "Build accordion and FAQs section",
-    "apiVersion": 3,
+    "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "example": {
         "attributes": {

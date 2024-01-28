@@ -39,7 +39,7 @@ export default function Edit(props) {
         reviewerWebsiteLink,
         showRating,
         rating,
-        websiteLinkIcon,
+        imageRes,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -98,7 +98,15 @@ export default function Edit(props) {
                         {showPhoto && (
                             <div className="zolo-image-wrap">
                                 {memberPhoto ? (
-                                    <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} className="zolo-img" />
+                                    <img
+                                        src={
+                                            memberPhoto.sizes && memberPhoto.sizes[imageRes]
+                                                ? memberPhoto.sizes[imageRes].url
+                                                : memberPhoto.url
+                                        }
+                                        alt={memberPhoto.alt || memberName}
+                                        className="zolo-img"
+                                    />
                                 ) : (
                                     <MediaPlaceholder
                                         icon="format-image"
@@ -126,6 +134,7 @@ export default function Edit(props) {
                                         rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && 'noreferer noopener'}
                                         target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && '_blank'}
                                         className="zolo-name has-link"
+                                        title={memberName}
                                     >
                                         <RichText
                                             value={memberName}

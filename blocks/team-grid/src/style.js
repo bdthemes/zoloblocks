@@ -219,7 +219,7 @@ const Style = ({ props }) => {
         mobRangeStyle: photoMobSize,
     } = generateResRangeStyle({
         controlName: PHOTO_SIZE,
-        property: 'max-width',
+        property: ' width',
         attributes,
     });
 
@@ -653,7 +653,7 @@ const Style = ({ props }) => {
 			${itemBoxShadow}
 		}
         .${uniqueId} {
-			${teamMemberContainerDeskPadding}
+			${teamMemberContainerDeskPadding}image
 			${teamMemberContainerDeskMargin}
 		}
 		.${uniqueId} .zolo-name, .${uniqueId} .zolo-designation, .${uniqueId} .zolo-desc {
@@ -680,14 +680,15 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
             ${teamDeskAlignStyle}
             ${photoDeskMargin}
+            
         }
-		.${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
+		.wp-block-zolo-team-grid.${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
+            ${photoDeskSize}
 			${photoDeskBGStyle}
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
 			${photoDeskPadding}
 			${teamPhotoBoxShadow}
-            ${photoDeskSize}
 		}
 		.${uniqueId} .zolo-name {
 			${nameTypoDesk}
@@ -809,15 +810,16 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
             ${teamTabAlignStyle}
             ${photoTabMargin}
+            
         }
 
-        .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
+        .wp-block-zolo-team-grid.${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
+            ${photoTabSize}
             ${photoTabBGStyle}
             ${photoTabBorderStyle}
             ${photoTabBorderRadius}
             ${photoTabPadding}
             ${teamPhotoBoxShadow}
-            ${photoTabSize}
         }
 
         .${uniqueId} .zolo-name {
@@ -925,15 +927,16 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
             ${teamMobAlignStyle}
             ${photoMobMargin}
+            
         }
 
-        .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
+        .wp-block-zolo-team-grid.${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
+            ${photoMobSize}
             ${photoMobBGStyle}
             ${photoMobBorderStyle}
             ${photoMobBorderRadius}
             ${photoMobPadding}
             ${teamPhotoBoxShadow}
-            ${photoMobSize}
         }
 
         .${uniqueId} .zolo-name {

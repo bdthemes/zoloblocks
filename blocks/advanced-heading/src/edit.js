@@ -87,6 +87,7 @@ const Edit = (props) => {
                                       href: titleLink.url,
                                       target: titleLink.openInNewTab ? '_blank' : '_self',
                                       rel: titleLink.openInNewTab ? 'noopener noreferrer' : 'noopener',
+                                      title: titleText,
                                   }
                                 : {})}
                         />

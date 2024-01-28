@@ -101,6 +101,10 @@ const attributes = {
         type: 'string',
         default: '',
     },
+    imageRes: {
+        type: 'string',
+        default: 'full',
+    },
     hideIcon: {
         type: 'boolean',
         default: true,

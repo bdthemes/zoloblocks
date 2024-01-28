@@ -46,6 +46,7 @@ import {
     COLUMNS,
     GRID_GAP,
     ITEM_BG,
+    ITEM_BG_HOVER,
     ITEM_PADDING,
     ITEM_MARGIN,
     ITEM_BORDER,
@@ -232,8 +233,21 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={false} />
-                            <BoxShadowControl controlName={ITEM_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={false} />
+                                        <BoxShadowControl
+                                            controlName={ITEM_BOX_SHADOW}
+                                            requiredProps={requiredProps}
+                                            enableTransition={false}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG_HOVER} noMainBGImg={false} />
+                                }
+                            />
                         </ZoloPanelBody>
                         {titleToggle && (
                             <ZoloPanelBody title={__('Title', 'zolo-block')} stylePanel={true} panelProps={props}>

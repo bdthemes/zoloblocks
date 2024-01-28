@@ -23,6 +23,7 @@ const {
     LinkControl,
     AdvancedOptions,
     ZoloPanelBody,
+    ImageSizes,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -69,6 +70,7 @@ function Inspector(props) {
         brandLabelVisible,
         enableLogoLink,
         logoLinkType,
+        imageRes,
     } = attributes;
 
     const requiredProps = {
@@ -96,12 +98,9 @@ function Inspector(props) {
                                             })
                                         }
                                         imageId={brandPhoto && brandPhoto.id}
-                                        onEditImage={(url, id) =>
+                                        onEditImage={(media) =>
                                             setAttributes({
-                                                brandPhoto: {
-                                                    url,
-                                                    id,
-                                                },
+                                                brandPhoto: media,
                                             })
                                         }
                                     />
@@ -131,6 +130,15 @@ function Inspector(props) {
                                     />
                                 )}
                             </BaseControl>
+                            <ImageSizes
+                                label={__('Logo Resolution', 'zolo-blocks')}
+                                value={imageRes}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        imageRes: value,
+                                    })
+                                }
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             {brandNameVisible && (

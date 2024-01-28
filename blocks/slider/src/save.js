@@ -26,7 +26,7 @@ export default function save({ attributes }) {
 
     // Block Props
     const blockProps = useBlockProps.save({
-        className: classnames('swiper', uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
     return (
@@ -42,6 +42,7 @@ export default function save({ attributes }) {
                 <div className="swiper-wrapper">
                     <InnerBlocks.Content />
                 </div>
+            </div>
                 {showPagination && <div className="swiper-pagination swiper-pagination-position-bottom"></div>}
                 {showNavigation && (
                     <Fragment>
@@ -69,7 +70,6 @@ export default function save({ attributes }) {
                         </div>
                     </Fragment>
                 )}
-            </div>
         </div>
     );
 }

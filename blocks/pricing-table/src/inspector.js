@@ -428,6 +428,7 @@ const Inspector = (props) => {
                                 label={__('Title Typography', 'zolo-blocks')}
                                 typoPrefixConstant={TITLE_TYPOGRAPHY}
                                 requiredProps={requiredProps}
+                                max={72}
                             />
 
                             <BorderControl label={__('Border', 'zolo-blocks')} controlName={TITLE_BORDER} requiredProps={requiredProps} />
@@ -469,7 +470,7 @@ const Inspector = (props) => {
                                         label="Typography"
                                         typoPrefixConstant={DESC_TYPOGRAPHY}
                                         requiredProps={requiredProps}
-                                        max={36}
+                                        max={72}
                                     />
 
                                     <ColorControl
@@ -573,7 +574,7 @@ const Inspector = (props) => {
                                         label="Typography"
                                         typoPrefixConstant={ORGINAL_PRICE_TYPOGRAPHY}
                                         requiredProps={requiredProps}
-                                        max={36}
+                                        max={72}
                                     />
 
                                     <ColorControl
@@ -604,7 +605,7 @@ const Inspector = (props) => {
                                         label="Typography"
                                         typoPrefixConstant={PERIOD_TYPOGRAPHY}
                                         requiredProps={requiredProps}
-                                        max={36}
+                                        max={72}
                                     />
 
                                     <ColorControl
@@ -658,6 +659,7 @@ const Inspector = (props) => {
                                         label="Title Typography"
                                         typoPrefixConstant={FEATURE_TITLE_TYPOGRAPHY}
                                         requiredProps={requiredProps}
+                                        max={72}
                                     />
 
                                     <ColorControl
@@ -679,7 +681,7 @@ const Inspector = (props) => {
                                         label="Typography"
                                         typoPrefixConstant={FEATURE_DESC_TYPOGRAPHY}
                                         requiredProps={requiredProps}
-                                        max={36}
+                                        max={72}
                                     />
 
                                     <ColorControl
@@ -712,7 +714,7 @@ const Inspector = (props) => {
                                 label="Typography"
                                 typoPrefixConstant={FEATURE_TYPOGRAPHY}
                                 requiredProps={requiredProps}
-                                max={36}
+                                max={72}
                             />
 
                             <ColorControl
@@ -790,7 +792,7 @@ const Inspector = (props) => {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={BTN_TYPOGRAPHY}
                                     requiredProps={requiredProps}
-                                    max={36}
+                                    max={72}
                                 />
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
@@ -871,7 +873,7 @@ const Inspector = (props) => {
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={CBTN_TYPOGRAPHY}
                                     requiredProps={requiredProps}
-                                    max={36}
+                                    max={72}
                                 />
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
@@ -955,7 +957,7 @@ const Inspector = (props) => {
                                 label="Typography"
                                 typoPrefixConstant={RIBBON_TYPOGRAPHY}
                                 requiredProps={requiredProps}
-                                max={36}
+                                max={72}
                             />
                             <ColorControl
                                 label={__('Color', 'zolo-blocks')}

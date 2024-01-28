@@ -34,6 +34,7 @@ export default function Edit(props) {
         titleText,
         iconType,
         iconTypeImage,
+        imageRes,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -92,7 +93,16 @@ export default function Edit(props) {
                                 {iconType === 'icon' ? (
                                     <DisplayZoloIcon icon={counterIcon} />
                                 ) : (
-                                    iconTypeImage && <img src={iconTypeImage.url} alt={iconTypeImage.alt || titleText} />
+                                    iconTypeImage && (
+                                        <img
+                                            src={
+                                                iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
+                                                    ? iconTypeImage.sizes[imageRes].url
+                                                    : iconTypeImage.url
+                                            }
+                                            alt={iconTypeImage.alt || titleText}
+                                        />
+                                    )
                                 )}
                             </div>
                         )}

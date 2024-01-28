@@ -245,6 +245,10 @@ const attributes = {
             alt: '',
         },
     },
+    imageRes: {
+        type: 'string',
+        default: 'full',
+    },
     iconBoxTitle: {
         type: 'string',
         default: 'The Theme Settings',

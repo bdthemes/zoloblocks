@@ -50,6 +50,7 @@ import {
     PAG_ALIGN,
     PAG_PADDING,
     META_SPACE,
+    CONTENT_PADDING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -285,6 +286,9 @@ const attributes = {
 
     // post meta
     ...generateResRangeAttributies(META_SPACE),
+
+    // content
+    ...generateDimensionAttributes(CONTENT_PADDING),
 };
 
 export default attributes;

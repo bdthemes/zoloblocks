@@ -18,6 +18,7 @@ import {
     ICON_HBG,
     GAP,
     ITEM_BG,
+    ITEM_BG_HOVER,
     ITEM_PADDING,
     ITEM_MARGIN,
     ITEM_BORDER,
@@ -140,6 +141,10 @@ const attributes = {
             alt: '',
         },
     },
+    imageRes: {
+        type: 'string',
+        default: 'full',
+    },
     iconToggle: {
         type: 'boolean',
         default: true,
@@ -158,6 +163,7 @@ const attributes = {
     },
     // item
     ...generateNormalBGAttributes(ITEM_BG),
+    ...generateNormalBGAttributes(ITEM_BG_HOVER),
     ...generateBorderAttributies(ITEM_BORDER),
     ...generateDimensionAttributes(ITEM_BORDER_RADIUS),
     ...generateDimensionAttributes(ITEM_PADDING),

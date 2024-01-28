@@ -58,3 +58,6 @@ export const PAG_ALIGN = 'pagAlign';
 
 // post meta
 export const META_SPACE = 'metaSpace';
+
+// content wrapper
+export const CONTENT_PADDING = 'contentPadding';

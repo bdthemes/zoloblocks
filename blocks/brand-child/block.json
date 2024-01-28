@@ -3,15 +3,10 @@
     "title": "Brand Child",
     "name": "zolo/brand-child",
     "category": "zolo-blocks",
-    "keywords": [
-        "brand child",
-        "brand"
-    ],
+    "keywords": ["brand child", "brand"],
     "description": "Acts as a child block for the brand block",
-    "parent": [
-        "zolo/brand-grid"
-    ],
-    "apiVersion": 3,
+    "parent": ["zolo/brand-grid"],
+    "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "supports": {
         "anchor": false,

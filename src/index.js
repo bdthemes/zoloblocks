@@ -17,13 +17,19 @@ import '../blocks/brand-grid/src';
 import '../blocks/brand-grid/src';
 import '../blocks/cta/src';
 import '../blocks/counter/src';
+import '../blocks/countdown/src';
 import '../blocks/fancy-list-child/src';
 import '../blocks/fancy-list/src';
+import '../blocks/flipbox/src';
+import '../blocks/google-map/src';
 import '../blocks/image-gallery/src';
+import '../blocks/post-carousel/src';
 import '../blocks/post-grid/src';
 import '../blocks/post-list/src';
 import '../blocks/pricing-table/src';
 import '../blocks/profile-card/src';
+import '../blocks/progress-bar/src';
+import '../blocks/progress-bar-child/src';
 import '../blocks/review-child/src';
 import '../blocks/review-grid/src';
 import '../blocks/review/src';
@@ -37,4 +43,6 @@ import '../blocks/team-child/src';
 import '../blocks/team-child/src';
 import '../blocks/team-grid/src';
 import '../blocks/team-grid/src';
-// import '../blocks/progress-bar-child/src';
+
+// unregister blocks
+import './unregister';

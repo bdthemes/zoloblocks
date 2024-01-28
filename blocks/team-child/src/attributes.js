@@ -151,6 +151,10 @@ const attributes = {
             alt: '',
         },
     },
+    imageRes: {
+        type: 'string',
+        default: 'full',
+    },
     memberName: {
         type: 'string',
         default: 'John Doe',

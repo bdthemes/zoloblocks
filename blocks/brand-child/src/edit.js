@@ -3,7 +3,7 @@
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup, TextControl } from '@wordpress/components';
+import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 /**
@@ -15,7 +15,6 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
-import { DynamicTag } from '../../../src/helpers/helper';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, context } = props;
@@ -31,7 +30,7 @@ export default function Edit(props) {
         brandLabelVisible,
         enableLogoLink,
         logoLinkType,
-        brandText,
+        imageRes,
     } = attributes;
 
     // block props
@@ -88,10 +87,19 @@ export default function Edit(props) {
                         href={logoLink && logoLink.url}
                         rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                         target={logoLink && logoLink.openInNewTab && '_blank'}
+                        title={brandLabel}
                     >
                         <div className="zb-brand-image">
                             {brandPhoto ? (
-                                <img src={brandPhoto.url} alt={brandPhoto.alt || brandTitle} className="zolo-img" />
+                                <>
+                                    <img
+                                        src={
+                                            brandPhoto.sizes && brandPhoto.sizes[imageRes] ? brandPhoto.sizes[imageRes].url : brandPhoto.url
+                                        }
+                                        alt={brandPhoto.alt || brandTitle}
+                                        className="zolo-img"
+                                    />
+                                </>
                             ) : (
                                 <MediaPlaceholder
                                     onSelect={(media) => setAttributes({ brandPhoto: media })}
@@ -116,31 +124,9 @@ export default function Edit(props) {
                             </div>
                             <div className="zb-brand-inner-content">
                                 {brandNameVisible && (
-                                    <RichText.Content
-                                        tagName={brandNameTag}
-                                        className="zb-brand-title"
-                                        value={brandTitle}
-                                        // onChange={(name) =>
-                                        //     setAttributes({
-                                        //         brandTitle: name,
-                                        //     })
-                                        // }
-                                        // placeholder={__('Brand title..', 'zolo-blocks')}
-                                    />
+                                    <RichText.Content tagName={brandNameTag} className="zb-brand-title" value={brandTitle} />
                                 )}
-                                {brandLabelVisible && (
-                                    <RichText.Content
-                                        tagName="span"
-                                        className="zb-brand-link"
-                                        value={brandLabel}
-                                        // onChange={(name) =>
-                                        //     setAttributes({
-                                        //         brandLabel: name,
-                                        //     })
-                                        // }
-                                        // placeholder={__('Brand label..', 'zolo-blocks')}
-                                    />
-                                )}
+                                {brandLabelVisible && <RichText.Content tagName="span" className="zb-brand-link" value={brandLabel} />}
                             </div>
                         </div>
                     </a>
@@ -148,7 +134,11 @@ export default function Edit(props) {
                     <>
                         <div className="zb-brand-image">
                             {brandPhoto ? (
-                                <img src={brandPhoto.url} alt={brandPhoto.alt || brandTitle} className="zolo-img" />
+                                <img
+                                    src={brandPhoto.sizes && brandPhoto.sizes[imageRes] ? brandPhoto.sizes[imageRes].url : brandPhoto.url}
+                                    alt={brandPhoto.alt || brandTitle}
+                                    className="zolo-img"
+                                />
                             ) : (
                                 <MediaPlaceholder
                                     onSelect={(media) => setAttributes({ brandPhoto: media })}
@@ -179,31 +169,16 @@ export default function Edit(props) {
                                                 href={logoLink && logoLink.url}
                                                 rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                                                 target={logoLink && logoLink.openInNewTab && '_blank'}
+                                                title={brandTitle}
                                             >
                                                 <RichText.Content
                                                     tagName={brandNameTag}
                                                     className="zb-brand-title has-link"
                                                     value={brandTitle}
-                                                    // onChange={(name) =>
-                                                    //     setAttributes({
-                                                    //         brandTitle: name,
-                                                    //     })
-                                                    // }
-                                                    // placeholder={__('Brand title..', 'zolo-blocks')}
                                                 />
                                             </a>
                                         ) : (
-                                            <RichText.Content
-                                                tagName={brandNameTag}
-                                                className="zb-brand-title"
-                                                value={brandTitle}
-                                                // onChange={(name) =>
-                                                //     setAttributes({
-                                                //         brandTitle: name,
-                                                //     })
-                                                // }
-                                                // placeholder={__('Brand title..', 'zolo-blocks')}
-                                            />
+                                            <RichText.Content tagName={brandNameTag} className="zb-brand-title" value={brandTitle} />
                                         )}
                                     </>
                                 )}
@@ -215,30 +190,12 @@ export default function Edit(props) {
                                                 rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                                                 target={logoLink && logoLink.openInNewTab && '_blank'}
                                                 className="zb-brand-title-link has-link"
+                                                title={brandLabel}
                                             >
-                                                <RichText.Content
-                                                    tagName="span"
-                                                    value={brandLabel}
-                                                    // onChange={(name) =>
-                                                    //     setAttributes({
-                                                    //         brandLabel: name,
-                                                    //     })
-                                                    // }
-                                                    // placeholder={__('Brand label..', 'zolo-blocks')}
-                                                />
+                                                <RichText.Content tagName="span" value={brandLabel} />
                                             </a>
                                         ) : (
-                                            <RichText.Content
-                                                tagName="span"
-                                                className="zb-brand-title-link"
-                                                value={brandLabel}
-                                                // onChange={(name) =>
-                                                //     setAttributes({
-                                                //         brandLabel: name,
-                                                //     })
-                                                // }
-                                                // placeholder={__('Brand label..', 'zolo-blocks')}
-                                            />
+                                            <RichText.Content tagName="span" className="zb-brand-title-link" value={brandLabel} />
                                         )}
                                     </>
                                 )}

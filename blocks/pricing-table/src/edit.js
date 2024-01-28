@@ -210,6 +210,7 @@ const Edit = (props) => {
                                                     onChange={(text) => setAttributes({ buttonText: text })}
                                                     placeholder={__('Button Text', 'zolo-blocks')}
                                                     allowedFormats={[]}
+                                                    title={buttonText}
                                                 />
                                             )}
                                             {showChatBtn && (
@@ -220,6 +221,7 @@ const Edit = (props) => {
                                                     onChange={(text) => setAttributes({ chatBtnText: text })}
                                                     placeholder={__('Button Text', 'zolo-blocks')}
                                                     allowedFormats={[]}
+                                                    title={chatBtnText}
                                                 />
                                             )}
                                         </div>

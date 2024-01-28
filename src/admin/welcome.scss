@@ -1,0 +1,261 @@
+$color_1: #2b2c34;
+$color_2: #747377;
+$color_3: #fff;
+$color_4: #424351;
+$color_5: #000;
+$color_6: var(--zolo-dashboard-brand-color);
+$color_7: var(--zolo-dashboard-brand-color);
+$font-family_1: 'Open Sans', sans-serif;
+$font-family_2: 'Urbanist', sans-serif;
+$background-color_1: #fff;
+$background-color_2: var(--zolo-dashboard-brand-color);
+$background-color_3: #2667ff;
+$background-color_4: #f7f7f7;
+$background-color_5: #f1f1f1;
+
+/* .zolo-welcome-s-k-item img path{
+    fill: #000;
+} */
+
+body,p,span,a {
+    font-family: $font-family_1;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: $font-family_2;
+}
+
+.zolo-welcome-video-and-others-wrap {
+    flex-direction: column;
+    display: flex;
+    gap: 30px;
+}
+.zolo-welcome-s-k-wrap {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+}
+.zolo-welcome-footer-info-wrap {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+    flex-direction: column;
+}
+.zolo-welcome-video-item,
+.zolo-welcome-s-k-item,
+.zolo-welcome-footer-info-item  {
+    background-color: $background-color_1;
+    border-radius: 10px;
+    --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.zolo-welcome-video-item {
+    padding: clamp(1.875rem, 5vw, 3.125rem);
+}
+
+.zolo-welcome-s-k-item {
+    padding: clamp(1.875rem, 3vw, 2.5rem);
+    position: relative;
+    overflow: hidden;
+    img {
+        width: 230px;
+        height: 230px;
+        opacity: 0.5;
+        position: absolute;
+        bottom: -50px;
+        right: -50px;
+        pointer-events: none;
+    }
+}
+.zolo-welcome-footer-info-item {
+    padding: clamp(1.875rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    img {
+        position: absolute;
+        bottom: 0;
+        right: 0px;
+        pointer-events: none;
+        width: 250px;
+        height: 250px;
+    }
+}
+.zolo-welcome-page-title {
+    font-size: clamp(1.625rem, 3vw, 1.875rem);
+    margin: 0 0 clamp(0.625rem, 1.3vw, 0.938rem);
+    color: $color_1;
+    font-weight: 700;
+    z-index: 1;
+    position: relative;
+}
+.zolo-welcome-s-k-title {
+    margin: 0 0 clamp(0.625rem, 1.3vw, 0.938rem);
+    color: $color_1;
+    font-weight: 700;
+    z-index: 1;
+    position: relative;
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+}
+.zolo-welcome-footer-info-title {
+    margin: 0 0 clamp(0.625rem, 1.3vw, 0.938rem);
+    color: $color_1;
+    font-weight: 700;
+    z-index: 1;
+    position: relative;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+.zolo-welcome-page-text,
+.zolo-welcome-footer-info-text  {
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    margin: 0 0 30px;
+    line-height: 1.6;
+    color: $color_2;
+    z-index: 1;
+    position: relative;
+
+}
+.zolo-welcome-page-text {
+    max-width: 1022px;
+    a {
+        text-decoration: none;
+        color: #3f8efc;
+        font-weight: 500;
+        &:hover {
+            text-decoration: underline;
+            color: #2877e5;
+        }
+    }
+}
+.zolo-welcome-footer-info-text {
+    max-width: 550px;
+}
+.zolo-welcome-s-k-text {
+    line-height: 1.6;
+    color: #747377;
+    z-index: 1;
+    position: relative;
+    font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+    margin: 0 0 18px;
+    max-width: 610px;
+}
+.zolo-welcome-video-info-button {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: column;
+}
+.zolo-welcome-page-btn {
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: clamp(0.75rem, 1vw, 0.875rem);
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    transition:
+        color 0.3s ease,
+        background-color 0.3s ease,
+        border-color 0.3s ease;
+    z-index: 1;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.zolo-welcome-page-btn svg {
+    width: 1em;
+    height: 1em;
+    display: block;
+}
+
+.zolo-welcome-page-btn.zolo-primary-btn {
+    color: $color_3;
+    background-color: $background-color_2;
+    &:hover {
+        background-color: $background-color_3;
+    }
+}
+.zolo-welcome-page-btn.zolo-secondary-btn {
+    color: $color_4;
+    border: 1px solid #e6e6e6;
+    background-color: $background-color_4;
+    &:hover {
+        color: $color_5;
+        background-color: $background-color_5;
+    }
+}
+.zolo-welcome-footer-product-btn {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.zolo-welcome-page-btn.zolo-ep-btn {
+    color: $color_3;
+    background: linear-gradient(313deg, #08aeec 0%, #20e2ad 100%);
+    &:hover {
+        background: linear-gradient(120deg, #08aeec 0%, #20e2ad 100%);
+    }
+}
+.zolo-welcome-page-btn.zolo-ps-btn {
+    color: $color_3;
+    background: linear-gradient(45deg, #fe506c 0%, #fc6a2a 100%);
+    &:hover {
+        background: linear-gradient(45deg, #fc6a2a 0%, #fe506c 100%);
+    }
+}
+.zolo-welcome-page-btn.zolo-upk-btn {
+    color: $color_3;
+    background: linear-gradient(-45deg, #60df54 0%, #08c972 100%);
+    &:hover {
+        background: linear-gradient(-45deg, #08c972 0%, #60df54 100%);
+    }
+}
+.zolo-welcome-page-btn.zolo-usk-btn {
+    color: $color_3;
+    background: linear-gradient(140deg, #e62a3f 0%, #00216a 100%);
+    &:hover {
+        background: linear-gradient(120deg, #00216a 0%, #e62a3f 100%);
+    }
+}
+.zolo-welcome-page-btn.zolo-pg-btn {
+    color: $color_3;
+    background: linear-gradient(313deg, #086698 0%, #0d3b54 100%);
+    &:hover {
+        background: linear-gradient(120deg, #086698 0%, #0d3b54 100%);
+    }
+}
+.zolo-welcome-page-btn.zolo-live-copy-btn {
+    color: $color_3;
+    background: linear-gradient(145deg, #dd4049 0, #5a03ff 100%);
+    &:hover {
+        background: linear-gradient(360deg, #dd4049 0, #5a03ff 100%);
+    }
+}
+@media (min-width: 768px) {
+    .zolo-welcome-s-k-wrap {
+        flex-direction: row;
+    }
+    .zolo-welcome-footer-info-wrap {
+        flex-direction: row;
+    }
+    .zolo-welcome-video-info-button {
+        flex-direction: row;
+    }
+}
+@media (min-width: 1024px) {
+    .zolo-welcome-video-and-others-wrap {
+        flex-direction: row;
+    }
+    .zolo-welcome-s-k-wrap {
+        flex-direction: column;
+    }
+}

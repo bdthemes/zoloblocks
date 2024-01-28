@@ -13,6 +13,7 @@ let frontendEntries = getFrontend(blocksFolder);
 let allEntries = {
     ...frontendEntries,
     ['build/dist']: './src/index.js',
+    ['build/admin']: './src/admin/index.js',
     ['build/module']: {
         import: path.resolve(__dirname, 'src/module-export.js'),
         library: {

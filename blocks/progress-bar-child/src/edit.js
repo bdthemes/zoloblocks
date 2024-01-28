@@ -26,7 +26,7 @@ import Style from './style';
  */
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes, className, clientId, isSelected, context } = props;
     const { preview, uniqueId, parentClasses, preset, progressH, barTitleToggle, barpercentToggle, progressText, progressTextTag } =
         attributes;
 
@@ -39,6 +39,17 @@ export default function Edit(props) {
             clientId,
         });
     }, []);
+
+    useEffect(
+        () =>
+            setAttributes({
+                preset: context['zolo/preset'],
+                barTitleToggle: context['zolo/titleToggle'],
+                barpercentToggle: context['zolo/percentToggle'],
+                progressTextTag: context['zolo/progressTextTag'],
+            }),
+        [context]
+    );
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, `${preset ? preset : 'style-1'}`, classArrayToStr(parentClasses)),
@@ -54,23 +65,20 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                <div className="zolo-progress-bars-wrap">
-                    <div className="zolo-progress-bar_item active">
-                        <div className="zolo-progress-bar_content">
-                            {barTitleToggle && (
-                                <RichText
-                                    tagName={progressTextTag}
-                                    className="zolo-progress-bar__title"
-                                    value={progressText}
-                                    onChange={(content) => setAttributes({ progressText: content })}
-                                />
-                            )}
-                            {barpercentToggle && <div className="zolo-progress-bar_percent">{progressH}</div>}
-                        </div>
-                        <div className="zolo-progress-bar__progress">
-                            <div className="zolo-progress-bar__progress-bar" />
-                        </div>
-                    </div>
+                <div className="zolo-progress-bar_content">
+                    {barTitleToggle && (
+                        <RichText
+                            tagName={progressTextTag}
+                            className="zolo-progress-bar__title"
+                            value={progressText}
+                            onChange={(content) => setAttributes({ progressText: content })}
+                            placeholder={__('bar title..', 'zolo-blocks')}
+                        />
+                    )}
+                    {barpercentToggle && <div className="zolo-progress-bar_percent">{progressH && `${progressH}%`}</div>}
+                </div>
+                <div className="zolo-progress-bar__progress">
+                    <div className="zolo-progress-bar__progress-bar active" />
                 </div>
             </div>
         </>

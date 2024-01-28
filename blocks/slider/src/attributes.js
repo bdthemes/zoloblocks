@@ -1,17 +1,10 @@
 /**
  * Internal dependencies
  */
-const {
-    generateResRangeAttributies,
-    generateResCounterAttributies,
-    generateDimensionAttributes,
-    generateBorderAttributies,
-    generateNormalBGAttributes,
-} = window.zoloModule;
+const { generateResRangeAttributies, generateDimensionAttributes, generateBorderAttributies, generateNormalBGAttributes } =
+    window.zoloModule;
 
 import {
-    COLUMNS,
-    COLUMNS_GAP,
     SLIDER_HEIGHT,
     CONTENT_WIDTH,
     CONTENT_PADDING,
@@ -28,6 +21,7 @@ import {
     PAG_BORDER_RADIUS,
     PAG_BG,
     PAG_SPACING,
+    PAG_VERTICAL_OFFSET,
     APAG_WIDTH,
     APAG_HEIGHT,
     APAG_BORDER,
@@ -62,14 +56,6 @@ const attributes = {
         },
     },
     // block attributes
-    slideItems: {
-        type: 'number',
-        default: 3,
-    },
-    sliderType: {
-        type: 'string',
-        default: 'slider',
-    },
     sliderOptions: {
         type: 'object',
     },
@@ -118,10 +104,7 @@ const attributes = {
         type: 'number',
         default: 8,
     },
-    carouselEffect: {
-        type: 'string',
-        default: 'slide',
-    },
+
     sliderEffect: {
         type: 'string',
         default: 'slide',
@@ -131,8 +114,6 @@ const attributes = {
         default: false,
     },
     // Generator
-    ...generateResCounterAttributies(COLUMNS),
-    ...generateResRangeAttributies(COLUMNS_GAP),
     ...generateResRangeAttributies(SLIDER_HEIGHT),
     ...generateResRangeAttributies(CONTENT_WIDTH),
     ...generateDimensionAttributes(CONTENT_PADDING),
@@ -143,77 +124,18 @@ const attributes = {
     ...generateNormalBGAttributes(NAV_BG),
     ...generateNormalBGAttributes(NAV_HOVER_BG),
     ...generateResRangeAttributies(NAV_ICON_SIZE),
+    ...generateResRangeAttributies(PAG_VERTICAL_OFFSET),
     uniqueId: {
         type: 'string',
     },
     blockStyle: {
         type: 'object',
     },
-    slideItems: {
-        type: 'number',
-        default: 3,
-    },
-    sliderType: {
-        type: 'string',
-        default: 'slider',
-    },
-    sliderOptions: {
-        type: 'object',
-    },
-    autoplay: {
-        type: 'boolean',
-        default: false,
-    },
-    autoplayDelay: {
-        type: 'number',
-        default: 30,
-    },
-    pauseOnMouseEnter: {
-        type: 'boolean',
-        default: false,
-    },
-    infiniteLoop: {
-        type: 'boolean',
-        default: true,
-    },
-    showNavigation: {
-        type: 'boolean',
-        default: true,
-    },
-    navColor: {
-        type: 'string',
-    },
-    navHoverColor: {
-        type: 'string',
-    },
-    showPagination: {
-        type: 'boolean',
-        default: true,
-    },
-    paginationType: {
-        type: 'string',
-        default: 'bullets',
-    },
-    dynamicBullets: {
-        type: 'boolean',
-        default: false,
-    },
-    speed: {
-        type: 'number',
-        default: 8,
-    },
     carouselEffect: {
         type: 'string',
         default: 'slide',
     },
-    sliderEffect: {
-        type: 'string',
-        default: 'slide',
-    },
-    addNewSlideBlock: {
-        type: 'boolean',
-        default: false,
-    },
+
     customNavIcon: {
         type: 'boolean',
         default: false,
@@ -228,19 +150,6 @@ const attributes = {
         default:
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.6 278.6l-128 128c-12.51 12.51-32.76 12.49-45.25 0c-12.5-12.5-12.5-32.75 0-45.25L402.8 288H32C14.31 288 0 273.7 0 255.1S14.31 224 32 224h370.8l-73.38-73.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l128 128C515.1 245.9 515.1 266.1 502.6 278.6z"></path></svg>',
     },
-    // Generator
-    ...generateResCounterAttributies(COLUMNS),
-    ...generateResRangeAttributies(COLUMNS_GAP),
-    ...generateResRangeAttributies(SLIDER_HEIGHT),
-    ...generateResRangeAttributies(CONTENT_WIDTH),
-    ...generateDimensionAttributes(CONTENT_PADDING),
-    ...generateResRangeAttributies(NAV_WIDTH),
-    ...generateResRangeAttributies(NAV_HEIGHT),
-    ...generateBorderAttributies(NAV_BORDER),
-    ...generateDimensionAttributes(NAV_BORDER_RADIUS),
-    ...generateNormalBGAttributes(NAV_BG),
-    ...generateNormalBGAttributes(NAV_HOVER_BG),
-    ...generateResRangeAttributies(NAV_ICON_SIZE),
 
     // pagination
     ...generateResRangeAttributies(PAG_WIDTH),

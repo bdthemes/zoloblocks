@@ -1,10 +1,18 @@
 /**
  * Internal dependencies
  */
-const { generateNormalBGAttributes, generateBorderAttributies, generateDimensionAttributes, generateBoxShadowAttributies } =
+const { generateNormalBGAttributes, generateTypographyAttributes, generateResRangeAttributies, generateDimensionAttributes } =
     window.zoloModule;
 
-import { ITEM_BG, ITEM_PADDING, ITEM_MARGIN, ITEM_BORDER, ITEM_BORDER_RADIUS, ITEM_BOX_SHADOW } from './constants';
+import {
+    PROGRESS_BAR_BG_COLOR,
+    PROGRESS_BG_COLOR,
+    PROGRESS_HIGHT,
+    PROGRESS_BAR_RADIUS,
+    PROGRESS_TITLE_MARGIN,
+    PROGRESS_VALUE_MARGIN,
+    ITEM_BRADIUS,
+} from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -35,13 +43,20 @@ const attributes = {
         },
     },
     // item
-    ...generateNormalBGAttributes(ITEM_BG),
-    ...generateBorderAttributies(ITEM_BORDER),
-    ...generateDimensionAttributes(ITEM_BORDER_RADIUS),
-    ...generateDimensionAttributes(ITEM_PADDING),
-    ...generateDimensionAttributes(ITEM_MARGIN),
-    ...generateBoxShadowAttributies(ITEM_BOX_SHADOW),
-
+    ...generateDimensionAttributes(ITEM_BRADIUS),
+    //title
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
+    ...generateDimensionAttributes(PROGRESS_TITLE_MARGIN),
+    ...generateResRangeAttributies(PROGRESS_TITLE_MARGIN),
+    //progress value
+    ...generateDimensionAttributes(PROGRESS_VALUE_MARGIN),
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
+    //progress
+    ...generateNormalBGAttributes(PROGRESS_BG_COLOR),
+    ...generateResRangeAttributies(PROGRESS_HIGHT),
+    //progress bar
+    ...generateNormalBGAttributes(PROGRESS_BAR_BG_COLOR),
+    ...generateDimensionAttributes(PROGRESS_BAR_RADIUS),
     preset: {
         type: 'string',
     },
@@ -53,6 +68,9 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
+    titleColor: {
+        type: 'string',
+    },
     barpercentToggle: {
         type: 'boolean',
         default: true,
@@ -63,7 +81,11 @@ const attributes = {
     },
     progressTextTag: {
         type: 'string',
-        default: 'div',
+        default: 'h5',
+    },
+    //progress value
+    progressVColor: {
+        type: 'string',
     },
 };
 

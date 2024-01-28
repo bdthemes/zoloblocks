@@ -24,6 +24,7 @@ const Save = ({ attributes }) => {
                     href={link && link.url}
                     rel={link && link.openInNewTab && 'noreferrer noopener'}
                     target={link && link.openInNewTab && '_blank'}
+                    title={label}
                 >
                     {iconType !== 'iconOnly' && <RichText.Content tagName="span" className={`zolo-button-content`} value={label} />}
                     {iconType !== 'none' && <DisplayZoloIcon icon={icon} />}

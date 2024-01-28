@@ -35,6 +35,7 @@ export default function Edit(props) {
         buttonText,
         buttonLink,
         globalLink,
+        imageRes,
     } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
@@ -55,23 +56,25 @@ export default function Edit(props) {
                 {iconTypeImage && (
                     <Fragment>
                         <ToolbarGroup>
-                            <MediaUpload
-                                onSelect={(media) => {
-                                    setAttributes({
-                                        iconTypeImage: media,
-                                    });
-                                }}
-                                allowedTypes={['image']}
-                                value={iconTypeImage && iconTypeImage.id}
-                                render={({ open }) => (
-                                    <ToolbarButton
-                                        className="components-toolbar__control"
-                                        label={__('Replace Photo', 'zolo-blocks')}
-                                        icon="edit"
-                                        onClick={open}
-                                    />
-                                )}
-                            />
+                            {iconType === 'image' && (
+                                <MediaUpload
+                                    onSelect={(media) => {
+                                        setAttributes({
+                                            iconTypeImage: media,
+                                        });
+                                    }}
+                                    allowedTypes={['image']}
+                                    value={iconTypeImage && iconTypeImage.id}
+                                    render={({ open }) => (
+                                        <ToolbarButton
+                                            className="components-toolbar__control"
+                                            label={__('Replace Photo', 'zolo-blocks')}
+                                            icon="edit"
+                                            onClick={open}
+                                        />
+                                    )}
+                                />
+                            )}
                         </ToolbarGroup>
                     </Fragment>
                 )}
@@ -83,7 +86,17 @@ export default function Edit(props) {
                             {iconType == 'icon' ? (
                                 <DisplayZoloIcon icon={mainIcon} />
                             ) : iconTypeImage ? (
-                                <img src={iconTypeImage.url} alt={iconTypeImage.alt || 'Team Member'} />
+                                <>
+
+                                    <img
+                                        src={
+                                            iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
+                                                ? iconTypeImage.sizes[imageRes].url
+                                                : iconTypeImage.url
+                                        }
+                                        alt={iconTypeImage.alt || 'Team Member'}
+                                    />
+                                </>
                             ) : (
                                 <MediaPlaceholder
                                     icon="format-image"
@@ -139,6 +152,7 @@ export default function Edit(props) {
                                         href: buttonLink && buttonLink.url,
                                         target: buttonLink && buttonLink.openInNewTab && '_blank',
                                         rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
+                                        title: buttonText,
                                     })}
                                 >
                                     <RichText

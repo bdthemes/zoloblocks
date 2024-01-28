@@ -79,7 +79,6 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                                                     socialMedia: newItems,
                                                 });
 
-                                                // console.log(newItems);
                                             }}
                                         />
                                         <TextControl

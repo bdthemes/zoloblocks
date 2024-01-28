@@ -3,23 +3,15 @@
     "title": "Team Child",
     "name": "zolo/team-child",
     "category": "zolo-blocks",
-    "keywords": [
-        "team",
-        "team member"
-    ],
+    "keywords": ["team", "team member"],
     "description": "Single team member",
-    "parent": [
-        "zolo/team-grid"
-    ],
-    "apiVersion": 3,
+    "parent": ["zolo/team-grid"],
+    "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "supports": {
         "anchor": false,
         "customClassName": false,
-        "align": [
-            "wide",
-            "full"
-        ]
+        "align": ["wide", "full"]
     },
     "editorScript": "zolo-block-editor-script"
 }

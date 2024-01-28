@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TextControl } from '@wordpress/components';
+import { SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 
@@ -47,16 +47,19 @@ import {
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
     ICON_PADDING,
-    PO_SWIDTH,
     PT_BORDER,
     PT_BORDER_RADIUS,
-    PTH_BORDER,
-    PTH_BORDER_RADIUS,
     PF_SWIDTH,
     PFV_BORDER,
     PFV_BORDER_RADIUS,
     PS_BORDER,
     PS_BORDER_RADIUS,
+    PSE_BORDER,
+    PSE_BRADIUS,
+    PSE_BG,
+    PT_BG,
+    PTH_BG,
+    PFTH_BG,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -79,7 +82,6 @@ function Inspector(props) {
         textHoverColor,
         borderHoverColor,
         preset,
-        presetOneStyles,
         presetTwoStyles,
         presetThreeStyles,
         presetFourStyles,
@@ -166,28 +168,6 @@ function Inspector(props) {
                                             }
                                             options={ICON_POSITIONS}
                                         />
-                                    )}
-                                    {iconType !== 'none' && (
-                                        <Fragment>
-                                            <ResRangeControl
-                                                label={__('Icon Size', 'zolo-blocks')}
-                                                controlName={ICON_SIZE}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={36}
-                                                step={1}
-                                            />
-                                            {iconType !== 'iconOnly' && (
-                                                <ResRangeControl
-                                                    label={__('Gap', 'zolo-blocks')}
-                                                    controlName={ICON_TEXT_SPACING}
-                                                    requiredProps={requiredProps}
-                                                    min={0}
-                                                    max={100}
-                                                    step={1}
-                                                />
-                                            )}
-                                        </Fragment>
                                     )}
                                 </Fragment>
                             )}
@@ -278,6 +258,28 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         {iconType !== 'none' && (
                             <ZoloPanelBody title={__('Icon', 'zolo-blocks')} panelProps={props} stylePanel={true}>
+                                {iconType !== 'none' && (
+                                    <Fragment>
+                                        <ResRangeControl
+                                            label={__('Icon Size', 'zolo-blocks')}
+                                            controlName={ICON_SIZE}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={36}
+                                            step={1}
+                                        />
+                                        {iconType !== 'iconOnly' && (
+                                            <ResRangeControl
+                                                label={__('Gap', 'zolo-blocks')}
+                                                controlName={ICON_TEXT_SPACING}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={100}
+                                                step={1}
+                                            />
+                                        )}
+                                    </Fragment>
+                                )}
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={ICON_BORDER}
@@ -296,6 +298,7 @@ function Inspector(props) {
                                 />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}
+                                    nBg
                                     controlName={ICON_BORDER_RADIUS}
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
@@ -365,25 +368,7 @@ function Inspector(props) {
                             <ZoloPanelBody title={__('Preset Style', 'zolo-blocks')} panelProps={props} stylePanel={true}>
                                 {preset === 'button-1' && (
                                     <Fragment>
-                                        <ResRangeControl
-                                            label={__('Shadow Width', 'zolo-blocks')}
-                                            controlName={PO_SWIDTH}
-                                            requiredProps={requiredProps}
-                                            min={1}
-                                            max={100}
-                                        />
-                                        <ColorControl
-                                            label={__('Shadow Color', 'zolo-blocks')}
-                                            color={presetOneStyles && presetOneStyles.shadowColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    presetOneStyles: {
-                                                        ...presetOneStyles,
-                                                        shadowColor: value,
-                                                    },
-                                                })
-                                            }
-                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={PT_BG} noMainBGImg={true} />
                                     </Fragment>
                                 )}
                                 {preset === 'button-2' && (
@@ -399,85 +384,12 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
-                                        <TabPanelControl
-                                            normalComponents={
-                                                <Fragment>
-                                                    <ColorControl
-                                                        label={__('Overlay Color', 'zolo-blocks')}
-                                                        color={presetTwoStyles && presetTwoStyles.bgColor}
-                                                        onChange={(value) =>
-                                                            setAttributes({
-                                                                presetTwoStyles: {
-                                                                    ...presetTwoStyles,
-                                                                    bgColor: value,
-                                                                },
-                                                            })
-                                                        }
-                                                    />
-                                                </Fragment>
-                                            }
-                                            hoverComponents={
-                                                <Fragment>
-                                                    <ColorControl
-                                                        label={__('Overlay Color', 'zolo-blocks')}
-                                                        color={presetTwoStyles && presetTwoStyles.hoverBgColor}
-                                                        onChange={(value) =>
-                                                            setAttributes({
-                                                                presetTwoStyles: {
-                                                                    ...presetTwoStyles,
-                                                                    hoverBgColor: value,
-                                                                },
-                                                            })
-                                                        }
-                                                    />
-                                                </Fragment>
-                                            }
-                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={PTH_BG} noMainBGImg={true} />
                                     </Fragment>
                                 )}
                                 {preset === 'button-3' && (
                                     <Fragment>
-                                        <BorderControl
-                                            label={__('Border', 'zolo-blocks')}
-                                            controlName={PTH_BORDER}
-                                            requiredProps={requiredProps}
-                                        />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zolo-blocks')}
-                                            controlName={PTH_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-                                        <TabPanelControl
-                                            normalComponents={
-                                                <ColorControl
-                                                    label={__('Overlay Color', 'zolo-blocks')}
-                                                    color={presetThreeStyles && presetThreeStyles.bgColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            presetThreeStyles: {
-                                                                ...presetThreeStyles,
-                                                                bgColor: value,
-                                                            },
-                                                        })
-                                                    }
-                                                />
-                                            }
-                                            hoverComponents={
-                                                <ColorControl
-                                                    label={__('Overlay Color', 'zolo-blocks')}
-                                                    color={presetThreeStyles && presetThreeStyles.hoverBgColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            presetThreeStyles: {
-                                                                ...presetThreeStyles,
-                                                                hoverBgColor: value,
-                                                            },
-                                                        })
-                                                    }
-                                                />
-                                            }
-                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={PFTH_BG} noMainBGImg={true} />
                                     </Fragment>
                                 )}
                                 {preset === 'button-4' && (
@@ -602,6 +514,23 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
+                                    </Fragment>
+                                )}
+
+                                {preset == 'button-8' && (
+                                    <Fragment>
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={PSE_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zolo-blocks')}
+                                            controlName={PSE_BRADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={PSE_BG} noMainBGImg={true} />
                                     </Fragment>
                                 )}
                             </ZoloPanelBody>

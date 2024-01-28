@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { PanelBody, TextControl, TextareaControl, BaseControl, Button, RangeControl } from '@wordpress/components';
+import { TextControl, TextareaControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -23,6 +23,7 @@ const {
     AdvancedOptions,
     ZoloIconPicker,
     ZoloPanelBody,
+    ImageSizes,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -104,6 +105,7 @@ function Inspector(props) {
         detailPageIconColor,
         detailPageIconHoverColor,
         detailIcon,
+        imageRes,
     } = attributes;
 
     const requiredProps = {
@@ -131,12 +133,9 @@ function Inspector(props) {
                                             })
                                         }
                                         imageId={memberPhoto && memberPhoto.id}
-                                        onEditImage={(url, id) => {
+                                        onEditImage={(media) => {
                                             setAttributes({
-                                                memberPhoto: {
-                                                    url,
-                                                    id,
-                                                },
+                                                memberPhoto: media,
                                             });
                                         }}
                                     />
@@ -166,6 +165,11 @@ function Inspector(props) {
                                     />
                                 )}
                             </BaseControl>
+                            <ImageSizes
+                                label={__('Photo Resolution', 'zolo-blocks')}
+                                value={imageRes}
+                                onChange={(res) => setAttributes({ imageRes: res })}
+                            />
                             <TextControl
                                 label={__('Name', 'zolo-blocks')}
                                 onChange={(name) =>

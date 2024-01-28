@@ -232,7 +232,7 @@ const Style = ({ props }) => {
         mobRangeStyle: photoMobSize,
     } = generateResRangeStyle({
         controlName: PHOTO_SIZE,
-        property: 'max-width',
+        property: 'width',
         attributes,
     });
 
@@ -580,19 +580,22 @@ const Style = ({ props }) => {
 			${contentDeskMargin}
 			${contentBoxShadow}
 		}
-		.${uniqueId} .zolo-item .zolo-social-and-link-wrap{
+       .${uniqueId} .zolo-item .zolo-social-and-link-wrap{
 			${separatorColor ? `border-top-color: ${separatorColor};` : ''}
 		}
+		
         .${uniqueId} .zolo-image-wrap {
 			${photoDeskMargin}
+            
         }
-		.${uniqueId} .zolo-image-wrap img {
+		.wp-block-zolo-team-child.${uniqueId}.wp-block-zolo-team-child .zolo-image-wrap img {
+            ${photoDeskSize}
 			${photoDeskBGStyle}
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
 			${photoDeskPadding}
 			${teamPhotoBoxShadow}
-            ${photoDeskSize}
+          
 		}
 		.${uniqueId} .zolo-name {
 			${nameTypoDesk}
@@ -674,7 +677,7 @@ const Style = ({ props }) => {
 			${teamMemberContainerTabPadding}
 			${teamMemberContainerTabMargin}
 		}
-        .${uniqueId}.wp-block-zolo-team-child .zolo-item {
+        .wp-block-zolo-team-child.${uniqueId}.wp-block-zolo-team-child .zolo-item {
             ${itemTabBg}
 			${itemBorderTabStyle}
 			${itemTabBorderRadius}
@@ -695,13 +698,14 @@ const Style = ({ props }) => {
 		}
         .${uniqueId}.wp-block-zolo-team-child .zolo-image-wrap {
 			${photoTabMargin}
+           
         }
-		.${uniqueId}.wp-block-zolo-team-child .zolo-image-wrap img {
+	   .${uniqueId}.wp-block-zolo-team-child .zolo-image-wrap img {
+            ${photoTabSize}
 			${photoTabBGStyle}
 			${photoTabBorderStyle}
 			${photoTabBorderRadius}
 			${photoTabPadding}
-            ${photoTabSize}
 		}
 
 		.${uniqueId}.wp-block-zolo-team-child .zolo-name {
@@ -789,15 +793,15 @@ const Style = ({ props }) => {
 			${contentMobMargin}
 
 		}
-        .${uniqueId}.wp-block-zolo-team-child .zolo-image-wrap {
-			${photoMobMargin}
+        .${uniqueId}.wp-block-zolo-team-child .zolo-image-wrap{
+			${photoMobMargin}   
         }
-		.${uniqueId}.wp-block-zolo-team-child .zolo-image-wrap img {
+		.wp-block-zolo-team-child.${uniqueId}.wp-block-zolo-team-child .zolo-image-wrap img {
+            ${photoMobSize}
 			${photoMobBGStyle}
 			${photoMobBorderStyle}
 			${photoMobBorderRadius}
 			${photoMobPadding}
-            ${photoMobSize}
 		}
 		.${uniqueId}.wp-block-zolo-team-child .zolo-name {
 			${nameTypoMob}

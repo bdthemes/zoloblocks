@@ -17,18 +17,12 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            <div className="zolo-progress-bars-wrap">
-                <div className="zolo-progress-bar_item active">
-                    <div className="zolo-progress-bar_content">
-                        {barTitleToggle && (
-                            <RichText.Content value={progressText} tagName={progressTextTag} className="zolo-progress-bar__title" />
-                        )}
-                        {barpercentToggle && <div className="zolo-progress-bar_percent">{progressH}</div>}
-                    </div>
-                    <div className="zolo-progress-bar__progress">
-                        <div className="zolo-progress-bar__progress-bar" />
-                    </div>
-                </div>
+            <div className="zolo-progress-bar_content">
+                {barTitleToggle && <RichText.Content value={progressText} tagName={progressTextTag} className="zolo-progress-bar__title" />}
+                {barpercentToggle && <div className="zolo-progress-bar_percent">{progressH && `${progressH}%`}</div>}
+            </div>
+            <div className="zolo-progress-bar__progress">
+                <div className="zolo-progress-bar__progress-bar" />
             </div>
         </div>
     );

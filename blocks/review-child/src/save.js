@@ -20,6 +20,7 @@ const Save = ({ attributes }) => {
         showRating,
         rating,
         zoloId,
+        imageRes,
     } = attributes;
 
     return (
@@ -37,7 +38,9 @@ const Save = ({ attributes }) => {
                         <div className="zolo-image-wrap">
                             {memberPhoto && (
                                 <img
-                                    src={memberPhoto.url}
+                                    src={
+                                        memberPhoto.sizes && memberPhoto.sizes[imageRes] ? memberPhoto.sizes[imageRes].url : memberPhoto.url
+                                    }
                                     alt={memberPhoto.alt || memberName}
                                     className={`zolo-img wp-image-${memberPhoto.id}`}
                                     loading="lazy"
@@ -53,6 +56,7 @@ const Save = ({ attributes }) => {
                                     rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && 'noreferer noopener'}
                                     target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab && '_blank'}
                                     className="zolo-name has-link"
+                                    title={memberName}
                                 >
                                     <RichText.Content value={memberName} />
                                 </a>

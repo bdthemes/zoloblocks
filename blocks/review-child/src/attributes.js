@@ -18,7 +18,8 @@ import {
     CONTAINER_BOX_SHADOW,
     CONTAINER_PADDING,
     CONTENT_ALIGNMENT,
-    REVIEWER_PHOTO_SIZE,
+    REVIEWER_PHOTO_WIDTH,
+    REVIEWER_PHOTO_HEIGHT,
     REVIEWER_PHOTO_BG,
     REVIEWER_PHOTO_BORDER,
     REVIEWER_PHOTO_BORDER_RADIUS,
@@ -73,7 +74,8 @@ const attributes = {
     ...generateDimensionAttributes(CONTAINER_PADDING),
     ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
 
-    ...generateResRangeAttributies(REVIEWER_PHOTO_SIZE, {}),
+    ...generateResRangeAttributies(REVIEWER_PHOTO_WIDTH, {}),
+    ...generateResRangeAttributies(REVIEWER_PHOTO_HEIGHT, {}),
     ...generateNormalBGAttributes(REVIEWER_PHOTO_BG),
     ...generateBorderAttributies(REVIEWER_PHOTO_BORDER),
     ...generateDimensionAttributes(REVIEWER_PHOTO_BORDER_RADIUS),
@@ -103,6 +105,14 @@ const attributes = {
             url: zoloPlaceholders.avatarSquare,
             alt: '',
         },
+    },
+    imageRes: {
+        type: 'string',
+        default: 'thumbnail',
+    },
+    objectFit: {
+        type: 'string',
+        default: 'cover',
     },
     showName: {
         type: 'boolean',

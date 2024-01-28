@@ -938,10 +938,9 @@ export const ICON_STATUS = [
         label: __('No Icon', 'zolo-blocks'),
         value: 'none',
         icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.17157 9.17157L14.8284 14.8284" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M14.8284 9.17157L9.17157 14.8284" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
-                <circle cx={12} cy={12} r={8} stroke="#4D4D4D" strokeWidth="1.5" />
+            <svg width={18} height={18} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx={9} cy={9} r={8} stroke="#4D4D4D" strokeWidth="1.5" />
+                <path d="M3.13904 4.3877L14.3609 14.1124" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
         ),
     },
@@ -949,9 +948,12 @@ export const ICON_STATUS = [
         label: __('Icon & Text', 'zolo-blocks'),
         value: 'iconText',
         icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 20V4M10 4H4M10 20H4" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M12 10H20M12 14H16.7059" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
+            <svg width={35} height={24} viewBox="0 0 35 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 12V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M12 9.5V9" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M23 12H31M23 15H27.7059" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx={12} cy={12} r={8} stroke="#4D4D4D" strokeWidth="1.5" />
+                <path d="M23 9H33.5" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
         ),
     },
@@ -959,9 +961,10 @@ export const ICON_STATUS = [
         label: __('Only Icon', 'zolo-blocks'),
         value: 'iconOnly',
         icon: (
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx={12} cy={12} r={8} stroke="#4D4D4D" strokeWidth="1.5" />
-                <path d="M12 15V9M14 9H10M14 15H10" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
+            <svg width={18} height={18} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx={9} cy={9} r={8} stroke="#4D4D4D" strokeWidth="1.5" />
+                <path d="M9 9V13" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M9 6.5V6" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
         ),
     },
@@ -1032,4 +1035,20 @@ export const CONTENT_WIDTH_TYPES = [
         label: __('Full Width', 'zolo-blocks'),
         value: 'alignfull',
     },
+];
+
+export const OVERFLOWS = [
+    { label: __('Auto', 'zolo-blocks'), value: 'auto' },
+    { label: __('Visible', 'zolo-blocks'), value: 'visible' },
+    { label: __('Hidden', 'zolo-blocks'), value: 'hidden' },
+    { label: __('Scroll', 'zolo-blocks'), value: 'scroll' },
+    { label: __('Clip', 'zolo-blocks'), value: 'clip' },
+];
+
+export const OBJECT_FITS = [
+    { label: __('None', 'zolo-blocks'), value: 'none' },
+    { label: __('Fill', 'zolo-blocks'), value: 'fill' },
+    { label: __('Contain', 'zolo-blocks'), value: 'contain' },
+    { label: __('Cover', 'zolo-blocks'), value: 'cover' },
+    { label: __('Scale Down', 'zolo-blocks'), value: 'scale-down' },
 ];

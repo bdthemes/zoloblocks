@@ -3,7 +3,7 @@
  */
 const { __ } = wp.i18n;
 const { InspectorControls } = wp.blockEditor;
-const { PanelBody, RangeControl, ToggleControl, SelectControl, BaseControl } = wp.components;
+const { RangeControl, ToggleControl, SelectControl } = wp.components;
 const { Fragment } = wp.element;
 /**
  * Internal dependencies
@@ -16,8 +16,6 @@ const {
     ResDimensionsControl,
     TabPanelControl,
     NormalBGControl,
-    IconicBtnGroup,
-    ResCounterControl,
     AdvancedOptions,
     ZoloIconPicker,
     ZoloPanelBody,
@@ -31,10 +29,7 @@ import objAttributes from './attributes';
  */
 import {
     SLIDER_EFFECTS,
-    CAROUSEL_EFFECTS,
-    COLUMNS,
     SLIDER_HEIGHT,
-    COLUMNS_GAP,
     CONTENT_WIDTH,
     CONTENT_PADDING,
     NAV_WIDTH,
@@ -50,6 +45,7 @@ import {
     PAG_BORDER_RADIUS,
     PAG_BG,
     PAG_SPACING,
+    PAG_VERTICAL_OFFSET,
     APAG_WIDTH,
     APAG_HEIGHT,
     APAG_BORDER,
@@ -61,7 +57,6 @@ const Inspector = (props) => {
     const { attributes, setAttributes } = props;
     const {
         resMode,
-        sliderType,
         autoplay,
         autoplayDelay,
         pauseOnMouseEnter,
@@ -72,7 +67,6 @@ const Inspector = (props) => {
         navHoverBorderColor,
         showPagination,
         speed,
-        carouselEffect,
         sliderEffect,
         customNavIcon,
         prevNavIcon,
@@ -94,17 +88,6 @@ const Inspector = (props) => {
                 generalTab={
                     <Fragment>
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
-                            <IconicBtnGroup
-                                label={__('Slider Type', 'zolo-blocks')}
-                                value={sliderType}
-                                onChange={(type) => setAttributes({ sliderType: type })}
-                                options={[
-                                    { label: __('Slider', 'zolo-blocks'), value: 'slider' },
-                                    { label: __('Carousel', 'zolo-blocks'), value: 'carousel' },
-                                ]}
-                            />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Slider Container', 'zolo-blocks')} panelProps={props}>
                             <ResRangeControl
                                 label={__('Slider Height', 'zolo-blocks')}
                                 controlName={SLIDER_HEIGHT}
@@ -112,20 +95,12 @@ const Inspector = (props) => {
                                 min={1}
                                 max={1000}
                             />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Slider Content', 'zolo-blocks')} panelProps={props}>
                             <ResRangeControl
                                 label={__('Content Max Width', 'zolo-blocks')}
                                 controlName={CONTENT_WIDTH}
                                 requiredProps={requiredProps}
                                 min={1}
                                 max={2000}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={CONTENT_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Slider Options', 'zolo-blocks')} panelProps={props}>
@@ -203,54 +178,20 @@ const Inspector = (props) => {
                                 }
                             />
                         </ZoloPanelBody>
-                        {sliderType === 'carousel' && (
-                            <ZoloPanelBody title={__('Carousel Options', 'zolo-blocks')} panelProps={props}>
-                                <ResCounterControl
-                                    label={__('Column Number', 'zolo-blocks')}
-                                    controlName={COLUMNS}
-                                    requiredProps={requiredProps}
-                                    min={2}
-                                    max={5}
-                                />
-                                <ResRangeControl
-                                    label={__('Column Gap', 'zolo-blocks')}
-                                    controlName={COLUMNS_GAP}
-                                    requiredProps={requiredProps}
-                                    min={1}
-                                    max={100}
-                                    step={1}
-                                    noUnits={true}
-                                />
-                            </ZoloPanelBody>
-                        )}
-                        {sliderType === 'slider' && (
-                            <ZoloPanelBody title={__('Slider Effects', 'zolo-blocks')} panelProps={props}>
-                                <SelectControl
-                                    label={__('Select Effect', 'zolo-blocks')}
-                                    value={sliderEffect}
-                                    options={SLIDER_EFFECTS}
-                                    onChange={(v) => {
-                                        setAttributes({
-                                            sliderEffect: v,
-                                        });
-                                    }}
-                                />
-                            </ZoloPanelBody>
-                        )}
-                        {sliderType === 'carousel' && (
-                            <ZoloPanelBody title={__('Carousel Effects', 'zolo-blocks')} panelProps={props}>
-                                <SelectControl
-                                    label={__('Select Effect', 'zolo-blocks')}
-                                    options={CAROUSEL_EFFECTS}
-                                    onChange={(effect) =>
-                                        setAttributes({
-                                            carouselEffect: effect,
-                                        })
-                                    }
-                                    value={carouselEffect}
-                                />
-                            </ZoloPanelBody>
-                        )}
+
+                        <ZoloPanelBody title={__('Effects', 'zolo-blocks')} panelProps={props}>
+                            <SelectControl
+                                label={__('Select Effect', 'zolo-blocks')}
+                                value={sliderEffect}
+                                options={SLIDER_EFFECTS}
+                                onChange={(v) => {
+                                    setAttributes({
+                                        sliderEffect: v,
+                                    });
+                                }}
+                            />
+                        </ZoloPanelBody>
+
                         {showNavigation && (
                             <>
                                 <ZoloPanelBody title={__('Navigation', 'zolo-blocks')} panelProps={props}>
@@ -292,8 +233,16 @@ const Inspector = (props) => {
                 }
                 styleTab={
                     <Fragment>
+                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={CONTENT_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                        </ZoloPanelBody>
                         {showNavigation && (
-                            <ZoloPanelBody title={__('Navigation', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Navigation', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
                                     label={__('Width', 'zolo-blocks')}
                                     controlName={NAV_WIDTH}
@@ -387,6 +336,13 @@ const Inspector = (props) => {
                                         controlName={PAG_SPACING}
                                         requiredProps={requiredProps}
                                         min={0}
+                                        max={100}
+                                    />
+                                    <ResRangeControl
+                                        label={__('Vertical Offset', 'zolo-blocks')}
+                                        controlName={PAG_VERTICAL_OFFSET}
+                                        requiredProps={requiredProps}
+                                        min={-100}
                                         max={100}
                                     />
                                     <TabPanelControl

@@ -13,10 +13,9 @@ import { createBlock } from '@wordpress/blocks';
  * Internal dependencies
  */
 import Inspector from './inspector';
-const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 // Constants
-import { COLUMNS, COLUMNS_GAP } from './constants';
 
 // import style
 import Style from './style';
@@ -32,8 +31,6 @@ export default function Edit(props) {
         resMode,
         uniqueId,
         parentClasses,
-        slideItems,
-        sliderType,
         autoplay,
         autoplayDelay,
         pauseOnMouseEnter,
@@ -43,7 +40,6 @@ export default function Edit(props) {
         paginationType,
         dynamicBullets,
         speed,
-        carouselEffect,
         sliderEffect,
         addNewSlideBlock,
         customNavIcon,
@@ -58,28 +54,6 @@ export default function Edit(props) {
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
-    });
-
-    // columns count
-    const {
-        desktopRangeStyle: deskCol,
-        tabRangeStyle: tabCol,
-        mobRangeStyle: mobCol,
-    } = generateResCounterStyle({
-        controlName: COLUMNS,
-        attributes,
-        noProperty: true,
-    });
-
-    const {
-        desktopRangeStyle: deskColGap,
-        tabRangeStyle: tabColGap,
-        mobRangeStyle: mobColGap,
-    } = generateResRangeStyle({
-        controlName: COLUMNS_GAP,
-        attributes,
-        noProperty: true,
-        noUnits: true,
     });
 
     // Slider Ref
@@ -124,28 +98,11 @@ export default function Edit(props) {
 
     //slider initialize
     useEffect(() => {
-        let breakpoints = {};
-        if (sliderType === 'carousel') {
-            breakpoints = {
-                1025: {
-                    slidesPerView: deskCol || 2,
-                    spaceBetween: parseInt(deskColGap.slice(0, -1)) || 30,
-                },
-                768: {
-                    slidesPerView: tabCol || 2,
-                    spaceBetween: parseInt(tabColGap.slice(0, -1)) || 30,
-                },
-                320: {
-                    slidesPerView: mobCol || 1,
-                    spaceBetween: parseInt(mobColGap.slice(0, -1)) || 0,
-                },
-            };
-        }
-
         let options = {
+            slidesPerView: 1,
             loop: infiniteLoop,
             speed: speed * 100,
-            effect: sliderType === 'carousel' ? carouselEffect : sliderEffect,
+            effect: sliderEffect,
             autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
             navigation: showNavigation
                 ? {
@@ -155,27 +112,17 @@ export default function Edit(props) {
                 : false,
             pagination: showPagination
                 ? {
-                      el: '.swiper-pagination',
+                      el: `.${uniqueId} .swiper-pagination`,
                       clickable: true,
                       type: paginationType,
                       dynamicBullets: dynamicBullets,
                   }
                 : false,
-            effect: sliderType === 'carousel' ? carouselEffect : sliderEffect,
-            breakpoints: breakpoints,
         };
 
         setAttributes({ sliderOptions: options });
-
         zoloSliderInit(swiperRef.current, options);
     }, [
-        sliderType,
-        deskCol,
-        tabCol,
-        mobCol,
-        deskColGap,
-        tabColGap,
-        mobColGap,
         autoplay,
         autoplayDelay,
         pauseOnMouseEnter,
@@ -185,9 +132,7 @@ export default function Edit(props) {
         paginationType,
         dynamicBullets,
         speed,
-        carouselEffect,
         sliderEffect,
-        slideItems,
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
@@ -218,7 +163,7 @@ export default function Edit(props) {
                 }
                 [data-type="zolo/slider"] {
                     border: 2px dashed #ccc;
-                    padding: 10px;                
+                    padding: 10px;
                 }
             `}</style>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -230,34 +175,34 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <div className="swiper" ref={swiperRef}>
                     <div {...innerBlocksProps} />
-                    {showPagination && <div class="swiper-pagination swiper-pagination-position-bottom"></div>}
-                    {showNavigation && (
-                        <Fragment>
-                            <div
-                                className={`swiper-navigation-wrap  swiper-navigation-position-center ${
-                                    customNavIcon ? 'zolo-custom-nav' : ''
-                                }`}
-                            >
-                                {customNavIcon && (
-                                    <>
-                                        <div className="swiper-nav-button swiper-zolo-prev">
-                                            <DisplayZoloIcon icon={prevNavIcon} />
-                                        </div>
-                                        <div className="swiper-nav-button swiper-zolo-next">
-                                            <DisplayZoloIcon icon={nextNavIcon} />
-                                        </div>
-                                    </>
-                                )}
-                                {!customNavIcon && (
-                                    <>
-                                        <div className="swiper-nav-button swiper-button-prev"></div>
-                                        <div className="swiper-nav-button swiper-button-next"></div>
-                                    </>
-                                )}
-                            </div>
-                        </Fragment>
-                    )}
                 </div>
+                {showPagination && <div class="swiper-pagination swiper-pagination-position-bottom"></div>}
+                {showNavigation && (
+                    <Fragment>
+                        <div
+                            className={`swiper-navigation-wrap  swiper-navigation-position-center ${
+                                customNavIcon ? 'zolo-custom-nav' : ''
+                            }`}
+                        >
+                            {customNavIcon && (
+                                <>
+                                    <div className="swiper-nav-button swiper-zolo-prev">
+                                        <DisplayZoloIcon icon={prevNavIcon} />
+                                    </div>
+                                    <div className="swiper-nav-button swiper-zolo-next">
+                                        <DisplayZoloIcon icon={nextNavIcon} />
+                                    </div>
+                                </>
+                            )}
+                            {!customNavIcon && (
+                                <>
+                                    <div className="swiper-nav-button swiper-button-prev"></div>
+                                    <div className="swiper-nav-button swiper-button-next"></div>
+                                </>
+                            )}
+                        </div>
+                    </Fragment>
+                )}
             </div>
         </Fragment>
     );

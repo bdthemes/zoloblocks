@@ -16,6 +16,7 @@ const Save = ({ attributes }) => {
         logoLinkType,
         brandLabel,
         zoloId,
+        imageRes,
     } = attributes;
 
     return (
@@ -33,9 +34,16 @@ const Save = ({ attributes }) => {
                     href={logoLink && logoLink.url}
                     rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                     target={logoLink && logoLink.openInNewTab && '_blank'}
+                    title={brandLabel}
                 >
                     <div className="zb-brand-image">
-                        {brandPhoto && <img src={brandPhoto.url} alt={brandPhoto.alt || brandTitle} className="zolo-img" />}
+                        {brandPhoto && (
+                            <img
+                                src={brandPhoto.sizes && brandPhoto.sizes[imageRes] ? brandPhoto.sizes[imageRes].url : brandPhoto.url}
+                                alt={brandPhoto.alt || brandTitle}
+                                className="zolo-img"
+                            />
+                        )}
                     </div>
                     <div className="zb-brand-content">
                         <div className="zb-brand-icon">
@@ -61,7 +69,7 @@ const Save = ({ attributes }) => {
                     <div className="zb-brand-image">
                         {brandPhoto && (
                             <img
-                                src={brandPhoto.url}
+                                src={brandPhoto.sizes && brandPhoto.sizes[imageRes] ? brandPhoto.sizes[imageRes].url : brandPhoto.url}
                                 alt={brandPhoto.alt || brandTitle}
                                 className={`zolo-img wp-image-${brandPhoto.id}`}
                                 loading="lazy"
@@ -90,6 +98,7 @@ const Save = ({ attributes }) => {
                                             href={logoLink && logoLink.url}
                                             rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                                             target={logoLink && logoLink.openInNewTab && '_blank'}
+                                            title={brandTitle}
                                         >
                                             <RichText.Content
                                                 tagName={brandNameTag}
@@ -110,6 +119,7 @@ const Save = ({ attributes }) => {
                                             href={logoLink && logoLink.url}
                                             rel={logoLink && logoLink.openInNewTab && 'noreferer noopener'}
                                             target={logoLink && logoLink.openInNewTab && '_blank'}
+                                            title={brandLabel}
                                         >
                                             <RichText.Content tagName="span" value={brandLabel} />
                                         </a>

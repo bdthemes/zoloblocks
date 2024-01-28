@@ -5,7 +5,7 @@
     "category": "zolo-blocks",
     "keywords": ["icon", "social share", "social"],
     "description": "Social Share Block",
-    "apiVersion": 3,
+    "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "example": {
         "attributes": {

@@ -38,6 +38,7 @@ export default function Edit(props) {
         dscTag,
         fancyLinkToggle,
         fancyLink,
+        imageRes,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -76,6 +77,7 @@ export default function Edit(props) {
                     ...(fancyLink.openInNewTab && {
                         target: '_blank',
                         rel: 'noreferrer noopener',
+                        title: fancyTitle,
                     }),
                 })}
             >
@@ -84,7 +86,10 @@ export default function Edit(props) {
                         <>
                             {mediaType === 'image' && image && (
                                 <div className="zb-fancy-list-image">
-                                    <img src={image.url} alt={image.url || fancyTitle} />
+                                    <img
+                                        src={image.sizes && image.sizes[imageRes] ? image.sizes[imageRes].url : image.url}
+                                        alt={image.url || fancyTitle}
+                                    />
                                 </div>
                             )}
                             {mediaType === 'text' && <div className="zb-fancy-list-number">{mediaText}</div>}

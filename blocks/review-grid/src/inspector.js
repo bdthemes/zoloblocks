@@ -16,7 +16,8 @@ import {
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
     CONTAINER_PADDING,
-    REVIEWER_PHOTO_SIZE,
+    REVIEWER_PHOTO_WIDTH,
+    REVIEWER_PHOTO_HEIGHT,
     REVIEWER_PHOTO_BG,
     REVIEWER_PHOTO_BORDER,
     REVIEWER_PHOTO_BORDER_RADIUS,
@@ -199,8 +200,15 @@ function Inspector(props) {
                         {showPhoto && (
                             <ZoloPanelBody title={__('Photo', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
-                                    label={__('Size', 'zolo-blocks')}
-                                    controlName={REVIEWER_PHOTO_SIZE}
+                                    label={__('Width', 'zolo-blocks')}
+                                    controlName={REVIEWER_PHOTO_WIDTH}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={1000}
+                                />
+                                <ResRangeControl
+                                    label={__('Height', 'zolo-blocks')}
+                                    controlName={REVIEWER_PHOTO_HEIGHT}
                                     requiredProps={requiredProps}
                                     min={1}
                                     max={1000}

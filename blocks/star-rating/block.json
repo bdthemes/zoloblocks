@@ -5,7 +5,7 @@
     "category": "zolo-blocks",
     "keywords": ["rating", "star rating"],
     "description": "Show star rating",
-    "apiVersion": 3,
+    "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "example": {
         "attributes": {

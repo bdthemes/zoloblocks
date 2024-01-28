@@ -2,34 +2,47 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, TextControl, RangeControl, SelectControl } from '@wordpress/components';
+import { ToggleControl, TextControl, RangeControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
-const { BorderControl, ResDimensionsControl, BoxShadowControl, NormalBGControl, HeaderTabs, AdvancedOptions, ZoloPanelBody } =
-    window.zoloModule;
+const {
+    NormalBGControl,
+    TypographyDropdown,
+    HeaderTabs,
+    AdvancedOptions,
+    ColorControl,
+    ZoloPanelBody,
+    ResRangeControl,
+    ResDimensionsControl,
+} = window.zoloModule;
 
 import objAttributes from './attributes';
 
-import { TITLE_TYPO } from './constants/typoPrefixConstant';
-import { ITEM_BG, ITEM_PADDING, ITEM_MARGIN, ITEM_BORDER, ITEM_BORDER_RADIUS, ITEM_BOX_SHADOW } from './constants';
+import { TITLE_TYPO, PROGRESS_VALUE } from './constants/typoPrefixConstant';
+import {
+    PROGRESS_BAR_BG_COLOR,
+    PROGRESS_BG_COLOR,
+    PROGRESS_HIGHT,
+    PROGRESS_BAR_RADIUS,
+    PROGRESS_TITLE_MARGIN,
+    PROGRESS_VALUE_MARGIN,
+    ITEM_BRADIUS,
+} from './constants';
 
-import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS } from '../../../src/global/constants';
+import { HEADING } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, preset, progressH, barTitleToggle, barpercentToggle, progressText, progressTextTag } = attributes;
+    const { resMode, progressH, titleColor, progressText, progressTextTag, progressbarRadius, progressVColor } = attributes;
 
     const requiredProps = {
         attributes,
         setAttributes,
         resMode,
         objAttributes,
-    };
-    const presetPram = (v) => {
-        setAttributes({ preset: v });
     };
 
     return (
@@ -39,51 +52,18 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl
-                                label={__('preset', 'zolo-blocks')}
-                                value={preset}
-                                options={[
-                                    { label: 'Preset-1', value: 'style-1' },
-                                    { label: 'Preset-2', value: 'style-2' },
-                                    { label: 'Preset-3', value: 'style-3' },
-                                    { label: 'Preset-4', value: 'style-4' },
-                                    { label: 'Preset-5', value: 'style-5' },
-                                ]}
-                                onChange={(presetV) => presetPram(presetV)}
-                            />
-                            <ToggleControl
-                                label={__('Show Title', 'zolo-blocks')}
-                                checked={barTitleToggle}
-                                onChange={() => setAttributes({ barTitleToggle: !barTitleToggle })}
-                            />
-                            <ToggleControl
-                                label={__('Show Percent Value', 'zolo-blocks')}
-                                checked={barpercentToggle}
-                                onChange={() => setAttributes({ barpercentToggle: !barpercentToggle })}
-                            />
-                            <RangeControl
-                                label={__('Progress Value', 'zolo-blocks')}
-                                value={progressH}
-                                onChange={(progressV) => setAttributes({ progressH: progressV })}
-                                min={2}
-                                max={100}
-                            />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
-                            <SelectControl
-                                label={__('Select Title Tag')}
-                                value={progressTextTag}
-                                options={HEADING}
-                                onChange={(tag) => {
-                                    setAttributes({ progressTextTag: tag });
-                                }}
-                            />
-
+                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} firstOpen={true} panelProps={props}>
                             <TextControl
                                 label={__('Title', 'zolo-blocks')}
                                 value={progressText}
                                 onChange={(v) => setAttributes({ progressText: v })}
+                            />
+                            <RangeControl
+                                label={__('Progress Percentage', 'zolo-blocks')}
+                                value={progressH}
+                                onChange={(v) => setAttributes({ progressH: v })}
+                                min={0}
+                                max={100}
                             />
                         </ZoloPanelBody>
                     </>
@@ -91,27 +71,77 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={ITEM_BORDER} requiredProps={requiredProps} />
+                            <ResRangeControl
+                                label={__('Height', 'zolo-blocks')}
+                                controlName={PROGRESS_HIGHT}
+                                requiredProps={requiredProps}
+                                min={1}
+                                max={100}
+                                step={1}
+                                noUnits={false}
+                            />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zolo-blocks')}
-                                controlName={ITEM_BORDER_RADIUS}
+                                controlName={ITEM_BRADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl controlName={ITEM_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={ITEM_PADDING}
+                            <NormalBGControl
+                                label={__('Background', 'zolo-blocks')}
+                                controlName={PROGRESS_BG_COLOR}
                                 requiredProps={requiredProps}
-                                forBorderRadius={false}
+                                noMainBGImg={true}
+                            />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={titleColor}
+                                onChange={(color) => setAttributes({ titleColor: color })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zolo-block')}
+                                typoPrefixConstant={TITLE_TYPO}
+                                requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
-                                controlName={ITEM_MARGIN}
+                                controlName={PROGRESS_TITLE_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={false} />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Value', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={PROGRESS_BAR_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <NormalBGControl
+                                label={__('Background', 'zolo-blocks')}
+                                controlName={PROGRESS_BAR_BG_COLOR}
+                                requiredProps={requiredProps}
+                                noMainBGImg={true}
+                            />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Percentage', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={progressVColor}
+                                onChange={(color) => setAttributes({ progressVColor: color })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zolo-block')}
+                                typoPrefixConstant={PROGRESS_VALUE}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={PROGRESS_VALUE_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
                         </ZoloPanelBody>
                     </>
                 }

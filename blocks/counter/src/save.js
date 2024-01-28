@@ -19,6 +19,7 @@ const Save = ({ attributes }) => {
         iconType,
         iconTypeImage,
         zoloId,
+        imageRes,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -41,7 +42,11 @@ const Save = ({ attributes }) => {
                             ) : (
                                 iconTypeImage && (
                                     <img
-                                        src={iconTypeImage.url}
+                                        src={
+                                            iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
+                                                ? iconTypeImage.sizes[imageRes].url
+                                                : iconTypeImage.url
+                                        }
                                         alt={iconTypeImage.alt || titleText}
                                         className={`wp-image-${iconTypeImage.id}`}
                                         loading="lazy"

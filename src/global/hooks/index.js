@@ -108,6 +108,9 @@ function addAttributes(settings) {
             zoloId: {
                 type: 'string',
             },
+            overflow: {
+                type: 'string',
+            },
             ...(settings.attributes.globalConfig?.default?.margin &&
                 generateDimensionAttributes(settings.attributes.globalConfig.default.margin?.prefix || 'mainMargin')),
 

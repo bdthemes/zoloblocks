@@ -5,7 +5,7 @@
     "category": "zolo-blocks",
     "keywords": ["fancy", "fancy list"],
     "description": "Single fancy list",
-    "apiVersion": 3,
+    "apiVersion": 2,
     "parent": ["zolo/fancy-list"],
     "textdomain": "zolo-blocks",
     "example": {

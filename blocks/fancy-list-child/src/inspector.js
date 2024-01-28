@@ -19,12 +19,12 @@ const {
     BorderControl,
     ResRangeControl,
     ResDimensionsControl,
-    IconicBtnGroup,
     NormalBGControl,
     AdvancedOptions,
     ZoloPanelBody,
     BoxShadowControl,
     LinkControl,
+    ImageSizes,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -45,6 +45,7 @@ import {
     ICON_HBG,
     GAP,
     ITEM_BG,
+    ITEM_BG_HOVER,
     ITEM_PADDING,
     ITEM_MARGIN,
     ITEM_BORDER,
@@ -82,6 +83,7 @@ function Inspector(props) {
         iconColor,
         iconHColor,
         iconHBColor,
+        imageRes,
     } = attributes;
 
     const requiredProps = {
@@ -152,12 +154,9 @@ function Inspector(props) {
                                                 })
                                             }
                                             imageId={image && image.id}
-                                            onEditImage={(url, id) => {
+                                            onEditImage={(media) => {
                                                 setAttributes({
-                                                    image: {
-                                                        url,
-                                                        id,
-                                                    },
+                                                    image: media,
                                                 });
                                             }}
                                         />
@@ -186,6 +185,13 @@ function Inspector(props) {
                                             )}
                                         />
                                     ))}
+                                {mediaType === 'image' && (
+                                    <ImageSizes
+                                        label={__('Image Resolution', 'zolo-block')}
+                                        value={imageRes}
+                                        onChange={(v) => setAttributes({ imageRes: v })}
+                                    />
+                                )}
                                 {mediaType === 'text' && (
                                     <TextControl
                                         label={__('Text', 'zolo-block')}
@@ -208,7 +214,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl controlName={ITEM_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zolo-blocks')}
                                 controlName={ITEM_PADDING}
@@ -221,7 +226,21 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={false} />
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG} noMainBGImg={false} />
+                                        <BoxShadowControl
+                                            controlName={ITEM_BOX_SHADOW}
+                                            requiredProps={requiredProps}
+                                            enableTransition={false}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <NormalBGControl requiredProps={requiredProps} controlName={ITEM_BG_HOVER} noMainBGImg={false} />
+                                }
+                            />
                         </ZoloPanelBody>
                         {titleToggle && (
                             <ZoloPanelBody title={__('Title', 'zolo-block')} stylePanel={true} panelProps={props}>

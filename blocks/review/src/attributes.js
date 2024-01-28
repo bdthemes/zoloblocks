@@ -123,6 +123,10 @@ const attributes = {
             alt: '',
         },
     },
+    imageRes: {
+        type: 'string',
+        default: 'full',
+    },
     showName: {
         type: 'boolean',
         default: true,
@@ -184,6 +188,13 @@ const attributes = {
     // DPL icon color
     dplIconColor: {
         type: 'string',
+    },
+    objectFit: {
+        type: 'string',
+    },
+    photoOverflow: {
+        type: 'string',
+        default: 'hidden',
     },
 };
 

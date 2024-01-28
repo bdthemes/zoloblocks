@@ -36,6 +36,7 @@ export default function Edit(props) {
         showSocialProfiles,
         socialProfiles,
         detailIcon,
+        imageRes,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -55,6 +56,7 @@ export default function Edit(props) {
             showSocialProfiles: context['zolo/showSocialProfiles'],
         });
     }, [context]);
+
 
     return (
         <>
@@ -90,7 +92,10 @@ export default function Edit(props) {
                 <div className="zolo-item">
                     <div className="zolo-image-wrap">
                         {memberPhoto ? (
-                            <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} />
+                            <img
+                                src={memberPhoto.sizes && memberPhoto.sizes[imageRes] ? memberPhoto.sizes[imageRes].url : memberPhoto.url}
+                                alt={memberPhoto.alt || memberName}
+                            />
                         ) : (
                             <MediaPlaceholder
                                 icon="format-image"
@@ -156,6 +161,7 @@ export default function Edit(props) {
                                                     key={index}
                                                     rel={profile.link && profile.link.openInNewTab && 'noreferer noopener'}
                                                     target={profile.link && profile.link.openInNewTab && '_blank'}
+                                                    title={profile.title}
                                                 >
                                                     <DisplayZoloIcon icon={profile.icon} />
                                                 </a>

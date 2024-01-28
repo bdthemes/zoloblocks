@@ -27,6 +27,7 @@ const Save = ({ attributes }) => {
         showSocialProfiles,
         socialProfiles,
         zoloId,
+        imageRes,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -54,7 +55,7 @@ const Save = ({ attributes }) => {
                             <div className="zb-profile-image">
                                 {photo && (
                                     <img
-                                        src={photo.url}
+                                        src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url}
                                         alt={photo.alt || 'profile card'}
                                         className={`wp-image-${photo.id}`}
                                         loading="lazy"
@@ -115,6 +116,7 @@ const Save = ({ attributes }) => {
                                 href={followButtonLink && followButtonLink.url && followButtonLink.url}
                                 target={followButtonLink && followButtonLink.openInNewTab && '_blank'}
                                 rel={followButtonLink && followButtonLink.openInNewTab && 'noopener noreferrer'}
+                                title={followButtonText}
                             >
                                 {followButtonText}
                             </a>
@@ -129,6 +131,7 @@ const Save = ({ attributes }) => {
                                                 key={index}
                                                 rel={profile.link.openInNewTab && 'noopener noreferer'}
                                                 target={profile.link.openInNewTab && '_blank'}
+                                                title={profile.title}
                                             >
                                                 <DisplayZoloIcon icon={profile.icon} />
                                             </a>

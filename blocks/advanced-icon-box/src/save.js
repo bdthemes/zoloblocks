@@ -27,6 +27,7 @@ const Save = ({ attributes }) => {
         buttonLink,
         globalLink,
         zoloId,
+        imageRes,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -44,6 +45,7 @@ const Save = ({ attributes }) => {
                 href: buttonLink && buttonLink.url,
                 target: buttonLink && buttonLink.openInNewTab && '_blank',
                 rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
+                title: buttonText,
             })}
         >
             <div className="zolo-block-item">
@@ -54,7 +56,11 @@ const Save = ({ attributes }) => {
                         ) : (
                             iconTypeImage && (
                                 <img
-                                    src={iconTypeImage.url}
+                                    src={
+                                        iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
+                                            ? iconTypeImage.sizes[imageRes].url
+                                            : iconTypeImage.url
+                                    }
                                     alt={iconTypeImage.alt || iconBoxTitle}
                                     className={`wp-image-${iconTypeImage.id}`}
                                     loading="lazy"

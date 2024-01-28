@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Flipbox",
+    "name": "zolo/flipbox",
+    "category": "zolo-blocks",
+    "keywords": ["flip box", "flipbox", "zolo"],
+    "description": "Flipbox block",
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "editorScript": "zolo-block-editor-script"
+}

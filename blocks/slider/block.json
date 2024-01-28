@@ -5,7 +5,7 @@
     "category": "zolo-blocks",
     "keywords": ["Slide", "Slider", "Carousel"],
     "description": "Show content in sliding mode",
-    "apiVersion": 3,
+    "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "example": {
         "attributes": {

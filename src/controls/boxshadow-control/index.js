@@ -67,7 +67,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                             }}
                         />
                     )}
-
+                    {/* #7C7C7C */}
                     <button onClick={() => setDisplayPanel(true)} className="zolo-panel-opener-btn">
                         <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x={3} y={3} width="14.8235" height="14.8235" stroke="#4D4D4D" strokeWidth="1.5" />
@@ -94,7 +94,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                         setAttributes({
                                             [`${controlName}shadowType`]: 'outset',
                                             [`${controlName}shadowUnit`]: 'px',
-                                            [`${controlName}shadowColor`]: '#7C7C7C',
+                                            [`${controlName}shadowColor`]: '',
                                             [`${controlName}hOffset`]: 0,
                                             [`${controlName}vOffset`]: 0,
                                             [`${controlName}blur`]: 0,
@@ -102,6 +102,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                         });
                                     }}
                                 />
+
                                 <ColorBtn
                                     color={shadowColor}
                                     onChange={(value) =>

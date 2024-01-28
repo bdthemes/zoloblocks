@@ -37,6 +37,12 @@ import {
     PFV_BORDER_RADIUS,
     PS_BORDER,
     PS_BORDER_RADIUS,
+    PSE_BORDER,
+    PSE_BRADIUS,
+    PSE_BG,
+    PT_BG,
+    PTH_BG,
+    PFTH_BG,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -89,6 +95,10 @@ const attributes = {
     // presets
     ...generateResRangeAttributies(PO_SWIDTH),
 
+    ...generateNormalBGAttributes(PT_BG),
+    ...generateNormalBGAttributes(PTH_BG),
+    ...generateNormalBGAttributes(PFTH_BG),
+
     ...generateBorderAttributies(PT_BORDER),
     ...generateDimensionAttributes(PT_BORDER_RADIUS),
 
@@ -103,16 +113,14 @@ const attributes = {
     ...generateBorderAttributies(PS_BORDER),
     ...generateDimensionAttributes(PS_BORDER_RADIUS),
 
+    ...generateBorderAttributies(PSE_BORDER),
+    ...generateDimensionAttributes(PSE_BRADIUS),
+    ...generateNormalBGAttributes(PSE_BG),
+
     //Block specific Attributes
     preset: {
         type: 'string',
         default: '',
-    },
-    presetOneStyles: {
-        type: 'object',
-        default: {
-            shadowColor: '',
-        },
     },
     presetTwoStyles: {
         type: 'object',
@@ -146,6 +154,7 @@ const attributes = {
             bgColor: '',
         },
     },
+
     label: {
         type: 'string',
         default: 'Button',

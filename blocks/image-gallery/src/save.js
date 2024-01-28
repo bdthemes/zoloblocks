@@ -4,7 +4,19 @@ const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
 import classnames from 'classnames';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, advancedGallery, showCaption, showLightbox, lightboxIcon, entranceAnimation, zoloId } = attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        advancedGallery,
+        showCaption,
+        showLightbox,
+        lightboxIcon,
+        entranceAnimation,
+        zoloId,
+        imageSize,
+        showLightboxThumb,
+        showThumbCaption,
+    } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -15,8 +27,11 @@ const Save = ({ attributes }) => {
             {...(zoloId && {
                 id: zoloId,
             })}
+            data-uniqueId={uniqueId}
+            data-entranceanimation={entranceAnimation}
+            data-showThumb={showLightboxThumb}
         >
-            <div className={`zolo-image-gallery ${uniqueId}`}>
+            <div className={classnames(`zolo-image-gallery ${uniqueId} ${showLightbox ? 'zolo-gallery-lightbox' : ''}`)}>
                 {advancedGallery &&
                     advancedGallery.map((image, index) => {
                         return (
@@ -26,13 +41,21 @@ const Save = ({ attributes }) => {
                                 key={index}
                                 {...(showLightbox && {
                                     href: image.url,
-                                    'data-fslightbox': 'data-fslightbox',
-                                    'data-effect': entranceAnimation,
+                                    'data-fslightbox': `gallery-${uniqueId}`,
                                 })}
+                                {...(showLightbox &&
+                                    showThumbCaption &&
+                                    image.caption && {
+                                        'data-caption': `<div class="zolo-lightbox-content"><h3 class="zolo-lightbox-caption">${image.caption}</h3></div>`,
+                                    })}
+                                {...(showLightbox &&
+                                    showLightboxThumb && {
+                                        'data-thumb': image.sizes && image.sizes.thumbnail ? image.sizes.thumbnail.url : image.url,
+                                    })}
                             >
                                 <div className="zolo-image-wrap">
                                     <img
-                                        src={image.url}
+                                        src={image.sizes && image.sizes[imageSize] ? image.sizes[imageSize].url : image.url}
                                         alt={image.alt || image.caption || 'Gallery'}
                                         className={`wp-image-${image.id}`}
                                         loading="lazy"

@@ -30,6 +30,7 @@ const Save = ({ attributes }) => {
                             target={profile.link && profile.link.openInNewTab && '_blank'}
                             rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
                             className={`zolo-social-item zolo-${socialName} ${socialColor} ${iconName}`}
+                            title={profile.text}
                         >
                             {socialText !== 'none' && (
                                 <span className="zolo-social-icon">

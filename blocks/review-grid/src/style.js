@@ -30,7 +30,8 @@ import {
     CONTENT_ALIGNMENT,
     REVIEWER_DESIGNATION_MARGIN,
     REVIEWER_NAME_MARGIN,
-    REVIEWER_PHOTO_SIZE,
+    REVIEWER_PHOTO_WIDTH,
+    REVIEWER_PHOTO_HEIGHT,
     REVIEWER_PHOTO_BG,
     REVIEWER_PHOTO_BORDER,
     REVIEWER_PHOTO_BORDER_RADIUS,
@@ -160,8 +161,18 @@ const Style = ({ props }) => {
         tabRangeStyle: photoTabWidth,
         mobRangeStyle: photoMobWidth,
     } = generateResRangeStyle({
-        controlName: REVIEWER_PHOTO_SIZE,
+        controlName: REVIEWER_PHOTO_WIDTH,
         property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: photoDeskHeight,
+        tabRangeStyle: photoTabHeight,
+        mobRangeStyle: photoMobHeight,
+    } = generateResRangeStyle({
+        controlName: REVIEWER_PHOTO_HEIGHT,
+        property: 'height',
         attributes,
     });
 
@@ -311,6 +322,12 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating {
 			${ratingIconDeskAlignStyle}
 		}
+
+        .${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap {
+            ${photoDeskWidth}
+            ${photoDeskHeight}
+        }
+
 		.${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap .zolo-img {
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
@@ -318,7 +335,6 @@ const Style = ({ props }) => {
 			${photoDeskMargin}
 			${photoDeskPadding}
 			${photoDeskBGStyle}
-            ${photoDeskWidth}
 		}
         .${uniqueId}.wp-block-zolo-review-grid .zolo-review-meta-content .zolo-name {
 			${nameTypoDesk}
@@ -368,13 +384,17 @@ const Style = ({ props }) => {
             ${ratingIconDeskAlignStyle}
         }
 
+        .${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap{
+            ${photoTabWidth}
+            ${photoTabHeight}
+        }
+
         .${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap .zolo-img {
             ${photoTabBorderStyle}
             ${photoTabBorderRadius}
             ${photoTabMargin}
             ${photoTabPadding}
             ${photoTabBGStyle}
-            ${photoTabWidth}
         }
 
         .${uniqueId}.wp-block-zolo-review-grid .zolo-review-meta-content .zolo-name {
@@ -417,13 +437,17 @@ const Style = ({ props }) => {
             ${ratingIconDeskAlignStyle}
         }
 
+        .${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap {
+            ${photoMobWidth}
+            ${photoMobHeight}
+        }
+
         .${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap .zolo-img {
             ${photoMobBorderStyle}
             ${photoMobBorderRadius}
             ${photoMobMargin}
             ${photoMobPadding}
             ${photoMobBGStyle}
-            ${photoMobWidth}
         }
 
         .${uniqueId}.wp-block-zolo-review-grid .zolo-review-meta-content .zolo-name {

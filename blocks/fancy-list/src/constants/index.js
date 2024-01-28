@@ -17,6 +17,7 @@ export const PRESETS = [
 
 // item
 export const ITEM_BG = 'ItemBg';
+export const ITEM_BG_HOVER = 'ItemBgHover';
 export const ITEM_PADDING = 'ItemPadding';
 export const ITEM_MARGIN = 'ItemMargin';
 export const ITEM_BORDER = 'ItemBorder';

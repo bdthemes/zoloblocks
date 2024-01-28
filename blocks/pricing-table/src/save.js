@@ -146,6 +146,7 @@ const Save = ({ attributes }) => {
                                                 href={buttonLink && buttonLink.url ? buttonLink.url : '# '}
                                                 target={buttonLink && buttonLink.openInNewTab && '_blank'}
                                                 rel={buttonLink && buttonLink.openInNewTab && 'noopener noreferrer'}
+                                                title={buttonText}
                                             />
                                         )}
                                         {showChatBtn && (
@@ -156,6 +157,7 @@ const Save = ({ attributes }) => {
                                                 href={chatBtnLink && chatBtnLink.url ? chatBtnLink.url : '# '}
                                                 target={chatBtnLink && chatBtnLink.openInNewTab && '_blank'}
                                                 rel={chatBtnLink && chatBtnLink.openInNewTab && 'noopener noreferrer'}
+                                                title={chatBtnText}
                                             />
                                         )}
                                     </div>

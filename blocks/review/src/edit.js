@@ -38,6 +38,7 @@ export default function Edit(props) {
         quoteIcon,
         showRating,
         rating,
+        imageRes,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -86,7 +87,15 @@ export default function Edit(props) {
                         <div className="zolo-image-quote-wrap">
                             <div className="zolo-image-wrap">
                                 {memberPhoto ? (
-                                    <img src={memberPhoto.url} alt={memberPhoto.alt || memberName} className="zolo-img" />
+                                    <img
+                                        src={
+                                            memberPhoto.sizes && memberPhoto.sizes[imageRes]
+                                                ? memberPhoto.sizes[imageRes].url
+                                                : memberPhoto.url
+                                        }
+                                        alt={memberPhoto.alt || memberName}
+                                        className="zolo-img"
+                                    />
                                 ) : (
                                     <MediaPlaceholder
                                         icon="format-image"

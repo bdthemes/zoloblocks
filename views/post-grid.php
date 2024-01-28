@@ -21,6 +21,8 @@ $html = '';
 
 $wrapperId = $settings['zoloId'] ?? '';
 
+// var_dump($settings);
+
 ?>
 
 <div class="<?php echo esc_attr($wrapper_class); ?>"
@@ -34,10 +36,10 @@ $wrapperId = $settings['zoloId'] ?? '';
         $html .= '<div class="zolo-post-image">';
         // thumbnail ->meta[date]->author
         $html .= require __DIR__ . '/post-partials/thumbnail.php';
-        if (!empty($settings['preset'] === 'style-5')) {
+        if (!empty($settings['preset'] === 'style-5') && ($settings['showMeta'] === true )) {
             $html .= '<div class="zolo-post-dateTime">';
             $html .= require __DIR__ . '/post-partials/meta/date.php';
-            if (!empty($settings['showReadingTime'])) {
+            if (!empty($settings['showReadingTime']) ) {
                 $html .= $metaSeparator;
                 $html .= require __DIR__ . '/post-partials/meta/reading-time.php';
             }
@@ -52,7 +54,7 @@ $wrapperId = $settings['zoloId'] ?? '';
         $html .= require __DIR__ . '/post-partials/meta/categories.php';
         $html .= require __DIR__ . '/post-partials/title.php';
         $html .= require __DIR__ . '/post-partials/content.php';
-        if (!empty($settings['preset'] !== 'style-5')) {
+        if (!empty($settings['preset'] !== 'style-5') && ($settings['showMeta'] === true )) {
             $html .= '<div class="zolo-post-dateTime">';
             $html .= require __DIR__ . '/post-partials/meta/date.php';
             if (!empty($settings['showReadingTime'])) {

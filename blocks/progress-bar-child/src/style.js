@@ -6,89 +6,188 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { generateResAlignmentStyle, generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder } = window.zoloModule;
+const { GlobalStyleHanlder, generateTypographyStyles, generateResRangeStyle, generateNormalBGControlStyles, generateDimensionStyle } =
+    window.zoloModule;
 
-import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
-import { TITLE_TYPO } from './constants/typoPrefixConstant';
+import {
+    PROGRESS_BG_COLOR,
+    PROGRESS_BAR_BG_COLOR,
+    PROGRESS_HIGHT,
+    PROGRESS_BAR_RADIUS,
+    PROGRESS_TITLE_MARGIN,
+    PROGRESS_VALUE_MARGIN,
+    ITEM_BRADIUS,
+} from './constants';
+import { TITLE_TYPO, PROGRESS_VALUE } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, preset, progressH } = attributes;
+    const { uniqueId, progressH, titleColor, progressVColor } = attributes;
 
-    // styles
-    // const {
-    //     desktopAlignStyle: itemsVDeskAlign,
-    //     tabAlignStyle: itemsVTabAlign,
-    //     mobAlignStyle: itemsVMobAlign,
-    // } = generateResAlignmentStyle({
-    //     controlName: ITEMS_ALIGN,
-    //     property: 'justify-content',
-    //     attributes,
-    // });
+    // progress item
+    const {
+        dimensionStylesDesktop: itemDeskMargin,
+        dimensionStylesTab: itemTabMargin,
+        dimensionStylesMobile: itemMobMargin,
+    } = generateDimensionStyle({
+        controlName: ITEM_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
 
-    // const {
-    //     desktopRangeStyle: deskGap,
-    //     tabRangeStyle: tabGap,
-    //     mobRangeStyle: mobGap,
-    // } = generateResRangeStyle({
-    //     controlName: TITLE_GAP,
-    //     property: 'gap',
-    //     attributes,
-    // });
+    // title
+    const {
+        typoStylesDesktop: typoDeskTitle,
+        typoStylesTab: typoTabTitle,
+        typoStylesMobile: typoMobTitle,
+    } = generateTypographyStyles({ prefixConstant: TITLE_TYPO, attributes });
 
-    // const {
-    //     typoStylesDesktop: titleDeskTypo,
-    //     typoStylesTab: titleTabTypo,
-    //     typoStylesMobile: titleMobTypo,
-    // } = generateTypographyStyles({
-    //     prefixConstant: TITLE_TYPO,
-    //     attributes,
-    // });
+    //progress
+    const {
+        desktopRangeStyle: progressDeskHeight,
+        tabRangeStyle: progressTabHeight,
+        mobRangeStyle: progressMobHeight,
+    } = generateResRangeStyle({ controlName: PROGRESS_HIGHT, property: 'height', attributes });
 
-    // // Star Rating Style
-    // const {
-    //     desktopRangeStyle: deskSize,
-    //     tabRangeStyle: tabSize,
-    //     mobRangeStyle: mobSize,
-    // } = generateResRangeStyle({
-    //     controlName: STAR_SIZE,
-    //     property: 'width',
-    //     attributes,
-    // });
-    // const {
-    //     desktopRangeStyle: deskHeight,
-    //     tabRangeStyle: tabHeight,
-    //     mobRangeStyle: mobHeight,
-    // } = generateResRangeStyle({
-    //     controlName: STAR_SIZE,
-    //     property: 'height',
-    //     attributes,
-    // });
+    //progress bar
+    const {
+        dimensionStylesDesktop: progressBarDeskRadius,
+        dimensionStylesTab: progressBarTabRadius,
+        dimensionStylesMobile: progressBarMobRadius,
+    } = generateDimensionStyle({
+        controlName: PROGRESS_BAR_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: progressBarDeskcolor,
+        backgroundStylesTab: progressBarTabcolor,
+        backgroundStylesMobile: progressBarMobcolor,
+    } = generateNormalBGControlStyles({
+        controlName: PROGRESS_BAR_BG_COLOR,
+        noMainBGImg: true,
+        attributes,
+    });
+
+    //title margin
+    const {
+        dimensionStylesDesktop: titleDeskMargin,
+        dimensionStylesTab: titleTabMargin,
+        dimensionStylesMobile: titleMobMargin,
+    } = generateDimensionStyle({
+        controlName: PROGRESS_TITLE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    //progress value margin
+    const {
+        dimensionStylesDesktop: valueDeskMargin,
+        dimensionStylesTab: valueTabMargin,
+        dimensionStylesMobile: valueMobMargin,
+    } = generateDimensionStyle({
+        controlName: PROGRESS_VALUE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: typoDeskValue,
+        typoStylesTab: typoTabValue,
+        typoStylesMobile: typoMobValue,
+    } = generateTypographyStyles({ prefixConstant: PROGRESS_VALUE, attributes });
+
+    //progress  color
+    const {
+        backgroundStylesDesktop: progressDeskcolor,
+        backgroundStylesTab: progressTabcolor,
+        backgroundStylesMobile: progressMobcolor,
+    } = generateNormalBGControlStyles({
+        controlName: PROGRESS_BG_COLOR,
+        noMainBGImg: true,
+        attributes,
+    });
 
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
+       .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
+           ${typoDeskTitle}
+           ${titleDeskMargin}
+           ${titleColor && `color: ${titleColor}`}
+       }
+
+       .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar_percent{
+          ${valueDeskMargin}
+          ${typoDeskValue}
+          ${progressVColor && `color:${progressVColor}`}
+       }
+
+      .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
+        ${progressDeskcolor}
+        ${progressDeskHeight}
+        ${itemDeskMargin}
+      }
+
       .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
-       width:${progressH}%;
+         ${progressBarDeskcolor}
+         ${progressBarDeskRadius}
       }
-      ${
-          preset == 'style-5' &&
-          `.${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress .zolo-progress-bar__progress-bar {
-            
-        height:${progressH}%;
-      }`
-      }
+
+      .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar.active {
+        ${progressH && `width:${progressH}%`};
+     }
+
     `;
 
     const tabletAllStyle = `
+    .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
+        ${typoTabTitle}
+        ${titleTabMargin}
+    }
+
+    .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
+        ${progressTabcolor}
+        ${progressTabHeight}
+        ${itemTabMargin}
+    }
+
+    .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar_percent{
+        ${valueTabMargin}
+        ${typoTabValue}
+    }
+
+    .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
+        ${progressBarTabcolor}
+        ${progressBarTabRadius}
+    }
    
     `;
 
     const mobileAllStyle = `
-  
-    `;
+       .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
+           ${typoMobTitle}
+           ${titleMobMargin}
+       }
 
+       .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
+         ${progressMobcolor}
+         ${progressMobHeight}
+         ${itemMobMargin}
+      }
+
+      .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar_percent{
+        ${valueMobMargin}
+        ${typoMobValue}
+      }
+
+      .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
+        ${progressBarMobcolor}
+        ${progressBarMobRadius}
+      }
+    `;
     return (
         <>
             <GlobalStyleHanlder

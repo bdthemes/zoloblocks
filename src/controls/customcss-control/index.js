@@ -68,27 +68,29 @@ const CustomCSSControl = ({ attributes, setAttributes }) => {
                 <p style={{ margin: '10px 0', padding: '0 5px', lineHeight: '1.5', fontSize: '12px' }}>
                     <strong>{__('Suggested Classes: ', 'zolo-blocks')}</strong>
                 </p>
-                {updatedClassesArray &&
-                    updatedClassesArray.map((className) => (
-                        <Button
-                            key={className}
-                            style={{
-                                margin: '5px',
-                                padding: '0 5px',
-                                lineHeight: '1.5',
-                                fontSize: '12px',
-                                borderBottom: '1px solid #ddd',
-                                display: 'block',
-                            }}
-                            onClick={() => {
-                                setAttributes({
-                                    customCss: customCss + `{{ZOLO}}${` .${className}`} {\n  /*color: #f00;*/ \n }\n`,
-                                });
-                            }}
-                        >
-                            {className}
-                        </Button>
-                    ))}
+                <div className="zolo-suggested-class">
+                    {updatedClassesArray &&
+                        updatedClassesArray.map((className) => (
+                            <Button
+                                key={className}
+                                style={{
+                                    margin: '5px',
+                                    padding: '0 5px',
+                                    lineHeight: '1.5',
+                                    fontSize: '12px',
+                                    borderBottom: '1px solid #ddd',
+                                    display: 'block',
+                                }}
+                                onClick={() => {
+                                    setAttributes({
+                                        customCss: customCss + `{{ZOLO}}${` .${className}`} {\n  /*color: #f00;*/ \n }\n`,
+                                    });
+                                }}
+                            >
+                                {className}
+                            </Button>
+                        ))}
+                </div>
             </div>
         </div>
     );

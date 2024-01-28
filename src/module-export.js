@@ -32,6 +32,10 @@ export { AdvancedOptions } from './global/components/advancedOptions';
 export { GlobalStyleHanlder } from './global/components/globalStyleHandler';
 export { default as ResGapControl } from './controls/gap-control';
 export { default as ZoloPanelBody } from './controls/zolo-panelbody';
+export { default as ImageSizes } from './controls/image-sizes';
+export { default as GoogleMapAutocomplete } from './controls/google-map-autocomplete';
+export { default as ObjectFitControl } from './controls/object-fit-control';
+export { default as OverflowControl } from './controls/overflow-control';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';

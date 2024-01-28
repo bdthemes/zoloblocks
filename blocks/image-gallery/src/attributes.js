@@ -76,7 +76,10 @@ const attributes = {
     headingColor: {
         type: 'string',
     },
-
+    imageSize: {
+        type: 'string',
+        default: 'full',
+    },
     // Container
     ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
     ...generateNormalBGAttributes(CONTAINER_HOVER_BACKGROUND),
@@ -188,7 +191,15 @@ const attributes = {
     },
     entranceAnimation: {
         type: 'string',
-        default: 'mfp-zoom-in',
+        default: 'zolo-zoom-up',
+    },
+    showLightboxThumb: {
+        type: 'boolean',
+        default: true,
+    },
+    showThumbCaption: {
+        type: 'boolean',
+        default: true,
     },
     zoomIconColor: {
         type: 'string',

@@ -107,6 +107,10 @@ const attributes = {
             alt: '',
         },
     },
+    imageRes: {
+        type: 'string',
+        default: 'full',
+    },
     brandTitle: {
         type: 'string',
         default: 'zoloblocks',
