@@ -43,6 +43,7 @@ class Zolo_Blocks_Loader {
         require_once trailingslashit(ZOLO_DIR_PATH) . 'includes/classes/zolo-enqueues.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . 'includes/classes/font-loader.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . 'includes/classes/post-meta.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . 'includes/classes/support-svg.php';
         // die(ZOLO_DIR_PATH);
 
         // die(trailingslashit(ZOLO_DIR_PATH) . '/includes/classes/post-meta.php');
