@@ -103,3 +103,14 @@ button[class*='editor-block-list-item-zolo'] {
         }
     }
 }
+
+
+/**
+ * Zolo Blocks Dropdown Controls Style
+ */
+
+.zolo-dropdown-popover-content {
+    .components-popover__content {
+        width: 250px;
+    }
+}
