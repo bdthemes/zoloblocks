@@ -80,7 +80,7 @@ export default function Edit(props) {
                     postExclude: '',
                     postAuthors: [],
                     postTaxonomies: {},
-                    postPerPage: 6,
+                    postPerPage: 7,
                     postOffset: 0,
                     postOrderby: 'date',
                     postOrder: 'desc',

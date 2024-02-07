@@ -18,6 +18,7 @@ const {
     AdvancedOptions,
     ZoloPanelBody,
     ResDimensionsControl,
+    RangeResetControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -25,6 +26,8 @@ import {
     PRESETS,
     PROGRESS_BG_COLOR,
     PROGRESS_HIGHT,
+    PROGRESS_OFFSET,
+    PROGRESS_GAP,
     PROGRESS_BAR_BG_COLOR,
     PROGRESS_BAR_RADIUS,
     PROGRESS_TITLE_MARGIN,
@@ -86,11 +89,30 @@ function Inspector(props) {
                                 }}
                             />
                         </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Animation Settings', 'zolo-blocks')} panelProps={props}>
+                            <RangeResetControl
+                                label={__('Offset', 'zolo-blocks')}
+                                controlName={'progressOffset'}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={100}
+                                step={1}
+                            />
+                        </ZoloPanelBody>
                     </Fragment>
                 }
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <ResRangeControl
+                                label={__('Item Gap', 'zolo-blocks')}
+                                controlName={PROGRESS_GAP}
+                                requiredProps={requiredProps}
+                                min={1}
+                                max={100}
+                                step={1}
+                                noUnits={false}
+                            />
                             <ResRangeControl
                                 label={__('Height', 'zolo-blocks')}
                                 controlName={PROGRESS_HIGHT}

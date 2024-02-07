@@ -51,6 +51,7 @@ import {
     RIBBON_RADIUS,
     RIBBON_BG,
     SEPARATOR_WIDTH,
+    BTNS_MARGIN,
 } from './constants';
 
 import {
@@ -378,6 +379,17 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // buttons
+    const {
+        dimensionStylesDesktop: btnsMarginDesktop,
+        dimensionStylesTab: btnsMarginTab,
+        dimensionStylesMobile: btnsMarginMobile,
+    } = generateDimensionStyle({
+        controlName: BTNS_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
     //button style
     const {
         dimensionStylesDesktop: btnMarginDesktop,
@@ -388,6 +400,7 @@ const Style = ({ props }) => {
         styleFor: 'margin',
         attributes,
     });
+
     const {
         dimensionStylesDesktop: btnPaddingDesktop,
         dimensionStylesTab: btnPaddingTab,
@@ -397,6 +410,7 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
+
     const {
         dimensionStylesDesktop: btnDeskRadius,
         dimensionStylesTab: btnTabRadius,
@@ -665,7 +679,7 @@ const Style = ({ props }) => {
 			transition:${wrapperShadowTransition};
       --zolo-ribbon-xposition: ${ribbonXPosition}px;
       --zolo-ribbon-yposition: ${ribbonYPosition}px;
-      --zolo-ribbon-rotate: ${ribbonRotate}deg;
+      ${ribbonRotate != '' && typeof ribbonRotate == 'number' ? `--zolo-ribbon-rotate: ${ribbonRotate}deg;` : ''}
 		}
 		.zolo-block-wrapper.${uniqueId}:hover{
 			${wrapperHoverBackgroundStylesDesktop}
@@ -949,6 +963,9 @@ const Style = ({ props }) => {
   `;
 
     const buttonStylesDesktop = `
+    .${uniqueId} .zolo-link-btn{
+      ${btnsMarginDesktop}
+    }
     .${uniqueId} .zolo-link-btn a.zolo-buy-btn{
       ${btnTextColor ? `color: ${btnTextColor};` : ''}
       ${btnMarginDesktop}
@@ -984,6 +1001,9 @@ const Style = ({ props }) => {
   `;
 
     const buttonStylesTab = `
+    .${uniqueId} .zolo-link-btn{
+      ${btnsMarginTab}
+    }
     .${uniqueId} .zolo-link-btn a.zolo-buy-btn{
       ${btnMarginTab}
       ${btnPaddingTab}
@@ -1010,6 +1030,9 @@ const Style = ({ props }) => {
   `;
 
     const buttonStylesMob = `
+    .${uniqueId} .zolo-link-btn{
+      ${btnsMarginMobile}
+    }
     .${uniqueId} .zolo-link-btn a.zolo-buy-btn{
       ${btnMarginMobile}
       ${btnPaddingMobile}

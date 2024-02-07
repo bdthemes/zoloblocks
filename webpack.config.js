@@ -30,32 +30,6 @@ module.exports = {
         path: path.resolve(__dirname),
         filename: '[name]/index.js',
     },
-    // module: {
-    //   rules: [
-    //     // ... other rules ...
-
-    //     // Rule for handling JSX files
-    //     {
-    //       test: /\.jsx?$/,
-    //       exclude: /node_modules/,
-    //       use: {
-    //         loader: 'babel-loader',
-    //         options: {
-    //           presets: ['@babel/preset-env', '@babel/preset-react'],
-    //         },
-    //       },
-    //     },
-    //     // Rule for handling SCSS files
-    //     {
-    //       test: /\.scss$/,
-    //       use: [
-    //         'style-loader', // Adds styles to the DOM
-    //         'css-loader',   // Translates CSS into CommonJS
-    //         'sass-loader',  // Compiles Sass to CSS
-    //       ],
-    //     },
-    //   ],
-    // },
     plugins: [
         ...plugins,
         new MiniCSSExtractPlugin({

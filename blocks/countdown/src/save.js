@@ -3,7 +3,7 @@ import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, zoloId } = attributes;
+    const { uniqueId, parentClasses, zoloId, presets, CountDate, itemsLabels, itemsVisibility, toggleLabels } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -16,7 +16,13 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            <div class="zolo-countdown-wrap zolo-countdown-style-1">countdown</div>
+            <div
+                className={`zolo-countdown-wrap ${presets ? presets : `zolo-countdown-style-1`}`}
+                data-countdate={CountDate}
+                data-itemsVisibility={JSON.stringify(itemsVisibility)}
+                data-itemsLabels={JSON.stringify(itemsLabels)}
+                data-toggleLabels={toggleLabels}
+            ></div>
         </div>
     );
 };

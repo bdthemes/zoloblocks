@@ -2,11 +2,11 @@
 /**
  * Plugin Name: Zolo Blocks
  * Plugin URI: https://bdthemes.com/
- * Version: 1.0.0
+ * Version: 1.0.0-RC3
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: zolo-blocks
- * Description: A collection of custom Gutenberg blocks to design your webpages with ease. 
+ * Description: A collection of custom Gutenberg blocks to design your webpages with ease.
  * Domain Path: /languages
 *  License: GPL v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt

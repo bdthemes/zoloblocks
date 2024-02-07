@@ -193,5 +193,11 @@ return apply_filters( 'zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => ['zolo-countdown-frontend']
     ],
+    'advanced-image' => [
+        'name'             => 'advanced-image',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/advanced-image/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
 ]);
 

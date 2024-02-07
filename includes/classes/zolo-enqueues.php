@@ -72,6 +72,13 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 true
             );
 
+            // wp localize script
+            wp_localize_script('zolo-block-editor-dependency', 'zoloSettings', [
+                'ajaxurl'      => admin_url('admin-ajax.php'),
+                'zolo_nonce'   => wp_create_nonce('zolo-nonce'),
+                'googleAPIKey' => get_option('zolo_google_api_key'),
+            ]);
+
             // assets for both editor and frontend
             wp_enqueue_style(
                 'zolo-block-common-style',
@@ -80,12 +87,12 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            // override css 
-            if( is_admin( ) ) {
+            // override css
+            if (is_admin()) {
                 return;
             }
 
-            // commom viewport / waypoint 
+            // commom viewport / waypoint
             wp_enqueue_script(
                 'zolo-waypoint-frontent',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/waypoint/noframework.waypoints.min.js',
@@ -102,8 +109,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            // magnific popup animations 
-            if( has_block( 'zolo/image-gallery' ) ) {
+            // magnific popup animations
+            if (has_block('zolo/image-gallery')) {
                 wp_enqueue_style(
                     'zolo-maginific-popup-animations',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/magnific-popup/mpa-animations.css',
@@ -113,7 +120,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // popup
-            if ( has_block('zolo/image-gallery') ) {
+            if (has_block('zolo/image-gallery')) {
                 wp_enqueue_script(
                     'zolo-fslightbox-popup',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lightbox/fslightbox.js',
@@ -124,7 +131,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // Swiper Scripts and Styles
-            if ( has_block('zolo/slider') || has_block('zolo/post-carousel') ) {
+            if (has_block('zolo/slider') || has_block('zolo/post-carousel')) {
                 wp_enqueue_style(
                     'zolo-swiper-frontend-style',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
@@ -142,7 +149,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // accordion Scripts and Styles
-            if ( has_block( 'zolo/accordion' ) ) {
+            if (has_block('zolo/accordion')) {
                 wp_enqueue_script(
                     'zolo-accordion-frontend-script',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/accordion/accordion.min.js',
@@ -153,20 +160,14 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // social share Scripts and Styles
-            if ( has_block('zolo/social-share')) {
+            if (has_block('zolo/social-share')) {
                 wp_enqueue_script('zolo-social-share-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/sharer/sharer.min.js', [], ZOLO_VERSION, true);
             }
 
-            // countdown js
-            if( has_block( 'zolo/countdown' ) ) {
-                wp_enqueue_script( 'zolo-countdown',
-                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/countdown/countdown.js',
-                    [],
-                    ZOLO_VERSION,
-                    true
-                );
+            // roll number js
+            if (has_block('zolo/progress-bar')) {
+                wp_enqueue_script('zolo-roll-number', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/animate-counter/rollNumber.js', [], ZOLO_VERSION, true);
             }
-
         }
         /**
          * Load Block Editor Assets
@@ -176,7 +177,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function editor_assets_loader() {
-            if ( ! is_admin() ) {
+            if (!is_admin()) {
                 return;
             }
 
@@ -200,14 +201,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             wp_register_script(
                 'zolo-swiper-editor-script',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/swiper/swiper-bundle.min.js',
-                [],
-                ZOLO_VERSION,
-                false
-            );
-
-            // countdown js
-            wp_enqueue_script( 'zolo-countdown',
-                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/countdown/countdown.js',
                 [],
                 ZOLO_VERSION,
                 false
@@ -273,7 +266,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            // accordion 
+            // accordion
             wp_enqueue_script(
                 'zolo-accordion-editor-script',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/accordion/accordion.min.js',
@@ -300,13 +293,13 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 'get_taxonomies' => ZoloHelpers::get_taxonomies(),
                 'all_term_list'  => ZoloHelpers::get_all_taxonomy(),
                 'zolo_nonce'     => wp_create_nonce('zolo-nonce'),
-                'googleAPIKey'   => get_option('zolo_google_api_key'),
                 'editor_type'    => $editor_type,
                 'blocksPreview'  => [
                     'button'       => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-button.svg',
                     'heading'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-heading.svg',
                     'iconBox'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-icon-box.svg',
                     'imageGallery' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/image-gallery.svg',
+                    'image'        => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/image-preview.svg',
                     'postCarousel' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/post-carousel.svg',
                     'postGrid'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/post-grid.svg',
                     'postList'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/post-list.svg',
@@ -326,6 +319,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'progressbar'  => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/progress-bar.svg',
                     'gmap'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/gmap.svg',
                     'flipbox'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/flip-box.svg',
+                    'countdown'    => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/countdown.svg',
                 ]
             ]);
 

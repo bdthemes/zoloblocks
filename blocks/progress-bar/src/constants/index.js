@@ -17,6 +17,8 @@ export const PRESETS = [
 // Item
 export const ITEM_BRADIUS = 'itemBorderRadius';
 export const PROGRESS_HIGHT = 'progressHight';
+export const PROGRESS_GAP = 'progressGap';
+export const PROGRESS_OFFSET = 'progressOffset';
 
 export const PROGRESS_BG_COLOR = 'progressBarColor';
 export const PROGRESS_BAR_RADIUS = 'progressBarRadius';

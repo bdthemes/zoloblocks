@@ -45,6 +45,11 @@ import {
     ITEM_MARGIN,
     ITEM_BOX_SHADOW,
     ITEM_HBOX_SHADOW,
+    RIBBON_BG,
+    RIBBON_RADIUS,
+    RIBBON_BORDER,
+    RIBBON_MARGIN,
+    RIBBON_PADDING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -105,6 +110,13 @@ const attributes = {
     ...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
     ...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
 
+    // ribbon
+    ...generateDimensionAttributes(RIBBON_MARGIN),
+    ...generateDimensionAttributes(RIBBON_PADDING),
+    ...generateNormalBGAttributes(RIBBON_BG),
+    ...generateDimensionAttributes(RIBBON_RADIUS),
+    ...generateBorderAttributies(RIBBON_BORDER),
+
     // Title
     ...generateDimensionAttributes(TITLE_MARGIN),
     ...generateTextShadowAttributies(TITLE_TEXT_SHADOW),
@@ -154,6 +166,29 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+    //ribbon
+    showRibbon: {
+        type: 'boolean',
+        default: false,
+    },
+    ribbonTitle: {
+        type: 'string',
+        default: 'Popular',
+    },
+    ribbonXPosition: {
+        type: 'number',
+        default: 0,
+    },
+    ribbonYPosition: {
+        type: 'number',
+        default: 0,
+    },
+    ribbonRotate: {
+        type: 'number',
+        default: 0,
+    },
+
+    // main icon
     showMainIcon: {
         type: 'boolean',
         default: true,
@@ -279,6 +314,19 @@ const attributes = {
     },
     btnHoverBorderColor: {
         type: 'string',
+    },
+    //ribbon style
+    ribbonColor: {
+        type: 'string',
+        default: '',
+    },
+    ribbonBgColor: {
+        type: 'string',
+        default: '',
+    },
+    ribbonPosition: {
+        type: 'string',
+        default: 'top__right',
     },
 };
 

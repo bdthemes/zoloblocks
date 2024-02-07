@@ -60,6 +60,7 @@ import {
     RIBBON_PADDING,
     FEATURE_ICON_PADDING,
     SEPARATOR_WIDTH,
+    BTNS_MARGIN,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -149,6 +150,14 @@ const attributes = {
     featureDesc: {
         type: 'string',
         default: 'Everything in our free plan',
+    },
+    showFeatures: {
+        type: 'boolean',
+        default: true,
+    },
+    hideFeatureIcon: {
+        type: 'boolean',
+        default: false,
     },
     features: {
         type: 'array',
@@ -354,6 +363,8 @@ const attributes = {
     ...generateDimensionAttributes(FEATURE_ICON_PADDING),
 
     //button
+    ...generateDimensionAttributes(BTNS_MARGIN),
+
     ...generateDimensionAttributes(BTN_MARGIN),
     ...generateDimensionAttributes(BTN_PADDING),
     ...generateNormalBGAttributes(BTN_NORMAL_BG, {

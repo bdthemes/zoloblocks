@@ -498,11 +498,13 @@ const Style = ({ props }) => {
             ${frontIconDeskBorderRadius}
             ${frontIconDeskPadding}
             ${frontIconDeskMargin}
-            ${frontIconDeskSizeHeight}
-            ${frontIconDeskSizeWidth}
         }
         .${uniqueId}.wp-block-zolo-flipbox .zolo-flip-box_front .zolo-flip-box_inner-icon img {
             ${objectFit ? `object-fit: ${objectFit};` : ''}
+            ${frontIconDeskSizeHeight}
+            ${frontIconDeskSizeWidth}
+            ${frontIconDeskBorderRadius}
+
         }
 
         .${uniqueId}.wp-block-zolo-flipbox .zolo-flip-box_back .zolo-flip-box_inner-icon img {

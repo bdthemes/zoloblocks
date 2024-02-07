@@ -28,6 +28,9 @@ const Save = ({ attributes }) => {
         globalLink,
         zoloId,
         imageRes,
+        showRibbon,
+        ribbonTitle,
+        ribbonPosition,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -49,24 +52,25 @@ const Save = ({ attributes }) => {
             })}
         >
             <div className="zolo-block-item">
+                {showRibbon && ribbonTitle && <div className={`zolo-ribbon-btn ${ribbonPosition}`}>{ribbonTitle}</div>}
                 {showMainIcon && (
                     <div className={`zolo-block-icon-wrap`}>
-                        {iconType == 'icon' ? (
-                            <DisplayZoloIcon icon={mainIcon} />
-                        ) : (
-                            iconTypeImage && (
-                                <img
-                                    src={
-                                        iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
-                                            ? iconTypeImage.sizes[imageRes].url
-                                            : iconTypeImage.url
-                                    }
-                                    alt={iconTypeImage.alt || iconBoxTitle}
-                                    className={`wp-image-${iconTypeImage.id}`}
-                                    loading="lazy"
-                                />
-                            )
-                        )}
+                            {iconType == 'icon' ? (
+                                <DisplayZoloIcon icon={mainIcon} />
+                            ) : (
+                                iconTypeImage && (
+                                    <img
+                                        src={
+                                            iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
+                                                ? iconTypeImage.sizes[imageRes].url
+                                                : iconTypeImage.url
+                                        }
+                                        alt={iconTypeImage.alt || iconBoxTitle}
+                                        className={`wp-image-${iconTypeImage.id}`}
+                                        loading="lazy"
+                                    />
+                                )
+                            )}
                     </div>
                 )}
                 <div className="zolo-block-body-content">

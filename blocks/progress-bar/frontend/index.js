@@ -5,6 +5,7 @@ var __webpack_exports__ = {};
   \*********************************************/
 document.addEventListener('DOMContentLoaded', function () {
   const progressBars = document.querySelectorAll('.wp-block-zolo-progress-bar');
+  const offset = progressBars[0].getAttribute('data-progressoffset');
   progressBars.forEach(function (progressBar) {
     const bars = progressBar.querySelectorAll('.wp-block-zolo-progress-bar-child');
 
@@ -12,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
     bars.forEach(function (bar) {
       // single bar
       const singleBar = bar.querySelector('.zolo-progress-bar__progress-bar');
+      const singleCounter = bar.querySelector('.zolo-progress-bar_value');
+      const singleValue = singleCounter.getAttribute('data-value');
       new Waypoint({
         element: singleBar,
         handler: function () {
@@ -20,9 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
           } else {
             singleBar.classList.add('active');
           }
+          zoloNumberRolling(singleCounter, {
+            number: singleValue,
+            speed: 600
+          });
         },
         continuous: true,
-        offset: 'bottom-in-view'
+        offset: offset !== null ? `${offset}%` : 'bottom-in-view'
       });
     });
   });

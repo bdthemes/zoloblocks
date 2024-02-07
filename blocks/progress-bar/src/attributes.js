@@ -5,6 +5,7 @@ import * as typographyObjs from './constants/typoPrefixConstants';
 import {
     PROGRESS_BG_COLOR,
     PROGRESS_HIGHT,
+    PROGRESS_GAP,
     PROGRESS_BAR_BG_COLOR,
     PROGRESS_BAR_RADIUS,
     PROGRESS_TITLE_MARGIN,
@@ -51,6 +52,7 @@ const attributes = {
     //progress
     ...generateNormalBGAttributes(PROGRESS_BG_COLOR),
     ...generateResRangeAttributies(PROGRESS_HIGHT),
+    ...generateResRangeAttributies(PROGRESS_GAP),
     //progress bar
     ...generateNormalBGAttributes(PROGRESS_BAR_BG_COLOR),
     ...generateDimensionAttributes(PROGRESS_BAR_RADIUS),
@@ -76,6 +78,11 @@ const attributes = {
         type: 'string',
         default: 'h5',
     },
+    progressOffset: {
+        type: 'number',
+        default: 0,
+    },
+
 };
 
 export default attributes;

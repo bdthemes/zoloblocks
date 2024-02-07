@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zolo Blocks Loader.
  * @package Zolo
@@ -11,7 +12,7 @@ use Zolo\Classes\Registration;
 use Zolo\API\GetPostsV1;
 
 // Exit if accessed directly.
-if ( ! defined('ABSPATH')) {
+if (!defined('ABSPATH')) {
     exit;
 }
 
@@ -34,6 +35,11 @@ class Zolo_Blocks_Loader {
      * @return void
      */
     public function plugins_loaded() {
+
+        // zolo blocks settings 
+        $zoloEditorSettings = get_option('zolo_editor_settings', []);
+        $zoloSupportSVG = $zoloEditorSettings['supportSVG'] ?? false;
+
         GetPostsV1::getInstance();
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
@@ -49,7 +55,9 @@ class Zolo_Blocks_Loader {
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Settings.php';
 
         if (is_admin()) {
-            //Load Admin required files
+            if( $zoloSupportSVG ) {
+                require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/support-svg.php';
+            }
         }
     }
 

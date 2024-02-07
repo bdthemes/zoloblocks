@@ -36,6 +36,10 @@ export default function Edit(props) {
         buttonLink,
         globalLink,
         imageRes,
+        //ribbon
+        showRibbon,
+        ribbonTitle,
+        ribbonPosition,
     } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
@@ -81,13 +85,17 @@ export default function Edit(props) {
             </BlockControls>
             <div {...blockProps}>
                 <div className="zolo-block-item">
+                    {showRibbon && ribbonTitle && (
+                        <div className={`zolo-ribbon-btn ${ribbonPosition}`}>
+                            <RichText tagName="span" value={ribbonTitle} onChange={(v) => setAttributes({ ribbonTitle: v })} />
+                        </div>
+                    )}
                     {showMainIcon && (
                         <div className={`zolo-block-icon-wrap`}>
                             {iconType == 'icon' ? (
                                 <DisplayZoloIcon icon={mainIcon} />
                             ) : iconTypeImage ? (
                                 <>
-
                                     <img
                                         src={
                                             iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
@@ -115,7 +123,6 @@ export default function Edit(props) {
                             )}
                         </div>
                     )}
-
                     <div className="zolo-block-body-content">
                         {showHeading && (
                             <RichText

@@ -58,7 +58,6 @@ export default function Edit(props) {
         const newBlock = wp.blocks.createBlock('zolo/progress-bar-child', {});
         wp.data.dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
     };
-
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}

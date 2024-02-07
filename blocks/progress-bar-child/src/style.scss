@@ -51,17 +51,25 @@
             height 0.6s ease;
     }
 
-    .zolo-progress-bar__title,
-    .zolo-progress-bar_percent {
+    .zolo-progress-bar__title {
         font-size: clamp(12px, 1.5vw, 14px);
         line-height: 1;
     }
 
-    .zolo-progress-bar__title,
-    .zolo-progress-bar_percent {
+    .zolo-progress-bar__title {
         color: var(--zolo-progress-bar-color);
         font-weight: 600;
     }
+
+    .zolo-progress-bar_counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--zolo-progress-bar-color);
+    font-weight: 600;
+    font-size: clamp(12px, 1.5vw, 14px);
+    line-height: 1;
+}
 
     /* progress bars style 1 css here */
     &.style-1 {
@@ -94,7 +102,6 @@
     }
 
     &.style-3 .zolo-progress-bar__title,
-    &.style-3 .zolo-progress-bar_percent,
     &.style-4 .zolo-progress-bar__title{
         color: #fff;
     }

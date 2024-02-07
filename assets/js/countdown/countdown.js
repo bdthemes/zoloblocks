@@ -1,116 +1,155 @@
-class CountdownTimer {
-    constructor(targetDate, classSelector, options = {}) {
-        this.targetDate = new Date(targetDate).getTime();
-        this.classSelector = classSelector;
-        this.options = {
-            showLabels: true,
-            showYears: true,
-            showMonths: true,
-            showWeeks: true,
-            showDays: true,
-            showHours: true,
-            showMinutes: true,
-            showSeconds: true,
-            ...options,
-        };
-
-        this.intervalId = null;
-
-        this.onEnd = options.onEnd || null;
-
-        this.updateCountdown();
-        this.intervalId = setInterval(() => this.updateCountdown(), 1000);
+function zoloCountdownTimer(
+    date,
+    selector,
+    options = {
+        showYears: false,
+        showMonths: false,
+        showWeeks: false,
+        showDays: false,
+        showHours: true,
+        showMinutes: true,
+        showSeconds: true,
+        onEnd: null,
     }
+) {
+    const countDownDate = new Date(date).getTime();
 
-    updateCountdown() {
-        const currentDate = new Date().getTime();
-        const timeDifference = this.targetDate - currentDate;
+    // markup selcotrs
+    const items = selector.querySelectorAll('.zolo-countdown-item');
 
-        if (timeDifference <= 0) {
-            clearInterval(this.intervalId);
-            this.renderCountdown('00', '00', '00', '00', '00', '00', '00');
+    let yearItem, monthItem, weekItem, dayItem, hourItem, minuteItem, secondItem;
+
+    items.forEach((item) => {
+        if (item.querySelector('.zolo-year')) {
+            yearItem = item.querySelector('.zolo-year');
+        }
+
+        if (item.querySelector('.zolo-month')) {
+            monthItem = item.querySelector('.zolo-month');
+        }
+
+        if (item.querySelector('.zolo-week')) {
+            weekItem = item.querySelector('.zolo-week');
+        }
+
+        if (item.querySelector('.zolo-day')) {
+            dayItem = item.querySelector('.zolo-day');
+        }
+
+        if (item.querySelector('.zolo-hour')) {
+            hourItem = item.querySelector('.zolo-hour');
+        }
+
+        if (item.querySelector('.zolo-minute')) {
+            minuteItem = item.querySelector('.zolo-minute');
+        }
+
+        if (item.querySelector('.zolo-second')) {
+            secondItem = item.querySelector('.zolo-second');
+        }
+    });
+
+    // Update the count down every 1 second
+    const x = setInterval(() => {
+        // Get today's date and time
+        const now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        const distance = countDownDate - now;
+
+        // Time calculations for year, month, weeks, days, hours, minutes and seconds (convert into padStart start 2 digits format )
+        let years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+        let months = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+        let weeks = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24 * 7));
+        let days = Math.floor((distance % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Handle conversion of higher units to lower units when their corresponding items are hidden
+        if (!options.showYears) {
+            months += years * 12;
+        }
+
+        if (!options.showMonths) {
+            weeks += months * 4;
+        }
+
+        if (!options.showWeeks) {
+            days += weeks * 7;
+        }
+
+        if (!options.showDays) {
+            console.log(days);
+            hours += days * 24;
+        }
+
+        if (!options.showHours) {
+            minutes += hours * 60;
+        }
+
+        if (!options.showMinutes) {
+            seconds += minutes * 60;
+        }
+
+        // format padStart 2 digits
+        let formattedYears = String(months > 12 ? 0 : months).padStart(2, '0');
+        let formattedMonths = String(weeks > 4 ? 0 : weeks).padStart(2, '0');
+        let formattedWeeks = String(days > 7 ? 0 : days).padStart(2, '0');
+        let formattedDays = String(days).padStart(2, '0');
+        let formattedHours = String(hours).padStart(2, '0');
+        let formattedMinutes = String(minutes).padStart(2, '0');
+        let formattedSeconds = String(seconds).padStart(2, '0');
+
+        if (distance < 0) {
+            clearInterval(x);
+            formattedYears = '00';
+            formattedMonths = '00';
+            formattedWeeks = '00';
+            formattedDays = '00';
+            formattedHours = '00';
+            formattedMinutes = '00';
+            formattedSeconds = '00';
 
             // onEnd method
-            if (this.onEnd && typeof this.onEnd === 'function') {
-                this.onEnd();
+            if (options.onEnd && typeof options.onEnd === 'function') {
+                options.onEnd();
             }
-        } else {
-            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            const weeks = Math.floor(days / 7);
-            const months = Math.floor(days / 30);
-            const years = Math.floor(days / 365);
-
-            const formattedSeconds = String(seconds).padStart(2, '0');
-            const formattedMinutes = String(minutes).padStart(2, '0');
-            const formattedHours = String(hours).padStart(2, '0');
-            const formattedDays = String(days).padStart(2, '0');
-            const formattedWeeks = String(weeks).padStart(2, '0');
-            const formattedMonths = String(months).padStart(2, '0');
-            const formattedYears = String(years).padStart(2, '0');
-
-            this.renderCountdown(
-                formattedYears,
-                formattedMonths,
-                formattedWeeks,
-                formattedDays,
-                formattedHours,
-                formattedMinutes,
-                formattedSeconds
-            );
-        }
-    }
-
-    renderCountdown(years, months, weeks, days, hours, minutes, seconds) {
-        const countdownElements = document.querySelectorAll(this.classSelector);
-
-        countdownElements.forEach((element) => {
-            element.innerHTML = '';
-
-            if (this.options.showYears) {
-                this.createCountdownItem(element, 'Years', years);
-            }
-            if (this.options.showMonths) {
-                this.createCountdownItem(element, 'Months', months);
-            }
-            if (this.options.showWeeks) {
-                this.createCountdownItem(element, 'Weeks', weeks);
-            }
-            if (this.options.showDays) {
-                this.createCountdownItem(element, 'Days', days);
-            }
-            if (this.options.showHours) {
-                this.createCountdownItem(element, 'Hours', hours);
-            }
-            if (this.options.showMinutes) {
-                this.createCountdownItem(element, 'Minutes', minutes);
-            }
-            if (this.options.showSeconds) {
-                this.createCountdownItem(element, 'Seconds', seconds);
-            }
-        });
-    }
-
-    createCountdownItem(parentElement, label, value) {
-        const itemElement = document.createElement('div');
-        itemElement.className = 'zolo-countdown-item';
-
-        const faceElement = document.createElement('div');
-        faceElement.className = 'zolo-countdown-face';
-        faceElement.textContent = value;
-
-        const labelElement = document.createElement('div');
-        labelElement.className = 'zolo-countdown-label';
-        labelElement.textContent = label;
-
-        itemElement.appendChild(faceElement);
-
-        if (this.options.showLabels) {
-            itemElement.appendChild(labelElement);
         }
 
-        parentElement.appendChild(itemElement);
-    }
+        // yearItem
+        if (options?.showYears) {
+            yearItem.innerHTML = formattedYears;
+        }
+
+        // monthItem
+        if (options?.showMonths) {
+            monthItem.innerHTML = formattedMonths;
+        }
+
+        // weekItem
+        if (options?.showWeeks) {
+            weekItem.innerHTML = formattedWeeks;
+        }
+
+        // dayItem
+        if (options?.showDays) {
+            dayItem.innerHTML = formattedDays;
+        }
+
+        // hourItem
+        if (options?.showHours) {
+            hourItem.innerHTML = formattedHours;
+        }
+
+        // minuteItem
+        if (options?.showMinutes) {
+            minuteItem.innerHTML = formattedMinutes;
+        }
+
+        // secondItem
+        if (options?.showSeconds) {
+            secondItem.innerHTML = formattedSeconds;
+        }
+    }, 1000);
 }

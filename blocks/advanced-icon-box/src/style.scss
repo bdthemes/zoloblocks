@@ -12,6 +12,7 @@
         box-sizing: border-box;
         display: block;
         transition: all 0.3s ease;
+        position: relative;
     }
 
     a {
@@ -98,5 +99,22 @@
         // .zolo-block-body-content {
         //     text-align: right;
         // }
+    }
+
+    .zolo-ribbon-btn {
+        position: absolute;
+        top: 0;
+        margin: clamp(1.875rem, 4vw, 2.5rem);
+        background-color: var(--zoloblocks-brand-color);
+        color: #fff;
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 2px;
+        &.zolo-ribbon-btn.top__right {
+            right: 0;
+        }
+        &.zolo-ribbon-btn.top__left {
+           left: 0;
+        }
     }
 }

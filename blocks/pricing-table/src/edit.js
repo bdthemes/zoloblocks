@@ -33,6 +33,8 @@ const Edit = (props) => {
         sale,
         period,
         //features
+        showFeatures,
+        hideFeatureIcon,
         showFeatureHeading,
         showFeatureDesc,
         featureTitle,
@@ -183,11 +185,11 @@ const Edit = (props) => {
                                 />
                             )}
 
-                            {features.length !== 0 && (
+                            {features.length !== 0 && showFeatures && (
                                 <ul className="features">
                                     {features.map((item, index) => (
                                         <li key={index}>
-                                            {item.icon && (
+                                            {item.icon && hideFeatureIcon !== true && (
                                                 <span className="zolo-check-icon">
                                                     <DisplayZoloIcon icon={item.icon} />
                                                 </span>

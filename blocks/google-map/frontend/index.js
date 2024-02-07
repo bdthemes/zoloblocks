@@ -79,12 +79,13 @@ const GoogleMapFrontend = props => {
 };
 
 // Fetch google map api key once
-let apiKeyPromise = _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
-  path: '/wp/v2/settings',
-  method: 'GET'
-}).then(response => response.zolo_google_api_key);
+// let apiKeyPromise = apiFetch({
+//     path: '/wp/v2/settings',
+//     method: 'GET',
+// }).then((response) => response.zolo_google_api_key);
+
 document.addEventListener('DOMContentLoaded', async () => {
-  const apiKey = await apiKeyPromise;
+  const apiKey = zoloSettings?.googleAPIKey;
   const googleMaps = document.querySelectorAll('.wp-block-zolo-google-map');
   if (googleMaps.length > 0) {
     googleMaps.forEach(googleMap => {
