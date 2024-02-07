@@ -4,6 +4,7 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect, useState } from '@wordpress/element';
 import { InspectorControls, PanelColorSettings } from '@wordpress/block-editor';
+import {animate, inView} from 'motion';
 import {
     PanelBody,
     SelectControl,
@@ -50,7 +51,30 @@ export const AdvancedOptions = (props) => {
         overflow,
     } = attributes;
 
-    console.log(entaranceAnimation, 'entaranceAnimation');
+const motionAnimate = () => {
+    const elements = document.querySelectorAll('.zolo-entrance-animation');
+    // console.log('elements', elements);
+    elements.forEach((element) => {
+        inView(element, ({target}) => {
+            animate(target,
+                {
+                    opacity: [0.5, 1],
+                    transform: ['translateY(-100px)', 'none'],
+                },
+                {
+                    duration: 1,
+                    easing: 'ease-out',
+                }
+            );
+        });
+    }
+    );
+};
+
+    useEffect(() => {
+        motionAnimate();
+    }, [entaranceAnimation]);
+
 
     const handleResponsiveness = (key, value, classname) => {
         let updatedClasses = [...parentClasses, classname];
@@ -250,6 +274,7 @@ export const AdvancedOptions = (props) => {
                         if (!entaranceAnimationActive) {
                             setAttributes({
                                 parentClasses: [...parentClasses, 'zolo-entrance-animation'],
+
                             });
                         } else {
                             setAttributes({
