@@ -111,17 +111,18 @@ function addAttributes(settings) {
             overflow: {
                 type: 'string',
             },
-            entaranceAnimationActive: {
+            entranceAnimationActive: {
                 type: 'boolean',
                 default: false,
             },
-            entaranceAnimation: {
+            entranceAnimation: {
                 type: 'object',
                 default: {
                     perspective: 0,
                     duration: 600,
                     delay: 0,
                     transformOrigin: 'center',
+                    transformOriginCustom: '',
                     transformTranslateX: 0,
                     transformTranslateY: 0,
                     transformTranslateZ: 0,

@@ -80,12 +80,21 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            // override css 
-            if( is_admin( ) ) {
+            // override css
+            if (is_admin()) {
                 return;
             }
 
-            // commom viewport / waypoint 
+            // animation frontend
+
+            wp_enqueue_script(
+                'zolo-animation-frontend',
+                trailingslashit(ZOLO_ADMIN_URL) . 'build/animation/index.js',
+                ['zolo-block-editor-dependency'],
+                ZOLO_VERSION,
+                true
+            );
+            // commom viewport / waypoint
             wp_enqueue_script(
                 'zolo-waypoint-frontent',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/waypoint/noframework.waypoints.min.js',
@@ -102,8 +111,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            // magnific popup animations 
-            if( has_block( 'zolo/image-gallery' ) ) {
+            // magnific popup animations
+            if (has_block('zolo/image-gallery')) {
                 wp_enqueue_style(
                     'zolo-maginific-popup-animations',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/magnific-popup/mpa-animations.css',
@@ -113,7 +122,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // popup
-            if ( has_block('zolo/image-gallery') ) {
+            if (has_block('zolo/image-gallery')) {
                 wp_enqueue_script(
                     'zolo-fslightbox-popup',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lightbox/fslightbox.js',
@@ -124,7 +133,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // Swiper Scripts and Styles
-            if ( has_block('zolo/slider') || has_block('zolo/post-carousel') ) {
+            if (has_block('zolo/slider') || has_block('zolo/post-carousel')) {
                 wp_enqueue_style(
                     'zolo-swiper-frontend-style',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
@@ -142,7 +151,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // accordion Scripts and Styles
-            if ( has_block( 'zolo/accordion' ) ) {
+            if (has_block('zolo/accordion')) {
                 wp_enqueue_script(
                     'zolo-accordion-frontend-script',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/accordion/accordion.min.js',
@@ -153,20 +162,20 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // social share Scripts and Styles
-            if ( has_block('zolo/social-share')) {
+            if (has_block('zolo/social-share')) {
                 wp_enqueue_script('zolo-social-share-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/sharer/sharer.min.js', [], ZOLO_VERSION, true);
             }
 
             // countdown js
-            if( has_block( 'zolo/countdown' ) ) {
-                wp_enqueue_script( 'zolo-countdown',
+            if (has_block('zolo/countdown')) {
+                wp_enqueue_script(
+                    'zolo-countdown',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/countdown/countdown.js',
                     [],
                     ZOLO_VERSION,
                     true
                 );
             }
-
         }
         /**
          * Load Block Editor Assets
@@ -176,7 +185,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function editor_assets_loader() {
-            if ( ! is_admin() ) {
+            if (!is_admin()) {
                 return;
             }
 
@@ -206,7 +215,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             );
 
             // countdown js
-            wp_enqueue_script( 'zolo-countdown',
+            wp_enqueue_script(
+                'zolo-countdown',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/countdown/countdown.js',
                 [],
                 ZOLO_VERSION,
@@ -273,7 +283,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-            // accordion 
+            // accordion
             wp_enqueue_script(
                 'zolo-accordion-editor-script',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/accordion/accordion.min.js',
