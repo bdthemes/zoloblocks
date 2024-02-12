@@ -1,0 +1,37 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+
+jobs:
+  release-free:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Archive release
+        uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: zip
+          path: ./
+          filename: zolo-blocks.zip
+          exclusions: '/*node_modules/* /src/* /*package.json /*.gitignore webpack.config.js composer.json Gruntfile.js package.json .gitignore .editorconfig .github/*'
+
+      - name: display release
+        run: ls -a
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          artifacts: 'zolo-blocks.zip'
+          token: ${{ secrets.TOKEN }}
+          removeArtifacts: true
+          allowUpdates: true
+          makeLatest: true
+          tag: ${{ github.ref_name }}
