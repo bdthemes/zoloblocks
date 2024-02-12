@@ -36,7 +36,7 @@ class Zolo_Blocks_Loader {
      */
     public function plugins_loaded() {
 
-        // zolo blocks settings 
+        // zolo blocks settings
         $zoloEditorSettings = get_option('zolo_editor_settings', []);
         $zoloSupportSVG = $zoloEditorSettings['supportSVG'] ?? false;
 
@@ -44,10 +44,10 @@ class Zolo_Blocks_Loader {
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/zolo-ajax.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/zolo-enqueues.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/font-loader.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/post-meta.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/classes/zolo-ajax.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/classes/zolo-enqueues.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/classes/font-loader.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/classes/post-meta.php';
 
         // Load Admin files
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Dashboard.php';
@@ -55,7 +55,7 @@ class Zolo_Blocks_Loader {
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Settings.php';
 
         if (is_admin()) {
-            if( $zoloSupportSVG ) {
+            if ($zoloSupportSVG) {
                 require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/support-svg.php';
             }
         }
