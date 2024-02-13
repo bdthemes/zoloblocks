@@ -25,7 +25,7 @@ jobs:
               uses: thedoctor0/zip-release@0.7.6
               with:
                   filename: 'zolo-blocks.zip'
-                  exclusions: '/src/* /*node_modules/* *.git* .distignore composer.lock Gruntfile.js webpack.config.js composer.json .editorconfig package-json package-lock.json README.md'
+                  exclusions: '/src/* /*node_modules/* *.git* .distignore composer.lock Gruntfile.js webpack.config.js composer.json .editorconfig package.json package-lock.json README.md'
 
             - name: display release
               run: ls -a
