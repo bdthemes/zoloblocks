@@ -92,6 +92,16 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 return;
             }
 
+            // animation frontend
+
+            wp_enqueue_script(
+                'zolo-animation-frontend',
+                trailingslashit(ZOLO_ADMIN_URL) . 'build/animation/index.js',
+                ['zolo-block-editor-dependency'],
+                ZOLO_VERSION,
+                true
+            );
+
             // commom viewport / waypoint
             wp_enqueue_script(
                 'zolo-waypoint-frontent',
@@ -164,6 +174,15 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 wp_enqueue_script('zolo-social-share-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/sharer/sharer.min.js', [], ZOLO_VERSION, true);
             }
 
+            // countdown js
+            if (has_block('zolo/countdown')) {
+                wp_enqueue_script(
+                    'zolo-countdown',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/countdown/countdown.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
             // roll number js
             if (has_block('zolo/progress-bar')) {
                 wp_enqueue_script('zolo-roll-number', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/animate-counter/rollNumber.js', [], ZOLO_VERSION, true);
@@ -201,6 +220,15 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             wp_register_script(
                 'zolo-swiper-editor-script',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/swiper/swiper-bundle.min.js',
+                [],
+                ZOLO_VERSION,
+                false
+            );
+
+            // countdown js
+            wp_enqueue_script(
+                'zolo-countdown',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/countdown/countdown.js',
                 [],
                 ZOLO_VERSION,
                 false

@@ -15,21 +15,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install dependencies
+        run: npm install --force
+
+      - name: Build
+        run: npm run build
+
       - name: Archive release
-        uses: thedoctor0/zip-release@0.7.1
+        uses: thedoctor0/zip-release@0.7.6
         with:
-          type: zip
-          path: ./
-          filename: zolo-blocks.zip
-          exclusions: '/*node_modules/* /src/* /*package.json /*.gitignore webpack.config.js composer.json Gruntfile.js package.json .gitignore .editorconfig .github/*'
+          filename: 'zolo-blocks.zip'
+          exclusions: '/src/* /*node_modules/* *.git* .distignore composer.lock Gruntfile.js webpack.config.js composer.json .editorconfig package.json package-lock.json README.md'
+
 
       - name: display release
         run: ls -a
 
       - name: Create Release
-        uses: ncipollo/release-action@v1.12.0
+        uses: ncipollo/release-action@v1.14.0
         with:
-          artifacts: 'zolo-blocks.zip'
+          artifacts: './zolo-blocks.zip'
           token: ${{ secrets.TOKEN }}
           removeArtifacts: true
           allowUpdates: true

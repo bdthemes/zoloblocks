@@ -37,6 +37,7 @@
         "@wordpress/server-side-render": "^3.0.17",
         "array-move": "^4.0.0",
         "classnames": "^2.3.1",
+        "motion": "^10.17.0",
         "rc-switch": "^3.2.2",
         "react-countup": "^6.4.2",
         "react-google-autocomplete": "^2.7.3",

@@ -4,6 +4,8 @@
 import { useBlockProps, RichText, BlockControls, MediaPlaceholder, MediaUpload } from '@wordpress/block-editor';
 import { Fragment, useEffect } from '@wordpress/element';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
+import { createHigherOrderComponent } from '@wordpress/compose';
+import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -20,6 +22,26 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
+
+/**
+ * Filter Slide Item block on Register
+ * and pass the block as a child of swiper-slide
+ */
+const zoloReviewCarousel = createHigherOrderComponent((BlockListBlock) => {
+    return (props) => {
+        if ('zolo/review-child' === props.name) {
+            return (
+                <div className="swiper-slide">
+                    <BlockListBlock {...props} />
+                </div>
+            );
+        }
+
+        return <BlockListBlock {...props} />;
+    };
+}, 'zoloReviewCarousel');
+
+addFilter('editor.BlockListBlock', 'zolo/review-child', zoloReviewCarousel);
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, context } = props;

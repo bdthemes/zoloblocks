@@ -114,6 +114,36 @@ function addAttributes(settings) {
             overflow: {
                 type: 'string',
             },
+            entranceAnimationActive: {
+                type: 'boolean',
+                default: false,
+            },
+            entranceAnimation: {
+                type: 'object',
+                default: {
+                    perspective: 0,
+                    duration: 600,
+                    delay: 0,
+                    transformOrigin: 'center',
+                    transformOriginCustom: '',
+                    transformTranslateX: 0,
+                    transformTranslateY: 0,
+                    transformTranslateZ: 0,
+                    transformRotateX: 0,
+                    transformRotateY: 0,
+                    transformRotateZ: 0,
+                    transformScaleX: 0,
+                    transformScaleY: 0,
+                    transformScaleZ: 0,
+                    transformSkewX: 0,
+                    transformSkewY: 0,
+                    //? todo: add more animation properties
+                    iteration: 0,
+                    direction: 'normal',
+                    fillMode: 'none',
+                    animation: 'fadeIn',
+                },
+            },
             ...(settings.attributes.globalConfig?.default?.margin &&
                 generateDimensionAttributes(settings.attributes.globalConfig.default.margin?.prefix || 'mainMargin')),
 
