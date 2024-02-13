@@ -61,6 +61,8 @@ export const META_SPACE = 'metaSpace';
 // Navigation settings
 export const NAV_WIDTH = 'navWidth';
 export const NAV_HEIGHT = 'navHeight';
+export const NAV_OFFSET_HORIZONTAL = 'navOffsetHorizontal';
+export const NAV_OFFSET_VERTICAL = 'navOffsetVertical';
 export const NAV_BORDER = 'navBorder';
 export const NAV_BORDER_RADIUS = 'navBorderRadius';
 export const NAV_BG = 'navBg';

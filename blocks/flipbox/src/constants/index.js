@@ -41,6 +41,9 @@ export const FLIP_EFFECT = [
     { label: __('Push Bottom', 'zolo-blocks'), value: '10' },
     { label: __('Push Left', 'zolo-blocks'), value: '11' },
     { label: __('Push Right', 'zolo-blocks'), value: '12' },
+    { label: __('Top to Bottom Angle', 'zolo-blocks'), value: '13' },
+    { label: __('Bottom to Top Angle', 'zolo-blocks'), value: '14' },
+    { label: __('Zoom', 'zolo-blocks'), value: '15' },
 ];
 
 export const FLIP_EASING_TYPE = [

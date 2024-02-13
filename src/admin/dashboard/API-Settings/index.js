@@ -57,7 +57,7 @@ const ApiSettings = () => {
                         'You have to retrieve API key to use Google Maps from ZoloBlocks. Please follow the documentation link to get the API key.',
                         'zolo-blocks'
                     )}
-                    docLink="https://zolothemes.com/docs/zolo-blocks/"
+                    docLink="https://developers.google.com/maps/documentation/maps-static"
                     value={googleAPIKey}
                     onChange={(value) => {
                         updateAPIKey(value);

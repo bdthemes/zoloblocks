@@ -204,7 +204,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 min={1}
                                 max={5}
-                                defauts={{
+                                defaults={{
                                     deskRange: 3,
                                     tabRange: 2,
                                     mobRange: 1,

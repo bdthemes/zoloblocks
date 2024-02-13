@@ -1,7 +1,6 @@
 .zolo-post-carousel {
     position: relative;
     box-sizing: border-box;
-    // overflow: hidden;
     .zolo-post-item {
         position: relative;
         overflow: hidden;
@@ -324,8 +323,8 @@
         align-items: center;
         justify-content: center;
         gap: 12px;
-        bottom: auto;
         z-index: 11;
+        bottom: 30px !important;
         .swiper-pagination-bullet {
             background-color: transparent;
             width: 8px;
@@ -363,11 +362,11 @@
         }
         &.swiper-zolo-next,
         &.swiper-button-next {
-            right: -25px;
+            right: 20px;
         }
         &.swiper-zolo-prev,
         &.swiper-button-prev {
-            left: -25px;
+            left: 20px;
         }
     }
 

@@ -93,3 +93,6 @@ export const RIBBON_POSITIONS = [
     { label: __('Top Left', 'zolo-blocks'), value: 'top__left' },
     { label: __('Top Right', 'zolo-blocks'), value: 'top__right' },
 ];
+
+// buttons
+export const BTNS_MARGIN = 'btnsMargin';

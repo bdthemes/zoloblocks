@@ -213,7 +213,9 @@
 input.zolo-blocks-search,
 .blocks-filter-buttons,
 .zolo-settings-actions,
-.zolo-no-block-found {
+.zolo-no-block-found,
+.zolo-settings-tab-button,
+.zolo-settings-tab-content {
     background-color: #fff;
     --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
@@ -517,7 +519,13 @@ input.zolo-blocks-search:focus {
 .zolo-tabs-dropdown {
     position: relative;
     display: inline-block;
-    padding: 14px;
+    padding: 14px 0;
+}
+.zolo-header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-direction: row-reverse;
 }
 
 .zolo-tabs-dropdown-content {
@@ -527,6 +535,7 @@ input.zolo-blocks-search:focus {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 111;
+    right: 10px;
 }
 
 .zolo-tabs-dropdown-content a {
@@ -598,14 +607,14 @@ input.zolo-blocks-search:focus {
         color: #2d3238;
         svg {
             path {
-                fill: currentColor !important;
+                fill: #2d3238;
             }
         }
         &:hover {
             color: #000;
             svg {
                 path {
-                    fill: currentColor !important;
+                    fill: #000;
                 }
             }
         }
@@ -613,7 +622,7 @@ input.zolo-blocks-search:focus {
             color: var(--zolo-dashboard-brand-color);
             svg {
                 path {
-                    fill: currentColor !important;
+                    fill: var(--zolo-dashboard-brand-color);
                 }
             }
         }
@@ -761,18 +770,27 @@ input.zolo-blocks-search:focus {
     position: fixed;
     top: 150px;
     right: 20px;
-    background: #fff;
-    border: 1px solid #e2e2e2;
+    color: #2b943c;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    backdrop-filter: blur(15px);
     border-radius: 5px;
     padding: 15px 20px;
     font-size: 14px;
-    box-shadow: 0 0 5px rgb(0 0 0 / 15%);
     display: flex;
     align-items: center;
     gap: 8px;
+    z-index: 1;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: 0.3s ease;
     svg {
-        fill: #14943c;
+        fill: currentColor;
         width: 20px;
         height: 20px;
+    }
+    &.show {
+        visibility: visible;
+        transform: translateX(0);
     }
 }

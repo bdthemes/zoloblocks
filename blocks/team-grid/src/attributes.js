@@ -114,7 +114,7 @@ const attributes = {
     },
     ...generateResCounterAttributies(GRID_COLUMNS, {
         noUnits: true,
-        defauts: {
+        defaults: {
             deskRange: 3,
             tabRange: 2,
             mobRange: 1,

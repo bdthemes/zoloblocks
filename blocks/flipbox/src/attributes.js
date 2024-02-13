@@ -239,7 +239,7 @@ const attributes = {
     link: {
         type: 'object',
         default: {
-            url: '#',
+            url: '',
             openInNewTab: false,
         },
     },

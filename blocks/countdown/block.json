@@ -4,7 +4,7 @@
     "name": "zolo/countdown",
     "category": "zolo-blocks",
     "keywords": ["countdown", "timer", "clock"],
-    "description": "Show star rating",
+    "description": "Create a Offer for Customers",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
     "example": {

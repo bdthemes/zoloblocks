@@ -37,38 +37,40 @@ const Dashboard = () => {
                                 })}
                         </div>
 
-                        <div className="zolo-tabs-dropdown">
-                            <button className="zolo-tabs-dropbtn">
-                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                                    <path
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="1.5"
-                                        d="M1 1h15M1 7h15M1 13h15"
-                                    />
-                                </svg>
-                            </button>
-                            <div className="zolo-tabs-dropdown-content">
-                                <div className="zolo-tabs">
-                                    {TABS.length > 0 &&
-                                        TABS.map((tab, index) => {
-                                            return (
-                                                <button
-                                                    key={index}
-                                                    className={activeTab === tab.value ? 'zolo-tab zolo-tab-active' : 'zolo-tab'}
-                                                    onClick={() => {
-                                                        setActiveTab(tab.value);
-                                                    }}
-                                                >
-                                                    {tab.label}
-                                                </button>
-                                            );
-                                        })}
+                        <div className="zolo-header-right">
+                            <div className="zolo-tabs-dropdown">
+                                <button className="zolo-tabs-dropbtn">
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                                        <path
+                                            stroke="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="1.5"
+                                            d="M1 1h15M1 7h15M1 13h15"
+                                        />
+                                    </svg>
+                                </button>
+                                <div className="zolo-tabs-dropdown-content">
+                                    <div className="zolo-tabs">
+                                        {TABS.length > 0 &&
+                                            TABS.map((tab, index) => {
+                                                return (
+                                                    <button
+                                                        key={index}
+                                                        className={activeTab === tab.value ? 'zolo-tab zolo-tab-active' : 'zolo-tab'}
+                                                        onClick={() => {
+                                                            setActiveTab(tab.value);
+                                                        }}
+                                                    >
+                                                        {tab.label}
+                                                    </button>
+                                                );
+                                            })}
+                                    </div>
                                 </div>
                             </div>
+                            <ExtraInfo />
                         </div>
-                        <ExtraInfo />
                     </div>
                 </div>
             </div>

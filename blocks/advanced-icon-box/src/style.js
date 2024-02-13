@@ -54,9 +54,14 @@ import {
     ITEM_MARGIN,
     ITEM_BOX_SHADOW,
     ITEM_HBOX_SHADOW,
+    RIBBON_MARGIN,
+    RIBBON_PADDING,
+    RIBBON_BORDER,
+    RIBBON_RADIUS,
+    RIBBON_BG,
 } from './constants';
 
-import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
@@ -79,6 +84,11 @@ export default function Style({ props }) {
         btnBgHoverColor,
         btnHoverBorderColor,
         globalLink,
+        //ribbon
+        ribbonXPosition,
+        ribbonYPosition,
+        ribbonRotate,
+        ribbonColor,
     } = attributes;
 
     // item
@@ -161,6 +171,64 @@ export default function Style({ props }) {
         controlName: CONTENT_ALIGNMENT,
         property: 'text-align',
         attributes,
+    });
+
+    //ribbon style
+    const {
+        typoStylesDesktop: ribbonTypoDesktop,
+        typoStylesTab: ribbonTypoTab,
+        typoStylesMobile: ribbonTypoMobile,
+    } = generateTypographyStyles({
+        prefixConstant: RIBBON_TYPOGRAPHY,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: ribbonMarginDesktop,
+        dimensionStylesTab: ribbonMarginTab,
+        dimensionStylesMobile: ribbonMarginMobile,
+    } = generateDimensionStyle({
+        controlName: RIBBON_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: ribbonPaddingDesktop,
+        dimensionStylesTab: ribbonPaddingTab,
+        dimensionStylesMobile: ribbonPaddingMobile,
+    } = generateDimensionStyle({
+        controlName: RIBBON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: ribbonBorderDesktop,
+        tabBorderStyle: ribbonBorderTab,
+        mobBorderStyle: ribbonBorderMob,
+    } = generateBorderStyle({
+        attributes,
+        controlName: RIBBON_BORDER,
+    });
+
+    const {
+        dimensionStylesDesktop: ribbonDeskRadius,
+        dimensionStylesTab: ribbonTabRadius,
+        dimensionStylesMobile: ribbonMobRadius,
+    } = generateDimensionStyle({
+        controlName: RIBBON_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: ribbonBgDesktop,
+        backgroundStylesTab: ribbonBgTab,
+        backgroundStylesMobile: ribbonBgMob,
+    } = generateNormalBGControlStyles({
+        attributes,
+        controlName: RIBBON_BG,
     });
 
     // icon alignment
@@ -461,7 +529,13 @@ export default function Style({ props }) {
     /**
      * All Style Combination
      */
+    console.log('uniqueId', uniqueId)
     const desktopAllStyle = `
+    	.zolo-block-advanced-icon-box.${uniqueId}{
+      --zolo-ribbon-xposition: ${ribbonXPosition}px;
+      --zolo-ribbon-yposition: ${ribbonYPosition}px;
+      ${ribbonRotate != '' && typeof ribbonRotate == 'number' ? `--zolo-ribbon-rotate: ${ribbonRotate}deg;` : ''}
+		}
 
     .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item {
             ${itemBgDesk}
@@ -470,9 +544,9 @@ export default function Style({ props }) {
             ${itemBoxShadow}
             ${itemPaddingDesk}
             ${itemMarginDesk}
-            
+
         }
-        
+
 
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover {
             ${itemHBoxShadow}
@@ -519,7 +593,7 @@ export default function Style({ props }) {
 			${iconPaddingDesktop}
 			${iconBoxShadow}
 		}
-        
+
 		.${uniqueId} .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
 			${iconImageBorderDesk}
@@ -551,7 +625,7 @@ export default function Style({ props }) {
                 ${buttonHoverBoxShadow}
                 ${btnHoverBorderColor ? `border-color: ${btnHoverBorderColor};` : ''}
                 ${btnHoverColor ? `color: ${btnHoverColor}; ` : ''}
-            } 
+            }
             .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button svg{
                 ${btnHoverColor ? `fill: ${btnHoverColor};` : ''}
             }
@@ -560,7 +634,7 @@ export default function Style({ props }) {
                 ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
                 ${iconHoverBoxShadow}
                 ${iconBorderHoverColor ? `border-color: ${iconBorderHoverColor};` : ''}
-            } 
+            }
         }
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-title{
@@ -570,6 +644,17 @@ export default function Style({ props }) {
         .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-block-desc{
             ${descHoverColor ? `color: ${descHoverColor};` : ''}
         }
+        .${uniqueId} .zolo-ribbon-btn{
+        ${ribbonColor ? `color: ${ribbonColor};` : ''}
+        ${ribbonBgDesktop}
+        ${ribbonPaddingDesktop}
+        ${ribbonMarginDesktop}
+        ${ribbonBorderDesktop}
+        ${ribbonDeskRadius}
+        ${ribbonTypoDesktop}
+        -webkit-transform: translate(var(--zolo-ribbon-xposition, 0), var(--zolo-ribbon-yposition, 0)) rotate(var(--zolo-ribbon-rotate, 0));
+        transform: translate(var(--zolo-ribbon-xposition, 0), var(--zolo-ribbon-yposition, 0)) rotate(var(--zolo-ribbon-rotate, 0));
+      }
   	`;
 
     const tabletAllStyle = `
@@ -644,6 +729,14 @@ export default function Style({ props }) {
         .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
             ${buttonBGHoverTabStyle}
         }
+        .${uniqueId} .zolo-ribbon-btn{
+        ${ribbonTypoTab}
+        ${ribbonBgTab}
+        ${ribbonPaddingTab}
+        ${ribbonMarginTab}
+        ${ribbonBorderTab}
+        ${ribbonTabRadius}
+        }
 	`;
 
     const mobileAllStyle = `
@@ -694,7 +787,7 @@ export default function Style({ props }) {
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
-        
+
         .${uniqueId} .zolo-block-body-content .zolo-box-button {
             ${buttonBGMobStyle}
 			${gapMob}
@@ -716,6 +809,15 @@ export default function Style({ props }) {
         .${uniqueId}.wp-block-zolo-advanced-icon-box:hover .zolo-box-button {
             ${buttonBGHoverMobStyle}
         }
+
+        .${uniqueId} .zolo-ribbon-btn{
+        ${ribbonTypoMobile}
+        ${ribbonBgMob}
+        ${ribbonPaddingMobile}
+        ${ribbonMarginMobile}
+        ${ribbonBorderMob}
+        ${ribbonMobRadius}
+      }
   	`;
 
     return (

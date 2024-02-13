@@ -1,8 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
+import { useBlockProps } from '@wordpress/block-editor';
+import { useEffect, useRef, useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -13,20 +13,23 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, StarRating, classArrayToStr } = window.zoloModule;
+const { handleUniqueId, classArrayToStr } = window.zoloModule;
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
 
 // import style
 import Style from './style';
 
+// countdown timer
+import CountdownTimer from './counter';
+
 /**
  * Edit Function
  */
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, seperatorType } = attributes;
+    const { attributes, setAttributes, clientId, isSelected } = props;
+    const { resMode, preview, uniqueId, parentClasses, presets, CountDate, itemsLabels, itemsVisibility, toggleLabels } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -44,7 +47,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.countdown} alt={__('Count down Preview', 'zolo-blocks')} />;
     }
 
     return (
@@ -52,7 +55,14 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                <div class="zolo-countdown-wrap zolo-countdown-style-1">countdown</div>
+                <div className={`zolo-countdown-wrap ${presets ? presets : `zolo-countdown-style-1`}`}>
+                    <CountdownTimer
+                        targetDate={CountDate ? CountDate : new Date()}
+                        itemsVisibility={itemsVisibility}
+                        showLabels={toggleLabels}
+                        labels={itemsLabels}
+                    />
+                </div>
             </div>
         </>
     );

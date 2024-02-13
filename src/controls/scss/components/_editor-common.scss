@@ -147,6 +147,38 @@
             box-shadow: none !important;
         }
     }
+
+    .components-base-control__help {
+        font-style: italic;
+    }
+
+
+  .components-datetime__time-field-time {
+    border: 1px solid #e9e9e9;
+    border-radius: 6px;
+    overflow: hidden;
+    align-items: center;
+    .components-base-control input {
+            border: 0 !important;
+    }
+   .components-datetime__time-separator {
+     border: 0 !important;
+     margin-top: -2px;
+   }
+  }
+  .components-datetime__date {
+    .components-truncate {
+        margin-bottom: 0 !important;
+    }
+  }
+//   .components-datetime__date__day {
+    .components-datetime__date__day {
+        &button[aria-label="Selected"] {
+            background: #001feb !important;
+        }
+    }
+//   }
+
 }
 
 .zolo-panel-control {
@@ -286,15 +318,29 @@
     flex-wrap: wrap;
     gap: 8px;
     button {
-        color: #33333d !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        border: 0 !important;
-        line-height: 1 !important;
-        text-decoration: underline;
+            color: #6f6f73 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            line-height: 1 !important;
+            height: 16px;
+            border-bottom: 1px solid #b8b9c1 !important;
+
         &:hover {
             color: #000 !important;
+            border-color: #000 !important;
         }
+    }
+}
+
+.zolo-help-text {
+    font-style: italic;
+    color: #66646c;
+    font-weight: 300;
+    margin-top: 14px;
+      p {
+        margin: 7px 0 !important;
+        padding: 0 !important;
+        color: #000;
     }
 }
 

@@ -1,17 +1,23 @@
-// import { render } from '@wordpress/element';
-// import StarRating from '../../../src/controls/star-rating';
+import CountdownTimer from './counter';
 
-// const starRating = ({ rating }) => {
-//     return <StarRating rating={rating} total={5} />;
-// };
+const { render } = wp.element;
 
-// render on page load
-// document.addEventListener('DOMContentLoaded', () => {
-//   const starRatingItems = document.querySelectorAll('.zolo-star-rating');
-//   if (starRatingItems.length) {
-//     starRatingItems.forEach((item) => {
-//       const ratingValue = item.dataset.rating;
-//       render(<StarRating rating={ratingValue} total={5} />, item);
-//     });
-//   }
-// });
+document.addEventListener('DOMContentLoaded', () => {
+    const zoloCounters = document.querySelectorAll('.wp-block-zolo-countdown');
+    if (zoloCounters.length > 0) {
+        zoloCounters.forEach((counter) => {
+            const zoloCounter = counter.querySelector('.zolo-countdown-wrap');
+            let CountDate = zoloCounter.dataset.countdate;
+            const itemsVisibility = JSON.parse(zoloCounter.dataset.itemsvisibility);
+            const itemsLabels = JSON.parse(zoloCounter.dataset.itemslabels);
+            const toggleLabels = zoloCounter.dataset.togglelabels;
+
+            const targetDate = new Date(CountDate);
+
+            render(
+                <CountdownTimer targetDate={targetDate} itemsVisibility={itemsVisibility} showLabels={toggleLabels} labels={itemsLabels} />,
+                zoloCounter
+            );
+        });
+    }
+});

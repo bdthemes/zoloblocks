@@ -119,7 +119,7 @@ const Style = ({ props }) => {
            ${titleColor && `color: ${titleColor}`}
        }
 
-       .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar_percent{
+       .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
           ${valueDeskMargin}
           ${typoDeskValue}
           ${progressVColor && `color:${progressVColor}`}
@@ -154,7 +154,7 @@ const Style = ({ props }) => {
         ${itemTabMargin}
     }
 
-    .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar_percent{
+    .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
         ${valueTabMargin}
         ${typoTabValue}
     }
@@ -163,7 +163,7 @@ const Style = ({ props }) => {
         ${progressBarTabcolor}
         ${progressBarTabRadius}
     }
-   
+
     `;
 
     const mobileAllStyle = `
@@ -178,7 +178,7 @@ const Style = ({ props }) => {
          ${itemMobMargin}
       }
 
-      .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar_percent{
+      .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
         ${valueMobMargin}
         ${typoMobValue}
       }

@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Zolo Blocks
  * Plugin URI: https://bdthemes.com/
- * Version: 1.0.0
+ * Version: 1.0.0-RC3
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: zolo-blocks

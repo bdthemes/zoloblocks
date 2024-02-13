@@ -4,7 +4,6 @@ import {
     BaseControl,
     CardDivider,
     __experimentalDivider as Divider,
-    PanelBody,
     SelectControl,
     TextControl,
     TextareaControl,
@@ -87,6 +86,7 @@ import {
     SEPARATOR_WIDTH,
     BTNS_POSITIONS,
     BTNS_DIRECTIONS,
+    BTNS_MARGIN,
 } from './constants';
 import {
     BTN_TYPOGRAPHY,
@@ -123,6 +123,8 @@ const Inspector = (props) => {
         orginalPrice,
         period,
         //features
+        showFeatures,
+        hideFeatureIcon,
         showFeatureHeading,
         showFeatureDesc,
         featureTitle,
@@ -187,6 +189,11 @@ const Inspector = (props) => {
                                 label={__('Show Ribbon', 'zolo-blocks')}
                                 checked={showRibbon}
                                 onChange={() => setAttributes({ showRibbon: !showRibbon })}
+                            />
+                            <ToggleControl
+                                label={__('Show Features', 'zolo-blocks')}
+                                checked={showFeatures}
+                                onChange={() => setAttributes({ showFeatures: !showFeatures })}
                             />
                             <ToggleControl
                                 label={__('Show Primary Button', 'zolo-blocks')}
@@ -335,41 +342,49 @@ const Inspector = (props) => {
                             />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Features', 'zolo-blocks')} panelProps={props}>
-                            <ToggleControl
-                                label={__('Show Title', 'zolo-blocks')}
-                                checked={showFeatureHeading}
-                                onChange={() =>
-                                    setAttributes({
-                                        showFeatureHeading: !showFeatureHeading,
-                                    })
-                                }
-                            />
-
-                            <ToggleControl
-                                label={__('Show Description', 'zolo-blocks')}
-                                checked={showFeatureDesc}
-                                onChange={() => setAttributes({ showFeatureDesc: !showFeatureDesc })}
-                            />
-
-                            {showFeatureHeading && (
-                                <TextControl
-                                    label={__('Title', 'zolo-blocks')}
-                                    value={featureTitle}
-                                    onChange={(featureTitle) => setAttributes({ featureTitle })}
+                        {showFeatures && (
+                            <ZoloPanelBody title={__('Features', 'zolo-blocks')} panelProps={props}>
+                                <ToggleControl
+                                    label={__('Show Title', 'zolo-blocks')}
+                                    checked={showFeatureHeading}
+                                    onChange={() =>
+                                        setAttributes({
+                                            showFeatureHeading: !showFeatureHeading,
+                                        })
+                                    }
                                 />
-                            )}
 
-                            {showFeatureDesc && (
-                                <TextareaControl
-                                    label={__('Description', 'zolo-blocks')}
-                                    value={featureDesc}
-                                    onChange={(featureDesc) => setAttributes({ featureDesc })}
+                                <ToggleControl
+                                    label={__('Show Description', 'zolo-blocks')}
+                                    checked={showFeatureDesc}
+                                    onChange={() => setAttributes({ showFeatureDesc: !showFeatureDesc })}
                                 />
-                            )}
 
-                            <Sortable features={features} setAttributes={setAttributes} />
-                        </ZoloPanelBody>
+                                <ToggleControl
+                                    label={__('Hide Feature Icon', 'zolo-blocks')}
+                                    checked={hideFeatureIcon}
+                                    onChange={() => setAttributes({ hideFeatureIcon: !hideFeatureIcon })}
+                                />
+
+                                {showFeatureHeading && (
+                                    <TextControl
+                                        label={__('Title', 'zolo-blocks')}
+                                        value={featureTitle}
+                                        onChange={(featureTitle) => setAttributes({ featureTitle })}
+                                    />
+                                )}
+
+                                {showFeatureDesc && (
+                                    <TextareaControl
+                                        label={__('Description', 'zolo-blocks')}
+                                        value={featureDesc}
+                                        onChange={(featureDesc) => setAttributes({ featureDesc })}
+                                    />
+                                )}
+
+                                <Sortable features={features} setAttributes={setAttributes} />
+                            </ZoloPanelBody>
+                        )}
 
                         {showBtn && (
                             <ZoloPanelBody title={__('Primary Button', 'zolo-blocks')} panelProps={props}>
@@ -644,147 +659,162 @@ const Inspector = (props) => {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Features', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={FEATURE_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Features Content', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            {showFeatureHeading && (
-                                <>
-                                    <TypographyDropdown
-                                        label="Title Typography"
-                                        typoPrefixConstant={FEATURE_TITLE_TYPOGRAPHY}
+                        {showFeatures && (
+                            <>
+                                <ZoloPanelBody title={__('Features', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                                    <ResDimensionsControl
+                                        label={__('Padding', 'zolo-blocks')}
+                                        controlName={FEATURE_PADDING}
                                         requiredProps={requiredProps}
-                                        max={72}
+                                        forBorderRadius={false}
                                     />
+                                </ZoloPanelBody>
+                                <ZoloPanelBody title={__('Features Content', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                                    {showFeatureHeading && (
+                                        <>
+                                            <TypographyDropdown
+                                                label="Title Typography"
+                                                typoPrefixConstant={FEATURE_TITLE_TYPOGRAPHY}
+                                                requiredProps={requiredProps}
+                                                max={72}
+                                            />
 
-                                    <ColorControl
-                                        label={__('Title Color', 'zolo-blocks')}
-                                        color={featureTitleColor}
-                                        onChange={(val) =>
-                                            setAttributes({
-                                                featureTitleColor: val,
-                                            })
-                                        }
-                                    />
+                                            <ColorControl
+                                                label={__('Title Color', 'zolo-blocks')}
+                                                color={featureTitleColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        featureTitleColor: val,
+                                                    })
+                                                }
+                                            />
 
-                                    <Divider />
-                                    <BaseControl>
-                                        <h3 className="zolo-devider-title"> {__('Description ', 'zolo-blocks')} </h3>
-                                    </BaseControl>
+                                            <Divider />
+                                            <BaseControl>
+                                                <h3 className="zolo-devider-title"> {__('Description ', 'zolo-blocks')} </h3>
+                                            </BaseControl>
 
+                                            <TypographyDropdown
+                                                label="Typography"
+                                                typoPrefixConstant={FEATURE_DESC_TYPOGRAPHY}
+                                                requiredProps={requiredProps}
+                                                max={72}
+                                            />
+
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={featureDescColor}
+                                                onChange={(val) =>
+                                                    setAttributes({
+                                                        featureDescColor: val,
+                                                    })
+                                                }
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zolo-blocks')}
+                                                controlName={FEATURE_DESC_MARGIN}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={false}
+                                            />
+                                        </>
+                                    )}
+
+                                    {showFeatureHeading && (
+                                        <>
+                                            <Divider />
+                                            <BaseControl>
+                                                <h3 className="zolo-devider-title"> {__('Feature Lists ', 'zolo-blocks')} </h3>
+                                            </BaseControl>
+                                        </>
+                                    )}
                                     <TypographyDropdown
                                         label="Typography"
-                                        typoPrefixConstant={FEATURE_DESC_TYPOGRAPHY}
+                                        typoPrefixConstant={FEATURE_TYPOGRAPHY}
                                         requiredProps={requiredProps}
                                         max={72}
                                     />
 
                                     <ColorControl
                                         label={__('Color', 'zolo-blocks')}
-                                        color={featureDescColor}
+                                        color={featureColor}
                                         onChange={(val) =>
                                             setAttributes({
-                                                featureDescColor: val,
+                                                featureColor: val,
                                             })
                                         }
                                     />
+
+                                    <ResRangeControl
+                                        label={__('Item Gap', 'zolo-blocks')}
+                                        requiredProps={requiredProps}
+                                        controlName={FEATURE_ITEM_GAP}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                    />
+
                                     <ResDimensionsControl
                                         label={__('Margin', 'zolo-blocks')}
-                                        controlName={FEATURE_DESC_MARGIN}
+                                        controlName={FEATURE_MARGIN}
                                         requiredProps={requiredProps}
                                         forBorderRadius={false}
                                     />
-                                </>
-                            )}
 
-                            {showFeatureHeading && (
-                                <>
-                                    <Divider />
-                                    <BaseControl>
-                                        <h3 className="zolo-devider-title"> {__('Feature Lists ', 'zolo-blocks')} </h3>
-                                    </BaseControl>
-                                </>
-                            )}
-                            <TypographyDropdown
-                                label="Typography"
-                                typoPrefixConstant={FEATURE_TYPOGRAPHY}
-                                requiredProps={requiredProps}
-                                max={72}
-                            />
+                                    <CardDivider />
+                                    <ColorControl
+                                        label={__('Icon Color', 'zolo-blocks')}
+                                        color={featureIconColor}
+                                        onChange={(val) =>
+                                            setAttributes({
+                                                featureIconColor: val,
+                                            })
+                                        }
+                                    />
+                                    <ColorControl
+                                        label={__('Icon Background', 'zolo-blocks')}
+                                        color={featureIconBgColor}
+                                        onChange={(val) =>
+                                            setAttributes({
+                                                featureIconBgColor: val,
+                                            })
+                                        }
+                                    />
+                                    <ResRangeControl
+                                        label={__('Icon Size', 'zolo-blocks')}
+                                        requiredProps={requiredProps}
+                                        controlName={FEATURE_ICON_SIZE}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                    />
+                                    <ResRangeControl
+                                        label={__('Icon Gap', 'zolo-blocks')}
+                                        requiredProps={requiredProps}
+                                        controlName={FEATURE_ICON_GAP}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Icon Padding', 'zolo-blocks')}
+                                        controlName={FEATURE_ICON_PADDING}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                    />
+                                </ZoloPanelBody>
+                            </>
+                        )}
 
-                            <ColorControl
-                                label={__('Color', 'zolo-blocks')}
-                                color={featureColor}
-                                onChange={(val) =>
-                                    setAttributes({
-                                        featureColor: val,
-                                    })
-                                }
-                            />
-
-                            <ResRangeControl
-                                label={__('Item Gap', 'zolo-blocks')}
-                                requiredProps={requiredProps}
-                                controlName={FEATURE_ITEM_GAP}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
-
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={FEATURE_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-
-                            <CardDivider />
-                            <ColorControl
-                                label={__('Icon Color', 'zolo-blocks')}
-                                color={featureIconColor}
-                                onChange={(val) =>
-                                    setAttributes({
-                                        featureIconColor: val,
-                                    })
-                                }
-                            />
-                            <ColorControl
-                                label={__('Icon Background', 'zolo-blocks')}
-                                color={featureIconBgColor}
-                                onChange={(val) =>
-                                    setAttributes({
-                                        featureIconBgColor: val,
-                                    })
-                                }
-                            />
-                            <ResRangeControl
-                                label={__('Icon Size', 'zolo-blocks')}
-                                requiredProps={requiredProps}
-                                controlName={FEATURE_ICON_SIZE}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
-                            <ResRangeControl
-                                label={__('Icon Gap', 'zolo-blocks')}
-                                requiredProps={requiredProps}
-                                controlName={FEATURE_ICON_GAP}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
-                            <ResDimensionsControl
-                                label={__('Icon Padding', 'zolo-blocks')}
-                                controlName={FEATURE_ICON_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                        </ZoloPanelBody>
+                        {(showBtn || showChatBtn) && (
+                            <ZoloPanelBody title={__('Buttons', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zolo-blocks')}
+                                    controlName={BTNS_MARGIN}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                            </ZoloPanelBody>
+                        )}
 
                         {showBtn && (
                             <ZoloPanelBody title={__('Primary Button', 'zolo-blocks')} stylePanel={true} panelProps={props}>

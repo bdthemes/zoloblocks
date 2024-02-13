@@ -43,6 +43,7 @@ import {
     META_SPACE,
     NAV_WIDTH,
     NAV_HEIGHT,
+    NAV_OFFSET_HORIZONTAL,
     NAV_BORDER,
     NAV_BORDER_RADIUS,
     NAV_ICON_SIZE,
@@ -956,6 +957,13 @@ function Inspector(props) {
                                         { label: 'vh', value: 'vh' },
                                     ]}
                                 />
+                                <ResRangeControl
+                                    label={__('Offset Horizontal', 'zolo-blocks')}
+                                    controlName={NAV_OFFSET_HORIZONTAL}
+                                    requiredProps={requiredProps}
+                                    min={-100}
+                                    max={300}
+                                />
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={NAV_BORDER}
@@ -1037,6 +1045,7 @@ function Inspector(props) {
                                         requiredProps={requiredProps}
                                         min={-100}
                                         max={100}
+
                                     />
                                     <TabPanelControl
                                         options={[
