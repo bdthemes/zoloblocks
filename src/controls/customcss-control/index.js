@@ -21,7 +21,7 @@ function getZoloClassNames(element) {
 
 const CustomCSSControl = ({ attributes, setAttributes }) => {
     const { customCss, uniqueId } = attributes;
-    const defaultCss = `{{ZOLO}} {\n  /*color: #001feb;*/ \n }\n`;
+    const defaultCss = ``;
 
     if (!uniqueId) {
         return null;

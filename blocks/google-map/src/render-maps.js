@@ -24,8 +24,8 @@ function GoogleMap({ attributes }) {
 
     return (
         <>
-            {zoloParams?.googleAPIKey ? (
-                <APIProvider apiKey={zoloParams?.googleAPIKey} language={language} libraries={['places']}>
+            {zoloSettings?.googleAPIKey ? (
+                <APIProvider apiKey={zoloSettings?.googleAPIKey} language={language} libraries={['places']}>
                     <div className="zolo-gmap-wrapper">
                         <Map
                             {...(mapStyleType === 'custom' && mapStyleCodes && { styles: JSON.parse(mapStyleCodes) })}

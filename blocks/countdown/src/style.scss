@@ -4,31 +4,19 @@
 }
 
 .wp-block-zolo-countdown {
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
-
-    body {
-        font-family: 'Open Sans', sans-serif;
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
-
-    .uk-container {
-        display: flow-root;
-        box-sizing: content-box;
-        max-width: 1200px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
+    display: flow-root;
+    box-sizing: content-box;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
     .zolo-countdown-wrap {
-        display: flex;
+        display: grid;
         justify-content: center;
         align-items: center;
         font-family: Arial, sans-serif;
         gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .zolo-countdown-item {
@@ -39,7 +27,6 @@
         border-radius: 4px;
         display: flex;
         flex-direction: column;
-        overflow: hidden;
     }
 
     .zolo-countdown-face {
@@ -54,27 +41,18 @@
         margin-top: 10px;
     }
 
-    .zolo-countdown-item::before,
     .zolo-countdown-item::after {
         position: absolute;
-        content: '';
+        content: ':';
         right: 0;
-        border-radius: 50%;
-        background-color: #000000;
-        width: var(--zolo-separator-size);
-        height: var(--zolo-separator-size);
+        top: 50%;
+        transform: translateY(-50%);
+        font-style: normal;
+        font-size: 60px;
+        font-family: auto;
     }
 
-    .zolo-countdown-item::before {
-        top: var(--zolo-separator-space-between);
-    }
-
-    .zolo-countdown-item::after {
-        bottom: var(--zolo-separator-space-between);
-    }
-
-    .zolo-countdown-style-1 .zolo-countdown-item:nth-last-child(1):before,
-    .zolo-countdown-style-1 .zolo-countdown-item:nth-last-child(1)::after {
+    .zolo-countdown-item:nth-last-child(1)::after {
         display: none;
     }
 
@@ -82,15 +60,6 @@
     .zolo-countdown-style-3 .zolo-countdown-item,
     .zolo-countdown-style-4 .zolo-countdown-item {
         border: 0;
-    }
-
-    .zolo-countdown-style-2 .zolo-countdown-item::before,
-    .zolo-countdown-style-2 .zolo-countdown-item::after,
-    .zolo-countdown-style-3 .zolo-countdown-item::before,
-    .zolo-countdown-style-3 .zolo-countdown-item::after,
-    .zolo-countdown-style-4 .zolo-countdown-item::before,
-    .zolo-countdown-style-4 .zolo-countdown-item::after {
-        content: none;
     }
 
     .zolo-countdown-style-2 .zolo-countdown-face,
@@ -131,5 +100,13 @@
     }
     .zolo-countdown-style-4 .zolo-countdown-label {
         margin: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .wp-block-zolo-countdown {
+        .zolo-countdown-wrap {
+            grid-template-columns: repeat(4, 1fr);
+        }
     }
 }

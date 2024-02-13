@@ -1,3 +1,6 @@
+// Filter Hooks
+// import './filters';
+
 /**
  * External Dependencies
  */

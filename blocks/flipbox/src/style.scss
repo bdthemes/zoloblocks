@@ -73,7 +73,7 @@
     }
 
     .zolo-flip-box_icon {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 
     .zolo-flip-box_inner-icon {
@@ -87,20 +87,22 @@
             }
         }
         &.zolo-image {
-            width: 50px;
-            height: 50px;
+            // width: 50px;
+            // height: 50px;
             overflow: hidden;
             img {
                 width: 100%;
-                height: 100%;            }
+                height: 100%;
+                vertical-align: middle;
+              }
         }
     }
 
     .zolo-flip-box_title {
-        margin: 0 0 10px;
+        margin: 0 0 8px;
         font-size: 24px;
         font-weight: 700;
-        color: #fefefe;
+        color: #fff;
     }
 
     .zolo-flip-box_desc {
@@ -145,13 +147,13 @@
     }
 
     .zolo-flip-box_front .zolo-flip-box-content {
-        transform: translate3d(0, 0, 60px);
+        transform: translate3d(0, 0, 60px) scale(1.048);
     }
 
     .zolo-flip-box_back {
         background-color: #ddd;
         .zolo-flip-box-content {
-            transform: translate3d(0, 0, 60px);
+            transform: translate3d(0, 0, 60px) scale(1.048);
         }
         .zolo-flip-box_desc {
             margin: 0 0 24px;
@@ -223,7 +225,8 @@
 .zolo-flip-box_animation_style-9 .zolo-flip-box_item,
 .zolo-flip-box_animation_style-10 .zolo-flip-box_item,
 .zolo-flip-box_animation_style-11 .zolo-flip-box_item,
-.zolo-flip-box_animation_style-12 .zolo-flip-box_item {
+.zolo-flip-box_animation_style-12 .zolo-flip-box_item,
+.zolo-flip-box_animation_style-15 .zolo-flip-box_item{
     overflow: hidden;
 }
 
@@ -234,7 +237,9 @@
 .zolo-flip-box_animation_style-9 .zolo-flip-box_front .zolo-flip-box-content,
 .zolo-flip-box_animation_style-10 .zolo-flip-box_front .zolo-flip-box-content,
 .zolo-flip-box_animation_style-11 .zolo-flip-box_front .zolo-flip-box-content,
-.zolo-flip-box_animation_style-12 .zolo-flip-box_front .zolo-flip-box-content {
+.zolo-flip-box_animation_style-12 .zolo-flip-box_front .zolo-flip-box-content,
+.zolo-flip-box_animation_style-15 .zolo-flip-box_front .zolo-flip-box-content,
+.zolo-flip-box_animation_style-15 .zolo-flip-box_back .zolo-flip-box-content {
     transform: none;
 }
 
@@ -256,7 +261,8 @@
 .zolo-flip-box_animation_style-9 .zolo-flip-box_back,
 .zolo-flip-box_animation_style-10 .zolo-flip-box_back,
 .zolo-flip-box_animation_style-11 .zolo-flip-box_back,
-.zolo-flip-box_animation_style-12 .zolo-flip-box_back {
+.zolo-flip-box_animation_style-12 .zolo-flip-box_back
+ {
     opacity: 0;
     transition:
         opacity 0.5s ease-in-out,
@@ -288,6 +294,66 @@
 .zolo-flip-box_animation_style-9 .zolo-flip-box_back {
     transform: translateX(0) translateY(100%);
 }
+
+.zolo-flip-box_animation_style-13 .zolo-flip-box_back {
+    backface-visibility: hidden;
+    transform: rotate3d(1,1,0,180deg);
+}
+
+.zolo-flip-box_animation_style-14 .zolo-flip-box_back {
+    backface-visibility: hidden;
+    transform: rotate3d(1,1,0,-180deg);
+}
+
+.zolo-flip-box_animation_style-13 .zolo-flip-box_fornt,
+.zolo-flip-box_animation_style-14 .zolo-flip-box_fornt {
+    backface-visibility: hidden;
+    transition: all .5s cubic-bezier(.17,.67,.47,1.18);
+}
+
+.zolo-flip-box_animation_style-15 .zolo-flip-box_fornt {
+    opacity: 1;
+    visibility: visible;
+}
+
+.zolo-flip-box_animation_style-15 .zolo-flip-box_back {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(.5);
+}
+
+.zolo-flip-box_animation_style-15 .zolo-flip-box_hover.zolo-flip-box_item:hover .zolo-flip-box_front,
+.zolo-flip-box_animation_style-15 .zolo-flip-box_active.zolo-flip-box_item .zolo-flip-box_front {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(.5);
+}
+
+.zolo-flip-box_animation_style-15 .zolo-flip-box_hover.zolo-flip-box_item:hover .zolo-flip-box_back,
+.zolo-flip-box_animation_style-15 .zolo-flip-box_active.zolo-flip-box_item .zolo-flip-box_back{
+    visibility: visible;
+    opacity: 1;
+    z-index: 3;
+    transform: scale(1);
+}
+
+.zolo-flip-box_animation_style-13 .zolo-flip-box_hover.zolo-flip-box_item:hover .zolo-flip-box_inner-item,
+.zolo-flip-box_animation_style-13 .zolo-flip-box_active.zolo-flip-box_item .zolo-flip-box_inner-item {
+    transform: rotate3d(1,1,0,-180deg);
+}
+
+.zolo-flip-box_animation_style-14 .zolo-flip-box_hover.zolo-flip-box_item:hover .zolo-flip-box_inner-item,
+.zolo-flip-box_animation_style-14 .zolo-flip-box_active.zolo-flip-box_item .zolo-flip-box_inner-item {
+    transform: rotate3d(1,1,0,180deg);
+}
+
+.zolo-flip-box_animation_style-13 .zolo-flip-box_active.zolo-flip-box_item:hover .zolo-flip-box_fornt,
+.zolo-flip-box_animation_style-13 .zolo-flip-box_active.zolo-flip-box_item .zolo-flip-box_fornt,
+.zolo-flip-box_animation_style-14 .zolo-flip-box_active.zolo-flip-box_item:hover .zolo-flip-box_fornt,
+.zolo-flip-box_animation_style-14 .zolo-flip-box_active.zolo-flip-box_item .zolo-flip-box_fornt {
+    opacity: 0;
+}
+
 
 .zolo-flip-box_animation_style-5 .zolo-flip-box_hover.zolo-flip-box_item:hover .zolo-flip-box_back,
 .zolo-flip-box_animation_style-6 .zolo-flip-box_hover.zolo-flip-box_item:hover .zolo-flip-box_back,

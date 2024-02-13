@@ -75,7 +75,12 @@ export default function Edit(props) {
                             placeholder={__('bar title..', 'zolo-blocks')}
                         />
                     )}
-                    {barpercentToggle && <div className="zolo-progress-bar_percent">{progressH && `${progressH}%`}</div>}
+                    {barpercentToggle && (
+                        <div className="zolo-progress-bar_counter">
+                            <span className="zolo-progress-bar_value" data-value={progressH}>{progressH}</span>
+                            <span className="zolo-progress-bar_percent">%</span>
+                        </div>
+                    )}
                 </div>
                 <div className="zolo-progress-bar__progress">
                     <div className="zolo-progress-bar__progress-bar active" />

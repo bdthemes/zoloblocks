@@ -29,6 +29,7 @@ const {
     AdvancedOptions,
     ZoloPanelBody,
     ImageSizes,
+    RangeResetControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -67,9 +68,15 @@ import {
     ITEM_MARGIN,
     ITEM_BOX_SHADOW,
     ITEM_HBOX_SHADOW,
+    RIBBON_MARGIN,
+    RIBBON_PADDING,
+    RIBBON_BORDER,
+    RIBBON_RADIUS,
+    RIBBON_BG,
+    RIBBON_POSITIONS,
 } from './constants';
 
-import { BUTTON_TYPOGRAPHY, TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { BUTTON_TYPOGRAPHY, TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { DEFAULT_ALIGNS, ICON_BOX_OPTIONS, FLEX_ALIGN_OPTIONS, POSITIONS, HEADING } from '../../../src/global/constants';
 
 function Inspector(props) {
@@ -108,6 +115,12 @@ function Inspector(props) {
         globalLink,
         iconPosition,
         imageRes,
+        //ribbon
+        showRibbon,
+        ribbonTitle,
+        ribbonPosition,
+        //ribbon style
+        ribbonColor,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -133,6 +146,11 @@ function Inspector(props) {
                                         preset: value,
                                     })
                                 }
+                            />
+                            <ToggleControl
+                                label={__('Show Ribbon', 'zolo-blocks')}
+                                checked={showRibbon}
+                                onChange={() => setAttributes({ showRibbon: !showRibbon })}
                             />
                             <ToggleControl
                                 label={__('Show Icon', 'zolo-blocks')}
@@ -330,6 +348,50 @@ function Inspector(props) {
                                 </>
                             )}
                         </ZoloPanelBody>
+                        {showRibbon && (
+                            <ZoloPanelBody title={__('Ribbon', 'zolo-blocks')} panelProps={props}>
+                                <TextControl
+                                    label={__('Title', 'zolo-blocks')}
+                                    value={ribbonTitle}
+                                    onChange={(ribbonTitle) => setAttributes({ ribbonTitle })}
+                                />
+                                <RangeResetControl
+                                    label={__('Horizontal Position', 'zolo-blocks')}
+                                    controlName={'ribbonXPosition'}
+                                    requiredProps={requiredProps}
+                                    min={-150}
+                                    max={150}
+                                    step={1}
+                                />
+                                <RangeResetControl
+                                    label={__('Vertical Position', 'zolo-blocks')}
+                                    controlName={'ribbonYPosition'}
+                                    requiredProps={requiredProps}
+                                    min={-150}
+                                    max={150}
+                                    step={1}
+                                />
+
+                                <RangeResetControl
+                                    label={__('Rotate', 'zolo-blocks')}
+                                    controlName={'ribbonRotate'}
+                                    requiredProps={requiredProps}
+                                    min={-180}
+                                    max={180}
+                                    step={1}
+                                />
+                                <IconicBtnGroup
+                                    label={__('Position', 'zolo-blocks')}
+                                    value={ribbonPosition}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            ribbonPosition: value,
+                                        })
+                                    }
+                                    options={RIBBON_POSITIONS}
+                                />
+                            </ZoloPanelBody>
+                        )}
 
                         {showButton && showButtonIcon && (
                             <ZoloPanelBody title={__('Button Icon', 'zolo-blocks')} panelProps={props}>
@@ -409,6 +471,43 @@ function Inspector(props) {
                                     </>
                                 }
                             />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Ribbon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <TypographyDropdown
+                                label="Typography"
+                                typoPrefixConstant={RIBBON_TYPOGRAPHY}
+                                requiredProps={requiredProps}
+                                max={72}
+                            />
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={ribbonColor}
+                                onChange={(val) =>
+                                    setAttributes({
+                                        ribbonColor: val,
+                                    })
+                                }
+                            />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={RIBBON_BORDER} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={RIBBON_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={RIBBON_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={RIBBON_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                            <NormalBGControl noMainBGImg={true} controlName={RIBBON_BG} requiredProps={requiredProps} />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Icon', 'zolo-blocks')} panelProps={props} stylePanel={true}>
                             {iconType === 'image' && (

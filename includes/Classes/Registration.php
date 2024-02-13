@@ -9,7 +9,7 @@ class Registration {
 
     public function __construct() {
         //Register Block Category
-        add_filter('block_categories_all', [$this, 'register_block_category'], 99999, 2);
+        add_filter('block_categories_all', [$this, 'register_block_category'], 99999999, 2);
 
         //Register Block
         add_filter('init', [$this, 'block_register']);

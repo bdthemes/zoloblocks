@@ -17,6 +17,32 @@ class Zolo_Admin_Assets {
      */
     public function __construct() {
         add_action( 'admin_enqueue_scripts', [ $this, 'zolo_admin_enqueue_scripts' ] );
+
+        // editor script 
+        add_action( 'admin_head', [ $this, 'zolo_block_editor_assets' ] );
+    }
+
+    /**
+     * Enqueue block editor assets
+     * 
+     * @return void
+     */
+    public function zolo_block_editor_assets() {
+
+        $zoloEditorSettings = get_option( 'zolo_editor_settings', [] );
+        if ( ! isset( $zoloEditorSettings['editorWidth'] ) ) {
+            return;
+        } 
+
+        $zoloEditorWidth = $zoloEditorSettings['editorWidth'] ?? 1200;
+ 
+        ?>
+            <style>
+                .editor-styles-wrapper .block-editor-block-list__layout.is-root-container > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+                    max-width: <?php echo esc_attr( $zoloEditorWidth );?>px !important;
+                }
+            </style>
+        <?php
     }
 
     /**

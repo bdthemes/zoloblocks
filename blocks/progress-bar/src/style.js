@@ -6,6 +6,7 @@ import {
     PROGRESS_BG_COLOR,
     PROGRESS_BAR_BG_COLOR,
     PROGRESS_HIGHT,
+    PROGRESS_GAP,
     PROGRESS_BAR_RADIUS,
     PROGRESS_TITLE_MARGIN,
     PROGRESS_VALUE_MARGIN,
@@ -42,6 +43,12 @@ const Style = ({ props }) => {
         tabRangeStyle: progressTabHeight,
         mobRangeStyle: progressMobHeight,
     } = generateResRangeStyle({ controlName: PROGRESS_HIGHT, property: 'height', attributes });
+
+    const {
+        desktopRangeStyle: progressDeskGap,
+        tabRangeStyle: progressTabGap,
+        mobRangeStyle: progressMobGap,
+    } = generateResRangeStyle({ controlName: PROGRESS_GAP, property: 'gap', attributes });
 
     //progress bar
     const {
@@ -104,13 +111,16 @@ const Style = ({ props }) => {
     //  All Style Combination
     const desktopAllStyle = `
 
+        .${uniqueId} .zolo-progress-bars-wrap{
+            ${progressDeskGap}
+        }
        .${uniqueId} .wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
            ${typoDeskTitle}
            ${titleDeskMargin}
            ${titleColor && `color: ${titleColor}`}
        }
 
-       .${uniqueId} .wp-block-zolo-progress-bar-child .zolo-progress-bar_percent{
+       .${uniqueId} .wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
           ${valueDeskMargin}
           ${typoDeskValue}
           ${progressVColor && `color:${progressVColor}`}
@@ -124,13 +134,16 @@ const Style = ({ props }) => {
 
       .${uniqueId} .wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
         ${progressBarDeskcolor}
-        ${progressBarDeskRadius}    
+        ${progressBarDeskRadius}
       }
-   
+
       }
     `;
 
     const tabletAllStyle = `
+    .${uniqueId} .zolo-progress-bars-wrap{
+            ${progressTabGap}
+        }
     .${uniqueId} .wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
         ${typoTabTitle}
         ${titleTabMargin}
@@ -142,20 +155,24 @@ const Style = ({ props }) => {
         ${itemTabMargin}
     }
 
-    .${uniqueId} .wp-block-zolo-progress-bar-child .zolo-progress-bar_percent{
+    .${uniqueId} .wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
         ${valueTabMargin}
         ${typoTabValue}
     }
 
     .${uniqueId} .wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
-        ${progressTabcolor} 
+        ${progressTabcolor}
         ${progressBarTabRadius}
         ${progressBarTabcolor}
     }
-   
+
     `;
 
     const mobileAllStyle = `
+
+    .${uniqueId} .zolo-progress-bars-wrap{
+            ${progressMobGap}
+        }
        .${uniqueId} .wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
            ${typoMobTitle}
            ${titleMobMargin}
@@ -167,7 +184,7 @@ const Style = ({ props }) => {
             ${itemMobMargin}
         }
 
-        .${uniqueId} .wp-block-zolo-progress-bar-child .zolo-progress-bar_percent{
+        .${uniqueId} .wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
             ${valueMobMargin}
             ${typoMobValue}
         }

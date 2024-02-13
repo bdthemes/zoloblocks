@@ -70,6 +70,33 @@ class Zolo_Settings {
                 'sanitize_callback' => NULL,
             ]
         );
+
+        // register editor settings
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_editor_settings',
+            [
+                'type'    => 'array',
+                'default' => [
+                    'editorWidth' => 1200,
+                    'supportSVG'  => false,
+                ],
+                'show_in_rest' => [
+                    'schema' => [
+                        'type'       => 'object',
+                        'properties' => [
+                            'editorWidth' => [
+                                'type' => 'integer',
+                            ],
+                            'supportSVG' => [
+                                'type' => 'boolean',
+                            ],
+                        ],
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
         
     }
 

@@ -19,6 +19,7 @@ const Save = ({ attributes }) => {
         mediaType,
         mediaText,
         zoloId,
+        progressOffset,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -30,6 +31,9 @@ const Save = ({ attributes }) => {
             {...blockProps}
             {...(zoloId && {
                 id: zoloId,
+            })}
+            {...(progressOffset && {
+                'data-progressoffset': progressOffset,
             })}
         >
             <div className="zolo-progress-bars-wrap">

@@ -10,7 +10,8 @@ const GoogleMapAutocomplete = ({ label, value, onChange, onClick }) => {
         setPredictionPanel(true);
     }, []);
 
-    if (!zoloParams?.googleAPIKey) {
+    if (zoloSettings?.googleAPIKey === undefined || zoloSettings?.googleAPIKey === ''
+    ) {
         return;
     }
 

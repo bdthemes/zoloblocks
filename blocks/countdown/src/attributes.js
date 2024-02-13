@@ -1,4 +1,4 @@
-/**
+/**dependencies
  * Internal dependencies
  */
 const {
@@ -7,22 +7,34 @@ const {
     generateResAlignmentAttributies,
     generateDimensionAttributes,
     generateBoxShadowAttributies,
+    generateBorderAttributies,
+    generateNormalBGAttributes,
+    generateResCounterAttributies,
+    generateGapAttributes,
 } = window.zoloModule;
 
 import {
-    SEPARATOR_TYPE,
-    OVERALL_ALIGNMENT,
     INNER_ALIGNMENT,
     LABEL_POSITION,
-    BOX_WIDTH,
-    GAP_BOX_WIDTH,
-    GAP_BETWEEN_DIGITLABEL,
+    COUNTLABEL_MARGIN,
+    COUNTLABEL_PADDING,
+    COUNTLABEL_BORDER,
+    COUNT_LABEL_BG,
+    COUNT_LABEL_RADIUS,
+    COUNT_BOX_GRID,
+    GRID_BOX_GAP,
     ALLBOX_PADDING,
     SEPERATR_SPACING,
     SEPARATOR_TOP_SPACING,
     BOX_SHADOW,
-    COUNT_PADDING,
     COUNT_MARGIN,
+    COUNT_BORDER,
+    COUNT_BG,
+    COUNTNUM_BORDER,
+    COUNTNUM_PADDING,
+    COUNTNUM_MARGIN,
+    COUNT_NUM_BG,
+    COUNT_NUM_RADIUS,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -54,85 +66,74 @@ const attributes = {
         },
     },
     // Generators
-    ...generateResAlignmentAttributies(SEPARATOR_TYPE),
-    ...generateResAlignmentAttributies(OVERALL_ALIGNMENT),
     ...generateResAlignmentAttributies(INNER_ALIGNMENT),
     ...generateResAlignmentAttributies(LABEL_POSITION),
-    ...generateResRangeAttributies(BOX_WIDTH),
-    ...generateResRangeAttributies(GAP_BOX_WIDTH),
-    ...generateResRangeAttributies(GAP_BETWEEN_DIGITLABEL),
+    ...generateDimensionAttributes(COUNTLABEL_PADDING),
+    ...generateDimensionAttributes(COUNTLABEL_MARGIN),
+    ...generateDimensionAttributes(COUNT_LABEL_RADIUS),
+    ...generateBorderAttributies(COUNTLABEL_BORDER),
+    ...generateDimensionAttributes(COUNTNUM_PADDING),
+    ...generateDimensionAttributes(COUNTNUM_MARGIN),
+    ...generateDimensionAttributes(COUNT_NUM_RADIUS),
+    ...generateBorderAttributies(COUNTNUM_BORDER),
+    ...generateResCounterAttributies(COUNT_BOX_GRID, {
+        noUnits: true,
+        defaults: {
+            deskRange: 4,
+            tabRange: 2,
+            mobRange: 1,
+        },
+    }),
+    ...generateGapAttributes(GRID_BOX_GAP, {
+        defaultRange: 10,
+        defaultUnit: 'px',
+    }),
     ...generateResRangeAttributies(SEPERATR_SPACING),
     ...generateResRangeAttributies(SEPARATOR_TOP_SPACING),
     ...generateBoxShadowAttributies(BOX_SHADOW),
     ...generateDimensionAttributes(ALLBOX_PADDING),
-    ...generateDimensionAttributes(COUNT_PADDING),
     ...generateDimensionAttributes(COUNT_MARGIN),
-
+    ...generateBorderAttributies(COUNT_BORDER),
+    ...generateNormalBGAttributes(COUNT_BG),
+    ...generateNormalBGAttributes(COUNT_NUM_BG),
+    ...generateNormalBGAttributes(COUNT_LABEL_BG),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
+    presets: {
+        type: 'string',
+    },
     CountDate: {
         type: 'string',
-        default: new Date(),
+        default: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 7 days from now
     },
-    toggleYears: {
-        type: 'boolean',
-        default: true,
+    itemsVisibility: {
+        type: 'object',
+        default: {
+            years: false,
+            months: false,
+            weeks: false,
+            days: true,
+            hours: true,
+            minutes: true,
+            seconds: true,
+        },
     },
-    toggleMonths: {
-        type: 'boolean',
-        default: true,
-    },
-    toggleDays: {
-        type: 'boolean',
-        default: true,
-    },
-    toggleHourse: {
-        type: 'boolean',
-        default: true,
-    },
-    toggleMinutes: {
-        type: 'boolean',
-        default: true,
+    itemsLabels: {
+        type: 'object',
+        default: {
+            years: 'Years',
+            months: 'Months',
+            weeks: 'Weeks',
+            days: 'Days',
+            hours: 'Hours',
+            minutes: 'Minutes',
+            seconds: 'Seconds',
+        },
     },
     toggleLabels: {
         type: 'boolean',
-        defalult: true,
-    },
-    yearsLabel: {
-        type: 'string',
-        default: 'years',
-    },
-    monthsLabel: {
-        type: 'string',
-        default: 'Months',
-    },
-    daysLabel: {
-        type: 'string',
-        default: 'days',
-    },
-    hoursLabel: {
-        type: 'string',
-        default: 'Hours',
-    },
-    minutesLabel: {
-        type: 'string',
-        default: 'Minutes',
-    },
-    secondsLabel: {
-        type: 'string',
-        default: 'Seconds',
-    },
-    toggleSeparator: {
-        type: 'boolen',
         default: true,
     },
-    seperatorType: {
-        type: 'string',
-        default: ':',
-    },
-    borderStyle: {
-        type: 'string',
-        default: 'default',
-    },
+
     digitColor: {
         type: 'string',
     },
@@ -141,6 +142,18 @@ const attributes = {
     },
     seperaColor: {
         type: 'string',
+    },
+    customLabel: {
+        type: 'boolean',
+        default: false,
+    },
+    countSeparator: {
+        type: 'string',
+        default: ':',
+    },
+    toggleSeparator: {
+        type: 'boolean',
+        default: true,
     },
 };
 
