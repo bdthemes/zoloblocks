@@ -1,42 +1,46 @@
 name: Publish Release
 
 on:
-  push:
-    tags:
-      - '*'
+    push:
+        tags:
+            - '*'
 
 permissions:
-  contents: write
+    contents: write
 
 jobs:
-  release-free:
-    runs-on: ubuntu-latest
+    release-free:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
+        steps:
+            - uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install --force
+            - name: Install dependencies
+              run: npm install --force
 
-      - name: Build
-        run: npm run build
+            - name: Build
+              run: npm run build
 
-      - name: Archive release
-        uses: thedoctor0/zip-release@0.7.6
-        with:
-          filename: 'zolo-blocks.zip'
-          exclusions: '/src/* /*node_modules/* *.git* .distignore composer.lock Gruntfile.js webpack.config.js composer.json .editorconfig package.json package-lock.json README.md'
+            - name: Create zolo-blocks directory and move files
+              run: |
+                  mkdir -p zolo-blocks/zolo-blocks &&
+                  find . -maxdepth 1 -not -name 'zolo-blocks' -exec mv {} zolo-blocks/zolo-blocks \;
 
+            - name: Archive release
+              uses: thedoctor0/zip-release@0.7.6
+              with:
+                  filename: 'zolo-blocks.zip'
+                  exclusions: '*/src/* /*node_modules/* /*.distignore /*.gitignore /*.github/* /*.git/* /*.editorconfig /*README.md /*Gruntfile.js /*package.json /*package-lock.json /*composer.json  /*composer.lock /*webpack.config.js '
+            - name: Display release
+              run: ls -a
 
-      - name: display release
-        run: ls -a
+            - name: Create Release
+              uses: ncipollo/release-action@v1.14.0
+              with:
+                  artifacts: './zolo-blocks.zip'
+                  token: ${{ secrets.TOKEN }}
+                  removeArtifacts: true
+                  allowUpdates: true
+                  makeLatest: true
+                  tag: ${{ github.ref_name }}
 
-      - name: Create Release
-        uses: ncipollo/release-action@v1.14.0
-        with:
-          artifacts: './zolo-blocks.zip'
-          token: ${{ secrets.TOKEN }}
-          removeArtifacts: true
-          allowUpdates: true
-          makeLatest: true
-          tag: ${{ github.ref_name }}
