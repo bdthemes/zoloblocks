@@ -44,10 +44,10 @@ class Zolo_Blocks_Loader {
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/classes/zolo-ajax.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/classes/zolo-enqueues.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/classes/font-loader.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/classes/post-meta.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/zolo-ajax.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/zolo-enqueues.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/font-loader.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/post-meta.php';
 
         // Load Admin files
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Dashboard.php';
