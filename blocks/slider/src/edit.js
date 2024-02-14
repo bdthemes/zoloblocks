@@ -84,6 +84,8 @@ export default function Edit(props) {
 
     useEffect(() => {
         if (swiperRef.current) {
+            console.log(swiperRef.current);
+
             addClickEventListener(swiperRef.current);
         }
     }, []);

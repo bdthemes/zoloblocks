@@ -1,6 +1,7 @@
 :root {
     --zolo-separator-space-between: 20px;
     --zolo-separator-size: 4px;
+    --zolo--countdown-gap: 10px;
 }
 
 .wp-block-zolo-countdown {
@@ -14,37 +15,51 @@
         display: grid;
         justify-content: center;
         align-items: center;
-        font-family: Arial, sans-serif;
-        gap: 10px;
+        gap: var(--zolo--countdown-gap);
         grid-template-columns: repeat(2, 1fr);
+        &.flex {
+            .zolo-countdown-item {
+                width: 180px;
+                height: 180px;
+            }
+            &.zolo-countdown-style-2,
+            &.zolo-countdown-style-3 {
+                .zolo-countdown-item {
+                    height: auto;
+                    justify-content: space-between;
+                }
+            } 
+        }
     }
 
     .zolo-countdown-item {
         text-align: center;
-        width: 100%;
         position: relative;
         border: 1px solid #f0f0f0;
         border-radius: 4px;
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        box-sizing: border-box;
+        gap: 5px;
     }
 
     .zolo-countdown-face {
-        font-size: 2rem;
-        font-weight: 700;
+        font-size: 3rem;
         color: #45444e;
+        line-height: 1;
     }
 
     .zolo-countdown-label {
-        font-size: 1rem;
-        color: #626164;
-        margin-top: 10px;
+        font-size: 15px;
+        color: #797987;
     }
 
     .zolo-countdown-item::after {
         position: absolute;
         content: ':';
-        right: 0;
+        right: calc(-1 * var(--zolo--countdown-gap) / 2);
+        margin-right: -9px;
         top: 50%;
         transform: translateY(-50%);
         font-style: normal;
@@ -70,9 +85,10 @@
     .zolo-countdown-style-2 .zolo-countdown-label {
         background-color: #ededed;
     }
-    .zolo-countdown-style-2 .zolo-countdown-label {
-        margin: 0;
+    .zolo-countdown-style-2 .zolo-countdown-item {
+        gap: 0;
     }
+
 
     .zolo-countdown-style-3 .zolo-countdown-face {
         padding: 15px;
@@ -92,14 +108,13 @@
         display: flex;
         gap: 5px;
         align-items: center;
+        justify-content: flex-start;
         flex-direction: row;
+        height: auto !important;
     }
 
     .zolo-countdown-style-4 .zolo-countdown-face {
-        font-size: 1rem;
-    }
-    .zolo-countdown-style-4 .zolo-countdown-label {
-        margin: 0;
+        font-size: 2rem;
     }
 }
 

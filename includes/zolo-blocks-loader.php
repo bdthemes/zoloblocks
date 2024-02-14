@@ -35,11 +35,6 @@ class Zolo_Blocks_Loader {
      * @return void
      */
     public function plugins_loaded() {
-
-        // zolo blocks settings
-        $zoloEditorSettings = get_option('zolo_editor_settings', []);
-        $zoloSupportSVG = $zoloEditorSettings['supportSVG'] ?? false;
-
         GetPostsV1::getInstance();
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
@@ -55,7 +50,9 @@ class Zolo_Blocks_Loader {
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Settings.php';
 
         if (is_admin()) {
-            if ($zoloSupportSVG) {
+            // zolo blocks settings 
+            $zoloSupportSVG = get_option('zolo_support_svg', false);
+            if( $zoloSupportSVG === '1') {
                 require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/support-svg.php';
             }
         }

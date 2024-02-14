@@ -1,9 +1,37 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateTypographyAttributes, generateResAlignmentAttributies } = window.zoloModule;
+const {
+    generateResRangeAttributies,
+    generateResAlignmentAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateBoxShadowAttributies,
+    generateNormalBGAttributes,
+    generateMaskAttributes,
+    generateTypographyAttributes,
+} = window.zoloModule;
 
-import { PHOTO_ALIGN, CAPTION_ALIGN, STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
+import {
+    PHOTO_MASK,
+    PHOTO_ALIGN,
+    CAPTION_ALIGN,
+    CAPTION_MARGIN,
+    IMG_BSHADOW,
+    IMG_BORDER,
+    IMG_BRADIUS,
+    IMG_MARGIN,
+    OVERLAY_BG,
+    OVERLAY_BORDER,
+    OVERLAY_BRADIUS,
+    OVERLAY_EDGE_DISTANCE,
+    CONTENT_PADDING,
+    HEADING_MARGIN,
+    DESC_MARGIN,
+    SEPARATOR_WIDTH,
+    SEPARATOR_HEIGHT,
+    SEPARATOR_MARGIN,
+} from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -34,11 +62,25 @@ const attributes = {
         },
     },
     // Generators
+    ...generateMaskAttributes(PHOTO_MASK),
     ...generateResAlignmentAttributies(PHOTO_ALIGN),
     ...generateResAlignmentAttributies(CAPTION_ALIGN),
-    ...generateResRangeAttributies(STAR_SIZE),
-    ...generateResRangeAttributies(TITLE_GAP),
+    ...generateBorderAttributies(IMG_BORDER),
+    ...generateDimensionAttributes(IMG_BRADIUS),
+    ...generateDimensionAttributes(IMG_MARGIN),
+    ...generateBoxShadowAttributies(IMG_BSHADOW),
+    ...generateNormalBGAttributes(OVERLAY_BG),
+    ...generateBorderAttributies(OVERLAY_BORDER),
+    ...generateDimensionAttributes(OVERLAY_BRADIUS),
+    ...generateResRangeAttributies(OVERLAY_EDGE_DISTANCE),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
+    ...generateDimensionAttributes(CAPTION_MARGIN),
+    ...generateDimensionAttributes(CONTENT_PADDING),
+    ...generateDimensionAttributes(HEADING_MARGIN),
+    ...generateDimensionAttributes(DESC_MARGIN),
+    ...generateResRangeAttributies(SEPARATOR_WIDTH),
+    ...generateResRangeAttributies(SEPARATOR_HEIGHT),
+    ...generateDimensionAttributes(SEPARATOR_MARGIN),
     // block specific
     photo: {
         type: 'object',
@@ -49,6 +91,13 @@ const attributes = {
     },
     imgAlt: {
         type: 'string',
+    },
+    link: {
+        type: 'object',
+        default: {
+            url: '',
+            openInNewTab: false,
+        },
     },
     hoverEffect: {
         type: 'string',
@@ -61,22 +110,6 @@ const attributes = {
     caption: {
         type: 'string',
     },
-    maskShape: {
-        type: 'string',
-        default: 'none',
-    },
-    maskSize: {
-        type: 'string',
-        default: 'auto',
-    },
-    maskPosition: {
-        type: 'string',
-        default: 'center center',
-    },
-    maskRepeat: {
-        type: 'string',
-        default: 'no-repeat',
-    },
     layout: {
         type: 'string',
         default: 'normal',
@@ -85,12 +118,60 @@ const attributes = {
         type: 'string',
         default: 'center',
     },
-    ocTitle: {
+    imgHoverBorder: {
         type: 'string',
     },
-    ocTitleTag: {
+    onOpacity: {
+        type: 'number',
+        default: 0.2,
+    },
+    ohOpacity: {
+        type: 'number',
+        default: 1,
+    },
+    resizedWidth: {
+        type: 'number',
+    },
+    captionColor: {
+        type: 'string',
+    },
+    // content
+    heading: {
+        type: 'string',
+        default: 'Advanced Image',
+    },
+    headingTag: {
         type: 'string',
         default: 'h2',
+    },
+    headingVisibleOn: {
+        type: 'string',
+        default: 'always_visible',
+    },
+    headingColor: {
+        type: 'string',
+    },
+
+    // description
+    description: {
+        type: 'string',
+        default: 'This is an advanced image block.',
+    },
+    descriptionVisibleOn: {
+        type: 'string',
+        default: 'hover_visible',
+    },
+    descriptionColor: {
+        type: 'string',
+    },
+
+    // separator visible
+    separatorVisibleOn: {
+        type: 'string',
+        default: 'hover_visible',
+    },
+    separatorColor: {
+        type: 'string',
     },
     separatorStyle: {
         type: 'string',
@@ -99,38 +180,6 @@ const attributes = {
     separatorPosition: {
         type: 'string',
         default: 'after_title',
-    },
-    separatorVisibileOn: {
-        type: 'string',
-        default: 'svo_always',
-    },
-    rating: {
-        type: 'number',
-        default: 5,
-    },
-    showTitle: {
-        type: 'boolean',
-        default: true,
-    },
-    title: {
-        type: 'string',
-    },
-    titleTag: {
-        type: 'string',
-        default: 'p',
-    },
-    titleColor: {
-        type: 'string',
-    },
-    titlePosition: {
-        type: 'string',
-        default: 'top',
-    },
-    activeStarColor: {
-        type: 'string',
-    },
-    inactiveStarColor: {
-        type: 'string',
     },
 };
 

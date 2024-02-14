@@ -38,7 +38,3 @@ async function unregisterBlocks() {
 domReady(() => {
     unregisterBlocks();
 });
-
-
-
-

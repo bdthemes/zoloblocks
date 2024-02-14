@@ -10,13 +10,12 @@ const GoogleMapAutocomplete = ({ label, value, onChange, onClick }) => {
         setPredictionPanel(true);
     }, []);
 
-    if (zoloSettings?.googleAPIKey === undefined || zoloSettings?.googleAPIKey === ''
-    ) {
+    if (zoloSettings?.googleAPIKey === undefined || zoloSettings?.googleAPIKey === '') {
         return;
     }
 
     const { placesService, placePredictions, getPlacePredictions, isPlacePredictionsLoading } = usePlacesService({
-        apiKey: zoloParams?.googleAPIKey,
+        apiKey: zoloSettings?.googleAPIKey,
     });
 
     return (

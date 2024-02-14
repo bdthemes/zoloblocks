@@ -22,6 +22,8 @@ import {
     COUNT_LABEL_BG,
     COUNT_LABEL_RADIUS,
     COUNT_BOX_GRID,
+    COUNT_BOX_RADIUS,
+    COUNT_BOX_SIZE,
     GRID_BOX_GAP,
     ALLBOX_PADDING,
     SEPERATR_SPACING,
@@ -32,7 +34,7 @@ import {
     COUNT_BG,
     COUNTNUM_BORDER,
     COUNTNUM_PADDING,
-    COUNTNUM_MARGIN,
+    COUNTBOX_MARGIN,
     COUNT_NUM_BG,
     COUNT_NUM_RADIUS,
 } from './constants';
@@ -73,9 +75,11 @@ const attributes = {
     ...generateDimensionAttributes(COUNT_LABEL_RADIUS),
     ...generateBorderAttributies(COUNTLABEL_BORDER),
     ...generateDimensionAttributes(COUNTNUM_PADDING),
-    ...generateDimensionAttributes(COUNTNUM_MARGIN),
+    ...generateDimensionAttributes(COUNTBOX_MARGIN),
     ...generateDimensionAttributes(COUNT_NUM_RADIUS),
     ...generateBorderAttributies(COUNTNUM_BORDER),
+    ...generateDimensionAttributes(COUNT_BOX_RADIUS),
+    ...generateDimensionAttributes(COUNT_BOX_SIZE),
     ...generateResCounterAttributies(COUNT_BOX_GRID, {
         noUnits: true,
         defaults: {
@@ -85,9 +89,9 @@ const attributes = {
         },
     }),
     ...generateGapAttributes(GRID_BOX_GAP, {
-        defaultRange: 10,
         defaultUnit: 'px',
     }),
+
     ...generateResRangeAttributies(SEPERATR_SPACING),
     ...generateResRangeAttributies(SEPARATOR_TOP_SPACING),
     ...generateBoxShadowAttributies(BOX_SHADOW),
@@ -154,6 +158,14 @@ const attributes = {
     toggleSeparator: {
         type: 'boolean',
         default: true,
+    },
+    layout: {
+        type: 'string',
+        default: 'flex',
+    },
+    separatorItem: {
+        type: 'string',
+        default: '?',
     },
 };
 

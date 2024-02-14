@@ -48,6 +48,11 @@ return apply_filters(
             'status'     => true,
         ],
         [
+            'name'       => 'zolo_countdown',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
             'name'       => 'zolo_fancy_list',
             'categories' => ['post'],
             'status'     => true,

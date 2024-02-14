@@ -1,6 +1,8 @@
 import { render } from '@wordpress/element';
 import CountUp from 'react-countup';
 
+import { animate } from 'motion';
+
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
     const animatedCounters = document.querySelectorAll('.animated-counter');

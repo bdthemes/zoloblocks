@@ -46,7 +46,7 @@ export default function Edit(props) {
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
-        coverflowEffect,
+        coverFlowEffect,
     } = attributes;
 
     // Revies Carousel Ref
@@ -107,9 +107,9 @@ export default function Edit(props) {
             loop: infiniteLoop,
             speed: speed * 100,
             effect: carouselEffect,
-            // ...(carouselEffect === 'coverflow' && {
-            //     coverflowEffect: coverFlowEffect,
-            // }),
+            ...(carouselEffect === 'coverflow' && {
+                coverflowEffect: coverFlowEffect,
+            }),
             autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
             navigation: showNavigation
                 ? {
@@ -134,13 +134,12 @@ export default function Edit(props) {
         }
     }, [
         reviewCarouselRef.current,
-        // // sliderType,
-        // deskCol,
-        // tabCol,
-        // mobCol,
-        // deskColGap,
-        // tabColGap,
-        // mobColGap,
+        deskCol,
+        tabCol,
+        mobCol,
+        deskColGap,
+        tabColGap,
+        mobColGap,
         autoplay,
         autoplayDelay,
         pauseOnMouseEnter,
@@ -157,7 +156,7 @@ export default function Edit(props) {
         nextNavIcon,
         addNewSlideBlock,
         resMode,
-        // coverFlowEffect,
+        coverFlowEffect,
     ]);
 
     /**
@@ -181,7 +180,7 @@ export default function Edit(props) {
         },
         {
             allowedBlocks: ['zolo/review-child'],
-            template: [['zolo/review-child'], ['zolo/review-child'], ['zolo/review-child']],
+            template: [['zolo/review-child'], ['zolo/review-child'], ['zolo/review-child'], ['zolo/review-child'], ['zolo/review-child']],
             templateLock: false,
             renderAppender: false,
             orientation: 'horizontal',
@@ -202,10 +201,41 @@ export default function Edit(props) {
                     />
                 </ToolbarGroup>
             </BlockControls>
-            <div {...blockProps}>
+            <div
+                {...blockProps}
+                style={{
+                    border: '2px dashed #ddd',
+                    padding: '20px',
+                }}
+            >
                 <div className="swiper" ref={reviewCarouselRef}>
                     <div {...innerBlocksProps} />
                 </div>
+                {showPagination && <div class="swiper-pagination swiper-pagination-position-bottom"></div>}
+                {showNavigation && (
+                    <Fragment>
+                        <div
+                            className={`swiper-navigation-wrap swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}
+                        >
+                            {customNavIcon && (
+                                <>
+                                    <div className="swiper-nav-button swiper-zolo-prev">
+                                        <DisplayZoloIcon icon={prevNavIcon} />
+                                    </div>
+                                    <div className="swiper-nav-button swiper-zolo-next">
+                                        <DisplayZoloIcon icon={nextNavIcon} />
+                                    </div>
+                                </>
+                            )}
+                            {!customNavIcon && (
+                                <>
+                                    <div className="swiper-nav-button swiper-button-prev"></div>
+                                    <div className="swiper-nav-button swiper-button-next"></div>
+                                </>
+                            )}
+                        </div>
+                    </Fragment>
+                )}
             </div>
         </>
     );

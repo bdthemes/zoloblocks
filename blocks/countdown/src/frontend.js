@@ -1,5 +1,4 @@
 import CountdownTimer from './counter';
-
 const { render } = wp.element;
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -71,33 +71,37 @@ class Zolo_Settings {
             ]
         );
 
-        // register editor settings
+        // register editor width
         register_setting(
             'zolo_blocks_settings_group',
-            'zolo_editor_settings',
+            'zolo_editor_width',
             [
-                'type'    => 'array',
-                'default' => [
-                    'editorWidth' => 1200,
-                    'supportSVG'  => false,
-                ],
-                'show_in_rest' => [
+                'type'             => 'integer',
+                'default'          => 1200,
+                'show_in_rest'     => [
                     'schema' => [
-                        'type'       => 'object',
-                        'properties' => [
-                            'editorWidth' => [
-                                'type' => 'integer',
-                            ],
-                            'supportSVG' => [
-                                'type' => 'boolean',
-                            ],
-                        ],
+                        'type' => 'integer',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );  
+
+        // register support svg
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_support_svg',
+            [
+                'type'             => 'boolean',
+                'default'          => false,
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'boolean',
                     ],
                 ],
                 'sanitize_callback' => NULL,
             ]
         );
-        
     }
 
     // Update settings on plugin activation
@@ -123,6 +127,7 @@ class Zolo_Settings {
             // Update the zolo_blocks_settings option
             update_option('zolo_blocks_settings', $new_blocks);
         }
+
     }
 
     /**
@@ -138,7 +143,6 @@ class Zolo_Settings {
             return [];
         }
     }
-
 }
 
 Zolo_Settings::getInstance();

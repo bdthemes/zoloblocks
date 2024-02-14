@@ -44,9 +44,11 @@ import {
     COUNT_LABEL_RADIUS,
     COUNT_BOX_GRID,
     GRID_BOX_GAP,
+    COUNT_BOX_RADIUS,
+    COUNT_BOX_SIZE,
     COUNTNUM_BORDER,
     COUNTNUM_PADDING,
-    COUNTNUM_MARGIN,
+    COUNTBOX_MARGIN,
     COUNT_NUM_BG,
     COUNT_NUM_RADIUS,
     COUNT_LABEL_BG,
@@ -69,6 +71,8 @@ function Inspector(props) {
         seperaColor,
         countSeparator,
         toggleSeparator,
+        layout,
+        separatorItem,
     } = attributes;
 
     const requiredProps = {
@@ -91,13 +95,13 @@ function Inspector(props) {
 
             case 'zolo-countdown-style-2':
                 setAttributes({
-                    toggleSeparator: false,
+                    toggleSeparator: null,
                 });
                 break;
 
             case 'zolo-countdown-style-3':
                 setAttributes({
-                    toggleSeparator: false,
+                    toggleSeparator: null,
                 });
                 break;
 
@@ -204,6 +208,50 @@ function Inspector(props) {
                                         },
                                     })
                                 }
+                            />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Layout', 'zolo-blocks')} panelProps={props}>
+                            <IconicBtnGroup
+                                label={__('Layout Type', 'zolo-blocks')}
+                                value={layout}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        layout: value,
+                                    })
+                                }
+                                options={[
+                                    {
+                                        label: __('Flex', 'zolo-blocks'),
+                                        value: 'flex',
+                                    },
+                                    {
+                                        label: __('Grid', 'zolo-blocks'),
+                                        value: 'grid',
+                                    },
+                                ]}
+                            />
+                            {layout === 'grid' && (
+                                <>
+                                    <ResCounterControl
+                                        label={__('Grid', 'zolo-blocks')}
+                                        controlName={COUNT_BOX_GRID}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={10}
+                                        defaults={{
+                                            deskRange: 4,
+                                            tabRange: 2,
+                                            mobRange: 1,
+                                        }}
+                                    />
+                                </>
+                            )}
+                            <ResGapControl
+                                label={__('Gap', 'zolo-blocks')}
+                                controlName={GRID_BOX_GAP}
+                                requiredProps={requiredProps}
+                                max={200}
+                                min={1}
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Labels', 'zolo-blocks')} panelProps={props}>
@@ -313,47 +361,34 @@ function Inspector(props) {
                                 </>
                             )}
                         </ZoloPanelBody>
-
-                        <ZoloPanelBody title={__('Separator', 'zolo-blocks')} panelProps={props}>
-                            <ToggleControl
-                                label={__('Show Separator', 'zolo-blocks')}
-                                checked={toggleSeparator}
-                                onChange={() => setAttributes({ toggleSeparator: !toggleSeparator })}
-                            />
-                            {toggleSeparator && (
-                                <IconicBtnGroup
-                                    label={__('Separator Type', 'zolo-blocks')}
-                                    value={countSeparator}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            countSeparator: value,
-                                        })
-                                    }
-                                    options={SEPARATOR_POSITIONS}
+                        {presets === 'zolo-countdown-style-2' || presets === 'zolo-countdown-style-3' || (
+                            <ZoloPanelBody title={__('Separator', 'zolo-blocks')} panelProps={props}>
+                                <ToggleControl
+                                    label={__('Show Separator', 'zolo-blocks')}
+                                    checked={toggleSeparator}
+                                    onChange={() => setAttributes({ toggleSeparator: !toggleSeparator })}
                                 />
-                            )}
-                        </ZoloPanelBody>
-
-                        <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
-                            <ResCounterControl
-                                label={__('Grid', 'zolo-blocks')}
-                                controlName={COUNT_BOX_GRID}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={10}
-                                defaults={{
-                                    deskRange: 4,
-                                    tabRange: 2,
-                                    mobRange: 1,
-                                }}
-                            />
-                            <ResGapControl
-                                label={__('Gap', 'zolo-blocks')}
-                                controlName={GRID_BOX_GAP}
-                                requiredProps={requiredProps}
-                                max={200}
-                            />
-                        </ZoloPanelBody>
+                                {toggleSeparator && (
+                                    <IconicBtnGroup
+                                        label={__('Separator Type', 'zolo-blocks')}
+                                        value={countSeparator}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                countSeparator: value,
+                                            })
+                                        }
+                                        options={SEPARATOR_POSITIONS}
+                                    />
+                                )}
+                                {toggleSeparator && countSeparator === 'text' && (
+                                    <TextControl
+                                        label={__('custom Separator', 'zolo-blocks')}
+                                        value={separatorItem}
+                                        onChange={(v) => setAttributes({ separatorItem: v })}
+                                    />
+                                )}
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 styleTab={
@@ -366,14 +401,39 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     alignOptions={DEFAULT_ALIGNS}
                                 />
+                                {layout == 'flex' && (
+                                    <ResDimensionsControl
+                                        label={__('Box Size', 'zolo-blocks')}
+                                        controlName={COUNT_BOX_SIZE}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={false}
+                                        max={200}
+                                    />
+                                )}
+
+                                <ResDimensionsControl
+                                    label={__('Box Radius', 'zolo-blocks')}
+                                    controlName={COUNT_BOX_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                    max={100}
+                                />
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={COUNT_BORDER}
                                     requiredProps={requiredProps}
                                 />
+
                                 <ResDimensionsControl
                                     label={__('Padding', 'zolo-blocks')}
                                     controlName={ALLBOX_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                    max={100}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Space Between', 'zolo-blocks')}
+                                    controlName={COUNTBOX_MARGIN}
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
                                     max={100}
@@ -385,6 +445,38 @@ function Inspector(props) {
                                 />
                                 <NormalBGControl requiredProps={requiredProps} controlName={COUNT_BG} noOverlay={true} />
                             </>
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Number', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={digitColor}
+                                onChange={(v) => setAttributes({ digitColor: v })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zolo-blocks')}
+                                typoPrefixConstant={DIGIT_TYPO}
+                                requiredProps={requiredProps}
+                            />
+                            <BorderControl
+                                label={__('Border', 'zolo-blocks')}
+                                controlName={COUNTNUM_BORDER}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius')}
+                                controlName={COUNT_NUM_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={COUNTNUM_PADDING}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                                max={100}
+                            />
+
+                            <NormalBGControl requiredProps={requiredProps} controlName={COUNT_NUM_BG} noOverlay={true} />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Label', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ResAlignmentControl
@@ -422,7 +514,7 @@ function Inspector(props) {
                                 max={100}
                             />
                             <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
+                                label={__('Space Between', 'zolo-blocks')}
                                 controlName={COUNTLABEL_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
@@ -431,75 +523,38 @@ function Inspector(props) {
                             <NormalBGControl requiredProps={requiredProps} controlName={COUNT_LABEL_BG} noOverlay={true} />
                         </ZoloPanelBody>
 
-                        {toggleSeparator && (
-                            <ZoloPanelBody title={__('Separator', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                                <>
-                                    <ColorControl
-                                        label={__('Color', 'zolo-blocks')}
-                                        color={seperaColor}
-                                        onChange={(v) => setAttributes({ seperaColor: v })}
-                                    />
-                                    <TypographyDropdown
-                                        label={__('Typography', 'zolo-blocks')}
-                                        typoPrefixConstant={SEPARATOR_TYPO}
-                                        requiredProps={requiredProps}
-                                    />
-                                    <ResRangeControl
-                                        label={__(' Horizontal Spacing', 'zolo-blocks')}
-                                        controlName={SEPERATR_SPACING}
-                                        requiredProps={requiredProps}
-                                        max={100}
-                                        min={-100}
-                                    />
-                                    <ResRangeControl
-                                        label={__('Vertical Spacing', 'zolo-blocks')}
-                                        controlName={SEPARATOR_TOP_SPACING}
-                                        requiredProps={requiredProps}
-                                        max={100}
-                                        min={-100}
-                                    />
-                                </>
-                            </ZoloPanelBody>
-                        )}
-                        <ZoloPanelBody title={__('Number', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Color', 'zolo-blocks')}
-                                color={digitColor}
-                                onChange={(v) => setAttributes({ digitColor: v })}
-                            />
-                            <TypographyDropdown
-                                label={__('Typography', 'zolo-blocks')}
-                                typoPrefixConstant={DIGIT_TYPO}
-                                requiredProps={requiredProps}
-                            />
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={COUNTNUM_BORDER}
-                                requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Border Radius')}
-                                controlName={COUNT_NUM_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={COUNTNUM_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                                max={100}
-                            />
-
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={COUNTNUM_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                                max={100}
-                            />
-                            <NormalBGControl requiredProps={requiredProps} controlName={COUNT_NUM_BG} noOverlay={true} />
-                        </ZoloPanelBody>
+                        {presets === 'zolo-countdown-style-2' ||
+                            presets === 'zolo-countdown-style-3' ||
+                            (toggleSeparator && (
+                                <ZoloPanelBody title={__('Separator', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zolo-blocks')}
+                                            color={seperaColor}
+                                            onChange={(v) => setAttributes({ seperaColor: v })}
+                                        />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zolo-blocks')}
+                                            typoPrefixConstant={SEPARATOR_TYPO}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResRangeControl
+                                            label={__(' Horizontal Spacing', 'zolo-blocks')}
+                                            controlName={SEPERATR_SPACING}
+                                            requiredProps={requiredProps}
+                                            max={100}
+                                            min={-100}
+                                        />
+                                        <ResRangeControl
+                                            label={__('Vertical Spacing', 'zolo-blocks')}
+                                            controlName={SEPARATOR_TOP_SPACING}
+                                            requiredProps={requiredProps}
+                                            max={100}
+                                            min={-100}
+                                        />
+                                    </>
+                                </ZoloPanelBody>
+                            ))}
                     </>
                 }
                 advancedTab={

@@ -26,7 +26,7 @@ const Save = ({ attributes }) => {
     return (
         <div
             {...useBlockProps.save({
-                className: classnames(uniqueId, `${preset ? preset : ''}`, classArrayToStr(parentClasses)),
+                className: classnames(uniqueId, 'swiper-slide',`${preset ? preset : ''}`, classArrayToStr(parentClasses)),
             })}
             {...(zoloId && {
                 id: zoloId,

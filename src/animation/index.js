@@ -1,27 +1,10 @@
-import { animate, scroll, inView } from 'motion';
+// import { animate } from 'motion';
 
-document.addEventListener('DOMContentLoaded', function () {
-    const zoloBlockItems = document.querySelectorAll('.zolo-editor');
-    console.log(zoloBlockItems);
+// document.addEventListener('DOMContentLoaded', function () {
+//     const heading = document.querySelector('.wp-block-zolo-advanced-heading');
 
-    if (zoloBlockItems.length > 0) {
-        zoloBlockItems.forEach((item) => {
-            const zoloBlockItemClasses = item.classList;
-            // find the class name that starts with 'parent-'
-            const parentClass = Array.from(zoloBlockItemClasses).find((className) => className.startsWith('parent-'));
-
-            const targetElement = document.querySelector(`.${parentClass}.zolo-entrance-animation`);
-
-            if (targetElement) {
-                // logic goes here...
-                animate(targetElement, {
-                    transform: ['rotate(90deg) translateX(0px)', 'none'],
-                });
-                console.log('Found');
-            } else {
-                console.log('Not Found');
-            }
-        });
-    }
-});
-
+//     animate(heading, {
+//         x: 100,
+//         y: 100,
+//     });
+// });

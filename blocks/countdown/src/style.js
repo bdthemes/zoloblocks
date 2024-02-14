@@ -28,6 +28,8 @@ import {
     COUNT_LABEL_BG,
     COUNT_LABEL_RADIUS,
     COUNT_BOX_GRID,
+    COUNT_BOX_RADIUS,
+    COUNT_BOX_SIZE,
     GRID_BOX_GAP,
     ALLBOX_PADDING,
     SEPERATR_SPACING,
@@ -37,7 +39,7 @@ import {
     COUNT_BG,
     COUNTNUM_BORDER,
     COUNTNUM_PADDING,
-    COUNTNUM_MARGIN,
+    COUNTBOX_MARGIN,
     COUNT_NUM_BG,
     COUNT_NUM_RADIUS,
 } from './constants';
@@ -45,7 +47,7 @@ import { DIGIT_TYPO, LABEL_TYPO, SEPARATOR_TYPO } from './constants/typoPrefixCo
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, digitColor, labelColor, seperaColor, countSeparator, toggleSeparator } = attributes;
+    const { uniqueId, digitColor, labelColor, seperaColor, countSeparator, toggleSeparator, layout, separatorItem } = attributes;
 
     // styles
 
@@ -138,13 +140,14 @@ const Style = ({ props }) => {
         styleFor: 'border-radius',
         attributes,
     });
+    //change
     const {
-        dimensionStylesDesktop: DesktopNumMargin,
-        dimensionStylesTab: TabNumMargin,
-        dimensionStylesMobile: MobNumMargin,
+        dimensionStylesDesktop: DesktopBoxMargin,
+        dimensionStylesTab: TabBoxMargin,
+        dimensionStylesMobile: MobBoxMargin,
     } = generateDimensionStyle({
-        controlName: COUNTNUM_MARGIN,
-        styleFor: 'margin',
+        controlName: COUNTBOX_MARGIN,
+        styleFor: 'gap',
         attributes,
     });
 
@@ -188,6 +191,33 @@ const Style = ({ props }) => {
         tabBorderStyle: tabBoxborder,
         mobBorderStyle: mobBoxborder,
     } = generateBorderStyle({ controlName: COUNT_BORDER, attributes });
+    const {
+        dimensionStylesDesktop: DesktopBoxRadius,
+        dimensionStylesTab: TabBoxRadius,
+        dimensionStylesMobile: MobBoxRadius,
+    } = generateDimensionStyle({
+        controlName: COUNT_BOX_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: DesktopBoxwidth,
+        dimensionStylesTab: TabBoxwidth,
+        dimensionStylesMobile: MobBoxwidth,
+    } = generateDimensionStyle({
+        controlName: COUNT_BOX_SIZE,
+        styleFor: 'width',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: DesktopBoxheight,
+        dimensionStylesTab: TabBoxheight,
+        dimensionStylesMobile: MobBoxheight,
+    } = generateDimensionStyle({
+        controlName: COUNT_BOX_SIZE,
+        styleFor: 'height',
+        attributes,
+    });
 
     const {
         typoStylesDesktop: DesktopDigitTypo,
@@ -234,22 +264,34 @@ const Style = ({ props }) => {
 
     const { boxShadowStyle: boxshadowBox } = generateBoxShadowStyles({ controlName: BOX_SHADOW, attributes });
 
+    const deskGap = deskGridGap.replace('gap: ', '').trim() == '0;' ? '0px;' : deskGridGap.replace('gap: ', '');
+    const tabGap = tabGridGap.replace('gap: ', '').trim() == '0;' ? '0px;' : tabGridGap.replace('gap: ', '');
+    const mobGap = mobGridGap.replace('gap: ', '').trim() == '0;' ? '0px;' : mobGridGap.replace('gap: ', '');
+
     const desktopAllStyle = `
         .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-wrap {
-            grid-template-columns:repeat(${deskColumns}, 1fr);
-            ${deskGridGap}
+            ${layout == 'flex' ? 'display:flex' : `grid-template-columns:repeat(${deskColumns}, 1fr);`};
+            --zolo--countdown-gap: ${deskGap};
         }
+             
+        .wp-block-zolo-countdown.${uniqueId} .flex .zolo-countdown-item {
+            ${layout == 'flex' && DesktopBoxwidth}
+            ${layout == 'flex' && DesktopBoxheight}
+         }
+         
         .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item {
+          ${DesktopBoxMargin}
            ${DeskBoxBg}
            ${desktopInnerAlign}
            ${desktopLposition}
            ${DesktopBoxPadding}
            ${boxshadowBox}
            ${desktopBoxborder}
+           ${DesktopBoxRadius}
+          
         }
 
         .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-face{
-           ${DesktopNumMargin}
            ${DesktopNumPadding}
            ${desktopNumBorder}
            ${DesktopDigitTypo}
@@ -270,29 +312,37 @@ const Style = ({ props }) => {
            ${DesktopSeparatorTypo}
            ${desktopStop}
            ${desktopSright}
-           ${seperaColor ? `color:${seperaColor} ` : ''}
+           ${seperaColor ? `color:${seperaColor} ` : ''};
+           content: "${toggleSeparator ? (countSeparator == 'text' ? separatorItem && separatorItem : countSeparator) : ''}";
         }
         
-        .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item::after{
-            content: "${toggleSeparator ? countSeparator : ''}";
-        }
     `;
 
     const tabletAllStyle = `
         .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-wrap {
-            grid-template-columns:repeat(${tabColumns}, 1fr);
-            ${tabGridGap}
+            ${layout == 'flex' ? 'display:flex' : `grid-template-columns:repeat(${tabColumns}, 1fr);`};
+            --zolo--countdown-gap: ${tabGap}};
+        
         }
+        
+        .wp-block-zolo-countdown.${uniqueId} .flex .zolo-countdown-item {
+            ${layout == 'flex' && TabBoxwidth}
+            ${layout == 'flex' && TabBoxheight}
+        }
+
         .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item {
+           
+            ${TabBoxMargin}
             ${TabBoxGg}
             ${tabInnerAlign}
             ${tabLposition}
             ${TabBoxPadding}
             ${tabBoxborder}
+            ${TabBoxRadius}
+       
         }
 
         .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-face{
-            ${TabNumMargin}
             ${TabNumPadding}
             ${tabNumBorder}
             ${TabDigitTypo}
@@ -317,18 +367,25 @@ const Style = ({ props }) => {
 
     const mobileAllStyle = `
         .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-wrap {
-            grid-template-columns:repeat(${mobColumns}, 1fr);
-            ${mobGridGap}
+            ${layout == 'flex' ? 'display:flex' : `grid-template-columns:repeat(${mobColumns}, 1fr);`};
+            --zolo--countdown-gap: ${mobGap};
+        }
+        
+        .wp-block-zolo-countdown.${uniqueId} .flex .zolo-countdown-item {
+            ${layout == 'flex' && MobBoxwidth};
+            ${layout == 'flex' && MobBoxheight}
         }
         .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item {
+            ${MobBoxMargin}
             ${MobBoxBg}
             ${mobInnerAlign}
             ${mobLposition}
             ${MobBoxPadding}
             ${mobBoxborder}
+            ${MobBoxRadius}
+          
         }
         .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-face{
-            ${MobNumMargin}
             ${MobNumPadding}
             ${mobNumBorder}
             ${MobDigitTypo}
@@ -351,7 +408,6 @@ const Style = ({ props }) => {
           
         }
     `;
-
     return (
         <>
             <GlobalStyleHanlder

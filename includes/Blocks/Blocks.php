@@ -101,7 +101,7 @@ return apply_filters('zolo_blocks_list_data', [
         'name'             => 'review-carousel',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/review-carousel/block.json',
         'frontend-styles'  => ['zolo-block-common-style'],
-        'frontend-scripts' => false
+        'frontend-scripts' => ['zolo-review-carousel-frontend']
     ],
     'social-links' => [
         'name'             => 'social-links',
@@ -205,4 +205,11 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
+      'list' => [
+        'name'             => 'list',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/list/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
+
 ]);
