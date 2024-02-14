@@ -33,6 +33,7 @@ import '../blocks/progress-bar/src';
 import '../blocks/progress-bar-child/src';
 import '../blocks/review-child/src';
 import '../blocks/review-grid/src';
+import '../blocks/review-carousel/src';
 import '../blocks/review/src';
 import '../blocks/slide/src';
 import '../blocks/slider/src';
@@ -44,6 +45,7 @@ import '../blocks/team-child/src';
 import '../blocks/team-child/src';
 import '../blocks/team-grid/src';
 import '../blocks/team-grid/src';
+import '../blocks/list/src';
 
 // unregister blocks
 import './unregister';

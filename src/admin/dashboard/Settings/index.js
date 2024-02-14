@@ -2,85 +2,67 @@ import SettingBox from './setting-box';
 import Notice from '../notice';
 
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect, useCallback } from '@wordpress/element';
 import { ToggleControl } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
 const Settings = () => {
-    const [zolo_editor_settings, setZoloEditorSettings] = useState([]); // [state, setState
     const [notice, setNotice] = useState(false);
     const [editorWidth, setEditorWidth] = useState(1200);
     const [supportSVG, setSupportSVG] = useState(false);
 
-    // Fetch Settings
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);
         throw error;
     };
 
-    // Fetch Settings
-    const fetchSettings = async (options) => {
+    const fetchSettings = useCallback(async (data) => {
         try {
-            const response = await apiFetch(options);
-            return response;
+            const response = await apiFetch(data);
+            setEditorWidth(response.zolo_editor_width);
+            setSupportSVG(response.zolo_support_svg);
         } catch (error) {
             handleFetchError(error);
         }
-    };
-
-    // Fetch Settings on Component Mount
-    useEffect(() => {
-        fetchSettings({
-            path: '/wp/v2/settings',
-            method: 'GET',
-        }).then(({ zolo_editor_settings }) => {
-            const { editorWidth, supportSVG } = zolo_editor_settings;
-            setEditorWidth(editorWidth);
-            setSupportSVG(supportSVG);
-            setZoloEditorSettings(zolo_editor_settings);
-        });
     }, []);
 
-    // Update Editor Width
+    useEffect(() => {
+        fetchSettings({ path: '/wp/v2/settings' });
+    }, [fetchSettings]);
+
+    const updateSettings = useCallback(async (data) => {
+        try {
+            const response = await apiFetch(data);
+            setEditorWidth(response.zolo_editor_width);
+            setSupportSVG(response.zolo_support_svg);
+            setNotice(true);
+        } catch (error) {
+            handleFetchError(error);
+        }
+    }, []);
+
     const updateEditorWidth = (value) => {
-        fetchSettings({
+        updateSettings({
             path: '/wp/v2/settings',
             method: 'POST',
-            data: {
-                zolo_editor_settings: {
-                    ...zolo_editor_settings,
-                    editorWidth: value,
-                },
-            },
-        }).then(() => {
-            setEditorWidth(value);
-            setNotice(true);
+            data: { zolo_editor_width: value },
         });
     };
 
-    // Update SVG Support
     const updateSVG = (value) => {
-        fetchSettings({
+        updateSettings({
             path: '/wp/v2/settings',
             method: 'POST',
-            data: {
-                zolo_editor_settings: {
-                    ...zolo_editor_settings,
-                    supportSVG: value,
-                },
-            },
-        }).then(() => {
-            setSupportSVG(value);
-            setNotice(true);
+            data: { zolo_support_svg: value },
         });
     };
 
-    // set notice to false after 3 seconds
     useEffect(() => {
         if (notice) {
-            setTimeout(() => {
+            const timer = setTimeout(() => {
                 setNotice(false);
             }, 1000);
+            return () => clearTimeout(timer);
         }
     }, [notice]);
 

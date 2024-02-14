@@ -36,6 +36,7 @@ export { default as ImageSizes } from './controls/image-sizes';
 export { default as GoogleMapAutocomplete } from './controls/google-map-autocomplete';
 export { default as ObjectFitControl } from './controls/object-fit-control';
 export { default as OverflowControl } from './controls/overflow-control';
+export { default as MaskControl } from './controls/mask-control';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';
@@ -52,3 +53,4 @@ export { generateTextStrokeAttributies, generateTextStrokeStyles } from './helpe
 export { generateTypographyAttributes, generateTypographyStyles } from './helpers/typoHelpers';
 export { generateResCounterAttributies, generateResCounterStyle } from './helpers/res-counter-helper';
 export { generateGapAttributes, generateGapStyle } from './helpers/gap-helper';
+export { generateMaskAttributes, generateMaskStyles } from './helpers/mask-helper';

@@ -1,9 +1,30 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { RichText, useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import classnames from 'classnames';
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, DynamicTag } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, showTitle, title, titleTag, rating, titlePosition, zoloId } = attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        photo,
+        layout,
+        imageRes,
+        hoverEffect,
+        imgAlt,
+        showCaption,
+        caption,
+        heading,
+        headingTag,
+        headingVisibleOn,
+        description,
+        descriptionVisibleOn,
+        resizedWidth,
+        zoloId,
+        link,
+        separatorVisibleOn,
+        separatorPosition,
+        separatorStyle,
+    } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -16,12 +37,65 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            <div className={classnames('start-rating-wrapper', titlePosition)}>
-                <div className={classnames('star-rating-inner', titlePosition)}>
-                    {showTitle && <RichText.Content tagName={titleTag} className="start-rating-title" value={title} />}
-                    <div className="zolo-star-rating" data-rating={rating}></div>
-                </div>
-            </div>
+            {photo && (
+                <DynamicTag
+                    tagName={link && link.url ? 'a' : 'div'}
+                    className={classnames(
+                        'zolo-image-block-wrap',
+                        'zolo-image-mask',
+                        `${layout === 'overlay' ? 'zolo-adi-overlay' : ''}`,
+                        hoverEffect
+                    )}
+                    {...(link &&
+                        link.url && {
+                            href: link.url,
+                        })}
+                    {...(link &&
+                        link.openInNewTab && {
+                            target: '_blank',
+                            rel: 'noopener noreferrer',
+                        })}
+                >
+                    <div className="zolo-image-block-inner">
+                        <div
+                            className="zolo-img-wrap"
+                            style={{
+                                width: resizedWidth,
+                            }}
+                        >
+                            <img
+                                className="zolo-img"
+                                src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url}
+                                alt={imgAlt}
+                            />
+                        </div>
+                        {layout === 'overlay' && (
+                            <div className="zolo-content-wrap">
+                                {separatorPosition === 'before_title' && separatorStyle !== '' && (
+                                    <div className={`zolo-separator ${separatorVisibleOn}`}>
+                                        <span></span>
+                                    </div>
+                                )}
+                                <RichText.Content tagName={headingTag} className={`zolo-title ${headingVisibleOn}`} value={heading} />
+                                {separatorPosition === 'after_title' && separatorStyle !== '' && (
+                                    <div className={`zolo-separator ${separatorVisibleOn}`}>
+                                        <span></span>
+                                    </div>
+                                )}
+                                <RichText.Content tagName="p" value={description} className={`zolo-caption ${descriptionVisibleOn}`} />
+                                {separatorPosition === 'after_desc' && separatorStyle !== '' && (
+                                    <div className={`zolo-separator ${separatorVisibleOn}`}>
+                                        <span></span>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                        {layout === 'normal' && showCaption && (
+                            <RichText.Content tagName="figcaption" value={caption || photo?.caption} className="zolo-caption" />
+                        )}
+                    </div>
+                </DynamicTag>
+            )}
         </div>
     );
 };

@@ -1,6 +1,3 @@
-// Filter Hooks
-// import './filters';
-
 /**
  * External Dependencies
  */
@@ -175,6 +172,16 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
         };
         //Handle Tab and Panel initial Open state
         useEffect(() => {
+            // Prevent anchor link default behavior
+            const anchorLinks = document.querySelectorAll('.zolo-block a');
+            if (anchorLinks.length > 0) {
+                anchorLinks.forEach((link) => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                    });
+                });
+            }
+
             const isPageLoadedStore = localStorage.getItem(localStoreKey);
 
             if (!isPageLoadedStore) {
@@ -224,7 +231,7 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
             if (uniqueId) {
                 const filteredParentClasses = parentClasses.filter((item) => !item.includes(`parent-${prefix}`));
                 setAttributes({
-                    parentClasses: [...filteredParentClasses, `zolo-editor parent-${uniqueId}`],
+                    parentClasses: [...filteredParentClasses, `zolo-block parent-${uniqueId}`],
                 });
             }
         }, [uniqueId]);

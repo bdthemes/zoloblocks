@@ -29,7 +29,8 @@ import CountdownTimer from './counter';
 
 export default function Edit(props) {
     const { attributes, setAttributes, clientId, isSelected } = props;
-    const { resMode, preview, uniqueId, parentClasses, presets, CountDate, itemsLabels, itemsVisibility, toggleLabels } = attributes;
+    const { resMode, preview, uniqueId, parentClasses, presets, CountDate, itemsLabels, itemsVisibility, toggleLabels, layout } =
+        attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -55,7 +56,9 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                <div className={`zolo-countdown-wrap ${presets ? presets : `zolo-countdown-style-1`}`}>
+                <div
+                    className={`zolo-countdown-wrap ${presets ? presets : `zolo-countdown-style-1`} ${layout == 'flex' ? 'flex' : 'grid'}`}
+                >
                     <CountdownTimer
                         targetDate={CountDate ? CountDate : new Date()}
                         itemsVisibility={itemsVisibility}

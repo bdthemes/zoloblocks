@@ -3,131 +3,112 @@ import { Component } from '@wordpress/element';
 import Page from './page';
 
 export default class Pagination extends Component {
+    render() {
+        const { total, current, prevText, nextText, baseClassName, onClickPage } = this.props;
 
-  render() {
+        if (!total) {
+            return null;
+        }
 
-    const {
-      total,
-      current,
-      prevText,
-      nextText,
-      baseClassName,
-      onClickPage,
-    } = this.props;
+        let endSize = this.props.endSize < 1 ? 1 : this.props.endSize;
+        let midSize = this.props.midSize < 0 ? 2 : this.props.midSize;
 
-    if (!total) {
-      return null;
-    }
+        let dots = false;
 
-    let endSize = this.props.endSize < 1 ? 1 : this.props.endSize;
-    let midSize = this.props.midSize < 0 ? 2 : this.props.midSize;
+        let pages = [];
 
-    let dots = false;
+        if (current && current > 1) {
+            pages.push({
+                isCurrent: false,
+                key: 'prev',
+                onClick: () => onClickPage(current - 1),
+                className: 'page-numbers prev',
+                text: prevText,
+            });
+        }
 
-    let pages = [];
+        for (let n = 1; n <= this.props.total; n++) {
+            let isCurrent = n === current;
 
-    if (current && current > 1) {
-      pages.push({
-        isCurrent: false,
-        key: "prev",
-        onClick: () => onClickPage(current - 1),
-        className: "page-numbers prev",
-        text: prevText,
-      });
-    }
+            if (isCurrent) {
+                dots = true;
+                pages.push({
+                    isCurrent: true,
+                    key: n,
+                    onClick: () => onClickPage(n),
+                    className: 'page-numbers',
+                    text: n,
+                });
+            } else {
+                if (n <= endSize || (current && n >= current - midSize && n <= current + midSize) || n > total - endSize) {
+                    pages.push({
+                        isLink: true,
+                        key: n,
+                        onClick: () => onClickPage(n),
+                        className: 'page-numbers',
+                        text: n,
+                    });
+                    dots = true;
+                } else if (dots) {
+                    pages.push({
+                        isDots: true,
+                        key: n,
+                        onClick: () => 'dots',
+                        className: 'page-numbers',
+                        text: '...',
+                    });
+                    dots = false;
+                }
+            }
+        }
 
-    for (let n = 1; n <= this.props.total; n++) {
+        if (current && current < total) {
+            pages.push({
+                isCurrent: false,
+                key: 'next',
+                onClick: () => onClickPage(current + 1),
+                className: 'page-numbers next',
+                text: nextText,
+            });
+        }
 
-      let isCurrent = (n === current);
-
-      if (isCurrent) {
-        dots = true;
-        pages.push(
-          {
-            isCurrent: true,
-            key: n,
-            onClick: () => onClickPage(n),
-            className: "page-numbers",
-            text: n,
-          }
+        return (
+            <div className={baseClassName}>
+                {pages.map(({ isCurrent, key, text, className, onClick, isDots, isLink }) => (
+                    <Page
+                        isCurrent={isCurrent}
+                        key={key}
+                        pageKey={key}
+                        onClick={() => onClick()}
+                        className={className}
+                        isDots={isDots}
+                        isLink={isLink}
+                    >
+                        {text}
+                    </Page>
+                ))}
+            </div>
         );
-      }
-      else {
-        if (n <= endSize || (current && n >= (current - midSize) && n <= (current + midSize)) || n > (total - endSize)) {
-          pages.push(
-            {
-              isLink: true,
-              key: n,
-              onClick: () => onClickPage(n),
-              className: "page-numbers",
-              text: n,
-            }
-          );
-          dots = true;
-        }
-        else if (dots) {
-          pages.push(
-            {
-              isDots: true,
-              key: n,
-              onClick: () => 'dots',
-              className: "page-numbers",
-              text: "..."
-            }
-          );
-          dots = false;
-        }
-      }
     }
-
-
-    if (current && current < total) {
-      pages.push({
-        isCurrent: false,
-        key: "next",
-        onClick: () => onClickPage(current + 1),
-        className: "page-numbers next",
-        text: nextText,
-      });
-    }
-
-    return (
-      <div className={baseClassName}>
-        {pages.map(({ isCurrent, key, text, className, onClick, isDots, isLink }) => (
-          <Page
-            isCurrent={isCurrent}
-            key={key}
-            pageKey={key}
-            onClick={() => onClick()}
-            className={className}
-            isDots={isDots}
-            isLink={isLink}
-          >
-            {text}
-          </Page>
-        ))}
-      </div>
-    );
-  }
-};
+}
 
 Pagination.defaultProps = {
-  total: 0,
-  current: 1,
-  prevText: 'Prev',
-  nextText: 'Next',
-  endSize: 1,
-  midSize: 2,
-  baseClassName: 'zolo-pagination-nav'
+    total: 0,
+    current: 1,
+    prevText: 'Prev',
+    nextText: 'Next',
+    endSize: 1,
+    midSize: 2,
+    baseClassName: 'zolo-pagination-nav',
 };
 
 Pagination.propTypes = {
-  total: PropTypes.number,
-  current: PropTypes.number,
-  prevText: PropTypes.string,
-  nextText: PropTypes.string,
-  endSize: PropTypes.number,
-  midSize: PropTypes.number,
-  baseClassName: PropTypes.string,
-  onClickPage: PropTypes.func
+    total: PropTypes.number,
+    current: PropTypes.number,
+    prevText: PropTypes.string,
+    nextText: PropTypes.string,
+    endSize: PropTypes.number,
+    midSize: PropTypes.number,
+    baseClassName: PropTypes.string,
+    onClickPage: PropTypes.func,
 };

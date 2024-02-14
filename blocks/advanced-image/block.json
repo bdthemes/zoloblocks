@@ -3,7 +3,7 @@
     "title": "Advanced Image",
     "name": "zolo/advanced-image",
     "category": "zolo-blocks",
-    "keywords": ["image", "photo", "picture", "media", "zolo"],
+    "keywords": ["image", "photo", "advanced image", "media", "zolo"],
     "description": "Show an image with advanced settings",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
@@ -15,8 +15,7 @@
     },
     "supports": {
         "anchor": false,
-        "customClassName": false,
-        "align": ["wide", "full"]
+        "customClassName": false
     },
     "editorScript": "zolo-block-editor-script"
 }

@@ -14,6 +14,7 @@ let allEntries = {
     ...frontendEntries,
     ['build/dist']: './src/index.js',
     ['build/admin']: './src/admin/index.js',
+    ['build/animation']: './src/animation/index.js',
     ['build/module']: {
         import: path.resolve(__dirname, 'src/module-export.js'),
         library: {

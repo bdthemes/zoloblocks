@@ -1,8 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, MediaPlaceholder, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { Button } from '@wordpress/components';
+import { useBlockProps, InnerBlocks, RichText, MediaPlaceholder, MediaUpload, BlockControls } from '@wordpress/block-editor';
+import { Button, ToolbarButton, ToolbarGroup, ResizableBox } from '@wordpress/components';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -14,7 +14,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, StarRating, classArrayToStr } = window.zoloModule;
+const { handleUniqueId, DynamicTag, classArrayToStr } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -28,7 +28,33 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, photo, showCaption, caption, showTitle, title, titleTag, titlePosition, rating } = attributes;
+    const {
+        preview,
+        uniqueId,
+        parentClasses,
+        photo,
+        layout,
+        imageRes,
+        hoverEffect,
+        imgAlt,
+        link,
+        showCaption,
+        caption,
+        resizedWidth,
+        // heading
+        heading,
+        headingTag,
+        headingVisibleOn,
+
+        // description
+        description,
+        descriptionVisibleOn,
+
+        // separator
+        separatorVisibleOn,
+        separatorPosition,
+        separatorStyle,
+    } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -53,21 +79,131 @@ export default function Edit(props) {
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
+            {photo && (
+                <BlockControls>
+                    <ToolbarGroup>
+                        <MediaUpload
+                            onSelect={(media) => {
+                                setAttributes({
+                                    photo: media,
+                                });
+                            }}
+                            allowedTypes={['image']}
+                            value={photo && photo.id}
+                            render={({ open }) => (
+                                <ToolbarButton
+                                    className="components-toolbar__control"
+                                    label={__('Edit Image', 'zolo-blocks')}
+                                    icon="edit"
+                                    onClick={open}
+                                />
+                            )}
+                        />
+                    </ToolbarGroup>
+                </BlockControls>
+            )}
             <div {...blockProps}>
                 {photo ? (
-                    <figure>
-                        <img src={photo.url} alt={photo.alt} />
-                        {showCaption && (
-                            <figcaption>
+                    <DynamicTag
+                        tagName={link && link.url ? 'a' : 'div'}
+                        className={classnames(
+                            'zolo-image-block-wrap',
+                            'zolo-image-mask',
+                            `${layout === 'overlay' ? 'zolo-adi-overlay' : ''}`,
+                            hoverEffect
+                        )}
+                        {...(link &&
+                            link.url && {
+                                href: link.url,
+                            })}
+                        {...(link &&
+                            link.openInNewTab && {
+                                target: '_blank',
+                                rel: 'noopener noreferrer',
+                            })}
+                    >
+                        <div className="zolo-image-block-inner">
+                            <div className="zolo-img-wrap">
+                                <ResizableBox
+                                    className="zolo-resizable-box"
+                                    size={{
+                                        width: resizedWidth,
+                                        height: 'auto',
+                                    }}
+                                    onResize={(event, direction, elt, delta) => {
+                                        setAttributes({ resizedWidth: elt.clientWidth });
+                                    }}
+                                    enable={{
+                                        top: false,
+                                        right: true,
+                                        bottom: false,
+                                        left: false,
+                                        topRight: false,
+                                        bottomRight: false,
+                                        bottomLeft: false,
+                                        topLeft: false,
+                                    }}
+                                >
+                                    <img
+                                        className="zolo-img"
+                                        src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url}
+                                        alt={imgAlt}
+                                    />
+                                </ResizableBox>
+                            </div>
+
+                            {layout === 'overlay' && (
+                                <div className="zolo-content-wrap">
+                                    {separatorPosition === 'before_title' && separatorStyle !== '' && (
+                                        <div className={`zolo-separator ${separatorVisibleOn}`}>
+                                            <span></span>
+                                        </div>
+                                    )}
+                                    <RichText
+                                        tagName={headingTag}
+                                        className={`zolo-title ${headingVisibleOn}`}
+                                        value={heading}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                heading: v,
+                                            })
+                                        }
+                                        placeholder={__('Write Title...', 'zolo-blocks')}
+                                    />
+                                    {separatorPosition === 'after_title' && separatorStyle !== '' && (
+                                        <div className={`zolo-separator ${separatorVisibleOn}`}>
+                                            <span></span>
+                                        </div>
+                                    )}
+                                    <RichText
+                                        tagName="p"
+                                        value={description}
+                                        className={`zolo-caption ${descriptionVisibleOn}`}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                description: v,
+                                            })
+                                        }
+                                        placeholder={__('Write Description...', 'zolo-blocks')}
+                                    />
+                                    {separatorPosition === 'after_desc' && separatorStyle !== '' && (
+                                        <div className={`zolo-separator ${separatorVisibleOn}`}>
+                                            <span></span>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+                            {layout === 'normal' && showCaption && (
                                 <RichText
+                                    tagName="figcaption"
                                     value={caption || photo?.caption}
                                     onChange={(value) => setAttributes({ caption: value })}
-                                    placeholder={__('Add a caption', 'zolo-blocks')}
-                                    className="zolo-image-caption"
+                                    placeholder={__('Write Caption...', 'zolo-blocks')}
+                                    className="zolo-caption"
                                 />
-                            </figcaption>
-                        )}
-                    </figure>
+                            )}
+                        </div>
+                    </DynamicTag>
                 ) : (
                     <div className="zolo-media-placeholder">
                         <MediaPlaceholder
@@ -77,7 +213,13 @@ export default function Edit(props) {
                                 });
                             }}
                             accept="image/*"
-                            onSelectURL={(url) => console.log(url)}
+                            onSelectURL={(url) => {
+                                setAttributes({
+                                    photo: {
+                                        url,
+                                    },
+                                });
+                            }}
                             allowedTypes={['image']}
                             multiple={false}
                             labels={{ title: __('Image', 'zolo-blocks') }}

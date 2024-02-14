@@ -1052,3 +1052,61 @@ export const OBJECT_FITS = [
     { label: __('Cover', 'zolo-blocks'), value: 'cover' },
     { label: __('Scale Down', 'zolo-blocks'), value: 'scale-down' },
 ];
+
+// mask shapes
+export const MASK_SHAPES = [
+    { label: __('None', 'zolo-blocks'), value: '' },
+    { label: __('Abstract', 'zolo-blocks'), value: 'abstract' },
+    { label: __('Abstract Brush 1', 'zolo-blocks'), value: 'abstract-brush-1' },
+    { label: __('Abstract Brush 2', 'zolo-blocks'), value: 'abstract-brush-2' },
+    { label: __('Aesthetic Blob', 'zolo-blocks'), value: 'aesthetic-blob' },
+    { label: __('Amorphous Blob', 'zolo-blocks'), value: 'amorphous-blob' },
+    { label: __('Brush', 'zolo-blocks'), value: 'brush' },
+    { label: __('Comment', 'zolo-blocks'), value: 'comment' },
+    { label: __('Container', 'zolo-blocks'), value: 'container' },
+    { label: __('Hand Drawn Blob', 'zolo-blocks'), value: 'hand-drawn-blob' },
+    { label: __('Hexagon', 'zolo-blocks'), value: 'hexagon' },
+    { label: __('Hexagon Blob', 'zolo-blocks'), value: 'hexagon-blob' },
+    { label: __('Irregular Blob', 'zolo-blocks'), value: 'irregular-blob' },
+    { label: __('Minimal Round', 'zolo-blocks'), value: 'minimal-round' },
+    { label: __('Octagon', 'zolo-blocks'), value: 'octagon' },
+    { label: __('Organic Blob', 'zolo-blocks'), value: 'organic-blob' },
+    { label: __('Oval Blob', 'zolo-blocks'), value: 'oval-blob' },
+    { label: __('Pattern', 'zolo-blocks'), value: 'pattern' },
+    { label: __('Popup 1', 'zolo-blocks'), value: 'popup-1' },
+    { label: __('Popup 2', 'zolo-blocks'), value: 'popup-2' },
+    { label: __('Popup 3', 'zolo-blocks'), value: 'popup-3' },
+    { label: __('Round Brush', 'zolo-blocks'), value: 'round-brush' },
+    { label: __('Round Design', 'zolo-blocks'), value: 'round-design' },
+    { label: __('Square Pattern', 'zolo-blocks'), value: 'squar-pattern' },
+    { label: __('Testimonial', 'zolo-blocks'), value: 'testimonial' },
+    { label: __('Triangle Blob', 'zolo-blocks'), value: 'triangle-blob' },
+];
+
+// mask position
+export const MASK_POSITIONS = [
+    { value: 'center top', label: __('Center Top', 'zolo-blocks') },
+    { value: 'center center', label: __('Center Center', 'zolo-blocks') },
+    { value: 'center bottom', label: __('Center Bottom', 'zolo-blocks') },
+    { value: 'left top', label: __('Left Top', 'zolo-blocks') },
+    { value: 'left center', label: __('Left Center', 'zolo-blocks') },
+    { value: 'left bottom', label: __('Left Bottom', 'zolo-blocks') },
+    { value: 'right top', label: __('Right Top', 'zolo-blocks') },
+    { value: 'right center', label: __('Right Center', 'zolo-blocks') },
+    { value: 'right bottom', label: __('Right Bottom', 'zolo-blocks') },
+];
+
+// mask repeat
+export const MASK_REPEATS = [
+    { value: 'no-repeat', label: __('No Repeat', 'zolo-blocks') },
+    { value: 'repeat', label: __('Repeat', 'zolo-blocks') },
+    { value: 'repeat-x', label: __('Repeat X', 'zolo-blocks') },
+    { value: 'repeat-y', label: __('Repeat Y', 'zolo-blocks') },
+];
+
+// mask sizes
+export const MASK_SIZES = [
+    { value: 'auto', label: __('Auto', 'zolo-blocks') },
+    { value: 'cover', label: __('Cover', 'zolo-blocks') },
+    { value: 'contain', label: __('Contain', 'zolo-blocks') },
+];
