@@ -30,7 +30,6 @@ import Style from './style';
 const zoloReviewCarousel = createHigherOrderComponent((BlockListBlock) => {
     return (props) => {
         if ('zolo/review-child' === props.name) {
-
             return (
                 <div className="swiper-slide">
                     <BlockListBlock {...props} />

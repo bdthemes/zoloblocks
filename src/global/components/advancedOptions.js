@@ -4,12 +4,14 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect, useState } from '@wordpress/element';
 import { InspectorControls, PanelColorSettings } from '@wordpress/block-editor';
+import { animate, inView } from 'motion';
 import {
     PanelBody,
     SelectControl,
     ToggleControl,
     TextControl,
     TextareaControl,
+    Dropdown,
     Button,
     ButtonGroup,
     BaseControl,
@@ -36,6 +38,8 @@ export const AdvancedOptions = (props) => {
         uniqueId,
         customCss,
         responsiveness,
+        entranceAnimation,
+        entranceAnimationActive,
         parentClasses,
         zIndex,
         customClass,
@@ -46,6 +50,45 @@ export const AdvancedOptions = (props) => {
         zoloId,
         overflow,
     } = attributes;
+
+    const handleMotionAnimation = () => {
+        const elements = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
+        const transformOptions = [
+            entranceAnimation.translateX ? `translateX(${entranceAnimation.translateX}px)` : '',
+            entranceAnimation.translateY ? `translateY(${entranceAnimation.translateY}px)` : '',
+            entranceAnimation.rotateX ? `rotateX(${entranceAnimation.rotateX}deg)` : '',
+            entranceAnimation.rotateY ? `rotateY(${entranceAnimation.rotateY}deg)` : '',
+            entranceAnimation.rotateZ ? `rotateZ(${entranceAnimation.rotateZ}deg)` : '',
+            entranceAnimation.scaleX ? `scaleX(${entranceAnimation.scaleX})` : '',
+            entranceAnimation.scaleY ? `scaleY(${entranceAnimation.scaleY})` : '',
+            entranceAnimation.skewX ? `skewX(${entranceAnimation.skewX}deg)` : '',
+            entranceAnimation.skewY ? `skewY(${entranceAnimation.skewY}deg)` : '',
+
+            entranceAnimation.perspective ? `perspective(${entranceAnimation.perspective}px)` : '',
+            // if transform origin is custom, use the custom value else use the selected value
+            // entranceAnimation.transformOrigin === 'custom'
+            //     ? `transform-origin:'${entranceAnimation.transformOriginCustom}';`
+            //     : `transform-origin:'${entranceAnimation.transformOrigin}';`
+        ];
+        const otherOptions = [
+            
+        ];
+
+        // array to string
+        const transformOption = transformOptions.join('');
+
+        const options = {
+            // opacity: [0.5, 1],
+            transform: [transformOption, 'none'],
+            transformOrigin: entranceAnimation.transformOrigin === 'custom' ? entranceAnimation.transformOriginCustom: entranceAnimation.transformOrigin,
+            // delay: entranceAnimation.delay,
+        };
+        console.log('options', options);
+        animate(elements, options, { duration: 1, easing: 'ease-out' });
+        // animate(elements, {
+        //     transform: ['rotate(90deg) translateX(0px) transform-origin:"center";', 'none'],
+        // });
+    };
 
     const handleResponsiveness = (key, value, classname) => {
         let updatedClasses = [...parentClasses, classname];
@@ -229,6 +272,315 @@ export const AdvancedOptions = (props) => {
                 opened={selectedExtraPanel === 'panel37'}
             >
                 <CustomCSSControl attributes={attributes} setAttributes={setAttributes} />
+            </PanelBody>
+            <PanelBody
+                title={__('Entrance Animation', 'zolo-blocks')}
+                onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel38' })}
+                opened={selectedExtraPanel === 'panel38'}
+            >
+                <ToggleControl
+                    label={__('Entrance Animation', 'zolo-blocks')}
+                    checked={entranceAnimationActive}
+                    onChange={() => {
+                        setAttributes({
+                            entranceAnimationActive: !entranceAnimationActive,
+                        });
+                        if (!entranceAnimationActive) {
+                            setAttributes({
+                                parentClasses: [...parentClasses, 'zolo-entrance-animation'],
+                            });
+                        } else {
+                            setAttributes({
+                                parentClasses: parentClasses.filter(function (e) {
+                                    return e !== 'zolo-entrance-animation';
+                                }),
+                            });
+                        }
+                    }}
+                />
+                {entranceAnimationActive && (
+                    <>
+                        <RangeControl
+                            label={__('Perspective', 'zolo-blocks')}
+                            value={entranceAnimation.perspective}
+                            onChange={(value) => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        perspective: value,
+                                    },
+                                });
+                            }}
+                            min={50}
+                            max={1000}
+                        />
+                        <RangeControl
+                            label={__('Delay(ms)', 'zolo-blocks')}
+                            value={entranceAnimation.delay}
+                            onChange={(value) => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        delay: value,
+                                    },
+                                });
+                            }}
+                            min={0}
+                            max={1000}
+                        />
+                        <RangeControl
+                            label={__('Transition Duration(ms)', 'zolo-blocks')}
+                            value={entranceAnimation.duration}
+                            onChange={(value) => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        duration: value,
+                                    },
+                                });
+                            }}
+                            min={0}
+                            max={1000}
+                        />
+                        <SelectControl
+                            label={__('Transform Origin', 'zolo-blocks')}
+                            value={entranceAnimation.transformOrigin}
+                            options={[
+                                { label: __('Top'), value: 'top' },
+                                { label: __('Right'), value: 'right' },
+                                { label: __('Bottom'), value: 'bottom' },
+                                { label: __('Left'), value: 'left' },
+                                { label: __('Center'), value: 'center' },
+                                { label: __('Initial'), value: 'initial' },
+                                { label: __('Inherit'), value: 'inherit' },
+                                { label: __('Revert'), value: 'revert' },
+                                { label: __('Unset'), value: 'unset' },
+                                { label: __('Revert Layer'), value: 'revert-layer' },
+                                { label: 'Custom', value: 'custom' },
+                            ]}
+                            onChange={(value) => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        transformOrigin: value,
+                                    },
+                                });
+                            }}
+                        />
+                        {entranceAnimation.transformOrigin === 'custom' && (
+                            <TextControl
+                                label={__('Transform Origin Custom', 'zolo-blocks')}
+                                help={__(
+                                    'Enter a custom transform origin, for example see here: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin',
+                                    'zolo-blocks'
+                                )}
+                                value={entranceAnimation.transformOriginCustom}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            transformOriginCustom: value,
+                                        },
+                                    });
+                                }}
+                            />
+                        )}
+                        <Dropdown
+                            className="zolo-dropdown-popover"
+                            contentClassName="zolo-dropdown-popover-content"
+                            popoverProps={{ placement: 'bottom' }}
+                            renderToggle={({ isOpen, onToggle }) => (
+                                <Button isTertiary onClick={onToggle} aria-expanded={isOpen}>
+                                    {__('Translate', 'zolo-blocks')}
+                                </Button>
+                            )}
+                            renderContent={() => (
+                                <>
+                                    <RangeControl
+                                        label={__('Translate X', 'zolo-blocks')}
+                                        value={entranceAnimation.translateX}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                entranceAnimation: {
+                                                    ...entranceAnimation,
+                                                    translateX: value,
+                                                },
+                                            });
+                                        }}
+                                        min={-100}
+                                        max={100}
+                                    />
+                                    <RangeControl
+                                        label={__('Translate Y', 'zolo-blocks')}
+                                        value={entranceAnimation.translateY}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                entranceAnimation: {
+                                                    ...entranceAnimation,
+                                                    translateY: value,
+                                                },
+                                            });
+                                        }}
+                                        min={-100}
+                                        max={100}
+                                    />
+                                </>
+                            )}
+                        />
+                        <Dropdown
+                            className="zolo-dropdown-popover"
+                            contentClassName="zolo-dropdown-popover-content"
+                            popoverProps={{ placement: 'bottom' }}
+                            renderToggle={({ isOpen, onToggle }) => (
+                                <Button isTertiary onClick={onToggle} aria-expanded={isOpen}>
+                                    {__('Rotate', 'zolo-blocks')}
+                                </Button>
+                            )}
+                            renderContent={() => (
+                                <>
+                                    <RangeControl
+                                        label={__('Rotate X', 'zolo-blocks')}
+                                        value={entranceAnimation.rotateX}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                entranceAnimation: {
+                                                    ...entranceAnimation,
+                                                    rotateX: value,
+                                                },
+                                            });
+                                        }}
+                                        min={-180}
+                                        max={180}
+                                    />
+                                    <RangeControl
+                                        label={__('Rotate Y', 'zolo-blocks')}
+                                        value={entranceAnimation.rotateY}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                entranceAnimation: {
+                                                    ...entranceAnimation,
+                                                    rotateY: value,
+                                                },
+                                            });
+                                        }}
+                                        min={-180}
+                                        max={180}
+                                    />
+                                    <RangeControl
+                                        label={__('Rotate Z', 'zolo-blocks')}
+                                        value={entranceAnimation.rotateZ}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                entranceAnimation: {
+                                                    ...entranceAnimation,
+                                                    rotateZ: value,
+                                                },
+                                            });
+                                        }}
+                                        min={-180}
+                                        max={180}
+                                    />
+                                </>
+                            )}
+                        />
+                        <Dropdown
+                            className="zolo-dropdown-popover"
+                            contentClassName="zolo-dropdown-popover-content"
+                            popoverProps={{ placement: 'bottom' }}
+                            renderToggle={({ isOpen, onToggle }) => (
+                                <Button isTertiary onClick={onToggle} aria-expanded={isOpen}>
+                                    {__('Scale', 'zolo-blocks')}
+                                </Button>
+                            )}
+                            renderContent={() => (
+                                <>
+                                    <RangeControl
+                                        label={__('Scale X', 'zolo-blocks')}
+                                        value={entranceAnimation.scaleX}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                entranceAnimation: {
+                                                    ...entranceAnimation,
+                                                    scaleX: value,
+                                                },
+                                            });
+                                        }}
+                                        min={0}
+                                        max={5}
+                                        step={0.1}
+                                    />
+                                    <RangeControl
+                                        label={__('Scale Y', 'zolo-blocks')}
+                                        value={entranceAnimation.scaleY}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                entranceAnimation: {
+                                                    ...entranceAnimation,
+                                                    scaleY: value,
+                                                },
+                                            });
+                                        }}
+                                        min={0}
+                                        max={5}
+                                        step={0.1}
+                                    />
+                                </>
+                            )}
+                        />
+                        <Dropdown
+                            className="zolo-dropdown-popover"
+                            contentClassName="zolo-dropdown-popover-content"
+                            popoverProps={{ placement: 'bottom' }}
+                            renderToggle={({ isOpen, onToggle }) => (
+                                <Button isTertiary onClick={onToggle} aria-expanded={isOpen}>
+                                    {__('Skew', 'zolo-blocks')}
+                                </Button>
+                            )}
+                            renderContent={() => (
+                                <>
+                                    <RangeControl
+                                        label={__('Skew X', 'zolo-blocks')}
+                                        value={entranceAnimation.skewX}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                entranceAnimation: {
+                                                    ...entranceAnimation,
+                                                    skewX: value,
+                                                },
+                                            });
+                                        }}
+                                        min={-180}
+                                        max={180}
+                                    />
+                                    <RangeControl
+                                        label={__('Skew Y', 'zolo-blocks')}
+                                        value={entranceAnimation.skewY}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                entranceAnimation: {
+                                                    ...entranceAnimation,
+                                                    skewY: value,
+                                                },
+                                            });
+                                        }}
+                                        min={-180}
+                                        max={180}
+                                    />
+                                </>
+                            )}
+                        />
+                        <Button
+                            label={__('Preview', 'zolo-blocks')}
+                            isPrimary
+                            onClick={() => {
+                                handleMotionAnimation();
+                                console.log('clicked');
+                            }}
+                        >
+                            {__('Preview', 'zolo-blocks')}
+                        </Button>
+                    </>
+                )}
             </PanelBody>
         </>
     );

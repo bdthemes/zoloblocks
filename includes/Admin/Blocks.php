@@ -98,12 +98,12 @@ return apply_filters(
             'status'     => true,
         ],
         [
-            'name'       => 'zolo_review_grid',
+            'name'       => 'zolo_review_carousel',
             'categories' => ['review', 'post'],
             'status'     => true,
         ],
         [
-            'name'       => 'zolo_review_carousel',
+            'name'       => 'zolo_review_grid',
             'categories' => ['review', 'post'],
             'status'     => true,
         ],

@@ -38,7 +38,7 @@ export default function Edit(props) {
             <Style props={props} />
 
             <div {...blockProps}>
-                <div className={`zolo-list-wrap ${preset}`}>
+                {/* <div className={`zolo-list-wrap ${preset}`}>
                     {socialProfiles &&
                         socialProfiles.map((profile, index) => {
                             let socialName = Object.keys(profile.icon)[0];
@@ -93,7 +93,8 @@ export default function Edit(props) {
                                 </a>
                             );
                         })}
-                </div>
+                </div> */}
+                list
             </div>
         </>
     );
