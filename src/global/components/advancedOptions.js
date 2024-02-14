@@ -65,14 +65,8 @@ export const AdvancedOptions = (props) => {
             entranceAnimation.skewY ? `skewY(${entranceAnimation.skewY}deg)` : '',
 
             entranceAnimation.perspective ? `perspective(${entranceAnimation.perspective}px)` : '',
-            // if transform origin is custom, use the custom value else use the selected value
-            // entranceAnimation.transformOrigin === 'custom'
-            //     ? `transform-origin:'${entranceAnimation.transformOriginCustom}';`
-            //     : `transform-origin:'${entranceAnimation.transformOrigin}';`
         ];
-        const otherOptions = [
-            
-        ];
+        const otherOptions = [];
 
         // array to string
         const transformOption = transformOptions.join('');
@@ -80,14 +74,14 @@ export const AdvancedOptions = (props) => {
         const options = {
             // opacity: [0.5, 1],
             transform: [transformOption, 'none'],
-            transformOrigin: entranceAnimation.transformOrigin === 'custom' ? entranceAnimation.transformOriginCustom: entranceAnimation.transformOrigin,
+            transformOrigin:
+                entranceAnimation.transformOrigin === 'custom'
+                    ? entranceAnimation.transformOriginCustom
+                    : entranceAnimation.transformOrigin,
             // delay: entranceAnimation.delay,
         };
         console.log('options', options);
         animate(elements, options, { duration: 1, easing: 'ease-out' });
-        // animate(elements, {
-        //     transform: ['rotate(90deg) translateX(0px) transform-origin:"center";', 'none'],
-        // });
     };
 
     const handleResponsiveness = (key, value, classname) => {
@@ -275,8 +269,8 @@ export const AdvancedOptions = (props) => {
             </PanelBody>
             <PanelBody
                 title={__('Entrance Animation', 'zolo-blocks')}
-                onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel38' })}
-                opened={selectedExtraPanel === 'panel38'}
+                onToggle={(value) => value === true && setAttributes({ selectedExtraPanel: 'panel39' })}
+                opened={selectedExtraPanel === 'panel39'}
             >
                 <ToggleControl
                     label={__('Entrance Animation', 'zolo-blocks')}

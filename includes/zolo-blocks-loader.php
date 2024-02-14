@@ -39,10 +39,10 @@ class Zolo_Blocks_Loader {
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/zolo-ajax.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/zolo-enqueues.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/font-loader.php';
-        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/post-meta.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/ZoloAjax.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/ZoloEnqueues.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/FontLoader.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/PostMeta.php';
 
         // Load Admin files
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Dashboard.php';
@@ -53,7 +53,7 @@ class Zolo_Blocks_Loader {
             // zolo blocks settings 
             $zoloSupportSVG = get_option('zolo_support_svg', false);
             if( $zoloSupportSVG === '1') {
-                require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/support-svg.php';
+                require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/SupportSVG.php';
             }
         }
     }
