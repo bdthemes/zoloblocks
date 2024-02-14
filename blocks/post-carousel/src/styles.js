@@ -802,7 +802,7 @@ function Style({ props }) {
       .${uniqueId}.zolo-post-carousel .zolo-post-author-name a:hover{
         ${nameHoverColor ? `color:${nameHoverColor} !important;` : ''}
       }
-.${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-prev:hover {
+    .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-next:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-next:hover, .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-prev:hover {
             border-color: ${navHoverBorderColor} !important;
         }
 
@@ -947,7 +947,7 @@ function Style({ props }) {
       ${nameTypoTab}
     }
 
-            .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev,
+    .${uniqueId}.wp-block-zolo-post-carousel .swiper-button-prev,
         .${uniqueId}.wp-block-zolo-post-carousel .swiper-zolo-prev{
             ${navTabOffsetLeft}
         }
