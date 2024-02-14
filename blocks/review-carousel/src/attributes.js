@@ -39,6 +39,8 @@ import {
     ICONS_SIZE,
     NAV_WIDTH,
     NAV_HEIGHT,
+    NAV_OFFSET_HORIZONTAL,
+    NAV_OFFSET_VERTICAL,
     NAV_BORDER,
     NAV_BORDER_RADIUS,
     NAV_BG,
@@ -159,9 +161,11 @@ const attributes = {
     ...generateResRangeAttributies(ICONS_SIZE, {}),
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
-     // Generator
+    // Generator
     ...generateResRangeAttributies(NAV_WIDTH),
     ...generateResRangeAttributies(NAV_HEIGHT),
+    ...generateResRangeAttributies(NAV_OFFSET_HORIZONTAL),
+    ...generateResRangeAttributies(NAV_OFFSET_VERTICAL),
     ...generateBorderAttributies(NAV_BORDER),
     ...generateDimensionAttributes(NAV_BORDER_RADIUS),
     ...generateNormalBGAttributes(NAV_BG),
