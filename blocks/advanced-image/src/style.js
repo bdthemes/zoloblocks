@@ -32,6 +32,8 @@ import {
     OVERLAY_BRADIUS,
     OVERLAY_EDGE_DISTANCE,
     CONTENT_PADDING,
+    CONTENT_MARGIN,
+    CONTENT_MAX_WIDTH,
     HEADING_MARGIN,
     DESC_MARGIN,
     SEPARATOR_WIDTH,
@@ -178,7 +180,7 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    // overlay content
+    // content
     const {
         dimensionStylesDesktop: contentPaddingDesk,
         dimensionStylesTab: contentPaddingTab,
@@ -186,6 +188,26 @@ const Style = ({ props }) => {
     } = generateDimensionStyle({
         controlName: CONTENT_PADDING,
         styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: contentMarginDesk,
+        dimensionStylesTab: contentMarginTab,
+        dimensionStylesMobile: contentMarginMob,
+    } = generateDimensionStyle({
+        controlName: CONTENT_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: contentWidthDesktop,
+        tabRangeStyle: contentWidthTab,
+        mobRangeStyle: contentWidthMob,
+    } = generateResRangeStyle({
+        controlName: CONTENT_MAX_WIDTH,
+        property: 'max-width',
         attributes,
     });
 
@@ -264,43 +286,43 @@ const Style = ({ props }) => {
     let overlayContentPosition;
     switch (ocPosition) {
         case 'top left':
-            overlayContentPosition = `justify-content: flex-start; align-items: flex-start;`;
+            overlayContentPosition = `justify-content: flex-start; align-items: flex-start; text-align: left;`;
             break;
 
         case 'top center':
-            overlayContentPosition = `justify-content: flex-start; align-items: center;`;
+            overlayContentPosition = `justify-content: flex-start; align-items: center; text-align: center;`;
             break;
 
         case 'top right':
-            overlayContentPosition = `justify-content: flex-start; align-items: flex-end;`;
+            overlayContentPosition = `justify-content: flex-start; align-items: flex-end; text-align: right;`;
             break;
 
         case 'center left':
-            overlayContentPosition = `justify-content: center; align-items: flex-start;`;
+            overlayContentPosition = `justify-content: center; align-items: flex-start; text-align: left;`;
             break;
 
         case 'center center':
-            overlayContentPosition = `justify-content: center; align-items: center;`;
+            overlayContentPosition = `justify-content: center; align-items: center; text-align: center;`;
             break;
 
         case 'center right':
-            overlayContentPosition = `justify-content: center; align-items: flex-end;`;
+            overlayContentPosition = `justify-content: center; align-items: flex-end; text-align: right;`;
             break;
 
         case 'bottom left':
-            overlayContentPosition = `justify-content: flex-end; align-items: flex-start;`;
+            overlayContentPosition = `justify-content: flex-end; align-items: flex-start; text-align: left;`;
             break;
 
         case 'bottom center':
-            overlayContentPosition = `justify-content: flex-end; align-items: center;`;
+            overlayContentPosition = `justify-content: flex-end; align-items: center; text-align: center;`;
             break;
 
         case 'bottom right':
-            overlayContentPosition = `justify-content: flex-end; align-items: flex-end;`;
+            overlayContentPosition = `justify-content: flex-end; align-items: flex-end; text-align: right;`;
             break;
 
         default:
-            overlayContentPosition = `justify-content: center; align-items: center;`;
+            overlayContentPosition = `justify-content: center; align-items: center; text-align: center;`;
             break;
     }
 
@@ -308,64 +330,72 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId} .zolo-caption {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-caption {
             ${captionDeskAlign}
             ${captionColor ? `color: ${captionColor};` : ''}
             ${captionTypoDesktop}
             ${captionMarginDesktop}
         }
-        .${uniqueId} .zolo-image-block-wrap {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap {
             ${titleDeskAlign}
         }
-        .${uniqueId} .zolo-image-mask .zolo-img-wrap,
-        .${uniqueId} .zolo-image-mask .zolo-img-wrap::before {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-mask .zolo-img-wrap,
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-mask .zolo-img-wrap::before {
             ${maskStyles}
         }
-        .${uniqueId} .zolo-image-block-wrap {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap {
             ${imgMarginDesktop}
         }
-        .${uniqueId} .zolo-image-block-wrap .zolo-img {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask .zolo-img {
             ${imgBorderStyles}
             ${imgBradiusDesk}
             ${imgBoxShadow}
         }
-        .${uniqueId} .zolo-image-block-wrap .zolo-img-wrap:hover .zolo-img {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask .zolo-img-wrap:hover .zolo-img {
             border-color: ${imgHoverBorder};
         }
 
-        .${uniqueId} .zolo-image-block-wrap .zolo-img-wrap::before {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-img-wrap::before {
             ${overlayDeskBGStyle}
-            ${overlayDeskBradius}
-            ${overlayDeskEdgeDistance}
+            ${imgBradiusDesk}
             opacity: ${onOpacity};
         }
-        .${uniqueId} .zolo-image-block-wrap .zolo-img-wrap::after {
-            ${overlayDeskBorderStyles}
-        }
-        .${uniqueId} .zolo-image-block-wrap .zolo-img-wrap:hover::after {
+
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-image-block-inner:hover .zolo-img-wrap::before{
             opacity: ${ohOpacity};
         }
 
-        .${uniqueId} .zolo-adi-overlay .zolo-content-wrap {
-            ${overlayContentPosition}
-            ${contentPaddingDesk}
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-img-wrap::after {
+            ${overlayDeskBorderStyles}
+            ${overlayDeskEdgeDistance}
+            ${overlayDeskBradius}
         }
 
-        .${uniqueId} .zolo-adi-overlay .zolo-title {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-content-wrap {
+            ${overlayContentPosition}
+            ${contentPaddingDesk}
+            ${contentMarginDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-inner-content {
+            ${contentWidthDesktop}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-title {
             ${headingColor ? `color: ${headingColor};` : ''}
             ${headingTypoDesktop}
             ${headingMarginDesk}
         }
 
-        .${uniqueId} .zolo-adi-overlay .zolo-caption {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-caption {
             ${descriptionColor ? `color: ${descriptionColor};` : ''}
             ${descTypoDesktop}
             ${descMarginDesk}
         }
-        .${uniqueId} .zolo-separator {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-separator {
             ${separatorMarginDesk}
         }
-        .${uniqueId} .zolo-separator span {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-separator span {
             border-top-color: ${separatorColor};
             ${separatorStyle ? `border-top-style: ${separatorStyle};` : ''}
             ${separatorWidthDesktop}
@@ -374,95 +404,109 @@ const Style = ({ props }) => {
     `;
 
     const tabletAllStyle = `
-        .${uniqueId} .zolo-caption {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-caption {
             ${captionTabAlign}
             ${captionTypoTab}
             ${captionMarginTab}
         }
-        .${uniqueId} .zolo-image-block-wrap {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap {
             ${titleTabAlign}
         }
-        .${uniqueId} .zolo-image-block-wrap {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap {
             ${imgMarginTab}
         }
-        .${uniqueId} .zolo-image-block-wrap .zolo-img {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask .zolo-img {
             ${imgBorderStylesTab}
             ${imgBradiusTab}
         }
-        .${uniqueId} .zolo-image-block-wrap .zolo-img-wrap::before {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img-wrap::before {
             ${overlayTabBGStyle}
-            ${overlayTabBradius}
-            ${overlayTabEdgeDistance}
+            ${imgBradiusTab}
         }
-        .${uniqueId} .zolo-image-block-wrap .zolo-img-wrap::after {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img-wrap::after {
             ${overlayTabBorderStyles}
-        }
-        .${uniqueId} .zolo-adi-overlay .zolo-content-wrap {
-            ${contentPaddingTab}
+            ${overlayTabEdgeDistance}
+            ${overlayTabBradius}
         }
 
-        .${uniqueId} .zolo-adi-overlay .zolo-title {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-content-wrap {
+            ${contentPaddingTab}
+            ${contentMarginTab}
+        }
+        
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-inner-content {
+            ${contentWidthTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-title {
             ${headingTypoTab}
             ${headingMarginTab}
         }
 
-        .${uniqueId} .zolo-adi-overlay .zolo-caption {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-caption {
             ${descTypoTab}
             ${descMarginTab}
         }
 
-        .${uniqueId} .zolo-separator {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-separator {
             ${separatorMarginTab}
         }
-        .${uniqueId} .zolo-separator span {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-separator span {
             ${separatorWidthTab}
             ${separatorHeightTab}
         }
     `;
 
     const mobileAllStyle = `
-        .${uniqueId} .zolo-caption {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-caption {
             ${captionMobAlign}
             ${captionTypoMob}
             ${captionMarginMob}
         }
-        .${uniqueId} .zolo-image-block-wrap {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap {
             ${titleMobAlign}
         }
-        .${uniqueId} .zolo-image-block-wrap {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap {
             ${imgMarginMob}
         }
-        .${uniqueId} .zolo-image-block-wrap .zolo-img {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask .zolo-img {
             ${imgBorderStylesMob}
             ${imgBradiusMob}
         }
-        .${uniqueId} .zolo-image-block-wrap .zolo-img-wrap::before {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img-wrap::before {
             ${overlayMobBGStyle}
-            ${overlayMobBradius}
-            ${overlayMobEdgeDistance}
+            ${imgBradiusMob}
         }
-        .${uniqueId} .zolo-image-block-wrap .zolo-img-wrap::after {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img-wrap::after {
             ${overlayMobBorderStyles}
-        }
-        .${uniqueId} .zolo-adi-overlay .zolo-content-wrap {
-            ${contentPaddingMob}
+            ${overlayMobEdgeDistance}
+            ${overlayMobBradius}
         }
 
-        .${uniqueId} .zolo-adi-overlay .zolo-title {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-content-wrap {
+            ${contentPaddingMob}
+            ${contentMarginMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-inner-content {
+            ${contentWidthMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-title {
             ${headingTypoMob}
             ${headingMarginMob}
         }
 
-        .${uniqueId} .zolo-adi-overlay .zolo-caption {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-caption {
             ${descTypoMob}
             ${descMarginMob}
         }
 
-        .${uniqueId} .zolo-separator {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-separator {
             ${separatorMarginMob}
         }
 
-        .${uniqueId} .zolo-separator span {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-separator span {
             ${separatorWidthMob}
             ${separatorHeightMob}
         }

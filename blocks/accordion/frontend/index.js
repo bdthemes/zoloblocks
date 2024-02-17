@@ -21,5 +21,3 @@ document.addEventListener('DOMContentLoaded', function () {
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map
-
-// Path: blocks/accordion/frontend/accordion.js

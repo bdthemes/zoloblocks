@@ -115,6 +115,18 @@ function addAttributes(settings) {
                 type: 'boolean',
                 default: false,
             },
+            animations: {
+                type: 'object',
+                default: {
+                    translateX: {
+                        type: 'object',
+                        default: {
+                            transformTranslateX: 0,
+                            transformTranslateXUnit: 'px',
+                        },
+                    },
+                },
+            },
             entranceAnimation: {
                 type: 'object',
                 default: {
@@ -123,6 +135,10 @@ function addAttributes(settings) {
                     delay: 0,
                     transformOrigin: 'center',
                     transformOriginCustom: '',
+                    translateX: {
+                        transformTranslateX: 0,
+                        transformTranslateXUnit: 'px',
+                    },
                     transformTranslateX: 0,
                     transformTranslateY: 0,
                     transformTranslateZ: 0,
@@ -136,11 +152,6 @@ function addAttributes(settings) {
                     transformSkewY: 0,
                     opacity: 0,
                     easing: 'ease-out',
-                    //? todo: add more animation properties
-                    // iteration: 0,
-                    // direction: 'normal',
-                    // fillMode: 'none',
-                    // animation: 'fadeIn',
                 },
             },
             ...(settings.attributes.globalConfig?.default?.margin &&

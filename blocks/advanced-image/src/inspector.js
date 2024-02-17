@@ -55,6 +55,8 @@ import {
     OVERLAY_BRADIUS,
     OVERLAY_EDGE_DISTANCE,
     CONTENT_PADDING,
+    CONTENT_MARGIN,
+    CONTENT_MAX_WIDTH,
     ITEM_VISIBILITY,
     HEADING_MARGIN,
     DESC_MARGIN,
@@ -103,6 +105,7 @@ function Inspector(props) {
         separatorPosition,
 
         photoMaskImage,
+        zolo_overlayBorderBorderColor,
     } = attributes;
 
     const requiredProps = {
@@ -384,24 +387,23 @@ function Inspector(props) {
                                                 controlName={OVERLAY_BORDER}
                                                 requiredProps={requiredProps}
                                             />
-                                            <ResDimensionsControl
-                                                label={__('Border Radius', 'zolo-blocks')}
-                                                controlName={OVERLAY_BRADIUS}
-                                                requiredProps={requiredProps}
-                                                forBorderRadius={true}
-                                            />
-                                            <ResRangeControl
-                                                label={__('Edge Distance', 'zolo-blocks')}
-                                                controlName={OVERLAY_EDGE_DISTANCE}
-                                                requiredProps={requiredProps}
-                                            />
+                                            {zolo_overlayBorderBorderColor && (
+                                                <>
+                                                    <ResDimensionsControl
+                                                        label={__('Border Radius', 'zolo-blocks')}
+                                                        controlName={OVERLAY_BRADIUS}
+                                                        requiredProps={requiredProps}
+                                                        forBorderRadius={true}
+                                                    />
+                                                    <ResRangeControl
+                                                        label={__('Edge Distance', 'zolo-blocks')}
+                                                        controlName={OVERLAY_EDGE_DISTANCE}
+                                                        requiredProps={requiredProps}
+                                                    />
+                                                </>
+                                            )}
                                         </>
                                     )}
-                                    <ResDimensionsControl
-                                        label={__('Content Padding', 'zolo-blocks')}
-                                        controlName={CONTENT_PADDING}
-                                        requiredProps={requiredProps}
-                                    />
                                     <NormalBGControl requiredProps={requiredProps} controlName={OVERLAY_BG} noMainBGImg={true} />
                                     <TabPanelControl
                                         normalComponents={
@@ -428,6 +430,24 @@ function Inspector(props) {
                                                 />
                                             </>
                                         }
+                                    />
+                                </ZoloPanelBody>
+                                <ZoloPanelBody title={__('Content', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                                    <ResRangeControl
+                                        label={__('Max Width', 'zolo-blocks')}
+                                        controlName={CONTENT_MAX_WIDTH}
+                                        requiredProps={requiredProps}
+                                        max={2000}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Padding', 'zolo-blocks')}
+                                        controlName={CONTENT_PADDING}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Margin', 'zolo-blocks')}
+                                        controlName={CONTENT_MARGIN}
+                                        requiredProps={requiredProps}
                                     />
                                 </ZoloPanelBody>
                                 <ZoloPanelBody title={__('Heading', 'zolo-blocks')} stylePanel={true} panelProps={props}>
