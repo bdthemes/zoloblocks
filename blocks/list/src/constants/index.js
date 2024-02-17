@@ -47,12 +47,8 @@ export const SOCIAL_ICON_COLOR = [
     },
 ];
 
-// column count
-export const COLUMN_COUNT = 'columnCount';
-
 //columns Number
 export const COLUMNS_NUMBER = 'columns';
-export const COLUMNS_GAP = 'columnsGap';
 
 //button
 export const BUTTON_PADDING = 'btnPadding';

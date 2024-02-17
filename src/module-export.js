@@ -37,6 +37,8 @@ export { default as GoogleMapAutocomplete } from './controls/google-map-autocomp
 export { default as ObjectFitControl } from './controls/object-fit-control';
 export { default as OverflowControl } from './controls/overflow-control';
 export { default as MaskControl } from './controls/mask-control';
+export { default as PopoverControl } from './controls/popover-control';
+export { default as SimpleRangeControl } from './controls/simple-range-control';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';

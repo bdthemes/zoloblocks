@@ -54,6 +54,8 @@ export default function Edit(props) {
         separatorVisibleOn,
         separatorPosition,
         separatorStyle,
+
+        photoMaskImage,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -108,7 +110,7 @@ export default function Edit(props) {
                         tagName={link && link.url ? 'a' : 'div'}
                         className={classnames(
                             'zolo-image-block-wrap',
-                            'zolo-image-mask',
+                            `${photoMaskImage ? 'zolo-image-mask' : 'no-mask'}`,
                             `${layout === 'overlay' ? 'zolo-adi-overlay' : ''}`,
                             hoverEffect
                         )}
@@ -154,43 +156,45 @@ export default function Edit(props) {
 
                             {layout === 'overlay' && (
                                 <div className="zolo-content-wrap">
-                                    {separatorPosition === 'before_title' && separatorStyle !== '' && (
-                                        <div className={`zolo-separator ${separatorVisibleOn}`}>
-                                            <span></span>
-                                        </div>
-                                    )}
-                                    <RichText
-                                        tagName={headingTag}
-                                        className={`zolo-title ${headingVisibleOn}`}
-                                        value={heading}
-                                        onChange={(v) =>
-                                            setAttributes({
-                                                heading: v,
-                                            })
-                                        }
-                                        placeholder={__('Write Title...', 'zolo-blocks')}
-                                    />
-                                    {separatorPosition === 'after_title' && separatorStyle !== '' && (
-                                        <div className={`zolo-separator ${separatorVisibleOn}`}>
-                                            <span></span>
-                                        </div>
-                                    )}
-                                    <RichText
-                                        tagName="p"
-                                        value={description}
-                                        className={`zolo-caption ${descriptionVisibleOn}`}
-                                        onChange={(v) =>
-                                            setAttributes({
-                                                description: v,
-                                            })
-                                        }
-                                        placeholder={__('Write Description...', 'zolo-blocks')}
-                                    />
-                                    {separatorPosition === 'after_desc' && separatorStyle !== '' && (
-                                        <div className={`zolo-separator ${separatorVisibleOn}`}>
-                                            <span></span>
-                                        </div>
-                                    )}
+                                    <div className="zolo-inner-content">
+                                        {separatorPosition === 'before_title' && separatorStyle !== '' && (
+                                            <div className={`zolo-separator ${separatorVisibleOn}`}>
+                                                <span></span>
+                                            </div>
+                                        )}
+                                        <RichText
+                                            tagName={headingTag}
+                                            className={`zolo-title ${headingVisibleOn}`}
+                                            value={heading}
+                                            onChange={(v) =>
+                                                setAttributes({
+                                                    heading: v,
+                                                })
+                                            }
+                                            placeholder={__('Write Title...', 'zolo-blocks')}
+                                        />
+                                        {separatorPosition === 'after_title' && separatorStyle !== '' && (
+                                            <div className={`zolo-separator ${separatorVisibleOn}`}>
+                                                <span></span>
+                                            </div>
+                                        )}
+                                        <RichText
+                                            tagName="p"
+                                            value={description}
+                                            className={`zolo-caption ${descriptionVisibleOn}`}
+                                            onChange={(v) =>
+                                                setAttributes({
+                                                    description: v,
+                                                })
+                                            }
+                                            placeholder={__('Write Description...', 'zolo-blocks')}
+                                        />
+                                        {separatorPosition === 'after_desc' && separatorStyle !== '' && (
+                                            <div className={`zolo-separator ${separatorVisibleOn}`}>
+                                                <span></span>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             )}
                             {layout === 'normal' && showCaption && (

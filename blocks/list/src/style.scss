@@ -1,20 +1,12 @@
 .wp-block-zolo-list {
-    .zolo-list-wrap {
+    &.zolo-list-wrap {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         grid-gap: 30px;
     }
-
-    /* .zolo-list-wrap {
-    padding: 30px;
-    margin: 30px 0;
-    background-color: #f9faff;
-} */
-
     .zolo-list-item {
         text-decoration: none;
     }
-
     .zolo-list-icon {
         display: inline-block;
         padding: 10px;
@@ -53,86 +45,67 @@
         margin: 10px 0 0;
     }
 
-    .zolo-list-hover-icon {
-        color: #1641f7;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-    }
-
-    .zolo-list-item:hover .zolo-list-hover-icon {
-        transform: translateX(0);
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .zolo-list-hover-icon svg {
-        display: block;
-        width: 16px;
-        height: 16px;
-    }
-
     /* Demo css style 1  */
 
-    .zolo-list-wrap.zolo-list-style-1 {
-        grid-gap: 10px;
-    }
+    // &.zolo-list-style-1 {
+    //     grid-gap: 10px;
+    // }
 
-    .zolo-list-style-1 .zolo-list-title {
+    &.zolo-list-style-1 .zolo-list-title {
         margin: 0;
     }
 
     /* Demo css style 1,2,3,4  */
 
-    .zolo-list-style-1 .zolo-list-hover-icon,
-    .zolo-list-style-1 .zolo-list-desc,
-    .zolo-list-style-1 .zolo-list-icon,
-    .zolo-list-style-2 .zolo-list-hover-icon,
-    .zolo-list-style-3 .zolo-list-hover-icon,
-    .zolo-list-style-4 .zolo-list-hover-icon {
+    &.zolo-list-style-1 .zolo-list-hover-icon,
+    &.zolo-list-style-1 .zolo-list-desc,
+    // &.zolo-list-style-1 .zolo-list-icon,
+    &.zolo-list-style-2 .zolo-list-hover-icon,
+    &.zolo-list-style-3 .zolo-list-hover-icon,
+    &.zolo-list-style-4 .zolo-list-hover-icon {
         display: none;
     }
 
     /* Demo css style 2,3  */
-    .zolo-list-style-3 .zolo-list-item,
-    .zolo-list-style-4 .zolo-list-item,
-    .zolo-list-style-5 .zolo-list-item,
-    .zolo-list-style-6 .zolo-list-item {
-        display: inline-flex;
-        align-items: flex-start;
-        gap: 15px;
-    }
+    // &.zolo-list-style-3 .zolo-list-item,
+    // &.zolo-list-style-4 .zolo-list-item,
+    // &.zolo-list-style-5 .zolo-list-item,
+    // &.zolo-list-style-6 .zolo-list-item {
+    //     display: inline-flex;
+    //     align-items: flex-start;
+    //     gap: 15px;
+    // }
 
-    .zolo-list-style-3 .zolo-list-title,
-    .zolo-list-style-4 .zolo-list-title,
-    .zolo-list-style-5 .zolo-list-title,
-    .zolo-list-style-6 .zolo-list-title {
+    &.zolo-list-style-3 .zolo-list-title,
+    &.zolo-list-style-4 .zolo-list-title,
+    &.zolo-list-style-5 .zolo-list-title,
+    &.zolo-list-style-6 .zolo-list-title {
         margin: 0;
         line-height: 1;
     }
 
     /* Demo css style 3  */
-    .zolo-list-style-4 .zolo-list-item,
-    .zolo-list-style-6 .zolo-list-item {
-        flex-direction: row-reverse;
-    }
+    // &.zolo-list-style-4 .zolo-list-item,
+    // &.zolo-list-style-6 .zolo-list-item {
+    //     flex-direction: row-reverse;
+    // }
 
-    .zolo-list-style-4 .zolo-list-content,
-    .zolo-list-style-6 .zolo-list-content {
-        text-align: right;
-    }
+    // &.zolo-list-style-4 .zolo-list-content,
+    // &.zolo-list-style-6 .zolo-list-content {
+    //     text-align: right;
+    // }
 
     /* Demo css style 4  */
-    .zolo-list-style-5 .zolo-list-hover-icon {
+    &.zolo-list-style-5 .zolo-list-hover-icon {
         transform: translateX(-15px);
     }
 
     /* Demo css style 5  */
-    .zolo-list-style-6 .zolo-list-hover-icon {
+    &.zolo-list-style-6 .zolo-list-hover-icon {
         transform: translateX(15px) rotate(180deg);
     }
 
-    .zolo-list-style-6 .zolo-list-item:hover .zolo-list-hover-icon {
+    &.zolo-list-style-6 .zolo-list-item:hover .zolo-list-hover-icon {
         transform: translateX(0) rotate(180deg);
     }
 
@@ -165,15 +138,15 @@
         transform: translateY(-5px);
     }
 
-    @media (min-width: 768px) {
-        .zolo-list-wrap {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
+    // @media (min-width: 768px) {
+    //     .zolo-list-wrap {
+    //         grid-template-columns: repeat(2, 1fr);
+    //     }
+    // }
 
-    @media (min-width: 1024px) {
-        .zolo-list-wrap {
-            grid-template-columns: repeat(4, 1fr);
-        }
-    }
+    // @media (min-width: 1024px) {
+    //     .zolo-list-wrap {
+    //         grid-template-columns: repeat(4, 1fr);
+    //     }
+    // }
 }

@@ -24,6 +24,8 @@ const Save = ({ attributes }) => {
         separatorVisibleOn,
         separatorPosition,
         separatorStyle,
+
+        photoMaskImage,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -42,7 +44,7 @@ const Save = ({ attributes }) => {
                     tagName={link && link.url ? 'a' : 'div'}
                     className={classnames(
                         'zolo-image-block-wrap',
-                        'zolo-image-mask',
+                        `${photoMaskImage ? 'zolo-image-mask' : 'no-mask'}`,
                         `${layout === 'overlay' ? 'zolo-adi-overlay' : ''}`,
                         hoverEffect
                     )}
@@ -71,23 +73,25 @@ const Save = ({ attributes }) => {
                         </div>
                         {layout === 'overlay' && (
                             <div className="zolo-content-wrap">
-                                {separatorPosition === 'before_title' && separatorStyle !== '' && (
-                                    <div className={`zolo-separator ${separatorVisibleOn}`}>
-                                        <span></span>
-                                    </div>
-                                )}
-                                <RichText.Content tagName={headingTag} className={`zolo-title ${headingVisibleOn}`} value={heading} />
-                                {separatorPosition === 'after_title' && separatorStyle !== '' && (
-                                    <div className={`zolo-separator ${separatorVisibleOn}`}>
-                                        <span></span>
-                                    </div>
-                                )}
-                                <RichText.Content tagName="p" value={description} className={`zolo-caption ${descriptionVisibleOn}`} />
-                                {separatorPosition === 'after_desc' && separatorStyle !== '' && (
-                                    <div className={`zolo-separator ${separatorVisibleOn}`}>
-                                        <span></span>
-                                    </div>
-                                )}
+                                <div className="zolo-inner-content">
+                                    {separatorPosition === 'before_title' && separatorStyle !== '' && (
+                                        <div className={`zolo-separator ${separatorVisibleOn}`}>
+                                            <span></span>
+                                        </div>
+                                    )}
+                                    <RichText.Content tagName={headingTag} className={`zolo-title ${headingVisibleOn}`} value={heading} />
+                                    {separatorPosition === 'after_title' && separatorStyle !== '' && (
+                                        <div className={`zolo-separator ${separatorVisibleOn}`}>
+                                            <span></span>
+                                        </div>
+                                    )}
+                                    <RichText.Content tagName="p" value={description} className={`zolo-caption ${descriptionVisibleOn}`} />
+                                    {separatorPosition === 'after_desc' && separatorStyle !== '' && (
+                                        <div className={`zolo-separator ${separatorVisibleOn}`}>
+                                            <span></span>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         )}
                         {layout === 'normal' && showCaption && (
