@@ -150,10 +150,8 @@ function addAttributes(settings) {
                     transformScaleZ: 0,
                     transformSkewX: 0,
                     transformSkewY: 0,
-                    iteration: 0,
-                    direction: 'normal',
-                    fillMode: 'none',
-                    animation: 'fadeIn',
+                    opacity: 0,
+                    easing: 'ease-out',
                 },
             },
             ...(settings.attributes.globalConfig?.default?.margin &&
