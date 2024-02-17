@@ -18,4 +18,4 @@ vendor-bundle/
 dist/
 modules/
 build/
-blocks/*/frontend
+blocks/review-carousel/frontend/

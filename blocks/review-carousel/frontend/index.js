@@ -17,3 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map
+
+
+// Path: blocks/review-carousel/src/frontend.js
