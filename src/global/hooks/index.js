@@ -115,18 +115,6 @@ function addAttributes(settings) {
                 type: 'boolean',
                 default: false,
             },
-            animations: {
-                type: 'object',
-                default: {
-                    translateX: {
-                        type: 'object',
-                        default: {
-                            transformTranslateX: 0,
-                            transformTranslateXUnit: 'px',
-                        },
-                    },
-                },
-            },
             entranceAnimation: {
                 type: 'object',
                 default: {
@@ -136,22 +124,52 @@ function addAttributes(settings) {
                     transformOrigin: 'center',
                     transformOriginCustom: '',
                     translateX: {
-                        transformTranslateX: 0,
-                        transformTranslateXUnit: 'px',
+                        value: 0,
+                        unit: 'px',
                     },
-                    transformTranslateX: 0,
-                    transformTranslateY: 0,
-                    transformTranslateZ: 0,
-                    transformRotateX: 0,
-                    transformRotateY: 0,
-                    transformRotateZ: 0,
-                    transformScaleX: 0,
-                    transformScaleY: 0,
-                    transformScaleZ: 0,
-                    transformSkewX: 0,
-                    transformSkewY: 0,
-                    opacity: 0,
+                    translateY: {
+                        value: 0,
+                        unit: 'px',
+                    },
+                    translateZ: {
+                        value: 0,
+                        unit: 'px',
+                    },
+                    rotateX: {
+                        value: 0,
+                        unit: 'deg',
+                    },
+                    rotateY: {
+                        value: 0,
+                        unit: 'deg',
+                    },
+                    rotateZ: {
+                        value: 0,
+                        unit: 'deg',
+                    },
+                    scaleX: {
+                        value: 1,
+                        unit: '',
+                    },
+                    scaleY: {
+                        value: 1,
+                        unit: '',
+                    },
+                    scaleZ: {
+                        value: 1,
+                        unit: '',
+                    },
+                    skewX: {
+                        value: 0,
+                        unit: 'deg',
+                    },
+                    skewY: {
+                        value: 0,
+                        unit: 'deg',
+                    },
+                    opacity: 1,
                     easing: 'ease-out',
+
                 },
             },
             ...(settings.attributes.globalConfig?.default?.margin &&

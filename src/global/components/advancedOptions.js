@@ -2,23 +2,8 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { useEffect, useState } from '@wordpress/element';
-import { InspectorControls, PanelColorSettings } from '@wordpress/block-editor';
-import { animate, inView } from 'motion';
-import {
-    PanelBody,
-    SelectControl,
-    ToggleControl,
-    TextControl,
-    TextareaControl,
-    Dropdown,
-    Button,
-    ButtonGroup,
-    BaseControl,
-    TabPanel,
-    RangeControl,
-    FormTokenField,
-} from '@wordpress/components';
+import { animate } from 'motion';
+import { SelectControl, ToggleControl, TextControl, Button, FormTokenField } from '@wordpress/components';
 
 /**
  * Internal dependencies
@@ -39,113 +24,89 @@ export const AdvancedOptions = (props) => {
 
     const {
         uniqueId,
-        customCss,
         responsiveness,
         entranceAnimation,
         entranceAnimationActive,
         parentClasses,
-        zIndex,
         customClass,
         customClasses,
-        zoloStyles,
         globalConfig,
-        selectedExtraPanel,
         zoloId,
         overflow,
-        animations,
     } = attributes;
 
-    // const handleMotionAnimation = () => {
-    //     const elements = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
-    //     const transformOptions = [
-    //         entranceAnimation.translateX ? `translateX(${entranceAnimation.translateX}px)` : '',
-    //         entranceAnimation.translateY ? `translateY(${entranceAnimation.translateY}px)` : '',
-    //         entranceAnimation.rotateX ? `rotateX(${entranceAnimation.rotateX}deg)` : '',
-    //         entranceAnimation.rotateY ? `rotateY(${entranceAnimation.rotateY}deg)` : '',
-    //         entranceAnimation.rotateZ ? `rotateZ(${entranceAnimation.rotateZ}deg)` : '',
-    //         entranceAnimation.scaleX ? `scaleX(${entranceAnimation.scaleX})` : '',
-    //         entranceAnimation.scaleY ? `scaleY(${entranceAnimation.scaleY})` : '',
-    //         entranceAnimation.skewX ? `skewX(${entranceAnimation.skewX}deg)` : '',
-    //         entranceAnimation.skewY ? `skewY(${entranceAnimation.skewY}deg)` : '',
+    const handleMotionAnimation = () => {
+        const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
+        let transformOptions = [];
+        if (entranceAnimation.translateX.value !== 0) {
+            transformOptions.push(`translateX(${entranceAnimation.translateX.value}${entranceAnimation.translateX.unit})`);
+        }
+        if (entranceAnimation.translateY.value !== 0) {
+            transformOptions.push(`translateY(${entranceAnimation.translateY.value}${entranceAnimation.translateY.unit})`);
+        }
+        if (entranceAnimation.translateZ.value !== 0) {
+            transformOptions.push(`translateZ(${entranceAnimation.translateZ.value}${entranceAnimation.translateZ.unit})`);
+        }
 
-    //         entranceAnimation.perspective ? `perspective(${entranceAnimation.perspective}px)` : '',
-    //     ];
-    //     const otherOptions = [];
+        if (entranceAnimation.rotateX.value !== 0) {
+            transformOptions.push(`rotateX(${entranceAnimation.rotateX.value}deg)`);
+        }
+        if (entranceAnimation.rotateY.value !== 0) {
+            transformOptions.push(`rotateY(${entranceAnimation.rotateY.value}deg)`);
+        }
+        if (entranceAnimation.rotateZ.value !== 0) {
+            transformOptions.push(`rotateZ(${entranceAnimation.rotateZ.value}deg)`);
+        }
+        if (entranceAnimation.scaleX.value !== 0) {
+            transformOptions.push(`scaleX(${entranceAnimation.scaleX.value})`);
+        }
+        if (entranceAnimation.scaleY.value !== 0) {
+            transformOptions.push(`scaleY(${entranceAnimation.scaleY.value})`);
+        }
+        if (entranceAnimation.scaleZ.value !== 0) {
+            transformOptions.push(`scaleZ(${entranceAnimation.scaleZ.value})`);
+        }
+        if (entranceAnimation.skewX.value !== 0) {
+            transformOptions.push(`skewX(${entranceAnimation.skewX.value}deg)`);
+        }
+        if (entranceAnimation.skewY.value !== 0) {
+            transformOptions.push(`skewY(${entranceAnimation.skewY.value}deg)`);
+        }
 
-    //     // array to string
-    //     const transformOption = transformOptions.join('');
+        const otherOptions = {};
+        if (entranceAnimation.duration) {
+            otherOptions.duration = entranceAnimation.duration / 1000;
+        }
+        if (entranceAnimation.easing) {
+            otherOptions.easing = entranceAnimation.easing;
+        }
+        if (entranceAnimation.delay) {
+            otherOptions.delay = entranceAnimation.delay / 1000;
+        }
+        if (entranceAnimation.direction) {
+            otherOptions.direction = entranceAnimation.direction;
+        }
+        if (entranceAnimation.repeat === true) {
+            otherOptions.repeat = Infinity;
+        }
+        if (entranceAnimation.perspective !== 0) {
+            otherOptions.perspective = entranceAnimation.perspective;
+        }
+        if (entranceAnimation.transformOrigin !== 'custom') {
+            otherOptions.transformOrigin = entranceAnimation.transformOrigin;
+        } else {
+            otherOptions.transformOrigin = entranceAnimation.transformOriginCustom;
+        }
 
-    //     const options = {
-    //         // opacity: [0.5, 1],
-    //         transform: [transformOption, 'none'],
-    //         transformOrigin:
-    //             entranceAnimation.transformOrigin === 'custom'
-    //                 ? entranceAnimation.transformOriginCustom
-    //                 : entranceAnimation.transformOrigin,
-    //         // delay: entranceAnimation.delay,
-    //     };
-    //     animate(elements, options, { duration: 1, easing: 'ease-out' });
-    // };
+        // array to string
+        const transformOptionsion = transformOptions.join('');
 
-        const handleMotionAnimation = () => {
-                const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
-            let transformOptions = [];
-            if (entranceAnimation.translateX) {
-                transformOptions.push(`translateX(${entranceAnimation.translateX}px)`);
-            }
-            if (entranceAnimation.translateY) {
-                transformOptions.push(`translateY(${entranceAnimation.translateY}px)`);
-            }
-            if (entranceAnimation.rotateX) {
-                transformOptions.push(`rotateX(${entranceAnimation.rotateX}deg)`);
-            }
-            if (entranceAnimation.rotateY) {
-                transformOptions.push(`rotateY(${entranceAnimation.rotateY}deg)`);
-            }
-            if (entranceAnimation.rotateZ) {
-                transformOptions.push(`rotateZ(${entranceAnimation.rotateZ}deg)`);
-            }
-            if (entranceAnimation.scaleX) {
-                transformOptions.push(`scaleX(${entranceAnimation.scaleX})`);
-            }
-            if (entranceAnimation.scaleY) {
-                transformOptions.push(`scaleY(${entranceAnimation.scaleY})`);
-            }
-            if (entranceAnimation.skewX) {
-                transformOptions.push(`skewX(${entranceAnimation.skewX}deg)`);
-            }
-            if (entranceAnimation.skewY) {
-                transformOptions.push(`skewY(${entranceAnimation.skewY}deg)`);
-            }
-            if (entranceAnimation.perspective) {
-                transformOptions.push(`perspective(${entranceAnimation.perspective}px)`);
-            }
-
-            const otherOptions = {};
-            if (entranceAnimation.duration) {
-                otherOptions.duration = entranceAnimation.duration / 1000;
-            }
-            if (entranceAnimation.easing) {
-                otherOptions.easing = entranceAnimation.easing;
-            }
-            if (entranceAnimation.delay) {
-                otherOptions.delay = entranceAnimation.delay / 1000;
-            }
-            if (entranceAnimation.direction) {
-                otherOptions.direction = entranceAnimation.direction;
-            }
-            if (entranceAnimation.repeat === true) {
-                otherOptions.repeat = Infinity;
-            }
-            // array to string
-            const transformOptionsion = transformOptions.join('');
-
-            const options = {
-                transform: [transformOptionsion, 'none'],
-                opacity: [0, 1],
-            };
-            animate(targetElement, options, otherOptions);
+        const options = {
+            transform: [transformOptionsion, 'none'],
+            opacity: [entranceAnimation.opacity ? entranceAnimation.opacity : 0, 1],
         };
+        animate(targetElement, options, otherOptions);
+    };
 
     const handleResponsiveness = (key, value, classname) => {
         let updatedClasses = [...parentClasses, classname];
@@ -339,53 +300,9 @@ export const AdvancedOptions = (props) => {
                                 }}
                             />
                         )}
-                        {/* label, onChange (range control func), onUnitChange (unit func), value ( range val), unit (unit val), onReset (func), units = [
-                            {label: '', value: ''},
-                        ], min = '', max = '', step = '', noUnits = false */}
-                        <SimpleRangeControl
-                            label={__('Translate X', 'zolo-blocks')}
-                            onChange={(value) => {
-                                setAttributes({
-                                    entranceAnimation: {
-                                        ...entranceAnimation,
-                                        translateX: {
-                                            ...entranceAnimation.translateX,
-                                            transformTranslateX: value,
-                                        },
-                                    },
-                                });
-                            }}
-                            value={entranceAnimation?.translateX?.transformTranslateX}
-                            onUnitChange={(value) => {
-                                setAttributes({
-                                    entranceAnimation: {
-                                        ...entranceAnimation,
-                                        translateX: {
-                                            ...entranceAnimation.translateX,
-                                            transformTranslateXUnit: value,
-                                        },
-                                    },
-                                });
-                            }}
-                            unit={entranceAnimation?.translateX?.transformTranslateXUnit}
-                            onReset={() => {
-                                setAttributes({
-                                    entranceAnimation: {
-                                        ...entranceAnimation,
-                                        translateX: {
-                                            ...entranceAnimation.translateX,
-                                            transformTranslateX: 0,
-                                            transformTranslateXUnit: 'px',
-                                        },
-                                    },
-                                });
-                            }}
-                            min={-100}
-                            max={100}
-                            noUnits={false}
-                        />
+
                         <PopoverControl
-                            label={__('Translate X', 'zolo-blocks')}
+                            label={__('Translate', 'zolo-blocks')}
                             icon={
                                 <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -433,33 +350,134 @@ export const AdvancedOptions = (props) => {
                                 </svg>
                             }
                         >
-                            <RangeControl
+                            {/* label, onChange (range control func), onUnitChange (unit func), value ( range val), unit (unit val), onReset (func), units = [
+                            {label: '', value: ''},
+                        ], min = '', max = '', step = '', noUnits = false */}
+                            <SimpleRangeControl
                                 label={__('Translate X', 'zolo-blocks')}
-                                value={entranceAnimation.translateX}
                                 onChange={(value) => {
                                     setAttributes({
                                         entranceAnimation: {
                                             ...entranceAnimation,
-                                            translateX: value,
+                                            translateX: {
+                                                ...entranceAnimation.translateX,
+                                                value,
+                                            },
+                                        },
+                                    });
+                                }}
+                                value={entranceAnimation?.translateX?.value}
+                                onUnitChange={(unit) => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            translateX: {
+                                                ...entranceAnimation.translateX,
+                                                unit,
+                                            },
+                                        },
+                                    });
+                                }}
+                                unit={entranceAnimation?.translateX?.unit}
+                                onReset={() => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            translateX: {
+                                                ...entranceAnimation.translateX,
+                                                value: 0,
+                                                unit: 'px',
+                                            },
                                         },
                                     });
                                 }}
                                 min={-100}
                                 max={100}
+                                noUnits={false}
                             />
-                            <RangeControl
+                            <SimpleRangeControl
                                 label={__('Translate Y', 'zolo-blocks')}
-                                value={entranceAnimation.translateY}
                                 onChange={(value) => {
                                     setAttributes({
                                         entranceAnimation: {
                                             ...entranceAnimation,
-                                            translateY: value,
+                                            translateY: {
+                                                ...entranceAnimation.translateY,
+                                                value,
+                                            },
+                                        },
+                                    });
+                                }}
+                                value={entranceAnimation?.translateY?.value}
+                                onUnitChange={(unit) => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            translateY: {
+                                                ...entranceAnimation.translateY,
+                                                unit,
+                                            },
+                                        },
+                                    });
+                                }}
+                                unit={entranceAnimation?.translateY?.unit}
+                                onReset={() => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            translateY: {
+                                                ...entranceAnimation.translateY,
+                                                value: 0,
+                                                unit: 'px',
+                                            },
                                         },
                                     });
                                 }}
                                 min={-100}
                                 max={100}
+                                noUnits={false}
+                            />
+                            <SimpleRangeControl
+                                label={__('Translate Z', 'zolo-blocks')}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            translateZ: {
+                                                ...entranceAnimation.translateZ,
+                                                value,
+                                            },
+                                        },
+                                    });
+                                }}
+                                value={entranceAnimation?.translateZ?.value}
+                                onUnitChange={(unit) => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            translateZ: {
+                                                ...entranceAnimation.translateZ,
+                                                unit,
+                                            },
+                                        },
+                                    });
+                                }}
+                                unit={entranceAnimation?.translateZ?.unit}
+                                onReset={() => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            translateZ: {
+                                                ...entranceAnimation.translateZ,
+                                                value: 0,
+                                                unit: 'px',
+                                            },
+                                        },
+                                    });
+                                }}
+                                min={-100}
+                                max={100}
+                                noUnits={false}
                             />
                         </PopoverControl>
                         <PopoverControl
@@ -497,47 +515,131 @@ export const AdvancedOptions = (props) => {
                                 </svg>
                             }
                         >
-                            <RangeControl
+                            <SimpleRangeControl
                                 label={__('Rotate X', 'zolo-blocks')}
-                                value={entranceAnimation.rotateX}
                                 onChange={(value) => {
                                     setAttributes({
                                         entranceAnimation: {
                                             ...entranceAnimation,
-                                            rotateX: value,
+                                            rotateX: {
+                                                ...entranceAnimation.rotateX,
+                                                value,
+                                            },
+                                        },
+                                    });
+                                }}
+                                value={entranceAnimation?.rotateX?.value}
+                                onUnitChange={(unit) => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            rotateX: {
+                                                ...entranceAnimation.rotateX,
+                                                unit,
+                                            },
+                                        },
+                                    });
+                                }}
+                                unit={entranceAnimation?.rotateX?.unit}
+                                onReset={() => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            rotateX: {
+                                                ...entranceAnimation.rotateX,
+                                                value: 0,
+                                                unit: 'deg',
+                                            },
                                         },
                                     });
                                 }}
                                 min={-180}
                                 max={180}
+                                noUnits={true}
                             />
-                            <RangeControl
+                            <SimpleRangeControl
                                 label={__('Rotate Y', 'zolo-blocks')}
-                                value={entranceAnimation.rotateY}
                                 onChange={(value) => {
                                     setAttributes({
                                         entranceAnimation: {
                                             ...entranceAnimation,
-                                            rotateY: value,
+                                            rotatY: {
+                                                ...entranceAnimation.rotatY,
+                                                value,
+                                            },
+                                        },
+                                    });
+                                }}
+                                value={entranceAnimation?.rotatY?.value}
+                                onUnitChange={(unit) => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            rotatY: {
+                                                ...entranceAnimation.rotatY,
+                                                unit,
+                                            },
+                                        },
+                                    });
+                                }}
+                                unit={entranceAnimation?.rotatY?.unit}
+                                onReset={() => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            rotatY: {
+                                                ...entranceAnimation.rotatY,
+                                                value: 0,
+                                                unit: 'deg',
+                                            },
                                         },
                                     });
                                 }}
                                 min={-180}
                                 max={180}
+                                noUnits={true}
                             />
-                            <RangeControl
+                            <SimpleRangeControl
                                 label={__('Rotate Z', 'zolo-blocks')}
-                                value={entranceAnimation.rotateZ}
                                 onChange={(value) => {
                                     setAttributes({
                                         entranceAnimation: {
                                             ...entranceAnimation,
-                                            rotateZ: value,
+                                            rotateZ: {
+                                                ...entranceAnimation.rotateZ,
+                                                value,
+                                            },
+                                        },
+                                    });
+                                }}
+                                value={entranceAnimation?.rotateZ?.value}
+                                onUnitChange={(unit) => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            rotateZ: {
+                                                ...entranceAnimation.rotateZ,
+                                                unit,
+                                            },
+                                        },
+                                    });
+                                }}
+                                unit={entranceAnimation?.rotateZ?.unit}
+                                onReset={() => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            rotateZ: {
+                                                ...entranceAnimation.rotateZ,
+                                                value: 0,
+                                                unit: 'deg',
+                                            },
                                         },
                                     });
                                 }}
                                 min={-180}
                                 max={180}
+                                noUnits={true}
                             />
                         </PopoverControl>
                         <PopoverControl
@@ -575,35 +677,108 @@ export const AdvancedOptions = (props) => {
                                 </svg>
                             }
                         >
-                            <RangeControl
+                            <SimpleRangeControl
                                 label={__('Scale X', 'zolo-blocks')}
-                                value={entranceAnimation.scaleX}
                                 onChange={(value) => {
                                     setAttributes({
                                         entranceAnimation: {
                                             ...entranceAnimation,
-                                            scaleX: value,
+                                            scaleX: {
+                                                ...entranceAnimation.scaleX,
+                                                value,
+                                            },
+                                        },
+                                    });
+                                }}
+                                value={entranceAnimation?.scaleX?.value}
+                                onUnitChange={(unit) => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            scaleX: {
+                                                ...entranceAnimation.scaleX,
+                                                unit,
+                                            },
+                                        },
+                                    });
+                                }}
+                                unit={entranceAnimation?.scaleX?.unit}
+                                onReset={() => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            scaleX: {
+                                                ...entranceAnimation.scaleX,
+                                                value: 0,
+                                                unit: 'deg',
+                                            },
                                         },
                                     });
                                 }}
                                 min={0}
-                                max={5}
                                 step={0.1}
+                                max={5}
+                                noUnits={true}
                             />
-                            <RangeControl
+                            <SimpleRangeControl
                                 label={__('Scale Y', 'zolo-blocks')}
-                                value={entranceAnimation.scaleY}
                                 onChange={(value) => {
                                     setAttributes({
                                         entranceAnimation: {
                                             ...entranceAnimation,
-                                            scaleY: value,
+                                            scaleY: {
+                                                ...entranceAnimation.scaleY,
+                                                value,
+                                            },
+                                        },
+                                    });
+                                }}
+                                value={entranceAnimation?.scaleY?.value}
+                                onReset={() => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            scaleY: {
+                                                ...entranceAnimation.scaleY,
+                                                value: 0,
+                                            },
                                         },
                                     });
                                 }}
                                 min={0}
-                                max={5}
                                 step={0.1}
+                                max={5}
+                                noUnits={true}
+                            />
+                            <SimpleRangeControl
+                                label={__('Scale Z', 'zolo-blocks')}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            scaleZ: {
+                                                ...entranceAnimation.scaleZ,
+                                                value,
+                                            },
+                                        },
+                                    });
+                                }}
+                                value={entranceAnimation?.scaleZ?.value}
+                                onReset={() => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            scaleZ: {
+                                                ...entranceAnimation.scaleZ,
+                                                value: 0,
+                                            },
+                                        },
+                                    });
+                                }}
+                                min={0}
+                                step={0.1}
+                                max={5}
+                                noUnits={true}
                             />
                         </PopoverControl>
                         <PopoverControl
@@ -622,36 +797,82 @@ export const AdvancedOptions = (props) => {
                                 </svg>
                             }
                         >
-                            <RangeControl
+                            <SimpleRangeControl
                                 label={__('Skew X', 'zolo-blocks')}
-                                value={entranceAnimation.skewX}
                                 onChange={(value) => {
                                     setAttributes({
                                         entranceAnimation: {
                                             ...entranceAnimation,
-                                            skewX: value,
+                                            skewX: {
+                                                ...entranceAnimation.skewX,
+                                                value,
+                                            },
+                                        },
+                                    });
+                                }}
+                                value={entranceAnimation?.skewX?.value}
+                                unit={entranceAnimation?.skewX?.unit}
+                                onReset={() => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            skewX: {
+                                                ...entranceAnimation.skewX,
+                                                value: 0,
+                                            },
                                         },
                                     });
                                 }}
                                 min={-180}
                                 max={180}
+                                noUnits={true}
                             />
-                            <RangeControl
+
+                            <SimpleRangeControl
                                 label={__('Skew Y', 'zolo-blocks')}
-                                value={entranceAnimation.skewY}
                                 onChange={(value) => {
                                     setAttributes({
                                         entranceAnimation: {
                                             ...entranceAnimation,
-                                            skewY: value,
+                                            skewY: {
+                                                ...entranceAnimation.skewY,
+                                                value,
+                                            },
+                                        },
+                                    });
+                                }}
+                                value={entranceAnimation?.skewY?.value}
+                                onUnitChange={(unit) => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            skewY: {
+                                                ...entranceAnimation.skewY,
+                                                unit,
+                                            },
+                                        },
+                                    });
+                                }}
+                                unit={entranceAnimation?.skewY?.unit}
+                                onReset={() => {
+                                    setAttributes({
+                                        entranceAnimation: {
+                                            ...entranceAnimation,
+                                            skewY: {
+                                                ...entranceAnimation.skewY,
+                                                value: 0,
+                                                unit: 'deg',
+                                            },
                                         },
                                     });
                                 }}
                                 min={-180}
                                 max={180}
+                                noUnits={true}
                             />
                         </PopoverControl>
-                        <RangeControl
+
+                        <SimpleRangeControl
                             label={__('Perspective', 'zolo-blocks')}
                             value={entranceAnimation.perspective}
                             onChange={(value) => {
@@ -662,10 +883,43 @@ export const AdvancedOptions = (props) => {
                                     },
                                 });
                             }}
-                            min={50}
-                            max={1000}
+                            onReset={() => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        perspective: 0,
+                                    },
+                                });
+                            }}
+                            min={0}
+                            max={10000}
+                            noUnits={true}
                         />
-                        <RangeControl
+                        <SimpleRangeControl
+                            label={__('Opacity', 'zolo-blocks')}
+                            value={entranceAnimation.opacity}
+                            onChange={(value) => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        opacity: value,
+                                    },
+                                });
+                            }}
+                            onReset={() => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        opacity: 0,
+                                    },
+                                });
+                            }}
+                            min={0}
+                            step={0.1}
+                            max={1}
+                            noUnits={true}
+                        />
+                        <SimpleRangeControl
                             label={__('Delay(ms)', 'zolo-blocks')}
                             value={entranceAnimation.delay}
                             onChange={(value) => {
@@ -676,10 +930,19 @@ export const AdvancedOptions = (props) => {
                                     },
                                 });
                             }}
+                            onReset={() => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        delay: 0,
+                                    },
+                                });
+                            }}
                             min={0}
-                            max={1000}
+                            max={10000}
+                            noUnits={true}
                         />
-                        <RangeControl
+                        <SimpleRangeControl
                             label={__('Transition Duration(ms)', 'zolo-blocks')}
                             value={entranceAnimation.duration}
                             onChange={(value) => {
@@ -690,8 +953,17 @@ export const AdvancedOptions = (props) => {
                                     },
                                 });
                             }}
+                            onReset={() => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        duration: 0,
+                                    },
+                                });
+                            }}
                             min={0}
-                            max={1000}
+                            max={10000}
+                            noUnits={true}
                         />
                         <SelectControl
                             label={__('Transform Origin', 'zolo-blocks')}
