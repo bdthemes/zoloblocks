@@ -70,10 +70,97 @@ document.addEventListener('DOMContentLoaded', function () {
             transform: [transformOptionsion, 'none'],
             opacity: [entranceAnimation.opacity ? entranceAnimation.opacity : 0, 1],
         };
-        console.log(options);
-        console.log(otherOptions);
-        animate(targetElement, options, otherOptions);
+        if (entranceAnimation.presetAnimation === 'custom') {
+            animate(targetElement, options, otherOptions);
+        } else {
+            const presetAnimations = {
+                fade: {
+                    transform: ['none', 'none'],
+                    opacity: [0, 1],
+                },
+                slide: {
+                    transform: ['translateX(100%)', 'none'],
+                    opacity: [0, 1],
+                },
+                scale: {
+                    transform: ['scale(0)', 'none'],
+                    opacity: [0, 1],
+                },
+                rotate: {
+                    transform: ['rotate(180deg)', 'none'],
+                    opacity: [0, 1],
+                },
+                flip: {
+                    transform: ['rotateY(180deg)', 'none'],
+                    opacity: [0, 1],
+                },
+                zoom: {
+                    transform: ['scale(0)', 'none'],
+                    opacity: [0, 1],
+                },
+                scaleUp: {
+                    transform: ['scale(0)', 'none'],
+                    opacity: [0, 1],
+                },
+                scaleDown: {
+                    transform: ['scale(2)', 'none'],
+                    opacity: [0, 1],
+                },
+                top: {
+                    transform: ['translateY(-100px)', 'none'],
+                    opacity: [0, 1],
+                },
+                right: {
+                    transform: ['translateX(100px)', 'none'],
+                    opacity: [0, 1],
+                },
+                bottom: {
+                    transform: ['translateY(100px)', 'none'],
+                    opacity: [0, 1],
+                },
+                left: {
+                    transform: ['translateX(-100px)', 'none'],
+                    opacity: [0, 1],
+                },
+                topSmall: {
+                    transform: ['translateY(-20px)', 'none'],
+                    opacity: [0, 1],
+                },
+                rightSmall: {
+                    transform: ['translateX(20px)', 'none'],
+                    opacity: [0, 1],
+                },
+
+                bottomSmall: {
+                    transform: ['translateY(20px)', 'none'],
+                    opacity: [0, 1],
+                },
+                leftSmall: {
+                    transform: ['translateX(-20px)', 'none'],
+                    opacity: [0, 1],
+                },
+                topMedium: {
+                    transform: ['translateY(-50px)', 'none'],
+                    opacity: [0, 1],
+                },
+                rightMedium: {
+                    transform: ['translateX(50px)', 'none'],
+                    opacity: [0, 1],
+                },
+                bottomMedium: {
+                    transform: ['translateY(50px)', 'none'],
+                    opacity: [0, 1],
+                },
+                leftMedium: {
+                    transform: ['translateX(-50px)', 'none'],
+                    opacity: [0, 1],
+                },
+            };
+            const presetAnimation = presetAnimations[entranceAnimation.presetAnimation];
+            animate(targetElement, presetAnimation, otherOptions);
+        }
     };
+
     const zoloBlockItems = document.querySelectorAll('.zolo-block');
     if (zoloBlockItems.length > 0) {
         zoloBlockItems.forEach((item) => {
