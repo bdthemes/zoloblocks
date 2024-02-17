@@ -15,6 +15,7 @@ const {
     AdvancedOptions,
     ResGapControl,
     ZoloPanelBody,
+    ZoloIconPicker,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -23,7 +24,7 @@ import Sortable from './sortable';
  * WordPress depencencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl } from '@wordpress/components';
+import { SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -33,8 +34,6 @@ import {
     BUTTON_BORDER,
     BTN_BORDER_RADIUS,
     BUTTON_PADDING,
-    COLUMN_COUNT,
-    COLUMNS_GAP,
     ICON_TEXT_SPACING,
     SOCIAL_ICON_COLOR,
     BTN_SHADOW,
@@ -53,20 +52,21 @@ function Inspector(props) {
         preset,
         resMode,
         socialText,
-        socialProfiles,
+        listProfiles,
         socialColor,
         socialTextColor,
         socialTextHoverColor,
         socialBgColor,
         socialBgHoverColor,
         borderHoverColor,
-        layout,
         iconColor,
         iconHoverColor,
         iconBgColor,
         iconBgHoverColor,
-        //test
-        socialchild,
+        //new attr
+        headingText,
+        description,
+        listIcon,
     } = attributes;
 
     const requiredProps = {
@@ -82,25 +82,13 @@ function Inspector(props) {
     const changePremade = (selected) => {
         setAttributes({ preset: selected });
         switch (selected) {
-            case 'preset-1':
-                setAttributes({
-                    socialText: 'iconText',
-                });
+            case 'zolo-list-style-1':
                 break;
-            case 'preset-2':
-                setAttributes({
-                    socialText: 'iconOnly',
-                });
+            case 'zolo-list-style-2':
                 break;
-            case 'preset-3':
-                setAttributes({
-                    socialText: 'iconText',
-                });
+            case 'zolo-list-style-3':
                 break;
             default:
-                setAttributes({
-                    socialText: 'iconText',
-                });
                 break;
         }
     };
@@ -119,62 +107,27 @@ function Inspector(props) {
                                 options={PRESETS}
                                 onChange={(value) => changePremade(value)}
                             />
-                            <IconicBtnGroup
-                                label={__('Type', 'zolo-blocks')}
-                                value={socialText}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        socialText: value,
-                                    })
-                                }
-                                options={ICON_STATUS}
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                            <TextControl
+                                label={__('Heading', 'zolo-blocks')}
+                                value={headingText}
+                                onChange={(v) => setAttributes({ headingText: v })}
+                            />
+                            <TextControl
+                                label={__('Description', 'zolo-blocks')}
+                                value={description}
+                                onChange={(v) => setAttributes({ description: v })}
+                            />
+                            <ZoloIconPicker
+                                label={__('Select Icon', 'zolo-blocks')}
+                                value={listIcon}
+                                onChange={(value) => setAttributes({ listIcon: value })}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Layout', 'zolo-blocks')} panelProps={props}>
-                            <IconicBtnGroup
-                                label={__('Layout Type', 'zolo-blocks')}
-                                value={layout}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        layout: value,
-                                    })
-                                }
-                                options={[
-                                    {
-                                        label: __('Flex', 'zolo-blocks'),
-                                        value: 'flex',
-                                    },
-                                    {
-                                        label: __('Grid', 'zolo-blocks'),
-                                        value: 'grid',
-                                    },
-                                ]}
-                            />
-                            {layout === 'grid' && (
-                                <>
-                                    <ResCounterControl
-                                        label={__('Column Number', 'zolo-blocks')}
-                                        controlName={COLUMN_COUNT}
-                                        requiredProps={requiredProps}
-                                        min={1}
-                                        max={10}
-                                        defaults={{
-                                            deskRange: 5,
-                                            tabRange: 3,
-                                            mobRange: 2,
-                                        }}
-                                    />
-                                </>
-                            )}
-                            <ResGapControl
-                                label={__('Gap', 'zolo-blocks')}
-                                controlName={COLUMNS_GAP}
-                                requiredProps={requiredProps}
-                                max={200}
-                            />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Social Profiles', 'zolo-blocks')} panelProps={props}>
-                            <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
+
+                        <ZoloPanelBody title={__('List', 'zolo-blocks')} panelProps={props}>
+                            <Sortable listProfiles={listProfiles} setAttributes={setAttributes} />
                         </ZoloPanelBody>
                     </>
                 }

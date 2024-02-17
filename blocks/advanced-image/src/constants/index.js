@@ -42,6 +42,8 @@ export const OVERLAY_BRADIUS = 'overlayBradius';
 export const OVERLAY_EDGE_DISTANCE = 'overlayEdgeDistance';
 
 export const CONTENT_PADDING = 'overlayContentPadding';
+export const CONTENT_MAX_WIDTH = 'overlayContentMaxWidth';
+export const CONTENT_MARGIN = 'overlayContentMargin';
 
 export const HEADING_MARGIN = 'headingMargin';
 export const DESC_MARGIN = 'descMargin';

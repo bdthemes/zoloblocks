@@ -53,16 +53,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function block_assets_loader() {
-
-            // editor script
-            wp_enqueue_script(
-                'zolo-blocks-editor',
-                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/editor/editor-script.js',
-                [],
-                ZOLO_VERSION,
-                true
-            );
-
             //Register vendor bundle
             $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'vendor-bundle/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
