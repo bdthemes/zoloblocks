@@ -11,7 +11,6 @@ const ZoloPanelBody = ({
     isNew = false,
 }) => {
     const { attributes, setAttributes } = panelProps;
-    console.log('panelProps', attributes);
     const { selectedPanel, selectedStylePanel, selectedExtraPanel } = attributes;
     const panelAttribute = stylePanel ? 'selectedStylePanel' : extraPanel ? 'selectedExtraPanel' : 'selectedPanel';
     const panelName =
