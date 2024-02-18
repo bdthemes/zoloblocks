@@ -2,8 +2,8 @@
 Contributors: BdThemes
 Tags: zoloblocks, blocks, gutenberg blocks, custom block, gutenberg
 Requires at least: 6.0
-Tested up to: 6.4.2
-Stable tag: 1.0.0-RC3
+Tested up to: 6.4.3
+Stable tag: 1.0.0-RC4
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -53,7 +53,50 @@ Not at all. We have optimised all of these blocks for better performance.
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.0-RC4 =
+
+= Added =
+
+* Advanced Image block added
+* Entrance animation features added
+* List block added
+
+= Updated =
+
+* Rolling animation features added in counter block
+
+= Fixed =
+
+* Flipbox block image/icon positioning issue fixed
+* Rolling animation isn't showing in Safari browser issue fixed
+
+= 1.0.0-RC3 =
+
+= Added =
+
+* Countdown block added
+* Setting page added for admin dashboard
+
+= Fixed =
+
+* Google map API issue fixed
+* Progress bar animation updated
+* Pricing table block features list improved
+
+= 1.0.0-RC2 =
+
+= Fixed =
+
+* Google Map block API issue fixed
+* Progressbar block items gap issue fixed
+* Pricing Table block ribbon issue fixed
+* Team Grid block image size issue fixed
+
+= Added =
+
+* Post Carousel block navigation horizontal offset control added
+
+= 1.0.0-RC1 =
 
 = Added =
 
