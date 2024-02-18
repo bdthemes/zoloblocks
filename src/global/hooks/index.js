@@ -129,7 +129,7 @@ function addAttributes(settings) {
                         unit: 'px',
                     },
                     translateY: {
-                        value: 0,
+                        value: -50,
                         unit: 'px',
                     },
                     translateZ: {
@@ -168,8 +168,10 @@ function addAttributes(settings) {
                         value: 0,
                         unit: 'deg',
                     },
-                    opacity: 1,
+                    opacity: 0,
                     easing: 'ease-out',
+                    easingCustom: '',
+                    repeat: false,
 
                 },
             },

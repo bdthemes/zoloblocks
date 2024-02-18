@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (entranceAnimation.translateZ.value !== 0) {
             transformOptions.push(`translateZ(${entranceAnimation.translateZ.value}${entranceAnimation.translateZ.unit})`);
         }
-
         if (entranceAnimation.rotateX.value !== 0) {
             transformOptions.push(`rotateX(${entranceAnimation.rotateX.value}deg)`);
         }
@@ -42,9 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (entranceAnimation.duration) {
             otherOptions.duration = entranceAnimation.duration / 1000;
         }
-        if (entranceAnimation.easing) {
-            otherOptions.easing = entranceAnimation.easing;
-        }
         if (entranceAnimation.delay) {
             otherOptions.delay = entranceAnimation.delay / 1000;
         }
@@ -57,11 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (entranceAnimation.perspective !== 0) {
             otherOptions.perspective = entranceAnimation.perspective;
         }
-        if (entranceAnimation.transformOrigin !== 'custom') {
-            otherOptions.transformOrigin = entranceAnimation.transformOrigin;
-        } else {
-            otherOptions.transformOrigin = entranceAnimation.transformOriginCustom;
-        }
 
         // array to string
         const transformOptionsion = transformOptions.join('');
@@ -69,7 +60,19 @@ document.addEventListener('DOMContentLoaded', function () {
         const options = {
             transform: [transformOptionsion, 'none'],
             opacity: [entranceAnimation.opacity ? entranceAnimation.opacity : 0, 1],
+            transformOrigin: entranceAnimation.transformOrigin,
         };
+
+        if (entranceAnimation.easing !== 'custom') {
+            options.easing = entranceAnimation.easing;
+        } else {
+            options.easing = entranceAnimation.customEasing;
+        }
+
+        if (entranceAnimation.perspective !== 0) {
+            options.perspective = `${entranceAnimation.perspective}px`;
+            options.transformStyle = 'preserve-3d';
+        }
         if (entranceAnimation.presetAnimation === 'custom') {
             animate(targetElement, options, otherOptions);
         } else {

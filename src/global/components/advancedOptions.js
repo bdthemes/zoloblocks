@@ -47,7 +47,6 @@ export const AdvancedOptions = (props) => {
         if (entranceAnimation.translateZ.value !== 0) {
             transformOptions.push(`translateZ(${entranceAnimation.translateZ.value}${entranceAnimation.translateZ.unit})`);
         }
-
         if (entranceAnimation.rotateX.value !== 0) {
             transformOptions.push(`rotateX(${entranceAnimation.rotateX.value}deg)`);
         }
@@ -73,6 +72,7 @@ export const AdvancedOptions = (props) => {
             transformOptions.push(`skewY(${entranceAnimation.skewY.value}deg)`);
         }
 
+
         const otherOptions = {};
         if (entranceAnimation.duration) {
             otherOptions.duration = entranceAnimation.duration / 1000;
@@ -92,19 +92,33 @@ export const AdvancedOptions = (props) => {
         if (entranceAnimation.perspective !== 0) {
             otherOptions.perspective = entranceAnimation.perspective;
         }
-        if (entranceAnimation.transformOrigin !== 'custom') {
-            otherOptions.transformOrigin = entranceAnimation.transformOrigin;
-        } else {
-            otherOptions.transformOrigin = entranceAnimation.transformOriginCustom;
-        }
+        // if (entranceAnimation.transformOrigin !== 'custom') {
+        //     otherOptions.transformOrigin = entranceAnimation.transformOrigin;
+        // } else {
+        //     otherOptions.transformOrigin = entranceAnimation.transformOriginCustom;
+        // }
 
         // array to string
         const transformOptionsion = transformOptions.join('');
+        console.log(transformOptions);
 
         const options = {
             transform: [transformOptionsion, 'none'],
             opacity: [entranceAnimation.opacity ? entranceAnimation.opacity : 0, 1],
+            transformOrigin: entranceAnimation.transformOrigin,
         };
+
+        if(entranceAnimation.easing !== 'custom') {
+            options.easing = entranceAnimation.easing;
+        } else {
+            options.easing = entranceAnimation.customEasing;
+        }
+
+        if(entranceAnimation.perspective !== 0) {
+            options.perspective = `${entranceAnimation.perspective}px`;
+            options.transformStyle = 'preserve-3d';
+        }
+        console.log(options);
         if (entranceAnimation.presetAnimation === 'custom') {
             animate(targetElement, options, otherOptions);
         } else {
@@ -390,7 +404,7 @@ export const AdvancedOptions = (props) => {
                                 { label: 'Top Small', value: 'topSmall' },
                                 { label: 'Right Small', value: 'rightSmall' },
                                 { label: 'Bottom Small', value: 'bottomSmall' },
-                                { label: 'Left Smaill', value: 'leftSmall' },
+                                { label: 'Left Small', value: 'leftSmall' },
                                 { label: 'Top Medium', value: 'topMedium' },
                                 { label: 'Right Medium', value: 'rightMedium' },
                                 { label: 'Bottom Medium', value: 'bottomMedium' },
@@ -652,18 +666,6 @@ export const AdvancedOptions = (props) => {
                                             });
                                         }}
                                         value={entranceAnimation?.rotateX?.value}
-                                        onUnitChange={(unit) => {
-                                            setAttributes({
-                                                entranceAnimation: {
-                                                    ...entranceAnimation,
-                                                    rotateX: {
-                                                        ...entranceAnimation.rotateX,
-                                                        unit,
-                                                    },
-                                                },
-                                            });
-                                        }}
-                                        unit={entranceAnimation?.rotateX?.unit}
                                         onReset={() => {
                                             setAttributes({
                                                 entranceAnimation: {
@@ -686,32 +688,20 @@ export const AdvancedOptions = (props) => {
                                             setAttributes({
                                                 entranceAnimation: {
                                                     ...entranceAnimation,
-                                                    rotatY: {
-                                                        ...entranceAnimation.rotatY,
+                                                    rotateY: {
+                                                        ...entranceAnimation.rotateY,
                                                         value,
                                                     },
                                                 },
                                             });
                                         }}
-                                        value={entranceAnimation?.rotatY?.value}
-                                        onUnitChange={(unit) => {
-                                            setAttributes({
-                                                entranceAnimation: {
-                                                    ...entranceAnimation,
-                                                    rotatY: {
-                                                        ...entranceAnimation.rotatY,
-                                                        unit,
-                                                    },
-                                                },
-                                            });
-                                        }}
-                                        unit={entranceAnimation?.rotatY?.unit}
+                                        value={entranceAnimation?.rotateY?.value}
                                         onReset={() => {
                                             setAttributes({
                                                 entranceAnimation: {
                                                     ...entranceAnimation,
-                                                    rotatY: {
-                                                        ...entranceAnimation.rotatY,
+                                                    rotateY: {
+                                                        ...entranceAnimation.rotateY,
                                                         value: 0,
                                                         unit: 'deg',
                                                     },
@@ -736,18 +726,6 @@ export const AdvancedOptions = (props) => {
                                             });
                                         }}
                                         value={entranceAnimation?.rotateZ?.value}
-                                        onUnitChange={(unit) => {
-                                            setAttributes({
-                                                entranceAnimation: {
-                                                    ...entranceAnimation,
-                                                    rotateZ: {
-                                                        ...entranceAnimation.rotateZ,
-                                                        unit,
-                                                    },
-                                                },
-                                            });
-                                        }}
-                                        unit={entranceAnimation?.rotateZ?.unit}
                                         onReset={() => {
                                             setAttributes({
                                                 entranceAnimation: {
@@ -763,6 +741,31 @@ export const AdvancedOptions = (props) => {
                                         min={-180}
                                         max={180}
                                         noUnits={true}
+                                    />
+                                    <SelectControl
+                                        label={__('Transform Origin', 'zolo-blocks')}
+                                        value={entranceAnimation.transformOrigin}
+                                        options={[
+                                            { label: __('Top'), value: 'top' },
+                                            { label: __('Right'), value: 'right' },
+                                            { label: __('Bottom'), value: 'bottom' },
+                                            { label: __('Left'), value: 'left' },
+                                            { label: __('Center'), value: 'center' },
+                                            { label: __('Initial'), value: 'initial' },
+                                            { label: __('Inherit'), value: 'inherit' },
+                                            { label: __('Revert'), value: 'revert' },
+                                            { label: __('Unset'), value: 'unset' },
+                                            { label: __('Revert Layer'), value: 'revert-layer' },
+                                            { label: 'Custom', value: 'custom' },
+                                        ]}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                entranceAnimation: {
+                                                    ...entranceAnimation,
+                                                    transformOrigin: value,
+                                                },
+                                            });
+                                        }}
                                     />
                                 </PopoverControl>
                                 <PopoverControl
@@ -1042,79 +1045,88 @@ export const AdvancedOptions = (props) => {
                                     max={1}
                                     noUnits={true}
                                 />
-                                <SimpleRangeControl
-                                    label={__('Delay(ms)', 'zolo-blocks')}
-                                    value={entranceAnimation.delay}
-                                    onChange={(value) => {
-                                        setAttributes({
-                                            entranceAnimation: {
-                                                ...entranceAnimation,
-                                                delay: value,
-                                            },
-                                        });
-                                    }}
-                                    onReset={() => {
-                                        setAttributes({
-                                            entranceAnimation: {
-                                                ...entranceAnimation,
-                                                delay: 0,
-                                            },
-                                        });
-                                    }}
-                                    min={0}
-                                    max={10000}
-                                    noUnits={true}
-                                />
-                                <SimpleRangeControl
-                                    label={__('Transition Duration(ms)', 'zolo-blocks')}
-                                    value={entranceAnimation.duration}
-                                    onChange={(value) => {
-                                        setAttributes({
-                                            entranceAnimation: {
-                                                ...entranceAnimation,
-                                                duration: value,
-                                            },
-                                        });
-                                    }}
-                                    onReset={() => {
-                                        setAttributes({
-                                            entranceAnimation: {
-                                                ...entranceAnimation,
-                                                duration: 0,
-                                            },
-                                        });
-                                    }}
-                                    min={0}
-                                    max={10000}
-                                    noUnits={true}
-                                />
                                 <SelectControl
-                                    label={__('Transform Origin', 'zolo-blocks')}
-                                    value={entranceAnimation.transformOrigin}
+                                    label={__('Easing Type', 'zolo-blocks')}
+                                    value={entranceAnimation.easing}
                                     options={[
-                                        { label: __('Top'), value: 'top' },
-                                        { label: __('Right'), value: 'right' },
-                                        { label: __('Bottom'), value: 'bottom' },
-                                        { label: __('Left'), value: 'left' },
-                                        { label: __('Center'), value: 'center' },
-                                        { label: __('Initial'), value: 'initial' },
-                                        { label: __('Inherit'), value: 'inherit' },
-                                        { label: __('Revert'), value: 'revert' },
-                                        { label: __('Unset'), value: 'unset' },
-                                        { label: __('Revert Layer'), value: 'revert-layer' },
-                                        { label: 'Custom', value: 'custom' },
+                                        { label: __('Ease Out', 'zolo-blocks'), value: 'ease-out' },
+                                        { label: __('Ease In Out', 'zolo-blocks'), value: 'ease-in-out' },
+                                        { label: __('Linear', 'zolo-blocks'), value: 'linear' },
+                                        { label: __('Custom', 'zolo-blocks'), value: 'custom' },
                                     ]}
                                     onChange={(value) => {
                                         setAttributes({
                                             entranceAnimation: {
                                                 ...entranceAnimation,
-                                                transformOrigin: value,
+                                                easing: value,
                                             },
                                         });
                                     }}
                                 />
+
+                                {entranceAnimation.easing === 'custom' && (
+                                    <TextControl
+                                        label={__('Custom Easing', 'zolo-blocks')}
+                                        help={__('Example: cubic-bezier(0.42, 0, 0.58, 1)', 'zolo-blocks')}
+                                        value={entranceAnimation.easingCustom}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                entranceAnimation: {
+                                                    ...entranceAnimation,
+                                                    easingCustom: value,
+                                                },
+                                            });
+                                        }}
+                                    />
+                                )}
                             </>
                         )}
+                        <SimpleRangeControl
+                            label={__('Delay(ms)', 'zolo-blocks')}
+                            value={entranceAnimation.delay}
+                            onChange={(value) => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        delay: value,
+                                    },
+                                });
+                            }}
+                            onReset={() => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        delay: 0,
+                                    },
+                                });
+                            }}
+                            min={0}
+                            max={10000}
+                            noUnits={true}
+                        />
+                        <SimpleRangeControl
+                            label={__('Transition Duration(ms)', 'zolo-blocks')}
+                            value={entranceAnimation.duration}
+                            onChange={(value) => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        duration: value,
+                                    },
+                                });
+                            }}
+                            onReset={() => {
+                                setAttributes({
+                                    entranceAnimation: {
+                                        ...entranceAnimation,
+                                        duration: 0,
+                                    },
+                                });
+                            }}
+                            min={0}
+                            max={10000}
+                            noUnits={true}
+                        />
                         <Button
                             label={__('Preview', 'zolo-blocks')}
                             isPrimary
