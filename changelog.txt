@@ -1,0 +1,69 @@
+## 1.0.0-RC4 [18th February 2024]
+
+### Added
+
+- Advanced Image block added
+- Entrance animation features added
+- List block added
+
+### Updated
+
+- Rolling animation features added in counter block
+
+### Fixed
+
+- Flipbox block image/icon positioning issue fixed
+- Rolling animation isn't showing in Safari browser issue fixed
+
+## 1.0.0-RC3 [02nd February 2024]
+
+### Added
+
+- Countdown block added
+- Setting page added for admin dashboard
+
+### Fixed
+
+- Google map API issue fixed
+- Progress bar animation updated
+- Pricing table block features list improved
+
+## 1.0.0-RC2 [31st January 2024]
+
+### Fixed
+
+- Google Map block API issue fixed
+- Progressbar block items gap issue fixed
+- Pricing Table block ribbon issue fixed
+- Team Grid block image size issue fixed
+
+### Added
+
+- Post Carousel block navigation horizontal offset control added
+
+## 1.0.0-RC1 [21st January 2024]
+
+### Added
+
+- Admin Dashboard added
+- Progressbar block added
+- Flipbox block added
+- Google Map block added
+- Global overflow control added
+- Object fit control added
+- Image resolution control added
+
+### Updated
+
+- Carousel portion removed from Slider block
+- Advanced Button block style improved
+- Accessibility improved
+
+### Fixed
+
+- Overflow hidden issue fixed
+- Slider issue fixed
+
+### 1.0.0
+
+Initial Release
