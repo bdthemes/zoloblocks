@@ -122,6 +122,7 @@ function addAttributes(settings) {
                     duration: 600,
                     delay: 0,
                     transformOrigin: 'center',
+                    presetAnimation: 'topMedium',
                     transformOriginCustom: '',
                     translateX: {
                         value: 0,
