@@ -118,18 +118,12 @@ function addAttributes(settings) {
             entranceAnimation: {
                 type: 'object',
                 default: {
-                    perspective: 0,
-                    duration: 600,
-                    delay: 0,
-                    transformOrigin: 'center',
-                    presetAnimation: 'topMedium',
-                    transformOriginCustom: '',
                     translateX: {
                         value: 0,
                         unit: 'px',
                     },
                     translateY: {
-                        value: 0,
+                        value: -50,
                         unit: 'px',
                     },
                     translateZ: {
@@ -168,9 +162,16 @@ function addAttributes(settings) {
                         value: 0,
                         unit: 'deg',
                     },
-                    opacity: 1,
+                    opacity: 0,
                     easing: 'ease-out',
-
+                    easingCustom: '',
+                    repeat: false,
+                    perspective: 0,
+                    duration: 600,
+                    delay: 0,
+                    transformOrigin: 'center',
+                    presetAnimation: 'topMedium',
+                    transformOriginCustom: '',
                 },
             },
             ...(settings.attributes.globalConfig?.default?.margin &&
