@@ -50,8 +50,6 @@ class StyleGenerator {
                         'unit' => ''
                     ]
                 ];
-
-                var_dump($entranceAnimation);
     
                 // Convert the entrance animation to JSON string
                 $entranceAnimation = json_encode($entranceAnimation);

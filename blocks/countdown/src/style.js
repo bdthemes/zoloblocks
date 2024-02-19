@@ -331,7 +331,6 @@ const Style = ({ props }) => {
         }
 
         .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-item {
-           
             ${TabBoxMargin}
             ${TabBoxGg}
             ${tabInnerAlign}
