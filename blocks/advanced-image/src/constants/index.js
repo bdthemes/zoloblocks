@@ -14,10 +14,14 @@ export const LAYOUTS = [
 // hover effect
 export const HOVER_EFFECTS = [
     { value: '', label: __('None', 'zolo-blocks') },
-    { value: 'zolo-adi-fade', label: __('Fade', 'zolo-blocks') },
+    // { value: 'zolo-adi-fade', label: __('Fade', 'zolo-blocks') },
     { value: 'zolo-adi-blur', label: __('Blur', 'zolo-blocks') },
-    { value: 'zolo-adi-slide-bottom', label: __('Slide', 'zolo-blocks') },
+    { value: 'zolo-adi-slide-top', label: __('Slide Top', 'zolo-blocks') },
+    { value: 'zolo-adi-slide-left', label: __('Slide Left', 'zolo-blocks') },
+    { value: 'zolo-adi-slide-bottom', label: __('Slide Bottom', 'zolo-blocks') },
+    { value: 'zolo-adi-slide-right', label: __('Slide Right', 'zolo-blocks') },
     { value: 'zolo-adi-zoom ', label: __('Zoom', 'zolo-blocks') },
+    { value: 'zolo-adi-gray ', label: __('Gray Scale', 'zolo-blocks') },
 ];
 
 // image masking
@@ -34,6 +38,7 @@ export const IMG_BORDER = 'imgBorder';
 export const IMG_BRADIUS = 'imgBradius';
 export const IMG_MARGIN = 'imgMargin';
 export const IMG_BSHADOW = 'imgBShadow';
+export const IMG_HBSHADOW = 'imgHbShadow';
 
 // overlay
 export const OVERLAY_BG = 'overlayBg';

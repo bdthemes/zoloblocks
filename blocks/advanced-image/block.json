@@ -15,7 +15,10 @@
     },
     "supports": {
         "anchor": false,
-        "customClassName": false
+        "customClassName": false,
+        "filter": {
+            "duotone": true
+        }
     },
     "editorScript": "zolo-block-editor-script"
 }

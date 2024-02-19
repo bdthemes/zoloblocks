@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
+import { useState } from '@wordpress/element';
 import {
     ToggleControl,
     TextControl,
@@ -50,6 +51,7 @@ import {
     IMG_BRADIUS,
     IMG_MARGIN,
     IMG_BSHADOW,
+    IMG_HBSHADOW,
     OVERLAY_BG,
     OVERLAY_BORDER,
     OVERLAY_BRADIUS,
@@ -114,6 +116,8 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
+
+    const [duotone, setDuotone] = useState(['#000000', '#ffffff']);
 
     return (
         <InspectorControls key="controls">
@@ -220,16 +224,6 @@ function Inspector(props) {
                                     onChange={() => setAttributes({ showCaption: !showCaption })}
                                 />
                             )}
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Hover Effect', 'zolo-blocks')} panelProps={props}>
-                            <SelectControl
-                                label={__('Select Effect', 'zolo-blocks')}
-                                value={hoverEffect}
-                                options={HOVER_EFFECTS}
-                                onChange={(v) => {
-                                    setAttributes({ hoverEffect: v });
-                                }}
-                            />
                         </ZoloPanelBody>
                         {layout === 'normal' && showCaption && (
                             <ZoloPanelBody title={__('Caption', 'zolo-blocks')} panelProps={props}>
@@ -341,6 +335,14 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Image', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <SelectControl
+                                label={__('Select Effect', 'zolo-blocks')}
+                                value={hoverEffect}
+                                options={HOVER_EFFECTS}
+                                onChange={(v) => {
+                                    setAttributes({ hoverEffect: v });
+                                }}
+                            />
                             {photoMaskImage === '' && (
                                 <>
                                     <BorderControl
@@ -365,7 +367,6 @@ function Inspector(props) {
                                         requiredProps={requiredProps}
                                         forBorderRadius={true}
                                     />
-                                    <BoxShadowControl controlName={IMG_BSHADOW} requiredProps={requiredProps} />
                                 </>
                             )}
 
@@ -375,6 +376,12 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+                            {photoMaskImage === '' && (
+                                <TabPanelControl
+                                    normalComponents={<BoxShadowControl controlName={IMG_BSHADOW} requiredProps={requiredProps} />}
+                                    hoverComponents={<BoxShadowControl controlName={IMG_HBSHADOW} requiredProps={requiredProps} />}
+                                />
+                            )}
                         </ZoloPanelBody>
 
                         {layout === 'overlay' && (

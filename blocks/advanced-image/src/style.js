@@ -23,6 +23,7 @@ import {
     IMG_BORDER,
     IMG_BRADIUS,
     IMG_BSHADOW,
+    IMG_HBSHADOW,
     PHOTO_ALIGN,
     CAPTION_ALIGN,
     IMG_MARGIN,
@@ -147,6 +148,11 @@ const Style = ({ props }) => {
 
     const { boxShadowStyle: imgBoxShadow } = generateBoxShadowStyles({
         controlName: IMG_BSHADOW,
+        attributes,
+    });
+
+    const { boxShadowStyle: imgHBoxShadow } = generateBoxShadowStyles({
+        controlName: IMG_HBSHADOW,
         attributes,
     });
 
@@ -353,6 +359,7 @@ const Style = ({ props }) => {
         }
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask .zolo-img-wrap:hover .zolo-img {
             border-color: ${imgHoverBorder};
+            ${imgHBoxShadow}
         }
 
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-img-wrap::before {

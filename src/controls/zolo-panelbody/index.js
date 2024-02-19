@@ -1,4 +1,5 @@
 import { PanelBody } from '@wordpress/components';
+import classNames from 'classnames';
 
 const ZoloPanelBody = ({
     children,
@@ -35,13 +36,11 @@ const ZoloPanelBody = ({
             title={title}
             onToggle={handleToggle}
             opened={isOpened}
-            className={isPro ? 'zolo-pro-panel' : isNew ? 'zolo-new-panel' : ''}
-            // {...(isPro && {
-            //     className: 'zolo-pro-panel',
-            // })}
-            // {...(isNew && {
-            //     className: 'zolo-new-panel',
-            // })}
+            className={classNames(
+                `${isPro ? 'zolo-pro-panel' : ''}`,
+                `${isNew ? 'zolo-new-panel' : ''}`,
+                `${isNew && isPro ? 'zolo-new-pro-panel' : ''}`
+            )}
         >
             {children}
         </PanelBody>

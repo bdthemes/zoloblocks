@@ -35,6 +35,8 @@ export const AdvancedOptions = (props) => {
         overflow,
     } = attributes;
 
+    console.log('entranceAnimation', entranceAnimation);
+
     const handleMotionAnimation = () => {
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
         let transformOptions = [];
@@ -152,7 +154,7 @@ export const AdvancedOptions = (props) => {
                     opacity: [0, 1],
                 },
                 scaleDown: {
-                    transform: ['scale(2)', 'none'],
+                    transform: ['scale(1.5)', 'none'],
                     opacity: [0, 1],
                 },
                 top: {
@@ -361,7 +363,7 @@ export const AdvancedOptions = (props) => {
             <ZoloPanelBody title={__('Custom CSS', 'zolo-blocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <CustomCSSControl attributes={attributes} setAttributes={setAttributes} />
             </ZoloPanelBody>
-            <ZoloPanelBody title={__('Entrance Animation', 'zolo-blocks')} panelProps={props} extraPanel={true} isPro={true}>
+            <ZoloPanelBody title={__('Entrance Animation', 'zolo-blocks')} panelProps={props} extraPanel={true} isPro={true} isNew={true}>
                 <ToggleControl
                     label={__('Entrance Animation', 'zolo-blocks')}
                     checked={entranceAnimationActive}
