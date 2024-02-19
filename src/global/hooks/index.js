@@ -118,12 +118,6 @@ function addAttributes(settings) {
             entranceAnimation: {
                 type: 'object',
                 default: {
-                    perspective: 0,
-                    duration: 600,
-                    delay: 0,
-                    transformOrigin: 'center',
-                    presetAnimation: 'topMedium',
-                    transformOriginCustom: '',
                     translateX: {
                         value: 0,
                         unit: 'px',
@@ -172,7 +166,12 @@ function addAttributes(settings) {
                     easing: 'ease-out',
                     easingCustom: '',
                     repeat: false,
-
+                    perspective: 0,
+                    duration: 600,
+                    delay: 0,
+                    transformOrigin: 'center',
+                    presetAnimation: 'topMedium',
+                    transformOriginCustom: '',
                 },
             },
             ...(settings.attributes.globalConfig?.default?.margin &&

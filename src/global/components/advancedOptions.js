@@ -35,10 +35,9 @@ export const AdvancedOptions = (props) => {
         overflow,
     } = attributes;
 
-    console.log('entranceAnimation', entranceAnimation);
-
     const handleMotionAnimation = () => {
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
+
         let transformOptions = [];
         if (entranceAnimation.translateX.value !== 0) {
             transformOptions.push(`translateX(${entranceAnimation.translateX.value}${entranceAnimation.translateX.unit})`);
@@ -74,13 +73,9 @@ export const AdvancedOptions = (props) => {
             transformOptions.push(`skewY(${entranceAnimation.skewY.value}deg)`);
         }
 
-
         const otherOptions = {};
         if (entranceAnimation.duration) {
             otherOptions.duration = entranceAnimation.duration / 1000;
-        }
-        if (entranceAnimation.easing) {
-            otherOptions.easing = entranceAnimation.easing;
         }
         if (entranceAnimation.delay) {
             otherOptions.delay = entranceAnimation.delay / 1000;
@@ -94,15 +89,13 @@ export const AdvancedOptions = (props) => {
         if (entranceAnimation.perspective !== 0) {
             otherOptions.perspective = entranceAnimation.perspective;
         }
-        // if (entranceAnimation.transformOrigin !== 'custom') {
-        //     otherOptions.transformOrigin = entranceAnimation.transformOrigin;
-        // } else {
-        //     otherOptions.transformOrigin = entranceAnimation.transformOriginCustom;
-        // }
-
+        if (entranceAnimation.easing !== 'custom') {
+            otherOptions.easing = entranceAnimation.easing;
+        } else {
+            otherOptions.easing = [entranceAnimation.easingCustom.split(';')[0]];
+        }
         // array to string
         const transformOptionsion = transformOptions.join('');
-        console.log(transformOptions);
 
         const options = {
             transform: [transformOptionsion, 'none'],
@@ -110,17 +103,11 @@ export const AdvancedOptions = (props) => {
             transformOrigin: entranceAnimation.transformOrigin,
         };
 
-        if(entranceAnimation.easing !== 'custom') {
-            options.easing = entranceAnimation.easing;
-        } else {
-            options.easing = entranceAnimation.customEasing;
-        }
-
-        if(entranceAnimation.perspective !== 0) {
-            options.perspective = `${entranceAnimation.perspective}px`;
+        if (entranceAnimation.perspective !== 0) {
+            options.perspective = [`${entranceAnimation.perspective}px`, 'none'];
             options.transformStyle = 'preserve-3d';
         }
-        console.log(options);
+
         if (entranceAnimation.presetAnimation === 'custom') {
             animate(targetElement, options, otherOptions);
         } else {
