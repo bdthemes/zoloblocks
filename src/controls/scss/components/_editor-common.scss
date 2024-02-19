@@ -142,9 +142,10 @@
 
 
     .components-panel__body-toggle {
-        &::before {
+        &::before,
+        &::after {
             position: absolute;
-            right: 50px;
+            right: 45px;
             width: 32px;
             height: 20px;
             display: flex;
@@ -169,14 +170,22 @@
     }
 
     .zolo-new-panel {
-        &.components-panel__body-toggle {
-            &::before {
+        .components-panel__body-toggle {
+            &::after {
                 content: 'new';
                 background-color: #2141f3;
             }
         }
     }
-
+    .zolo-new-pro-panel {
+        &.zolo-new-panel {
+            .components-panel__body-toggle {
+                &::after {
+                   transform: translateX(-36px);
+                }
+            }
+        }
+    }
 }
 
 .zolo-panel-control {

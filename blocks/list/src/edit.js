@@ -19,8 +19,20 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
-    const { preview, uniqueId, preset, parentClasses, socialText, listProfiles, headingText, description, listIcon, socialColor, layout } =
-        attributes;
+    const {
+        preview,
+        uniqueId,
+        preset,
+        parentClasses,
+        socialText,
+        listProfiles,
+        headingText,
+        description,
+        listIcon,
+        socialColor,
+        headingTag,
+        descriptionTag,
+    } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -40,11 +52,8 @@ export default function Edit(props) {
 
             <div {...blockProps}>
                 <div className="zolo-list-wrap">
-                    <div className="zolo-list-icon">
-                        <DisplayZoloIcon icon={listIcon} />
-                    </div>
-                    <div className="list-heading">{headingText}</div>
-                    <div className="descriptipn">{description}</div>
+                    <headingTag className="list-heading">{headingText}</headingTag>
+                    <descriptionTag className="descriptipn">{description}</descriptionTag>
                     {listProfiles &&
                         listProfiles.map((profile, index) => {
                             const iconName = profile && profile.text && profile.text.toLowerCase();
@@ -56,13 +65,13 @@ export default function Edit(props) {
                                     rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
                                     className={`zolo-list-item zolo- ${socialColor} `}
                                 >
-                                    {socialText !== 'iconOnly' && (
-                                        <>
-                                            <div className="zolo-list-content">
-                                                <span className="zolo-list-title">{profile.text}</span>
-                                            </div>
-                                        </>
-                                    )}
+                                    <div className="zolo-list-icon">
+                                        <DisplayZoloIcon icon={listIcon} />
+                                    </div>
+
+                                    <div className="zolo-list-content">
+                                        <span className="zolo-list-title">{profile.text}</span>
+                                    </div>
                                 </a>
                             );
                         })}

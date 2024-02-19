@@ -1,1 +1,22 @@
-document.addEventListener("DOMContentLoaded",(function(){const t=document.querySelectorAll(".zolo-flip-box_item");t.length>0&&t.forEach((function(t){"click"===t.dataset.triggertype&&t.addEventListener("click",(function(){t.classList.toggle("zolo-flip-box_active")}))}))}));
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!****************************************!*\
+  !*** ./blocks/flipbox/src/frontend.js ***!
+  \****************************************/
+document.addEventListener('DOMContentLoaded', function () {
+  // flipbox items
+  const zoloFlipBoxItems = document.querySelectorAll('.zolo-flip-box_item');
+  if (zoloFlipBoxItems.length > 0) {
+    zoloFlipBoxItems.forEach(function (item) {
+      const triggerType = item.dataset.triggertype;
+      if (triggerType === 'click') {
+        item.addEventListener('click', function () {
+          item.classList.toggle('zolo-flip-box_active');
+        });
+      }
+    });
+  }
+});
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

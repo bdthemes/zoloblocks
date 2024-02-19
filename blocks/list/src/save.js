@@ -8,8 +8,20 @@ import classnames from 'classnames';
 import { useBlockProps } from '@wordpress/block-editor';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, listProfiles, headingText, description, listIcon, socialColor, socialText, zoloId } =
-        attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        preset,
+        listProfiles,
+        headingText,
+        description,
+        listIcon,
+        socialColor,
+        socialText,
+        headingTag,
+        descriptionTag,
+        zoloId,
+    } = attributes;
 
     return (
         <div
@@ -21,11 +33,8 @@ const Save = ({ attributes }) => {
             })}
         >
             <div className="zolo-list-wrap">
-                <div className="zolo-list-icon">
-                    <DisplayZoloIcon icon={listIcon} />
-                </div>
-                <div className="list-heading">{headingText}</div>
-                <div className="descriptipn">{description}</div>
+                <headingTag className="list-heading">{headingText}</headingTag>
+                <didescriptionTagv className="descriptipn">{description}</didescriptionTagv>
                 {listProfiles &&
                     listProfiles.map((profile, index) => {
                         const iconName = profile && profile.text && profile.text.toLowerCase();
@@ -37,13 +46,12 @@ const Save = ({ attributes }) => {
                                 rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
                                 className={`zolo-list-item zolo- ${socialColor} `}
                             >
-                                {socialText !== 'iconOnly' && (
-                                    <>
-                                        <div className="zolo-list-content">
-                                            <span className="zolo-list-title">{profile.text}</span>
-                                        </div>
-                                    </>
-                                )}
+                                <div className="zolo-list-icon">
+                                    <DisplayZoloIcon icon={listIcon} />
+                                </div>
+                                <div className="zolo-list-content">
+                                    <span className="zolo-list-title">{profile.text}</span>
+                                </div>
                             </a>
                         );
                     })}

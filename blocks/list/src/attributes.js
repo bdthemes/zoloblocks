@@ -105,11 +105,6 @@ const attributes = {
             },
         ],
     },
-
-    socialProfilesLinkTarget: {
-        type: 'boolean',
-        default: true,
-    },
 };
 
 export default attributes;
