@@ -40,10 +40,16 @@ class StyleGenerator {
      */
     public function add_entrance_animation( $block_content, $block ) {
         if ( isset( $block['blockName'] ) && str_contains( $block['blockName'], 'zolo/' ) ) {
+
             $animationActive = $block['attrs']['entranceAnimationActive'] ?? false;
     
             if ($animationActive) {
-                $entranceAnimation = $block['attrs']['entranceAnimation'] ?? '';
+                $entranceAnimation = $block['attrs']['entranceAnimation'] ?? [
+                    'scaleX' => [
+                        'value' => 1,
+                        'unit' => ''
+                    ]
+                ];
     
                 // Convert the entrance animation to JSON string
                 $entranceAnimation = json_encode($entranceAnimation);

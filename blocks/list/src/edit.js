@@ -19,8 +19,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
-    const { preview, uniqueId, preset, parentClasses, socialText, listProfiles, headingText, description, listIcon, socialColor, layout } =
-        attributes;
+    const { preview, uniqueId, preset, parentClasses, listProfiles, headingText, description, titleToggle, DscToggle } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -40,32 +39,30 @@ export default function Edit(props) {
 
             <div {...blockProps}>
                 <div className="zolo-list-wrap">
-                    <div className="zolo-list-icon">
-                        <DisplayZoloIcon icon={listIcon} />
+                    {titleToggle && <div className="list-heading">{headingText}</div>}
+                    {DscToggle && <div className="descriptipn">{description}</div>}
+                    <div className="zolo-list">
+                        {listProfiles &&
+                            listProfiles.map((profile, index) => {
+                                const iconName = profile && profile.text && profile.text.toLowerCase();
+                                return (
+                                    <a
+                                        href={profile.link && profile.link.url}
+                                        key={index}
+                                        target={profile.link && profile.link.openInNewTab && '_blank'}
+                                        rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
+                                        className={`zolo-list-item zolo-`}
+                                    >
+                                        <div className="zolo-list-icon">
+                                            <DisplayZoloIcon icon={profile.icon} />
+                                        </div>
+                                        <div className="zolo-list-content">
+                                            <span className="zolo-list-title">{profile.text}</span>
+                                        </div>
+                                    </a>
+                                );
+                            })}
                     </div>
-                    <div className="list-heading">{headingText}</div>
-                    <div className="descriptipn">{description}</div>
-                    {listProfiles &&
-                        listProfiles.map((profile, index) => {
-                            const iconName = profile && profile.text && profile.text.toLowerCase();
-                            return (
-                                <a
-                                    href={profile.link && profile.link.url}
-                                    key={index}
-                                    target={profile.link && profile.link.openInNewTab && '_blank'}
-                                    rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
-                                    className={`zolo-list-item zolo- ${socialColor} `}
-                                >
-                                    {socialText !== 'iconOnly' && (
-                                        <>
-                                            <div className="zolo-list-content">
-                                                <span className="zolo-list-title">{profile.text}</span>
-                                            </div>
-                                        </>
-                                    )}
-                                </a>
-                            );
-                        })}
                 </div>
             </div>
         </>
