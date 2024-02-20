@@ -63,7 +63,7 @@ Not at all. We have optimised all of these blocks for better performance.
 = Updated =
 
 * Rolling animation features added in counter block
-* Code Optimazation
+* Code Optimization
 
 = Fixed =
 
