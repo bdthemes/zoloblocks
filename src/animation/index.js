@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     opacity: [0, 1],
                 },
                 scaleDown: {
-                    transform: ['scale(2)', 'none'],
+                    transform: ['scale(1.5)', 'none'],
                     opacity: [0, 1],
                 },
                 top: {
