@@ -42,67 +42,10 @@ class StyleGenerator {
         if (isset($block['blockName']) && str_contains($block['blockName'], 'zolo/')) {
 
             $animationActive = $block['attrs']['entranceAnimationActive'] ?? false;
-            //     delay
-            // :
-            // 0
-            // duration
-            // :
-            // 600
-            // easing
-            // :
-            // "ease-out"
-            // opacity
-            // :
-            // 1
-            // perspective
-            // :
-            // 0
-            // presetAnimation
-            // :
-            // "right"
-            // rotateX
-            // :
-            // {value: 0, unit: 'deg'}
-            // rotateY
-            // :
-            // {value: 0, unit: 'deg'}
-            // rotateZ
-            // :
-            // {value: 0, unit: 'deg'}
-            // scaleX
-            // :
-            // {value: 1, unit: ''}
-            // scaleY
-            // :
-            // {value: 1, unit: ''}
-            // scaleZ
-            // :
-            // {value: 1, unit: ''}
-            // skewX
-            // :
-            // {value: 0, unit: 'deg'}
-            // skewY
-            // :
-            // {value: 0, unit: 'deg'}
-            // transformOrigin
-            // :
-            // "center"
-            // transformOriginCustom
-            // :
-            // ""
-            // translateX
-            // :
-            // {value: 55, unit: 'px'}
-            // translateY
-            // :
-            // {value: 0, unit: 'px'}
-            // translateZ
-            // :
-            // {value: 0, unit: 'px'}
             if ($animationActive) {
                 $entranceAnimation = $block['attrs']['entranceAnimation'] ?? [
                     'translateX' => ['value' => 0, 'unit' => 'px'],
-                    'translateY' => ['value' => -50, 'unit' => 'px'],
+                    'translateY' => ['value' => 50, 'unit' => 'px'],
                     'translateZ' => ['value' => 0, 'unit' => 'px'],
                     'rotateX' => ['value' => 0, 'unit' => 'deg'],
                     'rotateY' => ['value' => 0, 'unit' => 'deg'],
@@ -120,7 +63,7 @@ class StyleGenerator {
                     'duration' => 600,
                     'delay' => 0,
                     'transformOrigin' => 'center',
-                    'presetAnimation' => 'topMedium',
+                    'presetAnimation' => 'bottomMedium',
                     'transformOriginCustom' => '',
 
                 ];

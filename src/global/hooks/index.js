@@ -123,7 +123,7 @@ function addAttributes(settings) {
                         unit: 'px',
                     },
                     translateY: {
-                        value: -50,
+                        value: 50,
                         unit: 'px',
                     },
                     translateZ: {
@@ -170,7 +170,7 @@ function addAttributes(settings) {
                     duration: 600,
                     delay: 0,
                     transformOrigin: 'center',
-                    presetAnimation: 'topMedium',
+                    presetAnimation: 'bottomMedium',
                     transformOriginCustom: '',
                 },
             },
