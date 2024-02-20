@@ -59,11 +59,11 @@ Not at all. We have optimised all of these blocks for better performance.
 
 * Advanced Image block added
 * Entrance animation features added
-* List block added
 
 = Updated =
 
 * Rolling animation features added in counter block
+* Code Optimazation
 
 = Fixed =
 

@@ -1,14 +1,14 @@
-## 1.0.0-RC4 [18th February 2024]
+## 1.0.0-RC4 [20th February 2024]
 
 ### Added
 
 - Advanced Image block added
 - Entrance animation features added
-- List block added
 
 ### Updated
 
 - Rolling animation features added in counter block
+- Code Optimazation
 
 ### Fixed
 
