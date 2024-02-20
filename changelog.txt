@@ -8,7 +8,7 @@
 ### Updated
 
 - Rolling animation features added in counter block
-- Code Optimazation
+- Code Optimization
 
 ### Fixed
 
