@@ -1,9 +1,7 @@
 .wp-block-zolo-list {
-    .zolo-list {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-gap: 1px;
-    }
+    display: grid;
+    grid-gap: 1px;
+
     .zolo-list-item {
         text-decoration: none;
     }
@@ -16,15 +14,9 @@
         transition: all 0.2s ease;
     }
 
-    .zolo-list-icon svg {
-        display: block;
-        width: 16px;
-        height: 16px;
-    }
-
-    .zolo-list-item:hover .zolo-list-icon {
-        background-color: #b9c4f3;
-    }
+    // .zolo-list-item:hover .zolo-list-icon {
+    //     background-color: #b9c4f3;
+    // }
 
     .zolo-list-title {
         font-size: 18px;
@@ -35,9 +27,9 @@
         transition: all 0.2s ease;
     }
 
-    .zolo-list-item:hover .zolo-list-title {
-        color: #09090b;
-    }
+    // .zolo-list-item:hover .zolo-list-title {
+    //     color: #09090b;
+    // }
 
     .zolo-list-desc {
         color: #636483;
@@ -84,7 +76,6 @@
     &.zolo-list-style-4 .zolo-list-item,
     &.zolo-list-style-6 .zolo-list-item {
         flex-direction: row-reverse;
-        justify-content: left;
     }
 
     &.zolo-list-style-4 .zolo-list-content,
@@ -100,26 +91,45 @@
         padding: 20px;
         border-radius: 6px;
         background-color: transparent;
+        // transition: all 0.3s ease;
+    }
+    //zolo list hover
+    .zolo-list-icon svg,
+    .zolo-list-hover-icon svg {
+        display: block;
+        width: 16px;
+        height: 16px;
+    }
+    .zolo-list-hover-icon {
+        color: #1641f7;
+        opacity: 0;
+        visibility: hidden;
         transition: all 0.3s ease;
     }
 
-    .zolo-list-item:hover,
-    .zolo-list-item:hover,
-    .zolo-list-item:hover {
-        background-color: #fff;
-        box-shadow: 0 5px 30px 0 rgb(123 136 168 / 20%);
-    }
-    .zolo-list-item:hover {
-        transform: scale(1.05);
+    .zolo-list-item:hover .zolo-list-hover-icon {
+        transform: translateX(0);
+        visibility: visible;
+        opacity: 1;
     }
 
-    .zolo-list-item:hover {
-        transform: scale(1.05) rotate(-3deg);
-    }
+    // .zolo-list-item:hover,
+    // .zolo-list-item:hover,
+    // .zolo-list-item:hover {
+    //     background-color: #fff;
+    //     box-shadow: 0 5px 30px 0 rgb(123 136 168 / 20%);
+    // }
+    // .zolo-list-item:hover {
+    //     transform: scale(1.05);
+    // }
 
-    .zolo-list-item:hover {
-        transform: translateY(-5px);
-    }
+    // .zolo-list-item:hover {
+    //     transform: scale(1.05) rotate(-3deg);
+    // }
+
+    // .zolo-list-item:hover {
+    //     transform: translateY(-5px);
+    // }
 
     // @media (min-width: 768px) {
     //     .zolo-list-wrap {

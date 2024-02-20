@@ -114,7 +114,6 @@ export const GlobalStyleHanlder = (props) => {
         ${bgDeskStyle ? bgDeskStyle : ''}
         ${zIndex ? `z-index: ${zIndex};` : ''}
         ${overflow ? `overflow: ${overflow};` : ''}
-        transition: all 0.3s ease-in-out;
       }
 
       .parent-${uniqueId}:hover {
@@ -123,7 +122,6 @@ export const GlobalStyleHanlder = (props) => {
 
       .parent-${uniqueId}:after {
           ${overlayDeskStyle ? overlayDeskStyle : ''}
-          transition: all 0.3s ease-in-out;
       }
 
       .parent-${uniqueId}:hover:after {
@@ -189,14 +187,21 @@ export const GlobalStyleHanlder = (props) => {
 		}
 	`;
 
+    // console.log('Mob: ', softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles));
+
+    const softMinifyDeskStrings = softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles);
+    const softMinifyTabStrings = softMinifyCssStrings(tabAllStyle + tabGlobalStyles);
+    const softMinifyMobStrings = softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles);
+
     // Set All Style in "zoloStyles" Attribute
     useEffect(() => {
         const styles = {
-            desktop: softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles),
-            tab: softMinifyCssStrings(tabAllStyle + tabGlobalStyles),
-            mobile: softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles),
-            customCss: blockWriteCss,
+            ...(softMinifyDeskStrings && softMinifyDeskStrings !== '' ? { desktop: softMinifyDeskStrings } : {}),
+            ...(softMinifyTabStrings && softMinifyTabStrings !== '' ? { tab: softMinifyTabStrings } : {}),
+            ...(softMinifyMobStrings && softMinifyMobStrings !== '' ? { mobile: softMinifyMobStrings } : {}),
+            ...(blockWriteCss && blockWriteCss !== '' ? { customCss: blockWriteCss } : {}),
         };
+
         if (JSON.stringify(zoloStyles) !== JSON.stringify(styles)) {
             setAttributes({
                 zoloStyles: { ...styles },

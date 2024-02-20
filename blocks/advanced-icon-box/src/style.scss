@@ -34,14 +34,25 @@
 
     .zolo-block-icon-wrap {
         margin: 0 0 clamp(0.938rem, 2.3vw, 1.3rem);
+        display: inline-block;
         img {
             width: clamp(3.125rem, 5vw, 3.75rem);
             height: auto;
         }
+    }
+
+    .zolo__display-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: content-box;
+        width: 1em;
+        height: 1em;
+        font-size: clamp(1.125rem, 5vw, 2.75rem);
         svg {
             display: inline-block;
-            width: clamp(1.125rem, 5vw, 2.75rem);
-            height: clamp(1.125rem, 5vw, 2.75rem);
+            width: 1em;
+            height: 1em;
             transition: 0.2s ease-in-out;
             box-sizing: content-box;
             fill: var(--zoloblocks-brand-color);
@@ -114,7 +125,7 @@
             right: 0;
         }
         &.zolo-ribbon-btn.top__left {
-           left: 0;
+            left: 0;
         }
     }
 }

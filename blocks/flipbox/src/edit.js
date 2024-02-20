@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
+import { useBlockProps, MediaPlaceholder } from '@wordpress/block-editor';
 
 import { __ } from '@wordpress/i18n';
 import { useRef, useEffect } from '@wordpress/element';
@@ -101,7 +101,13 @@ export default function Edit(props) {
                                                         }}
                                                         onSelect={(media) => {
                                                             setAttributes({
-                                                                frontIconTypeImage: media,
+                                                                frontIconTypeImage: {
+                                                                    id: media.id,
+                                                                    url: media.url,
+                                                                    alt: media.alt,
+                                                                    sizes: media.sizes,
+                                                                    caption: media.caption,
+                                                                },
                                                             });
                                                         }}
                                                         accept="image/*"
@@ -152,7 +158,13 @@ export default function Edit(props) {
                                                         }}
                                                         onSelect={(media) => {
                                                             setAttributes({
-                                                                backIconTypeImage: media,
+                                                                backIconTypeImage: {
+                                                                    id: media.id,
+                                                                    url: media.url,
+                                                                    alt: media.alt,
+                                                                    sizes: media.sizes,
+                                                                    caption: media.caption,
+                                                                },
                                                             });
                                                         }}
                                                         accept="image/*"

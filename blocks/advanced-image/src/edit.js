@@ -87,7 +87,13 @@ export default function Edit(props) {
                         <MediaUpload
                             onSelect={(media) => {
                                 setAttributes({
-                                    photo: media,
+                                    photo: {
+                                        id: media.id,
+                                        url: media.url,
+                                        sizes: media.sizes,
+                                        alt: media.alt,
+                                        caption: media.caption,
+                                    },
                                 });
                             }}
                             allowedTypes={['image']}
@@ -213,7 +219,13 @@ export default function Edit(props) {
                         <MediaPlaceholder
                             onSelect={(media) => {
                                 setAttributes({
-                                    photo: media,
+                                    photo: {
+                                        id: media.id,
+                                        url: media.url,
+                                        sizes: media.sizes,
+                                        alt: media.alt,
+                                        caption: media.caption,
+                                    },
                                 });
                             }}
                             accept="image/*"

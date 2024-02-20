@@ -129,11 +129,9 @@ const attributes = {
     },
     onOpacity: {
         type: 'number',
-        default: 0.2,
     },
     ohOpacity: {
         type: 'number',
-        default: 1,
     },
     resizedWidth: {
         type: 'number',

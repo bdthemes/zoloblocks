@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Form",
+    "name": "zolo/form",
+    "category": "zolo-blocks",
+    "keywords": ["form", "zolo"],
+    "description": "Form block to display a form",
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "zolo-block-editor-script"
+}

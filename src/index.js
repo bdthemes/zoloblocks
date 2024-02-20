@@ -19,6 +19,7 @@ import '../blocks/brand-grid/src';
 import '../blocks/cta/src';
 import '../blocks/counter/src';
 import '../blocks/countdown/src';
+// import '../blocks/form/src';
 import '../blocks/fancy-list-child/src';
 import '../blocks/fancy-list/src';
 import '../blocks/flipbox/src';
@@ -46,6 +47,9 @@ import '../blocks/team-child/src';
 import '../blocks/team-grid/src';
 import '../blocks/team-grid/src';
 // import '../blocks/list/src';
+
+// inner blocks
+// import '../blocks/text-field/src';
 
 // unregister blocks
 import './unregister';

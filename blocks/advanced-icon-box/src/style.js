@@ -405,17 +405,7 @@ export default function Style({ props }) {
         mobRangeStyle: iconSizeMob,
     } = generateResRangeStyle({
         controlName: ICON_SIZE,
-        property: 'width',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: iconHSize,
-        tabRangeStyle: iconHSizeTab,
-        mobRangeStyle: iconHSizeMob,
-    } = generateResRangeStyle({
-        controlName: ICON_SIZE,
-        property: 'height',
+        property: 'font-size',
         attributes,
     });
 
@@ -526,10 +516,11 @@ export default function Style({ props }) {
         attributes,
     });
 
+    console.log('align', iconAlignment);
+
     /**
      * All Style Combination
      */
-    console.log('uniqueId', uniqueId)
     const desktopAllStyle = `
     	.zolo-block-advanced-icon-box.${uniqueId}{
       --zolo-ribbon-xposition: ${ribbonXPosition}px;
@@ -546,7 +537,6 @@ export default function Style({ props }) {
             ${itemMarginDesk}
 
         }
-
 
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover {
             ${itemHBoxShadow}
@@ -583,15 +573,17 @@ export default function Style({ props }) {
 			${iconMarginDesktop}
         }
 
-		.${uniqueId} .zolo-block-icon-wrap svg {
+        .${uniqueId} .zolo-block-icon-wrap .zolo__display-icon {
             ${iconBackgroundColor ? `background: ${iconBackgroundColor};` : ''}
-            ${iconColor ? `fill: ${iconColor};` : ''}
-			${iconSize}
-            ${iconHSize}
 			${borderStyles}
 			${iconBorderRadiusDesktop}
 			${iconPaddingDesktop}
 			${iconBoxShadow}
+            ${iconSize}
+        }
+
+		.${uniqueId} .zolo-block-icon-wrap svg {
+            --zoloblocks-brand-color: ${iconColor ? iconColor : ''};
 		}
 
 		.${uniqueId} .zolo-block-icon-wrap img {
@@ -693,13 +685,11 @@ export default function Style({ props }) {
 			${iconMarginTab}
         }
 
-		.${uniqueId} .zolo-block-icon-wrap svg {
+        .${uniqueId} .zolo-block-icon-wrap .zolo__display-icon {
 			${iconSizeTab}
-            ${iconHSizeTab}
 			${borderStylesTab}
 			${iconBorderRadiusTab}
 			${iconPaddingTab}
-			background: ${iconBackgroundColor ? iconBackgroundColor : ''};
 		}
 
 		.${uniqueId} .zolo-block-icon-wrap img {
@@ -774,12 +764,11 @@ export default function Style({ props }) {
 			${iconPaddingMob}
         }
 
-		.${uniqueId} .zolo-block-icon-wrap svg {
-			${iconSizeMob}
-            ${iconHSizeMob}
+		.${uniqueId} .zolo-block-icon-wrap .zolo__display-icon {
 			${borderStylesMob}
 			${iconBorderRadiusMob}
 			${iconMarginMob}
+            ${iconSizeMob}
 		}
 
 		.${uniqueId} .zolo-block-icon-wrap img {

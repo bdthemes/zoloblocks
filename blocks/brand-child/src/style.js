@@ -218,7 +218,7 @@ const Style = ({ props }) => {
         typoStylesMobile: linkTypoMob,
     } = generateTypographyStyles({
         prefixConstant: LINK_TYPOGRAPHY,
-        defaultFontSize: 16,
+        defaultFontSize: '',
         attributes,
     });
 
