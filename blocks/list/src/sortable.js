@@ -4,11 +4,12 @@
 const { ZoloIconPicker, SortableControl, SortableItem, LinkControl } = window.zoloModule;
 
 const { __ } = wp.i18n;
-const { Button, PanelBody, TextControl, ToggleControl } = wp.components;
+const { Button, PanelBody, TextControl, ToggleControl, TextareaControl } = wp.components;
 import { cloneDeep } from 'lodash';
 
-const Sortable = ({ listProfiles, setAttributes }) => {
+const Sortable = ({ listProfiles, setAttributes, attributes }) => {
     const deepCloneProfiles = cloneDeep(listProfiles);
+    const { DscToggle, preset } = attributes;
 
     return (
         <div className="sortable">
@@ -26,7 +27,9 @@ const Sortable = ({ listProfiles, setAttributes }) => {
                                         url: '#',
                                         openInNewTab: false,
                                     },
-                                    text: 'list',
+
+                                    text: 'List ' + Number(listProfiles.length + 1),
+                                    desc: 'Customize widget dimension beyond normal scale',
                                 },
                             ],
                         })
@@ -65,17 +68,31 @@ const Sortable = ({ listProfiles, setAttributes }) => {
                                                 });
                                             }}
                                         />
-                                        <ZoloIconPicker
-                                            label={__('Select Icon', 'zolo-blocks')}
-                                            value={profile.icon}
-                                            onChange={(value) => {
-                                                const newItems = [...deepCloneProfiles];
-                                                newItems[index].icon = value;
-                                                setAttributes({
-                                                    listProfiles: newItems,
-                                                });
-                                            }}
-                                        />
+                                        {DscToggle && preset !== 'zolo-list-style-1' && (
+                                            <TextareaControl
+                                                label={__('Description', 'zolo-blocks')}
+                                                value={profile.desc}
+                                                onChange={(v) => {
+                                                    const newItems = [...deepCloneProfiles];
+                                                    newItems[index].desc = v;
+                                                    setAttributes({ listProfiles: newItems });
+                                                }}
+                                            />
+                                        )}
+                                        {preset !== 'zolo-list-style-1' && (
+                                            <ZoloIconPicker
+                                                label={__('Select Icon', 'zolo-blocks')}
+                                                value={profile.icon}
+                                                onChange={(value) => {
+                                                    const newItems = [...deepCloneProfiles];
+                                                    newItems[index].icon = value;
+                                                    setAttributes({
+                                                        listProfiles: newItems,
+                                                    });
+                                                }}
+                                            />
+                                        )}
+
                                         <LinkControl
                                             label={__('Link', 'zolo-blocks')}
                                             value={profile.link}

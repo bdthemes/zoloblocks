@@ -143,12 +143,11 @@
         &::after {
             position: absolute;
             right: 45px;
-            width: 32px;
-            height: 20px;
+            padding: 5.5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 8px;
+            font-size: 7px;
             line-height: 1;
             color: #fff;
             border-radius: 3px;
@@ -168,7 +167,7 @@
 
     .zolo-new-panel {
         .components-panel__body-toggle {
-            &::before {
+            &::after {
                 content: 'new';
                 background-color: #2141f3;
             }
@@ -177,10 +176,29 @@
     .zolo-new-pro-panel {
         &.zolo-new-panel {
             .components-panel__body-toggle {
-                &::after {
-                    transform: translateX(-36px);
+                &::before {
+                    transform: translateX(-34px);
                 }
             }
+        }
+    }
+
+    .components-button{
+        &[aria-label='Preview']{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #0f1012;
+                background-color: #f0f0f0;
+                border-radius: 6px;
+                border: 1px solid #ddd;
+                font-weight: 700;
+                transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+                &:hover {
+                    color: currentColor;
+                    background-color: #ececec;
+                }
         }
     }
 }

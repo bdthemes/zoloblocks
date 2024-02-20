@@ -83,14 +83,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    /**
-     * Generate Alignment Class
-     */
-
-    const btnDeskAlign = `display: ${buttonAlignmentDesktop === 'text-align:justify;' ? 'flex' : 'inline-flex'};`;
-    const btnTabAlign = `display: ${buttonAlignmentTab === 'text-align:justify;' ? 'flex' : 'inline-flex'};`;
-    const btnMobAlign = `display: ${buttonAlignmentMob === 'text-align:justify;' ? 'flex' : 'inline-flex'};`;
-
     // generate Background
     const {
         backgroundStylesDesktop: normalDeskBGStyle,
@@ -185,7 +177,7 @@ export default function Style({ props }) {
         typoStylesMobile: btnTypoMob,
     } = generateTypographyStyles({
         prefixConstant: BUTTON_TYPOGRAPHY,
-        defaultFontSize: 16,
+        defaultFontSize: '',
         attributes,
     });
 
@@ -381,6 +373,14 @@ export default function Style({ props }) {
         attributes,
         noMainBGImg: true,
     });
+
+    /**
+     * Generate Alignment Class
+     */
+
+    const btnDeskAlign = `display: ${buttonAlignmentDesktop === 'text-align:justify;' ? 'flex' : ''};`;
+    const btnTabAlign = `display: ${buttonAlignmentTab === 'text-align:justify;' ? 'flex' : ''};`;
+    const btnMobAlign = `display: ${buttonAlignmentMob === 'text-align:justify;' ? 'flex' : ''};`;
 
     /**
      * All Style Combination

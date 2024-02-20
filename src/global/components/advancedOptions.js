@@ -35,8 +35,6 @@ export const AdvancedOptions = (props) => {
         overflow,
     } = attributes;
 
-    console.log('entranceAnimation', entranceAnimation);
-
     const handleMotionAnimation = () => {
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
         let transformOptions = [];

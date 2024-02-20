@@ -19,7 +19,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
-    const { preview, uniqueId, preset, parentClasses, listProfiles, headingText, description, titleToggle, DscToggle } = attributes;
+    const { preview, uniqueId, preset, parentClasses, listProfiles, DscToggle, linkHoverIcon } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -38,32 +38,37 @@ export default function Edit(props) {
             <Style props={props} />
 
             <div {...blockProps}>
-                <div className="zolo-list-wrap">
-                    {titleToggle && <div className="list-heading">{headingText}</div>}
-                    {DscToggle && <div className="descriptipn">{description}</div>}
-                    <div className="zolo-list">
-                        {listProfiles &&
-                            listProfiles.map((profile, index) => {
-                                const iconName = profile && profile.text && profile.text.toLowerCase();
-                                return (
-                                    <a
-                                        href={profile.link && profile.link.url}
-                                        key={index}
-                                        target={profile.link && profile.link.openInNewTab && '_blank'}
-                                        rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
-                                        className={`zolo-list-item zolo-`}
-                                    >
-                                        <div className="zolo-list-icon">
-                                            <DisplayZoloIcon icon={profile.icon} />
-                                        </div>
-                                        <div className="zolo-list-content">
-                                            <span className="zolo-list-title">{profile.text}</span>
-                                        </div>
-                                    </a>
-                                );
-                            })}
-                    </div>
-                </div>
+                {/* <div className="zolo-list-wrap"> */}
+                {listProfiles &&
+                    listProfiles.map((profile, index) => {
+                        const iconName = profile && profile.text && profile.text.toLowerCase();
+                        return (
+                            <a
+                                href={profile.link && profile.link.url}
+                                key={index}
+                                target={profile.link && profile.link.openInNewTab && '_blank'}
+                                rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
+                                className={`zolo-list-item ${preset == 'zolo-list-style-1' ? 'zolo-list-title' : ''}`}
+                            >
+                                {preset == 'zolo-list-style-1' && profile.text}
+                                {preset !== 'zolo-list-style-1' && (
+                                    <div className="zolo-list-icon">
+                                        <DisplayZoloIcon icon={profile.icon} />
+                                    </div>
+                                )}
+                                {preset !== 'zolo-list-style-1' && (
+                                    <div className="zolo-list-content">
+                                        <div className="zolo-list-title">{profile.text}</div>
+                                        {DscToggle && <span className="zolo-list-desc">{profile.desc}</span>}
+                                    </div>
+                                )}
+                                <div class="zolo-list-hover-icon">
+                                    <DisplayZoloIcon icon={linkHoverIcon} />
+                                </div>
+                            </a>
+                        );
+                    })}
+                {/* </div> */}
             </div>
         </>
     );

@@ -9,7 +9,6 @@
     --zoloblocks-item-border-color: rgba(12, 11, 12, 0.07);
 }
 
-
 .zolo-appender-btn {
     margin-top: 30px;
     color: var(--zoloblocks-brand-button-color);
@@ -105,7 +104,6 @@ button[class*='editor-block-list-item-zolo'] {
     }
 }
 
-
 /**
  * Zolo Blocks Dropdown Controls Style
  */
@@ -116,25 +114,10 @@ button[class*='editor-block-list-item-zolo'] {
     }
 }
 
-
-.zolo-entrance-animation {
-  perspective: var(--zolo-perspective, 600px);
-  -webkit-perspective: var(--zolo-perspective, 600px);
-
-  .zolo-item {
-    opacity: 0;
-    transform-origin: var(--zolo-transform-origin, center top);
-    transform-style: preserve-3d;
-    // transform: translateY(100%) rotateX(-80deg);
-    transition: opacity 0s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0s cubic-bezier(0.215, 0.61, 0.355, 1);
-
-    -webkit-transform: translate(var(--zolo-translate-x, 0), var(--zolo-translate-y, 100%)) rotateX(var(--zolo-rotate-x, -80deg)) rotateY(var(--zolo-rotate-y, 0)) rotateZ(var(--zolo-rotate-z, 0)) scaleX(var(--zolo-scale-x, 1)) scaleY(var(--zolo-scale-y, 1)) skewX(var(--zolo-skew-x, 0)) skewY(var(--zolo-skew-y, 0));
-    transform: translate(var(--zolo-translate-x, 0), var(--zolo-translate-y, 100%)) rotateX(var(--zolo-rotate-x, -80deg)) rotateY(var(--zolo-rotate-y, 0)) rotateZ(var(--zolo-rotate-z, 0)) scaleX(var(--zolo-scale-x, 1)) scaleY(var(--zolo-scale-y, 1)) skewX(var(--zolo-skew-x, 0)) skewY(var(--zolo-skew-y, 0));
-
-    &.is-inview {
-      transform: none;
-      opacity: 1;
-      transition-duration: var(--zolo-transition-duration, 800ms) !important;
+// Container
+.zolo-block {
+    transition: all 0.3s ease-in-out;
+    &::after {
+        transition: all 0.3s ease-in-out;
     }
-  }
 }

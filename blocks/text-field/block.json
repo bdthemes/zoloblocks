@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Text Field",
+    "name": "zolo/text-field",
+    "category": "zolo-blocks",
+    "keywords": ["zolo", "text", "field"],
+    "description": "A simple text field block for Form Block",
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "zolo-block-editor-script"
+}

@@ -1,14 +1,14 @@
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, DynamicTag } = window.zoloModule;
 
 import classnames from 'classnames';
 
 import { useBlockProps } from '@wordpress/block-editor';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, listProfiles, headingText, description, zoloId, titleToggle, DscToggle } = attributes;
+    const { uniqueId, parentClasses, preset, listProfiles, zoloId, DscToggle, linkHoverIcon } = attributes;
 
     return (
         <div
@@ -19,32 +19,36 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            <div className="zolo-list-wrap">
-                {titleToggle && <div className="list-heading">{headingText}</div>}
-                {DscToggle && <div className="descriptipn">{description}</div>}
-                <div className="zolo-list">
-                    {listProfiles &&
-                        listProfiles.map((profile, index) => {
-                            const iconName = profile && profile.text && profile.text.toLowerCase();
-                            return (
-                                <a
-                                    href={profile.link && profile.link.url}
-                                    key={index}
-                                    target={profile.link && profile.link.openInNewTab && '_blank'}
-                                    rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
-                                    className={`zolo-list-item zolo-`}
-                                >
-                                    <div className="zolo-list-icon">
-                                        <DisplayZoloIcon icon={profile.icon} />
-                                    </div>
-                                    <div className="zolo-list-content">
-                                        <span className="zolo-list-title">{profile.text}</span>
-                                    </div>
-                                </a>
-                            );
-                        })}
-                </div>
-            </div>
+            {/* <div className="zolo-list-wrap"> */}
+            {listProfiles &&
+                listProfiles.map((profile, index) => {
+                    return (
+                        <a
+                            href={profile.link && profile.link.url}
+                            key={index}
+                            target={profile.link && profile.link.openInNewTab && '_blank'}
+                            rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
+                            className={`zolo-list-item ${preset == 'zolo-list-style-1' ? 'zolo-list-title' : ''}`}
+                        >
+                            {preset == 'zolo-list-style-1' && profile.text}
+                            {preset !== 'zolo-list-style-1' && (
+                                <div className="zolo-list-icon">
+                                    <DisplayZoloIcon icon={profile.icon} />
+                                </div>
+                            )}
+                            {preset !== 'zolo-list-style-1' && (
+                                <div className="zolo-list-content">
+                                    <div className="zolo-list-title">{profile.text}</div>
+                                    {DscToggle && <span className="zolo-list-desc">{profile.desc}</span>}
+                                </div>
+                            )}
+                            <div class="zolo-list-hover-icon">
+                                <DisplayZoloIcon icon={linkHoverIcon} />
+                            </div>
+                        </a>
+                    );
+                })}
+            {/* </div> */}
         </div>
     );
 };

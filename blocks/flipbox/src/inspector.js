@@ -307,7 +307,13 @@ function Inspector(props) {
                                                                 imageId={frontIconTypeImage && frontIconTypeImage.id}
                                                                 onEditImage={(media) => {
                                                                     setAttributes({
-                                                                        frontIconTypeImage: media,
+                                                                        frontIconTypeImage: {
+                                                                            id: media.id,
+                                                                            url: media.url,
+                                                                            alt: media.alt,
+                                                                            sizes: media.sizes,
+                                                                            caption: media.caption,
+                                                                        },
                                                                     });
                                                                 }}
                                                             />
@@ -315,7 +321,13 @@ function Inspector(props) {
                                                             <MediaUpload
                                                                 onSelect={(media) => {
                                                                     setAttributes({
-                                                                        frontIconTypeImage: media,
+                                                                        frontIconTypeImage: {
+                                                                            id: media.id,
+                                                                            url: media.url,
+                                                                            alt: media.alt,
+                                                                            sizes: media.sizes,
+                                                                            caption: media.caption,
+                                                                        },
                                                                     });
                                                                 }}
                                                                 allowedTypes={['image']}
@@ -410,7 +422,13 @@ function Inspector(props) {
                                                                 imageId={backIconTypeImage && backIconTypeImage.id}
                                                                 onEditImage={(media) => {
                                                                     setAttributes({
-                                                                        backIconTypeImage: media,
+                                                                        backIconTypeImage: {
+                                                                            id: media.id,
+                                                                            url: media.url,
+                                                                            alt: media.alt,
+                                                                            sizes: media.sizes,
+                                                                            caption: media.caption,
+                                                                        },
                                                                     });
                                                                 }}
                                                             />
@@ -418,7 +436,13 @@ function Inspector(props) {
                                                             <MediaUpload
                                                                 onSelect={(media) => {
                                                                     setAttributes({
-                                                                        backIconTypeImage: media,
+                                                                        backIconTypeImage: {
+                                                                            id: media.id,
+                                                                            url: media.url,
+                                                                            alt: media.alt,
+                                                                            sizes: media.sizes,
+                                                                            caption: media.caption,
+                                                                        },
                                                                     });
                                                                 }}
                                                                 allowedTypes={['image']}
@@ -918,60 +942,50 @@ function Inspector(props) {
                                         ))}
                                     </ButtonGroup>
                                 </BaseControl>
-                                {
-                                    side === 'back' && (
-                                        <>
-                                            <TypographyDropdown
-                                                label={__('Typography', 'zolo-blocks')}
-                                                typoPrefixConstant={BACK_LINK_TYPOGRAPHY}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={backLinkColor}
-                                                onChange={(color) =>
-                                                    setAttributes({
-                                                        backLinkColor: color,
-                                                    })
-                                                }
-                                            />
-                                            <ColorControl
-                                                label={__('Hover Color', 'zolo-blocks')}
-                                                color={backLinkHoverColor}
-                                                onChange={(color) =>
-                                                    setAttributes({
-                                                        backLinkHoverColor: color,
-                                                    })
-                                                }
-                                            />
-                                            <BorderControl
-                                                label={__('Border', 'zolo-blocks')}
-                                                controlName={BACK_LINK_BORDER}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <ResDimensionsControl
-                                                label={__('Border Radius', 'zolo-blocks')}
-                                                controlName={BACK_LINK_BORDER_RADIUS}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <ResDimensionsControl
-                                                label={__('Padding', 'zolo-blocks')}
-                                                controlName={BACK_LINK_PADDING}
-                                                requiredProps={requiredProps}
-                                            />
-                                            <NormalBGControl
-                                                requiredProps={requiredProps}
-                                                controlName={BACK_LINK_BG}
-                                                noMainBGImg={false}
-                                            />
-                                            <NormalBGControl
-                                                requiredProps={requiredProps}
-                                                controlName={BACK_LINK_HBG}
-                                                noMainBGImg={false}
-                                            />
-                                        </>
-                                    )
-                                }
+                                {side === 'back' && (
+                                    <>
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zolo-blocks')}
+                                            typoPrefixConstant={BACK_LINK_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ColorControl
+                                            label={__('Color', 'zolo-blocks')}
+                                            color={backLinkColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    backLinkColor: color,
+                                                })
+                                            }
+                                        />
+                                        <ColorControl
+                                            label={__('Hover Color', 'zolo-blocks')}
+                                            color={backLinkHoverColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    backLinkHoverColor: color,
+                                                })
+                                            }
+                                        />
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={BACK_LINK_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zolo-blocks')}
+                                            controlName={BACK_LINK_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zolo-blocks')}
+                                            controlName={BACK_LINK_PADDING}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={BACK_LINK_BG} noMainBGImg={false} />
+                                        <NormalBGControl requiredProps={requiredProps} controlName={BACK_LINK_HBG} noMainBGImg={false} />
+                                    </>
+                                )}
                             </ZoloPanelBody>
                         )}
                     </>

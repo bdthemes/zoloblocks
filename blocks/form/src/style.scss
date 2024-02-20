@@ -1,0 +1,297 @@
+:root {
+    --tw-opacity: 1;
+    --tw-ring-inset: var(--tw-empty,);
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: #1c64f2;
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #0000;
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+}
+
+.zolo-field-item {
+    margin-bottom: 1.2rem;
+}
+
+.zolo-field-input-item {
+    position: relative;
+}
+
+.zolo-label-wrapper {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    gap: 0.5rem;
+    .zolo-required {
+        display: inline-block;
+        line-height: 1;
+        color: #b80606;
+        font-size: 0.85rem;
+    }
+}
+
+.zolo-contact-form {
+    label {
+        font-size: 0.875rem;
+        line-height: 1;
+        font-weight: 500;
+        color: rgb(17 24 39 / var(--tw-opacity));
+        display: block;
+    }
+    .zolo-field-icon {
+        input {
+            padding-inline-start: 2.5rem;
+        }
+    }
+     input,
+     select,
+     textarea {
+        padding: 0.625rem;
+        /* padding-inline-start: 2.5rem; */
+        outline: none;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        color: rgb(17 24 39 / var(--tw-opacity));
+        border-radius: 0.5rem;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: rgb(249 250 251 / var(--tw-opacity));
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(209 213 219 / var(--tw-opacity));
+    }
+
+    select {
+        padding: 0.625rem;
+        /* padding-inline-start: unset; */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: '';
+    }
+
+
+
+    .zolo-input-icon.zolo-select-icon svg {
+        width: 11px;
+        height: 11px;
+    }
+
+    ::placeholder {
+        color: #747474;
+    }
+
+    input[type='file'] {
+        padding: 0;
+    }
+    input[type='file']:focus {
+        outline: none;
+    }
+
+    input[type='file']::file-selector-button {
+        padding: 0.625rem;
+        color: #fff;
+        border-radius: 0.5rem;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border: 1px solid #000;
+        background-color: #000;
+        margin-right: 14px;
+    }
+
+    .zolo-password-icon,
+    .zolo-select-icon {
+        right: 0;
+        padding-inline-end: 0.875rem;
+    }
+
+    .zolo-password-icon svg {
+        cursor: pointer;
+    }
+
+    [type='checkbox']:checked {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 12'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M1 5.917 5.724 10.5 15 1.5'/%3E%3C/svg%3E");
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    [type='radio']:checked {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 16 16' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E");
+        background-size: 1em 1em;
+    }
+
+    input[type='checkbox']:focus,
+    input[type='radio']:focus {
+        --tw-ring-offset-width: 2px;
+        --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+        --tw-ring-color: rgb(63 131 248 / var(--tw-opacity));
+    }
+
+    .zolo-checkbox-item {
+        label {
+            color: #59595e;
+            font-weight: 400;
+            a {
+                color: #3468f1;
+                text-decoration: none;
+            
+            }
+        }
+    }
+
+    // .zolo-checkbox-item label {
+
+    // }
+
+    .zolo-submit-btn button {
+        border: 0;
+        padding: 0.625rem 1.25rem;
+        background-color: rgb(26 86 219 / var(--tw-opacity));
+        color: #fff;
+        font-weight: 700;
+        text-transform: capitalize;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .zolo-submit-btn button:focus {
+        --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+    }
+
+    .zolo-submit-btn button:hover {
+        background-color: rgb(30 64 175 / var(--tw-opacity));
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+        --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+        border-color: #1c64f2;
+        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+    }
+}
+
+/* field icon style css here start */
+.zolo-field-icon .zolo-input-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding-inline-start: 0.875rem;
+}
+
+.zolo-field-icon .zolo-input-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: rgb(107 114 128 / var(--tw-opacity));
+}
+
+// .zolo-contact-form 
+
+/* field icon style css here end */
+
+
+
+/* zolo-contact-form-style-2 css here start */
+.zolo-contact-form-style-2 .zolo-field-item {
+    display: block;
+}
+
+@media (min-width: 767px) {
+    .zolo-contact-form-style-2 .zolo-field-item {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+    }
+
+    .zolo-contact-form-style-2 .zolo-field-input-item {
+        width: 60%;
+    }
+}
+
+/* zolo-contact-form-style-2 css here end */
+
+/* zolo-field-icon-style-2  */
+
+.zolo-field-icon-style-2 .zolo-input-icon {
+    border-right: 1px solid #d1d1d1;
+    border-radius: 6px;
+    padding-inline: 0.875rem;
+}
+
+.zolo-field-icon-style-2 .zolo-password-icon,
+.zolo-field-icon-style-2 .zolo-select-icon {
+    border: 0;
+}
+
+.zolo-field-icon-style-2.zolo-field-icon input {
+    padding-inline-start: 3.5rem;
+}
+
+.zolo-field-icon-style-2.zolo-field-icon input[type='file'] {
+    padding-inline-start: 0;
+}
+
+.zolo-contact-form textarea {
+    padding-inline-start: 0;
+    padding: 0.625rem;
+}
+
+.zolo-contact-form .zolo-password-show {
+    display: none;
+}
+
+.zolo-contact-form .zolo-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.zolo-contact-form .zolo-checkbox-item label,
+.zolo-contact-form .zolo-radio-item label {
+    margin: 0;
+}
+
+.zolo-contact-form input[type='checkbox'] {
+    border-radius: 0.25rem;
+}
+
+.zolo-contact-form input[type='radio'] {
+    border-radius: 50%;
+}
+
+.zolo-contact-form input[type='checkbox'],
+.zolo-contact-form input[type='radio'] {
+    margin: 0;
+    padding: 0;
+    width: 1rem;
+    height: 1rem;
+}
+
+.zolo-contact-form [type='checkbox'],
+.zolo-contact-form [type='radio'] {
+    appearance: none;
+    background-origin: border-box;
+}
+
+.zolo-contact-form [type='checkbox']:checked,
+.zolo-contact-form [type='radio']:checked {
+    background-color: #1c64f2;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 0.55em 0.55em;
+    border-color: transparent;
+}

@@ -208,7 +208,13 @@ function Inspector(props) {
                                                     <MediaUpload
                                                         onSelect={(media) => {
                                                             setAttributes({
-                                                                iconTypeImage: media,
+                                                                iconTypeImage: {
+                                                                    id: media.id,
+                                                                    url: media.url,
+                                                                    alt: media.alt,
+                                                                    sizes: media.sizes,
+                                                                    caption: media.caption,
+                                                                },
                                                             });
                                                         }}
                                                         allowedTypes={['image']}

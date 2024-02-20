@@ -34,7 +34,7 @@ export default function Edit(props) {
             <div {...blockProps}>
                 <div className={`zolo-block-wrapper zolo-advanced-button ${uniqueId} ${preset}`}>
                     <a
-                        className={`zolo-button ${iconPosition}`}
+                        className={classnames('zolo-button', `${iconPosition}`)}
                         href={link && link.url}
                         rel={link && link.openInNewTab && 'noreferrer noopener'}
                         target={link && link.openInNewTab && '_blank'}

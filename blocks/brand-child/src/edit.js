@@ -61,7 +61,13 @@ export default function Edit(props) {
                             <MediaUpload
                                 onSelect={(media) => {
                                     setAttributes({
-                                        brandPhoto: media,
+                                        brandPhoto: {
+                                            id: media.id,
+                                            url: media.url,
+                                            alt: media.alt,
+                                            sizes: media.sizes,
+                                            caption: media.caption,
+                                        },
                                     });
                                 }}
                                 allowedTypes={['image']}
@@ -102,7 +108,17 @@ export default function Edit(props) {
                                 </>
                             ) : (
                                 <MediaPlaceholder
-                                    onSelect={(media) => setAttributes({ brandPhoto: media })}
+                                    onSelect={(media) =>
+                                        setAttributes({
+                                            brandPhoto: {
+                                                id: media.id,
+                                                url: media.url,
+                                                alt: media.alt,
+                                                sizes: media.sizes,
+                                                caption: media.caption,
+                                            },
+                                        })
+                                    }
                                     allowedTypes={['image']}
                                     multiple={false}
                                     labels={{ title: __('Brand Photo', 'zolo-blocks') }}
@@ -141,7 +157,17 @@ export default function Edit(props) {
                                 />
                             ) : (
                                 <MediaPlaceholder
-                                    onSelect={(media) => setAttributes({ brandPhoto: media })}
+                                    onSelect={(media) =>
+                                        setAttributes({
+                                            brandPhoto: {
+                                                id: media.id,
+                                                url: media.url,
+                                                alt: media.alt,
+                                                sizes: media.sizes,
+                                                caption: media.caption,
+                                            },
+                                        })
+                                    }
                                     allowedTypes={['image']}
                                     multiple={false}
                                     labels={{ title: __('Brand Photo', 'zolo-blocks') }}

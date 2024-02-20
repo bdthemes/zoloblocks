@@ -191,7 +191,13 @@ function Inspector(props) {
                                                 imageId={memberPhoto && memberPhoto.id}
                                                 onEditImage={(media) => {
                                                     setAttributes({
-                                                        memberPhoto: media,
+                                                        memberPhoto: {
+                                                            id: media.id,
+                                                            url: media.url,
+                                                            alt: media.alt,
+                                                            sizes: media.sizes,
+                                                            caption: media.caption,
+                                                        },
                                                     });
                                                 }}
                                             />
@@ -199,7 +205,13 @@ function Inspector(props) {
                                             <MediaUpload
                                                 onSelect={(media) => {
                                                     setAttributes({
-                                                        memberPhoto: media,
+                                                        memberPhoto: {
+                                                            id: media.id,
+                                                            url: media.url,
+                                                            alt: media.alt,
+                                                            sizes: media.sizes,
+                                                            caption: media.caption,
+                                                        },
                                                     });
                                                 }}
                                                 allowedTypes={['image']}

@@ -17,20 +17,21 @@ import {
     LIST_COLUMNS_GAP,
     //item
     ITEM_ALIGNMENT,
-    LIST_BOX_SIZE,
+    LIST_BOX_WIDTH,
+    LIST_BOX_HEIGHT,
     LIST_BOX_RADIUS,
     LIST_BORDER,
     LIST_ALLBOX_PADDING,
     LIST_BOX_MARGIN,
     LIST_BOX_SHADOW,
     LIST_BG,
-    //title
-    LIST_TITTLE_BORDER,
-    LIST_TITLE_RADIUS,
-    LIST_TITLE_BG,
-    TITLE_MARGIN,
-    TITLE_PADDING,
-    TITLE_STROKE,
+    //list title
+    TEXT_LIST_BG,
+    TEXT_LIST_BORDER,
+    TEXT_LIST_RADIUS,
+    TEXT_LIST_MARGIN,
+    TEXT_LIST_PADDING,
+    TEXT_LIST_STROKE,
     //des
     LIST_DSC_BORDER,
     LIST_DSC_RADIUS,
@@ -38,19 +39,17 @@ import {
     DSC_MARGIN,
     DSC_PADDING,
     DSC_STROKE,
-    //list
-    TEXT_LIST_BG,
-    TEXT_LIST_BORDER,
-    TEXT_LIST_RADIUS,
-    TEXT_LIST_MARGIN,
-    TEXT_LIST_PADDING,
-    TEXT_LIST_STROKE,
     //icon
     LIST_ICON_SIZE,
     ICON_LIST_BG,
     ICON_LIST_HOVER_BG,
     ICON_LIST_PADDING,
     ICON_LIST_MARGIN,
+    //hover icon
+    LIST_HOVER_ICON_SIZE,
+    ICON_HOVER_LIST_PADDING,
+    ICON_HOVER_LIST_MARGIN,
+    ICON_HOVER_LIST_BG,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -81,13 +80,14 @@ const attributes = {
             responsiveControls: true,
         },
     },
-    //title
-    ...generateBorderAttributies(LIST_TITTLE_BORDER),
-    ...generateDimensionAttributes(LIST_TITLE_RADIUS),
-    ...generateDimensionAttributes(TITLE_MARGIN),
-    ...generateDimensionAttributes(TITLE_PADDING),
-    ...generateNormalBGAttributes(LIST_TITLE_BG),
-    ...generateTextStrokeAttributies(TITLE_STROKE),
+
+    //List title
+    ...generateBorderAttributies(TEXT_LIST_BORDER),
+    ...generateDimensionAttributes(TEXT_LIST_RADIUS),
+    ...generateDimensionAttributes(TEXT_LIST_MARGIN),
+    ...generateDimensionAttributes(TEXT_LIST_PADDING),
+    ...generateNormalBGAttributes(TEXT_LIST_BG),
+    ...generateTextStrokeAttributies(TEXT_LIST_STROKE),
 
     //dsc
     ...generateBorderAttributies(LIST_DSC_BORDER),
@@ -96,13 +96,6 @@ const attributes = {
     ...generateDimensionAttributes(DSC_PADDING),
     ...generateNormalBGAttributes(LIST_DSC_BG),
     ...generateTextStrokeAttributies(DSC_STROKE),
-    //List
-    ...generateBorderAttributies(TEXT_LIST_BORDER),
-    ...generateDimensionAttributes(TEXT_LIST_RADIUS),
-    ...generateDimensionAttributes(TEXT_LIST_MARGIN),
-    ...generateDimensionAttributes(TEXT_LIST_PADDING),
-    ...generateNormalBGAttributes(TEXT_LIST_BG),
-    ...generateTextStrokeAttributies(TEXT_LIST_STROKE),
 
     //icon
     ...generateResRangeAttributies(LIST_ICON_SIZE),
@@ -110,10 +103,16 @@ const attributes = {
     ...generateNormalBGAttributes(ICON_LIST_HOVER_BG),
     ...generateDimensionAttributes(ICON_LIST_PADDING),
     ...generateDimensionAttributes(ICON_LIST_MARGIN),
+    //Hover Icon
+    ...generateResRangeAttributies(LIST_HOVER_ICON_SIZE),
+    ...generateNormalBGAttributes(ICON_HOVER_LIST_BG),
+    ...generateDimensionAttributes(ICON_HOVER_LIST_PADDING),
+    ...generateDimensionAttributes(ICON_HOVER_LIST_MARGIN),
 
     //item
     ...generateResAlignmentAttributies(ITEM_ALIGNMENT),
-    ...generateDimensionAttributes(LIST_BOX_SIZE),
+    ...generateResRangeAttributies(LIST_BOX_WIDTH),
+    ...generateResRangeAttributies(LIST_BOX_HEIGHT),
     ...generateDimensionAttributes(LIST_BOX_RADIUS),
     ...generateBorderAttributies(LIST_BORDER),
     ...generateDimensionAttributes(LIST_ALLBOX_PADDING),
@@ -136,21 +135,14 @@ const attributes = {
         type: 'string',
         default: 'zolo-list-style-1',
     },
-    titleToggle: {
-        type: 'boolean',
-        default: true,
-    },
+
     DscToggle: {
         type: 'boolean',
-        default: true,
+        default: false,
     },
-    headingText: {
+    layout: {
         type: 'string',
-        default: 'text here',
-    },
-    description: {
-        type: 'string',
-        default: 'description',
+        default: 'flex',
     },
 
     listProfiles: {
@@ -163,38 +155,63 @@ const attributes = {
                     url: '#',
                     openInNewTab: false,
                 },
-                text: 'List',
+                text: 'List 1',
+                desc: 'Customize widget dimension beyond normal scale',
+            },
+            {
+                id: 2,
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg>',
+                link: {
+                    url: '#',
+                    openInNewTab: false,
+                },
+                text: 'List 2',
+                desc: 'Customize widget dimension beyond normal scale',
+            },
+            {
+                id: 3,
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg>',
+                link: {
+                    url: '#',
+                    openInNewTab: false,
+                },
+                text: 'List 3',
+                desc: 'Customize widget dimension beyond normal scale',
+            },
+            {
+                id: 4,
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg>',
+                link: {
+                    url: '#',
+                    openInNewTab: false,
+                },
+                text: 'List 4',
+                desc: 'Customize widget dimension beyond normal scale',
             },
         ],
-    },
-
-    //title
-    titleColor: {
-        type: 'string',
     },
 
     //dsc
     dscColor: {
         type: 'string',
     },
-    //TEXT LIST
+    //TEXT LIST title
     textListColor: {
         type: 'string',
     },
-    // icon
-    listIcon: {
-        type: 'string',
-    },
+
     listIconHover: {
         type: 'string',
     },
-    headingTag: {
+
+    //hover Icon
+    linkHoverIcon: {
         type: 'string',
-        default: 'p',
+        default:
+            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>',
     },
-    descriptionTag: {
+    HoverIconColor: {
         type: 'string',
-        default: 'p',
     },
 };
 
