@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (entranceAnimation.translateZ.value !== 0) {
             transformOptions.push(`translateZ(${entranceAnimation.translateZ.value}${entranceAnimation.translateZ.unit})`);
         }
-
         if (entranceAnimation.rotateX.value !== 0) {
             transformOptions.push(`rotateX(${entranceAnimation.rotateX.value}deg)`);
         }
@@ -42,9 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (entranceAnimation.duration) {
             otherOptions.duration = entranceAnimation.duration / 1000;
         }
-        if (entranceAnimation.easing) {
-            otherOptions.easing = entranceAnimation.easing;
-        }
         if (entranceAnimation.delay) {
             otherOptions.delay = entranceAnimation.delay / 1000;
         }
@@ -57,19 +53,25 @@ document.addEventListener('DOMContentLoaded', function () {
         if (entranceAnimation.perspective !== 0) {
             otherOptions.perspective = entranceAnimation.perspective;
         }
-        if (entranceAnimation.transformOrigin !== 'custom') {
-            otherOptions.transformOrigin = entranceAnimation.transformOrigin;
+        if (entranceAnimation.easing !== 'custom') {
+            otherOptions.easing = entranceAnimation.easing;
         } else {
-            otherOptions.transformOrigin = entranceAnimation.transformOriginCustom;
+            otherOptions.easing = [entranceAnimation.easingCustom.split(';')[0]];
         }
-
         // array to string
         const transformOptionsion = transformOptions.join('');
 
         const options = {
             transform: [transformOptionsion, 'none'],
             opacity: [entranceAnimation.opacity ? entranceAnimation.opacity : 0, 1],
+            transformOrigin: entranceAnimation.transformOrigin,
         };
+
+          if (entranceAnimation.perspective !== 0) {
+              options.perspective = [`${entranceAnimation.perspective}px`, 'none'];
+              options.transformStyle = 'preserve-3d';
+          }
+
         if (entranceAnimation.presetAnimation === 'custom') {
             animate(targetElement, options, otherOptions);
         } else {
@@ -103,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     opacity: [0, 1],
                 },
                 scaleDown: {
-                    transform: ['scale(2)', 'none'],
+                    transform: ['scale(1.5)', 'none'],
                     opacity: [0, 1],
                 },
                 top: {
