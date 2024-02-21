@@ -30,7 +30,7 @@ jobs:
               uses: thedoctor0/zip-release@0.7.6
               with:
                   filename: 'zolo-blocks.zip'
-                  exclusions: '*/src/* /*node_modules/* /*.distignore /*.gitignore /*.github/* /*.git/* /*.editorconfig /*README.md /*Gruntfile.js /*package.json /*package-lock.json /*composer.json  /*composer.lock /*webpack.config.js '
+                  exclusions: '/*src/* /*node_modules/* /*.distignore /*.gitignore /*.github/* /*.git/* /*.editorconfig /*README.md /*Gruntfile.js /*package.json /*package-lock.json /*composer.json  /*composer.lock /*webpack.config.js '
             - name: Display release
               run: ls -a
 
