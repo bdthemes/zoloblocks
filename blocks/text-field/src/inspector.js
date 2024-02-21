@@ -4,6 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, TextControl, RangeControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useState } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -52,6 +53,11 @@ function Inspector(props) {
         objAttributes,
     };
 
+    const [rangeValue, setRangeValue] = useState({
+        minValue: 25,
+        maxValue: 60,
+    });
+
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -59,8 +65,22 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <MultiRangeControl />
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                            <MultiRangeControl
+                                min={0}
+                                max={100}
+                                step={1}
+                                minValue={rangeValue?.minValue}
+                                maxValue={rangeValue?.maxValue}
+                                onInput={(e) => {
+                                    // console.log(e);
+
+                                    setRangeValue({
+                                        minValue: e.minValue,
+                                        maxValue: e.maxValue,
+                                    });
+                                }}
+                            />
                             <ToggleControl
                                 label={__('Show Label', 'zolo-blocks')}
                                 checked={showLabel}

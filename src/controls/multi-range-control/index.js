@@ -3,13 +3,17 @@ import { useState, useEffect, useRef } from '@wordpress/element';
 const MultiRangeControl = (props, ref) => {
     const min = parseFloat(props.min || 0);
     const max = parseFloat(props.max || 100);
-    const step = parseFloat(props.step || 5);
+    const step = parseFloat(props.step || 1);
     const stepCount = (max - min) / step;
-    let ruler = props.ruler === undefined || props.ruler === null ? true : props.ruler;
+    let ruler = props.ruler === undefined || props.ruler === null ? false : props.ruler;
     let label = props.label === undefined || props.label === null ? true : props.label;
 
     ruler = ruler === 'false' || !ruler ? false : true;
     label = label === 'false' || !label ? false : true;
+
+    // top labels
+    const fromLabel = props.fromLabel || 'From';
+    const toLabel = props.toLabel || 'To';
 
     const preventWheel = props.preventWheel === 'true' || props.preventWheel === true || false;
     const [minValue, set_minValue] = useState(parseFloat(props.minValue || 25));
@@ -255,6 +259,10 @@ const MultiRangeControl = (props, ref) => {
     //.zolo-multi-rangle-control
     return (
         <div className="zolo-control-container zolo-multi-rangle-control" onWheel={onMouseWheel} ref={ref}>
+            <div className="top-label">
+                <div className="label-min">{fromLabel}</div>
+                <div className="label-max">{toLabel}</div>
+            </div>
             <div className="bar" ref={refThis}>
                 <div className="bar-left" style={{ width: barMin + '%' }} onClick={onBarLeftClick}></div>
                 <input
@@ -292,12 +300,6 @@ const MultiRangeControl = (props, ref) => {
                     {[...Array(stepCount)].map((e, i) => (
                         <div key={i} className="ruler-rule"></div>
                     ))}
-                </div>
-            )}
-            {label && (
-                <div className="label">
-                    <div className="label-min">{min}</div>
-                    <div className="label-max">{max}</div>
                 </div>
             )}
         </div>

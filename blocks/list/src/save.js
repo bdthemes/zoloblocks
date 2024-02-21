@@ -42,9 +42,11 @@ const Save = ({ attributes }) => {
                                     {DscToggle && <span className="zolo-list-desc">{profile.desc}</span>}
                                 </div>
                             )}
-                            <div class="zolo-list-hover-icon">
-                                <DisplayZoloIcon icon={linkHoverIcon} />
-                            </div>
+                            {preset == 'zolo-list-style-4' && (
+                                <div class="zolo-list-hover-icon">
+                                    <DisplayZoloIcon icon={linkHoverIcon} />
+                                </div>
+                            )}
                         </a>
                     );
                 })}

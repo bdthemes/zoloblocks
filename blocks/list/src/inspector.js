@@ -331,12 +331,12 @@ function Inspector(props) {
                                     noMainBGImg={true}
                                 />
                                 <BorderControl
-                                    label={__('Title Border', 'zolo-blocks')}
+                                    label={__('Border', 'zolo-blocks')}
                                     controlName={LIST_DSC_BORDER}
                                     requiredProps={requiredProps}
                                 />
                                 <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
+                                    label={__('Radius', 'zolo-blocks')}
                                     controlName={LIST_DSC_RADIUS}
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}

@@ -17,7 +17,7 @@ if (!empty($settings['showThumbnail'])) {
     } else {
         $permalink = $result->permalink ?? '#';
         $thumbnailHTML .= '<a href="' . $permalink . '">';
-        $thumbnailHTML .= "<img src='.$placeholderImage.' alt='Placeholder image'>";
+        $thumbnailHTML .= '<img src="' . $placeholderImage . '" alt="' . $result->title . '">';
         $thumbnailHTML .= '</a>';
     }
 }

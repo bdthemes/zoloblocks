@@ -38,7 +38,6 @@ export default function Edit(props) {
             <Style props={props} />
 
             <div {...blockProps}>
-                {/* <div className="zolo-list-wrap"> */}
                 {listProfiles &&
                     listProfiles.map((profile, index) => {
                         const iconName = profile && profile.text && profile.text.toLowerCase();
@@ -62,13 +61,14 @@ export default function Edit(props) {
                                         {DscToggle && <span className="zolo-list-desc">{profile.desc}</span>}
                                     </div>
                                 )}
-                                <div class="zolo-list-hover-icon">
-                                    <DisplayZoloIcon icon={linkHoverIcon} />
-                                </div>
+                                {preset == 'zolo-list-style-4' && (
+                                    <div class="zolo-list-hover-icon">
+                                        <DisplayZoloIcon icon={linkHoverIcon} />
+                                    </div>
+                                )}
                             </a>
                         );
                     })}
-                {/* </div> */}
             </div>
         </>
     );
