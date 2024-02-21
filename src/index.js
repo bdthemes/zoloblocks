@@ -46,7 +46,7 @@ import '../blocks/team-child/src';
 import '../blocks/team-child/src';
 import '../blocks/team-grid/src';
 import '../blocks/team-grid/src';
-import '../blocks/list/src';
+// import '../blocks/list/src';
 
 // inner blocks
 // import '../blocks/text-field/src';

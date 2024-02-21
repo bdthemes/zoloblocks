@@ -14,9 +14,9 @@
         transition: all 0.2s ease;
     }
 
-    // .zolo-list-item:hover .zolo-list-icon {
-    //     background-color: #b9c4f3;
-    // }
+    .zolo-list-item:hover .zolo-list-icon {
+        background-color: #b9c4f3;
+    }
 
     .zolo-list-title {
         font-size: 18px;
@@ -56,34 +56,25 @@
 
     /* Demo css style 2,3  */
     &.zolo-list-style-3 .zolo-list-item,
-    &.zolo-list-style-4 .zolo-list-item,
-    &.zolo-list-style-5 .zolo-list-item,
-    &.zolo-list-style-6 .zolo-list-item {
+    &.zolo-list-style-4 .zolo-list-item {
         display: inline-flex;
         align-items: flex-start;
         gap: 15px;
     }
 
     &.zolo-list-style-3 .zolo-list-title,
-    &.zolo-list-style-4 .zolo-list-title,
-    &.zolo-list-style-5 .zolo-list-title,
-    &.zolo-list-style-6 .zolo-list-title {
+    &.zolo-list-style-4 .zolo-list-title {
         margin: 0;
         line-height: 1;
     }
-
-    /* Demo css style 3  */
-    &.zolo-list-style-4 .zolo-list-item,
-    &.zolo-list-style-6 .zolo-list-item {
-        flex-direction: row-reverse;
+    &.zolo-list-style-4 .zolo-list-hover-icon {
+        transform: translateX(-10px);
     }
-
-    &.zolo-list-style-4 .zolo-list-content,
-    &.zolo-list-style-6 .zolo-list-content {
-        text-align: right;
+    &.zolo-list-style-4 .zolo-list-item:hover {
+        transform: translateY(-5px);
+        background-color: #fff;
+        box-shadow: 0 5px 30px 0 rgba(123, 136, 168, 0.2);
     }
-    /* Demo css item hover style 1,2 */
-    //add style
 
     .zolo-list-item,
     .zolo-list-item,

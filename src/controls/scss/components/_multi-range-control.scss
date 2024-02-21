@@ -1,14 +1,13 @@
-.zolo-multi-rangle-control {
-}
-.multi-range-slider * {
+.zolo-multi-rangle-control * {
     box-sizing: border-box;
     padding: 0px;
     margin: 0px;
 }
-.multi-range-slider {
+.zolo-multi-rangle-control {
     display: flex;
     position: relative;
     flex-direction: column;
+    padding-bottom: 48px;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */
@@ -16,67 +15,67 @@
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge,*/
 }
-.multi-range-slider .bar {
+
+.top-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.zolo-multi-rangle-control .bar {
     display: flex;
 }
-.multi-range-slider .bar * {
+.zolo-multi-rangle-control .bar * {
     transition: all 100ms;
 }
-.multi-range-slider .bar.active * {
+.zolo-multi-rangle-control .bar.active * {
     transition: none;
 }
-.multi-range-slider .bar-left {
+.zolo-multi-rangle-control .bar-left {
     width: 25%;
     background-color: #f0f0f0;
     border-radius: 10px 0px 0px 10px;
-    box-shadow: inset 0px 0px 5px black;
-    padding: 4px 0px;
+    padding: 1.2px 0px;
 }
-.multi-range-slider .bar-right {
+.zolo-multi-rangle-control .bar-right {
     width: 25%;
     background-color: #f0f0f0;
     border-radius: 0px 10px 10px 0px;
-    box-shadow: inset 0px 0px 5px black;
 }
-.multi-range-slider .bar-inner {
-    background-color: lime;
+.zolo-multi-rangle-control .bar-inner {
+    background-color: #021feb;
     display: flex;
     flex-grow: 1;
     flex-shrink: 1;
     justify-content: space-between;
     position: relative;
-    border: solid 1px black;
     justify-content: space-between;
-    box-shadow: inset 0px 0px 5px black;
 }
-.multi-range-slider .bar-inner-left {
+.zolo-multi-rangle-control .bar-inner-left {
     width: 50%;
 }
-.multi-range-slider .bar-inner-right {
+.zolo-multi-rangle-control .bar-inner-right {
     width: 50%;
 }
-.multi-range-slider .thumb {
+.zolo-multi-rangle-control .thumb {
     background-color: red;
     position: relative;
     z-index: 1;
     cursor: pointer;
 }
-.multi-range-slider .thumb::before {
-    content: '';
-    background-color: white;
+.zolo-multi-rangle-control .thumb::before {
+    content: "";
+    background-color: blue;
     position: absolute;
-    width: 20px;
-    height: 20px;
-    border: solid 1px black;
-    box-shadow:
-        0px 0px 3px black,
-        inset 0px 0px 5px gray;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     z-index: 1;
-    margin: -8px;
+    margin: -6px;
     cursor: pointer;
 }
-.multi-range-slider .input-type-range:focus + .thumb::after {
+.zolo-multi-rangle-control .input-type-range:focus + .thumb::after {
     content: '';
     position: absolute;
     top: -4px;
@@ -86,27 +85,22 @@
     z-index: 2;
     border-radius: 50%;
     border: dotted 1px black;
-    box-shadow:
-        0px 0px 5px white,
-        inset 0px 0px 10px black;
 }
 
-.multi-range-slider .thumb * {
+.zolo-multi-rangle-control .thumb * {
     position: absolute;
-    bottom: 25px;
-    width: 30px;
-    height: 30px;
-    left: -15px;
-    font-size: 75%;
+    bottom: -26px;
+    width: 22px;
+    height: 18px;
+    left: -10px;
+    font-size: 8px;
     text-align: center;
-    line-height: 30px;
-    background-color: blue;
-    border-radius: 50%;
+    line-height: 18px;
+    background-color: rgb(21, 21, 21);
+    border-radius: 4px;
     color: white;
-    box-shadow: 0px 0px 5px black;
-    display: none;
 }
-.multi-range-slider .thumb:active * {
+.zolo-multi-rangle-control .thumb:active * {
     display: block;
 }
 .input-type-range {
@@ -118,12 +112,12 @@
     pointer-events: none;
 }
 
-.multi-range-slider .ruler {
+.zolo-multi-rangle-control .ruler {
     margin: 10px 0px -5px 0px;
     display: flex;
     /* display: none; */
 }
-.multi-range-slider .ruler .ruler-rule {
+.zolo-multi-rangle-control .ruler .ruler-rule {
     border-left: solid 1px;
     border-bottom: solid 1px;
     display: flex;
@@ -132,11 +126,11 @@
     padding: 5px 0px;
 }
 
-.multi-range-slider .ruler .ruler-rule:last-child {
+.zolo-multi-rangle-control .ruler .ruler-rule:last-child {
     border-right: solid 1px;
 }
 
-.multi-range-slider .label {
+.zolo-multi-rangle-control .label {
     display: flex;
     justify-content: space-between;
     padding: 0px;
@@ -144,9 +138,9 @@
     margin-bottom: -20px;
     /* display: none; */
 }
-.multi-range-slider .label-min {
+.zolo-multi-rangle-control .label-min {
     font-size: 80%;
 }
-.multi-range-slider .label-max {
+.zolo-multi-rangle-control .label-max {
     font-size: 80%;
 }
