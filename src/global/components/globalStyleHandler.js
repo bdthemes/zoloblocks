@@ -105,7 +105,7 @@ export const GlobalStyleHanlder = (props) => {
     });
 
     const desktopGlobalStyles = `
-      .parent-${uniqueId} {
+      .parent-${uniqueId}.zolo-block {
         ${normalBoxShadowStyle ? normalBoxShadowStyle : ''}
         ${borderRadiusStylesDesktop ? borderRadiusStylesDesktop : ''}
         ${desktopBorderStyles ? desktopBorderStyles : ''}
@@ -116,21 +116,21 @@ export const GlobalStyleHanlder = (props) => {
         ${overflow ? `overflow: ${overflow};` : ''}
       }
 
-      .parent-${uniqueId}:hover {
+      .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
       }
 
-      .parent-${uniqueId}:after {
+      .parent-${uniqueId}.zolo-block:after {
           ${overlayDeskStyle ? overlayDeskStyle : ''}
       }
 
-      .parent-${uniqueId}:hover:after {
+      .parent-${uniqueId}.zolo-block:hover:after {
           ${hoverOverlayDeskStyle ? hoverOverlayDeskStyle : ''}
       }
   `;
 
     const tabGlobalStyles = `
-      .parent-${uniqueId} {
+      .parent-${uniqueId}.zolo-block {
           ${borderRadiusStylesTab ? borderRadiusStylesTab : ''}
           ${tabBorderStyles ? tabBorderStyles : ''}
           ${marginStylesTab ? marginStylesTab : ''}
@@ -138,21 +138,21 @@ export const GlobalStyleHanlder = (props) => {
           ${bgTabStyle ? bgTabStyle : ''}
       }
 
-      .parent-${uniqueId}:hover {
+      .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgTabStyle ? hoverBgTabStyle : ''}
       }
 
-      .parent-${uniqueId}:after {
+      .parent-${uniqueId}.zolo-block:after {
           ${overlayTabStyle ? overlayTabStyle : ''}
       }
 
-      .parent-${uniqueId}:hover:after {
+      .parent-${uniqueId}.zolo-block:hover:after {
           ${hoverOverlayTabStyle ? hoverOverlayTabStyle : ''}
       }
   `;
 
     const mobileGlobalStyles = `
-      .parent-${uniqueId} {
+      .parent-${uniqueId}.zolo-block {
           ${borderRadiusStylesMobile ? borderRadiusStylesMobile : ''}
           ${mobileBorderStyles ? mobileBorderStyles : ''}
           ${marginStylesMobile ? marginStylesMobile : ''}
@@ -161,15 +161,15 @@ export const GlobalStyleHanlder = (props) => {
 
       }
 
-      .parent-${uniqueId}:hover {
+      .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgMobStyle ? hoverBgMobStyle : ''}
       }
 
-      .parent-${uniqueId}:after {
+      .parent-${uniqueId}.zolo-block:after {
           ${overlayMobStyle ? overlayMobStyle : ''}
       }
 
-      .parent-${uniqueId}:hover:after {
+      .parent-${uniqueId}.zolo-block:hover:after {
           ${hoverOverlayMobStyle ? hoverOverlayMobStyle : ''}
       }
   `;
@@ -186,8 +186,6 @@ export const GlobalStyleHanlder = (props) => {
 			${softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles)}
 		}
 	`;
-
-    // console.log('Mob: ', softMinifyCssStrings(mobileAllStyle + mobileGlobalStyles));
 
     const softMinifyDeskStrings = softMinifyCssStrings(desktopAllStyle + desktopGlobalStyles);
     const softMinifyTabStrings = softMinifyCssStrings(tabAllStyle + tabGlobalStyles);
