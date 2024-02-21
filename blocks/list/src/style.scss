@@ -27,9 +27,10 @@
         transition: all 0.2s ease;
     }
 
-    // .zolo-list-item:hover .zolo-list-title {
-    //     color: #09090b;
-    // }
+    .zolo-list-style-1 .zolo-list-item:hover.zolo-list-title,
+    .zolo-list-item:hover .zolo-list-title {
+        color: #09090b;
+    }
 
     .zolo-list-desc {
         color: #636483;
@@ -82,7 +83,6 @@
         padding: 20px;
         border-radius: 6px;
         background-color: transparent;
-        // transition: all 0.3s ease;
     }
     //zolo list hover
     .zolo-list-icon svg,

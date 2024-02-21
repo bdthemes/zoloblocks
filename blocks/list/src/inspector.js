@@ -115,6 +115,9 @@ function Inspector(props) {
             case 'zolo-list-style-3':
                 setAttributes({ DscToggle: true });
                 break;
+            case 'zolo-list-style-4':
+                setAttributes({ DscToggle: true });
+                break;
             default:
                 break;
         }
@@ -134,11 +137,13 @@ function Inspector(props) {
                                 options={PRESETS}
                                 onChange={(value) => changePremade(value)}
                             />
-                            <ToggleControl
-                                label={__('Show Description', 'zolo-blocks')}
-                                checked={DscToggle}
-                                onChange={() => setAttributes({ DscToggle: !DscToggle })}
-                            />
+                            {preset !== 'zolo-list-style-1' && (
+                                <ToggleControl
+                                    label={__('Show Description', 'zolo-blocks')}
+                                    checked={DscToggle}
+                                    onChange={() => setAttributes({ DscToggle: !DscToggle })}
+                                />
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Layout', 'zolo-blocks')} panelProps={props}>
                             <IconicBtnGroup

@@ -21,6 +21,8 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .zolo-multi-rangle-control .bar {
@@ -36,7 +38,7 @@
     width: 25%;
     background-color: #f0f0f0;
     border-radius: 10px 0px 0px 10px;
-    padding: 1.2px 0px;
+    padding: 1.3px 0px;
 }
 .zolo-multi-rangle-control .bar-right {
     width: 25%;
@@ -89,16 +91,17 @@
 
 .zolo-multi-rangle-control .thumb * {
     position: absolute;
-    bottom: -26px;
-    width: 22px;
-    height: 18px;
-    left: -10px;
-    font-size: 8px;
+    bottom: -37px;
+    width: 36px;
+    height: 24px;
+    left: -18px;
+    font-size: 10px;
     text-align: center;
-    line-height: 18px;
+    line-height: 22px;
     background-color: rgb(21, 21, 21);
     border-radius: 4px;
     color: white;
+    font-weight: 700;
 }
 .zolo-multi-rangle-control .thumb:active * {
     display: block;
@@ -136,11 +139,17 @@
     padding: 0px;
     margin-top: 10px;
     margin-bottom: -20px;
-    /* display: none; */
 }
-.zolo-multi-rangle-control .label-min {
-    font-size: 80%;
+
+.zolo-multi-rangle-control .thumb *::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -4px;
+    border-width: 4px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+
 }
-.zolo-multi-rangle-control .label-max {
-    font-size: 80%;
-}
+
