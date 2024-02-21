@@ -1,8 +1,9 @@
-## 1.0.0-RC4 [20th February 2024]
+## 1.0.0-RC4 [21st February 2024]
 
 ### Added
 
 - Advanced Image block added
+- Review carousel block added
 - Entrance animation features added
 
 ### Updated
@@ -13,7 +14,7 @@
 ### Fixed
 
 - Flipbox block image/icon positioning issue fixed
-- Rolling animation isn't showing in Safari browser issue fixed
+- Rolling animation not showing in Safari browser issue fixed
 
 ## 1.0.0-RC3 [02nd February 2024]
 
