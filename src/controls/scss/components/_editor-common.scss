@@ -183,22 +183,25 @@
         }
     }
 
-    .components-button{
-        &[aria-label='Preview']{
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #0f1012;
-                background-color: #f0f0f0;
-                border-radius: 6px;
-                border: 1px solid #ddd;
-                font-weight: 700;
-                transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-                &:hover {
-                    color: currentColor;
-                    background-color: #ececec;
-                }
+    .components-button {
+        &[aria-label='Preview'] {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f1012;
+            background-color: #f0f0f0;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-weight: 700;
+            transition:
+                background-color 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease;
+            &:hover {
+                color: currentColor;
+                background-color: #ececec;
+            }
         }
     }
 }
@@ -386,6 +389,7 @@ textarea[readonly] {
     margin-bottom: 24px;
 }
 
+.zolo-panel-control,
 .zb-res-range-control-wrapper {
     .components-range-control__slider {
         position: unset !important;

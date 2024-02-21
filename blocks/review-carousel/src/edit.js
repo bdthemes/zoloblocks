@@ -14,7 +14,6 @@ import classnames from 'classnames';
  */
 const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
-
 import { CAROUSEL_COLUMNS, CAROUSEL_GAP } from './constants';
 
 import Inspector from './inspector';
@@ -170,7 +169,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.reviewCarousel} alt={__('Review Carousel Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.postCarousel} alt={__('Review Carousel Preview', 'zolo-blocks')} />;
     }
 
     const innerBlocksProps = useInnerBlocksProps(

@@ -19,7 +19,6 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            {/* <div className="zolo-list-wrap"> */}
             {listProfiles &&
                 listProfiles.map((profile, index) => {
                     return (
@@ -50,7 +49,6 @@ const Save = ({ attributes }) => {
                         </a>
                     );
                 })}
-            {/* </div> */}
         </div>
     );
 };

@@ -32,6 +32,11 @@ return apply_filters(
             'status'     => true
         ],
         [
+            'name'       => 'zolo_advanced_image',
+            'categories' => ['gallery'],
+            'status'     => true
+        ],
+        [
             'name'       => 'zolo_brand_grid',
             'categories' => ['post'],
             'status'     => true,
@@ -99,7 +104,7 @@ return apply_filters(
         ],
         [
             'name'       => 'zolo_review_carousel',
-            'categories' => ['review', 'post'],
+            'categories' => ['review', 'slider'],
             'status'     => true,
         ],
         [

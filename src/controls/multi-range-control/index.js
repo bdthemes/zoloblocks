@@ -1,3 +1,4 @@
+import { BaseControl } from '@wordpress/components';
 import { useState, useEffect, useRef } from '@wordpress/element';
 
 const MultiRangeControl = (props, ref) => {
@@ -14,6 +15,9 @@ const MultiRangeControl = (props, ref) => {
     // top labels
     const fromLabel = props.fromLabel || 'From';
     const toLabel = props.toLabel || 'To';
+
+    // rangle unit
+    const unit = props.unit || 'px';
 
     const preventWheel = props.preventWheel === 'true' || props.preventWheel === true || false;
     const [minValue, set_minValue] = useState(parseFloat(props.minValue || 25));
@@ -258,51 +262,53 @@ const MultiRangeControl = (props, ref) => {
 
     //.zolo-multi-rangle-control
     return (
-        <div className="zolo-control-container zolo-multi-rangle-control" onWheel={onMouseWheel} ref={ref}>
-            <div className="top-label">
-                <div className="label-min">{fromLabel}</div>
-                <div className="label-max">{toLabel}</div>
+        <BaseControl>
+            <div className="zolo-control-container zolo-multi-rangle-control" onWheel={onMouseWheel} ref={ref}>
+                <div className="top-label">
+                    <div className="label-min">{fromLabel}</div>
+                    <div className="label-max">{toLabel}</div>
+                </div>
+                <div className="bar" ref={refThis}>
+                    <div className="bar-left" style={{ width: barMin + '%' }} onClick={onBarLeftClick}></div>
+                    <input
+                        className="input-type-range input-type-range-min"
+                        type="range"
+                        min={min}
+                        max={max}
+                        step={step}
+                        value={minValue}
+                        onInput={onInputMinChange}
+                    />
+                    <div className="thumb thumb-left" onMouseDown={onLeftThumbMousedown} onTouchStart={onLeftThumbMousedown}>
+                        <div className="min-value">{minValue + unit}</div>
+                    </div>
+                    <div className="bar-inner">
+                        <div className="bar-inner-left" onClick={onInnerBarLeftClick}></div>
+                        <div className="bar-inner-right" onClick={onInnerBarRightClick}></div>
+                    </div>
+                    <input
+                        className="input-type-range input-type-range-max"
+                        type="range"
+                        min={min}
+                        max={max}
+                        step={step}
+                        value={maxValue}
+                        onInput={onInputMaxChange}
+                    />
+                    <div className="thumb thumb-right" onMouseDown={onRightThumbMousedown} onTouchStart={onRightThumbMousedown}>
+                        <div className="max-value">{maxValue + unit}</div>
+                    </div>
+                    <div className="bar-right" style={{ width: barMax + '%' }} onClick={onBarRightClick}></div>
+                </div>
+                {ruler && (
+                    <div className="ruler">
+                        {[...Array(stepCount)].map((e, i) => (
+                            <div key={i} className="ruler-rule"></div>
+                        ))}
+                    </div>
+                )}
             </div>
-            <div className="bar" ref={refThis}>
-                <div className="bar-left" style={{ width: barMin + '%' }} onClick={onBarLeftClick}></div>
-                <input
-                    className="input-type-range input-type-range-min"
-                    type="range"
-                    min={min}
-                    max={max}
-                    step={step}
-                    value={minValue}
-                    onInput={onInputMinChange}
-                />
-                <div className="thumb thumb-left" onMouseDown={onLeftThumbMousedown} onTouchStart={onLeftThumbMousedown}>
-                    <div className="min-value">{minValue}</div>
-                </div>
-                <div className="bar-inner">
-                    <div className="bar-inner-left" onClick={onInnerBarLeftClick}></div>
-                    <div className="bar-inner-right" onClick={onInnerBarRightClick}></div>
-                </div>
-                <input
-                    className="input-type-range input-type-range-max"
-                    type="range"
-                    min={min}
-                    max={max}
-                    step={step}
-                    value={maxValue}
-                    onInput={onInputMaxChange}
-                />
-                <div className="thumb thumb-right" onMouseDown={onRightThumbMousedown} onTouchStart={onRightThumbMousedown}>
-                    <div className="max-value">{maxValue}</div>
-                </div>
-                <div className="bar-right" style={{ width: barMax + '%' }} onClick={onBarRightClick}></div>
-            </div>
-            {ruler && (
-                <div className="ruler">
-                    {[...Array(stepCount)].map((e, i) => (
-                        <div key={i} className="ruler-rule"></div>
-                    ))}
-                </div>
-            )}
-        </div>
+        </BaseControl>
     );
 };
 
