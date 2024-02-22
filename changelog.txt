@@ -1,4 +1,4 @@
-## 1.0.0-RC4 [21st February 2024]
+## 1.0.0-RC4 [22th February 2024]
 
 ### Added
 
