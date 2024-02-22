@@ -516,8 +516,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    console.log('align', iconAlignment);
-
     /**
      * All Style Combination
      */
@@ -547,7 +545,7 @@ export default function Style({ props }) {
         .${uniqueId}{
             ${iconAlignmentDesktop}
         }
-		.${uniqueId} .zolo-block-icon-wrap{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap{
 			align-items: ${iconAlignment ? iconAlignment : 'flex-start'};
 		}
 
@@ -563,17 +561,17 @@ export default function Style({ props }) {
             ${textColor ? `color: ${textColor};` : ''}
 		}
 
-		.${uniqueId} .zolo-block-desc{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-desc{
 			${descTypoDesktop}
 			${descMarginDesktop}
             ${descColor ? `color: ${descColor};` : ''}
 		}
 
-        .${uniqueId} .zolo-block-icon-wrap {
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap {
 			${iconMarginDesktop}
         }
 
-        .${uniqueId} .zolo-block-icon-wrap .zolo__display-icon {
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap .zolo__display-icon {
             ${iconBackgroundColor ? `background: ${iconBackgroundColor};` : ''}
 			${borderStyles}
 			${iconBorderRadiusDesktop}
@@ -582,17 +580,17 @@ export default function Style({ props }) {
             ${iconSize}
         }
 
-		.${uniqueId} .zolo-block-icon-wrap svg {
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap svg {
             --zoloblocks-brand-color: ${iconColor ? iconColor : ''};
 		}
 
-		.${uniqueId} .zolo-block-icon-wrap img {
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap img {
 			${iconImageSizeDesk}
 			${iconImageBorderDesk}
 			${iconImageBorderRadiusDesk}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button {
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
 			${buttonBGDeskStyle}
 			${gapDesk}
 			${buttonBorderStyles}
@@ -605,7 +603,7 @@ export default function Style({ props }) {
             flex-direction: ${iconPosition};
 		}
 
-        .${uniqueId} .zolo-block-body-content .zolo-box-button svg{
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button svg{
 			${buttonIconSize}
             ${buttonIconHSize}
             ${btnColor ? `fill: ${btnColor};` : ''}
@@ -676,29 +674,29 @@ export default function Style({ props }) {
 			${titleMarginTab}
 		}
 
-		.${uniqueId} .zolo-block-desc{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-desc{
 			${descMarginTab}
 			${descTypoTab}
 		}
 
-        .${uniqueId} .zolo-block-icon-wrap {
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap {
 			${iconMarginTab}
         }
 
-        .${uniqueId} .zolo-block-icon-wrap .zolo__display-icon {
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap .zolo__display-icon {
 			${iconSizeTab}
 			${borderStylesTab}
 			${iconBorderRadiusTab}
 			${iconPaddingTab}
 		}
 
-		.${uniqueId} .zolo-block-icon-wrap img {
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap img {
 			${iconImageSizeTab}
 			${iconImageBorderTab}
 			${iconImageBorderRadiusTab}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button {
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
             ${buttonBGTabStyle}
 			${gapTab}
 			${buttonBorderStylesTab}
@@ -707,12 +705,12 @@ export default function Style({ props }) {
 			${buttonMarginTab}
 		}
 
-        .${uniqueId} .zolo-block-body-content .zolo-box-button svg{
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button svg{
 			${buttonIconSizeTab}
             ${buttonIconHSizeTab}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button{
 			${btnTypoTab}
 		}
 
@@ -720,12 +718,12 @@ export default function Style({ props }) {
             ${buttonBGHoverTabStyle}
         }
         .${uniqueId} .zolo-ribbon-btn{
-        ${ribbonTypoTab}
-        ${ribbonBgTab}
-        ${ribbonPaddingTab}
-        ${ribbonMarginTab}
-        ${ribbonBorderTab}
-        ${ribbonTabRadius}
+            ${ribbonTypoTab}
+            ${ribbonBgTab}
+            ${ribbonPaddingTab}
+            ${ribbonMarginTab}
+            ${ribbonBorderTab}
+            ${ribbonTabRadius}
         }
 	`;
 
@@ -745,7 +743,7 @@ export default function Style({ props }) {
 			${iconAlignmentMob}
 		}
 
-        .${uniqueId} .zolo-block-item{
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item{
 			${contentMobAlign}
 		}
 
@@ -755,29 +753,29 @@ export default function Style({ props }) {
 			${titleMarginMob}
 		}
 
-		.${uniqueId} .zolo-block-desc{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-desc{
 			${descMarginMob}
 			${descTypoMobile}
 		}
 
-        .${uniqueId} .zolo-block-icon-wrap {
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap {
 			${iconPaddingMob}
         }
 
-		.${uniqueId} .zolo-block-icon-wrap .zolo__display-icon {
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap .zolo__display-icon {
 			${borderStylesMob}
 			${iconBorderRadiusMob}
 			${iconMarginMob}
             ${iconSizeMob}
 		}
 
-		.${uniqueId} .zolo-block-icon-wrap img {
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap img {
 			${iconImageSizeMob}
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
 
-        .${uniqueId} .zolo-block-body-content .zolo-box-button {
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
             ${buttonBGMobStyle}
 			${gapMob}
 			${buttonBorderStylesMob}
@@ -786,12 +784,12 @@ export default function Style({ props }) {
 			${buttonMarginMob}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button svg{
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button svg{
 			${buttonIconSizeMob}
             ${buttonIconHSizeMob}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button {
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
 			${btnTypoMobile}
 		}
 
@@ -799,13 +797,13 @@ export default function Style({ props }) {
             ${buttonBGHoverMobStyle}
         }
 
-        .${uniqueId} .zolo-ribbon-btn{
-        ${ribbonTypoMobile}
-        ${ribbonBgMob}
-        ${ribbonPaddingMobile}
-        ${ribbonMarginMobile}
-        ${ribbonBorderMob}
-        ${ribbonMobRadius}
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-ribbon-btn{
+            ${ribbonTypoMobile}
+            ${ribbonBgMob}
+            ${ribbonPaddingMobile}
+            ${ribbonMarginMobile}
+            ${ribbonBorderMob}
+            ${ribbonMobRadius}
       }
   	`;
 
