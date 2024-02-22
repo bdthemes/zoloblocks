@@ -15,6 +15,7 @@
 
 - Flipbox block image/icon positioning issue fixed
 - Rolling animation not showing in Safari browser issue fixed
+- Advanced Icon Box image sizing issue fixed
 
 ## 1.0.0-RC3 [02nd February 2024]
 
