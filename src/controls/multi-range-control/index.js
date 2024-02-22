@@ -69,6 +69,7 @@ const MultiRangeControl = (props, ref) => {
         document.addEventListener('touchmove', onLeftThumbMousemove);
         document.addEventListener('touchend', onLeftThumbMouseup);
         bar.classList.add('active');
+        e.target.classList.add('active');
     };
     const onLeftThumbMousemove = (e) => {
         let clientX = e.clientX;
@@ -98,6 +99,7 @@ const MultiRangeControl = (props, ref) => {
         document.removeEventListener('touchmove', onLeftThumbMousemove);
         document.removeEventListener('touchend', onLeftThumbMouseup);
         bar.classList.remove('active');
+        e.target.classList.remove('active');
     };
     const onInnerBarLeftClick = (e) => {
         let _minValue = minValue + step;
@@ -147,6 +149,7 @@ const MultiRangeControl = (props, ref) => {
         document.addEventListener('touchmove', onRightThumbMousemove);
         document.addEventListener('touchend', onRightThumbMouseup);
         bar.classList.add('active');
+        e.target.classList.add('active');
     };
     const onRightThumbMousemove = (e) => {
         let clientX = e.clientX;
@@ -176,6 +179,7 @@ const MultiRangeControl = (props, ref) => {
         document.removeEventListener('touchmove', onRightThumbMousemove);
         document.removeEventListener('touchend', onRightThumbMouseup);
         bar.classList.remove('active');
+        e.target.classList.remove('active');
     };
     const onBarRightClick = (e) => {
         let _maxValue = maxValue + step;

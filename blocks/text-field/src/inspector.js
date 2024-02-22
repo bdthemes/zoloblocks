@@ -73,8 +73,6 @@ function Inspector(props) {
                                 minValue={rangeValue?.minValue}
                                 maxValue={rangeValue?.maxValue}
                                 onInput={(e) => {
-                                    // console.log(e);
-
                                     setRangeValue({
                                         minValue: e.minValue,
                                         maxValue: e.maxValue,
