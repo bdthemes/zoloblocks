@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 import { compose } from '@wordpress/compose';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { TabsContext } from './context';
-import { withSelect } from '@wordpress/data';
+import {withDispatch, withSelect } from '@wordpress/data';
 
 /**
  * External dependencies
@@ -31,11 +31,9 @@ import Style from './style';
 
 const Edit = (props) => {
     const { attributes, setAttributes, className, clientId, isSelected, childTabIds } = props;
+
     const { preview, uniqueId, parentClasses, tabs, initialTabSelected, blockInitialized, titlePosition, rating } = attributes;
-
-    //keep current selected tab in editor as a state defaults to initialSelected tab attribute.
     const [currentTabSelected, setCurrentTabSelected] = useState(initialTabSelected ? initialTabSelected : 0);
-
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
@@ -73,6 +71,10 @@ const Edit = (props) => {
                                         role="tab"
                                         aria-controls={`tab-content-${key}`}
                                         aria-selected="true"
+                                        onClick={(event) => {
+                                            event.preventDefault();
+                                            setCurrentTabSelected(key);
+                                        }}
                                     >
                                         <div className="zolo-tab_icon-number-wrap">
                                             <span className="zolo-tab_icon">
@@ -99,9 +101,6 @@ const Edit = (props) => {
                     </div>
                     <div className="tab__content">
                         <TabsContext.Provider value={{ currentTabSelected, childTabIds, tabs }}>
-                            {
-                                console.log(tabs)
-                            }
                             <InnerBlocks
                                 template={getInnerBlockTemplates()}
                                 templateLock={false}
@@ -137,6 +136,33 @@ export default compose([
             // Get an array of child blocks( tab blocks ) client ID in order.
             childTabIds: getBlockOrder(ownProps.clientId),
             rootId: ownProps.clientId,
+        };
+    }),
+    withDispatch((dispatch, { childTabIds, clientId }) => {
+        const { removeBlock, moveBlocksDown, moveBlocksUp, insertBlock } = dispatch('core/block-editor');
+        return {
+            /**
+             * Move specific tab block down, switch position with next tab block.
+             * @param {integer} index position index in the child tab blocks array.
+             */
+            onMoveDown(index) {
+                moveBlocksDown([childTabIds[index]], clientId);
+            },
+            /**
+             * Move specific tab block up, switch position with previous tab block.
+             * @param {integer} index position index in the child tab blocks array.
+             */
+            onMoveUp(index) {
+                moveBlocksUp([childTabIds[index]], clientId);
+            },
+            /**
+             * Remove specific tab block.
+             * @param {integer} index position index in the child tab blocks array.
+             */
+            removeBlock(index) {
+                removeBlock(childTabIds[index]);
+            },
+            insertBlock,
         };
     }),
 ])(Edit);
