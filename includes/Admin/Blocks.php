@@ -138,6 +138,16 @@ return apply_filters(
             'status'     => true,
         ],
         [
+            'name'       => 'zolo_tab',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_tabs',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
             'name'       => 'zolo_team_grid',
             'categories' => ['post'],
             'status'     => true,

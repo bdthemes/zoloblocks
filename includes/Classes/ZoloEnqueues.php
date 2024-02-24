@@ -204,6 +204,9 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             if (has_block('zolo/progress-bar')) {
                 wp_enqueue_script('zolo-roll-number', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/animate-counter/rollNumber.js', [], ZOLO_VERSION, true);
             }
+            if (has_block('zolo/tabs')) {
+                wp_enqueue_script('zolo-tabs-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/tabs/tabify.js', [], ZOLO_VERSION, true);
+            }
         }
         /**
          * Load Block Editor Assets

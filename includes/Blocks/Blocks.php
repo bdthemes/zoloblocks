@@ -145,6 +145,18 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => ['zolo-star-rating-frontend']
     ],
+    'tab' => [
+        'name'             => 'tab',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/tab/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-tab-frontend']
+    ],
+    'tabs' => [
+        'name'             => 'tabs',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/tabs/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-tabs-frontend']
+    ],
     'accordion-child' => [
         'name'             => 'accordion-child',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/accordion-child/block.json',
