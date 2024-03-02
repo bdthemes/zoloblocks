@@ -53,7 +53,7 @@ class Zolo_AJAX {
      */
     public static function zolo_example_ajax_function_callback() {
         if (!wp_verify_nonce($_POST['nonce'], 'nonce')) {
-            die(__('Nonce did not match', 'zolo-blocks'));
+            wp_die( esc_html_e('Nonce did not match', 'zolo-blocks'));
         }
 
         //Write your code here

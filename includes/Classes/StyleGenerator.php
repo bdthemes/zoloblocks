@@ -69,7 +69,7 @@ class StyleGenerator {
                 ];
 
                 // Convert the entrance animation to JSON string
-                $entranceAnimation = json_encode($entranceAnimation);
+                $entranceAnimation = wp_json_encode($entranceAnimation);
 
                 if (!empty($entranceAnimation)) {
                     // Parse the block content as HTML

@@ -53,7 +53,7 @@ class SupportSVG {
         }
 
         // Sanitize SVG content
-        $svg_content = file_get_contents($file);
+        $svg_content = wp_remote_get($file);
         $sanitized_content = $this->sanitize_svg_content($svg_content);
         if ($sanitized_content !== $svg_content) {
             $data['error'] = 'SVG file contains disallowed content.';
