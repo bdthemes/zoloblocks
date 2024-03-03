@@ -111,6 +111,73 @@ function addAttributes(settings) {
             overflow: {
                 type: 'string',
             },
+            floatingAnimationActive:{
+                type: 'boolean',
+                default: false,
+            },
+            floatingAnimation:{
+                type: 'object',
+                default: {
+                    translateX: {
+                        minValue: 0,
+                        maxValue: 100,
+                        unit: 'px',
+
+                    },
+                    translateY: {
+                        minValue: 0,
+                        maxValue: 100,
+                        unit: 'px',
+                    },
+
+                    rotateX: {
+                        minValue: 0,
+                        maxValue: 180,
+                        unit: 'deg',
+                    },
+                    rotateY: {
+                        minValue: 0,
+                        maxValue: 180,
+                    },
+                    rotateZ: {
+                        minValue: 0,
+                        maxValue: 180,
+                        unit: 'deg',
+                    },
+                    scaleX: {
+                        minValue: 0,
+                        maxValue: 5,
+                        unit: '',
+                    },
+                    scaleY: {
+                        minValue: 0,
+                        maxValue: 5,
+                        unit: '',
+                    },
+                    scaleZ: {
+                        minValue: 0,
+                        maxValue: 5,
+                        unit: '',
+                    },
+                    skewX: {
+                        minValue: 0,
+                        maxValue: 180,
+                        unit: 'deg',
+                    },
+                    skewY: {
+                        minValue: 0,
+                        maxValue: 180,
+                        unit: 'deg',
+                    },
+                    easing: 'ease-out',
+                    easingCustom: '',
+                    repeat: false,
+                    perspective: 0,
+                    duration: 600,
+                    delay: 0,
+                    transformOrigin: 'center',
+                },
+            },
             entranceAnimationActive: {
                 type: 'boolean',
                 default: false,

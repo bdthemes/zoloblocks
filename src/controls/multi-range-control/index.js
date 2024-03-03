@@ -1,7 +1,7 @@
 import { BaseControl } from '@wordpress/components';
 import { useState, useEffect, useRef } from '@wordpress/element';
 
-const MultiRangeControl = (props, ref) => {
+const MultiRangeControl = (props) => {
     const min = parseFloat(props.min || 0);
     const max = parseFloat(props.max || 100);
     const step = parseFloat(props.step || 1);
@@ -258,16 +258,20 @@ const MultiRangeControl = (props, ref) => {
     }, [preventWheel]);
 
     useEffect(() => {
-        set_minValue(parseFloat(props.minValue));
-        set_barMin(((minValue - min) / (max - min)) * 100);
-        set_maxValue(parseFloat(props.maxValue));
-        set_barMax(((max - maxValue) / (max - min)) * 100);
-    }, [props.minValue, props.maxValue, minValue, min, maxValue, max]);
+        const parsedMinValue = parseFloat(props.minValue);
+        const parsedMaxValue = parseFloat(props.maxValue);
+        if (!isNaN(parsedMinValue) && !isNaN(parsedMaxValue)) {
+            set_minValue(parsedMinValue);
+            set_maxValue(parsedMaxValue);
+            set_barMin(((parsedMinValue - min) / (max - min)) * 100);
+            set_barMax(((max - parsedMaxValue) / (max - min)) * 100);
+        }
+    }, [props.minValue, props.maxValue, min, max]);
 
     //.zolo-multi-rangle-control
     return (
         <BaseControl>
-            <div className="zolo-control-container zolo-multi-rangle-control" onWheel={onMouseWheel} ref={ref}>
+            <div className="zolo-control-container zolo-multi-rangle-control" onWheel={onMouseWheel} ref={refThis}>
                 <div className="top-label">
                     <div className="label-min">{fromLabel}</div>
                     <div className="label-max">{toLabel}</div>
