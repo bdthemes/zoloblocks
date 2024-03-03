@@ -54,7 +54,7 @@ const attributes = {
     },
     label: {
         type: 'string',
-        default: 'Text Field',
+        default: 'Name',
     },
     labelColor: {
         type: 'string',

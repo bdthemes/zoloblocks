@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -19,7 +19,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
-    const { preview, uniqueId, preset, parentClasses, listProfiles, DscToggle, linkHoverIcon } = attributes;
+    const { preview, uniqueId, preset, parentClasses, listProfiles, iconToggle, titleToggle, DscToggle, linkHoverIcon } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -48,7 +48,6 @@ export default function Edit(props) {
             ],
         });
     };
-
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
@@ -74,14 +73,14 @@ export default function Edit(props) {
                                     onKeyDown={handleKeyPress}
                                 >
                                     {preset == 'zolo-list-style-1' && profile.text}
-                                    {preset !== 'zolo-list-style-1' && (
+                                    {iconToggle && preset !== 'zolo-list-style-1' && (
                                         <div className="zolo-list-icon">
                                             <DisplayZoloIcon icon={profile.icon} />
                                         </div>
                                     )}
                                     {preset !== 'zolo-list-style-1' && (
                                         <div className="zolo-list-content">
-                                            <div className="zolo-list-title">{profile.text}</div>
+                                            {titleToggle && <div className="zolo-list-title">{profile.text}</div>}
                                             {DscToggle && <span className="zolo-list-desc">{profile.desc}</span>}
                                         </div>
                                     )}

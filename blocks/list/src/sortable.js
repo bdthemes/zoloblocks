@@ -28,7 +28,7 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                         openInNewTab: false,
                                     },
 
-                                    text: 'List ' + Number(listProfiles.length + 1),
+                                    text: 'List Item ' + Number(listProfiles.length + 1),
                                     desc: 'Customize widget dimension beyond normal scale',
                                 },
                             ],

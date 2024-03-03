@@ -784,12 +784,12 @@ export default function Style({ props }) {
 			${buttonMarginMob}
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button svg{
+		.${uniqueId} .zolo-block-body-content .zolo-box-button svg{
 			${buttonIconSizeMob}
             ${buttonIconHSizeMob}
 		}
 
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
+		.${uniqueId} .zolo-block-body-content .zolo-box-button {
 			${btnTypoMobile}
 		}
 
@@ -797,13 +797,13 @@ export default function Style({ props }) {
             ${buttonBGHoverMobStyle}
         }
 
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-ribbon-btn{
-            ${ribbonTypoMobile}
-            ${ribbonBgMob}
-            ${ribbonPaddingMobile}
-            ${ribbonMarginMobile}
-            ${ribbonBorderMob}
-            ${ribbonMobRadius}
+        .${uniqueId} .zolo-ribbon-btn{
+        ${ribbonTypoMobile}
+        ${ribbonBgMob}
+        ${ribbonPaddingMobile}
+        ${ribbonMarginMobile}
+        ${ribbonBorderMob}
+        ${ribbonMobRadius}
       }
   	`;
 

@@ -38,8 +38,6 @@ import {
     LIST_COLUMNS_GAP,
     //ITEM
     ITEM_ALIGNMENT,
-    LIST_BOX_WIDTH,
-    LIST_BOX_HEIGHT,
     LIST_BOX_RADIUS,
     LIST_BORDER,
     LIST_ALLBOX_PADDING,
@@ -47,30 +45,21 @@ import {
     LIST_BOX_SHADOW,
     LIST_BG,
     //desc
-    LIST_DSC_BORDER,
-    LIST_DSC_RADIUS,
-    LIST_DSC_BG,
     DSC_MARGIN,
-    DSC_PADDING,
-    DSC_STROKE,
     //list Title
-    TEXT_LIST_BG,
-    TEXT_LIST_BORDER,
-    TEXT_LIST_RADIUS,
     TEXT_LIST_MARGIN,
-    TEXT_LIST_PADDING,
     TEXT_LIST_STROKE,
     //icon
     LIST_ICON_SIZE,
+    ICON_LIST_BORDER,
+    ICON_RADIUS,
     ICON_LIST_BG,
     ICON_LIST_HOVER_BG,
     ICON_LIST_PADDING,
     ICON_LIST_MARGIN,
     //link Hover Icon
     LIST_HOVER_ICON_SIZE,
-    ICON_HOVER_LIST_PADDING,
     ICON_HOVER_LIST_MARGIN,
-    ICON_HOVER_LIST_BG,
 } from './constants';
 
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
@@ -87,7 +76,9 @@ function Inspector(props) {
         textListColor,
         listIcon,
         listIconHover,
+        iconToggle,
         DscToggle,
+        titleToggle,
         layout,
         linkHoverIcon,
         HoverIconColor,
@@ -111,14 +102,23 @@ function Inspector(props) {
                 break;
             case 'zolo-list-style-2':
                 setAttributes({ DscToggle: true });
+                setAttributes({ iconToggle: true });
+                setAttributes({ titleToggle: true });
                 break;
             case 'zolo-list-style-3':
                 setAttributes({ DscToggle: true });
+                setAttributes({ iconToggle: true });
+                setAttributes({ titleToggle: true });
                 break;
             case 'zolo-list-style-4':
                 setAttributes({ DscToggle: true });
+                setAttributes({ iconToggle: true });
+                setAttributes({ titleToggle: true });
                 break;
             default:
+                setAttributes({ DscToggle: false });
+                setAttributes({ iconToggle: false });
+                setAttributes({ titleToggle: false });
                 break;
         }
     };
@@ -139,6 +139,20 @@ function Inspector(props) {
                             />
                             {preset !== 'zolo-list-style-1' && (
                                 <ToggleControl
+                                    label={__('Show Icon', 'zolo-blocks')}
+                                    checked={iconToggle}
+                                    onChange={() => setAttributes({ iconToggle: !iconToggle })}
+                                />
+                            )}
+                            {preset !== 'zolo-list-style-1' && (
+                                <ToggleControl
+                                    label={__('Show Title', 'zolo-blocks')}
+                                    checked={titleToggle}
+                                    onChange={() => setAttributes({ titleToggle: !titleToggle })}
+                                />
+                            )}
+                            {preset !== 'zolo-list-style-1' && (
+                                <ToggleControl
                                     label={__('Show Description', 'zolo-blocks')}
                                     checked={DscToggle}
                                     onChange={() => setAttributes({ DscToggle: !DscToggle })}
@@ -156,12 +170,12 @@ function Inspector(props) {
                                 }
                                 options={[
                                     {
-                                        label: __('Flex', 'zolo-blocks'),
-                                        value: 'flex',
-                                    },
-                                    {
                                         label: __('Grid', 'zolo-blocks'),
                                         value: 'grid',
+                                    },
+                                    {
+                                        label: __('Flex', 'zolo-blocks'),
+                                        value: 'flex',
                                     },
                                 ]}
                             />
@@ -194,17 +208,19 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('Add List', 'zolo-blocks')} panelProps={props}>
                             <Sortable listProfiles={listProfiles} setAttributes={setAttributes} attributes={attributes} />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Link Hover Icon', 'zolo-blocks')} panelProps={props}>
-                            <ZoloIconPicker
-                                label={__('Select Hover Icon', 'zolo-blocks')}
-                                value={linkHoverIcon}
-                                onChange={(value) => {
-                                    setAttributes({
-                                        linkHoverIcon: value,
-                                    });
-                                }}
-                            />
-                        </ZoloPanelBody>
+                        {preset == 'zolo-list-style-4' && (
+                            <ZoloPanelBody title={__('Link Hover Icon', 'zolo-blocks')} panelProps={props}>
+                                <ZoloIconPicker
+                                    label={__('Select Hover Icon', 'zolo-blocks')}
+                                    value={linkHoverIcon}
+                                    onChange={(value) => {
+                                        setAttributes({
+                                            linkHoverIcon: value,
+                                        });
+                                    }}
+                                />
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 styleTab={
@@ -217,22 +233,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     alignOptions={DEFAULT_ALIGNS}
                                 />
-                                <ResRangeControl
-                                    label={__('Box Width', 'zolo-blocks')}
-                                    controlName={LIST_BOX_WIDTH}
-                                    requiredProps={requiredProps}
-                                    min={0}
-                                    max={200}
-                                    step={1}
-                                />
-                                <ResRangeControl
-                                    label={__('Box Height', 'zolo-blocks')}
-                                    controlName={LIST_BOX_HEIGHT}
-                                    requiredProps={requiredProps}
-                                    min={0}
-                                    max={200}
-                                    step={1}
-                                />
+
                                 <BorderControl
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={LIST_BORDER}
@@ -268,7 +269,6 @@ function Inspector(props) {
                                 />
                             </>
                         </ZoloPanelBody>
-
                         <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
                                 label={__('Typography', 'zolo-blocks')}
@@ -285,31 +285,12 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <NormalBGControl requiredProps={requiredProps} controlName={TEXT_LIST_BG} noOverlay={true} noMainBGImg={true} />
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={TEXT_LIST_BORDER}
-                                requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Radius', 'zolo-blocks')}
-                                controlName={TEXT_LIST_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={TEXT_LIST_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={TEXT_LIST_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-
                             <TextStrokeControl controlName={TEXT_LIST_STROKE} requiredProps={requiredProps} enableTransition={false} />
                         </ZoloPanelBody>
                         {DscToggle && (
@@ -329,37 +310,12 @@ function Inspector(props) {
                                         })
                                     }
                                 />
-                                <NormalBGControl
-                                    requiredProps={requiredProps}
-                                    controlName={LIST_DSC_BG}
-                                    noOverlay={true}
-                                    noMainBGImg={true}
-                                />
-                                <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
-                                    controlName={LIST_DSC_BORDER}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResDimensionsControl
-                                    label={__('Radius', 'zolo-blocks')}
-                                    controlName={LIST_DSC_RADIUS}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={true}
-                                />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zolo-blocks')}
                                     controlName={DSC_MARGIN}
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
-                                <ResDimensionsControl
-                                    label={__('Padding', 'zolo-blocks')}
-                                    controlName={DSC_PADDING}
-                                    requiredProps={requiredProps}
-                                    forBorderRadius={false}
-                                />
-
-                                <TextStrokeControl controlName={DSC_STROKE} requiredProps={requiredProps} enableTransition={false} />
                             </ZoloPanelBody>
                         )}
                         {preset !== 'zolo-list-style-1' && (
@@ -372,7 +328,17 @@ function Inspector(props) {
                                     max={100}
                                     step={1}
                                 />
-
+                                <BorderControl
+                                    label={__('Border', 'zolo-blocks')}
+                                    controlName={ICON_LIST_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Radius', 'zolo-blocks')}
+                                    controlName={ICON_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zolo-blocks')}
                                     controlName={ICON_LIST_PADDING}
@@ -427,43 +393,34 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
-                        <ZoloPanelBody title={__('Link Hover Icon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <ResRangeControl
-                                label={__('Size', 'zolo-blocks')}
-                                controlName={LIST_HOVER_ICON_SIZE}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={ICON_HOVER_LIST_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={ICON_HOVER_LIST_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ColorControl
-                                label={__('Color', 'zolo-blocks')}
-                                color={HoverIconColor}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        HoverIconColor: value,
-                                    })
-                                }
-                            />
-                            <NormalBGControl
-                                requiredProps={requiredProps}
-                                controlName={ICON_HOVER_LIST_BG}
-                                noOverlay={true}
-                                noMainBGImg={true}
-                            />
-                        </ZoloPanelBody>
+                        {preset == 'zolo-list-style-4' && (
+                            <ZoloPanelBody title={__('Link Hover Icon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                                <ResRangeControl
+                                    label={__('Size', 'zolo-blocks')}
+                                    controlName={LIST_HOVER_ICON_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zolo-blocks')}
+                                    controlName={ICON_HOVER_LIST_MARGIN}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+
+                                <ColorControl
+                                    label={__('Color', 'zolo-blocks')}
+                                    color={HoverIconColor}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            HoverIconColor: value,
+                                        })
+                                    }
+                                />
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 advancedTab={

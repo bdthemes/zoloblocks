@@ -1,6 +1,11 @@
 .wp-block-zolo-review-child {
+    // image
+    --img-height: 70px;
+    --img-width: 70px;
+
     // overflow: hidden;
     box-sizing: border-box;
+
     a {
         transition: 0.2s;
     }
@@ -8,8 +13,9 @@
     .zolo-item {
         background-color: var(--zoloblocks-item-bg-color);
         border: 1px solid var(--zoloblocks-item-border-color);
-        padding: clamp(1.875rem, 4vw, 2.5rem);
+        padding: 20px;
         border-radius: var(--zolo-item-border-radius);
+        // box-shadow: var(--zoloblocks-item-box-shadow);
     }
 
     &.default {
@@ -25,8 +31,9 @@
     }
 
     .zolo-image-wrap {
-        width: 70px;
-        height: 70px;
+        width: var(--img-width);
+        height: var(--img-height);
+        display: inline-block;
     }
 
     .zolo-img {
@@ -74,8 +81,10 @@
 	*/
     &.default {
         overflow: visible;
-        .zolo-image-wrap {
+        .zolo-review-img-meta-wrap {
             margin-top: -70px;
+        }
+        .zolo-image-wrap {
             margin-bottom: 14px;
         }
         .zolo-img {
@@ -107,6 +116,11 @@
         .zolo-designation {
             font-size: 12px;
         }
+        .zolo-review-img-meta-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
     }
 
     &.style-1,
@@ -117,11 +131,6 @@
             justify-content: space-between;
             gap: 30px;
         }
-        .zolo-review-img-meta-wrap {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-        }
         .zolo-img {
             border-radius: 50%;
         }
@@ -131,13 +140,6 @@
         .zolo-item {
             text-align: center;
             flex-direction: column;
-        }
-        .zolo-review-img-meta-wrap {
-            flex-direction: column;
-        }
-        .zolo-meta-content {
-            display: inline-flex;
-            flex-direction: column-reverse;
         }
         .zolo-review-icon {
             margin-top: 12px;

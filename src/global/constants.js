@@ -932,6 +932,30 @@ export const ICON_POSITIONS = [
     },
 ];
 
+// horizontal position
+export const ICON_HPOSITIONS = [
+    {
+        label: 'Left',
+        value: 'left',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x={11} y={12} width={11} height="0.01" rx="0.005" stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x={3} y={10} width={4} height={4} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Right',
+        value: 'right',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x={3} y={12} width={11} height="0.01" rx="0.005" stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x={18} y={10} width={4} height={4} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+];
+
 // social icon text
 export const ICON_STATUS = [
     {

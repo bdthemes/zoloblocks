@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl } from '@wordpress/components';
+import { SelectControl, ToggleControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -28,10 +28,18 @@ import {
     REVIEWER_DESIGNATION_MARGIN,
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
+    BTN_ALIGNMENT,
+    LABEL_MARGIN,
+    ICON_SIZE,
 } from './constants';
 
-import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
-import { DEFAULT_ALIGNS } from '../../../src/global/constants';
+import {
+    LABEL_TYPO,
+    REVIEWER_NAME_TYPOGRAPHY,
+    REVIEWER_DESIGNATION_TYPOGRAPHY,
+    REVIEWER_MESSAGE_TYPOGRAPHY,
+} from './constants/typoPrefixConstants';
+import { DEFAULT_ALIGNS, TEXT_ALIGN_OPTIONS, ICON_HPOSITIONS } from '../../../src/global/constants';
 
 const {
     ResRangeControl,
@@ -48,6 +56,8 @@ const {
     TabPanelControl,
     ZoloPanelBody,
     ResGapControl,
+    IconicBtnGroup,
+    ZoloIconPicker,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -67,6 +77,13 @@ function Inspector(props) {
         testimonialMessageColor,
         activeRatingColor,
         inactiveRatingColor,
+        showBtnIcon,
+        icon,
+        btnLabel,
+        labelColor,
+        requiredColor,
+        iconPosition,
+        iconColor,
     } = attributes;
 
     const requiredProps = {
@@ -145,6 +162,52 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Submit Button', 'zolo-blocks')} panelProps={props}>
+                            <TextControl
+                                label={__('Label', 'zolo-blocks')}
+                                value={btnLabel}
+                                onChange={(v) => setAttributes({ btnLabel: v })}
+                                placeholder={__('Enter label..', 'zolo-blocks')}
+                            />
+                            <ResAlignmentControl
+                                label={__('Alignment', 'zolo-blocks')}
+                                controlName={BTN_ALIGNMENT}
+                                requiredProps={requiredProps}
+                                alignOptions={TEXT_ALIGN_OPTIONS}
+                            />
+                            <ToggleControl
+                                label={__('Show Icon', 'zolo-blocks')}
+                                checked={showBtnIcon}
+                                onChange={() =>
+                                    setAttributes({
+                                        showBtnIcon: !showBtnIcon,
+                                    })
+                                }
+                            />
+                            {showBtnIcon && (
+                                <>
+                                    <ZoloIconPicker
+                                        label={__('Select Icon', 'zolo-blocks')}
+                                        value={icon}
+                                        onChange={(value) => {
+                                            setAttributes({
+                                                icon: value,
+                                            });
+                                        }}
+                                    />
+                                    <IconicBtnGroup
+                                        label={__('Position', 'zolo-blocks')}
+                                        value={iconPosition}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                iconPosition: value,
+                                            })
+                                        }
+                                        options={ICON_HPOSITIONS}
+                                    />
+                                </>
+                            )}
+                        </ZoloPanelBody>
                         <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
                             <ResCounterControl
                                 label={__('Grid Columns', 'zolo-blocks')}
@@ -196,7 +259,44 @@ function Inspector(props) {
                             <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BACKGROUND} noMainBGImg={false} />
                         </ZoloPanelBody>
-
+                        <ZoloPanelBody title={__('Label', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ColorControl
+                                label={__('Label Color', 'zolo-blocks')}
+                                color={labelColor}
+                                onChange={(color) => setAttributes({ labelColor: color })}
+                            />
+                            <ColorControl
+                                label={__('Required Color', 'zolo-blocks')}
+                                color={requiredColor}
+                                onChange={(color) => setAttributes({ requiredColor: color })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zolo-blocks')}
+                                typoPrefixConstant={LABEL_TYPO}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zolo-blocks')}
+                                controlName={LABEL_MARGIN}
+                                requiredProps={requiredProps}
+                                forBorderRadius={false}
+                            />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Icon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={iconColor}
+                                onChange={(color) => setAttributes({ iconColor: color })}
+                            />
+                            <ResRangeControl
+                                label={__('Icon', 'zolo-blocks')}
+                                controlName={ICON_SIZE}
+                                requiredProps={requiredProps}
+                                min={1}
+                                max={100}
+                                step={1}
+                            />
+                        </ZoloPanelBody>
                         {showPhoto && (
                             <ZoloPanelBody title={__('Photo', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl

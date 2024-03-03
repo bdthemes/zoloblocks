@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, BlockControls, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, BlockControls, InnerBlocks, RichText } from '@wordpress/block-editor';
 
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -11,7 +11,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, generateGapStyle, generateResCounterStyle } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -19,8 +19,8 @@ import Inspector from './inspector';
 import Style from './style';
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, preset } = attributes;
+    const { attributes, setAttributes, className, isSelected } = props;
+    const { preview, uniqueId, parentClasses, preset, btnLabel, showBtnIcon, icon, iconPosition } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -38,7 +38,18 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blockProps}>
                 <form className="zolo-contact-form zolo-contact-form-style-1 zolo-field-icon-style-1">
-                    <InnerBlocks allowedBlocks={['zolo/text-field']} template={[['zolo/text-field']]} />
+                    <InnerBlocks
+                        allowedBlocks={(['zolo/text-field'], ['zolo/email'], ['zolo/textarea'])}
+                        template={[['zolo/text-field'], ['zolo/email'], ['zolo/textarea']]}
+                    />
+                    <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">
+                        <div className="zolo-submit-btn">
+                            <button type="submit" className={iconPosition}>
+                                {btnLabel || __('Submit Now', 'zolo-blocks')}
+                                {showBtnIcon && <DisplayZoloIcon icon={icon} />}
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </>

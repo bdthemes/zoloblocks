@@ -25,8 +25,6 @@ import {
     LIST_COLUMNS_GAP,
     //item
     ITEM_ALIGNMENT,
-    LIST_BOX_WIDTH,
-    LIST_BOX_HEIGHT,
     LIST_BOX_RADIUS,
     LIST_BORDER,
     LIST_ALLBOX_PADDING,
@@ -34,18 +32,9 @@ import {
     LIST_BOX_SHADOW,
     LIST_BG,
     //desc
-    LIST_DSC_BORDER,
-    LIST_DSC_RADIUS,
-    LIST_DSC_BG,
     DSC_MARGIN,
-    DSC_PADDING,
-    DSC_STROKE,
     //list title
-    TEXT_LIST_BG,
-    TEXT_LIST_BORDER,
-    TEXT_LIST_RADIUS,
     TEXT_LIST_MARGIN,
-    TEXT_LIST_PADDING,
     TEXT_LIST_STROKE,
     // icon
     LIST_ICON_SIZE,
@@ -53,11 +42,11 @@ import {
     ICON_LIST_HOVER_BG,
     ICON_LIST_PADDING,
     ICON_LIST_MARGIN,
+    ICON_LIST_BORDER,
+    ICON_RADIUS,
     //Hover Icon
     LIST_HOVER_ICON_SIZE,
-    ICON_HOVER_LIST_PADDING,
     ICON_HOVER_LIST_MARGIN,
-    ICON_HOVER_LIST_BG,
 } from './constants';
 
 import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -72,26 +61,7 @@ const Style = ({ props }) => {
         typoStylesTab: TabDscTypo,
         typoStylesMobile: MobDscTypo,
     } = generateTypographyStyles({ prefixConstant: DSC_TYPOGRAPHY, attributes });
-    const {
-        desktopBorderStyle: desktoDsceBorder,
-        tabBorderStyle: tabDscBorder,
-        mobBorderStyle: mobDscBorder,
-    } = generateBorderStyle({ controlName: LIST_DSC_BORDER, attributes });
 
-    const {
-        backgroundStylesDesktop: DeskDsctBg,
-        backgroundStylesTab: TabLDscBg,
-        backgroundStylesMobile: MobDsctBg,
-    } = generateNormalBGControlStyles({ controlName: LIST_DSC_BG, attributes });
-    const {
-        dimensionStylesDesktop: DesktopDscRadius,
-        dimensionStylesTab: TaDsceRadius,
-        dimensionStylesMobile: MobDscRadius,
-    } = generateDimensionStyle({
-        controlName: LIST_DSC_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
     const {
         dimensionStylesDesktop: DesktopDsceMargin,
         dimensionStylesTab: TabDsceMargin,
@@ -102,60 +72,13 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    const {
-        dimensionStylesDesktop: DesktopDscPadding,
-        dimensionStylesTab: TabDscPadding,
-        dimensionStylesMobile: MobDscPadding,
-    } = generateDimensionStyle({
-        controlName: DSC_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-    const {
-        desktopTextStrokeStyle: DeskDscStroke,
-        tabTextStrokeStyle: TabDscStroke,
-        mobTextStrokeStyle: MobDscStroke,
-    } = generateTextStrokeStyles({
-        attributes,
-        controlName: DSC_STROKE,
-    });
-
     //Text LIST
     const {
         typoStylesDesktop: DesktopTextListTypo,
         typoStylesTab: TabTextListTypo,
         typoStylesMobile: MobTextListTypo,
     } = generateTypographyStyles({ prefixConstant: TEXT_LIST_TYPOGRAPHY, attributes });
-    const {
-        desktopBorderStyle: desktoTextLBorder,
-        tabBorderStyle: tabTextLBorder,
-        mobBorderStyle: mobTextLBorder,
-    } = generateBorderStyle({ controlName: TEXT_LIST_BORDER, attributes });
 
-    const {
-        backgroundStylesDesktop: DeskTextLBg,
-        backgroundStylesTab: TabTextLBg,
-        backgroundStylesMobile: MobTextLtBg,
-    } = generateNormalBGControlStyles({ controlName: TEXT_LIST_BG, attributes });
-    const {
-        dimensionStylesDesktop: DesktopTextLRadius,
-        dimensionStylesTab: TaDTextLRadius,
-        dimensionStylesMobile: MobTextLRadius,
-    } = generateDimensionStyle({
-        controlName: TEXT_LIST_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: DesktopTextLPadding,
-        dimensionStylesTab: TabTextLPadding,
-        dimensionStylesMobile: MobTextLPadding,
-    } = generateDimensionStyle({
-        controlName: TEXT_LIST_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
     const {
         dimensionStylesDesktop: DesktopTextLeMargin,
         dimensionStylesTab: TabTextLMargin,
@@ -211,6 +134,20 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
+    const {
+        desktopBorderStyle: desktopIconBorder,
+        tabBorderStyle: tabIconBorder,
+        mobBorderStyle: mobIconBorder,
+    } = generateBorderStyle({ controlName: ICON_LIST_BORDER, attributes });
+    const {
+        dimensionStylesDesktop: DesktopIconRadius,
+        dimensionStylesTab: TabIconRadius,
+        dimensionStylesMobile: MobIconRadius,
+    } = generateDimensionStyle({
+        controlName: ICON_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
 
     const {
         dimensionStylesDesktop: DesktopIconMargin,
@@ -241,20 +178,6 @@ const Style = ({ props }) => {
         property: 'height',
         attributes,
     });
-    const {
-        backgroundStylesDesktop: DeskIconHoverBg,
-        backgroundStylesTab: TabIconHoverBg,
-        backgroundStylesMobile: MobIconHoverBg,
-    } = generateNormalBGControlStyles({ controlName: ICON_HOVER_LIST_BG, attributes });
-    const {
-        dimensionStylesDesktop: DesktopIconHoPadding,
-        dimensionStylesTab: TabIconHoPadding,
-        dimensionStylesMobile: MobIconHoPadding,
-    } = generateDimensionStyle({
-        controlName: ICON_HOVER_LIST_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
 
     const {
         dimensionStylesDesktop: DesktopIconHoMargin,
@@ -274,26 +197,6 @@ const Style = ({ props }) => {
     } = generateResAlignmentStyle({
         controlName: ITEM_ALIGNMENT,
         property: 'text-align',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: DesktopListWidth,
-        tabRangeStyle: TabListWidth,
-        mobRangeStyle: MobListWidth,
-    } = generateResRangeStyle({
-        controlName: LIST_BOX_WIDTH,
-        property: 'width',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: DesktopListHeight,
-        tabRangeStyle: TabListHeight,
-        mobRangeStyle: MobListHeight,
-    } = generateResRangeStyle({
-        controlName: LIST_BOX_HEIGHT,
-        property: 'height',
         attributes,
     });
 
@@ -367,15 +270,14 @@ const Style = ({ props }) => {
     /**
      * All Style Combination
      */
+
     const desktopAllStyle = `
 	  .wp-block-zolo-list.${uniqueId} {
         ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridDeskstyle}, 1fr)`};
         ${listGapDeskstyle};
       }
-	.wp-block-zolo-list.${uniqueId} .zolo-list-item  {
+	.wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
         ${desktopListAlign}
-        ${DesktopListWidth}
-        ${DesktopListHeight}
         ${DesktopListRadius}
         ${desktopListBorder}
         ${DesktopListP}
@@ -386,10 +288,6 @@ const Style = ({ props }) => {
 
     .wp-block-zolo-list.${uniqueId} .zolo-list-title{
         ${DesktopTextListTypo}
-        ${desktoTextLBorder}
-        ${DeskTextLBg}
-        ${DesktopTextLRadius}
-        ${DesktopTextLPadding}
         ${DesktopTextLeMargin}
         ${DeskTextLStroke}
         color:${textListColor}
@@ -397,12 +295,7 @@ const Style = ({ props }) => {
 
     .wp-block-zolo-list.${uniqueId} .zolo-list-desc {
         ${DesktopDsceTypo}
-        ${desktoDsceBorder}
-        ${DeskDsctBg}
-        ${DesktopDscRadius}
         ${DesktopDsceMargin}
-        ${DesktopDscPadding}
-        ${DeskDscStroke}
         color:${dscColor}
     }
    
@@ -416,6 +309,8 @@ const Style = ({ props }) => {
          ${DeskIconBg}
          ${DesktopIconPadding}
          ${DesktopIconMargin}
+         ${desktopIconBorder}
+         ${DesktopIconRadius}
          fill:${listIcon}
      }
        .wp-block-zolo-list.${uniqueId} .zolo-list-icon:hover {
@@ -428,8 +323,6 @@ const Style = ({ props }) => {
         fill:${HoverIconColor}
      }
     .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {
-        ${DeskIconHoverBg}
-        ${DesktopIconHoPadding}
         ${DesktopIconHoMargin}  
     }
   	`;
@@ -438,10 +331,8 @@ const Style = ({ props }) => {
         ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridTabStyle}, 1fr)`};
         ${listGapTabStyle};
       }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-item {
+    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
         ${tabListAlign}
-        ${TabListWidth}
-        ${TabListHeight}
         ${TabListRadius}
         ${tabListBorder}
         ${TabListp}
@@ -450,10 +341,6 @@ const Style = ({ props }) => {
     }
     .wp-block-zolo-list.${uniqueId} .zolo-list-title{
         ${TabTextListTypo}
-        ${tabTextLBorder}
-        ${TabTextLBg}
-        ${TaDTextLRadius}
-        ${TabTextLPadding}
         ${TabTextLMargin}
         ${TabTextLStroke}
         
@@ -461,12 +348,8 @@ const Style = ({ props }) => {
 
     .wp-block-zolo-list.${uniqueId} .zolo-list-desc {
         ${TabDscTypo}
-        ${tabDscBorder}
-        ${MobDsctBg}
-        ${TaDsceRadius}
         ${TabDsceMargin}
-        ${TabDscPadding}
-        ${TabDscStroke}
+
     }
  
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
@@ -477,6 +360,8 @@ const Style = ({ props }) => {
          ${TabIconBg}
          ${TabIconPadding}
          ${TabIconMargin}
+         ${tabIconBorder}
+         ${TabIconRadius}
      
      }
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon:hover {
@@ -488,8 +373,6 @@ const Style = ({ props }) => {
         
      }
     .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {
-        ${TabIconHoverBg}
-        ${TabIconHoPadding}
         ${TabIconHoMargin}
     }
   		
@@ -500,10 +383,8 @@ const Style = ({ props }) => {
         ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridMobStyle}, 1fr)`};
         ${listGapMobStyle};
       }
-	 .wp-block-zolo-list.${uniqueId} .zolo-list-item {
+	 .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item { 
         ${mobListAlign}
-        ${MobListWidth}
-        ${MobListHeight}
         ${MobListRadius}
         ${mobListBorder}
         ${MobListp}
@@ -512,22 +393,13 @@ const Style = ({ props }) => {
      }
     .wp-block-zolo-list.${uniqueId} .zolo-list-title{
         ${MobTextListTypo}
-        ${mobTextLBorder}
-        ${MobTextLtBg}
-        ${MobTextLRadius}
-        ${MobTextLPadding}
         ${MobTextLMargin}
         ${MobTextLStroke}
      }
 
     .wp-block-zolo-list.${uniqueId} .zolo-list-desc {
         ${MobDscTypo}
-        ${mobDscBorder}
-        ${TabLDscBg}
-        ${MobDscRadius}
         ${MobDsceMargin}
-        ${MobDscPadding}
-        ${MobDscStroke}
     }
 
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
@@ -539,6 +411,8 @@ const Style = ({ props }) => {
          ${MobIconBg}
          ${MobIconPadding}
          ${MobIconMargin}
+         ${mobIconBorder}
+         ${MobIconRadius}
      
      }
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon:hover {
@@ -550,8 +424,6 @@ const Style = ({ props }) => {
         
      }
     .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {
-        ${MobIconHoverBg}
-        ${MobIconHoPadding}
         ${MobIconHoMargin}
     }
   	`;

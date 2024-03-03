@@ -17,8 +17,6 @@ import {
     LIST_COLUMNS_GAP,
     //item
     ITEM_ALIGNMENT,
-    LIST_BOX_WIDTH,
-    LIST_BOX_HEIGHT,
     LIST_BOX_RADIUS,
     LIST_BORDER,
     LIST_ALLBOX_PADDING,
@@ -26,30 +24,21 @@ import {
     LIST_BOX_SHADOW,
     LIST_BG,
     //list title
-    TEXT_LIST_BG,
-    TEXT_LIST_BORDER,
-    TEXT_LIST_RADIUS,
     TEXT_LIST_MARGIN,
-    TEXT_LIST_PADDING,
     TEXT_LIST_STROKE,
     //des
-    LIST_DSC_BORDER,
-    LIST_DSC_RADIUS,
-    LIST_DSC_BG,
     DSC_MARGIN,
-    DSC_PADDING,
-    DSC_STROKE,
     //icon
     LIST_ICON_SIZE,
     ICON_LIST_BG,
     ICON_LIST_HOVER_BG,
     ICON_LIST_PADDING,
     ICON_LIST_MARGIN,
+    ICON_LIST_BORDER,
+    ICON_RADIUS,
     //hover icon
     LIST_HOVER_ICON_SIZE,
-    ICON_HOVER_LIST_PADDING,
     ICON_HOVER_LIST_MARGIN,
-    ICON_HOVER_LIST_BG,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -82,20 +71,11 @@ const attributes = {
     },
 
     //List title
-    ...generateBorderAttributies(TEXT_LIST_BORDER),
-    ...generateDimensionAttributes(TEXT_LIST_RADIUS),
     ...generateDimensionAttributes(TEXT_LIST_MARGIN),
-    ...generateDimensionAttributes(TEXT_LIST_PADDING),
-    ...generateNormalBGAttributes(TEXT_LIST_BG),
     ...generateTextStrokeAttributies(TEXT_LIST_STROKE),
 
     //dsc
-    ...generateBorderAttributies(LIST_DSC_BORDER),
-    ...generateDimensionAttributes(LIST_DSC_RADIUS),
     ...generateDimensionAttributes(DSC_MARGIN),
-    ...generateDimensionAttributes(DSC_PADDING),
-    ...generateNormalBGAttributes(LIST_DSC_BG),
-    ...generateTextStrokeAttributies(DSC_STROKE),
 
     //icon
     ...generateResRangeAttributies(LIST_ICON_SIZE),
@@ -103,16 +83,14 @@ const attributes = {
     ...generateNormalBGAttributes(ICON_LIST_HOVER_BG),
     ...generateDimensionAttributes(ICON_LIST_PADDING),
     ...generateDimensionAttributes(ICON_LIST_MARGIN),
+    ...generateBorderAttributies(ICON_LIST_BORDER),
+    ...generateDimensionAttributes(ICON_RADIUS),
     //Hover Icon
     ...generateResRangeAttributies(LIST_HOVER_ICON_SIZE),
-    ...generateNormalBGAttributes(ICON_HOVER_LIST_BG),
-    ...generateDimensionAttributes(ICON_HOVER_LIST_PADDING),
     ...generateDimensionAttributes(ICON_HOVER_LIST_MARGIN),
 
     //item
     ...generateResAlignmentAttributies(ITEM_ALIGNMENT),
-    ...generateResRangeAttributies(LIST_BOX_WIDTH),
-    ...generateResRangeAttributies(LIST_BOX_HEIGHT),
     ...generateDimensionAttributes(LIST_BOX_RADIUS),
     ...generateBorderAttributies(LIST_BORDER),
     ...generateDimensionAttributes(LIST_ALLBOX_PADDING),
@@ -135,14 +113,21 @@ const attributes = {
         type: 'string',
         default: 'zolo-list-style-1',
     },
-
+    iconToggle: {
+        type: 'boolean',
+        default: false,
+    },
+    titleToggle: {
+        type: 'boolean',
+        default: false,
+    },
     DscToggle: {
         type: 'boolean',
         default: false,
     },
     layout: {
         type: 'string',
-        default: 'flex',
+        default: 'grid',
     },
 
     listProfiles: {
@@ -155,7 +140,7 @@ const attributes = {
                     url: '#',
                     openInNewTab: false,
                 },
-                text: 'List 1',
+                text: 'List Item 1',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
@@ -165,7 +150,7 @@ const attributes = {
                     url: '#',
                     openInNewTab: false,
                 },
-                text: 'List 2',
+                text: 'List Item 2',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
@@ -175,7 +160,7 @@ const attributes = {
                     url: '#',
                     openInNewTab: false,
                 },
-                text: 'List 3',
+                text: 'List Item 3',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
@@ -185,7 +170,7 @@ const attributes = {
                     url: '#',
                     openInNewTab: false,
                 },
-                text: 'List 4',
+                text: 'List Item 4',
                 desc: 'Customize widget dimension beyond normal scale',
             },
         ],

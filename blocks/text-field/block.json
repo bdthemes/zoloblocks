@@ -7,6 +7,7 @@
     "description": "A simple text field block for Form Block",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",
+    "parent": ["zolo/form"],
     "example": {
         "attributes": {
             "preview": true

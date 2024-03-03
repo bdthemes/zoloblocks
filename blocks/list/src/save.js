@@ -8,7 +8,7 @@ import classnames from 'classnames';
 import { useBlockProps } from '@wordpress/block-editor';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, listProfiles, zoloId, DscToggle, linkHoverIcon } = attributes;
+    const { uniqueId, parentClasses, preset, listProfiles, zoloId, iconToggle, DscToggle, titleToggle, linkHoverIcon } = attributes;
 
     return (
         <div
@@ -30,14 +30,14 @@ const Save = ({ attributes }) => {
                             className={`zolo-list-item ${preset == 'zolo-list-style-1' ? 'zolo-list-title' : ''}`}
                         >
                             {preset == 'zolo-list-style-1' && profile.text}
-                            {preset !== 'zolo-list-style-1' && (
+                            {iconToggle && preset !== 'zolo-list-style-1' && (
                                 <div className="zolo-list-icon">
                                     <DisplayZoloIcon icon={profile.icon} />
                                 </div>
                             )}
                             {preset !== 'zolo-list-style-1' && (
                                 <div className="zolo-list-content">
-                                    <div className="zolo-list-title">{profile.text}</div>
+                                    {titleToggle && <div className="zolo-list-title">{profile.text}</div>}
                                     {DscToggle && <span className="zolo-list-desc">{profile.desc}</span>}
                                 </div>
                             )}

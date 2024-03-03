@@ -55,3 +55,12 @@ export const REVIEWER_TESTIMONIAL_MARGIN = 'reviewTestimonialMessageMargin';
 
 // review icons
 export const ICONS_SIZE = 'reviewIconsSize';
+
+// Label
+export const LABEL_MARGIN = 'labelMargin';
+
+// submit button
+export const BTN_ALIGNMENT = 'btnAlignment';
+
+// icon
+export const ICON_SIZE = 'iconSize';

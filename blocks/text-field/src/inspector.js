@@ -4,7 +4,6 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, TextControl, RangeControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
 
 /**
  * Internal depencencies
@@ -20,7 +19,6 @@ const {
     ResDimensionsControl,
     NormalBGControl,
     ZoloPanelBody,
-    MultiRangeControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -53,11 +51,6 @@ function Inspector(props) {
         objAttributes,
     };
 
-    const [rangeValue, setRangeValue] = useState({
-        minValue: 25,
-        maxValue: 60,
-    });
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -66,33 +59,20 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
-                            <MultiRangeControl
-                                min={0}
-                                max={100}
-                                step={1}
-                                minValue={rangeValue?.minValue}
-                                maxValue={rangeValue?.maxValue}
-                                onInput={(e) => {
-                                    setRangeValue({
-                                        minValue: e.minValue,
-                                        maxValue: e.maxValue,
-                                    });
-                                }}
-                            />
                             <ToggleControl
                                 label={__('Show Label', 'zolo-blocks')}
                                 checked={showLabel}
                                 onChange={() => setAttributes({ showLabel: !showLabel })}
                             />
                             <ToggleControl
-                                label={__('Show Field Icon', 'zolo-blocks')}
-                                checked={showIcon}
-                                onChange={() => setAttributes({ showIcon: !showIcon })}
-                            />
-                            <ToggleControl
                                 label={__('Is It Required Field?', 'zolo-blocks')}
                                 checked={isRequired}
                                 onChange={() => setAttributes({ isRequired: !isRequired })}
+                            />
+                            <ToggleControl
+                                label={__('Show icon', 'zolo-blocks')}
+                                checked={showIcon}
+                                onChange={() => setAttributes({ showIcon: !showIcon })}
                             />
                             {isRequired && (
                                 <ToggleControl
@@ -192,21 +172,23 @@ function Inspector(props) {
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Icon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Color', 'zolo-blocks')}
-                                color={iconColor}
-                                onChange={(color) => setAttributes({ iconColor: color })}
-                            />
-                            <ResRangeControl
-                                label={__('Icon', 'zolo-blocks')}
-                                controlName={ICON_SIZE}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={100}
-                                step={1}
-                            />
-                        </ZoloPanelBody>
+                        {showIcon && (
+                            <ZoloPanelBody title={__('Icon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                                <ColorControl
+                                    label={__('Color', 'zolo-blocks')}
+                                    color={iconColor}
+                                    onChange={(color) => setAttributes({ iconColor: color })}
+                                />
+                                <ResRangeControl
+                                    label={__('Icon', 'zolo-blocks')}
+                                    controlName={ICON_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={100}
+                                    step={1}
+                                />
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 advancedTab={

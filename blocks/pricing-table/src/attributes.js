@@ -398,12 +398,10 @@ const attributes = {
     //all typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 
-    //advance tab attributes
+    //style tab attributes
     ...generateDimensionAttributes(WRAPPER_MARGIN),
     ...generateDimensionAttributes(WRAPPER_PADDING),
-    ...generateBackgroundAttributes(WRAPPER_BG, {
-        defaultBgGradient: 'linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)',
-    }),
+    ...generateNormalBGAttributes(WRAPPER_BG),
     ...generateBorderAttributies(WRAPPER_BORDER),
     ...generateDimensionAttributes(WRAPPER_BORDER_RADIUS),
     ...generateBoxShadowAttributies(WRAPPER_SHADOW),
