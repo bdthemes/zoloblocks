@@ -119,29 +119,33 @@ function addAttributes(settings) {
                 type: 'object',
                 default: {
                     translateX: {
-                        minValue: 0,
+                        minValue: -100,
                         maxValue: 100,
                         unit: 'px',
 
                     },
                     translateY: {
                         minValue: 0,
-                        maxValue: 100,
+                        maxValue: 0,
                         unit: 'px',
                     },
-
+                    translateZ: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'px',
+                    },
                     rotateX: {
                         minValue: 0,
-                        maxValue: 180,
+                        maxValue: 0,
                         unit: 'deg',
                     },
                     rotateY: {
                         minValue: 0,
-                        maxValue: 180,
+                        maxValue: 0,
                     },
                     rotateZ: {
                         minValue: 0,
-                        maxValue: 180,
+                        maxValue: 0,
                         unit: 'deg',
                     },
                     scaleX: {
@@ -161,19 +165,24 @@ function addAttributes(settings) {
                     },
                     skewX: {
                         minValue: 0,
-                        maxValue: 180,
+                        maxValue: 0,
                         unit: 'deg',
                     },
                     skewY: {
                         minValue: 0,
-                        maxValue: 180,
+                        maxValue: 0,
                         unit: 'deg',
+                    },
+                    opacity: {
+                        minValue: 1,
+                        maxValue: 1,
+                        unit: '',
                     },
                     easing: 'ease-out',
                     easingCustom: '',
                     repeat: false,
                     perspective: 0,
-                    duration: 600,
+                    duration: 3000,
                     delay: 0,
                     transformOrigin: 'center',
                 },

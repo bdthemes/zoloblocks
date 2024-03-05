@@ -5,12 +5,9 @@ const MultiRangeControl = (props) => {
     const min = parseFloat(props.min || 0);
     const max = parseFloat(props.max || 100);
     const step = parseFloat(props.step || 1);
-    const stepCount = (max - min) / step;
-    let ruler = props.ruler === undefined || props.ruler === null ? false : props.ruler;
-    let label = props.label === undefined || props.label === null ? true : props.label;
 
-    ruler = ruler === 'false' || !ruler ? false : true;
-    label = label === 'false' || !label ? false : true;
+    // control title
+    const label = props.label || 'Multirange Control';
 
     // top labels
     const fromLabel = props.fromLabel || 'From';
@@ -272,6 +269,9 @@ const MultiRangeControl = (props) => {
     return (
         <BaseControl>
             <div className="zolo-control-container zolo-multi-rangle-control" onWheel={onMouseWheel} ref={refThis}>
+                <label className="zolo-control-label" htmlFor="zolo-control-label">
+                    {label}
+                </label>
                 <div className="top-label">
                     <div className="label-min">{fromLabel}</div>
                     <div className="label-max">{toLabel}</div>
@@ -308,13 +308,6 @@ const MultiRangeControl = (props) => {
                     </div>
                     <div className="bar-right" style={{ width: barMax + '%' }} onClick={onBarRightClick}></div>
                 </div>
-                {ruler && (
-                    <div className="ruler">
-                        {[...Array(stepCount)].map((e, i) => (
-                            <div key={i} className="ruler-rule"></div>
-                        ))}
-                    </div>
-                )}
             </div>
         </BaseControl>
     );
