@@ -4,6 +4,7 @@
 import { __ } from '@wordpress/i18n';
 import { animate, timeline } from 'motion';
 import { SelectControl, ToggleControl, TextControl, Button, FormTokenField } from '@wordpress/components';
+import { useState } from 'react';
 
 /**
  * Internal dependencies
@@ -21,6 +22,7 @@ import ZoloPanelBody from '../../controls/zolo-panelbody';
 import MultiRangeControl from '../../controls/multi-range-control';
 
 export const AdvancedOptions = (props) => {
+    const [isPlaying, setIsPlaying] = useState(false);
     const { attributes, setAttributes, requiredProps } = props;
 
     const {
@@ -38,7 +40,6 @@ export const AdvancedOptions = (props) => {
         overflow,
     } = attributes;
 
-    console.log('floatingAnimation', floatingAnimation);
     const handleMotionAnimation = () => {
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
 
@@ -202,6 +203,7 @@ export const AdvancedOptions = (props) => {
             animate(targetElement, presetAnimation, otherOptions);
         }
     };
+
     const handleFloatingAnimation = () => {
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-floating-animation`);
 
@@ -259,12 +261,12 @@ export const AdvancedOptions = (props) => {
         if (floatingAnimation.translateZ.maxValue !== 0) {
             endValue.push(`translateZ(${floatingAnimation.translateZ.maxValue}${floatingAnimation.translateZ.unit})`);
         }
-         if (floatingAnimation.skewX.maxValue !== 0) {
-             endValue.push(`skewX(${floatingAnimation.skewX.maxValue}${floatingAnimation.skewX.unit})`);
-         }
-         if (floatingAnimation.skewY.maxValue !== 0) {
-             endValue.push(`skewY(${floatingAnimation.skewY.maxValue}${floatingAnimation.skewY.unit})`);
-         }
+        if (floatingAnimation.skewX.maxValue !== 0) {
+            endValue.push(`skewX(${floatingAnimation.skewX.maxValue}${floatingAnimation.skewX.unit})`);
+        }
+        if (floatingAnimation.skewY.maxValue !== 0) {
+            endValue.push(`skewY(${floatingAnimation.skewY.maxValue}${floatingAnimation.skewY.unit})`);
+        }
         if (floatingAnimation.rotateX.maxValue !== 0) {
             endValue.push(`rotateX(${floatingAnimation.rotateX.maxValue}deg)`);
         }
@@ -284,10 +286,26 @@ export const AdvancedOptions = (props) => {
 
         const transformValueStart = startValue.join('');
         const transformValueEnd = endValue.join('');
-        animate(targetElement, {
-            transform: [transformValueStart, transformValueEnd],
-            opacity: [floatingAnimation.opacity.minValue, floatingAnimation.opacity.maxValue],
-         }, otherOptions);
+        const animation = animate(
+            targetElement,
+            {
+                transform: [transformValueStart, transformValueEnd],
+                opacity: [floatingAnimation.opacity.minValue, floatingAnimation.opacity.maxValue],
+            },
+            otherOptions
+        );
+
+        return animation;
+    };
+
+    const handleFloatingToggle = () => {
+        let animation = handleFloatingAnimation();
+        if (isPlaying) {
+            animation.pause();
+        } else {
+            animation.play();
+        }
+        setIsPlaying(!isPlaying);
     };
 
     const handleResponsiveness = (key, value, classname) => {
@@ -1696,13 +1714,11 @@ export const AdvancedOptions = (props) => {
                             noUnits={true}
                         />
                         <Button
-                            label={__('Preview', 'zolo-blocks')}
+                            label={isPlaying ? __('Stop', 'zolo-blocks') : __('Play', 'zolo-blocks')}
                             isPrimary
-                            onClick={() => {
-                                handleFloatingAnimation();
-                            }}
+                            onClick={handleFloatingToggle}
                         >
-                            {__('Preview', 'zolo-blocks')}
+                            {isPlaying ? __('Stop', 'zolo-blocks') : __('Play', 'zolo-blocks')}
                         </Button>
                     </>
                 )}

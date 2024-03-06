@@ -150,17 +150,17 @@ function addAttributes(settings) {
                     },
                     scaleX: {
                         minValue: 0,
-                        maxValue: 5,
+                        maxValue: 0,
                         unit: '',
                     },
                     scaleY: {
                         minValue: 0,
-                        maxValue: 5,
+                        maxValue: 0,
                         unit: '',
                     },
                     scaleZ: {
                         minValue: 0,
-                        maxValue: 5,
+                        maxValue: 0,
                         unit: '',
                     },
                     skewX: {
