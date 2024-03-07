@@ -78,10 +78,14 @@ document.addEventListener('DOMContentLoaded', function () {
         if (floatingAnimation.delay !== 0) {
             otherOptions.delay = floatingAnimation.delay / 1000;
         }
-
+        if (floatingAnimation.easing !== 'custom') {
+            otherOptions.easing = floatingAnimation.easing;
+        } else {
+            otherOptions.easing = [floatingAnimation.easingCustom.split(';')[0]];
+        }
         const transformValueStart = startValue.join('');
         const transformValueEnd = endValue.join('');
-        animate(
+        const animation = animate(
             targetElement,
             {
                 transform: [transformValueStart, transformValueEnd],
@@ -89,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             otherOptions
         );
+        return animation;
     };
 
     const zoloBlockItems = document.querySelectorAll('.zolo-block');

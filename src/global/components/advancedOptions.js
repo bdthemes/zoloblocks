@@ -40,7 +40,7 @@ export const AdvancedOptions = (props) => {
         overflow,
     } = attributes;
 
-    const handleMotionAnimation = () => {
+    const handleEntranceAnimation = () => {
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
 
         let transformOptions = [];
@@ -283,6 +283,11 @@ export const AdvancedOptions = (props) => {
         if (floatingAnimation.delay !== 0) {
             otherOptions.delay = floatingAnimation.delay / 1000;
         }
+         if (floatingAnimation.easing !== 'custom') {
+             otherOptions.easing = floatingAnimation.easing;
+         } else {
+             otherOptions.easing = [floatingAnimation.easingCustom.split(';')[0]];
+         }
 
         const transformValueStart = startValue.join('');
         const transformValueEnd = endValue.join('');
@@ -1229,7 +1234,7 @@ export const AdvancedOptions = (props) => {
                             label={__('Preview', 'zolo-blocks')}
                             isPrimary
                             onClick={() => {
-                                handleMotionAnimation();
+                                handleEntranceAnimation();
                             }}
                         >
                             {__('Preview', 'zolo-blocks')}
@@ -1667,6 +1672,40 @@ export const AdvancedOptions = (props) => {
                                 }}
                             />
                         </PopoverControl>
+                        <SelectControl
+                            label={__('Easing Type', 'zolo-blocks')}
+                            value={floatingAnimation.easing}
+                            options={[
+                                { label: __('Ease Out', 'zolo-blocks'), value: 'ease-out' },
+                                { label: __('Ease In Out', 'zolo-blocks'), value: 'ease-in-out' },
+                                { label: __('Linear', 'zolo-blocks'), value: 'linear' },
+                                { label: __('Custom', 'zolo-blocks'), value: 'custom' },
+                            ]}
+                            onChange={(value) => {
+                                setAttributes({
+                                    floatingAnimation: {
+                                        ...floatingAnimation,
+                                        easing: value,
+                                    },
+                                });
+                            }}
+                        />
+
+                        {floatingAnimation.easing === 'custom' && (
+                            <TextControl
+                                label={__('Custom Easing', 'zolo-blocks')}
+                                help={__('Example: cubic-bezier(0.42, 0, 0.58, 1)', 'zolo-blocks')}
+                                value={floatingAnimation.easingCustom}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            easingCustom: value,
+                                        },
+                                    });
+                                }}
+                            />
+                        )}
                         <SimpleRangeControl
                             label={__('Delay(ms)', 'zolo-blocks')}
                             value={floatingAnimation.delay}

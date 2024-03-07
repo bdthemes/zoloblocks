@@ -1,7 +1,7 @@
 import { animate, inView } from 'motion';
 
 document.addEventListener('DOMContentLoaded', function () {
-    const handleMotionAnimation = (targetElement, entranceAnimation) => {
+    const handleEntranceAnimation = (targetElement, entranceAnimation) => {
         let transformOptions = [];
         if (entranceAnimation.translateX.value !== 0) {
             transformOptions.push(`translateX(${entranceAnimation.translateX.value}${entranceAnimation.translateX.unit})`);
@@ -67,10 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
             transformOrigin: entranceAnimation.transformOrigin,
         };
 
-          if (entranceAnimation.perspective !== 0) {
-              options.perspective = [`${entranceAnimation.perspective}px`, 'none'];
-              options.transformStyle = 'preserve-3d';
-          }
+        if (entranceAnimation.perspective !== 0) {
+            options.perspective = [`${entranceAnimation.perspective}px`, 'none'];
+            options.transformStyle = 'preserve-3d';
+        }
 
         if (entranceAnimation.presetAnimation === 'custom') {
             animate(targetElement, options, otherOptions);
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (targetElement) {
                 const entranceAnimation = JSON.parse(targetElement.dataset.animation);
                 inView(targetElement, () => {
-                    handleMotionAnimation(targetElement, entranceAnimation);
+                    handleEntranceAnimation(targetElement, entranceAnimation);
                 });
             }
         });
