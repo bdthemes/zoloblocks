@@ -20,7 +20,11 @@ import PopoverControl from '../../controls/popover-control';
 import SimpleRangeControl from '../../controls/simple-range-control';
 import ZoloPanelBody from '../../controls/zolo-panelbody';
 import MultiRangeControl from '../../controls/multi-range-control';
+import TabPanelControl from '../../controls/tabpanel-control';
+import ResRangeControl from '../../controls/res-range-control';
+import ResAlignmentControl from '../../controls/res-alignment-control';
 
+import { DEFAULT_ALIGNS, DEFAULT_ALIGNS_VERTICAL } from '../constants';
 export const AdvancedOptions = (props) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const { attributes, setAttributes, requiredProps } = props;
@@ -32,6 +36,10 @@ export const AdvancedOptions = (props) => {
         floatingAnimationActive,
         entranceAnimation,
         floatingAnimation,
+        transformRotate3DActive,
+        scaleProportionally,
+        transformFlipHorizontal,
+        transformFlipVertical,
         parentClasses,
         customClass,
         customClasses,
@@ -39,6 +47,7 @@ export const AdvancedOptions = (props) => {
         zoloId,
         overflow,
     } = attributes;
+
 
     const handleEntranceAnimation = () => {
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
@@ -302,6 +311,7 @@ export const AdvancedOptions = (props) => {
 
         return animation;
     };
+
 
     const handleFloatingToggle = () => {
         let animation = handleFloatingAnimation();
@@ -1761,6 +1771,641 @@ export const AdvancedOptions = (props) => {
                         </Button>
                     </>
                 )}
+            </ZoloPanelBody>
+            <ZoloPanelBody title={__('Transform', 'zolo-blocks')} panelProps={props} extraPanel={true} isPro={false} isNew={true}>
+                <TabPanelControl
+                    normalComponents={
+                        <>
+                            <PopoverControl
+                                label={__('Translate', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M18.5818 15.3211L22 11.9184L18.5818 8.58813"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M5.41818 15.3211L2 11.9184L5.41818 8.58813"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M2.35461 11.9548H21.6455"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M15.3818 5.4027L11.9636 2L8.61816 5.4027"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M8.61816 18.5974L12.0363 22.0001L15.3818 18.5974"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M12 2.35278V21.2396"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ResRangeControl
+                                    label={__('translateX', 'zolo-blocks')}
+                                    controlName={'translateX'}
+                                    requiredProps={requiredProps}
+                                    min={-1000}
+                                    max={1000}
+                                    noUnits={true}
+                                />
+                                <ResRangeControl
+                                    label={__('translateY', 'zolo-blocks')}
+                                    controlName={'translateY'}
+                                    requiredProps={requiredProps}
+                                    min={-1000}
+                                    max={1000}
+                                    noUnits={true}
+                                />
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Rotate', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21.4401 8.67C19.7801 4.22 15.9301 2 12.0001 2C6.85006 2 2.61006 5.89 2.06006 10.89"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M21.9401 13.1201C21.3901 18.1201 17.1501 22.0001 12.0001 22.0001C8.08006 22.0001 4.22006 19.7801 2.56006 15.3301"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M22.0001 2.21997V8.66997H15.5601"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M2 21.7801V15.3301H8.44"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ResRangeControl
+                                    label={__('Rotate', 'zolo-blocks')}
+                                    controlName={'transformRotate'}
+                                    requiredProps={requiredProps}
+                                    min={-360}
+                                    max={360}
+                                    noUnits={true}
+                                />
+                                <ToggleControl
+                                    label={__('Rotate 3D', 'zolo-blocks')}
+                                    checked={transformRotate3DActive}
+                                    onChange={() => {
+                                        setAttributes({
+                                            transformRotate3DActive: !transformRotate3DActive,
+                                        });
+                                    }}
+                                />
+                                {transformRotate3DActive && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('RotateX(deg)', 'zolo-blocks')}
+                                            controlName={'transformRotateX'}
+                                            requiredProps={requiredProps}
+                                            min={-360}
+                                            max={360}
+                                            noUnits={true}
+                                        />
+                                        <ResRangeControl
+                                            label={__('RotateY(deg)', 'zolo-blocks')}
+                                            controlName={'transformRotateY'}
+                                            requiredProps={requiredProps}
+                                            min={-360}
+                                            max={360}
+                                            noUnits={true}
+                                        />
+                                        <ResRangeControl
+                                            label={__('Perspective(deg)', 'zolo-blocks')}
+                                            controlName={'transformPerspective'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={1000}
+                                            noUnits={true}
+                                        />
+                                    </>
+                                )}
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Scale', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21.9999 8.16V2L15.8799 2.07"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M16.2598 13.8798H10.0798L10.1398 7.78979"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M10.4299 13.5898L21.7299 2.30981"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M20.62 13.88V19.97C20.62 21.09 19.71 22 18.58 22H4.04C2.91 22 2 21.09 2 19.97V5.47995C2 4.35995 2.91 3.44995 4.04 3.44995H9.64"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ToggleControl
+                                    label={__('Keep Proportions', 'zolo-blocks')}
+                                    checked={scaleProportionally}
+                                    onChange={() => {
+                                        setAttributes({
+                                            scaleProportionally: !scaleProportionally,
+                                        });
+                                    }}
+                                />
+                                {!scaleProportionally && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('ScaleX', 'zolo-blocks')}
+                                            controlName={'transformScaleX'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={2}
+                                            step={0.1}
+                                            noUnits={true}
+                                        />
+                                        <ResRangeControl
+                                            label={__('ScaleY', 'zolo-blocks')}
+                                            controlName={'transformScaleY'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={2}
+                                            step={0.1}
+                                            noUnits={true}
+                                        />
+                                    </>
+                                )}
+                                {scaleProportionally && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('Scale', 'zolo-blocks')}
+                                            controlName={'transformScale'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={2}
+                                            step={0.1}
+                                            noUnits={true}
+                                        />
+                                    </>
+                                )}
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Skew', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M22 4H7.74545L2 20H16.2545L22 4Z"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ResRangeControl
+                                    label={__('SkewX (deg)', 'zolo-blocks')}
+                                    controlName={'transformSkewX'}
+                                    requiredProps={requiredProps}
+                                    min={-360}
+                                    max={360}
+                                    noUnits={true}
+                                />
+                                <ResRangeControl
+                                    label={__('SkewY (deg)', 'zolo-blocks')}
+                                    controlName={'transformSkewY'}
+                                    requiredProps={requiredProps}
+                                    min={-360}
+                                    max={360}
+                                    noUnits={true}
+                                />
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Flip', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M22 4H7.74545L2 20H16.2545L22 4Z"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ToggleControl
+                                    label={__('Flip Horizontal', 'zolo-blocks')}
+                                    checked={transformFlipHorizontal}
+                                    onChange={() => {
+                                        setAttributes({
+                                            transformFlipHorizontal: !transformFlipHorizontal,
+                                        });
+                                    }}
+                                />
+                                <ToggleControl
+                                    label={__('Flip Vertical', 'zolo-blocks')}
+                                    checked={transformFlipVertical}
+                                    onChange={() => {
+                                        setAttributes({
+                                            transformFlipVertical: !transformFlipVertical,
+                                        });
+                                    }}
+                                />
+                                {(transformFlipHorizontal || transformFlipVertical) && (
+                                    <>
+                                        <ResAlignmentControl
+                                            label={__('X Anchor Point', 'zolo-blocks')}
+                                            controlName={'transformOriginX'}
+                                            requiredProps={requiredProps}
+                                            alignOptions={DEFAULT_ALIGNS}
+                                        />
+                                        <ResAlignmentControl
+                                            label={__('Y Anchor Point', 'zolo-blocks')}
+                                            controlName={'transformOriginY'}
+                                            requiredProps={requiredProps}
+                                            alignOptions={DEFAULT_ALIGNS_VERTICAL}
+                                        />
+                                    </>
+                                )}
+                            </PopoverControl>
+                        </>
+                    }
+                    hoverComponents={
+                        <>
+                            <PopoverControl
+                                label={__('Translate', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M18.5818 15.3211L22 11.9184L18.5818 8.58813"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M5.41818 15.3211L2 11.9184L5.41818 8.58813"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M2.35461 11.9548H21.6455"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M15.3818 5.4027L11.9636 2L8.61816 5.4027"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M8.61816 18.5974L12.0363 22.0001L15.3818 18.5974"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M12 2.35278V21.2396"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ResRangeControl
+                                    label={__('translateX', 'zolo-blocks')}
+                                    controlName={'translateX'}
+                                    requiredProps={requiredProps}
+                                    min={-1000}
+                                    max={1000}
+                                    noUnits={true}
+                                />
+                                <ResRangeControl
+                                    label={__('translateY', 'zolo-blocks')}
+                                    controlName={'translateY'}
+                                    requiredProps={requiredProps}
+                                    min={-1000}
+                                    max={1000}
+                                    noUnits={true}
+                                />
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Rotate', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21.4401 8.67C19.7801 4.22 15.9301 2 12.0001 2C6.85006 2 2.61006 5.89 2.06006 10.89"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M21.9401 13.1201C21.3901 18.1201 17.1501 22.0001 12.0001 22.0001C8.08006 22.0001 4.22006 19.7801 2.56006 15.3301"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M22.0001 2.21997V8.66997H15.5601"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M2 21.7801V15.3301H8.44"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ResRangeControl
+                                    label={__('Rotate', 'zolo-blocks')}
+                                    controlName={'transformRotate'}
+                                    requiredProps={requiredProps}
+                                    min={-360}
+                                    max={360}
+                                    noUnits={true}
+                                />
+                                <ToggleControl
+                                    label={__('Rotate 3D', 'zolo-blocks')}
+                                    checked={transformRotate3DActive}
+                                    onChange={() => {
+                                        setAttributes({
+                                            transformRotate3DActive: !transformRotate3DActive,
+                                        });
+                                    }}
+                                />
+                                {transformRotate3DActive && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('RotateX(deg)', 'zolo-blocks')}
+                                            controlName={'transformRotateX'}
+                                            requiredProps={requiredProps}
+                                            min={-360}
+                                            max={360}
+                                            noUnits={true}
+                                        />
+                                        <ResRangeControl
+                                            label={__('RotateY(deg)', 'zolo-blocks')}
+                                            controlName={'transformRotateY'}
+                                            requiredProps={requiredProps}
+                                            min={-360}
+                                            max={360}
+                                            noUnits={true}
+                                        />
+                                        <ResRangeControl
+                                            label={__('Perspective(deg)', 'zolo-blocks')}
+                                            controlName={'transformPerspective'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={1000}
+                                            noUnits={true}
+                                        />
+                                    </>
+                                )}
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Scale', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21.9999 8.16V2L15.8799 2.07"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M16.2598 13.8798H10.0798L10.1398 7.78979"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M10.4299 13.5898L21.7299 2.30981"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M20.62 13.88V19.97C20.62 21.09 19.71 22 18.58 22H4.04C2.91 22 2 21.09 2 19.97V5.47995C2 4.35995 2.91 3.44995 4.04 3.44995H9.64"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ToggleControl
+                                    label={__('Keep Proportions', 'zolo-blocks')}
+                                    checked={scaleProportionally}
+                                    onChange={() => {
+                                        setAttributes({
+                                            scaleProportionally: !scaleProportionally,
+                                        });
+                                    }}
+                                />
+                                {!scaleProportionally && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('ScaleX', 'zolo-blocks')}
+                                            controlName={'transformScaleX'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={2}
+                                            step={0.1}
+                                            noUnits={true}
+                                        />
+                                        <ResRangeControl
+                                            label={__('ScaleY', 'zolo-blocks')}
+                                            controlName={'transformScaleY'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={2}
+                                            step={0.1}
+                                            noUnits={true}
+                                        />
+                                    </>
+                                )}
+                                {scaleProportionally && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('Scale', 'zolo-blocks')}
+                                            controlName={'transformScale'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={2}
+                                            step={0.1}
+                                            noUnits={true}
+                                        />
+                                    </>
+                                )}
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Skew', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M22 4H7.74545L2 20H16.2545L22 4Z"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ResRangeControl
+                                    label={__('SkewX (deg)', 'zolo-blocks')}
+                                    controlName={'transformSkewX'}
+                                    requiredProps={requiredProps}
+                                    min={-360}
+                                    max={360}
+                                    noUnits={true}
+                                />
+                                <ResRangeControl
+                                    label={__('SkewY (deg)', 'zolo-blocks')}
+                                    controlName={'transformSkewY'}
+                                    requiredProps={requiredProps}
+                                    min={-360}
+                                    max={360}
+                                    noUnits={true}
+                                />
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Flip', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M22 4H7.74545L2 20H16.2545L22 4Z"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ToggleControl
+                                    label={__('Flip Horizontal', 'zolo-blocks')}
+                                    checked={transformFlipHorizontal}
+                                    onChange={() => {
+                                        setAttributes({
+                                            transformFlipHorizontal: !transformFlipHorizontal,
+                                        });
+                                    }}
+                                />
+                                <ToggleControl
+                                    label={__('Flip Vertical', 'zolo-blocks')}
+                                    checked={transformFlipVertical}
+                                    onChange={() => {
+                                        setAttributes({
+                                            transformFlipVertical: !transformFlipVertical,
+                                        });
+                                    }}
+                                />
+                                {(transformFlipHorizontal || transformFlipVertical) && (
+                                    <>
+                                        <ResAlignmentControl
+                                            label={__('X Anchor Point', 'zolo-blocks')}
+                                            controlName={'transformOriginX'}
+                                            requiredProps={requiredProps}
+                                            alignOptions={DEFAULT_ALIGNS}
+                                        />
+                                        <ResAlignmentControl
+                                            label={__('Y Anchor Point', 'zolo-blocks')}
+                                            controlName={'transformOriginY'}
+                                            requiredProps={requiredProps}
+                                            alignOptions={DEFAULT_ALIGNS_VERTICAL}
+                                        />
+                                    </>
+                                )}
+                            </PopoverControl>
+                        </>
+                    }
+
+                />
             </ZoloPanelBody>
         </>
     );

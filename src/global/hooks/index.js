@@ -111,18 +111,21 @@ function addAttributes(settings) {
             overflow: {
                 type: 'string',
             },
-            floatingAnimationActive:{
+            transformAnimationActive: {
                 type: 'boolean',
                 default: false,
             },
-            floatingAnimation:{
+            floatingAnimationActive: {
+                type: 'boolean',
+                default: false,
+            },
+            floatingAnimation: {
                 type: 'object',
                 default: {
                     translateX: {
                         minValue: -100,
                         maxValue: 100,
                         unit: 'px',
-
                     },
                     translateY: {
                         minValue: 0,
@@ -250,6 +253,53 @@ function addAttributes(settings) {
                     transformOriginCustom: '',
                 },
             },
+            transformRotate3DActive: {
+                type: 'boolean',
+                default: false,
+            },
+            scaleProportionally: {
+                type: 'boolean',
+                default: false,
+            },
+            transformFlipHorizontal: {
+                type: 'boolean',
+                default: false,
+            },
+            transformFlipVertical: {
+                type: 'boolean',
+                default: false,
+            },
+            ...generateResRangeAttributies('translateX'),
+            ...generateResRangeAttributies('translateY'),
+            ...generateResRangeAttributies('transformRotate', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformRotateX', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformRotateY', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformPerspective'),
+            ...generateResRangeAttributies('transformScale', {
+                defaultUnit: '',
+            }),
+            ...generateResRangeAttributies('transformScaleX', {
+                defaultUnit: '',
+            }),
+            ...generateResRangeAttributies('transformScaleY', {
+                defaultUnit: '',
+            }),
+            ...generateResRangeAttributies('transformSkewX', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformSkewY', {
+                defaultUnit: 'deg',
+            }),
+
+            ...generateResAlignmentAttributies('transformOriginX'),
+            ...generateResAlignmentAttributies('transformOriginY'),
+
             ...(settings.attributes.globalConfig?.default?.margin &&
                 generateDimensionAttributes(settings.attributes.globalConfig.default.margin?.prefix || 'mainMargin')),
 
