@@ -217,6 +217,12 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
+       'beaf-slider' => [
+        'name'             => 'beaf-slider',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/beaf-slider/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-beaf-slider-frontend','zolo-block-editor-dependency']
+    ],
     'text-field' => [
         'name'             => 'text-field',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/text-field/block.json',

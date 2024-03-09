@@ -40,6 +40,7 @@
         "motion": "^10.17.0",
         "prop-types": "^15.8.1",
         "rc-switch": "^3.2.2",
+        "react-compare-slider": "^3.0.1",
         "react-countup": "^6.4.2",
         "react-google-autocomplete": "^2.7.3",
         "react-multi-select-component": "^4.3.4",
