@@ -23,7 +23,9 @@ export const GlobalStyleHanlder = (props) => {
         globalConfig,
         customCss,
         transformRotate3DActive,
+        transformRotate3DActiveHover,
         scaleProportionally,
+        scaleProportionallyHover,
         transformFlipHorizontal,
         transformFlipVertical,
     } = attributes;
@@ -136,6 +138,26 @@ export const GlobalStyleHanlder = (props) => {
         property: '--zolo-transform-translateY',
         attributes,
     });
+    // translateX
+    const {
+        desktopRangeStyle: translateXStylesDesktopHover,
+        tabRangeStyle: translateXStylesTabHover,
+        mobRangeStyle: translateXStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'translateXHover',
+        property: '--zolo-transform-translateX',
+        attributes,
+    });
+    // translateY
+    const {
+        desktopRangeStyle: translateYStylesDesktopHover,
+        tabRangeStyle: translateYStylesTabHover,
+        mobRangeStyle: translateYStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'translateYHover',
+        property: '--zolo-transform-translateY',
+        attributes,
+    });
 
     // transform rotate
     const {
@@ -179,6 +201,48 @@ export const GlobalStyleHanlder = (props) => {
         attributes,
     });
 
+    // transform rotate hover
+    const {
+        desktopRangeStyle: rotateStylesDesktopHover,
+        tabRangeStyle: rotateStylesTabHover,
+        mobRangeStyle: rotateStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformRotateHover',
+        property: '--zolo-transform-rotate',
+        attributes,
+    });
+    //transform rotate x
+    const {
+        desktopRangeStyle: rotateXStylesDesktopHover,
+        tabRangeStyle: rotateXStylesTabHover,
+        mobRangeStyle: rotateXStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformRotateXHover',
+        property: '--zolo-transform-rotateX',
+        attributes,
+    });
+    //transform rotate y
+    const {
+        desktopRangeStyle: rotateYStylesDesktopHover,
+        tabRangeStyle: rotateYStylesTabHover,
+        mobRangeStyle: rotateYStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformRotateYHover',
+        property: '--zolo-transform-rotateY',
+        attributes,
+    });
+
+    // transform roate perspective
+    const {
+        desktopRangeStyle: rotatePerspectiveStylesDesktopHover,
+        tabRangeStyle: rotatePerspectiveStylesTabHover,
+        mobRangeStyle: rotatePerspectiveStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformPerspectiveHover',
+        property: '--zolo-transform-perspective',
+        attributes,
+    });
+
     // transform scale
     const {
         desktopRangeStyle: scaleStylesDesktop,
@@ -212,6 +276,40 @@ export const GlobalStyleHanlder = (props) => {
         attributes,
     });
 
+
+    // transform scale hover
+    const {
+        desktopRangeStyle: scaleStylesDesktopHover,
+        tabRangeStyle: scaleStylesTabHover,
+        mobRangeStyle: scaleStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformScaleHover',
+        property: '--zolo-transform-scale',
+        attributes,
+    });
+
+    //transform scale x
+    const {
+        desktopRangeStyle: scaleXStylesDesktopHover,
+        tabRangeStyle: scaleXStylesTabHover,
+        mobRangeStyle: scaleXStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformScaleXHover',
+        property: '--zolo-transform-scaleX',
+        attributes,
+    });
+
+    //transform scale y
+    const {
+        desktopRangeStyle: scaleYStylesDesktopHover,
+        tabRangeStyle: scaleYStylesTabHover,
+        mobRangeStyle: scaleYStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformScaleYHover',
+        property: '--zolo-transform-scaleY',
+        attributes,
+    });
+
     // transform skew x
     const {
         desktopRangeStyle: skewXStylesDesktop,
@@ -230,6 +328,28 @@ export const GlobalStyleHanlder = (props) => {
         mobRangeStyle: skewYStylesMob,
     } = generateResRangeStyle({
         controlName: 'transformSkewY',
+        property: '--zolo-transform-skewY',
+        attributes,
+    });
+
+    // transform skew x
+    const {
+        desktopRangeStyle: skewXStylesDesktopHover,
+        tabRangeStyle: skewXStylesTabHover,
+        mobRangeStyle: skewXStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformSkewXHover',
+        property: '--zolo-transform-skewX',
+        attributes,
+    });
+
+    // transform skew y
+    const {
+        desktopRangeStyle: skewYStylesDesktopHover,
+        tabRangeStyle: skewYStylesTabHover,
+        mobRangeStyle: skewYStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformSkewYHover',
         property: '--zolo-transform-skewY',
         attributes,
     });
@@ -256,6 +376,42 @@ export const GlobalStyleHanlder = (props) => {
         property: '--zolo-transform-originY',
         attributes,
     });
+    // transform orgin x
+
+    const {
+        desktopAlignStyle: transformOriginXDesktopHover,
+        tabAlignStyle: transformOriginXTabHover,
+        mobAlignStyle: transformOriginXMobHover,
+    } = generateResAlignmentStyle({
+        controlName: 'transformOriginX',
+        property: '--zolo-transform-originX',
+        attributes,
+    });
+
+    // transform orgin y
+    const {
+        desktopAlignStyle: transformOriginYDesktopHover,
+        tabAlignStyle: transformOriginYTabHover,
+        mobAlignStyle: transformOriginYMobHover,
+    } = generateResAlignmentStyle({
+        controlName: 'transformOriginY',
+        property: '--zolo-transform-originY',
+        attributes,
+    });
+
+    // transform styles transition duration
+     const {
+         desktopRangeStyle: transitionDurationDesktop,
+         tabRangeStyle: transitionDurationTab,
+         mobRangeStyle: transitionDurationMob,
+     } = generateResRangeStyle({
+         controlName: 'transitionDuration',
+         property: '--zolo-transform-transition-duration',
+         attributes,
+     });
+
+
+    console.log(transitionDurationDesktop)
 
     const transformStylesDesktop = `
             ${translateXStylesDesktop}
@@ -271,7 +427,6 @@ export const GlobalStyleHanlder = (props) => {
             ${transformOriginXDesktop}
             ${transformOriginYDesktop}
             `;
-
     const transformStylesTab = `
             ${translateXStylesTab}
             ${translateYStylesTab}
@@ -297,6 +452,47 @@ export const GlobalStyleHanlder = (props) => {
             ${transformOriginYMob}
             `;
 
+    // transform hover
+    const transformStylesDesktopHover = `
+            ${translateXStylesDesktopHover}
+            ${translateYStylesDesktopHover}
+            ${rotateStylesDesktopHover}
+            ${transformRotate3DActiveHover ? `${rotateXStylesDesktopHover} ${rotateYStylesDesktopHover} ${rotatePerspectiveStylesDesktopHover}` : ''}
+            ${scaleProportionallyHover ? `${scaleStylesDesktopHover}` : ''}
+            ${!scaleProportionallyHover ? `${scaleXStylesDesktopHover} ${scaleYStylesDesktopHover}` : ''}
+            ${skewXStylesDesktopHover}
+            ${skewYStylesDesktopHover}
+            ${transformOriginXDesktopHover}
+            ${transformOriginYDesktopHover}
+            ${transitionDurationDesktop ? `transition-duration: ${transitionDurationDesktop}ms;` : ''}
+            `;
+    const transformStylesTabHover = `
+            ${translateYStylesTabHover}
+            ${translateYStylesDesktopHover}
+            ${rotateStylesTabHover}
+            ${transformRotate3DActiveHover ? `${rotateXStylesTabHover} ${rotateYStylesTabHover} ${rotatePerspectiveStylesTabHover}` : ''}
+            ${scaleProportionallyHover ? `${scaleStylesTabHover}` : ''}
+            ${!scaleProportionallyHover ? `${scaleXStylesTabHover} ${scaleYStylesTabHover}` : ''}
+            ${skewXStylesTabHover}
+            ${skewYStylesTabHover}
+            ${transformOriginXTabHover}
+            ${transformOriginYTabHover}
+            ${transitionDurationTab ? `transition-duration: ${transitionDurationTab}ms;` : ''}
+            `;
+    const transformStylesMobHover = `
+            ${translateYStylesMobHover}
+            ${translateYStylesDesktopHover}
+            ${rotateStylesMobHover}
+            ${transformRotate3DActiveHover ? `${rotateXStylesMobHover} ${rotateYStylesMobHover} ${rotatePerspectiveStylesMobHover}` : ''}
+            ${scaleProportionallyHover ? `${scaleStylesMobHover}` : ''}
+            ${!scaleProportionallyHover ? `${scaleXStylesMobHover} ${scaleYStylesMobHover}` : ''}
+            ${skewXStylesMobHover}
+            ${skewYStylesMobHover}
+            ${transformOriginXMobHover}
+            ${transformOriginYMobHover}
+            ${transitionDurationMob ? `transition-duration: ${transitionDurationMob}ms;` : ''}
+            `;
+
     const desktopGlobalStyles = `
       .parent-${uniqueId}.zolo-block {
         ${normalBoxShadowStyle ? normalBoxShadowStyle : ''}
@@ -312,6 +508,7 @@ export const GlobalStyleHanlder = (props) => {
 
       .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
+          ${transformStylesDesktopHover}
       }
 
       .parent-${uniqueId}.zolo-block:after {
@@ -335,6 +532,7 @@ export const GlobalStyleHanlder = (props) => {
 
       .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgTabStyle ? hoverBgTabStyle : ''}
+            ${transformStylesTabHover}
       }
 
       .parent-${uniqueId}.zolo-block:after {
@@ -359,6 +557,7 @@ export const GlobalStyleHanlder = (props) => {
 
       .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgMobStyle ? hoverBgMobStyle : ''}
+          ${transformStylesMobHover}
       }
 
       .parent-${uniqueId}.zolo-block:after {

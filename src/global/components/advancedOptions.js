@@ -37,9 +37,13 @@ export const AdvancedOptions = (props) => {
         entranceAnimation,
         floatingAnimation,
         transformRotate3DActive,
+        transformRotate3DActiveHover,
         scaleProportionally,
+        scaleProportionallyHover,
         transformFlipHorizontal,
         transformFlipVertical,
+        transformFlipHorizontalHover,
+        transformFlipVerticalHover,
         parentClasses,
         customClass,
         customClasses,
@@ -1831,7 +1835,10 @@ export const AdvancedOptions = (props) => {
                                     requiredProps={requiredProps}
                                     min={-1000}
                                     max={1000}
-                                    noUnits={true}
+                                    units={[
+                                        { label: __('px', 'zolo-blocks'), value: 'px' },
+                                        { label: __('%', 'zolo-blocks'), value: '%' },
+                                    ]}
                                 />
                                 <ResRangeControl
                                     label={__('translateY', 'zolo-blocks')}
@@ -1839,7 +1846,10 @@ export const AdvancedOptions = (props) => {
                                     requiredProps={requiredProps}
                                     min={-1000}
                                     max={1000}
-                                    noUnits={true}
+                                    units={[
+                                        { label: __('px', 'zolo-blocks'), value: 'px' },
+                                        { label: __('%', 'zolo-blocks'), value: '%' },
+                                    ]}
                                 />
                             </PopoverControl>
                             <PopoverControl
@@ -2142,19 +2152,25 @@ export const AdvancedOptions = (props) => {
                             >
                                 <ResRangeControl
                                     label={__('translateX', 'zolo-blocks')}
-                                    controlName={'translateX'}
+                                    controlName={'translateXHover'}
                                     requiredProps={requiredProps}
                                     min={-1000}
                                     max={1000}
-                                    noUnits={true}
+                                    units={[
+                                        { label: __('px', 'zolo-blocks'), value: 'px' },
+                                        { label: __('%', 'zolo-blocks'), value: '%' },
+                                    ]}
                                 />
                                 <ResRangeControl
                                     label={__('translateY', 'zolo-blocks')}
-                                    controlName={'translateY'}
+                                    controlName={'translateYHover'}
                                     requiredProps={requiredProps}
                                     min={-1000}
                                     max={1000}
-                                    noUnits={true}
+                                    units={[
+                                        { label: __('px', 'zolo-blocks'), value: 'px' },
+                                        { label: __('%', 'zolo-blocks'), value: '%' },
+                                    ]}
                                 />
                             </PopoverControl>
                             <PopoverControl
@@ -2194,7 +2210,7 @@ export const AdvancedOptions = (props) => {
                             >
                                 <ResRangeControl
                                     label={__('Rotate', 'zolo-blocks')}
-                                    controlName={'transformRotate'}
+                                    controlName={'transformRotateHover'}
                                     requiredProps={requiredProps}
                                     min={-360}
                                     max={360}
@@ -2202,18 +2218,18 @@ export const AdvancedOptions = (props) => {
                                 />
                                 <ToggleControl
                                     label={__('Rotate 3D', 'zolo-blocks')}
-                                    checked={transformRotate3DActive}
+                                    checked={transformRotate3DActiveHover}
                                     onChange={() => {
                                         setAttributes({
-                                            transformRotate3DActive: !transformRotate3DActive,
+                                            transformRotate3DActiveHover: !transformRotate3DActiveHover,
                                         });
                                     }}
                                 />
-                                {transformRotate3DActive && (
+                                {transformRotate3DActiveHover && (
                                     <>
                                         <ResRangeControl
                                             label={__('RotateX(deg)', 'zolo-blocks')}
-                                            controlName={'transformRotateX'}
+                                            controlName={'transformRotateXHover'}
                                             requiredProps={requiredProps}
                                             min={-360}
                                             max={360}
@@ -2221,7 +2237,7 @@ export const AdvancedOptions = (props) => {
                                         />
                                         <ResRangeControl
                                             label={__('RotateY(deg)', 'zolo-blocks')}
-                                            controlName={'transformRotateY'}
+                                            controlName={'transformRotateYHover'}
                                             requiredProps={requiredProps}
                                             min={-360}
                                             max={360}
@@ -2229,7 +2245,7 @@ export const AdvancedOptions = (props) => {
                                         />
                                         <ResRangeControl
                                             label={__('Perspective(deg)', 'zolo-blocks')}
-                                            controlName={'transformPerspective'}
+                                            controlName={'transformPerspectiveHover'}
                                             requiredProps={requiredProps}
                                             min={0}
                                             max={1000}
@@ -2275,18 +2291,18 @@ export const AdvancedOptions = (props) => {
                             >
                                 <ToggleControl
                                     label={__('Keep Proportions', 'zolo-blocks')}
-                                    checked={scaleProportionally}
+                                    checked={scaleProportionallyHover}
                                     onChange={() => {
                                         setAttributes({
-                                            scaleProportionally: !scaleProportionally,
+                                            scaleProportionallyHover: !scaleProportionallyHover,
                                         });
                                     }}
                                 />
-                                {!scaleProportionally && (
+                                {!scaleProportionallyHover && (
                                     <>
                                         <ResRangeControl
                                             label={__('ScaleX', 'zolo-blocks')}
-                                            controlName={'transformScaleX'}
+                                            controlName={'transformScaleXHover'}
                                             requiredProps={requiredProps}
                                             min={0}
                                             max={2}
@@ -2295,7 +2311,7 @@ export const AdvancedOptions = (props) => {
                                         />
                                         <ResRangeControl
                                             label={__('ScaleY', 'zolo-blocks')}
-                                            controlName={'transformScaleY'}
+                                            controlName={'transformScaleYHover'}
                                             requiredProps={requiredProps}
                                             min={0}
                                             max={2}
@@ -2304,11 +2320,11 @@ export const AdvancedOptions = (props) => {
                                         />
                                     </>
                                 )}
-                                {scaleProportionally && (
+                                {scaleProportionallyHover && (
                                     <>
                                         <ResRangeControl
                                             label={__('Scale', 'zolo-blocks')}
-                                            controlName={'transformScale'}
+                                            controlName={'transformScaleHover'}
                                             requiredProps={requiredProps}
                                             min={0}
                                             max={2}
@@ -2336,7 +2352,7 @@ export const AdvancedOptions = (props) => {
                             >
                                 <ResRangeControl
                                     label={__('SkewX (deg)', 'zolo-blocks')}
-                                    controlName={'transformSkewX'}
+                                    controlName={'transformSkewXHover'}
                                     requiredProps={requiredProps}
                                     min={-360}
                                     max={360}
@@ -2344,7 +2360,7 @@ export const AdvancedOptions = (props) => {
                                 />
                                 <ResRangeControl
                                     label={__('SkewY (deg)', 'zolo-blocks')}
-                                    controlName={'transformSkewY'}
+                                    controlName={'transformSkewYHover'}
                                     requiredProps={requiredProps}
                                     min={-360}
                                     max={360}
@@ -2369,42 +2385,49 @@ export const AdvancedOptions = (props) => {
                             >
                                 <ToggleControl
                                     label={__('Flip Horizontal', 'zolo-blocks')}
-                                    checked={transformFlipHorizontal}
+                                    checked={transformFlipHorizontalHover}
                                     onChange={() => {
                                         setAttributes({
-                                            transformFlipHorizontal: !transformFlipHorizontal,
+                                            transformFlipHorizontalHover: !transformFlipHorizontalHover,
                                         });
                                     }}
                                 />
                                 <ToggleControl
                                     label={__('Flip Vertical', 'zolo-blocks')}
-                                    checked={transformFlipVertical}
+                                    checked={transformFlipVerticalHover}
                                     onChange={() => {
                                         setAttributes({
-                                            transformFlipVertical: !transformFlipVertical,
+                                            transformFlipVerticalHover: !transformFlipVerticalHover,
                                         });
                                     }}
                                 />
-                                {(transformFlipHorizontal || transformFlipVertical) && (
+                                {(transformFlipHorizontalHover || transformFlipVerticalHover) && (
                                     <>
                                         <ResAlignmentControl
                                             label={__('X Anchor Point', 'zolo-blocks')}
-                                            controlName={'transformOriginX'}
+                                            controlName={'transformOriginXHover'}
                                             requiredProps={requiredProps}
                                             alignOptions={DEFAULT_ALIGNS}
                                         />
                                         <ResAlignmentControl
                                             label={__('Y Anchor Point', 'zolo-blocks')}
-                                            controlName={'transformOriginY'}
+                                            controlName={'transformOriginYHover'}
                                             requiredProps={requiredProps}
                                             alignOptions={DEFAULT_ALIGNS_VERTICAL}
                                         />
                                     </>
                                 )}
                             </PopoverControl>
+                            <ResRangeControl
+                                label={__('Transition Duration (ms)', 'zolo-blocks')}
+                                controlName={'transitionDuration'}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={10000}
+                                noUnits={true}
+                            />
                         </>
                     }
-
                 />
             </ZoloPanelBody>
         </>

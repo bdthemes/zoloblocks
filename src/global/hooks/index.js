@@ -257,7 +257,15 @@ function addAttributes(settings) {
                 type: 'boolean',
                 default: false,
             },
+            transformRotate3DActiveHover: {
+                type: 'boolean',
+                default: false,
+            },
             scaleProportionally: {
+                type: 'boolean',
+                default: false,
+            },
+            scaleProportionallyHover: {
                 type: 'boolean',
                 default: false,
             },
@@ -269,8 +277,20 @@ function addAttributes(settings) {
                 type: 'boolean',
                 default: false,
             },
-            ...generateResRangeAttributies('translateX'),
-            ...generateResRangeAttributies('translateY'),
+            transformFlipHorizontalHover: {
+                type: 'boolean',
+                default: false,
+            },
+            transformFlipVerticalHover: {
+                type: 'boolean',
+                default: false,
+            },
+            ...generateResRangeAttributies('translateX', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('translateY', {
+                defaultUnit: 'px',
+            }),
             ...generateResRangeAttributies('transformRotate', {
                 defaultUnit: 'deg',
             }),
@@ -296,9 +316,44 @@ function addAttributes(settings) {
             ...generateResRangeAttributies('transformSkewY', {
                 defaultUnit: 'deg',
             }),
+            //hover
+            ...generateResRangeAttributies('translateXHover', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('translateYHover', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('transformRotateHover', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformRotateXHover', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformRotateYHover', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformPerspectiveHove'),
+            ...generateResRangeAttributies('transformScaleHover', {
+                defaultUnit: '',
+            }),
+            ...generateResRangeAttributies('transformScaleXHover', {
+                defaultUnit: '',
+            }),
+            ...generateResRangeAttributies('transformScaleYHover', {
+                defaultUnit: '',
+            }),
+            ...generateResRangeAttributies('transformSkewXHover', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformSkewYHover', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transitionDuration', {
+                defaultUnit: '',
+            }),
 
-            ...generateResAlignmentAttributies('transformOriginX'),
-            ...generateResAlignmentAttributies('transformOriginY'),
+            ...generateResAlignmentAttributies('transformOriginXHover'),
+            ...generateResAlignmentAttributies('transformOriginYHover'),
 
             ...(settings.attributes.globalConfig?.default?.margin &&
                 generateDimensionAttributes(settings.attributes.globalConfig.default.margin?.prefix || 'mainMargin')),

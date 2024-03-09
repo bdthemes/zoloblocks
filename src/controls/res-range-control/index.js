@@ -146,7 +146,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                                 )}
                             </UnitsBtn>
 
-                            <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} onResetBtn={true}>
+                            <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <RangeControl
                                     value={desktopRange}
                                     onChange={(val) => {
@@ -183,7 +183,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                                     />
                                 )}
                             </UnitsBtn>
-                            <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} onResetBtn={true}>
+                            <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <RangeControl
                                     value={tabRange}
                                     onChange={(val) =>
@@ -220,7 +220,7 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
                                     />
                                 )}
                             </UnitsBtn>
-                            <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} onResetBtn={true}>
+                            <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                                 <RangeControl
                                     value={mobRange}
                                     onChange={(val) =>
