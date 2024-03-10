@@ -982,8 +982,26 @@ function Inspector(props) {
                                             controlName={BACK_LINK_PADDING}
                                             requiredProps={requiredProps}
                                         />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={BACK_LINK_BG} noMainBGImg={false} />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={BACK_LINK_HBG} noMainBGImg={false} />
+                                        <TabPanelControl
+                                            normalComponents={
+                                                <>
+                                                    <NormalBGControl
+                                                        requiredProps={requiredProps}
+                                                        controlName={BACK_LINK_BG}
+                                                        noMainBGImg={false}
+                                                    />
+                                                </>
+                                            }
+                                            hoverComponents={
+                                                <>
+                                                    <NormalBGControl
+                                                        requiredProps={requiredProps}
+                                                        controlName={BACK_LINK_HBG}
+                                                        noMainBGImg={false}
+                                                    />
+                                                </>
+                                            }
+                                        />
                                     </>
                                 )}
                             </ZoloPanelBody>
