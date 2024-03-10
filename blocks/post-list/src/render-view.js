@@ -35,12 +35,12 @@ function RenderView({ attributes, postResults }) {
                         ''
                     );
 
-                const author = (
-                    <div
-                        className="zolo-post-author-name"
-                        dangerouslySetInnerHTML={{ __html: __('<span>Posted By</span> ') + post.author_link }}
-                    />
-                );
+                 const author = (
+                     <div className="zolo-post-author-name">
+                         <span>{__('Posted by', 'zolo-blocks')}</span>
+                         <a href="#" className="zolo-post-author-link" dangerouslySetInnerHTML={{ __html: post.author }}></a>
+                     </div>
+                 );
                 const date = <div className="zolo-post-date">{post.date}</div>;
                 const readingTime = <div className="zolo-post-estimate">{post.reading_time}</div>;
 
