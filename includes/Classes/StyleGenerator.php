@@ -29,8 +29,127 @@ class StyleGenerator {
         //Generate Style on block render
         add_filter('render_block', [$this, 'generate_style_on_render_block'], 10, 2);
         add_filter('render_block', [$this, 'add_entrance_animation'], 10, 2);
+        add_filter('render_block', [$this, 'add_floating_animation'], 10, 2);
     }
 
+    /**
+     * Add Entrance Animation
+     *
+     * @since 0.0.1
+     *
+     * @return array
+     */
+    public function add_floating_animation($block_content, $block) {
+        if (isset($block['blockName']) && str_contains($block['blockName'], 'zolo/')) {
+
+            $animationActive = $block['attrs']['floatingAnimationActive'] ?? false;
+            if ($animationActive) {
+                $floatingAnimation = $block['attrs']['floatingAnimation'] ?? [
+                    'translateX' => [
+                        'minValue' => -100,
+                        'maxValue' => 100,
+                        'unit' => 'px',
+                    ],
+                    'translateY' => [
+                        'minValue' => 0,
+                        'maxValue' => 0,
+                        'unit' => 'px',
+                    ],
+                    'translateZ' => [
+                        'minValue' => 0,
+                        'maxValue' => 0,
+                        'unit' => 'px',
+                    ],
+                    'rotateX' => [
+                        'minValue' => 0,
+                        'maxValue' => 0,
+                        'unit' => 'deg',
+                    ],
+                    'rotateY' => [
+                        'minValue' => 0,
+                        'maxValue' => 0,
+                        'unit' => 'deg',
+                    ],
+                    'rotateZ' => [
+                        'minValue' => 0,
+                        'maxValue' => 0,
+                        'unit' => 'deg',
+                    ],
+                    'scaleX' => [
+                        'minValue' => 0,
+                        'maxValue' => 0,
+                        'unit' => '',
+                    ],
+                    'scaleY' => [
+                        'minValue' => 0,
+                        'maxValue' => 0,
+                        'unit' => '',
+                    ],
+                    'scaleZ' => [
+                        'minValue' => 0,
+                        'maxValue' => 0,
+                        'unit' => '',
+                    ],
+                    'skewX' => [
+                        'minValue' => 0,
+                        'maxValue' => 0,
+                        'unit' => 'deg',
+                    ],
+                    'skewY' => [
+                        'minValue' => 0,
+                        'maxValue' => 0,
+                        'unit' => 'deg',
+                    ],
+                    'opacity' => [
+                        'minValue' => 1,
+                        'maxValue' => 1,
+                        'unit' => '',
+                    ],
+                    'easing' => 'ease-out',
+                    'easingCustom' => '',
+                    'repeat' => true,
+                    'perspective' => 0,
+                    'duration' => 3000,
+                    'delay' => 0,
+                    'transformOrigin' => 'center',
+                    'presetAnimation' => 'bottomMedium',
+                    'transformOriginCustom' => '',
+
+
+                ];
+
+                // Convert the floating animation to JSON string
+                $floatingAnimation = wp_json_encode($floatingAnimation);
+
+                if (!empty($floatingAnimation)) {
+                    // Parse the block content as HTML
+                    $dom = new \DOMDocument();
+                    @$dom->loadHTML($block_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+                    // Retrieve the outermost div
+                    $outerDiv = $dom->getElementsByTagName('div')->item(0);
+
+                    if ($outerDiv) {
+                        // Retrieve existing class attribute
+                        $existingClasses = $outerDiv->getAttribute('class');
+
+                        // Add the animation attribute
+                        $outerDiv->setAttribute('data-floating', $floatingAnimation);
+
+                        // Restore existing classes
+                        if (!empty($existingClasses)) {
+                            $outerDiv->setAttribute('class', $existingClasses);
+                        }
+
+                        // Save the modified HTML
+                        $block_content = $dom->saveHTML();
+                    }
+                }
+            }
+        }
+
+        return $block_content;
+    }
     /**
      * Add Entrance Animation
      *

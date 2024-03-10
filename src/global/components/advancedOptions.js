@@ -2,8 +2,9 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { animate } from 'motion';
+import { animate, timeline } from 'motion';
 import { SelectControl, ToggleControl, TextControl, Button, FormTokenField } from '@wordpress/components';
+import { useState } from 'react';
 
 /**
  * Internal dependencies
@@ -18,15 +19,31 @@ import OverlayControl from '../../controls/overflow-control';
 import PopoverControl from '../../controls/popover-control';
 import SimpleRangeControl from '../../controls/simple-range-control';
 import ZoloPanelBody from '../../controls/zolo-panelbody';
+import MultiRangeControl from '../../controls/multi-range-control';
+import TabPanelControl from '../../controls/tabpanel-control';
+import ResRangeControl from '../../controls/res-range-control';
+import ResAlignmentControl from '../../controls/res-alignment-control';
 
+import { DEFAULT_ALIGNS, DEFAULT_ALIGNS_VERTICAL } from '../constants';
 export const AdvancedOptions = (props) => {
+    const [isPlaying, setIsPlaying] = useState(false);
     const { attributes, setAttributes, requiredProps } = props;
 
     const {
         uniqueId,
         responsiveness,
-        entranceAnimation,
         entranceAnimationActive,
+        floatingAnimationActive,
+        entranceAnimation,
+        floatingAnimation,
+        transformRotate3DActive,
+        transformRotate3DActiveHover,
+        scaleProportionally,
+        scaleProportionallyHover,
+        transformFlipHorizontal,
+        transformFlipVertical,
+        transformFlipHorizontalHover,
+        transformFlipVerticalHover,
         parentClasses,
         customClass,
         customClasses,
@@ -35,7 +52,8 @@ export const AdvancedOptions = (props) => {
         overflow,
     } = attributes;
 
-    const handleMotionAnimation = () => {
+
+    const handleEntranceAnimation = () => {
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
 
         let transformOptions = [];
@@ -197,6 +215,116 @@ export const AdvancedOptions = (props) => {
             const presetAnimation = presetAnimations[entranceAnimation.presetAnimation];
             animate(targetElement, presetAnimation, otherOptions);
         }
+    };
+
+    const handleFloatingAnimation = () => {
+        const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-floating-animation`);
+
+        let startValue = [];
+        let endValue = [];
+        const otherOptions = {
+            repeat: Infinity,
+            direction: 'alternate',
+        };
+
+        if (floatingAnimation.translateX.minValue !== 0) {
+            startValue.push(`translateX(${floatingAnimation.translateX.minValue}${floatingAnimation.translateX.unit})`);
+        }
+        if (floatingAnimation.translateY.minValue !== 0) {
+            startValue.push(`translateY(${floatingAnimation.translateY.minValue}${floatingAnimation.translateY.unit})`);
+        }
+        if (floatingAnimation.translateZ.minValue !== 0) {
+            startValue.push(`translateZ(${floatingAnimation.translateZ.minValue}${floatingAnimation.translateZ.unit})`);
+        }
+
+        if (floatingAnimation.scaleX.minValue !== 0) {
+            startValue.push(`scaleX(${floatingAnimation.scaleX.minValue}${floatingAnimation.scaleX.unit})`);
+        }
+        if (floatingAnimation.scaleY.minValue !== 0) {
+            startValue.push(`scaleY(${floatingAnimation.scaleY.minValue}${floatingAnimation.scaleY.unit})`);
+        }
+        if (floatingAnimation.scaleZ.minValue !== 0) {
+            startValue.push(`scaleZ(${floatingAnimation.scaleZ.minValue}${floatingAnimation.scaleZ.unit})`);
+        }
+
+        if (floatingAnimation.skewX.minValue !== 0) {
+            startValue.push(`skewX(${floatingAnimation.skewX.minValue}${floatingAnimation.skewX.unit})`);
+        }
+        if (floatingAnimation.skewY.minValue !== 0) {
+            startValue.push(`skewY(${floatingAnimation.skewY.minValue}${floatingAnimation.skewY.unit})`);
+        }
+
+        if (floatingAnimation.rotateX.minValue !== 0) {
+            startValue.push(`rotateX(${floatingAnimation.rotateX.minValue}deg)`);
+        }
+        if (floatingAnimation.rotateY.minValue !== 0) {
+            startValue.push(`rotateY(${floatingAnimation.rotateY.minValue}deg)`);
+        }
+        if (floatingAnimation.rotateZ.minValue !== 0) {
+            startValue.push(`rotateZ(${floatingAnimation.rotateZ.minValue}deg)`);
+        }
+
+        // end value
+        if (floatingAnimation.translateX.maxValue !== 0) {
+            endValue.push(`translateX(${floatingAnimation.translateX.maxValue}${floatingAnimation.translateX.unit})`);
+        }
+        if (floatingAnimation.translateY.maxValue !== 0) {
+            endValue.push(`translateY(${floatingAnimation.translateY.maxValue}${floatingAnimation.translateY.unit})`);
+        }
+        if (floatingAnimation.translateZ.maxValue !== 0) {
+            endValue.push(`translateZ(${floatingAnimation.translateZ.maxValue}${floatingAnimation.translateZ.unit})`);
+        }
+        if (floatingAnimation.skewX.maxValue !== 0) {
+            endValue.push(`skewX(${floatingAnimation.skewX.maxValue}${floatingAnimation.skewX.unit})`);
+        }
+        if (floatingAnimation.skewY.maxValue !== 0) {
+            endValue.push(`skewY(${floatingAnimation.skewY.maxValue}${floatingAnimation.skewY.unit})`);
+        }
+        if (floatingAnimation.rotateX.maxValue !== 0) {
+            endValue.push(`rotateX(${floatingAnimation.rotateX.maxValue}deg)`);
+        }
+        if (floatingAnimation.rotateY.maxValue !== 0) {
+            endValue.push(`rotateY(${floatingAnimation.rotateY.maxValue}deg)`);
+        }
+        if (floatingAnimation.rotateZ.maxValue !== 0) {
+            endValue.push(`rotateZ(${floatingAnimation.rotateZ.maxValue}deg)`);
+        }
+
+        if (floatingAnimation.duration !== 0) {
+            otherOptions.duration = floatingAnimation.duration / 1000;
+        }
+        if (floatingAnimation.delay !== 0) {
+            otherOptions.delay = floatingAnimation.delay / 1000;
+        }
+         if (floatingAnimation.easing !== 'custom') {
+             otherOptions.easing = floatingAnimation.easing;
+         } else {
+             otherOptions.easing = [floatingAnimation.easingCustom.split(';')[0]];
+         }
+
+        const transformValueStart = startValue.join('');
+        const transformValueEnd = endValue.join('');
+        const animation = animate(
+            targetElement,
+            {
+                transform: [transformValueStart, transformValueEnd],
+                opacity: [floatingAnimation.opacity.minValue, floatingAnimation.opacity.maxValue],
+            },
+            otherOptions
+        );
+
+        return animation;
+    };
+
+
+    const handleFloatingToggle = () => {
+        let animation = handleFloatingAnimation();
+        if (isPlaying) {
+            animation.pause();
+        } else {
+            animation.play();
+        }
+        setIsPlaying(!isPlaying);
     };
 
     const handleResponsiveness = (key, value, classname) => {
@@ -1120,13 +1248,1187 @@ export const AdvancedOptions = (props) => {
                             label={__('Preview', 'zolo-blocks')}
                             isPrimary
                             onClick={() => {
-                                handleMotionAnimation();
+                                handleEntranceAnimation();
                             }}
                         >
                             {__('Preview', 'zolo-blocks')}
                         </Button>
                     </>
                 )}
+            </ZoloPanelBody>
+            <ZoloPanelBody title={__('Floating Animation', 'zolo-blocks')} panelProps={props} extraPanel={true} isPro={true} isNew={true}>
+                <ToggleControl
+                    label={__('Floating Animation', 'zolo-blocks')}
+                    checked={floatingAnimationActive}
+                    onChange={() => {
+                        setAttributes({
+                            floatingAnimationActive: !floatingAnimationActive,
+                        });
+                        if (!floatingAnimationActive) {
+                            setAttributes({
+                                parentClasses: [...parentClasses, 'zolo-floating-animation'],
+                            });
+                        } else {
+                            setAttributes({
+                                parentClasses: parentClasses.filter(function (e) {
+                                    return e !== 'zolo-floating-animation';
+                                }),
+                            });
+                        }
+                    }}
+                />
+
+                {floatingAnimationActive && (
+                    <>
+                        <PopoverControl
+                            label={__('Translate', 'zolo-blocks')}
+                            icon={
+                                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M18.5818 15.3211L22 11.9184L18.5818 8.58813"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M5.41818 15.3211L2 11.9184L5.41818 8.58813"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M2.35461 11.9548H21.6455"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M15.3818 5.4027L11.9636 2L8.61816 5.4027"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M8.61816 18.5974L12.0363 22.0001L15.3818 18.5974"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M12 2.35278V21.2396"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            }
+                        >
+                            <MultiRangeControl
+                                label={__('Translate X', 'zolo-blocks')}
+                                min={-100}
+                                max={100}
+                                step={1}
+                                minValue={floatingAnimation?.translateX?.minValue}
+                                maxValue={floatingAnimation?.translateX?.maxValue}
+                                onChange={(value) => {
+                                    // set attributes min and max
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            translateX: {
+                                                ...floatingAnimation.translateX,
+                                                minValue: value.minValue,
+                                                maxValue: value.maxValue,
+                                            },
+                                        },
+                                    });
+                                }}
+                            />
+                            <MultiRangeControl
+                                label={__('Translate Y', 'zolo-blocks')}
+                                min={-100}
+                                max={100}
+                                step={1}
+                                minValue={floatingAnimation?.translateY?.minValue}
+                                maxValue={floatingAnimation?.translateY?.maxValue}
+                                onChange={(value) => {
+                                    // set attributes min and max
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            translateY: {
+                                                ...floatingAnimation.translateY,
+                                                minValue: value.minValue,
+                                                maxValue: value.maxValue,
+                                            },
+                                        },
+                                    });
+                                }}
+                            />
+                        </PopoverControl>
+                        <PopoverControl
+                            label={__('Rotate', 'zolo-blocks')}
+                            icon={
+                                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M21.4401 8.67C19.7801 4.22 15.9301 2 12.0001 2C6.85006 2 2.61006 5.89 2.06006 10.89"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M21.9401 13.1201C21.3901 18.1201 17.1501 22.0001 12.0001 22.0001C8.08006 22.0001 4.22006 19.7801 2.56006 15.3301"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M22.0001 2.21997V8.66997H15.5601"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M2 21.7801V15.3301H8.44"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            }
+                        >
+                            <MultiRangeControl
+                                label={__('Rotate X', 'zolo-blocks')}
+                                min={-180}
+                                max={180}
+                                step={1}
+                                minValue={floatingAnimation?.rotateX?.minValue}
+                                maxValue={floatingAnimation?.rotateX?.maxValue}
+                                onChange={(value) => {
+                                    // set attributes min and max
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            rotateX: {
+                                                ...floatingAnimation.rotateX,
+                                                minValue: value.minValue,
+                                                maxValue: value.maxValue,
+                                            },
+                                        },
+                                    });
+                                }}
+                            />
+                            <MultiRangeControl
+                                label={__('Rotate Y', 'zolo-blocks')}
+                                min={-180}
+                                max={180}
+                                step={1}
+                                minValue={floatingAnimation?.rotateY?.minValue}
+                                maxValue={floatingAnimation?.rotateY?.maxValue}
+                                onChange={(value) => {
+                                    // set attributes min and max
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            rotateY: {
+                                                ...floatingAnimation.rotateY,
+                                                minValue: value.minValue,
+                                                maxValue: value.maxValue,
+                                            },
+                                        },
+                                    });
+                                }}
+                            />
+                            <MultiRangeControl
+                                label={__('Rotate Z', 'zolo-blocks')}
+                                min={-180}
+                                max={180}
+                                step={1}
+                                minValue={floatingAnimation?.rotateZ?.minValue}
+                                maxValue={floatingAnimation?.rotateZ?.maxValue}
+                                onChange={(value) => {
+                                    // set attributes min and max
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            rotateZ: {
+                                                ...floatingAnimation.rotateZ,
+                                                minValue: value.minValue,
+                                                maxValue: value.maxValue,
+                                            },
+                                        },
+                                    });
+                                }}
+                            />
+                        </PopoverControl>
+                        <PopoverControl
+                            label={__('Scale', 'zolo-blocks')}
+                            icon={
+                                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M21.9999 8.16V2L15.8799 2.07"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M16.2598 13.8798H10.0798L10.1398 7.78979"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M10.4299 13.5898L21.7299 2.30981"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M20.62 13.88V19.97C20.62 21.09 19.71 22 18.58 22H4.04C2.91 22 2 21.09 2 19.97V5.47995C2 4.35995 2.91 3.44995 4.04 3.44995H9.64"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            }
+                        >
+                            <MultiRangeControl
+                                label={__('Scale X', 'zolo-blocks')}
+                                min={0}
+                                max={5}
+                                step={0.1}
+                                minValue={floatingAnimation?.scaleX?.minValue}
+                                maxValue={floatingAnimation?.scaleX?.maxValue}
+                                onChange={(value) => {
+                                    // set attributes min and max
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            scaleX: {
+                                                ...floatingAnimation.scaleX,
+                                                minValue: value.minValue,
+                                                maxValue: value.maxValue,
+                                            },
+                                        },
+                                    });
+                                }}
+                            />
+                            <MultiRangeControl
+                                label={__('Scale Y', 'zolo-blocks')}
+                                min={0}
+                                max={5}
+                                step={0.1}
+                                minValue={floatingAnimation?.scaleY?.minValue}
+                                maxValue={floatingAnimation?.scaleY?.maxValue}
+                                onChange={(value) => {
+                                    // set attributes min and max
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            scaleY: {
+                                                ...floatingAnimation.scaleY,
+                                                minValue: value.minValue,
+                                                maxValue: value.maxValue,
+                                            },
+                                        },
+                                    });
+                                }}
+                            />
+                            <MultiRangeControl
+                                label={__('Scale Z', 'zolo-blocks')}
+                                min={0}
+                                max={5}
+                                step={0.1}
+                                minValue={floatingAnimation?.scaleZ?.minValue}
+                                maxValue={floatingAnimation?.scaleZ?.maxValue}
+                                onChange={(value) => {
+                                    // set attributes min and max
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            scaleZ: {
+                                                ...floatingAnimation.scaleZ,
+                                                minValue: value.minValue,
+                                                maxValue: value.maxValue,
+                                            },
+                                        },
+                                    });
+                                }}
+                            />
+                        </PopoverControl>
+                        <PopoverControl
+                            label={__('Skew', 'zolo-blocks')}
+                            icon={
+                                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        fillRule="evenodd"
+                                        clipRule="evenodd"
+                                        d="M22 4H7.74545L2 20H16.2545L22 4Z"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            }
+                        >
+                            <MultiRangeControl
+                                label={__('Skew X', 'zolo-blocks')}
+                                min={-180}
+                                max={180}
+                                step={1}
+                                minValue={floatingAnimation?.skewX?.minValue}
+                                maxValue={floatingAnimation?.skewX?.maxValue}
+                                onChange={(value) => {
+                                    // set attributes min and max
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            skewX: {
+                                                ...floatingAnimation.skewX,
+                                                minValue: value.minValue,
+                                                maxValue: value.maxValue,
+                                            },
+                                        },
+                                    });
+                                }}
+                            />
+                            <MultiRangeControl
+                                label={__('Skew Y', 'zolo-blocks')}
+                                min={-180}
+                                max={180}
+                                step={1}
+                                minValue={floatingAnimation?.skewY?.minValue}
+                                maxValue={floatingAnimation?.skewY?.maxValue}
+                                onChange={(value) => {
+                                    // set attributes min and max
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            skewY: {
+                                                ...floatingAnimation.skewY,
+                                                minValue: value.minValue,
+                                                maxValue: value.maxValue,
+                                            },
+                                        },
+                                    });
+                                }}
+                            />
+                        </PopoverControl>
+                        <PopoverControl
+                            label={__('Opacity', 'zolo-blocks')}
+                            icon={
+                                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M21.4401 8.67C19.7801 4.22 15.9301 2 12.0001 2C6.85006 2 2.61006 5.89 2.06006 10.89"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M21.9401 13.1201C21.3901 18.1201 17.1501 22.0001 12.0001 22.0001C8.08006 22.0001 4.22006 19.7801 2.56006 15.3301"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M22.0001 2.21997V8.66997H15.5601"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M2 21.7801V15.3301H8.44"
+                                        stroke="#4D4D4D"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            }
+                        >
+                            <MultiRangeControl
+                                label={__('Opacity', 'zolo-blocks')}
+                                min={0}
+                                max={1}
+                                step={0.1}
+                                minValue={floatingAnimation?.opacity?.minValue}
+                                maxValue={floatingAnimation?.opacity?.maxValue}
+                                onChange={(value) => {
+                                    // set attributes min and max
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            opacity: {
+                                                ...floatingAnimation.opacity,
+                                                minValue: value.minValue,
+                                                maxValue: value.maxValue,
+                                            },
+                                        },
+                                    });
+                                }}
+                            />
+                        </PopoverControl>
+                        <SelectControl
+                            label={__('Easing Type', 'zolo-blocks')}
+                            value={floatingAnimation.easing}
+                            options={[
+                                { label: __('Ease Out', 'zolo-blocks'), value: 'ease-out' },
+                                { label: __('Ease In Out', 'zolo-blocks'), value: 'ease-in-out' },
+                                { label: __('Linear', 'zolo-blocks'), value: 'linear' },
+                                { label: __('Custom', 'zolo-blocks'), value: 'custom' },
+                            ]}
+                            onChange={(value) => {
+                                setAttributes({
+                                    floatingAnimation: {
+                                        ...floatingAnimation,
+                                        easing: value,
+                                    },
+                                });
+                            }}
+                        />
+
+                        {floatingAnimation.easing === 'custom' && (
+                            <TextControl
+                                label={__('Custom Easing', 'zolo-blocks')}
+                                help={__('Example: cubic-bezier(0.42, 0, 0.58, 1)', 'zolo-blocks')}
+                                value={floatingAnimation.easingCustom}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        floatingAnimation: {
+                                            ...floatingAnimation,
+                                            easingCustom: value,
+                                        },
+                                    });
+                                }}
+                            />
+                        )}
+                        <SimpleRangeControl
+                            label={__('Delay(ms)', 'zolo-blocks')}
+                            value={floatingAnimation.delay}
+                            onChange={(value) => {
+                                setAttributes({
+                                    floatingAnimation: {
+                                        ...floatingAnimation,
+                                        delay: value,
+                                    },
+                                });
+                            }}
+                            onReset={() => {
+                                setAttributes({
+                                    floatingAnimation: {
+                                        ...floatingAnimation,
+                                        delay: 0,
+                                    },
+                                });
+                            }}
+                            min={0}
+                            max={10000}
+                            noUnits={true}
+                        />
+                        <SimpleRangeControl
+                            label={__('Transition Duration(ms)', 'zolo-blocks')}
+                            value={floatingAnimation.duration}
+                            onChange={(value) => {
+                                setAttributes({
+                                    floatingAnimation: {
+                                        ...floatingAnimation,
+                                        duration: value,
+                                    },
+                                });
+                            }}
+                            onReset={() => {
+                                setAttributes({
+                                    floatingAnimation: {
+                                        ...floatingAnimation,
+                                        duration: 0,
+                                    },
+                                });
+                            }}
+                            min={0}
+                            max={10000}
+                            noUnits={true}
+                        />
+                        <Button
+                            label={isPlaying ? __('Stop', 'zolo-blocks') : __('Play', 'zolo-blocks')}
+                            isPrimary
+                            onClick={handleFloatingToggle}
+                        >
+                            {isPlaying ? __('Stop', 'zolo-blocks') : __('Play', 'zolo-blocks')}
+                        </Button>
+                    </>
+                )}
+            </ZoloPanelBody>
+            <ZoloPanelBody title={__('Transform', 'zolo-blocks')} panelProps={props} extraPanel={true} isPro={false} isNew={true}>
+                <TabPanelControl
+                    normalComponents={
+                        <>
+                            <PopoverControl
+                                label={__('Translate', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M18.5818 15.3211L22 11.9184L18.5818 8.58813"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M5.41818 15.3211L2 11.9184L5.41818 8.58813"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M2.35461 11.9548H21.6455"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M15.3818 5.4027L11.9636 2L8.61816 5.4027"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M8.61816 18.5974L12.0363 22.0001L15.3818 18.5974"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M12 2.35278V21.2396"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ResRangeControl
+                                    label={__('translateX', 'zolo-blocks')}
+                                    controlName={'translateX'}
+                                    requiredProps={requiredProps}
+                                    min={-1000}
+                                    max={1000}
+                                    units={[
+                                        { label: __('px', 'zolo-blocks'), value: 'px' },
+                                        { label: __('%', 'zolo-blocks'), value: '%' },
+                                    ]}
+                                />
+                                <ResRangeControl
+                                    label={__('translateY', 'zolo-blocks')}
+                                    controlName={'translateY'}
+                                    requiredProps={requiredProps}
+                                    min={-1000}
+                                    max={1000}
+                                    units={[
+                                        { label: __('px', 'zolo-blocks'), value: 'px' },
+                                        { label: __('%', 'zolo-blocks'), value: '%' },
+                                    ]}
+                                />
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Rotate', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21.4401 8.67C19.7801 4.22 15.9301 2 12.0001 2C6.85006 2 2.61006 5.89 2.06006 10.89"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M21.9401 13.1201C21.3901 18.1201 17.1501 22.0001 12.0001 22.0001C8.08006 22.0001 4.22006 19.7801 2.56006 15.3301"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M22.0001 2.21997V8.66997H15.5601"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M2 21.7801V15.3301H8.44"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ResRangeControl
+                                    label={__('Rotate', 'zolo-blocks')}
+                                    controlName={'transformRotate'}
+                                    requiredProps={requiredProps}
+                                    min={-360}
+                                    max={360}
+                                    noUnits={true}
+                                />
+                                <ToggleControl
+                                    label={__('Rotate 3D', 'zolo-blocks')}
+                                    checked={transformRotate3DActive}
+                                    onChange={() => {
+                                        setAttributes({
+                                            transformRotate3DActive: !transformRotate3DActive,
+                                        });
+                                    }}
+                                />
+                                {transformRotate3DActive && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('RotateX(deg)', 'zolo-blocks')}
+                                            controlName={'transformRotateX'}
+                                            requiredProps={requiredProps}
+                                            min={-360}
+                                            max={360}
+                                            noUnits={true}
+                                        />
+                                        <ResRangeControl
+                                            label={__('RotateY(deg)', 'zolo-blocks')}
+                                            controlName={'transformRotateY'}
+                                            requiredProps={requiredProps}
+                                            min={-360}
+                                            max={360}
+                                            noUnits={true}
+                                        />
+                                        <ResRangeControl
+                                            label={__('Perspective(deg)', 'zolo-blocks')}
+                                            controlName={'transformPerspective'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={1000}
+                                            noUnits={true}
+                                        />
+                                    </>
+                                )}
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Scale', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21.9999 8.16V2L15.8799 2.07"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M16.2598 13.8798H10.0798L10.1398 7.78979"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M10.4299 13.5898L21.7299 2.30981"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M20.62 13.88V19.97C20.62 21.09 19.71 22 18.58 22H4.04C2.91 22 2 21.09 2 19.97V5.47995C2 4.35995 2.91 3.44995 4.04 3.44995H9.64"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ToggleControl
+                                    label={__('Keep Proportions', 'zolo-blocks')}
+                                    checked={scaleProportionally}
+                                    onChange={() => {
+                                        setAttributes({
+                                            scaleProportionally: !scaleProportionally,
+                                        });
+                                    }}
+                                />
+                                {!scaleProportionally && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('ScaleX', 'zolo-blocks')}
+                                            controlName={'transformScaleX'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={2}
+                                            step={0.1}
+                                            noUnits={true}
+                                        />
+                                        <ResRangeControl
+                                            label={__('ScaleY', 'zolo-blocks')}
+                                            controlName={'transformScaleY'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={2}
+                                            step={0.1}
+                                            noUnits={true}
+                                        />
+                                    </>
+                                )}
+                                {scaleProportionally && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('Scale', 'zolo-blocks')}
+                                            controlName={'transformScale'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={2}
+                                            step={0.1}
+                                            noUnits={true}
+                                        />
+                                    </>
+                                )}
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Skew', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M22 4H7.74545L2 20H16.2545L22 4Z"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ResRangeControl
+                                    label={__('SkewX (deg)', 'zolo-blocks')}
+                                    controlName={'transformSkewX'}
+                                    requiredProps={requiredProps}
+                                    min={-360}
+                                    max={360}
+                                    noUnits={true}
+                                />
+                                <ResRangeControl
+                                    label={__('SkewY (deg)', 'zolo-blocks')}
+                                    controlName={'transformSkewY'}
+                                    requiredProps={requiredProps}
+                                    min={-360}
+                                    max={360}
+                                    noUnits={true}
+                                />
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Flip', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M22 4H7.74545L2 20H16.2545L22 4Z"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ToggleControl
+                                    label={__('Flip Horizontal', 'zolo-blocks')}
+                                    checked={transformFlipHorizontal}
+                                    onChange={() => {
+                                        setAttributes({
+                                            transformFlipHorizontal: !transformFlipHorizontal,
+                                        });
+                                    }}
+                                />
+                                <ToggleControl
+                                    label={__('Flip Vertical', 'zolo-blocks')}
+                                    checked={transformFlipVertical}
+                                    onChange={() => {
+                                        setAttributes({
+                                            transformFlipVertical: !transformFlipVertical,
+                                        });
+                                    }}
+                                />
+                                {(transformFlipHorizontal || transformFlipVertical) && (
+                                    <>
+                                        <ResAlignmentControl
+                                            label={__('X Anchor Point', 'zolo-blocks')}
+                                            controlName={'transformOriginX'}
+                                            requiredProps={requiredProps}
+                                            alignOptions={DEFAULT_ALIGNS}
+                                        />
+                                        <ResAlignmentControl
+                                            label={__('Y Anchor Point', 'zolo-blocks')}
+                                            controlName={'transformOriginY'}
+                                            requiredProps={requiredProps}
+                                            alignOptions={DEFAULT_ALIGNS_VERTICAL}
+                                        />
+                                    </>
+                                )}
+                            </PopoverControl>
+                        </>
+                    }
+                    hoverComponents={
+                        <>
+                            <PopoverControl
+                                label={__('Translate', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M18.5818 15.3211L22 11.9184L18.5818 8.58813"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M5.41818 15.3211L2 11.9184L5.41818 8.58813"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M2.35461 11.9548H21.6455"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M15.3818 5.4027L11.9636 2L8.61816 5.4027"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M8.61816 18.5974L12.0363 22.0001L15.3818 18.5974"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M12 2.35278V21.2396"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ResRangeControl
+                                    label={__('translateX', 'zolo-blocks')}
+                                    controlName={'translateXHover'}
+                                    requiredProps={requiredProps}
+                                    min={-1000}
+                                    max={1000}
+                                    units={[
+                                        { label: __('px', 'zolo-blocks'), value: 'px' },
+                                        { label: __('%', 'zolo-blocks'), value: '%' },
+                                    ]}
+                                />
+                                <ResRangeControl
+                                    label={__('translateY', 'zolo-blocks')}
+                                    controlName={'translateYHover'}
+                                    requiredProps={requiredProps}
+                                    min={-1000}
+                                    max={1000}
+                                    units={[
+                                        { label: __('px', 'zolo-blocks'), value: 'px' },
+                                        { label: __('%', 'zolo-blocks'), value: '%' },
+                                    ]}
+                                />
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Rotate', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21.4401 8.67C19.7801 4.22 15.9301 2 12.0001 2C6.85006 2 2.61006 5.89 2.06006 10.89"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M21.9401 13.1201C21.3901 18.1201 17.1501 22.0001 12.0001 22.0001C8.08006 22.0001 4.22006 19.7801 2.56006 15.3301"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M22.0001 2.21997V8.66997H15.5601"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M2 21.7801V15.3301H8.44"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ResRangeControl
+                                    label={__('Rotate', 'zolo-blocks')}
+                                    controlName={'transformRotateHover'}
+                                    requiredProps={requiredProps}
+                                    min={-360}
+                                    max={360}
+                                    noUnits={true}
+                                />
+                                <ToggleControl
+                                    label={__('Rotate 3D', 'zolo-blocks')}
+                                    checked={transformRotate3DActiveHover}
+                                    onChange={() => {
+                                        setAttributes({
+                                            transformRotate3DActiveHover: !transformRotate3DActiveHover,
+                                        });
+                                    }}
+                                />
+                                {transformRotate3DActiveHover && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('RotateX(deg)', 'zolo-blocks')}
+                                            controlName={'transformRotateXHover'}
+                                            requiredProps={requiredProps}
+                                            min={-360}
+                                            max={360}
+                                            noUnits={true}
+                                        />
+                                        <ResRangeControl
+                                            label={__('RotateY(deg)', 'zolo-blocks')}
+                                            controlName={'transformRotateYHover'}
+                                            requiredProps={requiredProps}
+                                            min={-360}
+                                            max={360}
+                                            noUnits={true}
+                                        />
+                                        <ResRangeControl
+                                            label={__('Perspective(deg)', 'zolo-blocks')}
+                                            controlName={'transformPerspectiveHover'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={1000}
+                                            noUnits={true}
+                                        />
+                                    </>
+                                )}
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Scale', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21.9999 8.16V2L15.8799 2.07"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M16.2598 13.8798H10.0798L10.1398 7.78979"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M10.4299 13.5898L21.7299 2.30981"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M20.62 13.88V19.97C20.62 21.09 19.71 22 18.58 22H4.04C2.91 22 2 21.09 2 19.97V5.47995C2 4.35995 2.91 3.44995 4.04 3.44995H9.64"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ToggleControl
+                                    label={__('Keep Proportions', 'zolo-blocks')}
+                                    checked={scaleProportionallyHover}
+                                    onChange={() => {
+                                        setAttributes({
+                                            scaleProportionallyHover: !scaleProportionallyHover,
+                                        });
+                                    }}
+                                />
+                                {!scaleProportionallyHover && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('ScaleX', 'zolo-blocks')}
+                                            controlName={'transformScaleXHover'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={2}
+                                            step={0.1}
+                                            noUnits={true}
+                                        />
+                                        <ResRangeControl
+                                            label={__('ScaleY', 'zolo-blocks')}
+                                            controlName={'transformScaleYHover'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={2}
+                                            step={0.1}
+                                            noUnits={true}
+                                        />
+                                    </>
+                                )}
+                                {scaleProportionallyHover && (
+                                    <>
+                                        <ResRangeControl
+                                            label={__('Scale', 'zolo-blocks')}
+                                            controlName={'transformScaleHover'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={2}
+                                            step={0.1}
+                                            noUnits={true}
+                                        />
+                                    </>
+                                )}
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Skew', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M22 4H7.74545L2 20H16.2545L22 4Z"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ResRangeControl
+                                    label={__('SkewX (deg)', 'zolo-blocks')}
+                                    controlName={'transformSkewXHover'}
+                                    requiredProps={requiredProps}
+                                    min={-360}
+                                    max={360}
+                                    noUnits={true}
+                                />
+                                <ResRangeControl
+                                    label={__('SkewY (deg)', 'zolo-blocks')}
+                                    controlName={'transformSkewYHover'}
+                                    requiredProps={requiredProps}
+                                    min={-360}
+                                    max={360}
+                                    noUnits={true}
+                                />
+                            </PopoverControl>
+                            <PopoverControl
+                                label={__('Flip', 'zolo-blocks')}
+                                icon={
+                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M22 4H7.74545L2 20H16.2545L22 4Z"
+                                            stroke="#4D4D4D"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                }
+                            >
+                                <ToggleControl
+                                    label={__('Flip Horizontal', 'zolo-blocks')}
+                                    checked={transformFlipHorizontalHover}
+                                    onChange={() => {
+                                        setAttributes({
+                                            transformFlipHorizontalHover: !transformFlipHorizontalHover,
+                                        });
+                                    }}
+                                />
+                                <ToggleControl
+                                    label={__('Flip Vertical', 'zolo-blocks')}
+                                    checked={transformFlipVerticalHover}
+                                    onChange={() => {
+                                        setAttributes({
+                                            transformFlipVerticalHover: !transformFlipVerticalHover,
+                                        });
+                                    }}
+                                />
+                                {(transformFlipHorizontalHover || transformFlipVerticalHover) && (
+                                    <>
+                                        <ResAlignmentControl
+                                            label={__('X Anchor Point', 'zolo-blocks')}
+                                            controlName={'transformOriginXHover'}
+                                            requiredProps={requiredProps}
+                                            alignOptions={DEFAULT_ALIGNS}
+                                        />
+                                        <ResAlignmentControl
+                                            label={__('Y Anchor Point', 'zolo-blocks')}
+                                            controlName={'transformOriginYHover'}
+                                            requiredProps={requiredProps}
+                                            alignOptions={DEFAULT_ALIGNS_VERTICAL}
+                                        />
+                                    </>
+                                )}
+                            </PopoverControl>
+                            <ResRangeControl
+                                label={__('Transition Duration (ms)', 'zolo-blocks')}
+                                controlName={'transitionDuration'}
+                                requiredProps={requiredProps}
+                                min={0}
+                                max={10000}
+                                noUnits={true}
+                            />
+                        </>
+                    }
+                />
             </ZoloPanelBody>
         </>
     );
