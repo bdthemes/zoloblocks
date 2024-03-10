@@ -410,9 +410,6 @@ export const GlobalStyleHanlder = (props) => {
          attributes,
      });
 
-
-    console.log(transitionDurationDesktop)
-
     const transformStylesDesktop = `
             ${translateXStylesDesktop}
             ${translateYStylesDesktop}

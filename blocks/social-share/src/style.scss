@@ -21,8 +21,8 @@
         transition: all 0.2s ease;
         cursor: pointer;
         svg {
-            width: 16px;
-            height: 16px;
+            width: 1rem;
+            height: 1rem;
             fill: var(--zoloblocks-brand-button-color);
             display: block;
             transition: all 0.2s ease;
@@ -344,23 +344,24 @@
         }
     }
 
-    &.preset-3 {
+ &.preset-3 {
         .zolo-social-item,
         .zolo-social-item.original {
             background-color: transparent;
             background: transparent;
             border-width: 2px;
             border-style: solid;
-            .zolo-social-icon {
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
             .zolo-social-text {
                 padding: 0 12px;
             }
+        }
+
+        .zolo-social-icon {
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .zolo-social-item {
@@ -380,6 +381,18 @@
         .zolo-social-item.original {
             .zolo-social-icon {
                 color: var(--zoloblocks-brand-button-color);
+            }
+            &.snapchat {
+                .zolo-social-icon {
+                   svg {
+                          fill: #000;
+                   }
+                }
+                &:hover {
+                    .zolo-social-text {
+                        color: #000;
+                    }
+                }
             }
             &:hover {
                 .zolo-social-text {
