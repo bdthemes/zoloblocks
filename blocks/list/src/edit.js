@@ -2,7 +2,8 @@
  * WordPress dependencies
  */
 
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useBlockProps, RichText, BlockControls } from '@wordpress/block-editor';
+import { ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -16,11 +17,12 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
-
+import { cloneDeep } from 'lodash';
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
     const { preview, uniqueId, preset, parentClasses, listProfiles, iconToggle, titleToggle, DscToggle, linkHoverIcon } = attributes;
 
+    const deepCloneProfiles = cloneDeep(listProfiles);
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
         className: classnames(className, preset, uniqueId, classArrayToStr(parentClasses)),
@@ -28,7 +30,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.socialLinks} alt={__('List Links Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.list} alt={__('List Block Preview', 'zolo-blocks')} />;
     }
 
     const handleButtonClick = () => {
@@ -42,17 +44,11 @@ export default function Edit(props) {
                         url: '#',
                         openInNewTab: false,
                     },
-                    text: 'List ' + Number(listProfiles.length + 1),
+                    text: 'List Item ' + Number(listProfiles.length + 1),
                     desc: 'Customize widget dimension beyond normal scale',
                 },
             ],
         });
-    };
-    const handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            handleButtonClick();
-        }
     };
 
     return (
@@ -60,36 +56,113 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                {listProfiles &&
-                    listProfiles.map((profile, index) => {
+                <BlockControls>
+                    <ToolbarGroup>
+                        <ToolbarButton onClick={handleButtonClick} icon="plus" />
+                    </ToolbarGroup>
+                </BlockControls>
+                {deepCloneProfiles &&
+                    deepCloneProfiles.map((profile, index) => {
                         return (
                             <>
-                                <a
-                                    href={profile.link && profile.link.url}
-                                    key={index}
-                                    target={profile.link && profile.link.openInNewTab && '_blank'}
-                                    rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
-                                    className={`zolo-list-item ${preset == 'zolo-list-style-1' ? 'zolo-list-title' : ''}`}
-                                    onKeyDown={handleKeyPress}
-                                >
-                                    {preset == 'zolo-list-style-1' && profile.text}
-                                    {iconToggle && preset !== 'zolo-list-style-1' && (
-                                        <div className="zolo-list-icon">
-                                            <DisplayZoloIcon icon={profile.icon} />
-                                        </div>
-                                    )}
-                                    {preset !== 'zolo-list-style-1' && (
-                                        <div className="zolo-list-content">
-                                            {titleToggle && <div className="zolo-list-title">{profile.text}</div>}
-                                            {DscToggle && <span className="zolo-list-desc">{profile.desc}</span>}
-                                        </div>
-                                    )}
-                                    {preset == 'zolo-list-style-4' && (
-                                        <div class="zolo-list-hover-icon">
-                                            <DisplayZoloIcon icon={linkHoverIcon} />
-                                        </div>
-                                    )}
-                                </a>
+                                {preset == 'zolo-list-style-1' && (
+                                    <RichText
+                                        href={profile.link && profile.link.url}
+                                        key={index}
+                                        target={profile.link && profile.link.openInNewTab && '_blank'}
+                                        rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
+                                        className={`zolo-list-item ${preset == 'zolo-list-style-1' ? 'zolo-list-title' : ''}`}
+                                        tagName="a"
+                                        value={profile.text}
+                                        onChange={(v) => {
+                                            const newItems = [...deepCloneProfiles];
+                                            newItems[index].text = v;
+                                            setAttributes({ listProfiles: newItems });
+                                        }}
+                                    />
+                                )}
+                                {preset !== 'zolo-list-style-1' && (
+                                    <div className="zolo-list-item">
+                                        {preset === 'zolo-list-style-4' ? (
+                                            <div className="zolo-list-icon-and-content-wrap">
+                                                {iconToggle && preset !== 'zolo-list-style-1' && (
+                                                    <div className="zolo-list-icon">
+                                                        <DisplayZoloIcon icon={profile.icon} />
+                                                    </div>
+                                                )}
+                                                {preset !== 'zolo-list-style-1' && (
+                                                    <div className="zolo-list-content">
+                                                        {titleToggle && (
+                                                            <RichText
+                                                                tagName="div"
+                                                                className="zolo-list-title"
+                                                                value={profile.text}
+                                                                onChange={(v) => {
+                                                                    const newItems = [...deepCloneProfiles];
+                                                                    newItems[index].text = v;
+                                                                    setAttributes({ listProfiles: newItems });
+                                                                }}
+                                                            />
+                                                        )}
+                                                        {DscToggle && (
+                                                            <RichText
+                                                                tagName="div"
+                                                                className="zolo-list-desc"
+                                                                value={profile.desc}
+                                                                onChange={(v) => {
+                                                                    const newItems = [...deepCloneProfiles];
+                                                                    newItems[index].desc = v;
+                                                                    setAttributes({ listProfiles: newItems });
+                                                                }}
+                                                            />
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ) : (
+                                            <>
+                                                {iconToggle && preset !== 'zolo-list-style-1' && (
+                                                    <div className="zolo-list-icon">
+                                                        <DisplayZoloIcon icon={profile.icon} />
+                                                    </div>
+                                                )}
+                                                {preset !== 'zolo-list-style-1' && (
+                                                    <div className="zolo-list-content">
+                                                        {titleToggle && (
+                                                            <RichText
+                                                                tagName="div"
+                                                                className="zolo-list-title"
+                                                                value={profile.text}
+                                                                onChange={(v) => {
+                                                                    const newItems = [...deepCloneProfiles];
+                                                                    newItems[index].text = v;
+                                                                    setAttributes({ listProfiles: newItems });
+                                                                }}
+                                                            />
+                                                        )}
+                                                        {DscToggle && (
+                                                            <RichText
+                                                                tagName="div"
+                                                                className="zolo-list-desc"
+                                                                value={profile.desc}
+                                                                onChange={(v) => {
+                                                                    const newItems = [...deepCloneProfiles];
+                                                                    newItems[index].desc = v;
+                                                                    setAttributes({ listProfiles: newItems });
+                                                                }}
+                                                            />
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </>
+                                        )}
+                                        {preset == 'zolo-list-style-4' && (
+                                            <div class="zolo-list-hover-icon">
+                                                <DisplayZoloIcon icon={linkHoverIcon} />
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
                             </>
                         );
                     })}

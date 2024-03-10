@@ -16,20 +16,20 @@ export const PRESETS = [
 //Grid LIST
 export const LIST_COLUMN_COUNT = 'listColumnCount';
 export const LIST_COLUMNS_GAP = 'listColumnsGap';
+export const SINGLE_ITEM_ALIGNMENT = 'singleItemAlignment';
 //ITEM
 export const ITEM_ALIGNMENT = 'itemAlignment';
 export const LIST_BOX_RADIUS = 'listBoxRadius';
 export const LIST_BORDER = 'listBorder';
 export const LIST_ALLBOX_PADDING = 'listAllBoxPadding';
-export const LIST_BOX_MARGIN = 'listBoxMargin';
 export const LIST_BOX_SHADOW = 'listBoxShadow';
 export const LIST_BG = 'listBg';
+export const LIST_HOVER_BG = 'listHoverBg';
+export const LIST_HOVER_BOX_SHADOW = 'listHoverBoxShadow';
 
 //List title
 export const TEXT_LIST_RADIUS = 'textListradius';
-export const TEXT_LIST_MARGIN = 'textListMargin';
 export const TEXT_LIST_PADDING = 'textListPadding';
-export const TEXT_LIST_STROKE = 'textListStroke';
 
 //DSC
 export const DSC_MARGIN = 'dscMargin';
@@ -42,7 +42,9 @@ export const ICON_LIST_PADDING = 'iconListPadding';
 export const ICON_LIST_MARGIN = 'iconListMargin';
 export const ICON_LIST_BORDER = 'iconListBorder';
 export const ICON_RADIUS = 'iconBorderRadius';
+export const ICON_VERTICAL_ALIGN = 'iconVerticalAlign';
 
 //Hover icon
 export const LIST_HOVER_ICON_SIZE = 'listHoverIconSize';
 export const ICON_HOVER_LIST_MARGIN = 'iconHoverListMargin';
+export const ICON_LINKVERTICAL_ALIGN = 'iconLinkVerticalAlign';

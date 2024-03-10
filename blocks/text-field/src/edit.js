@@ -40,15 +40,23 @@ export default function Edit(props) {
     }, []);
 
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`),
+        className: classnames(
+            className,
+            `${uniqueId}`,
+            classArrayToStr(parentClasses),
+            `${showIcon ? 'zolo-field-icon' : ''}`,
+            'form-group-editor'
+        ),
     });
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.text} alt={__('Text Preview', 'zolo-blocks')} />;
     }
 
-    // context
+    /**
+     * context
+     */
     useEffect(() => {
         setAttributes({
             showIcon: context['zolo/showFieldIcon'],
@@ -85,7 +93,7 @@ export default function Edit(props) {
                             </div>
                         )}
 
-                        <input type="text" required={isRequired} placeholder={placeholder} />
+                        <input type="text" name="name" required={isRequired} placeholder={placeholder} />
                     </div>
                 </div>
             </div>

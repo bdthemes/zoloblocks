@@ -1,4 +1,24 @@
 .zolo-flip-box_wrap {
+    --zolo-inner-item-height: 500px;
+    --zolo-content-padding: 50px;
+    --zolo-icon-margin: 0 0 8px;
+    --zolo-icon-border-radius: 4px;
+    --zolo-icon-color: #fff;
+    --zolo-icon-img-size: 50px;
+    --zolo-title-text-color: #fff;
+    --zolo-title-margin: 0 0 8px;
+    --zolo-desc-margin: 0;
+    --zolo-desc-text-color: #e1e1e1;
+    --zolo-link-btn-gap: 10px;
+    --zolo-link-btn-text-color: #fff;
+    --zolo-link-btn-text-hover-color: #fff;
+    --zolo-link-bnt-padding: 14px 22px;
+    --zolo-link-btn-icon-size: 1em;
+    --zolo-desc-back-margin: 0 0 24px;
+    --zolo-desc-back-text-color: #28282a;
+    --zolo-back-title-text-color: #1f2024;
+    --zolo-back-icon-color: #1f2024;
+
     .zolo-flip-box_item {
         position: relative;
         perspective: 1200px;
@@ -10,7 +30,7 @@
         transition-duration: 0.6s;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         width: 100%;
-        height: 500px;
+        height: var(--zolo-inner-item-height);
     }
 
     .zolo-flip-box_inner-item,
@@ -51,7 +71,7 @@
     // }
 
     .zolo-flip-box-content {
-        padding: 50px;
+        padding: var(--zolo-content-padding);
         height: 100%;
         width: 100%;
         display: inline-flex;
@@ -73,39 +93,39 @@
     }
 
     .zolo-flip-box_icon {
-        margin-bottom: 8px;
+        margin: var(--zolo-icon-margin); 
     }
 
     .zolo-flip-box_inner-icon {
         display: inline-block;
         overflow: hidden;
-        border-radius: 4px;
+        border-radius: var(--zolo-icon-border-radius);
         &.zolo-icon {
             font-size: 40px;
             svg path {
-                fill: #fff;
+                fill: var(--zolo-icon-color);
             }
         }
         &.zolo-image {
             overflow: hidden;
             img {
-                width: 50px;
-                height: 50px;
+                width: var(--zolo-icon-img-size);
+                height: var(--zolo-icon-img-size);
                 vertical-align: middle;
               }
         }
     }
 
     .zolo-flip-box_title {
-        margin: 0 0 8px;
+        margin: var(--zolo-title-margin);
         font-size: 24px;
         font-weight: 700;
-        color: #fff;
+        color: var(--zolo-title-text-color);
     }
 
     .zolo-flip-box_desc {
-        margin: 0;
-        color: #e1e1e1;
+        margin: var(--zolo-desc-margin);
+        color: var(--zolo-desc-text-color);
         font-size: 16px;
         text-wrap: balance;
     }
@@ -113,23 +133,23 @@
     .zolo-flip-box_link-btn {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        color: #fff;
+        gap: var(--zolo-link-btn-gap);
+        color: var(--zolo-link-btn-text-color);
         border-radius: var(--zoloblocks-button-border-radius);
         background-color: var(--zoloblocks-brand-color);
-        padding: 14px 22px;
+        padding: var(--zolo-link-bnt-padding);
         font-size: 12px;
         text-decoration: none;
         font-weight: 600;
         transition: all 0.3s ease 0s;
         text-transform: uppercase;
         &:hover {
-            color: #fff;
+            color: var(--zolo-link-btn-text-hover-color);
             background-color: var(--zoloblocks-brand-color-hover);
         }
         .zolo__display-icon svg {
-            width: 1em;
-            height: 1em;
+            width: var(--zolo-link-btn-icon-size);
+            height: var(--zolo-link-btn-icon-size);
             display: block;
             path {
                 fill: currentColor;
@@ -154,15 +174,15 @@
             transform: translate3d(0, 0, 60px) scale(1.048);
         }
         .zolo-flip-box_desc {
-            margin: 0 0 24px;
-            color: #28282a;
+            margin: var(--zolo-desc-back-margin);
+            color: var(--zolo-desc-back-text-color);
         }
         .zolo-flip-box_title {
-            color: #1f2024;
+            color: var(--zolo-back-title-text-color);
         }
         .zolo-flip-box_inner-icon {
             svg path {
-                fill: #1f2024;
+                fill: var(--zolo-back-icon-color);
             }
         }
     }

@@ -85,6 +85,10 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+    requiredMsg: {
+        type: 'string',
+        default: 'This field is required',
+    },
     showRequiredSymbol: {
         type: 'boolean',
         default: true,

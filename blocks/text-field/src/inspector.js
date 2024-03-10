@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, RangeControl, SelectControl } from '@wordpress/components';
+import { ToggleControl, TextControl, TextareaControl, RangeControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -40,6 +40,7 @@ function Inspector(props) {
         icon,
         iconColor,
         isRequired,
+        requiredMsg,
         showRequiredSymbol,
         requiredColor,
     } = attributes;
@@ -81,12 +82,15 @@ function Inspector(props) {
                                     onChange={() => setAttributes({ showRequiredSymbol: !showRequiredSymbol })}
                                 />
                             )}
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             {showLabel && (
                                 <TextControl
                                     label={__('Field Label', 'zolo-blocks')}
                                     value={label}
                                     onChange={(v) => setAttributes({ label: v })}
                                     placeholder={__('Enter label..', 'zolo-blocks')}
+                                    help={__('This will be used as the label for the field', 'zolo-blocks')}
                                 />
                             )}
                             <TextControl
@@ -94,6 +98,14 @@ function Inspector(props) {
                                 value={placeholder}
                                 onChange={(v) => setAttributes({ placeholder: v })}
                             />
+                            {isRequired && (
+                                <TextareaControl
+                                    label={__('Required Message', 'zolo-blocks')}
+                                    help={__('This message will be shown when the field is required', 'zolo-blocks')}
+                                    value={requiredMsg}
+                                    onChange={(v) => setAttributes({ requiredMsg: v })}
+                                />
+                            )}
                             {showIcon && (
                                 <ZoloIconPicker
                                     label={__('Select Icon', 'zolo-blocks')}

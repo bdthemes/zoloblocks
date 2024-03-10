@@ -6,40 +6,33 @@ const {
     generateDimensionAttributes,
     generateResAlignmentAttributies,
     generateBorderAttributies,
-    generateBoxShadowAttributies,
     generateTypographyAttributes,
     generateNormalBGAttributes,
-    generateResCounterAttributies,
     generateGapAttributes,
 } = window.zoloModule;
 
 import {
-    GRID_COLUMNS,
-    GRID_GAP,
-    REVIEW_GRID_BG,
-    REVIEW_GRID_PADDING,
-    REVIEW_GRID_MARGIN, // child global styles
-    CONTAINER_BACKGROUND,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_PADDING,
-    CONTAINER_BOX_SHADOW,
-    CONTENT_ALIGNMENT,
-    REVIEWER_PHOTO_WIDTH,
-    REVIEWER_PHOTO_HEIGHT,
-    REVIEWER_PHOTO_BG,
-    REVIEWER_PHOTO_BORDER,
-    REVIEWER_PHOTO_BORDER_RADIUS,
-    REVIEWER_PHOTO_BOX_SHADOW,
-    REVIEWER_PHOTO_MARGIN,
-    REVIEWER_PHOTO_PADDING,
-    REVIEWER_NAME_MARGIN,
-    REVIEWER_DESIGNATION_MARGIN,
-    REVIEWER_TESTIMONIAL_MARGIN,
-    ICONS_SIZE,
     BTN_ALIGNMENT,
+    BTN_BG,
+    BTN_HBG,
+    BTN_BORDER,
+    BTN_BRADIUS,
+    BTN_PADDING,
+    BTN_MARGIN,
     LABEL_MARGIN,
     ICON_SIZE,
+    FIELD_BG,
+    FIELD_BORDER,
+    FIELD_BRADIUS,
+    FIELD_PADDING,
+    SCC_BORDER,
+    SCC_BRADIUS,
+    SCC_BG,
+    SCC_PADDING,
+    ERR_BORDER,
+    ERR_BRADIUS,
+    ERR_BG,
+    ERR_PADDING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -71,9 +64,25 @@ const attributes = {
         },
     },
     // block attributes
+    formId: {
+        type: 'string',
+        default: '',
+    },
+
     preset: {
         type: 'string',
         default: 'style-1',
+    },
+
+    // context field
+    showFieldIcon: {
+        type: 'boolean',
+        default: false,
+    },
+
+    btnLabel: {
+        type: 'string',
+        default: 'Submit Now',
     },
     showBtnIcon: {
         type: 'boolean',
@@ -98,7 +107,83 @@ const attributes = {
     iconColor: {
         type: 'string',
     },
+
+    // input field
+    textColor: {
+        type: 'string',
+    },
+    placeholderColor: {
+        type: 'string',
+    },
+
+    // button
+    btnColor: {
+        type: 'string',
+    },
+    btnHoverColor: {
+        type: 'string',
+    },
+
+    // message
+    errMsgColor: {
+        type: 'string',
+    },
+
+    sccMsgColor: {
+        type: 'string',
+    },
+
+    closeBtnColor: {
+        type: 'string',
+    },
+
+    // form settings
+    formSettings: {
+        type: 'object',
+        default: {
+            formTitle: 'Contact Form',
+            notificationType: 'send_mail',
+            emailTo: zoloParams?.admin_email,
+            emailCC: '',
+            emailBCC: '',
+            emailSubject: 'New Form Submission',
+        },
+    },
+
+    // success
+    submissionSettings: {
+        type: 'object',
+        default: {
+            successType: 'message',
+            successMessage: 'Thank you for your submission',
+            failMessage: 'Sorry, form submission failed',
+            validationMessage: 'Form validation failed',
+        },
+    },
+
+    // validation rules
+    validationRules: {
+        type: 'object',
+        default: {
+            name: false,
+            email: true,
+            message: true,
+        },
+    },
+
+    messagePosition: {
+        type: 'string',
+        default: 'form_top',
+    },
+
+    // generator
     ...generateResAlignmentAttributies(BTN_ALIGNMENT),
+    ...generateNormalBGAttributes(BTN_BG),
+    ...generateNormalBGAttributes(BTN_HBG),
+    ...generateBorderAttributies(BTN_BORDER),
+    ...generateDimensionAttributes(BTN_BRADIUS),
+    ...generateDimensionAttributes(BTN_PADDING),
+    ...generateDimensionAttributes(BTN_MARGIN),
 
     // Label
     ...generateDimensionAttributes(LABEL_MARGIN),
@@ -106,79 +191,26 @@ const attributes = {
     // Field icon
     ...generateResRangeAttributies(ICON_SIZE, {}),
 
-    ...generateNormalBGAttributes(REVIEW_GRID_BG),
-    ...generateResCounterAttributies(GRID_COLUMNS, {
-        noUnits: true,
-        defaults: {
-            deskRange: 3,
-            tabRange: 2,
-            mobRange: 1,
-        },
-    }),
-    ...generateGapAttributes(GRID_GAP, {
-        defaultUnit: 'px',
-    }),
-    ...generateDimensionAttributes(REVIEW_GRID_MARGIN),
-    ...generateDimensionAttributes(REVIEW_GRID_PADDING),
+    // input fields
+    ...generateDimensionAttributes(FIELD_PADDING),
+    ...generateNormalBGAttributes(FIELD_BG),
+    ...generateBorderAttributies(FIELD_BORDER),
+    ...generateDimensionAttributes(FIELD_BRADIUS),
 
-    // child global styles
-    // Generators
-    ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
-
-    ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
-    ...generateBorderAttributies(CONTAINER_BORDER),
-    ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
-    ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
-    ...generateDimensionAttributes(CONTAINER_PADDING),
-
-    ...generateResRangeAttributies(REVIEWER_PHOTO_WIDTH, {}),
-    ...generateResRangeAttributies(REVIEWER_PHOTO_HEIGHT, {}),
-    ...generateNormalBGAttributes(REVIEWER_PHOTO_BG),
-    ...generateBorderAttributies(REVIEWER_PHOTO_BORDER),
-    ...generateDimensionAttributes(REVIEWER_PHOTO_BORDER_RADIUS),
-    ...generateBoxShadowAttributies(REVIEWER_PHOTO_BOX_SHADOW),
-    ...generateDimensionAttributes(REVIEWER_PHOTO_MARGIN),
-    ...generateDimensionAttributes(REVIEWER_PHOTO_PADDING),
-
-    ...generateDimensionAttributes(REVIEWER_NAME_MARGIN),
-
-    ...generateDimensionAttributes(REVIEWER_DESIGNATION_MARGIN),
-
-    ...generateDimensionAttributes(REVIEWER_TESTIMONIAL_MARGIN),
-
-    ...generateResRangeAttributies(ICONS_SIZE, {}),
-
+    // Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 
-    containerBg: {
-        type: 'string',
-    },
-    photoBgColor: {
-        type: 'string',
-    },
-    nameColor: {
-        type: 'string',
-    },
-    nameHoverColor: {
-        type: 'string',
-    },
-    designationColor: {
-        type: 'string',
-    },
-    testimonialMessageColor: {
-        type: 'string',
-    },
-    // rating icon
-    activeRatingColor: {
-        type: 'string',
-    },
-    inactiveRatingColor: {
-        type: 'string',
-    },
-    btnLabel: {
-        type: 'string',
-        default: 'Submit Now',
-    },
+    // success message
+    ...generateBorderAttributies(SCC_BORDER),
+    ...generateDimensionAttributes(SCC_BRADIUS),
+    ...generateNormalBGAttributes(SCC_BG),
+    ...generateDimensionAttributes(SCC_PADDING),
+
+    // error message
+    ...generateBorderAttributies(ERR_BORDER),
+    ...generateDimensionAttributes(ERR_BRADIUS),
+    ...generateNormalBGAttributes(ERR_BG),
+    ...generateDimensionAttributes(ERR_PADDING),
 };
 
 export default attributes;

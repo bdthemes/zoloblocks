@@ -204,6 +204,16 @@
             }
         }
     }
+
+    .components-datetime__time {
+        .components-base-control {
+            margin: 0;
+        }
+        .components-datetime__time-am-button,
+        .components-datetime__time-pm-button {
+            height: 27px !important;
+        }
+    }
 }
 
 .zolo-panel-control {

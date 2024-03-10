@@ -55,3 +55,6 @@ import '../blocks/textarea/src';
 
 // unregister blocks
 import './unregister';
+
+// form editor script
+import './form';

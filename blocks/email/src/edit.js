@@ -26,7 +26,7 @@ import Style from './style';
  */
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
+    const { attributes, setAttributes, className, clientId, isSelected, context } = props;
     const { preview, uniqueId, parentClasses, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -40,13 +40,28 @@ export default function Edit(props) {
     }, []);
 
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`),
+        className: classnames(
+            className,
+            `${uniqueId}`,
+            classArrayToStr(parentClasses),
+            `${showIcon ? 'zolo-field-icon' : ''}`,
+            'form-group-editor'
+        ),
     });
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.mail} alt={__('Email Preview', 'zolo-blocks')} />;
     }
+
+    /**
+     * context
+     */
+    useEffect(() => {
+        setAttributes({
+            showIcon: context['zolo/showFieldIcon'],
+        });
+    }, [context]);
 
     return (
         <>
@@ -78,7 +93,7 @@ export default function Edit(props) {
                             </div>
                         )}
 
-                        <input type="email" required={isRequired} placeholder={placeholder} />
+                        <input type="email" name="email" required={isRequired} placeholder={placeholder} />
                     </div>
                 </div>
             </div>

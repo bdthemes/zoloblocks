@@ -1,13 +1,14 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, zoloId, showLabel, label, placeholder, showIcon, isRequired, showRequiredSymbol } = attributes;
+    const { uniqueId, parentClasses, zoloId, showLabel, label, placeholder, showIcon, icon, isRequired, requiredMsg, showRequiredSymbol } =
+        attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
     });
 
     return (
@@ -25,7 +26,19 @@ const Save = ({ attributes }) => {
                     </div>
                 )}
                 <div className="zolo-field-input-item">
-                    <textarea id="textarea" rows={4} placeholder={placeholder} required={isRequired} />
+                    {showIcon && (
+                        <div className="zolo-input-icon">
+                            <DisplayZoloIcon icon={icon} />
+                        </div>
+                    )}
+                    <textarea
+                        id="textarea"
+                        name="message"
+                        rows={4}
+                        placeholder={placeholder}
+                        required={isRequired}
+                        {...(isRequired && { 'data-pristine-required-message': requiredMsg })}
+                    />
                 </div>
             </div>
         </div>

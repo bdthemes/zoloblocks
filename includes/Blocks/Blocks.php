@@ -50,7 +50,7 @@ return apply_filters('zolo_blocks_list_data', [
         'name'             => 'form',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/form/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
-        'frontend-scripts' => false
+        'frontend-scripts' => ['zolo-form-frontend', 'zolo-block-editor-dependency']
     ],
     'post-carousel' => [
         'name'             => 'post-carousel',

@@ -403,12 +403,9 @@ const Inspector = (props) => {
                                                 })
                                             }
                                             imageId={presetBg && presetBg.id}
-                                            onEditImage={(url, id) => {
+                                            onEditImage={(media) => {
                                                 setAttributes({
-                                                    presetBg: {
-                                                        url,
-                                                        id,
-                                                    },
+                                                    presetBg: media,
                                                 });
                                             }}
                                         />

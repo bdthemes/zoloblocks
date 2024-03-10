@@ -2,7 +2,7 @@ import { ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import BGControl from './bg-control';
-import OverlayControl from './overlay-control';
+import OverflowControl from './overlay-control';
 
 const BackgroundControl = ({
     requiredProps,
@@ -33,7 +33,7 @@ const BackgroundControl = ({
                     />
 
                     {isBgOverlay && (
-                        <OverlayControl
+                        <OverflowControl
                             controlName={controlName}
                             requiredProps={requiredProps}
                             noOverlayBGImg={noOverlayBGImg}

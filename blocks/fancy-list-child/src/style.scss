@@ -1,18 +1,32 @@
 .wp-block-zolo-fancy-list-child {
+    --zolo-item-gap: 15px;
+    --zolo-item-padding: 15px;
+    --zolo-content-gap: 10px;
+    --zolo-title-margin: 0;
+    --zolo-title-text-color: #06031d;
+    --zolo-desc-text-color: #595760;
+    --zolo-icon-padding: 10px;
+    --zolo-number-padding: 7px 17px;
+    --zolo-icon-size: 16px;
+    --zolo-img-size: 50px;
+
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: var(--zolo-item-gap);
     background-color: var(--zoloblocks-item-bg-color);
-    border: 1px solid var(--zoloblocks-item-border-color);
+    border-width: var(--zolo-item-border-width);
+    border-style: var(--zolo-item-border-style);
+    border-color: var(--zoloblocks-item-border-color);
     justify-content: space-between;
-    padding: 15px;
+    padding: var(--zolo-item-padding);
     box-sizing: border-box;
     border-radius: var(--zolo-item-border-radius);
     transition: 0.2s;
+
     .zb-fancy-list-content {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: var(--zolo-content-gap);
         flex: 1;
     }
 
@@ -21,14 +35,14 @@
     }
 
     .zb-fancy-list-title {
-        margin: 0;
+        margin: var(--zolo-title-margin);
         font-size: 20px;
-        color: #06031d;
+        color: var(--zolo-title-text-color);
     }
 
     .zb-fancy-list-text {
         font-size: 14px;
-        color: #595760;
+        color: var(--zolo-desc-text-color);
         font-weight: 400;
     }
 
@@ -44,16 +58,16 @@
     }
 
     .zb-fancy-icon {
-        padding: 10px;
+        padding: var(--zolo-icon-padding);
     }
 
     .zb-fancy-list-number {
-        padding: 7px 17px;
+        padding: var(--zolo-number-padding);
     }
 
     .zb-fancy-icon svg {
-        width: 16px;
-        height: 16px;
+        width: var(--zolo-icon-size);
+        height: var(--zolo-icon-size);
         fill: var(--zoloblocks-brand-button-color);
         display: block;
     }
@@ -64,8 +78,8 @@
     }
 
     .zb-fancy-list-image {
-        width: 50px;
-        height: 50px;
+        width: var(--zolo-img-size);
+        height: var(--zolo-img-size);
         border-radius: var(--zolo-item-border-radius);
         overflow: hidden;
         img {

@@ -47,8 +47,6 @@ import {
     ICONS_CONTAINER_MARGIN,
     DETAIL_PAGE_LINK_BG,
     DETAIL_PAGE_LINK_HOVER_BG,
-    DPL_HEIGHT,
-    DPL_WIDTH,
     DPL_BORDER,
     DPL_BORDER_RADIUS,
     DPL_PADDING,
@@ -89,7 +87,6 @@ function Inspector(props) {
         showShortBio,
         showSocialProfiles,
         nameColor,
-        nameHoverColor,
         designationColor,
         shortBioColor,
         separatorColor,
@@ -308,52 +305,20 @@ function Inspector(props) {
                                 typoPrefixConstant={TEAM_MEMBER_NAME_TYPOGRAPHY}
                                 requiredProps={requiredProps}
                             />
-                            {!addDetailPageLink && (
-                                <ColorControl
-                                    label={__('Color', 'zolo-blocks')}
-                                    color={nameColor}
-                                    onChange={(color) =>
-                                        setAttributes({
-                                            nameColor: color,
-                                        })
-                                    }
-                                />
-                            )}
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={nameColor}
+                                onChange={(color) =>
+                                    setAttributes({
+                                        nameColor: color,
+                                    })
+                                }
+                            />
                             <ResDimensionsControl
                                 label={__('Margin', 'zolo-blocks')}
                                 controlName={TEAM_NAME_MARGIN}
                                 requiredProps={requiredProps}
                             />
-                            {addDetailPageLink && (
-                                <TabPanelControl
-                                    normalComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
-                                                color={nameColor}
-                                                onChange={(color) =>
-                                                    setAttributes({
-                                                        nameColor: color,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Hover Color', 'zolo-blocks')}
-                                                color={nameHoverColor}
-                                                onChange={(color) =>
-                                                    setAttributes({
-                                                        nameHoverColor: color,
-                                                    })
-                                                }
-                                            />
-                                        </>
-                                    }
-                                />
-                            )}
                         </ZoloPanelBody>
                         {showDesignation && (
                             <ZoloPanelBody title={__('Designation', 'zolo-blocks')} stylePanel={true} panelProps={props}>
@@ -519,12 +484,6 @@ function Inspector(props) {
                                     controlName={DPL_ICON_SIZE}
                                     requiredProps={requiredProps}
                                 />
-                                <ResRangeControl
-                                    label={__('Height', 'zolo-blocks')}
-                                    controlName={DPL_HEIGHT}
-                                    requiredProps={requiredProps}
-                                />
-                                <ResRangeControl label={__('Width', 'zolo-blocks')} controlName={DPL_WIDTH} requiredProps={requiredProps} />
                                 <BorderControl label={__('Border', 'zolo-blocks')} controlName={DPL_BORDER} requiredProps={requiredProps} />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zolo-blocks')}

@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, classArrayToStr } = window.zoloModule;
+const { handleUniqueId, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -26,8 +26,8 @@ import Style from './style';
  */
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, showLabel, label, placeholder, showIcon, isRequired, showRequiredSymbol } = attributes;
+    const { attributes, setAttributes, className, clientId, isSelected, context } = props;
+    const { preview, uniqueId, parentClasses, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -40,13 +40,28 @@ export default function Edit(props) {
     }, []);
 
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`),
+        className: classnames(
+            className,
+            `${uniqueId}`,
+            classArrayToStr(parentClasses),
+            `${showIcon ? 'zolo-field-icon' : ''}`,
+            'form-group-editor'
+        ),
     });
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.textarea} alt={__('Message Preview', 'zolo-blocks')} />;
     }
+
+    /**
+     * context
+     */
+    useEffect(() => {
+        setAttributes({
+            showIcon: context['zolo/showFieldIcon'],
+        });
+    }, [context]);
 
     return (
         <>
@@ -71,7 +86,12 @@ export default function Edit(props) {
                         </div>
                     )}
                     <div className="zolo-field-input-item">
-                        <textarea id="textarea" rows={4} placeholder={placeholder} required={isRequired} />
+                        {showIcon && (
+                            <div className="zolo-input-icon">
+                                <DisplayZoloIcon icon={icon} />
+                            </div>
+                        )}
+                        <textarea id="textarea" name="message" rows={4} placeholder={placeholder} required={isRequired} />
                     </div>
                 </div>
             </div>

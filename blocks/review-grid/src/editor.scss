@@ -2,7 +2,7 @@
     .block-editor-block-list__layout {
         display: grid;
         box-sizing: border-box;
-        gap: clamp(20px, 5vw, 50px);
+        gap: 30px;
         grid-template-columns: repeat(1, 1fr);
     }
 }

@@ -83,7 +83,15 @@ const attributes = {
     },
     isRequired: {
         type: 'boolean',
-        default: false,
+        default: true,
+    },
+    requiredMsg: {
+        type: 'string',
+        default: 'This field is required',
+    },
+    emailValidationMsg: {
+        type: 'string',
+        default: 'Please enter a valid email address',
     },
     showRequiredSymbol: {
         type: 'boolean',

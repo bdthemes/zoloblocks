@@ -272,7 +272,7 @@ function Inspector(props) {
                                     }
                                     options={ICON_STATUS}
                                 />
-                                {iconType !== 'none' && (
+                                {SiconType !== 'none' && (
                                     <Fragment>
                                         <ZoloIconPicker
                                             label={__('Select Icon', 'zolo-blocks')}
@@ -284,7 +284,7 @@ function Inspector(props) {
                                             }}
                                         />
 
-                                        {iconType !== 'iconOnly' && (
+                                        {SiconType !== 'iconOnly' && (
                                             <IconicBtnGroup
                                                 label={__('Position', 'zolo-blocks')}
                                                 value={SiconPosition}
@@ -364,14 +364,17 @@ function Inspector(props) {
                         )}
                         {showBtn && (
                             <ZoloPanelBody title={__('Primary Button', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                                {iconType !== 'iconOnly' && (
+                                    <TypographyDropdown
+                                        label={__('Typography', 'zolo-blocks')}
+                                        typoPrefixConstant={BUTTON_TYPOGRAPHY}
+                                        requiredProps={requiredProps}
+                                        max={36}
+                                    />
+                                )}
+
                                 {iconType !== 'none' && (
                                     <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
-                                            typoPrefixConstant={BUTTON_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                            max={36}
-                                        />
                                         <ResRangeControl
                                             label={__('Icon Size', 'zolo-blocks')}
                                             controlName={ICON_SIZE}
@@ -463,14 +466,16 @@ function Inspector(props) {
                         )}
                         {showSecondaryBtn && (
                             <ZoloPanelBody title={__('Secondary Button', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                                {iconType !== 'none' && (
+                                {SiconType !== 'iconOnly' && (
+                                    <TypographyDropdown
+                                        label={__('Typography', 'zolo-blocks')}
+                                        typoPrefixConstant={BUTTON_S_TYPOGRAPHY}
+                                        requiredProps={requiredProps}
+                                        max={36}
+                                    />
+                                )}
+                                {SiconType !== 'none' && (
                                     <>
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
-                                            typoPrefixConstant={BUTTON_S_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                            max={36}
-                                        />
                                         <ResRangeControl
                                             label={__('Icon Size', 'zolo-blocks')}
                                             controlName={ICON_S_SIZE}

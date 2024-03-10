@@ -4,10 +4,23 @@ import { __ } from '@wordpress/i18n';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, zoloId, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol } = attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        zoloId,
+        showLabel,
+        label,
+        placeholder,
+        showIcon,
+        icon,
+        isRequired,
+        requiredMsg,
+        emailValidationMsg,
+        showRequiredSymbol,
+    } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
     });
 
     return (
@@ -32,7 +45,14 @@ const Save = ({ attributes }) => {
                         </div>
                     )}
 
-                    <input type="email" required={isRequired} placeholder={placeholder} />
+                    <input
+                        type="email"
+                        name="email"
+                        required={isRequired}
+                        placeholder={placeholder}
+                        {...(isRequired && { 'data-pristine-required-message': requiredMsg })}
+                        data-pristine-email-message={emailValidationMsg}
+                    />
                 </div>
             </div>
         </div>

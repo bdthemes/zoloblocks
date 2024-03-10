@@ -167,6 +167,10 @@ const attributes = {
         type: 'string',
         default: '?',
     },
+    overflow: {
+        type: 'string',
+        default: 'auto',
+    },
 };
 
 export default attributes;

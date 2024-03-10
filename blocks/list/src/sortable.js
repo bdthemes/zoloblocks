@@ -4,7 +4,7 @@
 const { ZoloIconPicker, SortableControl, SortableItem, LinkControl } = window.zoloModule;
 
 const { __ } = wp.i18n;
-const { Button, PanelBody, TextControl, ToggleControl, TextareaControl } = wp.components;
+const { Button, PanelBody, TextControl, TextareaControl } = wp.components;
 import { cloneDeep } from 'lodash';
 
 const Sortable = ({ listProfiles, setAttributes, attributes }) => {
@@ -56,7 +56,7 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                     }}
                                 />
                                 <SortableItem key={profile.id} id={profile.id}>
-                                    <PanelBody title={profile.text || 'Title'} initialOpen={false}>
+                                    <PanelBody title={profile.text.replace(/<[^>]*>/g, '') || 'Title'} initialOpen={false}>
                                         <TextControl
                                             label={__('Title', 'zolo-blocks')}
                                             value={profile.text}

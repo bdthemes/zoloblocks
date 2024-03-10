@@ -14,7 +14,7 @@ import BorderControl from '../../controls/border-control';
 import BoxShadowControl from '../../controls/boxshadow-control';
 import RangeResetControl from '../../controls/range-reset-control';
 import CustomCSSControl from '../../controls/customcss-control';
-import OverlayControl from '../../controls/overflow-control';
+import OverflowControl from '../../controls/overflow-control';
 import PopoverControl from '../../controls/popover-control';
 import SimpleRangeControl from '../../controls/simple-range-control';
 import ZoloPanelBody from '../../controls/zolo-panelbody';
@@ -307,7 +307,7 @@ export const AdvancedOptions = (props) => {
                 </>
             )}
             <ZoloPanelBody title={__('Overflow', 'zolo-blocks')} panelProps={props} extraPanel={true} isNew={true}>
-                <OverlayControl
+                <OverflowControl
                     value={overflow}
                     onChange={(v) => {
                         setAttributes({ overflow: v });

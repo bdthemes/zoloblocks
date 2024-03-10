@@ -138,8 +138,8 @@ class StyleGenerator {
                 // var_dump($style);
 
                 // register style
-                wp_register_style($handle, false, [], ZOLO_VERSION, 'all'); // wp_register_style( $handle, $src, $deps, $ver, $media );
-                wp_enqueue_style($handle);
+                wp_register_style($handle, false, ['zolo-block-common-style'], ZOLO_VERSION, 'all'); // wp_register_style( $handle, $src, $deps, $ver, $media );
+                wp_enqueue_style($handle, false, [], ZOLO_VERSION, 'all');
                 wp_add_inline_style($handle, $style);
             }
         }
