@@ -235,4 +235,10 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
+    'textarea' => [
+        'name'             => 'textarea',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/textarea/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
 ]);

@@ -52,7 +52,6 @@ export const AdvancedOptions = (props) => {
         overflow,
     } = attributes;
 
-
     const handleEntranceAnimation = () => {
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
 
@@ -296,11 +295,11 @@ export const AdvancedOptions = (props) => {
         if (floatingAnimation.delay !== 0) {
             otherOptions.delay = floatingAnimation.delay / 1000;
         }
-         if (floatingAnimation.easing !== 'custom') {
-             otherOptions.easing = floatingAnimation.easing;
-         } else {
-             otherOptions.easing = [floatingAnimation.easingCustom.split(';')[0]];
-         }
+        if (floatingAnimation.easing !== 'custom') {
+            otherOptions.easing = floatingAnimation.easing;
+        } else {
+            otherOptions.easing = [floatingAnimation.easingCustom.split(';')[0]];
+        }
 
         const transformValueStart = startValue.join('');
         const transformValueEnd = endValue.join('');
@@ -315,7 +314,6 @@ export const AdvancedOptions = (props) => {
 
         return animation;
     };
-
 
     const handleFloatingToggle = () => {
         let animation = handleFloatingAnimation();
@@ -1246,7 +1244,7 @@ export const AdvancedOptions = (props) => {
                         />
                         <Button
                             label={__('Preview', 'zolo-blocks')}
-                            className='zolo-action-button'
+                            className="zolo-action-button"
                             isPrimary
                             onClick={() => {
                                 handleEntranceAnimation();
@@ -1769,7 +1767,7 @@ export const AdvancedOptions = (props) => {
                         />
                         <Button
                             label={isPlaying ? __('Stop', 'zolo-blocks') : __('Play', 'zolo-blocks')}
-                            className='zolo-action-button'
+                            className="zolo-action-button"
                             isPrimary
                             onClick={handleFloatingToggle}
                         >
@@ -1856,6 +1854,7 @@ export const AdvancedOptions = (props) => {
                             </PopoverControl>
                             <PopoverControl
                                 label={__('Rotate', 'zolo-blocks')}
+                                isPro={true}
                                 icon={
                                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1937,6 +1936,7 @@ export const AdvancedOptions = (props) => {
                             </PopoverControl>
                             <PopoverControl
                                 label={__('Scale', 'zolo-blocks')}
+                                isPro={true}
                                 icon={
                                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -2017,6 +2017,7 @@ export const AdvancedOptions = (props) => {
                             </PopoverControl>
                             <PopoverControl
                                 label={__('Skew', 'zolo-blocks')}
+                                isPro={true}
                                 icon={
                                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -2050,6 +2051,7 @@ export const AdvancedOptions = (props) => {
                             </PopoverControl>
                             <PopoverControl
                                 label={__('Flip', 'zolo-blocks')}
+                                isPro={true}
                                 icon={
                                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path

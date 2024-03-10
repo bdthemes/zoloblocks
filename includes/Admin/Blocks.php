@@ -38,7 +38,7 @@ return apply_filters(
         ],
         [
             'name'       => 'zolo_brand_grid',
-            'categories' => ['post'],
+            'categories' => ['list'],
             'status'     => true,
 
         ],
@@ -59,11 +59,16 @@ return apply_filters(
         ],
         [
             'name'       => 'zolo_fancy_list',
-            'categories' => ['post'],
+            'categories' => ['list'],
             'status'     => true,
         ],
         [
             'name'       => 'zolo_flipbox',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
+            'name'       => 'zolo_form',
             'categories' => ['others'],
             'status'     => true,
         ],
@@ -73,18 +78,23 @@ return apply_filters(
             'status'     => true,
         ],
         [
+            'name'       => 'zolo_list',
+            'categories' => ['list'],
+            'status'     => true,
+        ],
+        [
             'name'       => 'zolo_post_carousel',
             'categories' => ['slider', 'postCategory'],
             'status'     => true,
         ],
         [
             'name'       => 'zolo_post_grid',
-            'categories' => ['post', 'postCategory'],
+            'categories' => ['list', 'postCategory'],
             'status'     => true,
         ],
         [
             'name'       => 'zolo_post_list',
-            'categories' => ['post', 'postCategory'],
+            'categories' => ['list', 'postCategory'],
             'status'     => true,
         ],
         [
@@ -109,7 +119,7 @@ return apply_filters(
         ],
         [
             'name'       => 'zolo_review_grid',
-            'categories' => ['review', 'post'],
+            'categories' => ['review', 'list'],
             'status'     => true,
         ],
         [
@@ -139,7 +149,7 @@ return apply_filters(
         ],
         [
             'name'       => 'zolo_team_grid',
-            'categories' => ['post'],
+            'categories' => ['list'],
             'status'     => true,
         ],
         [

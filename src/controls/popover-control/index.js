@@ -1,34 +1,16 @@
-import { MediaUpload } from '@wordpress/block-editor';
-import {
-    BaseControl,
-    Button,
-    ButtonGroup,
-    RangeControl,
-    SelectControl,
-    Popover,
-    Dropdown,
-    Flex,
-    FlexBlock,
-    FlexItem,
-} from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { Dropdown } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { BACKGROUND_TYPES } from '../../global/constants';
-import ColorControl from '../color-control';
-import GradientControl from '../gradient-control';
-import ImageAvatar from '../image-avatar';
-import UnitBtn from '../unit-btn';
-import WithResDeviceBtn from '../with-res-device-btn';
-import ResetBtn from '../reset-btn';
+import classNames from 'classnames';
 
-const PopoverControl = ({ label = '', icon = '', children }) => {
+const PopoverControl = ({ label = '', icon = '', isPro = false, children }) => {
     return (
         <>
             <div className="zolo-control-container zolo-border-control">
                 <div className="zolo-control-flex">
-                    <label className="zolo-control-label" htmlFor="zolo-control-label">
+                    <label className={classNames(`zolo-control-label ${isPro ? 'has-pro-feature' : ''}`)} htmlFor="zolo-control-label">
                         {label || __('Popover Control', 'zolo-blocks')}
+                        {isPro && <span className="zolo-pro-badge">{__('Pro', 'zolo-blocks')}</span>}
                     </label>
                     <Dropdown
                         className="zolo-background-control-popover-dropdown"
