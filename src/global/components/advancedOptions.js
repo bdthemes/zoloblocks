@@ -526,7 +526,7 @@ export const AdvancedOptions = (props) => {
                                 { label: 'Right Medium', value: 'rightMedium' },
                                 { label: 'Bottom Medium', value: 'bottomMedium' },
                                 { label: 'Left Medium', value: 'leftMedium' },
-                                { label: 'Custom', value: 'custom' },
+                                { label: 'Custom (Pro)', value: 'custom', disabled: true },
                             ]}
                             onChange={(value) => {
                                 setAttributes({
@@ -1246,6 +1246,7 @@ export const AdvancedOptions = (props) => {
                         />
                         <Button
                             label={__('Preview', 'zolo-blocks')}
+                            className='zolo-action-button'
                             isPrimary
                             onClick={() => {
                                 handleEntranceAnimation();
@@ -1768,6 +1769,7 @@ export const AdvancedOptions = (props) => {
                         />
                         <Button
                             label={isPlaying ? __('Stop', 'zolo-blocks') : __('Play', 'zolo-blocks')}
+                            className='zolo-action-button'
                             isPrimary
                             onClick={handleFloatingToggle}
                         >
@@ -1776,7 +1778,7 @@ export const AdvancedOptions = (props) => {
                     </>
                 )}
             </ZoloPanelBody>
-            <ZoloPanelBody title={__('Transform', 'zolo-blocks')} panelProps={props} extraPanel={true} isPro={false} isNew={true}>
+            <ZoloPanelBody title={__('Transform', 'zolo-blocks')} panelProps={props} extraPanel={true} isPro={true} isNew={true}>
                 <TabPanelControl
                     normalComponents={
                         <>
@@ -2368,7 +2370,7 @@ export const AdvancedOptions = (props) => {
                                 />
                             </PopoverControl>
                             <PopoverControl
-                                label={__('Flip', 'zolo-blocks')}
+                                label={__('Flip (PRO)', 'zolo-blocks')}
                                 icon={
                                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
