@@ -2370,7 +2370,7 @@ export const AdvancedOptions = (props) => {
                                 />
                             </PopoverControl>
                             <PopoverControl
-                                label={__('Flip (PRO)', 'zolo-blocks')}
+                                label={__('Flip', 'zolo-blocks')}
                                 icon={
                                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
