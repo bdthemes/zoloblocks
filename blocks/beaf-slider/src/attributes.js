@@ -47,6 +47,52 @@ const attributes = {
     afterImage: {
         type: 'object',
     },
+    showLabels: {
+        type: false,
+    },
+    showCaption: {
+        type: false,
+    },
+    disableSliding: {
+        type: false,
+    },
+    handaleDraggable: {
+        type: false,
+    },
+    initialPosition: {
+        type: 'number',
+        default: 50,
+    },
+    slidePositon: {
+        type: 'string',
+        default: false,
+    },
+    swipeMode: {
+        type: 'string',
+        default: false,
+    },
+    beforeLabel: {
+        type: 'string',
+        default: 'before',
+    },
+    beforeColor: {
+        type: 'string',
+    },
+    afterLabel: {
+        type: 'string',
+        default: 'after',
+    },
+    labelPositons: {
+        type: 'string',
+        default: 'center',
+    },
+    captionText: {
+        type: 'string',
+        default: 'Caption',
+    },
+    captionTag: {
+        type: 'string',
+    },
 };
 
 export default attributes;

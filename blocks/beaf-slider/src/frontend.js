@@ -10,10 +10,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const beafslider = item.querySelector('.beaf-slider');
             let beforeImage = JSON.parse(beafslider.dataset.beforeimage);
             let afterImage = JSON.parse(beafslider.dataset.afterimage);
+            let attributes = JSON.parse(beafslider.dataset.attributes);
+            const { disableSliding, swipeMode, slidePositon, initialPosition, handaleDraggable } = attributes;
+
             render(
                 <ReactCompareSlider
-                    itemOne={<ReactCompareSliderImage src={beforeImage?.url} alt="Image one" />}
-                    itemTwo={<ReactCompareSliderImage src={afterImage?.url} alt="Image two" />}
+                    disabled={disableSliding}
+                    changePositionOnHover={swipeMode}
+                    portrait={slidePositon}
+                    position={initialPosition}
+                    onlyHandleDraggable={handaleDraggable}
+                    itemOne={<ReactCompareSliderImage src={beforeImage?.url} alt={beforeImage?.title} />}
+                    itemTwo={<ReactCompareSliderImage src={afterImage?.url} alt={afterImage?.title} />}
                 />,
                 item
             );

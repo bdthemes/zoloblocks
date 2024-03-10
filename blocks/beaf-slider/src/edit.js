@@ -17,11 +17,25 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
+//
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
-    const { preview, uniqueId, parentClasses, beforeImage, afterImage } = attributes;
+    const {
+        preview,
+        uniqueId,
+        parentClasses,
+        beforeImage,
+        afterImage,
+        beforeLabel,
+        afterLabel,
+        initialPosition,
+        handaleDraggable,
+        disableSliding,
+        slidePositon,
+        swipeMode,
+    } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
@@ -32,6 +46,7 @@ export default function Edit(props) {
     if (preview) {
         return <img src={zoloParams.blocksPreview.socialLinks} alt={__('List Links Preview', 'zolo-blocks')} />;
     }
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -39,8 +54,13 @@ export default function Edit(props) {
             <div {...blockProps}>
                 {beforeImage && afterImage && (
                     <ReactCompareSlider
-                        itemOne={<ReactCompareSliderImage src={beforeImage?.url} alt="Image one" />}
-                        itemTwo={<ReactCompareSliderImage src={afterImage?.url} alt="Image two" />}
+                        changePositionOnHover={swipeMode}
+                        portrait={slidePositon}
+                        disabled={disableSliding}
+                        position={initialPosition}
+                        onlyHandleDraggable={handaleDraggable}
+                        itemOne={<ReactCompareSliderImage src={beforeImage?.url} alt={beforeImage?.title} />}
+                        itemTwo={<ReactCompareSliderImage src={afterImage?.url} alt={afterImage?.title} />}
                     />
                 )}
             </div>

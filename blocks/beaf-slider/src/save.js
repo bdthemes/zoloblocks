@@ -19,7 +19,12 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            <div className="beaf-slider" data-beforeImage={JSON.stringify(beforeImage)} data-afterImage={JSON.stringify(afterImage)}></div>
+            <div
+                className="beaf-slider"
+                data-beforeImage={JSON.stringify(beforeImage)}
+                data-afterImage={JSON.stringify(afterImage)}
+                data-attributes={JSON.stringify(attributes)}
+            ></div>
         </div>
     );
 };

@@ -25,20 +25,50 @@ const {
  * WordPress depencencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, Button, BaseControl } from '@wordpress/components';
+import {
+    SelectControl,
+    TextControl,
+    ToggleControl,
+    Button,
+    BaseControl,
+    RangeControl,
+    Flex,
+    FlexBlock,
+    FlexItem,
+    TextareaControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
 
-import { PRESETS } from './constants';
+import { CAPTION_ITEM_ALIGNMENT, BEFORE_LABEL_BG, BEFORE_BORDER, BEFORE_RADIUS } from './constants';
 
-import { DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { DEFAULT_ALIGNS, HEADING } from '../../../src/global/constants';
 
-import {} from './constants/typoPrefixConstant';
+import { BEFORE_TYPO } from './constants/typoPrefixConstant';
+import { set } from 'lodash';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { preset, resMode, beforeImage, afterImage } = attributes;
+    const {
+        preset,
+        resMode,
+        beforeImage,
+        afterImage,
+        showLabels,
+        showCaption,
+        disableSliding,
+        handaleDraggable,
+        initialPosition,
+        slidePositon,
+        swipeMode,
+        beforeLabel,
+        beforeColor,
+        afterLabel,
+        labelPositons,
+        captionText,
+        captionTag,
+    } = attributes;
 
     const requiredProps = {
         attributes,
@@ -143,21 +173,179 @@ function Inspector(props) {
                                     />
                                 )}
                             </BaseControl>
+                            <ToggleControl
+                                label={__('Show Labels', 'zolo-blocks')}
+                                checked={showLabels}
+                                onChange={() => setAttributes({ showLabels: !showLabels })}
+                            />
+                            <ToggleControl
+                                label={__('Show Caption', 'zolo-blocks')}
+                                checked={showCaption}
+                                onChange={() => setAttributes({ showCaption: !showCaption })}
+                            />
+                            <ToggleControl
+                                label={__('Disable Slide Behavior', 'zolo-blocks')}
+                                checked={disableSliding}
+                                onChange={() => setAttributes({ disableSliding: !disableSliding })}
+                            />
+                            <ToggleControl
+                                label={__('Only Handle Draggable', 'zolo-blocks')}
+                                checked={handaleDraggable}
+                                onChange={() => setAttributes({ handaleDraggable: !handaleDraggable })}
+                            />
+                            <BaseControl label={__('INITIAL POSITION', 'zolo-block')}>
+                                <Flex>
+                                    <FlexItem>
+                                        <Button
+                                            variant="secondary"
+                                            icon="image-rotate"
+                                            onClick={() => setAttributes({ initialPosition: '' })}
+                                        />
+                                    </FlexItem>
+                                    <FlexBlock>
+                                        <RangeControl
+                                            value={initialPosition}
+                                            onChange={(v) => setAttributes({ initialPosition: v })}
+                                            min={1}
+                                            max={100}
+                                        />
+                                    </FlexBlock>
+                                </Flex>
+                            </BaseControl>
+                            <IconicBtnGroup
+                                label={__('Slide Position', 'zolo-blocks')}
+                                value={slidePositon}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        slidePositon: value,
+                                    })
+                                }
+                                options={[
+                                    {
+                                        label: __('Horizontal', 'zolo-blocks'),
+                                        value: false,
+                                    },
+                                    {
+                                        label: __('Vertical', 'zolo-blocks'),
+                                        value: true,
+                                    },
+                                ]}
+                            />
+                            <IconicBtnGroup
+                                label={__('Swipe Mode', 'zolo-blocks')}
+                                value={swipeMode}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        swipeMode: value,
+                                    })
+                                }
+                                options={[
+                                    {
+                                        label: __('Drag', 'zolo-blocks'),
+                                        value: false,
+                                    },
+                                    {
+                                        label: __('Hover', 'zolo-blocks'),
+                                        value: true,
+                                    },
+                                ]}
+                            />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Layout', 'zolo-blocks')} panelProps={props}></ZoloPanelBody>
+                        {showLabels && (
+                            <ZoloPanelBody title={__('Labels', 'zolo-blocks')} panelProps={props}>
+                                <TextControl
+                                    label={__('Before Label')}
+                                    value={beforeLabel}
+                                    onChange={(v) => setAttributes({ beforeLabel: v })}
+                                />
+                                <TextControl
+                                    label={__('After Label')}
+                                    value={afterLabel}
+                                    onChange={(v) => setAttributes({ afterLabel: v })}
+                                />
+                                <IconicBtnGroup
+                                    label={__('Labels Positin', 'zolo-blocks')}
+                                    value={labelPositons}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            labelPositons: value,
+                                        })
+                                    }
+                                    options={[
+                                        {
+                                            label: __('Top', 'zolo-blocks'),
+                                            value: 'flex-start',
+                                        },
+                                        {
+                                            label: __('Center', 'zolo-blocks'),
+                                            value: 'center',
+                                        },
+                                        {
+                                            label: __('Bottom', 'zolo-blocks'),
+                                            value: 'flex-end',
+                                        },
+                                    ]}
+                                />
+                            </ZoloPanelBody>
+                        )}
+                        {showCaption && (
+                            <ZoloPanelBody title={__('Caption', 'zolo-blocks')} panelProps={props}>
+                                <TextareaControl
+                                    label={__('Caption', 'zolo-blocks')}
+                                    value={captionText}
+                                    onChange={(v) => setAttributes({ captionText: v })}
+                                />
 
-                        <ZoloPanelBody title={__('Add List', 'zolo-blocks')} panelProps={props}></ZoloPanelBody>
-                        <ZoloPanelBody title={__('Link Hover Icon', 'zolo-blocks')} panelProps={props}></ZoloPanelBody>
+                                <SelectControl
+                                    label={__('Select Tag', 'zolo-blocks')}
+                                    value={captionTag}
+                                    options={HEADING}
+                                    onChange={(tag) => {
+                                        setAttributes({ captionTag: tag });
+                                    }}
+                                />
+                                <ResAlignmentControl
+                                    label={__('Alignment', 'zolo-blocks')}
+                                    controlName={CAPTION_ITEM_ALIGNMENT}
+                                    requiredProps={requiredProps}
+                                    alignOptions={DEFAULT_ALIGNS}
+                                />
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody
-                            title={__('Item', 'zolo-blocks')}
-                            firstOpen={true}
-                            stylePanel={true}
-                            panelProps={props}
-                        ></ZoloPanelBody>
+                        <ZoloPanelBody title={__('Before Label', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={beforeColor}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        beforeColor: value,
+                                    })
+                                }
+                            />
+                            <NormalBGControl
+                                requiredProps={requiredProps}
+                                controlName={BEFORE_LABEL_BG}
+                                noOverlay={true}
+                                noMainBGImg={true}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zolo-blocks')}
+                                typoPrefixConstant={BEFORE_TYPO}
+                                requiredProps={requiredProps}
+                                max={36}
+                            />
+                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={BEFORE_BORDER} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Radius', 'zolo-blocks')}
+                                controlName={BEFORE_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                        </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}></ZoloPanelBody>
 
