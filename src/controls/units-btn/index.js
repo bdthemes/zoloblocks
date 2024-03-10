@@ -27,9 +27,10 @@ const UnitsBtn = ({ selectedUnit = 'px', unitTypes, onClick, children }) => {
                 onClick={() => setSwitcherIsOpen(() => !switcherIsOpen)}
             >
                 <div className="zb-units-switchers-wrap">
-                    {unitTypes.map((unit) => (
+                    {unitTypes.map((unit, index) => (
                         <Button
                             className={classNames('zb-unit-switcher', `${unit.value === selectedUnit && 'active'}`)}
+                            key={index}
                             onClick={() => {
                                 onClick(unit.value);
                                 setSwitcherIsOpen(false);

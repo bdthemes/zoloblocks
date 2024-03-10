@@ -58,6 +58,7 @@ Not at all. We have optimised all of these blocks for better performance.
 = Added =
 
 * Advanced Image block added
+* Review carousel block added
 * Entrance animation features added
 
 = Updated =

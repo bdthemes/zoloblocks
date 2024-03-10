@@ -1,10 +1,8 @@
-
 @import 'src/social-brand-color.scss';
 
 .wp-block-zolo-social-links {
-
     --zolo-item-grid-gap: 10px;
-    --zolo-icon-size: 16px;
+    --zolo-icon-size: 1em;
     --zolo-button-text-color: #fff;
     --zolo-button-padding: 10px 20px;
     --zolo-button-gap: 10px;
@@ -433,9 +431,9 @@
             }
             &.snapchat {
                 .zolo-social-icon {
-                   svg {
-                          fill: var(--zolo-button-icon-color);
-                   }
+                    svg {
+                        fill: var(--zolo-button-icon-color);
+                    }
                 }
                 &:hover {
                     .zolo-social-text {

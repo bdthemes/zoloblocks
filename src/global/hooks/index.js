@@ -111,6 +111,85 @@ function addAttributes(settings) {
             overflow: {
                 type: 'string',
             },
+            transformAnimationActive: {
+                type: 'boolean',
+                default: false,
+            },
+            floatingAnimationActive: {
+                type: 'boolean',
+                default: false,
+            },
+            floatingAnimation: {
+                type: 'object',
+                default: {
+                    translateX: {
+                        minValue: -100,
+                        maxValue: 100,
+                        unit: 'px',
+                    },
+                    translateY: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'px',
+                    },
+                    translateZ: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'px',
+                    },
+                    rotateX: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'deg',
+                    },
+                    rotateY: {
+                        minValue: 0,
+                        maxValue: 0,
+                    },
+                    rotateZ: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'deg',
+                    },
+                    scaleX: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: '',
+                    },
+                    scaleY: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: '',
+                    },
+                    scaleZ: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: '',
+                    },
+                    skewX: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'deg',
+                    },
+                    skewY: {
+                        minValue: 0,
+                        maxValue: 0,
+                        unit: 'deg',
+                    },
+                    opacity: {
+                        minValue: 1,
+                        maxValue: 1,
+                        unit: '',
+                    },
+                    easing: 'ease-out',
+                    easingCustom: '',
+                    repeat: false,
+                    perspective: 0,
+                    duration: 3000,
+                    delay: 0,
+                    transformOrigin: 'center',
+                },
+            },
             entranceAnimationActive: {
                 type: 'boolean',
                 default: false,
@@ -174,6 +253,108 @@ function addAttributes(settings) {
                     transformOriginCustom: '',
                 },
             },
+            transformRotate3DActive: {
+                type: 'boolean',
+                default: false,
+            },
+            transformRotate3DActiveHover: {
+                type: 'boolean',
+                default: false,
+            },
+            scaleProportionally: {
+                type: 'boolean',
+                default: false,
+            },
+            scaleProportionallyHover: {
+                type: 'boolean',
+                default: false,
+            },
+            transformFlipHorizontal: {
+                type: 'boolean',
+                default: false,
+            },
+            transformFlipVertical: {
+                type: 'boolean',
+                default: false,
+            },
+            transformFlipHorizontalHover: {
+                type: 'boolean',
+                default: false,
+            },
+            transformFlipVerticalHover: {
+                type: 'boolean',
+                default: false,
+            },
+            ...generateResRangeAttributies('translateX', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('translateY', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('transformRotate', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformRotateX', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformRotateY', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformPerspective'),
+            ...generateResRangeAttributies('transformScale', {
+                defaultUnit: '',
+            }),
+            ...generateResRangeAttributies('transformScaleX', {
+                defaultUnit: '',
+            }),
+            ...generateResRangeAttributies('transformScaleY', {
+                defaultUnit: '',
+            }),
+            ...generateResRangeAttributies('transformSkewX', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformSkewY', {
+                defaultUnit: 'deg',
+            }),
+            //hover
+            ...generateResRangeAttributies('translateXHover', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('translateYHover', {
+                defaultUnit: 'px',
+            }),
+            ...generateResRangeAttributies('transformRotateHover', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformRotateXHover', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformRotateYHover', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformPerspectiveHove'),
+            ...generateResRangeAttributies('transformScaleHover', {
+                defaultUnit: '',
+            }),
+            ...generateResRangeAttributies('transformScaleXHover', {
+                defaultUnit: '',
+            }),
+            ...generateResRangeAttributies('transformScaleYHover', {
+                defaultUnit: '',
+            }),
+            ...generateResRangeAttributies('transformSkewXHover', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transformSkewYHover', {
+                defaultUnit: 'deg',
+            }),
+            ...generateResRangeAttributies('transitionDuration', {
+                defaultUnit: '',
+            }),
+
+            ...generateResAlignmentAttributies('transformOriginXHover'),
+            ...generateResAlignmentAttributies('transformOriginYHover'),
+
             ...(settings.attributes.globalConfig?.default?.margin &&
                 generateDimensionAttributes(settings.attributes.globalConfig.default.margin?.prefix || 'mainMargin')),
 

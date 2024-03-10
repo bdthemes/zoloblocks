@@ -15,6 +15,7 @@ import {
     BTN_SHADOW,
     BTN_HOVER_SHADOW,
     ICON_TEXT_SPACING,
+    BUTTON_SIZE,
     COLUMN_COUNT,
     COLUMNS_GAP,
     BLOCK_MARGIN,
@@ -66,6 +67,8 @@ const attributes = {
 
     //button
     ...generateDimensionAttributes(BUTTON_PADDING),
+    ...generateResRangeAttributies(BUTTON_SIZE),
+
     //icon spacing
     ...generateResRangeAttributies(ICON_TEXT_SPACING),
 

@@ -2,7 +2,7 @@
 
 .wp-block-zolo-social-share {
     --zolo-item-grid-gap: 10px;
-    --zolo-icon-size: 16px;
+    --zolo-icon-size: 1em;
     --zolo-button-text-color: #fff;
     --zolo-button-padding: 10px 20px;
     --zolo-button-gap: 10px;
@@ -375,6 +375,14 @@
             }
         }
 
+        .zolo-social-icon {
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .zolo-social-item {
             --zolo-button-text-color: #000;
             border-color: var(--zoloblocks-brand-color);
@@ -393,6 +401,18 @@
         .zolo-social-item.original {
             .zolo-social-icon {
                 color: var(--zoloblocks-brand-button-color);
+            }
+            &.snapchat {
+                .zolo-social-icon {
+                    svg {
+                        fill: #000;
+                    }
+                }
+                &:hover {
+                    .zolo-social-text {
+                        color: #000;
+                    }
+                }
             }
             &:hover {
                 .zolo-social-text {

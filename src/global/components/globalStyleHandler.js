@@ -9,12 +9,26 @@ import { generateBackgroundControlStyles } from '../../helpers/backgroundHelpers
 import { generateDimensionStyle } from '../../helpers/dimension-helper';
 import { generateBorderStyle } from '../../helpers/border-helper';
 import { generateBoxShadowStyles } from '../../helpers/boxshadow-helper';
+import { generateResRangeStyle } from '../../helpers/res-range-helper';
+import { generateResAlignmentStyle } from '../../helpers/res-alignment-helper';
 
 export const GlobalStyleHanlder = (props) => {
     const { attributes, setAttributes, desktopAllStyle, tabAllStyle, mobileAllStyle } = props;
 
-    const { uniqueId, zIndex, overflow, zoloStyles, globalConfig, customCss } = attributes;
-
+    const {
+        uniqueId,
+        zIndex,
+        overflow,
+        zoloStyles,
+        globalConfig,
+        customCss,
+        transformRotate3DActive,
+        transformRotate3DActiveHover,
+        scaleProportionally,
+        scaleProportionallyHover,
+        transformFlipHorizontal,
+        transformFlipVertical,
+    } = attributes;
     if (!uniqueId) {
         return;
     }
@@ -104,6 +118,378 @@ export const GlobalStyleHanlder = (props) => {
         attributes,
     });
 
+    // translateX
+    const {
+        desktopRangeStyle: translateXStylesDesktop,
+        tabRangeStyle: translateXStylesTab,
+        mobRangeStyle: translateXStylesMob,
+    } = generateResRangeStyle({
+        controlName: 'translateX',
+        property: '--zolo-transform-translateX',
+        attributes,
+    });
+    // translateY
+    const {
+        desktopRangeStyle: translateYStylesDesktop,
+        tabRangeStyle: translateYStylesTab,
+        mobRangeStyle: translateYStylesMob,
+    } = generateResRangeStyle({
+        controlName: 'translateY',
+        property: '--zolo-transform-translateY',
+        attributes,
+    });
+    // translateX
+    const {
+        desktopRangeStyle: translateXStylesDesktopHover,
+        tabRangeStyle: translateXStylesTabHover,
+        mobRangeStyle: translateXStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'translateXHover',
+        property: '--zolo-transform-translateX',
+        attributes,
+    });
+    // translateY
+    const {
+        desktopRangeStyle: translateYStylesDesktopHover,
+        tabRangeStyle: translateYStylesTabHover,
+        mobRangeStyle: translateYStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'translateYHover',
+        property: '--zolo-transform-translateY',
+        attributes,
+    });
+
+    // transform rotate
+    const {
+        desktopRangeStyle: rotateStylesDesktop,
+        tabRangeStyle: rotateStylesTab,
+        mobRangeStyle: rotateStylesMob,
+    } = generateResRangeStyle({
+        controlName: 'transformRotate',
+        property: '--zolo-transform-rotate',
+        attributes,
+    });
+    //transform rotate x
+    const {
+        desktopRangeStyle: rotateXStylesDesktop,
+        tabRangeStyle: rotateXStylesTab,
+        mobRangeStyle: rotateXStylesMob,
+    } = generateResRangeStyle({
+        controlName: 'transformRotateX',
+        property: '--zolo-transform-rotateX',
+        attributes,
+    });
+    //transform rotate y
+    const {
+        desktopRangeStyle: rotateYStylesDesktop,
+        tabRangeStyle: rotateYStylesTab,
+        mobRangeStyle: rotateYStylesMob,
+    } = generateResRangeStyle({
+        controlName: 'transformRotateY',
+        property: '--zolo-transform-rotateY',
+        attributes,
+    });
+
+    // transform roate perspective
+    const {
+        desktopRangeStyle: rotatePerspectiveStylesDesktop,
+        tabRangeStyle: rotatePerspectiveStylesTab,
+        mobRangeStyle: rotatePerspectiveStylesMob,
+    } = generateResRangeStyle({
+        controlName: 'transformPerspective',
+        property: '--zolo-transform-perspective',
+        attributes,
+    });
+
+    // transform rotate hover
+    const {
+        desktopRangeStyle: rotateStylesDesktopHover,
+        tabRangeStyle: rotateStylesTabHover,
+        mobRangeStyle: rotateStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformRotateHover',
+        property: '--zolo-transform-rotate',
+        attributes,
+    });
+    //transform rotate x
+    const {
+        desktopRangeStyle: rotateXStylesDesktopHover,
+        tabRangeStyle: rotateXStylesTabHover,
+        mobRangeStyle: rotateXStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformRotateXHover',
+        property: '--zolo-transform-rotateX',
+        attributes,
+    });
+    //transform rotate y
+    const {
+        desktopRangeStyle: rotateYStylesDesktopHover,
+        tabRangeStyle: rotateYStylesTabHover,
+        mobRangeStyle: rotateYStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformRotateYHover',
+        property: '--zolo-transform-rotateY',
+        attributes,
+    });
+
+    // transform roate perspective
+    const {
+        desktopRangeStyle: rotatePerspectiveStylesDesktopHover,
+        tabRangeStyle: rotatePerspectiveStylesTabHover,
+        mobRangeStyle: rotatePerspectiveStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformPerspectiveHover',
+        property: '--zolo-transform-perspective',
+        attributes,
+    });
+
+    // transform scale
+    const {
+        desktopRangeStyle: scaleStylesDesktop,
+        tabRangeStyle: scaleStylesTab,
+        mobRangeStyle: scaleStylesMob,
+    } = generateResRangeStyle({
+        controlName: 'transformScale',
+        property: '--zolo-transform-scale',
+        attributes,
+    });
+
+    //transform scale x
+    const {
+        desktopRangeStyle: scaleXStylesDesktop,
+        tabRangeStyle: scaleXStylesTab,
+        mobRangeStyle: scaleXStylesMob,
+    } = generateResRangeStyle({
+        controlName: 'transformScaleX',
+        property: '--zolo-transform-scaleX',
+        attributes,
+    });
+
+    //transform scale y
+    const {
+        desktopRangeStyle: scaleYStylesDesktop,
+        tabRangeStyle: scaleYStylesTab,
+        mobRangeStyle: scaleYStylesMob,
+    } = generateResRangeStyle({
+        controlName: 'transformScaleY',
+        property: '--zolo-transform-scaleY',
+        attributes,
+    });
+
+
+    // transform scale hover
+    const {
+        desktopRangeStyle: scaleStylesDesktopHover,
+        tabRangeStyle: scaleStylesTabHover,
+        mobRangeStyle: scaleStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformScaleHover',
+        property: '--zolo-transform-scale',
+        attributes,
+    });
+
+    //transform scale x
+    const {
+        desktopRangeStyle: scaleXStylesDesktopHover,
+        tabRangeStyle: scaleXStylesTabHover,
+        mobRangeStyle: scaleXStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformScaleXHover',
+        property: '--zolo-transform-scaleX',
+        attributes,
+    });
+
+    //transform scale y
+    const {
+        desktopRangeStyle: scaleYStylesDesktopHover,
+        tabRangeStyle: scaleYStylesTabHover,
+        mobRangeStyle: scaleYStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformScaleYHover',
+        property: '--zolo-transform-scaleY',
+        attributes,
+    });
+
+    // transform skew x
+    const {
+        desktopRangeStyle: skewXStylesDesktop,
+        tabRangeStyle: skewXStylesTab,
+        mobRangeStyle: skewXStylesMob,
+    } = generateResRangeStyle({
+        controlName: 'transformSkewX',
+        property: '--zolo-transform-skewX',
+        attributes,
+    });
+
+    // transform skew y
+    const {
+        desktopRangeStyle: skewYStylesDesktop,
+        tabRangeStyle: skewYStylesTab,
+        mobRangeStyle: skewYStylesMob,
+    } = generateResRangeStyle({
+        controlName: 'transformSkewY',
+        property: '--zolo-transform-skewY',
+        attributes,
+    });
+
+    // transform skew x
+    const {
+        desktopRangeStyle: skewXStylesDesktopHover,
+        tabRangeStyle: skewXStylesTabHover,
+        mobRangeStyle: skewXStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformSkewXHover',
+        property: '--zolo-transform-skewX',
+        attributes,
+    });
+
+    // transform skew y
+    const {
+        desktopRangeStyle: skewYStylesDesktopHover,
+        tabRangeStyle: skewYStylesTabHover,
+        mobRangeStyle: skewYStylesMobHover,
+    } = generateResRangeStyle({
+        controlName: 'transformSkewYHover',
+        property: '--zolo-transform-skewY',
+        attributes,
+    });
+
+    // transform orgin x
+
+    const {
+        desktopAlignStyle: transformOriginXDesktop,
+        tabAlignStyle: transformOriginXTab,
+        mobAlignStyle: transformOriginXMob,
+    } = generateResAlignmentStyle({
+        controlName: 'transformOriginX',
+        property: '--zolo-transform-originX',
+        attributes,
+    });
+
+    // transform orgin y
+    const {
+        desktopAlignStyle: transformOriginYDesktop,
+        tabAlignStyle: transformOriginYTab,
+        mobAlignStyle: transformOriginYMob,
+    } = generateResAlignmentStyle({
+        controlName: 'transformOriginY',
+        property: '--zolo-transform-originY',
+        attributes,
+    });
+    // transform orgin x
+
+    const {
+        desktopAlignStyle: transformOriginXDesktopHover,
+        tabAlignStyle: transformOriginXTabHover,
+        mobAlignStyle: transformOriginXMobHover,
+    } = generateResAlignmentStyle({
+        controlName: 'transformOriginX',
+        property: '--zolo-transform-originX',
+        attributes,
+    });
+
+    // transform orgin y
+    const {
+        desktopAlignStyle: transformOriginYDesktopHover,
+        tabAlignStyle: transformOriginYTabHover,
+        mobAlignStyle: transformOriginYMobHover,
+    } = generateResAlignmentStyle({
+        controlName: 'transformOriginY',
+        property: '--zolo-transform-originY',
+        attributes,
+    });
+
+    // transform styles transition duration
+     const {
+         desktopRangeStyle: transitionDurationDesktop,
+         tabRangeStyle: transitionDurationTab,
+         mobRangeStyle: transitionDurationMob,
+     } = generateResRangeStyle({
+         controlName: 'transitionDuration',
+         property: '--zolo-transform-transition-duration',
+         attributes,
+     });
+
+    const transformStylesDesktop = `
+            ${translateXStylesDesktop}
+            ${translateYStylesDesktop}
+            ${rotateStylesDesktop}
+            ${transformRotate3DActive ? `${rotateXStylesDesktop} ${rotateYStylesDesktop} ${rotatePerspectiveStylesDesktop}` : ''}
+            ${scaleProportionally ? `${scaleStylesDesktop}` : ''}
+            ${!scaleProportionally ? `${scaleXStylesDesktop} ${scaleYStylesDesktop}` : ''}
+            ${skewXStylesDesktop}
+            ${skewYStylesDesktop}
+            ${transformFlipHorizontal ? `--zolo-transform-flipX:-1;` : ''}
+            ${transformFlipVertical ? `--zolo-transform-flipY:-1;` : ''}
+            ${transformOriginXDesktop}
+            ${transformOriginYDesktop}
+            `;
+    const transformStylesTab = `
+            ${translateXStylesTab}
+            ${translateYStylesTab}
+            ${rotateStylesTab}
+            ${transformRotate3DActive ? `${rotateXStylesTab} ${rotateYStylesTab} ${rotatePerspectiveStylesTab}` : ''}
+            ${scaleProportionally ? `${scaleStylesTab}` : ''}
+            ${!scaleProportionally ? `${scaleXStylesTab} ${scaleYStylesTab}` : ''}
+            ${skewXStylesTab}
+            ${skewYStylesTab}
+            ${transformOriginXTab}
+            ${transformOriginYTab}
+            `;
+    const transformStylesMob = `
+            ${translateXStylesMob}
+            ${translateYStylesMob}
+            ${rotateStylesMob}
+            ${transformRotate3DActive ? `${rotateXStylesMob} ${rotateYStylesMob} ${rotatePerspectiveStylesMob}` : ''}
+            ${scaleProportionally ? `${scaleStylesMob}` : ''}
+            ${!scaleProportionally ? `${scaleXStylesMob} ${scaleYStylesMob}` : ''}
+            ${skewXStylesMob}
+            ${skewYStylesMob}
+            ${transformOriginXMob}
+            ${transformOriginYMob}
+            `;
+
+    // transform hover
+    const transformStylesDesktopHover = `
+            ${translateXStylesDesktopHover}
+            ${translateYStylesDesktopHover}
+            ${rotateStylesDesktopHover}
+            ${transformRotate3DActiveHover ? `${rotateXStylesDesktopHover} ${rotateYStylesDesktopHover} ${rotatePerspectiveStylesDesktopHover}` : ''}
+            ${scaleProportionallyHover ? `${scaleStylesDesktopHover}` : ''}
+            ${!scaleProportionallyHover ? `${scaleXStylesDesktopHover} ${scaleYStylesDesktopHover}` : ''}
+            ${skewXStylesDesktopHover}
+            ${skewYStylesDesktopHover}
+            ${transformOriginXDesktopHover}
+            ${transformOriginYDesktopHover}
+            ${transitionDurationDesktop ? `transition-duration: ${transitionDurationDesktop}ms;` : ''}
+            `;
+    const transformStylesTabHover = `
+            ${translateYStylesTabHover}
+            ${translateYStylesDesktopHover}
+            ${rotateStylesTabHover}
+            ${transformRotate3DActiveHover ? `${rotateXStylesTabHover} ${rotateYStylesTabHover} ${rotatePerspectiveStylesTabHover}` : ''}
+            ${scaleProportionallyHover ? `${scaleStylesTabHover}` : ''}
+            ${!scaleProportionallyHover ? `${scaleXStylesTabHover} ${scaleYStylesTabHover}` : ''}
+            ${skewXStylesTabHover}
+            ${skewYStylesTabHover}
+            ${transformOriginXTabHover}
+            ${transformOriginYTabHover}
+            ${transitionDurationTab ? `transition-duration: ${transitionDurationTab}ms;` : ''}
+            `;
+    const transformStylesMobHover = `
+            ${translateYStylesMobHover}
+            ${translateYStylesDesktopHover}
+            ${rotateStylesMobHover}
+            ${transformRotate3DActiveHover ? `${rotateXStylesMobHover} ${rotateYStylesMobHover} ${rotatePerspectiveStylesMobHover}` : ''}
+            ${scaleProportionallyHover ? `${scaleStylesMobHover}` : ''}
+            ${!scaleProportionallyHover ? `${scaleXStylesMobHover} ${scaleYStylesMobHover}` : ''}
+            ${skewXStylesMobHover}
+            ${skewYStylesMobHover}
+            ${transformOriginXMobHover}
+            ${transformOriginYMobHover}
+            ${transitionDurationMob ? `transition-duration: ${transitionDurationMob}ms;` : ''}
+            `;
+
     const desktopGlobalStyles = `
       .parent-${uniqueId}.zolo-block {
         ${normalBoxShadowStyle ? normalBoxShadowStyle : ''}
@@ -114,10 +500,12 @@ export const GlobalStyleHanlder = (props) => {
         ${bgDeskStyle ? bgDeskStyle : ''}
         ${zIndex ? `z-index: ${zIndex};` : ''}
         ${overflow ? `overflow: ${overflow};` : ''}
+        ${transformStylesDesktop}
       }
 
       .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
+          ${transformStylesDesktopHover}
       }
 
       .parent-${uniqueId}.zolo-block:after {
@@ -136,10 +524,12 @@ export const GlobalStyleHanlder = (props) => {
           ${marginStylesTab ? marginStylesTab : ''}
           ${paddingStylesTab ? paddingStylesTab : ''}
           ${bgTabStyle ? bgTabStyle : ''}
+          ${transformStylesTab}
       }
 
       .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgTabStyle ? hoverBgTabStyle : ''}
+            ${transformStylesTabHover}
       }
 
       .parent-${uniqueId}.zolo-block:after {
@@ -158,11 +548,13 @@ export const GlobalStyleHanlder = (props) => {
           ${marginStylesMobile ? marginStylesMobile : ''}
           ${paddingStylesMobile ? paddingStylesMobile : ''}
           ${bgMobStyle ? bgMobStyle : ''}
+          ${transformStylesMob}
 
       }
 
       .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgMobStyle ? hoverBgMobStyle : ''}
+          ${transformStylesMobHover}
       }
 
       .parent-${uniqueId}.zolo-block:after {
