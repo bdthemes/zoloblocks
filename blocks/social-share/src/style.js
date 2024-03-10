@@ -72,6 +72,7 @@ const Style = ({ props }) => {
         attributes,
     });
 
+
     const {
         desktopBorderStyle: borderStyles,
         tabBorderStyle: borderStylesTab,
@@ -188,6 +189,8 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    console.log('ptIconWidth', ptIconWidth);
+
     /**
      * All Style Combination
      */
@@ -205,10 +208,14 @@ const Style = ({ props }) => {
 			${normalShadow}
 
 		}
-        .${uniqueId}.wp-block-zolo-social-share .zolo-social-item svg{
-			${buttonSize}
+         ${
+             preset !== 'preset-1'
+                 ? `.${uniqueId}.wp-block-zolo-social-share .zolo-social-item svg{
+           ${buttonSize}
             ${buttonHSize}
-        }
+        }`
+                 : ' '
+         }
 		.${uniqueId}.wp-block-zolo-social-share .zolo-social-text {
 			${textTypoDesk}
 		}
@@ -237,11 +244,9 @@ const Style = ({ props }) => {
         }
 
         ${
-            socialColor === 'custom' && preset === 'preset-3'
+            socialColor === 'custom'
                 ? `.${uniqueId}.wp-block-zolo-social-share.preset-3 .zolo-social-icon{
                     background:${iconBgColor};
-                    ${ptIconWidth}
-                    ${ptIconHeight}
                 }
                 .${uniqueId}.wp-block-zolo-social-share.preset-3 .zolo-social-item svg{
                     fill:${iconColor};
@@ -255,6 +260,15 @@ const Style = ({ props }) => {
          `
                 : ' '
         }
+         ${
+             preset === 'preset-3'
+                 ? `.${uniqueId}.wp-block-zolo-social-share.preset-3 .zolo-social-item .zolo-social-icon{
+                    ${ptIconWidth}
+                    ${ptIconHeight}
+                }
+         `
+                 : ' '
+         }
   	`;
     const tabletAllStyle = `
 		.${uniqueId}.wp-block-zolo-social-share{
