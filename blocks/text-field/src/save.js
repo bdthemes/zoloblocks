@@ -1,12 +1,14 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-const { classArrayToStr } = window.zoloModule;
+import { __ } from '@wordpress/i18n';
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, showTitle, title, titleTag, rating, titlePosition, zoloId } = attributes;
+    const { uniqueId, parentClasses, zoloId, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol, requiredMsg } =
+        attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
     });
 
     return (
@@ -16,10 +18,28 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            <div className={classnames('start-rating-wrapper', titlePosition)}>
-                <div className={classnames('star-rating-inner', titlePosition)}>
-                    {showTitle && <RichText.Content tagName={titleTag} className="start-rating-title" value={title} />}
-                    <div className="zolo-star-rating" data-rating={rating}></div>
+            <div className="zolo-field-item">
+                {showLabel && (
+                    <div className="zolo-label-wrapper">
+                        <RichText.Content tagName="label" className="zolo-label" value={label} />
+                        {isRequired && showRequiredSymbol && <span className="zolo-required">{__('*', 'zolo-blocks')}</span>}
+                    </div>
+                )}
+
+                <div className="zolo-field-input-item">
+                    {showIcon && (
+                        <div className="zolo-input-icon">
+                            <DisplayZoloIcon icon={icon} />
+                        </div>
+                    )}
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder={placeholder}
+                        required={isRequired}
+                        {...(isRequired && { 'data-pristine-required-message': requiredMsg })}
+                    />
                 </div>
             </div>
         </div>

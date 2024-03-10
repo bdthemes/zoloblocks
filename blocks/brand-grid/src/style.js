@@ -334,13 +334,18 @@ const Style = ({ props }) => {
         .${uniqueId} .zb-brand-item{
             ${deskContainerHeight}
             ${containerBorderDesk}
-            ${containerBorderRadiusDesk}
+          
             ${containerBoxShadow}
             ${containerPaddingDesk}
             ${containerMarginDesk}
             ${containerDeskBGStyle}
 		}
-		.${uniqueId} .wp-block-zolo-brand-child .zb-brand-image img{
+
+        .${uniqueId} .zb-brand-item, .${uniqueId} .zb-brand-content{
+            ${containerBorderRadiusDesk}
+		}
+
+		.${uniqueId} .wp-block-zolo-brand-child .zb-brand-image img {
             ${brandPhotoPaddingDesk}
 			${deskImageWidth}
 			${brandPhotoBorderRadiusDesk}

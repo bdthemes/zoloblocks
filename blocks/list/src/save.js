@@ -1,14 +1,15 @@
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr, DynamicTag } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
 import classnames from 'classnames';
 
 import { useBlockProps } from '@wordpress/block-editor';
+import { RawHTML } from '@wordpress/element';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, listProfiles, zoloId, DscToggle, linkHoverIcon } = attributes;
+    const { uniqueId, parentClasses, preset, listProfiles, zoloId, iconToggle, DscToggle, titleToggle, linkHoverIcon } = attributes;
 
     return (
         <div
@@ -29,17 +30,51 @@ const Save = ({ attributes }) => {
                             rel={profile.link && profile.link.openInNewTab && 'noopener noreferrer'}
                             className={`zolo-list-item ${preset == 'zolo-list-style-1' ? 'zolo-list-title' : ''}`}
                         >
-                            {preset == 'zolo-list-style-1' && profile.text}
-                            {preset !== 'zolo-list-style-1' && (
-                                <div className="zolo-list-icon">
-                                    <DisplayZoloIcon icon={profile.icon} />
+                            {preset == 'zolo-list-style-1' && <RawHTML>{profile.text}</RawHTML>}
+                            {preset == 'zolo-list-style-4' ? (
+                                <div className="zolo-list-icon-and-content-wrap">
+                                    {iconToggle && preset !== 'zolo-list-style-1' && (
+                                        <div className="zolo-list-icon">
+                                            <DisplayZoloIcon icon={profile.icon} />
+                                        </div>
+                                    )}
+                                    {preset !== 'zolo-list-style-1' && (
+                                        <div className="zolo-list-content">
+                                            {titleToggle && (
+                                                <div className="zolo-list-title">
+                                                    <RawHTML>{profile.text}</RawHTML>
+                                                </div>
+                                            )}
+                                            {DscToggle && (
+                                                <span className="zolo-list-desc">
+                                                    <RawHTML>{profile.desc}</RawHTML>
+                                                </span>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
-                            )}
-                            {preset !== 'zolo-list-style-1' && (
-                                <div className="zolo-list-content">
-                                    <div className="zolo-list-title">{profile.text}</div>
-                                    {DscToggle && <span className="zolo-list-desc">{profile.desc}</span>}
-                                </div>
+                            ) : (
+                                <>
+                                    {iconToggle && preset !== 'zolo-list-style-1' && (
+                                        <div className="zolo-list-icon">
+                                            <DisplayZoloIcon icon={profile.icon} />
+                                        </div>
+                                    )}
+                                    {preset !== 'zolo-list-style-1' && (
+                                        <div className="zolo-list-content">
+                                            {titleToggle && (
+                                                <div className="zolo-list-title">
+                                                    <RawHTML>{profile.text}</RawHTML>
+                                                </div>
+                                            )}
+                                            {DscToggle && (
+                                                <span className="zolo-list-desc">
+                                                    <RawHTML>{profile.desc}</RawHTML>
+                                                </span>
+                                            )}
+                                        </div>
+                                    )}
+                                </>
                             )}
                             {preset == 'zolo-list-style-4' && (
                                 <div class="zolo-list-hover-icon">

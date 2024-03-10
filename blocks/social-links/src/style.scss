@@ -1,8 +1,19 @@
-
 @import 'src/social-brand-color.scss';
 
 .wp-block-zolo-social-links {
-    gap: 10px;
+    --zolo-item-grid-gap: 10px;
+    --zolo-icon-size: 1em;
+    --zolo-button-text-color: #fff;
+    --zolo-button-padding: 10px 20px;
+    --zolo-button-gap: 10px;
+    --zolo-item-border-width: 2px;
+    --zolo-item-border-style: solid;
+    --zolo-icon-width: 40px;
+    --zolo-icon-height: 40px;
+    --zolo-button-text-padding: 0 12px;
+    --zolo-button-icon-color: #000;
+
+    gap: var(--zolo-item-grid-gap);
     &.flex {
         display: flex;
         flex-wrap: wrap;
@@ -21,8 +32,8 @@
         background-color: var(--zoloblocks-brand-color);
         transition: all 0.2s ease;
         svg {
-            // width: 1rem;
-            // height: 1rem;
+            width: var(--zolo-icon-size);
+            height: var(--zolo-icon-size);
             fill: var(--zoloblocks-brand-button-color);
             display: block;
             transition: all 0.2s ease;
@@ -346,7 +357,7 @@
                 color: #000;
                 .zolo-social-icon {
                     svg {
-                        fill: #000;
+                        fill: var(--zolo-button-icon-color);
                     }
                 }
             }
@@ -360,21 +371,22 @@
     &.preset-2,
     &.preset-3 {
         .zolo-social-item {
-            color: #fff;
+            color: var(--zolo-button-text-color);
         }
     }
 
     &.preset-1 {
         .zolo-social-item {
-            padding: 10px 20px;
-            gap: 10px;
+            padding: var(--zolo-button-padding);
+            gap: var(--zolo-button-gap);
         }
     }
 
     &.preset-2 {
         .zolo-social-item {
-            padding: 10px;
-            gap: 10px;
+            --zolo-button-padding: 10px;
+            padding: var(--zolo-button-padding);
+            gap: var(--zolo-button-gap);
         }
     }
 
@@ -383,24 +395,25 @@
         .zolo-social-item.original {
             background-color: transparent;
             background: transparent;
-            border-width: 2px;
-            border-style: solid;
+            border-width: var(--zolo-item-border-width);
+            border-style: var(--zolo-item-border-style);
             .zolo-social-text {
-                padding: 0 12px;
+                padding: var(--zolo-button-text-padding);
             }
         }
 
         .zolo-social-icon {
-            height: 40px;
-            width: 40px;
+            height: var(--zolo-icon-height);
+            width: var(--zolo-icon-width);
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .zolo-social-item {
+            --zolo-button-text-color: #000;
             border-color: var(--zoloblocks-brand-color);
-            color: #000;
+            color: var(--zolo-button-text-color);
             justify-content: flex-start;
             .zolo-social-icon {
                 color: var(--zoloblocks-brand-button-color);
@@ -418,9 +431,9 @@
             }
             &.snapchat {
                 .zolo-social-icon {
-                   svg {
-                          fill: #000;
-                   }
+                    svg {
+                        fill: var(--zolo-button-icon-color);
+                    }
                 }
                 &:hover {
                     .zolo-social-text {

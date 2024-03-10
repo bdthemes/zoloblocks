@@ -7,23 +7,18 @@
     --zolo-item-border-radius: 10px;
     --zoloblocks-item-bg-color: rgba(251, 253, 255, 1);
     --zoloblocks-item-border-color: rgba(12, 11, 12, 0.07);
-    // --zolo-transform-translateX: 0px;
-    // --zolo-transform-translateY: 0px;
-    // --zolo-transform-rotateX: 0deg;
-    // --zolo-transform-rotateY: 0deg;
-    // --zolo-transform-rotateZ: 0deg;
-    // --zolo-transform-perspective: 0px;
-    // --zolo-transform-translate: 0px;
-    // --zolo-transform-scale: 1;
-    // --zolo-transform-scaleX: 1;
-    // --zolo-transform-scaleY: 1;
-    // --zolo-transform-flipX: 1;
-    // --zolo-transform-flipY: 1;
-    // --zolo-transform-skewX: 0deg;
-    // --zolo-transform-skewY: 0deg;
-    // --zolo-transform-origin-x: 50%;
-    // --zolo-transform-origin-y: 50%;
+    --zolo-item-border-width: 1px;
+    --zolo-item-border-style: solid;
+    --zoloblocks-item-box-shadow: '';
 
+    // background
+    --zoloblocks-bg-color: '';
+    --zoloblocks-bg-gradient: '';
+    --zoloblocks-bg-image: '';
+    --zoloblocks-bg-repeat: '';
+    --zoloblocks-bg-size: '';
+    --zoloblocks-bg-attachment: '';
+    --zoloblocks-bg-position: '';
 }
 
 .zolo-appender-btn {
@@ -140,17 +135,11 @@ button[class*='editor-block-list-item-zolo'] {
 }
 
 .zolo-block {
-    transform:
-    perspective(var(--zolo-transform-perspective,0))
-    rotate(var(--zolo-transform-rotate,0))
-    rotateX(var(--zolo-transform-rotateX,0))
-    rotateY(var(--zolo-transform-rotateY,0))
-    translate(var(--zolo-transform-translate,0))
-    translateX(var(--zolo-transform-translateX,0))
-    translateY(var(--zolo-transform-translateY,0))
-    scaleX(calc(var(--zolo-transform-flipX, 1) * var(--zolo-transform-scaleX, var(--zolo-transform-scale, 1))))
-    scaleY(calc(var(--zolo-transform-flipY, 1) * var(--zolo-transform-scaleY, var(--zolo-transform-scale, 1))))
-    skewX(var(--zolo-transform-skewX,0))
-    skewY(var(--zolo-transform-skewY,0));
-    transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX)
+    transform: perspective(var(--zolo-transform-perspective, 0)) rotate(var(--zolo-transform-rotate, 0))
+        rotateX(var(--zolo-transform-rotateX, 0)) rotateY(var(--zolo-transform-rotateY, 0)) translate(var(--zolo-transform-translate, 0))
+        translateX(var(--zolo-transform-translateX, 0)) translateY(var(--zolo-transform-translateY, 0))
+        scaleX(calc(var(--zolo-transform-flipX, 1) * var(--zolo-transform-scaleX, var(--zolo-transform-scale, 1))))
+        scaleY(calc(var(--zolo-transform-flipY, 1) * var(--zolo-transform-scaleY, var(--zolo-transform-scale, 1))))
+        skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
+    transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
 }

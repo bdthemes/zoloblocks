@@ -52,8 +52,8 @@ import {
     TEAM_SHORT_BIO_MARGIN,
     DETAIL_PAGE_LINK_BG,
     DETAIL_PAGE_LINK_HOVER_BG,
-    DPL_HEIGHT,
-    DPL_WIDTH,
+    // DPL_HEIGHT,
+    // DPL_WIDTH,
     DPL_BORDER,
     DPL_BORDER_RADIUS,
     DPL_PADDING,
@@ -80,7 +80,6 @@ const Style = ({ props }) => {
     const {
         uniqueId,
         nameColor,
-        nameHoverColor,
         designationColor,
         shortBioColor,
         separatorColor,
@@ -524,26 +523,6 @@ const Style = ({ props }) => {
     });
 
     const {
-        desktopRangeStyle: dplDeskHeight,
-        tabRangeStyle: dplTabHeight,
-        mobRangeStyle: dplMobHeight,
-    } = generateResRangeStyle({
-        controlName: DPL_HEIGHT,
-        property: 'height',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: dplDeskWidth,
-        tabRangeStyle: dplTabWidth,
-        mobRangeStyle: dplMobWidth,
-    } = generateResRangeStyle({
-        controlName: DPL_WIDTH,
-        property: 'width',
-        attributes,
-    });
-
-    const {
         desktopBorderStyle: dplDeskBorderStyle,
         tabBorderStyle: dplTabBorderStyle,
         mobBorderStyle: dplMobBorderStyle,
@@ -696,10 +675,6 @@ const Style = ({ props }) => {
             ${nameColor ? `color: ${nameColor};` : ''}
 		}
 
-        .${uniqueId} .zolo-name.has-link:hover {
-			color: ${nameHoverColor} !important;
-		}
-
 		.${uniqueId} .zolo-designation {
 			${designationColor ? `color: ${designationColor};` : ''}
 			${designationTypoDesk}
@@ -746,8 +721,7 @@ const Style = ({ props }) => {
 			${dplDeskBorderRadius}
 			${dplDeskPadding}
 			${dplDeskMargin}
-			${dplDeskHeight}
-			${dplDeskWidth}
+			
 		}
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn svg {
@@ -869,8 +843,6 @@ const Style = ({ props }) => {
             ${dplTabBorderRadius}
             ${dplTabPadding}
             ${dplTabMargin}
-            ${dplTabHeight}
-            ${dplTabWidth}
             ${dplTabSize}
         }
 
@@ -986,8 +958,6 @@ const Style = ({ props }) => {
             ${dplMobBorderRadius}
             ${dplMobPadding}
             ${dplMobMargin}
-            ${dplMobHeight}
-            ${dplMobWidth}
             ${dplMobSize}
         }
 

@@ -18,26 +18,70 @@
 }
 
 .wp-block-zolo-profile-card {
+    --zolo-badge-padding: 7px 14px;
+    --zolo-badge-color: #f8f8f8;
+    --zolo-badge-border-width: 1px;
+    --zolo-badge-border-style: solid;
+    --zolo-badge-border-color: #cccccc;
+    --zolo-name-margin: 0 0 5px;
+    --zolo-name-color: var(--color2);
+    --zolo-bio-margin: 15px 0;
+    --zolo-status-gap: 15px;
+    --zolo-status-margin: 0 0 20px;
+    --zolo-status-count-color: var(--color2);
+    --zolo-status-text-color: var(--color7);
+    --zolo-fllow-btn-color: var(--color8);
+    --zolo-fllow-btn-padding: 8px 23px;
+    --zolo-fllow-btn-margin: 0 0 20px;
+    --zolo-fllow-btn-border-width: 1px;
+    --zolo-fllow-btn-border-style: solid;
+    --zolo-fllow-btn-border-color: rgba(189, 189, 189, 0.541);
+    --zolo-social-share-color: #000;
+    --zolo-share-gap: 10px;
+    --zolo-share-width: 35px;
+    --zolo-share-height: 35px;
+    --zolo-share-border-width: 1px;
+    --zolo-share-border-style: solid;
+    --zolo-share-border-color: rgba(189, 189, 189, 0.541);
+    --zolo-share-icon-color: #000;
+    --zolo-share-icon-size: 16px;
+    --zolo-profile-info-margin: 15px 0 0;
+    --zolo-profile-head-content-padding: 30px 30px 100px;
+    --zolo-profile-bottom-content-padding: 0 20px 40px;
+    --zolo-profile-bottom-content-margin: -30px 0 0;
+    --zolo-profile-bottom-content-border-radius: 30px 30px var(--zolo-item-border-radius) var(--zolo-item-border-radius);
+    --zolo-profile-bottom-content-border-width: 1px;
+    --zolo-profile-bottom-content-border-style: solid;
+    --zolo-profile-bottom-content-border-color: var(--zoloblocks-item-border-color);
+    --zolo-profile-img-margin: -40px 0 0;
+    --zolo-profile-img-width: 80px;
+    --zolo-profile-img-height: 80px;
+    --zolo-profile-img-border-width: 6px;
+    --zolo-profile-img-border-color: var(--background4);
+    --zolo-profile-img-border-style: solid;
+
     box-sizing: border-box;
     overflow: hidden;
     .zb-profile-badge {
-        padding: 7px 14px;
+        padding: var(--zolo-badge-padding);
         font-size: 11px;
         border-radius: var(--zoloblocks-button-border-radius);
-        color: #f8f8f8;
+        color: var(--zolo-badge-color);
         font-weight: 700;
         display: inline-block;
         text-transform: uppercase;
-        border: 1px solid #cccccc;
+        border-width: var(--zolo-badge-border-width);
+        border-style: var(--zolo-badge-border-style);
+        border-color: var(--zolo-badge-border-color);
         line-height: 1;
     }
 
     .zb-profile-name {
         font-size: 28px;
-        color: var(--color2);
+        color: var(--zolo-name-color);
         font-weight: 700;
         text-decoration: none;
-        margin: 0 0 5px;
+        margin: var(--zolo-name-margin);
         display: inline-block;
         transition: color 0.3s ease;
     }
@@ -51,7 +95,7 @@
     }
 
     .zb-profile-card-bio {
-        margin: 15px 0;
+        margin: var(--zolo-bio-margin);
         strong {
             color: var(--color6);
         }
@@ -61,8 +105,8 @@
     }
 
     .zb-profile-status {
-        gap: 15px;
-        margin: 0 0 20px;
+        gap: var(--zolo-status-gap);
+        margin: var(--zolo-status-margin);
     }
 
     .zb-profile-status,
@@ -81,27 +125,29 @@
     .zb-profile-status-count {
         font-weight: 700;
         font-size: 22px;
-        color: var(--color2);
+        color: var(--zolo-status-count-color);
     }
 
     .zb-profile-status-text {
-        color: var(--color7);
+        color: var(--zolo-status-text-color);
         font-size: 14px;
         text-transform: capitalize;
     }
 
     .zb-profile-fllow-btn {
         font-size: 12px;
-        color: var(--color8);
-        border: 1px solid rgba(189, 189, 189, 0.541);
+        color: var(--zolo-fllow-btn-color);
+        border-width: var(--zolo-fllow-btn-border-width);
+        border-style: var(--zolo-fllow-btn-border-style);
+        border-color: var(--zolo-fllow-btn-border-color);
         text-transform: capitalize;
         text-decoration: none;
         display: inline-block;
         font-weight: 700;
-        padding: 8px 23px;
+        padding: var(--zolo-fllow-btn-padding);
         border-radius: var(--zoloblocks-button-border-radius);
         transition: all 0.3s ease;
-        margin: 0 0 20px;
+        margin: var(--zolo-fllow-btn-margin);
         &:hover {
             color: var(--zoloblocks-brand-button-color);
             border-color: var(--zoloblocks-brand-color);
@@ -109,14 +155,16 @@
         }
     }
     .zb-profile-socail-share {
-        gap: 10px;
+        gap: var(--zolo-share-gap);
         a {
-            border: 1px solid rgba(189, 189, 189, 0.541);
+            border-width: var(--zolo-share-border-width);
+            border-style: var(--zolo-share-border-style);
+            border-color: var(--zolo-share-border-color);
             border-radius: var(--zoloblocks-button-border-radius);
-            color: #000;
+            color: var(--zolo-social-share-color);
             transition: all 0.3s ease;
-            width: 35px;
-            height: 35px;
+            width: var(--zolo-share-width);
+            height: var(--zolo-share-height);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -131,16 +179,16 @@
                 }
             }
             svg {
-                width: 16px;
-                height: 16px;
-                fill: #000;
+                width: var(--zolo-share-icon-size);
+                height: var(--zolo-share-icon-size);
+                fill: var(--zolo-share-icon-color);
                 display: block;
             }
         }
     }
 
     .zb-profile-info {
-        margin-top: 15px;
+        margin: var(--zolo-profile-info-margin);
     }
 
     .zb-profile-item {
@@ -149,32 +197,36 @@
 
     .zb-profile-header-content {
         border-radius: var(--zolo-item-border-radius) var(--zolo-item-border-radius) 0 0;
-        padding: 30px 30px 100px;
+        padding: var(--zolo-profile-head-content-padding);
         box-sizing: border-box;
         background-color: var(--zoloblocks-brand-color);
     }
 
     .zb-profile-bottom-content {
-        margin-top: -30px;
+        margin: var(--zolo-profile-bottom-content-margin);
         background-color: var(--zoloblocks-item-bg-color);
-        border: 1px solid var(--zoloblocks-item-border-color);
-        border-radius: 30px 30px var(--zolo-item-border-radius) var(--zolo-item-border-radius);
+        border-width: var(--zolo-profile-bottom-content-border-width);
+        border-style: var(--zolo-profile-bottom-content-border-style);
+        border-color: var(--zolo-profile-bottom-content-border-color);
+        border-radius: var(--zolo-profile-bottom-content-border-radius);
         display: flex;
         flex-direction: column;
         text-align: center;
         box-sizing: border-box;
-        padding: 0 20px 40px;
+        padding: var(--zolo-profile-bottom-content-padding);
     }
 
     .zb-profile-image {
-        margin-top: -40px;
+        margin: var(--zolo-profile-img-margin);
         img {
-            width: 80px;
-            height: 80px;
+            width: var(--zolo-profile-img-width);
+            height: var(--zolo-profile-img-height);
             display: block;
             border-radius: var(--zolo-item-border-radius);
             margin: auto;
-            border: 6px solid var(--background4);
+            border-width: var(--zolo-profile-img-border-width);
+            border-color: var(--zolo-profile-img-border-color);
+            border-style: var(--zolo-profile-img-border-style);
         }
     }
 }

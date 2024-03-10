@@ -50,7 +50,7 @@ return apply_filters('zolo_blocks_list_data', [
         'name'             => 'form',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/form/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
-        'frontend-scripts' => false
+        'frontend-scripts' => ['zolo-form-frontend', 'zolo-block-editor-dependency']
     ],
     'post-carousel' => [
         'name'             => 'post-carousel',
@@ -223,5 +223,16 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
-
+    'email' => [
+        'name'             => 'email',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/email/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
+    'textarea' => [
+        'name'             => 'textarea',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/textarea/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
 ]);

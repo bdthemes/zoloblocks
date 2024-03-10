@@ -2,6 +2,12 @@
     position: relative;
     box-sizing: border-box;
 
+    &.default {
+       .swiper {
+         padding: 50px 0 0 ;
+       }
+    }
+
     .swiper-pagination-bullet {
         margin: 0 !important;
     }
@@ -12,7 +18,7 @@
         justify-content: center;
         gap: 12px;
         z-index: 11;
-        bottom: 30px !important;
+        bottom: -50px !important;
         .swiper-pagination-bullet {
             background-color: transparent;
             width: 8px;

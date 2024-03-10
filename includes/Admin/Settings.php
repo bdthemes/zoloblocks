@@ -102,6 +102,7 @@ class Zolo_Settings {
                 'sanitize_callback' => NULL,
             ]
         );
+        
     }
 
     // Update settings on plugin activation

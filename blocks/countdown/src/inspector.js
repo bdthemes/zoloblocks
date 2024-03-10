@@ -23,6 +23,7 @@ const {
     ResGapControl,
     NormalBGControl,
     IconicBtnGroup,
+    OverflowControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -73,6 +74,7 @@ function Inspector(props) {
         toggleSeparator,
         layout,
         separatorItem,
+        overflow,
     } = attributes;
 
     const requiredProps = {
@@ -401,13 +403,19 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     alignOptions={DEFAULT_ALIGNS}
                                 />
+                                <OverflowControl
+                                    label={__('Overflow', 'zolo-blocks')}
+                                    value={overflow}
+                                    onChange={(v) => setAttributes({ overflow: v })}
+                                />
                                 {layout == 'flex' && (
-                                    <ResDimensionsControl
+                                    <ResRangeControl
                                         label={__('Box Size', 'zolo-blocks')}
                                         controlName={COUNT_BOX_SIZE}
                                         requiredProps={requiredProps}
-                                        forBorderRadius={false}
+                                        min={1}
                                         max={200}
+                                        step={1}
                                     />
                                 )}
 
