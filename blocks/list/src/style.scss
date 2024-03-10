@@ -48,16 +48,11 @@
         }
     }
 
-    .zolo-list-icon,
-    .zolo-list-icon svg,
-    .zolo-list-hover-icon svg {
-        width: 1em;
-        height: 1em;
-    }
-
     .zolo-list-icon svg,
     .zolo-list-hover-icon svg {
         display: block;
+        width: 1em;
+        height: 1em;
     }
 
     .zolo-list-item:hover .zolo-list-icon {
