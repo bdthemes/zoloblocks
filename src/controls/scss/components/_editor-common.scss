@@ -184,7 +184,7 @@
     }
 
     .components-button {
-        &[aria-label='Preview'] {
+        &.zolo-action-button {
             width: 100%;
             display: flex;
             align-items: center;
