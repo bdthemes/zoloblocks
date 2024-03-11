@@ -24,7 +24,7 @@ import TabPanelControl from '../../controls/tabpanel-control';
 import ResRangeControl from '../../controls/res-range-control';
 import ResAlignmentControl from '../../controls/res-alignment-control';
 
-import { DEFAULT_ALIGNS, DEFAULT_ALIGNS_VERTICAL } from '../constants';
+import { DEFAULT_ALIGNS, DEFAULT_ALIGNS_VERTICAL, ANIMATION_TYPES,TRANSFORM_ORIGINS, EASING_TYPES, TRANSLATE_ICON, ROTATE_ICON, SCALE_ICON, SKEW_ICON, OPACITY_ICON, FLIP_ICON } from '../constants';
 export const AdvancedOptions = (props) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const { attributes, setAttributes, requiredProps } = props;
@@ -505,29 +505,7 @@ export const AdvancedOptions = (props) => {
                         <SelectControl
                             label={__('Animation Type', 'zolo-blocks')}
                             value={entranceAnimation.presetAnimation}
-                            options={[
-                                { label: 'Fade', value: 'fade' },
-                                // { label: 'Slide', value: 'slide' },
-                                // { label: 'Scale', value: 'scale' },
-                                // { label: 'Rotate', value: 'rotate' },
-                                // { label: 'Flip', value: 'flip' },
-                                // { label: 'Zoom', value: 'zoom' },
-                                { label: 'Scale Up', value: 'scaleUp' },
-                                { label: 'Scale Down', value: 'scaleDown' },
-                                { label: 'Top', value: 'top' },
-                                { label: 'Right', value: 'right' },
-                                { label: 'Bottom', value: 'bottom' },
-                                { label: 'Left', value: 'left' },
-                                { label: 'Top Small', value: 'topSmall' },
-                                { label: 'Right Small', value: 'rightSmall' },
-                                { label: 'Bottom Small', value: 'bottomSmall' },
-                                { label: 'Left Small', value: 'leftSmall' },
-                                { label: 'Top Medium', value: 'topMedium' },
-                                { label: 'Right Medium', value: 'rightMedium' },
-                                { label: 'Bottom Medium', value: 'bottomMedium' },
-                                { label: 'Left Medium', value: 'leftMedium' },
-                                { label: 'Custom (Pro)', value: 'custom', disabled: true },
-                            ]}
+                            options={ANIMATION_TYPES}
                             onChange={(value) => {
                                 setAttributes({
                                     entranceAnimation: {
@@ -560,52 +538,7 @@ export const AdvancedOptions = (props) => {
 
                                 <PopoverControl
                                     label={__('Translate', 'zolo-blocks')}
-                                    icon={
-                                        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M18.5818 15.3211L22 11.9184L18.5818 8.58813"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M5.41818 15.3211L2 11.9184L5.41818 8.58813"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M2.35461 11.9548H21.6455"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M15.3818 5.4027L11.9636 2L8.61816 5.4027"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M8.61816 18.5974L12.0363 22.0001L15.3818 18.5974"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M12 2.35278V21.2396"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                    }
+                                    icon={TRANSLATE_ICON}
                                 >
                                     <SimpleRangeControl
                                         label={__('Translate X', 'zolo-blocks')}
@@ -736,38 +669,7 @@ export const AdvancedOptions = (props) => {
                                 </PopoverControl>
                                 <PopoverControl
                                     label={__('Rotate', 'zolo-blocks')}
-                                    icon={
-                                        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M21.4401 8.67C19.7801 4.22 15.9301 2 12.0001 2C6.85006 2 2.61006 5.89 2.06006 10.89"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M21.9401 13.1201C21.3901 18.1201 17.1501 22.0001 12.0001 22.0001C8.08006 22.0001 4.22006 19.7801 2.56006 15.3301"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M22.0001 2.21997V8.66997H15.5601"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M2 21.7801V15.3301H8.44"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                    }
+                                    icon={ROTATE_ICON}
                                 >
                                     <SimpleRangeControl
                                         label={__('Rotate X', 'zolo-blocks')}
@@ -862,19 +764,7 @@ export const AdvancedOptions = (props) => {
                                     <SelectControl
                                         label={__('Transform Origin', 'zolo-blocks')}
                                         value={entranceAnimation.transformOrigin}
-                                        options={[
-                                            { label: __('Top'), value: 'top' },
-                                            { label: __('Right'), value: 'right' },
-                                            { label: __('Bottom'), value: 'bottom' },
-                                            { label: __('Left'), value: 'left' },
-                                            { label: __('Center'), value: 'center' },
-                                            { label: __('Initial'), value: 'initial' },
-                                            { label: __('Inherit'), value: 'inherit' },
-                                            { label: __('Revert'), value: 'revert' },
-                                            { label: __('Unset'), value: 'unset' },
-                                            { label: __('Revert Layer'), value: 'revert-layer' },
-                                            { label: 'Custom', value: 'custom' },
-                                        ]}
+                                        options={TRANSFORM_ORIGINS}
                                         onChange={(value) => {
                                             setAttributes({
                                                 entranceAnimation: {
@@ -887,38 +777,7 @@ export const AdvancedOptions = (props) => {
                                 </PopoverControl>
                                 <PopoverControl
                                     label={__('Scale', 'zolo-blocks')}
-                                    icon={
-                                        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M21.9999 8.16V2L15.8799 2.07"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M16.2598 13.8798H10.0798L10.1398 7.78979"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M10.4299 13.5898L21.7299 2.30981"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M20.62 13.88V19.97C20.62 21.09 19.71 22 18.58 22H4.04C2.91 22 2 21.09 2 19.97V5.47995C2 4.35995 2.91 3.44995 4.04 3.44995H9.64"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                    }
+                                    icon={SCALE_ICON}
                                 >
                                     <SimpleRangeControl
                                         label={__('Scale X', 'zolo-blocks')}
@@ -1026,19 +885,7 @@ export const AdvancedOptions = (props) => {
                                 </PopoverControl>
                                 <PopoverControl
                                     label={__('Skew', 'zolo-blocks')}
-                                    icon={
-                                        <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                fillRule="evenodd"
-                                                clipRule="evenodd"
-                                                d="M22 4H7.74545L2 20H16.2545L22 4Z"
-                                                stroke="#4D4D4D"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                    }
+                                    icon={SKEW_ICON}
                                 >
                                     <SimpleRangeControl
                                         label={__('Skew X', 'zolo-blocks')}
@@ -1165,12 +1012,7 @@ export const AdvancedOptions = (props) => {
                                 <SelectControl
                                     label={__('Easing Type', 'zolo-blocks')}
                                     value={entranceAnimation.easing}
-                                    options={[
-                                        { label: __('Ease Out', 'zolo-blocks'), value: 'ease-out' },
-                                        { label: __('Ease In Out', 'zolo-blocks'), value: 'ease-in-out' },
-                                        { label: __('Linear', 'zolo-blocks'), value: 'linear' },
-                                        { label: __('Custom', 'zolo-blocks'), value: 'custom' },
-                                    ]}
+                                    options={EASING_TYPES}
                                     onChange={(value) => {
                                         setAttributes({
                                             entranceAnimation: {
@@ -1283,52 +1125,7 @@ export const AdvancedOptions = (props) => {
                     <>
                         <PopoverControl
                             label={__('Translate', 'zolo-blocks')}
-                            icon={
-                                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M18.5818 15.3211L22 11.9184L18.5818 8.58813"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M5.41818 15.3211L2 11.9184L5.41818 8.58813"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M2.35461 11.9548H21.6455"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M15.3818 5.4027L11.9636 2L8.61816 5.4027"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M8.61816 18.5974L12.0363 22.0001L15.3818 18.5974"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M12 2.35278V21.2396"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            }
+                            icon={TRANSLATE_ICON}
                         >
                             <MultiRangeControl
                                 label={__('Translate X', 'zolo-blocks')}
@@ -1375,38 +1172,7 @@ export const AdvancedOptions = (props) => {
                         </PopoverControl>
                         <PopoverControl
                             label={__('Rotate', 'zolo-blocks')}
-                            icon={
-                                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M21.4401 8.67C19.7801 4.22 15.9301 2 12.0001 2C6.85006 2 2.61006 5.89 2.06006 10.89"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M21.9401 13.1201C21.3901 18.1201 17.1501 22.0001 12.0001 22.0001C8.08006 22.0001 4.22006 19.7801 2.56006 15.3301"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M22.0001 2.21997V8.66997H15.5601"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M2 21.7801V15.3301H8.44"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            }
+                            icon={ROTATE_ICON}
                         >
                             <MultiRangeControl
                                 label={__('Rotate X', 'zolo-blocks')}
@@ -1474,38 +1240,7 @@ export const AdvancedOptions = (props) => {
                         </PopoverControl>
                         <PopoverControl
                             label={__('Scale', 'zolo-blocks')}
-                            icon={
-                                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M21.9999 8.16V2L15.8799 2.07"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M16.2598 13.8798H10.0798L10.1398 7.78979"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M10.4299 13.5898L21.7299 2.30981"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M20.62 13.88V19.97C20.62 21.09 19.71 22 18.58 22H4.04C2.91 22 2 21.09 2 19.97V5.47995C2 4.35995 2.91 3.44995 4.04 3.44995H9.64"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            }
+                            icon={SCALE_ICON}
                         >
                             <MultiRangeControl
                                 label={__('Scale X', 'zolo-blocks')}
@@ -1573,19 +1308,7 @@ export const AdvancedOptions = (props) => {
                         </PopoverControl>
                         <PopoverControl
                             label={__('Skew', 'zolo-blocks')}
-                            icon={
-                                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        fillRule="evenodd"
-                                        clipRule="evenodd"
-                                        d="M22 4H7.74545L2 20H16.2545L22 4Z"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            }
+                            icon={SKEW_ICON}
                         >
                             <MultiRangeControl
                                 label={__('Skew X', 'zolo-blocks')}
@@ -1632,38 +1355,7 @@ export const AdvancedOptions = (props) => {
                         </PopoverControl>
                         <PopoverControl
                             label={__('Opacity', 'zolo-blocks')}
-                            icon={
-                                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M21.4401 8.67C19.7801 4.22 15.9301 2 12.0001 2C6.85006 2 2.61006 5.89 2.06006 10.89"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M21.9401 13.1201C21.3901 18.1201 17.1501 22.0001 12.0001 22.0001C8.08006 22.0001 4.22006 19.7801 2.56006 15.3301"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M22.0001 2.21997V8.66997H15.5601"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M2 21.7801V15.3301H8.44"
-                                        stroke="#4D4D4D"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            }
+                            icon={OPACITY_ICON}
                         >
                             <MultiRangeControl
                                 label={__('Opacity', 'zolo-blocks')}
@@ -1690,12 +1382,7 @@ export const AdvancedOptions = (props) => {
                         <SelectControl
                             label={__('Easing Type', 'zolo-blocks')}
                             value={floatingAnimation.easing}
-                            options={[
-                                { label: __('Ease Out', 'zolo-blocks'), value: 'ease-out' },
-                                { label: __('Ease In Out', 'zolo-blocks'), value: 'ease-in-out' },
-                                { label: __('Linear', 'zolo-blocks'), value: 'linear' },
-                                { label: __('Custom', 'zolo-blocks'), value: 'custom' },
-                            ]}
+                            options={EASING_TYPES}
                             onChange={(value) => {
                                 setAttributes({
                                     floatingAnimation: {
@@ -1784,52 +1471,7 @@ export const AdvancedOptions = (props) => {
                         <>
                             <PopoverControl
                                 label={__('Translate', 'zolo-blocks')}
-                                icon={
-                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M18.5818 15.3211L22 11.9184L18.5818 8.58813"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M5.41818 15.3211L2 11.9184L5.41818 8.58813"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M2.35461 11.9548H21.6455"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M15.3818 5.4027L11.9636 2L8.61816 5.4027"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M8.61816 18.5974L12.0363 22.0001L15.3818 18.5974"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M12 2.35278V21.2396"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                }
+                                icon={TRANSLATE_ICON}
                             >
                                 <ResRangeControl
                                     label={__('translateX', 'zolo-blocks')}
@@ -1856,38 +1498,7 @@ export const AdvancedOptions = (props) => {
                             </PopoverControl>
                             <PopoverControl
                                 label={__('Rotate', 'zolo-blocks')}
-                                icon={
-                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M21.4401 8.67C19.7801 4.22 15.9301 2 12.0001 2C6.85006 2 2.61006 5.89 2.06006 10.89"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M21.9401 13.1201C21.3901 18.1201 17.1501 22.0001 12.0001 22.0001C8.08006 22.0001 4.22006 19.7801 2.56006 15.3301"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M22.0001 2.21997V8.66997H15.5601"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M2 21.7801V15.3301H8.44"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                }
+                                icon={ROTATE_ICON}
                             >
                                 <ResRangeControl
                                     label={__('Rotate', 'zolo-blocks')}
@@ -1937,38 +1548,7 @@ export const AdvancedOptions = (props) => {
                             </PopoverControl>
                             <PopoverControl
                                 label={__('Scale', 'zolo-blocks')}
-                                icon={
-                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M21.9999 8.16V2L15.8799 2.07"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M16.2598 13.8798H10.0798L10.1398 7.78979"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M10.4299 13.5898L21.7299 2.30981"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M20.62 13.88V19.97C20.62 21.09 19.71 22 18.58 22H4.04C2.91 22 2 21.09 2 19.97V5.47995C2 4.35995 2.91 3.44995 4.04 3.44995H9.64"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                }
+                                icon={SCALE_ICON}
                             >
                                 <ToggleControl
                                     label={__('Keep Proportions', 'zolo-blocks')}
@@ -2017,19 +1597,7 @@ export const AdvancedOptions = (props) => {
                             </PopoverControl>
                             <PopoverControl
                                 label={__('Skew', 'zolo-blocks')}
-                                icon={
-                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            fillRule="evenodd"
-                                            clipRule="evenodd"
-                                            d="M22 4H7.74545L2 20H16.2545L22 4Z"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                }
+                                icon={SKEW_ICON}
                             >
                                 <ResRangeControl
                                     label={__('SkewX (deg)', 'zolo-blocks')}
@@ -2050,19 +1618,7 @@ export const AdvancedOptions = (props) => {
                             </PopoverControl>
                             <PopoverControl
                                 label={__('Flip', 'zolo-blocks')}
-                                icon={
-                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            fillRule="evenodd"
-                                            clipRule="evenodd"
-                                            d="M22 4H7.74545L2 20H16.2545L22 4Z"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                }
+                                icon={FLIP_ICON}
                             >
                                 <ToggleControl
                                     label={__('Flip Horizontal', 'zolo-blocks')}
@@ -2105,52 +1661,7 @@ export const AdvancedOptions = (props) => {
                         <>
                             <PopoverControl
                                 label={__('Translate', 'zolo-blocks')}
-                                icon={
-                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M18.5818 15.3211L22 11.9184L18.5818 8.58813"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M5.41818 15.3211L2 11.9184L5.41818 8.58813"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M2.35461 11.9548H21.6455"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M15.3818 5.4027L11.9636 2L8.61816 5.4027"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M8.61816 18.5974L12.0363 22.0001L15.3818 18.5974"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M12 2.35278V21.2396"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                }
+                                icon={TRANSLATE_ICON}
                             >
                                 <ResRangeControl
                                     label={__('translateX', 'zolo-blocks')}
@@ -2177,38 +1688,7 @@ export const AdvancedOptions = (props) => {
                             </PopoverControl>
                             <PopoverControl
                                 label={__('Rotate', 'zolo-blocks')}
-                                icon={
-                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M21.4401 8.67C19.7801 4.22 15.9301 2 12.0001 2C6.85006 2 2.61006 5.89 2.06006 10.89"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M21.9401 13.1201C21.3901 18.1201 17.1501 22.0001 12.0001 22.0001C8.08006 22.0001 4.22006 19.7801 2.56006 15.3301"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M22.0001 2.21997V8.66997H15.5601"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M2 21.7801V15.3301H8.44"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                }
+                                icon={ROTATE_ICON}
                             >
                                 <ResRangeControl
                                     label={__('Rotate', 'zolo-blocks')}
@@ -2258,38 +1738,7 @@ export const AdvancedOptions = (props) => {
                             </PopoverControl>
                             <PopoverControl
                                 label={__('Scale', 'zolo-blocks')}
-                                icon={
-                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M21.9999 8.16V2L15.8799 2.07"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M16.2598 13.8798H10.0798L10.1398 7.78979"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M10.4299 13.5898L21.7299 2.30981"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M20.62 13.88V19.97C20.62 21.09 19.71 22 18.58 22H4.04C2.91 22 2 21.09 2 19.97V5.47995C2 4.35995 2.91 3.44995 4.04 3.44995H9.64"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                }
+                                icon={SCALE_ICON}
                             >
                                 <ToggleControl
                                     label={__('Keep Proportions', 'zolo-blocks')}
@@ -2338,19 +1787,7 @@ export const AdvancedOptions = (props) => {
                             </PopoverControl>
                             <PopoverControl
                                 label={__('Skew', 'zolo-blocks')}
-                                icon={
-                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            fillRule="evenodd"
-                                            clipRule="evenodd"
-                                            d="M22 4H7.74545L2 20H16.2545L22 4Z"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                }
+                                icon={SKEW_ICON}
                             >
                                 <ResRangeControl
                                     label={__('SkewX (deg)', 'zolo-blocks')}
@@ -2371,19 +1808,7 @@ export const AdvancedOptions = (props) => {
                             </PopoverControl>
                             <PopoverControl
                                 label={__('Flip', 'zolo-blocks')}
-                                icon={
-                                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            fillRule="evenodd"
-                                            clipRule="evenodd"
-                                            d="M22 4H7.74545L2 20H16.2545L22 4Z"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                }
+                                icon={FLIP_ICON}
                             >
                                 <ToggleControl
                                     label={__('Flip Horizontal', 'zolo-blocks')}
