@@ -4,7 +4,12 @@
 import { __ } from '@wordpress/i18n';
 import { animate, timeline } from 'motion';
 import { SelectControl, ToggleControl, TextControl, Button, FormTokenField } from '@wordpress/components';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+console.log('gsap', gsap);
+gsap.registerPlugin(useGSAP);
 
 /**
  * Internal dependencies
@@ -24,7 +29,19 @@ import TabPanelControl from '../../controls/tabpanel-control';
 import ResRangeControl from '../../controls/res-range-control';
 import ResAlignmentControl from '../../controls/res-alignment-control';
 
-import { DEFAULT_ALIGNS, DEFAULT_ALIGNS_VERTICAL, ANIMATION_TYPES,TRANSFORM_ORIGINS, EASING_TYPES, TRANSLATE_ICON, ROTATE_ICON, SCALE_ICON, SKEW_ICON, OPACITY_ICON, FLIP_ICON } from '../constants';
+import {
+    DEFAULT_ALIGNS,
+    DEFAULT_ALIGNS_VERTICAL,
+    ANIMATION_TYPES,
+    TRANSFORM_ORIGINS,
+    EASING_TYPES,
+    TRANSLATE_ICON,
+    ROTATE_ICON,
+    SCALE_ICON,
+    SKEW_ICON,
+    OPACITY_ICON,
+    FLIP_ICON,
+} from '../constants';
 export const AdvancedOptions = (props) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const { attributes, setAttributes, requiredProps } = props;
@@ -53,166 +70,162 @@ export const AdvancedOptions = (props) => {
     } = attributes;
 
     const handleEntranceAnimation = () => {
+        const tl = gsap.timeline();
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
+        const transformOptions = {};
 
-        let transformOptions = [];
         if (entranceAnimation.translateX.value !== 0) {
-            transformOptions.push(`translateX(${entranceAnimation.translateX.value}${entranceAnimation.translateX.unit})`);
+            const xKey = entranceAnimation.translateX.unit === 'px' ? 'x' : 'xPercent';
+            transformOptions[xKey] = entranceAnimation.translateX.value;
         }
         if (entranceAnimation.translateY.value !== 0) {
-            transformOptions.push(`translateY(${entranceAnimation.translateY.value}${entranceAnimation.translateY.unit})`);
+            const yKey = entranceAnimation.translateY.unit === 'px' ? 'y' : 'yPercent';
+            transformOptions[yKey] = entranceAnimation.translateY.value;
         }
         if (entranceAnimation.translateZ.value !== 0) {
-            transformOptions.push(`translateZ(${entranceAnimation.translateZ.value}${entranceAnimation.translateZ.unit})`);
+            const zKey = entranceAnimation.translateZ.unit === 'px' ? 'z' : 'zPercent';
+            transformOptions[zKey] = entranceAnimation.translateZ.value;
         }
+
+        // ROTATION
         if (entranceAnimation.rotateX.value !== 0) {
-            transformOptions.push(`rotateX(${entranceAnimation.rotateX.value}deg)`);
+            transformOptions.rotationX = entranceAnimation.rotateX.value;
         }
         if (entranceAnimation.rotateY.value !== 0) {
-            transformOptions.push(`rotateY(${entranceAnimation.rotateY.value}deg)`);
+            transformOptions.rotationY = entranceAnimation.rotateY.value;
         }
         if (entranceAnimation.rotateZ.value !== 0) {
-            transformOptions.push(`rotateZ(${entranceAnimation.rotateZ.value}deg)`);
+            transformOptions.rotationZ = entranceAnimation.rotateZ.value;
         }
+        // SCALE
         if (entranceAnimation.scaleX.value !== 0) {
-            transformOptions.push(`scaleX(${entranceAnimation.scaleX.value})`);
+            transformOptions.scaleX = entranceAnimation.scaleX.value;
         }
         if (entranceAnimation.scaleY.value !== 0) {
-            transformOptions.push(`scaleY(${entranceAnimation.scaleY.value})`);
+            transformOptions.scaleY = entranceAnimation.scaleY.value;
         }
         if (entranceAnimation.scaleZ.value !== 0) {
-            transformOptions.push(`scaleZ(${entranceAnimation.scaleZ.value})`);
+            transformOptions.scale = entranceAnimation.scaleZ.value;
         }
+        // SKEW
         if (entranceAnimation.skewX.value !== 0) {
-            transformOptions.push(`skewX(${entranceAnimation.skewX.value}deg)`);
+            transformOptions.skewX = entranceAnimation.skewX.value;
         }
         if (entranceAnimation.skewY.value !== 0) {
-            transformOptions.push(`skewY(${entranceAnimation.skewY.value}deg)`);
+            transformOptions.skewY = entranceAnimation.skewY.value;
+        }
+        // ADDITIONAL
+        if (entranceAnimation.perspective !== 0) {
+            transformOptions.transformPerspective = entranceAnimation.perspective;
+        }
+        if (entranceAnimation.opacity !== 0) {
+            transformOptions.opacity = entranceAnimation.opacity;
+        }
+        if (entranceAnimation.duration !== 0) {
+            transformOptions.duration = entranceAnimation.duration / 1000;
         }
 
-        const otherOptions = {};
-        if (entranceAnimation.duration) {
-            otherOptions.duration = entranceAnimation.duration / 1000;
-        }
-        if (entranceAnimation.delay) {
-            otherOptions.delay = entranceAnimation.delay / 1000;
-        }
-        if (entranceAnimation.direction) {
-            otherOptions.direction = entranceAnimation.direction;
-        }
-        if (entranceAnimation.repeat === true) {
-            otherOptions.repeat = Infinity;
-        }
-        if (entranceAnimation.perspective !== 0) {
-            otherOptions.perspective = entranceAnimation.perspective;
+        if (entranceAnimation.delay !== 0) {
+            transformOptions.delay = entranceAnimation.delay / 1000;
         }
         if (entranceAnimation.easing !== 'custom') {
-            otherOptions.easing = entranceAnimation.easing;
+            transformOptions.ease = entranceAnimation.easing;
         } else {
-            otherOptions.easing = [entranceAnimation.easingCustom.split(';')[0]];
+            transformOptions.ease = entranceAnimation.easingCustom.split(';')[0];
         }
-        // array to string
-        const transformOptionsion = transformOptions.join('');
 
-        const options = {
-            transform: [transformOptionsion, 'none'],
-            opacity: [entranceAnimation.opacity ? entranceAnimation.opacity : 0, 1],
-            transformOrigin: entranceAnimation.transformOrigin,
-        };
-
-        if (entranceAnimation.perspective !== 0) {
-            options.perspective = [`${entranceAnimation.perspective}px`, 'none'];
-            options.transformStyle = 'preserve-3d';
-        }
+        // gsap.set(targetElement, { opacity: 0 });
 
         if (entranceAnimation.presetAnimation === 'custom') {
-            animate(targetElement, options, otherOptions);
+            tl.fromTo( targetElement,{ opacity: 0,},{...transformOptions});
+            // tl.to(targetElement, {
+            //     ...transformOptions,
+            // });
         } else {
             const presetAnimations = {
                 fade: {
-                    transform: ['none', 'none'],
-                    opacity: [0, 1],
+                    opacity: 1,
                 },
                 slide: {
-                    transform: ['translateX(100%)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: 100,
+                    opacity: 1,
                 },
                 scale: {
-                    transform: ['scale(0)', 'none'],
-                    opacity: [0, 1],
+                    scale: 0,
+                    opacity: 1,
                 },
                 rotate: {
-                    transform: ['rotate(180deg)', 'none'],
-                    opacity: [0, 1],
+                    rotation: 180,
+                    opacity: 1,
                 },
                 flip: {
-                    transform: ['rotateY(180deg)', 'none'],
-                    opacity: [0, 1],
+                    rotationY: 180,
+                    opacity: 1,
                 },
                 zoom: {
-                    transform: ['scale(0)', 'none'],
-                    opacity: [0, 1],
+                    scale: 0,
+                    opacity: 1,
                 },
                 scaleUp: {
-                    transform: ['scale(0)', 'none'],
-                    opacity: [0, 1],
+                    scale: 1.5,
+                    opacity: 1,
                 },
                 scaleDown: {
-                    transform: ['scale(1.5)', 'none'],
-                    opacity: [0, 1],
+                    scale: 0.5,
+                    opacity: 1,
                 },
                 top: {
-                    transform: ['translateY(-100px)', 'none'],
-                    opacity: [0, 1],
+                    yPercent: -100,
+                    opacity: 1,
                 },
                 right: {
-                    transform: ['translateX(100px)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: 100,
+                    opacity: 1,
                 },
                 bottom: {
-                    transform: ['translateY(100px)', 'none'],
-                    opacity: [0, 1],
+                    yPercent: 100,
+                    opacity: 1,
                 },
                 left: {
-                    transform: ['translateX(-100px)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: -100,
+                    opacity: 1,
                 },
                 topSmall: {
-                    transform: ['translateY(-20px)', 'none'],
-                    opacity: [0, 1],
+                    yPercent: -20,
+                    opacity: 1,
                 },
                 rightSmall: {
-                    transform: ['translateX(20px)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: 20,
+                    opacity: 1,
                 },
-
                 bottomSmall: {
-                    transform: ['translateY(20px)', 'none'],
-                    opacity: [0, 1],
+                    yPercent: 20,
+                    opacity: 1,
                 },
                 leftSmall: {
-                    transform: ['translateX(-20px)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: -20,
+                    opacity: 1,
                 },
                 topMedium: {
-                    transform: ['translateY(-50px)', 'none'],
-                    opacity: [0, 1],
+                    yPercent: -50,
+                    opacity: 1,
                 },
                 rightMedium: {
-                    transform: ['translateX(50px)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: 50,
+                    opacity: 1,
                 },
                 bottomMedium: {
-                    transform: ['translateY(50px)', 'none'],
-                    opacity: [0, 1],
+                    yPercent: 50,
+                    opacity: 1,
                 },
                 leftMedium: {
-                    transform: ['translateX(-50px)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: -50,
+                    opacity: 1,
                 },
             };
             const presetAnimation = presetAnimations[entranceAnimation.presetAnimation];
-            animate(targetElement, presetAnimation, otherOptions);
+            tl.fromTo(targetElement, { opacity: 0 }, { ...presetAnimation});
+            console.log('transformOptions', presetAnimation);
         }
     };
 
@@ -534,10 +547,7 @@ export const AdvancedOptions = (props) => {
                                     />
                                 )}
 
-                                <PopoverControl
-                                    label={__('Translate', 'zolo-blocks')}
-                                    icon={TRANSLATE_ICON}
-                                >
+                                <PopoverControl label={__('Translate', 'zolo-blocks')} icon={TRANSLATE_ICON}>
                                     <SimpleRangeControl
                                         label={__('Translate X', 'zolo-blocks')}
                                         onChange={(value) => {
@@ -665,10 +675,7 @@ export const AdvancedOptions = (props) => {
                                         noUnits={false}
                                     />
                                 </PopoverControl>
-                                <PopoverControl
-                                    label={__('Rotate', 'zolo-blocks')}
-                                    icon={ROTATE_ICON}
-                                >
+                                <PopoverControl label={__('Rotate', 'zolo-blocks')} icon={ROTATE_ICON}>
                                     <SimpleRangeControl
                                         label={__('Rotate X', 'zolo-blocks')}
                                         onChange={(value) => {
@@ -773,10 +780,7 @@ export const AdvancedOptions = (props) => {
                                         }}
                                     />
                                 </PopoverControl>
-                                <PopoverControl
-                                    label={__('Scale', 'zolo-blocks')}
-                                    icon={SCALE_ICON}
-                                >
+                                <PopoverControl label={__('Scale', 'zolo-blocks')} icon={SCALE_ICON}>
                                     <SimpleRangeControl
                                         label={__('Scale X', 'zolo-blocks')}
                                         onChange={(value) => {
@@ -881,10 +885,7 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                 </PopoverControl>
-                                <PopoverControl
-                                    label={__('Skew', 'zolo-blocks')}
-                                    icon={SKEW_ICON}
-                                >
+                                <PopoverControl label={__('Skew', 'zolo-blocks')} icon={SKEW_ICON}>
                                     <SimpleRangeControl
                                         label={__('Skew X', 'zolo-blocks')}
                                         onChange={(value) => {
@@ -1121,10 +1122,7 @@ export const AdvancedOptions = (props) => {
 
                 {floatingAnimationActive && (
                     <>
-                        <PopoverControl
-                            label={__('Translate', 'zolo-blocks')}
-                            icon={TRANSLATE_ICON}
-                        >
+                        <PopoverControl label={__('Translate', 'zolo-blocks')} icon={TRANSLATE_ICON}>
                             <MultiRangeControl
                                 label={__('Translate X', 'zolo-blocks')}
                                 min={-100}
@@ -1168,10 +1166,7 @@ export const AdvancedOptions = (props) => {
                                 }}
                             />
                         </PopoverControl>
-                        <PopoverControl
-                            label={__('Rotate', 'zolo-blocks')}
-                            icon={ROTATE_ICON}
-                        >
+                        <PopoverControl label={__('Rotate', 'zolo-blocks')} icon={ROTATE_ICON}>
                             <MultiRangeControl
                                 label={__('Rotate X', 'zolo-blocks')}
                                 min={-180}
@@ -1236,10 +1231,7 @@ export const AdvancedOptions = (props) => {
                                 }}
                             />
                         </PopoverControl>
-                        <PopoverControl
-                            label={__('Scale', 'zolo-blocks')}
-                            icon={SCALE_ICON}
-                        >
+                        <PopoverControl label={__('Scale', 'zolo-blocks')} icon={SCALE_ICON}>
                             <MultiRangeControl
                                 label={__('Scale X', 'zolo-blocks')}
                                 min={0}
@@ -1304,10 +1296,7 @@ export const AdvancedOptions = (props) => {
                                 }}
                             />
                         </PopoverControl>
-                        <PopoverControl
-                            label={__('Skew', 'zolo-blocks')}
-                            icon={SKEW_ICON}
-                        >
+                        <PopoverControl label={__('Skew', 'zolo-blocks')} icon={SKEW_ICON}>
                             <MultiRangeControl
                                 label={__('Skew X', 'zolo-blocks')}
                                 min={-180}
@@ -1351,10 +1340,7 @@ export const AdvancedOptions = (props) => {
                                 }}
                             />
                         </PopoverControl>
-                        <PopoverControl
-                            label={__('Opacity', 'zolo-blocks')}
-                            icon={OPACITY_ICON}
-                        >
+                        <PopoverControl label={__('Opacity', 'zolo-blocks')} icon={OPACITY_ICON}>
                             <MultiRangeControl
                                 label={__('Opacity', 'zolo-blocks')}
                                 min={0}
@@ -1467,10 +1453,7 @@ export const AdvancedOptions = (props) => {
                 <TabPanelControl
                     normalComponents={
                         <>
-                            <PopoverControl
-                                label={__('Translate', 'zolo-blocks')}
-                                icon={TRANSLATE_ICON}
-                            >
+                            <PopoverControl label={__('Translate', 'zolo-blocks')} icon={TRANSLATE_ICON}>
                                 <ResRangeControl
                                     label={__('translateX', 'zolo-blocks')}
                                     controlName={'translateX'}
@@ -1494,11 +1477,7 @@ export const AdvancedOptions = (props) => {
                                     ]}
                                 />
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Rotate', 'zolo-blocks')}
-                                icon={ROTATE_ICON}
-                                isPro={true}
-                            >
+                            <PopoverControl label={__('Rotate', 'zolo-blocks')} icon={ROTATE_ICON} isPro={true}>
                                 <ResRangeControl
                                     label={__('Rotate', 'zolo-blocks')}
                                     controlName={'transformRotate'}
@@ -1545,11 +1524,7 @@ export const AdvancedOptions = (props) => {
                                     </>
                                 )}
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Scale', 'zolo-blocks')}
-                                icon={SCALE_ICON}
-                                isPro={true}
-                            >
+                            <PopoverControl label={__('Scale', 'zolo-blocks')} icon={SCALE_ICON} isPro={true}>
                                 <ToggleControl
                                     label={__('Keep Proportions', 'zolo-blocks')}
                                     checked={scaleProportionally}
@@ -1595,11 +1570,7 @@ export const AdvancedOptions = (props) => {
                                     </>
                                 )}
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Skew', 'zolo-blocks')}
-                                icon={SKEW_ICON}
-                                isPro={true}
-                            >
+                            <PopoverControl label={__('Skew', 'zolo-blocks')} icon={SKEW_ICON} isPro={true}>
                                 <ResRangeControl
                                     label={__('SkewX (deg)', 'zolo-blocks')}
                                     controlName={'transformSkewX'}
@@ -1617,11 +1588,7 @@ export const AdvancedOptions = (props) => {
                                     noUnits={true}
                                 />
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Flip', 'zolo-blocks')}
-                                icon={FLIP_ICON}
-                                isPro={true}
-                            >
+                            <PopoverControl label={__('Flip', 'zolo-blocks')} icon={FLIP_ICON} isPro={true}>
                                 <ToggleControl
                                     label={__('Flip Horizontal', 'zolo-blocks')}
                                     checked={transformFlipHorizontal}
@@ -1661,10 +1628,7 @@ export const AdvancedOptions = (props) => {
                     }
                     hoverComponents={
                         <>
-                            <PopoverControl
-                                label={__('Translate', 'zolo-blocks')}
-                                icon={TRANSLATE_ICON}
-                            >
+                            <PopoverControl label={__('Translate', 'zolo-blocks')} icon={TRANSLATE_ICON}>
                                 <ResRangeControl
                                     label={__('translateX', 'zolo-blocks')}
                                     controlName={'translateXHover'}
@@ -1688,10 +1652,7 @@ export const AdvancedOptions = (props) => {
                                     ]}
                                 />
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Rotate', 'zolo-blocks')}
-                                icon={ROTATE_ICON}
-                            >
+                            <PopoverControl label={__('Rotate', 'zolo-blocks')} icon={ROTATE_ICON}>
                                 <ResRangeControl
                                     label={__('Rotate', 'zolo-blocks')}
                                     controlName={'transformRotateHover'}
@@ -1738,10 +1699,7 @@ export const AdvancedOptions = (props) => {
                                     </>
                                 )}
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Scale', 'zolo-blocks')}
-                                icon={SCALE_ICON}
-                            >
+                            <PopoverControl label={__('Scale', 'zolo-blocks')} icon={SCALE_ICON}>
                                 <ToggleControl
                                     label={__('Keep Proportions', 'zolo-blocks')}
                                     checked={scaleProportionallyHover}
@@ -1787,10 +1745,7 @@ export const AdvancedOptions = (props) => {
                                     </>
                                 )}
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Skew', 'zolo-blocks')}
-                                icon={SKEW_ICON}
-                            >
+                            <PopoverControl label={__('Skew', 'zolo-blocks')} icon={SKEW_ICON}>
                                 <ResRangeControl
                                     label={__('SkewX (deg)', 'zolo-blocks')}
                                     controlName={'transformSkewXHover'}
@@ -1808,10 +1763,7 @@ export const AdvancedOptions = (props) => {
                                     noUnits={true}
                                 />
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Flip', 'zolo-blocks')}
-                                icon={FLIP_ICON}
-                            >
+                            <PopoverControl label={__('Flip', 'zolo-blocks')} icon={FLIP_ICON}>
                                 <ToggleControl
                                     label={__('Flip Horizontal', 'zolo-blocks')}
                                     checked={transformFlipHorizontalHover}

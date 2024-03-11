@@ -241,7 +241,7 @@ function addAttributes(settings) {
                         value: 0,
                         unit: 'deg',
                     },
-                    opacity: 0,
+                    opacity: 1,
                     easing: 'ease-out',
                     easingCustom: '',
                     repeat: false,

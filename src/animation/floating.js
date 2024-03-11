@@ -103,12 +103,17 @@ document.addEventListener('DOMContentLoaded', function () {
             // find the class name that starts with 'parent-'
             const parentClass = Array.from(zoloBlockItemClasses).find((className) => className.startsWith('parent-'));
             const targetElement = document.querySelector(`.${parentClass}.zolo-floating-animation`);
-            if (targetElement) {
-                const floatingAnimation = JSON.parse(targetElement.dataset.floating);
-                inView(targetElement, () => {
-                    handleFloatingAnimation(targetElement, floatingAnimation);
-                });
-            }
-        });
+            // if (targetElement) {
+            //     const floatingAnimation = JSON.parse(targetElement.dataset.floating);
+            //     inView(targetElement, () => {
+            //         handleFloatingAnimation(targetElement, floatingAnimation);
+            //     });
+            // }
+
+
+            //  const timeline = gsap.timeline({ ease: 'linear', });
+            //    timeline.fromTo(targetElement, {y:0 }, { y: 200, duration: 3 });
+    });
+
     }
 });

@@ -1,7 +1,7 @@
 import { animate, inView } from 'motion';
 
 document.addEventListener('DOMContentLoaded', function () {
-    const handleEntranceAnimation = (targetElement, entranceAnimation) => {
+    const _handleEntranceAnimation = (targetElement, entranceAnimation) => {
         let transformOptions = [];
         if (entranceAnimation.translateX.value !== 0) {
             transformOptions.push(`translateX(${entranceAnimation.translateX.value}${entranceAnimation.translateX.unit})`);
@@ -163,6 +163,74 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+     const handleEntranceAnimation = (targetElement, entranceAnimation) => {
+        //  const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
+         const transformOptions = {};
+
+         if (entranceAnimation.translateX.value !== 0) {
+             const xKey = entranceAnimation.translateX.unit === 'px' ? 'x' : 'xPercent';
+             transformOptions[xKey] = entranceAnimation.translateX.value;
+         }
+         if (entranceAnimation.translateY.value !== 0) {
+             const yKey = entranceAnimation.translateY.unit === 'px' ? 'y' : 'yPercent';
+             transformOptions[yKey] = entranceAnimation.translateY.value;
+         }
+         if (entranceAnimation.translateZ.value !== 0) {
+             const zKey = entranceAnimation.translateZ.unit === 'px' ? 'z' : 'zPercent';
+             transformOptions[zKey] = entranceAnimation.translateZ.value;
+         }
+
+         // ROTATION
+         if (entranceAnimation.rotateX.value !== 0) {
+             transformOptions.rotationX = entranceAnimation.rotateX.value;
+         }
+         if (entranceAnimation.rotateY.value !== 0) {
+             transformOptions.rotationY = entranceAnimation.rotateY.value;
+         }
+         if (entranceAnimation.rotateZ.value !== 0) {
+             transformOptions.rotationZ = entranceAnimation.rotateZ.value;
+         }
+         // SCALE
+         if (entranceAnimation.scaleX.value !== 0) {
+             transformOptions.scaleX = entranceAnimation.scaleX.value;
+         }
+         if (entranceAnimation.scaleY.value !== 0) {
+             transformOptions.scaleY = entranceAnimation.scaleY.value;
+         }
+         if (entranceAnimation.scaleZ.value !== 0) {
+             transformOptions.scale = entranceAnimation.scaleZ.value;
+         }
+         // SKEW
+         if (entranceAnimation.skewX.value !== 0) {
+             transformOptions.skewX = entranceAnimation.skewX.value;
+         }
+         if (entranceAnimation.skewY.value !== 0) {
+             transformOptions.skewY = entranceAnimation.skewY.value;
+         }
+         // ADDITIONAL
+         if (entranceAnimation.perspective !== 0) {
+             transformOptions.perspective = entranceAnimation.perspective;
+         }
+         if (entranceAnimation.opacity !== 0) {
+             transformOptions.opacity = entranceAnimation.opacity;
+         }
+         if (entranceAnimation.duration !== 0) {
+             transformOptions.duration = entranceAnimation.duration / 1000;
+         }
+
+         if (entranceAnimation.delay !== 0) {
+             transformOptions.delay = entranceAnimation.delay / 1000;
+         }
+         if (entranceAnimation.easing !== 'custom') {
+             transformOptions.ease = entranceAnimation.easing;
+         } else {
+             transformOptions.ease = entranceAnimation.easingCustom.split(';')[0];
+         }
+
+         gsap.set(targetElement, { opacity: 0 });
+         gsap.to(targetElement, transformOptions);
+     };
+
     const zoloBlockItems = document.querySelectorAll('.zolo-block');
     if (zoloBlockItems.length > 0) {
         zoloBlockItems.forEach((item) => {
@@ -172,9 +240,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetElement = document.querySelector(`.${parentClass}.zolo-entrance-animation`);
             if (targetElement) {
                 const entranceAnimation = JSON.parse(targetElement.dataset.animation);
-                inView(targetElement, () => {
-                    handleEntranceAnimation(targetElement, entranceAnimation);
-                });
+
+                handleEntranceAnimation(targetElement, entranceAnimation);
+
+            //    const timeline = gsap.timeline({ repeat: -1, yoyo: true, ease: 'linear', });
+            //    timeline.fromTo(targetElement, { x: '-1000' }, { x: 1000, duration: 3 });
+
+
+
             }
         });
     }
