@@ -102,22 +102,14 @@ const Style = ({ props }) => {
         property: 'align-items',
         attributes,
     });
+
     const {
-        desktopRangeStyle: desktopIconWidth,
-        tabRangeStyle: tabIconWidth,
-        mobRangeStyle: mobIconWidth,
+        desktopRangeStyle: desktopIconSize,
+        tabRangeStyle: tabIconSize,
+        mobRangeStyle: mobIconSize,
     } = generateResRangeStyle({
         controlName: LIST_ICON_SIZE,
-        property: 'width',
-        attributes,
-    });
-    const {
-        desktopRangeStyle: desktopIconHeight,
-        tabRangeStyle: tabIconHeight,
-        mobRangeStyle: mobIconHeight,
-    } = generateResRangeStyle({
-        controlName: LIST_ICON_SIZE,
-        property: 'height',
+        property: 'font-size',
         attributes,
     });
 
@@ -247,7 +239,9 @@ const Style = ({ props }) => {
         backgroundStylesTab: TabListBg,
         backgroundStylesMobile: MobListBg,
     } = generateNormalBGControlStyles({ controlName: LIST_BG, attributes });
+
     const { boxShadowStyle: boxshadowHListitem } = generateBoxShadowStyles({ controlName: LIST_HOVER_BOX_SHADOW, attributes });
+
     const {
         backgroundStylesDesktop: DeskHListBg,
         backgroundStylesTab: TabHListBg,
@@ -343,9 +337,8 @@ const Style = ({ props }) => {
         color:${dscHcolor}
     }
    
-    .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg,.wp-block-zolo-list.${uniqueId} .zolo-list-icon {
-        ${desktopIconWidth} 
-        ${desktopIconHeight}
+    .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
+        ${desktopIconSize} 
      }
      
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon {
@@ -404,9 +397,8 @@ const Style = ({ props }) => {
 
     }
  
-    .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg,.wp-block-zolo-list.${uniqueId} .zolo-list-icon {
-        ${tabIconWidth} 
-        ${tabIconHeight} 
+    .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
+        ${tabIconSize} 
      }
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon {
          ${TabIconBg}
@@ -463,9 +455,8 @@ const Style = ({ props }) => {
         ${MobDsceMargin}
     }
 
-    .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg,.wp-block-zolo-list.${uniqueId} .zolo-list-icon {
-        ${mobIconWidth}
-        ${mobIconHeight}
+    .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
+        ${mobIconSize}
      }
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon {
          ${MobIconBg}

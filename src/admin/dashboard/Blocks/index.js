@@ -84,7 +84,7 @@ const Blocks = () => {
                 if (category === 'others') {
                     if (
                         blockState.categories.some((category) =>
-                            ['slider', 'post', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                            ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
                         )
                     ) {
                         return blockState;
@@ -128,10 +128,10 @@ const Blocks = () => {
                                 if (category.value === 'all') {
                                     return true;
                                 }
-                                // calculate total blocks for others category (exclude slider, post, gallery, social, review)
+                                // calculate total blocks for others category (exclude slider, list, gallery, social, review)
                                 if (category.value === 'others') {
                                     return !blockState.categories.some((category) =>
-                                        ['slider', 'post', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                                        ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
                                     );
                                 }
                                 return blockState.categories.some((cat) => cat === category.value);
@@ -224,7 +224,7 @@ const Blocks = () => {
 
                                         if (blockCategory === 'others') {
                                             return !blockState.categories.some((category) =>
-                                                ['slider', 'post', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                                                ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
                                             );
                                         }
 
@@ -270,7 +270,7 @@ const Blocks = () => {
 
                                         if (blockCategory === 'others') {
                                             return !blockState.categories.some((category) =>
-                                                ['slider', 'post', 'gallery', 'social', 'review', 'postCategory'].includes(category)
+                                                ['slider', 'list', 'gallery', 'social', 'review', 'postCategory'].includes(category)
                                             );
                                         }
 

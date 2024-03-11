@@ -52,7 +52,6 @@ export const AdvancedOptions = (props) => {
         overflow,
     } = attributes;
 
-
     const handleEntranceAnimation = () => {
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
 
@@ -296,11 +295,11 @@ export const AdvancedOptions = (props) => {
         if (floatingAnimation.delay !== 0) {
             otherOptions.delay = floatingAnimation.delay / 1000;
         }
-         if (floatingAnimation.easing !== 'custom') {
-             otherOptions.easing = floatingAnimation.easing;
-         } else {
-             otherOptions.easing = [floatingAnimation.easingCustom.split(';')[0]];
-         }
+        if (floatingAnimation.easing !== 'custom') {
+            otherOptions.easing = floatingAnimation.easing;
+        } else {
+            otherOptions.easing = [floatingAnimation.easingCustom.split(';')[0]];
+        }
 
         const transformValueStart = startValue.join('');
         const transformValueEnd = endValue.join('');
@@ -315,7 +314,6 @@ export const AdvancedOptions = (props) => {
 
         return animation;
     };
-
 
     const handleFloatingToggle = () => {
         let animation = handleFloatingAnimation();
@@ -1088,7 +1086,7 @@ export const AdvancedOptions = (props) => {
                         />
                         <Button
                             label={__('Preview', 'zolo-blocks')}
-                            className='zolo-action-button'
+                            className="zolo-action-button"
                             isPrimary
                             onClick={() => {
                                 handleEntranceAnimation();
@@ -1456,7 +1454,7 @@ export const AdvancedOptions = (props) => {
                         />
                         <Button
                             label={isPlaying ? __('Stop', 'zolo-blocks') : __('Play', 'zolo-blocks')}
-                            className='zolo-action-button'
+                            className="zolo-action-button"
                             isPrimary
                             onClick={handleFloatingToggle}
                         >
@@ -1499,6 +1497,7 @@ export const AdvancedOptions = (props) => {
                             <PopoverControl
                                 label={__('Rotate', 'zolo-blocks')}
                                 icon={ROTATE_ICON}
+                                isPro={true}
                             >
                                 <ResRangeControl
                                     label={__('Rotate', 'zolo-blocks')}
@@ -1549,6 +1548,7 @@ export const AdvancedOptions = (props) => {
                             <PopoverControl
                                 label={__('Scale', 'zolo-blocks')}
                                 icon={SCALE_ICON}
+                                isPro={true}
                             >
                                 <ToggleControl
                                     label={__('Keep Proportions', 'zolo-blocks')}
@@ -1598,6 +1598,7 @@ export const AdvancedOptions = (props) => {
                             <PopoverControl
                                 label={__('Skew', 'zolo-blocks')}
                                 icon={SKEW_ICON}
+                                isPro={true}
                             >
                                 <ResRangeControl
                                     label={__('SkewX (deg)', 'zolo-blocks')}
@@ -1619,6 +1620,7 @@ export const AdvancedOptions = (props) => {
                             <PopoverControl
                                 label={__('Flip', 'zolo-blocks')}
                                 icon={FLIP_ICON}
+                                isPro={true}
                             >
                                 <ToggleControl
                                     label={__('Flip Horizontal', 'zolo-blocks')}
