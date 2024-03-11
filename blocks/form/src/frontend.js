@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     // add the formId to the data
                     values.push(['formId', formId]);
 
+                    // add nonce to the data
+                    values.push(['nonce', zoloSettings.zolo_nonce]);
+
                     const formattedData = values.reduce((acc, [key, value]) => {
                         acc[key] = key === 'file' ? value.name : value;
                         return acc;
@@ -35,9 +38,16 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             if (xhr.status === 200) {
                                 const response = JSON.parse(xhr.responseText);
-                                const { validationStatus, validationMessage, successStatus, successMessage, failStatus, failMessage } =
-                                    response;
-                                if (validationStatus) {
+                                const {
+                                    validationStatus,
+                                    validationMessage,
+                                    successStatus,
+                                    successMessage,
+                                    failStatus,
+                                    failMessage,
+                                    nonceValidationFail,
+                                } = response;
+                                if (validationStatus || nonceValidationFail) {
                                     formNotice.innerHTML = validationMessage;
                                     formNoticeContainer.classList.add('zolo-form-error-msg', 'show');
                                 }
@@ -54,10 +64,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                 form.reset();
 
                                 // remove the notice after 5 seconds
-                                // setTimeout(() => {
-                                //     formNotice.innerHTML = '';
-                                //     formNoticeContainer.classList.remove('validation-error', 'success', 'fail', 'show');
-                                // }, 5000);
+                                setTimeout(() => {
+                                    formNotice.innerHTML = '';
+                                    formNoticeContainer.classList.remove('validation-error', 'success', 'fail', 'show');
+                                }, 5000);
 
                                 // close the notice
                                 closeBtn.addEventListener('click', function () {

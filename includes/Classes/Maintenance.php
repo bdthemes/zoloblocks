@@ -13,6 +13,7 @@ class Maintenance {
 
         // deactivation hook.
         register_deactivation_hook( ZOLO_FILE, [$this, 'deactivation'] );
+        
     }
 
     /**

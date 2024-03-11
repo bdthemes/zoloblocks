@@ -61,6 +61,7 @@
         global $wpdb;
         $table_name = $wpdb->prefix . 'zolo_form';
         $form_id = $wpdb->get_var( "SELECT form_id FROM $table_name WHERE form_id = '$formId'" ); 
+
         if( $form_id === NULL ) {
             $wpdb->insert( 
                 $table_name, 
@@ -93,12 +94,18 @@
      * Send Form Data
      */
     public function send_form_data() {
-        if(isset($_POST['formData'])) {
+        $nonceValidationFail = false;
+        // verify nonce 
+        if( ! wp_verify_nonce( json_decode(stripslashes($_POST['formData']), true)['nonce'] , 'zolo-nonce' ) ) {
+            $nonceValidationFail = true;
+        }
+
+        // Get form data
+        $data = json_decode(stripslashes($_POST['formData']), true);
+
+        if(isset($data) ) {
 
             $sanitizedData = []; 
-
-            // Get form data
-            $data = json_decode(stripslashes($_POST['formData']), true);
 
             // formId
             $formId = $data['formId'] ?? '';
@@ -173,7 +180,7 @@
             $mail_sent = wp_mail($emailTo, $emailSubject, $message, $headers);
     
             // Check if the mail is sent or not
-            if ($mail_sent) {
+            if ($mail_sent && !$nonceValidationFail) {
                 $successStatus = true;
 
                 // Insert form data into database called zolo_form table 
@@ -193,10 +200,11 @@
             }
     
             // Return response
-            echo json_encode( array( 'validationStatus' => $validationStatus, 'validationMessage' => $validationMessage, 'successStatus' => $successStatus, 'failStatus' => $failStatus, 'successMessage' => $successMessage, 'failMessage' => $failMessage, 'admin' => $emailTo ) );
+            echo wp_json_encode( array( 'validationStatus' => $validationStatus, 'validationMessage' => $validationMessage, 'successStatus' => $successStatus, 'failStatus' => $failStatus, 'successMessage' => $successMessage, 'failMessage' => $failMessage ) );
+
         } else {
             // Return error response
-            echo json_encode(array('success' => false, 'error' => 'Form data not received'));
+            echo wp_json_encode(array('success' => false, 'error' => 'Form data not received'));
         }
     
         wp_die();
