@@ -56,10 +56,8 @@ const CountdownTimer = ({
             }
 
             if (!itemsVisibility?.months && timeLeft.months) {
-                // Calculate months based on the remaining time after removing the years
-                const remainingMonths = timeLeft.months % 12;
-                timeLeft.weeks += Math.floor(remainingMonths * 4); // Assuming 4 weeks in a month
-                timeLeft.months = remainingMonths;
+                timeLeft.weeks += timeLeft.months * 4; // 4 weeks in a month
+                timeLeft.months = 0;
             }
 
             if (!itemsVisibility?.weeks && timeLeft.weeks) {

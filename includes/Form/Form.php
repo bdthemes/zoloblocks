@@ -120,7 +120,7 @@
     
             // Fetch form settings, submission settings, and validation rules in a single query
             $form_query = $wpdb->prepare("SELECT form_settings, submission_settings, validation_rules FROM $table_name WHERE form_id = %s", $formId);
-            $form_data = $wpdb->get_row($form_query);
+            $form_data = $wpdb->get_row($form_query); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
             $form_submission_settings = json_decode($form_data->submission_settings, true);
     
