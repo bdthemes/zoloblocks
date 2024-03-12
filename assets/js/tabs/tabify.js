@@ -10,23 +10,23 @@ document.addEventListener('DOMContentLoaded', function () {
             const tabContentItems = [...tabContent.children];
             let tabIndex = 0;
 
-            tabIndex = tabItems.findIndex((item) => [...item.classList].indexOf('is--active') > -1);
+            tabIndex = tabItems.findIndex((item) => [...item.classList].indexOf('active') > -1);
 
             tabIndex > -1 ? (tabIndex = tabIndex) : (tabIndex = 0);
 
             function setTab(index) {
                 tabItems.forEach((x) => {
-                    x.classList.remove('is--active');
+                    x.classList.remove('active');
                     x.setAttribute('aria-selected', 'false');
                 });
                 tabContentItems.forEach((x) => {
-                    x.classList.remove('is--active');
+                    x.classList.remove('active');
                     x.setAttribute('aria-hidden', 'true');
                 });
 
-                tabItems[index].classList.add('is--active');
+                tabItems[index].classList.add('active');
                 tabItems[index].setAttribute('aria-selected', 'true');
-                tabContentItems[index].classList.add('is--active');
+                tabContentItems[index].classList.add('active');
                 tabContentItems[index].setAttribute('aria-hidden', 'false');
                 tabItems[index].focus();
             }
