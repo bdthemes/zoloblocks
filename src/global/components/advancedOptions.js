@@ -4,11 +4,10 @@
 import { __ } from '@wordpress/i18n';
 import { animate, timeline } from 'motion';
 import { SelectControl, ToggleControl, TextControl, Button, FormTokenField } from '@wordpress/components';
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-console.log('gsap', gsap);
 gsap.registerPlugin(useGSAP);
 
 /**
@@ -44,6 +43,7 @@ import {
 } from '../constants';
 export const AdvancedOptions = (props) => {
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isEntrancePlaying, setIsEntrancePlaying] = useState(false);
     const { attributes, setAttributes, requiredProps } = props;
 
     const {
@@ -69,10 +69,20 @@ export const AdvancedOptions = (props) => {
         overflow,
     } = attributes;
 
-    const handleEntranceAnimation = () => {
-        const tl = gsap.timeline();
+    // handle entrance animation start
+    const handleEntranceAnimationTween = () => {
+        // define the animation tween
+        let tween;
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-entrance-animation`);
+        // Define the initial position and properties of the box
+        gsap.set(targetElement, {opacity: 0 });
+
         const transformOptions = {};
+        const transformOptionsGlobal = {
+            duration: entranceAnimation.duration ? entranceAnimation.duration / 1000 : 2,
+            delay: entranceAnimation.delay ? entranceAnimation.delay / 1000 : 0,
+            ease: entranceAnimation.easing !== 'custom' ? entranceAnimation.easing : entranceAnimation.easingCustom.split(';')[0],
+        };
 
         if (entranceAnimation.translateX.value !== 0) {
             const xKey = entranceAnimation.translateX.unit === 'px' ? 'x' : 'xPercent';
@@ -121,26 +131,13 @@ export const AdvancedOptions = (props) => {
         if (entranceAnimation.opacity !== 0) {
             transformOptions.opacity = entranceAnimation.opacity;
         }
-        if (entranceAnimation.duration !== 0) {
-            transformOptions.duration = entranceAnimation.duration / 1000;
-        }
-
-        if (entranceAnimation.delay !== 0) {
-            transformOptions.delay = entranceAnimation.delay / 1000;
-        }
-        if (entranceAnimation.easing !== 'custom') {
-            transformOptions.ease = entranceAnimation.easing;
-        } else {
-            transformOptions.ease = entranceAnimation.easingCustom.split(';')[0];
-        }
-
-        // gsap.set(targetElement, { opacity: 0 });
-
+        // Create the animation tween
         if (entranceAnimation.presetAnimation === 'custom') {
-            tl.fromTo( targetElement,{ opacity: 0,},{...transformOptions});
-            // tl.to(targetElement, {
-            //     ...transformOptions,
-            // });
+            // merge the global options and the custom options
+            tween = gsap.to(targetElement, {
+                ...transformOptions,
+                ...transformOptionsGlobal,
+            });
         } else {
             const presetAnimations = {
                 fade: {
@@ -224,10 +221,35 @@ export const AdvancedOptions = (props) => {
                 },
             };
             const presetAnimation = presetAnimations[entranceAnimation.presetAnimation];
-            tl.fromTo(targetElement, { opacity: 0 }, { ...presetAnimation});
-            console.log('transformOptions', presetAnimation);
+            tween = gsap.to(targetElement, {
+                ...presetAnimation,
+                ...transformOptionsGlobal,
+            });
         }
+
+        // Function to start or reset the animation
+        if (isEntrancePlaying) {
+            tween.restart(); // Restart the animation
+        } else {
+            tween.pause(); // Pause the animation
+            gsap.set(targetElement, { clearProps: 'all' }); // Reset the position and properties
+        }
+        return tween;
     };
+
+    useEffect(() => {
+        const tween = handleEntranceAnimationTween();
+        return () => {
+            tween.kill(); // Kill the tween on unmount
+        };
+    }, [isEntrancePlaying]);
+
+    // Handler for toggling animation
+    const handleEntranceToggle = () => {
+        setIsEntrancePlaying(!isEntrancePlaying);
+    };
+
+    // handle entrance animation end
 
     const handleFloatingAnimation = () => {
         const targetElement = document.querySelectorAll(`.${uniqueId}.zolo-floating-animation`);
@@ -1086,14 +1108,12 @@ export const AdvancedOptions = (props) => {
                             noUnits={true}
                         />
                         <Button
-                            label={__('Preview', 'zolo-blocks')}
+                            label={isEntrancePlaying ? __('Reset', 'zolo-blocks') : __('Preview', 'zolo-blocks')}
                             className="zolo-action-button"
                             isPrimary
-                            onClick={() => {
-                                handleEntranceAnimation();
-                            }}
+                            onClick={handleEntranceToggle}
                         >
-                            {__('Preview', 'zolo-blocks')}
+                            {isEntrancePlaying ? __('Reset', 'zolo-blocks') : __('Preview', 'zolo-blocks')}
                         </Button>
                     </>
                 )}
