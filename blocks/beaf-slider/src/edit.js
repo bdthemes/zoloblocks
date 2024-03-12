@@ -30,11 +30,13 @@ export default function Edit(props) {
         afterImage,
         beforeLabel,
         afterLabel,
+        showLabels,
         initialPosition,
         handaleDraggable,
-        disableSliding,
+        disableslide,
         slidePositon,
         swipeMode,
+        labelOpacity,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -54,13 +56,29 @@ export default function Edit(props) {
             <div {...blockProps}>
                 {beforeImage && afterImage && (
                     <ReactCompareSlider
+                        onPointerDown={() => setAttributes({ labelOpacity: 0 })}
+                        onPointerUp={() => setAttributes({ labelOpacity: 1 })}
                         changePositionOnHover={swipeMode}
                         portrait={slidePositon}
-                        disabled={disableSliding}
+                        disabled={disableslide}
                         position={initialPosition}
                         onlyHandleDraggable={handaleDraggable}
-                        itemOne={<ReactCompareSliderImage src={beforeImage?.url} alt={beforeImage?.title} />}
-                        itemTwo={<ReactCompareSliderImage src={afterImage?.url} alt={afterImage?.title} />}
+                        itemOne={
+                            <div className="imageitemOne">
+                                {showLabels && beforeLabel && (
+                                    <div className="compare-slider-label compare-slider-label-left">{beforeLabel}</div>
+                                )}
+                                <ReactCompareSliderImage src={beforeImage?.url} alt={beforeImage?.title} />
+                            </div>
+                        }
+                        itemTwo={
+                            <div className="imageitemtwo">
+                                {showLabels && afterLabel && (
+                                    <div className="compare-slider-label compare-slider-label-right">{afterLabel}</div>
+                                )}
+                                <ReactCompareSliderImage src={afterImage?.url} alt={afterImage?.title} />
+                            </div>
+                        }
                     />
                 )}
             </div>
