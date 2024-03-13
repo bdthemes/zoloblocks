@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 yoyo: true,
                 duration: floatingAnimation.duration / 1000,
                 delay: floatingAnimation.delay / 1000,
+                perspective: floatingAnimation.perspective,
                 ease: floatingAnimation.easing !== 'custom' ? floatingAnimation.easing : floatingAnimation.easingCustom.split(';')[0],
             }
         );

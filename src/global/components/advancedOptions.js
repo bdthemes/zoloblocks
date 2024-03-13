@@ -347,6 +347,7 @@ export const AdvancedOptions = (props) => {
             endValue.opacity = floatingAnimation.opacity.maxValue;
         }
 
+
         tween = gsap.fromTo(
             targetElement,
             {
@@ -358,6 +359,7 @@ export const AdvancedOptions = (props) => {
                 yoyo: true,
                 duration: floatingAnimation.duration / 1000,
                 delay: floatingAnimation.delay / 1000,
+                perspective: floatingAnimation.perspective,
                 ease: floatingAnimation.easing !== 'custom' ? floatingAnimation.easing : floatingAnimation.easingCustom.split(';')[0],
             }
         );
@@ -1442,6 +1444,29 @@ export const AdvancedOptions = (props) => {
                                 }}
                             />
                         )}
+                        <SimpleRangeControl
+                            label={__('Perspective', 'zolo-blocks')}
+                            value={floatingAnimation.perspective}
+                            onChange={(value) => {
+                                setAttributes({
+                                    floatingAnimation: {
+                                        ...floatingAnimation,
+                                        perspective: value,
+                                    },
+                                });
+                            }}
+                            onReset={() => {
+                                setAttributes({
+                                    floatingAnimation: {
+                                        ...floatingAnimation,
+                                        perspective: 0,
+                                    },
+                                });
+                            }}
+                            min={0}
+                            max={10000}
+                            noUnits={true}
+                        />
                         <SimpleRangeControl
                             label={__('Delay(ms)', 'zolo-blocks')}
                             value={floatingAnimation.delay}
