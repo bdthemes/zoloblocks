@@ -22,6 +22,7 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
+import { style } from 'motion';
 
 /**
  * Edit Function
@@ -131,6 +132,14 @@ const Edit = (props) => {
                 />
             )}
             <Style props={props} />
+               <style>
+
+                {` 
+                   .block-editor-block-list__block.wp-block-zolo-container .block-editor-block-list__layout .block-list-appender.wp-block button {
+                    border: 1px solid #ccc;
+                }
+                `}
+               </style>
             <div {...blockProps}>
                 <div
                     className="tab zolo-tab_style-1 zolo-tab_content-style-1 zolo-tab_animation-style-1"
