@@ -68,6 +68,7 @@ import {
 import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -146,6 +147,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/list"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -154,7 +156,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.list.presets', PRESETS)}
                                 onChange={(value) => changePremade(value)}
                             />
                             {preset !== 'zolo-list-style-1' && (
@@ -782,7 +784,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/list"
+                        />
                     </>
                 }
             />

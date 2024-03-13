@@ -57,6 +57,7 @@ import {
     SEPARATOR_POSITIONS,
 } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -120,6 +121,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/countdown"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -128,7 +130,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={presets}
-                                options={PRESETS}
+                                options={applyFilters('zolo.countdown.presets', PRESETS)}
                                 onChange={(preset) => onPresetChange(preset)}
                             />
                             <BaseControl id="countdate-1" label={__('Timer End Date-Time', 'zolo-blocks')}>
@@ -567,7 +569,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/countdown"
+                        />
                     </>
                 }
             />

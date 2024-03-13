@@ -25,9 +25,13 @@ import ResRangeControl from '../../controls/res-range-control';
 import ResAlignmentControl from '../../controls/res-alignment-control';
 
 import { DEFAULT_ALIGNS, DEFAULT_ALIGNS_VERTICAL } from '../constants';
+import { applyFilters } from '@wordpress/hooks';
+
 export const AdvancedOptions = (props) => {
     const [isPlaying, setIsPlaying] = useState(false);
-    const { attributes, setAttributes, requiredProps } = props;
+    const { attributes, setAttributes, requiredProps, block } = props;
+
+    const panelProps = { attributes, setAttributes };
 
     const {
         uniqueId,
@@ -355,7 +359,7 @@ export const AdvancedOptions = (props) => {
         });
     };
 
-    return (
+    const panels = (
         <>
             <ZoloPanelBody title={__('Spacing', 'zolo-blocks')} panelProps={props} firstOpen={true} extraPanel={true}>
                 {globalConfig?.margin && (
@@ -2436,4 +2440,6 @@ export const AdvancedOptions = (props) => {
             </ZoloPanelBody>
         </>
     );
+
+    return <>{applyFilters('zolo.blocks.extraTab', panels, block, panelProps)}</>;
 };
