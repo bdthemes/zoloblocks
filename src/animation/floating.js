@@ -1,7 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
     const handleFloatingAnimationTween = (targetElement, floatingAnimation) => {
         // define the animation tween
-        let tween;
+        let tween = gsap.timeline({
+            scrollTrigger: {
+                trigger: targetElement,
+            },
+        });
+
         let startValue = [];
         let endValue = [];
 
@@ -92,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
             endValue.opacity = floatingAnimation.opacity.maxValue;
         }
 
-        tween = gsap.fromTo(
+        tween = tween.fromTo(
             targetElement,
             {
                 ...startValue,

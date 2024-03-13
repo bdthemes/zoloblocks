@@ -349,7 +349,7 @@ function addAttributes(settings) {
                 defaultUnit: 'deg',
             }),
             ...generateResRangeAttributies('transitionDuration', {
-                defaultUnit: '',
+                defaultUnit: 'ms',
             }),
 
             ...generateResAlignmentAttributies('transformOriginXHover'),

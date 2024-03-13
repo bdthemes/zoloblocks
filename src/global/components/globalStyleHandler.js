@@ -406,7 +406,7 @@ export const GlobalStyleHanlder = (props) => {
          mobRangeStyle: transitionDurationMob,
      } = generateResRangeStyle({
          controlName: 'transitionDuration',
-         property: '--zolo-transform-transition-duration',
+         property: 'transition-duration',
          attributes,
      });
 
@@ -461,9 +461,10 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesDesktopHover}
             ${transformOriginXDesktopHover}
             ${transformOriginYDesktopHover}
-            ${transitionDurationDesktop ? `transition-duration: ${transitionDurationDesktop}ms;` : ''}
+            ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ''}
             `;
     const transformStylesTabHover = `
+            ${translateXStylesTabHover}
             ${translateYStylesTabHover}
             ${translateYStylesDesktopHover}
             ${rotateStylesTabHover}
@@ -474,9 +475,10 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesTabHover}
             ${transformOriginXTabHover}
             ${transformOriginYTabHover}
-            ${transitionDurationTab ? `transition-duration: ${transitionDurationTab}ms;` : ''}
+           ${transitionDurationTab ? `${transitionDurationTab}ms;` : ''}
             `;
     const transformStylesMobHover = `
+            ${translateXStylesMobHover}
             ${translateYStylesMobHover}
             ${translateYStylesDesktopHover}
             ${rotateStylesMobHover}
@@ -487,7 +489,7 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesMobHover}
             ${transformOriginXMobHover}
             ${transformOriginYMobHover}
-            ${transitionDurationMob ? `transition-duration: ${transitionDurationMob}ms;` : ''}
+            ${transitionDurationMob ? `${transitionDurationMob}ms;` : ''}
             `;
 
     const desktopGlobalStyles = `

@@ -134,6 +134,14 @@ button[class*='editor-block-list-item-zolo'] {
 //     }
 // }
 
+//apply transition to .zolo-block if zolo-block is not exist
+.zolo-block:not(.zolo-entrance-animation) {
+    transition: all 0.3s ease-in-out;
+    &::after {
+        transition: all 0.3s ease-in-out;
+    }
+}
+
 // transform pro
 span.zolo-pro-badge {
     padding: 5.5px;

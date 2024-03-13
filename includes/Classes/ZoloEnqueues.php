@@ -210,6 +210,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // load gsap from cdn
 
             wp_enqueue_script('zolo-gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js', [], ZOLO_VERSION, true);
+            // load scrolltrigger from cdn
+            wp_enqueue_script('zolo-scrolltrigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js', [], ZOLO_VERSION, true);
         }
         /**
          * Load Block Editor Assets

@@ -1,7 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
     const handleEntranceAnimationTween = (targetElement, entranceAnimation) => {
         // define the animation tween
-        let tween;
+        // let tween;
+        let tween = gsap.timeline({
+            scrollTrigger: {
+                trigger: targetElement,
+            },
+        });
+
         // Define the initial position and properties of the box
         gsap.set(targetElement, { x: 0, opacity: 0 });
 
@@ -61,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         // Create the animation tween
         if (entranceAnimation.presetAnimation === 'custom') {
-            tween = gsap.to(targetElement, {
+            tween = tween.to(targetElement, {
                 ...transformOptions,
                 ...transformOptionsGlobal,
             });
@@ -149,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
             };
             const presetAnimation = presetAnimations[entranceAnimation.presetAnimation];
-            tween = gsap.to(targetElement, {
+            tween = tween.to(targetElement, {
                 ...presetAnimation,
                 ...transformOptionsGlobal,
             });
