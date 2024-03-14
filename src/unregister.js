@@ -42,6 +42,3 @@ async function unregisterBlocks() {
 domReady(() => {
     unregisterBlocks();
 });
-
-// test hooks
-import './test-hooks.js';
