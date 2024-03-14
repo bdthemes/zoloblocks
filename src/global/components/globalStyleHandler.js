@@ -504,6 +504,9 @@ export const GlobalStyleHanlder = (props) => {
         ${overflow ? `overflow: ${overflow};` : ''}
         ${transformStylesDesktop}
       }
+      .zolo-transform-wrapper {
+        ${transformStylesDesktop}
+      }
 
       .parent-${uniqueId}.zolo-block:hover {
           ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
