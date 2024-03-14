@@ -31,9 +31,8 @@ import {
     AFTER_RADIUS,
     AFTER_MARGIN,
     AFTER_PADDING,
-    CAPTION_ITEM_ALIGNMENT,
-    CAPTION_MARGIN,
     LINE_THICKNESS,
+    LINE_BOX_SHADOW,
     THICKNESS_BG,
     ARROW_BTN_WIDTH,
     ARROW_BTN_HEIGHT,
@@ -42,7 +41,7 @@ import {
     ARROW_BTN_BG,
 } from './constants';
 
-import { BEFORE_TYPO, AFTER_TYPO, CAPTION_TYPO } from './constants/typoPrefixConstant';
+import { BEFORE_TYPO, AFTER_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -140,15 +139,69 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
+    //line control
+    const {
+        desktopRangeStyle: desktopLineThick,
+        tabRangeStyle: tabLineThick,
+        mobRangeStyle: mobLineThick,
+    } = generateResRangeStyle({
+        controlName: LINE_THICKNESS,
+        property: 'width',
+        attributes,
+    });
+    const {
+        backgroundStylesDesktop: DesLineConkBg,
+        backgroundStylesTab: TabLineConBg,
+        backgroundStylesMobile: MobLineConBg,
+    } = generateNormalBGControlStyles({ controlName: THICKNESS_BG, attributes });
+    const { boxShadowStyle: boxshadowLineShadow } = generateBoxShadowStyles({ controlName: LINE_BOX_SHADOW, attributes });
+    //arrow Button
+
+    const {
+        desktopRangeStyle: desktopArrowWidth,
+        tabRangeStyle: tabArrowWidth,
+        mobRangeStyle: mobArrowWidth,
+    } = generateResRangeStyle({
+        controlName: ARROW_BTN_WIDTH,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: desktopArrowHeight,
+        tabRangeStyle: tabArrowHeight,
+        mobRangeStyle: mobArrowHeight,
+    } = generateResRangeStyle({
+        controlName: ARROW_BTN_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+    const {
+        desktopBorderStyle: desktopArrowBorder,
+        tabBorderStyle: tabArrowBorder,
+        mobBorderStyle: mobArrowBorder,
+    } = generateBorderStyle({ controlName: ARROW_BTN_BORDER, attributes });
+    const {
+        dimensionStylesDesktop: DesktopArrowRadius,
+        dimensionStylesTab: TabArrowRadius,
+        dimensionStylesMobile: MobArrowRadius,
+    } = generateDimensionStyle({
+        controlName: ARROW_BTN_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+    const {
+        backgroundStylesDesktop: DeskbArrowBg,
+        backgroundStylesTab: TabbArrowBg,
+        backgroundStylesMobile: MobArrowtBg,
+    } = generateNormalBGControlStyles({ controlName: ARROW_BTN_BG, attributes });
 
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
-    .__rcs-handle-arrow {
-           ${arrowbtnColor && `color:${arrowbtnColor}`}
-       }
-    .wp-block-zolo-beaf-slider.${uniqueId} .imageitemOne,.wp-block-zolo-beaf-slider.${uniqueId} .imageitemtwo{
+   
+    .wp-block-zolo-beaf-slider.${uniqueId} .image-item-One,.wp-block-zolo-beaf-slider.${uniqueId} .image-item-two{
         ${labelPositons && `align-items:${labelPositons}`}
     }
     
@@ -174,6 +227,23 @@ const Style = ({ props }) => {
          ${Desktopafterpadding}
 
    }
+    .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-line{
+        ${desktopLineThick.replace(';', '!important')};
+        ${boxshadowLineShadow.replace(';', '!important')};
+        ${DesLineConkBg.replace(';', '!important')}
+       
+    }
+    .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-arrow {
+           ${arrowbtnColor && `color:${arrowbtnColor}`}   
+    }
+    .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-button {
+        ${arrowbtnBlure && `backdrop-filter:blur(${arrowbtnBlure}px) !important`};
+        ${desktopArrowWidth.replace(';', '!important')};
+        ${desktopArrowHeight.replace(';', '!important')};
+        ${desktopArrowBorder}
+        ${DesktopArrowRadius.replace(';', '!important')};
+        ${DeskbArrowBg.replace(';', '!important')};
+    }
    
   	`;
     const tabletAllStyle = `
@@ -193,6 +263,21 @@ const Style = ({ props }) => {
          ${TabafterMargin}
          ${Tabafterpadding}
     }
+    .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-line{
+        ${tabLineThick.replace(';', '!important')};
+        ${TabLineConBg.replace(';', '!important')}
+       
+    }
+     .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-button {
+         ${tabArrowWidth.replace(';', '!important')};
+         ${tabArrowHeight.replace(';', '!important')};
+         ${tabArrowBorder}
+         ${TabArrowRadius.replace(';', '!important')};
+         ${TabbArrowBg.replace(';', '!important')};
+
+
+         
+     }
 	`;
 
     const mobileAllStyle = `
@@ -213,6 +298,17 @@ const Style = ({ props }) => {
          ${Mobafterpadding}
     
     }
+    .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-line{
+        ${mobLineThick.replace(';', '!important')};
+        ${MobLineConBg.replace(';', '!important')}
+    }
+    .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-button {
+         ${mobArrowWidth.replace(';', '!important')};
+         ${mobArrowHeight.replace(';', '!important')};
+         ${mobArrowBorder}
+         ${MobArrowRadius.replace(';', '!important')};
+         ${MobArrowtBg.replace(';', '!important')};
+     }
   	`;
 
     return (

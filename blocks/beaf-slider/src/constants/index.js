@@ -18,11 +18,10 @@ export const AFTER_BORDER = 'afterBorder';
 export const AFTER_RADIUS = 'afterRadius';
 export const AFTER_MARGIN = 'afterMargin';
 export const AFTER_PADDING = 'afterPadding';
-//caption
-export const CAPTION_MARGIN = 'captionMargin';
 //control line
 export const LINE_THICKNESS = 'lineThickness';
 export const THICKNESS_BG = 'thicknessBg';
+export const LINE_BOX_SHADOW = 'lineBoxShadow';
 //Arrow btn
 export const ARROW_BTN_WIDTH = 'arrowBtnWidth';
 export const ARROW_BTN_HEIGHT = 'arrowBtnHeight';

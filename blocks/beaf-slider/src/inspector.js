@@ -25,18 +25,7 @@ const {
  * WordPress depencencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import {
-    SelectControl,
-    TextControl,
-    ToggleControl,
-    Button,
-    BaseControl,
-    RangeControl,
-    Flex,
-    FlexBlock,
-    FlexItem,
-    TextareaControl,
-} from '@wordpress/components';
+import { TextControl, ToggleControl, Button, BaseControl, RangeControl, Flex, FlexBlock, FlexItem } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -52,9 +41,8 @@ import {
     AFTER_RADIUS,
     AFTER_MARGIN,
     AFTER_PADDING,
-    CAPTION_ITEM_ALIGNMENT,
-    CAPTION_MARGIN,
     LINE_THICKNESS,
+    LINE_BOX_SHADOW,
     THICKNESS_BG,
     ARROW_BTN_WIDTH,
     ARROW_BTN_HEIGHT,
@@ -65,13 +53,12 @@ import {
 
 import { DEFAULT_ALIGNS, HEADING } from '../../../src/global/constants';
 
-import { BEFORE_TYPO, AFTER_TYPO, CAPTION_TYPO } from './constants/typoPrefixConstant';
+import { BEFORE_TYPO, AFTER_TYPO } from './constants/typoPrefixConstant';
 import { set } from 'lodash';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
-        preset,
         resMode,
         beforeImage,
         afterImage,
@@ -87,13 +74,8 @@ function Inspector(props) {
         afterLabel,
         afterColor,
         labelPositons,
-        captionText,
-        captionTag,
-        captionColor,
-        lineColor,
         arrowbtnColor,
         arrowbtnBlure,
-        arrowColor,
     } = attributes;
 
     const requiredProps = {
@@ -219,7 +201,8 @@ function Inspector(props) {
                                 checked={handaleDraggable}
                                 onChange={() => setAttributes({ handaleDraggable: !handaleDraggable })}
                             />
-                            <BaseControl label={__('INITIAL POSITION', 'zolo-block')}>
+
+                            <BaseControl label={__('Initial Position', 'zolo-block')}>
                                 <Flex>
                                     <FlexItem>
                                         <Button
@@ -248,11 +231,11 @@ function Inspector(props) {
                                 }
                                 options={[
                                     {
-                                        label: __('Horizontal', 'zolo-blocks'),
+                                        label: __('Vertical', 'zolo-blocks'),
                                         value: false,
                                     },
                                     {
-                                        label: __('Vertical', 'zolo-blocks'),
+                                        label: __('Horizontal', 'zolo-blocks'),
                                         value: true,
                                     },
                                 ]}
@@ -311,30 +294,6 @@ function Inspector(props) {
                                             value: 'flex-end',
                                         },
                                     ]}
-                                />
-                            </ZoloPanelBody>
-                        )}
-                        {showCaption && (
-                            <ZoloPanelBody title={__('Caption', 'zolo-blocks')} panelProps={props}>
-                                <TextareaControl
-                                    label={__('Caption', 'zolo-blocks')}
-                                    value={captionText}
-                                    onChange={(v) => setAttributes({ captionText: v })}
-                                />
-
-                                <SelectControl
-                                    label={__('Select Tag', 'zolo-blocks')}
-                                    value={captionTag}
-                                    options={HEADING}
-                                    onChange={(tag) => {
-                                        setAttributes({ captionTag: tag });
-                                    }}
-                                />
-                                <ResAlignmentControl
-                                    label={__('Alignment', 'zolo-blocks')}
-                                    controlName={CAPTION_ITEM_ALIGNMENT}
-                                    requiredProps={requiredProps}
-                                    alignOptions={DEFAULT_ALIGNS}
                                 />
                             </ZoloPanelBody>
                         )}
@@ -430,30 +389,6 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Caption', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Color', 'zolo-blocks')}
-                                color={captionColor}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        captionColor: value,
-                                    })
-                                }
-                            />
-                            <TypographyDropdown
-                                label={__('Typography', 'zolo-blocks')}
-                                typoPrefixConstant={CAPTION_TYPO}
-                                requiredProps={requiredProps}
-                                max={36}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={CAPTION_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                        </ZoloPanelBody>
-
                         <ZoloPanelBody title={__('Control Line', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ResRangeControl
                                 label={__('Thickness', 'zolo-blocks')}
@@ -463,16 +398,12 @@ function Inspector(props) {
                                 max={100}
                                 step={1}
                             />
-                            <NormalBGControl requiredProps={requiredProps} controlName={THICKNESS_BG} noOverlay={true} noMainBGImg={true} />
-                            <ColorControl
-                                label={__('Color', 'zolo-blocks')}
-                                color={lineColor}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        lineColor: value,
-                                    })
-                                }
+                            <BoxShadowControl
+                                label={__('Box Shadow', 'zolo-blocks')}
+                                controlName={LINE_BOX_SHADOW}
+                                requiredProps={requiredProps}
                             />
+                            <NormalBGControl requiredProps={requiredProps} controlName={THICKNESS_BG} noOverlay={true} noMainBGImg={true} />
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Control Button', 'zolo-blocks')} stylePanel={true} panelProps={props}>
@@ -493,7 +424,6 @@ function Inspector(props) {
                                 min={1}
                                 max={100}
                                 allowReset={true}
-                                icon="image-rotate"
                             />
                             <ResRangeControl
                                 label={__('Width', 'zolo-blocks')}
@@ -523,15 +453,6 @@ function Inspector(props) {
                                 forBorderRadius={true}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={ARROW_BTN_BG} noOverlay={true} noMainBGImg={true} />
-                            <ColorControl
-                                label={__('Color', 'zolo-blocks')}
-                                color={arrowColor}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        arrowColor: value,
-                                    })
-                                }
-                            />
                         </ZoloPanelBody>
                     </>
                 }

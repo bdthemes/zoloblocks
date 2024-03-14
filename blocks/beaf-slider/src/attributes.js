@@ -75,9 +75,7 @@ const attributes = {
 
     //typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
-    //capttion
-    ...generateResAlignmentAttributies(CAPTION_ITEM_ALIGNMENT),
-    ...generateDimensionAttributes(CAPTION_MARGIN),
+
     //control line
     ...generateResRangeAttributies(LINE_THICKNESS),
     ...generateNormalBGAttributes(THICKNESS_BG),
@@ -119,11 +117,11 @@ const attributes = {
         default: 50,
     },
     slidePositon: {
-        type: 'string',
+        type: 'boolean',
         default: false,
     },
     swipeMode: {
-        type: 'string',
+        type: 'boolean',
         default: false,
     },
     beforeLabel: {
@@ -144,27 +142,11 @@ const attributes = {
         type: 'string',
         default: 'center',
     },
-    captionText: {
-        type: 'string',
-        default: 'Caption',
-    },
-    captionTag: {
-        type: 'string',
-    },
-    captionColor: {
-        type: 'string',
-    },
-    lineColor: {
-        type: 'string',
-    },
     arrowbtnColor: {
         type: 'string',
     },
     arrowbtnBlure: {
         type: 'number',
-    },
-    arrowColor: {
-        type: 'string',
     },
 };
 

@@ -64,7 +64,7 @@ export default function Edit(props) {
                         position={initialPosition}
                         onlyHandleDraggable={handaleDraggable}
                         itemOne={
-                            <div className="imageitemOne">
+                            <div className="image-item-One">
                                 {showLabels && beforeLabel && (
                                     <div className="compare-slider-label compare-slider-label-left">{beforeLabel}</div>
                                 )}
@@ -72,7 +72,7 @@ export default function Edit(props) {
                             </div>
                         }
                         itemTwo={
-                            <div className="imageitemtwo">
+                            <div className="image-item-two">
                                 {showLabels && afterLabel && (
                                     <div className="compare-slider-label compare-slider-label-right">{afterLabel}</div>
                                 )}
