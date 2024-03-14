@@ -1,13 +1,13 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { InnerBlocks } from '@wordpress/block-editor';
 import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, showTitle, title, titleTag, rating, titlePosition, zoloId } = attributes;
+    const { uniqueId, parentClasses, zoloId, tabId, tabParentId } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, 'tab__content-item', classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
     return (
@@ -17,16 +17,17 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            {/* <div
+            <div
                 className="tab__content-item"
-                id="tab-content-0"
-                data-tab-id={0}
+                id={`tab-content-${tabId}`}
+                data-tab-id={tabId}
+                data-tab-parent-id={tabParentId}
                 role="tabpanel"
-                aria-labelledby="tab-title-0"
-                aria-hidden="false"
+                aria-labelledby={`tab-title-${tabId}`}
+                aria-hidden={tabId === '1' ? 'false' : 'true'}
             >
-            </div> */}
                 <InnerBlocks.Content />
+            </div>
         </div>
     );
 };

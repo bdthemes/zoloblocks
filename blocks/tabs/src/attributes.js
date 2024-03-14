@@ -6,7 +6,7 @@ const { generateResRangeAttributies, generateTypographyAttributes, generateResAl
 import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 const attributes = {
     // global Attributes
     globalConfig: {
@@ -33,64 +33,20 @@ const attributes = {
             responsiveControls: true,
         },
     },
+    // tabs
+    tabTitles: {
+        type: 'array',
+        default: [],
+    },
+    tabChildCount: {
+        type: 'number',
+        default: 3,
+    },
     // Generators
     ...generateResAlignmentAttributies(ITEMS_ALIGN),
     ...generateResRangeAttributies(STAR_SIZE),
     ...generateResRangeAttributies(TITLE_GAP),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
-    tabs: {
-        type: 'array',
-        default: [
-            {
-                id: uuidv4(),
-                title: 'Tab1',
-                content: '',
-                icon: ''
-            },
-            {
-                id: uuidv4(),
-                title: 'Tab2',
-                content: '',
-                icon:''
-            },
-        ],
-    },
-    initialTabSelected: {
-        type: 'number',
-        default: 0,
-    },
-    blockInitialized: {
-        type: 'boolean',
-        default: false,
-    },
-    rating: {
-        type: 'number',
-        default: 5,
-    },
-    showTitle: {
-        type: 'boolean',
-        default: true,
-    },
-    title: {
-        type: 'string',
-    },
-    titleTag: {
-        type: 'string',
-        default: 'p',
-    },
-    titleColor: {
-        type: 'string',
-    },
-    titlePosition: {
-        type: 'string',
-        default: 'top',
-    },
-    activeStarColor: {
-        type: 'string',
-    },
-    inactiveStarColor: {
-        type: 'string',
-    },
 };
 
 export default attributes;

@@ -28,8 +28,21 @@ import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS } from '../../../src/g
 import Sortable from './sortable';
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
-    const { resMode, rating, showTitle, title, titleTag, titleColor, titlePosition, activeStarColor, inactiveStarColor, tabs, } = attributes;
+    const { attributes, setAttributes, handleTabClick, clientId, activeTabId, setActiveTabId } = props;
+    const {
+        resMode,
+        rating,
+        showTitle,
+        title,
+        titleTag,
+        titleColor,
+        titlePosition,
+        activeStarColor,
+        inactiveStarColor,
+        tabTitles,
+        tabChildCount,
+        uniqueId,
+    } = attributes;
     const requiredProps = {
         attributes,
         setAttributes,
@@ -58,7 +71,16 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Tabs', 'zolo-blocks')} panelProps={props}>
-                            <Sortable tabs={tabs} setAttributes={setAttributes} />
+                            <Sortable
+                                tabTitles={tabTitles}
+                                setAttributes={setAttributes}
+                                clientId={clientId}
+                                uniqueId={uniqueId}
+                                tabChildCount={tabChildCount}
+                                handleTabClick={handleTabClick}
+                                activeTabId={activeTabId}
+                                setActiveTabId={setActiveTabId}
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Rating', 'zolo-blocks')} panelProps={props}>
                             <RangeControl
