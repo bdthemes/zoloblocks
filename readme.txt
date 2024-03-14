@@ -3,7 +3,7 @@ Contributors: BdThemes
 Tags: zoloblocks, blocks, gutenberg blocks, custom block, gutenberg
 Requires at least: 6.0
 Tested up to: 6.4.3
-Stable tag: 1.0.0-RC4
+Stable tag: 1.0.0-RC5
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -52,6 +52,25 @@ Not at all. We have optimised all of these blocks for better performance.
 
 
 == Changelog ==
+
+= 1.0.0-RC5 =
+
+= Added =
+
+* Form block added
+* List block added
+* Floating animation features added
+* Transform features added
+
+= Fixed =
+
+* Advanced icon box block css overwriting issue fixed
+* Social share block icon size issue fixed
+* Social links block icon size issue fixed
+* Flipbox block hover background label issue fixed
+* Advanced heading preset-3 background image replacing issue fixed
+* Image gallery block move horizontal control spelling mistake issue fixed
+
 
 = 1.0.0-RC4 =
 

@@ -1,3 +1,21 @@
+## 1.0.0-RC5 [10th March 2024]
+
+### Added
+
+- Form block added
+- List block added
+- Floating animation features added
+- Transform features added
+
+### Fixed
+
+- Advanced icon box block css overwriting issue fixed
+- Social share block icon size issue fixed
+- Social links block icon size issue fixed
+- Flipbox block hover background label issue fixed
+- Advanced heading preset-3 background image replacing issue fixed
+- Image gallery block move horizontal control spelling mistake issue fixed
+
 ## 1.0.0-RC4 [22th February 2024]
 
 ### Added
