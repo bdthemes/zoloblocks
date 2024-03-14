@@ -59,6 +59,7 @@ import {
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
 } from './constants';
+import { applyFilters } from '@wordpress/hooks';
 
 const {
     ResRangeControl,
@@ -140,6 +141,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/team-grid"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -148,7 +150,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Styles', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.teamGrid.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
                             <ToggleControl
@@ -545,7 +547,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/team-grid"
+                        />
                     </>
                 }
             />

@@ -47,6 +47,7 @@ import {
 import { ICON_STATUS } from '../../../src/global/constants';
 
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -107,6 +108,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/social-links"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -115,7 +117,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.socialLinks.presets', PRESETS)}
                                 onChange={(value) => changePremade(value)}
                             />
                             <IconicBtnGroup
@@ -373,7 +375,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/social-links"
+                        />
                     </>
                 }
             />

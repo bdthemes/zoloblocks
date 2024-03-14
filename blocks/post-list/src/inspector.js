@@ -60,6 +60,7 @@ import {
 } from './constants/typoPrefixConstant';
 
 import { DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE, TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 const {
     ResDimensionsControl,
@@ -172,6 +173,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/post-list"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -180,7 +182,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.postList.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
                             <ToggleControl
@@ -1079,7 +1081,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/post-list"
+                        />
                     </>
                 }
             />

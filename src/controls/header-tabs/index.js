@@ -1,11 +1,13 @@
 /**
  * WordPress dependencies
  */
-import { Fragment, useState } from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Button, ButtonGroup } from '@wordpress/components';
+import { applyFilters, doAction } from '@wordpress/hooks';
 
-const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttributes }) => {
+const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttributes, block = '' }) => {
+    const panelProps = { attributes, setAttributes };
     const { selectedTab } = attributes;
 
     return (
@@ -83,8 +85,8 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttribut
                 </Button>
             </ButtonGroup>
             <div className="zolo-tab-controls">
-                {selectedTab === 'basic' && <Fragment>{generalTab}</Fragment>}
-                {selectedTab === 'style' && <Fragment>{styleTab}</Fragment>}
+                {selectedTab === 'basic' && <Fragment>{applyFilters('zolo.blocks.generalTab', generalTab, block, panelProps)}</Fragment>}
+                {selectedTab === 'style' && <Fragment>{applyFilters('zolo.blocks.styleTab', styleTab, block, panelProps)}</Fragment>}
                 {selectedTab === 'extra' && <Fragment>{advancedTab}</Fragment>}
             </div>
         </div>
