@@ -30,7 +30,7 @@ import { style } from 'motion';
 
 const Edit = (props) => {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, tabTitles, tabChildCount } = attributes;
+    const { preview, uniqueId, parentClasses, tabTitles, tabChildCount, tabsLayout, tabActiveItemNo } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
@@ -45,7 +45,9 @@ const Edit = (props) => {
     const tabWrapRef = useRef(null);
 
     const [activeTabId, setActiveTabId] = useState(false);
-    const activeDefaultTabId = (tabTitles.find((item) => item.isDefault) || { id: '1' }).id;
+    const activeDefaultTabId = (tabTitles.find((item) => item.isDefault) || { id: tabActiveItemNo }).id;
+
+
 
     useEffect(() => {
         // add default tab
@@ -132,17 +134,16 @@ const Edit = (props) => {
                 />
             )}
             <Style props={props} />
-               <style>
-
-                {` 
+            <style>
+                {`
                    .block-editor-block-list__block.wp-block-zolo-container .block-editor-block-list__layout .block-list-appender.wp-block button {
                     border: 1px solid #ccc;
                 }
                 `}
-               </style>
+            </style>
             <div {...blockProps}>
                 <div
-                    className="tab zolo-tab_style-1 zolo-tab_content-style-1 zolo-tab_animation-style-1"
+                    className={classnames('zolo-tabs', `zolo-tab_${tabsLayout}`, 'zolo-tab_content-style-1', 'zolo-tab_animation-style-1')}
                     role="tablist"
                     tabIndex={0}
                     ref={tabWrapRef}
@@ -154,6 +155,7 @@ const Edit = (props) => {
                                     <div
                                         key={index}
                                         className={`tab__item zolo-tab_head-item ${
+                                            // tabActiveItemNo === tab.id ? 'active' : ''
                                             (activeTabId || activeDefaultTabId) === tab.id ? 'active' : ''
                                         }`}
                                         tabIndex={tab.id}

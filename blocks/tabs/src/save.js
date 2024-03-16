@@ -4,7 +4,7 @@ import classnames from 'classnames';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, zoloId, tabTitles } = attributes;
+    const { uniqueId, parentClasses, zoloId, tabTitles, tabsLayout } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -17,7 +17,11 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            <div className="tab zolo-tab_style-1 zolo-tab_content-style-1 zolo-tab_animation-style-1" role="tablist" tabIndex={0}>
+            <div
+                className={classnames('zolo-tabs', `zolo-tab_${tabsLayout}`, 'zolo-tab_content-style-1', 'zolo-tab_animation-style-1')}
+                role="tablist"
+                tabIndex={0}
+            >
                 <div className="tab__list zolo-tab_header-wrap">
                     {tabTitles &&
                         tabTitles.map((tab, index) => {

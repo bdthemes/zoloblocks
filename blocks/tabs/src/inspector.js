@@ -2,7 +2,13 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, RangeControl, SelectControl } from '@wordpress/components';
+import {
+    ToggleControl,
+    TextControl,
+    RangeControl,
+    SelectControl,
+    __experimentalNumberControl as NumberControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -12,6 +18,7 @@ const {
     ResAlignmentControl,
     ResRangeControl,
     ColorControl,
+    NormalBGControl,
     TypographyDropdown,
     HeaderTabs,
     TabPanelControl,
@@ -23,7 +30,7 @@ const {
 import objAttributes from './attributes';
 
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
-import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
+import { NAV_ITEMS_ALIGN, NAV_SPACING, CONTENT_SPACING, TAB_NORMAL_BGCOLOR, TAB_HOVER_BGCOLOR, TAB_ACTIVE_BGCOLOR } from './constants';
 import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS } from '../../../src/global/constants';
 import Sortable from './sortable';
 
@@ -31,17 +38,14 @@ function Inspector(props) {
     const { attributes, setAttributes, handleTabClick, clientId, activeTabId, setActiveTabId } = props;
     const {
         resMode,
-        rating,
-        showTitle,
-        title,
-        titleTag,
-        titleColor,
-        titlePosition,
-        activeStarColor,
-        inactiveStarColor,
+        normalTabColor,
+        hoverTabColor,
+        activeTabColor,
         tabTitles,
         tabChildCount,
         uniqueId,
+        tabsLayout,
+        tabActiveItemNo,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -58,16 +62,61 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
-                            <ToggleControl
-                                label={__('Show Star Title', 'zolo-blocks')}
-                                checked={showTitle}
-                                onChange={() => setAttributes({ showTitle: !showTitle })}
+                            <SelectControl
+                                label={__('Layout', 'zolo-blocks')}
+                                value={tabsLayout}
+                                options={[
+                                    {
+                                        value: 'horizontal',
+                                        label: __('Horizontal', 'zolo-blocks'),
+                                    },
+                                    {
+                                        value: 'vertical-left',
+                                        label: __('Vertical Left', 'zolo-blocks'),
+                                    },
+                                    {
+                                        value: 'vertical-right',
+                                        label: __('Vertical Right', 'zolo-blocks'),
+                                    },
+                                ]}
+                                onChange={(newTabsLayout) =>
+                                    setAttributes({
+                                        tabsLayout: newTabsLayout,
+                                        activeTabId: 0,
+                                    })
+                                }
                             />
                             <ResAlignmentControl
                                 label={__('Alignment', 'zolo-blocks')}
-                                controlName={ITEMS_ALIGN}
+                                controlName={NAV_ITEMS_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={FLEX_HORIZONTAL_OPTIONS}
+                            />
+                            <ResRangeControl
+                                label={__('Nav Spacing', 'zolo-blocks')}
+                                controlName={NAV_SPACING}
+                                requiredProps={requiredProps}
+                                min={1}
+                                max={100}
+                                step={1}
+                            />
+                            <ResRangeControl
+                                label={__('Content Spacing', 'zolo-blocks')}
+                                controlName={CONTENT_SPACING}
+                                requiredProps={requiredProps}
+                                min={1}
+                                max={100}
+                                step={1}
+                            />
+                            <NumberControl
+                                label={__('Active Item No', 'zolo-blocks')}
+                                value={tabActiveItemNo}
+                                onChange={(newTabActiveItem) =>
+                                    setAttributes({
+                                        tabActiveItemNo: newTabActiveItem,
+                                        activeTabId: newTabActiveItem - 1,
+                                    })
+                                }
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Tabs', 'zolo-blocks')} panelProps={props}>
@@ -82,86 +131,78 @@ function Inspector(props) {
                                 setActiveTabId={setActiveTabId}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Rating', 'zolo-blocks')} panelProps={props}>
-                            <RangeControl
-                                label={__('Rating', 'zolo-blocks')}
-                                value={rating}
-                                onChange={(v) => setAttributes({ rating: v })}
-                                min={1}
-                                max={5}
-                                step={0.1}
-                            />
-                        </ZoloPanelBody>
-                        {showTitle && (
-                            <ZoloPanelBody title={__('Title', 'zolo-blocks')} panelProps={props}>
-                                <TextControl
-                                    label={__('Text', 'zolo-blocks')}
-                                    value={title}
-                                    onChange={(v) => setAttributes({ title: v })}
-                                    placeholder={__('Enter title', 'zolo-blocks')}
-                                />
-                                <SelectControl
-                                    label={__('Select Tag', 'zolo-blocks')}
-                                    value={titleTag}
-                                    options={HEADING}
-                                    onChange={(v) => {
-                                        setAttributes({ titleTag: v });
-                                    }}
-                                />
-                                <IconicBtnGroup
-                                    label={__('Position', 'zolo-blocks')}
-                                    value={titlePosition}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            titlePosition: value,
-                                        })
-                                    }
-                                    options={ICON_POSITIONS}
-                                />
-                            </ZoloPanelBody>
-                        )}
                     </>
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Star', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <ResRangeControl
-                                label={__('Size', 'zolo-blocks')}
-                                controlName={STAR_SIZE}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={100}
-                                step={1}
-                            />
-
+                        <ZoloPanelBody title={__('Tabs', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <TabPanelControl
                                 options={[
                                     {
                                         value: 'normal',
-                                        label: __('Active', 'zolo-blocks'),
+                                        label: __('Normal', 'zolo-blocks'),
                                     },
                                     {
                                         value: 'hover',
-                                        label: __('Inactive', 'zolo-blocks'),
+                                        label: __('Hover', 'zolo-blocks'),
+                                    },
+                                    {
+                                        value: 'active',
+                                        label: __('Active', 'zolo-blocks'),
                                     },
                                 ]}
                                 normalComponents={
-                                    <ColorControl
-                                        label={__('Active Stars', 'zolo-blocks')}
-                                        color={activeStarColor}
-                                        onChange={(color) => setAttributes({ activeStarColor: color })}
-                                    />
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zolo-blocks')}
+                                            color={normalTabColor}
+                                            onChange={(newNormalTabColor) => {
+                                                console.log('newNormalTabColor', newNormalTabColor)
+                                                setAttributes({
+                                                    normalTabColor: newNormalTabColor,
+                                                });
+                                            }}
+                                        />
+
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={TAB_NORMAL_BGCOLOR}
+                                            noMainBGImg={false}
+                                        />
+                                    </>
                                 }
                                 hoverComponents={
-                                    <ColorControl
-                                        label={__('Inactive Stars', 'zolo-blocks')}
-                                        color={inactiveStarColor}
-                                        onChange={(color) => setAttributes({ inactiveStarColor: color })}
-                                    />
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zolo-blocks')}
+                                            color={hoverTabColor}
+                                            onChange={(color) => setAttributes({ hoverTabColor: color })}
+                                        />
+
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={TAB_HOVER_BGCOLOR}
+                                            noMainBGImg={false}
+                                        />
+                                    </>
+                                }
+                                activeComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zolo-blocks')}
+                                            color={activeTabColor}
+                                            onChange={(color) => setAttributes({ activeTabColor: color })}
+                                        />
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={TAB_ACTIVE_BGCOLOR}
+                                            noMainBGImg={false}
+                                        />
+                                    </>
                                 }
                             />
                         </ZoloPanelBody>
-                        {showTitle && (
+                        {/* {showTitle && (
                             <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
@@ -182,7 +223,7 @@ function Inspector(props) {
                                     step={1}
                                 />
                             </ZoloPanelBody>
-                        )}
+                        )} */}
                     </>
                 }
                 advancedTab={

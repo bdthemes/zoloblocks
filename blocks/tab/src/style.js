@@ -69,24 +69,7 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId} .start-rating-wrapper {
-            ${itemsVDeskAlign}
-        }
-        .${uniqueId} .star-rating-inner {
-            ${deskGap}
-        }
-        .${uniqueId} .start-rating-title {
-            color: ${titleColor};
-            ${titleDeskTypo}
-        }
-        .${uniqueId} .zolo-star-rating svg {
-            ${deskSize}
-            ${deskHeight}
-            ${activeStarColor ? `fill: ${activeStarColor};` : ''}
-        }
-        .${uniqueId} .zolo-star-rating svg.empty-star {
-            ${inactiveStarColor ? `fill: ${inactiveStarColor};` : ''}
-        }
+
     `;
 
     const tabletAllStyle = `

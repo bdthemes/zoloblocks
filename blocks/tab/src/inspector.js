@@ -45,11 +45,6 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
-                            <ToggleControl
-                                label={__('Show Star Title', 'zolo-blocks')}
-                                checked={showTitle}
-                                onChange={() => setAttributes({ showTitle: !showTitle })}
-                            />
                             <ResAlignmentControl
                                 label={__('Alignment', 'zolo-blocks')}
                                 controlName={ITEMS_ALIGN}

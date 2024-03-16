@@ -6,14 +6,15 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { generateResAlignmentStyle, generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder } = window.zoloModule;
+const { generateResAlignmentStyle, generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder, generateNormalBGControlStyles } =
+    window.zoloModule;
 
-import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
+import { NAV_ITEMS_ALIGN, NAV_SPACING, CONTENT_SPACING, TAB_NORMAL_BGCOLOR, TAB_HOVER_BGCOLOR, TAB_ACTIVE_BGCOLOR } from './constants';
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, titleColor, activeStarColor, inactiveStarColor } = attributes;
+    const { uniqueId, normalTabColor, hoverTabColor, activeTabColor } = attributes;
 
     // styles
     const {
@@ -21,103 +22,100 @@ const Style = ({ props }) => {
         tabAlignStyle: itemsVTabAlign,
         mobAlignStyle: itemsVMobAlign,
     } = generateResAlignmentStyle({
-        controlName: ITEMS_ALIGN,
+        controlName: NAV_ITEMS_ALIGN,
         property: 'justify-content',
         attributes,
     });
 
     const {
-        desktopRangeStyle: deskGap,
-        tabRangeStyle: tabGap,
-        mobRangeStyle: mobGap,
+        desktopRangeStyle: deskNavSpacing,
+        tabRangeStyle: tabNavSpacing,
+        mobRangeStyle: mobNavSpacing,
     } = generateResRangeStyle({
-        controlName: TITLE_GAP,
+        controlName: NAV_SPACING,
         property: 'gap',
         attributes,
     });
-
     const {
-        typoStylesDesktop: titleDeskTypo,
-        typoStylesTab: titleTabTypo,
-        typoStylesMobile: titleMobTypo,
-    } = generateTypographyStyles({
-        prefixConstant: TITLE_TYPO,
-        attributes,
-    });
-
-    // Star Rating Style
-    const {
-        desktopRangeStyle: deskSize,
-        tabRangeStyle: tabSize,
-        mobRangeStyle: mobSize,
+        desktopRangeStyle: deskContentSpacing,
+        tabRangeStyle: tabContentSpacing,
+        mobRangeStyle: mobContentSpacing,
     } = generateResRangeStyle({
-        controlName: STAR_SIZE,
-        property: 'width',
+        controlName: CONTENT_SPACING,
+        property: 'margin-bottom',
         attributes,
     });
-    const {
-        desktopRangeStyle: deskHeight,
-        tabRangeStyle: tabHeight,
-        mobRangeStyle: mobHeight,
-    } = generateResRangeStyle({
-        controlName: STAR_SIZE,
-        property: 'height',
-        attributes,
-    });
+
+
+    /**
+    * Background Color
+    */
+
+        const {
+            backgroundStylesDesktop: tabNormalBgColorDesktop,
+            backgroundStylesTab: tabNormalBgColorTab,
+            backgroundStylesMobile: tabNormalBgColorMobile,
+        } = generateNormalBGControlStyles({
+            controlName: TAB_NORMAL_BGCOLOR,
+            attributes,
+            noMainBGImg: false,
+        });
+        const {
+            backgroundStylesDesktop: tabHoverBgColorDesktop,
+            backgroundStylesTab: tabHoverBgColorTab,
+            backgroundStylesMobile: tabHoverBgColorMobile,
+        } = generateNormalBGControlStyles({
+            controlName: TAB_HOVER_BGCOLOR,
+            attributes,
+            noMainBGImg: false,
+        });
+        const {
+            backgroundStylesDesktop: tabActiveBgColorDesktop,
+            backgroundStylesTab: tabActiveBgColorTab,
+            backgroundStylesMobile: tabActiveBgColorMobile,
+        } = generateNormalBGControlStyles({
+            controlName: TAB_ACTIVE_BGCOLOR,
+            attributes,
+            noMainBGImg: false,
+        });
 
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId} .start-rating-wrapper {
+        .${uniqueId} .zolo-tabs .zolo-tab_header-wrap{
             ${itemsVDeskAlign}
+            ${deskNavSpacing}
+            ${deskContentSpacing}
         }
-        .${uniqueId} .star-rating-inner {
-            ${deskGap}
+
+        .${uniqueId} .tab__item.zolo-tab_head-item {
+           --zolo-tab-title-color: ${normalTabColor};
+            ${tabNormalBgColorDesktop}
         }
-        .${uniqueId} .start-rating-title {
-            color: ${titleColor};
-            ${titleDeskTypo}
+        .${uniqueId} .tab__item.zolo-tab_head-item:hover {
+            --zolo-tab-title-color: ${hoverTabColor};
+            ${tabHoverBgColorDesktop}
         }
-        .${uniqueId} .zolo-star-rating svg {
-            ${deskSize}
-            ${deskHeight}
-            ${activeStarColor ? `fill: ${activeStarColor};` : ''}
-        }
-        .${uniqueId} .zolo-star-rating svg.empty-star {
-            ${inactiveStarColor ? `fill: ${inactiveStarColor};` : ''}
+        .${uniqueId} .tab__item.zolo-tab_head-item.active {
+           ${activeTabColor ? `--zolo-tab-title-color: ${activeTabColor};` : ''}
+            ${tabActiveBgColorDesktop}
         }
     `;
 
     const tabletAllStyle = `
-        .${uniqueId} .start-rating-wrapper {
+        .${uniqueId} .zolo-tabs .zolo-tab_header-wrap{
             ${itemsVTabAlign}
-        }
-        .${uniqueId} .star-rating-inner {
-            ${tabGap}
-        }
-        .${uniqueId} .start-rating-title {
-            ${titleTabTypo}
-        }
-        .${uniqueId} .zolo-star-rating svg {
-            ${tabSize}
-            ${tabHeight}
+            ${tabNavSpacing}
+            ${tabContentSpacing}
         }
     `;
 
     const mobileAllStyle = `
-        .${uniqueId} .start-rating-wrapper {
+        .${uniqueId} .zolo-tabs .zolo-tab_header-wrap{
             ${itemsVMobAlign}
-        }
-        .${uniqueId} .star-rating-inner {
-            ${mobGap}
-        }
-        .${uniqueId} .start-rating-title {
-            ${titleMobTypo}
-        }
-        .${uniqueId} .zolo-star-rating svg {
-            ${mobSize}
-            ${mobHeight}
+            ${mobNavSpacing}
+            ${mobContentSpacing}
         }
     `;
 

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const tabs = document.querySelectorAll('.tab');
+    const tabs = document.querySelectorAll('.zolo-tabs');
 
     function tabify(tab) {
         const tabList = tab.querySelector('.tab__list');
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             setTab(tabIndex);
-            tab.querySelectorAll('.tab').forEach((tabContent) => tabify(tabContent));
+            tab.querySelectorAll('.zolo-tabs').forEach((tabContent) => tabify(tabContent));
         }
     }
 
