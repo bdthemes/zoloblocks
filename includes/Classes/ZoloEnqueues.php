@@ -222,7 +222,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             // override css
             wp_enqueue_style(
-                'zolo-block-override-style',
+                'zolo-block-editor-override-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/override/editor-override.css',
                 [],
                 ZOLO_VERSION

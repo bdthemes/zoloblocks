@@ -60,7 +60,7 @@ const Style = ({ props }) => {
         dscHcolor,
         textListColor,
         txtHListColor,
-        listIcon,
+        listIconColor,
         listIconHover,
         layout,
         HoverIconColor,
@@ -339,7 +339,7 @@ const Style = ({ props }) => {
    
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
         ${desktopIconSize} 
-        fill:${listIcon}
+        fill:${listIconColor}
      }
      
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon {

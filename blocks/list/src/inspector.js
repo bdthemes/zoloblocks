@@ -18,8 +18,6 @@ const {
     ZoloPanelBody,
     IconicBtnGroup,
     ZoloIconPicker,
-    PopoverControl,
-    SimpleRangeControl,
     generateResCounterStyle,
 } = window.zoloModule;
 
@@ -80,7 +78,7 @@ function Inspector(props) {
         dscHcolor,
         textListColor,
         txtHListColor,
-        listIcon,
+        listIconColor,
         listIconHover,
         iconToggle,
         DscToggle,
@@ -321,266 +319,6 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                             />
                                             <NormalBGControl requiredProps={requiredProps} controlName={LIST_HOVER_BG} noOverlay={true} />
-
-                                            {/* <PopoverControl
-                                                label={__('Transform', 'zolo-blocks')}
-                                                icon={
-                                                    <svg
-                                                        width={24}
-                                                        height={24}
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            d="M18.5818 15.3211L22 11.9184L18.5818 8.58813"
-                                                            stroke="#4D4D4D"
-                                                            strokeWidth="1.5"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                        />
-                                                        <path
-                                                            d="M5.41818 15.3211L2 11.9184L5.41818 8.58813"
-                                                            stroke="#4D4D4D"
-                                                            strokeWidth="1.5"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                        />
-                                                        <path
-                                                            d="M2.35461 11.9548H21.6455"
-                                                            stroke="#4D4D4D"
-                                                            strokeWidth="1.5"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                        />
-                                                        <path
-                                                            d="M15.3818 5.4027L11.9636 2L8.61816 5.4027"
-                                                            stroke="#4D4D4D"
-                                                            strokeWidth="1.5"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                        />
-                                                        <path
-                                                            d="M8.61816 18.5974L12.0363 22.0001L15.3818 18.5974"
-                                                            stroke="#4D4D4D"
-                                                            strokeWidth="1.5"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                        />
-                                                        <path
-                                                            d="M12 2.35278V21.2396"
-                                                            stroke="#4D4D4D"
-                                                            strokeWidth="1.5"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                        />
-                                                    </svg>
-                                                }
-                                            >
-                                                <SimpleRangeControl
-                                                    label={__('Translate X', 'zolo-blocks')}
-                                                    onChange={(value) => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                translateX: {
-                                                                    ...lisTranform.translateX,
-                                                                    value,
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    value={lisTranform?.translateX?.value}
-                                                    onUnitChange={(unit) => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                translateX: {
-                                                                    ...lisTranform.translateX,
-                                                                    unit,
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    unit={lisTranform?.translateX?.unit}
-                                                    onReset={() => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                translateX: {
-                                                                    ...lisTranform.translateX,
-                                                                    value: 0,
-                                                                    unit: 'px',
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    min={-100}
-                                                    max={100}
-                                                    noUnits={false}
-                                                />
-                                                <SimpleRangeControl
-                                                    label={__('Translate Y', 'zolo-blocks')}
-                                                    onChange={(value) => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                translateY: {
-                                                                    ...lisTranform.translateY,
-                                                                    value,
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    value={lisTranform?.translateY?.value}
-                                                    onUnitChange={(unit) => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                translateY: {
-                                                                    ...lisTranform.translateY,
-                                                                    unit,
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    unit={lisTranform?.translateY?.unit}
-                                                    onReset={() => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                translateY: {
-                                                                    ...lisTranform.translateY,
-                                                                    value: 0,
-                                                                    unit: 'px',
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    min={-100}
-                                                    max={100}
-                                                    noUnits={false}
-                                                />
-                                                <SimpleRangeControl
-                                                    label={__('Scale', 'zolo-blocks')}
-                                                    onChange={(value) => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                scale: {
-                                                                    ...lisTranform.scale,
-                                                                    value,
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    value={lisTranform?.scale?.value}
-                                                    onReset={() => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                scale: {
-                                                                    ...lisTranform.scale,
-                                                                    value: 0,
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    max={5}
-                                                    min={0}
-                                                    noUnits={true}
-                                                />
-                                                <SimpleRangeControl
-                                                    label={__('Rotate', 'zolo-blocks')}
-                                                    onChange={(value) => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                rotate: {
-                                                                    ...lisTranform.rotate,
-                                                                    value,
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    value={lisTranform?.rotate?.value}
-                                                    onReset={() => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                rotate: {
-                                                                    ...lisTranform.rotate,
-                                                                    value: 0,
-                                                                    unit: 'deg',
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    min={-100}
-                                                    max={100}
-                                                    noUnits={true}
-                                                />
-                                                <SimpleRangeControl
-                                                    label={__('TransformOrgin X', 'zolo-blocks')}
-                                                    onChange={(value) => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                transfromOrginX: {
-                                                                    ...lisTranform.transfromOrginX,
-                                                                    value,
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    value={lisTranform?.transfromOrginX?.value}
-                                                    onReset={() => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                transfromOrginX: {
-                                                                    ...lisTranform.transfromOrginX,
-                                                                    value: 0,
-                                                                    unit: '%',
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    min={-100}
-                                                    max={200}
-                                                    noUnits={true}
-                                                />
-                                                <SimpleRangeControl
-                                                    label={__('TransformOrgin Y', 'zolo-blocks')}
-                                                    onChange={(value) => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                transfromOrginY: {
-                                                                    ...lisTranform.transfromOrginY,
-                                                                    value,
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    value={lisTranform?.transfromOrginY?.value}
-                                                    onReset={() => {
-                                                        setAttributes({
-                                                            lisTranform: {
-                                                                ...lisTranform,
-                                                                transfromOrginY: {
-                                                                    ...lisTranform.transfromOrginY,
-                                                                    value: 0,
-                                                                    unit: '%',
-                                                                },
-                                                            },
-                                                        });
-                                                    }}
-                                                    min={-100}
-                                                    max={200}
-                                                    noUnits={true}
-                                                />
-                                            </PopoverControl> */}
                                         </>
                                     }
                                 />
@@ -707,10 +445,10 @@ function Inspector(props) {
                                         <>
                                             <ColorControl
                                                 label={__('Color', 'zolo-blocks')}
-                                                color={listIcon}
+                                                color={listIconColor}
                                                 onChange={(value) =>
                                                     setAttributes({
-                                                        listIcon: value,
+                                                        listIconColor: value,
                                                     })
                                                 }
                                             />

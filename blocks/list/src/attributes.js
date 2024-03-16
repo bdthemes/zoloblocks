@@ -179,7 +179,10 @@ const attributes = {
             },
         ],
     },
-
+    // list icon
+    listIconColor: {
+        type: 'string',
+    },
     //dsc
     dscColor: {
         type: 'string',
@@ -187,6 +190,7 @@ const attributes = {
     dscHcolor: {
         type: 'string',
     },
+
     //TEXT LIST title
     textListColor: {
         type: 'string',

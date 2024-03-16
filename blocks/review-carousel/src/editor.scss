@@ -1,4 +1,18 @@
-// .wp-block-zolo-review-carousel{
-//     padding: 15px;
-//     border: 2px dashed #ddd;
-// }
+.wp-block-zolo-review-carousel{
+    &.Tablet,
+    &.Mobile{
+        .swiper-wrapper {
+            display: flex;
+            width: auto;
+            overflow: scroll;
+            z-index: 11;
+            position: relative;
+            transform: unset !important;
+        }
+        .swiper-slide {
+            width: 100% !important;
+        }
+    }
+
+}
+

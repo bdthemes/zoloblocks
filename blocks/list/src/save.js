@@ -68,9 +68,9 @@ const Save = ({ attributes }) => {
                                                 </div>
                                             )}
                                             {DscToggle && (
-                                                <span className="zolo-list-desc">
+                                                <p className="zolo-list-desc">
                                                     <RawHTML>{profile.desc}</RawHTML>
-                                                </span>
+                                                </p>
                                             )}
                                         </div>
                                     )}
