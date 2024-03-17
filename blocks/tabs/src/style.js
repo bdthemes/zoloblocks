@@ -6,16 +6,41 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { generateResAlignmentStyle, generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder, generateNormalBGControlStyles } =
-    window.zoloModule;
+const {
+    generateResAlignmentStyle,
+    generateTypographyStyles,
+    generateResRangeStyle,
+    GlobalStyleHanlder,
+    generateNormalBGControlStyles,
+    generateDimensionStyle,
+} = window.zoloModule;
 
-import { NAV_ITEMS_ALIGN, NAV_SPACING, CONTENT_SPACING, TAB_NORMAL_BGCOLOR, TAB_HOVER_BGCOLOR, TAB_ACTIVE_BGCOLOR } from './constants';
-import { TITLE_TYPO } from './constants/typoPrefixConstant';
+import {
+    NAV_ITEMS_ALIGN,
+    NAV_SPACING,
+    CONTENT_SPACING,
+    TAB_NORMAL_BGCOLOR,
+    TAB_HOVER_BGCOLOR,
+    TAB_ACTIVE_BGCOLOR,
+    TAB_ITEM_PADDING,
+    TAB_ITEM_RADIUS,
+    TITLE_BOTTOM_SPACING,
+    ACTIVE_HINT_HEIGHT,
+    ICON_BG,
+    ICON_SIZE,
+    ICON_BORDER,
+    ICON_BORDER_RADIUS,
+    ICON_PADDING,
+
+
+} from './constants';
+import { DESC_TYPOGRAPHY, TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, normalTabColor, hoverTabColor, activeTabColor } = attributes;
-
+    const { uniqueId, normalTabColor, hoverTabColor, activeTabColor, descColor, descHoverColor, descActiveColor, activeHintTabColor, iconColor } =
+        attributes;
+console.log(iconColor, 'iconColor')
     // styles
     const {
         desktopAlignStyle: itemsVDeskAlign,
@@ -46,39 +71,144 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const {
+        desktopRangeStyle: activeHintHeightDesktop,
+        tabRangeStyle: activeHintHeightTab,
+        mobRangeStyle: activeHintHeightMob,
+    } = generateResRangeStyle({
+        controlName: ACTIVE_HINT_HEIGHT,
+        property: '--zolo-tab-animation-height',
+        attributes,
+    });
 
     /**
-    * Background Color
-    */
+     * Background Color
+     */
 
-        const {
-            backgroundStylesDesktop: tabNormalBgColorDesktop,
-            backgroundStylesTab: tabNormalBgColorTab,
-            backgroundStylesMobile: tabNormalBgColorMobile,
-        } = generateNormalBGControlStyles({
-            controlName: TAB_NORMAL_BGCOLOR,
-            attributes,
-            noMainBGImg: false,
-        });
-        const {
-            backgroundStylesDesktop: tabHoverBgColorDesktop,
-            backgroundStylesTab: tabHoverBgColorTab,
-            backgroundStylesMobile: tabHoverBgColorMobile,
-        } = generateNormalBGControlStyles({
-            controlName: TAB_HOVER_BGCOLOR,
-            attributes,
-            noMainBGImg: false,
-        });
-        const {
-            backgroundStylesDesktop: tabActiveBgColorDesktop,
-            backgroundStylesTab: tabActiveBgColorTab,
-            backgroundStylesMobile: tabActiveBgColorMobile,
-        } = generateNormalBGControlStyles({
-            controlName: TAB_ACTIVE_BGCOLOR,
-            attributes,
-            noMainBGImg: false,
-        });
+    const {
+        backgroundStylesDesktop: tabNormalBgColorDesktop,
+        backgroundStylesTab: tabNormalBgColorTab,
+        backgroundStylesMobile: tabNormalBgColorMobile,
+    } = generateNormalBGControlStyles({
+        controlName: TAB_NORMAL_BGCOLOR,
+        attributes,
+        noMainBGImg: false,
+    });
 
+    const {
+        backgroundStylesDesktop: iconBgDesktop,
+        backgroundStylesTab: iconBgTab,
+        backgroundStylesMobile: iconBgMobile,
+    } = generateNormalBGControlStyles({
+        controlName: ICON_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+    const {
+        backgroundStylesDesktop: tabHoverBgColorDesktop,
+        backgroundStylesTab: tabHoverBgColorTab,
+        backgroundStylesMobile: tabHoverBgColorMobile,
+    } = generateNormalBGControlStyles({
+        controlName: TAB_HOVER_BGCOLOR,
+        attributes,
+        noMainBGImg: false,
+    });
+    const {
+        backgroundStylesDesktop: tabActiveBgColorDesktop,
+        backgroundStylesTab: tabActiveBgColorTab,
+        backgroundStylesMobile: tabActiveBgColorMobile,
+    } = generateNormalBGControlStyles({
+        controlName: TAB_ACTIVE_BGCOLOR,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        dimensionStylesDesktop: tabItemPaddingDesktop,
+        dimensionStylesTab: tabItemPaddingTab,
+        dimensionStylesMobile: tabItemPaddingMobile,
+    } = generateDimensionStyle({
+        controlName: TAB_ITEM_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: tabItemBorderRadiusDesktop,
+        dimensionStylesTab: tabItemBorderRadiusTab,
+        dimensionStylesMobile: tabItemBorderRadiusMobile,
+    } = generateDimensionStyle({
+        controlName: TAB_ITEM_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: titleBottomSpacingDesktop,
+        tabRangeStyle: titleBottomSpacingTab,
+        mobRangeStyle: titleBottomSpacingMob,
+    } = generateResRangeStyle({
+        controlName: TITLE_BOTTOM_SPACING,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: tabTitleTypoDesk,
+        typoStylesTab: tabTitleTypoTab,
+        typoStylesMobile: tabTitleTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: TITLE_TYPO,
+        attributes,
+    });
+    // desc
+    const {
+        typoStylesDesktop: tabDescTypoDesk,
+        typoStylesTab: tabDescTypoTab,
+        typoStylesMobile: tabDescTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: DESC_TYPOGRAPHY,
+        attributes,
+    });
+
+    // ICONS
+
+     const {
+         dimensionStylesDesktop: iconPaddingDesktop,
+         dimensionStylesTab: iconPaddingTab,
+         dimensionStylesMobile: iconPaddingMobile,
+     } = generateDimensionStyle({
+         controlName: ICON_PADDING,
+         styleFor: 'padding',
+         attributes,
+     });
+
+     const {
+         dimensionStylesDesktop: iconrRadiusDesktop,
+         dimensionStylesTab: iconrRadiusTab,
+         dimensionStylesMobile: iconrRadiusMobile,
+     } = generateDimensionStyle({
+         controlName: ICON_BORDER_RADIUS,
+         styleFor: 'border-radius',
+         attributes,
+     });
+    //  const {
+    //      desktopRangeStyle: iconHeightDesktop,
+    //      tabRangeStyle: iconHeightTab,
+    //      mobRangeStyle: iconHeightMob,
+    //  } = generateResRangeStyle({
+    //      controlName: ICON_SIZE,
+    //      property: 'height',
+    //      attributes,
+    //  });
+     const {
+         desktopRangeStyle: iconHeightWidthDesktop,
+         tabRangeStyle: iconHeightWidthTab,
+         mobRangeStyle: iconHeightWidthMob,
+     } = generateResRangeStyle({
+         controlName: ICON_SIZE,
+         property: '--zolo-tab-icon-size',
+         attributes,
+     });
     /**
      * All Style Combination
      */
@@ -87,11 +217,15 @@ const Style = ({ props }) => {
             ${itemsVDeskAlign}
             ${deskNavSpacing}
             ${deskContentSpacing}
+
         }
 
         .${uniqueId} .tab__item.zolo-tab_head-item {
            --zolo-tab-title-color: ${normalTabColor};
             ${tabNormalBgColorDesktop}
+            ${tabItemPaddingDesktop}
+            ${tabItemBorderRadiusDesktop}
+            ${activeHintHeightDesktop}
         }
         .${uniqueId} .tab__item.zolo-tab_head-item:hover {
             --zolo-tab-title-color: ${hoverTabColor};
@@ -101,6 +235,40 @@ const Style = ({ props }) => {
            ${activeTabColor ? `--zolo-tab-title-color: ${activeTabColor};` : ''}
             ${tabActiveBgColorDesktop}
         }
+        .${uniqueId} .tab__item.zolo-tab_head-item .zolo-tab_title {
+            ${titleBottomSpacingDesktop}
+            ${tabTitleTypoDesk}
+        }
+        .${uniqueId} .tab__item.zolo-tab_head-item .zolo-tab_desc {
+            color: ${descColor};
+            ${tabDescTypoDesk}
+
+        }
+        .${uniqueId} .tab__item.zolo-tab_head-item:hover .zolo-tab_desc {
+            color: ${descHoverColor};
+
+        }
+        .${uniqueId} .tab__item.zolo-tab_head-item:active .zolo-tab_desc {
+            ${descActiveColor ? `--zolo-tab-desc-color: ${descActiveColor};` : ''}
+        }
+        .${uniqueId} .tab__item.zolo-tab_head-item:before {
+            background-color: ${activeHintTabColor};
+        }
+
+        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon {
+            ${iconBgDesktop}
+            ${iconPaddingDesktop}
+            ${iconrRadiusDesktop}
+
+        }
+        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon svg {
+            ${iconColor ? `fill: ${iconColor};` : ''}
+            ${iconHeightWidthDesktop}
+        }
+        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon svg path{
+            ${iconColor ? `fill: ${iconColor};` : ''}
+        }
+
     `;
 
     const tabletAllStyle = `

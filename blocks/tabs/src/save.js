@@ -4,7 +4,7 @@ import classnames from 'classnames';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, zoloId, tabTitles, tabsLayout } = attributes;
+    const { uniqueId, parentClasses, zoloId, tabTitles, tabsLayout, showIcon, showTitle, showDesc } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -35,18 +35,18 @@ const Save = ({ attributes }) => {
                                     aria-selected={tab.id === 1 ? 'true' : 'false'}
                                 >
                                     <div className="zolo-tab_icon-number-wrap">
-                                        {tab.hasMedia && (
+                                        {tab.hasMedia && showIcon && (
                                             <span className="zolo-tab_icon">
                                                 <DisplayZoloIcon icon={tab.icon} />
                                             </span>
                                         )}
-                                        {tab.hasNumber && (
-                                            <span className="zolo-tab_number">{index + 1 < 10 ? `0${index + 1}` : index + 1}</span>
-                                        )}
                                     </div>
                                     <div className="zolo-tab_head-content">
-                                        <RichText.Content tagName="h2" className={'zolo-tab_title'} value={tab.title} />
-                                        {tab.hasDescription && <p className="zolo-tab_desc">{tab.description}</p>}
+                                        {showTitle && <RichText.Content tagName="h2" className={'zolo-tab_title'} value={tab.title} />}
+                                        {tab.hasDescription && showDesc && (
+                                            <RichText.Content tagName="p" className={'zolo-tab_desc'} value={tab.description} />
+                                        )}
+                                        {/* {tab.hasDescription && showDesc && <p className="zolo-tab_desc">{tab.description}</p>} */}
                                     </div>
                                 </div>
                             );

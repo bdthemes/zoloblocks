@@ -22,7 +22,6 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
-import { style } from 'motion';
 
 /**
  * Edit Function
@@ -30,7 +29,7 @@ import { style } from 'motion';
 
 const Edit = (props) => {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, tabTitles, tabChildCount, tabsLayout, tabActiveItemNo } = attributes;
+    const { preview, uniqueId, parentClasses, tabTitles, tabChildCount, tabsLayout, tabActiveItemNo, showTitle, showDesc, showIcon } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
@@ -165,28 +164,39 @@ const Edit = (props) => {
                                         onClick={() => handleTabClick(tab.id)}
                                     >
                                         <div className="zolo-tab_icon-number-wrap">
-                                            {tab.hasMedia && (
+                                            {tab.hasMedia && showIcon && (
                                                 <span className="zolo-tab_icon">
                                                     <DisplayZoloIcon icon={tab.icon} />
                                                 </span>
                                             )}
-                                            {tab.hasNumber && (
-                                                <span className="zolo-tab_number">{index + 1 < 10 ? `0${index + 1}` : index + 1}</span>
-                                            )}
                                         </div>
                                         <div className="zolo-tab_head-content">
-                                            <RichText
-                                                tagName="h2"
-                                                className={'zolo-tab_title'}
-                                                value={tab.title}
-                                                onChange={(v) => {
-                                                    const newTabTitles = [...tabTitles];
-                                                    newTabTitles[index].title = v;
-                                                    setAttributes({ tabTitles: newTabTitles });
-                                                }}
-                                                placeholder={__('Tab Title', 'zolo-blocks')}
-                                            />
-                                            {tab.hasDescription && <p className="zolo-tab_desc">{tab.description}</p>}
+                                            {showTitle && (
+                                                <RichText
+                                                    tagName="h2"
+                                                    className={'zolo-tab_title'}
+                                                    value={tab.title}
+                                                    onChange={(v) => {
+                                                        const newTabTitles = [...tabTitles];
+                                                        newTabTitles[index].title = v;
+                                                        setAttributes({ tabTitles: newTabTitles });
+                                                    }}
+                                                    placeholder={__('Tab Title', 'zolo-blocks')}
+                                                />
+                                            )}
+                                            {tab.hasDescription && showDesc && (
+                                                <RichText
+                                                    tagName="p"
+                                                    className={'zolo-tab_desc'}
+                                                    value={tab.description}
+                                                    onChange={(v) => {
+                                                        const newTabTitles = [...tabTitles];
+                                                        newTabTitles[index].description = v;
+                                                        setAttributes({ tabTitles: newTabTitles });
+                                                    }}
+                                                    placeholder={__('Tab Description', 'zolo-blocks')}
+                                                />
+                                            )}
                                         </div>
                                     </div>
                                 );
