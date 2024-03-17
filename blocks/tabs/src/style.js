@@ -17,6 +17,7 @@ const {
 
 import {
     NAV_ITEMS_ALIGN,
+    NAV_CONTENT_ALIGN,
     NAV_SPACING,
     CONTENT_SPACING,
     TAB_NORMAL_BGCOLOR,
@@ -31,16 +32,23 @@ import {
     ICON_BORDER,
     ICON_BORDER_RADIUS,
     ICON_PADDING,
-
-
 } from './constants';
 import { DESC_TYPOGRAPHY, TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, normalTabColor, hoverTabColor, activeTabColor, descColor, descHoverColor, descActiveColor, activeHintTabColor, iconColor } =
-        attributes;
-console.log(iconColor, 'iconColor')
+    const {
+        uniqueId,
+        normalTabColor,
+        hoverTabColor,
+        activeTabColor,
+        descColor,
+        descHoverColor,
+        descActiveColor,
+        activeHintTabColor,
+        iconColor,
+        showIndicator,
+    } = attributes;
     // styles
     const {
         desktopAlignStyle: itemsVDeskAlign,
@@ -49,6 +57,15 @@ console.log(iconColor, 'iconColor')
     } = generateResAlignmentStyle({
         controlName: NAV_ITEMS_ALIGN,
         property: 'justify-content',
+        attributes,
+    });
+    const {
+        desktopAlignStyle: contentDeskAlign,
+        tabAlignStyle: contentTabAlign,
+        mobAlignStyle: contentMobAlign,
+    } = generateResAlignmentStyle({
+        controlName: NAV_CONTENT_ALIGN,
+        property: 'text-align',
         attributes,
     });
 
@@ -68,6 +85,15 @@ console.log(iconColor, 'iconColor')
     } = generateResRangeStyle({
         controlName: CONTENT_SPACING,
         property: 'margin-bottom',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: deskVarticalContentSpacing,
+        tabRangeStyle: tabVarticalContentSpacing,
+        mobRangeStyle: mobVarticalContentSpacing,
+    } = generateResRangeStyle({
+        controlName: CONTENT_SPACING,
+        property: '--zolo-tab-wrap-gap',
         attributes,
     });
 
@@ -172,52 +198,45 @@ console.log(iconColor, 'iconColor')
 
     // ICONS
 
-     const {
-         dimensionStylesDesktop: iconPaddingDesktop,
-         dimensionStylesTab: iconPaddingTab,
-         dimensionStylesMobile: iconPaddingMobile,
-     } = generateDimensionStyle({
-         controlName: ICON_PADDING,
-         styleFor: 'padding',
-         attributes,
-     });
+    const {
+        dimensionStylesDesktop: iconPaddingDesktop,
+        dimensionStylesTab: iconPaddingTab,
+        dimensionStylesMobile: iconPaddingMobile,
+    } = generateDimensionStyle({
+        controlName: ICON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
 
-     const {
-         dimensionStylesDesktop: iconrRadiusDesktop,
-         dimensionStylesTab: iconrRadiusTab,
-         dimensionStylesMobile: iconrRadiusMobile,
-     } = generateDimensionStyle({
-         controlName: ICON_BORDER_RADIUS,
-         styleFor: 'border-radius',
-         attributes,
-     });
-    //  const {
-    //      desktopRangeStyle: iconHeightDesktop,
-    //      tabRangeStyle: iconHeightTab,
-    //      mobRangeStyle: iconHeightMob,
-    //  } = generateResRangeStyle({
-    //      controlName: ICON_SIZE,
-    //      property: 'height',
-    //      attributes,
-    //  });
-     const {
-         desktopRangeStyle: iconHeightWidthDesktop,
-         tabRangeStyle: iconHeightWidthTab,
-         mobRangeStyle: iconHeightWidthMob,
-     } = generateResRangeStyle({
-         controlName: ICON_SIZE,
-         property: '--zolo-tab-icon-size',
-         attributes,
-     });
+    const {
+        dimensionStylesDesktop: iconrRadiusDesktop,
+        dimensionStylesTab: iconrRadiusTab,
+        dimensionStylesMobile: iconrRadiusMobile,
+    } = generateDimensionStyle({
+        controlName: ICON_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: iconHeightWidthDesktop,
+        tabRangeStyle: iconHeightWidthTab,
+        mobRangeStyle: iconHeightWidthMob,
+    } = generateResRangeStyle({
+        controlName: ICON_SIZE,
+        property: '--zolo-tab-icon-size',
+        attributes,
+    });
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
+        .${uniqueId}.wp-block-zolo-tabs{
+            ${deskVarticalContentSpacing}
+        }
         .${uniqueId} .zolo-tabs .zolo-tab_header-wrap{
             ${itemsVDeskAlign}
             ${deskNavSpacing}
             ${deskContentSpacing}
-
         }
 
         .${uniqueId} .tab__item.zolo-tab_head-item {
@@ -226,6 +245,11 @@ console.log(iconColor, 'iconColor')
             ${tabItemPaddingDesktop}
             ${tabItemBorderRadiusDesktop}
             ${activeHintHeightDesktop}
+            ${contentDeskAlign}
+        }
+        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_horizontal .zolo-tab_head-item {
+           --zolo-tab-title-color: ${normalTabColor};
+            ${tabItemPaddingDesktop}
         }
         .${uniqueId} .tab__item.zolo-tab_head-item:hover {
             --zolo-tab-title-color: ${hoverTabColor};
@@ -252,6 +276,7 @@ console.log(iconColor, 'iconColor')
             ${descActiveColor ? `--zolo-tab-desc-color: ${descActiveColor};` : ''}
         }
         .${uniqueId} .tab__item.zolo-tab_head-item:before {
+            ${showIndicator? `content: '';` : ''}
             background-color: ${activeHintTabColor};
         }
 
@@ -268,25 +293,101 @@ console.log(iconColor, 'iconColor')
         .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon svg path{
             ${iconColor ? `fill: ${iconColor};` : ''}
         }
-
     `;
 
-    const tabletAllStyle = `
+   const tabletAllStyle = `
+        .${uniqueId}.wp-block-zolo-tabs{
+            ${tabVarticalContentSpacing}
+        }
         .${uniqueId} .zolo-tabs .zolo-tab_header-wrap{
             ${itemsVTabAlign}
             ${tabNavSpacing}
             ${tabContentSpacing}
         }
-    `;
 
-    const mobileAllStyle = `
-        .${uniqueId} .zolo-tabs .zolo-tab_header-wrap{
-            ${itemsVMobAlign}
-            ${mobNavSpacing}
-            ${mobContentSpacing}
+        .${uniqueId} .tab__item.zolo-tab_head-item {
+            ${tabNormalBgColorTab}
+            ${tabItemPaddingTab}
+            ${tabItemBorderRadiusTab}
+            ${activeHintHeightTab}
+            ${contentTabAlign}
+        }
+        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_horizontal .zolo-tab_head-item {
+           --zolo-tab-title-color: ${normalTabColor};
+            ${tabItemPaddingTab}
+        }
+        .${uniqueId} .tab__item.zolo-tab_head-item:hover {
+            --zolo-tab-title-color: ${hoverTabColor};
+            ${tabHoverBgColorTab}
+        }
+        .${uniqueId} .tab__item.zolo-tab_head-item.active {
+           ${activeTabColor ? `--zolo-tab-title-color: ${activeTabColor};` : ''}
+            ${tabActiveBgColorTab}
+        }
+        .${uniqueId} .tab__item.zolo-tab_head-item .zolo-tab_title {
+            ${titleBottomSpacingTab}
+            ${tabTitleTypoTab}
+        }
+        .${uniqueId} .tab__item.zolo-tab_head-item .zolo-tab_desc {
+            color: ${descColor};
+            ${tabDescTypoTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon {
+            ${iconBgTab}
+            ${iconPaddingTab}
+            ${iconrRadiusTab}
+
+        }
+        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon svg {
+            ${iconHeightWidthTab}
         }
     `;
 
+     const mobileAllStyle = `
+        .${uniqueId}.wp-block-zolo-tabs{
+            ${tabVarticalContentSpacing}
+        }
+        .${uniqueId} .zolo-tabs .zolo-tab_header-wrap{
+            ${itemsVTabAlign}
+            ${mobNavSpacing}
+            ${mobContentSpacing}
+        }
+
+        .${uniqueId} .tab__item.zolo-tab_head-item {
+            ${tabNormalBgColorMobile}
+            ${tabItemPaddingMobile}
+            ${tabItemBorderRadiusMobile}
+            ${activeHintHeightMob}
+            ${contentMobAlign}
+        }
+        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_horizontal .zolo-tab_head-item {
+            ${tabItemPaddingMobile}
+        }
+        .${uniqueId} .tab__item.zolo-tab_head-item:hover {
+            ${tabHoverBgColorMobile}
+        }
+        .${uniqueId} .tab__item.zolo-tab_head-item.active {
+            ${tabActiveBgColorMobile}
+        }
+        .${uniqueId} .tab__item.zolo-tab_head-item .zolo-tab_title {
+            ${titleBottomSpacingMob}
+            ${tabTitleTypoMob}
+        }
+        .${uniqueId} .tab__item.zolo-tab_head-item .zolo-tab_desc {
+            ${tabDescTypoMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon {
+            ${iconBgMobile}
+            ${iconPaddingMobile}
+            ${iconrRadiusMobile}
+
+        }
+        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon svg {
+            ${iconHeightWidthMob}
+        }
+    `;
     return (
         <>
             <GlobalStyleHanlder

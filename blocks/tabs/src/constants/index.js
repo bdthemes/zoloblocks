@@ -8,6 +8,7 @@ export const BLOCK_PREFIX = 'tabs';
 
 // Block Settings
 export const NAV_ITEMS_ALIGN = 'navItemsAlign';
+export const NAV_CONTENT_ALIGN = 'navContentAlign';
 export const NAV_SPACING = 'navSpacing';
 export const CONTENT_SPACING = 'contentSpacing';
 

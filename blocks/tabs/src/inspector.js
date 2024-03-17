@@ -34,6 +34,7 @@ import objAttributes from './attributes';
 import { TITLE_TYPO, DESC_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import {
     NAV_ITEMS_ALIGN,
+    NAV_CONTENT_ALIGN,
     NAV_SPACING,
     CONTENT_SPACING,
     TAB_NORMAL_BGCOLOR,
@@ -49,7 +50,7 @@ import {
     ICON_PADDING,
     ICON_BG,
 } from './constants';
-import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS } from '../../../src/global/constants';
+import { FLEX_HORIZONTAL_OPTIONS, HEADING, TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 import Sortable from './sortable';
 
 function Inspector(props) {
@@ -68,10 +69,13 @@ function Inspector(props) {
         tabChildCount,
         uniqueId,
         tabsLayout,
+        tabIndicatorStyle,
         tabActiveItemNo,
         showTitle,
         showDesc,
         showIcon,
+        showIndicator,
+        tabContentStyle,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -108,9 +112,36 @@ function Inspector(props) {
                                 onChange={(newTabsLayout) =>
                                     setAttributes({
                                         tabsLayout: newTabsLayout,
-                                        activeTabId: 0,
                                     })
                                 }
+                            />
+                            <SelectControl
+                                label={__('Content Style', 'zolo-blocks')}
+                                value={tabContentStyle}
+                                options={[
+                                    {
+                                        value: 'content-style-1',
+                                        label: __('Style 1', 'zolo-blocks'),
+                                    },
+                                    {
+                                        value: 'content-style-2',
+                                        label: __('Style 2', 'zolo-blocks'),
+                                    },
+                                    {
+                                        value: 'content-style-3',
+                                        label: __('Style 3', 'zolo-blocks'),
+                                    },
+                                ]}
+                                onChange={(newTabContentStyle) =>
+                                    setAttributes({
+                                        tabContentStyle: newTabContentStyle,
+                                    })
+                                }
+                            />
+                            <ToggleControl
+                                label={__('Show Icon', 'zolo-blocks')}
+                                checked={showIcon}
+                                onChange={(newShowIcon) => setAttributes({ showIcon: newShowIcon })}
                             />
                             <ToggleControl
                                 label={__('Show Title', 'zolo-blocks')}
@@ -122,16 +153,48 @@ function Inspector(props) {
                                 checked={showDesc}
                                 onChange={(newShowDesc) => setAttributes({ showDesc: newShowDesc })}
                             />
+
                             <ToggleControl
-                                label={__('Show Icon', 'zolo-blocks')}
-                                checked={showIcon}
-                                onChange={(newShowIcon) => setAttributes({ showIcon: newShowIcon })}
+                                label={__('Show Active Indicator', 'zolo-blocks')}
+                                checked={showIndicator}
+                                onChange={(newIndicator) => setAttributes({ showIndicator: newIndicator })}
                             />
+                            {showIndicator && (
+                                <SelectControl
+                                    label={__('Indicator Style', 'zolo-blocks')}
+                                    value={tabIndicatorStyle}
+                                    options={[
+                                        {
+                                            value: 'animation-style-1',
+                                            label: __('Style 1', 'zolo-blocks'),
+                                        },
+                                        {
+                                            value: 'animation-style-2',
+                                            label: __('Style 2', 'zolo-blocks'),
+                                        },
+                                        {
+                                            value: 'animation-style-3',
+                                            label: __('Style 3', 'zolo-blocks'),
+                                        },
+                                    ]}
+                                    onChange={(newIndicatorStyle) =>
+                                        setAttributes({
+                                            tabIndicatorStyle: newIndicatorStyle,
+                                        })
+                                    }
+                                />
+                            )}
                             <ResAlignmentControl
                                 label={__('Alignment', 'zolo-blocks')}
                                 controlName={NAV_ITEMS_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={FLEX_HORIZONTAL_OPTIONS}
+                            />
+                            <ResAlignmentControl
+                                label={__('Content Alignment', 'zolo-blocks')}
+                                controlName={NAV_CONTENT_ALIGN}
+                                requiredProps={requiredProps}
+                                alignOptions={TEXT_ALIGN_OPTIONS}
                             />
                             <ResRangeControl
                                 label={__('Nav Spacing', 'zolo-blocks')}
@@ -188,23 +251,6 @@ function Inspector(props) {
                                     controlName={TAB_ITEM_RADIUS}
                                     requiredProps={requiredProps}
                                 />
-                                <ColorControl
-                                    label={__('Color', 'zolo-blocks')}
-                                    color={activeHintTabColor}
-                                    onChange={(newHintTabColor) => {
-                                        setAttributes({
-                                            activeHintTabColor: newHintTabColor,
-                                        });
-                                    }}
-                                />
-                                <ResRangeControl
-                                    label={__('Active Indicator height', 'zolo-blocks')}
-                                    controlName={ACTIVE_HINT_HEIGHT}
-                                    requiredProps={requiredProps}
-                                    min={1}
-                                    max={100}
-                                    step={1}
-                                />
                             </>
                         </ZoloPanelBody>
                         {showTitle && (
@@ -230,7 +276,6 @@ function Inspector(props) {
                                                 label={__('Color', 'zolo-blocks')}
                                                 color={normalTabColor}
                                                 onChange={(newNormalTabColor) => {
-                                                    console.log('newNormalTabColor', newNormalTabColor);
                                                     setAttributes({
                                                         normalTabColor: newNormalTabColor,
                                                     });
@@ -374,6 +419,29 @@ function Inspector(props) {
                                         }
                                     />
                                     <NormalBGControl requiredProps={requiredProps} controlName={ICON_BG} noMainBGImg={false} />
+                                </>
+                            </ZoloPanelBody>
+                        )}
+                        {showIndicator && (
+                            <ZoloPanelBody title={__('Active Indicator', 'zolo-block')} stylePanel={true} panelProps={props}>
+                                <>
+                                    <ColorControl
+                                        label={__('Indicator Color', 'zolo-blocks')}
+                                        color={activeHintTabColor}
+                                        onChange={(newHintTabColor) => {
+                                            setAttributes({
+                                                activeHintTabColor: newHintTabColor,
+                                            });
+                                        }}
+                                    />
+                                    <ResRangeControl
+                                        label={__('Active Indicator height', 'zolo-blocks')}
+                                        controlName={ACTIVE_HINT_HEIGHT}
+                                        requiredProps={requiredProps}
+                                        min={1}
+                                        max={100}
+                                        step={1}
+                                    />
                                 </>
                             </ZoloPanelBody>
                         )}

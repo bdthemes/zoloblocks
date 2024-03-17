@@ -112,12 +112,12 @@
         margin: var(--zolo-tab-icon-margin);
     }
     .zolo-tab_content-style-2 .zolo-tab_head-item,
-    .zolo-tab_content-vertical-right .zolo-tab_head-item {
+    .zolo-tab_style-3 .zolo-tab_head-item {
         display: flex;
         gap: var(--zolo-tab-head-item-gap);
     }
 
-    .zolo-tab_content-vertical-right .zolo-tab_head-item {
+    .zolo-tab_style-3 .zolo-tab_head-item {
         flex-direction: row-reverse;
         text-align: right;
     }
@@ -125,7 +125,6 @@
     /* animation style 1,2,3, css code */
 
     .zolo-tab_head-item:before {
-        content: '';
         position: absolute;
         bottom: -2px;
         left: 0;

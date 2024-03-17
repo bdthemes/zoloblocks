@@ -12,6 +12,7 @@ const {
 
 import {
     NAV_ITEMS_ALIGN,
+    NAV_CONTENT_ALIGN,
     NAV_SPACING,
     CONTENT_SPACING,
     TAB_NORMAL_BGCOLOR,
@@ -65,6 +66,14 @@ const attributes = {
         type: 'string',
         default: 'horizontal',
     },
+    tabIndicatorStyle: {
+        type: 'string',
+        default: 'animation-style-1',
+    },
+    tabContentStyle:{
+        type: 'string',
+        default: 'content-style-1',
+    },
     showTitle: {
         type: 'boolean',
         default: true,
@@ -74,6 +83,10 @@ const attributes = {
         default: true,
     },
     showIcon: {
+        type: 'boolean',
+        default: true,
+    },
+    showIndicator: {
         type: 'boolean',
         default: true,
     },
@@ -96,16 +109,16 @@ const attributes = {
     },
     hoverTabcolor: {
         type: 'string',
-        default: '#000000',
+        default: '',
     },
     activeTabColor: {
         type: 'string',
-        default: '#000000',
+        default: '',
     },
     //tabs style description color
     descColor: {
         type: 'string',
-        default: '#000000',
+        default: '',
     },
     descButtomSpacing: {
         type: 'number',
@@ -113,20 +126,21 @@ const attributes = {
     },
     descHoverColor: {
         type: 'string',
-        default: '#000000',
+        default: '',
     },
     descActiveColor: {
         type: 'string',
-        default: '#000000',
+        default: '',
     },
     //tabs style icon color
     iconColor: {
         type: 'string',
-        default: '#000000',
+        default: '',
     },
 
     // Generators
     ...generateResAlignmentAttributies(NAV_ITEMS_ALIGN),
+    ...generateResAlignmentAttributies(NAV_CONTENT_ALIGN),
     ...generateResRangeAttributies(NAV_SPACING),
     ...generateResRangeAttributies(CONTENT_SPACING),
     ...generateTypographyAttributes(Object.values(typographyObjs)),

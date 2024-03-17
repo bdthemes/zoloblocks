@@ -29,7 +29,20 @@ import Style from './style';
 
 const Edit = (props) => {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, tabTitles, tabChildCount, tabsLayout, tabActiveItemNo, showTitle, showDesc, showIcon } = attributes;
+    const {
+        preview,
+        uniqueId,
+        parentClasses,
+        tabTitles,
+        tabChildCount,
+        tabsLayout,
+        tabActiveItemNo,
+        showTitle,
+        showDesc,
+        showIcon,
+        tabIndicatorStyle,
+        tabContentStyle,
+    } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
@@ -142,7 +155,12 @@ const Edit = (props) => {
             </style>
             <div {...blockProps}>
                 <div
-                    className={classnames('zolo-tabs', `zolo-tab_${tabsLayout}`, 'zolo-tab_content-style-1', 'zolo-tab_animation-style-1')}
+                    className={classnames(
+                        'zolo-tabs',
+                        `zolo-tab_${tabsLayout}`,
+                        `zolo-tab_${tabContentStyle}`,
+                        `zolo-tab_${tabIndicatorStyle}`
+                    )}
                     role="tablist"
                     tabIndex={0}
                     ref={tabWrapRef}
