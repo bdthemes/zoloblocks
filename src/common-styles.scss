@@ -168,3 +168,30 @@ span.zolo-pro-badge {
         skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
     transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
 }
+
+// .interface-interface-skeleton__footer .block-editor-block-breadcrumb {
+//     height: 50px !important;
+// }
+
+.block-editor-block-breadcrumb li {
+    align-items: center;
+}
+
+.block-editor-block-breadcrumb__separator {
+    width: 30px;
+    height: 30px;
+}
+
+.block-editor-block-breadcrumb__button.components-button, .block-editor-block-breadcrumb__current {
+    font-size: 14px !important;
+    font-weight: 600;
+    text-decoration: none;
+}
+.block-editor-block-breadcrumb__button.components-button:hover {
+    background-color: transparent !important;
+    color: var(--zoloblocks-brand-color) ;
+}
+
+.block-editor-block-breadcrumb__current {
+    color: var(--zoloblocks-brand-color) !important;
+}

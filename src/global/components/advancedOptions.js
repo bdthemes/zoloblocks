@@ -27,24 +27,15 @@ import MultiRangeControl from '../../controls/multi-range-control';
 import TabPanelControl from '../../controls/tabpanel-control';
 import ResRangeControl from '../../controls/res-range-control';
 import ResAlignmentControl from '../../controls/res-alignment-control';
+import { applyFilters } from '@wordpress/hooks';
+import { DEFAULT_ALIGNS, DEFAULT_ALIGNS_VERTICAL, ANIMATION_TYPES,TRANSFORM_ORIGINS, EASING_TYPES, TRANSLATE_ICON, ROTATE_ICON, SCALE_ICON, SKEW_ICON, OPACITY_ICON, FLIP_ICON } from '../constants';
 
-import {
-    DEFAULT_ALIGNS,
-    DEFAULT_ALIGNS_VERTICAL,
-    ANIMATION_TYPES,
-    TRANSFORM_ORIGINS,
-    EASING_TYPES,
-    TRANSLATE_ICON,
-    ROTATE_ICON,
-    SCALE_ICON,
-    SKEW_ICON,
-    OPACITY_ICON,
-    FLIP_ICON,
-} from '../constants';
+
 export const AdvancedOptions = (props) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isEntrancePlaying, setIsEntrancePlaying] = useState(false);
     const { attributes, setAttributes, requiredProps } = props;
+    const panelProps = { attributes, setAttributes };
 
     const {
         uniqueId,
@@ -423,7 +414,7 @@ export const AdvancedOptions = (props) => {
         });
     };
 
-    return (
+    const panels = (
         <>
             <ZoloPanelBody title={__('Spacing', 'zolo-blocks')} panelProps={props} firstOpen={true} extraPanel={true}>
                 {globalConfig?.margin && (
@@ -2911,4 +2902,6 @@ export const AdvancedOptions = (props) => {
             </ZoloPanelBody>
         </>
     );
+
+    return <>{applyFilters('zolo.blocks.extraTab', panels, block, panelProps)}</>;
 };

@@ -339,6 +339,7 @@ const Style = ({ props }) => {
    
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
         ${desktopIconSize} 
+        fill:${listIcon}
      }
      
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon {
@@ -347,10 +348,11 @@ const Style = ({ props }) => {
          ${DesktopIconMargin}
          ${desktopIconBorder}
          ${DesktopIconRadius}
-         fill:${listIcon}
      }
     .wp-block-zolo-list.${uniqueId} .zolo-list-item:hover .zolo-list-icon{
          ${DeskIconHBg}
+     }
+    .wp-block-zolo-list.${uniqueId} .zolo-list-item:hover .zolo-list-icon svg{
          fill:${listIconHover}
      }
     .wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon svg,.wp-block-zolo-list.${uniqueId} .zolo-list-hover-icon {

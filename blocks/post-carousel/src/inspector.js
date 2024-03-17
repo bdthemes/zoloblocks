@@ -70,7 +70,8 @@ import {
     NAME_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
-import {HEADING, THUMBNAIL_SIZE } from '../../../src/global/constants';
+import { HEADING, THUMBNAIL_SIZE } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 const {
     ResDimensionsControl,
@@ -152,28 +153,26 @@ function Inspector(props) {
 
     // const { rotate, stretch, depth, modifier, slideShadows } = coverFlowEffect;
 
-
     // coverflow effect options
     const onChangeRotate = (rotate) => {
         setAttributes({ coverFlowEffect: { ...coverFlowEffect, rotate } });
-    }
+    };
     const onChangeStretch = (stretch) => {
         setAttributes({ coverFlowEffect: { ...coverFlowEffect, stretch } });
-    }
+    };
 
     const onChangeDepth = (depth) => {
         setAttributes({ coverFlowEffect: { ...coverFlowEffect, depth } });
-    }
+    };
 
     const onChangeModifier = (modifier) => {
         setAttributes({ coverFlowEffect: { ...coverFlowEffect, modifier } });
-    }
+    };
 
     const onChangeSlideShadows = (slideShadows) => {
         //return true or false
         setAttributes({ coverFlowEffect: { ...coverFlowEffect, slideShadows } });
-    }
-
+    };
 
     const changePremade = (selected) => {
         setAttributes({ preset: selected });
@@ -210,6 +209,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/post-carousel"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -218,7 +218,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Styles', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.postCarousel.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
                             <ToggleControl
@@ -1045,7 +1045,6 @@ function Inspector(props) {
                                         requiredProps={requiredProps}
                                         min={-100}
                                         max={100}
-
                                     />
                                     <TabPanelControl
                                         options={[
@@ -1136,7 +1135,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/post-carousel"
+                        />
                     </>
                 }
             />

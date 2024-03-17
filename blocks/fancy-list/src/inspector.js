@@ -57,6 +57,7 @@ import {
 import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
 
 import { HEADING } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -126,6 +127,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/fancy-list"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -133,7 +135,7 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('General', 'zolo-block')} panelProps={props} firstOpen={true}>
                             <SelectControl
                                 label={__('Presets', 'zolo-block')}
-                                options={PRESETS}
+                                options={applyFilters('zolo.fancyList.presets', PRESETS)}
                                 onChange={(v) => onPresetChange(v)}
                                 value={preset}
                             />
@@ -450,7 +452,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/fancy-list"
+                        />
                     </>
                 }
             />

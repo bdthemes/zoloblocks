@@ -37,6 +37,7 @@ import {
 
 import { LABEL_TYPO, FIELD_TYPO, BTN_TYPO, ERR_MSG_TYPO, SCC_MSG_TYPO } from './constants/typoPrefixConstants';
 import { TEXT_ALIGN_OPTIONS, ICON_HPOSITIONS } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 const {
     ResRangeControl,
@@ -118,6 +119,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/form"
                 setAttributes={setAttributes}
                 attributes={attributes}
                 generalTab={
@@ -126,7 +128,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.form.presets', PRESETS)}
                                 onChange={(selected) => onPresetChange(selected)}
                             />
                             <ToggleControl
@@ -540,7 +542,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/form"
+                        />
                     </>
                 }
             />
