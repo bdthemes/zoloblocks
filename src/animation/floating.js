@@ -1,99 +1,126 @@
-import { animate, inView } from 'motion';
-
 document.addEventListener('DOMContentLoaded', function () {
-    const handleFloatingAnimation = (targetElement, floatingAnimation) => {
+    const handleFloatingAnimationTween = (targetElement, floatingAnimation) => {
+        // define the animation tween
+        let tween = gsap.timeline({
+            scrollTrigger: {
+                trigger: targetElement,
+            },
+        });
+
         let startValue = [];
         let endValue = [];
-        const otherOptions = {
-            repeat: Infinity,
-            direction: 'alternate',
-        };
 
+        // translate x
         if (floatingAnimation.translateX.minValue !== 0) {
-            startValue.push(`translateX(${floatingAnimation.translateX.minValue}${floatingAnimation.translateX.unit})`);
+            const xKey = floatingAnimation.translateX.unit === 'px' ? 'x' : 'xPercent';
+            startValue[xKey] = floatingAnimation.translateX.minValue;
         }
-        if (floatingAnimation.translateY.minValue !== 0) {
-            startValue.push(`translateY(${floatingAnimation.translateY.minValue}${floatingAnimation.translateY.unit})`);
-        }
-        if (floatingAnimation.translateZ.minValue !== 0) {
-            startValue.push(`translateZ(${floatingAnimation.translateZ.minValue}${floatingAnimation.translateZ.unit})`);
-        }
-
-        if (floatingAnimation.scaleX.minValue !== 0) {
-            startValue.push(`scaleX(${floatingAnimation.scaleX.minValue}${floatingAnimation.scaleX.unit})`);
-        }
-        if (floatingAnimation.scaleY.minValue !== 0) {
-            startValue.push(`scaleY(${floatingAnimation.scaleY.minValue}${floatingAnimation.scaleY.unit})`);
-        }
-        if (floatingAnimation.scaleZ.minValue !== 0) {
-            startValue.push(`scaleZ(${floatingAnimation.scaleZ.minValue}${floatingAnimation.scaleZ.unit})`);
-        }
-
-        if (floatingAnimation.skewX.minValue !== 0) {
-            startValue.push(`skewX(${floatingAnimation.skewX.minValue}${floatingAnimation.skewX.unit})`);
-        }
-        if (floatingAnimation.skewY.minValue !== 0) {
-            startValue.push(`skewY(${floatingAnimation.skewY.minValue}${floatingAnimation.skewY.unit})`);
-        }
-
-        if (floatingAnimation.rotateX.minValue !== 0) {
-            startValue.push(`rotateX(${floatingAnimation.rotateX.minValue}deg)`);
-        }
-        if (floatingAnimation.rotateY.minValue !== 0) {
-            startValue.push(`rotateY(${floatingAnimation.rotateY.minValue}deg)`);
-        }
-        if (floatingAnimation.rotateZ.minValue !== 0) {
-            startValue.push(`rotateZ(${floatingAnimation.rotateZ.minValue}deg)`);
-        }
-
-        // end value
         if (floatingAnimation.translateX.maxValue !== 0) {
-            endValue.push(`translateX(${floatingAnimation.translateX.maxValue}${floatingAnimation.translateX.unit})`);
+            const xKey = floatingAnimation.translateX.unit === 'px' ? 'x' : 'xPercent';
+            endValue[xKey] = floatingAnimation.translateX.maxValue;
+        }
+        // translate y
+        if (floatingAnimation.translateY.minValue !== 0) {
+            const yKey = floatingAnimation.translateY.unit === 'px' ? 'y' : 'yPercent';
+            startValue[yKey] = floatingAnimation.translateY.minValue;
         }
         if (floatingAnimation.translateY.maxValue !== 0) {
-            endValue.push(`translateY(${floatingAnimation.translateY.maxValue}${floatingAnimation.translateY.unit})`);
+            const yKey = floatingAnimation.translateY.unit === 'px' ? 'y' : 'yPercent';
+            endValue[yKey] = floatingAnimation.translateY.maxValue;
+        }
+        // translate z
+
+        if (floatingAnimation.translateZ.minValue !== 0) {
+            const zkey = floatingAnimation.translateZ.unit === 'px' ? 'z' : 'ZPercent';
+            startValue[zkey] = floatingAnimation.translateZ.minValue;
         }
         if (floatingAnimation.translateZ.maxValue !== 0) {
-            endValue.push(`translateZ(${floatingAnimation.translateZ.maxValue}${floatingAnimation.translateZ.unit})`);
+            const zkey = floatingAnimation.translateZ.unit === 'px' ? 'z' : 'ZPercent';
+            endValue[zkey] = floatingAnimation.translateZ.maxValue;
+        }
+        // scale x
+        if (floatingAnimation.scaleX.minValue !== 0) {
+            startValue.scaleX = floatingAnimation.scaleX.minValue;
+        }
+        if (floatingAnimation.scaleX.maxValue !== 0) {
+            endValue.scaleX = floatingAnimation.scaleX.maxValue;
+        }
+        if (floatingAnimation.scaleY.minValue !== 0) {
+            startValue.scaleY = floatingAnimation.scaleY.minValue;
+        }
+        if (floatingAnimation.scaleY.maxValue !== 0) {
+            endValue.scaleY = floatingAnimation.scaleY.maxValue;
+        }
+        if (floatingAnimation.scaleZ.minValue !== 0) {
+            startValue.scale = floatingAnimation.scaleZ.minValue;
+        }
+        if (floatingAnimation.scaleZ.maxValue !== 0) {
+            endValue.scale = floatingAnimation.scaleZ.maxValue;
+        }
+        // skew x
+        if (floatingAnimation.skewX.minValue !== 0) {
+            startValue.skewX = floatingAnimation.skewX.minValue;
         }
         if (floatingAnimation.skewX.maxValue !== 0) {
-            endValue.push(`skewX(${floatingAnimation.skewX.maxValue}${floatingAnimation.skewX.unit})`);
+            endValue.skewX = floatingAnimation.skewX.maxValue;
+        }
+        if (floatingAnimation.skewY.minValue !== 0) {
+            startValue.skewY = floatingAnimation.skewY.minValue;
         }
         if (floatingAnimation.skewY.maxValue !== 0) {
-            endValue.push(`skewY(${floatingAnimation.skewY.maxValue}${floatingAnimation.skewY.unit})`);
+            endValue.skewY = floatingAnimation.skewY.maxValue;
+        }
+        // rotate x
+        if (floatingAnimation.rotateX.minValue !== 0) {
+            startValue.rotationX = floatingAnimation.rotateX.minValue;
         }
         if (floatingAnimation.rotateX.maxValue !== 0) {
-            endValue.push(`rotateX(${floatingAnimation.rotateX.maxValue}deg)`);
+            endValue.rotationX = floatingAnimation.rotateX.maxValue;
+        }
+        if (floatingAnimation.rotateY.minValue !== 0) {
+            startValue.rotationY = floatingAnimation.rotateY.minValue;
         }
         if (floatingAnimation.rotateY.maxValue !== 0) {
-            endValue.push(`rotateY(${floatingAnimation.rotateY.maxValue}deg)`);
+            endValue.rotationY = floatingAnimation.rotateY.maxValue;
+        }
+        if (floatingAnimation.rotateZ.minValue !== 0) {
+            startValue.rotation = floatingAnimation.rotateZ.minValue;
         }
         if (floatingAnimation.rotateZ.maxValue !== 0) {
-            endValue.push(`rotateZ(${floatingAnimation.rotateZ.maxValue}deg)`);
+            endValue.rotation = floatingAnimation.rotateZ.maxValue;
+        }
+        // opacity
+        if (floatingAnimation.opacity.minValue !== 0) {
+            startValue.opacity = floatingAnimation.opacity.minValue;
+        }
+        if (floatingAnimation.opacity.maxValue !== 0) {
+            endValue.opacity = floatingAnimation.opacity.maxValue;
         }
 
-        if (floatingAnimation.duration !== 0) {
-            otherOptions.duration = floatingAnimation.duration / 1000;
-        }
-        if (floatingAnimation.delay !== 0) {
-            otherOptions.delay = floatingAnimation.delay / 1000;
-        }
-        if (floatingAnimation.easing !== 'custom') {
-            otherOptions.easing = floatingAnimation.easing;
-        } else {
-            otherOptions.easing = [floatingAnimation.easingCustom.split(';')[0]];
-        }
-        const transformValueStart = startValue.join('');
-        const transformValueEnd = endValue.join('');
-        const animation = animate(
+        tween = tween.fromTo(
             targetElement,
             {
-                transform: [transformValueStart, transformValueEnd],
-                opacity: [floatingAnimation.opacity.minValue, floatingAnimation.opacity.maxValue],
+                ...startValue,
             },
-            otherOptions
+            {
+                ...endValue,
+                repeat: -1,
+                yoyo: true,
+                duration: floatingAnimation.duration / 1000,
+                delay: floatingAnimation.delay / 1000,
+                perspective: floatingAnimation.perspective,
+                ease: floatingAnimation.easing !== 'custom' ? floatingAnimation.easing : floatingAnimation.easingCustom.split(';')[0],
+            }
         );
-        return animation;
+
+        // Function to start or reset the animation
+        if (isPlaying) {
+            tween.restart(); // Restart the animation
+        } else {
+            tween.pause(); // Pause the animation
+            gsap.set(targetElement, { clearProps: 'all' }); // Reset the position and properties
+        }
+        return tween;
     };
 
     const zoloBlockItems = document.querySelectorAll('.zolo-block');
@@ -105,9 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetElement = document.querySelector(`.${parentClass}.zolo-floating-animation`);
             if (targetElement) {
                 const floatingAnimation = JSON.parse(targetElement.dataset.floating);
-                inView(targetElement, () => {
-                    handleFloatingAnimation(targetElement, floatingAnimation);
-                });
+                handleFloatingAnimationTween(targetElement, floatingAnimation);
             }
         });
     }

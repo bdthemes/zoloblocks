@@ -1,166 +1,166 @@
-import { animate, inView } from 'motion';
-
 document.addEventListener('DOMContentLoaded', function () {
-    const handleEntranceAnimation = (targetElement, entranceAnimation) => {
-        let transformOptions = [];
-        if (entranceAnimation.translateX.value !== 0) {
-            transformOptions.push(`translateX(${entranceAnimation.translateX.value}${entranceAnimation.translateX.unit})`);
-        }
-        if (entranceAnimation.translateY.value !== 0) {
-            transformOptions.push(`translateY(${entranceAnimation.translateY.value}${entranceAnimation.translateY.unit})`);
-        }
-        if (entranceAnimation.translateZ.value !== 0) {
-            transformOptions.push(`translateZ(${entranceAnimation.translateZ.value}${entranceAnimation.translateZ.unit})`);
-        }
-        if (entranceAnimation.rotateX.value !== 0) {
-            transformOptions.push(`rotateX(${entranceAnimation.rotateX.value}deg)`);
-        }
-        if (entranceAnimation.rotateY.value !== 0) {
-            transformOptions.push(`rotateY(${entranceAnimation.rotateY.value}deg)`);
-        }
-        if (entranceAnimation.rotateZ.value !== 0) {
-            transformOptions.push(`rotateZ(${entranceAnimation.rotateZ.value}deg)`);
-        }
-        if (entranceAnimation.scaleX.value !== 0) {
-            transformOptions.push(`scaleX(${entranceAnimation.scaleX.value})`);
-        }
-        if (entranceAnimation.scaleY.value !== 0) {
-            transformOptions.push(`scaleY(${entranceAnimation.scaleY.value})`);
-        }
-        if (entranceAnimation.scaleZ.value !== 0) {
-            transformOptions.push(`scaleZ(${entranceAnimation.scaleZ.value})`);
-        }
-        if (entranceAnimation.skewX.value !== 0) {
-            transformOptions.push(`skewX(${entranceAnimation.skewX.value}deg)`);
-        }
-        if (entranceAnimation.skewY.value !== 0) {
-            transformOptions.push(`skewY(${entranceAnimation.skewY.value}deg)`);
-        }
+    const handleEntranceAnimationTween = (targetElement, entranceAnimation) => {
+        // define the animation tween
+        // let tween;
+        let tween = gsap.timeline({
+            scrollTrigger: {
+                trigger: targetElement,
+            },
+        });
 
-        const otherOptions = {};
-        if (entranceAnimation.duration) {
-            otherOptions.duration = entranceAnimation.duration / 1000;
-        }
-        if (entranceAnimation.delay) {
-            otherOptions.delay = entranceAnimation.delay / 1000;
-        }
-        if (entranceAnimation.direction) {
-            otherOptions.direction = entranceAnimation.direction;
-        }
-        if (entranceAnimation.repeat === true) {
-            otherOptions.repeat = Infinity;
-        }
-        if (entranceAnimation.perspective !== 0) {
-            otherOptions.perspective = entranceAnimation.perspective;
-        }
-        if (entranceAnimation.easing !== 'custom') {
-            otherOptions.easing = entranceAnimation.easing;
-        } else {
-            otherOptions.easing = [entranceAnimation.easingCustom.split(';')[0]];
-        }
-        // array to string
-        const transformOptionsion = transformOptions.join('');
+        // Define the initial position and properties of the box
+        gsap.set(targetElement, { x: 0, opacity: 0 });
 
-        const options = {
-            transform: [transformOptionsion, 'none'],
-            opacity: [entranceAnimation.opacity ? entranceAnimation.opacity : 0, 1],
-            transformOrigin: entranceAnimation.transformOrigin,
+        const transformOptions = {};
+        const transformOptionsGlobal = {
+            duration: entranceAnimation.duration ? entranceAnimation.duration / 1000 : 2,
+            delay: entranceAnimation.delay ? entranceAnimation.delay / 1000 : 0,
+            ease: entranceAnimation.easing !== 'custom' ? entranceAnimation.easing : entranceAnimation.easingCustom.split(';')[0],
         };
 
-        if (entranceAnimation.perspective !== 0) {
-            options.perspective = [`${entranceAnimation.perspective}px`, 'none'];
-            options.transformStyle = 'preserve-3d';
+        if (entranceAnimation.translateX.value !== 0) {
+            const xKey = entranceAnimation.translateX.unit === 'px' ? 'x' : 'xPercent';
+            transformOptions[xKey] = entranceAnimation.translateX.value;
+        }
+        if (entranceAnimation.translateY.value !== 0) {
+            const yKey = entranceAnimation.translateY.unit === 'px' ? 'y' : 'yPercent';
+            transformOptions[yKey] = entranceAnimation.translateY.value;
+        }
+        if (entranceAnimation.translateZ.value !== 0) {
+            const zKey = entranceAnimation.translateZ.unit === 'px' ? 'z' : 'zPercent';
+            transformOptions[zKey] = entranceAnimation.translateZ.value;
         }
 
+        // ROTATION
+        if (entranceAnimation.rotateX.value !== 0) {
+            transformOptions.rotationX = entranceAnimation.rotateX.value;
+        }
+        if (entranceAnimation.rotateY.value !== 0) {
+            transformOptions.rotationY = entranceAnimation.rotateY.value;
+        }
+        if (entranceAnimation.rotateZ.value !== 0) {
+            transformOptions.rotationZ = entranceAnimation.rotateZ.value;
+        }
+        // SCALE
+        if (entranceAnimation.scaleX.value !== 0) {
+            transformOptions.scaleX = entranceAnimation.scaleX.value;
+        }
+        if (entranceAnimation.scaleY.value !== 0) {
+            transformOptions.scaleY = entranceAnimation.scaleY.value;
+        }
+        if (entranceAnimation.scaleZ.value !== 0) {
+            transformOptions.scale = entranceAnimation.scaleZ.value;
+        }
+        // SKEW
+        if (entranceAnimation.skewX.value !== 0) {
+            transformOptions.skewX = entranceAnimation.skewX.value;
+        }
+        if (entranceAnimation.skewY.value !== 0) {
+            transformOptions.skewY = entranceAnimation.skewY.value;
+        }
+        // ADDITIONAL
+        if (entranceAnimation.perspective !== 0) {
+            transformOptions.transformPerspective = entranceAnimation.perspective;
+        }
+        if (entranceAnimation.opacity !== 0) {
+            transformOptions.opacity = entranceAnimation.opacity;
+        }
+        // Create the animation tween
         if (entranceAnimation.presetAnimation === 'custom') {
-            animate(targetElement, options, otherOptions);
+            tween = tween.to(targetElement, {
+                ...transformOptions,
+                ...transformOptionsGlobal,
+            });
         } else {
             const presetAnimations = {
                 fade: {
-                    transform: ['none', 'none'],
-                    opacity: [0, 1],
+                    opacity: 1,
+                    duration: 2,
                 },
                 slide: {
-                    transform: ['translateX(100%)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: 100,
+                    opacity: 1,
                 },
                 scale: {
-                    transform: ['scale(0)', 'none'],
-                    opacity: [0, 1],
+                    scale: 0,
+                    opacity: 1,
                 },
                 rotate: {
-                    transform: ['rotate(180deg)', 'none'],
-                    opacity: [0, 1],
+                    rotation: 180,
+                    opacity: 1,
                 },
                 flip: {
-                    transform: ['rotateY(180deg)', 'none'],
-                    opacity: [0, 1],
+                    rotationY: 180,
+                    opacity: 1,
                 },
                 zoom: {
-                    transform: ['scale(0)', 'none'],
-                    opacity: [0, 1],
+                    scale: 0,
+                    opacity: 1,
                 },
                 scaleUp: {
-                    transform: ['scale(0)', 'none'],
-                    opacity: [0, 1],
+                    scale: 1.5,
+                    opacity: 1,
                 },
                 scaleDown: {
-                    transform: ['scale(1.5)', 'none'],
-                    opacity: [0, 1],
+                    scale: 0.5,
+                    opacity: 1,
                 },
                 top: {
-                    transform: ['translateY(-100px)', 'none'],
-                    opacity: [0, 1],
+                    yPercent: -100,
+                    opacity: 1,
                 },
                 right: {
-                    transform: ['translateX(100px)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: 100,
+                    opacity: 1,
                 },
                 bottom: {
-                    transform: ['translateY(100px)', 'none'],
-                    opacity: [0, 1],
+                    yPercent: 100,
+                    opacity: 1,
                 },
                 left: {
-                    transform: ['translateX(-100px)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: -100,
+                    opacity: 1,
                 },
                 topSmall: {
-                    transform: ['translateY(-20px)', 'none'],
-                    opacity: [0, 1],
+                    yPercent: -20,
+                    opacity: 1,
                 },
                 rightSmall: {
-                    transform: ['translateX(20px)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: 20,
+                    opacity: 1,
                 },
-
                 bottomSmall: {
-                    transform: ['translateY(20px)', 'none'],
-                    opacity: [0, 1],
+                    yPercent: 20,
+                    opacity: 1,
                 },
                 leftSmall: {
-                    transform: ['translateX(-20px)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: -20,
+                    opacity: 1,
                 },
                 topMedium: {
-                    transform: ['translateY(-50px)', 'none'],
-                    opacity: [0, 1],
+                    yPercent: -50,
+                    opacity: 1,
                 },
                 rightMedium: {
-                    transform: ['translateX(50px)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: 50,
+                    opacity: 1,
                 },
                 bottomMedium: {
-                    transform: ['translateY(50px)', 'none'],
-                    opacity: [0, 1],
+                    yPercent: 50,
+                    opacity: 1,
                 },
                 leftMedium: {
-                    transform: ['translateX(-50px)', 'none'],
-                    opacity: [0, 1],
+                    xPercent: -50,
+                    opacity: 1,
                 },
             };
             const presetAnimation = presetAnimations[entranceAnimation.presetAnimation];
-            animate(targetElement, presetAnimation, otherOptions);
+            tween = tween.to(targetElement, {
+                ...presetAnimation,
+                ...transformOptionsGlobal,
+            });
         }
+        return tween;
     };
 
     const zoloBlockItems = document.querySelectorAll('.zolo-block');
@@ -172,9 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetElement = document.querySelector(`.${parentClass}.zolo-entrance-animation`);
             if (targetElement) {
                 const entranceAnimation = JSON.parse(targetElement.dataset.animation);
-                inView(targetElement, () => {
-                    handleEntranceAnimation(targetElement, entranceAnimation);
-                });
+                handleEntranceAnimationTween(targetElement, entranceAnimation);
             }
         });
     }
