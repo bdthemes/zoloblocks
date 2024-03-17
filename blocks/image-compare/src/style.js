@@ -45,7 +45,8 @@ import { BEFORE_TYPO, AFTER_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { preset, uniqueId, arrowbtnColor, arrowbtnBlure, labelPositons, labelOpacity, beforeColor, afterColor } = attributes;
+    const { preset, uniqueId, arrowbtnColor, arrowbtnBlure, labelPositons, labelOpacity, beforeColor, afterColor, slidePositon } =
+        attributes;
     //before Label
     const {
         backgroundStylesDesktop: DeskbeforeBg,
@@ -146,7 +147,7 @@ const Style = ({ props }) => {
         mobRangeStyle: mobLineThick,
     } = generateResRangeStyle({
         controlName: LINE_THICKNESS,
-        property: 'width',
+        property: `${slidePositon == true ? 'height' : 'width'}`,
         attributes,
     });
     const {
@@ -201,14 +202,14 @@ const Style = ({ props }) => {
      */
     const desktopAllStyle = `
    
-    .wp-block-zolo-beaf-slider.${uniqueId} .image-item-One,.wp-block-zolo-beaf-slider.${uniqueId} .image-item-two{
+    .wp-block-zolo-image-compare.${uniqueId} .image-item-One,.wp-block-zolo-image-compare.${uniqueId} .image-item-two{
         ${labelPositons && `align-items:${labelPositons}`}
     }
     
-    .wp-block-zolo-beaf-slider.${uniqueId} .compare-slider-label {
+    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label {
         opacity: ${labelOpacity}
      }
-    .wp-block-zolo-beaf-slider.${uniqueId} .compare-slider-label-left{
+    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left{
          ${beforeColor && `color:${beforeColor}`};
          ${DeskbeforeBg}
          ${DesktopbeforeTypo}
@@ -217,7 +218,7 @@ const Style = ({ props }) => {
          ${DesktopbeforeMargin}
          ${Desktopbeforepadding}
     }
-   .wp-block-zolo-beaf-slider.${uniqueId} .compare-slider-label-right {
+   .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right {
          ${afterColor && `color:${afterColor}`};
          ${DeskafterBg}
          ${DesktopafterTypo}
@@ -227,27 +228,27 @@ const Style = ({ props }) => {
          ${Desktopafterpadding}
 
    }
-    .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-line{
+    .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-line{
         ${desktopLineThick.replace(';', '!important')};
         ${boxshadowLineShadow.replace(';', '!important')};
         ${DesLineConkBg.replace(';', '!important')}
        
     }
-    .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-arrow {
+    .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-arrow {
            ${arrowbtnColor && `color:${arrowbtnColor}`}   
     }
-    .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-button {
+    .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-button {
         ${arrowbtnBlure && `backdrop-filter:blur(${arrowbtnBlure}px) !important`};
         ${desktopArrowWidth.replace(';', '!important')};
         ${desktopArrowHeight.replace(';', '!important')};
-        ${desktopArrowBorder}
+        ${desktopArrowBorder.replace(/;(?=\s|$)/g, ' !important;')};
         ${DesktopArrowRadius.replace(';', '!important')};
         ${DeskbArrowBg.replace(';', '!important')};
     }
    
   	`;
     const tabletAllStyle = `
-    .wp-block-zolo-beaf-slider.${uniqueId} .compare-slider-label-left{
+    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left{
          ${TabbeforeLBg}
          ${TabbeforeTypo}
          ${tabbeforeBorder}
@@ -255,7 +256,7 @@ const Style = ({ props }) => {
          ${TabbeforeMargin}
          ${Tabbeforepadding}
     }
-    .wp-block-zolo-beaf-slider.${uniqueId} .compare-slider-label-right {
+    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right {
          ${TabafterBg}
          ${TabafterTypo}
          ${tabafterBorder}
@@ -263,25 +264,22 @@ const Style = ({ props }) => {
          ${TabafterMargin}
          ${Tabafterpadding}
     }
-    .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-line{
+    .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-line{
         ${tabLineThick.replace(';', '!important')};
         ${TabLineConBg.replace(';', '!important')}
        
     }
-     .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-button {
+     .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-button {
          ${tabArrowWidth.replace(';', '!important')};
          ${tabArrowHeight.replace(';', '!important')};
-         ${tabArrowBorder}
+         ${tabArrowBorder.replace(/;(?=\s|$)/g, ' !important;')}
          ${TabArrowRadius.replace(';', '!important')};
-         ${TabbArrowBg.replace(';', '!important')};
-
-
-         
+         ${TabbArrowBg.replace(';', '!important')};  
      }
 	`;
 
     const mobileAllStyle = `
-    .wp-block-zolo-beaf-slider.${uniqueId} .compare-slider-label-left{
+    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left{
          ${MobeforeLtBg}
          ${MobbeforeTypo}
          ${mobbeforeBorder}
@@ -289,7 +287,7 @@ const Style = ({ props }) => {
          ${MobbeforeMargin}
          ${Mobbeforepadding}
     }
-    .wp-block-zolo-beaf-slider.${uniqueId} .compare-slider-label-right {
+    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right {
          ${MobaftertBg}
          ${MobafterTypo}
          ${mobafterBorder}
@@ -298,14 +296,14 @@ const Style = ({ props }) => {
          ${Mobafterpadding}
     
     }
-    .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-line{
+    .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-line{
         ${mobLineThick.replace(';', '!important')};
         ${MobLineConBg.replace(';', '!important')}
     }
-    .wp-block-zolo-beaf-slider.${uniqueId} .__rcs-handle-button {
+    .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-button {
          ${mobArrowWidth.replace(';', '!important')};
          ${mobArrowHeight.replace(';', '!important')};
-         ${mobArrowBorder}
+         ${mobArrowBorder.replace(/;(?=\s|$)/g, ' !important;')}
          ${MobArrowRadius.replace(';', '!important')};
          ${MobArrowtBg.replace(';', '!important')};
      }

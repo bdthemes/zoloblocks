@@ -1,4 +1,9 @@
-.wp-block-zolo-beaf-slider {
+.wp-block-zolo-image-compare {
+    .zolo-image-wrap {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        text-align: center;
+    }
     .compare-slider-label {
         font-size: 1.25rem;
         position: absolute;

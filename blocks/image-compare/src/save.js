@@ -21,7 +21,7 @@ const Save = ({ attributes }) => {
         swipeMode,
         slidePositon,
         initialPosition,
-        handaleDraggable,
+        handleDraggable,
         showLabels,
     } = attributes;
     return (
@@ -41,7 +41,7 @@ const Save = ({ attributes }) => {
                 data-swipeMode={swipeMode}
                 data-slidePositon={slidePositon}
                 data-initialPosition={initialPosition}
-                data-handaleDraggable={handaleDraggable}
+                data-handleDraggable={handleDraggable}
                 data-beforeLabel={beforeLabel}
                 data-afterLabel={afterLabel}
                 data-showlabels={showLabels}

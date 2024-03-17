@@ -1,9 +1,9 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Beaf Slider",
-    "name": "zolo/beaf-slider",
+    "title": "Image Comparison",
+    "name": "zolo/image-compare",
     "category": "zolo-blocks",
-    "keywords": ["beaf", "footer slider"],
+    "keywords": ["beaf", "footer slider", "image compare"],
     "description": "Beaf description",
     "apiVersion": 2,
     "textdomain": "zolo-blocks",

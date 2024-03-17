@@ -1,9 +1,10 @@
 import { render } from '@wordpress/element';
+
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
-    const beafsliderItems = document.querySelectorAll('.wp-block-zolo-beaf-slider');
+    const beafsliderItems = document.querySelectorAll('.wp-block-zolo-image-compare');
     function stringToBool(s) {
         return /^(true|1|yes)$/i.test(s);
     }
@@ -16,23 +17,27 @@ document.addEventListener('DOMContentLoaded', () => {
             let swipeMode = stringToBool(beafslider.dataset.swipemode);
             let slidePositon = stringToBool(beafslider.dataset.slidepositon);
             let initialPosition = beafslider.dataset.initialPosition;
-            let handaleDraggable = stringToBool(beafslider.dataset.handaledraggable);
+            let handleDraggable = stringToBool(beafslider.dataset.handledraggable);
             let beforeLabel = beafslider.dataset.beforelabel;
             let afterLabel = beafslider.dataset.afterlabel;
             let showLabels = stringToBool(beafslider.dataset.showlabels);
+
             render(
                 <ReactCompareSlider
                     changePositionOnHover={swipeMode}
                     portrait={slidePositon}
                     disabled={disableSliding}
                     position={initialPosition}
-                    onlyHandleDraggable={handaleDraggable}
+                    onlyHandleDraggable={handleDraggable}
                     itemOne={
                         <div className="image-item-One">
                             {showLabels && beforeLabel && (
                                 <div className="compare-slider-label compare-slider-label-left">{beforeLabel}</div>
                             )}
-                            <ReactCompareSliderImage src={beforeImage?.url} alt={beforeImage?.title} />
+                            <ReactCompareSliderImage
+                                src={beforeImage && (beforeImage?.url || beforeImage)}
+                                alt={beforeImage?.title || 'photo'}
+                            />
                         </div>
                     }
                     itemTwo={
@@ -40,7 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             {showLabels && afterLabel && (
                                 <div className="compare-slider-label compare-slider-label-right">{afterLabel}</div>
                             )}
-                            <ReactCompareSliderImage src={afterImage?.url} alt={afterImage?.title} />
+                            <ReactCompareSliderImage
+                                src={afterImage && (afterImage?.url || afterImage)}
+                                alt={afterImage?.title || 'photo'}
+                            />
                         </div>
                     }
                 />,

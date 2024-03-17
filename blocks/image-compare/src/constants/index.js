@@ -28,3 +28,30 @@ export const ARROW_BTN_HEIGHT = 'arrowBtnHeight';
 export const ARROW_BTN_BORDER = 'arrowBtnBorder';
 export const ARROW_BTN_RADIUS = 'arrowBtnRadius';
 export const ARROW_BTN_BG = 'arrowBtnBg';
+
+//slide position option
+export const SLIDE_POSITION = [
+    {
+        label: __('Vertical', 'zolo-blocks'),
+        value: false,
+    },
+    {
+        label: __('Horizontal', 'zolo-blocks'),
+        value: true,
+    },
+];
+
+export const LABEL_OPTION = [
+    {
+        label: __('Top', 'zolo-blocks'),
+        value: 'flex-start',
+    },
+    {
+        label: __('Center', 'zolo-blocks'),
+        value: 'center',
+    },
+    {
+        label: __('Bottom', 'zolo-blocks'),
+        value: 'flex-end',
+    },
+];

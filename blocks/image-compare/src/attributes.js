@@ -85,14 +85,11 @@ const attributes = {
     ...generateBorderAttributies(ARROW_BTN_BORDER),
     ...generateDimensionAttributes(ARROW_BTN_RADIUS),
     ...generateNormalBGAttributes(ARROW_BTN_BG),
-    labelOpacity: {
-        type: 'number',
-        default: 1,
-    },
 
     beforeImage: {
         type: 'object',
     },
+
     afterImage: {
         type: 'object',
     },
@@ -100,15 +97,12 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
-    showCaption: {
-        type: 'boolean',
-        default: false,
-    },
+
     disableslide: {
         type: 'boolean',
         default: false,
     },
-    handaleDraggable: {
+    handleDraggable: {
         type: 'boolean',
         default: false,
     },
