@@ -6,7 +6,7 @@ import { Spinner } from '@wordpress/components';
 import classnames from 'classnames';
 import Inspector from './inspector';
 import RenderView from './render-view';
-import './style.scss';
+import './editor.scss';
 
 const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
@@ -46,7 +46,12 @@ export default function Edit(props) {
     } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId} zolo-post-carousel zolo-post-${preset}`, classArrayToStr(parentClasses)),
+        className: classnames(
+            className,
+            `${uniqueId} zolo-post-carousel zolo-post-${preset}`,
+            classArrayToStr(parentClasses),
+            `${resMode !== 'Desktop' ? resMode : ''}`
+        ),
     });
 
     // columns count

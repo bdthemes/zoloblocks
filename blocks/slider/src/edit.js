@@ -15,7 +15,8 @@ import { createBlock } from '@wordpress/blocks';
 import Inspector from './inspector';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
-// Constants
+// editor
+import './editor.scss';
 
 // import style
 import Style from './style';
@@ -53,7 +54,7 @@ export default function Edit(props) {
     }
 
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
+        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), `${resMode !== 'Desktop' ? resMode : ''}`),
     });
 
     // Slider Ref

@@ -5,7 +5,6 @@
 }
 
 .wp-block-zolo-countdown {
-
     --zolo-countdown-wrap-padding: 0 15px;
     --zolo-item-flex-width: 180px;
     --zolo-item-flex-height: 180px;
@@ -45,6 +44,7 @@
             .zolo-countdown-item {
                 width: var(--zolo-item-flex-width);
                 height: var(--zolo-item-flex-height);
+                min-width: var(--zolo-item-flex-width);
             }
             &.zolo-countdown-style-2,
             &.zolo-countdown-style-3 {
@@ -52,7 +52,7 @@
                     height: auto;
                     justify-content: space-between;
                 }
-            } 
+            }
         }
     }
 
@@ -118,7 +118,6 @@
         --zolo-item-gap: 0;
         gap: var(--zolo-item-gap);
     }
-
 
     .zolo-countdown-style-3 .zolo-countdown-face {
         padding: var(--zolo-face-padding);

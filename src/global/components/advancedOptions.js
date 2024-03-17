@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { animate, timeline } from 'motion';
 import { SelectControl, ToggleControl, TextControl, Button, FormTokenField } from '@wordpress/components';
 import { useState } from 'react';
 
@@ -25,7 +24,19 @@ import ResRangeControl from '../../controls/res-range-control';
 import ResAlignmentControl from '../../controls/res-alignment-control';
 
 import { applyFilters } from '@wordpress/hooks';
-import { DEFAULT_ALIGNS, DEFAULT_ALIGNS_VERTICAL, ANIMATION_TYPES,TRANSFORM_ORIGINS, EASING_TYPES, TRANSLATE_ICON, ROTATE_ICON, SCALE_ICON, SKEW_ICON, OPACITY_ICON, FLIP_ICON } from '../constants';
+import {
+    DEFAULT_ALIGNS,
+    DEFAULT_ALIGNS_VERTICAL,
+    ANIMATION_TYPES,
+    TRANSFORM_ORIGINS,
+    EASING_TYPES,
+    TRANSLATE_ICON,
+    ROTATE_ICON,
+    SCALE_ICON,
+    SKEW_ICON,
+    OPACITY_ICON,
+    FLIP_ICON,
+} from '../constants';
 
 export const AdvancedOptions = (props) => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -538,10 +549,7 @@ export const AdvancedOptions = (props) => {
                                     />
                                 )}
 
-                                <PopoverControl
-                                    label={__('Translate', 'zolo-blocks')}
-                                    icon={TRANSLATE_ICON}
-                                >
+                                <PopoverControl label={__('Translate', 'zolo-blocks')} icon={TRANSLATE_ICON}>
                                     <SimpleRangeControl
                                         label={__('Translate X', 'zolo-blocks')}
                                         onChange={(value) => {
@@ -669,10 +677,7 @@ export const AdvancedOptions = (props) => {
                                         noUnits={false}
                                     />
                                 </PopoverControl>
-                                <PopoverControl
-                                    label={__('Rotate', 'zolo-blocks')}
-                                    icon={ROTATE_ICON}
-                                >
+                                <PopoverControl label={__('Rotate', 'zolo-blocks')} icon={ROTATE_ICON}>
                                     <SimpleRangeControl
                                         label={__('Rotate X', 'zolo-blocks')}
                                         onChange={(value) => {
@@ -777,10 +782,7 @@ export const AdvancedOptions = (props) => {
                                         }}
                                     />
                                 </PopoverControl>
-                                <PopoverControl
-                                    label={__('Scale', 'zolo-blocks')}
-                                    icon={SCALE_ICON}
-                                >
+                                <PopoverControl label={__('Scale', 'zolo-blocks')} icon={SCALE_ICON}>
                                     <SimpleRangeControl
                                         label={__('Scale X', 'zolo-blocks')}
                                         onChange={(value) => {
@@ -885,10 +887,7 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                 </PopoverControl>
-                                <PopoverControl
-                                    label={__('Skew', 'zolo-blocks')}
-                                    icon={SKEW_ICON}
-                                >
+                                <PopoverControl label={__('Skew', 'zolo-blocks')} icon={SKEW_ICON}>
                                     <SimpleRangeControl
                                         label={__('Skew X', 'zolo-blocks')}
                                         onChange={(value) => {
@@ -1125,10 +1124,7 @@ export const AdvancedOptions = (props) => {
 
                 {floatingAnimationActive && (
                     <>
-                        <PopoverControl
-                            label={__('Translate', 'zolo-blocks')}
-                            icon={TRANSLATE_ICON}
-                        >
+                        <PopoverControl label={__('Translate', 'zolo-blocks')} icon={TRANSLATE_ICON}>
                             <MultiRangeControl
                                 label={__('Translate X', 'zolo-blocks')}
                                 min={-100}
@@ -1172,10 +1168,7 @@ export const AdvancedOptions = (props) => {
                                 }}
                             />
                         </PopoverControl>
-                        <PopoverControl
-                            label={__('Rotate', 'zolo-blocks')}
-                            icon={ROTATE_ICON}
-                        >
+                        <PopoverControl label={__('Rotate', 'zolo-blocks')} icon={ROTATE_ICON}>
                             <MultiRangeControl
                                 label={__('Rotate X', 'zolo-blocks')}
                                 min={-180}
@@ -1240,10 +1233,7 @@ export const AdvancedOptions = (props) => {
                                 }}
                             />
                         </PopoverControl>
-                        <PopoverControl
-                            label={__('Scale', 'zolo-blocks')}
-                            icon={SCALE_ICON}
-                        >
+                        <PopoverControl label={__('Scale', 'zolo-blocks')} icon={SCALE_ICON}>
                             <MultiRangeControl
                                 label={__('Scale X', 'zolo-blocks')}
                                 min={0}
@@ -1308,10 +1298,7 @@ export const AdvancedOptions = (props) => {
                                 }}
                             />
                         </PopoverControl>
-                        <PopoverControl
-                            label={__('Skew', 'zolo-blocks')}
-                            icon={SKEW_ICON}
-                        >
+                        <PopoverControl label={__('Skew', 'zolo-blocks')} icon={SKEW_ICON}>
                             <MultiRangeControl
                                 label={__('Skew X', 'zolo-blocks')}
                                 min={-180}
@@ -1355,10 +1342,7 @@ export const AdvancedOptions = (props) => {
                                 }}
                             />
                         </PopoverControl>
-                        <PopoverControl
-                            label={__('Opacity', 'zolo-blocks')}
-                            icon={OPACITY_ICON}
-                        >
+                        <PopoverControl label={__('Opacity', 'zolo-blocks')} icon={OPACITY_ICON}>
                             <MultiRangeControl
                                 label={__('Opacity', 'zolo-blocks')}
                                 min={0}
@@ -1471,10 +1455,7 @@ export const AdvancedOptions = (props) => {
                 <TabPanelControl
                     normalComponents={
                         <>
-                            <PopoverControl
-                                label={__('Translate', 'zolo-blocks')}
-                                icon={TRANSLATE_ICON}
-                            >
+                            <PopoverControl label={__('Translate', 'zolo-blocks')} icon={TRANSLATE_ICON}>
                                 <ResRangeControl
                                     label={__('translateX', 'zolo-blocks')}
                                     controlName={'translateX'}
@@ -1498,11 +1479,7 @@ export const AdvancedOptions = (props) => {
                                     ]}
                                 />
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Rotate', 'zolo-blocks')}
-                                icon={ROTATE_ICON}
-                                isPro={true}
-                            >
+                            <PopoverControl label={__('Rotate', 'zolo-blocks')} icon={ROTATE_ICON} isPro={true}>
                                 <ResRangeControl
                                     label={__('Rotate', 'zolo-blocks')}
                                     controlName={'transformRotate'}
@@ -1549,11 +1526,7 @@ export const AdvancedOptions = (props) => {
                                     </>
                                 )}
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Scale', 'zolo-blocks')}
-                                icon={SCALE_ICON}
-                                isPro={true}
-                            >
+                            <PopoverControl label={__('Scale', 'zolo-blocks')} icon={SCALE_ICON} isPro={true}>
                                 <ToggleControl
                                     label={__('Keep Proportions', 'zolo-blocks')}
                                     checked={scaleProportionally}
@@ -1599,11 +1572,7 @@ export const AdvancedOptions = (props) => {
                                     </>
                                 )}
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Skew', 'zolo-blocks')}
-                                icon={SKEW_ICON}
-                                isPro={true}
-                            >
+                            <PopoverControl label={__('Skew', 'zolo-blocks')} icon={SKEW_ICON} isPro={true}>
                                 <ResRangeControl
                                     label={__('SkewX (deg)', 'zolo-blocks')}
                                     controlName={'transformSkewX'}
@@ -1621,11 +1590,7 @@ export const AdvancedOptions = (props) => {
                                     noUnits={true}
                                 />
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Flip', 'zolo-blocks')}
-                                icon={FLIP_ICON}
-                                isPro={true}
-                            >
+                            <PopoverControl label={__('Flip', 'zolo-blocks')} icon={FLIP_ICON} isPro={true}>
                                 <ToggleControl
                                     label={__('Flip Horizontal', 'zolo-blocks')}
                                     checked={transformFlipHorizontal}
@@ -1665,10 +1630,7 @@ export const AdvancedOptions = (props) => {
                     }
                     hoverComponents={
                         <>
-                            <PopoverControl
-                                label={__('Translate', 'zolo-blocks')}
-                                icon={TRANSLATE_ICON}
-                            >
+                            <PopoverControl label={__('Translate', 'zolo-blocks')} icon={TRANSLATE_ICON}>
                                 <ResRangeControl
                                     label={__('translateX', 'zolo-blocks')}
                                     controlName={'translateXHover'}
@@ -1692,10 +1654,7 @@ export const AdvancedOptions = (props) => {
                                     ]}
                                 />
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Rotate', 'zolo-blocks')}
-                                icon={ROTATE_ICON}
-                            >
+                            <PopoverControl label={__('Rotate', 'zolo-blocks')} icon={ROTATE_ICON}>
                                 <ResRangeControl
                                     label={__('Rotate', 'zolo-blocks')}
                                     controlName={'transformRotateHover'}
@@ -1742,10 +1701,7 @@ export const AdvancedOptions = (props) => {
                                     </>
                                 )}
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Scale', 'zolo-blocks')}
-                                icon={SCALE_ICON}
-                            >
+                            <PopoverControl label={__('Scale', 'zolo-blocks')} icon={SCALE_ICON}>
                                 <ToggleControl
                                     label={__('Keep Proportions', 'zolo-blocks')}
                                     checked={scaleProportionallyHover}
@@ -1791,10 +1747,7 @@ export const AdvancedOptions = (props) => {
                                     </>
                                 )}
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Skew', 'zolo-blocks')}
-                                icon={SKEW_ICON}
-                            >
+                            <PopoverControl label={__('Skew', 'zolo-blocks')} icon={SKEW_ICON}>
                                 <ResRangeControl
                                     label={__('SkewX (deg)', 'zolo-blocks')}
                                     controlName={'transformSkewXHover'}
@@ -1812,10 +1765,7 @@ export const AdvancedOptions = (props) => {
                                     noUnits={true}
                                 />
                             </PopoverControl>
-                            <PopoverControl
-                                label={__('Flip', 'zolo-blocks')}
-                                icon={FLIP_ICON}
-                            >
+                            <PopoverControl label={__('Flip', 'zolo-blocks')} icon={FLIP_ICON}>
                                 <ToggleControl
                                     label={__('Flip Horizontal', 'zolo-blocks')}
                                     checked={transformFlipHorizontalHover}
