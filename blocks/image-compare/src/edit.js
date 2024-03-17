@@ -2,8 +2,8 @@
  * WordPress dependencies
  */
 
-import { useBlockProps, MediaUpload, MediaUploadCheck, MediaPlaceholder } from '@wordpress/block-editor';
-import { Button } from '@wordpress/components';
+import { useBlockProps, MediaUpload, MediaPlaceholder, BlockControls } from '@wordpress/block-editor';
+import { Button, ToolbarGroup, ToolbarButton, Tooltip } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -52,6 +52,40 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
+                <BlockControls>
+                    <ToolbarGroup>
+                        <MediaUpload
+                            onSelect={(media) => {
+                                setAttributes({
+                                    beforeImage: media,
+                                });
+                            }}
+                            allowedTypes={['image']}
+                            value={beforeImage && beforeImage.id}
+                            render={({ open }) => (
+                                <Tooltip text="Before Image">
+                                    <ToolbarButton icon="edit" onClick={open} />
+                                </Tooltip>
+                            )}
+                        />
+                    </ToolbarGroup>
+                    <ToolbarGroup>
+                        <MediaUpload
+                            onSelect={(media) => {
+                                setAttributes({
+                                    afterImage: media,
+                                });
+                            }}
+                            allowedTypes={['image']}
+                            value={afterImage && afterImage.id}
+                            render={({ open }) => (
+                                <Tooltip text="After Image">
+                                    <ToolbarButton icon="edit" onClick={open} />
+                                </Tooltip>
+                            )}
+                        />
+                    </ToolbarGroup>
+                </BlockControls>
                 <div className="zolo-image-wrap">
                     <div className="zolo-image-left">
                         {!beforeImage && (
