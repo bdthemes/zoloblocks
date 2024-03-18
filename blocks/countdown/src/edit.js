@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps } from '@wordpress/block-editor';
-import { useEffect, useRef, useCallback } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -51,6 +51,10 @@ export default function Edit(props) {
         return <img src={zoloParams.blocksPreview.countdown} alt={__('Count down Preview', 'zolo-blocks')} />;
     }
 
+    if (!CountDate) {
+        setAttributes({ CountDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] });
+    }
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -60,7 +64,7 @@ export default function Edit(props) {
                     className={`zolo-countdown-wrap ${presets ? presets : `zolo-countdown-style-1`} ${layout == 'flex' ? 'flex' : 'grid'}`}
                 >
                     <CountdownTimer
-                        targetDate={CountDate ? CountDate : new Date()}
+                        targetDate={CountDate}
                         itemsVisibility={itemsVisibility}
                         showLabels={toggleLabels}
                         labels={itemsLabels}

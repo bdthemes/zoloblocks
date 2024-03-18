@@ -1,5 +1,8 @@
 import { __ } from '@wordpress/i18n';
-const categories = [
+
+import { applyFilters } from '@wordpress/hooks';
+
+const categories = applyFilters('zolo_blocks_categories', [
     {
         value: 'all',
         icon: (
@@ -131,5 +134,5 @@ const categories = [
         ),
         title: __('Others', 'zolo-blocks'),
     },
-];
+]);
 export default categories;

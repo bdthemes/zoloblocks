@@ -65,7 +65,7 @@ const attributes = {
     },
     autoplayDelay: {
         type: 'number',
-        default: 30,
+        default: 3,
     },
     pauseOnMouseEnter: {
         type: 'boolean',
@@ -73,7 +73,7 @@ const attributes = {
     },
     infiniteLoop: {
         type: 'boolean',
-        default: true,
+        default: false,
     },
     showNavigation: {
         type: 'boolean',
@@ -90,7 +90,7 @@ const attributes = {
     },
     showPagination: {
         type: 'boolean',
-        default: true,
+        default: false,
     },
     paginationType: {
         type: 'string',
