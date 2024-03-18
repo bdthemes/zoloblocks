@@ -167,7 +167,7 @@ export default function Edit(props) {
                                     {socialProfiles &&
                                         socialProfiles.map((profile, index) => {
                                             return (
-                                                <a
+                                                <a className='zolo-social-link'
                                                     href={profile.link && profile.link.url}
                                                     key={index}
                                                     rel={profile.link && profile.link.openInNewTab && 'noreferer noopener'}
@@ -182,7 +182,7 @@ export default function Edit(props) {
                             )}
                             {addDetailPageLink && (
                                 <div className="zolo-link-btn">
-                                    <a
+                                    <a className='zolo-external-link'
                                         href={memberDetailPageLink && memberDetailPageLink.url}
                                         rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer'}
                                         target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}

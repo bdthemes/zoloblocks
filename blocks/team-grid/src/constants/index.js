@@ -64,8 +64,6 @@ export const ICONS_CONTAINER_MARGIN = 'IconsContainerMargin';
 // detailPageLink
 export const DETAIL_PAGE_LINK_BG = 'DetailPageLinkBg';
 export const DETAIL_PAGE_LINK_HOVER_BG = 'DetailPageLinkHoverBg';
-export const DPL_HEIGHT = 'DPLHeight';
-export const DPL_WIDTH = 'DPLWidth';
 export const DPL_BORDER = 'DPLBorder';
 export const DPL_BORDER_RADIUS = 'DPLBorderRadius';
 export const DPL_PADDING = 'DPLPadding';

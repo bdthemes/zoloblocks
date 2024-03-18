@@ -1,10 +1,11 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
 
 // Save function
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, zoloId } = attributes;
+    const { uniqueId, formId, parentClasses, preset, zoloId, btnLabel, iconPosition, messagePosition } = attributes;
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
     });
@@ -15,7 +16,77 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            <InnerBlocks.Content />
+            {messagePosition === 'form_top' && (
+                <div className={`zolo-form-msg ${messagePosition}`}>
+                    <div className="zolo-form-msg-content">
+                        <div className="zolo-msg-icon">
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path
+                                    stroke="currentColor"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={1}
+                                    d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                />
+                            </svg>
+                        </div>
+                        <p className="zolo-msg-desc"></p>
+                    </div>
+
+
+                    <button className="zolo-msg-close">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <path
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={1}
+                                d="M6 18 18 6m0 12L6 6"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            )}
+            <form className="zolo-contact-form zolo-contact-form-style-1 zolo-field-icon-style-1 form" data-form-id={formId}>
+                <InnerBlocks.Content />
+                <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">
+                    <div className="zolo-submit-btn">
+                        <button type="submit" className={iconPosition}>
+                            {btnLabel || __('Submit Now', 'zolo-blocks')}
+                        </button>
+                    </div>
+                </div>
+            </form>
+            {messagePosition === 'form_bottom' && (
+                <div className={`zolo-form-msg ${messagePosition}`}>
+                    <div className="zolo-form-msg-content">
+                        <div className="zolo-msg-icon">
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path
+                                    stroke="currentColor"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={1}
+                                    d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                />
+                            </svg>
+                        </div>
+                        <p className="zolo-msg-desc"></p>
+                    </div>
+
+                    <button className="zolo-msg-close">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <path
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={1}
+                                d="M6 18 18 6m0 12L6 6"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

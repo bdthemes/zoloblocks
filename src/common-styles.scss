@@ -7,6 +7,18 @@
     --zolo-item-border-radius: 10px;
     --zoloblocks-item-bg-color: rgba(251, 253, 255, 1);
     --zoloblocks-item-border-color: rgba(12, 11, 12, 0.07);
+    --zolo-item-border-width: 1px;
+    --zolo-item-border-style: solid;
+    --zoloblocks-item-box-shadow: '';
+
+    // background
+    --zoloblocks-bg-color: '';
+    --zoloblocks-bg-gradient: '';
+    --zoloblocks-bg-image: '';
+    --zoloblocks-bg-repeat: '';
+    --zoloblocks-bg-size: '';
+    --zoloblocks-bg-attachment: '';
+    --zoloblocks-bg-position: '';
 }
 
 .zolo-appender-btn {
@@ -115,9 +127,71 @@ button[class*='editor-block-list-item-zolo'] {
 }
 
 // Container
-.zolo-block {
+// .zolo-block {
+//     transition: all 0.3s ease-in-out;
+//     &::after {
+//         transition: all 0.3s ease-in-out;
+//     }
+// }
+
+//apply transition to .zolo-block if zolo-block is not exist
+.zolo-block:not(.zolo-entrance-animation) {
     transition: all 0.3s ease-in-out;
     &::after {
         transition: all 0.3s ease-in-out;
     }
+}
+
+// transform pro
+span.zolo-pro-badge {
+    padding: 5.5px;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    font-size: 7px;
+    line-height: 1;
+    color: #fff;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: red;
+    margin-left: 10px;
+}
+
+.wp-admin .zolo-block,
+.zolo-transform-wrapper{
+    transform: perspective(var(--zolo-transform-perspective, 0)) rotate(var(--zolo-transform-rotate, 0))
+        rotateX(var(--zolo-transform-rotateX, 0)) rotateY(var(--zolo-transform-rotateY, 0)) translate(var(--zolo-transform-translate, 0))
+        translateX(var(--zolo-transform-translateX, 0)) translateY(var(--zolo-transform-translateY, 0))
+        scaleX(calc(var(--zolo-transform-flipX, 1) * var(--zolo-transform-scaleX, var(--zolo-transform-scale, 1))))
+        scaleY(calc(var(--zolo-transform-flipY, 1) * var(--zolo-transform-scaleY, var(--zolo-transform-scale, 1))))
+        skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
+    transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
+}
+
+// .interface-interface-skeleton__footer .block-editor-block-breadcrumb {
+//     height: 50px !important;
+// }
+
+.block-editor-block-breadcrumb li {
+    align-items: center;
+}
+
+.block-editor-block-breadcrumb__separator {
+    width: 30px;
+    height: 30px;
+}
+
+.block-editor-block-breadcrumb__button.components-button, .block-editor-block-breadcrumb__current {
+    font-size: 14px !important;
+    font-weight: 600;
+    text-decoration: none;
+}
+.block-editor-block-breadcrumb__button.components-button:hover {
+    background-color: transparent !important;
+    color: var(--zoloblocks-brand-color) ;
+}
+
+.block-editor-block-breadcrumb__current {
+    color: var(--zoloblocks-brand-color) !important;
 }

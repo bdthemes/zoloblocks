@@ -1,10 +1,22 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 // Save function
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, zoloId, showNavigation, showPagination, customNavIcon, sliderOptions, breakpoints } = attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        preset,
+        zoloId,
+        showNavigation,
+        showPagination,
+        customNavIcon,
+        sliderOptions,
+        breakpoints,
+        prevNavIcon,
+        nextNavIcon,
+    } = attributes;
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
     });
@@ -14,8 +26,8 @@ const Save = ({ attributes }) => {
             {...(zoloId && {
                 id: zoloId,
             })}
-              data-swiper-options={JSON.stringify(sliderOptions)}
-              data-swiper-breakpoints={JSON.stringify(breakpoints)}
+            data-swiper-options={JSON.stringify(sliderOptions)}
+            data-swiper-breakpoints={JSON.stringify(breakpoints)}
         >
             <div className="swiper">
                 <div className="swiper-wrapper">

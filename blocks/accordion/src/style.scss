@@ -1,8 +1,18 @@
 .wp-block-zolo-accordion-child {
-    margin-top: 8px;
-    border: 1px solid var(--zoloblocks-item-border-color);
+
+    --zolo-child-margin: 8px 0 0;
+    --zolo-trigger-padding: 20px;
+    --zolo-trigger-gap: 10px;
+    --zolo-inner-padding: 20px;
+    --zolo-toggle-icon-color: #111;
+    --zolo-toggle-icon-size: 16px;
+
+    margin: var(--zolo-child-margin);
+    border-width: var(--zolo-item-border-width);
+    border-style: var(--zolo-item-border-style);
+    border-color: var(--zoloblocks-item-border-color);
+    border-radius: var(--zolo-item-border-radius);
     box-sizing: border-box;
-    border-radius: 10px;
     overflow: hidden;
     transition: all 0.2s ease;
 }
@@ -36,48 +46,49 @@
         width: 100%;
         cursor: pointer;
         border: 0;
-        padding: 15px 20px;
+        padding: var(--zolo-trigger-padding);
         background-color: var(--zoloblocks-item-bg-color);
         transition: color 0.25s ease;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 10px;
+        gap: var(--zolo-trigger-gap);
     }
-
     .zolo-accordion-head-title {
+        --zolo-head-title-color: #111;
         margin: 0;
-        color: #111;
-        font-size: 18px;
+        color: var(--zolo-head-title-color);
+        font-size: 20px;
         transition: all 0.2s ease;
         text-align: left;
     }
+}
 
-    .zolo-accordion-panel {
-        overflow: hidden;
-        transition-property: height, visibility;
-        transition-timing-function: ease;
-    }
 
-    .zolo-accordion-inner {
-        padding: 20px;
-        overflow: hidden;
-    }
+.zolo-accordion-panel {
+    overflow: hidden;
+    transition-property: height, visibility;
+    transition-timing-function: ease;
+}
 
-    .zolo-accordion-expanded-mode {
-        display: none;
-    }
+.zolo-accordion-inner {
+    padding: var(--zolo-inner-padding);
+    overflow: hidden;
+}
 
-    // zolo toggle
-    .zolo-accordion-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        svg {
-            width: 16px;
-            height: 16px;
-            fill: #111;
-            display: block;
-        }
+.zolo-accordion-expanded-mode {
+    display: none;
+}
+
+// zolo toggle
+.zolo-accordion-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+        width: var(--zolo-toggle-icon-size);
+        height: var(--zolo-toggle-icon-size);
+        fill: var(--zolo-toggle-icon-color);
+        display: block;
     }
 }

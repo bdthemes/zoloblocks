@@ -180,6 +180,7 @@ const Inspector = (props) => {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/pricing-table"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -429,7 +430,7 @@ const Inspector = (props) => {
                             <ResDimensionsControl label="Margin" controlName={WRAPPER_MARGIN} requiredProps={requiredProps} />
                             <ResDimensionsControl label="Padding" controlName={WRAPPER_PADDING} requiredProps={requiredProps} />
                             <BoxShadowControl controlName={WRAPPER_SHADOW} requiredProps={requiredProps} />
-                            <BackgroundControl controlName={WRAPPER_BG} requiredProps={requiredProps} noOverlay={true} />
+                            <NormalBGControl requiredProps={requiredProps} controlName={WRAPPER_BG} noMainBGImg={false} />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Header', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ResDimensionsControl
@@ -1023,7 +1024,12 @@ const Inspector = (props) => {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/pricing-table"
+                        />
                     </>
                 }
             />

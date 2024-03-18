@@ -94,6 +94,48 @@ export const DEFAULT_ALIGNS = [
     },
 ];
 
+export const DEFAULT_ALIGNS_VERTICAL = [
+    {
+        label: 'Top',
+        value: 'top',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 4L2 4" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                    d="M15 8C15.5523 8 16 8.44772 16 9V19C16 19.5523 15.5523 20 15 20H9C8.44772 20 8 19.5523 8 19L8 9C8 8.44771 8.44772 8 9 8L15 8Z"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                />
+            </svg>
+        ),
+    },
+    {
+        label: 'Center',
+        value: 'center',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L12 8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M12 16L12 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={4} y={8} width={16} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Bottom',
+        value: 'bottom',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 20L2 20" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                    d="M15 4C15.5523 4 16 4.44772 16 5V15C16 15.5523 15.5523 16 15 16H9C8.44772 16 8 15.5523 8 15L8 5C8 4.44771 8.44772 4 9 4L15 4Z"
+                    stroke="#4D4D4D"
+                    strokeWidth="1.5"
+                />
+            </svg>
+        ),
+    },
+];
+
 export const FLEX_ALIGN_OPTIONS = [
     {
         label: 'Top',
@@ -932,6 +974,30 @@ export const ICON_POSITIONS = [
     },
 ];
 
+// horizontal position
+export const ICON_HPOSITIONS = [
+    {
+        label: 'Left',
+        value: 'left',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x={11} y={12} width={11} height="0.01" rx="0.005" stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x={3} y={10} width={4} height={4} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+    {
+        label: 'Right',
+        value: 'right',
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x={3} y={12} width={11} height="0.01" rx="0.005" stroke="#4D4D4D" strokeWidth="1.5" />
+                <rect x={18} y={10} width={4} height={4} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+];
+
 // social icon text
 export const ICON_STATUS = [
     {
@@ -1110,3 +1176,152 @@ export const MASK_SIZES = [
     { value: 'cover', label: __('Cover', 'zolo-blocks') },
     { value: 'contain', label: __('Contain', 'zolo-blocks') },
 ];
+
+export const ANIMATION_TYPES = [
+    { label: 'Fade', value: 'fade' },
+    // { label: 'Slide', value: 'slide' },
+    // { label: 'Scale', value: 'scale' },
+    // { label: 'Rotate', value: 'rotate' },
+    // { label: 'Flip', value: 'flip' },
+    // { label: 'Zoom', value: 'zoom' },
+    { label: 'Scale Up', value: 'scaleUp' },
+    { label: 'Scale Down', value: 'scaleDown' },
+    { label: 'Top', value: 'top' },
+    { label: 'Right', value: 'right' },
+    { label: 'Bottom', value: 'bottom' },
+    { label: 'Left', value: 'left' },
+    { label: 'Top Small', value: 'topSmall' },
+    { label: 'Right Small', value: 'rightSmall' },
+    { label: 'Bottom Small', value: 'bottomSmall' },
+    { label: 'Left Small', value: 'leftSmall' },
+    { label: 'Top Medium', value: 'topMedium' },
+    { label: 'Right Medium', value: 'rightMedium' },
+    { label: 'Bottom Medium', value: 'bottomMedium' },
+    { label: 'Left Medium', value: 'leftMedium' },
+    { label: 'Custom (Pro)', value: 'custom' },
+];
+
+export const TRANSFORM_ORIGINS = [
+    { label: __('Top'), value: 'top' },
+    { label: __('Right'), value: 'right' },
+    { label: __('Bottom'), value: 'bottom' },
+    { label: __('Left'), value: 'left' },
+    { label: __('Center'), value: 'center' },
+    { label: __('Initial'), value: 'initial' },
+    { label: __('Inherit'), value: 'inherit' },
+    { label: __('Revert'), value: 'revert' },
+    { label: __('Unset'), value: 'unset' },
+    { label: __('Revert Layer'), value: 'revert-layer' },
+    { label: 'Custom', value: 'custom' },
+];
+
+export const EASING_TYPES = [
+    { label: __('Ease Out', 'zolo-blocks'), value: 'ease-out' },
+    { label: __('Ease In Out', 'zolo-blocks'), value: 'ease-in-out' },
+    { label: __('Linear', 'zolo-blocks'), value: 'linear' },
+    { label: __('Custom', 'zolo-blocks'), value: 'custom' },
+];
+
+export const TRANSLATE_ICON = (
+    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M18.5818 15.3211L22 11.9184L18.5818 8.58813"
+            stroke="#4D4D4D"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+        <path
+            d="M5.41818 15.3211L2 11.9184L5.41818 8.58813"
+            stroke="#4D4D4D"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+        <path d="M2.35461 11.9548H21.6455" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+            d="M15.3818 5.4027L11.9636 2L8.61816 5.4027"
+            stroke="#4D4D4D"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+        <path
+            d="M8.61816 18.5974L12.0363 22.0001L15.3818 18.5974"
+            stroke="#4D4D4D"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+        <path d="M12 2.35278V21.2396" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const ROTATE_ICON = (
+    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M21.4401 8.67C19.7801 4.22 15.9301 2 12.0001 2C6.85006 2 2.61006 5.89 2.06006 10.89"
+            stroke="#4D4D4D"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+        <path
+            d="M21.9401 13.1201C21.3901 18.1201 17.1501 22.0001 12.0001 22.0001C8.08006 22.0001 4.22006 19.7801 2.56006 15.3301"
+            stroke="#4D4D4D"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+        <path d="M22.0001 2.21997V8.66997H15.5601" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M2 21.7801V15.3301H8.44" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const SCALE_ICON = (
+    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21.9999 8.16V2L15.8799 2.07" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+            d="M16.2598 13.8798H10.0798L10.1398 7.78979"
+            stroke="#4D4D4D"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+        <path d="M10.4299 13.5898L21.7299 2.30981" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+            d="M20.62 13.88V19.97C20.62 21.09 19.71 22 18.58 22H4.04C2.91 22 2 21.09 2 19.97V5.47995C2 4.35995 2.91 3.44995 4.04 3.44995H9.64"
+            stroke="#4D4D4D"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+    </svg>
+);
+export const SKEW_ICON = (
+    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M22 4H7.74545L2 20H16.2545L22 4Z"
+            stroke="#4D4D4D"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+    </svg>
+);
+
+export const OPACITY_ICON = (
+    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 2L2 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M2 2L22 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const FLIP_ICON = (
+    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 12H22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 2L22 12L12 22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);

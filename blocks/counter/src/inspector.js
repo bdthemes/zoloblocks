@@ -56,6 +56,7 @@ import {
 
 import { TITLE_TYPOGRAPHY, COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { HEADING, ICON_BOX_OPTIONS, DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -90,6 +91,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/counter"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -97,7 +99,7 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
                                 label={__('Preset', 'zolo-blocks')}
-                                options={PRESETS}
+                                options={applyFilters('zolo.counter.preset', PRESETS)}
                                 onChange={(preset) => {
                                     setAttributes({
                                         preset,
@@ -427,7 +429,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/counter"
+                        />
                     </>
                 }
             />

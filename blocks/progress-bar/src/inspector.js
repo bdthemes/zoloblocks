@@ -38,6 +38,7 @@ import {
 import { TITLE_TYPO, PROGRESS_VALUE } from './constants/typoPrefixConstants';
 
 import { HEADING } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -57,6 +58,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/progress-bar"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -64,7 +66,7 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
-                                options={PRESETS}
+                                options={applyFilters('zolo.progressBar.presets', PRESETS)}
                                 onChange={(v) => onPresetChange(v)}
                                 value={preset}
                             />
@@ -192,7 +194,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/progress-bar"
+                        />
                     </>
                 }
             />

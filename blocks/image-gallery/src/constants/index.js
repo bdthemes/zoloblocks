@@ -68,7 +68,7 @@ export const MPA_ANIMATIONS = [
         value: 'zolo-newspaper',
     },
     {
-        label: __('Move Zorizontal', 'zolo-blocks'),
+        label: __('Move Horizontal', 'zolo-blocks'),
         value: 'zolo-move-horizontal',
     },
     {

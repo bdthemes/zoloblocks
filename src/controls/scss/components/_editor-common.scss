@@ -184,7 +184,7 @@
     }
 
     .components-button {
-        &[aria-label='Preview'] {
+        &.zolo-action-button {
             width: 100%;
             display: flex;
             align-items: center;
@@ -202,6 +202,16 @@
                 color: currentColor;
                 background-color: #ececec;
             }
+        }
+    }
+
+    .components-datetime__time {
+        .components-base-control {
+            margin: 0;
+        }
+        .components-datetime__time-am-button,
+        .components-datetime__time-pm-button {
+            height: 27px !important;
         }
     }
 }

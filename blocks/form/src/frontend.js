@@ -1,0 +1,88 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const zoloForms = document.querySelectorAll('.zolo-contact-form');
+    if (zoloForms.length > 0) {
+        zoloForms.forEach((form) => {
+            const formId = form.dataset.formId;
+            let formNoticeContainer = form.parentNode.querySelector('.zolo-form-msg');
+            let formNotice = form.parentNode.querySelector('.zolo-msg-desc');
+            const closeBtn = form.parentNode.querySelector('.zolo-msg-close');
+
+            // form validation
+            let pristine = new Pristine(form);
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                let valid = pristine.validate();
+
+                if (valid) {
+                    const formData = new FormData(form);
+                    const values = [...formData.entries()];
+
+                    // add the formId to the data
+                    values.push(['formId', formId]);
+
+                    // add nonce to the data
+                    values.push(['nonce', zoloSettings.zolo_nonce]);
+
+                    const formattedData = values.reduce((acc, [key, value]) => {
+                        acc[key] = key === 'file' ? value.name : value;
+                        return acc;
+                    }, {});
+
+                    const dataString = JSON.stringify(formattedData);
+
+                    // create an ajax request
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', zoloSettings.ajaxurl, true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                const response = JSON.parse(xhr.responseText);
+                                const {
+                                    validationStatus,
+                                    validationMessage,
+                                    successStatus,
+                                    successMessage,
+                                    failStatus,
+                                    failMessage,
+                                    nonceValidationFail,
+                                } = response;
+                                if (validationStatus || nonceValidationFail) {
+                                    formNotice.innerHTML = validationMessage;
+                                    formNoticeContainer.classList.add('zolo-form-error-msg', 'show');
+                                }
+                                if (successStatus) {
+                                    formNotice.innerHTML = successMessage;
+                                    formNoticeContainer.classList.add('zolo-form-success-msg', 'show');
+                                }
+                                if (failStatus) {
+                                    formNotice.innerHTML = failMessage;
+                                    formNoticeContainer.classList.add('zolo-form-error-msg', 'show');
+                                }
+
+                                // reset the form after submission
+                                form.reset();
+
+                                // remove the notice after 5 seconds
+                                setTimeout(() => {
+                                    formNotice.innerHTML = '';
+                                    formNoticeContainer.classList.remove('validation-error', 'success', 'fail', 'show');
+                                }, 5000);
+
+                                // close the notice
+                                closeBtn.addEventListener('click', function () {
+                                    formNotice.innerHTML = '';
+                                    formNoticeContainer.classList.remove('validation-error', 'success', 'fail', 'show');
+                                });
+                            } else {
+                                console.error('Error:', xhr.statusText);
+                            }
+                        }
+                    };
+
+                    xhr.send('action=send_form_data&formData=' + encodeURIComponent(dataString));
+                }
+            });
+        });
+    }
+});

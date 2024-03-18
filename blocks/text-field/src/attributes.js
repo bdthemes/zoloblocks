@@ -54,7 +54,7 @@ const attributes = {
     },
     label: {
         type: 'string',
-        default: 'Text Field',
+        default: 'Name',
     },
     labelColor: {
         type: 'string',
@@ -84,6 +84,10 @@ const attributes = {
     isRequired: {
         type: 'boolean',
         default: false,
+    },
+    requiredMsg: {
+        type: 'string',
+        default: 'This field is required',
     },
     showRequiredSymbol: {
         type: 'boolean',

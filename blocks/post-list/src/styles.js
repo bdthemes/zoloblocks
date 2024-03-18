@@ -708,7 +708,7 @@ function Style({ props }) {
         ${catGapDesk}
         ${catMarginDesk}
       }
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category a{
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item .zolo-post-category a {
         ${catTypoDesk}
         ${catPaddingDesk}
         ${catBorderDesk}
@@ -716,6 +716,8 @@ function Style({ props }) {
         ${catColor ? `color:${catColor};` : ''}
         ${catBgColor ? `background-color:${catBgColor};` : ''}
       }
+
+
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category a:hover{
         ${catHoverColor ? `color:${catHoverColor};` : ''}
         ${catBgHoverColor ? `background-color:${catBgHoverColor};` : ''}
@@ -891,7 +893,7 @@ function Style({ props }) {
       ${catMarginTab}
     }
 
-    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category a{
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item .zolo-post-category a{
       ${catTypoTab}
       ${catPaddingTab}
       ${catBorderTab}
@@ -1021,7 +1023,7 @@ function Style({ props }) {
         ${catMarginMob}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category a{
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item .zolo-post-category a{
         ${catTypoMob}
         ${catPaddingMob}
         ${catBorderMob}

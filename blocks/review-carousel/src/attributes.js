@@ -118,6 +118,34 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
+    // block style
+    nameColor: {
+        type: 'string',
+    },
+    designationColor: {
+        type: 'string',
+    },
+    testimonialMessageColor: {
+        type: 'string',
+    },
+    // rating icon
+    activeRatingColor: {
+        type: 'string',
+    },
+    inactiveRatingColor: {
+        type: 'string',
+    },
+    // DPL icon color
+    dplIconColor: {
+        type: 'string',
+    },
+    objectFit: {
+        type: 'string',
+    },
+    photoOverflow: {
+        type: 'string',
+        default: 'hidden',
+    },
     ...generateNormalBGAttributes(REVIEW_CAROUSEL_BG),
     ...generateResCounterAttributies(CAROUSEL_COLUMNS, {
         noUnits: true,

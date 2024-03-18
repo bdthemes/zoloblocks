@@ -33,6 +33,7 @@ import {
     BUTTON_BORDER,
     BTN_BORDER_RADIUS,
     BUTTON_PADDING,
+    BUTTON_SIZE,
     COLUMN_COUNT,
     COLUMNS_GAP,
     ICON_TEXT_SPACING,
@@ -46,6 +47,7 @@ import {
 import { ICON_STATUS } from '../../../src/global/constants';
 
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -106,6 +108,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/social-links"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -114,7 +117,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.socialLinks.presets', PRESETS)}
                                 onChange={(value) => changePremade(value)}
                             />
                             <IconicBtnGroup
@@ -211,6 +214,16 @@ function Inspector(props) {
                                     )}
                                 </>
                             )}
+                            {preset !== 'preset-1' && (
+                                <ResRangeControl
+                                    label={__('Icon Size', 'zolo-blocks')}
+                                    controlName={BUTTON_SIZE}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                />
+                            )}
                             {socialText === 'iconText' && (
                                 <ResRangeControl
                                     label={__('Gap', 'zolo-blocks')}
@@ -226,6 +239,17 @@ function Inspector(props) {
                                     label={__('Border', 'zolo-blocks')}
                                     controlName={BUTTON_BORDER}
                                     requiredProps={requiredProps}
+                                    hoverControl={
+                                        <ColorControl
+                                            label={__('Border Color', 'zolo-blocks')}
+                                            color={borderHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    borderHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                    }
                                 />
                             )}
 
@@ -341,16 +365,6 @@ function Inspector(props) {
                                                     />
                                                 </>
                                             )}
-
-                                            <ColorControl
-                                                label={__('Border Color', 'zolo-blocks')}
-                                                color={borderHoverColor}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        borderHoverColor: value,
-                                                    })
-                                                }
-                                            />
                                             <BoxShadowControl controlName={BTN_HOVER_SHADOW} requiredProps={requiredProps} />
                                         </>
                                     }
@@ -361,7 +375,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/social-links"
+                        />
                     </>
                 }
             />

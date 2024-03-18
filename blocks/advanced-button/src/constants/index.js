@@ -5,6 +5,7 @@ import { __ } from '@wordpress/i18n';
 
 // Block Prefix
 export const BLOCK_PREFIX = 'advanced-button';
+
 // Presets
 export const PRESETS = [
     { label: __('Style 1', 'zolo-blocks'), value: '' },

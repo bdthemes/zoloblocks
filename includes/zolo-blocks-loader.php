@@ -49,6 +49,10 @@ class Zolo_Blocks_Loader {
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Assets.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Settings.php';
 
+        // form 
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/Form.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/FormAjax.php';
+
         if (is_admin()) {
             // zolo blocks settings 
             $zoloSupportSVG = get_option('zolo_support_svg', false);

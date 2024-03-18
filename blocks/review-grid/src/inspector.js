@@ -32,6 +32,7 @@ import {
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 const {
     ResRangeControl,
@@ -79,6 +80,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/review-grid"
                 setAttributes={setAttributes}
                 attributes={attributes}
                 generalTab={
@@ -87,7 +89,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.reviewGrid.presets', PRESETS)}
                                 onChange={(selected) => setAttributes({ preset: selected })}
                             />
                             <ToggleControl
@@ -398,7 +400,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/review-grid"
+                        />
                     </>
                 }
             />

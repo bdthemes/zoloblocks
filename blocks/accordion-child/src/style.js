@@ -288,7 +288,7 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId}.wp-block-zolo-accordion-child {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child {
             ${containerNormalBgDesktop}
             ${containerBorderStyles}
             ${containerBorderRadiusDesktop}
@@ -296,48 +296,48 @@ const Style = ({ props }) => {
             ${containerMarginDesk}
             ${containerBoxShadow}
         }
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item {
             ${achBorderDesk}
             ${achBorderRadiusDesk}
             ${achPaddingDesk}
             ${achMarginDesk}
             ${achNormalBgDesktop}
         }
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover {
             ${achNormalHBgDesktop}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item .zolo-accordion-head-title {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item .zolo-accordion-head-title {
             ${titleDeskTypo}
             ${titleColor ? `color: ${titleColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-head-title {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-head-title {
             ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item .zolo-accordion-toggle {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item .zolo-accordion-toggle {
             ${icNormalDesk}
             ${borderStyles}
             ${borderRadiusDesktop}
             ${icPaddingDesk}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-toggle {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-toggle {
             ${icHoverDesk}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-toggle svg {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-toggle svg {
             ${iconSizeDesk}
             ${iconHSizeDesk}
             ${iconColor ? `fill: ${iconColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-toggle svg {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-toggle svg {
             ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-inner {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-inner {
             ${acbBorderDesk}
             ${acbBorderRadiusDesk}
             ${acbPaddingDesk}
@@ -347,7 +347,7 @@ const Style = ({ props }) => {
     `;
 
     const tabletAllStyle = `
-        .${uniqueId} .wp-block-zolo-accordion-child{
+        .${uniqueId} .zolo-block.wp-block-zolo-accordion-child{
             ${containerNormalBgTab}
             ${containerBorderStylesTab}
             ${containerBorderRadiusTab}
@@ -355,7 +355,7 @@ const Style = ({ props }) => {
             ${containerMarginTab}
             ${containerBoxShadow}
         }
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item {
             ${achBorderTab}
             ${achBorderRadiusTab}
             ${achPaddingTab}
@@ -363,31 +363,31 @@ const Style = ({ props }) => {
             ${achNormalBgTab}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover {
             ${achNormalHBgTab}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-title {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-title {
             ${titleTabTypo}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-toggle {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-toggle {
             ${icNormalTab}
             ${borderStylesTab}
             ${borderRadiusTab}
             ${icPaddingTab}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-toggle {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-toggle {
             ${icHoverTab}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-toggle svg {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-toggle svg {
             ${iconSizeTab}
             ${iconHSizeTab}
         }
 
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-inner {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-inner {
             ${acbBorderTab}
             ${acbBorderRadiusTab}
             ${acbPaddingTab}
@@ -397,7 +397,7 @@ const Style = ({ props }) => {
     `;
 
     const mobileAllStyle = `
-        .${uniqueId}.wp-block-zolo-accordion-child .wp-block-zolo-accordion-child{
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-block.wp-block-zolo-accordion-child{
             ${containerNormalBgMob}
             ${containerBorderStylesMob}
             ${containerBorderRadiusMob}
@@ -405,33 +405,33 @@ const Style = ({ props }) => {
             ${containerMarginMob}
             ${containerBoxShadow}
         }
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item {
             ${achBorderMob}
             ${achBorderRadiusMob}
             ${achPaddingMob}
             ${achMarginMob}
             ${achNormalBgMob}
         }
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover {
             ${achNormalHBgMob}
         }
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-title {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-title {
             ${titleMobTypo}
         }
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-toggle {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-toggle {
             ${icNormalMob}
             ${borderStylesMob}
             ${borderRadiusMob}
             ${icPaddingMob}
         }
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-toggle {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-head-item:hover .zolo-accordion-toggle {
             ${icHoverMob}
         }
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-toggle svg{
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-toggle svg{
             ${iconSizeMob}
             ${iconHSizeMob}
         }
-        .${uniqueId}.wp-block-zolo-accordion-child .zolo-accordion-inner {
+        .${uniqueId}.zolo-block.wp-block-zolo-accordion-child .zolo-accordion-inner {
             ${acbBorderMob}
             ${acbBorderRadiusMob}
             ${acbPaddingMob}

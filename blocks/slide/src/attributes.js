@@ -34,7 +34,7 @@ const attributes = {
     },
     // Generators
     ...generateNormalBGAttributes(SLIDE_BG),
-    ...generateResRangeAttributies(SLIDE_PADDING),
+    ...generateDimensionAttributes(SLIDE_PADDING),
     ...generateBorderAttributies(SLIDE_BORDER),
     ...generateDimensionAttributes(SLIDE_BORDER_RADIUS),
     enableOverlay: {
