@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { animate, timeline } from 'motion';
 import { SelectControl, ToggleControl, TextControl, Button, FormTokenField } from '@wordpress/components';
 import { useState, useEffect } from 'react';
 import gsap from 'gsap';
@@ -2903,5 +2902,5 @@ export const AdvancedOptions = (props) => {
         </>
     );
 
-    return <>{applyFilters('zolo.blocks.extraTab', panels, block, panelProps)}</>;
+    // return <>{applyFilters('zolo.blocks.extraTab', panels, block = '', panelProps)}</>;
 };
