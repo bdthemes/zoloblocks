@@ -158,7 +158,8 @@ export default function Edit(props) {
     return (
         <Fragment>
             <Style props={props} />
-            <style>{`
+            <style>
+                {`
                 [data-type="zolo/slide"] {
                     height: 100%;
                 }
@@ -166,7 +167,9 @@ export default function Edit(props) {
                     border: 2px dashed #ccc;
                     padding: 10px;
                 }
-            `}</style>
+                
+            `}
+            </style>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <BlockControls>
                 <ToolbarGroup>

@@ -119,15 +119,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 return;
             }
 
-            // animation frontend
-            wp_enqueue_script(
-                'zolo-animation-frontend',
-                trailingslashit(ZOLO_ADMIN_URL) . 'build/animation/index.js',
-                ['zolo-block-editor-dependency'],
-                ZOLO_VERSION,
-                true
-            );
-
             // form validation
             if( has_block( 'zolo/form' ) ) {
                 wp_enqueue_script(
@@ -221,11 +212,12 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // override css
-            wp_enqueue_style(
+            wp_register_style(
                 'zolo-block-editor-override-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/override/editor-override.css',
                 [],
-                ZOLO_VERSION
+                ZOLO_VERSION,
+                'all'
             );
 
             // Swiper Scripts and Styles
@@ -233,7 +225,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 'zolo-swiper-editor-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
                 [],
-                ZOLO_VERSION
+                ZOLO_VERSION,
+                'all'
             );
 
             wp_register_script(
@@ -299,7 +292,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 [
                     'wp-edit-blocks',
                     'zolo-block-common-style',
-                    'zolo-swiper-editor-style'
+                    'zolo-swiper-editor-style',
+                    'zolo-block-editor-override-style'
                 ],
                 ZOLO_VERSION
             );

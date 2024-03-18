@@ -1,4 +1,4 @@
-.wp-block-zolo-post-carousel {
+.wp-block-zolo-slider {
     &.Tablet,
     &.Mobile {
         .swiper-wrapper {
@@ -8,18 +8,16 @@
             z-index: 11;
             position: relative;
             transform: unset !important;
+            padding-bottom: 20px;
         }
-        .swiper-slide {
-            overflow: visible !important;
-            margin-right: 30px !important;
-        }
+        // .swiper-slide {
+        //     margin-right: 30px !important;
+        // }
     }
     &.Tablet {
         .swiper-slide {
-            width: 350px !important;
-            min-width: 350px;
-            overflow: visible !important;
-            margin-right: 30px !important;
+            width: 700px !important;
+            min-width: 700px;
         }
     }
     &.Mobile {
