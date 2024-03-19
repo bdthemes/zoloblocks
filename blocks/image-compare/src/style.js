@@ -43,7 +43,8 @@ import { BEFORE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { preset, uniqueId, arrowbtnColor, labelPositons, labelOpacity, beforeColor, afterColor, slidePositon } = attributes;
+    const { preset, uniqueId, arrowbtnColor, labelPositons, HorizontalPosition, labelOpacity, beforeColor, afterColor, slidePositon } =
+        attributes;
     //before Label
     const {
         backgroundStylesDesktop: DeskbeforeBg,
@@ -186,8 +187,17 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
    
     .wp-block-zolo-image-compare.${uniqueId} .image-item-One,.wp-block-zolo-image-compare.${uniqueId} .image-item-two{
-        ${labelPositons && `align-items:${labelPositons}`}
+        ${slidePositon ? HorizontalPosition && `justify-content:${HorizontalPosition}` : labelPositons && `align-items:${labelPositons}`}
     }
+    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left{
+        ${slidePositon && 'top:0'}
+
+    }
+   .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right{
+        ${slidePositon ? 'bottom:0' : 'right:0'};
+        
+
+   }
     
     .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label {
         opacity: ${labelOpacity}

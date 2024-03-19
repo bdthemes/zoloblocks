@@ -46,12 +46,11 @@ import {
     ARROW_SIZE,
     //option
     SLIDE_POSITION,
-    LABEL_OPTION,
     NORMAL_TAB_OPTION,
     NORMAL_CONTROL_OPTION,
 } from './constants';
 
-import { DEFAULT_ALIGNS, HEADING } from '../../../src/global/constants';
+import { DEFAULT_ALIGNS, HEADING, FLEX_ALIGN_OPTIONS, FLEX_HORIZONTAL_OPTIONS } from '../../../src/global/constants';
 
 import { BEFORE_TYPO } from './constants/typoPrefixConstant';
 import { set } from 'lodash';
@@ -73,6 +72,7 @@ function Inspector(props) {
         afterLabel,
         afterColor,
         labelPositons,
+        HorizontalPosition,
         arrowbtnColor,
     } = attributes;
 
@@ -187,16 +187,16 @@ function Inspector(props) {
                             <ToggleControl
                                 label={__('Disable Slide Behavior', 'zolo-blocks')}
                                 checked={disableslide}
-                                onChange={() => setAttributes({ disableslide: !disableslide })}
+                                onChange={() => setAttributes({ disableslide: !disableslide, handleDraggable: false, swipeMode: false })}
                             />
                             {!disableslide && (
                                 <ToggleControl
                                     label={__('Only Handle Draggable', 'zolo-blocks')}
                                     checked={handleDraggable}
-                                    onChange={() => setAttributes({ handleDraggable: !handleDraggable })}
+                                    onChange={() => setAttributes({ handleDraggable: !handleDraggable, swipeMode: false })}
                                 />
                             )}
-                            {!disableslide && (
+                            {!handleDraggable && !disableslide && (
                                 <ToggleControl
                                     label={__('Enable Swipe Mode', 'zolo-blocks')}
                                     checked={swipeMode}
@@ -234,16 +234,29 @@ function Inspector(props) {
                                     value={afterLabel}
                                     onChange={(v) => setAttributes({ afterLabel: v })}
                                 />
-                                <IconicBtnGroup
-                                    label={__('Labels Position', 'zolo-blocks')}
-                                    value={labelPositons}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            labelPositons: value,
-                                        })
-                                    }
-                                    options={LABEL_OPTION}
-                                />
+                                {slidePositon ? (
+                                    <IconicBtnGroup
+                                        label={__('Labels Position', 'zolo-blocks')}
+                                        value={HorizontalPosition}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                HorizontalPosition: value,
+                                            })
+                                        }
+                                        options={FLEX_HORIZONTAL_OPTIONS}
+                                    />
+                                ) : (
+                                    <IconicBtnGroup
+                                        label={__('Labels Position', 'zolo-blocks')}
+                                        value={labelPositons}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                labelPositons: value,
+                                            })
+                                        }
+                                        options={FLEX_ALIGN_OPTIONS}
+                                    />
+                                )}
                             </ZoloPanelBody>
                         )}
                     </>
@@ -359,14 +372,6 @@ function Inspector(props) {
                                 }
                                 hoverComponents={
                                     <>
-                                        {/* <RangeResetControl
-                                            label={__('Arrow Size', 'zolo-blocks')}
-                                            controlName={'arrowSize'}
-                                            requiredProps={requiredProps}
-                                            min={0}
-                                            max={100}
-                                            step={1}
-                                        /> */}
                                         <ResRangeControl
                                             label={__('Arrow Size', 'zolo-blocks')}
                                             controlName={ARROW_SIZE}

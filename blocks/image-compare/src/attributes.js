@@ -130,6 +130,10 @@ const attributes = {
         type: 'string',
         default: 'center',
     },
+    HorizontalPosition: {
+        type: 'string',
+        default: 'center',
+    },
     arrowbtnColor: {
         type: 'string',
     },

@@ -39,21 +39,6 @@ export const SLIDE_POSITION = [
     },
 ];
 
-export const LABEL_OPTION = [
-    {
-        label: __('Top', 'zolo-blocks'),
-        value: 'flex-start',
-    },
-    {
-        label: __('Center', 'zolo-blocks'),
-        value: 'center',
-    },
-    {
-        label: __('Bottom', 'zolo-blocks'),
-        value: 'flex-end',
-    },
-];
-
 export const NORMAL_TAB_OPTION = [
     { label: __('Normal'), value: 'normal' },
     { label: __('After'), value: 'hover' },

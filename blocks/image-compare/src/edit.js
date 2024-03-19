@@ -47,7 +47,7 @@ export default function Edit(props) {
     if (preview) {
         return <img src={zoloParams.blocksPreview.socialLinks} alt={__('List Links Preview', 'zolo-blocks')} />;
     }
-
+    console.log(slidePositon);
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -139,7 +139,7 @@ export default function Edit(props) {
                         position={initialPosition}
                         onlyHandleDraggable={handleDraggable}
                         itemOne={
-                            <div className="image-item-One zolo-label">
+                            <div className="image-item-One ">
                                 {showLabels && beforeLabel && (
                                     <div className="compare-slider-label compare-slider-label-left">{beforeLabel}</div>
                                 )}
@@ -147,7 +147,7 @@ export default function Edit(props) {
                             </div>
                         }
                         itemTwo={
-                            <div className="image-item-two zolo-label">
+                            <div className="image-item-two ">
                                 {showLabels && afterLabel && (
                                     <div className="compare-slider-label compare-slider-label-right">{afterLabel}</div>
                                 )}
