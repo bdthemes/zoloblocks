@@ -11,44 +11,39 @@ document.addEventListener('DOMContentLoaded', () => {
     if (beafsliderItems.length) {
         beafsliderItems.forEach((item) => {
             const beafslider = item.querySelector('.beaf-slider');
-            let beforeImage = JSON.parse(beafslider.dataset.beforeimage);
-            let afterImage = JSON.parse(beafslider.dataset.afterimage);
-            let disableSliding = stringToBool(beafslider.dataset.disablesliding);
-            let swipeMode = stringToBool(beafslider.dataset.swipemode);
-            let slidePositon = stringToBool(beafslider.dataset.slidepositon);
-            let initialPosition = beafslider.dataset.initialPosition;
-            let handleDraggable = stringToBool(beafslider.dataset.handledraggable);
-            let beforeLabel = beafslider.dataset.beforelabel;
-            let afterLabel = beafslider.dataset.afterlabel;
-            let showLabels = stringToBool(beafslider.dataset.showlabels);
-
+            let {
+                afterImage,
+                beforeImage,
+                beforeLabel,
+                afterLabel,
+                disableslide,
+                handleDraggable,
+                showLabels,
+                slidePositon,
+                swipeMode,
+                initialPosition,
+            } = JSON.parse(beafslider.dataset.allattributes);
             render(
                 <ReactCompareSlider
-                    changePositionOnHover={swipeMode}
-                    portrait={slidePositon}
-                    disabled={disableSliding}
+                    changePositionOnHover={stringToBool(swipeMode)}
+                    portrait={stringToBool(slidePositon)}
+                    disabled={stringToBool(disableslide)}
                     position={initialPosition}
-                    onlyHandleDraggable={handleDraggable}
+                    onlyHandleDraggable={stringToBool(handleDraggable)}
                     itemOne={
                         <div className="image-item-One">
-                            {showLabels && beforeLabel && (
+                            {stringToBool(showLabels) && beforeLabel && (
                                 <div className="compare-slider-label compare-slider-label-left">{beforeLabel}</div>
                             )}
-                            <ReactCompareSliderImage
-                                src={beforeImage && (beforeImage?.url || beforeImage)}
-                                alt={beforeImage?.title || 'photo'}
-                            />
+                            <ReactCompareSliderImage src={beforeImage && (beforeImage?.url || beforeImage)} alt={beforeImage?.title} />
                         </div>
                     }
                     itemTwo={
                         <div className="image-item-two">
-                            {showLabels && afterLabel && (
+                            {stringToBool(showLabels) && afterLabel && (
                                 <div className="compare-slider-label compare-slider-label-right">{afterLabel}</div>
                             )}
-                            <ReactCompareSliderImage
-                                src={afterImage && (afterImage?.url || afterImage)}
-                                alt={afterImage?.title || 'photo'}
-                            />
+                            <ReactCompareSliderImage src={afterImage && (afterImage?.url || afterImage)} alt={afterImage?.title} />
                         </div>
                     }
                 />,

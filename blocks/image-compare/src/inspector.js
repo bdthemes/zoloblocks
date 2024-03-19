@@ -14,13 +14,15 @@ const {
     ZoloPanelBody,
     IconicBtnGroup,
     ImageAvatar,
+    RangeResetControl,
+    TabPanelControl,
 } = window.zoloModule;
 
 /**
  * WordPress depencencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { TextControl, ToggleControl, Button, BaseControl, RangeControl } from '@wordpress/components';
+import { TextControl, ToggleControl, Button, BaseControl, RangeControl, TabPanel } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -33,9 +35,6 @@ import {
     BEFORE_PADDING,
     AFTER_LABEL_BG,
     AFTER_BORDER,
-    AFTER_RADIUS,
-    AFTER_MARGIN,
-    AFTER_PADDING,
     LINE_THICKNESS,
     LINE_BOX_SHADOW,
     THICKNESS_BG,
@@ -44,14 +43,17 @@ import {
     ARROW_BTN_BORDER,
     ARROW_BTN_RADIUS,
     ARROW_BTN_BG,
+    ARROW_SIZE,
     //option
     SLIDE_POSITION,
     LABEL_OPTION,
+    NORMAL_TAB_OPTION,
+    NORMAL_CONTROL_OPTION,
 } from './constants';
 
 import { DEFAULT_ALIGNS, HEADING } from '../../../src/global/constants';
 
-import { BEFORE_TYPO, AFTER_TYPO } from './constants/typoPrefixConstant';
+import { BEFORE_TYPO } from './constants/typoPrefixConstant';
 import { set } from 'lodash';
 
 function Inspector(props) {
@@ -62,7 +64,7 @@ function Inspector(props) {
         afterImage,
         showLabels,
         disableslide,
-        handaleDraggable,
+        handleDraggable,
         initialPosition,
         slidePositon,
         swipeMode,
@@ -72,7 +74,6 @@ function Inspector(props) {
         afterColor,
         labelPositons,
         arrowbtnColor,
-        arrowbtnBlure,
     } = attributes;
 
     const requiredProps = {
@@ -188,21 +189,28 @@ function Inspector(props) {
                                 checked={disableslide}
                                 onChange={() => setAttributes({ disableslide: !disableslide })}
                             />
-                            <ToggleControl
-                                label={__('Only Handle Draggable', 'zolo-blocks')}
-                                checked={handaleDraggable}
-                                onChange={() => setAttributes({ handaleDraggable: !handaleDraggable })}
-                            />
-
-                            <RangeControl
+                            {!disableslide && (
+                                <ToggleControl
+                                    label={__('Only Handle Draggable', 'zolo-blocks')}
+                                    checked={handleDraggable}
+                                    onChange={() => setAttributes({ handleDraggable: !handleDraggable })}
+                                />
+                            )}
+                            {!disableslide && (
+                                <ToggleControl
+                                    label={__('Enable Swipe Mode', 'zolo-blocks')}
+                                    checked={swipeMode}
+                                    onChange={() => setAttributes({ swipeMode: !swipeMode })}
+                                />
+                            )}
+                            <RangeResetControl
                                 label={__('Initial Position', 'zolo-blocks')}
-                                value={initialPosition}
-                                onChange={(v) => setAttributes({ initialPosition: v })}
+                                controlName={'initialPosition'}
+                                requiredProps={requiredProps}
                                 min={1}
                                 max={100}
-                                allowReset={true}
+                                step={1}
                             />
-
                             <IconicBtnGroup
                                 label={__('Slide Position', 'zolo-blocks')}
                                 value={slidePositon}
@@ -212,25 +220,6 @@ function Inspector(props) {
                                     })
                                 }
                                 options={SLIDE_POSITION}
-                            />
-                            <IconicBtnGroup
-                                label={__('Swipe Mode', 'zolo-blocks')}
-                                value={swipeMode}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        swipeMode: value,
-                                    })
-                                }
-                                options={[
-                                    {
-                                        label: __('Drag', 'zolo-blocks'),
-                                        value: false,
-                                    },
-                                    {
-                                        label: __('Hover', 'zolo-blocks'),
-                                        value: true,
-                                    },
-                                ]}
                             />
                         </ZoloPanelBody>
                         {showLabels && (
@@ -261,158 +250,178 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Before Label', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Color', 'zolo-blocks')}
-                                color={beforeColor}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        beforeColor: value,
-                                    })
+                        {showLabels && (
+                            <ZoloPanelBody title={__('Label', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                                <TabPanelControl
+                                    options={NORMAL_TAB_OPTION}
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={beforeColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        beforeColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={BEFORE_LABEL_BG}
+                                                noOverlay={true}
+                                                noMainBGImg={true}
+                                            />
+
+                                            <TypographyDropdown
+                                                label={__('Typography', 'zolo-blocks')}
+                                                typoPrefixConstant={BEFORE_TYPO}
+                                                requiredProps={requiredProps}
+                                                max={36}
+                                            />
+                                            <BorderControl
+                                                label={__('Border', 'zolo-blocks')}
+                                                controlName={BEFORE_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+
+                                            <ResDimensionsControl
+                                                label={__('Radius', 'zolo-blocks')}
+                                                controlName={BEFORE_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zolo-blocks')}
+                                                controlName={BEFORE_MARGIN}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={false}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zolo-blocks')}
+                                                controlName={BEFORE_PADDING}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={false}
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zolo-blocks')}
+                                                color={afterColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        afterColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={AFTER_LABEL_BG}
+                                                noOverlay={true}
+                                                noMainBGImg={true}
+                                            />
+                                            <BorderControl
+                                                label={__('Border', 'zolo-blocks')}
+                                                controlName={AFTER_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                        </>
+                                    }
+                                />
+                            </ZoloPanelBody>
+                        )}
+
+                        <ZoloPanelBody title={__('Control', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <ResRangeControl
+                                            label={__('Thickness', 'zolo-blocks')}
+                                            controlName={LINE_THICKNESS}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                        />
+                                        <BoxShadowControl
+                                            label={__('Box Shadow', 'zolo-blocks')}
+                                            controlName={LINE_BOX_SHADOW}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={THICKNESS_BG}
+                                            noOverlay={true}
+                                            noMainBGImg={true}
+                                        />
+                                    </>
                                 }
-                            />
-                            <NormalBGControl
-                                requiredProps={requiredProps}
-                                controlName={BEFORE_LABEL_BG}
-                                noOverlay={true}
-                                noMainBGImg={true}
-                            />
-                            <TypographyDropdown
-                                label={__('Typography', 'zolo-blocks')}
-                                typoPrefixConstant={BEFORE_TYPO}
-                                requiredProps={requiredProps}
-                                max={36}
-                            />
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={BEFORE_BORDER} requiredProps={requiredProps} />
-                            <ResDimensionsControl
-                                label={__('Radius', 'zolo-blocks')}
-                                controlName={BEFORE_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={BEFORE_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={BEFORE_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                        </ZoloPanelBody>
+                                hoverComponents={
+                                    <>
+                                        {/* <RangeResetControl
+                                            label={__('Arrow Size', 'zolo-blocks')}
+                                            controlName={'arrowSize'}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                        /> */}
+                                        <ResRangeControl
+                                            label={__('Arrow Size', 'zolo-blocks')}
+                                            controlName={ARROW_SIZE}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                        />
+                                        <ColorControl
+                                            label={__('Arrow Color', 'zolo-blocks')}
+                                            color={arrowbtnColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    arrowbtnColor: value,
+                                                })
+                                            }
+                                        />
 
-                        <ZoloPanelBody title={__('After Label', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Color', 'zolo-blocks')}
-                                color={afterColor}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        afterColor: value,
-                                    })
+                                        <ResRangeControl
+                                            label={__('Width', 'zolo-blocks')}
+                                            controlName={ARROW_BTN_WIDTH}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                        />
+                                        <ResRangeControl
+                                            label={__('Height', 'zolo-blocks')}
+                                            controlName={ARROW_BTN_HEIGHT}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                        />
+                                        <BorderControl
+                                            label={__('Border', 'zolo-blocks')}
+                                            controlName={ARROW_BTN_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Radius', 'zolo-blocks')}
+                                            controlName={ARROW_BTN_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                        <NormalBGControl
+                                            requiredProps={requiredProps}
+                                            controlName={ARROW_BTN_BG}
+                                            noOverlay={true}
+                                            noMainBGImg={true}
+                                        />
+                                    </>
                                 }
+                                options={NORMAL_CONTROL_OPTION}
                             />
-                            <NormalBGControl
-                                requiredProps={requiredProps}
-                                controlName={AFTER_LABEL_BG}
-                                noOverlay={true}
-                                noMainBGImg={true}
-                            />
-                            <TypographyDropdown
-                                label={__('Typography', 'zolo-blocks')}
-                                typoPrefixConstant={AFTER_TYPO}
-                                requiredProps={requiredProps}
-                                max={36}
-                            />
-
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={AFTER_BORDER} requiredProps={requiredProps} />
-
-                            <ResDimensionsControl
-                                label={__('Radius', 'zolo-blocks')}
-                                controlName={AFTER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
-                                controlName={AFTER_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                            <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
-                                controlName={AFTER_PADDING}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
-                        </ZoloPanelBody>
-
-                        <ZoloPanelBody title={__('Control Line', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <ResRangeControl
-                                label={__('Thickness', 'zolo-blocks')}
-                                controlName={LINE_THICKNESS}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
-                            <BoxShadowControl
-                                label={__('Box Shadow', 'zolo-blocks')}
-                                controlName={LINE_BOX_SHADOW}
-                                requiredProps={requiredProps}
-                            />
-                            <NormalBGControl requiredProps={requiredProps} controlName={THICKNESS_BG} noOverlay={true} noMainBGImg={true} />
-                        </ZoloPanelBody>
-
-                        <ZoloPanelBody title={__('Control Button', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Arrow Color', 'zolo-blocks')}
-                                color={arrowbtnColor}
-                                onChange={(value) =>
-                                    setAttributes({
-                                        arrowbtnColor: value,
-                                    })
-                                }
-                            />
-
-                            <RangeControl
-                                label={__('Blure', 'zolo-blocks')}
-                                value={arrowbtnBlure}
-                                onChange={(v) => setAttributes({ arrowbtnBlure: v })}
-                                min={0}
-                                max={100}
-                                allowReset={true}
-                            />
-                            <ResRangeControl
-                                label={__('Width', 'zolo-blocks')}
-                                controlName={ARROW_BTN_WIDTH}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
-                            <ResRangeControl
-                                label={__('Height', 'zolo-blocks')}
-                                controlName={ARROW_BTN_HEIGHT}
-                                requiredProps={requiredProps}
-                                min={0}
-                                max={100}
-                                step={1}
-                            />
-                            <BorderControl
-                                label={__('Border', 'zolo-blocks')}
-                                controlName={ARROW_BTN_BORDER}
-                                requiredProps={requiredProps}
-                            />
-                            <ResDimensionsControl
-                                label={__('Radius', 'zolo-blocks')}
-                                controlName={ARROW_BTN_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <NormalBGControl requiredProps={requiredProps} controlName={ARROW_BTN_BG} noOverlay={true} noMainBGImg={true} />
                         </ZoloPanelBody>
                     </>
                 }

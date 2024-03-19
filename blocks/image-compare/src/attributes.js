@@ -18,11 +18,6 @@ import {
     BEFORE_PADDING,
     AFTER_LABEL_BG,
     AFTER_BORDER,
-    AFTER_RADIUS,
-    AFTER_MARGIN,
-    AFTER_PADDING,
-    CAPTION_ITEM_ALIGNMENT,
-    CAPTION_MARGIN,
     LINE_THICKNESS,
     THICKNESS_BG,
     ARROW_BTN_WIDTH,
@@ -30,6 +25,7 @@ import {
     ARROW_BTN_BORDER,
     ARROW_BTN_RADIUS,
     ARROW_BTN_BG,
+    ARROW_SIZE,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -69,9 +65,6 @@ const attributes = {
     //before label
     ...generateNormalBGAttributes(AFTER_LABEL_BG),
     ...generateBorderAttributies(AFTER_BORDER),
-    ...generateDimensionAttributes(AFTER_RADIUS),
-    ...generateDimensionAttributes(AFTER_MARGIN),
-    ...generateDimensionAttributes(AFTER_PADDING),
 
     //typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
@@ -85,6 +78,7 @@ const attributes = {
     ...generateBorderAttributies(ARROW_BTN_BORDER),
     ...generateDimensionAttributes(ARROW_BTN_RADIUS),
     ...generateNormalBGAttributes(ARROW_BTN_BG),
+    ...generateResRangeAttributies(ARROW_SIZE),
 
     beforeImage: {
         type: 'object',
@@ -138,9 +132,6 @@ const attributes = {
     },
     arrowbtnColor: {
         type: 'string',
-    },
-    arrowbtnBlure: {
-        type: 'number',
     },
 };
 

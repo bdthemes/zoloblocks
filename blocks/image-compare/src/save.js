@@ -24,6 +24,18 @@ const Save = ({ attributes }) => {
         handleDraggable,
         showLabels,
     } = attributes;
+    const allAttributes = {
+        beforeImage: beforeImage,
+        afterImage: afterImage,
+        disableslide: disableslide,
+        swipeMode: swipeMode,
+        slidePositon: slidePositon,
+        handleDraggable: handleDraggable,
+        beforeLabel: beforeLabel,
+        afterLabel: afterLabel,
+        showLabels: showLabels,
+        initialPosition: initialPosition,
+    };
     return (
         <div
             {...useBlockProps.save({
@@ -33,19 +45,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            <div
-                className="beaf-slider"
-                data-beforeImage={JSON.stringify(beforeImage)}
-                data-afterImage={JSON.stringify(afterImage)}
-                data-disablesliding={disableslide}
-                data-swipeMode={swipeMode}
-                data-slidePositon={slidePositon}
-                data-initialPosition={initialPosition}
-                data-handleDraggable={handleDraggable}
-                data-beforeLabel={beforeLabel}
-                data-afterLabel={afterLabel}
-                data-showlabels={showLabels}
-            ></div>
+            <div className="beaf-slider" data-allattributes={JSON.stringify(allAttributes)}></div>
         </div>
     );
 };

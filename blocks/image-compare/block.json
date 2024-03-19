@@ -1,6 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Image Comparison",
+    "title": "Image Compare",
     "name": "zolo/image-compare",
     "category": "zolo-blocks",
     "keywords": ["beaf", "footer slider", "image compare"],

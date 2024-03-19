@@ -47,6 +47,7 @@ export default function Edit(props) {
     if (preview) {
         return <img src={zoloParams.blocksPreview.socialLinks} alt={__('List Links Preview', 'zolo-blocks')} />;
     }
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -138,19 +139,19 @@ export default function Edit(props) {
                         position={initialPosition}
                         onlyHandleDraggable={handleDraggable}
                         itemOne={
-                            <div className="image-item-One">
+                            <div className="image-item-One zolo-label">
                                 {showLabels && beforeLabel && (
                                     <div className="compare-slider-label compare-slider-label-left">{beforeLabel}</div>
                                 )}
-                                <ReactCompareSliderImage src={beforeImage?.url} alt={beforeImage?.title || 'photo'} />
+                                <ReactCompareSliderImage src={beforeImage?.url} alt={beforeImage?.title} />
                             </div>
                         }
                         itemTwo={
-                            <div className="image-item-two">
+                            <div className="image-item-two zolo-label">
                                 {showLabels && afterLabel && (
                                     <div className="compare-slider-label compare-slider-label-right">{afterLabel}</div>
                                 )}
-                                <ReactCompareSliderImage src={afterImage?.url} alt={afterImage?.title || 'photo'} />
+                                <ReactCompareSliderImage src={afterImage?.url} alt={afterImage?.title} />
                             </div>
                         }
                     />

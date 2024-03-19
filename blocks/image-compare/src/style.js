@@ -28,9 +28,6 @@ import {
     BEFORE_PADDING,
     AFTER_LABEL_BG,
     AFTER_BORDER,
-    AFTER_RADIUS,
-    AFTER_MARGIN,
-    AFTER_PADDING,
     LINE_THICKNESS,
     LINE_BOX_SHADOW,
     THICKNESS_BG,
@@ -39,14 +36,14 @@ import {
     ARROW_BTN_BORDER,
     ARROW_BTN_RADIUS,
     ARROW_BTN_BG,
+    ARROW_SIZE,
 } from './constants';
 
-import { BEFORE_TYPO, AFTER_TYPO } from './constants/typoPrefixConstant';
+import { BEFORE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { preset, uniqueId, arrowbtnColor, arrowbtnBlure, labelPositons, labelOpacity, beforeColor, afterColor, slidePositon } =
-        attributes;
+    const { preset, uniqueId, arrowbtnColor, labelPositons, labelOpacity, beforeColor, afterColor, slidePositon } = attributes;
     //before Label
     const {
         backgroundStylesDesktop: DeskbeforeBg,
@@ -102,44 +99,11 @@ const Style = ({ props }) => {
     } = generateNormalBGControlStyles({ controlName: AFTER_LABEL_BG, attributes });
 
     const {
-        typoStylesDesktop: DesktopafterTypo,
-        typoStylesTab: TabafterTypo,
-        typoStylesMobile: MobafterTypo,
-    } = generateTypographyStyles({ prefixConstant: AFTER_TYPO, attributes });
-
-    const {
         desktopBorderStyle: desktopafterBorder,
         tabBorderStyle: tabafterBorder,
         mobBorderStyle: mobafterBorder,
     } = generateBorderStyle({ controlName: AFTER_BORDER, attributes });
 
-    const {
-        dimensionStylesDesktop: DesktopafterRadius,
-        dimensionStylesTab: TabafterRadius,
-        dimensionStylesMobile: MobafterRadius,
-    } = generateDimensionStyle({
-        controlName: AFTER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-    const {
-        dimensionStylesDesktop: DesktopafterMargin,
-        dimensionStylesTab: TabafterMargin,
-        dimensionStylesMobile: MobafterMargin,
-    } = generateDimensionStyle({
-        controlName: AFTER_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-    const {
-        dimensionStylesDesktop: Desktopafterpadding,
-        dimensionStylesTab: Tabafterpadding,
-        dimensionStylesMobile: Mobafterpadding,
-    } = generateDimensionStyle({
-        controlName: AFTER_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
     //line control
     const {
         desktopRangeStyle: desktopLineThick,
@@ -178,6 +142,25 @@ const Style = ({ props }) => {
         attributes,
     });
     const {
+        desktopRangeStyle: desktopArrowSizeW,
+        tabRangeStyle: tabArrowSizeW,
+        mobRangeStyle: mobArrowSizeW,
+    } = generateResRangeStyle({
+        controlName: ARROW_SIZE,
+        property: 'width',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: desktopArrowSizeH,
+        tabRangeStyle: tabArrowSizeH,
+        mobRangeStyle: mobArrowSizeH,
+    } = generateResRangeStyle({
+        controlName: ARROW_SIZE,
+        property: 'height',
+        attributes,
+    });
+
+    const {
         desktopBorderStyle: desktopArrowBorder,
         tabBorderStyle: tabArrowBorder,
         mobBorderStyle: mobArrowBorder,
@@ -208,25 +191,21 @@ const Style = ({ props }) => {
     
     .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label {
         opacity: ${labelOpacity}
-     }
-    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left{
+    }
+    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left,.wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right{
          ${beforeColor && `color:${beforeColor}`};
          ${DeskbeforeBg}
-         ${DesktopbeforeTypo}
          ${desktopbeforeBorder}
+         ${DesktopbeforeTypo}
          ${DesktopbeforeRadius}
          ${DesktopbeforeMargin}
          ${Desktopbeforepadding}
     }
+ 
    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right {
          ${afterColor && `color:${afterColor}`};
          ${DeskafterBg}
-         ${DesktopafterTypo}
          ${desktopafterBorder}
-         ${DesktopafterRadius}
-         ${DesktopafterMargin}
-         ${Desktopafterpadding}
-
    }
     .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-line{
         ${desktopLineThick.replace(';', '!important')};
@@ -235,10 +214,12 @@ const Style = ({ props }) => {
        
     }
     .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-arrow {
-           ${arrowbtnColor && `color:${arrowbtnColor}`}   
+           ${arrowbtnColor && `color:${arrowbtnColor}`};
+           ${desktopArrowSizeW.replace(';', '!important')};
+           ${desktopArrowSizeH.replace(';', '!important')};
+            
     }
     .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-button {
-        ${arrowbtnBlure && `backdrop-filter:blur(${arrowbtnBlure}px) !important`};
         ${desktopArrowWidth.replace(';', '!important')};
         ${desktopArrowHeight.replace(';', '!important')};
         ${desktopArrowBorder.replace(/;(?=\s|$)/g, ' !important;')};
@@ -248,7 +229,7 @@ const Style = ({ props }) => {
    
   	`;
     const tabletAllStyle = `
-    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left{
+    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left,.wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right{
          ${TabbeforeLBg}
          ${TabbeforeTypo}
          ${tabbeforeBorder}
@@ -258,16 +239,17 @@ const Style = ({ props }) => {
     }
     .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right {
          ${TabafterBg}
-         ${TabafterTypo}
-         ${tabafterBorder}
-         ${TabafterRadius}
-         ${TabafterMargin}
-         ${Tabafterpadding}
+         ${tabafterBorder}  
     }
     .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-line{
         ${tabLineThick.replace(';', '!important')};
         ${TabLineConBg.replace(';', '!important')}
        
+    }
+    .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-arrow {
+        ${tabArrowSizeW.replace(';', '!important')};
+        ${tabArrowSizeH.replace(';', '!important')};
+            
     }
      .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-button {
          ${tabArrowWidth.replace(';', '!important')};
@@ -279,7 +261,7 @@ const Style = ({ props }) => {
 	`;
 
     const mobileAllStyle = `
-    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left{
+    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left,.wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right{
          ${MobeforeLtBg}
          ${MobbeforeTypo}
          ${mobbeforeBorder}
@@ -289,16 +271,15 @@ const Style = ({ props }) => {
     }
     .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right {
          ${MobaftertBg}
-         ${MobafterTypo}
          ${mobafterBorder}
-         ${MobafterRadius}
-         ${MobafterMargin}
-         ${Mobafterpadding}
-    
     }
     .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-line{
         ${mobLineThick.replace(';', '!important')};
         ${MobLineConBg.replace(';', '!important')}
+    }
+    .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-arrow {
+        ${mobArrowSizeW.replace(';', '!important')};
+        ${mobArrowSizeH.replace(';', '!important')};       
     }
     .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-button {
          ${mobArrowWidth.replace(';', '!important')};
