@@ -70,6 +70,14 @@ const attributes = {
     type: "string",
     default: "bar",
   },
+  sourceType: {
+    type: "string",
+    default: "input",
+  },
+  uploadStatus: {
+    type: "boolean",
+    default: false,
+  },
   apexChartOptions: {
     type: "object",
     default: {
@@ -78,27 +86,29 @@ const attributes = {
           id: "apexchart-example",
         },
         xaxis: {
-          categories: [
-            1991,
-            1992,
-            1993,
-            1994,
-            1995,
-            1996,
-            1997,
-            1998,
-            1999,
-          ],
+          categories: ["January", "February", "March", "April", "May", "June"],
         },
       },
       series: [
         {
           name: "series-1",
-          data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+          data: [30, 40, 35, 50, 200, 210, 100, 49, 60, 70, 91, 125],
+        },
+        {
+          name: "series-2",
+          data: [35, 45, 50, 60, 220, 235, 120, 55, 65, 75, 96, 130],
+        },
+        {
+          name: "series-3",
+          data: [45, 55, 60, 70, 240, 255, 130, 65, 75, 85, 106, 140],
         },
       ],
     },
   },
+  apexChartData:{
+    type: "string",
+    default: ''
+  }
 };
 
 export default attributes;

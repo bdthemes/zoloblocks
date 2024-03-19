@@ -32,3 +32,8 @@ export const CHART_TYPES = [
     { label: __("Range Area", "zolo-blocks"), value: "rangeArea" },
     { label: __("Treemap", "zolo-blocks"), value: "treemap" },
 ];
+
+export const SOURCE_TYPES = [
+  { label: __("Upload CSV", "zolo-blocks"), value: "upload" },
+  { label: __("Input CSV", "zolo-blocks"), value: "input" },
+];

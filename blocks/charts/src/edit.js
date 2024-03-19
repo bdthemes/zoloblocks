@@ -4,6 +4,7 @@ import { useEffect } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import classnames from "classnames";
 import Chart from "react-apexcharts";
+import { v4 as uuidv4 } from "uuid";
 
 
 const { handleUniqueId, classArrayToStr } = window.zoloModule;
@@ -13,30 +14,42 @@ import Style from "./style";
 
 export default function Edit(props) {
   const { attributes, setAttributes, className, clientId, isSelected } = props;
-  const { preview, uniqueId, parentClasses, apexChartOptions, chartTypes } =
-    attributes;
+  const {
+    preview,
+    uniqueId,
+    parentClasses,
+    apexChartOptions,
+    chartTypes,
+    uploadStatus,
+    sourceType,
+    apexChartData
+  } = attributes;
+
+    console.log(apexChartData);
 const [chartOptions, setChartOptions] = useState({ apexChartOptions});
+console.log(chartOptions)
 
 // set chart options
 useEffect(() => {
-    const newChartOptions = {
-        ...chartOptions,
-        apexChartOptions: {
-            ...chartOptions.apexChartOptions,
-            options: {
-            ...chartOptions.apexChartOptions.options,
-            chart: {
-                id: uniqueId,
-            },
-            },
+  const uid = uuidv4();
+  const newChartOptions = {
+    ...chartOptions,
+    apexChartOptions: {
+      ...chartOptions.apexChartOptions,
+      options: {
+        ...chartOptions.apexChartOptions.options,
+        chart: {
+          id: `chart-${uid}`,
         },
-        };
+      },
+    },
+  };
 
-setChartOptions(newChartOptions);
-}, [chartTypes]);
+  setChartOptions(newChartOptions);
+}, [chartTypes,uploadStatus]);
 
 
-  console.log("chartTypes", chartOptions);
+
 
   useEffect(() => {
     handleUniqueId({
@@ -75,7 +88,7 @@ setChartOptions(newChartOptions);
           options={chartOptions.apexChartOptions.options}
           series={chartOptions.apexChartOptions.series}
           type={chartTypes}
-          width={500}
+          width={'100%'}
           height={320}
         />
       </div>
