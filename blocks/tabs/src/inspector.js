@@ -2,13 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import {
-    ToggleControl,
-    TextControl,
-    RangeControl,
-    SelectControl,
-    __experimentalNumberControl as NumberControl,
-} from '@wordpress/components';
+import { ToggleControl, SelectControl, __experimentalInputControl as InputControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -49,8 +43,13 @@ import {
     ICON_BORDER_RADIUS,
     ICON_PADDING,
     ICON_BG,
+    LAYOUTS,
+    CONTENT_STYLES,
+    INDICATOR_STYLES,
+    VERTICAL_DIRECTIONS,
+    CONTENT_DIRECTIONS,
 } from './constants';
-import { FLEX_HORIZONTAL_OPTIONS, HEADING, TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
+import { FLEX_HORIZONTAL_OPTIONS, TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 import Sortable from './sortable';
 
 function Inspector(props) {
@@ -76,6 +75,9 @@ function Inspector(props) {
         showIcon,
         showIndicator,
         tabContentStyle,
+        addNewTabStatus,
+        verticalLayoutDirection,
+        contentDirection,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -92,52 +94,64 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                            <InputControl
+                                label={__('Initial open item', 'zolo-blocks')}
+                                value={tabActiveItemNo}
+                                onChange={(nextValue) =>
+                                    setAttributes({
+                                        tabActiveItemNo: nextValue,
+                                    })
+                                }
+                                type="number"
+                                min={1}
+                                max={tabChildCount || 99}
+                                labelPosition="edge"
+                                __unstableInputWidth="64px"
+                            />
                             <SelectControl
-                                label={__('Layout', 'zolo-blocks')}
+                                label={__('Tabs Layout', 'zolo-blocks')}
                                 value={tabsLayout}
-                                options={[
-                                    {
-                                        value: 'horizontal',
-                                        label: __('Horizontal', 'zolo-blocks'),
-                                    },
-                                    {
-                                        value: 'vertical-left',
-                                        label: __('Vertical Left', 'zolo-blocks'),
-                                    },
-                                    {
-                                        value: 'vertical-right',
-                                        label: __('Vertical Right', 'zolo-blocks'),
-                                    },
-                                ]}
+                                options={LAYOUTS}
                                 onChange={(newTabsLayout) =>
                                     setAttributes({
                                         tabsLayout: newTabsLayout,
                                     })
                                 }
                             />
+                            {tabsLayout === 'vertical' && (
+                                <IconicBtnGroup
+                                    label={__('Direction', 'zolo-blocks')}
+                                    value={verticalLayoutDirection}
+                                    options={VERTICAL_DIRECTIONS}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            verticalLayoutDirection: v,
+                                        })
+                                    }
+                                />
+                            )}
                             <SelectControl
                                 label={__('Content Style', 'zolo-blocks')}
                                 value={tabContentStyle}
-                                options={[
-                                    {
-                                        value: 'content-style-1',
-                                        label: __('Style 1', 'zolo-blocks'),
-                                    },
-                                    {
-                                        value: 'content-style-2',
-                                        label: __('Style 2', 'zolo-blocks'),
-                                    },
-                                    {
-                                        value: 'content-style-3',
-                                        label: __('Style 3', 'zolo-blocks'),
-                                    },
-                                ]}
+                                options={CONTENT_STYLES}
                                 onChange={(newTabContentStyle) =>
                                     setAttributes({
                                         tabContentStyle: newTabContentStyle,
                                     })
                                 }
                             />
+                            {tabContentStyle === 'content-style-two' && (
+                                <IconicBtnGroup
+                                    label={__('Direction', 'zolo-blocks')}
+                                    value={contentDirection}
+                                    options={CONTENT_DIRECTIONS}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            contentDirection: v,
+                                        })
+                                    }
+                                />
+                            )}
                             <ToggleControl
                                 label={__('Show Icon', 'zolo-blocks')}
                                 checked={showIcon}
@@ -153,30 +167,17 @@ function Inspector(props) {
                                 checked={showDesc}
                                 onChange={(newShowDesc) => setAttributes({ showDesc: newShowDesc })}
                             />
-
                             <ToggleControl
                                 label={__('Show Active Indicator', 'zolo-blocks')}
                                 checked={showIndicator}
                                 onChange={(newIndicator) => setAttributes({ showIndicator: newIndicator })}
                             />
+
                             {showIndicator && (
                                 <SelectControl
                                     label={__('Indicator Style', 'zolo-blocks')}
                                     value={tabIndicatorStyle}
-                                    options={[
-                                        {
-                                            value: 'animation-style-1',
-                                            label: __('Style 1', 'zolo-blocks'),
-                                        },
-                                        {
-                                            value: 'animation-style-2',
-                                            label: __('Style 2', 'zolo-blocks'),
-                                        },
-                                        {
-                                            value: 'animation-style-3',
-                                            label: __('Style 3', 'zolo-blocks'),
-                                        },
-                                    ]}
+                                    options={INDICATOR_STYLES}
                                     onChange={(newIndicatorStyle) =>
                                         setAttributes({
                                             tabIndicatorStyle: newIndicatorStyle,
@@ -184,6 +185,8 @@ function Inspector(props) {
                                     }
                                 />
                             )}
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Alignment', 'zolo-blocks')} panelProps={props}>
                             <ResAlignmentControl
                                 label={__('Alignment', 'zolo-blocks')}
                                 controlName={NAV_ITEMS_ALIGN}
@@ -196,11 +199,13 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Spacing', 'zolo-blocks')} panelProps={props}>
                             <ResRangeControl
                                 label={__('Nav Spacing', 'zolo-blocks')}
                                 controlName={NAV_SPACING}
                                 requiredProps={requiredProps}
-                                min={1}
+                                min={0}
                                 max={100}
                                 step={1}
                             />
@@ -208,19 +213,9 @@ function Inspector(props) {
                                 label={__('Content Spacing', 'zolo-blocks')}
                                 controlName={CONTENT_SPACING}
                                 requiredProps={requiredProps}
-                                min={1}
+                                min={0}
                                 max={100}
                                 step={1}
-                            />
-                            <NumberControl
-                                label={__('Active Item No', 'zolo-blocks')}
-                                value={tabActiveItemNo}
-                                onChange={(newTabActiveItem) =>
-                                    setAttributes({
-                                        tabActiveItemNo: newTabActiveItem,
-                                        activeTabId: newTabActiveItem - 1,
-                                    })
-                                }
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Tabs', 'zolo-blocks')} panelProps={props}>
@@ -233,6 +228,7 @@ function Inspector(props) {
                                 handleTabClick={handleTabClick}
                                 activeTabId={activeTabId}
                                 setActiveTabId={setActiveTabId}
+                                addNewTabStatus={addNewTabStatus}
                             />
                         </ZoloPanelBody>
                     </>

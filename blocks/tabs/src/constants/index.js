@@ -6,12 +6,99 @@ import { __ } from '@wordpress/i18n';
 // Block Prefix
 export const BLOCK_PREFIX = 'tabs';
 
+// layouts
+export const LAYOUTS = [
+    {
+        value: 'horizontal',
+        label: __('Horizontal', 'zolo-blocks'),
+    },
+    {
+        value: 'vertical',
+        label: __('Vertical', 'zolo-blocks'),
+    },
+];
+
+// Vertical direction
+export const VERTICAL_DIRECTIONS = [
+    {
+        value: 'vertical-left',
+        label: __('Left', 'zolo-blocks'),
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={8} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+    {
+        value: 'vertical-right',
+        label: __('Right', 'zolo-blocks'),
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+];
+
+// Content styles
+export const CONTENT_STYLES = [
+    {
+        value: 'content-style-1',
+        label: __('Style 1', 'zolo-blocks'),
+    },
+    {
+        value: 'content-style-two',
+        label: __('Style 2', 'zolo-blocks'),
+    },
+];
+
+// Content directions
+export const CONTENT_DIRECTIONS = [
+    {
+        value: 'content-style-2',
+        label: __('Left', 'zolo-blocks'),
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={8} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+    {
+        value: 'content-style-3',
+        label: __('Right', 'zolo-blocks'),
+        icon: (
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x={4} y={8} width={12} height={8} rx={1} stroke="#4D4D4D" strokeWidth="1.5" />
+            </svg>
+        ),
+    },
+];
+
+// Indicator styles
+export const INDICATOR_STYLES = [
+    {
+        value: 'animation-style-1',
+        label: __('Style 1', 'zolo-blocks'),
+    },
+    {
+        value: 'animation-style-2',
+        label: __('Style 2', 'zolo-blocks'),
+    },
+    {
+        value: 'animation-style-3',
+        label: __('Style 3', 'zolo-blocks'),
+    },
+];
+
 // Block Settings
 export const NAV_ITEMS_ALIGN = 'navItemsAlign';
 export const NAV_CONTENT_ALIGN = 'navContentAlign';
 export const NAV_SPACING = 'navSpacing';
 export const CONTENT_SPACING = 'contentSpacing';
-
 
 // title
 export const TITLE_GAP = 'titleGap';

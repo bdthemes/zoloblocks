@@ -47,17 +47,14 @@ import '../blocks/team-child/src';
 import '../blocks/team-child/src';
 import '../blocks/team-grid/src';
 import '../blocks/team-grid/src';
-<<<<<<< HEAD
 import '../blocks/list/src';
 import '../blocks/tab/src';
 import '../blocks/tabs/src';
-=======
 
 // inner blocks
 import '../blocks/text-field/src';
 import '../blocks/email/src';
 import '../blocks/textarea/src';
->>>>>>> 0c57acc07b29b0ef1164982eea35b96777b55414
 
 // unregister blocks
 import './unregister';

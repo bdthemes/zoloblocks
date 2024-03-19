@@ -12,7 +12,17 @@ const { select, dispatch } = wp.data;
 const { createBlock } = wp.blocks;
 import { cloneDeep } from 'lodash';
 
-const Sortable = ({ tabTitles, setAttributes, clientId, uniqueId, tabChildCount, handleTabClick, activeTabId, setActiveTabId }) => {
+const Sortable = ({
+    tabTitles,
+    setAttributes,
+    clientId,
+    uniqueId,
+    tabChildCount,
+    handleTabClick,
+    activeTabId,
+    setActiveTabId,
+    addNewTabStatus,
+}) => {
     // console.log('activeTabId', activeTabId);
 
     const deepCloneTitles = cloneDeep(tabTitles);
@@ -49,6 +59,9 @@ const Sortable = ({ tabTitles, setAttributes, clientId, uniqueId, tabChildCount,
                     tabChildCount: tabChildCount + 1,
                 });
                 handleTabClick(tabId);
+                setAttributes({
+                    addNewTabStatus: !addNewTabStatus,
+                });
             });
 
         //
@@ -69,6 +82,9 @@ const Sortable = ({ tabTitles, setAttributes, clientId, uniqueId, tabChildCount,
                     setAttributes({
                         tabTitles: newTabTitles,
                         tabChildCount: tabChildCount - 1,
+                    });
+                    setAttributes({
+                        addNewTabStatus: !addNewTabStatus,
                     });
                 });
         }
@@ -113,17 +129,10 @@ const Sortable = ({ tabTitles, setAttributes, clientId, uniqueId, tabChildCount,
                                                     tabTitles: newItems,
                                                 });
                                             }}
-                                        />
-                                        <ToggleControl
-                                            label={__('Show Description', 'zolo-blocks')}
-                                            checked={tab.hasDescription}
-                                            onChange={() => {
-                                                const newItems = [...deepCloneTitles];
-                                                newItems[index].hasDescription = !tab.hasDescription;
-                                                setAttributes({
-                                                    tabTitles: newItems,
-                                                });
-                                            }}
+                                            help={__(
+                                                'title is also used as panel title, so use it but you can hide it from content.',
+                                                'zolo-blocks'
+                                            )}
                                         />
                                         {tab.hasDescription && (
                                             <TextareaControl
@@ -136,28 +145,6 @@ const Sortable = ({ tabTitles, setAttributes, clientId, uniqueId, tabChildCount,
                                                 }}
                                             />
                                         )}
-                                        <ToggleControl
-                                            label={__('Show Tab Number', 'zolo-blocks')}
-                                            checked={tab.hasNumber}
-                                            onChange={() => {
-                                                const newItems = [...deepCloneTitles];
-                                                newItems[index].hasNumber = !tab.hasNumber;
-                                                setAttributes({
-                                                    tabTitles: newItems,
-                                                });
-                                            }}
-                                        />
-                                        <ToggleControl
-                                            label={__('Show Icon', 'zolo-blocks')}
-                                            checked={tab.hasMedia}
-                                            onChange={() => {
-                                                const newItems = [...deepCloneTitles];
-                                                newItems[index].hasMedia = !tab.hasMedia;
-                                                setAttributes({
-                                                    tabTitles: newItems,
-                                                });
-                                            }}
-                                        />
                                         {tab.hasMedia && (
                                             <ZoloIconPicker
                                                 label={__('Select Icon', 'zolo-blocks')}

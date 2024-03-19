@@ -84,7 +84,7 @@ const attributes = {
 
     titleText: {
         type: 'string',
-        default: 'I am Advanced Heading',
+        default: 'Advanced Heading',
     },
     enableTitleLink: {
         type: 'boolean',

@@ -3,16 +3,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function tabify(tab) {
         const tabList = tab.querySelector('.tab__list');
+        const activeIndex = parseInt(tab.dataset.activeindex, 10) || 0;
 
         if (tabList) {
             const tabItems = [...tabList.children];
             const tabContent = tab.querySelector('.tab__content');
             const tabContentItems = [...tabContent.children];
-            let tabIndex = 0;
+            let tabIndex = activeIndex;
 
-            tabIndex = tabItems.findIndex((item) => [...item.classList].indexOf('active') > -1);
-
-            tabIndex > -1 ? (tabIndex = tabIndex) : (tabIndex = 0);
+            // tabIndex = tabItems.findIndex((item) => [...item.classList].indexOf('active') > -1);
+            // tabIndex > -1 ? (tabIndex = tabIndex) : (tabIndex = 0);
 
             function setTab(index) {
                 tabItems.forEach((x) => {

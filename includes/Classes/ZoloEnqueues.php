@@ -198,17 +198,16 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             if (has_block('zolo/progress-bar')) {
                 wp_enqueue_script('zolo-roll-number', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/animate-counter/rollNumber.js', [], ZOLO_VERSION, true);
             }
-<<<<<<< HEAD
+
             if (has_block('zolo/tabs')) {
                 wp_enqueue_script('zolo-tabs-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/tabs/tabify.js', [], ZOLO_VERSION, true);
             }
-=======
-            // load gsap from cdn
 
-            wp_enqueue_script('zolo-gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js', [], ZOLO_VERSION, true);
+            // load gsap from cdn
+            wp_enqueue_script('zolo-gsap', '//cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js', [], ZOLO_VERSION, true);
             // load scrolltrigger from cdn
-            wp_enqueue_script('zolo-scrolltrigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js', [], ZOLO_VERSION, true);
->>>>>>> 0c57acc07b29b0ef1164982eea35b96777b55414
+            wp_enqueue_script('zolo-scrolltrigger', '//cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js', [], ZOLO_VERSION, true);
+
         }
         /**
          * Load Block Editor Assets
@@ -369,6 +368,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'text'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/text.svg',
                     'textarea'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/textarea.svg',
                     'mail'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/mail.svg',
+                    'tabs'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/tabs.svg',
                 ]
             ]);
 
@@ -383,7 +383,10 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 'avatarSquare'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/avatar-square.svg',
                 'avatarRound'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/avatar-round.svg',
                 'presetBg'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/preset-bg.svg',
-                'brand'            => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/brand.svg',
+                'zbBrand'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/zb-brand.svg',
+                'epBrand'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/ep-brand.svg',
+                'psBrand'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/ps-brand.svg',
+                'upkBrand'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/upk-brand.svg',
             ]);
         }
     }

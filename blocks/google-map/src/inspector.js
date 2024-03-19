@@ -16,11 +16,12 @@ const {
     IconicBtnGroup,
     AdvancedOptions,
     GoogleMapAutocomplete,
+    ResDimensionsControl,
     ZoloPanelBody,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
-import { MAP_TYPES, LANGUAGES, MAP_HEIGHT } from './constants';
+import { MAP_TYPES, LANGUAGES, MAP_HEIGHT, MAP_BRADIUS } from './constants';
 
 import { MINFO_TYPO } from './constants/typoPrefixConstant';
 
@@ -276,6 +277,12 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 min={200}
                                 max={1000}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={MAP_BRADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Marker Info', 'zolo-blocks')} stylePanel={true} panelProps={props}>

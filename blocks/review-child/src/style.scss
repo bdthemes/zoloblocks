@@ -32,6 +32,8 @@
         border-color: var(--zoloblocks-item-border-color);
         border-radius: var(--zolo-item-border-radius);
         padding: var(--zolo-item-padding);
+        width: 100%;
+        box-sizing: border-box;
     }
 
     &.default {

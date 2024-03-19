@@ -104,9 +104,39 @@ export default function Edit(props) {
                 <InnerBlocks
                     allowedBlocks={['zolo/review-child']}
                     template={[
-                        ['zolo/review-child', {}],
-                        ['zolo/review-child', {}],
-                        ['zolo/review-child', {}],
+                        [
+                            'zolo/review-child',
+                            {
+                                memberName: 'John Doe',
+                                memberDesignation: 'Web Designer',
+                                testimonialMessage: '"Simple Yet Powerful": Zolo Blocks is a game-changer for WordPress users. With its intuitive interface and comprehensive block library, creating stunning layouts has never been easier.',
+                                memberPhoto: {
+                                    url: zoloPlaceholders.avatarSquare,
+                                },
+                            },
+                        ],
+                        [
+                            'zolo/review-child',
+                            {
+                                memberName: 'Joanna T. Logan',
+                                memberDesignation: 'Frontend Developer',
+                                testimonialMessage: '"Efficiency Redefined": Zolo Blocks streamlines the website building process with its vast collection of blocks. From headers to footers, each block is meticulously crafted for maximum flexibility.',
+                                memberPhoto: {
+                                    url: zoloPlaceholders.avatarSquare,
+                                },
+                            },
+                        ],
+                        [
+                            'zolo/review-child',
+                            {
+                                memberName: 'Ruben S. McLain',
+                                memberDesignation: 'UX Designer',
+                                testimonialMessage: '"Versatile and Responsive": Zolo Blocks offers a wide range of blocks that adapt seamlessly to any screen size. Whether you are designing for desktop or mobile, this plugin ensures',
+                                memberPhoto: {
+                                    url: zoloPlaceholders.avatarSquare,
+                                },
+                            },
+                        ],
                     ]}
                     renderAppender={false}
                 />

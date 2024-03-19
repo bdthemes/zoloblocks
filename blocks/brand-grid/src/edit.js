@@ -62,10 +62,46 @@ export default function Edit(props) {
                 <InnerBlocks
                     allowedBlocks={['zolo/brand-child']}
                     template={[
-                        ['zolo/brand-child', {}],
-                        ['zolo/brand-child', {}],
-                        ['zolo/brand-child', {}],
-                        ['zolo/brand-child', {}],
+                        [
+                            'zolo/brand-child', 
+                            {
+                                brandTitle: 'Zolo Blocks',
+                                brandLabel: 'www.zoloblocks.com',
+                                brandPhoto: {
+                                    url: zoloPlaceholders.zbBrand,
+                                },
+                            }
+                         ],
+                         [
+                            'zolo/brand-child', 
+                            {
+                                brandTitle: 'Element Pack',
+                                brandLabel: 'www.elementpack.pro',
+                                brandPhoto: {
+                                    url: zoloPlaceholders.epBrand,
+                                },
+                            }
+                         ],
+                         [
+                            'zolo/brand-child', 
+                            {
+                                brandTitle: 'Prime Slider',
+                                brandLabel: 'www.primeslider.pro',
+                                brandPhoto: {
+                                    url: zoloPlaceholders.psBrand,
+                                },
+                            }
+                         ],
+                         [
+                            'zolo/brand-child', 
+                            {
+                                brandTitle: 'Post kit Pro',
+                                brandLabel: 'www.postkit.pro',
+                                brandPhoto: {
+                                    url: zoloPlaceholders.upkBrand,
+                                },
+                            }
+                         ],
                     ]}
                     renderAppender={false}
                 />

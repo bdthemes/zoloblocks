@@ -1,6 +1,6 @@
 .wp-block-zolo-tabs {
     --zolo-tab-head-wrap-gap: 20px;
-    --zolo-tab-head-wrap-margin:24px;
+    --zolo-tab-head-wrap-margin: 24px;
     --zolo-tab-icon-size: 16px;
     --zolo-tab-icon-padding: 14px;
     --zolo-tab-icon-margin: 0 0 15px;
@@ -24,6 +24,13 @@
 
     .zolo-tab_head-item {
         position: relative;
+        position: relative;
+        text-align: left;
+        cursor: pointer;
+
+        &:focus-visible {
+            outline: none;
+        }
     }
 
     .tab__content-item {
@@ -36,13 +43,7 @@
         }
     }
 
-    .zolo-tab_head-item {
-        position: relative;
-        text-align: left;
-        cursor: pointer;
-    }
-
-   .zolo-tab_icon {
+    .zolo-tab_icon {
         padding: var(--zolo-tab-icon-padding);
         background-color: #e5e5ec;
         display: inline-table;
@@ -77,7 +78,7 @@
         }
         .zolo-tab_head-item {
             padding: var(--zolo-tab-head-item-padding);
-         }
+        }
     }
 
     .zolo-tabs.zolo-tab_vertical-left,
@@ -97,7 +98,7 @@
     .zolo-tab_vertical-left .tab__item,
     .zolo-tab_vertical-right .tab__item {
         --zolo-tab-head-item-padding: 25px;
-        border-radius: var(--zolo-tab-head-item-border-radius);
+        // border-radius: var(--zolo-tab-head-item-border-radius);
         padding: var(--zolo-tab-head-item-padding);
     }
 
@@ -112,12 +113,12 @@
         margin: var(--zolo-tab-icon-margin);
     }
     .zolo-tab_content-style-2 .zolo-tab_head-item,
-    .zolo-tab_style-3 .zolo-tab_head-item {
+    .zolo-tab_content-style-3 .zolo-tab_head-item {
         display: flex;
         gap: var(--zolo-tab-head-item-gap);
     }
 
-    .zolo-tab_style-3 .zolo-tab_head-item {
+    .zolo-tab_content-style-3 .zolo-tab_head-item {
         flex-direction: row-reverse;
         text-align: right;
     }
@@ -139,23 +140,23 @@
 
     .zolo-tab_animation-style-1 .zolo-tab_head-item.active:before,
     .zolo-tab_animation-style-2 .zolo-tab_head-item.active:before,
-    .zolo-tab_animation-vertical-right .zolo-tab_head-item.active:before {
+    .zolo-tab_animation-style-3 .zolo-tab_head-item.active:before {
         visibility: visible;
         opacity: 1;
     }
 
     .zolo-tab_animation-style-2 .zolo-tab_head-item::before,
-    .zolo-tab_animation-vertical-right .zolo-tab_head-item::before {
+    .zolo-tab_animation-style-3 .zolo-tab_head-item::before {
         width: 0;
         transition: width 0.45s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     .zolo-tab_animation-style-2 .zolo-tab_head-item.active::before,
-    .zolo-tab_animation-vertical-right .zolo-tab_head-item.active::before {
+    .zolo-tab_animation-style-3 .zolo-tab_head-item.active::before {
         width: 100%;
     }
 
-    .zolo-tab_animation-vertical-right .zolo-tab_head-item::before {
+    .zolo-tab_animation-style-3 .zolo-tab_head-item::before {
         left: 50%;
         transform: translateX(-50%);
     }
@@ -165,7 +166,7 @@
             flex-direction: row;
         }
         .zolo-tabs.zolo-tab_vertical-left,
-        .zolo-tabs.zolo-tab_vertical-right  {
+        .zolo-tabs.zolo-tab_vertical-right {
             flex-direction: row;
         }
         .zolo-tabs.zolo-tab_vertical-right {

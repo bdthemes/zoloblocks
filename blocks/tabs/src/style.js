@@ -276,7 +276,7 @@ const Style = ({ props }) => {
             ${descActiveColor ? `--zolo-tab-desc-color: ${descActiveColor};` : ''}
         }
         .${uniqueId} .tab__item.zolo-tab_head-item:before {
-            ${showIndicator? `content: '';` : ''}
+            ${showIndicator ? `content: '';` : ''}
             background-color: ${activeHintTabColor};
         }
 
@@ -295,7 +295,7 @@ const Style = ({ props }) => {
         }
     `;
 
-   const tabletAllStyle = `
+    const tabletAllStyle = `
         .${uniqueId}.wp-block-zolo-tabs{
             ${tabVarticalContentSpacing}
         }
@@ -344,7 +344,7 @@ const Style = ({ props }) => {
         }
     `;
 
-     const mobileAllStyle = `
+    const mobileAllStyle = `
         .${uniqueId}.wp-block-zolo-tabs{
             ${tabVarticalContentSpacing}
         }
