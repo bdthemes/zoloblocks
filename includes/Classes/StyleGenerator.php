@@ -23,8 +23,6 @@ if (!defined('ABSPATH')) {
 class StyleGenerator {
     use SingletonTrait;
 
-
-
     public function __construct() {
         //Generate Style on block render
         add_filter('render_block', [$this, 'generate_style_on_render_block'], 10, 2);

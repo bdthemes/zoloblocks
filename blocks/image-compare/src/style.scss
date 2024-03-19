@@ -1,0 +1,58 @@
+.wp-block-zolo-image-compare {
+    .zolo-image-wrap {
+        &.placeholder {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 1rem;
+            align-items: center;
+        }
+    }
+    .compare-slider-label {
+        font-size: 16px;
+        position: absolute;
+        padding: 10px 20px;
+        color: white;
+        opacity: 1;
+        border: 1px solid rgba(255, 255, 255, 0.31);
+        text-transform: capitalize;
+        backdrop-filter: blur(15px);
+        background-color: rgba(255, 255, 255, 0.09);
+        transition: opacity 0.25s ease-in-out;
+    }
+
+
+    .image-item-One {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        justify-content: flex-start;
+    }
+    .image-item-two {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        justify-content: flex-start;
+    }
+    &.horizontal_direction {
+        .compare-slider-label-right {
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+        }
+        .compare-slider-label-left {
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+    }
+    &.vertical_direction {
+        .compare-slider-label-left {
+            border-bottom-right-radius: 6px;
+            border-bottom-left-radius: 6px;
+        }
+        .compare-slider-label-right {
+            border-top-right-radius: 6px;
+            border-top-left-radius: 6px;
+        }
+    }   
+}

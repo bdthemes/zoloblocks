@@ -188,13 +188,13 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Alignment', 'zolo-blocks')} panelProps={props}>
                             <ResAlignmentControl
-                                label={__('Alignment', 'zolo-blocks')}
+                                label={__('Tab Alignment', 'zolo-blocks')}
                                 controlName={NAV_ITEMS_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={FLEX_HORIZONTAL_OPTIONS}
                             />
                             <ResAlignmentControl
-                                label={__('Content Alignment', 'zolo-blocks')}
+                                label={__('Tab Content Alignment', 'zolo-blocks')}
                                 controlName={NAV_CONTENT_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
@@ -210,7 +210,7 @@ function Inspector(props) {
                                 step={1}
                             />
                             <ResRangeControl
-                                label={__('Content Spacing', 'zolo-blocks')}
+                                label={__('Tab-Content Spacing', 'zolo-blocks')}
                                 controlName={CONTENT_SPACING}
                                 requiredProps={requiredProps}
                                 min={0}

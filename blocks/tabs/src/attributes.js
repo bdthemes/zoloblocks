@@ -64,9 +64,9 @@ const attributes = {
             {
                 id: '1',
                 hasTitle: true,
-                title: 'Tab 1',
+                title: 'Tab One',
                 hasDescription: false,
-                description: 'Description 1',
+                description: 'Tab 1 Content: This tab provides general information about our company',
                 hasMedia: false,
                 hasNumber: false,
                 isDefault: true,
@@ -75,9 +75,9 @@ const attributes = {
             {
                 id: '2',
                 hasTitle: true,
-                title: 'Tab 2',
+                title: 'Tab Two',
                 hasDescription: false,
-                description: 'Description 2',
+                description: 'Tab 2 Content: This tab provides general information about our company',
                 hasMedia: false,
                 hasNumber: false,
                 isDefault: true,
@@ -86,9 +86,9 @@ const attributes = {
             {
                 id: '3',
                 hasTitle: true,
-                title: 'Tab 3',
+                title: 'Tab Three',
                 hasDescription: false,
-                description: 'Description 3',
+                description: 'Tab 3 Content: This tab provides general information about our company',
                 hasMedia: false,
                 hasNumber: false,
                 isDefault: true,
@@ -134,7 +134,7 @@ const attributes = {
     },
     showIndicator: {
         type: 'boolean',
-        default: true,
+        default: false,
     },
     tabChildCount: {
         type: 'number',

@@ -229,6 +229,12 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
+       'image-compare' => [
+        'name'             => 'image-compare',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/image-compare/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-image-compare-frontend','zolo-block-editor-dependency']
+    ],
     'text-field' => [
         'name'             => 'text-field',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/text-field/block.json',

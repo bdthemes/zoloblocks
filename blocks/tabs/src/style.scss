@@ -4,16 +4,19 @@
     --zolo-tab-icon-size: 16px;
     --zolo-tab-icon-padding: 14px;
     --zolo-tab-icon-margin: 0 0 15px;
-    --zolo-tab-icon-border-radius: 10px;
+    --zolo-tab-icon-border-radius: 50%;
     --zolo-tab-title-color: #484853;
     --zolo-tab-title-margin: 0;
     --zolo-tab-desc-margin: 10px 0 0;
     --zolo-tab-desc-color: #88888b;
-    --zolo-tab-head-item-padding: 0 0 8px;
+    --zolo-tab-head-item-padding: 14px 30px;
     --zolo-tab-head-item-border-radius: 10px;
     --zolo-tab-wrap-gap: 30px;
     --zolo-tab-head-item-gap: 15px;
-    --zolo-tab-animation-height: 2px;
+    --zolo-tab-animation-height: 4px;
+
+    --zolo-head-item-border-width: 1px;
+    --zolo-head-item-border-style: solid;
 
     .zolo-tab_header-wrap {
         display: flex;
@@ -27,9 +30,23 @@
         position: relative;
         text-align: left;
         cursor: pointer;
+        border-radius: var(--zolo-tab-head-item-border-radius);
 
         &:focus-visible {
             outline: none;
+        }
+    }
+
+    .tab__item.active {
+        background-color: var(--zoloblocks-brand-color);
+        .zolo-tab_title {
+            color: #fff;
+        }
+        .zolo-tab_desc {
+            color: #e6e6e6;
+        }
+        .zolo-tab_icon {
+            background-color: #fff;
         }
     }
 
@@ -73,7 +90,7 @@
 
     .zolo-tab_horizontal {
         .zolo-tab_header-wrap {
-            --zolo-tab-head-wrap-gap: 50px;
+            --zolo-tab-head-wrap-gap: 20px;
             gap: var(--zolo-tab-head-wrap-gap);
         }
         .zolo-tab_head-item {
@@ -102,12 +119,6 @@
         padding: var(--zolo-tab-head-item-padding);
     }
 
-    .zolo-tab_vertical-left .tab__item.active,
-    .zolo-tab_vertical-right .tab__item.active {
-        background-color: #fff;
-        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.075);
-    }
-
     /* content style 1,2,3css code  */
     .zolo-tab_content-style-1 .zolo-tab_icon {
         margin: var(--zolo-tab-icon-margin);
@@ -131,7 +142,7 @@
         left: 0;
         height: var(--zolo-tab-animation-height);
         width: 100%;
-        background: #647ef5;
+        background: #000;
         transition: 0.2s;
         visibility: hidden;
         opacity: 0;
