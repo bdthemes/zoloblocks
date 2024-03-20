@@ -22,12 +22,19 @@ export default function Edit(props) {
     chartTypes,
     uploadStatus,
     sourceType,
-    apexChartData
+    apexChartData,
+    showTitle,
+    showSubTitle,
+    showLegend,
+    showTooltip,
+    showGrid,
+    showDropshadow,
+    titleObject,
+    subTitleObject,
+    legendObject,
   } = attributes;
 
-    console.log(apexChartData);
 const [chartOptions, setChartOptions] = useState({ apexChartOptions});
-console.log(chartOptions)
 
 // set chart options
 useEffect(() => {
@@ -37,6 +44,57 @@ useEffect(() => {
     apexChartOptions: {
       ...chartOptions.apexChartOptions,
       options: {
+        dataLabels: {
+          enabled: false,
+        },
+        colors: ["#00E396", "#FF4560", "#FEB019"],
+        ...(showTitle && {
+          title: {
+            text: titleObject.text,
+            align: titleObject.align,
+          },
+        }),
+        ...(showSubTitle && {
+          subtitle: {
+            text: subTitleObject.text,
+            align: subTitleObject.align,
+          },
+        }),
+        legend: {
+          show: showLegend,
+          ...(showLegend && {
+            position: legendObject.position,
+            horizontalAlign: legendObject.horizontalAlign,
+            floating: legendObject.floating,
+            offsetY: legendObject.offsetY,
+            offsetX: legendObject.offsetX,
+          }),
+        },
+        tooltip: {
+          enabled: showTooltip,
+          ...(showTooltip && {
+            shared: true,
+            followCursor: false,
+            intersect: false,
+            inverseOrder: false,
+            hideEmptySeries: true,
+            fillSeriesColor: false,
+            theme: 'dark',
+          }),
+        },
+        grid: {
+          xaxis: {
+            // colors: ["#f3f3f3", "transparent"],
+            lines: {
+              show: true,
+            },
+          },
+          yaxis: {
+            lines: {
+              show: false,
+            },
+          },
+        },
         ...chartOptions.apexChartOptions.options,
         chart: {
           id: `chart-${uid}`,
@@ -44,9 +102,11 @@ useEffect(() => {
       },
     },
   };
+    setChartOptions(newChartOptions);
+  }, [chartTypes,uploadStatus, sourceType, apexChartData, titleObject]);
 
-  setChartOptions(newChartOptions);
-}, [chartTypes,uploadStatus]);
+  console.log('chartOptions', chartOptions);
+
 
 
 

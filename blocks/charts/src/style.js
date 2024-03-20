@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
  */
 const { generateResAlignmentStyle, generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder } = window.zoloModule;
 
-import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
+// import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
@@ -16,25 +16,25 @@ const Style = ({ props }) => {
     const { uniqueId, titleColor, activeStarColor, inactiveStarColor } = attributes;
 
     // styles
-    const {
-        desktopAlignStyle: itemsVDeskAlign,
-        tabAlignStyle: itemsVTabAlign,
-        mobAlignStyle: itemsVMobAlign,
-    } = generateResAlignmentStyle({
-        controlName: ITEMS_ALIGN,
-        property: 'justify-content',
-        attributes,
-    });
+    // const {
+    //     desktopAlignStyle: itemsVDeskAlign,
+    //     tabAlignStyle: itemsVTabAlign,
+    //     mobAlignStyle: itemsVMobAlign,
+    // } = generateResAlignmentStyle({
+    //     controlName: ITEMS_ALIGN,
+    //     property: 'justify-content',
+    //     attributes,
+    // });
 
-    const {
-        desktopRangeStyle: deskGap,
-        tabRangeStyle: tabGap,
-        mobRangeStyle: mobGap,
-    } = generateResRangeStyle({
-        controlName: TITLE_GAP,
-        property: 'gap',
-        attributes,
-    });
+    // const {
+    //     desktopRangeStyle: deskGap,
+    //     tabRangeStyle: tabGap,
+    //     mobRangeStyle: mobGap,
+    // } = generateResRangeStyle({
+    //     controlName: TITLE_GAP,
+    //     property: 'gap',
+    //     attributes,
+    // });
 
     const {
         typoStylesDesktop: titleDeskTypo,
@@ -46,79 +46,38 @@ const Style = ({ props }) => {
     });
 
     // Star Rating Style
-    const {
-        desktopRangeStyle: deskSize,
-        tabRangeStyle: tabSize,
-        mobRangeStyle: mobSize,
-    } = generateResRangeStyle({
-        controlName: STAR_SIZE,
-        property: 'width',
-        attributes,
-    });
-    const {
-        desktopRangeStyle: deskHeight,
-        tabRangeStyle: tabHeight,
-        mobRangeStyle: mobHeight,
-    } = generateResRangeStyle({
-        controlName: STAR_SIZE,
-        property: 'height',
-        attributes,
-    });
+    // const {
+    //     desktopRangeStyle: deskSize,
+    //     tabRangeStyle: tabSize,
+    //     mobRangeStyle: mobSize,
+    // } = generateResRangeStyle({
+    //     controlName: STAR_SIZE,
+    //     property: 'width',
+    //     attributes,
+    // });
+    // const {
+    //     desktopRangeStyle: deskHeight,
+    //     tabRangeStyle: tabHeight,
+    //     mobRangeStyle: mobHeight,
+    // } = generateResRangeStyle({
+    //     controlName: STAR_SIZE,
+    //     property: 'height',
+    //     attributes,
+    // });
 
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId} .start-rating-wrapper {
-            ${itemsVDeskAlign}
-        }
-        .${uniqueId} .star-rating-inner {
-            ${deskGap}
-        }
-        .${uniqueId} .start-rating-title {
-            color: ${titleColor};
-            ${titleDeskTypo}
-        }
-        .${uniqueId} .zolo-star-rating svg {
-            ${deskSize}
-            ${deskHeight}
-            ${activeStarColor ? `fill: ${activeStarColor};` : ''}
-        }
-        .${uniqueId} .zolo-star-rating svg.empty-star {
-            ${inactiveStarColor ? `fill: ${inactiveStarColor};` : ''}
-        }
+
     `;
 
     const tabletAllStyle = `
-        .${uniqueId} .start-rating-wrapper {
-            ${itemsVTabAlign}
-        }
-        .${uniqueId} .star-rating-inner {
-            ${tabGap}
-        }
-        .${uniqueId} .start-rating-title {
-            ${titleTabTypo}
-        }
-        .${uniqueId} .zolo-star-rating svg {
-            ${tabSize}
-            ${tabHeight}
-        }
+
     `;
 
     const mobileAllStyle = `
-        .${uniqueId} .start-rating-wrapper {
-            ${itemsVMobAlign}
-        }
-        .${uniqueId} .star-rating-inner {
-            ${mobGap}
-        }
-        .${uniqueId} .start-rating-title {
-            ${titleMobTypo}
-        }
-        .${uniqueId} .zolo-star-rating svg {
-            ${mobSize}
-            ${mobHeight}
-        }
+
     `;
 
     return (

@@ -3,7 +3,7 @@
  */
 const { generateResRangeAttributies, generateTypographyAttributes, generateResAlignmentAttributies } = window.zoloModule;
 
-import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
+import { SUB_TITLE_ALIGNMENT } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -34,38 +34,9 @@ const attributes = {
     },
   },
   // Generators
-  ...generateResAlignmentAttributies(ITEMS_ALIGN),
-  ...generateResRangeAttributies(STAR_SIZE),
-  ...generateResRangeAttributies(TITLE_GAP),
   ...generateTypographyAttributes(Object.values(typographyObjs)),
-  rating: {
-    type: "number",
-    default: 5,
-  },
-  showTitle: {
-    type: "boolean",
-    default: true,
-  },
-  title: {
-    type: "string",
-  },
-  titleTag: {
-    type: "string",
-    default: "p",
-  },
-  titleColor: {
-    type: "string",
-  },
-  titlePosition: {
-    type: "string",
-    default: "top",
-  },
-  activeStarColor: {
-    type: "string",
-  },
-  inactiveStarColor: {
-    type: "string",
-  },
+  ...generateResAlignmentAttributies({ SUB_TITLE_ALIGNMENT }),
+
   chartTypes: {
     type: "string",
     default: "bar",
@@ -105,10 +76,79 @@ const attributes = {
       ],
     },
   },
-  apexChartData:{
+  apexChartData: {
     type: "string",
-    default: ''
-  }
+    default: "",
+  },
+  showTitle: {
+    type: "boolean",
+    default: false,
+  },
+  titleObject: {
+    type: "object",
+    default: {
+      text: "Zolo Block Advanced Chart",
+      align: "left",
+    },
+  },
+  showSubTitle: {
+    type: "boolean",
+    default: false,
+  },
+  subTitleObject: {
+    type: "object",
+    default: {
+      text: "Category Names as DataLabels inside bars",
+      align: "center",
+    },
+  },
+  showLegend: {
+    type: "boolean",
+    default: true,
+  },
+  legendObject: {
+    type: "object",
+    default: {
+      position: "top",
+      horizontalAlign: "left",
+      floating: true,
+      offsetY: -25,
+      offsetX: -5,
+    },
+  },
+  showTooltip: {
+    type: "boolean",
+    default: true,
+  },
+  tooltipObject: {
+    type: "object",
+    default: {
+      shared: true,
+      intersect: false,
+      enabled: true,
+      followCursor: false,
+      inverseOrder: false,
+      hideEmptySeries: true,
+      fillSeriesColor: false,
+      theme: false,
+    },
+  },
+  showGrid: {
+    type: "boolean",
+    default: true,
+  },
+  showGridX: {
+    type: "boolean",
+    default: true,
+  },
+  showGridY: {
+    type: "boolean",
+    default: false,
+  },
+  showDropshadow: {
+    type: "boolean",
+    default: false,
+  },
 };
 
 export default attributes;
