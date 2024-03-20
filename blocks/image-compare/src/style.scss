@@ -8,18 +8,18 @@
         }
     }
     .compare-slider-label {
-        font-size: 16px;
         position: absolute;
+        opacity: 1;
+        transition: opacity 0.25s ease-in-out;
+        font-size: 16px;
         padding: 10px 20px;
         color: white;
-        opacity: 1;
-        border: 1px solid rgba(255, 255, 255, 0.31);
-        text-transform: capitalize;
+        border: 1px solid rgba(255, 255, 255, 0.20);
         backdrop-filter: blur(15px);
         background-color: rgba(255, 255, 255, 0.09);
-        transition: opacity 0.25s ease-in-out;
+        text-transform: capitalize;
+        display: inline-block;
     }
-
 
     .image-item-One {
         display: flex;
@@ -37,22 +37,74 @@
     }
     &.horizontal_direction {
         .compare-slider-label-right {
+            right: 0;
             border-top-left-radius: 6px;
             border-bottom-left-radius: 6px;
+            &.h_top {
+                border-top-left-radius: 0;
+            }
+            &.h_bottom {
+                border-bottom-left-radius: 0;
+            }
         }
         .compare-slider-label-left {
+            left: 0;
             border-top-right-radius: 6px;
             border-bottom-right-radius: 6px;
+            &.h_top {
+                border-top-right-radius: 0;
+            }
+            &.h_bottom {
+                border-bottom-right-radius: 0;
+            }
+        }
+        .compare-slider-label {
+            &.h_bottom {
+                bottom: 0;
+            }
+            &.h_top {
+                top: 0;
+            }
+            &.h_center {
+                top: 50%;
+                transform: translateY(-50%);
+            }
         }
     }
     &.vertical_direction {
+        .compare-slider-label{
+           &.v_center {
+             left: 50%;
+             transform: translateX(-50%);
+           }
+           &.v_top {
+             left: 0;
+           }
+            &.v_bottom {
+               right: 0;
+            }
+        }
         .compare-slider-label-left {
+            top: 0;
             border-bottom-right-radius: 6px;
             border-bottom-left-radius: 6px;
+            &.v_top {
+                border-bottom-left-radius: 0;
+            }
+            &.v_bottom {
+                border-bottom-right-radius: 0;
+            }
         }
         .compare-slider-label-right {
+            bottom: 0;
             border-top-right-radius: 6px;
             border-top-left-radius: 6px;
+            &.v_top {
+                border-top-left-radius: 0;
+            }
+            &.v_bottom {
+                border-top-right-radius: 0;
+            }
         }
     }   
 }

@@ -78,6 +78,34 @@ export const CONTENT_DIRECTIONS = [
     },
 ];
 
+// Tab item widths
+export const TAB_ITEM_WIDTHS = [
+    {
+        value: 'tiw_auto',
+        label: __('Auto', 'zolo-blocks'),
+    },
+    {
+        value: 'tiw_justify',
+        label: __('Justify', 'zolo-blocks'),
+    },
+];
+
+// tab states
+export const TAB_STATES = [
+    {
+        value: 'normal',
+        label: __('Normal', 'zolo-blocks'),
+    },
+    {
+        value: 'hover',
+        label: __('Hover', 'zolo-blocks'),
+    },
+    {
+        value: 'active',
+        label: __('Active', 'zolo-blocks'),
+    },
+];
+
 // Indicator styles
 export const INDICATOR_STYLES = [
     {
@@ -100,21 +128,31 @@ export const NAV_CONTENT_ALIGN = 'navContentAlign';
 export const NAV_SPACING = 'navSpacing';
 export const CONTENT_SPACING = 'contentSpacing';
 
-// title
-export const TITLE_GAP = 'titleGap';
+// tabs container
+export const TABS_CWIDTH = 'tabsCWidth';
 
 // tabs
-
 export const TAB_NORMAL_BGCOLOR = 'tabNormalBgColor';
 export const TAB_HOVER_BGCOLOR = 'tabHoverBgColor';
 export const TAB_ACTIVE_BGCOLOR = 'tabActiveBgColor';
 export const TAB_ITEM_PADDING = 'tabItemPadding';
 export const TAB_ITEM_MARGIN = 'tabItemMargin';
 export const TAB_ITEM_RADIUS = 'tabItemBorderRadius';
-export const TITLE_BOTTOM_SPACING = 'tabTitleSpacing';
+export const TAB_ITEM_BORDER = 'tabItemBorder';
+export const TAB_ITEM_BSHADOW = 'tabItemBShadow';
+export const TAB_ITEM_HBSHADOW = 'tabItemHBShadow';
+export const TAB_ITEM_ABSHADOW = 'tabItemABShadow';
+
+// title
+export const TITLE_MARGIN = 'tabTitleMargin';
 export const ACTIVE_HINT_HEIGHT = 'activeHintHeight';
+
+// icon
 export const ICON_SIZE = 'iconSize';
 export const ICON_BORDER = 'iconBorder';
 export const ICON_BORDER_RADIUS = 'iconBorderRadius';
 export const ICON_PADDING = 'iconPadding';
+export const ICON_MARGIN = 'iconMargin';
 export const ICON_BG = 'iconBg';
+export const ICON_HBG = 'iconHoverBg';
+export const ICON_ABG = 'iconActiveBg';

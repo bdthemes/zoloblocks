@@ -8,6 +8,7 @@ const {
     generateDimensionAttributes,
     generateNormalBGAttributes,
     generateBorderAttributies,
+    generateBoxShadowAttributies,
 } = window.zoloModule;
 
 import {
@@ -21,13 +22,21 @@ import {
     TAB_ITEM_MARGIN,
     TAB_ITEM_PADDING,
     TAB_ITEM_RADIUS,
-    TITLE_BOTTOM_SPACING,
+    TITLE_MARGIN,
     ACTIVE_HINT_HEIGHT,
     ICON_SIZE,
     ICON_BG,
+    ICON_HBG,
+    ICON_ABG,
     ICON_BORDER,
     ICON_BORDER_RADIUS,
     ICON_PADDING,
+    ICON_MARGIN,
+    TAB_ITEM_BORDER,
+    TABS_CWIDTH,
+    TAB_ITEM_BSHADOW,
+    TAB_ITEM_HBSHADOW,
+    TAB_ITEM_ABSHADOW,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -144,46 +153,60 @@ const attributes = {
         type: 'string',
         default: '1',
     },
-    //tabs style title color
-    normalTabColor: {
+    // tab item width
+    tabItemWidth: {
         type: 'string',
-        default: '',
+        default: 'tiw_auto',
+    },
+    //tabs style title color
+    tabTitleColors: {
+        type: 'object',
+        default: {
+            normal: '',
+            hover: '',
+            active: '',
+        },
     },
     activeHintTabColor: {
         type: 'string',
         default: '',
     },
-    hoverTabcolor: {
-        type: 'string',
-        default: '',
-    },
-    activeTabColor: {
-        type: 'string',
-        default: '',
-    },
     //tabs style description color
-    descColor: {
-        type: 'string',
-        default: '',
+    descColors: {
+        type: 'object',
+        default: {
+            normal: '',
+            hover: '',
+            active: '',
+        },
     },
     descButtomSpacing: {
         type: 'number',
         default: 10,
     },
-    descHoverColor: {
-        type: 'string',
-        default: '',
-    },
-    descActiveColor: {
-        type: 'string',
-        default: '',
-    },
+
     //tabs style icon color
-    iconColor: {
-        type: 'string',
-        default: '',
+    iconColors: {
+        type: 'object',
+        default: {
+            normal: '',
+            hover: '',
+            active: '',
+        },
     },
 
+    // item borders
+    itemBorderColors: {
+        type: 'object',
+        default: {
+            hover: '',
+            active: '',
+        },
+    },
+    // tabs container
+    ...generateResRangeAttributies(TABS_CWIDTH, {
+        defaultUnit: '%',
+    }),
     // Generators
     ...generateResAlignmentAttributies(NAV_ITEMS_ALIGN),
     ...generateResAlignmentAttributies(NAV_CONTENT_ALIGN),
@@ -193,17 +216,26 @@ const attributes = {
     ...generateNormalBGAttributes(TAB_NORMAL_BGCOLOR),
     ...generateNormalBGAttributes(TAB_HOVER_BGCOLOR),
     ...generateNormalBGAttributes(TAB_ACTIVE_BGCOLOR),
+    // item
     ...generateDimensionAttributes(TAB_ITEM_PADDING),
     ...generateDimensionAttributes(TAB_ITEM_MARGIN),
     ...generateDimensionAttributes(TAB_ITEM_RADIUS),
-    ...generateResRangeAttributies(TITLE_BOTTOM_SPACING),
+    ...generateBorderAttributies(TAB_ITEM_BORDER),
+    ...generateBoxShadowAttributies(TAB_ITEM_BSHADOW),
+    ...generateBoxShadowAttributies(TAB_ITEM_HBSHADOW),
+    ...generateBoxShadowAttributies(TAB_ITEM_ABSHADOW),
+    // title
+    ...generateDimensionAttributes(TITLE_MARGIN),
     ...generateResRangeAttributies(ACTIVE_HINT_HEIGHT),
     // ICON
     ...generateDimensionAttributes(ICON_SIZE),
     ...generateNormalBGAttributes(ICON_BG),
+    ...generateNormalBGAttributes(ICON_HBG),
+    ...generateNormalBGAttributes(ICON_ABG),
     ...generateBorderAttributies(ICON_BORDER),
     ...generateDimensionAttributes(ICON_BORDER_RADIUS),
     ...generateDimensionAttributes(ICON_PADDING),
+    ...generateDimensionAttributes(ICON_MARGIN),
 };
 
 export default attributes;

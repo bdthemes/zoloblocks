@@ -1,1 +1,19 @@
-document.addEventListener("DOMContentLoaded",(()=>{const e=document.querySelectorAll(".wp-block-zolo-review-carousel");e.length>0&&e.forEach((e=>{const o=e.querySelector(".swiper"),t=e.dataset.swiperOptions,r=JSON.parse(t);new Swiper(o,r)}))}));
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!************************************************!*\
+  !*** ./blocks/review-carousel/src/frontend.js ***!
+  \************************************************/
+document.addEventListener('DOMContentLoaded', () => {
+  const zoloRevewCarousel = document.querySelectorAll('.wp-block-zolo-review-carousel');
+  if (zoloRevewCarousel.length > 0) {
+    zoloRevewCarousel.forEach(carousel => {
+      const carouselSelector = carousel.querySelector('.swiper');
+      const carouselOptions = carousel.dataset.swiperOptions;
+      const carouselOptionsObj = JSON.parse(carouselOptions);
+      new Swiper(carouselSelector, carouselOptionsObj);
+    });
+  }
+});
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

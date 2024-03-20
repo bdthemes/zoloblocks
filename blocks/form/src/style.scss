@@ -20,8 +20,8 @@
     --zolo-required-color: #b80606;
     --zolo-label-text-color: rgb(17 24 39 / var(--tw-opacity));
     --zolo-icon-input-padding-inline-start: 2.5rem;
-    --zolo-input-padding: 0.75rem;
-    --zolo-input-border-radius: 0.5rem;
+    --zolo-input-padding: 0.875rem 0.75rem;
+    --zolo-input-border-radius: var(--zoloblocks-button-border-radius);
     --zolo-input-border-width: 1px;
     --zolo-input-border-style: solid;
     --zolo-input-border-color: rgb(209 213 219 / var(--tw-opacity));
@@ -282,14 +282,13 @@
 
     .zolo-submit-btn button {
         border: 0;
-        padding: 0.75rem 1.25rem;
-        background-color: rgb(26 86 219 / var(--tw-opacity));
+        padding: 14px 30px;
+        background-color: var(--zoloblocks-brand-color);
         color: #fff;
-        font-weight: 700;
         text-transform: capitalize;
-        font-size: 0.875rem;
+        font-size: 16px;
         line-height: 1.25rem;
-        border-radius: 0.5rem;
+        border-radius: var(--zoloblocks-button-border-radius);
         cursor: pointer;
         outline: none;
         display: inline-flex;
@@ -317,7 +316,7 @@
     }
 
     .zolo-submit-btn button:hover {
-        background-color: rgb(30 64 175 / var(--tw-opacity));
+        background-color: var(--zoloblocks-brand-color-hover);
     }
 
     input:focus,
@@ -334,7 +333,7 @@
 
 .wp-block-zolo-textarea {
     .zolo-input-icon {
-        top: 12px;
+        top: 18px;
         align-items: flex-start;
     }
 }

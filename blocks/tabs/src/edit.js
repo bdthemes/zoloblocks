@@ -45,6 +45,7 @@ const Edit = (props) => {
         addNewTabStatus,
         verticalLayoutDirection,
         contentDirection,
+        tabItemWidth,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -140,7 +141,7 @@ const Edit = (props) => {
                     tabIndex={0}
                     ref={tabWrapRef}
                 >
-                    <div className="tab__list zolo-tab_header-wrap">
+                    <div className={`tab__list zolo-tab_header-wrap ${tabItemWidth}`}>
                         {tabTitles &&
                             tabTitles.map((tab, index) => {
                                 return (

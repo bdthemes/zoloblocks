@@ -23,6 +23,11 @@
         gap: var(--zolo-tab-head-wrap-gap);
         margin: 0 0 var(--zolo-tab-head-wrap-margin);
         flex-direction: column;
+        &.tiw_justify {
+            .zolo-tab_head-item {
+                width: 100%;
+            }
+        }
     }
 
     .zolo-tab_head-item {
@@ -31,7 +36,8 @@
         text-align: left;
         cursor: pointer;
         border-radius: var(--zolo-tab-head-item-border-radius);
-
+        box-sizing: border-box;
+        transition: all 0.3s ease-out;
         &:focus-visible {
             outline: none;
         }
@@ -40,10 +46,10 @@
     .tab__item.active {
         background-color: var(--zoloblocks-brand-color);
         .zolo-tab_title {
-            color: #fff;
+            --zolo-tab-title-color: #fff;
         }
         .zolo-tab_desc {
-            color: #e6e6e6;
+            --zolo-tab-desc-color: #e6e6e6;
         }
         .zolo-tab_icon {
             background-color: #fff;

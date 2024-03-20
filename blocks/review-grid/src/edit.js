@@ -120,7 +120,7 @@ export default function Edit(props) {
                             {
                                 memberName: 'Joanna T. Logan',
                                 memberDesignation: 'Frontend Developer',
-                                testimonialMessage: '"Efficiency Redefined": Zolo Blocks streamlines the website building process with its vast collection of blocks. From headers to footers, each block is meticulously crafted for maximum flexibility.',
+                                testimonialMessage: '"Efficiency Redefined": Zolo Blocks streamlines the website building process with its vast collection of blocks. From headers to footers, each block is meticulously crafted flexibility.',
                                 memberPhoto: {
                                     url: zoloPlaceholders.avatarSquare,
                                 },

@@ -1,11 +1,11 @@
 .wp-block-zolo-counter {
-    --zolo-item-padding: 40px;
+    --zolo-item-padding: clamp(2.5rem, 5vw, 3.5rem);
     --zolo-item-gap: 15px;
-    --zolo-count-marign: 0 0 10px;
+    --zolo-count-marign: 0 0 15px;
     --zolo-count-text-color: #20232a;
     --zolo-icon-size: 30px;
-    --zolo-icon-color: #20232a;
-    --zolo-title-text-color: #20232a;
+    --zolo-icon-color: var(--zoloblocks-brand-color);
+    --zolo-title-text-color: #717274;
     --zolo-title-margin: 0;
     --zolo-icon-margin: 0;
     --zolo-icon-svg-margin: 0 0 0;
@@ -23,8 +23,8 @@
     }
 
     .zolo-counter-count {
-        font-size: 30px;
-        font-weight: 800;
+        font-size: 40px;
+        font-weight: 700;
         line-height: 1;
         color: var(--zolo-count-text-color);
         margin: var(--zolo-count-marign);
@@ -50,9 +50,8 @@
     }
 
     .zolo-counter-title {
-        font-size: 16px;
+        font-size: 18px;
         color: var(--zolo-title-text-color);
-        font-weight: 600;
         margin: var(--zolo-title-margin);
     }
 

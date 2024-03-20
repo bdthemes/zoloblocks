@@ -44,7 +44,7 @@ const attributes = {
     },
     zoom: {
         type: 'number',
-        default: 12,
+        default: 16,
     },
     latitude: {
         type: 'number',

@@ -6,18 +6,21 @@
     --zolo-icon-color: #fff;
     --zolo-icon-img-size: 50px;
     --zolo-title-text-color: #fff;
-    --zolo-title-margin: 0 0 8px;
+    --zolo-title-margin: 0 0 14px;
     --zolo-desc-margin: 0;
     --zolo-desc-text-color: #e1e1e1;
     --zolo-link-btn-gap: 10px;
     --zolo-link-btn-text-color: #fff;
     --zolo-link-btn-text-hover-color: #fff;
-    --zolo-link-bnt-padding: 14px 22px;
+    --zolo-link-bnt-padding: 14px 30px;
     --zolo-link-btn-icon-size: 1em;
     --zolo-desc-back-margin: 0 0 24px;
-    --zolo-desc-back-text-color: #28282a;
+    --zolo-desc-back-text-color: #545455;
     --zolo-back-title-text-color: #1f2024;
     --zolo-back-icon-color: #1f2024;
+
+    --zolo-back-item-border-width: 1px;
+    --zolo-back-item-border-style: solid;
 
     .zolo-flip-box_item {
         position: relative;
@@ -116,9 +119,13 @@
         }
     }
 
+    .title-link {
+        text-decoration: none;
+    }
+
     .zolo-flip-box_title {
         margin: var(--zolo-title-margin);
-        font-size: 24px;
+        font-size: 30px;
         font-weight: 700;
         color: var(--zolo-title-text-color);
     }
@@ -128,6 +135,7 @@
         color: var(--zolo-desc-text-color);
         font-size: 16px;
         text-wrap: balance;
+        font-weight: 400;
     }
 
     .zolo-flip-box_link-btn {
@@ -138,11 +146,9 @@
         border-radius: var(--zoloblocks-button-border-radius);
         background-color: var(--zoloblocks-brand-color);
         padding: var(--zolo-link-bnt-padding);
-        font-size: 12px;
+        font-size: 16px;
         text-decoration: none;
-        font-weight: 600;
         transition: all 0.3s ease 0s;
-        text-transform: uppercase;
         &:hover {
             color: var(--zolo-link-btn-text-hover-color);
             background-color: var(--zoloblocks-brand-color-hover);
@@ -169,7 +175,10 @@
     }
 
     .zolo-flip-box_back {
-        background-color: #ddd;
+        background-color: var(--zoloblocks-item-bg-color);
+        border-width: var(--zolo-back-item-border-width);
+        border-style: var(--zolo-back-item-border-style);
+        border-color: var(--zoloblocks-item-border-color);
         .zolo-flip-box-content {
             transform: translate3d(0, 0, 60px) scale(1.048);
         }

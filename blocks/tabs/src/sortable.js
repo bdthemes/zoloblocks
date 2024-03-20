@@ -145,6 +145,15 @@ const Sortable = ({
                                                 }}
                                             />
                                         )}
+                                        <ToggleControl
+                                            label={__('Show Tab Icon', 'zolo-blocks')}
+                                            checked={tab.hasMedia}
+                                            onChange={() => {
+                                                const newItems = [...deepCloneTitles];
+                                                newItems[index].hasMedia = !tab.hasMedia;
+                                                setAttributes({ tabTitles: newItems });
+                                            }}
+                                        />
                                         {tab.hasMedia && (
                                             <ZoloIconPicker
                                                 label={__('Select Icon', 'zolo-blocks')}
