@@ -80,6 +80,10 @@ const attributes = {
     type: "string",
     default: "",
   },
+  apexPieChartData: {
+    type: "string",
+    default: "",
+  },
   showTitle: {
     type: "boolean",
     default: false,
@@ -109,11 +113,11 @@ const attributes = {
   legendObject: {
     type: "object",
     default: {
-      position: "top",
-      horizontalAlign: "left",
-      floating: true,
-      offsetY: -25,
-      offsetX: -5,
+      position: "bottom",
+      horizontalAlign: "center",
+      floating: false,
+      offsetY: 8,
+      offsetX: 0,
     },
   },
   showTooltip: {
@@ -130,16 +134,48 @@ const attributes = {
       inverseOrder: false,
       hideEmptySeries: true,
       fillSeriesColor: false,
-      theme: false,
+      theme: "light",
     },
   },
   showGrid: {
     type: "boolean",
     default: true,
   },
+  gridObject: {
+    type: "object",
+    default: {
+      borderColor: "#90A4AE",
+      strokeDashArray: 0,
+      position: "front",
+      xaxis: {
+        lines: {
+          show: false,
+        },
+      },
+      yaxis: {
+        lines: {
+          show: false,
+        },
+      },
+      row: {
+        colors: undefined,
+        opacity: 0.5,
+      },
+      column: {
+        colors: undefined,
+        opacity: 0.5,
+      },
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
+    },
+  },
   showGridX: {
     type: "boolean",
-    default: true,
+    default: false,
   },
   showGridY: {
     type: "boolean",

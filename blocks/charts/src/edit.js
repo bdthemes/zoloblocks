@@ -6,7 +6,6 @@ import classnames from "classnames";
 import Chart from "react-apexcharts";
 import { v4 as uuidv4 } from "uuid";
 
-
 const { handleUniqueId, classArrayToStr } = window.zoloModule;
 import { BLOCK_PREFIX } from "./constants";
 import Inspector from "./inspector";
@@ -32,84 +31,103 @@ export default function Edit(props) {
     titleObject,
     subTitleObject,
     legendObject,
+    tooltipObject,
+    showGridX,
+    showGridY,
+    gridObject,
   } = attributes;
 
-const [chartOptions, setChartOptions] = useState({ apexChartOptions});
+  const [chartOptions, setChartOptions] = useState({ apexChartOptions });
 
-// set chart options
-useEffect(() => {
-  const uid = uuidv4();
-  const newChartOptions = {
-    ...chartOptions,
-    apexChartOptions: {
-      ...chartOptions.apexChartOptions,
-      options: {
-        dataLabels: {
-          enabled: false,
-        },
-        colors: ["#00E396", "#FF4560", "#FEB019"],
-        ...(showTitle && {
-          title: {
-            text: titleObject.text,
-            align: titleObject.align,
+  // set chart options
+  useEffect(() => {
+    const uid = uuidv4();
+    const newChartOptions = {
+      // ...chartOptions,
+      apexChartOptions: {
+        ...chartOptions.apexChartOptions,
+        options: {
+          dataLabels: {
+            enabled: false,
           },
-        }),
-        ...(showSubTitle && {
-          subtitle: {
-            text: subTitleObject.text,
-            align: subTitleObject.align,
+          colors: ["#00E396", "#FF4560", "#FEB019"],
+          ...(showTitle && {
+            title: {
+              text: titleObject.text,
+              align: titleObject.align,
+            },
+          }),
+          ...(showSubTitle && {
+            subtitle: {
+              text: subTitleObject.text,
+              align: subTitleObject.align,
+            },
+          }),
+          legend: {
+            show: showLegend,
+            ...(showLegend && {
+              position: legendObject.position,
+              horizontalAlign: legendObject.horizontalAlign,
+              floating: legendObject.floating,
+              offsetY: legendObject.offsetY,
+              offsetX: legendObject.offsetX,
+            }),
           },
-        }),
-        legend: {
-          show: showLegend,
-          ...(showLegend && {
-            position: legendObject.position,
-            horizontalAlign: legendObject.horizontalAlign,
-            floating: legendObject.floating,
-            offsetY: legendObject.offsetY,
-            offsetX: legendObject.offsetX,
-          }),
-        },
-        tooltip: {
-          enabled: showTooltip,
-          ...(showTooltip && {
-            shared: true,
-            followCursor: false,
-            intersect: false,
-            inverseOrder: false,
-            hideEmptySeries: true,
-            fillSeriesColor: false,
-            theme: 'dark',
-          }),
-        },
-        grid: {
-          xaxis: {
-            // colors: ["#f3f3f3", "transparent"],
-            lines: {
-              show: true,
+          tooltip: {
+            enabled: showTooltip,
+            ...(showTooltip && {
+              shared: true,
+              followCursor: false,
+              intersect: false,
+              inverseOrder: false,
+              hideEmptySeries: true,
+              fillSeriesColor: false,
+              theme: tooltipObject.theme,
+            }),
+          },
+          grid: {
+            show: showGrid,
+            position: gridObject.position,
+            xaxis: {
+              lines: {
+                show: showGridX,
+              },
+            },
+            yaxis: {
+              lines: {
+                show: showGridY,
+              },
             },
           },
-          yaxis: {
-            lines: {
-              show: false,
-            },
+          ...chartOptions.apexChartOptions.options,
+
+          chart: {
+            id: `chart-${uid}`,
           },
-        },
-        ...chartOptions.apexChartOptions.options,
-        chart: {
-          id: `chart-${uid}`,
         },
       },
-    },
-  };
+    };
     setChartOptions(newChartOptions);
-  }, [chartTypes,uploadStatus, sourceType, apexChartData, titleObject]);
+  }, [
+    chartTypes,
+    uploadStatus,
+    sourceType,
+    apexChartData,
+    titleObject,
+    subTitleObject,
+    legendObject,
+    tooltipObject,
+    showGrid,
+    showGridX,
+    showGridY,
+    showDropshadow,
+    showTitle,
+    showSubTitle,
+    showLegend,
+    showTooltip,
+  ]);
 
-  console.log('chartOptions', chartOptions);
-
-
-
-
+  // console.log("chartOptions", chartOptions.apexChartOptions);
 
   useEffect(() => {
     handleUniqueId({
@@ -148,7 +166,7 @@ useEffect(() => {
           options={chartOptions.apexChartOptions.options}
           series={chartOptions.apexChartOptions.series}
           type={chartTypes}
-          width={'100%'}
+          width={"100%"}
           height={320}
         />
       </div>

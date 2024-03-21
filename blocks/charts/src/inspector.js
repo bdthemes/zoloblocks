@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useEffect } from "@wordpress/element";
+import { useEffect, useState } from "@wordpress/element";
 import { InspectorControls } from "@wordpress/block-editor";
 import {
   ToggleControl,
@@ -11,6 +11,9 @@ import {
   FormFileUpload,
   Button,
   TextareaControl,
+  ButtonGroup,
+  BaseControl,
+  CardDivider,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
@@ -32,7 +35,13 @@ const {
 import objAttributes from "./attributes";
 
 import { TITLE_TYPO } from "./constants/typoPrefixConstant";
-import { CHART_TYPES, SOURCE_TYPES, POSITIONS } from "./constants";
+import {
+  CHART_TYPES,
+  SOURCE_TYPES,
+  POSITIONS,
+  THEME_TYPES,
+  GRID_POSITION,
+} from "./constants";
 import { DEFAULT_ALIGNS } from "../../../src/global/constants";
 
 function Inspector(props) {
@@ -50,12 +59,14 @@ function Inspector(props) {
     showLegend,
     showTooltip,
     showGrid,
+    showGridX,
+    showGridY,
     showDropshadow,
     titleObject,
     subTitleObject,
     legendObject,
     tooltipObject,
-
+    gridObject,
   } = attributes;
 
   console.log(titleObject);
@@ -133,12 +144,12 @@ function Inspector(props) {
     });
   }
 
-  if (sourceType === "input" ) {
+  if (sourceType === "input" && apexChartData !== "") {
     useEffect(() => {
       if (!uploadStatus) {
         parseCSVData(apexChartData);
       }
-    }, [uploadStatus]);
+    }, [apexChartData]);
   }
 
 
@@ -483,23 +494,72 @@ function Inspector(props) {
                     })
                   }
                 />
-                {/* <ToggleControl
+                {/* <SelectControl
                   label={__("Theme", "zolo-blocks")}
-                  checked={tooltipObject.theme}
-                  onChange={() =>
+                  value={tooltipObject.theme}
+                  options={THEME_TYPES}
+                  onChange={(v) =>
                     setAttributes({
                       tooltipObject: {
                         ...tooltipObject,
-                        theme: !tooltipObject.theme,
+                        theme: v,
                       },
                     })
                   }
                 /> */}
-                <SelectControl
-                  label={__("Inpur Source", "zolo-blocks")}
-                  value={sourceType}
-                  options={SOURCE_TYPES}
-                  onChange={(v) => setAttributes({ sourceType: v })}
+                <CardDivider />
+                <IconicBtnGroup
+                  label={__("Theme", "zolo-blocks")}
+                  value={tooltipObject.theme}
+                  onChange={(v) =>
+                    setAttributes({
+                      tooltipObject: {
+                        ...tooltipObject,
+                        theme: v,
+                      },
+                    })
+                  }
+                  options={THEME_TYPES}
+                />
+              </ZoloPanelBody>
+            )}
+            {showGrid && (
+              <ZoloPanelBody
+                title={__("Grid", "zolo-blocks")}
+                firstOpen={false}
+                panelProps={props}
+              >
+                <ToggleControl
+                  label={__("Show Grid X", "zolo-blocks")}
+                  checked={showGridX}
+                  onChange={() =>
+                    setAttributes({
+                      showGridX: !showGridX,
+                    })
+                  }
+                />
+                <ToggleControl
+                  label={__("Show Grid Y", "zolo-blocks")}
+                  checked={showGridY}
+                  onChange={() =>
+                    setAttributes({
+                      showGridY: !showGridY,
+                    })
+                  }
+                />
+                <CardDivider />
+                <IconicBtnGroup
+                  label={__("Position", "zolo-blocks")}
+                  value={gridObject.position}
+                  onChange={(v) =>
+                    setAttributes({
+                      gridObject: {
+                        ...gridObject,
+                        position: v,
+                      },
+                    })
+                  }
+                  options={GRID_POSITION}
                 />
               </ZoloPanelBody>
             )}

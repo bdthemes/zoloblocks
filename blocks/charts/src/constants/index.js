@@ -18,24 +18,32 @@ export const CHART_TYPES = [
   { label: __("Line", "zolo-blocks"), value: "line" },
   { label: __("Area", "zolo-blocks"), value: "area" },
   { label: __("Bar", "zolo-blocks"), value: "bar" },
-  { label: __("Pie", "zolo-blocks"), value: "pie" },
-  { label: __("Donut", "zolo-blocks"), value: "donut" },
-  { label: __("Radial Bar", "zolo-blocks"), value: "radialBar" },
+  // { label: __("Pie", "zolo-blocks"), value: "pie" },
+  // { label: __("Donut", "zolo-blocks"), value: "donut" },
+  // { label: __("Radial Bar", "zolo-blocks"), value: "radialBar" },
   { label: __("Scatter", "zolo-blocks"), value: "scatter" },
   { label: __("Bubble", "zolo-blocks"), value: "bubble" },
   { label: __("Heatmap", "zolo-blocks"), value: "heatmap" },
-  { label: __("Candlestick", "zolo-blocks"), value: "candlestick" },
-  { label: __("Box Plot", "zolo-blocks"), value: "boxPlot" },
+  // { label: __("Candlestick", "zolo-blocks"), value: "candlestick" },
+  // { label: __("Box Plot", "zolo-blocks"), value: "boxPlot" },
   { label: __("Radar", "zolo-blocks"), value: "radar" },
-  { label: __("Polar Area", "zolo-blocks"), value: "polarArea" },
-  { label: __("Range Bar", "zolo-blocks"), value: "rangeBar" },
-  { label: __("Range Area", "zolo-blocks"), value: "rangeArea" },
-  { label: __("Treemap", "zolo-blocks"), value: "treemap" },
+  // { label: __("Polar Area", "zolo-blocks"), value: "polarArea" },
+  // { label: __("Range Bar", "zolo-blocks"), value: "rangeBar" },
+  // { label: __("Range Area", "zolo-blocks"), value: "rangeArea" },
+  // { label: __("Treemap", "zolo-blocks"), value: "treemap" },
 ];
 
 export const SOURCE_TYPES = [
   { label: __("Upload CSV", "zolo-blocks"), value: "upload" },
   { label: __("Input CSV", "zolo-blocks"), value: "input" },
+];
+export const THEME_TYPES = [
+  { label: __("Light", "zolo-blocks"), value: "light" },
+  { label: __("Dark", "zolo-blocks"), value: "dark" },
+];
+export const GRID_POSITION = [
+  { label: __("Back", "zolo-blocks"), value: "back" },
+  { label: __("Front", "zolo-blocks"), value: "front" },
 ];
 
 // position
