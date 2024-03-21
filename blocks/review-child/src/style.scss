@@ -14,7 +14,7 @@
     --zolo-review-img-and-meta-wrap-margin: -70px 0 0 0;
     --zolo-review-img-and-meta-wrap-gap: 12px;
     --zolo-img-margin: 0 0 20px 0;
-    --zolo-review-icon-margin: 0 0 14px 0;
+    --zolo-review-icon-margin: 0 0 10px 0;
     --zolo-name-margin: 0 0 4px;
     --zolo-dasignation-margin: 0 0 10px;
 
@@ -163,9 +163,10 @@
         .zolo-item {
             text-align: center;
             flex-direction: column;
+            gap: 0;
         }
         .zolo-review-icon {
-            --zolo-review-icon-margin: 12px 0 0;
+            --zolo-review-icon-margin:  12px 0 10px 0;
             margin: var(--zolo-review-icon-margin);
         }
     }

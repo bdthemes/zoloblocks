@@ -124,8 +124,10 @@ const Edit = (props) => {
             <Style props={props} />
             <style>
                 {`
-                   .block-editor-block-list__block.wp-block-zolo-container .block-editor-block-list__layout .block-list-appender.wp-block button {
-                    border: 1px solid #ccc;
+                   .wp-block-zolo-tabs .block-list-appender.wp-block button {
+                    border: 1px solid #ccc !important;
+                    padding: 35px 0 !important;
+                    border-radius: 6px;
                 }
                 `}
             </style>

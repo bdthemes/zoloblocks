@@ -145,7 +145,7 @@ const Sortable = ({
                                                 }}
                                             />
                                         )}
-                                        <ToggleControl
+                                        {/* <ToggleControl
                                             label={__('Show Tab Icon', 'zolo-blocks')}
                                             checked={tab.hasMedia}
                                             onChange={() => {
@@ -153,7 +153,7 @@ const Sortable = ({
                                                 newItems[index].hasMedia = !tab.hasMedia;
                                                 setAttributes({ tabTitles: newItems });
                                             }}
-                                        />
+                                        /> */}
                                         {tab.hasMedia && (
                                             <ZoloIconPicker
                                                 label={__('Select Icon', 'zolo-blocks')}

@@ -27,6 +27,9 @@ export const ARROW_BTN_RADIUS = 'arrowBtnRadius';
 export const ARROW_BTN_BG = 'arrowBtnBg';
 export const ARROW_SIZE = 'arrowSize';
 
+// comparison height
+export const COMPARISON_HEIGHT = 'comparisonHeight';
+
 //slide position option
 export const SLIDE_POSITION = [
     {

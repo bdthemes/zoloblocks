@@ -52,7 +52,9 @@ const Save = ({ attributes }) => {
                             <div className="zolo-flip-box-content zolo-flip-box_front-content">
                                 {showFrontIcon && (
                                     <div className="zolo-flip-box_icon">
-                                        <span className={`zolo-flip-box_inner-icon ${frontIconType !== 'icon' ? 'zolo-image' : 'zolo-icon'}`}>
+                                        <span
+                                            className={`zolo-flip-box_inner-icon ${frontIconType !== 'icon' ? 'zolo-image' : 'zolo-icon'}`}
+                                        >
                                             {frontIconType == 'icon' ? (
                                                 <>{frontIcon && <DisplayZoloIcon icon={frontIcon} />}</>
                                             ) : (
@@ -86,7 +88,9 @@ const Save = ({ attributes }) => {
                             <div className="zolo-flip-box-content zolo-flip-box_back-content">
                                 {showBackIcon && (
                                     <div className="zolo-flip-box_icon">
-                                        <span className={`zolo-flip-box_inner-icon ${backIconType !== 'icon' ? 'zolo-image' : 'zolo-icon'}`}>
+                                        <span
+                                            className={`zolo-flip-box_inner-icon ${backIconType !== 'icon' ? 'zolo-image' : 'zolo-icon'}`}
+                                        >
                                             {backIconType == 'icon' ? (
                                                 <> {backIcon && <DisplayZoloIcon icon={backIcon} />}</>
                                             ) : (

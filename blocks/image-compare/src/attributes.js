@@ -22,6 +22,7 @@ import {
     ARROW_BTN_RADIUS,
     ARROW_BTN_BG,
     ARROW_SIZE,
+    COMPARISON_HEIGHT,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -75,7 +76,8 @@ const attributes = {
     ...generateDimensionAttributes(ARROW_BTN_RADIUS),
     ...generateNormalBGAttributes(ARROW_BTN_BG),
     ...generateResRangeAttributies(ARROW_SIZE),
-
+    // comparison height
+    ...generateResRangeAttributies(COMPARISON_HEIGHT),
     beforeImage: {
         type: 'object',
     },

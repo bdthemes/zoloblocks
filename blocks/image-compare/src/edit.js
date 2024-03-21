@@ -128,7 +128,7 @@ export default function Edit(props) {
                         position={comparisonOptions?.initialPosition}
                         onlyHandleDraggable={comparisonOptions?.handleDraggable}
                         itemOne={
-                            <div className="image-item-One ">
+                            <div className="image-item-One">
                                 {comparisonOptions?.showLabels && comparisonOptions?.beforeLabel && (
                                     <div
                                         className={`compare-slider-label compare-slider-label-left ${
@@ -144,7 +144,7 @@ export default function Edit(props) {
                             </div>
                         }
                         itemTwo={
-                            <div className="image-item-two ">
+                            <div className="image-item-two">
                                 {comparisonOptions?.showLabels && comparisonOptions?.afterLabel && (
                                     <div
                                         className={`compare-slider-label compare-slider-label-right ${

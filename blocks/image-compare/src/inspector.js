@@ -14,7 +14,6 @@ const {
     ZoloPanelBody,
     IconicBtnGroup,
     ImageAvatar,
-    RangeResetControl,
     TabPanelControl,
 } = window.zoloModule;
 
@@ -22,7 +21,7 @@ const {
  * WordPress depencencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { TextControl, ToggleControl, Button, BaseControl, RangeControl, TabPanel } from '@wordpress/components';
+import { TextControl, ToggleControl, Button, BaseControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -50,6 +49,7 @@ import {
     NORMAL_CONTROL_OPTION,
     VERTICAL_POSITIONS,
     HOTIZONTAL_POSITIONS,
+    COMPARISON_HEIGHT,
 } from './constants';
 
 import { BEFORE_TYPO } from './constants/typoPrefixConstant';
@@ -64,10 +64,6 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
-
-    /**
-     * Preset
-     */
 
     return (
         <InspectorControls key="controls">
@@ -302,8 +298,18 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
+                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                            <ResRangeControl
+                                label={__('Height', 'zolo-blocks')}
+                                controlName={COMPARISON_HEIGHT}
+                                requiredProps={requiredProps}
+                                min={50}
+                                max={1000}
+                                step={1}
+                            />
+                        </ZoloPanelBody>
                         {comparisonOptions?.showLabels && (
-                            <ZoloPanelBody title={__('Labels', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Labels', 'zolo-blocks')} firstOpen={false} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     options={NORMAL_TAB_OPTION}
                                     normalComponents={
@@ -384,12 +390,7 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
 
-                        <ZoloPanelBody
-                            title={__('Control', 'zolo-blocks')}
-                            firstOpen={comparisonOptions?.showLabels ? false : true}
-                            stylePanel={true}
-                            panelProps={props}
-                        >
+                        <ZoloPanelBody title={__('Control', 'zolo-blocks')} firstOpen={false} stylePanel={true} panelProps={props}>
                             <TabPanelControl
                                 normalComponents={
                                     <>

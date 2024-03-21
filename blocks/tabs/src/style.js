@@ -47,7 +47,7 @@ import { DESC_TYPOGRAPHY, TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, tabTitleColors, descColors, activeHintTabColor, iconColor, showIndicator, itemBorderColors } = attributes;
+    const { uniqueId, tabTitleColors, descColors, activeHintTabColor, iconColors, showIndicator, itemBorderColors } = attributes;
 
     // tabs container
     const {
@@ -394,13 +394,17 @@ const Style = ({ props }) => {
             ${iconABgDesktop}
         }
 
-        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon svg {
-            ${iconColor ? `fill: ${iconColor};` : ''}
+        .${uniqueId}.wp-block-zolo-tabs .tab__item.zolo-tab_head-item .zolo-tab_icon svg {
+            ${iconColors ? `fill: ${iconColors?.normal};` : ''}
             ${iconHeightWidthDesktop}
         }
 
-        .${uniqueId}.wp-block-zolo-tabs .zolo-tab_icon svg path {
-            ${iconColor ? `fill: ${iconColor};` : ''}
+        .${uniqueId}.wp-block-zolo-tabs .tab__item.zolo-tab_head-item:hover .zolo-tab_icon svg {
+            ${iconColors ? `fill: ${iconColors?.hover};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-tabs .tab__item.zolo-tab_head-item.active .zolo-tab_icon svg {
+            ${iconColors ? `fill: ${iconColors?.active};` : ''}
         }
 
         .${uniqueId}.wp-block-zolo-tabs .zolo-tab_vertical-left .zolo-tab_header-wrap, .${uniqueId}.wp-block-zolo-tabs .zolo-tab_vertical-right .zolo-tab_header-wrap {
