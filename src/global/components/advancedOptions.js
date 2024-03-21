@@ -77,7 +77,7 @@ export const AdvancedOptions = (props) => {
         let tween;
         // if(!targetElement.length) return;
         // Define the initial position and properties of the box
-        gsap.set(targetElement, { opacity: 0 });
+        gsap.set(targetElement, { opacity: 1 });
 
         const transformOptions = {};
         const transformOptionsGlobal = {
@@ -130,13 +130,13 @@ export const AdvancedOptions = (props) => {
         if (entranceAnimation.perspective !== 0) {
             transformOptions.transformPerspective = entranceAnimation.perspective;
         }
-        if (entranceAnimation.opacity !== 0) {
+        if (entranceAnimation.opacity !== undefined) {
             transformOptions.opacity = entranceAnimation.opacity;
         }
         // Create the animation tween
         if (entranceAnimation.presetAnimation === 'custom') {
             // merge the global options and the custom options
-            tween = gsap.to(targetElement, {
+            tween = gsap.from(targetElement, {
                 ...transformOptions,
                 ...transformOptionsGlobal,
             });
@@ -223,7 +223,7 @@ export const AdvancedOptions = (props) => {
                 },
             };
             const presetAnimation = presetAnimations[entranceAnimation.presetAnimation];
-            tween = gsap.to(targetElement, {
+            tween = gsap.from(targetElement, {
                 ...presetAnimation,
                 ...transformOptionsGlobal,
             });
@@ -1173,6 +1173,7 @@ export const AdvancedOptions = (props) => {
                                     setAttributes({
                                         floatingAnimationActive: !floatingAnimationActive,
                                     });
+                                    setIsPlaying(false);
                                     if (!floatingAnimationActive) {
                                         setAttributes({
                                             parentClasses: [...parentClasses, 'zolo-floating-animation'],
