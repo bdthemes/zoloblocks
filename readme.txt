@@ -3,7 +3,7 @@ Contributors: BdThemes
 Tags: zoloblocks, blocks, gutenberg blocks, custom block, gutenberg
 Requires at least: 6.0
 Tested up to: 6.4.3
-Stable tag: 1.0.0-RC5
+Stable tag: 1.0.0-RC6
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -52,6 +52,26 @@ Not at all. We have optimised all of these blocks for better performance.
 
 
 == Changelog ==
+
+= 1.0.0-RC6 =
+
+### Added
+
+* Tabs block added
+* Image Compare block added
+
+### Fixed
+
+* Slider block issue fixed
+* Flipbox back icon issue fixed
+
+### Improved
+
+* Border radius control added in Google Maps block
+* Image Height control added in Image gallery block
+* Focus style added in Form block
+* Essential filter hooks added
+
 
 = 1.0.0-RC5 =
 
