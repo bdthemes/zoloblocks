@@ -6,9 +6,9 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder } = window.zoloModule;
+const { generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder, generateDimensionStyle } = window.zoloModule;
 
-import { MAP_HEIGHT } from './constants';
+import { MAP_BRADIUS, MAP_HEIGHT } from './constants';
 import { MINFO_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
@@ -35,6 +35,16 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // border radius
+    const {
+        dimensionStylesDesktop: borderRadiusDesk,
+        dimensionStylesTab: borderRadiusTab,
+        dimensionStylesMobile: borderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: MAP_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
 
     /**
      * All Style Combination
@@ -42,6 +52,7 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-wrapper {
             ${deskHeight}
+            ${borderRadiusDesk}
         }
         .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-marker-info {
             color: ${markerInfoColor};
@@ -52,6 +63,7 @@ const Style = ({ props }) => {
     const tabletAllStyle = `
         .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-wrapper {
             ${tabHeight}
+            ${borderRadiusTab}
         }
         .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-marker-info {
             ${infoTabTypo}
@@ -61,6 +73,7 @@ const Style = ({ props }) => {
     const mobileAllStyle = `
         .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-wrapper {
             ${mobHeight}
+            ${borderRadiusMob}
         }
         .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-marker-info {
             ${infoMobTypo}

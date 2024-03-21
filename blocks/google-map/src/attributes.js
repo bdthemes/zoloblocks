@@ -1,9 +1,9 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateTypographyAttributes } = window.zoloModule;
+const { generateResRangeAttributies, generateTypographyAttributes, generateDimensionAttributes } = window.zoloModule;
 
-import { MAP_HEIGHT } from './constants';
+import { MAP_HEIGHT, MAP_BRADIUS } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
@@ -44,7 +44,7 @@ const attributes = {
     },
     zoom: {
         type: 'number',
-        default: 12,
+        default: 16,
     },
     latitude: {
         type: 'number',
@@ -106,6 +106,7 @@ const attributes = {
     },
     // Generators
     ...generateResRangeAttributies(MAP_HEIGHT),
+    ...generateDimensionAttributes(MAP_BRADIUS),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 };
 

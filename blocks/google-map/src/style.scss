@@ -4,6 +4,7 @@
     --zolo-gm-style-padding: 15px;
     .zolo-gmap-wrapper {
         height: var(--zolo-map-height);
+        overflow: hidden;
         .gm-style-iw.gm-style-iw-c {
             max-width: 300px !important;
             line-height: 1.4;

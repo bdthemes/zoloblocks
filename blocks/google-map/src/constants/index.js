@@ -316,3 +316,6 @@ export const LANGUAGES = [
 
 // Block Settings
 export const MAP_HEIGHT = 'mapHeight';
+
+// border radius
+export const MAP_BRADIUS = 'mapBRadius';

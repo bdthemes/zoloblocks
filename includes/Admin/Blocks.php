@@ -78,6 +78,11 @@ return apply_filters(
             'status'     => true,
         ],
         [
+            'name'       => 'zolo_image_compare',
+            'categories' => ['gallery'],
+            'status'     => true,
+        ],
+        [
             'name'       => 'zolo_list',
             'categories' => ['list'],
             'status'     => true,
@@ -148,6 +153,11 @@ return apply_filters(
             'status'     => true,
         ],
         [
+            'name'       => 'zolo_tabs',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
             'name'       => 'zolo_team_grid',
             'categories' => ['list'],
             'status'     => true,
@@ -156,6 +166,6 @@ return apply_filters(
             'name'       => 'zolo_google_map',
             'categories' => ['others'],
             'status'     => true,
-        ]
+        ],
     ]
 );

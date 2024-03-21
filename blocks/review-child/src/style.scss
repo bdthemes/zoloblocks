@@ -13,8 +13,8 @@
     --zolo-star-rating-icon-color: #ff9a00;
     --zolo-review-img-and-meta-wrap-margin: -70px 0 0 0;
     --zolo-review-img-and-meta-wrap-gap: 12px;
-    --zolo-img-margin: 0 0 14px 0;
-    --zolo-review-icon-margin: 0 0 30px 0;
+    --zolo-img-margin: 0 0 20px 0;
+    --zolo-review-icon-margin: 0 0 10px 0;
     --zolo-name-margin: 0 0 4px;
     --zolo-dasignation-margin: 0 0 10px;
 
@@ -32,6 +32,8 @@
         border-color: var(--zoloblocks-item-border-color);
         border-radius: var(--zolo-item-border-radius);
         padding: var(--zolo-item-padding);
+        width: 100%;
+        box-sizing: border-box;
     }
 
     &.default {
@@ -161,9 +163,10 @@
         .zolo-item {
             text-align: center;
             flex-direction: column;
+            gap: 0;
         }
         .zolo-review-icon {
-            --zolo-review-icon-margin: 12px 0 0;
+            --zolo-review-icon-margin:  12px 0 10px 0;
             margin: var(--zolo-review-icon-margin);
         }
     }

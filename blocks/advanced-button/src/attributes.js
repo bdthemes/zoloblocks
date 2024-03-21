@@ -157,7 +157,7 @@ const attributes = {
 
     label: {
         type: 'string',
-        default: 'Button',
+        default: 'Explore Now',
     },
     link: {
         type: 'object',

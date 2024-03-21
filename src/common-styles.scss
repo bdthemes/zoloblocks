@@ -23,14 +23,13 @@
 
 .zolo-appender-btn {
     margin-top: 30px;
-    color: var(--zoloblocks-brand-button-color);
-    background-color: var(--zoloblocks-brand-color);
+    color: #000;
+    background-color: rgba(180, 187, 197, 0.36);
     border-radius: var(--zoloblocks-button-border-radius);
-    padding: 10px 16px;
-    font-weight: 700;
-    text-transform: uppercase;
+    padding: 12px 15px;
+    text-transform: capitalize;
     border: 0;
-    font-size: 12px;
+    font-size: 15px;
     display: flex;
     align-items: center;
     gap: 2px;
@@ -41,7 +40,7 @@
         display: block;
     }
     &:hover {
-        background-color: var(--zoloblocks-brand-color-hover);
+        background-color: rgba(180, 187, 197, 0.50);
     }
 }
 

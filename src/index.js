@@ -25,6 +25,7 @@ import '../blocks/fancy-list/src';
 import '../blocks/flipbox/src';
 import '../blocks/google-map/src';
 import '../blocks/image-gallery/src';
+import '../blocks/image-compare/src';
 import '../blocks/list/src';
 import '../blocks/post-carousel/src';
 import '../blocks/post-grid/src';
@@ -47,6 +48,9 @@ import '../blocks/team-child/src';
 import '../blocks/team-child/src';
 import '../blocks/team-grid/src';
 import '../blocks/team-grid/src';
+import '../blocks/list/src';
+import '../blocks/tab/src';
+import '../blocks/tabs/src';
 
 // inner blocks
 import '../blocks/text-field/src';

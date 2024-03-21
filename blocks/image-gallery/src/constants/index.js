@@ -35,6 +35,7 @@ export const IMAGE_BACKGROUND = 'imageBackground';
 export const IMAGE_HOVER_BOX_SHADOW = 'imageHoverBoxShadow';
 export const IMAGE_HOVER_BACKGROUND = 'imageHoverBackground';
 export const IMAGE_PADDING = 'imagePadding';
+export const IMAGE_HEIGHT = 'imageHeight';
 
 // Heading
 export const HEADING_BORDER = 'headingBorder';

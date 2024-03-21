@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextControl, TextareaControl } from '@wordpress/components';
+import { SelectControl, ToggleControl, TextControl, TextareaControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -86,6 +86,10 @@ function Inspector(props) {
 
         // close btn
         closeBtnColor,
+
+        // focus
+        focusBorderColor,
+        focusBorderWidth,
     } = attributes;
 
     const requiredProps = {
@@ -412,6 +416,21 @@ function Inspector(props) {
                                 forBorderRadius={false}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Field Focus', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ColorControl
+                                label={__('Color', 'zolo-blocks')}
+                                color={focusBorderColor}
+                                onChange={(color) => setAttributes({ focusBorderColor: color })}
+                            />
+                            <RangeControl
+                                label={__('Width', 'zolo-blocks')}
+                                value={focusBorderWidth}
+                                onChange={(value) => setAttributes({ focusBorderWidth: value })}
+                                min={0}
+                                max={10}
+                                step={1}
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Submit Button', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown

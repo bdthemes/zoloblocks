@@ -405,8 +405,8 @@ function Inspector(props) {
                                             {backIconType === 'icon' && (
                                                 <ZoloIconPicker
                                                     label={__('Select Icon', 'zolo-block')}
-                                                    value={frontIcon}
-                                                    onChange={(v) => setAttributes({ frontIcon: v })}
+                                                    value={backIcon}
+                                                    onChange={(v) => setAttributes({ backIcon: v })}
                                                 />
                                             )}
                                             {backIconType === 'image' && (

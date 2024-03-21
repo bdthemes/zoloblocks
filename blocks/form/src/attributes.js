@@ -8,7 +8,6 @@ const {
     generateBorderAttributies,
     generateTypographyAttributes,
     generateNormalBGAttributes,
-    generateGapAttributes,
 } = window.zoloModule;
 
 import {
@@ -174,6 +173,14 @@ const attributes = {
     messagePosition: {
         type: 'string',
         default: 'form_top',
+    },
+
+    // field focus
+    focusBorderColor: {
+        type: 'string',
+    },
+    focusBorderWidth: {
+        type: 'number',
     },
 
     // generator

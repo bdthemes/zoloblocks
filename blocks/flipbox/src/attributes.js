@@ -194,7 +194,7 @@ const attributes = {
     frontContent: {
         type: 'string',
         selector: 'zolo-flipbox-front-content',
-        default: 'Front Content Here',
+        default: 'This is the content on the front side of the flip box.',
     },
     showBackIcon: {
         type: 'boolean',
@@ -216,7 +216,7 @@ const attributes = {
     backContent: {
         type: 'string',
         selector: 'zolo-flipbox-back-content',
-        default: 'Back Content Here',
+        default: 'This is the content on the back side of the flip box.',
     },
     showBackLinkBtn: {
         type: 'boolean',

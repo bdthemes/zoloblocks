@@ -56,6 +56,8 @@ const Style = ({ props }) => {
         errMsgColor,
         sccMsgColor,
         closeBtnColor,
+        focusBorderColor,
+        focusBorderWidth,
     } = attributes;
 
     // label
@@ -331,6 +333,11 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
+        .${uniqueId} .zolo-contact-form input:focus, .${uniqueId} .zolo-contact-form select:focus, .${uniqueId} .zolo-contact-form textarea:focus {
+            ${focusBorderColor ? `border-color: ${focusBorderColor};` : ''} 
+            ${focusBorderWidth ? `outline-width: ${focusBorderWidth}px;` : ''}
+            ${focusBorderColor ? `outline-color: ${focusBorderColor};` : ''}
+        }
         .${uniqueId} .zolo-label {
             ${labelTypoDesk}
             color: ${labelColor};

@@ -2,7 +2,7 @@ import { BaseControl, TabPanel } from '@wordpress/components';
 import { NORMAL_HOVER } from '../../global/constants';
 import { __ } from '@wordpress/i18n';
 
-const TabPanelControl = ({ normalComponents, hoverComponents, options = [] }) => {
+const TabPanelControl = ({ normalComponents, hoverComponents, activeComponents='', options = [] }) => {
     const availableOptions = options.length > 0 ? options : NORMAL_HOVER;
     return (
         <>
@@ -21,6 +21,8 @@ const TabPanelControl = ({ normalComponents, hoverComponents, options = [] }) =>
                             return normalComponents;
                         } else if ('hover' === tab.name) {
                             return hoverComponents;
+                        }else if ('active' === tab.name) {
+                            return activeComponents;
                         }
                     }}
                 </TabPanel>

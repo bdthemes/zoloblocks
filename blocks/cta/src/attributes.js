@@ -150,7 +150,7 @@ const attributes = {
     },
     title: {
         type: 'string',
-        default: 'Call to Action',
+        default: 'Transform Your Website Today!',
     },
     titleTag: {
         type: 'string',
@@ -161,14 +161,14 @@ const attributes = {
     },
     description: {
         type: 'string',
-        default: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
+        default: 'Ready to take your website to the next level? With our powerful suite of tools and expert guidance, you can unlock its full potential.',
     },
     descriptionColor: {
         type: 'string',
     },
     label: {
         type: 'string',
-        default: 'Button',
+        default: 'Get the Deal Now',
     },
     Slabel: {
         type: 'string',
