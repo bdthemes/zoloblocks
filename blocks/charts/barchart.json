@@ -1,0 +1,105 @@
+   apexChartOptions  {
+    type: "object",
+    default: {
+      options: {
+        chart: {
+          type: "bar",
+          height: 350,
+          stacked: true,
+          stackType: "100%",
+          id: "apexchart-example",
+          dropShadow: {
+            enabled: true,
+            blur: 1,
+            opacity: 0.25,
+          },
+        },
+        title: {
+          text: "100% Stacked Bar",
+        },
+        subtitle: {
+          text: "Category Names as DataLabels inside bars",
+          align: "center",
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            horizontal: true,
+            dataLabels: {
+              position: "top",
+            },
+          },
+        },
+        dataLabels: {
+          enabled: false,
+          offsetX: -6,
+          style: {
+            fontSize: "12px",
+            colors: ["#fff"],
+          },
+        },
+        colors: ["#008FFB", "#FF4560"],
+        fill: {
+          type: "pattern",
+          opacity: 1,
+          pattern: {
+            style: [
+              "circles",
+              "slantedLines",
+              "verticalLines",
+              "horizontalLines",
+            ], // string or array of strings
+          },
+        },
+        legend: {
+          show: showLegend,
+          position: "top",
+          horizontalAlign: "left",
+          floating: true,
+          offsetY: -25,
+          offsetX: -5
+        },
+        stroke: {
+          show: true,
+          width: 1,
+          colors: ["#fff"],
+        },
+        tooltip: {
+          shared: true,
+          intersect: false,
+        },
+        xaxis: {
+          categories: ["January", "February", "March", "April", "May", "June"],
+        },
+        yaxis: {
+          min: -5,
+          max: 5,
+          title: {
+            // text: 'Age',
+          },
+          reversed: true,
+        },
+        grid: {
+          xaxis: {
+            lines: {
+              show: false,
+            },
+          },
+        },
+      },
+      series: [
+        {
+          name: "series-1",
+          data: [30, 40, 35, 50, 200, 210, 100, 49, 60, 70, 91, 125],
+        },
+        {
+          name: "series-2",
+          data: [35, 45, 50, 60, 220, 235, 120, 55, 65, 75, 96, 130],
+        },
+        {
+          name: "series-3",
+          data: [45, 55, 60, 70, 240, 255, 130, 65, 75, 85, 106, 140],
+        },
+      ],
+    },
+  },
