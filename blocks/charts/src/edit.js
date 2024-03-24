@@ -143,10 +143,9 @@ export default function Edit(props) {
       }
     }
     setPieChartOptions(newPieChartData)
-  }, []);
+  }, [chartTypes]);
 
 
-  console.log(pieChartOptions.pieChartData);
   useEffect(() => {
     handleUniqueId({
       BLOCK_PREFIX,
@@ -155,6 +154,7 @@ export default function Edit(props) {
       clientId,
     });
   }, []);
+
   const blockProps = useBlockProps({
     className: classnames(
       className,
@@ -162,6 +162,7 @@ export default function Edit(props) {
       classArrayToStr(parentClasses),
     ),
   });
+
   if (preview) {
     return (
       <img
@@ -178,8 +179,8 @@ export default function Edit(props) {
       )}
       <Style props={props} />
       <div {...blockProps}>
-        {
-          chartTypes !== 'pie' && (
+         {/* {
+          (chartTypes !== 'pie' || chartTypes !== 'donut') && (
             <Chart
               options={chartOptions.apexChartOptions.options}
               series={chartOptions.apexChartOptions.series}
@@ -188,20 +189,18 @@ export default function Edit(props) {
               height={320}
             />
           )
-        }
+        } */}
         {
-          chartTypes === 'pie' && (
+         ( chartTypes === 'pie' || chartTypes === 'donut') && (
             <Chart
               options={pieChartOptions.pieChartData.options}
               series={pieChartOptions.pieChartData.series}
-              type='pie'
+              type={chartTypes}
               width={"100%"}
               height={320}
             />
           )
         }
-
-
       </div>
     </>
   );

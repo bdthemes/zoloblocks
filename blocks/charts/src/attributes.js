@@ -37,7 +37,7 @@ const attributes = {
   // Generators
   ...generateTypographyAttributes(Object.values(typographyObjs)),
   ...generateResAlignmentAttributies({ SUB_TITLE_ALIGNMENT }),
-    chartTypes: {
+  chartTypes: {
     type: "string",
     default: "bar",
   },
@@ -84,6 +84,10 @@ const attributes = {
   type: "object",
   default: PieChartAttributes
 },
+  apexPieChartData: {
+    type: "string",
+    default: "",
+  },
   showTitle: {
     type: "boolean",
     default: false,

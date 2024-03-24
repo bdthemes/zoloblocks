@@ -90,68 +90,68 @@ function Inspector(props) {
 
 
   // Function to parse CSV data and prepare it for ApexCharts
-  function parseCSVData(csvData) {
-    // Split the CSV data by lines
-    const lines = csvData.split("\n");
+  // function parseCSVData(csvData) {
+  //   // Split the CSV data by lines
+  //   const lines = csvData.split("\n");
 
-    // Initialize arrays for labels and series data
-    let labels = [];
-    let series = [];
+  //   // Initialize arrays for labels and series data
+  //   let labels = [];
+  //   let series = [];
 
-    // Iterate over each line in the CSV data
-    for (let i = 0; i < lines.length; i++) {
-      // Split each line by comma to get individual values
-      const values = lines[i].split(",");
+  //   // Iterate over each line in the CSV data
+  //   for (let i = 0; i < lines.length; i++) {
+  //     // Split each line by comma to get individual values
+  //     const values = lines[i].split(",");
 
-      // If it's the first line, assume it contains series names
-      if (i === 0) {
-        // Iterate over the values starting from the second value
-        for (let j = 1; j < values.length; j++) {
-          const seriesName = values[j]; // Extract series name from first row
-          series.push({
-            name: seriesName,
-            data: [],
-          });
-        }
-      } else {
-        // Extract label from the first column
-        const label = values[0];
-        labels.push(label);
+  //     // If it's the first line, assume it contains series names
+  //     if (i === 0) {
+  //       // Iterate over the values starting from the second value
+  //       for (let j = 1; j < values.length; j++) {
+  //         const seriesName = values[j]; // Extract series name from first row
+  //         series.push({
+  //           name: seriesName,
+  //           data: [],
+  //         });
+  //       }
+  //     } else {
+  //       // Extract label from the first column
+  //       const label = values[0];
+  //       labels.push(label);
 
-        //if dataTypes == pie
+  //       //if dataTypes == pie
 
-        // Iterate over the values starting from the second value
-        for (let j = 1; j < values.length; j++) {
-          const dataPoint = parseFloat(values[j]); // Parse the value as float
-          if (!isNaN(dataPoint)) {
-            // Check if it's a valid number
-            series[j - 1].data.push(dataPoint);
-          }
-        }
-      }
-    }
+  //       // Iterate over the values starting from the second value
+  //       for (let j = 1; j < values.length; j++) {
+  //         const dataPoint = parseFloat(values[j]); // Parse the value as float
+  //         if (!isNaN(dataPoint)) {
+  //           // Check if it's a valid number
+  //           series[j - 1].data.push(dataPoint);
+  //         }
+  //       }
+  //     }
+  //   }
 
-    // Set the parsed data to the block attributes
-    // return { labels, series };
-    console.log('series', series, 'labels', labels);
-    // get object only first arry of the series
-    const seriess = series.map((data) => {
-      return data[0];
-    });
+  //   // Set the parsed data to the block attributes
+  //   // return { labels, series };
+  //   console.log('series', series, 'labels', labels);
+  //   // get object only first arry of the series
+  //   const seriess = series.map((data) => {
+  //     return data[0];
+  //   });
 
-    console.log(seriess);
+  //   console.log(seriess);
 
-    // setAttributes({
-    //   apexChartOptions: {
-    //     options: {
-    //       xaxis: {
-    //         categories: labels,
-    //       },
-    //     },
-    //     series: series,
-    //   },
-    // });
-  }
+  //   // setAttributes({
+  //   //   apexChartOptions: {
+  //   //     options: {
+  //   //       xaxis: {
+  //   //         categories: labels,
+  //   //       },
+  //   //     },
+  //   //     series: series,
+  //   //   },
+  //   // });
+  // }
   function parseCSVData(csvData) {
     const rows = csvData.trim().split('\n');
     const headers = rows[0].split(',');
@@ -168,10 +168,6 @@ function Inspector(props) {
       parsedData.push(obj);
     }
     const labels = parsedData.map((data) => data[headers[0]]);
-    //string to number conversion
-    // series.map((data) => {
-    //   return parseInt(data);
-    // });
    const series = headers.slice(1).map((header) => ({
     name: header,
     data: parsedData.map((data) => data[header]),
@@ -196,22 +192,6 @@ function Inspector(props) {
         series: pieSeries,
       },
     });
-
-    // setAttributes({
-    //   apexChartOptions: {
-    //     options: {
-    //       xaxis: {
-    //         categories: labels,
-    //       },
-    //     },
-    //     series: [
-    //       {
-    //         name: headers[1],
-    //         data: series,
-    //       },
-    //     ],
-    //   },
-    // });
   }
 
   if (sourceType === "input" && apexChartData !== "") {
