@@ -1,4 +1,4 @@
-   apexChartOptions  {
+   barChartData  {
     type: "object",
     default: {
       options: {

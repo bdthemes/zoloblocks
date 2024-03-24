@@ -17,11 +17,11 @@ export default function Edit(props) {
     preview,
     uniqueId,
     parentClasses,
-    apexChartOptions,
+    barChartData,
     chartTypes,
     uploadStatus,
     sourceType,
-    apexChartData,
+    chartInputData,
     showTitle,
     showSubTitle,
     showLegend,
@@ -38,83 +38,111 @@ export default function Edit(props) {
     pieChartData
   } = attributes;
 
-  const [chartOptions, setChartOptions] = useState({ apexChartOptions });
+  const [chartOptions, setChartOptions] = useState({ barChartData });
   const [pieChartOptions, setPieChartOptions] = useState({ pieChartData });
-  console.log('piechartdata', pieChartData);
   // set chart options
+
+  const getChartOptions = (showTitle, showSubTitle, showLegend, showTooltip, showGrid, showGridX, showGridY, titleObject, subTitleObject, legendObject, tooltipObject, gridObject, uid = '') => {
+    return {
+      dataLabels: { enabled: false },
+      colors: ["#00E396", "#FF4560", "#FEB019"],
+      ...(showTitle && {
+        title: {
+          text: titleObject.text,
+          align: titleObject.align,
+        },
+      }),
+      ...(showSubTitle && {
+        subtitle: {
+          text: subTitleObject.text,
+          align: subTitleObject.align,
+        },
+      }),
+      ...(showLegend && {
+        legend: {
+          show: showLegend,
+          position: legendObject.position,
+          horizontalAlign: legendObject.horizontalAlign,
+          floating: legendObject.floating,
+          offsetY: legendObject.offsetY,
+          offsetX: legendObject.offsetX,
+        },
+      }),
+      ...(showTooltip && {
+        tooltip: {
+          enabled: true,
+          shared: true,
+          followCursor: false,
+          intersect: false,
+          inverseOrder: false,
+          hideEmptySeries: true,
+          fillSeriesColor: false,
+          theme: tooltipObject.theme,
+        },
+      }),
+      ...(showGrid && {
+        grid: {
+          show: showGrid,
+          position: gridObject.position,
+          xaxis: { lines: { show: showGridX } },
+          yaxis: { lines: { show: showGridY } },
+        },
+      }),
+      chart: { id: `chart-${uid}` },
+    };
+  }
   useEffect(() => {
     const uid = uuidv4();
     const newChartOptions = {
-      // ...chartOptions,
-      apexChartOptions: {
-        ...chartOptions.apexChartOptions,
-        options: {
-          dataLabels: {
-            enabled: false,
-          },
-          colors: ["#00E396", "#FF4560", "#FEB019"],
-          ...(showTitle && {
-            title: {
-              text: titleObject.text,
-              align: titleObject.align,
-            },
-          }),
-          ...(showSubTitle && {
-            subtitle: {
-              text: subTitleObject.text,
-              align: subTitleObject.align,
-            },
-          }),
-          legend: {
-            show: showLegend,
-            ...(showLegend && {
-              position: legendObject.position,
-              horizontalAlign: legendObject.horizontalAlign,
-              floating: legendObject.floating,
-              offsetY: legendObject.offsetY,
-              offsetX: legendObject.offsetX,
-            }),
-          },
-          tooltip: {
-            enabled: showTooltip,
-            ...(showTooltip && {
-              shared: true,
-              followCursor: false,
-              intersect: false,
-              inverseOrder: false,
-              hideEmptySeries: true,
-              fillSeriesColor: false,
-              theme: tooltipObject.theme,
-            }),
-          },
-          grid: {
-            show: showGrid,
-            position: gridObject.position,
-            xaxis: {
-              lines: {
-                show: showGridX,
-              },
-            },
-            yaxis: {
-              lines: {
-                show: showGridY,
-              },
-            },
-          },
-          ...chartOptions.apexChartOptions.options,
-
-          chart: {
-            id: `chart-${uid}`,
-          },
-        },
+      ...chartOptions,
+      barChartData: {
+        ...chartOptions.barChartData,
+        options: getChartOptions(
+          showTitle,
+          showSubTitle,
+          showLegend,
+          showTooltip,
+          showGrid,
+          showGridX,
+          showGridY,
+          titleObject,
+          subTitleObject,
+          legendObject,
+          tooltipObject,
+          gridObject,
+          uid
+        ),
       },
     };
+    const newPieChartData = {
+      ...pieChartData,
+      pieChartData: {
+        ...pieChartOptions.pieChartData,
+        options: getChartOptions(
+          showTitle,
+          showSubTitle,
+          showLegend,
+          showTooltip,
+          showGrid,
+          showGridX,
+          showGridY,
+          titleObject,
+          subTitleObject,
+          legendObject,
+          tooltipObject,
+          gridObject,
+          uid
+        ),
+        series: pieChartData.series
+      }
+    }
+    setPieChartOptions(newPieChartData)
     setChartOptions(newChartOptions);
   }, [
     chartTypes,
     uploadStatus,
     sourceType,
-    apexChartData,
+    chartInputData,
     titleObject,
     subTitleObject,
     legendObject,
@@ -128,24 +156,6 @@ export default function Edit(props) {
     showLegend,
     showTooltip,
   ]);
-
-  useEffect(() => {
-    // startPie chart
-    const newPieChartData = {
-      ...pieChartData,
-      pieChartData: {
-        ...pieChartOptions.pieChartData,
-        options: {
-          labels: pieChartData.options.labels
-
-        },
-        series: pieChartData.series
-      }
-    }
-    setPieChartOptions(newPieChartData)
-  }, [chartTypes]);
-
-
   useEffect(() => {
     handleUniqueId({
       BLOCK_PREFIX,
@@ -162,12 +172,26 @@ export default function Edit(props) {
       classArrayToStr(parentClasses),
     ),
   });
+  const renderOptions = () => {
+    if (chartTypes === 'pie' || chartTypes === 'donut') {
+      return pieChartOptions.pieChartData.options;
+    } else {
+      return chartOptions.barChartData.options;
+    }
+  };
+  const renderSeries = () => {
+    if (chartTypes === 'pie' || chartTypes === 'donut') {
+      return pieChartOptions.pieChartData.series;
+    } else {
+      return chartOptions.barChartData.series;
+    }
+  };
 
   if (preview) {
     return (
       <img
         src={zoloParams.blocksPreview.starRating}
-        alt={__("Star Rating Preview", "zolo-blocks")}
+        alt={__("Charts Preview", "zolo-blocks")}
       />
     );
   }
@@ -179,28 +203,13 @@ export default function Edit(props) {
       )}
       <Style props={props} />
       <div {...blockProps}>
-         {/* {
-          (chartTypes !== 'pie' || chartTypes !== 'donut') && (
-            <Chart
-              options={chartOptions.apexChartOptions.options}
-              series={chartOptions.apexChartOptions.series}
-              type={chartTypes}
-              width={"100%"}
-              height={320}
-            />
-          )
-        } */}
-        {
-         ( chartTypes === 'pie' || chartTypes === 'donut') && (
-            <Chart
-              options={pieChartOptions.pieChartData.options}
-              series={pieChartOptions.pieChartData.series}
-              type={chartTypes}
-              width={"100%"}
-              height={320}
-            />
-          )
-        }
+        <Chart
+          options={renderOptions()}
+          series={renderSeries()}
+          type={chartTypes}
+          width={"100%"}
+          height={320}
+        />
       </div>
     </>
   );

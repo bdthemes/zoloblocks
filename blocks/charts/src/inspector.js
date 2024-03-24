@@ -46,13 +46,12 @@ import { DEFAULT_ALIGNS } from "../../../src/global/constants";
 
 function Inspector(props) {
   const { attributes, setAttributes } = props;
-  const { apexChartOptions } = attributes;
   const {
     resMode,
     chartTypes,
     sourceType,
     uploadStatus,
-    apexChartData,
+    chartInputData,
     // additional options
     showTitle,
     showSubTitle,
@@ -67,7 +66,6 @@ function Inspector(props) {
     legendObject,
     tooltipObject,
     gridObject,
-    pieChartData
   } = attributes;
 
   const requiredProps = {
@@ -88,70 +86,6 @@ function Inspector(props) {
     setAttributes({ uploadStatus: !uploadStatus });
   };
 
-
-  // Function to parse CSV data and prepare it for ApexCharts
-  // function parseCSVData(csvData) {
-  //   // Split the CSV data by lines
-  //   const lines = csvData.split("\n");
-
-  //   // Initialize arrays for labels and series data
-  //   let labels = [];
-  //   let series = [];
-
-  //   // Iterate over each line in the CSV data
-  //   for (let i = 0; i < lines.length; i++) {
-  //     // Split each line by comma to get individual values
-  //     const values = lines[i].split(",");
-
-  //     // If it's the first line, assume it contains series names
-  //     if (i === 0) {
-  //       // Iterate over the values starting from the second value
-  //       for (let j = 1; j < values.length; j++) {
-  //         const seriesName = values[j]; // Extract series name from first row
-  //         series.push({
-  //           name: seriesName,
-  //           data: [],
-  //         });
-  //       }
-  //     } else {
-  //       // Extract label from the first column
-  //       const label = values[0];
-  //       labels.push(label);
-
-  //       //if dataTypes == pie
-
-  //       // Iterate over the values starting from the second value
-  //       for (let j = 1; j < values.length; j++) {
-  //         const dataPoint = parseFloat(values[j]); // Parse the value as float
-  //         if (!isNaN(dataPoint)) {
-  //           // Check if it's a valid number
-  //           series[j - 1].data.push(dataPoint);
-  //         }
-  //       }
-  //     }
-  //   }
-
-  //   // Set the parsed data to the block attributes
-  //   // return { labels, series };
-  //   console.log('series', series, 'labels', labels);
-  //   // get object only first arry of the series
-  //   const seriess = series.map((data) => {
-  //     return data[0];
-  //   });
-
-  //   console.log(seriess);
-
-  //   // setAttributes({
-  //   //   apexChartOptions: {
-  //   //     options: {
-  //   //       xaxis: {
-  //   //         categories: labels,
-  //   //       },
-  //   //     },
-  //   //     series: series,
-  //   //   },
-  //   // });
-  // }
   function parseCSVData(csvData) {
     const rows = csvData.trim().split('\n');
     const headers = rows[0].split(',');
@@ -179,7 +113,7 @@ function Inspector(props) {
     // return parsedData;
     console.log('parsedata', labels, series);
     setAttributes({
-      apexChartOptions: {
+      barChartData: {
         options: {
           labels: labels,
         },
@@ -194,12 +128,12 @@ function Inspector(props) {
     });
   }
 
-  if (sourceType === "input" && apexChartData !== "") {
+  if (sourceType === "input" && chartInputData !== "") {
     useEffect(() => {
       if (!uploadStatus) {
-        parseCSVData(apexChartData);
+        parseCSVData(chartInputData);
       }
-    }, [apexChartData]);
+    }, [chartInputData]);
   }
 
 
@@ -230,7 +164,7 @@ function Inspector(props) {
                     <div>
                       <Button
                         style={{ marginBottom: "10px" }}
-                        isSecondary
+                        variant="secondary"
                         onClick={openFileDialog}
                       >
                         Upload CSV File
@@ -242,8 +176,9 @@ function Inspector(props) {
               {sourceType == "input" && (
                 <TextareaControl
                   label={__("Enter chart data as CSV format")}
-                  value={apexChartData}
-                  onChange={(value) => setAttributes({ apexChartData: value })}
+                  value={chartInputData}
+                  rows={15}
+                  onChange={(value) => setAttributes({ chartInputData: value })}
                 />
               )}
               <SelectControl
@@ -544,19 +479,6 @@ function Inspector(props) {
                     })
                   }
                 />
-                {/* <SelectControl
-                  label={__("Theme", "zolo-blocks")}
-                  value={tooltipObject.theme}
-                  options={THEME_TYPES}
-                  onChange={(v) =>
-                    setAttributes({
-                      tooltipObject: {
-                        ...tooltipObject,
-                        theme: v,
-                      },
-                    })
-                  }
-                /> */}
                 <CardDivider />
                 <IconicBtnGroup
                   label={__("Theme", "zolo-blocks")}

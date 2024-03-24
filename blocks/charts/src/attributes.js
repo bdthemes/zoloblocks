@@ -5,6 +5,7 @@ const { generateResRangeAttributies, generateTypographyAttributes, generateResAl
 
 import { SUB_TITLE_ALIGNMENT } from './constants';
 import PieChartAttributes from './attributes/piechart'
+import barChartAttributes from './attributes/barchart'
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -49,45 +50,20 @@ const attributes = {
     type: "boolean",
     default: false,
   },
-  apexChartOptions: {
+  barChartData: {
     type: "object",
-    default: {
-      options: {
-        chart: {
-          id: "apexchart-example",
-        },
-        xaxis: {
-          categories: ["January", "February", "March", "April", "May", "June"],
-        },
-      },
-      series: [
-        {
-          name: "series-1",
-          data: [30, 40, 35, 50, 200, 210, 100, 49, 60, 70, 91, 125],
-        },
-        {
-          name: "series-2",
-          data: [35, 45, 50, 60, 220, 235, 120, 55, 65, 75, 96, 130],
-        },
-        {
-          name: "series-3",
-          data: [45, 55, 60, 70, 240, 255, 130, 65, 75, 85, 106, 140],
-        },
-      ],
-    },
+    default: barChartAttributes,
   },
-  apexChartData: {
+
+  pieChartData: {
+    type: "object",
+    default: PieChartAttributes
+  },
+  chartInputData: {
     type: "string",
     default: "",
   },
-  pieChartData:{
-  type: "object",
-  default: PieChartAttributes
-},
-  apexPieChartData: {
-    type: "string",
-    default: "",
-  },
+
   showTitle: {
     type: "boolean",
     default: false,
