@@ -44,7 +44,7 @@ const attributes = {
   },
   sourceType: {
     type: "string",
-    default: "input",
+    default: "upload",
   },
   uploadStatus: {
     type: "boolean",
@@ -57,7 +57,7 @@ const attributes = {
 
   pieChartData: {
     type: "object",
-    default: PieChartAttributes
+    default: PieChartAttributes,
   },
   chartInputData: {
     type: "string",
@@ -73,6 +73,15 @@ const attributes = {
     default: {
       text: "Zolo Block Advanced Chart",
       align: "left",
+      style: {
+        color: "#000000",
+        fontSize: 18,
+        fontWeight: 500,
+        lineHeight: 1.2,
+        letterSpacing: 0,
+        textAlign: "left",
+        textTransform: "none",
+      },
     },
   },
   showSubTitle: {
@@ -84,6 +93,15 @@ const attributes = {
     default: {
       text: "Category Names as DataLabels inside bars",
       align: "center",
+      style: {
+        color: "#000000",
+        fontSize: 14,
+        fontWeight: 500,
+        lineHeight: 1.2,
+        letterSpacing: 0,
+        textAlign: "left",
+        textTransform: "none",
+      },
     },
   },
   showLegend: {
@@ -98,6 +116,10 @@ const attributes = {
       floating: false,
       offsetY: 8,
       offsetX: 0,
+      lebels: {
+        colors: undefined,
+        useSeriesColors: true,
+      },
     },
   },
   showTooltip: {
@@ -126,17 +148,7 @@ const attributes = {
     default: {
       borderColor: "#90A4AE",
       strokeDashArray: 0,
-      position: "front",
-      xaxis: {
-        lines: {
-          show: false,
-        },
-      },
-      yaxis: {
-        lines: {
-          show: false,
-        },
-      },
+      position: "back",
       row: {
         colors: undefined,
         opacity: 0.5,
@@ -153,17 +165,49 @@ const attributes = {
       },
     },
   },
-  showGridX: {
-    type: "boolean",
-    default: false,
-  },
   showGridY: {
     type: "boolean",
     default: false,
   },
+  showGridX: {
+    type: "boolean",
+    default: true,
+  },
   showDropshadow: {
     type: "boolean",
     default: false,
+  },
+  chartBackground: {
+    type: "string",
+    default: "#ffffff",
+  },
+  barChartLength: {
+    type: "number",
+    default: 3,
+  },
+  pieChartLength: {
+    type: "number",
+    default: 2,
+  },
+  pieChartColor: {
+    type: "array",
+    default: [],
+  },
+  xAxisColor:{
+    type: "string",
+    default: "#000000",
+  },
+  xAxisFontSize:{
+    type: "number",
+    default: 12,
+  },
+  yAxisColor:{
+    type: "string",
+    default: "#000000",
+  },
+  yAxisFontSize:{
+    type: "number",
+    default: 12,
   },
 };
 

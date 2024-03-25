@@ -1,17 +1,13 @@
-import { render } from '@wordpress/element';
-import StarRating from '../../../src/controls/star-rating';
+document.addEventListener("DOMContentLoaded", () => {
+  const apexChartsItems = document.querySelectorAll(".wp-block-zolo-charts");
 
-// const starRating = ({ rating }) => {
-//     return <StarRating rating={rating} total={5} />;
-// };
-
-// render on page load
-document.addEventListener('DOMContentLoaded', () => {
-  const starRatingItems = document.querySelectorAll('.zolo-star-rating');
-  if (starRatingItems.length) {
-    starRatingItems.forEach((item) => {
-      const ratingValue = item.dataset.rating;
-      render(<StarRating rating={ratingValue} total={5} />, item);
+  if (apexChartsItems.length) {
+    apexChartsItems.forEach((item) => {
+      const uid = item.dataset.uid; // Extract UID from dataset
+      const data = JSON.parse(item.dataset.zoloapexcharts); // Extract data from dataset
+      console.log(data.barChartData.options);
+      var chart = new ApexCharts(item, data.barChartData.options);
+      chart.render();
     });
   }
 });

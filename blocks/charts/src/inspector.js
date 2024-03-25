@@ -23,6 +23,7 @@ import { __ } from "@wordpress/i18n";
 const {
   ResAlignmentControl,
   ResRangeControl,
+  SimpleRangeControl,
   ColorControl,
   TypographyDropdown,
   HeaderTabs,
@@ -43,7 +44,6 @@ import {
   GRID_POSITION,
 } from "./constants";
 import { DEFAULT_ALIGNS } from "../../../src/global/constants";
-
 function Inspector(props) {
   const { attributes, setAttributes } = props;
   const {
@@ -58,15 +58,22 @@ function Inspector(props) {
     showLegend,
     showTooltip,
     showGrid,
-    showGridX,
     showGridY,
+    showGridX,
     showDropshadow,
     titleObject,
     subTitleObject,
     legendObject,
     tooltipObject,
     gridObject,
+    chartBackground,
+    pieChartLength,
+    barChartLength,
+    xAxisColor,
+    yAxisColor,
   } = attributes;
+
+  console.log("attributes", xAxisColor);
 
   const requiredProps = {
     attributes,
@@ -87,12 +94,12 @@ function Inspector(props) {
   };
 
   function parseCSVData(csvData) {
-    const rows = csvData.trim().split('\n');
-    const headers = rows[0].split(',');
+    const rows = csvData.trim().split("\n");
+    const headers = rows[0].split(",");
     const parsedData = [];
 
     for (let i = 1; i < rows.length; i++) {
-      const rowData = rows[i].split(',');
+      const rowData = rows[i].split(",");
       const obj = {};
 
       for (let j = 0; j < headers.length; j++) {
@@ -102,16 +109,15 @@ function Inspector(props) {
       parsedData.push(obj);
     }
     const labels = parsedData.map((data) => data[headers[0]]);
-   const series = headers.slice(1).map((header) => ({
-    name: header,
-    data: parsedData.map((data) => data[header]),
-  }));
- const pieSeries = parsedData.map((data) => data[headers[1]]).map(i => Number(i));
+    const series = headers.slice(1).map((header) => ({
+      name: header,
+      data: parsedData.map((data) => data[header]),
+    }));
+    const pieSeries = parsedData
+      .map((data, index) => data[headers[1]])
+      .map((i) => Number(i));
 
 
-
-    // return parsedData;
-    console.log('parsedata', labels, series);
     setAttributes({
       barChartData: {
         options: {
@@ -119,12 +125,14 @@ function Inspector(props) {
         },
         series: series,
       },
-      pieChartData:{
+      pieChartData: {
         options: {
           labels: labels,
         },
         series: pieSeries,
       },
+      pieChartLength: pieSeries.length,
+      barChartLength: series.length,
     });
   }
 
@@ -136,11 +144,10 @@ function Inspector(props) {
     }, [chartInputData]);
   }
 
-
   return (
     <InspectorControls key="controls">
       <HeaderTabs
-        block="zolo/star-rating"
+        block="zolo/charts"
         attributes={attributes}
         setAttributes={setAttributes}
         generalTab={
@@ -177,7 +184,7 @@ function Inspector(props) {
                 <TextareaControl
                   label={__("Enter chart data as CSV format")}
                   value={chartInputData}
-                  rows={15}
+                  rows={10}
                   onChange={(value) => setAttributes({ chartInputData: value })}
                 />
               )}
@@ -238,7 +245,7 @@ function Inspector(props) {
                   })
                 }
               />
-              <ToggleControl
+              {/* <ToggleControl
                 label={__("Show Dropshadow", "zolo-blocks")}
                 checked={showDropshadow}
                 onChange={() =>
@@ -246,7 +253,7 @@ function Inspector(props) {
                     showDropshadow: !showDropshadow,
                   })
                 }
-              />
+              /> */}
             </ZoloPanelBody>
             {showTitle && (
               <ZoloPanelBody
@@ -537,13 +544,178 @@ function Inspector(props) {
             )}
           </>
         }
+        styleTab={
+          <>
+            <ZoloPanelBody
+              title={__("Colors", "zolo-blocks")}
+              firstOpen={true}
+              stylePanel={true}
+              panelProps={props}
+            >
+              <ColorControl
+                label={__("Background Color", "zolo-blocks")}
+                color={chartBackground}
+                onChange={(color) => setAttributes({ chartBackground: color })}
+              />
+              <ColorControl
+                label={__("xAxis Color", "zolo-blocks")}
+                color={xAxisColor}
+                onChange={(color) => setAttributes({ xAxisColor: color })}
+              />
+              <ColorControl
+                label={__("yAxis Color", "zolo-blocks")}
+                color={yAxisColor}
+                onChange={(color) => setAttributes({ yAxisColor: color })}
+              />
+              <CardDivider />
+              {(chartTypes === "pie" || chartTypes === "donut") &&
+                //loop for each chart length
+                Array.from({ length: pieChartLength }, (_, index) => index).map(
+                  (i) => (
+                    <ColorControl
+                      label={__(`${chartTypes} color ${i + 1}`, "zolo-blocks")}
+                      color={attributes.pieChartColor[i]}
+                      onChange={(color) => {
+                        const pieChartColor = [...attributes.pieChartColor];
+                        pieChartColor[i] = color;
+                        setAttributes({ pieChartColor });
+                      }}
+                    />
+                  ),
+                )}
+              {(chartTypes !== "pie" || chartTypes !== "donut") &&
+                //loop for each chart length
+                Array.from({ length: barChartLength }, (_, index) => index).map(
+                  (i) => (
+                    <ColorControl
+                      label={__(`${chartTypes} color ${i + 1}`, "zolo-blocks")}
+                      color={attributes.pieChartColor[i]}
+                      onChange={(color) => {
+                        const pieChartColor = [...attributes.pieChartColor];
+                        pieChartColor[i] = color;
+                        setAttributes({ pieChartColor });
+                      }}
+                    />
+                  ),
+                )}
+            </ZoloPanelBody>
+            {showTitle && (
+              <>
+                <ZoloPanelBody
+                  title={__("Title", "zolo-blocks")}
+                  firstOpen={false}
+                  panelProps={props}
+                >
+                  <ColorControl
+                    label={__("Title Color", "zolo-blocks")}
+                    color={titleObject.style.color}
+                    onChange={(color) =>
+                      setAttributes({
+                        titleObject: {
+                          ...titleObject,
+                          style: {
+                            ...titleObject.style,
+                            color: color,
+                          },
+                        },
+                      })
+                    }
+                  />
+                  <SimpleRangeControl
+                    label={__("Title Font Size", "zolo-blocks")}
+                    value={titleObject.style.fontSize}
+                    onChange={(fontSize) =>
+                      setAttributes({
+                        titleObject: {
+                          ...titleObject,
+                          style: {
+                            ...titleObject.style,
+                            fontSize: fontSize,
+                          },
+                        },
+                      })
+                    }
+                    min={0}
+                    max={100}
+                  />
+                </ZoloPanelBody>
+              </>
+            )}
+            {showSubTitle && (
+              <>
+                <ZoloPanelBody
+                  title={__("Sub Title", "zolo-blocks")}
+                  firstOpen={false}
+                  panelProps={props}
+                >
+                  <ColorControl
+                    label={__("Sub Title Color", "zolo-blocks")}
+                    color={subTitleObject.style.color}
+                    onChange={(color) =>
+                      setAttributes({
+                        subTitleObject: {
+                          ...subTitleObject,
+                          style: {
+                            ...subTitleObject.style,
+                            color: color,
+                          },
+                        },
+                      })
+                    }
+                  />
+                  <SimpleRangeControl
+                    label={__("Sub Title Font Size", "zolo-blocks")}
+                    value={subTitleObject.style.fontSize}
+                    onChange={(fontSize) =>
+                      setAttributes({
+                        subTitleObject: {
+                          ...subTitleObject,
+                          style: {
+                            ...subTitleObject.style,
+                            fontSize: fontSize,
+                          },
+                        },
+                      })
+                    }
+                    min={0}
+                    max={100}
+                  />
+                </ZoloPanelBody>
+              </>
+            )}
+            {showLegend && (
+              <>
+                <ZoloPanelBody
+                  title={__("Legend", "zolo-blocks")}
+                  firstOpen={false}
+                  panelProps={props}
+                >
+                  <ColorControl
+                    label={__("Legend Color", "zolo-blocks")}
+                    color={legendObject.lebels.colors}
+                    onChange={(color) =>
+                      setAttributes({
+                        legendObject: {
+                          ...legendObject,
+                          lebels: {
+                            colors: color,
+                          },
+                        },
+                      })
+                    }
+                  />
+                </ZoloPanelBody>
+              </>
+            )}
+          </>
+        }
         advancedTab={
           <>
             <AdvancedOptions
               attributes={attributes}
               setAttributes={setAttributes}
               requiredProps={requiredProps}
-              block="zolo/star-rating"
+              block="zolo/charts"
             />
           </>
         }

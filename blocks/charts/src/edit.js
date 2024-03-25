@@ -32,30 +32,54 @@ export default function Edit(props) {
     subTitleObject,
     legendObject,
     tooltipObject,
-    showGridX,
     showGridY,
+    showGridX,
     gridObject,
-    pieChartData
+    pieChartData,
+    chartBackground,
+    pieChartColor,
+    xAxisColor,
+    xAxisFontSize,
+    yAxisColor,
+    yAxisFontSize,
   } = attributes;
 
   const [chartOptions, setChartOptions] = useState({ barChartData });
   const [pieChartOptions, setPieChartOptions] = useState({ pieChartData });
   // set chart options
 
-  const getChartOptions = (showTitle, showSubTitle, showLegend, showTooltip, showGrid, showGridX, showGridY, titleObject, subTitleObject, legendObject, tooltipObject, gridObject, uid = '') => {
+  const getChartOptions = (showTitle, showSubTitle, showLegend, showTooltip, showGrid, showGridY, showGridX, titleObject, subTitleObject, legendObject, tooltipObject, gridObject, uid = '') => {
     return {
       dataLabels: { enabled: false },
-      colors: ["#00E396", "#FF4560", "#FEB019"],
+      colors: pieChartColor,
       ...(showTitle && {
         title: {
           text: titleObject.text,
           align: titleObject.align,
+          style: {
+            color: titleObject.style.color,
+            fontSize: titleObject.style.fontSize,
+            // fontWeight: titleObject.style.fontWeight,
+            // lineHeight: titleObject.style.lineHeight,
+            // letterSpacing: titleObject.style.letterSpacing,
+            // textAlign: titleObject.style.textAlign,
+            // textTransform: titleObject.style.textTransform,
+          },
         },
       }),
       ...(showSubTitle && {
         subtitle: {
           text: subTitleObject.text,
           align: subTitleObject.align,
+          style: {
+            color: subTitleObject.style.color,
+            fontSize: subTitleObject.style.fontSize,
+            // fontWeight: subTitleObject.style.fontWeight,
+            // lineHeight: subTitleObject.style.lineHeight,
+            // letterSpacing: subTitleObject.style.letterSpacing,
+            // textAlign: subTitleObject.style.textAlign,
+            // textTransform: subTitleObject.style.textTransform,
+          },
         },
       }),
       ...(showLegend && {
@@ -66,6 +90,12 @@ export default function Edit(props) {
           floating: legendObject.floating,
           offsetY: legendObject.offsetY,
           offsetX: legendObject.offsetX,
+          lebels: {
+           style:{
+             colors: '#f00',
+            // useSeriesColors: legendObject.lebels.useSeriesColors,
+           }
+          },
         },
       }),
       ...(showTooltip && {
@@ -84,11 +114,30 @@ export default function Edit(props) {
         grid: {
           show: showGrid,
           position: gridObject.position,
-          xaxis: { lines: { show: showGridX } },
-          yaxis: { lines: { show: showGridY } },
+          xaxis: { lines: { show: showGridY } },
+          yaxis: { lines: { show: showGridX } },
         },
       }),
-      chart: { id: `chart-${uid}` },
+      chart: {
+        id: `chart-${uid}`,
+        background: chartBackground,
+      },
+      xaxis: {
+        labels: {
+          style: {
+            colors: xAxisColor,
+            fontSize: xAxisFontSize,
+          },
+        },
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: yAxisColor,
+            fontSize: yAxisFontSize,
+          },
+        },
+      },
     };
   }
   useEffect(() => {
@@ -103,14 +152,14 @@ export default function Edit(props) {
           showLegend,
           showTooltip,
           showGrid,
-          showGridX,
           showGridY,
+          showGridX,
           titleObject,
           subTitleObject,
           legendObject,
           tooltipObject,
           gridObject,
-          uid
+          uid,
         ),
       },
     };
@@ -124,19 +173,19 @@ export default function Edit(props) {
           showLegend,
           showTooltip,
           showGrid,
-          showGridX,
           showGridY,
+          showGridX,
           titleObject,
           subTitleObject,
           legendObject,
           tooltipObject,
           gridObject,
-          uid
+          uid,
         ),
-        series: pieChartData.series
-      }
-    }
-    setPieChartOptions(newPieChartData)
+        series: pieChartData.series,
+      },
+    };
+    setPieChartOptions(newPieChartData);
     setChartOptions(newChartOptions);
   }, [
     chartTypes,
@@ -148,13 +197,19 @@ export default function Edit(props) {
     legendObject,
     tooltipObject,
     showGrid,
-    showGridX,
     showGridY,
+    showGridX,
     showDropshadow,
     showTitle,
     showSubTitle,
     showLegend,
     showTooltip,
+    chartBackground,
+    pieChartColor,
+    xAxisColor,
+    xAxisFontSize,
+    yAxisColor,
+    yAxisFontSize,
   ]);
   useEffect(() => {
     handleUniqueId({
