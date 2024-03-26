@@ -17,8 +17,26 @@ class Recaptcha {
      * @return void
      */
     public function __construct() {
+        add_filter( 'render_block', [ $this, 'zolo_form_recaptcha' ], 10, 2 ); 
         add_action( 'wp_enqueue_scripts', [ $this, 'zolo_recaptcha_script' ] );
-        add_action( 'wp_footer', [ $this, 'zolo_recaptcha_handle_script' ] );
+        add_action( 'wp_head', [ $this, 'zolo_recaptcha_handle_script' ] );
+    }
+
+    /**
+     * Zolo Form ReCaptcha
+     */
+    public function zolo_form_recaptcha( $block_content, $block ) {
+        if( 'zolo/form' === $block['blockName'] ) {
+            $enable_recaptcha = get_option('zolo_enable_recaptcha');
+            $recaptcha_site_key = get_option('zolo_recaptcha_site_key');
+
+            if ( $enable_recaptcha && $recaptcha_site_key ) {
+                // add stie key to submit button 
+                $block_content = str_replace( '<button', '<button data-sitekey="' . $recaptcha_site_key . '"', $block_content );
+            }
+        }
+
+        return $block_content;
     }
 
     /**
@@ -32,21 +50,13 @@ class Recaptcha {
             $enable_recaptcha = get_option('zolo_enable_recaptcha');
 
             if ($enable_recaptcha) {
-                $recaptcha_url         = 'https://www.google.com/recaptcha/api.js';
-                $recaptcha_site_key    = get_option('zolo_recaptcha_site_key');
-
-                $recaptcha_url = add_query_arg(
-                    [
-                        'render' => $recaptcha_site_key
-                    ],
-                    'https://www.google.com/recaptcha/api.js' 
-                );
-
+                $recaptcha_url      = 'https://www.google.com/recaptcha/api.js';
+                $recaptcha_site_key = get_option('zolo_recaptcha_site_key');
                 if( $recaptcha_site_key ){
-                    wp_enqueue_script('zolo-recaptcha', $recaptcha_url, [], ZOLO_VERSION, true);
+                    wp_enqueue_script('zolo-recaptcha', $recaptcha_url, [], ZOLO_VERSION, false);
                 }
-                
             }
+
         }
     }
 
@@ -63,46 +73,9 @@ class Recaptcha {
             }
 
         ?>
-            <script>
-                const zoloRecaptchaSiteKey = '<?php echo esc_html( $recaptcha_site_key ); ?>';
-                function zoloRecaptchaCallback() {
-                    const recaptchaElements = document.querySelectorAll('.zolo-contact-form');
-                    if (recaptchaElements.length) {
-                        recaptchaElements.forEach(function (element) {
-                            let reCaptchaWrapper = element.querySelector('.zolo-gcaptcha-wrapper');
-
-                            if( '<?php echo esc_html($recaptcha_api_version); ?>' === 'v2'  ) {
-                                // create recaptcha widget for version 2
-                                let reCaptchaPlaceholder = document.createElement('div');
-                                reCaptchaPlaceholder.classList.add('zolo-gcaptcha-v2');
-                                reCaptchaWrapper.appendChild(reCaptchaPlaceholder);
-                                
-                                grecaptcha.render(reCaptchaPlaceholder, {
-                                    'sitekey': zoloRecaptchaSiteKey
-                                }); 
-
-                            }
-
-                            if( '<?php echo esc_html($recaptcha_api_version); ?>' === 'v3' ) {
-
-                                // create recaptcha widget for version 3
-                                let reCaptchaV3 = document.createElement('input');
-                                reCaptchaV3.setAttribute('type', 'hidden');
-                                reCaptchaV3.setAttribute('name', 'zolo_recaptcha_v3');
-                                reCaptchaV3.setAttribute('value', '');
-                                reCaptchaWrapper.appendChild(reCaptchaV3);
-
-                                grecaptcha.ready(function() {
-                                    grecaptcha.execute(zoloRecaptchaSiteKey, {action: 'homepage'}).then(function(token) {
-                                        reCaptchaV3.value = token;
-                                    });
-                                });
-                            }
-
-                        });
-                    }
-                }
-            </script>
+<script>
+    function zoloFormSubmit(e){let o=document.querySelectorAll(".zolo-contact-form");o.length>0&&o.forEach(function(o){let r=o.dataset.formId,s=o.parentNode.querySelector(".zolo-form-msg"),t=o.parentNode.querySelector(".zolo-msg-desc"),n=o.parentNode.querySelector(".zolo-msg-close");if(new Pristine(o).validate()){let a=new FormData(o),l=[...a.entries()];l.push(["formId",r]),l.push(["g-recaptcha-response",e]),l.push(["nonce",zoloSettings.zolo_nonce]);let c=l.reduce((e,[o,r])=>(e[o]="file"===o?r.name:r,e),{}),i=JSON.stringify(c),d=new XMLHttpRequest;d.open("POST",zoloSettings.ajaxurl,!0),d.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),d.onreadystatechange=function(){if(d.readyState===XMLHttpRequest.DONE){if(200===d.status){let e=JSON.parse(d.responseText),{recaptchaStatus:r,recaptchaFailMessage:a,validationStatus:l,validationMessage:c,successStatus:i,successMessage:f,failStatus:m,failMessage:u,nonceValidationFail:p}=e;r&&(t.innerHTML=a,s.classList.add("zolo-form-error-msg","show")),(l||p)&&(t.innerHTML=c,s.classList.add("zolo-form-error-msg","show")),i&&(t.innerHTML=f,s.classList.add("zolo-form-success-msg","show")),m&&(t.innerHTML=u,s.classList.add("zolo-form-error-msg","show")),o.reset(),setTimeout(()=>{t.innerHTML="",s.classList.remove("validation-error","success","fail","show")},5e3),n.addEventListener("click",function(){t.innerHTML="",s.classList.remove("validation-error","success","fail","show")})}else console.error("Error:",d.statusText)}},d.send("action=send_form_data&formData="+encodeURIComponent(i))}})}
+</script>
         <?php
     }
 }

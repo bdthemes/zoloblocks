@@ -2,22 +2,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const zoloForms = document.querySelectorAll('.zolo-contact-form');
     if (zoloForms.length > 0) {
         zoloForms.forEach((form) => {
+            const reCaptcha = form.dataset.recaptcha == 'true' ? true : false;
+
+            if (reCaptcha) {
+                return;
+            }
+
             const formId = form.dataset.formId;
             let formNoticeContainer = form.parentNode.querySelector('.zolo-form-msg');
             let formNotice = form.parentNode.querySelector('.zolo-msg-desc');
             const closeBtn = form.parentNode.querySelector('.zolo-msg-close');
-            // const reCaptcha = form.dataset.gcaptcha === 'true' ? true : false;
 
             // form validation
             let pristine = new Pristine(form);
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 let valid = pristine.validate();
-
-                // // reCaptcha validation
-                // if (reCaptcha) {
-
-                // }
 
                 if (valid) {
                     const formData = new FormData(form);

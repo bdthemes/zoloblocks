@@ -50,15 +50,20 @@ const Save = ({ attributes }) => {
             <form
                 className="zolo-contact-form zolo-contact-form-style-1 zolo-field-icon-style-1 form"
                 data-form-id={formId}
-                data-gcaptcha={reCaptcha}
+                data-recaptcha={reCaptcha}
             >
                 <InnerBlocks.Content />
-                {reCaptcha && (
-                    <input type="hidden" name="recaptcha_response" className={`zb_recaptcha_response zb_recaptcha_${uniqueId}`} />
-                )}
+                {reCaptcha && <input type="hidden" name="g-recaptcha-response" className="zolo-g-recaptcha-response" />}
                 <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">
                     <div className="zolo-submit-btn">
-                        <button type="submit" className={iconPosition}>
+                        <button
+                            type="submit"
+                            className={classnames(iconPosition, reCaptcha ? 'g-recaptcha' : '')}
+                            {...(reCaptcha && {
+                                'data-callback': 'zoloFormSubmit',
+                                'data-action': 'submit',
+                            })}
+                        >
                             {btnLabel || __('Submit Now', 'zolo-blocks')}
                         </button>
                     </div>
