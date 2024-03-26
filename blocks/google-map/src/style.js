@@ -10,6 +10,7 @@ const { generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder, gen
 
 import { MAP_BRADIUS, MAP_HEIGHT } from './constants';
 import { MINFO_TYPO } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -85,9 +86,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.googleMap.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.googleMap.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.googleMap.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

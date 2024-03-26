@@ -44,6 +44,7 @@ import {
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -438,9 +439,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.counter.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.counter.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.counter.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

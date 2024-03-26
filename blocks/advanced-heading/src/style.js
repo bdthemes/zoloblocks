@@ -3,6 +3,7 @@
  */
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -661,9 +662,9 @@ export default function Style({ props }) {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.advancedHeading.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.advancedHeading.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.advancedHeading.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

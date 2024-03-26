@@ -41,6 +41,7 @@ import {
 } from './constants';
 
 import { BEFORE_TYPO } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -165,6 +166,7 @@ const Style = ({ props }) => {
         property: 'border-top-width',
         attributes,
     });
+    
     const {
         desktopRangeStyle: desktopArrowSizeRight,
         tabRangeStyle: tabArrowSizeRight,
@@ -174,6 +176,7 @@ const Style = ({ props }) => {
         property: 'border-right-width',
         attributes,
     });
+
     const {
         desktopRangeStyle: desktopArrowSizeBottom,
         tabRangeStyle: tabArrowSizeBottom,
@@ -183,8 +186,6 @@ const Style = ({ props }) => {
         property: 'border-bottom-width',
         attributes,
     });
-
-
 
     const {
         desktopBorderStyle: desktopArrowBorder,
@@ -321,15 +322,14 @@ const Style = ({ props }) => {
          ${MobArrowtBg.replace(';', '!important')};
      }
   	`;
-
     return (
         <>
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.imageCompare.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.imageCompare.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.imageCompare.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

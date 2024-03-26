@@ -216,7 +216,7 @@ function Inspector(props) {
                                 </>
                             )}
 
-                            {(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && (
+                            { (preset == 'zolo-list-style-1' && layout == 'grid'  || preset == 'zolo-list-style-2') && (
                                 <ResAlignmentControl
                                     label={__('Horizantal Alignment', 'zolo-blocks')}
                                     controlName={ITEM_ALIGNMENT}

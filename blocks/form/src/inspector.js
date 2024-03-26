@@ -4,6 +4,9 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, ToggleControl, TextControl, TextareaControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
+import apiFetch from '@wordpress/api-fetch';
+import { useEffect, useState } from '@wordpress/element';
 
 import objAttributes from './attributes';
 
@@ -37,7 +40,6 @@ import {
 
 import { LABEL_TYPO, FIELD_TYPO, BTN_TYPO, ERR_MSG_TYPO, SCC_MSG_TYPO } from './constants/typoPrefixConstants';
 import { TEXT_ALIGN_OPTIONS, ICON_HPOSITIONS } from '../../../src/global/constants';
-import { applyFilters } from '@wordpress/hooks';
 
 const {
     ResRangeControl,
@@ -90,6 +92,9 @@ function Inspector(props) {
         // focus
         focusBorderColor,
         focusBorderWidth,
+
+        // reCaptcha
+        reCaptcha,
     } = attributes;
 
     const requiredProps = {
@@ -118,6 +123,44 @@ function Inspector(props) {
             default:
                 return false;
         }
+    };
+
+    // handle reCaptcha
+    useEffect(() => {
+        apiFetch({
+            path: '/wp/v2/settings',
+            method: 'GET',
+        }).then(({ zolo_enable_recaptcha }) => {
+            setAttributes({
+                reCaptcha: zolo_enable_recaptcha,
+            });
+        });
+    }, []);
+
+    const onChangeRecaptcha = () => {
+        // update the settings and reCaptcha state
+        const newRecaptcha = !reCaptcha;
+        apiFetch({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_enable_recaptcha: newRecaptcha,
+            },
+        });
+
+        setAttributes({
+            reCaptcha: newRecaptcha,
+        });
+    };
+
+    const updateRecaptchaVersion = (version) => {
+        apiFetch({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_recaptcha_version: version,
+            },
+        });
     };
 
     return (
@@ -343,6 +386,13 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Google reCaptcha', 'zolo-blocks')} panelProps={props}>
+                            <ToggleControl
+                                label={__('Enable Google reCaptcha', 'zolo-blocks')}
+                                checked={reCaptcha}
+                                onChange={onChangeRecaptcha}
+                            />
                         </ZoloPanelBody>
                     </>
                 }

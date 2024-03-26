@@ -1,5 +1,6 @@
 //WordPress dependencies
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 import './style.scss';
 
 //block constants
@@ -1085,9 +1086,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.pricing.table.desktop.all.style', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.pricing.table.tab.all.style', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.pricing.table.mobile.all.style', mobileAllStyle, props)}
             />
         </>
     );

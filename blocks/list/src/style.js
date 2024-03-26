@@ -50,6 +50,7 @@ import {
 } from './constants';
 
 import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -483,9 +484,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.list.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.list.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.list.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

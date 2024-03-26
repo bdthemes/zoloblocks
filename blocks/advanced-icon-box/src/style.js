@@ -3,6 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 
+
 /**
  * Internal depencencies
  */
@@ -62,6 +63,7 @@ import {
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
@@ -817,9 +819,9 @@ export default function Style({ props }) {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.advancedIconBox.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.advancedIconBox.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.advancedIconBox.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

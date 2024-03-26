@@ -139,7 +139,7 @@ const attributes = {
     },
     bio: {
         type: 'string',
-        default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod eu lorem et ultricies.',
+        default: 'Proficient WordPress developer specializing in plugin customization, integration, and delivering responsive, feature-rich websites.',
     },
     showStatus: {
         type: 'boolean',

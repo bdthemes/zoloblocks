@@ -73,9 +73,11 @@
     }
     // social share
     .zolo-social-share {
-        display: flex;
+        display: inline-flex;
         gap: var(--zolo-social-item-gap);
         align-items: center;
+        width: 100%;
+        box-sizing: border-box;
     }
     .zolo-social-link {
         display: inline-flex;

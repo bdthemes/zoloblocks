@@ -158,7 +158,7 @@ const attributes = {
     },
     testimonialMessage: {
         type: 'string',
-        default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum...',
+        default: 'ZoloBlocks is a versatile tool for WordPress that streamlines website building with customizable blocks.',
     },
     showRating: {
         type: 'boolean',

@@ -4,7 +4,6 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import { Fragment, useEffect, useState, useRef } from '@wordpress/element';
 
 /**
  * Internal depencencies

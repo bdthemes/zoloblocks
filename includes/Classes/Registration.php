@@ -41,18 +41,29 @@ class Registration {
                     $blockname = $block['metadata'];
                 }
 
+                // Directory Path based on Free or Pro
+                $block_path = trailingslashit(ZOLO_DIR_PATH);
+                $admin_path = trailingslashit(ZOLO_ADMIN_URL);
+                $version   = ZOLO_VERSION;
+
+                if( isset($block['pro'] ) && $block['pro'] === true ) {
+                    $block_path = trailingslashit(ZOLO_PRO_DIR_PATH);
+                    $admin_path = trailingslashit(ZOLO_PRO_ADMIN_URL);
+                    $version   = ZOLO_PRO_VERSION;
+                }
+
                 //Register Frontend Scripts
-                $frontend_script_path = trailingslashit(ZOLO_DIR_PATH) . 'blocks/' . $block['name'] . '/frontend/index.js';
-                $frontend_script_deps = trailingslashit(ZOLO_DIR_PATH) . 'blocks/' . $block['name'] . '/frontend/index.asset.php';
+                $frontend_script_path = $block_path . 'blocks/' . $block['name'] . '/frontend/index.js';
+                $frontend_script_deps = $block_path . 'blocks/' . $block['name'] . '/frontend/index.asset.php';
                 if (file_exists($frontend_script_path)) {
                     $args = file_exists($frontend_script_deps) ? include $frontend_script_deps : [
                         'dependencies' => [],
-                        'version'      => ZOLO_VERSION
+                        'version'      => $version
                     ];
 
                     wp_register_script(
                         'zolo-' . $block['name'] . '-frontend',
-                        trailingslashit(ZOLO_ADMIN_URL) . 'blocks/' . $block['name'] . '/frontend/index.js',
+                        $admin_path . 'blocks/' . $block['name'] . '/frontend/index.js',
                         $args['dependencies'],
                         $args['version'],
                         true

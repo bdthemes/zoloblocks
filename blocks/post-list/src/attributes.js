@@ -105,9 +105,14 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
-    showTitle: {
-        type: 'boolean',
-        default: true,
+
+    showfeatureimg:{
+        type:'boolean',
+        default:true
+    },
+    contentDirection:{
+        type:'string',
+        default:'row'
     },
     titleTag: {
         type: 'string',

@@ -14,6 +14,7 @@ import {
 } from './constants';
 
 import { TITLE_TYPO, PROGRESS_VALUE } from './constants/typoPrefixConstants';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -201,9 +202,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.progressBar.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.progressBar.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.progressBar.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

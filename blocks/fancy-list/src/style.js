@@ -38,6 +38,7 @@ import {
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -515,9 +516,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.fancyList.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.fancyList.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.fancyList.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

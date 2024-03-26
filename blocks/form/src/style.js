@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -550,9 +551,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.form.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.form.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.form.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

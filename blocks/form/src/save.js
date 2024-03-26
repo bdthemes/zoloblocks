@@ -5,7 +5,8 @@ const { classArrayToStr } = window.zoloModule;
 
 // Save function
 const Save = ({ attributes }) => {
-    const { uniqueId, formId, parentClasses, preset, zoloId, btnLabel, iconPosition, messagePosition } = attributes;
+    const { uniqueId, formId, parentClasses, preset, zoloId, btnLabel, iconPosition, messagePosition, reCaptcha, reCaptchaVersion } =
+        attributes;
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
     });
@@ -33,7 +34,6 @@ const Save = ({ attributes }) => {
                         <p className="zolo-msg-desc"></p>
                     </div>
 
-
                     <button className="zolo-msg-close">
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <path
@@ -47,8 +47,15 @@ const Save = ({ attributes }) => {
                     </button>
                 </div>
             )}
-            <form className="zolo-contact-form zolo-contact-form-style-1 zolo-field-icon-style-1 form" data-form-id={formId}>
+            <form
+                className="zolo-contact-form zolo-contact-form-style-1 zolo-field-icon-style-1 form"
+                data-form-id={formId}
+                data-gcaptcha={reCaptcha}
+            >
                 <InnerBlocks.Content />
+                {reCaptcha && (
+                    <input type="hidden" name="recaptcha_response" className={`zb_recaptcha_response zb_recaptcha_${uniqueId}`} />
+                )}
                 <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">
                     <div className="zolo-submit-btn">
                         <button type="submit" className={iconPosition}>

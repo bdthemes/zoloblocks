@@ -102,7 +102,70 @@ class Zolo_Settings {
                 'sanitize_callback' => NULL,
             ]
         );
-        
+
+        // Enable google recaptcha
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_enable_recaptcha',
+            [
+                'type'             => 'boolean',
+                'default'          => false,
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'boolean',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
+
+        // Google recaptcha version
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_recaptcha_version',
+            [
+                'type'             => 'string',
+                'default'          => 'v2',
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'string',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
+
+        // Google recaptcha site key
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_recaptcha_site_key',
+            [
+                'type'             => 'string',
+                'default'          => '',
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'string',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        ); 
+
+        // Google recaptcha secret key
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_recaptcha_secret_key',
+            [
+                'type'             => 'string',
+                'default'          => '',
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'string',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
     }
 
     // Update settings on plugin activation

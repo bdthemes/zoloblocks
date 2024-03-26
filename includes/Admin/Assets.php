@@ -91,6 +91,7 @@ class Zolo_Admin_Assets {
                 'product'        => trailingslashit( ZOLO_ADMIN_URL ) . 'includes/Admin/images/product.svg',
                 'knowledgeBase'  => trailingslashit( ZOLO_ADMIN_URL ) . 'includes/Admin/images/knowledgeBase.svg',
                 'map'            => trailingslashit( ZOLO_ADMIN_URL ) . 'includes/Admin/images/map.svg',
+                'captcha'        => trailingslashit( ZOLO_ADMIN_URL ) . 'includes/Admin/images/captcha.svg',
                 'oops'           => trailingslashit( ZOLO_ADMIN_URL ) . 'includes/Admin/images/oops.svg',
             ]
         );        

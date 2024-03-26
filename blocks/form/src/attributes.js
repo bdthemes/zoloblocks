@@ -183,6 +183,12 @@ const attributes = {
         type: 'number',
     },
 
+    // google recaptcha
+    reCaptcha: {
+        type: 'boolean',
+        default: false,
+    },
+
     // generator
     ...generateResAlignmentAttributies(BTN_ALIGNMENT),
     ...generateNormalBGAttributes(BTN_BG),
