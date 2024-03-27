@@ -61,6 +61,8 @@ import {
     LIST_HOVER_ICON_SIZE,
     ICON_HOVER_LIST_MARGIN,
     ICON_LINKVERTICAL_ALIGN,
+    //option
+    ITEM_ALIGNS_OPTION
 } from './constants';
 
 import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
@@ -216,17 +218,17 @@ function Inspector(props) {
                                 </>
                             )}
 
-                            { (preset == 'zolo-list-style-1' && layout == 'grid'  || preset == 'zolo-list-style-2') && (
+                            { (preset == 'zolo-list-style-1'   || ( preset == 'zolo-list-style-2' && layout=='grid')) && (
                                 <ResAlignmentControl
-                                    label={__('Horizantal Alignment', 'zolo-blocks')}
+                                    label={__('Item Alignment', 'zolo-blocks')}
                                     controlName={ITEM_ALIGNMENT}
                                     requiredProps={requiredProps}
-                                    alignOptions={DEFAULT_ALIGNS}
+                                    alignOptions={layout==='flex' ? ITEM_ALIGNS_OPTION : DEFAULT_ALIGNS}
                                 />
                             )}
                             {!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && (
                                 <ResAlignmentControl
-                                    label={__('Horizantal Alignment', 'zolo-blocks')}
+                                    label={__('Item Alignment', 'zolo-blocks')}
                                     controlName={ITEM_ALIGNMENT}
                                     requiredProps={requiredProps}
                                     alignOptions={DEFAULT_ALIGNS}
@@ -235,7 +237,7 @@ function Inspector(props) {
 
                             {(layout == 'flex' || listGridDeskstyle > 1 || listGridTabStyle > 1 || listGridMobStyle > 1) && (
                                 <ResAlignmentControl
-                                    label={__('Vertical Alignment', 'zolo-blocks')}
+                                    label={__('Item Vertical Alignment', 'zolo-blocks')}
                                     controlName={SINGLE_ITEM_ALIGNMENT}
                                     requiredProps={requiredProps}
                                     alignOptions={FLEX_ALIGN_OPTIONS}
