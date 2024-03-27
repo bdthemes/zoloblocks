@@ -7,22 +7,12 @@ const Save = ({ attributes }) => {
         uniqueId,
         preset,
         parentClasses,
-        image,
-        headingTag,
-        fancyTitle,
-        fancyListText,
-        fancyIcon,
-        imageToggle,
-        titleToggle,
-        textToggle,
-        iconToggle,
-        mediaType,
-        mediaText,
         zoloId,
+        fancyDirection,
     } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), preset, fancyDirection),
     });
 
     return (

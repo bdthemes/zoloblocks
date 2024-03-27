@@ -4,9 +4,9 @@ const { classArrayToStr } = window.zoloModule;
 
 // Save function
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, zoloId } = attributes;
+    const { uniqueId, parentClasses, preset, zoloId, layoutType } = attributes;
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), preset, layoutType),
     });
     return (
         <div
