@@ -107,7 +107,7 @@
 
     /* icon box style 2 */
     &.style-2,
-    &.style-3 {
+    &.iconbox-align-right {
         .zolo-block-item {
             display: flex;
             grid-gap: var(--zolo-item-gap);
@@ -122,7 +122,7 @@
         }
     }
     /* icon box style 3 */
-    &.style-3 {
+    &.iconbox-align-right {
         .zolo-block-item {
             flex-direction: row-reverse;
         }

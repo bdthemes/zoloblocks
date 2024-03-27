@@ -829,6 +829,11 @@ export const HEADING = [
     { label: __('Span', 'zolo-blocks'), value: 'span' },
 ];
 
+export const NORMAL_HTML_TAG = [
+    { label: __('P', 'zolo-blocks'), value: 'p' },
+    { label: __('Span', 'zolo-blocks'), value: 'span' },
+];
+
 export const BORDER_TYPES = [
     { label: __('None', 'zolo-blocks'), value: 'none' },
     { label: __('Solid', 'zolo-blocks'), value: 'solid' },

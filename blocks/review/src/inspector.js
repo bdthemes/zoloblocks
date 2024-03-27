@@ -36,6 +36,7 @@ const {
     ImageSizes,
     ObjectFitControl,
     OverflowControl,
+    IconicBtnGroup,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -117,11 +118,11 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl
-                                label={__('Presets', 'zolo-blocks')}
+                            <IconicBtnGroup
+                                label={__('Layout Direction', 'zolo-blocks')}
                                 value={preset}
-                                options={applyFilters('zolo.review.presets', PRESETS)}
                                 onChange={(selected) => setAttributes({ preset: selected })}
+                                options={applyFilters('zolo.review.presets', PRESETS)}
                             />
                             <ToggleControl
                                 label={__('Show Photo', 'zolo-blocks')}

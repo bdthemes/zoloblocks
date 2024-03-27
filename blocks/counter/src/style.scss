@@ -57,7 +57,7 @@
 
     .zolo-counter-wrap {
         &.style-1,
-        &.style-2 {
+        &.counter-align-right {
             .zolo-counter-item {
                 display: flex;
                 align-items: flex-start;
@@ -71,7 +71,7 @@
                 }
             }
         }
-        &.style-2 {
+        &.counter-align-right {
             .zolo-counter-item {
                 flex-direction: row-reverse;
                 text-align: right;
