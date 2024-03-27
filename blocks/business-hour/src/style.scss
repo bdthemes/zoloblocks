@@ -1,0 +1,60 @@
+.wp-block-zolo-business-hour {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .zolo-biz-hours-item {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    .zolo-biz-time-wrap {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .zolo-biz-day {
+        font-size: clamp(1rem, 1.5vw, 1.125rem);
+        color: #28282f;
+        font-weight: 500;
+    }
+    .zolo-biz-time {
+        font-size: 16px;
+        color: #46474b;
+    }
+
+    .zolo-biz-closed-item .zolo-biz-day,
+    .zolo-biz-closed-text {
+        color: #f00;
+    }
+
+    .zolo-biz-closed-text {
+        font-size: clamp(1rem, 1.5vw, 1.125rem);
+    }
+
+    .zolo-biz-current-date .zolo-biz-time,
+    .zolo-biz-current-date .zolo-biz-day,
+    .zolo-biz-current-date .zolo-biz-time-separator {
+        color: #4680ff;
+        font-weight: 700;
+    }
+
+    /** Style 2 **/
+
+    &.zolo-biz-hours-style-2 {
+        gap: 0;
+    }
+
+    &.zolo-biz-hours-style-2 .zolo-biz-hours-item {
+        padding: 20px 15px;
+        border-radius: 4px;
+    }
+
+    &.zolo-biz-hours-style-2 .zolo-biz-hours-item:nth-of-type(odd) {
+        background-color: rgb(245 245 245);
+    }
+}

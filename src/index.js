@@ -47,7 +47,8 @@ import '../blocks/team-child/src';
 import '../blocks/team-grid/src';
 import '../blocks/team-grid/src';
 // import '../blocks/list/src';
-import '../blocks/image-compare/src';
+// import '../blocks/image-compare/src';
+import '../blocks/business-hour/src';
 
 // inner blocks
 // import '../blocks/text-field/src';
