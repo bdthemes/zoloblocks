@@ -119,22 +119,6 @@ class Zolo_Settings {
             ]
         );
 
-        // Google recaptcha version
-        register_setting(
-            'zolo_blocks_settings_group',
-            'zolo_recaptcha_version',
-            [
-                'type'             => 'string',
-                'default'          => 'v2',
-                'show_in_rest'     => [
-                    'schema' => [
-                        'type' => 'string',
-                    ],
-                ],
-                'sanitize_callback' => NULL,
-            ]
-        );
-
         // Google recaptcha site key
         register_setting(
             'zolo_blocks_settings_group',

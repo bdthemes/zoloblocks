@@ -153,16 +153,6 @@ function Inspector(props) {
         });
     };
 
-    const updateRecaptchaVersion = (version) => {
-        apiFetch({
-            path: '/wp/v2/settings',
-            method: 'POST',
-            data: {
-                zolo_recaptcha_version: version,
-            },
-        });
-    };
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -393,6 +383,25 @@ function Inspector(props) {
                                 checked={reCaptcha}
                                 onChange={onChangeRecaptcha}
                             />
+                            {reCaptcha && (
+                                <>
+                                    <p
+                                        style={{
+                                            fontStyle: 'italic',
+                                            color: '#797977',
+                                        }}
+                                    >
+                                        {__(
+                                            'Please make sure to enter the site key and secret key in the ZoloBlocks settings.',
+                                            'zolo-blocks'
+                                        )}
+                                        <a href="/wp-admin/admin.php?page=zolo-blocks">
+                                            {' '}
+                                            {__('Click here to go to settings.', 'zolo-blocks')}
+                                        </a>
+                                    </p>
+                                </>
+                            )}
                         </ZoloPanelBody>
                     </>
                 }
