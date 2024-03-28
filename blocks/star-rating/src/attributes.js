@@ -121,7 +121,7 @@ const attributes = {
     },
     iconColor: {
         type: 'string',
-        default: '#333',
+        default: '',
     },
 };
 

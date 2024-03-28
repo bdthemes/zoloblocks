@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, RangeControl, SelectControl, Button, BaseControl } from '@wordpress/components';
+import { ToggleControl, TextControl, RangeControl, SelectControl, Button, BaseControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -95,6 +95,15 @@ function Inspector(props) {
                                     })
                                 }
                                 options={ICON_POSITIONS}
+                            />
+                            <CardDivider />
+                            <ResRangeControl
+                                label={__('Content Spacing', 'zolo-blocks')}
+                                controlName={TITLE_GAP}
+                                requiredProps={requiredProps}
+                                min={1}
+                                max={100}
+                                step={1}
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Rating', 'zolo-blocks')} panelProps={props}>
@@ -273,14 +282,6 @@ function Inspector(props) {
                                     label={__('Color', 'zolo-blocks')}
                                     color={titleColor}
                                     onChange={(color) => setAttributes({ titleColor: color })}
-                                />
-                                <ResRangeControl
-                                    label={__('Title Gap', 'zolo-blocks')}
-                                    controlName={TITLE_GAP}
-                                    requiredProps={requiredProps}
-                                    min={1}
-                                    max={100}
-                                    step={1}
                                 />
                             </ZoloPanelBody>
                         )}
