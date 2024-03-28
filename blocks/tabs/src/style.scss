@@ -142,9 +142,19 @@
 
     /* animation style 1,2,3, css code */
 
+    .zolo-indicator-position-bottom {
+        .zolo-tab_head-item::before {
+            bottom: 0;
+        }
+    }
+    .zolo-indicator-position-top {
+        .zolo-tab_head-item::before {
+            top: 0;
+        }
+    }
+
     .zolo-tab_head-item:before {
         position: absolute;
-        bottom: -2px;
         left: 0;
         height: var(--zolo-tab-animation-height);
         width: 100%;
