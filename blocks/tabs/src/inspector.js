@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, SelectControl, __experimentalInputControl as InputControl } from '@wordpress/components';
+import { ToggleControl, SelectControl, __experimentalInputControl as InputControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -30,6 +30,7 @@ import { TITLE_TYPO, DESC_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import {
     NAV_ITEMS_ALIGN,
     NAV_CONTENT_ALIGN,
+    NAV_ICON_ALIGN,
     NAV_SPACING,
     CONTENT_SPACING,
     TAB_NORMAL_BGCOLOR,
@@ -38,6 +39,7 @@ import {
     TAB_ITEM_PADDING,
     TAB_ITEM_RADIUS,
     TITLE_MARGIN,
+    DESC_MARGIN,
     ACTIVE_HINT_HEIGHT,
     ICON_SIZE,
     ICON_BORDER,
@@ -59,8 +61,13 @@ import {
     TAB_ITEM_BSHADOW,
     TAB_ITEM_HBSHADOW,
     TAB_ITEM_ABSHADOW,
+    TAB_WRAP_BGCOLOR,
+    TAB_WRAP_BORDER,
+    TAB_WRAP_RADIUS,
+    TAB_WRAP_PADDING,
+    TAB_WRAP_BSHADOW,
 } from './constants';
-import { FLEX_HORIZONTAL_OPTIONS, TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
+import { FLEX_HORIZONTAL_OPTIONS, TEXT_ALIGN_OPTIONS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
 import Sortable from './sortable';
 
 function Inspector(props) {
@@ -117,28 +124,16 @@ function Inspector(props) {
                                 labelPosition="edge"
                                 __unstableInputWidth="64px"
                             />
-                            <SelectControl
-                                label={__('Tabs Layout', 'zolo-blocks')}
+                            <IconicBtnGroup
+                                label={__('Layout Type', 'zolo-blocks')}
                                 value={tabsLayout}
-                                options={LAYOUTS}
                                 onChange={(newTabsLayout) =>
                                     setAttributes({
                                         tabsLayout: newTabsLayout,
                                     })
                                 }
+                                options={LAYOUTS}
                             />
-                            {tabsLayout === 'vertical' && (
-                                <IconicBtnGroup
-                                    label={__('Direction', 'zolo-blocks')}
-                                    value={verticalLayoutDirection}
-                                    options={VERTICAL_DIRECTIONS}
-                                    onChange={(v) =>
-                                        setAttributes({
-                                            verticalLayoutDirection: v,
-                                        })
-                                    }
-                                />
-                            )}
                             <SelectControl
                                 label={__('Content Style', 'zolo-blocks')}
                                 value={tabContentStyle}
@@ -208,6 +203,12 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
+                            <ResAlignmentControl
+                                label={__('Icon Alignment', 'zolo-blocks')}
+                                controlName={NAV_ICON_ALIGN}
+                                requiredProps={requiredProps}
+                                alignOptions={FLEX_ALIGN_OPTIONS}
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Spacing', 'zolo-blocks')} panelProps={props}>
                             <ResRangeControl
@@ -263,11 +264,31 @@ function Inspector(props) {
                         )}
 
                         <ZoloPanelBody
-                            title={__('Tab Item', 'zolo-blocks')}
+                            title={__('Tabs Wrap', 'zolo-blocks')}
                             firstOpen={tabsLayout === 'vertical' ? false : true}
                             stylePanel={true}
                             panelProps={props}
                         >
+                            <NormalBGControl requiredProps={requiredProps} controlName={TAB_WRAP_BGCOLOR} noMainBGImg={false} />
+                            <CardDivider />
+                            <BorderControl
+                                label={__('Border', 'zolo-blocks')}
+                                controlName={TAB_WRAP_BORDER}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={TAB_WRAP_RADIUS}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zolo-blocks')}
+                                controlName={TAB_WRAP_PADDING}
+                                requiredProps={requiredProps}
+                            />
+                            <BoxShadowControl controlName={TAB_WRAP_BSHADOW} requiredProps={requiredProps} />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Tab Item', 'zolo-blocks')} firstOpen={false} stylePanel={true} panelProps={props}>
                             <>
                                 {tabsLayout !== 'vertical' && (
                                     <IconicBtnGroup
@@ -517,6 +538,11 @@ function Inspector(props) {
                                 <TypographyDropdown
                                     label={__('Typography', 'zolo-blocks')}
                                     typoPrefixConstant={DESC_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zolo-blocks')}
+                                    controlName={DESC_MARGIN}
                                     requiredProps={requiredProps}
                                 />
                                 <TabPanelControl

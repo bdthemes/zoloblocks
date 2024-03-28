@@ -13,7 +13,7 @@ import { TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, titleColor, activeStarColor, inactiveStarColor } = attributes;
+    const { uniqueId, titleColor, activeStarColor, inactiveStarColor, titlePosition } = attributes;
 
     // styles
     const {
@@ -23,6 +23,15 @@ const Style = ({ props }) => {
     } = generateResAlignmentStyle({
         controlName: ITEMS_ALIGN,
         property: 'justify-content',
+        attributes,
+    });
+    const {
+        desktopAlignStyle: ratingVDeskAlign,
+        tabAlignStyle: ratingVTabAlign,
+        mobAlignStyle: ratingVMobAlign,
+    } = generateResAlignmentStyle({
+        controlName: ITEMS_ALIGN,
+        property: 'align-items',
         attributes,
     });
 
@@ -74,6 +83,7 @@ const Style = ({ props }) => {
         }
         .${uniqueId} .star-rating-inner {
             ${deskGap}
+            ${titlePosition === 'top' || titlePosition === 'bottom' ? ratingVDeskAlign : ''}
         }
         .${uniqueId} .start-rating-title {
             color: ${titleColor};
@@ -95,6 +105,8 @@ const Style = ({ props }) => {
         }
         .${uniqueId} .star-rating-inner {
             ${tabGap}
+            ${titlePosition === 'top' || titlePosition === 'bottom' ? ratingVTabAlign : ''}
+
         }
         .${uniqueId} .start-rating-title {
             ${titleTabTypo}
@@ -111,6 +123,8 @@ const Style = ({ props }) => {
         }
         .${uniqueId} .star-rating-inner {
             ${mobGap}
+            ${titlePosition === 'top' || titlePosition === 'bottom' ? ratingVMobAlign : ''}
+
         }
         .${uniqueId} .start-rating-title {
             ${titleMobTypo}

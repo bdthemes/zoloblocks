@@ -70,6 +70,16 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={FLEX_HORIZONTAL_OPTIONS}
                             />
+                            <IconicBtnGroup
+                                label={__('Position', 'zolo-blocks')}
+                                value={titlePosition}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        titlePosition: value,
+                                    })
+                                }
+                                options={ICON_POSITIONS}
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Rating', 'zolo-blocks')} panelProps={props}>
                             <RangeControl
@@ -96,16 +106,6 @@ function Inspector(props) {
                                     onChange={(v) => {
                                         setAttributes({ titleTag: v });
                                     }}
-                                />
-                                <IconicBtnGroup
-                                    label={__('Position', 'zolo-blocks')}
-                                    value={titlePosition}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            titlePosition: value,
-                                        })
-                                    }
-                                    options={ICON_POSITIONS}
                                 />
                             </ZoloPanelBody>
                         )}
