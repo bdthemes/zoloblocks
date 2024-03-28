@@ -18,6 +18,7 @@ const Save = ({ attributes }) => {
         >
             <div className={classnames('start-rating-wrapper', titlePosition)}>
                 <div className={classnames('star-rating-inner', titlePosition)}>
+                    {showTitle && <RichText.Content tagName={titleTag} className="start-rating-title" value={title} />}
                     {showIcon && (
                             <span className={`star-rating_inner-icon ${iconType !== 'icon' ? 'zolo-image' : 'zolo-icon'}`}>
                                 {iconType == 'icon' ? (
@@ -38,7 +39,6 @@ const Save = ({ attributes }) => {
                                 )}
                             </span>
                     )}
-                    {showTitle && <RichText.Content tagName={titleTag} className="start-rating-title" value={title} />}
                     <div className="zolo-star-rating" data-rating={rating}></div>
                 </div>
             </div>

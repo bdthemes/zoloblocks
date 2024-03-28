@@ -22,21 +22,37 @@ const {
     ImageAvatar,
     ImageSizes,
     ObjectFitControl,
-
+    ResDimensionsControl,
+    BorderControl,
+    NormalBGControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
-import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN, ICON_OPTIONS } from './constants';
+import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN, ICON_OPTIONS, ICON_SIZE, ICON_BORDER, ICON_BORDER_RADIUS, ICON_PADDING, ICON_BG} from './constants';
 import { FLEX_HORIZONTAL_OPTIONS, HEADING, ICON_POSITIONS } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, rating, showTitle, title, titleTag, titleColor, titlePosition, activeStarColor, inactiveStarColor, showIcon,
-        iconType, icon, iconTypeImage, imageRes, objectFit
-    } =
-        attributes;
+    const {
+        resMode,
+        rating,
+        showTitle,
+        title,
+        titleTag,
+        titleColor,
+        titlePosition,
+        activeStarColor,
+        inactiveStarColor,
+        showIcon,
+        iconType,
+        icon,
+        iconTypeImage,
+        imageRes,
+        objectFit,
+        iconColor,
+    } = attributes;
 
     const requiredProps = {
         attributes,
@@ -266,6 +282,36 @@ function Inspector(props) {
                                     max={100}
                                     step={1}
                                 />
+                            </ZoloPanelBody>
+                        )}
+                        {showIcon && (
+                            <ZoloPanelBody title={__('Icon', 'zolo-blocks')} firstOpen={false} stylePanel={true} panelProps={props}>
+                                <ResRangeControl label={__('Size', 'zolo-blocks')} controlName={ICON_SIZE} requiredProps={requiredProps} />
+                                <BorderControl
+                                    label={__('Border', 'zolo-blocks')}
+                                    controlName={ICON_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zolo-blocks')}
+                                    controlName={ICON_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zolo-blocks')}
+                                    controlName={ICON_PADDING}
+                                    requiredProps={requiredProps}
+                                />
+                                <ColorControl
+                                    label={__('Color', 'zolo-blocks')}
+                                    color={iconColor}
+                                    onChange={(color) =>
+                                        setAttributes({
+                                            iconColor: color,
+                                        })
+                                    }
+                                />
+                                <NormalBGControl requiredProps={requiredProps} controlName={ICON_BG} noMainBGImg={false} />
                             </ZoloPanelBody>
                         )}
                     </>

@@ -1,9 +1,26 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateTypographyAttributes, generateResAlignmentAttributies } = window.zoloModule;
+const {
+    generateResRangeAttributies,
+    generateDimensionAttributes,
+    generateNormalBGAttributes,
+    generateTypographyAttributes,
+    generateResAlignmentAttributies,
+    generateBorderAttributies,
+} = window.zoloModule;
 
-import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
+import {
+    STAR_SIZE,
+    TITLE_GAP,
+    ITEMS_ALIGN,
+    ICON_OPTIONS,
+    ICON_SIZE,
+    ICON_BORDER,
+    ICON_BORDER_RADIUS,
+    ICON_PADDING,
+    ICON_BG,
+} from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -38,6 +55,13 @@ const attributes = {
     ...generateResRangeAttributies(STAR_SIZE),
     ...generateResRangeAttributies(TITLE_GAP),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
+    // Icon
+    ...generateResRangeAttributies(ICON_SIZE),
+    ...generateBorderAttributies(ICON_BORDER),
+    ...generateDimensionAttributes(ICON_BORDER_RADIUS),
+    ...generateDimensionAttributes(ICON_PADDING),
+    ...generateNormalBGAttributes(ICON_BG),
+
     rating: {
         type: 'number',
         default: 5,
@@ -65,7 +89,7 @@ const attributes = {
     icon: {
         type: 'attribute',
         default:
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M256 448c0 17.67-14.33 32-32 32H32c-17.67 0-32-14.33-32-32s14.33-32 32-32h64V123.8L49.75 154.6C35.02 164.5 15.19 160.4 5.375 145.8C-4.422 131.1-.4531 111.2 14.25 101.4l96-64c9.828-6.547 22.45-7.187 32.84-1.594C153.5 41.37 160 52.22 160 64.01v352h64C241.7 416 256 430.3 256 448z"></path></svg>',
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>',
     },
     imageRes: {
         type: 'string',
@@ -94,6 +118,10 @@ const attributes = {
     },
     inactiveStarColor: {
         type: 'string',
+    },
+    iconColor: {
+        type: 'string',
+        default: '#333',
     },
 };
 

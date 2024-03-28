@@ -28,6 +28,8 @@ const ResRangeControl = ({ label, controlName, units, requiredProps, min, max, s
             { label: 'px', value: 'px' },
             { label: 'em', value: 'em' },
             { label: '%', value: '%' },
+            { label: 'vh', value: 'vh' },
+            { label: 'vw', value: 'vw' },
         ];
     }
 
