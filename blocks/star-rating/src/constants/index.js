@@ -13,3 +13,15 @@ export const STAR_MARGIN = 'starMargin';
 
 // title
 export const TITLE_GAP = 'titleGap';
+
+
+export const ICON_OPTIONS = [
+    {
+        label: __('Image', 'zolo-blocks'),
+        value: 'image',
+    },
+    {
+        label: __('Icon', 'zolo-blocks'),
+        value: 'icon',
+    },
+];

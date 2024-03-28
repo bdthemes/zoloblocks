@@ -45,7 +45,7 @@ export const VERTICAL_DIRECTIONS = [
 // Content styles
 export const CONTENT_STYLES = [
     {
-        value: 'content-style-1',
+        value: 'content-style-2',
         label: __('Style 1', 'zolo-blocks'),
     },
     {
@@ -57,7 +57,7 @@ export const CONTENT_STYLES = [
 // Content directions
 export const CONTENT_DIRECTIONS = [
     {
-        value: 'content-style-2',
+        value: 'content-style-1',
         label: __('Left', 'zolo-blocks'),
         icon: (
             <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

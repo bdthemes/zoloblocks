@@ -127,7 +127,7 @@ const attributes = {
     },
     contentDirection: {
         type: 'string',
-        default: 'content-style-2',
+        default: 'content-style-1',
     },
     showTitle: {
         type: 'boolean',
