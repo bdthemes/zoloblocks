@@ -96,6 +96,10 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
+    layoutType: {
+        type: 'string',
+        default: 'grid',
+    },
     ...generateNormalBGAttributes(REVIEW_GRID_BG),
     ...generateResCounterAttributies(GRID_COLUMNS, {
         noUnits: true,

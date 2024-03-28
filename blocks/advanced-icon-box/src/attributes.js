@@ -247,6 +247,10 @@ const attributes = {
         type: 'string',
         default: 'flex-start',
     },
+    iconBoxDirection: {
+        type: 'string',
+        default: 'iconbox-align-left',
+    },
     iconBorderHoverColor: {
         type: 'string',
     },

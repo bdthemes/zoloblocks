@@ -136,7 +136,7 @@ const Edit = (props) => {
                     className={classnames(
                         'zolo-tabs',
                         `${tabsLayout === 'horizontal' ? `zolo-tab_${tabsLayout}` : `zolo-tab_${verticalLayoutDirection}`}`,
-                        `${tabContentStyle === 'content-style-1' ? `zolo-tab_${tabContentStyle}` : `zolo-tab_${contentDirection}`}`,
+                        `${tabContentStyle === 'content-style-2' ? `zolo-tab_${tabContentStyle}` : `zolo-tab_${contentDirection}`}`,
                         `zolo-tab_${tabIndicatorStyle}`
                     )}
                     role="tablist"
@@ -159,13 +159,13 @@ const Edit = (props) => {
                                         aria-selected={(activeTabId || activeDefaultTabId) === tab.id ? 'true' : 'false'}
                                         onClick={() => handleTabClick(tab.id)}
                                     >
-                                        <div className="zolo-tab_icon-number-wrap">
-                                            {tab.hasMedia && showIcon && (
+                                        {tab.hasMedia && showIcon && (
+                                            <div className="zolo-tab_icon-number-wrap">
                                                 <span className="zolo-tab_icon">
                                                     <DisplayZoloIcon icon={tab.icon} />
                                                 </span>
-                                            )}
-                                        </div>
+                                            </div>
+                                        )}
                                         <div className="zolo-tab_head-content">
                                             {showTitle && (
                                                 <RichText

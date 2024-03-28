@@ -14,6 +14,7 @@ const {
 import {
     NAV_ITEMS_ALIGN,
     NAV_CONTENT_ALIGN,
+    NAV_ICON_ALIGN,
     NAV_SPACING,
     CONTENT_SPACING,
     TAB_NORMAL_BGCOLOR,
@@ -37,6 +38,12 @@ import {
     TAB_ITEM_BSHADOW,
     TAB_ITEM_HBSHADOW,
     TAB_ITEM_ABSHADOW,
+    DESC_MARGIN,
+    TAB_WRAP_BGCOLOR,
+    TAB_WRAP_PADDING,
+    TAB_WRAP_RADIUS,
+    TAB_WRAP_BORDER,
+    TAB_WRAP_BSHADOW,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -127,7 +134,7 @@ const attributes = {
     },
     contentDirection: {
         type: 'string',
-        default: 'content-style-2',
+        default: 'content-style-1',
     },
     showTitle: {
         type: 'boolean',
@@ -210,6 +217,7 @@ const attributes = {
     // Generators
     ...generateResAlignmentAttributies(NAV_ITEMS_ALIGN),
     ...generateResAlignmentAttributies(NAV_CONTENT_ALIGN),
+    ...generateResAlignmentAttributies(NAV_ICON_ALIGN),
     ...generateResRangeAttributies(NAV_SPACING),
     ...generateResRangeAttributies(CONTENT_SPACING),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
@@ -224,9 +232,19 @@ const attributes = {
     ...generateBoxShadowAttributies(TAB_ITEM_BSHADOW),
     ...generateBoxShadowAttributies(TAB_ITEM_HBSHADOW),
     ...generateBoxShadowAttributies(TAB_ITEM_ABSHADOW),
+    //tabs wrap
+    ...generateNormalBGAttributes(TAB_WRAP_BGCOLOR),
+    ...generateBorderAttributies(TAB_WRAP_BORDER),
+    ...generateBorderAttributies(TAB_WRAP_RADIUS),
+    ...generateDimensionAttributes(TAB_WRAP_PADDING),
+    ...generateBoxShadowAttributies(TAB_WRAP_BSHADOW),
+    //tabs wrap
+
     // title
     ...generateDimensionAttributes(TITLE_MARGIN),
     ...generateResRangeAttributies(ACTIVE_HINT_HEIGHT),
+    // desc
+    ...generateDimensionAttributes(DESC_MARGIN),
     // ICON
     ...generateDimensionAttributes(ICON_SIZE),
     ...generateNormalBGAttributes(ICON_BG),

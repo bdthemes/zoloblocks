@@ -67,6 +67,10 @@ const attributes = {
     preset: {
         type: 'string',
     },
+    fancyDirection: {
+        type: 'string',
+        default: 'fancy-list-align-left',
+    },
     titleToggle: {
         type: 'boolean',
         default: true,

@@ -49,6 +49,7 @@ const {
     TabPanelControl,
     ZoloPanelBody,
     ResGapControl,
+    IconicBtnGroup,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -68,6 +69,7 @@ function Inspector(props) {
         testimonialMessageColor,
         activeRatingColor,
         inactiveRatingColor,
+        layoutType,
     } = attributes;
 
     const requiredProps = {
@@ -147,7 +149,22 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Layout', 'zolo-blocks')} panelProps={props}>
+                            <IconicBtnGroup
+                                label={__('Layout Type', 'zolo-blocks')}
+                                value={layoutType}
+                                onChange={(selected) => setAttributes({ layoutType: selected })}
+                                options={[
+                                    {
+                                        value: 'grid',
+                                        label: __('Grid', 'zolo-blocks'),
+                                    },
+                                    {
+                                        value: 'column',
+                                        label: __('Column', 'zolo-blocks'),
+                                    },
+                                ]}
+                            />
                             <ResCounterControl
                                 label={__('Grid Columns', 'zolo-blocks')}
                                 controlName={GRID_COLUMNS}

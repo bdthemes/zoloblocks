@@ -37,6 +37,8 @@ const ResDimensionsControl = ({ label, controlName, requiredProps, forBorderRadi
         { label: 'px', value: 'px' },
         { label: 'em', value: 'em' },
         { label: '%', value: '%' },
+        { label: 'vh', value: 'vh' },
+        { label: 'vw', value: 'vw' },
     ];
 
     const neededProps = {

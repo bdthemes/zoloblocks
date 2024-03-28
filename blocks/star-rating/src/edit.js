@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, StarRating, classArrayToStr } = window.zoloModule;
+const { handleUniqueId, StarRating, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -27,7 +27,8 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, showTitle, title, titleTag, titlePosition, rating } = attributes;
+    const { preview, uniqueId, parentClasses, showTitle, title, titleTag, titlePosition, rating, showIcon, iconType, icon, iconTypeImage, imageRes
+    } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -63,6 +64,45 @@ export default function Edit(props) {
                                 onChange={(v) => setAttributes({ title: v })}
                                 placeholder={__('Enter title', 'zolo-blocks')}
                             />
+                        )}
+                        {showIcon && (
+                                <span className={`star-rating_inner-icon ${iconType !== 'icon' ? 'zolo-image' : 'zolo-icon'}`}>
+                                    {iconType == 'icon' ? (
+                                        <>{icon && <DisplayZoloIcon icon={icon} />}</>
+                                    ) : iconTypeImage ? (
+                                        <>
+                                            <img
+                                                src={
+                                                    iconTypeImage.sizes && iconTypeImage.sizes[imageRes]
+                                                        ? iconTypeImage.sizes[imageRes].url
+                                                        : iconTypeImage.url
+                                                }
+                                                alt={iconTypeImage.alt || 'Star Rating Icon'}
+                                            />
+                                        </>
+                                    ) : (
+                                        <MediaPlaceholder
+                                            icon="format-image"
+                                            labels={{
+                                                title: __('Add Photo', 'zolo-blocks'),
+                                                instructions: '',
+                                            }}
+                                            onSelect={(media) => {
+                                                setAttributes({
+                                                    iconTypeImage: {
+                                                        id: media.id,
+                                                        url: media.url,
+                                                        alt: media.alt,
+                                                        sizes: media.sizes,
+                                                        caption: media.caption,
+                                                    },
+                                                });
+                                            }}
+                                            accept="image/*"
+                                            allowedTypes={['image']}
+                                        />
+                                    )}
+                                </span>
                         )}
                         <StarRating rating={rating} total={5} />
                     </div>

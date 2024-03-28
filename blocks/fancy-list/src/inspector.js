@@ -52,6 +52,7 @@ import {
     ITEM_BORDER,
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
+    PRESETS_ALIGNMENT,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -79,6 +80,7 @@ function Inspector(props) {
         iconColor,
         iconHColor,
         iconHBColor,
+        fancyDirection,
     } = attributes;
 
     const requiredProps = {
@@ -139,6 +141,21 @@ function Inspector(props) {
                                 onChange={(v) => onPresetChange(v)}
                                 value={preset}
                             />
+                            {
+                                // If preset is not selected, show alignment control
+                                preset === 'style-4' && (
+                                    <IconicBtnGroup
+                                        label={__('Layout Direction', 'zolo-blocks')}
+                                        value={fancyDirection}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                fancyDirection: value,
+                                            })
+                                        }
+                                        options={PRESETS_ALIGNMENT}
+                                    />
+                                )
+                            }
                             <ToggleControl
                                 label={__('Show title', 'zolo-block')}
                                 checked={titleToggle}

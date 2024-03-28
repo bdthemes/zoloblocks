@@ -22,11 +22,11 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, preset } = attributes;
+    const { preview, uniqueId, parentClasses, preset, layoutType } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), preset),
+        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), preset, layoutType),
     });
 
     // column count
@@ -68,23 +68,23 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <style>{`
-					.${uniqueId}.wp-block-zolo-review-grid {
+					.${uniqueId}.wp-block-zolo-review-grid.grid {
 						display: block;
 					}
-					.${uniqueId}.wp-block-zolo-review-grid .block-editor-block-list__layout {
+					.${uniqueId}.wp-block-zolo-review-grid.grid .block-editor-block-list__layout {
 						display: grid;
 						grid-template-columns: repeat(${deskColumns}, 1fr);
 						${deskGridGap}
 					}
                     @media only screen and (max-width: 1024px) {
-                        .${uniqueId}.wp-block-zolo-review-grid .block-editor-block-list__layout {
+                        .${uniqueId}.wp-block-zolo-review-grid.grid .block-editor-block-list__layout {
                             grid-template-columns: repeat(${tabColumns}, 1fr);
                             ${tabGridGap}
                         }
                     }
 
                     @media only screen and (max-width: 767px) {
-                        .${uniqueId}.wp-block-zolo-review-grid .block-editor-block-list__layout {
+                        .${uniqueId}.wp-block-zolo-review-grid.grid .block-editor-block-list__layout {
                             grid-template-columns: repeat(${mobColumns}, 1fr);
                             ${mobGridGap}
                         }
