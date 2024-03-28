@@ -134,7 +134,7 @@ const Edit = (props) => {
             <div {...blockProps}>
                 <div
                     className={classnames(
-                        'zolo-tabs',
+                        'zolo-tabs zolo-indicator-position-bottom',
                         `${tabsLayout === 'horizontal' ? `zolo-tab_${tabsLayout}` : `zolo-tab_${verticalLayoutDirection}`}`,
                         `${tabContentStyle === 'content-style-2' ? `zolo-tab_${tabContentStyle}` : `zolo-tab_${contentDirection}`}`,
                         `zolo-tab_${tabIndicatorStyle}`
