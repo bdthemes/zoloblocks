@@ -560,16 +560,17 @@ function Inspector(props) {
                                 defaultVal={600}
                                 step={1}
                             />
-
-                            <SelectControl
+                            <IconicBtnGroup
                                 label={__('Trigger Type', 'zolo-blocks')}
                                 value={triggerType}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        triggerType: value,
+                                    })
+                                }
                                 options={FLIP_TRIGGER_TYPE}
-                                onChange={(triggerType) => {
-                                    setAttributes({ triggerType });
-                                }}
-                                help={triggerType === 'click' ? __('The feature works on the frontend only.', 'zolo-blocks') : ''}
                             />
+                            {triggerType === 'click' && <p>{__('The feature works on the frontend only.', 'zolo-blocks')}</p>}
                         </ZoloPanelBody>
                     </>
                 }
