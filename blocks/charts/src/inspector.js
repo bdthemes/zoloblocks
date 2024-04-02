@@ -48,7 +48,7 @@ function Inspector(props) {
   const { attributes, setAttributes } = props;
   const {
     resMode,
-    chartTypes,
+    chartType,
     sourceType,
     uploadStatus,
     chartInputData,
@@ -73,8 +73,6 @@ function Inspector(props) {
     yAxisColor,
   } = attributes;
 
-  console.log("attributes", xAxisColor);
-
   const requiredProps = {
     attributes,
     setAttributes,
@@ -89,8 +87,12 @@ function Inspector(props) {
       parseCSVData(CSVreader.result);
     };
     CSVreader.readAsText(e.target.files[0]);
-
     setAttributes({ uploadStatus: !uploadStatus });
+  };
+
+  // handle CSV Input from TextareaControl Component and pass on result to DataPareser
+  const handleInputData = (e) => {
+    parseCSVData(e);
   };
 
   function parseCSVData(csvData) {
@@ -113,10 +115,10 @@ function Inspector(props) {
       name: header,
       data: parsedData.map((data) => data[header]),
     }));
+
     const pieSeries = parsedData
       .map((data, index) => data[headers[1]])
       .map((i) => Number(i));
-
 
     setAttributes({
       barChartData: {
@@ -134,14 +136,6 @@ function Inspector(props) {
       pieChartLength: pieSeries.length,
       barChartLength: series.length,
     });
-  }
-
-  if (sourceType === "input" && chartInputData !== "") {
-    useEffect(() => {
-      if (!uploadStatus) {
-        parseCSVData(chartInputData);
-      }
-    }, [chartInputData]);
   }
 
   return (
@@ -185,14 +179,19 @@ function Inspector(props) {
                   label={__("Enter chart data as CSV format")}
                   value={chartInputData}
                   rows={10}
-                  onChange={(value) => setAttributes({ chartInputData: value })}
+                  onChange={(value) => {
+                    setAttributes({ chartInputData: value });
+                    handleInputData(value);
+                  }}
                 />
               )}
               <SelectControl
-                label={__("Chart Types", "zolo-blocks")}
-                value={chartTypes}
+                label={__("Chart Type", "zolo-blocks")}
+                value={chartType}
                 options={CHART_TYPES}
-                onChange={(v) => setAttributes({ chartTypes: v })}
+                onChange={(v) => {
+                  setAttributes({ chartType: v });
+                }}
               />
             </ZoloPanelBody>
             <ZoloPanelBody
@@ -568,12 +567,12 @@ function Inspector(props) {
                 onChange={(color) => setAttributes({ yAxisColor: color })}
               />
               <CardDivider />
-              {(chartTypes === "pie" || chartTypes === "donut") &&
+              {(chartType === "pie" || chartType === "donut") &&
                 //loop for each chart length
                 Array.from({ length: pieChartLength }, (_, index) => index).map(
                   (i) => (
                     <ColorControl
-                      label={__(`${chartTypes} color ${i + 1}`, "zolo-blocks")}
+                      label={__(`${chartType} color ${i + 1}`, "zolo-blocks")}
                       color={attributes.pieChartColor[i]}
                       onChange={(color) => {
                         const pieChartColor = [...attributes.pieChartColor];
@@ -583,12 +582,12 @@ function Inspector(props) {
                     />
                   ),
                 )}
-              {(chartTypes !== "pie" || chartTypes !== "donut") &&
+              {(chartType !== "pie" || chartType !== "donut") &&
                 //loop for each chart length
                 Array.from({ length: barChartLength }, (_, index) => index).map(
                   (i) => (
                     <ColorControl
-                      label={__(`${chartTypes} color ${i + 1}`, "zolo-blocks")}
+                      label={__(`${chartType} color ${i + 1}`, "zolo-blocks")}
                       color={attributes.pieChartColor[i]}
                       onChange={(color) => {
                         const pieChartColor = [...attributes.pieChartColor];

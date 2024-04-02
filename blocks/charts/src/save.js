@@ -8,9 +8,7 @@ const Save = ({ attributes }) => {
     uniqueId,
     parentClasses,
     zoloId,
-    chartTypes,
-    sourceType,
-    uploadStatus,
+    chartType,
     showTitle,
     showSubTitle,
     showLegend,
@@ -34,22 +32,44 @@ const Save = ({ attributes }) => {
     pieChartData,
   } = attributes;
 
-
-
-
+  const chartOptions = {
+    chartType,
+    showTitle,
+    showSubTitle,
+    showLegend,
+    showTooltip,
+    showGrid,
+    showDropshadow,
+    titleObject,
+    subTitleObject,
+    legendObject,
+    tooltipObject,
+    showGridY,
+    showGridX,
+    gridObject,
+    chartBackground,
+    pieChartColor,
+    xAxisColor,
+    xAxisFontSize,
+    yAxisColor,
+    yAxisFontSize,
+    barChartData,
+    pieChartData,
+  };
 
   return (
     <div
       {...useBlockProps.save({
-        className: classnames(
-          `${uniqueId}`,
-          classArrayToStr(parentClasses),
-        ),
+        className: classnames(`${uniqueId}`, classArrayToStr(parentClasses)),
       })}
       {...(zoloId && {
         id: zoloId,
       })}
     >
+      <div
+        className="zolo-chart"
+        data-options={JSON.stringify(chartOptions)}
+      ></div>
     </div>
   );
 };

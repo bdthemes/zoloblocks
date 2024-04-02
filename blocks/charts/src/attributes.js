@@ -1,13 +1,17 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateTypographyAttributes, generateResAlignmentAttributies } = window.zoloModule;
+const {
+  generateResRangeAttributies,
+  generateTypographyAttributes,
+  generateResAlignmentAttributies,
+} = window.zoloModule;
 
-import { SUB_TITLE_ALIGNMENT } from './constants';
-import PieChartAttributes from './attributes/piechart'
-import barChartAttributes from './attributes/barchart'
+import { SUB_TITLE_ALIGNMENT } from "./constants";
+import PieChartAttributes from "./attributes/piechart";
+import barChartAttributes from "./attributes/barchart";
 
-import * as typographyObjs from './constants/typoPrefixConstant';
+import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes = {
   // global Attributes
@@ -38,7 +42,7 @@ const attributes = {
   // Generators
   ...generateTypographyAttributes(Object.values(typographyObjs)),
   ...generateResAlignmentAttributies({ SUB_TITLE_ALIGNMENT }),
-  chartTypes: {
+  chartType: {
     type: "string",
     default: "bar",
   },
@@ -54,7 +58,6 @@ const attributes = {
     type: "object",
     default: barChartAttributes,
   },
-
   pieChartData: {
     type: "object",
     default: PieChartAttributes,
@@ -193,19 +196,19 @@ const attributes = {
     type: "array",
     default: [],
   },
-  xAxisColor:{
+  xAxisColor: {
     type: "string",
     default: "#000000",
   },
-  xAxisFontSize:{
+  xAxisFontSize: {
     type: "number",
     default: 12,
   },
-  yAxisColor:{
+  yAxisColor: {
     type: "string",
     default: "#000000",
   },
-  yAxisFontSize:{
+  yAxisFontSize: {
     type: "number",
     default: 12,
   },

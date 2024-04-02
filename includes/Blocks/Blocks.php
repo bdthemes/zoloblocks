@@ -50,7 +50,7 @@ return apply_filters('zolo_blocks_list_data', [
         'name'             => 'charts',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/charts/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
-        'frontend-scripts' => ['zolo-charts-frontend']
+        'frontend-scripts' => ['zolo-charts-frontend','zolo-block-editor-dependency']
     ],
     'form' => [
         'name'             => 'form',
