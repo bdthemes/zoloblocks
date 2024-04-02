@@ -34,35 +34,7 @@ const Save = ({ attributes }) => {
     pieChartData,
   } = attributes;
 
-  const dataAttributes = {
-    uid: uniqueId,
-    chartType: chartTypes,
-    pieChartData: pieChartData,
-    barChartData: barChartData,
-    // sourceType,
-    // uploadStatus,
-    // showTitle,
-    // showSubTitle,
-    // showLegend,
-    // showTooltip,
-    // showGrid,
-    // showGridY,
-    // showGridX,
-    // showDropshadow,
-    // title: titleObject,
-    // subTitle: subTitleObject,
-    // legend: legendObject,
-    // tooltip: tooltipObject,
-    // grid: gridObject,
-    // chartBackground,
-    // pieChartColor,
-    // xAxisColor,
-    // xAxisFontSize,
-    // yAxisColor,
-    // yAxisFontSize,
-    // barChartData,
-    // pieChartData,
-  };
+
 
 
 
@@ -77,7 +49,6 @@ const Save = ({ attributes }) => {
       {...(zoloId && {
         id: zoloId,
       })}
-      data-zoloapexcharts={JSON.stringify(dataAttributes)}
     >
     </div>
   );
