@@ -44,6 +44,17 @@ const Style = ({ props }) => {
     });
 
     const {
+        desktopAlignStyle: textDeskAlign,
+        tabAlignStyle: textTabAlign,
+        mobAlignStyle: textMobAlign,
+    } = generateResAlignmentStyle({
+        controlName: ITEMS_ALIGN,
+        property: '',
+        attributes,
+    });
+
+
+    const {
         desktopRangeStyle: deskGap,
         tabRangeStyle: tabGap,
         mobRangeStyle: mobGap,
@@ -143,6 +154,7 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
         .${uniqueId} .start-rating-wrapper {
             ${itemsVDeskAlign}
+            ${textDeskAlign == ':flex-start;' ? 'text-align: left;' : textDeskAlign == ':flex-end;' ? 'text-align: right;' : textDeskAlign == ':center;' ? 'text-align: center;' : ''}
         }
         .${uniqueId} .star-rating-inner {
             ${deskGap}
@@ -176,6 +188,7 @@ const Style = ({ props }) => {
     const tabletAllStyle = `
         .${uniqueId} .start-rating-wrapper {
             ${itemsVTabAlign}
+            ${textTabAlign == ':flex-start;' ? 'text-align: left;' : textTabAlign == ':flex-end;' ? 'text-align: right;' : textTabAlign == ':center;' ? 'text-align: center;' : ''}
         }
         .${uniqueId} .star-rating-inner {
             ${tabGap}
@@ -204,6 +217,7 @@ const Style = ({ props }) => {
     const mobileAllStyle = `
         .${uniqueId} .start-rating-wrapper {
             ${itemsVMobAlign}
+            ${textMobAlign == ':flex-start;' ? 'text-align: left;' : textMobAlign == ':flex-end;' ? 'text-align: right;' : textMobAlign == ':center;' ? 'text-align: center;' : ''}
         }
         .${uniqueId} .star-rating-inner {
             ${mobGap}
