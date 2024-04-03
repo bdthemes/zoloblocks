@@ -7,9 +7,9 @@ const {
   generateResAlignmentAttributies,
 } = window.zoloModule;
 
-import { SUB_TITLE_ALIGNMENT } from "./constants";
-import PieChartAttributes from "./attributes/piechart";
-import barChartAttributes from "./attributes/barchart";
+import { CHART_HEIGHT, SUB_TITLE_ALIGNMENT } from "./constants";
+import PieChartAttributes from "./data/piechart";
+import barChartAttributes from "./data/barchart";
 
 import * as typographyObjs from "./constants/typoPrefixConstant";
 
@@ -42,6 +42,8 @@ const attributes = {
   // Generators
   ...generateTypographyAttributes(Object.values(typographyObjs)),
   ...generateResAlignmentAttributies({ SUB_TITLE_ALIGNMENT }),
+  ...generateResRangeAttributies(CHART_HEIGHT),
+
   chartType: {
     type: "string",
     default: "bar",
@@ -190,7 +192,7 @@ const attributes = {
   },
   pieChartLength: {
     type: "number",
-    default: 2,
+    default: 5,
   },
   pieChartColor: {
     type: "array",

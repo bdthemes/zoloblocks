@@ -20,18 +20,20 @@ export const CHART_TYPES = [
   { label: __("Bar", "zolo-blocks"), value: "bar" },
   { label: __("Pie", "zolo-blocks"), value: "pie" },
   { label: __("Donut", "zolo-blocks"), value: "donut" },
-  { label: __("Radial Bar", "zolo-blocks"), value: "radialBar" },
-  { label: __("Scatter", "zolo-blocks"), value: "scatter" },
-  { label: __("Bubble", "zolo-blocks"), value: "bubble" },
-  { label: __("Heatmap", "zolo-blocks"), value: "heatmap" },
+  // { label: __("Radial Bar", "zolo-blocks"), value: "radialBar" },
+  // { label: __("Scatter", "zolo-blocks"), value: "scatter" },
+  // { label: __("Bubble", "zolo-blocks"), value: "bubble" },
+  // { label: __("Heatmap", "zolo-blocks"), value: "heatmap" },
   // { label: __("Candlestick", "zolo-blocks"), value: "candlestick" },
   // { label: __("Box Plot", "zolo-blocks"), value: "boxPlot" },
-  { label: __("Radar", "zolo-blocks"), value: "radar" },
+  // { label: __("Radar", "zolo-blocks"), value: "radar" },
   // { label: __("Polar Area", "zolo-blocks"), value: "polarArea" },
   // { label: __("Range Bar", "zolo-blocks"), value: "rangeBar" },
   // { label: __("Range Area", "zolo-blocks"), value: "rangeArea" },
   // { label: __("Treemap", "zolo-blocks"), value: "treemap" },
 ];
+
+export const CHART_HEIGHT = 'chartHeight';
 
 export const SOURCE_TYPES = [
   { label: __("Upload CSV", "zolo-blocks"), value: "upload" },

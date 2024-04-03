@@ -1,7 +1,6 @@
 /**
  * WordPress dependencies
  */
-import { useEffect, useState } from "@wordpress/element";
 import { InspectorControls } from "@wordpress/block-editor";
 import {
   ToggleControl,
@@ -11,8 +10,6 @@ import {
   FormFileUpload,
   Button,
   TextareaControl,
-  ButtonGroup,
-  BaseControl,
   CardDivider,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
@@ -21,13 +18,10 @@ import { __ } from "@wordpress/i18n";
  * Internal depencencies
  */
 const {
-  ResAlignmentControl,
   ResRangeControl,
   SimpleRangeControl,
   ColorControl,
-  TypographyDropdown,
   HeaderTabs,
-  TabPanelControl,
   IconicBtnGroup,
   AdvancedOptions,
   ZoloPanelBody,
@@ -35,14 +29,13 @@ const {
 
 import objAttributes from "./attributes";
 
-import { TITLE_TYPO } from "./constants/typoPrefixConstant";
 import {
   CHART_TYPES,
   SOURCE_TYPES,
   POSITIONS,
   THEME_TYPES,
-  GRID_POSITION,
 } from "./constants";
+import { CHART_HEIGHT } from "./constants";
 import { DEFAULT_ALIGNS } from "../../../src/global/constants";
 function Inspector(props) {
   const { attributes, setAttributes } = props;
@@ -60,12 +53,10 @@ function Inspector(props) {
     showGrid,
     showGridY,
     showGridX,
-    showDropshadow,
     titleObject,
     subTitleObject,
     legendObject,
     tooltipObject,
-    gridObject,
     chartBackground,
     pieChartLength,
     barChartLength,
@@ -192,6 +183,15 @@ function Inspector(props) {
                 onChange={(v) => {
                   setAttributes({ chartType: v });
                 }}
+              />
+              <ResRangeControl
+                label={__("Height", "zolo-blocks")}
+                controlName={CHART_HEIGHT}
+                requiredProps={requiredProps}
+                min={200}
+                max={1000}
+                defaultVal={300}
+                units={["px", "%"]}
               />
             </ZoloPanelBody>
             <ZoloPanelBody
@@ -526,7 +526,7 @@ function Inspector(props) {
                   }
                 />
                 <CardDivider />
-                <IconicBtnGroup
+                {/* <IconicBtnGroup
                   label={__("Position", "zolo-blocks")}
                   value={gridObject.position}
                   onChange={(v) =>
@@ -538,7 +538,7 @@ function Inspector(props) {
                     })
                   }
                   options={GRID_POSITION}
-                />
+                /> */}
               </ZoloPanelBody>
             )}
           </>
@@ -567,10 +567,11 @@ function Inspector(props) {
                 onChange={(color) => setAttributes({ yAxisColor: color })}
               />
               <CardDivider />
-              {(chartType === "pie" || chartType === "donut") &&
-                //loop for each chart length
-                Array.from({ length: pieChartLength }, (_, index) => index).map(
-                  (i) => (
+              {chartType === "pie" || chartType === "donut"
+                ? Array.from(
+                    { length: pieChartLength },
+                    (_, index) => index,
+                  ).map((i) => (
                     <ColorControl
                       label={__(`${chartType} color ${i + 1}`, "zolo-blocks")}
                       color={attributes.pieChartColor[i]}
@@ -580,12 +581,12 @@ function Inspector(props) {
                         setAttributes({ pieChartColor });
                       }}
                     />
-                  ),
-                )}
-              {(chartType !== "pie" || chartType !== "donut") &&
-                //loop for each chart length
-                Array.from({ length: barChartLength }, (_, index) => index).map(
-                  (i) => (
+                  ))
+                : // Else condition
+                  Array.from(
+                    { length: barChartLength },
+                    (_, index) => index,
+                  ).map((i) => (
                     <ColorControl
                       label={__(`${chartType} color ${i + 1}`, "zolo-blocks")}
                       color={attributes.pieChartColor[i]}
@@ -595,8 +596,7 @@ function Inspector(props) {
                         setAttributes({ pieChartColor });
                       }}
                     />
-                  ),
-                )}
+                  ))}
             </ZoloPanelBody>
             {showTitle && (
               <>
