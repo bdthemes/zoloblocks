@@ -1,3 +1,25 @@
+## 1.0.0-RC7 [04th April 2024]
+
+### Added
+
+- Charts block added
+- Google recaptcha added to Form block
+- Image height control added to Image gallery block
+- Masonary grid features added to Review Grid block
+- Icon Option added to Star Rating block
+- Icon Alignment control added to tabs block
+
+### Fixed
+
+- Flipbox block back icon issue fixed
+- Star Rating Alignment issue fixed
+
+### Improved
+
+- Viewport with & height units added to each range control
+- Border radius control added in Google Maps block
+- Controls UI improved
+
 ## 1.0.0-RC6 [21th March 2024]
 
 ### Added
