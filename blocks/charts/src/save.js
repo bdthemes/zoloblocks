@@ -30,6 +30,14 @@ const Save = ({ attributes }) => {
     yAxisFontSize,
     barChartData,
     pieChartData,
+    showToolbar,
+    showDownload,
+    showSelection,
+    showZoom,
+    showZoomIn,
+    showZoomOut,
+    showPanel,
+    showReset,
   } = attributes;
 
   const chartOptions = {
@@ -55,6 +63,15 @@ const Save = ({ attributes }) => {
     yAxisFontSize,
     barChartData,
     pieChartData,
+    showDropshadow,
+    showToolbar,
+    showDownload,
+    showSelection,
+    showZoom,
+    showZoomIn,
+    showZoomOut,
+    showPanel,
+    showReset,
   };
 
   return (

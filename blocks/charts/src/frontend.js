@@ -32,6 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
         yAxisFontSize,
         barChartData,
         pieChartData,
+        showToolbar,
+        showDownload,
+        showSelection,
+        showZoom,
+        showZoomIn,
+        showZoomOut,
+        showPanel,
+        showReset,
       } = options;
 
       const newChartOptions = {
@@ -86,7 +94,19 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         chart: {
           id: `chart-${uid}`,
-          background: 'transparent',
+          background: "transparent",
+          toolbar: {
+            show: showToolbar,
+            tools: {
+              download: showDownload,
+              selection: showSelection,
+              zoom: showZoom,
+              zoomin: showZoomIn,
+              zoomout: showZoomOut,
+              pan: showPanel,
+              reset: showReset,
+            },
+          },
         },
         xaxis: {
           labels: {

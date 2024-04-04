@@ -277,7 +277,7 @@ function Inspector(props) {
                       })
                     }
                   />
-                  <ToggleControl
+                  {/* <ToggleControl
                     label={__("Show Selection", "zolo-blocks")}
                     checked={showSelection}
                     onChange={() =>
@@ -285,7 +285,7 @@ function Inspector(props) {
                         showSelection: !showSelection,
                       })
                     }
-                  />
+                  /> */}
                   <ToggleControl
                     label={__("Show Zoom", "zolo-blocks")}
                     checked={showZoom}
