@@ -5,12 +5,12 @@ import classnames from "classnames";
 import ApexCharts from "react-apexcharts";
 import { v4 as uuidv4 } from "uuid";
 
-const { handleUniqueId, classArrayToStr } = window.zoloModule;
+const { handleUniqueId, classArrayToStr, generateResRangeStyle } =
+  window.zoloModule;
 
-import { BLOCK_PREFIX } from "./constants";
+import { BLOCK_PREFIX, CHART_HEIGHT } from "./constants";
 import Inspector from "./inspector";
 import Style from "./style";
-
 export default function Edit(props) {
   const { attributes, setAttributes, className, clientId, isSelected } = props;
   const {
@@ -44,6 +44,17 @@ export default function Edit(props) {
     yAxisFontSize,
   } = attributes;
 
+      const {
+        desktopRangeStyle: chartDeskHeight,
+        tabRangeStyle: chartTabHeight,
+        mobRangeStyle: chartMobHeight,
+      } = generateResRangeStyle({
+        controlName: CHART_HEIGHT,
+        noProperty: true,
+        attributes,
+      });
+
+
   // chart options
   const getChartOptions = (
     showTitle,
@@ -63,37 +74,22 @@ export default function Edit(props) {
     return {
       dataLabels: { enabled: false },
       colors: pieChartColor,
-      ...(showTitle && {
         title: {
-          text: titleObject.text,
+          text: showTitle ? titleObject.text : undefined,
           align: titleObject.align,
           style: {
             color: titleObject.style.color,
             fontSize: titleObject.style.fontSize,
-            // fontWeight: titleObject.style.fontWeight,
-            // lineHeight: titleObject.style.lineHeight,
-            // letterSpacing: titleObject.style.letterSpacing,
-            // textAlign: titleObject.style.textAlign,
-            // textTransform: titleObject.style.textTransform,
           },
         },
-      }),
-      ...(showSubTitle && {
         subtitle: {
-          text: subTitleObject.text,
+          text: showSubTitle ? subTitleObject.text : undefined,
           align: subTitleObject.align,
           style: {
             color: subTitleObject.style.color,
             fontSize: subTitleObject.style.fontSize,
-            // fontWeight: subTitleObject.style.fontWeight,
-            // lineHeight: subTitleObject.style.lineHeight,
-            // letterSpacing: subTitleObject.style.letterSpacing,
-            // textAlign: subTitleObject.style.textAlign,
-            // textTransform: subTitleObject.style.textTransform,
           },
         },
-      }),
-      ...(showLegend && {
         legend: {
           show: showLegend,
           position: legendObject.position,
@@ -104,14 +100,12 @@ export default function Edit(props) {
           lebels: {
             style: {
               colors: "#f00",
-              // useSeriesColors: legendObject.lebels.useSeriesColors,
+              useSeriesColors: legendObject.lebels.useSeriesColors,
             },
           },
         },
-      }),
-      ...(showTooltip && {
         tooltip: {
-          enabled: true,
+          enabled: showTooltip,
           shared: true,
           followCursor: false,
           intersect: false,
@@ -120,18 +114,16 @@ export default function Edit(props) {
           fillSeriesColor: false,
           theme: tooltipObject.theme,
         },
-      }),
-      ...(showGrid && {
         grid: {
           show: showGrid,
-          position: gridObject.position,
-          xaxis: { lines: { show: showGridY } },
-          yaxis: { lines: { show: showGridX } },
+          xaxis: { lines: { show: showGrid ? showGridY : false
+           } },
+          yaxis: { lines: { show: showGrid ? showGridX: false } },
         },
-      }),
       chart: {
         id: `chart-${uid}`,
         background: chartBackground,
+        height: 320,
       },
       xaxis: {
         labels: {
@@ -172,6 +164,32 @@ export default function Edit(props) {
         uid,
       ),
       series: barChartData.series,
+      responsive: [
+        {
+          breakpoint: 768,
+          options: {
+            chart: {
+              height: chartMobHeight.replace(";", "")
+            },
+          },
+        },
+        {
+          breakpoint: 1024,
+          options: {
+            chart: {
+              height: chartTabHeight.replace(";", "")
+            },
+          },
+        },
+        {
+          breakpoint: 1440,
+          options: {
+            chart: {
+              height: chartDeskHeight.replace(";", "")
+            },
+          },
+        },
+      ],
     };
 
     const newPieChartData = {
@@ -269,14 +287,14 @@ export default function Edit(props) {
       {isSelected && (
         <Inspector attributes={attributes} setAttributes={setAttributes} />
       )}
-      <Style props={props} />
+      <Style props={props}/>
       <div {...blockProps}>
         <ApexCharts
           options={renderOptions()}
           series={renderSeries()}
           type={chartType}
           width={"100%"}
-          height={320}
+          height={chartDeskHeight.replace(";", "")}
         />
       </div>
     </>
