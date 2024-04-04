@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Business Hours",
+    "name": "zolo/business-hour",
+    "category": "zolo-blocks",
+    "keywords": ["business", "business hour", "hour"],
+    "description": "business hour description",
+    "apiVersion": 2,
+    "textdomain": "zolo-blocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": ""
+}

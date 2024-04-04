@@ -51,6 +51,7 @@ import '../blocks/team-child/src';
 import '../blocks/team-child/src';
 import '../blocks/team-grid/src';
 import '../blocks/team-grid/src';
+import '../blocks/business-hour/src';
 import '../blocks/list/src';
 import '../blocks/tab/src';
 import '../blocks/tabs/src';
