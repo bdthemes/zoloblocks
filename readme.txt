@@ -58,6 +58,7 @@ Not at all. We have optimised all of these blocks for better performance.
 ### Added
 
 * Charts block added
+* Business hours block added
 * Google recaptcha added to Form block
 * Image height control added to Image gallery block
 * Masonary grid features added to Review Grid block
