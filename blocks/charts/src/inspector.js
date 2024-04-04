@@ -195,8 +195,9 @@ function Inspector(props) {
                 requiredProps={requiredProps}
                 min={200}
                 max={1000}
-                defaultVal={300}
-                units={["px", "%"]}
+                units={[
+                  { label: __("px", "zolo-blocks"), value: "px" },
+                ]}
               />
             </ZoloPanelBody>
             <ZoloPanelBody

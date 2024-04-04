@@ -348,6 +348,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'iconBox'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-icon-box.svg',
                     'imageGallery' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/image-gallery.svg',
                     'image'        => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/image-preview.svg',
+                    'charts'       => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/charts.svg',
                     'postCarousel' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/post-carousel.svg',
                     'postGrid'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/post-grid.svg',
                     'postList'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/post-list.svg',

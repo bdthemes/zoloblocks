@@ -276,7 +276,7 @@ export default function Edit(props) {
   if (preview) {
     return (
       <img
-        src={zoloParams.blocksPreview.starRating}
+        src={zoloParams.blocksPreview.charts}
         alt={__("Charts Preview", "zolo-blocks")}
       />
     );
@@ -294,7 +294,7 @@ export default function Edit(props) {
           series={renderSeries()}
           type={chartType}
           width={"100%"}
-          height={chartDeskHeight.replace(";", "")}
+          height={chartDeskHeight.replace(";", "") || 380}
         />
       </div>
     </>
