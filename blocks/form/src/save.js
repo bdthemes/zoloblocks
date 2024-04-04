@@ -5,10 +5,13 @@ const { classArrayToStr } = window.zoloModule;
 
 // Save function
 const Save = ({ attributes }) => {
-    const { uniqueId, formId, parentClasses, preset, zoloId, btnLabel, iconPosition, messagePosition } = attributes;
+    const { uniqueId, formId, parentClasses, preset, zoloId, btnLabel, iconPosition, messagePosition, reCaptcha } = attributes;
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
     });
+
+    console.log('reCaptcha', reCaptcha);
+
     return (
         <div
             {...blockProps}
@@ -33,7 +36,6 @@ const Save = ({ attributes }) => {
                         <p className="zolo-msg-desc"></p>
                     </div>
 
-
                     <button className="zolo-msg-close">
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <path
@@ -47,11 +49,23 @@ const Save = ({ attributes }) => {
                     </button>
                 </div>
             )}
-            <form className="zolo-contact-form zolo-contact-form-style-1 zolo-field-icon-style-1 form" data-form-id={formId}>
+            <form
+                className="zolo-contact-form zolo-contact-form-style-1 zolo-field-icon-style-1 form"
+                data-form-id={formId}
+                data-recaptcha={reCaptcha ? 'true' : 'false'}
+            >
                 <InnerBlocks.Content />
+                {reCaptcha && <input type="hidden" name="g-recaptcha-response" className="zolo-g-recaptcha-response" />}
                 <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">
                     <div className="zolo-submit-btn">
-                        <button type="submit" className={iconPosition}>
+                        <button
+                            type="submit"
+                            className={classnames(iconPosition, reCaptcha ? 'g-recaptcha' : '')}
+                            {...(reCaptcha && {
+                                'data-callback': 'zoloFormSubmit',
+                                'data-action': 'submit',
+                            })}
+                        >
                             {btnLabel || __('Submit Now', 'zolo-blocks')}
                         </button>
                     </div>
@@ -61,7 +75,7 @@ const Save = ({ attributes }) => {
                 <div className={`zolo-form-msg ${messagePosition}`}>
                     <div className="zolo-form-msg-content">
                         <div className="zolo-msg-icon">
-                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
                                 <path
                                     stroke="currentColor"
                                     strokeLinecap="round"
@@ -75,7 +89,7 @@ const Save = ({ attributes }) => {
                     </div>
 
                     <button className="zolo-msg-close">
-                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
                             <path
                                 stroke="currentColor"
                                 strokeLinecap="round"

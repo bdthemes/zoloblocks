@@ -20,6 +20,7 @@
 
     // overflow: hidden;
     box-sizing: border-box;
+    height: 100%;
 
     a {
         transition: 0.2s;
@@ -33,6 +34,7 @@
         border-radius: var(--zolo-item-border-radius);
         padding: var(--zolo-item-padding);
         width: 100%;
+        height: 100%;
         box-sizing: border-box;
     }
 

@@ -50,6 +50,7 @@ import {
 } from './constants';
 
 import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -66,6 +67,7 @@ const Style = ({ props }) => {
         HoverIconColor,
         iconToggle,
         BorderHovColor,
+        
     } = attributes;
 
     //desc
@@ -203,7 +205,7 @@ const Style = ({ props }) => {
         mobAlignStyle: mobListAlign,
     } = generateResAlignmentStyle({
         controlName: ITEM_ALIGNMENT,
-        property: 'text-align',
+        property: layout =='flex' ? 'justify-content' : 'text-align',
         attributes,
     });
 
@@ -293,10 +295,11 @@ const Style = ({ props }) => {
         ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridDeskstyle}, 1fr)`};
         ${listGapDeskstyle};
         ${desktopSingleAlign}
+        ${layout=='flex' && desktopListAlign}
       }
 	.wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
-        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && desktopListAlign};
-        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && desktopListAlign};
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout=='grid' && desktopListAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4')  && layout=='grid' && desktopListAlign};
         ${DesktopListRadius}
         ${desktopListBorder}
         ${DesktopListP}
@@ -369,10 +372,11 @@ const Style = ({ props }) => {
         ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridTabStyle}, 1fr)`};
         ${listGapTabStyle};
         ${tabSingleAlign}
+        ${layout=='flex' && tabListAlign}
       }
     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
-        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && tabListAlign};
-        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && tabListAlign};
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2')&& layout=='grid' && tabListAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4')&& layout=='grid' && tabListAlign};
         ${TabListRadius}
         ${tabListBorder}
         ${TabListp}
@@ -429,10 +433,11 @@ const Style = ({ props }) => {
         ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridMobStyle}, 1fr)`};
         ${listGapMobStyle};
         ${mobSingleAlign}
+        ${layout=='flex' && mobListAlign}
     }
 	.wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item { 
-        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && mobListAlign};
-        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && mobListAlign};
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout=='grid'  && mobListAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout=='grid' && mobListAlign};
         ${MobListRadius}
         ${mobListBorder}
         ${MobListp}
@@ -483,9 +488,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.list.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.list.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.list.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

@@ -94,7 +94,9 @@
      * Send Form Data
      */
     public function send_form_data() {
+
         $nonceValidationFail = false;
+
         // verify nonce 
         if( ! wp_verify_nonce( json_decode(stripslashes($_POST['formData']), true)['nonce'] , 'zolo-nonce' ) ) {
             $nonceValidationFail = true;
@@ -105,102 +107,130 @@
 
         if(isset($data) ) {
 
-            $sanitizedData = []; 
+            $recaptchaValidationFail = false;
+            $recaptchaFailMessage = 'Recaptcha validation failed';
 
-            // formId
-            $formId = $data['formId'] ?? '';
-    
-            if( empty($formId) ) {
-                return;
-            }
-    
-            // Database
-            global $wpdb;
-            $table_name = $wpdb->prefix . 'zolo_form';
-    
-            // Fetch form settings, submission settings, and validation rules in a single query
-            $form_query = $wpdb->prepare("SELECT form_settings, submission_settings, validation_rules FROM $table_name WHERE form_id = %s", $formId);
-            $form_data = $wpdb->get_row($form_query); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-
-            $form_submission_settings = json_decode($form_data->submission_settings, true);
-    
-            // Validate form data
-            $validationStatus = false;
-            $validationMessage = sanitize_text_field( $form_submission_settings['validationMessage'] ) ?? 'Form validation failed';
-            foreach($form_data->validation_rules as $key => $value) {
-                if( $value === true && empty($data[$key]) ) {
-                    $validationStatus = true;
+            // google recaptcha validation 
+            if( isset( $data['g-recaptcha-response'] ) ) {
+                $recaptcha_secret_key = get_option('zolo_recaptcha_secret_key');
+                $recaptcha_response = $data['g-recaptcha-response'];
+                $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+                $recaptcha = wp_remote_post( $recaptcha_url, [
+                    'body' => [
+                        'secret'   => $recaptcha_secret_key,
+                        'response' => $recaptcha_response,
+                    ],
+                ]);
+                $result = json_decode( wp_remote_retrieve_body( $recaptcha ) );
+               
+                if( $result->success === false ) {
+                    $recaptchaValidationFail = true;
                 }
             }
-    
-            // Initialize status variables
-            $successStatus  = false;
-            $successMessage = sanitize_text_field( $form_submission_settings['successMessage'] ) ?? 'Thank you for your submission';
 
-            // success message 
-            $failStatus     = false;
-            $failMessage    = sanitize_text_field( $form_submission_settings['failMessage'] ) ?? 'Sorry, form submission failed';
-    
-            // Prepare email headers and message
-            $emailSettings = json_decode($form_data->submission_settings, true);
-            $formSettings  = json_decode($form_data->form_settings, true);
-            $emailSubject  = isset($emailSettings['emailSubject']) ? sanitize_text_field( $emailSettings['emailSubject'] ) : 'New Form Submission';
-            $emailTo       = isset($emailSettings['emailTo']) ? sanitize_email( $emailSettings['emailTo'] ) : get_option('admin_email');
-            $emailCC       = isset($emailSettings['emailCC']) ? sanitize_email( $emailSettings['emailCC'] ) : '';
-            $emailBCC      = isset($emailSettings['emailBCC']) ? sanitize_email( $emailSettings['emailBCC'] ) : '';
-            $headers       = array(
-                'Content-Type: text/html; charset=UTF-8',
-                'Cc: ' . $emailCC,
-                'Bcc: ' . $emailBCC,
-            ); 
-            $message = $formSettings['formTitle'] . "\n\n"; 
-            foreach($data as $key => $value) {
-                switch (strtolower($key)) {
-                    case 'email':
-                        $value = sanitize_email($value);
-                        break;
-                    case 'message':
-                        $value = sanitize_textarea_field( $value );
-                        break;
-                    default:
-                        $value = sanitize_text_field( $value );
-                        break;
-                }
-    
-                // Exclude formId from email message
-                if( $key !== 'formId' ) {
-                    $message .= $key . ': ' . $value . "\n";
-                } 
-
-                // Sanitize form data
-                $sanitizedData[$key] = $value;
-            }
-    
-            // Send email
-            $mail_sent = wp_mail($emailTo, $emailSubject, $message, $headers);
-    
-            // Check if the mail is sent or not
-            if ($mail_sent && !$nonceValidationFail) {
-                $successStatus = true;
-
-                // Insert form data into database called zolo_form table 
-                $wpdb->insert( 
-                    $table_name, 
-                    array( 
-                        'form_id'             => $formId,
-                        'form_fields'         => serialize($sanitizedData),
-                        'form_settings'       => serialize($formSettings),
-                        'submission_settings' => serialize($emailSettings),
-                        'validation_rules'    => serialize($form_data->validation_rules),
-                        'created_at'          => current_time( 'mysql' ),
-                    ) 
-                ); 
+            if( $recaptchaValidationFail ) {
+                echo wp_json_encode( array( 'recaptchaStatus' => $recaptchaValidationFail, 'recaptchaFailMessage' => $recaptchaFailMessage ) );
+                wp_die();
             } else {
-                $failStatus = true;
+
+                $sanitizedData = []; 
+
+                // formId
+                $formId = $data['formId'] ?? '';
+        
+                if( empty($formId) ) {
+                    return;
+                }
+        
+                // Database
+                global $wpdb;
+                $table_name = $wpdb->prefix . 'zolo_form';
+        
+                // Fetch form settings, submission settings, and validation rules in a single query
+                $form_query = $wpdb->prepare("SELECT form_settings, submission_settings, validation_rules FROM $table_name WHERE form_id = %s", $formId);
+                $form_data = $wpdb->get_row($form_query); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+
+                $form_submission_settings = json_decode($form_data->submission_settings, true);
+        
+                // Validate form data
+                $validationStatus = false;
+                $validationMessage = sanitize_text_field( $form_submission_settings['validationMessage'] ) ?? 'Form validation failed';
+                foreach($form_data->validation_rules as $key => $value) {
+                    if( $value === true && empty($data[$key]) ) {
+                        $validationStatus = true;
+                    }
+                }
+        
+                // Initialize status variables
+                $successStatus  = false;
+                $successMessage = sanitize_text_field( $form_submission_settings['successMessage'] ) ?? 'Thank you for your submission';
+
+                // success message 
+                $failStatus     = false;
+                $failMessage    = sanitize_text_field( $form_submission_settings['failMessage'] ) ?? 'Sorry, form submission failed';
+        
+                // Prepare email headers and message
+                $emailSettings = json_decode($form_data->submission_settings, true);
+                $formSettings  = json_decode($form_data->form_settings, true);
+                $emailSubject  = isset($emailSettings['emailSubject']) ? sanitize_text_field( $emailSettings['emailSubject'] ) : 'New Form Submission';
+                $emailTo       = isset($emailSettings['emailTo']) ? sanitize_email( $emailSettings['emailTo'] ) : get_option('admin_email');
+                $emailCC       = isset($emailSettings['emailCC']) ? sanitize_email( $emailSettings['emailCC'] ) : '';
+                $emailBCC      = isset($emailSettings['emailBCC']) ? sanitize_email( $emailSettings['emailBCC'] ) : '';
+                $headers       = array(
+                    'Content-Type: text/html; charset=UTF-8',
+                    'Cc: ' . $emailCC,
+                    'Bcc: ' . $emailBCC,
+                ); 
+                $message = $formSettings['formTitle'] . "\n\n"; 
+                foreach($data as $key => $value) {
+                    switch (strtolower($key)) {
+                        case 'email':
+                            $value = sanitize_email($value);
+                            break;
+                        case 'message':
+                            $value = sanitize_textarea_field( $value );
+                            break;
+                        default:
+                            $value = sanitize_text_field( $value );
+                            break;
+                    }
+        
+                    // Exclude formId from email message
+                    if( $key !== 'formId' ) {
+                        $message .= $key . ': ' . $value . "\n";
+                    } 
+
+                    // Sanitize form data
+                    $sanitizedData[$key] = $value;
+                }
+        
+                // Send email
+                $mail_sent = wp_mail($emailTo, $emailSubject, $message, $headers);
+        
+                // Check if the mail is sent or not
+                if ($mail_sent && !$nonceValidationFail) {
+                    $successStatus = true;
+
+                    // Insert form data into database called zolo_form table 
+                    $wpdb->insert( 
+                        $table_name, 
+                        array( 
+                            'form_id'             => $formId,
+                            'form_fields'         => serialize($sanitizedData),
+                            'form_settings'       => serialize($formSettings),
+                            'submission_settings' => serialize($emailSettings),
+                            'validation_rules'    => serialize($form_data->validation_rules),
+                            'created_at'          => current_time( 'mysql' ),
+                        ) 
+                    ); 
+                } else {
+                    $failStatus = true;
+                }
+        
+                // Return response
+                echo wp_json_encode( array( 'validationStatus' => $validationStatus, 'validationMessage' => $validationMessage, 'successStatus' => $successStatus, 'failStatus' => $failStatus, 'successMessage' => $successMessage, 'failMessage' => $failMessage ) );
+                
             }
-    
-            // Return response
-            echo wp_json_encode( array( 'validationStatus' => $validationStatus, 'validationMessage' => $validationMessage, 'successStatus' => $successStatus, 'failStatus' => $failStatus, 'successMessage' => $successMessage, 'failMessage' => $failMessage ) );
 
         } else {
             // Return error response

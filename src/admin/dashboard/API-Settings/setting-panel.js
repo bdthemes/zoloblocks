@@ -1,43 +1,18 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
-import { Modal, TextControl } from '@wordpress/components';
+import { useState } from '@wordpress/element';
+import { Modal } from '@wordpress/components';
 
-const SingleSetting = ({
-    icon = null,
-    label = '',
-    title = '',
-    modalTitle = '',
-    description = '',
-    modalDescription = '',
-    docLink = '',
-    value,
-    onChange,
-}) => {
+const SettingPanel = ({ icon = null, title = '', description = '', docLink = '', children, onSave }) => {
     const [settingsPanel, setSettingsPanel] = useState(false);
-    const [draftValue, setDraftValue] = useState(value);
     const [isSaving, setIsSaving] = useState(false);
-
-    useEffect(() => {
-        // Initialize draftValue with the current value when the component mounts
-        setDraftValue(value);
-    }, [value]);
-
-    const openSettingsPanel = () => {
-        setSettingsPanel(true);
-    };
 
     const closeSettingsPanel = () => {
         setSettingsPanel(false);
     };
 
-    const handleValueChange = (newValue) => {
-        setDraftValue(newValue);
-    };
-
     const handleSaveChanges = () => {
         setIsSaving(true);
-        onChange(draftValue);
-
+        onSave();
         // Simulate a delay for better user experience (adjust as needed)
         setTimeout(() => {
             setIsSaving(false);
@@ -111,14 +86,9 @@ const SingleSetting = ({
             {settingsPanel && (
                 <Modal onRequestClose={closeSettingsPanel}>
                     <div className="settings-popup">
-                        <h4 className="modal-title">{modalTitle}</h4>
-                        <p className="modal-description">{modalDescription}</p>
-                        <TextControl
-                            label={label}
-                            onChange={handleValueChange}
-                            placeholder={__('Enter ', 'zolo-blocks') + label}
-                            value={draftValue}
-                        />
+                        <h4 className="modal-title">{title}</h4>
+                        <p className="modal-description">{description}</p>
+                        {children}
                         <button className="settings-save-btn" onClick={handleSaveChanges} disabled={isSaving}>
                             {isSaving ? __('Saving...', 'zolo-blocks') : __('Save Changes', 'zolo-blocks')}
                         </button>
@@ -129,4 +99,4 @@ const SingleSetting = ({
     );
 };
 
-export default SingleSetting;
+export default SettingPanel;

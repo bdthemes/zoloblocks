@@ -199,14 +199,13 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 wp_enqueue_script('zolo-roll-number', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/animate-counter/rollNumber.js', [], ZOLO_VERSION, true);
             }
 
-            if (has_block('zolo/tabs')) {
+            if ( has_block('zolo/tabs') ) {
                 wp_enqueue_script('zolo-tabs-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/tabs/tabify.js', [], ZOLO_VERSION, true);
             }
 
             if (has_block('zolo/charts')) {
                 wp_enqueue_script('zolo-charts-lib-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/apexcharts/apexcharts.min.js', [], ZOLO_VERSION, true);
             }
-
 
             // load gsap from cdn
             wp_enqueue_script('gsap', '//cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js', [], ZOLO_VERSION, true);

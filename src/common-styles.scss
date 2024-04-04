@@ -40,7 +40,7 @@
         display: block;
     }
     &:hover {
-        background-color: rgba(180, 187, 197, 0.50);
+        background-color: rgba(180, 187, 197, 0.5);
     }
 }
 
@@ -158,7 +158,7 @@ span.zolo-pro-badge {
 }
 
 .wp-admin .zolo-block,
-.zolo-transform-wrapper{
+.zolo-transform-wrapper {
     transform: perspective(var(--zolo-transform-perspective, 0)) rotate(var(--zolo-transform-rotate, 0))
         rotateX(var(--zolo-transform-rotateX, 0)) rotateY(var(--zolo-transform-rotateY, 0)) translate(var(--zolo-transform-translate, 0))
         translateX(var(--zolo-transform-translateX, 0)) translateY(var(--zolo-transform-translateY, 0))
@@ -181,16 +181,32 @@ span.zolo-pro-badge {
     height: 30px;
 }
 
-.block-editor-block-breadcrumb__button.components-button, .block-editor-block-breadcrumb__current {
+.block-editor-block-breadcrumb__button.components-button,
+.block-editor-block-breadcrumb__current {
     font-size: 14px !important;
     font-weight: 600;
     text-decoration: none;
 }
 .block-editor-block-breadcrumb__button.components-button:hover {
     background-color: transparent !important;
-    color: var(--zoloblocks-brand-color) ;
+    color: var(--zoloblocks-brand-color);
 }
 
 .block-editor-block-breadcrumb__current {
     color: var(--zoloblocks-brand-color) !important;
+}
+
+// Editor Formatting Popover
+.components-popover.zolo-format-popover .components-popover__content {
+    width: 250px;
+    padding: 15px;
+}
+
+td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
+    svg {
+        fill: #fff !important;
+        path {
+            fill: #fff !important;
+        }
+    }
 }

@@ -51,6 +51,7 @@ import {
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
@@ -664,7 +665,6 @@ export default function Style({ props }) {
                  : ''
          }
 	`;
-
     const mobileAllStyle = `
 		.wp-block-zolo-advanced-button.${uniqueId} {
 			${buttonAlignmentMob}
@@ -789,9 +789,9 @@ export default function Style({ props }) {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.advancedButton.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.advancedButton.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.advancedButton.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

@@ -44,6 +44,7 @@ import {
     COUNT_NUM_RADIUS,
 } from './constants';
 import { DIGIT_TYPO, LABEL_TYPO, SEPARATOR_TYPO } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -417,9 +418,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.countdown.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.countdown.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.countdown.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

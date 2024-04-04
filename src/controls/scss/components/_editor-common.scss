@@ -14,6 +14,13 @@
             }
         }
     }
+
+}
+
+.zolo-tab-controls {
+    .dnd-fields-wrapper {
+        border: 1px solid #e6e3e3;
+    }
 }
 
 .zolo-panel-control {
@@ -213,6 +220,13 @@
         .components-datetime__time-pm-button {
             height: 27px !important;
         }
+    }
+
+}
+
+.zb-res-range-control-wrapper {
+    .components-range-control {
+        margin-top: 8px;
     }
 }
 
@@ -465,4 +479,44 @@ textarea[readonly] {
     .components-base-control__label {
         margin: 0;
     }
+}
+
+.zolo-background-control-popover {
+    .e1epgpqk10,
+.components-range-control__track {
+    height: 2px;
+}
+.components-range-control__track {
+    background: #230aed;
+}
+.components-range-control__thumb-wrapper {
+    background: #230aed;
+    margin-top: 8px !important;
+    span {
+        background: #230aed;
+    }
+}
+
+.components-form-toggle.is-checked {
+    .components-form-toggle__track {
+        background-color: #001feb;
+    }
+}
+
+.components-form-toggle .components-form-toggle__input:focus + .components-form-toggle__track {
+    box-shadow: none;
+}
+
+.components-form-toggle .components-form-toggle__track {
+    background-color: #d8d8e5;
+    border: none;
+}
+
+.components-form-toggle .components-form-toggle__thumb {
+    background-color: #fff;
+    border: 5px solid #fff;
+}
+.zb-label-header {
+    margin-bottom: 12px;
+}
 }

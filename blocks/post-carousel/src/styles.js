@@ -1,3 +1,4 @@
+import { applyFilters } from '@wordpress/hooks';
 import {
     COLUMNS_GAP,
     THUMBNAIL_HEIGHT,
@@ -1120,9 +1121,9 @@ function Style({ props }) {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zoloBlock.postCarousel.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zoloBlock.postCarousel.tabAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zoloBlock.postCarousel.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

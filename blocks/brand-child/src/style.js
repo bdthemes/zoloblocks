@@ -43,6 +43,7 @@ import {
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -398,9 +399,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.brandChild.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.brandChild.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.brandChild.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

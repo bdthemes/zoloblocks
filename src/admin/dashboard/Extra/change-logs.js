@@ -42,6 +42,37 @@ const ChangeLogs = () => {
                     </div>
                     <div className="logos-panel-body">
                         <SingleLog
+                            version="1.0.0-RC6"
+                            date={'March 21, 2024'}
+                            changes={[
+                                {
+                                    title: __('Added', 'zolo-blocks'),
+                                    list: [
+                                        __('Tabs block added', 'zolo-blocks'),
+                                        __('Image Compare block added', 'zolo-blocks'),
+                                        __('Essential filter hooks added ', 'zolo-blocks'),
+                                    ],
+                                },
+                                {
+                                    title: __('Updated', 'zolo-blocks'),
+                                    list: [
+                                        __('Border radius control added in Google Maps block', 'zolo-blocks'),
+                                        __('Image Height control added in Image gallery block', 'zolo-blocks'),
+                                        __('Focus style added in Form block', 'zolo-blocks'),
+                                    ],
+                                },
+                                {
+                                    title: __('Fixed', 'zolo-blocks'),
+                                    list: [
+                                        __('Slider block issue fixed', 'zolo-blocks'),
+                                        __('Flipbox back icon issue fixed', 'zolo-blocks'),
+                                    ],
+                                },
+                            ]}
+                        />
+
+
+                        <SingleLog
                             version="1.0.0-RC5"
                             date={'March 10, 2024'}
                             changes={[

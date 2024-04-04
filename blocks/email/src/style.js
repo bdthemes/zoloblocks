@@ -18,6 +18,7 @@ const {
 
 import { FIELD_TYPO, LABEL_TYPO } from './constants/typoPrefixConstant';
 import { LABEL_MARGIN, FIELD_PADDING, FIELD_BG, FIELD_BORDER, FIELD_BRADIUS, ICON_SIZE } from './constants';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -208,9 +209,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.email.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.email.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.email.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

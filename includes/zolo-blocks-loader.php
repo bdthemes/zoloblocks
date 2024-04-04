@@ -52,6 +52,7 @@ class Zolo_Blocks_Loader {
         // form 
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/Form.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/FormAjax.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/Recaptcha.php';
 
         if (is_admin()) {
             // zolo blocks settings 
