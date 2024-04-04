@@ -1,1 +1,0 @@
-document.addEventListener("DOMContentLoaded",(()=>{const e=document.querySelectorAll(".wp-block-zolo-slider");e.length>0&&e.forEach((e=>{const t=e.querySelector(".swiper"),o=e.dataset.swiperOptions,n=JSON.parse(o);new Swiper(t,n)}))}));
