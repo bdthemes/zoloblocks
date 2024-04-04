@@ -43,6 +43,12 @@ return apply_filters(
 
         ],
         [
+            'name'       => 'zolo_business_hour',
+            'categories' => ['others'],
+            'status'     => true,
+
+        ],
+        [
             'name'       => 'zolo_cta',
             'categories' => ['others'],
             'status'     => true,
