@@ -1,6 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Business Houre",
+    "title": "Business Hours",
     "name": "zolo/business-hour",
     "category": "zolo-blocks",
     "keywords": ["business", "business hour", "hour"],

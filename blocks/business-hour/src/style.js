@@ -27,19 +27,29 @@ import {
     BUSINESS_ITEM_BORDER,
     BUSINESS_ITEM_MARGIN,
     BUSINESS_ITEM_PADDING,
+    //days
     DAYS_BG,
     DAYS_RADIUS,
     DAYS_PADDING,
+    //closed day
+    CLOSED_DAYS_BG,
+    CLOSED_DAYS_RADIUS,
+    CLOSED_DAYS_PADDING,
+    //time
     TIMES_BG,
     TIMES_RADIUS,
     TIMES_PADDING,
+    //closed time
+    CLOSED_TIMES_BG,
+    CLOSED_TIMES_RADIUS,
+    CLOSED_TIMES_PADDING,
 } from './constants';
 
-import { DAYS_TYPO, TIMES_TYPO } from './constants/typoPrefixConstant';
+import { DAYS_TYPO, TIMES_TYPO, CLOSED_DAYS_TYPO, CLOSED_TIMES_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { preset, uniqueId, dayColor, timeColor } = attributes;
+    const { preset, uniqueId, dayColor, CloseddayColor, timeColor, timeclosedColor } = attributes;
 
     //item
 
@@ -89,6 +99,7 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
+
     // days
     const {
         backgroundStylesDesktop: DeskDaysBg,
@@ -117,6 +128,39 @@ const Style = ({ props }) => {
         dimensionStylesMobile: MobDaysPadding,
     } = generateDimensionStyle({
         controlName: DAYS_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    //Closed days
+
+    const {
+        backgroundStylesDesktop: DeskClsdDaysBg,
+        backgroundStylesTab: TabClsdDaysBg,
+        backgroundStylesMobile: MobClsdDaysBg,
+    } = generateNormalBGControlStyles({ controlName: CLOSED_DAYS_BG, attributes });
+    const {
+        typoStylesDesktop: DeskclsdtopDaysTypo,
+        typoStylesTab: TabclsdDaysTypo,
+        typoStylesMobile: MobclsdDaysTypo,
+    } = generateTypographyStyles({ prefixConstant: CLOSED_DAYS_TYPO, attributes });
+
+    const {
+        dimensionStylesDesktop: DeskclsdtopDaysRadius,
+        dimensionStylesTab: TabclsdDaysRadius,
+        dimensionStylesMobile: MobclsdDaysRadius,
+    } = generateDimensionStyle({
+        controlName: CLOSED_DAYS_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: DeskclsdtopDaysPadding,
+        dimensionStylesTab: TabclsdDaysPadding,
+        dimensionStylesMobile: MobclsdDaysPadding,
+    } = generateDimensionStyle({
+        controlName: CLOSED_DAYS_PADDING,
         styleFor: 'padding',
         attributes,
     });
@@ -154,18 +198,52 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    //closed TIME
+    const {
+        backgroundStylesDesktop: DeskCTimesBg,
+        backgroundStylesTab: TabCTimesBg,
+        backgroundStylesMobile: MobCTimesBg,
+    } = generateNormalBGControlStyles({ controlName: CLOSED_TIMES_BG, attributes });
+
+    const {
+        typoStylesDesktop: DesktopCTimesTypo,
+        typoStylesTab: TabCTimesTypo,
+        typoStylesMobile: MoCTimesTypo,
+    } = generateTypographyStyles({ prefixConstant: CLOSED_TIMES_TYPO, attributes });
+
+    const {
+        dimensionStylesDesktop: DesktopCTimesRadius,
+        dimensionStylesTab: TabCTimesRadius,
+        dimensionStylesMobile: MobCTimesRadius,
+    } = generateDimensionStyle({
+        controlName: CLOSED_TIMES_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: DesktopCTimesPadding,
+        dimensionStylesTab: TabCTimesPadding,
+        dimensionStylesMobile: MobCTimesPadding,
+    } = generateDimensionStyle({
+        controlName: CLOSED_TIMES_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
         
-    .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item{
+    .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item,.wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item-closed{
         ${DeskItemBg}
         ${DesktopItemRadius}
         ${desktopItemBorder}
         ${DesktopItemMargin}
         ${DesktopItemPadding}
     }
+
     .wp-block-zolo-business-hour.${uniqueId}.zolo-biz-hours-style-2 .zolo-biz-hours-item:nth-of-type(odd){
         ${DeskItemBgOdd} 
     }
@@ -177,6 +255,13 @@ const Style = ({ props }) => {
         ${DesktopDaysPadding}
         ${dayColor && `color:${dayColor}`}
     }
+    .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-day-closed{
+        ${DeskClsdDaysBg}
+        ${DeskclsdtopDaysTypo}
+        ${DeskclsdtopDaysRadius}
+        ${DeskclsdtopDaysPadding}
+        ${CloseddayColor && `color:${CloseddayColor}`}
+    }
 
     .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-time{
        ${DeskTimesBg}
@@ -185,16 +270,27 @@ const Style = ({ props }) => {
        ${DesktopTimesPadding}
        ${timeColor && `color:${timeColor}`}
     }
+
+    .wp-block-zolo-business-hour.${uniqueId} .zolo-business-closed-time{
+        ${DeskCTimesBg}
+        ${DesktopCTimesTypo}
+        ${DesktopCTimesRadius}
+        ${DesktopCTimesPadding}
+        ${timeclosedColor && `color:${timeclosedColor}`}
+    }
+ 
   	`;
 
     const tabletAllStyle = `
-    .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item{
+    .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item,.wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item-closed{
         ${TabItemBg}
         ${TabItemRadius}
         ${tabItemBorder}
         ${TabItemMargin}
         ${TabItemPadding}
     }
+
+
 
     .wp-block-zolo-business-hour.${uniqueId}.zolo-biz-hours-style-2 .zolo-biz-hours-item:nth-of-type(odd){
         ${TabItemBgOdd} 
@@ -206,6 +302,12 @@ const Style = ({ props }) => {
         ${TabDaysRadius}
         ${TabDaysPadding}
     }
+    .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-day-closed{
+        ${TabClsdDaysBg}
+        ${TabclsdDaysTypo}
+        ${TabclsdDaysRadius}
+        ${TabclsdDaysPadding}
+    }
 
     .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-time{
         ${TabTimesBg}
@@ -213,16 +315,24 @@ const Style = ({ props }) => {
         ${TabTimesRadius}
         ${TabTimesPadding}
     }
+
+    .wp-block-zolo-business-hour.${uniqueId} .zolo-business-closed-time{
+        ${TabCTimesBg}
+        ${TabCTimesTypo}
+        ${TabCTimesRadius}
+        ${TabCTimesPadding} 
+    }
 	`;
 
     const mobileAllStyle = `
-    .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item{
+    .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item,.wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item-closed{
         ${MobItemBg}
         ${MobItemRadius}
         ${mobItemBorder}
         ${MobItemMargin}
         ${MobItemPadding}
     }
+ 
 
     .wp-block-zolo-business-hour.${uniqueId}.zolo-biz-hours-style-2 .zolo-biz-hours-item:nth-of-type(odd){
         ${MobItemBgOdd} 
@@ -234,11 +344,24 @@ const Style = ({ props }) => {
         ${MobDaysRadius}
         ${MobDaysPadding}
     }
+
+    .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-day-closed{
+        ${MobClsdDaysBg}
+        ${MobclsdDaysTypo}
+        ${MobclsdDaysRadius}
+        ${MobclsdDaysPadding}
+    }
     .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-time{
         ${MobTimesBg}
         ${MoTimesTypo}
         ${MobTimesRadius}
         ${MobTimesPadding}
+    }
+    .wp-block-zolo-business-hour.${uniqueId} .zolo-business-closed-time{
+        ${MobCTimesBg}
+        ${MoCTimesTypo}
+        ${MobCTimesRadius}
+        ${MobCTimesPadding}
     }
        
   	`;

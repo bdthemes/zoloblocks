@@ -10,6 +10,12 @@
         justify-content: space-between;
         gap: 15px;
     }
+    .zolo-biz-hours-item-closed {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 15px;
+    }
 
     .zolo-biz-time-wrap {
         display: flex;
@@ -17,20 +23,29 @@
         gap: 6px;
     }
 
-    .zolo-biz-day {
+    .zolo-biz-day,
+    .zolo-biz-day-closed {
         font-size: clamp(1rem, 1.5vw, 1.125rem);
-        color: #28282f;
         font-weight: 500;
     }
+
+    .zolo-biz-day-closed {
+        color: red;
+    }
+
     .zolo-biz-time {
         font-size: 16px;
         color: #46474b;
     }
-
-    .zolo-biz-closed-item .zolo-biz-day,
-    .zolo-biz-closed-text {
-        color: #f00;
+    .zolo-business-closed-time {
+        display: inline-block;
+        color: red;
     }
+
+    // .zolo-biz-closed-item .zolo-biz-day,
+    // .zolo-biz-closed-text {
+    //     color: #f00;
+    // }
 
     .zolo-biz-closed-text {
         font-size: clamp(1rem, 1.5vw, 1.125rem);
@@ -52,9 +67,19 @@
     &.zolo-biz-hours-style-2 .zolo-biz-hours-item {
         padding: 20px 15px;
         border-radius: 4px;
+        margin: 5px;
+    }
+    &.zolo-biz-hours-style-2 .zolo-biz-hours-item-closed {
+        padding: 20px 15px;
+        border-radius: 4px;
+        margin: 5px;
+        color: red;
     }
 
     &.zolo-biz-hours-style-2 .zolo-biz-hours-item:nth-of-type(odd) {
+        background-color: rgb(245 245 245);
+    }
+    &.zolo-biz-hours-style-2 .zolo-biz-hours-item-closed.zolo-hour-closed:nth-of-type(odd) {
         background-color: rgb(245 245 245);
     }
 }
