@@ -1,14 +1,5 @@
-const {
-    generateResRangeAttributies,
-    generateBorderAttributies,
-    generateResCounterAttributies,
-    generateDimensionAttributes,
-    generateBoxShadowAttributies,
-    generateTypographyAttributes,
-    generateGapAttributes,
-    generateResAlignmentAttributies,
-    generateNormalBGAttributes,
-} = window.zoloModule;
+const { generateBorderAttributies, generateDimensionAttributes, generateTypographyAttributes, generateNormalBGAttributes } =
+    window.zoloModule;
 
 import {
     BUSINESS_ITEM_BG,

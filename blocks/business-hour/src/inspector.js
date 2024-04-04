@@ -2,19 +2,14 @@
  * Internal depencencies
  */
 const {
-    ResRangeControl,
     ColorControl,
     HeaderTabs,
     ResDimensionsControl,
     NormalBGControl,
     BorderControl,
-    BoxShadowControl,
     TypographyDropdown,
     AdvancedOptions,
     ZoloPanelBody,
-    IconicBtnGroup,
-    ImageAvatar,
-    RangeResetControl,
     TabPanelControl,
 } = window.zoloModule;
 import Sortable from './sortable';
@@ -51,7 +46,6 @@ import {
     CLOSED_TIMES_PADDING,
     PRESETOPTION,
     PANEL_OPTION,
-    ITEM_OPTION,
     TIME_OPTION,
     DAYS_OPTION,
 } from './constants';

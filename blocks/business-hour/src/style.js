@@ -6,19 +6,8 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const {
-    generateResRangeStyle,
-    generateBorderStyle,
-    generateResCounterStyle,
-    generateDimensionStyle,
-    generateBoxShadowStyles,
-    generateTypographyStyles,
-    generateGapStyle,
-    GlobalStyleHanlder,
-    generateNormalBGControlStyles,
-    generateResAlignmentStyle,
-    generateTextStrokeStyles,
-} = window.zoloModule;
+const { generateBorderStyle, generateDimensionStyle, generateTypographyStyles, GlobalStyleHanlder, generateNormalBGControlStyles } =
+    window.zoloModule;
 
 import {
     BUSINESS_ITEM_BG,
@@ -49,7 +38,7 @@ import { DAYS_TYPO, TIMES_TYPO, CLOSED_DAYS_TYPO, CLOSED_TIMES_TYPO } from './co
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { preset, uniqueId, dayColor, CloseddayColor, timeColor, timeclosedColor } = attributes;
+    const { uniqueId, dayColor, CloseddayColor, timeColor, timeclosedColor } = attributes;
 
     //item
 
