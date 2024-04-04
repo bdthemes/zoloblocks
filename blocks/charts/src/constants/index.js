@@ -34,6 +34,14 @@ export const CHART_TYPES = [
 ];
 
 export const CHART_HEIGHT = 'chartHeight';
+export const CHART_BORDER = 'chartBorder';
+export const CHART_BORDER_RADIUS = 'chartBorderRadius';
+export const CHART_BOX_SHADOW = 'chartBoxShadow';
+export const CHART_MARGIN = 'chartMargin';
+export const CHART_PADDING = 'chartPadding';
+export const CHART_BG_COLOR = 'chartBgColor';
+
+
 
 export const SOURCE_TYPES = [
   { label: __("Upload CSV", "zolo-blocks"), value: "upload" },
