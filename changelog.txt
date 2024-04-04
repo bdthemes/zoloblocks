@@ -17,7 +17,6 @@
 ### Improved
 
 - Viewport with & height units added to each range control
-- Border radius control added in Google Maps block
 - Controls UI improved
 
 ## 1.0.0-RC6 [21th March 2024]
