@@ -72,7 +72,6 @@ Not at all. We have optimised all of these blocks for better performance.
 ### Improved
 
 * Viewport with & height units added to each range control
-* Border radius control added in Google Maps block
 * Controls UI improved
 
 
