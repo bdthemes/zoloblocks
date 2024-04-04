@@ -66,6 +66,15 @@ function Inspector(props) {
     barChartLength,
     xAxisColor,
     yAxisColor,
+    showToolbar,
+    showDownload,
+    showSelection,
+    showZoom,
+    showZoomIn,
+    showZoomOut,
+    showPanel,
+    showReset,
+    showDropshadow,
   } = attributes;
 
   const requiredProps = {
@@ -195,9 +204,7 @@ function Inspector(props) {
                 requiredProps={requiredProps}
                 min={200}
                 max={1000}
-                units={[
-                  { label: __("px", "zolo-blocks"), value: "px" },
-                ]}
+                units={[{ label: __("px", "zolo-blocks"), value: "px" }]}
               />
             </ZoloPanelBody>
             <ZoloPanelBody
@@ -250,6 +257,82 @@ function Inspector(props) {
                   })
                 }
               />
+              <ToggleControl
+                label={__("Show Toolbar", "zolo-blocks")}
+                checked={showToolbar}
+                onChange={() =>
+                  setAttributes({
+                    showToolbar: !showToolbar,
+                  })
+                }
+              />
+              {showToolbar && (
+                <>
+                  <ToggleControl
+                    label={__("Show Download", "zolo-blocks")}
+                    checked={showDownload}
+                    onChange={() =>
+                      setAttributes({
+                        showDownload: !showDownload,
+                      })
+                    }
+                  />
+                  <ToggleControl
+                    label={__("Show Selection", "zolo-blocks")}
+                    checked={showSelection}
+                    onChange={() =>
+                      setAttributes({
+                        showSelection: !showSelection,
+                      })
+                    }
+                  />
+                  <ToggleControl
+                    label={__("Show Zoom", "zolo-blocks")}
+                    checked={showZoom}
+                    onChange={() =>
+                      setAttributes({
+                        showZoom: !showZoom,
+                      })
+                    }
+                  />
+                  <ToggleControl
+                    label={__("Show ZoomIn", "zolo-blocks")}
+                    checked={showZoomIn}
+                    onChange={() =>
+                      setAttributes({
+                        showZoomIn: !showZoomIn,
+                      })
+                    }
+                  />
+                  <ToggleControl
+                    label={__("Show ZoomOut", "zolo-blocks")}
+                    checked={showZoomOut}
+                    onChange={() =>
+                      setAttributes({
+                        showZoomOut: !showZoomOut,
+                      })
+                    }
+                  />
+                  <ToggleControl
+                    label={__("Show Pan", "zolo-blocks")}
+                    checked={showPanel}
+                    onChange={() =>
+                      setAttributes({
+                        showPanel: !showPanel,
+                      })
+                    }
+                  />
+                  <ToggleControl
+                    label={__("Show Reset", "zolo-blocks")}
+                    checked={showReset}
+                    onChange={() =>
+                      setAttributes({
+                        showReset: !showReset,
+                      })
+                    }
+                  />
+                </>
+              )}
               {/* <ToggleControl
                 label={__("Show Dropshadow", "zolo-blocks")}
                 checked={showDropshadow}

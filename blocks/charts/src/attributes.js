@@ -18,7 +18,7 @@ import {
   CHART_MARGIN,
   CHART_PADDING,
   CHART_BOX_SHADOW,
-  SUB_TITLE_ALIGNMENT
+  SUB_TITLE_ALIGNMENT,
 } from "./constants";
 
 import PieChartAttributes from "./data/piechart";
@@ -201,6 +201,43 @@ const attributes = {
     type: "boolean",
     default: false,
   },
+  showToolbar: {
+    type: "boolean",
+    default: false,
+  },
+  showDownload: {
+    type: "boolean",
+    default: true,
+  },
+  showPrint: {
+    type: "boolean",
+    default: true,
+  },
+  showSelection: {
+    type: "boolean",
+    default: true,
+  },
+  showZoom: {
+    type: "boolean",
+    default: true,
+  },
+  showZoomIn: {
+    type: "boolean",
+    default: true,
+  },
+  showZoomOut: {
+    type: "boolean",
+    default: true,
+  },
+  showPanel: {
+    type: "boolean",
+    default: true,
+  },
+  showReset: {
+    type: "boolean",
+    default: true,
+  },
+
   chartBackground: {
     type: "string",
     default: "#ffffff",

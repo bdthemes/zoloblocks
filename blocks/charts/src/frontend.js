@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         chart: {
           id: `chart-${uid}`,
-          background: chartBackground,
+          background: 'transparent',
         },
         xaxis: {
           labels: {

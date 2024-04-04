@@ -47,7 +47,7 @@ const Save = ({ attributes }) => {
     showGridY,
     showGridX,
     gridObject,
-    chartBackground,
+    // chartBackground,
     pieChartColor,
     xAxisColor,
     xAxisFontSize,
