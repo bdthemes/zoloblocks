@@ -1,7 +1,8 @@
 import { render } from "@wordpress/element";
 import ApexCharts from "react-apexcharts";
-
+import { v4 as uuidv4 } from "uuid";
 document.addEventListener("DOMContentLoaded", () => {
+  const uid = uuidv4();
   const apexChartsItems = document.querySelectorAll(".zolo-chart");
 
   if (apexChartsItems.length) {
@@ -31,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
         yAxisFontSize,
         barChartData,
         pieChartData,
-        uid,
       } = options;
 
       const newChartOptions = {

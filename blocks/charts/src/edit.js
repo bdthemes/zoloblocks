@@ -10,7 +10,7 @@ const { handleUniqueId, classArrayToStr, generateResRangeStyle } =
 
 import { BLOCK_PREFIX, CHART_HEIGHT } from "./constants";
 import Inspector from "./inspector";
-
+import Style from "./style";
 export default function Edit(props) {
   const { attributes, setAttributes, className, clientId, isSelected } = props;
   const {
@@ -54,7 +54,6 @@ export default function Edit(props) {
         attributes,
       });
 
-      console.log(chartDeskHeight, chartTabHeight, chartMobHeight);
 
   // chart options
   const getChartOptions = (
@@ -288,6 +287,7 @@ export default function Edit(props) {
       {isSelected && (
         <Inspector attributes={attributes} setAttributes={setAttributes} />
       )}
+      <Style props={props}/>
       <div {...blockProps}>
         <ApexCharts
           options={renderOptions()}
