@@ -21,6 +21,7 @@ const {
 import {
     NAV_ITEMS_ALIGN,
     NAV_CONTENT_ALIGN,
+    NAV_ICON_ALIGN,
     NAV_SPACING,
     CONTENT_SPACING,
     TAB_NORMAL_BGCOLOR,
@@ -29,6 +30,7 @@ import {
     TAB_ITEM_PADDING,
     TAB_ITEM_RADIUS,
     TITLE_MARGIN,
+    DESC_MARGIN,
     ACTIVE_HINT_HEIGHT,
     ICON_BG,
     ICON_HBG,
@@ -43,6 +45,11 @@ import {
     TAB_ITEM_BSHADOW,
     TAB_ITEM_HBSHADOW,
     TAB_ITEM_ABSHADOW,
+    TAB_WRAP_BGCOLOR,
+    TAB_WRAP_BORDER,
+    TAB_WRAP_RADIUS,
+    TAB_WRAP_PADDING,
+    TAB_WRAP_BSHADOW,
 } from './constants';
 import { DESC_TYPOGRAPHY, TITLE_TYPO } from './constants/typoPrefixConstant';
 
@@ -104,6 +111,15 @@ const Style = ({ props }) => {
     } = generateResAlignmentStyle({
         controlName: NAV_CONTENT_ALIGN,
         property: 'text-align',
+        attributes,
+    });
+    const {
+        desktopAlignStyle: iconDeskAlign,
+        tabAlignStyle: iconTabAlign,
+        mobAlignStyle: iconMobAlign,
+    } = generateResAlignmentStyle({
+        controlName: NAV_ICON_ALIGN,
+        property: 'align-items',
         attributes,
     });
 
@@ -218,7 +234,6 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
-
     const {
         dimensionStylesDesktop: tabItemBorderRadiusDesktop,
         dimensionStylesTab: tabItemBorderRadiusTab,
@@ -229,12 +244,66 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // tab wrap
+    const {
+        backgroundStylesDesktop: tabWrapBgColorDesktop,
+        backgroundStylesTab: tabWrapBgColorTab,
+        backgroundStylesMobile: tabWrapBgColorMobile,
+    } = generateNormalBGControlStyles({
+        controlName: TAB_WRAP_BGCOLOR,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        desktopBorderStyle: wrapBorderStylesDesk,
+        tabBorderStyle: wrapBorderStylesTab,
+        mobBorderStyle: wrapBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: TAB_WRAP_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: tabWrapBorderRadiusDesktop,
+        dimensionStylesTab: tabWrapBorderRadiusTab,
+        dimensionStylesMobile: tabWrapBorderRadiusMobile,
+    } = generateDimensionStyle({
+        controlName: TAB_WRAP_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+    const {
+        dimensionStylesDesktop: tabWrapPaddingDesktop,
+        dimensionStylesTab: tabWrapPaddingTab,
+        dimensionStylesMobile: tabWrapPaddingMobile,
+    } = generateDimensionStyle({
+        controlName: TAB_WRAP_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+    const { boxShadowStyle: tabsWrapBoxShadow } = generateBoxShadowStyles({
+        controlName: TAB_WRAP_BSHADOW,
+        attributes,
+    });
+
+    // title
     const {
         dimensionStylesDesktop: titleBottomSpacingDesktop,
         dimensionStylesTab: titleBottomSpacingTab,
         dimensionStylesMobile: titleBottomSpacingMob,
     } = generateDimensionStyle({
         controlName: TITLE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: descBottomSpacingDesktop,
+        dimensionStylesTab: descBottomSpacingTab,
+        dimensionStylesMobile: descBottomSpacingMob,
+    } = generateDimensionStyle({
+        controlName: DESC_MARGIN,
         styleFor: 'margin',
         attributes,
     });
@@ -318,6 +387,11 @@ const Style = ({ props }) => {
             ${itemsVDeskAlign}
             ${deskNavSpacing}
             ${deskContentSpacing}
+            ${wrapBorderStylesDesk}
+            ${tabWrapBgColorDesktop}
+            ${tabWrapBorderRadiusDesktop}
+            ${tabWrapPaddingDesktop}
+            ${tabsWrapBoxShadow}
         }
 
         .${uniqueId} .tab__item.zolo-tab_head-item {
@@ -328,6 +402,7 @@ const Style = ({ props }) => {
             ${contentDeskAlign}
             ${itemBorderStylesDesk}
             ${itemBoxShadow}
+            ${iconDeskAlign}
         }
 
         .${uniqueId}.wp-block-zolo-tabs .zolo-tab_horizontal .zolo-tab_head-item {
@@ -336,7 +411,7 @@ const Style = ({ props }) => {
 
         .${uniqueId} .tab__item.zolo-tab_head-item:hover {
             ${tabHoverBgColorDesktop}
-            ${itemBorderColors.hover ? `border-color: ${itemBorderColors.hover};` : ''} 
+            ${itemBorderColors.hover ? `border-color: ${itemBorderColors.hover};` : ''}
             ${itemHBoxShadow}
         }
 
@@ -363,6 +438,7 @@ const Style = ({ props }) => {
         .${uniqueId} .tab__item.zolo-tab_head-item .zolo-tab_desc {
             --zolo-tab-desc-color: ${descColors?.normal};
             ${tabDescTypoDesk}
+            ${descBottomSpacingDesktop}
 
         }
 
@@ -421,6 +497,11 @@ const Style = ({ props }) => {
             ${itemsVTabAlign}
             ${tabNavSpacing}
             ${tabContentSpacing}
+            ${wrapBorderStylesTab}
+            ${tabWrapBgColorTab}
+            ${tabWrapBorderRadiusTab}
+            ${tabWrapPaddingTab}
+            ${tabsWrapBoxShadow}
         }
 
         .${uniqueId} .tab__item.zolo-tab_head-item {
@@ -430,6 +511,7 @@ const Style = ({ props }) => {
             ${activeHintHeightTab}
             ${contentTabAlign}
             ${itemBorderStylesTab}
+            ${iconTabAlign}
         }
         .${uniqueId}.wp-block-zolo-tabs .zolo-tab_horizontal .zolo-tab_head-item {
             ${tabItemPaddingTab}
@@ -445,6 +527,7 @@ const Style = ({ props }) => {
             ${tabTitleTypoTab}
         }
         .${uniqueId} .tab__item.zolo-tab_head-item .zolo-tab_desc {
+            ${descBottomSpacingTab}
             ${tabDescTypoTab}
         }
 
@@ -473,6 +556,11 @@ const Style = ({ props }) => {
             ${itemsVTabAlign}
             ${mobNavSpacing}
             ${mobContentSpacing}
+            ${wrapBorderStylesMob}
+            ${tabWrapBgColorMobile}
+            ${tabWrapBorderRadiusMobile}
+            ${tabWrapPaddingMobile}
+            ${tabsWrapBoxShadow}
         }
 
         .${uniqueId} .tab__item.zolo-tab_head-item {
@@ -482,6 +570,7 @@ const Style = ({ props }) => {
             ${activeHintHeightMob}
             ${contentMobAlign}
             ${itemBorderStylesMob}
+            ${iconMobAlign}
         }
 
         .${uniqueId}.wp-block-zolo-tabs .zolo-tab_horizontal .zolo-tab_head-item {
@@ -502,6 +591,7 @@ const Style = ({ props }) => {
         }
 
         .${uniqueId} .tab__item.zolo-tab_head-item .zolo-tab_desc {
+            ${descBottomSpacingMob}
             ${tabDescTypoMob}
         }
 

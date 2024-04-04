@@ -35,6 +35,7 @@ export default function Edit(props) {
         iconType,
         iconTypeImage,
         imageRes,
+        counterDirection,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -92,7 +93,7 @@ export default function Edit(props) {
             </BlockControls>
             <Style props={props} />
             <div {...blockProps}>
-                <div class={`zolo-counter-wrap ${preset}`}>
+                <div class={`zolo-counter-wrap ${preset} ${counterDirection}`}>
                     <div class="zolo-counter-item">
                         {hideIcon && (
                             <div class="zolo-counter-icon">

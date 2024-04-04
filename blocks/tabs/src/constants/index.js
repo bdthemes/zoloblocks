@@ -45,7 +45,7 @@ export const VERTICAL_DIRECTIONS = [
 // Content styles
 export const CONTENT_STYLES = [
     {
-        value: 'content-style-1',
+        value: 'content-style-2',
         label: __('Style 1', 'zolo-blocks'),
     },
     {
@@ -57,7 +57,7 @@ export const CONTENT_STYLES = [
 // Content directions
 export const CONTENT_DIRECTIONS = [
     {
-        value: 'content-style-2',
+        value: 'content-style-1',
         label: __('Left', 'zolo-blocks'),
         icon: (
             <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -125,6 +125,7 @@ export const INDICATOR_STYLES = [
 // Block Settings
 export const NAV_ITEMS_ALIGN = 'navItemsAlign';
 export const NAV_CONTENT_ALIGN = 'navContentAlign';
+export const NAV_ICON_ALIGN = 'navIconAlign';
 export const NAV_SPACING = 'navSpacing';
 export const CONTENT_SPACING = 'contentSpacing';
 
@@ -143,10 +144,20 @@ export const TAB_ITEM_BSHADOW = 'tabItemBShadow';
 export const TAB_ITEM_HBSHADOW = 'tabItemHBShadow';
 export const TAB_ITEM_ABSHADOW = 'tabItemABShadow';
 
+// tab Wrap
+export const TAB_WRAP_BGCOLOR = 'tabWrapBgColor';
+export const TAB_WRAP_BORDER = 'tabWrapBorder';
+export const TAB_WRAP_RADIUS = 'tabWrapBorderRadius';
+export const TAB_WRAP_PADDING = 'tabWrapPadding';
+export const TAB_WRAP_BSHADOW = 'tabWrapBShadow';
+
+
 // title
 export const TITLE_MARGIN = 'tabTitleMargin';
 export const ACTIVE_HINT_HEIGHT = 'activeHintHeight';
 
+// desc
+export const DESC_MARGIN = 'tabDescMargin';
 // icon
 export const ICON_SIZE = 'iconSize';
 export const ICON_BORDER = 'iconBorder';

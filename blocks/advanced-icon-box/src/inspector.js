@@ -75,6 +75,7 @@ import {
     RIBBON_RADIUS,
     RIBBON_BG,
     RIBBON_POSITIONS,
+    PRESETS_ALIGNMENT,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -122,6 +123,7 @@ function Inspector(props) {
         ribbonPosition,
         //ribbon style
         ribbonColor,
+        iconBoxDirection,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -149,6 +151,21 @@ function Inspector(props) {
                                     })
                                 }
                             />
+                            {
+                                // If preset is not selected, show alignment control
+                                preset === 'style-2' && (
+                                    <IconicBtnGroup
+                                        label={__('Layout Direction', 'zolo-blocks')}
+                                        value={iconBoxDirection}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                iconBoxDirection: value,
+                                            })
+                                        }
+                                        options={PRESETS_ALIGNMENT}
+                                    />
+                                )
+                            }
                             <ToggleControl
                                 label={__('Show Ribbon', 'zolo-blocks')}
                                 checked={showRibbon}

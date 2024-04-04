@@ -1,4 +1,4 @@
-.wp-block-zolo-review-grid {
+.wp-block-zolo-review-grid.grid {
     .block-editor-block-list__layout {
         display: grid;
         box-sizing: border-box;
@@ -9,7 +9,7 @@
 
 // Tablet
 @media screen and (min-width: 768px) {
-    .wp-block-zolo-review-grid {
+    .wp-block-zolo-review-grid.grid {
         .block-editor-block-list__layout {
             grid-template-columns: repeat(2, 1fr);
         }
@@ -18,7 +18,7 @@
 
 // Desktop
 @media screen and (min-width: 1024px) {
-    .wp-block-zolo-review-grid {
+    .wp-block-zolo-review-grid.grid {
         .block-editor-block-list__layout {
             grid-template-columns: repeat(2, 1fr);
         }

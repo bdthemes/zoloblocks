@@ -202,12 +202,16 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             if ( has_block('zolo/tabs') ) {
                 wp_enqueue_script('zolo-tabs-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/tabs/tabify.js', [], ZOLO_VERSION, true);
             }
-            
+
+            if (has_block('zolo/charts')) {
+                wp_enqueue_script('zolo-charts-lib-frontend', trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/apexcharts/apexcharts.min.js', [], ZOLO_VERSION, true);
+            }
+
             // load gsap from cdn
-            wp_enqueue_script('zolo-gsap', '//cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js', [], ZOLO_VERSION, true);
+            wp_enqueue_script('gsap', '//cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js', [], ZOLO_VERSION, true);
+            wp_enqueue_script('zolo-motion-effects', trailingslashit(ZOLO_ADMIN_URL) . '/build/animation/index.js', ['gsap'], ZOLO_VERSION, true);
             // load scrolltrigger from cdn
             wp_enqueue_script('zolo-scrolltrigger', '//cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js', [], ZOLO_VERSION, true);
-
         }
         /**
          * Load Block Editor Assets
@@ -343,6 +347,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'iconBox'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-icon-box.svg',
                     'imageGallery' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/image-gallery.svg',
                     'image'        => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/image-preview.svg',
+                    'charts'       => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/charts.svg',
                     'postCarousel' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/post-carousel.svg',
                     'postGrid'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/post-grid.svg',
                     'postList'     => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/post-list.svg',

@@ -58,6 +58,11 @@ return apply_filters(
             'status'     => true,
         ],
         [
+            'name'       => 'zolo_charts',
+            'categories' => ['others'],
+            'status'     => true,
+        ],
+        [
             'name'       => 'zolo_fancy_list',
             'categories' => ['list'],
             'status'     => true,

@@ -34,9 +34,9 @@ const Save = ({ attributes }) => {
         >
             <div
                 className={classnames(
-                    'zolo-tabs',
+                    'zolo-tabs zolo-indicator-position-bottom',
                     `${tabsLayout === 'horizontal' ? `zolo-tab_${tabsLayout}` : `zolo-tab_${verticalLayoutDirection}`}`,
-                    `${tabContentStyle === 'content-style-1' ? `zolo-tab_${tabContentStyle}` : `zolo-tab_${contentDirection}`}`,
+                    `${tabContentStyle === 'content-style-2' ? `zolo-tab_${tabContentStyle}` : `zolo-tab_${contentDirection}`}`,
                     `zolo-tab_${tabIndicatorStyle}`
                 )}
                 role="tablist"
@@ -55,13 +55,13 @@ const Save = ({ attributes }) => {
                                     aria-controls={`tab-content-${tab.id}`}
                                     aria-selected={tab.id === 1 ? 'true' : 'false'}
                                 >
-                                    <div className="zolo-tab_icon-number-wrap">
-                                        {tab.hasMedia && showIcon && (
+                                    {tab.hasMedia && showIcon && (
+                                        <div className="zolo-tab_icon-number-wrap">
                                             <span className="zolo-tab_icon">
                                                 <DisplayZoloIcon icon={tab.icon} />
                                             </span>
-                                        )}
-                                    </div>
+                                        </div>
+                                    )}
                                     <div className="zolo-tab_head-content">
                                         {showTitle && <RichText.Content tagName="h2" className={'zolo-tab_title'} value={tab.title} />}
                                         {tab.hasDescription && showDesc && (

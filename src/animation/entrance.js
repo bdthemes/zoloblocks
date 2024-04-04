@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Define the initial position and properties of the box
-        gsap.set(targetElement, { x: 0, opacity: 0 });
+        gsap.set(targetElement, { opacity: 1 });
 
         const transformOptions = {};
         const transformOptionsGlobal = {
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         // Create the animation tween
         if (entranceAnimation.presetAnimation === 'custom') {
-            tween = tween.to(targetElement, {
+            tween = tween.from(targetElement, {
                 ...transformOptions,
                 ...transformOptionsGlobal,
             });
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
             };
             const presetAnimation = presetAnimations[entranceAnimation.presetAnimation];
-            tween = tween.to(targetElement, {
+            tween = tween.from(targetElement, {
                 ...presetAnimation,
                 ...transformOptionsGlobal,
             });

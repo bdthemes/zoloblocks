@@ -161,6 +161,10 @@ const attributes = {
     iconHBColor: {
         type: 'string',
     },
+    fancyDirection: {
+        type: 'string',
+        default: 'fancy-list-align-left',
+    },
     // item
     ...generateNormalBGAttributes(ITEM_BG),
     ...generateNormalBGAttributes(ITEM_BG_HOVER),

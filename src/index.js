@@ -1,8 +1,10 @@
+import ApexCharts from "apexcharts";
+
 //Import common-styles
-import './common-styles.scss';
+import "./common-styles.scss";
 
 //Import Global Hooks
-import './global/hooks';
+import "./global/hooks";
 
 // Import Blocks
 import '../blocks/container/src';
@@ -16,6 +18,7 @@ import '../blocks/brand-child/src';
 import '../blocks/brand-child/src';
 import '../blocks/brand-grid/src';
 import '../blocks/brand-grid/src';
+import '../blocks/charts/src';
 import '../blocks/cta/src';
 import '../blocks/counter/src';
 import '../blocks/countdown/src';
@@ -53,12 +56,12 @@ import '../blocks/tab/src';
 import '../blocks/tabs/src';
 
 // inner blocks
-import '../blocks/text-field/src';
-import '../blocks/email/src';
-import '../blocks/textarea/src';
+import "../blocks/text-field/src";
+import "../blocks/email/src";
+import "../blocks/textarea/src";
 
 // unregister blocks
-import './unregister';
+import "./unregister";
 
 // form editor script
-import './form';
+import "./form";

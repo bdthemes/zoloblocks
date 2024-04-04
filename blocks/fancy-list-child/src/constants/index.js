@@ -6,14 +6,6 @@ import { __ } from '@wordpress/i18n';
 // Block Prefix
 export const BLOCK_PREFIX = 'fancy-list';
 
-// Presets
-export const PRESETS = [
-    { label: __('Default', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
-    { label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
-    { label: __('Preset 4', 'zolo-blocks'), value: 'style-4' },
-    { label: __('Preset 5', 'zolo-blocks'), value: 'style-5' },
-];
 // item
 export const ITEM_BG = 'ItemBg';
 export const ITEM_BG_HOVER = 'ItemBgHover';
