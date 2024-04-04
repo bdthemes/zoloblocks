@@ -42,6 +42,15 @@ export default function Edit(props) {
     xAxisFontSize,
     yAxisColor,
     yAxisFontSize,
+    showToolbar,
+    showDownload,
+    showSelection,
+    showZoom,
+    showZoomIn,
+    showZoomOut,
+    showPanel,
+    showReset,
+
   } = attributes;
 
       const {
@@ -74,56 +83,67 @@ export default function Edit(props) {
     return {
       dataLabels: { enabled: false },
       colors: pieChartColor,
-        title: {
-          text: showTitle ? titleObject.text : undefined,
-          align: titleObject.align,
+      title: {
+        text: showTitle ? titleObject.text : undefined,
+        align: titleObject.align,
+        style: {
+          color: titleObject.style.color,
+          fontSize: titleObject.style.fontSize,
+        },
+      },
+      subtitle: {
+        text: showSubTitle ? subTitleObject.text : undefined,
+        align: subTitleObject.align,
+        style: {
+          color: subTitleObject.style.color,
+          fontSize: subTitleObject.style.fontSize,
+        },
+      },
+      legend: {
+        show: showLegend,
+        position: legendObject.position,
+        horizontalAlign: legendObject.horizontalAlign,
+        floating: legendObject.floating,
+        offsetY: legendObject.offsetY,
+        offsetX: legendObject.offsetX,
+        lebels: {
           style: {
-            color: titleObject.style.color,
-            fontSize: titleObject.style.fontSize,
+            colors: "#f00",
+            useSeriesColors: legendObject.lebels.useSeriesColors,
           },
         },
-        subtitle: {
-          text: showSubTitle ? subTitleObject.text : undefined,
-          align: subTitleObject.align,
-          style: {
-            color: subTitleObject.style.color,
-            fontSize: subTitleObject.style.fontSize,
-          },
-        },
-        legend: {
-          show: showLegend,
-          position: legendObject.position,
-          horizontalAlign: legendObject.horizontalAlign,
-          floating: legendObject.floating,
-          offsetY: legendObject.offsetY,
-          offsetX: legendObject.offsetX,
-          lebels: {
-            style: {
-              colors: "#f00",
-              useSeriesColors: legendObject.lebels.useSeriesColors,
-            },
-          },
-        },
-        tooltip: {
-          enabled: showTooltip,
-          shared: true,
-          followCursor: false,
-          intersect: false,
-          inverseOrder: false,
-          hideEmptySeries: true,
-          fillSeriesColor: false,
-          theme: tooltipObject.theme,
-        },
-        grid: {
-          show: showGrid,
-          xaxis: { lines: { show: showGrid ? showGridY : false
-           } },
-          yaxis: { lines: { show: showGrid ? showGridX: false } },
-        },
+      },
+      tooltip: {
+        enabled: showTooltip,
+        shared: tooltipObject.shared,
+        followCursor: tooltipObject.followCursor,
+        intersect: tooltipObject.intersect,
+        inverseOrder: tooltipObject.inverseOrder,
+        hideEmptySeries: tooltipObject.hideEmptySeries,
+        fillSeriesColor: tooltipObject.fillSeriesColor,
+        theme: tooltipObject.theme,
+      },
+      grid: {
+        show: showGrid,
+        xaxis: { lines: { show: showGrid ? showGridY : false } },
+        yaxis: { lines: { show: showGrid ? showGridX : false } },
+      },
       chart: {
         id: `chart-${uid}`,
-        background: chartBackground,
+        background: "transparent",
         height: 320,
+        toolbar: {
+          show: showToolbar,
+          tools: {
+            download: showDownload,
+            selection: showSelection,
+            zoom: showZoom,
+            zoomin: showZoomIn,
+            zoomout: showZoomOut,
+            pan: showPanel,
+            reset: showReset,
+          },
+        },
       },
       xaxis: {
         labels: {
@@ -162,34 +182,17 @@ export default function Edit(props) {
         tooltipObject,
         gridObject,
         uid,
+        showToolbar,
+        showDownload,
+        showSelection,
+        showZoom,
+        showZoomIn,
+        showZoomOut,
+        showPanel,
+        showReset,
+
       ),
       series: barChartData.series,
-      responsive: [
-        {
-          breakpoint: 768,
-          options: {
-            chart: {
-              height: chartMobHeight.replace(";", "")
-            },
-          },
-        },
-        {
-          breakpoint: 1024,
-          options: {
-            chart: {
-              height: chartTabHeight.replace(";", "")
-            },
-          },
-        },
-        {
-          breakpoint: 1440,
-          options: {
-            chart: {
-              height: chartDeskHeight.replace(";", "")
-            },
-          },
-        },
-      ],
     };
 
     const newPieChartData = {
@@ -238,6 +241,14 @@ export default function Edit(props) {
     xAxisFontSize,
     yAxisColor,
     yAxisFontSize,
+    showToolbar,
+    showDownload,
+    showSelection,
+    showZoom,
+    showZoomIn,
+    showZoomOut,
+    showPanel,
+    showReset,
   ]);
 
   useEffect(() => {
@@ -276,7 +287,7 @@ export default function Edit(props) {
   if (preview) {
     return (
       <img
-        src={zoloParams.blocksPreview.starRating}
+        src={zoloParams.blocksPreview.charts}
         alt={__("Charts Preview", "zolo-blocks")}
       />
     );
@@ -294,7 +305,7 @@ export default function Edit(props) {
           series={renderSeries()}
           type={chartType}
           width={"100%"}
-          height={chartDeskHeight.replace(";", "")}
+          height={chartDeskHeight.replace(";", "") || 380}
         />
       </div>
     </>

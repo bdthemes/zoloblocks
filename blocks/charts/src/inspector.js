@@ -25,6 +25,10 @@ const {
   IconicBtnGroup,
   AdvancedOptions,
   ZoloPanelBody,
+  NormalBGControl,
+  BoxShadowControl,
+  BorderControl,
+  ResDimensionsControl,
 } = window.zoloModule;
 
 import objAttributes from "./attributes";
@@ -35,7 +39,7 @@ import {
   POSITIONS,
   THEME_TYPES,
 } from "./constants";
-import { CHART_HEIGHT } from "./constants";
+import { CHART_HEIGHT, CHART_BG_COLOR, CHART_BORDER, CHART_BORDER_RADIUS, CHART_MARGIN, CHART_PADDING, CHART_BOX_SHADOW} from "./constants";
 import { DEFAULT_ALIGNS } from "../../../src/global/constants";
 function Inspector(props) {
   const { attributes, setAttributes } = props;
@@ -62,6 +66,15 @@ function Inspector(props) {
     barChartLength,
     xAxisColor,
     yAxisColor,
+    showToolbar,
+    showDownload,
+    showSelection,
+    showZoom,
+    showZoomIn,
+    showZoomOut,
+    showPanel,
+    showReset,
+    showDropshadow,
   } = attributes;
 
   const requiredProps = {
@@ -156,7 +169,8 @@ function Inspector(props) {
                     <div>
                       <Button
                         style={{ marginBottom: "10px" }}
-                        variant="secondary"
+                        className="zolo-action-button"
+                        variant="primary"
                         onClick={openFileDialog}
                       >
                         Upload CSV File
@@ -190,8 +204,7 @@ function Inspector(props) {
                 requiredProps={requiredProps}
                 min={200}
                 max={1000}
-                defaultVal={300}
-                units={["px", "%"]}
+                units={[{ label: __("px", "zolo-blocks"), value: "px" }]}
               />
             </ZoloPanelBody>
             <ZoloPanelBody
@@ -244,6 +257,82 @@ function Inspector(props) {
                   })
                 }
               />
+              <ToggleControl
+                label={__("Show Toolbar", "zolo-blocks")}
+                checked={showToolbar}
+                onChange={() =>
+                  setAttributes({
+                    showToolbar: !showToolbar,
+                  })
+                }
+              />
+              {showToolbar && (
+                <>
+                  <ToggleControl
+                    label={__("Show Download", "zolo-blocks")}
+                    checked={showDownload}
+                    onChange={() =>
+                      setAttributes({
+                        showDownload: !showDownload,
+                      })
+                    }
+                  />
+                  <ToggleControl
+                    label={__("Show Selection", "zolo-blocks")}
+                    checked={showSelection}
+                    onChange={() =>
+                      setAttributes({
+                        showSelection: !showSelection,
+                      })
+                    }
+                  />
+                  <ToggleControl
+                    label={__("Show Zoom", "zolo-blocks")}
+                    checked={showZoom}
+                    onChange={() =>
+                      setAttributes({
+                        showZoom: !showZoom,
+                      })
+                    }
+                  />
+                  <ToggleControl
+                    label={__("Show ZoomIn", "zolo-blocks")}
+                    checked={showZoomIn}
+                    onChange={() =>
+                      setAttributes({
+                        showZoomIn: !showZoomIn,
+                      })
+                    }
+                  />
+                  <ToggleControl
+                    label={__("Show ZoomOut", "zolo-blocks")}
+                    checked={showZoomOut}
+                    onChange={() =>
+                      setAttributes({
+                        showZoomOut: !showZoomOut,
+                      })
+                    }
+                  />
+                  <ToggleControl
+                    label={__("Show Pan", "zolo-blocks")}
+                    checked={showPanel}
+                    onChange={() =>
+                      setAttributes({
+                        showPanel: !showPanel,
+                      })
+                    }
+                  />
+                  <ToggleControl
+                    label={__("Show Reset", "zolo-blocks")}
+                    checked={showReset}
+                    onChange={() =>
+                      setAttributes({
+                        showReset: !showReset,
+                      })
+                    }
+                  />
+                </>
+              )}
               {/* <ToggleControl
                 label={__("Show Dropshadow", "zolo-blocks")}
                 checked={showDropshadow}
@@ -400,7 +489,7 @@ function Inspector(props) {
                 firstOpen={false}
                 panelProps={props}
               >
-                <ToggleControl
+                {/* <ToggleControl
                   label={__("Shared", "zolo-blocks")}
                   checked={tooltipObject.shared}
                   onChange={() =>
@@ -411,8 +500,8 @@ function Inspector(props) {
                       },
                     })
                   }
-                />
-                <ToggleControl
+                /> */}
+                {/* <ToggleControl
                   label={__("Intersect", "zolo-blocks")}
                   checked={tooltipObject.intersect}
                   onChange={() =>
@@ -423,7 +512,7 @@ function Inspector(props) {
                       },
                     })
                   }
-                />
+                /> */}
                 <ToggleControl
                   label={__("Enabled", "zolo-blocks")}
                   checked={tooltipObject.enabled}
@@ -546,16 +635,60 @@ function Inspector(props) {
         styleTab={
           <>
             <ZoloPanelBody
+              title={__("Charts", "zolo-blocks")}
+              firstOpen={true}
+              stylePanel={true}
+              panelProps={props}
+            >
+              <BorderControl
+                label={__("Border", "zolo-blocks")}
+                controlName={CHART_BORDER}
+                requiredProps={requiredProps}
+              />
+              <ResDimensionsControl
+                label={__("Border Radius", "zolo-blocks")}
+                controlName={CHART_BORDER_RADIUS}
+                requiredProps={requiredProps}
+                forBorderRadius={true}
+              />
+              <ResDimensionsControl
+                label={__("Padding", "zolo-blocks")}
+                controlName={CHART_PADDING}
+                requiredProps={requiredProps}
+                forBorderRadius={false}
+              />
+              <ResDimensionsControl
+                label={__("Margin", "zolo-blocks")}
+                controlName={CHART_MARGIN}
+                requiredProps={requiredProps}
+                forBorderRadius={false}
+              />
+              <NormalBGControl
+                requiredProps={requiredProps}
+                controlName={CHART_BG_COLOR}
+                noMainBGImg={false}
+              />
+              <BoxShadowControl
+                controlName={CHART_BOX_SHADOW}
+                requiredProps={requiredProps}
+              />
+            </ZoloPanelBody>
+            <ZoloPanelBody
               title={__("Colors", "zolo-blocks")}
               firstOpen={true}
               stylePanel={true}
               panelProps={props}
             >
-              <ColorControl
+              {/* <NormalBGControl
+                requiredProps={requiredProps}
+                controlName={CHART_BG_COLOR}
+                noMainBGImg={false}
+              /> */}
+              {/* <ColorControl
                 label={__("Background Color", "zolo-blocks")}
                 color={chartBackground}
                 onChange={(color) => setAttributes({ chartBackground: color })}
-              />
+              /> */}
               <ColorControl
                 label={__("xAxis Color", "zolo-blocks")}
                 color={xAxisColor}

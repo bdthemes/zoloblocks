@@ -5,9 +5,22 @@ const {
   generateResRangeAttributies,
   generateTypographyAttributes,
   generateResAlignmentAttributies,
+  generateNormalBGAttributes,
+  generateBorderAttributies,
+  generateDimensionAttributes,
+  generateBoxShadowAttributies,
 } = window.zoloModule;
+import {
+  CHART_HEIGHT,
+  CHART_BG_COLOR,
+  CHART_BORDER,
+  CHART_BORDER_RADIUS,
+  CHART_MARGIN,
+  CHART_PADDING,
+  CHART_BOX_SHADOW,
+  SUB_TITLE_ALIGNMENT,
+} from "./constants";
 
-import { CHART_HEIGHT, SUB_TITLE_ALIGNMENT } from "./constants";
 import PieChartAttributes from "./data/piechart";
 import barChartAttributes from "./data/barchart";
 
@@ -43,7 +56,13 @@ const attributes = {
   ...generateTypographyAttributes(Object.values(typographyObjs)),
   ...generateResAlignmentAttributies({ SUB_TITLE_ALIGNMENT }),
   ...generateResRangeAttributies(CHART_HEIGHT),
-
+  ...generateNormalBGAttributes(CHART_BG_COLOR),
+  // Generators
+  ...generateBorderAttributies(CHART_BORDER),
+  ...generateDimensionAttributes(CHART_BORDER_RADIUS),
+  ...generateDimensionAttributes(CHART_PADDING),
+  ...generateDimensionAttributes(CHART_MARGIN),
+  ...generateBoxShadowAttributies(CHART_BOX_SHADOW),
   chartType: {
     type: "string",
     default: "bar",
@@ -134,7 +153,7 @@ const attributes = {
   tooltipObject: {
     type: "object",
     default: {
-      shared: true,
+      shared: false,
       intersect: false,
       enabled: true,
       followCursor: false,
@@ -182,6 +201,43 @@ const attributes = {
     type: "boolean",
     default: false,
   },
+  showToolbar: {
+    type: "boolean",
+    default: false,
+  },
+  showDownload: {
+    type: "boolean",
+    default: true,
+  },
+  showPrint: {
+    type: "boolean",
+    default: true,
+  },
+  showSelection: {
+    type: "boolean",
+    default: true,
+  },
+  showZoom: {
+    type: "boolean",
+    default: true,
+  },
+  showZoomIn: {
+    type: "boolean",
+    default: true,
+  },
+  showZoomOut: {
+    type: "boolean",
+    default: true,
+  },
+  showPanel: {
+    type: "boolean",
+    default: true,
+  },
+  showReset: {
+    type: "boolean",
+    default: true,
+  },
+
   chartBackground: {
     type: "string",
     default: "#ffffff",
