@@ -13,3 +13,21 @@ export const STAR_MARGIN = 'starMargin';
 
 // title
 export const TITLE_GAP = 'titleGap';
+//icon
+export const ICON_SIZE = 'iconSize';
+export const ICON_BORDER = 'iconBorder';
+export const ICON_BORDER_RADIUS = 'iconBorderRadius';
+export const ICON_PADDING = 'iconPadding';
+export const ICON_BG = 'iconBg';
+
+
+export const ICON_OPTIONS = [
+    {
+        label: __('Image', 'zolo-blocks'),
+        value: 'image',
+    },
+    {
+        label: __('Icon', 'zolo-blocks'),
+        value: 'icon',
+    },
+];

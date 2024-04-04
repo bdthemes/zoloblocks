@@ -1,20 +1,31 @@
-.wp-block-zolo-review-grid {
+.wp-block-zolo-review-grid.grid {
     display: grid;
     box-sizing: border-box;
-    gap: clamp(20px, 5vw, 30px);
+    gap: 30px;
     grid-template-columns: repeat(1, 1fr);
+}
+.wp-block-zolo-review-grid.column {
+    gap: 30px;
+    column-count: 3;
+}
+.wp-block-zolo-review-grid.column .swiper-slide + .swiper-slide {
+    margin-top: 30px;
 }
 
 /* Tablet */
 @media screen and (min-width: 768px) {
-    .wp-block-zolo-review-grid {
+    .wp-block-zolo-review-grid.grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .wp-block-zolo-review-grid.column {
+        column-count: 2;
     }
 }
 
 /* Desktop */
 @media screen and (min-width: 1024px) {
-    .wp-block-zolo-review-grid {
+    .wp-block-zolo-review-grid.grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
 }

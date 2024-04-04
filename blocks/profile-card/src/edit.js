@@ -187,7 +187,7 @@ export default function Edit(props) {
                                 />
                             </div>
                         )}
-                        {deepCloneStatusItems && (
+                        {deepCloneStatusItems && showStatus && (
                             <div className="zb-profile-status">
                                 {deepCloneStatusItems &&
                                     deepCloneStatusItems.length > 0 &&

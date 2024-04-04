@@ -1,4 +1,39 @@
 .zolo-post-carousel {
+    --zolo-meta-box-gap: clamp(0.438rem, 1vw, 0.75rem);
+    --zolo-meta-box-padding: clamp(1.25rem, 2vw, 1.875rem);
+    --zolo-author-name-color: #fff;
+    --zolo-meta-box-img-size: clamp(2.5rem, 4vw, 3.125rem);
+    --zolo-link-btn-margin: 20px 0 0;
+    --zolo-dateTime-margin: 10px 0 0;
+    --zolo-dateTime-gap: clamp(0.5rem, 1vw, 0.625rem);
+    --zolo-title-margin: clamp(0.75rem, 1vw, 0.938rem) 0 0;
+    --zolo-desc-margin: 10px 0 0;
+    --zolo-desc-color: #656566;
+    --zolo-category-wrap-gap: 10px;
+    --zolo-category-padding: clamp(0.313rem, 0.8vw, 0.438rem) clamp(0.75rem, 1.5vw, 0.875rem);
+    --zolo-category-hover-color: #fff;
+    --zolo-link-btn-padding: 10px 14px;
+    --zolo-link-btn-gap: 10px;
+    --zolo-link-btn-color: #494c56;
+    --zolo-link-btn-icon-size: 14px;
+    --zolo-img-height: clamp(21.875rem, 25vw, 18.75rem);
+    --zolo-author-name-color: #fff;
+    --zolo-dateTime-color: #36384a;
+    --zolo-content-padding: 25px 0 0;
+    --zolo-title-color: #111013;
+    --zolo-sDateTime-color: #000;
+    --zolo-category-color: #000;
+    --zolo-pagination-gap: 12px;
+    --zolo-pagination-size: 8px;
+    --zolo-pagination-border-width: 1px;
+    --zolo-pagination-border-style: solid;
+    --zolo-pagination-border-color: var(--zoloblocks-brand-color);
+    --zolo-nav-button-color: #000;
+    --zolo-nav-button-border-radius: 50%;
+    --zolo-nav-button-size: clamp(2.188rem, 6vw, 3.125rem);
+    --zolo-nav-button-right: 20px;
+    --zolo-nav-button-left: 20px;
+    --zolo-nav-button-icon-size: 16px;
     position: relative;
     box-sizing: border-box;
     .zolo-post-item {
@@ -27,8 +62,8 @@
         display: inline-flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: clamp(0.438rem, 1vw, 0.75rem);
-        padding: clamp(1.25rem, 2vw, 1.875rem);
+        gap: var(--zolo-meta-box-gap);
+        padding: var(--zolo-meta-box-padding);
         background: linear-gradient(360deg, rgba(17, 16, 19, 0.721) 0%, rgba(17, 16, 19, 0) 100%);
         transition: all cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
     }
@@ -43,19 +78,19 @@
     .zolo-post-author-name a {
         font-weight: 600;
         text-decoration: none;
-        color: #fff;
+        color: var(--zolo-author-name-color);
         transition: color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
     }
 
     .zolo-post-meta-box img {
-        width: clamp(2.5rem, 4vw, 3.125rem);
-        height: clamp(2.5rem, 4vw, 3.125rem);
+        width: var(--zolo-meta-box-img-size);
+        height: var(--zolo-meta-box-img-size);
         border-radius: 50%;
         display: block;
     }
 
     .zolo-post-link-btn {
-        margin-top: 20px;
+        margin: var(--zolo-link-btn-margin);
         .zolo__display-icon {
             display: inline-flex;
             align-items: center;
@@ -63,7 +98,7 @@
     }
 
     .zolo-post-dateTime {
-        margin-top: 10px;
+        margin: var(--zolo-dateTime-margin);
     }
 
     .zolo-post-dateTime,
@@ -71,12 +106,12 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        gap: clamp(0.5rem, 1vw, 0.625rem);
+        gap: var(--zolo-dateTime-gap);
         font-size: clamp(0.75rem, 1.5vw, 0.875rem);
     }
 
     .zolo-post-title {
-        margin: clamp(0.75rem, 1vw, 0.938rem) 0 0;
+        margin: var(--zolo-title-margin);
         font-size: clamp(1.125rem, 2.5vw, 1.375rem);
         font-weight: 700;
     }
@@ -92,10 +127,10 @@
     }
 
     .zolo-post-desc {
-        margin-top: 10px;
+        margin: var(--zolo-desc-margin);
         p {
             margin: 0;
-            color: #656566;
+            color: var(--zolo-desc-color);
             font-size: clamp(0.75rem, 1.5vw, 0.875rem);
         }
     }
@@ -106,7 +141,7 @@
         padding: 0;
         display: inline-flex;
         align-items: center;
-        gap: 10px;
+        gap: var(--zolo-category-wrap-gap);
     }
 
     .zolo-post-category a {
@@ -123,19 +158,19 @@
     }
 
     .zolo-post-category a:hover {
-        color: #fff;
+        color: var(--zolo-category-hover-color);
         background-color: var(--zoloblocks-brand-color-hover);
     }
 
     .zolo-post-link-btn a {
         font-size: clamp(0.75rem, 1.5vw, 0.875rem);
         text-transform: capitalize;
-        color: #494c56;
+        color: var(--zolo-link-btn-color);
         text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        padding: 10px 14px;
+        gap: var(--zolo-link-btn-gap);
+        padding: var(--zolo-link-btn-padding);
         border-radius: var(--zoloblocks-button-border-radius);
         transition: all cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
         justify-content: center;
@@ -147,15 +182,15 @@
 
     .zolo-post-link-btn a svg,
     .zolo-post-link-btn a i {
-        width: 14px;
-        height: 14px;
+        width: var(--zolo-link-btn-icon-size);
+        height: var(--zolo-link-btn-icon-size);
         font-size: 14px;
     }
 
     &.zolo-post-style-1 .zolo-post-image,
     &.zolo-post-style-2 .zolo-post-image,
     &.zolo-post-style-3 .zolo-post-image {
-        height: clamp(21.875rem, 25vw, 18.75rem);
+        height: var(--zolo-img-height);
     }
 
     /* global css end  */
@@ -173,27 +208,36 @@
 
     &.zolo-post-style-1 .zolo-post-author-name,
     &.zolo-post-style-2 .zolo-post-author-name,
-    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-author-name{
-        color: #e5e6ed;
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-author-name,
+    &.zolo-post-style-4 .zolo-post-author-name,
+    &.zolo-post-style-5 .zolo-post-author-name {
+        color: var(--zolo-author-name-color);
+    }
+
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-author-name {
+        color: #fff;
     }
 
     &.zolo-post-style-1 .zolo-post-item:hover .wp-post-image,
     &.zolo-post-style-2 .zolo-post-item:hover .wp-post-image,
-    &.zolo-post-style-3 .zolo-post-item:hover .wp-post-image {
+    &.zolo-post-style-3 .zolo-post-item:hover .wp-post-image,
+    &.zolo-post-style-4 .zolo-post-item:hover .wp-post-image {
         transform: scale(103.5%);
     }
 
-    &.zolo-post-style-1 .zolo-post-dateTime {
-        color: #36384a;
+    &.zolo-post-style-1 .zolo-post-dateTime,
+    &.zolo-post-style-4 .zolo-post-dateTime,
+    &.zolo-post-style-5 .zolo-post-secount-dateTime {
+        color: var(--zolo-dateTime-color);
     }
 
     &.zolo-post-style-1 .zolo-post-content {
-        padding-top: 25px;
+        padding: var(--zolo-content-padding);
     }
 
     &.zolo-post-style-1 .zolo-post-title a,
     &.zolo-post-style-3 .zolo-post-title a {
-        color: #111013;
+        color: var(--zolo-title-color);
     }
 
     &.zolo-post-style-1 .zolo-post-link-btn a,
@@ -203,16 +247,34 @@
     &.zolo-post-style-2 .zolo-post-secount-dateTime,
     &.zolo-post-style-3 .zolo-post-secount-dateTime,
     &.zolo-post-style-1 .zolo-post-category a {
-        color: #000;
         background-color: #ecf2fe;
+    }
+
+    &.zolo-post-style-1 .zolo-post-link-btn a,
+    &.zolo-post-style-2 .zolo-post-link-btn a,
+    &.zolo-post-style-3 .zolo-post-link-btn a {
+        --zolo-link-btn-color: #000;
+        color: var(--zolo-link-btn-color);
+    }
+
+
+    &.zolo-post-style-1 .zolo-post-secount-dateTime,
+    &.zolo-post-style-2 .zolo-post-secount-dateTime,
+    &.zolo-post-style-3 .zolo-post-secount-dateTime {
+        color: var(--zolo-sDateTime-color);
+    }
+
+    &.zolo-post-style-1 .zolo-post-category a {
+        color: var(--zolo-category-color);
     }
 
     &.zolo-post-style-2 .zolo-post-content,
     &.zolo-post-style-3 .zolo-post-content {
+        --zolo-content-padding: 30px;
         position: absolute;
         bottom: 0;
         left: 0;
-        padding: 30px;
+        padding: var(--zolo-content-padding);
         z-index: 1;
     }
 
@@ -237,8 +299,17 @@
 
     &.zolo-post-style-2 .zolo-post-category a,
     &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-category a {
-        color: #fff;
         background-color: rgba(236, 235, 254, 0.28);
+    }
+
+    &.zolo-post-style-2 .zolo-post-category a {
+        --zolo-category-color: #fff;
+        color: var(--zolo-category-color);
+    }
+
+    &.zolo-post-style-3 .zolo-post-item:hover .zolo-post-category a {
+        --zolo-category-hover-color: #fff;
+        color: var(--zolo-category-hover-color);
     }
 
     &.zolo-post-style-2 .zolo-post-dateTime,
@@ -280,7 +351,6 @@
     }
 
     .zolo-post-dateTime,
-    .zolo-post-author-name span,
     .zolo-post-desc p {
         transition: color cubic-bezier(0.645, 0.045, 0.355, 1) 0.35s;
     }
@@ -299,11 +369,13 @@
 
     &.zolo-post-style-3 .zolo-post-author-name,
     &.zolo-post-style-3 .zolo-post-author-name a {
-        color: #111013;
+        --zolo-author-name-color: #111013;
+        color: var(--zolo-author-name-color);
     }
 
     &.zolo-post-style-3 .zolo-post-category a {
-        color: #000;
+        --zolo-category-color: #111013;
+        color: var(--zolo-category-color);
         background-color: #d7d8dd61;
     }
 
@@ -322,14 +394,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 12px;
+        gap: var(--zolo-pagination-gap);
         z-index: 11;
-        bottom: 30px !important;
+        bottom: -50px !important;
         .swiper-pagination-bullet {
             background-color: transparent;
-            width: 8px;
-            height: 8px;
-            border: 1px solid var(--zoloblocks-brand-color);
+            width: var(--zolo-pagination-size);
+            height: var(--zolo-pagination-size);
+            border-width: var(--zolo-pagination-border-width);
+            border-style: var(--zolo-pagination-border-style);
+            border-color: var(--zolo-pagination-border-color);
             transition: all 0.3s ease;
 
             &.swiper-pagination-bullet-active {
@@ -344,12 +418,12 @@
         top: 50%;
         z-index: 1;
         transform: translateY(-50%);
-        width: clamp(2.188rem, 6vw, 3.125rem);
-        height: clamp(2.188rem, 6vw, 3.125rem);
-        color: #000;
-        fill: #000;
+        width: var(--zolo-nav-button-size);
+        height: var(--zolo-nav-button-size);
+        color: var(--zolo-nav-button-color);
+        fill: var(--zolo-nav-button-color);
         background-color: #fff;
-        border-radius: 50%;
+        border-radius: var(--zolo-nav-button-border-radius);
         transition: all 0.3s ease;
         &:hover {
             fill: var(--zoloblocks-brand-button-color);
@@ -362,11 +436,11 @@
         }
         &.swiper-zolo-next,
         &.swiper-button-next {
-            right: 20px;
+            right: var(--zolo-nav-button-right);
         }
         &.swiper-zolo-prev,
         &.swiper-button-prev {
-            left: 20px;
+            left: var(--zolo-nav-button-left);
         }
     }
 
@@ -384,8 +458,8 @@
         justify-content: center;
         cursor: pointer;
         svg {
-            width: 16px;
-            height: 16px;
+            width: var(--zolo-nav-button-icon-size);
+            height: var(--zolo-nav-button-icon-size);
             display: block;
         }
     }
@@ -413,6 +487,3 @@
     }
 }
 // pagination css  end
-.zolo-post-carousel {
-
-}

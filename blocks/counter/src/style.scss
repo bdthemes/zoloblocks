@@ -1,69 +1,79 @@
 .wp-block-zolo-counter {
+    --zolo-item-padding: clamp(2.5rem, 5vw, 3.5rem);
+    --zolo-item-gap: 15px;
+    --zolo-count-marign: 0 0 15px;
+    --zolo-count-text-color: #20232a;
+    --zolo-icon-size: 30px;
+    --zolo-icon-color: var(--zoloblocks-brand-color);
+    --zolo-title-text-color: #717274;
+    --zolo-title-margin: 0;
+    --zolo-icon-margin: 0;
+    --zolo-icon-svg-margin: 0 0 0;
+
     .zolo-counter-item {
-        padding: 40px;
+        padding: var(--zolo-item-padding);
         box-sizing: border-box;
         overflow: hidden;
         background-color: var(--zoloblocks-item-bg-color);
-        border: 1px solid var(--zoloblocks-item-border-color);
+        border-width: var(--zolo-item-border-width);
+        border-style: var(--zolo-item-border-style);
+        border-color: var(--zoloblocks-item-border-color);
         border-radius: var(--zolo-item-border-radius);
         text-align: center;
     }
 
     .zolo-counter-count {
-        font-size: 30px;
-        font-weight: 800;
+        font-size: 40px;
+        font-weight: 700;
         line-height: 1;
-        color: #20232a;
-        margin: 0 0 10px;
+        color: var(--zolo-count-text-color);
+        margin: var(--zolo-count-marign);
+        display: inline-block;
+    }
+
+    .zolo__display-icon {
+        margin-bottom: 15px;
         display: inline-block;
     }
 
     .zolo-counter-icon {
-        .zolo__display-icon {
-            margin-bottom: 15px;
-        }
-
         img {
             max-width: 100%;
             box-sizing: border-box;
         }
-
-        .zolo__display-icon {
-            display: inline-block;
-        }
-
         svg {
-            fill: #20232a;
+            fill: var(--zolo-icon-color);
             box-sizing: content-box;
-            width: 30px;
-            height: 30px;
+            width: var(--zolo-icon-size);
+            height:  var(--zolo-icon-size);
+            display: block;
         }
     }
 
     .zolo-counter-title {
-        font-size: 16px;
-        color: #484a54;
-        font-weight: 600;
-        margin: 0;
+        font-size: 18px;
+        color: var(--zolo-title-text-color);
+        margin: var(--zolo-title-margin);
+        display: block;
     }
 
     .zolo-counter-wrap {
         &.style-1,
-        &.style-2 {
+        &.counter-align-right {
             .zolo-counter-item {
                 display: flex;
                 align-items: flex-start;
-                gap: 15px;
+                gap: var(--zolo-item-gap);
                 text-align: left;
             }
             .zolo-counter-icon {
-                margin: 0;
+                margin: var(--zolo-icon-margin);
                 svg {
-                    margin-bottom: 0;
+                    margin-bottom: var(--zolo-icon-svg-margin);
                 }
             }
         }
-        &.style-2 {
+        &.counter-align-right {
             .zolo-counter-item {
                 flex-direction: row-reverse;
                 text-align: right;

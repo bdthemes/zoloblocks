@@ -22,10 +22,11 @@ const Save = ({ attributes }) => {
         fancyLinkToggle,
         fancyLink,
         imageRes,
+        fancyDirection,
     } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), fancyDirection),
     });
 
     return (

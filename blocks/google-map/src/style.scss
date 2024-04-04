@@ -1,10 +1,14 @@
 .wp-block-zolo-google-map {
+    --zolo-map-height: clamp(18.75rem, 50vw, 43.75rem);
+    --zolo-marker-info-margin: 10px 0 0;
+    --zolo-gm-style-padding: 15px;
     .zolo-gmap-wrapper {
-        height: clamp(18.75rem, 50vw, 43.75rem);
+        height: var(--zolo-map-height);
+        overflow: hidden;
         .gm-style-iw.gm-style-iw-c {
             max-width: 300px !important;
             line-height: 1.4;
-            padding: 15px;
+            padding: var(--zolo-gm-style-padding);
             top: -35px;
         }
 
@@ -18,7 +22,7 @@
         }
 
         .zolo-gmap-marker-info {
-            margin-top: 10px;
+            margin: var(--zolo-marker-info-margin);
         }
     }
 }

@@ -16,11 +16,12 @@ const {
     IconicBtnGroup,
     AdvancedOptions,
     GoogleMapAutocomplete,
+    ResDimensionsControl,
     ZoloPanelBody,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
-import { MAP_TYPES, LANGUAGES, MAP_HEIGHT } from './constants';
+import { MAP_TYPES, LANGUAGES, MAP_HEIGHT, MAP_BRADIUS } from './constants';
 
 import { MINFO_TYPO } from './constants/typoPrefixConstant';
 
@@ -58,6 +59,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/google-map"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -276,6 +278,12 @@ function Inspector(props) {
                                 min={200}
                                 max={1000}
                             />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zolo-blocks')}
+                                controlName={MAP_BRADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Marker Info', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                             <ColorControl
@@ -294,7 +302,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/google-map"
+                        />
                     </>
                 }
             />

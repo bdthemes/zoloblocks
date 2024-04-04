@@ -31,10 +31,11 @@ const Save = ({ attributes }) => {
         showRibbon,
         ribbonTitle,
         ribbonPosition,
+        iconBoxDirection,
     } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), 'zolo-block-advanced-icon-box', preset),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), 'zolo-block-advanced-icon-box', preset, iconBoxDirection),
     });
 
     return (

@@ -18,8 +18,15 @@
         padding: 0;
     }
 
+    --zolo-item-gap: 8px;
+    --zolo-content-gap: 10px;
+    --zolo-content-left: 20px;
+    --zolo-title-text-color: #fff;
+    --zolo-content-margin: 0 20px;
+    --zolo-content-text-color: #fff;
+
     display: flex;
-    gap: 8px;
+    gap: var(--zolo-item-gap);
     position: relative;
 
     .zolo-container {
@@ -31,7 +38,7 @@
     .zolo-progress-bar_content {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: var(--zolo-content-gap);
         justify-content: space-between;
     }
 
@@ -62,13 +69,13 @@
     }
 
     .zolo-progress-bar_counter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--zolo-progress-bar-color);
-    font-weight: 600;
-    font-size: clamp(12px, 1.5vw, 14px);
-    line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--zolo-progress-bar-color);
+        font-weight: 600;
+        font-size: clamp(12px, 1.5vw, 14px);
+        line-height: 1;
 }
 
     /* progress bars style 1 css here */
@@ -87,8 +94,12 @@
     &.style-3 {
         .zolo-progress-bar_content {
             top: 50%;
-            left: 20px;
+            left: var(--zolo-content-left);
             transform: translateY(-50%);
+        }
+        .zolo-progress-bar_counter {
+            --zolo-progress-bar-color: #fff;
+            color: var(--zolo-progress-bar-color);
         }
     }
 
@@ -98,12 +109,12 @@
         position: absolute;
         line-height: 1;
         justify-content: inherit;
-        color: #fff;
+        color: var(--zolo-content-text-color);
     }
 
     &.style-3 .zolo-progress-bar__title,
     &.style-4 .zolo-progress-bar__title{
-        color: #fff;
+        color: var(--zolo-title-text-color);
     }
 
     &.style-3 .zolo-progress-bar__progress-bar,
@@ -121,7 +132,7 @@
     &.style-4 .zolo-progress-bar_content {
         top: 50%;
         transform: translateY(-50%);
-        margin: 0 20px;
+        margin: var(--zolo-content-margin);
         justify-content: space-between;
         left: 0;
         right: 0;

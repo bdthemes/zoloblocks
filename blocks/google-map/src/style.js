@@ -6,10 +6,11 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder } = window.zoloModule;
+const { generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder, generateDimensionStyle } = window.zoloModule;
 
-import { MAP_HEIGHT } from './constants';
+import { MAP_BRADIUS, MAP_HEIGHT } from './constants';
 import { MINFO_TYPO } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -35,6 +36,16 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // border radius
+    const {
+        dimensionStylesDesktop: borderRadiusDesk,
+        dimensionStylesTab: borderRadiusTab,
+        dimensionStylesMobile: borderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: MAP_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
 
     /**
      * All Style Combination
@@ -42,6 +53,7 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
         .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-wrapper {
             ${deskHeight}
+            ${borderRadiusDesk}
         }
         .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-marker-info {
             color: ${markerInfoColor};
@@ -52,6 +64,7 @@ const Style = ({ props }) => {
     const tabletAllStyle = `
         .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-wrapper {
             ${tabHeight}
+            ${borderRadiusTab}
         }
         .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-marker-info {
             ${infoTabTypo}
@@ -61,6 +74,7 @@ const Style = ({ props }) => {
     const mobileAllStyle = `
         .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-wrapper {
             ${mobHeight}
+            ${borderRadiusMob}
         }
         .${uniqueId}.wp-block-zolo-google-map .zolo-gmap-marker-info {
             ${infoMobTypo}
@@ -72,9 +86,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.googleMap.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.googleMap.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.googleMap.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

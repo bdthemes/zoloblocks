@@ -153,6 +153,7 @@ const Inspector = (props) => {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/advanced-heading"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -161,7 +162,7 @@ const Inspector = (props) => {
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={styles}
-                                options={applyFilters('zolo_ah_style_filter', STYLES) || STYLES}
+                                options={applyFilters('zolo.advancedHeading.presets', STYLES) || STYLES}
                                 onChange={(selected) => changePremade(selected)}
                             />
                             <ToggleControl
@@ -403,12 +404,9 @@ const Inspector = (props) => {
                                                 })
                                             }
                                             imageId={presetBg && presetBg.id}
-                                            onEditImage={(url, id) => {
+                                            onEditImage={(media) => {
                                                 setAttributes({
-                                                    presetBg: {
-                                                        url,
-                                                        id,
-                                                    },
+                                                    presetBg: media,
                                                 });
                                             }}
                                         />
@@ -636,7 +634,12 @@ const Inspector = (props) => {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/advanced-heading"
+                        />
                     </>
                 }
             />

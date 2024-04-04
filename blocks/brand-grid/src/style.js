@@ -49,6 +49,7 @@ import {
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -334,13 +335,18 @@ const Style = ({ props }) => {
         .${uniqueId} .zb-brand-item{
             ${deskContainerHeight}
             ${containerBorderDesk}
-            ${containerBorderRadiusDesk}
+          
             ${containerBoxShadow}
             ${containerPaddingDesk}
             ${containerMarginDesk}
             ${containerDeskBGStyle}
 		}
-		.${uniqueId} .wp-block-zolo-brand-child .zb-brand-image img{
+
+        .${uniqueId} .zb-brand-item, .${uniqueId} .zb-brand-content{
+            ${containerBorderRadiusDesk}
+		}
+
+		.${uniqueId} .wp-block-zolo-brand-child .zb-brand-image img {
             ${brandPhotoPaddingDesk}
 			${deskImageWidth}
 			${brandPhotoBorderRadiusDesk}
@@ -476,9 +482,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.brandGrid.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.brandGrid.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.brandGrid.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

@@ -42,6 +42,72 @@ const ChangeLogs = () => {
                     </div>
                     <div className="logos-panel-body">
                         <SingleLog
+                            version="1.0.0-RC6"
+                            date={'March 21, 2024'}
+                            changes={[
+                                {
+                                    title: __('Added', 'zolo-blocks'),
+                                    list: [
+                                        __('Tabs block added', 'zolo-blocks'),
+                                        __('Image Compare block added', 'zolo-blocks'),
+                                        __('Essential filter hooks added ', 'zolo-blocks'),
+                                    ],
+                                },
+                                {
+                                    title: __('Updated', 'zolo-blocks'),
+                                    list: [
+                                        __('Border radius control added in Google Maps block', 'zolo-blocks'),
+                                        __('Image Height control added in Image gallery block', 'zolo-blocks'),
+                                        __('Focus style added in Form block', 'zolo-blocks'),
+                                    ],
+                                },
+                                {
+                                    title: __('Fixed', 'zolo-blocks'),
+                                    list: [
+                                        __('Slider block issue fixed', 'zolo-blocks'),
+                                        __('Flipbox back icon issue fixed', 'zolo-blocks'),
+                                    ],
+                                },
+                            ]}
+                        />
+
+
+                        <SingleLog
+                            version="1.0.0-RC5"
+                            date={'March 10, 2024'}
+                            changes={[
+                                {
+                                    title: __('Added', 'zolo-blocks'),
+                                    list: [
+                                        __('Form block added', 'zolo-blocks'),
+                                        __('List block added', 'zolo-blocks'),
+                                        __('Floating animation features added', 'zolo-blocks'),
+                                        __('Transform features added', 'zolo-blocks'),
+                                    ],
+                                },
+                                // {
+                                //     title: __('Updated', 'zolo-blocks'),
+                                //     list: [
+                                //         __('Carousel portion removed from Slider block', 'zolo-blocks'),
+                                //         __('Advanced Button & Post List block style improved', 'zolo-blocks'),
+                                //         __('Accessibility improved', 'zolo-blocks'),
+                                //         __('Image Gallery block Lightbox improved', 'zolo-blocks'),
+                                //     ],
+                                // },
+                                {
+                                    title: __('Fixed', 'zolo-blocks'),
+                                    list: [
+                                        __('Advanced icon box block css overwriting issue fixed', 'zolo-blocks'),
+                                        __('Social share block icon size issue fixed', 'zolo-blocks'),
+                                        __('Social links block icon size issue fixed', 'zolo-blocks'),
+                                        __('Flipbox block hover background label issue fixed', 'zolo-blocks'),
+                                        __('Advanced heading preset-3 background image replacing issue fixed', 'zolo-blocks'),
+                                        __('Image gallery block move horizontal control spelling mistake issue fixed', 'zolo-blocks'),
+                                    ],
+                                },
+                            ]}
+                        />
+                        <SingleLog
                             version="1.0.0"
                             date={'January 23, 2024'}
                             changes={[

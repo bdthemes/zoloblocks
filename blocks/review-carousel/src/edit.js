@@ -53,7 +53,7 @@ export default function Edit(props) {
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), preset),
+        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), preset, `${resMode !== 'Desktop' ? resMode : ''}`),
     });
     // columns count
     const {
@@ -165,6 +165,9 @@ export default function Edit(props) {
     const appendBlock = () => {
         const newBlock = wp.blocks.createBlock('zolo/review-child', {});
         wp.data.dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
+        setAttributes({
+            addNewSlideBlock: !addNewSlideBlock,
+        });
     };
 
     // preview image

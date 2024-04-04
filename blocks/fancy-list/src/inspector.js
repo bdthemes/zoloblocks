@@ -52,11 +52,13 @@ import {
     ITEM_BORDER,
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
+    PRESETS_ALIGNMENT,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, TEXT_TYPOGRAPHY, MEDIA_TYPOGRAPHY } from './constants/typoPrefixConstants';
 
 import { HEADING } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -78,6 +80,7 @@ function Inspector(props) {
         iconColor,
         iconHColor,
         iconHBColor,
+        fancyDirection,
     } = attributes;
 
     const requiredProps = {
@@ -126,6 +129,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/fancy-list"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -133,10 +137,25 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('General', 'zolo-block')} panelProps={props} firstOpen={true}>
                             <SelectControl
                                 label={__('Presets', 'zolo-block')}
-                                options={PRESETS}
+                                options={applyFilters('zolo.fancyList.presets', PRESETS)}
                                 onChange={(v) => onPresetChange(v)}
                                 value={preset}
                             />
+                            {
+                                // If preset is not selected, show alignment control
+                                preset === 'style-4' && (
+                                    <IconicBtnGroup
+                                        label={__('Layout Direction', 'zolo-blocks')}
+                                        value={fancyDirection}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                fancyDirection: value,
+                                            })
+                                        }
+                                        options={PRESETS_ALIGNMENT}
+                                    />
+                                )
+                            }
                             <ToggleControl
                                 label={__('Show title', 'zolo-block')}
                                 checked={titleToggle}
@@ -450,7 +469,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/fancy-list"
+                        />
                     </>
                 }
             />

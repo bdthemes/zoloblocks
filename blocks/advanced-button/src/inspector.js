@@ -5,6 +5,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -98,7 +99,9 @@ function Inspector(props) {
 
     return (
         <InspectorControls key="controls">
+            {/* {applyFilters('zoloblocks.advanced-button.presets', PRESETS)} */}
             <HeaderTabs
+                block="zolo/advanced-button"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -107,7 +110,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Styles', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.advancedButton.presets', PRESETS)}
                                 onChange={(value) =>
                                     setAttributes({
                                         preset: value,
@@ -539,7 +542,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/advanced-button"
+                        />
                     </>
                 }
             />

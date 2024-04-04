@@ -144,6 +144,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/flipbox"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -404,8 +405,8 @@ function Inspector(props) {
                                             {backIconType === 'icon' && (
                                                 <ZoloIconPicker
                                                     label={__('Select Icon', 'zolo-block')}
-                                                    value={frontIcon}
-                                                    onChange={(v) => setAttributes({ frontIcon: v })}
+                                                    value={backIcon}
+                                                    onChange={(v) => setAttributes({ backIcon: v })}
                                                 />
                                             )}
                                             {backIconType === 'image' && (
@@ -559,16 +560,17 @@ function Inspector(props) {
                                 defaultVal={600}
                                 step={1}
                             />
-
-                            <SelectControl
+                            <IconicBtnGroup
                                 label={__('Trigger Type', 'zolo-blocks')}
                                 value={triggerType}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        triggerType: value,
+                                    })
+                                }
                                 options={FLIP_TRIGGER_TYPE}
-                                onChange={(triggerType) => {
-                                    setAttributes({ triggerType });
-                                }}
-                                help={triggerType === 'click' ? __('The feature works on the frontend only.', 'zolo-blocks') : ''}
                             />
+                            {triggerType === 'click' && <p>{__('The feature works on the frontend only.', 'zolo-blocks')}</p>}
                         </ZoloPanelBody>
                     </>
                 }
@@ -982,8 +984,26 @@ function Inspector(props) {
                                             controlName={BACK_LINK_PADDING}
                                             requiredProps={requiredProps}
                                         />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={BACK_LINK_BG} noMainBGImg={false} />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={BACK_LINK_HBG} noMainBGImg={false} />
+                                        <TabPanelControl
+                                            normalComponents={
+                                                <>
+                                                    <NormalBGControl
+                                                        requiredProps={requiredProps}
+                                                        controlName={BACK_LINK_BG}
+                                                        noMainBGImg={false}
+                                                    />
+                                                </>
+                                            }
+                                            hoverComponents={
+                                                <>
+                                                    <NormalBGControl
+                                                        requiredProps={requiredProps}
+                                                        controlName={BACK_LINK_HBG}
+                                                        noMainBGImg={false}
+                                                    />
+                                                </>
+                                            }
+                                        />
                                     </>
                                 )}
                             </ZoloPanelBody>
@@ -992,7 +1012,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/flipbox"
+                        />
                     </>
                 }
             />

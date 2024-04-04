@@ -44,6 +44,7 @@ import {
     FCONTAINER_BORDER_RADIUS,
     FCONTAINER_SHADOW,
     META_SPACE,
+    CONTENT_DIRECTIONS,
 } from './constants';
 
 import {
@@ -60,6 +61,7 @@ import {
 } from './constants/typoPrefixConstant';
 
 import { DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE, TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 const {
     ResDimensionsControl,
@@ -76,6 +78,7 @@ const {
     AdvancedOptions,
     ResAlignmentControl,
     ZoloPanelBody,
+    IconicBtnGroup
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -84,7 +87,6 @@ function Inspector(props) {
         preset,
         resMode,
         postQuery,
-        showTitle,
         titleTag,
         showExcerpt,
         excerptindicator,
@@ -114,6 +116,8 @@ function Inspector(props) {
         authorColor,
         authorHoverColor,
         // featured post
+        showfeatureimg,
+        contentDirection,
         ftitleColor,
         ftitleHoverColor,
         fexcerptColor,
@@ -168,10 +172,11 @@ function Inspector(props) {
                 break;
         }
     };
-
+console.log(preset);
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/post-list"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -180,13 +185,13 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.postList.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
-                            <ToggleControl
-                                label={__('Show Title', 'zolo-blocks')}
-                                checked={showTitle}
-                                onChange={(showTitle) => setAttributes({ showTitle })}
+                                <ToggleControl
+                                label={__('Show Feature Image', 'zolo-blocks')}
+                                checked={showfeatureimg}
+                                onChange={(v) => setAttributes({ showfeatureimg:v })}
                             />
                             <ToggleControl
                                 label={__('Show Excerpt', 'zolo-blocks')}
@@ -229,12 +234,25 @@ function Inspector(props) {
                                     })
                                 }
                             />
+                           { ("style-1" ==preset || "style-3" ==preset) && (
+                             <IconicBtnGroup
+                                    label={__('Direction', 'zolo-blocks')}
+                                    value={contentDirection}
+                                    options={CONTENT_DIRECTIONS}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            contentDirection: v,
+                                        })
+                                    }
+                                />)}
+                          
                             <ResAlignmentControl
-                                label={__('Button Alignment', 'zolo-blocks')}
+                                label={__('Alignment', 'zolo-blocks')}
                                 controlName={CONTENT_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
+                            
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             <SelectControl
@@ -435,9 +453,7 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-
-                        {showTitle && (
-                            <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     options={[
                                         {
@@ -529,8 +545,8 @@ function Inspector(props) {
                                         </>
                                     }
                                 />
-                            </ZoloPanelBody>
-                        )}
+                        </ZoloPanelBody>
+                    
 
                         {showExcerpt && (
                             <ZoloPanelBody title={__('Excerpt', 'zolo-blocks')} stylePanel={true} panelProps={props}>
@@ -1079,7 +1095,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/post-list"
+                        />
                     </>
                 }
             />

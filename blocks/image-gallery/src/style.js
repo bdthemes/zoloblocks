@@ -37,6 +37,7 @@ import {
     IMAGE_HOVER_BOX_SHADOW,
     IMAGE_HOVER_BACKGROUND,
     IMAGE_PADDING,
+    IMAGE_HEIGHT,
     HEADING_BORDER,
     HEADING_BACKGROUND,
     HEADING_MARGIN,
@@ -55,6 +56,7 @@ import {
 } from './constants';
 
 import { HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
@@ -78,7 +80,6 @@ export default function Style({ props }) {
     });
 
     // column gap
-
     const {
         gapStylesDesktop: deskGridGap,
         gapStylesTab: tabGridGap,
@@ -168,6 +169,16 @@ export default function Style({ props }) {
     });
 
     // Image
+    const {
+        desktopRangeStyle: imageHeightDesk,
+        tabRangeStyle: imageHeightTab,
+        mobRangeStyle: imageHeightMob,
+    } = generateResRangeStyle({
+        controlName: IMAGE_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
     const {
         desktopBorderStyle: imageBorderDesk,
         tabBorderStyle: imageBorderTab,
@@ -410,6 +421,7 @@ export default function Style({ props }) {
 			${imageBorderRadiusDesk}
 			${imageBoxShadow}
 			${imagePaddingDesk}
+            ${imageHeightDesk}
 		}
 		.${uniqueId} .zolo-image-wrap:hover {
 			${imageHoverDeskBGStyle}
@@ -478,6 +490,7 @@ export default function Style({ props }) {
 		${imageBorderTab}
 		${imageBorderRadiusTab}
 		${imagePaddingTab}
+        ${imageHeightTab}
 	}
 	.${uniqueId} .zolo-image-wrap:hover {
 		${imageHoverTabBGStyle}
@@ -529,6 +542,7 @@ export default function Style({ props }) {
 		${imageBorderMob}
 		${imageBorderRadiusMob}
 		${imagePaddingMob}
+        ${imageHeightMob}
 	}
 	.${uniqueId} .zolo-image-wrap:hover {
 		${imageHoverMobBGStyle}
@@ -564,9 +578,9 @@ export default function Style({ props }) {
         <GlobalStyleHanlder
             attributes={attributes}
             setAttributes={setAttributes}
-            desktopAllStyle={desktopAllStyle}
-            tabAllStyle={tabletAllStyle}
-            mobileAllStyle={mobileAllStyle}
+            desktopAllStyle={applyFilters('zolo.imageGallery.desktopAllStyle', desktopAllStyle, props)}
+            tabAllStyle={applyFilters('zolo.imageGallery.tabletAllStyle', tabletAllStyle, props)}
+            mobileAllStyle={applyFilters('zolo.imageGallery.mobileAllStyle', mobileAllStyle, props)}
         />
     );
 }

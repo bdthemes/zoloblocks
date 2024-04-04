@@ -1,10 +1,27 @@
 .wp-block-zolo-review {
+    --zolo-item-gap: clamp(2.5rem, 8vw, 6.25rem);
+    --zolo-img-size: clamp(12.5rem, 32vw, 25rem);
+    --zolo-img-radius: 50%;
+    --zolo-review-icon-margin: 0 0 clamp(0.625rem, 1vw, 0.938rem);
+    --zolo-star-rating-item-gap: 3px;
+    --zolo-star-rating-icon-size: clamp(0.875rem, 1.5vw, 1rem);
+    --zolo-star-rating-icon-color: #ff9a00;
+    --zolo-desc-text-color: #656565;
+    --zolo-desc-margin:  0 0 clamp(1.875rem, 5vw, 3.125rem);
+    --zolo-name-text-color: #19191c;
+    --zolo-name-margin: 0 0 2px;
+    --zolo-dasignation-text-color: #656565;
+    --zolo-quote-icon-size: 24px;
+    --zolo-quote-icon-color: #f6f6f6;
+    --zolo-quote-icon-padding: clamp(0.625rem, 1.5vw, 1rem);
+    --zolo-quote-icon-border-radius: 50%;
+
     box-sizing: border-box;
     overflow: hidden;
     .zolo-item {
         display: flex;
         align-items: center;
-        gap: clamp(2.5rem, 8vw, 6.25rem);
+        gap: var(--zolo-item-gap);
         text-align: center;
         flex-direction: column;
     }
@@ -20,10 +37,10 @@
     .zolo-image-wrap {
         position: relative;
         box-sizing: border-box;
-        width: clamp(12.5rem, 32vw, 25rem);
-        height: clamp(12.5rem, 32vw, 25rem);
-        min-width: clamp(12.5rem, 32vw, 25rem);
-        border-radius: 50%;
+        width: var(--zolo-img-size);
+        height: var(--zolo-img-size);
+        min-width: var(--zolo-img-size);
+        border-radius: var(--zolo-img-radius);
         overflow: hidden;
     }
 
@@ -35,54 +52,54 @@
 
     // rating
     .zolo-review-icon {
-        margin: 0 0 clamp(0.625rem, 1vw, 0.938rem);
+        margin: var(--zolo-review-icon-margin);
     }
 
     .zolo-star-rating {
         display: inline-flex;
-        gap: 3px;
+        gap: var(--zolo-star-rating-item-gap);
         svg {
-            width: clamp(0.875rem, 1.5vw, 1rem);
-            fill: #ff9a00;
+            width: var(--zolo-star-rating-icon-size);
+            fill: var(--zolo-star-rating-icon-color);
         }
     }
 
     .zolo-desc {
         font-size: clamp(1.125rem, 2.5vw, 1.625rem);
-        color: #656565;
+        color: var(--zolo-desc-text-color);
         font-weight: 300;
-        margin: 0 0 clamp(1.875rem, 5vw, 3.125rem);
+        margin: var(--zolo-desc-margin);
     }
 
     .zolo-name {
         font-size: clamp(1.25rem, 2vw, 1.625rem);
-        color: #19191c;
+        color: var(--zolo-name-text-color);
         text-decoration: none;
         font-weight: 500;
-        margin: 0 0 2px;
+        margin: var(--zolo-name-margin);
         display: block;
     }
 
     .zolo-designation {
         font-size: 14px;
-        color: #656565;
+        color: var(--zolo-dasignation-text-color);
     }
 
     .zolo-quote-icon {
         position: absolute;
         bottom: 0;
         background-color: var(--zoloblocks-brand-color);
-        padding: clamp(0.625rem, 1.5vw, 1rem);
-        border-radius: 100%;
+        padding: var(--zolo-quote-icon-padding);
+        border-radius: var(--zolo-quote-icon-border-radius);
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
         box-sizing: content-box;
         svg {
-            width: 24px;
-            height: 24px;
-            fill: #f6f6f6;
+            width: var(--zolo-quote-icon-size);
+            height: var(--zolo-quote-icon-size);
+            fill: var(--zolo-quote-icon-color);
             display: block;
             box-sizing: content-box;
         }

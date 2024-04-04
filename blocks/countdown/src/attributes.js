@@ -107,7 +107,6 @@ const attributes = {
     },
     CountDate: {
         type: 'string',
-        default: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 7 days from now
     },
     itemsVisibility: {
         type: 'object',
@@ -166,6 +165,10 @@ const attributes = {
     separatorItem: {
         type: 'string',
         default: '?',
+    },
+    overflow: {
+        type: 'string',
+        default: 'auto',
     },
 };
 

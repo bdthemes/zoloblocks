@@ -52,10 +52,12 @@ import {
     CONTAINER_BOX_SHADOW,
     CONTAINER_PADDING,
     ICON_IMAGE_SIZE,
+    PRESETS_ALIGNMENT,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { HEADING, ICON_BOX_OPTIONS, DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { NORMAL_HTML_TAG, ICON_BOX_OPTIONS, DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -78,6 +80,7 @@ function Inspector(props) {
         textColor,
         suffixColor,
         imageRes,
+        counterDirection,
     } = attributes;
 
     const requiredProps = {
@@ -90,6 +93,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/counter"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -97,7 +101,7 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
                                 label={__('Preset', 'zolo-blocks')}
-                                options={PRESETS}
+                                options={applyFilters('zolo.counter.preset', PRESETS)}
                                 onChange={(preset) => {
                                     setAttributes({
                                         preset,
@@ -105,6 +109,21 @@ function Inspector(props) {
                                 }}
                                 value={preset}
                             />
+                            {
+                                // If preset is not selected, show alignment control
+                                preset === 'style-1' && (
+                                    <IconicBtnGroup
+                                        label={__('Layout Direction', 'zolo-blocks')}
+                                        value={counterDirection}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                counterDirection: value,
+                                            })
+                                        }
+                                        options={PRESETS_ALIGNMENT}
+                                    />
+                                )
+                            }
                             <ToggleControl
                                 label={__('Show counter icon', 'zolo-blocks')}
                                 checked={hideIcon}
@@ -391,7 +410,7 @@ function Inspector(props) {
                             <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
                                 <SelectControl
                                     label={__('Tag', 'zolo-blocks')}
-                                    options={HEADING}
+                                    options={NORMAL_HTML_TAG}
                                     onChange={(tag) => {
                                         setAttributes({
                                             titleTag: tag,
@@ -427,7 +446,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/counter"
+                        />
                     </>
                 }
             />

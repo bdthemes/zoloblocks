@@ -2,482 +2,558 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
  */
 const {
     GlobalStyleHanlder,
-    generateResCounterStyle,
     generateResAlignmentStyle,
     generateBorderStyle,
     generateDimensionStyle,
     generateTypographyStyles,
     generateResRangeStyle,
-    generateBoxShadowStyles,
     generateNormalBGControlStyles,
-    generateGapStyle,
 } = window.zoloModule;
 
 import {
-    GRID_COLUMNS,
-    GRID_GAP,
-    CONTAINER_BACKGROUND,
-    CONTAINER_BORDER,
-    CONTAINER_BORDER_RADIUS,
-    CONTAINER_PADDING,
-    CONTAINER_BOX_SHADOW,
-    CONTENT_ALIGNMENT,
-    REVIEWER_DESIGNATION_MARGIN,
-    REVIEWER_NAME_MARGIN,
-    REVIEWER_PHOTO_WIDTH,
-    REVIEWER_PHOTO_HEIGHT,
-    REVIEWER_PHOTO_BG,
-    REVIEWER_PHOTO_BORDER,
-    REVIEWER_PHOTO_BORDER_RADIUS,
-    REVIEWER_PHOTO_BOX_SHADOW,
-    REVIEWER_PHOTO_MARGIN,
-    REVIEWER_PHOTO_PADDING,
-    REVIEWER_TESTIMONIAL_MARGIN,
-    ICONS_SIZE,
+    BTN_ALIGNMENT,
+    BTN_BG,
+    BTN_BORDER,
+    BTN_BRADIUS,
+    BTN_HBG,
+    BTN_PADDING,
+    BTN_MARGIN,
+    LABEL_MARGIN,
+    ICON_SIZE,
+    FIELD_BG,
+    FIELD_BORDER,
+    FIELD_BRADIUS,
+    FIELD_PADDING,
+    SCC_BORDER,
+    SCC_BRADIUS,
+    SCC_BG,
+    SCC_PADDING,
+    ERR_BORDER,
+    ERR_BRADIUS,
+    ERR_BG,
+    ERR_PADDING,
 } from './constants';
 
-import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
+import { LABEL_TYPO, FIELD_TYPO, BTN_TYPO, ERR_MSG_TYPO, SCC_MSG_TYPO } from './constants/typoPrefixConstants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
         uniqueId,
-        addReviewerWebsiteLink,
-        nameColor,
-        nameHoverColor,
-        designationColor,
-        testimonialMessageColor,
-        activeRatingColor,
-        inactiveRatingColor,
+        labelColor,
+        requiredColor,
+        iconColor,
+        textColor,
+        placeholderColor,
+        btnColor,
+        btnHoverColor,
+        errMsgColor,
+        sccMsgColor,
+        closeBtnColor,
+        focusBorderColor,
+        focusBorderWidth,
     } = attributes;
 
-    // column count
+    // label
     const {
-        desktopRangeStyle: deskColumns,
-        tabRangeStyle: tabColumns,
-        mobRangeStyle: mobColumns,
-    } = generateResCounterStyle({
-        controlName: GRID_COLUMNS,
-        attributes,
-        noProperty: true,
-        defaults: {
-            deskRange: 3,
-            tabRange: 2,
-            mobRange: 1,
-        },
-    });
-
-    // Grid Columns Gap
-    const {
-        gapStylesDesktop: deskGridGap,
-        gapStylesTab: tabGridGap,
-        gapStylesMobile: mobGridGap,
-    } = generateGapStyle({
-        controlName: GRID_GAP,
+        dimensionStylesDesktop: labelMarginDesk,
+        dimensionStylesTab: labelMarginTab,
+        dimensionStylesMobile: labelMarginMob,
+    } = generateDimensionStyle({
+        controlName: LABEL_MARGIN,
+        styleFor: 'margin',
         attributes,
     });
 
-    // child global styles
     const {
-        desktopAlignStyle: reviewContentDeskAlignStyle,
-        tabAlignStyle: reviewContentTabAlignStyle,
-        mobAlignStyle: reviewContentMobAlignStyle,
+        typoStylesDesktop: labelTypoDesk,
+        typoStylesTab: labelTypoTab,
+        typoStylesMobile: labelTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: LABEL_TYPO,
+        defaultFontSize: '',
+        attributes,
+    });
+
+    // Icon
+    const {
+        desktopRangeStyle: iconSize,
+        tabRangeStyle: iconTabSize,
+        mobRangeStyle: iconMobSize,
+    } = generateResRangeStyle({
+        controlName: ICON_SIZE,
+        property: 'font-size',
+        attributes,
+    });
+
+    // Input Fields
+    const {
+        typoStylesDesktop: fieldTypoDesk,
+        typoStylesTab: fieldTypoTab,
+        typoStylesMobile: fieldTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: FIELD_TYPO,
+        defaultFontSize: '',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: fieldBorderStyles,
+        tabBorderStyle: fieldBorderStylesTab,
+        mobBorderStyle: fieldBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: FIELD_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: fieldBRDesktop,
+        dimensionStylesTab: fieldBRTab,
+        dimensionStylesMobile: fieldBRMob,
+    } = generateDimensionStyle({
+        controlName: FIELD_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: fieldPaddingDesktop,
+        dimensionStylesTab: fieldPaddingTab,
+        dimensionStylesMobile: fieldPaddingMob,
+    } = generateDimensionStyle({
+        controlName: FIELD_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: fieldBGStyle,
+        backgroundStylesTab: fieldTabBGStyle,
+        backgroundStylesMobile: fieldMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: FIELD_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // submit button
+    const {
+        desktopAlignStyle: buttonAlignmentDesktop,
+        tabAlignStyle: buttonAlignmentTab,
+        mobAlignStyle: buttonAlignmentMob,
     } = generateResAlignmentStyle({
-        controlName: CONTENT_ALIGNMENT,
+        controlName: BTN_ALIGNMENT,
         property: 'text-align',
         attributes,
     });
 
-    // rating icon align
-    let ratingIconDeskAlignStyle;
-    switch (reviewContentDeskAlignStyle) {
-        case 'text-align:left;':
-            ratingIconDeskAlignStyle = 'justify-content: flex-start;';
-            break;
-        case 'text-align:center;':
-            ratingIconDeskAlignStyle = 'justify-content: center;';
-            break;
-        case 'text-align:right;':
-            ratingIconDeskAlignStyle = 'justify-content: flex-end;';
-            break;
-        default:
-            ratingIconDeskAlignStyle = 'justify-content: flex-start;';
-    }
-
-    // Container
     const {
-        backgroundStylesDesktop: containerDeskBGStyle,
-        backgroundStylesTab: containerTabBGStyle,
-        backgroundStylesMobile: containerMobBGStyle,
+        typoStylesDesktop: btnTypoDesk,
+        typoStylesTab: btnTypoTab,
+        typoStylesMobile: btnTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: BTN_TYPO,
+        defaultFontSize: '',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: btnBorderStyles,
+        tabBorderStyle: btnBorderStylesTab,
+        mobBorderStyle: btnBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: BTN_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: btnBRDesktop,
+        dimensionStylesTab: btnBRTab,
+        dimensionStylesMobile: btnBRMob,
+    } = generateDimensionStyle({
+        controlName: BTN_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: btnPaddingDesktop,
+        dimensionStylesTab: btnPaddingTab,
+        dimensionStylesMobile: btnPaddingMob,
+    } = generateDimensionStyle({
+        controlName: BTN_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: btnMarginDesktop,
+        dimensionStylesTab: btnMarginTab,
+        dimensionStylesMobile: btnMarginMob,
+    } = generateDimensionStyle({
+        controlName: BTN_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: btnBGStyle,
+        backgroundStylesTab: btnTabBGStyle,
+        backgroundStylesMobile: btnMobBGStyle,
     } = generateNormalBGControlStyles({
-        controlName: CONTAINER_BACKGROUND,
+        controlName: BTN_BG,
         attributes,
         noMainBGImg: false,
     });
 
     const {
-        desktopBorderStyle: containerDeskBorderStyle,
-        tabBorderStyle: containerTabBorderStyle,
-        mobBorderStyle: containerMobBorderStyle,
+        backgroundStylesDesktop: btnHBGStyle,
+        backgroundStylesTab: btnTabHBGStyle,
+        backgroundStylesMobile: btnMobHBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: BTN_HBG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // Error Message typography
+    const {
+        typoStylesDesktop: errMsgTypoDesk,
+        typoStylesTab: errMsgTypoTab,
+        typoStylesMobile: errMsgTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: ERR_MSG_TYPO,
+        defaultFontSize: '',
+        attributes,
+    });
+
+    // Success Message typography
+    const {
+        typoStylesDesktop: sccMsgTypoDesk,
+        typoStylesTab: sccMsgTypoTab,
+        typoStylesMobile: sccMsgTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: SCC_MSG_TYPO,
+        defaultFontSize: '',
+        attributes,
+    });
+
+    // Success Message
+    const {
+        desktopBorderStyle: sccBorderStyles,
+        tabBorderStyle: sccBorderStylesTab,
+        mobBorderStyle: sccBorderStylesMob,
     } = generateBorderStyle({
-        controlName: CONTAINER_BORDER,
+        controlName: SCC_BORDER,
         attributes,
     });
 
     const {
-        dimensionStylesDesktop: containerDeskBorderRadius,
-        dimensionStylesTab: containerTabBorderRadius,
-        dimensionStylesMobile: containerMobBorderRadius,
+        dimensionStylesDesktop: sccBRDesktop,
+        dimensionStylesTab: sccBRTab,
+        dimensionStylesMobile: sccBRMob,
     } = generateDimensionStyle({
-        controlName: CONTAINER_BORDER_RADIUS,
+        controlName: SCC_BRADIUS,
         styleFor: 'border-radius',
         attributes,
     });
 
     const {
-        dimensionStylesDesktop: containerDeskPadding,
-        dimensionStylesTab: containerTabPadding,
-        dimensionStylesMobile: containerMobPadding,
-    } = generateDimensionStyle({
-        controlName: CONTAINER_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
-    const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: CONTAINER_BOX_SHADOW,
-    });
-
-    // Photo
-    const {
-        desktopRangeStyle: photoDeskWidth,
-        tabRangeStyle: photoTabWidth,
-        mobRangeStyle: photoMobWidth,
-    } = generateResRangeStyle({
-        controlName: REVIEWER_PHOTO_WIDTH,
-        property: 'width',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: photoDeskHeight,
-        tabRangeStyle: photoTabHeight,
-        mobRangeStyle: photoMobHeight,
-    } = generateResRangeStyle({
-        controlName: REVIEWER_PHOTO_HEIGHT,
-        property: 'height',
-        attributes,
-    });
-
-    const {
-        backgroundStylesDesktop: photoDeskBGStyle,
-        backgroundStylesTab: photoTabBGStyle,
-        backgroundStylesMobile: photoMobBGStyle,
+        backgroundStylesDesktop: sccBGStyle,
+        backgroundStylesTab: sccTabBGStyle,
+        backgroundStylesMobile: sccMobBGStyle,
     } = generateNormalBGControlStyles({
-        controlName: REVIEWER_PHOTO_BG,
+        controlName: SCC_BG,
         attributes,
         noMainBGImg: true,
     });
 
     const {
-        desktopBorderStyle: photoDeskBorderStyle,
-        tabBorderStyle: photoTabBorderStyle,
-        mobBorderStyle: photoMobBorderStyle,
-    } = generateBorderStyle({
-        controlName: REVIEWER_PHOTO_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: photoDeskBorderRadius,
-        dimensionStylesTab: photoTabBorderRadius,
-        dimensionStylesMobile: photoMobBorderRadius,
+        dimensionStylesDesktop: sccPaddingDesktop,
+        dimensionStylesTab: sccPaddingTab,
+        dimensionStylesMobile: sccPaddingMob,
     } = generateDimensionStyle({
-        controlName: REVIEWER_PHOTO_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const { boxShadowStyle: photoBoxShadow } = generateBoxShadowStyles({
-        attributes,
-        controlName: REVIEWER_PHOTO_BOX_SHADOW,
-    });
-
-    const {
-        dimensionStylesDesktop: photoDeskMargin,
-        dimensionStylesTab: photoTabMargin,
-        dimensionStylesMobile: photoMobMargin,
-    } = generateDimensionStyle({
-        controlName: REVIEWER_PHOTO_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: photoDeskPadding,
-        dimensionStylesTab: photoTabPadding,
-        dimensionStylesMobile: photoMobPadding,
-    } = generateDimensionStyle({
-        controlName: REVIEWER_PHOTO_PADDING,
+        controlName: SCC_PADDING,
         styleFor: 'padding',
         attributes,
     });
 
-    // Name
+    // Error Message
     const {
-        typoStylesDesktop: nameTypoDesk,
-        typoStylesTab: nameTypoTab,
-        typoStylesMobile: nameTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: REVIEWER_NAME_TYPOGRAPHY,
+        desktopBorderStyle: errMsgBorderStyles,
+        tabBorderStyle: errMsgBorderStylesTab,
+        mobBorderStyle: errMsgBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: ERR_BORDER,
         attributes,
     });
 
     const {
-        dimensionStylesDesktop: nameDeskMargin,
-        dimensionStylesTab: nameTabMargin,
-        dimensionStylesMobile: nameMobMargin,
+        dimensionStylesDesktop: errMsgBRDesktop,
+        dimensionStylesTab: errMsgBRTab,
+        dimensionStylesMobile: errMsgBRMob,
     } = generateDimensionStyle({
-        controlName: REVIEWER_NAME_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    // Designation
-    const {
-        typoStylesDesktop: designationTypoDesk,
-        typoStylesTab: designationTypoTab,
-        typoStylesMobile: designationTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: REVIEWER_DESIGNATION_TYPOGRAPHY,
+        controlName: ERR_BRADIUS,
+        styleFor: 'border-radius',
         attributes,
     });
 
     const {
-        dimensionStylesDesktop: designationDeskMargin,
-        dimensionStylesTab: designationTabMargin,
-        dimensionStylesMobile: designationMobMargin,
+        backgroundStylesDesktop: errMsgBGStyle,
+        backgroundStylesTab: errMsgTabBGStyle,
+        backgroundStylesMobile: errMsgMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: ERR_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const {
+        dimensionStylesDesktop: errMsgPaddingDesktop,
+        dimensionStylesTab: errMsgPaddingTab,
+        dimensionStylesMobile: errMsgPaddingMob,
     } = generateDimensionStyle({
-        controlName: REVIEWER_DESIGNATION_MARGIN,
-        styleFor: 'margin',
+        controlName: ERR_PADDING,
+        styleFor: 'padding',
         attributes,
     });
 
-    // Testimonial Message
-    const {
-        typoStylesDesktop: testimonialMessageTypoDesk,
-        typoStylesTab: testimonialMessageTypoTab,
-        typoStylesMobile: testimonialMessageTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: REVIEWER_MESSAGE_TYPOGRAPHY,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: testimonialMessageDeskMargin,
-        dimensionStylesTab: testimonialMessageTabMargin,
-        dimensionStylesMobile: testimonialMessageMobMargin,
-    } = generateDimensionStyle({
-        controlName: REVIEWER_TESTIMONIAL_MARGIN,
-        styleFor: 'margin',
-        attributes,
-    });
-
-    // review icons
-    const {
-        desktopRangeStyle: ratingIconWidthDesk,
-        tabRangeStyle: ratingIconWidthTab,
-        mobRangeStyle: ratingIconWidthMob,
-    } = generateResRangeStyle({
-        controlName: ICONS_SIZE,
-        property: 'width',
-        attributes,
-    });
+    // alignment
+    const btnDeskAlign = `width: ${buttonAlignmentDesktop === 'text-align:justify;' ? '100%' : ''};`;
+    const btnTabAlign = `width: ${buttonAlignmentTab === 'text-align:justify;' ? '100%' : ''};`;
+    const btnMobAlign = `width: ${buttonAlignmentMob === 'text-align:justify;' ? '100%' : ''};`;
 
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-grid {
-			grid-template-columns: repeat(${deskColumns}, 1fr);
-			${deskGridGap}
-		}
-
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-item {
-			${reviewContentDeskAlignStyle}
-			${containerDeskBorderStyle}
-			${containerDeskBorderRadius}
-			${containerBoxShadow}
-			${containerDeskBGStyle}
-            ${containerDeskPadding}
-		}
-    
-		.${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating {
-			${ratingIconDeskAlignStyle}
-		}
-
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap {
-            ${photoDeskWidth}
-            ${photoDeskHeight}
+        .${uniqueId} .zolo-contact-form input:focus, .${uniqueId} .zolo-contact-form select:focus, .${uniqueId} .zolo-contact-form textarea:focus {
+            ${focusBorderColor ? `border-color: ${focusBorderColor};` : ''} 
+            ${focusBorderWidth ? `outline-width: ${focusBorderWidth}px;` : ''}
+            ${focusBorderColor ? `outline-color: ${focusBorderColor};` : ''}
+        }
+        .${uniqueId} .zolo-label {
+            ${labelTypoDesk}
+            color: ${labelColor};
+            ${labelMarginDesk}
         }
 
-		.${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap .zolo-img {
-			${photoDeskBorderStyle}
-			${photoDeskBorderRadius}
-			${photoBoxShadow}
-			${photoDeskMargin}
-			${photoDeskPadding}
-			${photoDeskBGStyle}
-		}
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-review-meta-content .zolo-name {
-			${nameTypoDesk}
-			${nameDeskMargin}
-			color: ${nameColor};
-		}
-		.${uniqueId}.wp-block-zolo-review-grid .zolo-review-meta-content .zolo-name.has-link:hover {
-			color: ${addReviewerWebsiteLink ? nameHoverColor : nameColor};
-		}
-		.${uniqueId}.wp-block-zolo-review-grid .zolo-review-meta-content .zolo-designation {
-			${designationTypoDesk}
-			${designationDeskMargin}
-			${designationColor ? `color: ${designationColor};` : ''}
-		}
-		.${uniqueId}.wp-block-zolo-review-grid .zolo-meta-content .zolo-desc {
-			${testimonialMessageTypoDesk}
-			${testimonialMessageDeskMargin}
-			${testimonialMessageColor ? `color: ${testimonialMessageColor};` : ''}
-		}
-		.${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating svg {
-			${ratingIconWidthDesk}
-		}
-		.${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating svg {
-			${activeRatingColor ? `fill: ${activeRatingColor};` : ''}
-		}
-		.${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating svg.empty-star {
-			${inactiveRatingColor ? `fill: ${inactiveRatingColor};` : ''}
-		}
+        .${uniqueId} .zolo-required {
+            color: ${requiredColor};
+        }
+
+        .${uniqueId} .zolo-submit-btn {
+            ${buttonAlignmentDesktop}
+            ${btnMarginDesktop}
+        }
+
+        .${uniqueId} .zolo-submit-btn button{
+            ${btnDeskAlign}
+            ${btnTypoDesk}
+            ${btnBorderStyles}
+            ${btnBRDesktop}
+            ${btnPaddingDesktop}
+            ${btnBGStyle}
+            color: ${btnColor};
+        }
+
+        .${uniqueId} .zolo-submit-btn button:hover{
+            color: ${btnHoverColor};
+            ${btnHBGStyle}
+        }
+
+        .${uniqueId} .zolo-input-icon svg {
+            ${iconSize}
+            fill: ${iconColor};
+        }
+
+        .${uniqueId} .zolo-field-input-item input, .${uniqueId} .zolo-field-input-item textarea {
+            color: ${textColor};
+            ${fieldTypoDesk}
+            ${fieldBorderStyles}
+            ${fieldBRDesktop}
+            ${fieldPaddingDesktop}
+            ${fieldBGStyle}
+        }
+
+        .${uniqueId} .zolo-field-input-item input::placeholder , .${uniqueId} .zolo-field-input-item textarea::placeholder {
+            color: ${placeholderColor};
+        }
+
+        .${uniqueId}.wp-block-zolo-form .pristine-error {
+            color: ${errMsgColor};
+            ${errMsgTypoDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-form .has-danger input, .${uniqueId}.wp-block-zolo-form .has-danger textarea, .${uniqueId}.wp-block-zolo-form .has-danger select {
+            border-color: ${errMsgColor};
+        }
+
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-success-msg {
+            ${sccBorderStyles}
+            ${sccBRDesktop}
+            ${sccBGStyle}
+            ${sccPaddingDesktop}
+        }
+
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-success-msg .zolo-msg-desc {
+            ${sccMsgTypoDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-success-msg .zolo-msg-desc,
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-success-msg .zolo-msg-icon svg {
+            --zolo-form-seccess-color: ${sccMsgColor};
+        }
+
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-error-msg {
+            ${errMsgBorderStyles}
+            ${errMsgBRDesktop}
+            ${errMsgBGStyle}
+            ${errMsgPaddingDesktop}
+        }
+
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-error-msg .zolo-msg-desc,
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-error-msg .zolo-msg-icon svg {
+            --zolo-form-error-color: ${errMsgColor};
+        }
+
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg .zolo-msg-close svg {
+            --zolo-msg-close-color: ${closeBtnColor};
+        }
 	`;
     const tabletAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-grid {
-			grid-template-columns: repeat(${tabColumns}, 1fr);
-			${tabGridGap}
-		}
-
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-item {
-            ${reviewContentTabAlignStyle}
-            ${containerTabBorderStyle}
-            ${containerTabBorderRadius}
-            ${containerBoxShadow}
-            ${containerTabBGStyle}
-            ${containerTabPadding}
-        }   
-
-
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating {
-            ${ratingIconDeskAlignStyle}
+        .${uniqueId} .zolo-label {
+            ${labelTypoTab}
+            ${labelMarginTab}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap{
-            ${photoTabWidth}
-            ${photoTabHeight}
+        .${uniqueId} .zolo-submit-btn {
+            ${buttonAlignmentTab}
+            ${btnMarginTab}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap .zolo-img {
-            ${photoTabBorderStyle}
-            ${photoTabBorderRadius}
-            ${photoTabMargin}
-            ${photoTabPadding}
-            ${photoTabBGStyle}
+        .${uniqueId} .zolo-submit-btn button{
+            ${btnTabAlign}
+            ${btnTypoTab}
+            ${btnBorderStylesTab}
+            ${btnBRTab}
+            ${btnPaddingTab}
+            ${btnTabBGStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-review-meta-content .zolo-name {
-            ${nameTypoTab}
-            ${nameTabMargin}
+        .${uniqueId} .zolo-submit-btn button:hover{
+            ${btnTabHBGStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-review-meta-content .zolo-designation {
-            ${designationTypoTab}
-            ${designationTabMargin}
+        .${uniqueId} .zolo-input-icon svg {
+            ${iconTabSize}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-meta-content .zolo-desc {
-            ${testimonialMessageTypoTab}
-            ${testimonialMessageTabMargin}
+        .${uniqueId} .zolo-field-input-item input, .${uniqueId} .zolo-field-input-item textarea {
+            ${fieldTypoTab}
+            ${fieldBorderStylesTab}
+            ${fieldBRTab}
+            ${fieldPaddingTab}
+            ${fieldTabBGStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating svg {
-            ${ratingIconWidthTab}
+        .${uniqueId}.wp-block-zolo-form .pristine-error {
+            ${errMsgTypoTab}
         }
-	`;
+
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-success-msg {
+            ${sccBorderStylesTab}
+            ${sccBRTab}
+            ${sccTabBGStyle}
+            ${sccPaddingTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-success-msg .zolo-msg-desc {
+            ${sccMsgTypoTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-error-msg {
+            ${errMsgBorderStylesTab}
+            ${errMsgBRTab}
+            ${errMsgTabBGStyle}
+            ${errMsgPaddingTab}
+        }
+
+    `;
     const mobileAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-grid {
-			grid-template-columns: repeat(${mobColumns}, 1fr);
-			${mobGridGap}
-		}
-
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-item {
-            ${reviewContentMobAlignStyle}
-            ${containerMobBorderStyle}
-            ${containerMobBorderRadius}
-            ${containerBoxShadow}
-            ${containerMobBGStyle}
-            ${containerMobPadding}
+        .${uniqueId} .zolo-label {
+            ${labelTypoMob}
+            ${labelMarginMob}
         }
 
-       
-
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating {
-            ${ratingIconDeskAlignStyle}
+        .${uniqueId} .zolo-submit-btn {
+            ${buttonAlignmentMob}
+            ${btnMarginMob}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap {
-            ${photoMobWidth}
-            ${photoMobHeight}
+        .${uniqueId} .zolo-submit-btn button{
+            ${btnMobAlign}
+            ${btnTypoMob}
+            ${btnBorderStylesMob}
+            ${btnBRMob}
+            ${btnPaddingMob}
+            ${btnMobBGStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-image-wrap .zolo-img {
-            ${photoMobBorderStyle}
-            ${photoMobBorderRadius}
-            ${photoMobMargin}
-            ${photoMobPadding}
-            ${photoMobBGStyle}
+        .${uniqueId} .zolo-submit-btn button:hover{
+            ${btnMobHBGStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-review-meta-content .zolo-name {
-            ${nameTypoMob}
-            ${nameMobMargin}
+        .${uniqueId} .zolo-input-icon svg {
+            ${iconMobSize}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-review-meta-content .zolo-designation {
-            ${designationTypoMob}
-            ${designationMobMargin}
+        .${uniqueId} .zolo-field-input-item input, .${uniqueId} .zolo-field-input-item textarea {
+            ${fieldTypoMob}
+            ${fieldBorderStylesMob}
+            ${fieldBRMob}
+            ${fieldPaddingMob}
+            ${fieldMobBGStyle}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-meta-content .zolo-desc {
-            ${testimonialMessageTypoMob}
-            ${testimonialMessageMobMargin}
+        .${uniqueId}.wp-block-zolo-form .pristine-error {
+            ${errMsgTypoMob}
         }
 
-        .${uniqueId}.wp-block-zolo-review-grid .zolo-star-rating svg {
-            ${ratingIconWidthMob}
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-success-msg {
+            ${sccBorderStylesMob}
+            ${sccBRMob}
+            ${sccMobBGStyle}
+            ${sccPaddingMob}
         }
-	`;
+
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-success-msg .zolo-msg-desc {
+            ${sccMsgTypoMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-form .zolo-form-msg.zolo-form-error-msg {
+            ${errMsgBorderStylesMob}
+            ${errMsgBRMob}
+            ${errMsgMobBGStyle}
+            ${errMsgPaddingMob}
+        }
+    `;
 
     return (
         <>
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.form.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.form.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.form.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

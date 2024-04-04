@@ -44,10 +44,11 @@ import {
     COUNT_NUM_RADIUS,
 } from './constants';
 import { DIGIT_TYPO, LABEL_TYPO, SEPARATOR_TYPO } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, digitColor, labelColor, seperaColor, countSeparator, toggleSeparator, layout, separatorItem } = attributes;
+    const { uniqueId, digitColor, labelColor, seperaColor, countSeparator, toggleSeparator, layout, separatorItem, overflow } = attributes;
 
     // styles
 
@@ -200,22 +201,24 @@ const Style = ({ props }) => {
         styleFor: 'border-radius',
         attributes,
     });
+
     const {
-        dimensionStylesDesktop: DesktopBoxwidth,
-        dimensionStylesTab: TabBoxwidth,
-        dimensionStylesMobile: MobBoxwidth,
-    } = generateDimensionStyle({
+        desktopRangeStyle: DesktopBoxwidth,
+        tabRangeStyle: TabBoxwidth,
+        mobRangeStyle: MobBoxwidth,
+    } = generateResRangeStyle({
         controlName: COUNT_BOX_SIZE,
-        styleFor: 'width',
+        property: '--zolo-item-flex-width',
         attributes,
     });
+
     const {
-        dimensionStylesDesktop: DesktopBoxheight,
-        dimensionStylesTab: TabBoxheight,
-        dimensionStylesMobile: MobBoxheight,
-    } = generateDimensionStyle({
+        desktopRangeStyle: DesktopBoxheight,
+        tabRangeStyle: TabBoxheight,
+        mobRangeStyle: MobBoxheight,
+    } = generateResRangeStyle({
         controlName: COUNT_BOX_SIZE,
-        styleFor: 'height',
+        property: '--zolo-item-flex-height',
         attributes,
     });
 
@@ -224,11 +227,13 @@ const Style = ({ props }) => {
         typoStylesTab: TabDigitTypo,
         typoStylesMobile: MobDigitTypo,
     } = generateTypographyStyles({ prefixConstant: DIGIT_TYPO, attributes });
+
     const {
         typoStylesDesktop: DesktopLabelTypo,
         typoStylesTab: TabLabelTypo,
         typoStylesMobile: MobLabelTypo,
     } = generateTypographyStyles({ prefixConstant: LABEL_TYPO, attributes });
+
     const {
         backgroundStylesDesktop: DeskLabelBg,
         backgroundStylesTab: TabLabelGg,
@@ -240,6 +245,7 @@ const Style = ({ props }) => {
         typoStylesTab: TabSepararotTypo,
         typoStylesMobile: MobSeparatorTypo,
     } = generateTypographyStyles({ prefixConstant: SEPARATOR_TYPO, attributes });
+
     const {
         desktopRangeStyle: desktopSright,
         tabRangeStyle: tabSright,
@@ -288,7 +294,7 @@ const Style = ({ props }) => {
            ${boxshadowBox}
            ${desktopBoxborder}
            ${DesktopBoxRadius}
-          
+            ${overflow ? `overflow: ${overflow};` : ''}
         }
 
         .wp-block-zolo-countdown.${uniqueId} .zolo-countdown-face{
@@ -412,9 +418,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.countdown.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.countdown.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.countdown.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

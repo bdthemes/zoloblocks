@@ -46,11 +46,17 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => false
     ],
+    'charts' => [
+        'name'             => 'charts',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/charts/block.json',
+        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-charts-frontend','zolo-block-editor-dependency']
+    ],
     'form' => [
         'name'             => 'form',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/form/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
-        'frontend-scripts' => false
+        'frontend-scripts' => ['zolo-form-frontend', 'zolo-block-editor-dependency']
     ],
     'post-carousel' => [
         'name'             => 'post-carousel',
@@ -145,6 +151,18 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => ['zolo-star-rating-frontend']
     ],
+    'tab' => [
+        'name'             => 'tab',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/tab/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-tab-frontend']
+    ],
+    'tabs' => [
+        'name'             => 'tabs',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/tabs/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => ['zolo-tabs-frontend']
+    ],
     'accordion-child' => [
         'name'             => 'accordion-child',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/accordion-child/block.json',
@@ -217,11 +235,11 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
-       'image-compare' => [
+    'image-compare' => [
         'name'             => 'image-compare',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/image-compare/block.json',
         'frontend-styles'  => ['zolo-block-common-style'],
-        'frontend-scripts' => ['zolo-image-compare-frontend','zolo-block-editor-dependency']
+        'frontend-scripts' => ['zolo-image-compare-frontend', 'zolo-block-editor-dependency']
     ],
     'text-field' => [
         'name'             => 'text-field',
@@ -236,4 +254,22 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-scripts' => false
     ],
 
+    'email' => [
+        'name'             => 'email',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/email/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
+    'textarea' => [
+        'name'             => 'textarea',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/textarea/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
+    'textarea' => [
+        'name'             => 'textarea',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/textarea/block.json',
+        'frontend-styles'  => ['zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
 ]);

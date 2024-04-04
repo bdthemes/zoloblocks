@@ -2,8 +2,8 @@
 Contributors: BdThemes
 Tags: zoloblocks, blocks, gutenberg blocks, custom block, gutenberg
 Requires at least: 6.0
-Tested up to: 6.4.3
-Stable tag: 1.0.0-RC4
+Tested up to: 6.5
+Stable tag: 1.0.0-RC7
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -52,6 +52,67 @@ Not at all. We have optimised all of these blocks for better performance.
 
 
 == Changelog ==
+
+== 1.0.0-RC7 ==
+
+### Added
+
+* Charts block added
+* Google recaptcha added to Form block
+* Image height control added to Image gallery block
+* Masonary grid features added to Review Grid block
+* Icon Option added to Star Rating block
+* Icon Alignment control added to tabs block
+
+### Fixed
+
+* Flipbox block back icon issue fixed
+* Star Rating Alignment issue fixed
+
+### Improved
+
+* Viewport with & height units added to each range control
+* Controls UI improved
+
+
+= 1.0.0-RC6 =
+
+### Added
+
+* Tabs block added
+* Image Compare block added
+
+### Fixed
+
+* Slider block issue fixed
+* Flipbox back icon issue fixed
+
+### Improved
+
+* Border radius control added in Google Maps block
+* Image Height control added in Image gallery block
+* Focus style added in Form block
+* Essential filter hooks added
+
+
+= 1.0.0-RC5 =
+
+= Added =
+
+* Form block added
+* List block added
+* Floating animation features added
+* Transform features added
+
+= Fixed =
+
+* Advanced icon box block css overwriting issue fixed
+* Social share block icon size issue fixed
+* Social links block icon size issue fixed
+* Flipbox block hover background label issue fixed
+* Advanced heading preset-3 background image replacing issue fixed
+* Image gallery block move horizontal control spelling mistake issue fixed
+
 
 = 1.0.0-RC4 =
 

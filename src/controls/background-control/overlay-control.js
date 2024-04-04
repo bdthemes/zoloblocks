@@ -8,7 +8,7 @@ import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 
-const OverlayControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
+const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
     const { setAttributes, attributes, resMode } = requiredProps;
 
     const {
@@ -2245,4 +2245,4 @@ const OverlayControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
     );
 };
 
-export default OverlayControl;
+export default OverflowControl;

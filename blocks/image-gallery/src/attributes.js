@@ -29,6 +29,7 @@ import {
     IMAGE_BACKGROUND,
     IMAGE_HOVER_BOX_SHADOW,
     IMAGE_HOVER_BACKGROUND,
+    IMAGE_HEIGHT,
     IMAGE_PADDING,
     HEADING_BORDER,
     HEADING_BACKGROUND,
@@ -99,6 +100,7 @@ const attributes = {
     ...generateBoxShadowAttributies(IMAGE_BOX_SHADOW),
     ...generateBoxShadowAttributies(IMAGE_HOVER_BOX_SHADOW),
     ...generateDimensionAttributes(IMAGE_PADDING),
+    ...generateResRangeAttributies(IMAGE_HEIGHT),
 
     // Heading
     ...generateBorderAttributies(HEADING_BORDER),

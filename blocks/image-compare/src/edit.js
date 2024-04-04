@@ -3,7 +3,7 @@
  */
 
 import { useBlockProps, MediaUpload, MediaPlaceholder, BlockControls } from '@wordpress/block-editor';
-import { Button, ToolbarGroup, ToolbarButton, Tooltip } from '@wordpress/components';
+import { ToolbarGroup, ToolbarButton, Tooltip } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -22,38 +22,24 @@ import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slide
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
-    const {
-        preview,
-        uniqueId,
-        parentClasses,
-        beforeImage,
-        afterImage,
-        beforeLabel,
-        afterLabel,
-        showLabels,
-        initialPosition,
-        handleDraggable,
-        disableslide,
-        slidePositon,
-        swipeMode,
-    } = attributes;
+    const { preview, uniqueId, parentClasses, beforeImage, afterImage, comparisonOptions } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(className, uniqueId, classArrayToStr(parentClasses), comparisonOptions?.slidePositon),
     });
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.socialLinks} alt={__('List Links Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.imageComparison} alt={__('Image Comparison Preview', 'zolo-blocks')} />;
     }
-    console.log(slidePositon);
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-            <div {...blockProps}>
-                <BlockControls>
+            <BlockControls>
+                {beforeImage && beforeImage.id && (
                     <ToolbarGroup>
                         <MediaUpload
                             onSelect={(media) => {
@@ -70,6 +56,8 @@ export default function Edit(props) {
                             )}
                         />
                     </ToolbarGroup>
+                )}
+                {afterImage && afterImage.id && (
                     <ToolbarGroup>
                         <MediaUpload
                             onSelect={(media) => {
@@ -86,8 +74,10 @@ export default function Edit(props) {
                             )}
                         />
                     </ToolbarGroup>
-                </BlockControls>
-                <div className="zolo-image-wrap">
+                )}
+            </BlockControls>
+            <div {...blockProps}>
+                <div className={classnames(`zolo-image-wrap ${!beforeImage || !afterImage ? 'placeholder' : ''}`)}>
                     <div className="zolo-image-left">
                         {!beforeImage && (
                             <MediaPlaceholder
@@ -108,7 +98,6 @@ export default function Edit(props) {
                         )}
                         {beforeImage && !afterImage && <img src={beforeImage?.url} alt={beforeImage?.title} width="400" height="300" />}
                     </div>
-
                     <div className="zolo-image-right">
                         {!afterImage && (
                             <MediaPlaceholder
@@ -133,23 +122,39 @@ export default function Edit(props) {
 
                 {beforeImage && afterImage && (
                     <ReactCompareSlider
-                        changePositionOnHover={swipeMode}
-                        portrait={slidePositon}
-                        disabled={disableslide}
-                        position={initialPosition}
-                        onlyHandleDraggable={handleDraggable}
+                        changePositionOnHover={comparisonOptions?.slideOnHover}
+                        portrait={comparisonOptions?.slidePositon === 'vertical_direction' ? true : false}
+                        disabled={comparisonOptions?.disableslide}
+                        position={comparisonOptions?.initialPosition}
+                        onlyHandleDraggable={comparisonOptions?.handleDraggable}
                         itemOne={
-                            <div className="image-item-One ">
-                                {showLabels && beforeLabel && (
-                                    <div className="compare-slider-label compare-slider-label-left">{beforeLabel}</div>
+                            <div className="image-item-One">
+                                {comparisonOptions?.showLabels && comparisonOptions?.beforeLabel && (
+                                    <div
+                                        className={`compare-slider-label compare-slider-label-left ${
+                                            comparisonOptions?.slidePositon === 'horizontal_direction'
+                                                ? comparisonOptions?.HorizontalPosition
+                                                : comparisonOptions?.labelPositons
+                                        }`}
+                                    >
+                                        {comparisonOptions?.beforeLabel}
+                                    </div>
                                 )}
                                 <ReactCompareSliderImage src={beforeImage?.url} alt={beforeImage?.title} />
                             </div>
                         }
                         itemTwo={
-                            <div className="image-item-two ">
-                                {showLabels && afterLabel && (
-                                    <div className="compare-slider-label compare-slider-label-right">{afterLabel}</div>
+                            <div className="image-item-two">
+                                {comparisonOptions?.showLabels && comparisonOptions?.afterLabel && (
+                                    <div
+                                        className={`compare-slider-label compare-slider-label-right ${
+                                            comparisonOptions?.slidePositon === 'horizontal_direction'
+                                                ? comparisonOptions?.HorizontalPosition
+                                                : comparisonOptions?.labelPositons
+                                        }`}
+                                    >
+                                        {comparisonOptions?.afterLabel}
+                                    </div>
                                 )}
                                 <ReactCompareSliderImage src={afterImage?.url} alt={afterImage?.title} />
                             </div>

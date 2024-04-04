@@ -1,5 +1,6 @@
 //WordPress dependencies
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 import './style.scss';
 
 //block constants
@@ -591,6 +592,7 @@ const Style = ({ props }) => {
         attributes,
         controlName: RIBBON_BG,
     });
+
     //wrapper style
     const {
         dimensionStylesDesktop: wrapperMarginDesktop,
@@ -610,29 +612,17 @@ const Style = ({ props }) => {
         styleFor: 'padding',
         attributes,
     });
+
     const {
-        backgroundStylesDesktop: wrapperBackgroundStylesDesktop,
-        hoverBackgroundStylesDesktop: wrapperHoverBackgroundStylesDesktop,
-        backgroundStylesTab: wrapperBackgroundStylesTab,
-        hoverBackgroundStylesTab: wrapperHoverBackgroundStylesTab,
-        backgroundStylesMobile: wrapperBackgroundStylesMobile,
-        hoverBackgroundStylesMobile: wrapperHoverBackgroundStylesMobile,
-        overlayStylesDesktop: wrapperOverlayStylesDesktop,
-        hoverOverlayStylesDesktop: wrapperHoverOverlayStylesDesktop,
-        overlayStylesTab: wrapperOverlayStylesTab,
-        hoverOverlayStylesTab: wrapperHoverOverlayStylesTab,
-        overlayStylesMobile: wrapperOverlayStylesMobile,
-        hoverOverlayStylesMobile: wrapperHoverOverlayStylesMobile,
-    } = generateBackgroundControlStyles({
+        backgroundStylesDesktop: wrapperBgDesktop,
+        backgroundStylesTab: wrapperBgTab,
+        backgroundStylesMobile: wrapperBgMob,
+    } = generateNormalBGControlStyles({
         attributes,
         controlName: WRAPPER_BG,
     });
 
-    const {
-        boxShadowStyle: wrapperShadow,
-        hoverBoxShadowstyle: wrapperHoverShadow,
-        transitionStyle: wrapperShadowTransition,
-    } = generateBoxShadowStyles({
+    const { boxShadowStyle: wrapperShadow } = generateBoxShadowStyles({
         attributes,
         controlName: WRAPPER_SHADOW,
     });
@@ -669,73 +659,44 @@ const Style = ({ props }) => {
 
     //css style
     const wrapperStylesDesktop = `
-		.zolo-block-wrapper.${uniqueId}{
+		.wp-block-zolo-pricing-table .zolo-block-wrapper.${uniqueId}{
 			${wrapperMarginDesktop}
 			${wrapperPaddingDesktop}
-			${wrapperBackgroundStylesDesktop}
+			${wrapperBgDesktop}
 			${wrapperBorderDesktop}
 			${wrapperShadow}
-            ${wrapperDeskRadius}
-			transition:${wrapperShadowTransition};
+      ${wrapperDeskRadius}
       --zolo-ribbon-xposition: ${ribbonXPosition}px;
       --zolo-ribbon-yposition: ${ribbonYPosition}px;
       ${ribbonRotate != '' && typeof ribbonRotate == 'number' ? `--zolo-ribbon-rotate: ${ribbonRotate}deg;` : ''}
 		}
-		.zolo-block-wrapper.${uniqueId}:hover{
-			${wrapperHoverBackgroundStylesDesktop}
-			${wrapperHoverShadow}
-		}
-		.zolo-block-wrapper.${uniqueId}::before{
-				${wrapperOverlayStylesDesktop}
-		}
-		.zolo-block-wrapper.${uniqueId}:hover::before{
-			${wrapperHoverOverlayStylesDesktop}
-		}
-    .zolo-block-wrapper.${uniqueId} .zolo-features-info {
+    .wp-block-zolo-pricing-table .zolo-block-wrapper.${uniqueId} .zolo-features-info {
       ${separatorWidthDesktop}
       border-top-style: solid;
       border-top-color: ${separatorColor};
     }
 	`;
     const wrapperStylesTab = `
-		.zolo-block-wrapper.${uniqueId}{
+		.wp-block-zolo-pricing-table .zolo-block-wrapper.${uniqueId}{
 			${wrapperMarginTab}
 			${wrapperPaddingTab}
-			${wrapperBackgroundStylesTab}
+			${wrapperBgTab}
 			${wrapperBorderTab}
             ${wrapperTabRadius}
 		}
-		.zolo-block-wrapper.${uniqueId}:hover{
-			${wrapperHoverBackgroundStylesTab}
-		}
-		.zolo-block-wrapper.${uniqueId}::before{
-			${wrapperOverlayStylesTab}
-		}
-		.zolo-block-wrapper.${uniqueId}:hover::before{
-			${wrapperHoverOverlayStylesTab}
-		}
-    .zolo-block-wrapper.${uniqueId} .zolo-features-info {
+    .wp-block-zolo-pricing-table .zolo-block-wrapper.${uniqueId} .zolo-features-info {
       ${separatorWidthTab}
     }
 	`;
     const wrapperStylesMobile = `
-		.zolo-block-wrapper.${uniqueId}{
+		.wp-block-zolo-pricing-table .zolo-block-wrapper.${uniqueId}{
 			${wrapperMarginMobile}
 			${wrapperPaddingMobile}
-			${wrapperBackgroundStylesMobile}
+			${wrapperBgMob}
 			${wrapperBorderMob}
             ${wrapperMobRadius}
 		}
-		.zolo-block-wrapper.${uniqueId}:hover{
-			${wrapperHoverBackgroundStylesMobile}
-		}
-		.zolo-block-wrapper.${uniqueId}::before{
-			${wrapperOverlayStylesMobile}
-		}
-		.zolo-block-wrapper.${uniqueId}::before:hover{
-			${wrapperHoverOverlayStylesMobile}
-		}
-    .zolo-block-wrapper.${uniqueId} .zolo-features-info {
+    .wp-block-zolo-pricing-table .zolo-block-wrapper.${uniqueId} .zolo-features-info {
       ${separatorWidthMob}
     }
 	`;
@@ -1125,9 +1086,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.pricing.table.desktop.all.style', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.pricing.table.tab.all.style', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.pricing.table.mobile.all.style', mobileAllStyle, props)}
             />
         </>
     );

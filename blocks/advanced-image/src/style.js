@@ -43,6 +43,7 @@ import {
 } from './constants';
 
 import { CAPTION_TYPO, HEADING_TYPO, DESC_TYPO } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -524,9 +525,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.advancedImage.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.advancedImage.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.advancedImage.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

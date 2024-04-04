@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -26,6 +27,7 @@ import {
     ICON_TEXT_SPACING,
     BLOCK_MARGIN,
     BTN_SHADOW,
+    BUTTON_SIZE,
     BTN_HOVER_SHADOW,
     PT_ICON_WIDTH,
     PT_ICON_HEIGHT,
@@ -57,6 +59,27 @@ const Style = ({ props }) => {
         mobBorderStyle: borderStylesMob,
     } = generateBorderStyle({
         controlName: BUTTON_BORDER,
+        attributes,
+    });
+
+    //  button general settings
+    const {
+        desktopRangeStyle: buttonSize,
+        tabRangeStyle: buttonSizeTab,
+        mobRangeStyle: buttonSizeMob,
+    } = generateResRangeStyle({
+        controlName: BUTTON_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: buttonHSize,
+        tabRangeStyle: buttonHSizeTab,
+        mobRangeStyle: buttonHSizeMob,
+    } = generateResRangeStyle({
+        controlName: BUTTON_SIZE,
+        property: 'height',
         attributes,
     });
 
@@ -182,8 +205,16 @@ const Style = ({ props }) => {
 			${gapDesktop}
 			${btnRadiusDesk}
             ${textTypoDesk}
-
 		}
+        ${
+            preset !== 'preset-1'
+                ? `.${uniqueId}.wp-block-zolo-social-links .zolo-social-item svg{
+           ${buttonSize}
+            ${buttonHSize}
+        }`
+                : ' '
+        }
+
 		${
             socialColor === 'custom'
                 ? `.${uniqueId}.wp-block-zolo-social-links .zolo-social-item{
@@ -214,7 +245,7 @@ const Style = ({ props }) => {
             socialColor === 'custom'
                 ? `.${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-icon{
                     background:${iconBgColor};
-                } 
+                }
                 .${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-item svg{
                     fill:${iconColor};
                 }
@@ -233,7 +264,7 @@ const Style = ({ props }) => {
                 ? `.${uniqueId}.wp-block-zolo-social-links.preset-3 .zolo-social-icon{
                     ${ptIconWidth}
                     ${ptIconHeight}
-                } 
+                }
          `
                 : ' '
         }
@@ -289,9 +320,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.socialLinks.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.socialLinks.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.socialLinks.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

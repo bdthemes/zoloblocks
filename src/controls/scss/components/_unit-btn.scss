@@ -22,7 +22,7 @@
 
 .zb-unit-switchers-open {
 	.zb-unit-switcher {
-		height: 26px;
+		height: 16px;
 		transform: scale(1);
 		opacity: 1;
 		position: relative;
@@ -49,8 +49,9 @@
 	transition: all 0.3s;
 	font-size: 11px !important;
 	line-height: 0;
-	height: 24px;
+	height: 16px;
 	&.active {
+		height: 22px;
 		transform: scale(1);
 		opacity: 1;
 		color: #230aed !important;

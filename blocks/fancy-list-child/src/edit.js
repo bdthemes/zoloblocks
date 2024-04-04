@@ -39,10 +39,11 @@ export default function Edit(props) {
         fancyLinkToggle,
         fancyLink,
         imageRes,
+        fancyDirection,
     } = attributes;
 
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), preset),
+        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), fancyDirection),
     });
 
     // preview image
@@ -61,6 +62,7 @@ export default function Edit(props) {
             imageToggle: context['zolo/imageToggle'],
             iconToggle: context['zolo/iconToggle'],
             mediaType: context['zolo/mediaType'],
+            fancyDirection: context['zolo/fancyDirection'],
         });
     }, [context]);
 

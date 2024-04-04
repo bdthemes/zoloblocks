@@ -32,6 +32,7 @@ import {
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 const {
     ResRangeControl,
@@ -48,6 +49,7 @@ const {
     TabPanelControl,
     ZoloPanelBody,
     ResGapControl,
+    IconicBtnGroup,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -67,6 +69,7 @@ function Inspector(props) {
         testimonialMessageColor,
         activeRatingColor,
         inactiveRatingColor,
+        layoutType,
     } = attributes;
 
     const requiredProps = {
@@ -79,6 +82,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/review-grid"
                 setAttributes={setAttributes}
                 attributes={attributes}
                 generalTab={
@@ -87,7 +91,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.reviewGrid.presets', PRESETS)}
                                 onChange={(selected) => setAttributes({ preset: selected })}
                             />
                             <ToggleControl
@@ -145,7 +149,22 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Layout', 'zolo-blocks')} panelProps={props}>
+                            <IconicBtnGroup
+                                label={__('Layout Type', 'zolo-blocks')}
+                                value={layoutType}
+                                onChange={(selected) => setAttributes({ layoutType: selected })}
+                                options={[
+                                    {
+                                        value: 'grid',
+                                        label: __('Grid', 'zolo-blocks'),
+                                    },
+                                    {
+                                        value: 'column',
+                                        label: __('Column', 'zolo-blocks'),
+                                    },
+                                ]}
+                            />
                             <ResCounterControl
                                 label={__('Grid Columns', 'zolo-blocks')}
                                 controlName={GRID_COLUMNS}
@@ -398,7 +417,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/review-grid"
+                        />
                     </>
                 }
             />

@@ -1,15 +1,15 @@
-.wp-block-zolo-review-grid {
+.wp-block-zolo-review-grid.grid {
     .block-editor-block-list__layout {
         display: grid;
         box-sizing: border-box;
-        gap: clamp(20px, 5vw, 50px);
+        gap: 30px;
         grid-template-columns: repeat(1, 1fr);
     }
 }
 
 // Tablet
 @media screen and (min-width: 768px) {
-    .wp-block-zolo-review-grid {
+    .wp-block-zolo-review-grid.grid {
         .block-editor-block-list__layout {
             grid-template-columns: repeat(2, 1fr);
         }
@@ -18,7 +18,7 @@
 
 // Desktop
 @media screen and (min-width: 1024px) {
-    .wp-block-zolo-review-grid {
+    .wp-block-zolo-review-grid.grid {
         .block-editor-block-list__layout {
             grid-template-columns: repeat(2, 1fr);
         }

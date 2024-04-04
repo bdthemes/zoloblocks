@@ -5,6 +5,7 @@ import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { SelectControl, ToggleControl, TextControl, TextareaControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -74,6 +75,7 @@ import {
     RIBBON_RADIUS,
     RIBBON_BG,
     RIBBON_POSITIONS,
+    PRESETS_ALIGNMENT,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -121,6 +123,7 @@ function Inspector(props) {
         ribbonPosition,
         //ribbon style
         ribbonColor,
+        iconBoxDirection,
     } = attributes;
     const requiredProps = {
         attributes,
@@ -132,6 +135,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/advanced-icon-box"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -140,13 +144,28 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.advancedIconBox.presets', PRESETS)}
                                 onChange={(value) =>
                                     setAttributes({
                                         preset: value,
                                     })
                                 }
                             />
+                            {
+                                // If preset is not selected, show alignment control
+                                preset === 'style-2' && (
+                                    <IconicBtnGroup
+                                        label={__('Layout Direction', 'zolo-blocks')}
+                                        value={iconBoxDirection}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                iconBoxDirection: value,
+                                            })
+                                        }
+                                        options={PRESETS_ALIGNMENT}
+                                    />
+                                )
+                            }
                             <ToggleControl
                                 label={__('Show Ribbon', 'zolo-blocks')}
                                 checked={showRibbon}
@@ -872,7 +891,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/advanced-icon-box"
+                        />
                     </>
                 }
             />

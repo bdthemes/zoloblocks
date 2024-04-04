@@ -36,6 +36,7 @@ const {
     ImageSizes,
     ObjectFitControl,
     OverflowControl,
+    IconicBtnGroup,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -71,6 +72,7 @@ import {
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
 
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -110,16 +112,17 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/review"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl
-                                label={__('Presets', 'zolo-blocks')}
+                            <IconicBtnGroup
+                                label={__('Layout Direction', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
                                 onChange={(selected) => setAttributes({ preset: selected })}
+                                options={applyFilters('zolo.review.presets', PRESETS)}
                             />
                             <ToggleControl
                                 label={__('Show Photo', 'zolo-blocks')}
@@ -550,7 +553,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/review"
+                        />
                     </>
                 }
             />

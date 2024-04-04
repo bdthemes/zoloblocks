@@ -1,4 +1,5 @@
 import { useEffect } from '@wordpress/element';
+import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
@@ -228,9 +229,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.container.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.container.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.container.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

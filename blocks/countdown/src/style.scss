@@ -5,12 +5,35 @@
 }
 
 .wp-block-zolo-countdown {
+    --zolo-countdown-wrap-padding: 0 15px;
+    --zolo-item-flex-width: 180px;
+    --zolo-item-flex-height: 180px;
+    --zolo-item-border-width: 1px;
+    --zolo-item-border-style: solid;
+    --zolo-item-border-color: #f0f0f0;
+    --zolo-item-gap: 5px;
+    --zolo-item-border-radius: 4px;
+    --zolo-face-text-color: #45444e;
+    --zolo-label-text-color: #797987;
+    --zolo-item-after-margin: 0 -9px 0 0;
+    --zolo-face-padding: 15px;
+    --zolo-label-padding: 15px;
+
+    --zolo-face-border-radius: 6px;
+    --zolo-face-border-width: 1px;
+    --zolo-face-border-color: #eaeaea;
+    --zolo-face-border-style: solid;
+    --zolo-label-border-radius: 6px;
+    --zolo-label-border-width: 1px;
+    --zolo-label-border-color: #eaeaea;
+    --zolo-label-border-style: solid;
+
     display: flow-root;
     box-sizing: content-box;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: var(--zolo-countdown-wrap-padding);
+
     .zolo-countdown-wrap {
         display: grid;
         justify-content: center;
@@ -19,8 +42,9 @@
         grid-template-columns: repeat(2, 1fr);
         &.flex {
             .zolo-countdown-item {
-                width: 180px;
-                height: 180px;
+                width: var(--zolo-item-flex-width);
+                height: var(--zolo-item-flex-height);
+                min-width: var(--zolo-item-flex-width);
             }
             &.zolo-countdown-style-2,
             &.zolo-countdown-style-3 {
@@ -28,38 +52,40 @@
                     height: auto;
                     justify-content: space-between;
                 }
-            } 
+            }
         }
     }
 
     .zolo-countdown-item {
         text-align: center;
         position: relative;
-        border: 1px solid #f0f0f0;
-        border-radius: 4px;
+        border-width: var(--zolo-item-border-width);
+        border-style: var(--zolo-item-border-style);
+        border-color: var(--zolo-item-border-color);
+        border-radius: var(--zolo-item-border-radius);
         display: flex;
         flex-direction: column;
         justify-content: center;
         box-sizing: border-box;
-        gap: 5px;
+        gap: var(--zolo-item-gap);
     }
 
     .zolo-countdown-face {
         font-size: 3rem;
-        color: #45444e;
+        color: var(--zolo-face-text-color);
         line-height: 1;
     }
 
     .zolo-countdown-label {
         font-size: 15px;
-        color: #797987;
+        color: var(--zolo-label-text-color);
     }
 
     .zolo-countdown-item::after {
         position: absolute;
         content: ':';
         right: calc(-1 * var(--zolo--countdown-gap) / 2);
-        margin-right: -9px;
+        margin: var(--zolo-item-after-margin);
         top: 50%;
         transform: translateY(-50%);
         font-style: normal;
@@ -77,36 +103,45 @@
         border: 0;
     }
 
-    .zolo-countdown-style-2 .zolo-countdown-face,
+    .zolo-countdown-style-2 .zolo-countdown-face {
+        padding: var(--zolo-face-padding);
+    }
+
     .zolo-countdown-style-2 .zolo-countdown-label {
-        padding: 15px;
+        padding: var(--zolo-label-padding);
     }
 
     .zolo-countdown-style-2 .zolo-countdown-label {
         background-color: #ededed;
     }
     .zolo-countdown-style-2 .zolo-countdown-item {
-        gap: 0;
+        --zolo-item-gap: 0;
+        gap: var(--zolo-item-gap);
     }
 
-
     .zolo-countdown-style-3 .zolo-countdown-face {
-        padding: 15px;
+        padding: var(--zolo-face-padding);
         background-color: #fff;
-        border-radius: 6px;
-        border: 1px solid #eaeaea;
+        border-radius: var(--zolo-face-border-radius);
+        border-width: var(--zolo-face-border-width);
+        border-color: var(--zolo-face-border-color);
+        border-style: var(--zolo-face-border-style);
     }
 
     .zolo-countdown-style-3 .zolo-countdown-label {
+        --zolo-label-padding: 10px;
         background-color: #fafafa;
-        padding: 10px;
-        border-radius: 6px;
-        border: 1px solid #eaeaea;
+        padding: var(--zolo-label-padding);
+        border-radius: var(--zolo-label-border-radius);
+        border-width: var(--zolo-label-border-width);
+        border-color: var(--zolo-label-border-color);
+        border-style: var(--zolo-label-border-style);
     }
 
     .zolo-countdown-style-4 .zolo-countdown-item {
+        --zolo-item-gap: 5px;
         display: flex;
-        gap: 5px;
+        gap: var(--zolo-item-gap);
         align-items: center;
         justify-content: flex-start;
         flex-direction: row;

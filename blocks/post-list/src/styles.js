@@ -1,3 +1,4 @@
+import { applyFilters } from '@wordpress/hooks';
 import {
     CONTENT_ALIGN,
     COLUMNS_GAP,
@@ -90,6 +91,8 @@ function Style({ props }) {
         authorHoverColor,
 
         // featured post
+        preset,
+        contentDirection,
         ftitleColor,
         ftitleHoverColor,
         fexcerptColor,
@@ -591,6 +594,10 @@ function Style({ props }) {
         ${columnDeskBorderRadius}
         ${columnBoxShadow}
       }
+      .${uniqueId}.zolo-post-featured-list-wrap.zolo-post-style-1 .zolo-post-item,.${uniqueId}.zolo-post-featured-list-wrap.zolo-post-style-3 .zolo-post-content{
+            ${contentDirection && `flex-direction: ${contentDirection}`}
+      }
+      
 
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post {
         ${fcontainerDeskPadding}
@@ -656,7 +663,7 @@ function Style({ props }) {
         ${fauthorHoverColor ? `color:${fauthorHoverColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-count-number {
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item.featured-post .zolo-post-count-number:before {
         ${fcountColor ? `color:${fcountColor};` : ''}
         ${fcountBGColor ? `background-color:${fcountBGColor};` : ''}
       }
@@ -708,7 +715,7 @@ function Style({ props }) {
         ${catGapDesk}
         ${catMarginDesk}
       }
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category a{
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item .zolo-post-category a {
         ${catTypoDesk}
         ${catPaddingDesk}
         ${catBorderDesk}
@@ -716,12 +723,14 @@ function Style({ props }) {
         ${catColor ? `color:${catColor};` : ''}
         ${catBgColor ? `background-color:${catBgColor};` : ''}
       }
+
+
       .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category a:hover{
         ${catHoverColor ? `color:${catHoverColor};` : ''}
         ${catBgHoverColor ? `background-color:${catBgHoverColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number {
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number:before {
         ${countWidthDesk}
         ${countHeightDesk}
         ${countMinWidthDesk}
@@ -739,7 +748,7 @@ function Style({ props }) {
         ${countHoverColor ? `color:${countHoverColor};` : ''}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number:hover{
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number:hover:before{
         ${countHoverBGColor ? `background-color:${countHoverBGColor};` : ''}
       }
 
@@ -891,14 +900,14 @@ function Style({ props }) {
       ${catMarginTab}
     }
 
-    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category a{
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item .zolo-post-category a{
       ${catTypoTab}
       ${catPaddingTab}
       ${catBorderTab}
       ${catBorderRadiusTab}
     }
 
-    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number {
+    .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number:before {
       ${countWidthTab}
       ${countHeightTab}
       ${countMinWidthTab}
@@ -1021,14 +1030,14 @@ function Style({ props }) {
         ${catMarginMob}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-category a{
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-item .zolo-post-category a{
         ${catTypoMob}
         ${catPaddingMob}
         ${catBorderMob}
         ${catBorderRadiusMob}
       }
 
-      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number{
+      .${uniqueId}.zolo-post-featured-list-wrap .zolo-post-count-number:before{
         ${countWidthMob}
         ${countHeightMob}
         ${countMinWidthMob}
@@ -1060,9 +1069,9 @@ function Style({ props }) {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.postList.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.postList.tabAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.postList.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

@@ -8,6 +8,7 @@ function RenderView({ attributes, postResults }) {
         showTitle,
         titleWords,
         titleTag,
+        showfeatureimg,
         showExcerpt,
         excerptWords,
         excerptindicator,
@@ -35,12 +36,12 @@ function RenderView({ attributes, postResults }) {
                         ''
                     );
 
-                const author = (
-                    <div
-                        className="zolo-post-author-name"
-                        dangerouslySetInnerHTML={{ __html: __('<span>Posted By</span> ') + post.author_link }}
-                    />
-                );
+                 const author = (
+                     <div className="zolo-post-author-name">
+                         <span>{__('Posted by', 'zolo-blocks')}</span>
+                         <a href="#" className="zolo-post-author-link" dangerouslySetInnerHTML={{ __html: post.author }}></a>
+                     </div>
+                 );
                 const date = <div className="zolo-post-date">{post.date}</div>;
                 const readingTime = <div className="zolo-post-estimate">{post.reading_time}</div>;
 
@@ -52,9 +53,9 @@ function RenderView({ attributes, postResults }) {
                 );
 
                 return (
-                    <div className={`zolo-post-item ${index === 0 ? 'featured-post' : ''}`}>
+                    <div className={`zolo-post-item ${index === 0 ? showfeatureimg && 'featured-post' : ''}`}>
                         <div className="zolo-post-image">
-                            {showThumbnail && (
+                            { showThumbnail && (
                                 <>
                                     {post.thumbnail && <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
                                     {!post.thumbnail && (
@@ -72,13 +73,12 @@ function RenderView({ attributes, postResults }) {
                             <div className="zolo-post-inner-content">
                                 {showCategory && categoriesHtml}
 
-                                {showTitle && (
                                     <DynamicTag tagName={titleTag} className="zolo-post-title">
                                         <a href={post.permalink}>
                                             <RawHTML>{titleLimitWords}</RawHTML>
                                         </a>
                                     </DynamicTag>
-                                )}
+                               
                                 {showMeta && (
                                     <div className="zolo-post-meta">
                                         {author}

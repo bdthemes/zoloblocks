@@ -1,6 +1,10 @@
 import domReady from '@wordpress/dom-ready';
 import { unregisterBlockType } from '@wordpress/blocks';
 import apiFetch from '@wordpress/api-fetch';
+import { addAction, addFilter } from '@wordpress/hooks';
+import { PanelBody } from '@wordpress/components';
+
+const { ZoloPanelBody } = window.zoloModule;
 
 // Get the block states from the API.
 async function getBlockStates() {

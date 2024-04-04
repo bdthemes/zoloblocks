@@ -14,7 +14,6 @@ const {
     ZoloPanelBody,
     IconicBtnGroup,
     ImageAvatar,
-    RangeResetControl,
     TabPanelControl,
 } = window.zoloModule;
 
@@ -22,7 +21,7 @@ const {
  * WordPress depencencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { TextControl, ToggleControl, Button, BaseControl, RangeControl, TabPanel } from '@wordpress/components';
+import { TextControl, ToggleControl, Button, BaseControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -48,33 +47,16 @@ import {
     SLIDE_POSITION,
     NORMAL_TAB_OPTION,
     NORMAL_CONTROL_OPTION,
+    VERTICAL_POSITIONS,
+    HOTIZONTAL_POSITIONS,
+    COMPARISON_HEIGHT,
 } from './constants';
 
-import { DEFAULT_ALIGNS, HEADING, FLEX_ALIGN_OPTIONS, FLEX_HORIZONTAL_OPTIONS } from '../../../src/global/constants';
-
 import { BEFORE_TYPO } from './constants/typoPrefixConstant';
-import { set } from 'lodash';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const {
-        resMode,
-        beforeImage,
-        afterImage,
-        showLabels,
-        disableslide,
-        handleDraggable,
-        initialPosition,
-        slidePositon,
-        swipeMode,
-        beforeLabel,
-        beforeColor,
-        afterLabel,
-        afterColor,
-        labelPositons,
-        HorizontalPosition,
-        arrowbtnColor,
-    } = attributes;
+    const { resMode, beforeImage, afterImage, comparisonOptions, beforeColor, afterColor, arrowbtnColor } = attributes;
 
     const requiredProps = {
         attributes,
@@ -82,10 +64,6 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
-
-    /**
-     * Preset
-     */
 
     return (
         <InspectorControls key="controls">
@@ -181,80 +159,137 @@ function Inspector(props) {
                             </BaseControl>
                             <ToggleControl
                                 label={__('Show Labels', 'zolo-blocks')}
-                                checked={showLabels}
-                                onChange={() => setAttributes({ showLabels: !showLabels })}
+                                checked={comparisonOptions?.showLabels}
+                                onChange={() =>
+                                    setAttributes({
+                                        comparisonOptions: {
+                                            ...comparisonOptions,
+                                            showLabels: !comparisonOptions?.showLabels,
+                                        },
+                                    })
+                                }
                             />
                             <ToggleControl
                                 label={__('Disable Slide Behavior', 'zolo-blocks')}
-                                checked={disableslide}
-                                onChange={() => setAttributes({ disableslide: !disableslide, handleDraggable: false, swipeMode: false })}
+                                checked={comparisonOptions?.disableslide}
+                                onChange={() =>
+                                    setAttributes({
+                                        comparisonOptions: {
+                                            ...comparisonOptions,
+                                            disableslide: !comparisonOptions?.disableslide,
+                                        },
+                                    })
+                                }
                             />
-                            {!disableslide && (
+                            {!comparisonOptions?.disableslide && (
                                 <ToggleControl
                                     label={__('Only Handle Draggable', 'zolo-blocks')}
-                                    checked={handleDraggable}
-                                    onChange={() => setAttributes({ handleDraggable: !handleDraggable, swipeMode: false })}
+                                    checked={comparisonOptions?.handleDraggable}
+                                    onChange={() =>
+                                        setAttributes({
+                                            comparisonOptions: {
+                                                ...comparisonOptions,
+                                                handleDraggable: !comparisonOptions?.handleDraggable,
+                                            },
+                                        })
+                                    }
                                 />
                             )}
-                            {!handleDraggable && !disableslide && (
+                            {!comparisonOptions?.disableslide && (
                                 <ToggleControl
-                                    label={__('Enable Swipe Mode', 'zolo-blocks')}
-                                    checked={swipeMode}
-                                    onChange={() => setAttributes({ swipeMode: !swipeMode })}
+                                    label={__('Slide on Hover', 'zolo-blocks')}
+                                    checked={comparisonOptions?.slideOnHover}
+                                    onChange={() =>
+                                        setAttributes({
+                                            comparisonOptions: {
+                                                ...comparisonOptions,
+                                                slideOnHover: !comparisonOptions?.slideOnHover,
+                                            },
+                                        })
+                                    }
                                 />
                             )}
-                            <RangeResetControl
+                            <RangeControl
                                 label={__('Initial Position', 'zolo-blocks')}
-                                controlName={'initialPosition'}
-                                requiredProps={requiredProps}
-                                min={1}
+                                value={comparisonOptions?.initialPosition}
+                                onChange={(v) => {
+                                    setAttributes({
+                                        comparisonOptions: {
+                                            ...comparisonOptions,
+                                            initialPosition: v,
+                                        },
+                                    });
+                                }}
+                                min={0}
                                 max={100}
-                                step={1}
                             />
                             <IconicBtnGroup
-                                label={__('Slide Position', 'zolo-blocks')}
-                                value={slidePositon}
+                                label={__('Direction', 'zolo-blocks')}
+                                value={comparisonOptions?.slidePositon}
                                 onChange={(value) =>
                                     setAttributes({
-                                        slidePositon: value,
+                                        comparisonOptions: {
+                                            ...comparisonOptions,
+                                            slidePositon: value,
+                                        },
                                     })
                                 }
                                 options={SLIDE_POSITION}
                             />
                         </ZoloPanelBody>
-                        {showLabels && (
+                        {comparisonOptions?.showLabels && (
                             <ZoloPanelBody title={__('Labels', 'zolo-blocks')} panelProps={props}>
                                 <TextControl
                                     label={__('Before Label')}
-                                    value={beforeLabel}
-                                    onChange={(v) => setAttributes({ beforeLabel: v })}
+                                    value={comparisonOptions?.beforeLabel}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            comparisonOptions: {
+                                                ...comparisonOptions,
+                                                beforeLabel: v,
+                                            },
+                                        })
+                                    }
                                 />
                                 <TextControl
                                     label={__('After Label')}
-                                    value={afterLabel}
-                                    onChange={(v) => setAttributes({ afterLabel: v })}
+                                    value={comparisonOptions?.afterLabel}
+                                    onChange={(v) =>
+                                        setAttributes({
+                                            comparisonOptions: {
+                                                ...comparisonOptions,
+                                                afterLabel: v,
+                                            },
+                                        })
+                                    }
                                 />
-                                {slidePositon ? (
+                                {comparisonOptions?.slidePositon === 'horizontal_direction' ? (
                                     <IconicBtnGroup
                                         label={__('Labels Position', 'zolo-blocks')}
-                                        value={HorizontalPosition}
+                                        value={comparisonOptions?.HorizontalPosition}
                                         onChange={(value) =>
                                             setAttributes({
-                                                HorizontalPosition: value,
+                                                comparisonOptions: {
+                                                    ...comparisonOptions,
+                                                    HorizontalPosition: value,
+                                                },
                                             })
                                         }
-                                        options={FLEX_HORIZONTAL_OPTIONS}
+                                        options={HOTIZONTAL_POSITIONS}
                                     />
                                 ) : (
                                     <IconicBtnGroup
                                         label={__('Labels Position', 'zolo-blocks')}
-                                        value={labelPositons}
+                                        value={comparisonOptions?.labelPositons}
                                         onChange={(value) =>
                                             setAttributes({
-                                                labelPositons: value,
+                                                comparisonOptions: {
+                                                    ...comparisonOptions,
+                                                    labelPositons: value,
+                                                },
                                             })
                                         }
-                                        options={FLEX_ALIGN_OPTIONS}
+                                        options={VERTICAL_POSITIONS}
                                     />
                                 )}
                             </ZoloPanelBody>
@@ -263,8 +298,18 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        {showLabels && (
-                            <ZoloPanelBody title={__('Label', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                            <ResRangeControl
+                                label={__('Height', 'zolo-blocks')}
+                                controlName={COMPARISON_HEIGHT}
+                                requiredProps={requiredProps}
+                                min={50}
+                                max={1000}
+                                step={1}
+                            />
+                        </ZoloPanelBody>
+                        {comparisonOptions?.showLabels && (
+                            <ZoloPanelBody title={__('Labels', 'zolo-blocks')} firstOpen={false} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     options={NORMAL_TAB_OPTION}
                                     normalComponents={
@@ -345,7 +390,7 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
 
-                        <ZoloPanelBody title={__('Control', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Control', 'zolo-blocks')} firstOpen={false} stylePanel={true} panelProps={props}>
                             <TabPanelControl
                                 normalComponents={
                                     <>

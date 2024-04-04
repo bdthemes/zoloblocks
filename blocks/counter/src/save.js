@@ -20,6 +20,7 @@ const Save = ({ attributes }) => {
         iconTypeImage,
         zoloId,
         imageRes,
+        counterDirection,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -33,7 +34,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            <div class={`zolo-counter-wrap ${preset}`}>
+            <div class={`zolo-counter-wrap ${preset} ${counterDirection}`}>
                 <div class="zolo-counter-item">
                     {hideIcon && (
                         <div class="zolo-counter-icon">

@@ -37,6 +37,7 @@ import {
     IMAGE_HOVER_BOX_SHADOW,
     IMAGE_HOVER_BACKGROUND,
     IMAGE_PADDING,
+    IMAGE_HEIGHT,
     HEADING_BORDER,
     HEADING_BACKGROUND,
     HEADING_MARGIN,
@@ -86,6 +87,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/image-gallery"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -209,6 +211,14 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Image', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <ResRangeControl
+                                label={__('Height', 'zolo-blocks')}
+                                controlName={IMAGE_HEIGHT}
+                                requiredProps={requiredProps}
+                                min={1}
+                                max={500}
+                                step={1}
+                            />
                             <BorderControl
                                 label={__('Border', 'zolo-blocks')}
                                 controlName={IMAGE_BORDER}
@@ -410,7 +420,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/image-gallery"
+                        />
                     </>
                 }
             />

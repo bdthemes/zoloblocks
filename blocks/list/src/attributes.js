@@ -8,48 +8,37 @@ const {
     generateGapAttributes,
     generateResAlignmentAttributies,
     generateNormalBGAttributes,
-    generateTextStrokeAttributies,
 } = window.zoloModule;
 
 import {
-    //new const
+    //Layout
     LIST_COLUMN_COUNT,
     LIST_COLUMNS_GAP,
+    SINGLE_ITEM_ALIGNMENT,
     //item
     ITEM_ALIGNMENT,
-    LIST_BOX_WIDTH,
-    LIST_BOX_HEIGHT,
     LIST_BOX_RADIUS,
     LIST_BORDER,
     LIST_ALLBOX_PADDING,
-    LIST_BOX_MARGIN,
     LIST_BOX_SHADOW,
     LIST_BG,
-    //list title
-    TEXT_LIST_BG,
-    TEXT_LIST_BORDER,
-    TEXT_LIST_RADIUS,
-    TEXT_LIST_MARGIN,
-    TEXT_LIST_PADDING,
-    TEXT_LIST_STROKE,
+    LIST_HOVER_BG,
+    LIST_HOVER_BOX_SHADOW,
     //des
-    LIST_DSC_BORDER,
-    LIST_DSC_RADIUS,
-    LIST_DSC_BG,
     DSC_MARGIN,
-    DSC_PADDING,
-    DSC_STROKE,
     //icon
     LIST_ICON_SIZE,
     ICON_LIST_BG,
     ICON_LIST_HOVER_BG,
     ICON_LIST_PADDING,
     ICON_LIST_MARGIN,
+    ICON_LIST_BORDER,
+    ICON_RADIUS,
+    ICON_VERTICAL_ALIGN,
     //hover icon
     LIST_HOVER_ICON_SIZE,
-    ICON_HOVER_LIST_PADDING,
     ICON_HOVER_LIST_MARGIN,
-    ICON_HOVER_LIST_BG,
+    ICON_LINKVERTICAL_ALIGN,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -81,21 +70,8 @@ const attributes = {
         },
     },
 
-    //List title
-    ...generateBorderAttributies(TEXT_LIST_BORDER),
-    ...generateDimensionAttributes(TEXT_LIST_RADIUS),
-    ...generateDimensionAttributes(TEXT_LIST_MARGIN),
-    ...generateDimensionAttributes(TEXT_LIST_PADDING),
-    ...generateNormalBGAttributes(TEXT_LIST_BG),
-    ...generateTextStrokeAttributies(TEXT_LIST_STROKE),
-
     //dsc
-    ...generateBorderAttributies(LIST_DSC_BORDER),
-    ...generateDimensionAttributes(LIST_DSC_RADIUS),
     ...generateDimensionAttributes(DSC_MARGIN),
-    ...generateDimensionAttributes(DSC_PADDING),
-    ...generateNormalBGAttributes(LIST_DSC_BG),
-    ...generateTextStrokeAttributies(DSC_STROKE),
 
     //icon
     ...generateResRangeAttributies(LIST_ICON_SIZE),
@@ -103,29 +79,32 @@ const attributes = {
     ...generateNormalBGAttributes(ICON_LIST_HOVER_BG),
     ...generateDimensionAttributes(ICON_LIST_PADDING),
     ...generateDimensionAttributes(ICON_LIST_MARGIN),
+    ...generateBorderAttributies(ICON_LIST_BORDER),
+    ...generateDimensionAttributes(ICON_RADIUS),
+    ...generateResAlignmentAttributies(ICON_VERTICAL_ALIGN),
     //Hover Icon
     ...generateResRangeAttributies(LIST_HOVER_ICON_SIZE),
-    ...generateNormalBGAttributes(ICON_HOVER_LIST_BG),
-    ...generateDimensionAttributes(ICON_HOVER_LIST_PADDING),
     ...generateDimensionAttributes(ICON_HOVER_LIST_MARGIN),
+    ...generateResAlignmentAttributies(ICON_LINKVERTICAL_ALIGN),
 
     //item
     ...generateResAlignmentAttributies(ITEM_ALIGNMENT),
-    ...generateResRangeAttributies(LIST_BOX_WIDTH),
-    ...generateResRangeAttributies(LIST_BOX_HEIGHT),
     ...generateDimensionAttributes(LIST_BOX_RADIUS),
     ...generateBorderAttributies(LIST_BORDER),
     ...generateDimensionAttributes(LIST_ALLBOX_PADDING),
-    ...generateDimensionAttributes(LIST_BOX_MARGIN),
     ...generateBoxShadowAttributies(LIST_BOX_SHADOW),
     ...generateNormalBGAttributes(LIST_BG),
-    // column count
+    ...generateBoxShadowAttributies(LIST_HOVER_BOX_SHADOW),
+    ...generateNormalBGAttributes(LIST_HOVER_BG),
+    // column count layout
     ...generateResCounterAttributies(LIST_COLUMN_COUNT, {
         defaultRange: 1,
     }),
+    ...generateResAlignmentAttributies(SINGLE_ITEM_ALIGNMENT),
     //gaps
     ...generateGapAttributes(LIST_COLUMNS_GAP, {
         defaultUnit: 'px',
+        defaultRange: 20,
     }),
     //typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
@@ -135,14 +114,24 @@ const attributes = {
         type: 'string',
         default: 'zolo-list-style-1',
     },
-
+    iconToggle: {
+        type: 'boolean',
+        default: false,
+    },
+    titleToggle: {
+        type: 'boolean',
+        default: false,
+    },
     DscToggle: {
         type: 'boolean',
         default: false,
     },
     layout: {
         type: 'string',
-        default: 'flex',
+        default: 'grid',
+    },
+    BorderHovColor: {
+        type: 'string',
     },
 
     listProfiles: {
@@ -150,53 +139,63 @@ const attributes = {
         default: [
             {
                 id: 1,
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg>',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z"></path></svg>',
                 link: {
                     url: '#',
                     openInNewTab: false,
                 },
-                text: 'List 1',
+                text: 'List Item 1',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
                 id: 2,
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg>',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z"></path></svg>',
                 link: {
                     url: '#',
                     openInNewTab: false,
                 },
-                text: 'List 2',
+                text: 'List Item 2',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
                 id: 3,
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg>',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z"></path></svg>',
                 link: {
                     url: '#',
                     openInNewTab: false,
                 },
-                text: 'List 3',
+                text: 'List Item 3',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
                 id: 4,
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg>',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z"></path></svg>',
                 link: {
                     url: '#',
                     openInNewTab: false,
                 },
-                text: 'List 4',
+                text: 'List Item 4',
                 desc: 'Customize widget dimension beyond normal scale',
             },
         ],
     },
-
+    // list icon
+    listIconColor: {
+        type: 'string',
+    },
     //dsc
     dscColor: {
         type: 'string',
     },
+    dscHcolor: {
+        type: 'string',
+    },
+
     //TEXT LIST title
     textListColor: {
+        type: 'string',
+    },
+    txtHListColor: {
         type: 'string',
     },
 

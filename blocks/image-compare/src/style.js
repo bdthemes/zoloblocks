@@ -37,14 +37,27 @@ import {
     ARROW_BTN_RADIUS,
     ARROW_BTN_BG,
     ARROW_SIZE,
+    COMPARISON_HEIGHT,
 } from './constants';
 
 import { BEFORE_TYPO } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { preset, uniqueId, arrowbtnColor, labelPositons, HorizontalPosition, labelOpacity, beforeColor, afterColor, slidePositon } =
-        attributes;
+    const { uniqueId, arrowbtnColor, labelOpacity, beforeColor, afterColor, comparisonOptions } = attributes;
+
+    // comparison height
+    const {
+        desktopRangeStyle: desktopComparisonHeight,
+        tabRangeStyle: tabComparisonHeight,
+        mobRangeStyle: mobComparisonHeight,
+    } = generateResRangeStyle({
+        controlName: COMPARISON_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
     //before Label
     const {
         backgroundStylesDesktop: DeskbeforeBg,
@@ -112,7 +125,7 @@ const Style = ({ props }) => {
         mobRangeStyle: mobLineThick,
     } = generateResRangeStyle({
         controlName: LINE_THICKNESS,
-        property: `${slidePositon == true ? 'height' : 'width'}`,
+        property: `${comparisonOptions?.slidePositon === 'horizontal_direction' ? 'width' : 'height'}`,
         attributes,
     });
     const {
@@ -120,9 +133,10 @@ const Style = ({ props }) => {
         backgroundStylesTab: TabLineConBg,
         backgroundStylesMobile: MobLineConBg,
     } = generateNormalBGControlStyles({ controlName: THICKNESS_BG, attributes });
-    const { boxShadowStyle: boxshadowLineShadow } = generateBoxShadowStyles({ controlName: LINE_BOX_SHADOW, attributes });
-    //arrow Button
 
+    const { boxShadowStyle: boxshadowLineShadow } = generateBoxShadowStyles({ controlName: LINE_BOX_SHADOW, attributes });
+
+    //arrow Button
     const {
         desktopRangeStyle: desktopArrowWidth,
         tabRangeStyle: tabArrowWidth,
@@ -142,22 +156,34 @@ const Style = ({ props }) => {
         property: 'height',
         attributes,
     });
+
     const {
-        desktopRangeStyle: desktopArrowSizeW,
-        tabRangeStyle: tabArrowSizeW,
-        mobRangeStyle: mobArrowSizeW,
+        desktopRangeStyle: desktopArrowSizetop,
+        tabRangeStyle: tabArrowSizetop,
+        mobRangeStyle: mobArrowSizetop,
     } = generateResRangeStyle({
         controlName: ARROW_SIZE,
-        property: 'width',
+        property: 'border-top-width',
         attributes,
     });
+    
     const {
-        desktopRangeStyle: desktopArrowSizeH,
-        tabRangeStyle: tabArrowSizeH,
-        mobRangeStyle: mobArrowSizeH,
+        desktopRangeStyle: desktopArrowSizeRight,
+        tabRangeStyle: tabArrowSizeRight,
+        mobRangeStyle: mobArrowSizeRight,
     } = generateResRangeStyle({
         controlName: ARROW_SIZE,
-        property: 'height',
+        property: 'border-right-width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: desktopArrowSizeBottom,
+        tabRangeStyle: tabArrowSizeBottom,
+        mobRangeStyle: mobArrowSizeBottom,
+    } = generateResRangeStyle({
+        controlName: ARROW_SIZE,
+        property: 'border-bottom-width',
         attributes,
     });
 
@@ -166,6 +192,7 @@ const Style = ({ props }) => {
         tabBorderStyle: tabArrowBorder,
         mobBorderStyle: mobArrowBorder,
     } = generateBorderStyle({ controlName: ARROW_BTN_BORDER, attributes });
+
     const {
         dimensionStylesDesktop: DesktopArrowRadius,
         dimensionStylesTab: TabArrowRadius,
@@ -175,6 +202,7 @@ const Style = ({ props }) => {
         styleFor: 'border-radius',
         attributes,
     });
+
     const {
         backgroundStylesDesktop: DeskbArrowBg,
         backgroundStylesTab: TabbArrowBg,
@@ -185,20 +213,9 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-   
-    .wp-block-zolo-image-compare.${uniqueId} .image-item-One,.wp-block-zolo-image-compare.${uniqueId} .image-item-two{
-        ${slidePositon ? HorizontalPosition && `justify-content:${HorizontalPosition}` : labelPositons && `align-items:${labelPositons}`}
+    .wp-block-zolo-image-compare.${uniqueId} .image-item-One,.wp-block-zolo-image-compare.${uniqueId} .image-item-Two {
+        ${desktopComparisonHeight}
     }
-    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left{
-        ${slidePositon && 'top:0'}
-
-    }
-   .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right{
-        ${slidePositon ? 'bottom:0' : 'right:0'};
-        
-
-   }
-    
     .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label {
         opacity: ${labelOpacity}
     }
@@ -211,7 +228,6 @@ const Style = ({ props }) => {
          ${DesktopbeforeMargin}
          ${Desktopbeforepadding}
     }
- 
    .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right {
          ${afterColor && `color:${afterColor}`};
          ${DeskafterBg}
@@ -221,13 +237,13 @@ const Style = ({ props }) => {
         ${desktopLineThick.replace(';', '!important')};
         ${boxshadowLineShadow.replace(';', '!important')};
         ${DesLineConkBg.replace(';', '!important')}
-       
     }
     .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-arrow {
-           ${arrowbtnColor && `color:${arrowbtnColor}`};
-           ${desktopArrowSizeW.replace(';', '!important')};
-           ${desktopArrowSizeH.replace(';', '!important')};
-            
+        ${arrowbtnColor && `color:${arrowbtnColor}`};
+        ${desktopArrowSizetop.replace(';', '!important')};
+        ${desktopArrowSizeRight.replace(';', '!important')};
+        ${desktopArrowSizeBottom.replace(';', '!important')};
+          
     }
     .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-button {
         ${desktopArrowWidth.replace(';', '!important')};
@@ -239,6 +255,9 @@ const Style = ({ props }) => {
    
   	`;
     const tabletAllStyle = `
+    .wp-block-zolo-image-compare.${uniqueId} .image-item-One,.wp-block-zolo-image-compare.${uniqueId} .image-item-Two {
+        ${tabComparisonHeight}
+    }
     .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left,.wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right{
          ${TabbeforeLBg}
          ${TabbeforeTypo}
@@ -257,9 +276,9 @@ const Style = ({ props }) => {
        
     }
     .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-arrow {
-        ${tabArrowSizeW.replace(';', '!important')};
-        ${tabArrowSizeH.replace(';', '!important')};
-            
+        ${tabArrowSizetop.replace(';', '!important')};
+        ${tabArrowSizeRight.replace(';', '!important')};
+        ${tabArrowSizeBottom.replace(';', '!important')};      
     }
      .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-button {
          ${tabArrowWidth.replace(';', '!important')};
@@ -271,6 +290,9 @@ const Style = ({ props }) => {
 	`;
 
     const mobileAllStyle = `
+    .wp-block-zolo-image-compare.${uniqueId} .image-item-One,.wp-block-zolo-image-compare.${uniqueId} .image-item-Two {
+        ${mobComparisonHeight}
+    }
     .wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-left,.wp-block-zolo-image-compare.${uniqueId} .compare-slider-label-right{
          ${MobeforeLtBg}
          ${MobbeforeTypo}
@@ -288,8 +310,9 @@ const Style = ({ props }) => {
         ${MobLineConBg.replace(';', '!important')}
     }
     .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-arrow {
-        ${mobArrowSizeW.replace(';', '!important')};
-        ${mobArrowSizeH.replace(';', '!important')};       
+        ${mobArrowSizetop.replace(';', '!important')};
+        ${mobArrowSizeRight.replace(';', '!important')};
+        ${mobArrowSizeBottom.replace(';', '!important')};    
     }
     .wp-block-zolo-image-compare.${uniqueId} .__rcs-handle-button {
          ${mobArrowWidth.replace(';', '!important')};
@@ -299,15 +322,14 @@ const Style = ({ props }) => {
          ${MobArrowtBg.replace(';', '!important')};
      }
   	`;
-
     return (
         <>
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.imageCompare.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.imageCompare.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.imageCompare.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

@@ -27,7 +27,6 @@ import {
     PAG_HEIGHT,
     PAG_BORDER,
     PAG_BORDER_RADIUS,
-
     PAG_BG,
     APAG_WIDTH,
     APAG_HEIGHT,
@@ -35,8 +34,6 @@ import {
     APAG_BORDER_RADIUS,
     APAG_BG,
     NAV_HOVER_BORDER_COLOR,
-
-
     CONTENT_ALIGNMENT,
     CONTAINER_BACKGROUND,
     CONTAINER_BORDER,
@@ -59,6 +56,7 @@ import {
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { applyFilters } from '@wordpress/hooks';
 
 const {
     ResRangeControl,
@@ -76,7 +74,6 @@ const {
     ZoloPanelBody,
     ResGapControl,
     ZoloIconPicker,
-
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -148,6 +145,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
+                block="zolo/review-carousel"
                 setAttributes={setAttributes}
                 attributes={attributes}
                 generalTab={
@@ -156,7 +154,7 @@ function Inspector(props) {
                             <SelectControl
                                 label={__('Presets', 'zolo-blocks')}
                                 value={preset}
-                                options={PRESETS}
+                                options={applyFilters('zolo.reviewCarousel.presets', PRESETS)}
                                 onChange={(selected) => setAttributes({ preset: selected })}
                             />
                             <ToggleControl
@@ -817,7 +815,12 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <>
-                        <AdvancedOptions attributes={attributes} setAttributes={setAttributes} requiredProps={requiredProps} />
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/review-carousel"
+                        />
                     </>
                 }
             />

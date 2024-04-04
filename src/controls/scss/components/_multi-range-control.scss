@@ -27,6 +27,7 @@
 
 .zolo-multi-rangle-control .bar {
     display: flex;
+    padding: 0 14px;
 }
 .zolo-multi-rangle-control .bar * {
     transition: all 100ms;
@@ -67,35 +68,61 @@
     cursor: pointer;
 }
 .zolo-multi-rangle-control .thumb::before {
-    content: "";
-    background-color: blue;
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    z-index: 1;
-    margin: -6px;
+    z-index: 111;
     cursor: pointer;
-}
-.zolo-multi-rangle-control .input-type-range:focus + .thumb::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -4px;
-    left: -4px;
-    width: 11px;
-    height: 11px;
-    z-index: 2;
-    border-radius: 50%;
-    border: dotted 1px black;
+    height: 10px;
+    width: 10px;
+    transform: rotate(45deg);
+    background-color: #1e1feb;
+    border-radius: 3px;
 }
+
+.zolo-multi-rangle-control .thumb::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    height: 14px;
+    width: 10px;
+    background-color: #1e1feb;
+    border-radius: 2px;
+}
+
+.zolo-multi-rangle-control .thumb-left::before {
+    left: -10px;
+}
+.zolo-multi-rangle-control .thumb-right::before {
+    right: -10px;
+}
+
+.zolo-multi-rangle-control .thumb-left::after {
+    left: -14px;
+}
+.zolo-multi-rangle-control .thumb-right::after {
+    right: -14px;
+}
+
+
+// .zolo-multi-rangle-control .input-type-range:focus + .thumb::after {
+//     content: '';
+//     position: absolute;
+//     top: -4px;
+//     left: -4px;
+//     width: 11px;
+//     height: 11px;
+//     z-index: 2;
+//     border-radius: 50%;
+//     border: dotted 1px black;
+// }
 
 .zolo-multi-rangle-control .thumb * {
     position: absolute;
     bottom: -37px;
     width: 36px;
     height: 24px;
-    left: -18px;
-    font-size: 10px;
+    font-size: 9px;
     text-align: center;
     line-height: 22px;
     background-color: rgb(21, 21, 21);
@@ -103,6 +130,15 @@
     color: white;
     font-weight: 700;
 }
+
+
+.zolo-multi-rangle-control .thumb-left * {
+    right: -10px;
+}
+.zolo-multi-rangle-control .thumb-right * {
+    left: -10px;
+}
+
 .zolo-multi-rangle-control .thumb:active * {
     display: block;
 }
@@ -153,7 +189,7 @@
 
 }
 
-.zolo-multi-rangle-control .thumb.active:before,
-.zolo-multi-rangle-control .thumb.active:focus:before {
-    box-shadow: 0px 0px 12px 0px  #2a7cba;
-}
+// .zolo-multi-rangle-control .thumb.active:before,
+// .zolo-multi-rangle-control .thumb.active:focus:before {
+//     box-shadow: 0px 0px 12px 0px  #2a7cba;
+// }

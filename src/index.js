@@ -1,8 +1,10 @@
+import ApexCharts from "apexcharts";
+
 //Import common-styles
-import './common-styles.scss';
+import "./common-styles.scss";
 
 //Import Global Hooks
-import './global/hooks';
+import "./global/hooks";
 
 // Import Blocks
 import '../blocks/container/src';
@@ -16,15 +18,18 @@ import '../blocks/brand-child/src';
 import '../blocks/brand-child/src';
 import '../blocks/brand-grid/src';
 import '../blocks/brand-grid/src';
+import '../blocks/charts/src';
 import '../blocks/cta/src';
 import '../blocks/counter/src';
 import '../blocks/countdown/src';
-// import '../blocks/form/src';
+import '../blocks/form/src';
 import '../blocks/fancy-list-child/src';
 import '../blocks/fancy-list/src';
 import '../blocks/flipbox/src';
 import '../blocks/google-map/src';
 import '../blocks/image-gallery/src';
+import '../blocks/image-compare/src';
+import '../blocks/list/src';
 import '../blocks/post-carousel/src';
 import '../blocks/post-grid/src';
 import '../blocks/post-list/src';
@@ -46,12 +51,18 @@ import '../blocks/team-child/src';
 import '../blocks/team-child/src';
 import '../blocks/team-grid/src';
 import '../blocks/team-grid/src';
-// import '../blocks/list/src';
-// import '../blocks/image-compare/src';
 import '../blocks/business-hour/src';
+import '../blocks/list/src';
+import '../blocks/tab/src';
+import '../blocks/tabs/src';
 
 // inner blocks
-// import '../blocks/text-field/src';
+import "../blocks/text-field/src";
+import "../blocks/email/src";
+import "../blocks/textarea/src";
 
 // unregister blocks
-import './unregister';
+import "./unregister";
+
+// form editor script
+import "./form";

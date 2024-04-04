@@ -2,10 +2,21 @@
 .zolo-single-image {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-gap: 30px;
+    grid-gap: var(--zolo-item-grid-gap);
 }
 
 .zolo-image-gallery {
+    --zolo-item-grid-gap: 30px;
+    --zolo-icon-padding: 20px;
+    --zolo-icon-border-radius: 50%;
+    --zolo-icon-svg-size: clamp(1rem, 2vw, 1.25rem);
+    --zolo-icon-svg-color: #1c1b25;
+    --zolo-title-text-color: #0a0a0c;
+    --zolo-title-margin: clamp(1.25rem, 3vw, 1.875rem);
+    --zolo-title-padding: 8px 20px;
+    --zolo-lightbox-caption-margin: 0 0 20px;
+    --zolo-lightbox-caption-color: #dadadb;
+
     .zolo-item {
         position: relative;
         &:hover {
@@ -61,25 +72,16 @@
         display: block;
         opacity: 0;
         background-color: #fff;
-        padding: 14px;
+        padding: var(--zolo-icon-padding);
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
+        border-radius: var(--zolo-icon-border-radius);
         z-index: 1;
         position: relative;
         overflow: hidden;
         transition: all 0.3s ease-in-out;
         box-sizing: content-box;
-        .zolo__display-icon {
-            box-sizing: content-box;
-            svg {
-                display: block;
-                width: clamp(1rem, 2vw, 1.25rem);
-                height: clamp(1rem, 2vw, 1.25rem);
-                fill: #1c1b25;
-            }
-        }
         &:hover {
             background-color: var(--zoloblocks-brand-color);
             svg {
@@ -87,14 +89,23 @@
             }
         }
     }
+    .zolo__display-icon {
+        box-sizing: content-box;
+        svg {
+            display: block;
+            width: var(--zolo-icon-svg-size);
+            height: var(--zolo-icon-svg-size);
+            fill: var(--zolo-icon-svg-color);
+        }
+    }
     .zolo-title {
         position: absolute;
         bottom: 0;
         left: 0;
-        padding: 8px 20px;
-        color: #0a0a0c;
+        padding: var(--zolo-title-padding);
+        color: var(--zolo-title-text-color);
         font-size: 14px;
-        margin: clamp(1.25rem, 3vw, 1.875rem);
+        margin: var(--zolo-title-margin);
         background-color: #fff;
         z-index: 1;
         transition: all 0.3s ease-in-out;
@@ -106,14 +117,16 @@
     }
 }
 .media-upload {
+    --zolo-media-padding: 35px;
+    --zolo-media-icon-margin: 0 0 0 15px;
     align-items: center;
     display: flex;
     justify-content: center;
-    padding: 35px !important;
+    padding: var(--zolo-media-padding) !important;
     background-color: aliceblue;
     font-weight: 500;
     svg {
-        margin-right: 15px;
+        margin: var(--zolo-media-icon-margin);
     }
 }
 
@@ -131,10 +144,10 @@
 
 // lightbox css here 
 .zolo-lightbox-caption {
-    margin: 0 0 20px;
+    margin: var(--zolo-lightbox-caption-margin);
     font-size: 20px;
     text-transform: capitalize;
-    color: #dadadb;
+    color: var(--zolo-lightbox-caption-color);
 }
 
 // Animation

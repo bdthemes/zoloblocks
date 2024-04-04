@@ -22,11 +22,11 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses, preset } = attributes;
+    const { preview, uniqueId, parentClasses, preset, layoutType } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), preset),
+        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), preset, layoutType),
     });
 
     // column count
@@ -68,23 +68,23 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <style>{`
-					.${uniqueId}.wp-block-zolo-review-grid {
+					.${uniqueId}.wp-block-zolo-review-grid.grid {
 						display: block;
 					}
-					.${uniqueId}.wp-block-zolo-review-grid .block-editor-block-list__layout {
+					.${uniqueId}.wp-block-zolo-review-grid.grid .block-editor-block-list__layout {
 						display: grid;
 						grid-template-columns: repeat(${deskColumns}, 1fr);
 						${deskGridGap}
 					}
                     @media only screen and (max-width: 1024px) {
-                        .${uniqueId}.wp-block-zolo-review-grid .block-editor-block-list__layout {
+                        .${uniqueId}.wp-block-zolo-review-grid.grid .block-editor-block-list__layout {
                             grid-template-columns: repeat(${tabColumns}, 1fr);
                             ${tabGridGap}
                         }
                     }
 
                     @media only screen and (max-width: 767px) {
-                        .${uniqueId}.wp-block-zolo-review-grid .block-editor-block-list__layout {
+                        .${uniqueId}.wp-block-zolo-review-grid.grid .block-editor-block-list__layout {
                             grid-template-columns: repeat(${mobColumns}, 1fr);
                             ${mobGridGap}
                         }
@@ -104,9 +104,39 @@ export default function Edit(props) {
                 <InnerBlocks
                     allowedBlocks={['zolo/review-child']}
                     template={[
-                        ['zolo/review-child', {}],
-                        ['zolo/review-child', {}],
-                        ['zolo/review-child', {}],
+                        [
+                            'zolo/review-child',
+                            {
+                                memberName: 'John Doe',
+                                memberDesignation: 'Web Designer',
+                                testimonialMessage: '"Simple Yet Powerful": Zolo Blocks is a game-changer for WordPress users. With its intuitive interface and comprehensive block library, creating stunning layouts has never been easier.',
+                                memberPhoto: {
+                                    url: zoloPlaceholders.avatarSquare,
+                                },
+                            },
+                        ],
+                        [
+                            'zolo/review-child',
+                            {
+                                memberName: 'Joanna T. Logan',
+                                memberDesignation: 'Frontend Developer',
+                                testimonialMessage: '"Efficiency Redefined": Zolo Blocks streamlines the website building process with its vast collection of blocks. From headers to footers, each block is meticulously crafted flexibility.',
+                                memberPhoto: {
+                                    url: zoloPlaceholders.avatarSquare,
+                                },
+                            },
+                        ],
+                        [
+                            'zolo/review-child',
+                            {
+                                memberName: 'Ruben S. McLain',
+                                memberDesignation: 'UX Designer',
+                                testimonialMessage: '"Versatile and Responsive": Zolo Blocks offers a wide range of blocks that adapt seamlessly to any screen size. Whether you are designing for desktop or mobile, this plugin ensures',
+                                memberPhoto: {
+                                    url: zoloPlaceholders.avatarSquare,
+                                },
+                            },
+                        ],
                     ]}
                     renderAppender={false}
                 />

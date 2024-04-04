@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -574,6 +575,15 @@ const Style = ({ props }) => {
 			${deskCarouselGap}
 		}
 
+        .${uniqueId}.wp-block-zolo-review-carousel .zolo-item {
+			${reviewContentDeskAlignStyle}
+			${containerDeskBorderStyle}
+			${containerDeskBorderRadius}
+			${containerBoxShadow}
+			${containerDeskBGStyle}
+            ${containerDeskPadding}
+		}
+
 		.${uniqueId}.wp-block-zolo-review-carousel .zolo-star-rating {
 			${ratingIconDeskAlignStyle}
 		}
@@ -689,6 +699,15 @@ const Style = ({ props }) => {
 			${tabCarouselGap}
 		}
 
+        .${uniqueId}.wp-block-zolo-review-carousel .zolo-item {
+			${reviewContentDeskAlignStyle}
+			${containerDeskBorderStyle}
+			${containerDeskBorderRadius}
+			${containerBoxShadow}
+			${containerDeskBGStyle}
+            ${containerDeskPadding}
+		}
+
         .${uniqueId}.wp-block-zolo-review-carousel .zolo-star-rating {
             ${ratingIconDeskAlignStyle}
         }
@@ -773,6 +792,16 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-review-carousel {
 			${mobCarouselGap}
 		}
+
+        .${uniqueId}.wp-block-zolo-review-carousel .zolo-item {
+			${reviewContentDeskAlignStyle}
+			${containerDeskBorderStyle}
+			${containerDeskBorderRadius}
+			${containerBoxShadow}
+			${containerDeskBGStyle}
+            ${containerDeskPadding}
+		}
+
         .${uniqueId}.wp-block-zolo-review-carousel .zolo-star-rating {
             ${ratingIconDeskAlignStyle}
         }
@@ -858,9 +887,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.reviewCarousel.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.reviewCarousel.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.reviewCarousel.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

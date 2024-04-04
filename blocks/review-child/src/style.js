@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -308,7 +309,7 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-child .zolo-item {
+		.${uniqueId}.wp-block-zolo-review-child.zolo-block .zolo-item {
 			${reviewContentDeskAlignStyle}
 			${containerDeskBorderStyle}
 			${containerDeskBorderRadius}
@@ -320,14 +321,14 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-review-child.style-2 .zolo-info-wrap {
 			backdrop-filter: blur(${blurBgOpacity}px);
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-star-rating {
 			${ratingIconDeskAlignStyle}
 		}
-        .${uniqueId}.wp-block-zolo-review-child .zolo-image-wrap {
+        .${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap {
             ${photoDeskWidth}
             ${photoDeskHeight}
         }
-		.${uniqueId}.wp-block-zolo-review-child .zolo-image-wrap .zolo-img {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap .zolo-img {
 			${photoDeskBorderStyle}
 			${photoDeskBorderRadius}
 			${photoBoxShadow}
@@ -336,37 +337,37 @@ const Style = ({ props }) => {
 			${photoDeskBGStyle}
             ${objectFit ? `object-fit: ${objectFit};` : ''}
 		}
-        .${uniqueId}.wp-block-zolo-review-child .zolo-review-meta-content .zolo-name {
+        .${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-name {
 			${nameTypoDesk}
 			${nameDeskMargin}
 			color: ${addReviewerWebsiteLink ? nameLinkColor : nameColor};
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-review-meta-content .zolo-name:hover {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-name:hover {
 			color: ${addReviewerWebsiteLink ? nameHoverColor : nameColor};
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-review-meta-content .zolo-designation {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-designation {
 			${designationTypoDesk}
 			${designationDeskMargin}
 			${designationColor ? `color: ${designationColor};` : ''}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-desc {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-meta-content .zolo-desc {
 			${testimonialMessageTypoDesk}
 			${testimonialMessageDeskMargin}
 			${testimonialMessageColor ? `color: ${testimonialMessageColor};` : ''}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-star-rating svg {
 			${ratingIconWidthDesk}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-star-rating svg {
 			${activeRatingColor ? `fill: ${activeRatingColor};` : ''}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg.empty-star {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-star-rating svg.empty-star {
 			${inactiveRatingColor ? `fill: ${inactiveRatingColor};` : ''}
 		}
 	`;
 
     const tabletAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-child .zolo-item {
+		.${uniqueId}.wp-block-zolo-review-child.zolo-block .zolo-item {
 			${reviewContentTabAlignStyle}
 			${containerTabBorderStyle}
 			${containerTabBorderRadius}
@@ -374,39 +375,39 @@ const Style = ({ props }) => {
             ${containerTabPadding}
 		}
       
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-star-rating {
 			${ratingIconTabAlignStyle}
 		}
-        .${uniqueId}.wp-block-zolo-review-child .zolo-image-wrap {
+        .${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap {
             ${photoTabWidth}
             ${photoTabHeight}
         }
-		.${uniqueId}.wp-block-zolo-review-child .zolo-image-wrap .zolo-img {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap .zolo-img {
 			${photoTabBorderStyle}
 			${photoTabBorderRadius}
 			${photoTabMargin}
 			${photoTabPadding}
 			${photoTabBGStyle}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-review-meta-content .zolo-name {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-name {
 			${nameTypoTab}
 			${nameTabMargin}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-review-meta-content .zolo-designation {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-designation {
 			${designationTypoTab}
 			${designationTabMargin}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-desc {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-meta-content .zolo-desc {
 			${testimonialMessageTypoTab}
 			${testimonialMessageTabMargin}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-star-rating svg {
 			${ratingIconWidthTab}
 		}
 	`;
 
     const mobileAllStyle = `
-		.${uniqueId}.wp-block-zolo-review-child .zolo-item {
+		.${uniqueId}.wp-block-zolo-review-child.zolo-block .zolo-item {
 			${reviewContentMobAlignStyle}
 			${containerMobBorderStyle}
 			${containerMobBorderRadius}
@@ -414,33 +415,33 @@ const Style = ({ props }) => {
             ${containerMobPadding}
 		}
    
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-star-rating {
 			${ratingIconMobAlignStyle}
 		}
-        .${uniqueId}.wp-block-zolo-review-child .zolo-image-wrap {
+        .${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap {
             ${photoMobWidth}
             ${photoMobHeight}
         }
-		.${uniqueId}.wp-block-zolo-review-child .zolo-image-wrap .zolo-img {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-image-wrap .zolo-img {
 			${photoMobBorderStyle}
 			${photoMobBorderRadius}
 			${photoMobMargin}
 			${photoMobPadding}
 			${photoMobBGStyle}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-review-meta-content .zolo-name {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-name {
 			${nameTypoMob}
 			${nameMobMargin}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-review-meta-content .zolo-designation {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-designation {
 			${designationTypoMob}
 			${designationMobMargin}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-meta-content .zolo-desc {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-meta-content .zolo-desc {
 			${testimonialMessageTypoMob}
 			${testimonialMessageMobMargin}
 		}
-		.${uniqueId}.wp-block-zolo-review-child .zolo-star-rating svg {
+		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-star-rating svg {
 			${ratingIconWidthMob}
 		}
 	`;
@@ -450,9 +451,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.reviewChild.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.reviewChild.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.reviewChild.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

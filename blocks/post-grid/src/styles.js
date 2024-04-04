@@ -1,3 +1,5 @@
+import { applyFilters } from '@wordpress/hooks';
+
 import {
     GRID_COLUMNS,
     COLUMNS_GAP,
@@ -885,9 +887,9 @@ function Style({ props }) {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.postGrid.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.postGrid.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.postGrid.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

@@ -103,7 +103,7 @@ const attributes = {
         type: 'object',
         default: {
             id: '',
-            url: zoloPlaceholders.brand,
+            url: zoloPlaceholders?.zbBrand,
             alt: '',
         },
     },

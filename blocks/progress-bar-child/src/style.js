@@ -19,6 +19,7 @@ import {
     ITEM_BRADIUS,
 } from './constants';
 import { TITLE_TYPO, PROGRESS_VALUE } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
@@ -113,53 +114,53 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-       .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
+       .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
            ${typoDeskTitle}
            ${titleDeskMargin}
            ${titleColor && `color: ${titleColor}`}
        }
 
-       .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
+       .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
           ${valueDeskMargin}
           ${typoDeskValue}
           ${progressVColor && `color:${progressVColor}`}
        }
 
-      .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
+      .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
         ${progressDeskcolor}
         ${progressDeskHeight}
         ${itemDeskMargin}
       }
 
-      .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
+      .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
          ${progressBarDeskcolor}
          ${progressBarDeskRadius}
       }
 
-      .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar.active {
+      .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar.active {
         ${progressH && `width:${progressH}%`};
      }
 
     `;
 
     const tabletAllStyle = `
-    .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
+    .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
         ${typoTabTitle}
         ${titleTabMargin}
     }
 
-    .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
+    .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
         ${progressTabcolor}
         ${progressTabHeight}
         ${itemTabMargin}
     }
 
-    .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
+    .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
         ${valueTabMargin}
         ${typoTabValue}
     }
 
-    .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
+    .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
         ${progressBarTabcolor}
         ${progressBarTabRadius}
     }
@@ -167,23 +168,23 @@ const Style = ({ props }) => {
     `;
 
     const mobileAllStyle = `
-       .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
+       .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
            ${typoMobTitle}
            ${titleMobMargin}
        }
 
-       .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
+       .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
          ${progressMobcolor}
          ${progressMobHeight}
          ${itemMobMargin}
       }
 
-      .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
+      .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
         ${valueMobMargin}
         ${typoMobValue}
       }
 
-      .${uniqueId}.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
+      .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
         ${progressBarMobcolor}
         ${progressBarMobRadius}
       }
@@ -193,9 +194,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.progressBarChild.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.progressBarChild.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.progressBarChild.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

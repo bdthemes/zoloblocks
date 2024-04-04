@@ -1,12 +1,8 @@
 const {
     generateResRangeAttributies,
     generateBorderAttributies,
-    generateResCounterAttributies,
     generateDimensionAttributes,
-    generateBoxShadowAttributies,
     generateTypographyAttributes,
-    generateGapAttributes,
-    generateResAlignmentAttributies,
     generateNormalBGAttributes,
 } = window.zoloModule;
 
@@ -26,6 +22,7 @@ import {
     ARROW_BTN_RADIUS,
     ARROW_BTN_BG,
     ARROW_SIZE,
+    COMPARISON_HEIGHT,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -79,60 +76,34 @@ const attributes = {
     ...generateDimensionAttributes(ARROW_BTN_RADIUS),
     ...generateNormalBGAttributes(ARROW_BTN_BG),
     ...generateResRangeAttributies(ARROW_SIZE),
-
+    // comparison height
+    ...generateResRangeAttributies(COMPARISON_HEIGHT),
     beforeImage: {
         type: 'object',
     },
-
     afterImage: {
         type: 'object',
     },
-    showLabels: {
-        type: 'boolean',
-        default: false,
-    },
-
-    disableslide: {
-        type: 'boolean',
-        default: false,
-    },
-    handleDraggable: {
-        type: 'boolean',
-        default: false,
-    },
-    initialPosition: {
-        type: 'number',
-        default: 50,
-    },
-    slidePositon: {
-        type: 'boolean',
-        default: false,
-    },
-    swipeMode: {
-        type: 'boolean',
-        default: false,
-    },
-    beforeLabel: {
-        type: 'string',
-        default: 'before',
+    comparisonOptions: {
+        type: 'object',
+        default: {
+            showLabels: false,
+            disableslide: false,
+            handleDraggable: false,
+            initialPosition: 50,
+            slidePositon: 'horizontal_direction',
+            slideOnHover: false,
+            beforeLabel: 'before',
+            afterLabel: 'after',
+            labelPositons: 'v_center',
+            HorizontalPosition: 'h_center',
+        },
     },
     beforeColor: {
         type: 'string',
     },
-    afterLabel: {
-        type: 'string',
-        default: 'after',
-    },
     afterColor: {
         type: 'string',
-    },
-    labelPositons: {
-        type: 'string',
-        default: 'center',
-    },
-    HorizontalPosition: {
-        type: 'string',
-        default: 'center',
     },
     arrowbtnColor: {
         type: 'string',

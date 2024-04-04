@@ -64,7 +64,7 @@ const Save = ({ attributes }) => {
                                 {socialProfiles &&
                                     socialProfiles.map((profile, index) => {
                                         return (
-                                            <a
+                                            <a className='zolo-social-link'
                                                 href={profile.link && profile.link.url}
                                                 key={index}
                                                 rel={profile.link && profile.link.openInNewTab && 'noreferer noopener'}
@@ -80,7 +80,7 @@ const Save = ({ attributes }) => {
 
                         {addDetailPageLink && (
                             <div className="zolo-link-btn">
-                                <a
+                                <a className='zolo-external-link'
                                     href={memberDetailPageLink && memberDetailPageLink.url}
                                     rel={memberDetailPageLink && memberDetailPageLink.openInNewTab && 'noreferer noopener'}
                                     target={memberDetailPageLink && memberDetailPageLink.openInNewTab && '_blank'}

@@ -2,33 +2,27 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
  */
-const { generateDimensionStyle, generateResAlignmentStyle, generateTypographyStyles, generateResRangeStyle, GlobalStyleHanlder } =
-    window.zoloModule;
+const {
+    generateDimensionStyle,
+    generateBorderStyle,
+    generateResAlignmentStyle,
+    generateTypographyStyles,
+    generateResRangeStyle,
+    generateNormalBGControlStyles,
+    GlobalStyleHanlder,
+} = window.zoloModule;
 
 import { FIELD_TYPO, LABEL_TYPO } from './constants/typoPrefixConstant';
 import { LABEL_MARGIN, FIELD_PADDING, FIELD_BG, FIELD_BORDER, FIELD_BRADIUS, ICON_SIZE } from './constants';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const {
-        uniqueId,
-        showLabel,
-        label,
-        labelColor,
-        textColor,
-        placeholder,
-        placeholderColor,
-        showIcon,
-        icon,
-        iconColor,
-        isRequired,
-        showRequiredSymbol,
-        requiredColor,
-    } = attributes;
+    const { uniqueId, showLabel, labelColor, textColor, placeholderColor, iconColor, showRequiredSymbol, requiredColor } = attributes;
 
     // label
     const {
@@ -51,6 +45,67 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // Field
+    const {
+        typoStylesDesktop: fieldTypoDesk,
+        typoStylesTab: fieldTypoTab,
+        typoStylesMobile: fieldTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: FIELD_TYPO,
+        defaultFontSize: '',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: fieldBorderStyles,
+        tabBorderStyle: fieldBorderStylesTab,
+        mobBorderStyle: fieldBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: FIELD_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: fieldBRDesktop,
+        dimensionStylesTab: fieldBRTab,
+        dimensionStylesMobile: fieldBRMob,
+    } = generateDimensionStyle({
+        controlName: FIELD_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: fieldPaddingDesktop,
+        dimensionStylesTab: fieldPaddingTab,
+        dimensionStylesMobile: fieldPaddingMob,
+    } = generateDimensionStyle({
+        controlName: FIELD_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: fieldBGStyle,
+        backgroundStylesTab: fieldTabBGStyle,
+        backgroundStylesMobile: fieldMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: FIELD_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // Icon
+    const {
+        desktopRangeStyle: iconSize,
+        tabRangeStyle: iconTabSize,
+        mobRangeStyle: iconMobSize,
+    } = generateResRangeStyle({
+        controlName: ICON_SIZE,
+        property: 'font-size',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -58,17 +113,17 @@ const Style = ({ props }) => {
         ${
             showLabel
                 ? `
-            .${uniqueId} .zolo-label-wrapper {
+            .${uniqueId}.wp-block-zolo-text-field .zolo-label-wrapper {
                 ${labelMarginDesk}
             }
-            .${uniqueId} .zolo-label {
+            .${uniqueId}.wp-block-zolo-text-field .zolo-label {
                 ${labelTypoDesk}
                 color: ${labelColor};
             }
             ${
                 showRequiredSymbol
                     ? `
-                .${uniqueId} .zolo-required {
+                .${uniqueId}.wp-block-zolo-text-field .zolo-required {
                     color: ${requiredColor};
                 }
             `
@@ -77,14 +132,76 @@ const Style = ({ props }) => {
         `
                 : ''
         }
+        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item input {
+            ${textColor ? `color: ${textColor};` : ''}
+            ${fieldTypoDesk}
+            ${fieldBorderStyles}
+            ${fieldBRDesktop}
+            ${fieldPaddingDesktop}
+            ${fieldBGStyle}
+        }
+        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item input::placeholder {
+            ${placeholderColor ? `color: ${placeholderColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item .zolo-input-icon svg {
+            ${iconSize}
+            ${iconColor ? `fill: ${iconColor};` : ''}
+        }
     `;
 
     const tabletAllStyle = `
-        
+        ${
+            showLabel
+                ? `
+            .${uniqueId}.wp-block-zolo-text-field .zolo-label-wrapper {
+                ${labelMarginTab}
+            }
+            .${uniqueId}.wp-block-zolo-text-field .zolo-label {
+                ${labelTypoTab}
+            }
+        `
+                : ''
+        }
+
+        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item input {
+            ${fieldTypoTab}
+            ${fieldBorderStylesTab}
+            ${fieldBRTab}
+            ${fieldPaddingTab}
+            ${fieldTabBGStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item .zolo-input-icon svg {
+            ${iconTabSize}
+        }
     `;
 
     const mobileAllStyle = `
+        ${
+            showLabel
+                ? `
+            .${uniqueId}.wp-block-zolo-text-field .zolo-label-wrapper {
+                ${labelMarginMob}
+            }
+            .${uniqueId}.wp-block-zolo-text-field .zolo-label {
+                ${labelTypoMob}
+            }
+        `
+                : ''
+        }
         
+        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item input {
+            ${fieldTypoMob}
+            ${fieldBorderStylesMob}
+            ${fieldBRMob}
+            ${fieldPaddingMob}
+            ${fieldMobBGStyle}
+        }
+
+        .${uniqueId}.wp-block-zolo-text-field .zolo-field-input-item .zolo-input-icon svg {
+            ${iconMobSize}
+        }
     `;
 
     return (
@@ -92,9 +209,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.textField.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.textField.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.textField.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );

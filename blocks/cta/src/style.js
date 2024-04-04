@@ -43,6 +43,7 @@ import {
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, BUTTON_S_TYPOGRAPHY, TITLE_TYPO, DESC_TYPO } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
 
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
@@ -508,9 +509,9 @@ export default function Style({ props }) {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={desktopAllStyle}
-                tabAllStyle={tabletAllStyle}
-                mobileAllStyle={mobileAllStyle}
+                desktopAllStyle={applyFilters('zolo.cta.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.cta.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.cta.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );
