@@ -11,6 +11,7 @@ const {
     AdvancedOptions,
     ZoloPanelBody,
     TabPanelControl,
+    ResRangeControl,
 } = window.zoloModule;
 import Sortable from './sortable';
 
@@ -24,6 +25,7 @@ import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 
 import {
+    ITEM_GAP,
     BUSINESS_ITEM_BG,
     BUSINESS_ITEM_ODD_BG,
     BUSINESS_ITEM_RADIUS,
@@ -119,6 +121,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+                            <ResRangeControl label={__('Gap', 'zolo-blocks')} controlName={ITEM_GAP} requiredProps={requiredProps} />
                             {preset == 'zolo-biz-hours-style-1' ? (
                                 <NormalBGControl
                                     requiredProps={requiredProps}

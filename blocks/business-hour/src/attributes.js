@@ -1,7 +1,15 @@
-const { generateBorderAttributies, generateDimensionAttributes, generateTypographyAttributes, generateNormalBGAttributes } =
-    window.zoloModule;
+const {
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateTypographyAttributes,
+    generateNormalBGAttributes,
+    generateResRangeAttributies,
+} = window.zoloModule;
 
 import {
+    //item gap
+    ITEM_GAP,
+    //business
     BUSINESS_ITEM_BG,
     BUSINESS_ITEM_ODD_BG,
     BUSINESS_ITEM_RADIUS,
@@ -54,6 +62,7 @@ const attributes = {
             responsiveControls: true,
         },
     },
+    ...generateResRangeAttributies(ITEM_GAP),
     ...generateNormalBGAttributes(BUSINESS_ITEM_BG),
     ...generateNormalBGAttributes(BUSINESS_ITEM_ODD_BG),
     ...generateDimensionAttributes(BUSINESS_ITEM_RADIUS),

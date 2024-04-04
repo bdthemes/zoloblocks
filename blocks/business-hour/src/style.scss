@@ -4,18 +4,19 @@
     flex-direction: column;
     gap: 20px;
 
-    .zolo-biz-hours-item {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 15px;
-    }
+    .zolo-biz-hours-item,
     .zolo-biz-hours-item-closed {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
         gap: 15px;
     }
+    // .zolo-biz-hours-item-closed {
+    //     display: flex;
+    //     align-items: flex-start;
+    //     justify-content: space-between;
+    //     gap: 15px;
+    // }
 
     .zolo-biz-time-wrap {
         display: flex;

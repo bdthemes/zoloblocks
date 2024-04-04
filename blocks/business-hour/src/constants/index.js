@@ -5,6 +5,7 @@ import { __ } from '@wordpress/i18n';
 
 // Block Prefix
 export const BLOCK_PREFIX = 'businessHour';
+export const ITEM_GAP = 'itemGap';
 //business item working Day
 export const BUSINESS_ITEM_BG = 'businessHourBG';
 export const BUSINESS_ITEM_ODD_BG = 'businessHourOddBg';
@@ -49,7 +50,7 @@ export const ITEM_OPTION = [
     { label: 'Closed Item', value: 'hover' },
 ];
 export const DAYS_OPTION = [
-    { label: 'Working Days', value: 'normal' },
+    { label: 'Working', value: 'normal' },
     { label: 'Closed', value: 'hover' },
 ];
 

@@ -6,10 +6,17 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { generateBorderStyle, generateDimensionStyle, generateTypographyStyles, GlobalStyleHanlder, generateNormalBGControlStyles } =
-    window.zoloModule;
+const {
+    generateBorderStyle,
+    generateDimensionStyle,
+    generateTypographyStyles,
+    GlobalStyleHanlder,
+    generateResRangeStyle,
+    generateNormalBGControlStyles,
+} = window.zoloModule;
 
 import {
+    ITEM_GAP,
     BUSINESS_ITEM_BG,
     BUSINESS_ITEM_ODD_BG,
     BUSINESS_ITEM_RADIUS,
@@ -40,8 +47,18 @@ const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const { uniqueId, dayColor, CloseddayColor, timeColor, timeclosedColor } = attributes;
 
-    //item
+    //item gap
+    const {
+        desktopRangeStyle: desktopItemGap,
+        tabRangeStyle: tabItemGap,
+        mobRangeStyle: mobItemGap,
+    } = generateResRangeStyle({
+        controlName: ITEM_GAP,
+        property: 'gap',
+        attributes,
+    });
 
+    //item
     const {
         backgroundStylesDesktop: DeskItemBg,
         backgroundStylesTab: TabItemBg,
@@ -224,7 +241,9 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        
+    .wp-block-zolo-business-hour.${uniqueId} {
+        ${desktopItemGap}
+    }
     .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item,.wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item-closed{
         ${DeskItemBg}
         ${DesktopItemRadius}
@@ -274,6 +293,9 @@ const Style = ({ props }) => {
   	`;
 
     const tabletAllStyle = `
+    .wp-block-zolo-business-hour.${uniqueId} {
+        ${tabItemGap}
+    }
     .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item,.wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item-closed{
         ${TabItemBg}
         ${TabItemRadius}
@@ -317,6 +339,9 @@ const Style = ({ props }) => {
 	`;
 
     const mobileAllStyle = `
+     .wp-block-zolo-business-hour.${uniqueId} {
+        ${mobItemGap}
+    }
     .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item,.wp-block-zolo-business-hour.${uniqueId} .zolo-biz-hours-item-closed{
         ${MobItemBg}
         ${MobItemRadius}
