@@ -54,6 +54,6 @@ export const DAYS_OPTION = [
 ];
 
 export const TIME_OPTION = [
-    { label: 'Working Times', value: 'normal' },
+    { label: 'Working', value: 'normal' },
     { label: 'Closed', value: 'hover' },
 ];

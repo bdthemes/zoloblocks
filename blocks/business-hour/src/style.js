@@ -259,6 +259,9 @@ const Style = ({ props }) => {
        ${DesktopTimesPadding}
        ${timeColor && `color:${timeColor}`}
     }
+    .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-time-separator{
+        ${timeColor && `color:${timeColor}`}
+    }
 
     .wp-block-zolo-business-hour.${uniqueId} .zolo-business-closed-time{
         ${DeskCTimesBg}
