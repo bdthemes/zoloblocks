@@ -252,7 +252,7 @@ const Style = ({ props }) => {
         ${DesktopItemPadding}
     }
 
-    .wp-block-zolo-business-hour.${uniqueId}.zolo-biz-hours-style-2 .zolo-biz-hours-item:nth-of-type(odd){
+    .wp-block-zolo-business-hour.${uniqueId}.zolo-biz-hours-style-2 .zolo-biz-hours-item:nth-of-type(odd),.wp-block-zolo-business-hour.${uniqueId}.zolo-biz-hours-style-2 .zolo-biz-hours-item-closed:nth-of-type(odd):nth-of-type(odd){
         ${DeskItemBgOdd} 
     }
 
@@ -306,7 +306,7 @@ const Style = ({ props }) => {
 
 
 
-    .wp-block-zolo-business-hour.${uniqueId}.zolo-biz-hours-style-2 .zolo-biz-hours-item:nth-of-type(odd){
+    .wp-block-zolo-business-hour.${uniqueId}.zolo-biz-hours-style-2 .zolo-biz-hours-item:nth-of-type(odd),.wp-block-zolo-business-hour.${uniqueId}.zolo-biz-hours-style-2 .zolo-biz-hours-item-closed:nth-of-type(odd):nth-of-type(odd){
         ${TabItemBgOdd} 
     }
 
@@ -351,7 +351,7 @@ const Style = ({ props }) => {
     }
  
 
-    .wp-block-zolo-business-hour.${uniqueId}.zolo-biz-hours-style-2 .zolo-biz-hours-item:nth-of-type(odd){
+    .wp-block-zolo-business-hour.${uniqueId}.zolo-biz-hours-style-2 .zolo-biz-hours-item:nth-of-type(odd),.wp-block-zolo-business-hour.${uniqueId}.zolo-biz-hours-style-2 .zolo-biz-hours-item-closed:nth-of-type(odd):nth-of-type(odd){
         ${MobItemBgOdd} 
     }
 

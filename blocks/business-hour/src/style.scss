@@ -11,12 +11,7 @@
         justify-content: space-between;
         gap: 15px;
     }
-    // .zolo-biz-hours-item-closed {
-    //     display: flex;
-    //     align-items: flex-start;
-    //     justify-content: space-between;
-    //     gap: 15px;
-    // }
+ 
 
     .zolo-biz-time-wrap {
         display: flex;
@@ -31,6 +26,9 @@
     }
 
     .zolo-biz-day-closed {
+        color: red;
+    }
+    .zolo-business-closed {
         color: red;
     }
 
