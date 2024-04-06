@@ -1,5 +1,5 @@
 .wp-block-zolo-business-hour {
-    margin: 40px 0;
+    // margin: 40px 0;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -41,10 +41,7 @@
         color: red;
     }
 
-    // .zolo-biz-closed-item .zolo-biz-day,
-    // .zolo-biz-closed-text {
-    //     color: #f00;
-    // }
+ 
 
     .zolo-biz-closed-text {
         font-size: clamp(1rem, 1.5vw, 1.125rem);
@@ -66,12 +63,10 @@
     &.zolo-biz-hours-style-2 .zolo-biz-hours-item {
         padding: 20px 15px;
         border-radius: 4px;
-        margin: 5px;
     }
     &.zolo-biz-hours-style-2 .zolo-biz-hours-item-closed {
         padding: 20px 15px;
         border-radius: 4px;
-        margin: 5px;
         color: red;
     }
 
