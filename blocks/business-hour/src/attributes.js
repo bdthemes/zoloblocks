@@ -132,7 +132,7 @@ const attributes = {
             {
                 id: 5,
                 name: ' Wednesday',
-                startDate: '09:00 AM',
+                startDate: '9:00 AM',
                 endDate: '5:00 PM',
                 toggleworkday: true,
                 closedDay: 'closed',
