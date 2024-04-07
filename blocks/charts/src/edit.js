@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 const { handleUniqueId, classArrayToStr, generateResRangeStyle } =
   window.zoloModule;
 
-import { BLOCK_PREFIX, CHART_HEIGHT } from "./constants";
+import { BLOCK_PREFIX } from "./constants";
 import Inspector from "./inspector";
 import Style from "./style";
 export default function Edit(props) {
@@ -50,19 +50,9 @@ export default function Edit(props) {
     showZoomOut,
     showPanel,
     showReset,
-
+    chartHeight,
+    pieChartLabels
   } = attributes;
-
-      const {
-        desktopRangeStyle: chartDeskHeight,
-        tabRangeStyle: chartTabHeight,
-        mobRangeStyle: chartMobHeight,
-      } = generateResRangeStyle({
-        controlName: CHART_HEIGHT,
-        noProperty: true,
-        attributes,
-      });
-
 
   // chart options
   const getChartOptions = (
@@ -77,7 +67,6 @@ export default function Edit(props) {
     subTitleObject,
     legendObject,
     tooltipObject,
-    gridObject,
     uid = "",
   ) => {
     return {
@@ -190,9 +179,9 @@ export default function Edit(props) {
         showZoomOut,
         showPanel,
         showReset,
-
       ),
       series: barChartData.series,
+      labels: pieChartData.labels,
     };
 
     const newPieChartData = {
@@ -213,6 +202,8 @@ export default function Edit(props) {
         uid,
       ),
       series: pieChartData.series,
+      labels: pieChartData.labels,
+      ...pieChartData,
     };
     setAttributes({
       barChartData: newChartOptions,
@@ -250,6 +241,8 @@ export default function Edit(props) {
     showPanel,
     showReset,
   ]);
+
+  console.log("attributes", pieChartData);
 
   useEffect(() => {
     handleUniqueId({
@@ -292,7 +285,7 @@ export default function Edit(props) {
       />
     );
   }
-
+console.log("pieChartDataOptions", pieChartData.options);
   return (
     <>
       {isSelected && (
@@ -305,7 +298,7 @@ export default function Edit(props) {
           series={renderSeries()}
           type={chartType}
           width={"100%"}
-          height={chartDeskHeight.replace(";", "") || 380}
+          height={chartHeight}
         />
       </div>
     </>

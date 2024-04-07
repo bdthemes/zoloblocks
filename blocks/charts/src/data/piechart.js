@@ -17,21 +17,8 @@ const PieChartAttributes = {
         },
       },
     },
-    labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 200,
-          },
-          legend: {
-            position: "bottom",
-          },
-        },
-      },
-    ],
   },
+  labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
 };
 
 export default PieChartAttributes;

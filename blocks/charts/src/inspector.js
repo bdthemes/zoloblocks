@@ -39,13 +39,14 @@ import {
   POSITIONS,
   THEME_TYPES,
 } from "./constants";
-import { CHART_HEIGHT, CHART_BG_COLOR, CHART_BORDER, CHART_BORDER_RADIUS, CHART_MARGIN, CHART_PADDING, CHART_BOX_SHADOW} from "./constants";
+import { CHART_BG_COLOR, CHART_BORDER, CHART_BORDER_RADIUS, CHART_MARGIN, CHART_PADDING, CHART_BOX_SHADOW} from "./constants";
 import { DEFAULT_ALIGNS } from "../../../src/global/constants";
 function Inspector(props) {
   const { attributes, setAttributes } = props;
   const {
     resMode,
     chartType,
+    chartHeight,
     sourceType,
     uploadStatus,
     chartInputData,
@@ -64,6 +65,7 @@ function Inspector(props) {
     chartBackground,
     pieChartLength,
     barChartLength,
+    pieChartLabels,
     xAxisColor,
     yAxisColor,
     showToolbar,
@@ -136,9 +138,11 @@ function Inspector(props) {
           labels: labels,
         },
         series: pieSeries,
+        labels: labels,
       },
       pieChartLength: pieSeries.length,
       barChartLength: series.length,
+      pieChartLabels: labels,
     });
   }
 
@@ -198,13 +202,24 @@ function Inspector(props) {
                   setAttributes({ chartType: v });
                 }}
               />
-              <ResRangeControl
+              {/* <ResRangeControl
                 label={__("Height", "zolo-blocks")}
                 controlName={CHART_HEIGHT}
                 requiredProps={requiredProps}
                 min={200}
                 max={1000}
                 units={[{ label: __("px", "zolo-blocks"), value: "px" }]}
+              /> */}
+              <SimpleRangeControl
+                label={__("Height", "zolo-blocks")}
+                value={chartHeight}
+                onChange={(height) =>
+                  setAttributes({
+                    chartHeight: height,
+                  })
+                }
+                min={200}
+                max={1000}
               />
             </ZoloPanelBody>
             <ZoloPanelBody

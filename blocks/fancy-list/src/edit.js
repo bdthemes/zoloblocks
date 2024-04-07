@@ -37,7 +37,6 @@ export default function Edit(props) {
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), fancyDirection),
     });
 
-    console.log('attributes', fancyDirection);
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.cta} alt={__('Call to Action Preview', 'zolo-blocks')} />;

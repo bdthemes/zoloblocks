@@ -33,7 +33,6 @@ const CustomCSSControl = ({ attributes, setAttributes }) => {
 
     const zoloContainer = document.querySelector(`.${uniqueId}`);
 
-    console.log('zoloContainer', zoloContainer);
 
     const blockAvailableClasses = useMemo(() => {
         if (!zoloContainer) return [];

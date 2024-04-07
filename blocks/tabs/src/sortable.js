@@ -23,7 +23,6 @@ const Sortable = ({
     setActiveTabId,
     addNewTabStatus,
 }) => {
-    // console.log('activeTabId', activeTabId);
 
     const deepCloneTitles = cloneDeep(tabTitles);
 

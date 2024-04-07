@@ -190,7 +190,6 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    console.log('ptIconWidth', ptIconWidth);
 
     /**
      * All Style Combination

@@ -7,6 +7,7 @@ const Save = ({ attributes }) => {
   const {
     uniqueId,
     parentClasses,
+    chartHeight,
     zoloId,
     chartType,
     showTitle,
@@ -43,6 +44,7 @@ const Save = ({ attributes }) => {
   const chartOptions = {
     chartType,
     showTitle,
+    chartHeight,
     showSubTitle,
     showLegend,
     showTooltip,

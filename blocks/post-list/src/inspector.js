@@ -172,7 +172,6 @@ function Inspector(props) {
                 break;
         }
     };
-console.log(preset);
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -245,14 +244,14 @@ console.log(preset);
                                         })
                                     }
                                 />)}
-                          
+
                             <ResAlignmentControl
                                 label={__('Alignment', 'zolo-blocks')}
                                 controlName={CONTENT_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
-                            
+
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
                             <SelectControl
@@ -546,7 +545,7 @@ console.log(preset);
                                     }
                                 />
                         </ZoloPanelBody>
-                    
+
 
                         {showExcerpt && (
                             <ZoloPanelBody title={__('Excerpt', 'zolo-blocks')} stylePanel={true} panelProps={props}>

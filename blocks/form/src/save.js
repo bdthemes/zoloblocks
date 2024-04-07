@@ -10,7 +10,6 @@ const Save = ({ attributes }) => {
         className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
     });
 
-    console.log('reCaptcha', reCaptcha);
 
     return (
         <div
