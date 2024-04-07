@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         chartType,
         showTitle,
         showSubTitle,
+        chartHeight,
         showLegend,
         showTooltip,
         showGrid,
@@ -124,8 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
             },
           },
         },
+        lables: pieChartData.labels,
       };
-
       render(
         <ApexCharts
           options={newChartOptions}
@@ -136,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           type={chartType}
           width={"100%"}
-          height={320}
+          height={chartHeight}
         />,
         item,
       );

@@ -80,7 +80,6 @@ function zoloCountdownTimer(
         }
 
         if (!options.showDays) {
-            console.log(days);
             hours += days * 24;
         }
 

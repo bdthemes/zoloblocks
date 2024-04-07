@@ -75,6 +75,10 @@ const attributes = {
     type: "boolean",
     default: false,
   },
+  chartHeight:{
+    type: "number",
+    default: 300,
+  },
   barChartData: {
     type: "object",
     default: barChartAttributes,
@@ -245,6 +249,10 @@ const attributes = {
   barChartLength: {
     type: "number",
     default: 3,
+  },
+  pieChartLabels: {
+    type: "array",
+    default: [],
   },
   pieChartLength: {
     type: "number",
