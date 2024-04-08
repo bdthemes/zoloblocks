@@ -58,7 +58,7 @@ import { DAYS_TYPO, TIMES_TYPO, CLOSED_DAYS_TYPO, CLOSED_TIMES_TYPO } from './co
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, preset, businessList, dayColor, CloseddayColor, timeColor, timeclosedColor } = attributes;
+    const { resMode, preset, businessList, dayColor, CloseddayColor, timeColor, timeclosedColor,separatColor } = attributes;
 
     const requiredProps = {
         attributes,
@@ -253,6 +253,15 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
+                                         <ColorControl
+                                            label={__('Separator Color', 'zolo-blocks')}
+                                            color={separatColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    separatColor: value,
+                                                })
+                                            }
+                                        />
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={TIMES_BG}
@@ -290,6 +299,7 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
+                                        
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={CLOSED_TIMES_BG}
