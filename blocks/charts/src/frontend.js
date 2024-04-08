@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
             },
           },
         },
-        lables: pieChartData.labels,
+        // lables: pieChartData.labels,
       };
       render(
         <ApexCharts

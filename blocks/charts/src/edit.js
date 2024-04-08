@@ -181,7 +181,7 @@ export default function Edit(props) {
         showReset,
       ),
       series: barChartData.series,
-      labels: pieChartData.labels,
+      // labels: pieChartData.labels,
     };
 
     const newPieChartData = {
@@ -202,8 +202,6 @@ export default function Edit(props) {
         uid,
       ),
       series: pieChartData.series,
-      labels: pieChartData.labels,
-      ...pieChartData,
     };
     setAttributes({
       barChartData: newChartOptions,
@@ -242,7 +240,6 @@ export default function Edit(props) {
     showReset,
   ]);
 
-  console.log("attributes", pieChartData);
 
   useEffect(() => {
     handleUniqueId({
@@ -285,7 +282,6 @@ export default function Edit(props) {
       />
     );
   }
-console.log("pieChartDataOptions", pieChartData.options);
   return (
     <>
       {isSelected && (
