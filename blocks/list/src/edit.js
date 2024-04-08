@@ -20,7 +20,7 @@ import Style from './style';
 import { cloneDeep } from 'lodash';
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected } = props;
-    const { preview, uniqueId, preset, parentClasses, listProfiles, iconToggle, titleToggle, DscToggle, linkHoverIcon,globalIcon } = attributes;
+    const { preview, uniqueId, preset,layout, parentClasses, listProfiles, iconToggle, titleToggle, DscToggle, linkHoverIcon,globalIcon } = attributes;
 
     const deepCloneProfiles = cloneDeep(listProfiles);
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
