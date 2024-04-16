@@ -144,9 +144,9 @@ const attributes = {
       floating: false,
       offsetY: 8,
       offsetX: 0,
-      lebels: {
+      labels: {
         colors: undefined,
-        useSeriesColors: true,
+        useSeriesColors: false,
       },
     },
   },

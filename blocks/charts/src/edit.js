@@ -95,11 +95,9 @@ export default function Edit(props) {
         floating: legendObject.floating,
         offsetY: legendObject.offsetY,
         offsetX: legendObject.offsetX,
-        lebels: {
-          style: {
-            colors: "#f00",
-            useSeriesColors: legendObject.lebels.useSeriesColors,
-          },
+        labels: {
+          useSeriesColors: legendObject.labels.useSeriesColors,
+          colors: legendObject.labels.colors
         },
       },
       tooltip: {
