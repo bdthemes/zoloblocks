@@ -77,8 +77,10 @@ function Style({ props }) {
         catHoverColor,
         readMoreBgColor,
         readMoreColor,
+        readMoreIconColor,
         readMoreBgHoverColor,
         readMoreHoverColor,
+        readMoreIconHoverColor,
         namePrefixColor,
         nameColor,
         nameHoverColor,
@@ -612,6 +614,14 @@ function Style({ props }) {
         ${readMoreColor ? `color:${readMoreColor};` : ''}
         ${readMoreBgColor ? `background-color:${readMoreBgColor};` : ''}
       }
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-link-btn a svg{
+        ${readMoreIconColor ? `fill:${readMoreIconColor};` : ''}
+        ${readMoreIconColor ? `color:${readMoreIconColor};` : ''}
+      }
+      .${uniqueId}.zolo-post-grid-wrap .zolo-post-link-btn a:hover svg{
+        ${readMoreIconHoverColor ? `fill:${readMoreIconHoverColor};` : ''}
+        ${readMoreIconHoverColor ? `color:${readMoreIconHoverColor};` : ''}
+      }
 
       .${uniqueId}.zolo-post-grid-wrap .zolo-post-link-btn a:hover{
         ${readMoreHoverColor ? `color:${readMoreHoverColor};` : ''}
@@ -871,7 +881,7 @@ function Style({ props }) {
         ${pagBorderMob}
         ${pagBorderRadiusMob}
       }
-  
+
       .${uniqueId}.zolo-pagination-wrap .page-numbers {
         ${pagTypoMob}
         ${pagPaddingMob}
