@@ -43,56 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
         showReset,
       } = options;
 
-      const newChartOptions = {
+      const commonOptions = {
         dataLabels: { enabled: false },
         colors: pieChartColor,
-        // ...(showTitle && {
-        title: {
-          text: showTitle ? titleObject.text : undefined,
-          align: titleObject.align,
-          style: {
-            color: titleObject.style.color,
-            fontSize: titleObject.style.fontSize,
-          },
-        },
-        subtitle: {
-          text: showSubTitle ? subTitleObject.text : undefined,
-          align: subTitleObject.align,
-          style: {
-            color: subTitleObject.style.color,
-            fontSize: subTitleObject.style.fontSize,
-          },
-        },
-
-        legend: {
-          show: showLegend,
-          position: legendObject.position,
-          horizontalAlign: legendObject.horizontalAlign,
-          floating: legendObject.floating,
-          offsetY: legendObject.offsetY,
-          offsetX: legendObject.offsetX,
-          lebels: {
-            style: {
-              colors: "#f00",
-              useSeriesColors: legendObject.lebels.useSeriesColors,
-            },
-          },
-        },
-        tooltip: {
-          enabled: showTooltip,
-          shared: tooltipObject.shared,
-          followCursor: tooltipObject.followCursor,
-          intersect: tooltipObject.intersect,
-          inverseOrder: tooltipObject.inverseOrder,
-          hideEmptySeries: tooltipObject.hideEmptySeries,
-          fillSeriesColor: tooltipObject.fillSeriesColor,
-          theme: tooltipObject.theme,
-        },
-        grid: {
-          show: showGrid,
-          xaxis: { lines: { show: showGrid ? showGridY : false } },
-          yaxis: { lines: { show: showGrid ? showGridX : false } },
-        },
         chart: {
           id: `chart-${uid}`,
           background: "transparent",
@@ -109,6 +62,78 @@ document.addEventListener("DOMContentLoaded", () => {
             },
           },
         },
+        title: {
+          text: showTitle ? titleObject.text : undefined,
+          align: titleObject.align,
+          style: {
+            color: titleObject.style.color,
+            fontSize: titleObject.style.fontSize,
+          },
+        },
+        subtitle: {
+          text: showSubTitle ? subTitleObject.text : undefined,
+          align: subTitleObject.align,
+          style: {
+            color: subTitleObject.style.color,
+            fontSize: subTitleObject.style.fontSize,
+          },
+        },
+        legend: {
+          show: showLegend,
+          position: legendObject.position,
+          horizontalAlign: legendObject.horizontalAlign,
+          floating: legendObject.floating,
+          offsetY: legendObject.offsetY,
+          offsetX: legendObject.offsetX,
+          lebels: {
+            style: {
+              colors: "#f00",
+              useSeriesColors: legendObject.lebels.useSeriesColors,
+            },
+          },
+        },
+        responsive: [
+          {
+            breakpoint: 768,
+            options: {
+              chart: {
+                toolbar: {
+                  show: false,
+                },
+                height:350,
+              },
+            },
+          },
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                toolbar: {
+                  show: false,
+                },
+                height: 300,
+              },
+            },
+          },
+        ],
+        tooltip: {
+          enabled: showTooltip,
+          shared: tooltipObject.shared,
+          followCursor: tooltipObject.followCursor,
+          intersect: tooltipObject.intersect,
+          inverseOrder: tooltipObject.inverseOrder,
+          hideEmptySeries: tooltipObject.hideEmptySeries,
+          fillSeriesColor: tooltipObject.fillSeriesColor,
+          theme: tooltipObject.theme,
+        },
+        grid: {
+          show: showGrid,
+          xaxis: { lines: { show: showGrid ? showGridY : false } },
+          yaxis: { lines: { show: showGrid ? showGridX : false } },
+        },
+      };
+      const newChartOptions = {
+        ...commonOptions,
         xaxis: {
           labels: {
             style: {
@@ -125,11 +150,19 @@ document.addEventListener("DOMContentLoaded", () => {
             },
           },
         },
-        // lables: pieChartData.labels,
       };
+      const newPieChartOptions = {
+        ...commonOptions,
+        labels: pieChartData.labels,
+      };
+
       render(
         <ApexCharts
-          options={newChartOptions}
+          options={
+            chartType === "pie" || chartType === "donut"
+              ? newPieChartOptions
+              : newChartOptions
+          }
           series={
             chartType === "pie" || chartType === "donut"
               ? pieChartData.series
