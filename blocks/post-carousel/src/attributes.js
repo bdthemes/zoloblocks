@@ -218,10 +218,16 @@ const attributes = {
     readMoreColor: {
         type: 'string',
     },
+    readMoreIconColor: {
+        type: 'string',
+    },
     readMoreBgColor: {
         type: 'string',
     },
     readMoreHoverColor: {
+        type: 'string',
+    },
+    readMoreIconHoverColor: {
         type: 'string',
     },
     readMoreBgHoverColor: {

@@ -120,8 +120,10 @@ function Inspector(props) {
         readMoreIcon,
         readMoreBgColor,
         readMoreColor,
+        readMoreIconColor,
         readMoreBgHoverColor,
         readMoreHoverColor,
+        readMoreIconHoverColor,
         namePrefixColor,
         nameColor,
         nameHoverColor,
@@ -821,6 +823,15 @@ function Inspector(props) {
                                                 }
                                             />
                                             <ColorControl
+                                                label={__('Icon Color', 'zolo-blocks')}
+                                                color={readMoreIconColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        readMoreIconColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
                                                 label={__('Background', 'zolo-blocks')}
                                                 color={readMoreBgColor}
                                                 onChange={(value) =>
@@ -839,6 +850,15 @@ function Inspector(props) {
                                                 onChange={(value) =>
                                                     setAttributes({
                                                         readMoreHoverColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <ColorControl
+                                                label={__('Icon Color', 'zolo-blocks')}
+                                                color={readMoreIconHoverColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        readMoreIconHoverColor: value,
                                                     })
                                                 }
                                             />

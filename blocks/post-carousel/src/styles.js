@@ -88,8 +88,10 @@ function Style({ props }) {
         catHoverColor,
         readMoreBgColor,
         readMoreColor,
+        readMoreIconColor,
         readMoreBgHoverColor,
         readMoreHoverColor,
+        readMoreIconHoverColor,
         namePrefixColor,
         nameColor,
         nameHoverColor,
@@ -770,6 +772,14 @@ function Style({ props }) {
         ${readMoreBorderRadiusDesk}
         ${readMoreColor ? `color:${readMoreColor};` : ''}
         ${readMoreBgColor ? `background-color:${readMoreBgColor};` : ''}
+      }
+      .${uniqueId}.zolo-post-carousel .zolo-post-link-btn a svg{
+        ${readMoreIconColor ? `color:${readMoreIconColor};` : ''}
+        ${readMoreIconColor ? `fill:${readMoreIconColor};` : ''}
+      }
+      .${uniqueId}.zolo-post-carousel .zolo-post-link-btn a:hover svg{
+        ${readMoreIconHoverColor ? `color:${readMoreIconHoverColor};` : ''}
+        ${readMoreIconHoverColor ? `fill:${readMoreIconHoverColor};` : ''}
       }
 
       .${uniqueId}.zolo-post-carousel .zolo-post-link-btn a:hover{
