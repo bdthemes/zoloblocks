@@ -262,6 +262,14 @@ function Inspector(props) {
                   controlName={ITEM_BG}
                   noMainBGImg={false}
                 />
+                {preset === "style-2" && (
+                  <NormalBGControl
+                    label={__("Overlay", "zolo-blocks")}
+                    requiredProps={requiredProps}
+                    controlName={ITEM_OVERLAY}
+                    noMainBGImg={true}
+                  />
+                )}
                 <BoxShadowControl
                   controlName={ITEM_BOX_SHADOW}
                   requiredProps={requiredProps}
@@ -515,14 +523,6 @@ function Inspector(props) {
                                   separatorColor: color,
                                 })
                               }
-                            />
-                          )}
-                          {preset === "style-2" && (
-                            <NormalBGControl
-                              label={__("Overlay", "zolo-blocks")}
-                              requiredProps={requiredProps}
-                              controlName={ITEM_OVERLAY}
-                              noMainBGImg={true}
                             />
                           )}
 
