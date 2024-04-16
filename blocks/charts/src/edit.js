@@ -181,7 +181,6 @@ export default function Edit(props) {
         showReset,
       ),
       series: barChartData.series,
-      // labels: pieChartData.labels,
     };
 
     const newPieChartData = {
@@ -260,7 +259,12 @@ export default function Edit(props) {
 
   const renderOptions = () => {
     if (chartType === "pie" || chartType === "donut") {
-      return pieChartData.options;
+      const newOptions = {
+        ...pieChartData.options,
+        labels: pieChartData.labels,
+      };
+      return newOptions;
+
     } else {
       return barChartData.options;
     }
