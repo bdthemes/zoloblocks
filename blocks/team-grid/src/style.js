@@ -645,6 +645,9 @@ const Style = ({ props }) => {
 			${itemDeskMargin}
 			${itemBoxShadow}
 		}
+       .${uniqueId} .wp-block-zolo-team-child.style-2 .zolo-image-wrap:before{
+            ${itemDeskOverlay}
+        }
         .${uniqueId} {
 			${teamMemberContainerDeskPadding}image
 			${teamMemberContainerDeskMargin}
@@ -666,7 +669,7 @@ const Style = ({ props }) => {
 			${socialDeskAlignStyle}
 		}
 		.${uniqueId} .zolo-item .zolo-social-and-link-wrap {
-			${separatorColor ? `border-top-color: ${separatorColor};` : ''}
+			${separatorColor ? `border-top-color: ${separatorColor};` : ""}
             ${socialContainerDeskPadding}
             ${socialContainerDeskMargin}
 		}
@@ -692,16 +695,16 @@ const Style = ({ props }) => {
 		.${uniqueId} .zolo-name {
 			${nameTypoDesk}
 			${nameDeskMargin}
-            ${nameColor ? `color: ${nameColor};` : ''}
+            ${nameColor ? `color: ${nameColor};` : ""}
 		}
 
 		.${uniqueId} .zolo-designation {
-			${designationColor ? `color: ${designationColor};` : ''}
+			${designationColor ? `color: ${designationColor};` : ""}
 			${designationTypoDesk}
 			${designationDeskMargin}
 		}
 		.${uniqueId} .zolo-desc {
-			${shortBioColor && shortBioColor !== '' ? `color: ${shortBioColor};` : ''}
+			${shortBioColor && shortBioColor !== "" ? `color: ${shortBioColor};` : ""}
 			${shortBioTypoDesk}
 			${shortBioDeskMargin}
 		}
@@ -721,18 +724,18 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-team-grid .zolo-social-share svg{
 			${socialIconContainerHeightDesk}
 			${socialIconContainerWidthDesk}
-            ${iconColor ? `fill: ${iconColor};` : ''}
+            ${iconColor ? `fill: ${iconColor};` : ""}
         }
 
 		.${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:hover {
 			${socialIconHoverBoxShadow}
-			${iconHoverBorderColor ? `border-color: ${iconHoverBorderColor};` : ''}
+			${iconHoverBorderColor ? `border-color: ${iconHoverBorderColor};` : ""}
 			${iconsHoverDeskBG}
 		}
 
 
 		.${uniqueId}.wp-block-zolo-team-grid .zolo-social-share a:hover svg {
-			${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
+			${iconHoverColor ? `fill: ${iconHoverColor};` : ""}
 		}
 
 		.${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn a {
@@ -747,7 +750,7 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn svg {
 			${dplDeskSize}
             ${dplDeskHSize}
-            ${detailPageIconColor ? `fill: ${detailPageIconColor};` : ''}
+            ${detailPageIconColor ? `fill: ${detailPageIconColor};` : ""}
         }
 
 		.${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn:hover a{
@@ -755,7 +758,7 @@ const Style = ({ props }) => {
 		}
 
 		.${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn:hover svg{
-			${detailPageIconHoverColor ? `fill: ${detailPageIconHoverColor};` : ''}
+			${detailPageIconHoverColor ? `fill: ${detailPageIconHoverColor};` : ""}
 		}
     `;
     const tabletAllStyle = `
