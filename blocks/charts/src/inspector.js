@@ -44,7 +44,6 @@ import { CHART_BG_COLOR, CHART_BORDER, CHART_BORDER_RADIUS, CHART_MARGIN, CHART_
 import { DEFAULT_ALIGNS } from "../../../src/global/constants";
 function Inspector(props) {
   const { attributes, setAttributes } = props;
-  console.log("attributes", attributes);
   const {
     resMode,
     chartType,
