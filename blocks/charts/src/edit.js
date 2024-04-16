@@ -96,8 +96,8 @@ export default function Edit(props) {
         offsetY: legendObject.offsetY,
         offsetX: legendObject.offsetX,
         labels: {
-           colors: legendObject.labels.colors,
-          useSeriesColors: false,
+          useSeriesColors: legendObject.labels.useSeriesColors,
+          colors: legendObject.labels.colors
         },
       },
       tooltip: {

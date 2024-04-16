@@ -834,24 +834,45 @@ function Inspector(props) {
             {showLegend && (
               <>
                 <ZoloPanelBody
-                  title={__("Legend", "zolo-blocks")}
+                  title={__("Legend Color", "zolo-blocks")}
                   firstOpen={false}
                   panelProps={props}
                 >
-                  <ColorControl
-                    label={__("Legend Color", "zolo-blocks")}
-                    color={legendObject.labels.colors}
-                    onChange={(color) =>
+                  <ToggleControl
+                    label={__("useSeriesColors", "zolo-blocks")}
+                    checked={legendObject.labels.useSeriesColors}
+                    onChange={() =>
                       setAttributes({
                         legendObject: {
                           ...legendObject,
                           labels: {
-                            colors: color,
+                            useSeriesColors:
+                              !legendObject.labels.useSeriesColors,
                           },
                         },
                       })
                     }
                   />
+                  {
+                    // If condition
+                    !legendObject.labels.useSeriesColors && (
+                      <ColorControl
+                        label={__("Legend Color", "zolo-blocks")}
+                        color={legendObject.labels.colors}
+                        onChange={(color) =>
+                          setAttributes({
+                            legendObject: {
+                              ...legendObject,
+                              labels: {
+                                ...legendObject.labels,
+                                colors: color,
+                              },
+                            },
+                          })
+                        }
+                      />
+                    )
+                  }
                 </ZoloPanelBody>
               </>
             )}
