@@ -571,10 +571,12 @@ const Style = ({ props }) => {
             ${photoDeskSize}
 			${photoDeskBGStyle}
 			${photoDeskBorderStyle}
-			${photoDeskBorderRadius}
 			${photoDeskPadding}
 			${teamPhotoBoxShadow}
-          
+		}
+		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-image-wrap,
+		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-image-wrap img {
+			${photoDeskBorderRadius}
 		}
 		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-name {
 			${nameTypoDesk}
@@ -682,8 +684,12 @@ const Style = ({ props }) => {
             ${photoTabSize}
 			${photoTabBGStyle}
 			${photoTabBorderStyle}
-			${photoTabBorderRadius}
 			${photoTabPadding}
+		}
+
+        .${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-image-wrap,
+		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-image-wrap img {
+            ${photoTabBorderRadius}
 		}
 
 		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-name {
@@ -776,9 +782,13 @@ const Style = ({ props }) => {
             ${photoMobSize}
 			${photoMobBGStyle}
 			${photoMobBorderStyle}
-			${photoMobBorderRadius}
 			${photoMobPadding}
 		}
+		.zolo-block.wp-block-zolo-team-child.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-image-wrap,
+		.zolo-block.wp-block-zolo-team-child.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-image-wrap img {
+			${photoMobBorderRadius}
+		}
+
 		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-name {
 			${nameTypoMob}
 			${nameMobMargin}

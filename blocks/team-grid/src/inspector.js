@@ -128,7 +128,7 @@ function Inspector(props) {
                 break;
             case 'style-2':
                 setAttributes({
-                    showShortBio: true,
+                    showShortBio: false,
                     showSocialProfiles: true,
                     showDesignation: true,
                 });
