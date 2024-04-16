@@ -195,7 +195,7 @@ function Inspector(props) {
                   }
                 />
                 <ResAlignmentControl
-                  label={__("Alignmet", "zolo-blocks")}
+                  label={__("Alignment", "zolo-blocks")}
                   controlName={CONTENT_ALIGNMENT}
                   requiredProps={requiredProps}
                   alignOptions={TEXT_ALIGN_OPTIONS}

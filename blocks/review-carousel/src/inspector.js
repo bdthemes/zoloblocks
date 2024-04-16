@@ -391,7 +391,7 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('Item', 'zolo-blocks')} stylePanel={true} panelProps={props} firstOpen={true}>
                             <ResAlignmentControl
-                                label={__('Content Alignmet', 'zolo-blocks')}
+                                label={__('Content Alignment', 'zolo-blocks')}
                                 controlName={CONTENT_ALIGNMENT}
                                 requiredProps={requiredProps}
                                 alignOptions={DEFAULT_ALIGNS}
