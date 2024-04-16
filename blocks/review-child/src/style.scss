@@ -20,7 +20,7 @@
 
     // overflow: hidden;
     box-sizing: border-box;
-    height: 100%;
+    // height: 100%;
 
     a {
         transition: 0.2s;
@@ -104,6 +104,7 @@
 	*/
     &.default {
         overflow: visible;
+        padding-top: 35px;
         .zolo-review-img-meta-wrap {
             margin: var(--zolo-review-img-and-meta-wrap-margin);
         }
