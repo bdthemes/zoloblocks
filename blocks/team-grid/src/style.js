@@ -21,54 +21,55 @@ const {
 } = window.zoloModule;
 
 import {
-    GRID_COLUMNS,
-    GRID_GAP,
-    CONTENT_BG,
-    CONTENT_ALIGNMENT,
-    CONTENT_PADDING,
-    CONTENT_MARGIN,
-    CONTENT_BORDER,
-    CONTENT_BORDER_RADIUS,
-    CONTENT_BOX_SHADOW,
-    ICONS_BG,
-    ICONS_HOVER_BG,
-    ICONS_BORDER,
-    ICONS_BORDER_RADIUS,
-    ICONS_BOX_SHADOW,
-    ICONS_HOVER_BOX_SHADOW,
-    ICONS_PADDING,
-    ICONS_SIZE,
-    ICONS_SPACING,
-    ICONS_CONTAINER_PADDING,
-    ICONS_CONTAINER_MARGIN,
-    TEAM_DESIGNATION_MARGIN,
-    TEAM_NAME_MARGIN,
-    PHOTO_BG,
-    PHOTO_SIZE,
-    TEAM_PHOTO_BORDER,
-    TEAM_PHOTO_BORDER_RADIUS,
-    TEAM_PHOTO_BOX_SHADOW,
-    TEAM_PHOTO_MARGIN,
-    TEAM_PHOTO_PADDING,
-    TEAM_SHORT_BIO_MARGIN,
-    DETAIL_PAGE_LINK_BG,
-    DETAIL_PAGE_LINK_HOVER_BG,
-    // DPL_HEIGHT,
-    // DPL_WIDTH,
-    DPL_BORDER,
-    DPL_BORDER_RADIUS,
-    DPL_PADDING,
-    DPL_MARGIN,
-    DPL_ICON_SIZE,
-    TEAM_MEMBER_CONTAINER_PADDING,
-    TEAM_MEMBER_CONTAINER_MARGIN,
-    ITEM_BG,
-    ITEM_PADDING,
-    ITEM_MARGIN,
-    ITEM_BORDER,
-    ITEM_BORDER_RADIUS,
-    ITEM_BOX_SHADOW,
-} from './constants';
+  GRID_COLUMNS,
+  GRID_GAP,
+  CONTENT_BG,
+  CONTENT_ALIGNMENT,
+  CONTENT_PADDING,
+  CONTENT_MARGIN,
+  CONTENT_BORDER,
+  CONTENT_BORDER_RADIUS,
+  CONTENT_BOX_SHADOW,
+  ICONS_BG,
+  ICONS_HOVER_BG,
+  ICONS_BORDER,
+  ICONS_BORDER_RADIUS,
+  ICONS_BOX_SHADOW,
+  ICONS_HOVER_BOX_SHADOW,
+  ICONS_PADDING,
+  ICONS_SIZE,
+  ICONS_SPACING,
+  ICONS_CONTAINER_PADDING,
+  ICONS_CONTAINER_MARGIN,
+  TEAM_DESIGNATION_MARGIN,
+  TEAM_NAME_MARGIN,
+  PHOTO_BG,
+  PHOTO_SIZE,
+  TEAM_PHOTO_BORDER,
+  TEAM_PHOTO_BORDER_RADIUS,
+  TEAM_PHOTO_BOX_SHADOW,
+  TEAM_PHOTO_MARGIN,
+  TEAM_PHOTO_PADDING,
+  TEAM_SHORT_BIO_MARGIN,
+  DETAIL_PAGE_LINK_BG,
+  DETAIL_PAGE_LINK_HOVER_BG,
+  // DPL_HEIGHT,
+  // DPL_WIDTH,
+  DPL_BORDER,
+  DPL_BORDER_RADIUS,
+  DPL_PADDING,
+  DPL_MARGIN,
+  DPL_ICON_SIZE,
+  TEAM_MEMBER_CONTAINER_PADDING,
+  TEAM_MEMBER_CONTAINER_MARGIN,
+  ITEM_BG,
+  ITEM_PADDING,
+  ITEM_MARGIN,
+  ITEM_BORDER,
+  ITEM_BORDER_RADIUS,
+  ITEM_BOX_SHADOW,
+  ITEM_OVERLAY,
+} from "./constants";
 
 import {
     TEAM_MEMBER_DESIGNATION_TYPOGRAPHY,
@@ -573,6 +574,18 @@ const Style = ({ props }) => {
     });
 
     const {
+        backgroundStylesDesktop: itemDeskOverlay,
+        backgroundStylesTab: itemTabOverlay,
+        backgroundStylesMobile: itemMobOverlay,
+    } = generateNormalBGControlStyles({
+        controlName: ITEM_OVERLAY,
+        attributes,
+        noMainBGImg: false,
+    });
+
+
+
+    const {
         desktopBorderStyle: itemBorderDeskStyle,
         tabBorderStyle: itemBorderTabStyle,
         mobBorderStyle: itemBorderMobStyle,
@@ -660,7 +673,7 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
             ${teamDeskAlignStyle}
             ${photoDeskMargin}
-            
+
         }
 		.wp-block-zolo-team-grid.${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
             ${photoDeskSize}
@@ -686,7 +699,7 @@ const Style = ({ props }) => {
 			${shortBioTypoDesk}
 			${shortBioDeskMargin}
 		}
-        
+
 		.${uniqueId} .zolo-social-share {
 			${socialIconsGapDesk}
 		}
@@ -722,7 +735,7 @@ const Style = ({ props }) => {
 			${dplDeskBorderRadius}
 			${dplDeskPadding}
 			${dplDeskMargin}
-			
+
 		}
 
         .${uniqueId}.wp-block-zolo-team-grid .zolo-link-btn svg {
@@ -785,7 +798,7 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
             ${teamTabAlignStyle}
             ${photoTabMargin}
-            
+
         }
 
         .wp-block-zolo-team-grid.${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {
@@ -900,7 +913,7 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap {
             ${teamMobAlignStyle}
             ${photoMobMargin}
-            
+
         }
 
         .wp-block-zolo-team-grid.${uniqueId}.wp-block-zolo-team-grid .zolo-image-wrap img {

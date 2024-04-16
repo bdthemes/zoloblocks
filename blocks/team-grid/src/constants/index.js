@@ -20,6 +20,8 @@ export const ITEM_MARGIN = 'ItemMargin';
 export const ITEM_BORDER = 'ItemBorder';
 export const ITEM_BORDER_RADIUS = 'ItemBorderRadius';
 export const ITEM_BOX_SHADOW = 'ItemBoxShadow';
+export const ITEM_OVERLAY = "itemOverlay";
+
 
 // Grid Background
 export const GRID_COLUMNS = 'gridColumns';
