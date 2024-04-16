@@ -692,18 +692,18 @@ const Style = ({ props }) => {
 		}
 
 
-		.${uniqueId} .zolo-name {
+		.zolo-block.${uniqueId} .zolo-name {
 			${nameTypoDesk}
 			${nameDeskMargin}
             ${nameColor ? `color: ${nameColor};` : ""}
 		}
 
-		.${uniqueId} .zolo-designation {
+		.zolo-block.${uniqueId} .zolo-designation {
 			${designationColor ? `color: ${designationColor};` : ""}
 			${designationTypoDesk}
 			${designationDeskMargin}
 		}
-		.${uniqueId} .zolo-desc {
+		.zolo-block.${uniqueId} .zolo-desc {
 			${shortBioColor && shortBioColor !== "" ? `color: ${shortBioColor};` : ""}
 			${shortBioTypoDesk}
 			${shortBioDeskMargin}
