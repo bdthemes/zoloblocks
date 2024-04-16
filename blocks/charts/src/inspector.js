@@ -38,6 +38,7 @@ import {
   SOURCE_TYPES,
   POSITIONS,
   THEME_TYPES,
+  CHART_HEIGHT,
 } from "./constants";
 import { CHART_BG_COLOR, CHART_BORDER, CHART_BORDER_RADIUS, CHART_MARGIN, CHART_PADDING, CHART_BOX_SHADOW} from "./constants";
 import { DEFAULT_ALIGNS } from "../../../src/global/constants";
