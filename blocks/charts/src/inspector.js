@@ -840,12 +840,12 @@ function Inspector(props) {
                 >
                   <ColorControl
                     label={__("Legend Color", "zolo-blocks")}
-                    color={legendObject.lebels.colors}
+                    color={legendObject.labels.colors}
                     onChange={(color) =>
                       setAttributes({
                         legendObject: {
                           ...legendObject,
-                          lebels: {
+                          labels: {
                             colors: color,
                           },
                         },
