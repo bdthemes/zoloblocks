@@ -186,7 +186,7 @@ const Inspector = (props) => {
                                 onChange={() => setAttributes({ showTransparentTitle: !showTransparentTitle })}
                             />
                             <ResAlignmentControl
-                                label={__('Alignmet', 'zolo-blocks')}
+                                label={__('Alignment', 'zolo-blocks')}
                                 controlName={TITLE_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
