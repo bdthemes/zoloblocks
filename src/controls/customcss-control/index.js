@@ -63,12 +63,12 @@ const CustomCSSControl = ({ attributes, setAttributes }) => {
                 <TextHighlight
                     text={__(
                         'To confine style changes to specific elements, add the {{ ZOLO }} prefix before the selector. This ensures a targeted, non-global application of your styles.',
-                        'zolo-blocks'
+                        'zoloblocks'
                     )}
                     highlight="{{ ZOLO }}"
                 />
                 <p style={{ margin: '10px 0', padding: '0 5px', lineHeight: '1.5', fontSize: '12px' }}>
-                    <strong>{__('Suggested Classes: ', 'zolo-blocks')}</strong>
+                    <strong>{__('Suggested Classes: ', 'zoloblocks')}</strong>
                 </p>
                 <div className="zolo-suggested-class">
                     {updatedClassesArray &&

@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class Zolo_Blocks_Loader {
+class ZoloBlocks_Loader {
     use SingletonTrait;
 
     /**
@@ -49,15 +49,15 @@ class Zolo_Blocks_Loader {
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Assets.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Admin/Settings.php';
 
-        // form 
+        // form
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/Form.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/FormAjax.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/Recaptcha.php';
 
         if (is_admin()) {
-            // zolo blocks settings 
+            // zolo blocks settings
             $zoloSupportSVG = get_option('zolo_support_svg', false);
-            if( $zoloSupportSVG === '1') {
+            if ($zoloSupportSVG === '1') {
                 require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Classes/SupportSVG.php';
             }
         }
@@ -84,7 +84,7 @@ class Zolo_Blocks_Loader {
     }
 }
 
-// Zolo_Blocks_Loader Instance
-if (class_exists('Zolo_Blocks_Loader')) {
-    new Zolo_Blocks_Loader();
+// ZoloBlocks_Loader Instance
+if (class_exists('ZoloBlocks_Loader')) {
+    new ZoloBlocks_Loader();
 }

@@ -28,7 +28,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.imageGallery} alt={__('Gallery Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.imageGallery} alt={__('Gallery Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -52,7 +52,7 @@ export default function Edit(props) {
                                 render={({ open }) => (
                                     <ToolbarButton
                                         className="components-toolbar__control"
-                                        label={__('Replace Photo', 'zolo-blocks')}
+                                        label={__('Replace Photo', 'zoloblocks')}
                                         icon="edit"
                                         onClick={open}
                                     />
@@ -99,8 +99,8 @@ export default function Edit(props) {
                                 allowedTypes={['image']}
                                 value={advancedGallery && advancedGallery.map((image) => image.id)}
                                 labels={{
-                                    title: __('Upload Gallery Photos', 'zolo-blocks'),
-                                    instructions: __('Drag images, upload new ones or select files from your library.', 'zolo-blocks'),
+                                    title: __('Upload Gallery Photos', 'zoloblocks'),
+                                    instructions: __('Drag images, upload new ones or select files from your library.', 'zoloblocks'),
                                 }}
                             />
                         </>

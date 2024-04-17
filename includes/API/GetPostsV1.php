@@ -27,7 +27,7 @@ class GetPostsV1 {
 
     public function get_all_posts($data) {
         if (!wp_verify_nonce($data['zolo_nonce'], 'zolo-nonce')) {
-            wp_send_json_error(esc_html__('Session Expired!!', 'zolo-blocks'));
+            wp_send_json_error(esc_html__('Session Expired!!', 'zoloblocks'));
         }
 
         $results = self::zolo_posts_query($data['postQuery']);

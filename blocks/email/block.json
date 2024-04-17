@@ -2,11 +2,11 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Email",
     "name": "zolo/email",
-    "category": "zolo-blocks",
+    "category": "zoloblocks",
     "keywords": ["zolo", "email", "mail"],
     "description": "Email field block for Form Block",
     "apiVersion": 2,
-    "textdomain": "zolo-blocks",
+    "textdomain": "zoloblocks",
     "parent": ["zolo/form"],
     "example": {
         "attributes": {

@@ -2,11 +2,11 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Counter",
     "name": "zolo/counter",
-    "category": "zolo-blocks",
+    "category": "zoloblocks",
     "keywords": ["counter", "advanced counter box"],
     "description": "Advanced counter box description",
     "apiVersion": 2,
-    "textdomain": "zolo-blocks",
+    "textdomain": "zoloblocks",
     "example": {
         "attributes": {
             "preview": true

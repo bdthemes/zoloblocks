@@ -2,11 +2,11 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Charts",
     "name": "zolo/charts",
-    "category": "zolo-blocks",
+    "category": "zoloblocks",
     "keywords": ["charts", "zolo"],
     "description": "Display a chart with data from a csv file",
     "apiVersion": 2,
-    "textdomain": "zolo-blocks",
+    "textdomain": "zoloblocks",
     "example": {
         "attributes": {
             "preview": true

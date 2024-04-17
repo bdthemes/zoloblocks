@@ -21,8 +21,8 @@ const GoogleMapAutocomplete = ({ label, value, onChange, onClick }) => {
     return (
         <div className="zolo-google-map-autocomplete">
             <TextControl
-                label={label || __('Location', 'zolo-blocks')}
-                placeholder={__('Enter location', 'zolo-blocks')}
+                label={label || __('Location', 'zoloblocks')}
+                placeholder={__('Enter location', 'zoloblocks')}
                 value={value}
                 onChange={(v) => {
                     onChange(v);

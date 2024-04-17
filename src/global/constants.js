@@ -819,44 +819,44 @@ export const FLEX_WRAPS = [
 ];
 
 export const HEADING = [
-    { label: __('H1', 'zolo-blocks'), value: 'h1' },
-    { label: __('H2', 'zolo-blocks'), value: 'h2' },
-    { label: __('H3', 'zolo-blocks'), value: 'h3' },
-    { label: __('H4', 'zolo-blocks'), value: 'h4' },
-    { label: __('H5', 'zolo-blocks'), value: 'h5' },
-    { label: __('H6', 'zolo-blocks'), value: 'h6' },
-    { label: __('P', 'zolo-blocks'), value: 'p' },
-    { label: __('Span', 'zolo-blocks'), value: 'span' },
+    { label: __('H1', 'zoloblocks'), value: 'h1' },
+    { label: __('H2', 'zoloblocks'), value: 'h2' },
+    { label: __('H3', 'zoloblocks'), value: 'h3' },
+    { label: __('H4', 'zoloblocks'), value: 'h4' },
+    { label: __('H5', 'zoloblocks'), value: 'h5' },
+    { label: __('H6', 'zoloblocks'), value: 'h6' },
+    { label: __('P', 'zoloblocks'), value: 'p' },
+    { label: __('Span', 'zoloblocks'), value: 'span' },
 ];
 
 export const NORMAL_HTML_TAG = [
-    { label: __('P', 'zolo-blocks'), value: 'p' },
-    { label: __('Span', 'zolo-blocks'), value: 'span' },
+    { label: __('P', 'zoloblocks'), value: 'p' },
+    { label: __('Span', 'zoloblocks'), value: 'span' },
 ];
 
 export const BORDER_TYPES = [
-    { label: __('None', 'zolo-blocks'), value: 'none' },
-    { label: __('Solid', 'zolo-blocks'), value: 'solid' },
-    { label: __('Custom', 'zolo-blocks'), value: 'custom' },
+    { label: __('None', 'zoloblocks'), value: 'none' },
+    { label: __('Solid', 'zoloblocks'), value: 'solid' },
+    { label: __('Custom', 'zoloblocks'), value: 'custom' },
 ];
 
 export const SEPERATOR_STYLES = [
-    { label: __('Dashed', 'zolo-blocks'), value: 'dashed' },
-    { label: __('Dotted', 'zolo-blocks'), value: 'dotted' },
-    { label: __('Double', 'zolo-blocks'), value: 'double' },
-    { label: __('Groove', 'zolo-blocks'), value: 'groove' },
-    { label: __('Outset', 'zolo-blocks'), value: 'outset' },
-    { label: __('Ridge', 'zolo-blocks'), value: 'ridge' },
+    { label: __('Dashed', 'zoloblocks'), value: 'dashed' },
+    { label: __('Dotted', 'zoloblocks'), value: 'dotted' },
+    { label: __('Double', 'zoloblocks'), value: 'double' },
+    { label: __('Groove', 'zoloblocks'), value: 'groove' },
+    { label: __('Outset', 'zoloblocks'), value: 'outset' },
+    { label: __('Ridge', 'zoloblocks'), value: 'ridge' },
 ];
 
 export const BACKGROUND_TYPES = [
     {
-        label: __('Classic', 'zolo-blocks'),
+        label: __('Classic', 'zoloblocks'),
         value: 'classic',
         icon: 'color-picker',
     },
     {
-        label: __('Gradient', 'zolo-blocks'),
+        label: __('Gradient', 'zoloblocks'),
         value: 'gradient',
         icon: 'art',
     },
@@ -864,11 +864,11 @@ export const BACKGROUND_TYPES = [
 
 export const BOX_SHADOW_TYPES = [
     {
-        label: __('Outer', 'zolo-blocks'),
+        label: __('Outer', 'zoloblocks'),
         value: 'outset',
     },
     {
-        label: __('Inner', 'zolo-blocks'),
+        label: __('Inner', 'zoloblocks'),
         value: 'inset',
     },
 ];
@@ -1007,7 +1007,7 @@ export const ICON_HPOSITIONS = [
 // social icon text
 export const ICON_STATUS = [
     {
-        label: __('No Icon', 'zolo-blocks'),
+        label: __('No Icon', 'zoloblocks'),
         value: 'none',
         icon: (
             <svg width={18} height={18} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1017,7 +1017,7 @@ export const ICON_STATUS = [
         ),
     },
     {
-        label: __('Icon & Text', 'zolo-blocks'),
+        label: __('Icon & Text', 'zoloblocks'),
         value: 'iconText',
         icon: (
             <svg width={35} height={24} viewBox="0 0 35 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1030,7 +1030,7 @@ export const ICON_STATUS = [
         ),
     },
     {
-        label: __('Only Icon', 'zolo-blocks'),
+        label: __('Only Icon', 'zoloblocks'),
         value: 'iconOnly',
         icon: (
             <svg width={18} height={18} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1043,41 +1043,41 @@ export const ICON_STATUS = [
 ];
 
 export const ORDER_BY = [
-    { label: __('Date', 'zolo-blocks'), value: 'date' },
-    { label: __('Author', 'zolo-blocks'), value: 'author' },
-    { label: __('Title', 'zolo-blocks'), value: 'title' },
-    { label: __('Last modified date', 'zolo-blocks'), value: 'modified' },
-    { label: __('Post parent ID', 'zolo-blocks'), value: 'parent' },
+    { label: __('Date', 'zoloblocks'), value: 'date' },
+    { label: __('Author', 'zoloblocks'), value: 'author' },
+    { label: __('Title', 'zoloblocks'), value: 'title' },
+    { label: __('Last modified date', 'zoloblocks'), value: 'modified' },
+    { label: __('Post parent ID', 'zoloblocks'), value: 'parent' },
 ];
 
 export const SORT_ORDER = [
-    { label: __('ASC', 'zolo-blocks'), value: 'asc' },
-    { label: __('DESC', 'zolo-blocks'), value: 'desc' },
+    { label: __('ASC', 'zoloblocks'), value: 'asc' },
+    { label: __('DESC', 'zoloblocks'), value: 'desc' },
 ];
 
 export const PRINT_TAXONOMY = (taxonomy) => {
     let allTax = [];
     for (let tax in taxonomy) {
-        allTax.push({ value: tax, label: __(taxonomy[tax], 'zolo-blocks') });
+        allTax.push({ value: tax, label: __(taxonomy[tax], 'zoloblocks') });
     }
     return allTax;
 };
 export const THUMBNAIL_SIZE = [
-    { label: __('Default', 'zolo-blocks'), value: '' },
-    { label: __('Thumbnail', 'zolo-blocks'), value: 'thumbnail' },
-    { label: __('Medium', 'zolo-blocks'), value: 'medium' },
-    { label: __('Large', 'zolo-blocks'), value: 'large' },
-    { label: __('Full', 'zolo-blocks'), value: 'full' },
+    { label: __('Default', 'zoloblocks'), value: '' },
+    { label: __('Thumbnail', 'zoloblocks'), value: 'thumbnail' },
+    { label: __('Medium', 'zoloblocks'), value: 'medium' },
+    { label: __('Large', 'zoloblocks'), value: 'large' },
+    { label: __('Full', 'zoloblocks'), value: 'full' },
 ];
 
 // social icon text
 export const ICON_BOX_OPTIONS = [
     {
-        label: __('Image', 'zolo-blocks'),
+        label: __('Image', 'zoloblocks'),
         value: 'image',
     },
     {
-        label: __('Icon', 'zolo-blocks'),
+        label: __('Icon', 'zoloblocks'),
         value: 'icon',
     },
 ];
@@ -1085,102 +1085,102 @@ export const ICON_BOX_OPTIONS = [
 // Width Types
 export const WIDTH_TYPES = [
     {
-        label: __('Full', 'zolo-blocks'),
+        label: __('Full', 'zoloblocks'),
         value: 'alignfull',
     },
     {
-        label: __('Boxed', 'zolo-blocks'),
+        label: __('Boxed', 'zoloblocks'),
         value: 'alignwide',
     },
     {
-        label: __('Custom', 'zolo-blocks'),
+        label: __('Custom', 'zoloblocks'),
         value: 'custom_width',
     },
 ];
 
 export const CONTENT_WIDTH_TYPES = [
     {
-        label: __('Boxed', 'zolo-blocks'),
+        label: __('Boxed', 'zoloblocks'),
         value: 'alignwide',
     },
     {
-        label: __('Full Width', 'zolo-blocks'),
+        label: __('Full Width', 'zoloblocks'),
         value: 'alignfull',
     },
 ];
 
 export const OVERFLOWS = [
-    { label: __('Auto', 'zolo-blocks'), value: 'auto' },
-    { label: __('Visible', 'zolo-blocks'), value: 'visible' },
-    { label: __('Hidden', 'zolo-blocks'), value: 'hidden' },
-    { label: __('Scroll', 'zolo-blocks'), value: 'scroll' },
-    { label: __('Clip', 'zolo-blocks'), value: 'clip' },
+    { label: __('Auto', 'zoloblocks'), value: 'auto' },
+    { label: __('Visible', 'zoloblocks'), value: 'visible' },
+    { label: __('Hidden', 'zoloblocks'), value: 'hidden' },
+    { label: __('Scroll', 'zoloblocks'), value: 'scroll' },
+    { label: __('Clip', 'zoloblocks'), value: 'clip' },
 ];
 
 export const OBJECT_FITS = [
-    { label: __('None', 'zolo-blocks'), value: 'none' },
-    { label: __('Fill', 'zolo-blocks'), value: 'fill' },
-    { label: __('Contain', 'zolo-blocks'), value: 'contain' },
-    { label: __('Cover', 'zolo-blocks'), value: 'cover' },
-    { label: __('Scale Down', 'zolo-blocks'), value: 'scale-down' },
+    { label: __('None', 'zoloblocks'), value: 'none' },
+    { label: __('Fill', 'zoloblocks'), value: 'fill' },
+    { label: __('Contain', 'zoloblocks'), value: 'contain' },
+    { label: __('Cover', 'zoloblocks'), value: 'cover' },
+    { label: __('Scale Down', 'zoloblocks'), value: 'scale-down' },
 ];
 
 // mask shapes
 export const MASK_SHAPES = [
-    { label: __('None', 'zolo-blocks'), value: '' },
-    { label: __('Abstract', 'zolo-blocks'), value: 'abstract' },
-    { label: __('Abstract Brush 1', 'zolo-blocks'), value: 'abstract-brush-1' },
-    { label: __('Abstract Brush 2', 'zolo-blocks'), value: 'abstract-brush-2' },
-    { label: __('Aesthetic Blob', 'zolo-blocks'), value: 'aesthetic-blob' },
-    { label: __('Amorphous Blob', 'zolo-blocks'), value: 'amorphous-blob' },
-    { label: __('Brush', 'zolo-blocks'), value: 'brush' },
-    { label: __('Comment', 'zolo-blocks'), value: 'comment' },
-    { label: __('Container', 'zolo-blocks'), value: 'container' },
-    { label: __('Hand Drawn Blob', 'zolo-blocks'), value: 'hand-drawn-blob' },
-    { label: __('Hexagon', 'zolo-blocks'), value: 'hexagon' },
-    { label: __('Hexagon Blob', 'zolo-blocks'), value: 'hexagon-blob' },
-    { label: __('Irregular Blob', 'zolo-blocks'), value: 'irregular-blob' },
-    { label: __('Minimal Round', 'zolo-blocks'), value: 'minimal-round' },
-    { label: __('Octagon', 'zolo-blocks'), value: 'octagon' },
-    { label: __('Organic Blob', 'zolo-blocks'), value: 'organic-blob' },
-    { label: __('Oval Blob', 'zolo-blocks'), value: 'oval-blob' },
-    { label: __('Pattern', 'zolo-blocks'), value: 'pattern' },
-    { label: __('Popup 1', 'zolo-blocks'), value: 'popup-1' },
-    { label: __('Popup 2', 'zolo-blocks'), value: 'popup-2' },
-    { label: __('Popup 3', 'zolo-blocks'), value: 'popup-3' },
-    { label: __('Round Brush', 'zolo-blocks'), value: 'round-brush' },
-    { label: __('Round Design', 'zolo-blocks'), value: 'round-design' },
-    { label: __('Square Pattern', 'zolo-blocks'), value: 'squar-pattern' },
-    { label: __('Testimonial', 'zolo-blocks'), value: 'testimonial' },
-    { label: __('Triangle Blob', 'zolo-blocks'), value: 'triangle-blob' },
+    { label: __('None', 'zoloblocks'), value: '' },
+    { label: __('Abstract', 'zoloblocks'), value: 'abstract' },
+    { label: __('Abstract Brush 1', 'zoloblocks'), value: 'abstract-brush-1' },
+    { label: __('Abstract Brush 2', 'zoloblocks'), value: 'abstract-brush-2' },
+    { label: __('Aesthetic Blob', 'zoloblocks'), value: 'aesthetic-blob' },
+    { label: __('Amorphous Blob', 'zoloblocks'), value: 'amorphous-blob' },
+    { label: __('Brush', 'zoloblocks'), value: 'brush' },
+    { label: __('Comment', 'zoloblocks'), value: 'comment' },
+    { label: __('Container', 'zoloblocks'), value: 'container' },
+    { label: __('Hand Drawn Blob', 'zoloblocks'), value: 'hand-drawn-blob' },
+    { label: __('Hexagon', 'zoloblocks'), value: 'hexagon' },
+    { label: __('Hexagon Blob', 'zoloblocks'), value: 'hexagon-blob' },
+    { label: __('Irregular Blob', 'zoloblocks'), value: 'irregular-blob' },
+    { label: __('Minimal Round', 'zoloblocks'), value: 'minimal-round' },
+    { label: __('Octagon', 'zoloblocks'), value: 'octagon' },
+    { label: __('Organic Blob', 'zoloblocks'), value: 'organic-blob' },
+    { label: __('Oval Blob', 'zoloblocks'), value: 'oval-blob' },
+    { label: __('Pattern', 'zoloblocks'), value: 'pattern' },
+    { label: __('Popup 1', 'zoloblocks'), value: 'popup-1' },
+    { label: __('Popup 2', 'zoloblocks'), value: 'popup-2' },
+    { label: __('Popup 3', 'zoloblocks'), value: 'popup-3' },
+    { label: __('Round Brush', 'zoloblocks'), value: 'round-brush' },
+    { label: __('Round Design', 'zoloblocks'), value: 'round-design' },
+    { label: __('Square Pattern', 'zoloblocks'), value: 'squar-pattern' },
+    { label: __('Testimonial', 'zoloblocks'), value: 'testimonial' },
+    { label: __('Triangle Blob', 'zoloblocks'), value: 'triangle-blob' },
 ];
 
 // mask position
 export const MASK_POSITIONS = [
-    { value: 'center top', label: __('Center Top', 'zolo-blocks') },
-    { value: 'center center', label: __('Center Center', 'zolo-blocks') },
-    { value: 'center bottom', label: __('Center Bottom', 'zolo-blocks') },
-    { value: 'left top', label: __('Left Top', 'zolo-blocks') },
-    { value: 'left center', label: __('Left Center', 'zolo-blocks') },
-    { value: 'left bottom', label: __('Left Bottom', 'zolo-blocks') },
-    { value: 'right top', label: __('Right Top', 'zolo-blocks') },
-    { value: 'right center', label: __('Right Center', 'zolo-blocks') },
-    { value: 'right bottom', label: __('Right Bottom', 'zolo-blocks') },
+    { value: 'center top', label: __('Center Top', 'zoloblocks') },
+    { value: 'center center', label: __('Center Center', 'zoloblocks') },
+    { value: 'center bottom', label: __('Center Bottom', 'zoloblocks') },
+    { value: 'left top', label: __('Left Top', 'zoloblocks') },
+    { value: 'left center', label: __('Left Center', 'zoloblocks') },
+    { value: 'left bottom', label: __('Left Bottom', 'zoloblocks') },
+    { value: 'right top', label: __('Right Top', 'zoloblocks') },
+    { value: 'right center', label: __('Right Center', 'zoloblocks') },
+    { value: 'right bottom', label: __('Right Bottom', 'zoloblocks') },
 ];
 
 // mask repeat
 export const MASK_REPEATS = [
-    { value: 'no-repeat', label: __('No Repeat', 'zolo-blocks') },
-    { value: 'repeat', label: __('Repeat', 'zolo-blocks') },
-    { value: 'repeat-x', label: __('Repeat X', 'zolo-blocks') },
-    { value: 'repeat-y', label: __('Repeat Y', 'zolo-blocks') },
+    { value: 'no-repeat', label: __('No Repeat', 'zoloblocks') },
+    { value: 'repeat', label: __('Repeat', 'zoloblocks') },
+    { value: 'repeat-x', label: __('Repeat X', 'zoloblocks') },
+    { value: 'repeat-y', label: __('Repeat Y', 'zoloblocks') },
 ];
 
 // mask sizes
 export const MASK_SIZES = [
-    { value: 'auto', label: __('Auto', 'zolo-blocks') },
-    { value: 'cover', label: __('Cover', 'zolo-blocks') },
-    { value: 'contain', label: __('Contain', 'zolo-blocks') },
+    { value: 'auto', label: __('Auto', 'zoloblocks') },
+    { value: 'cover', label: __('Cover', 'zoloblocks') },
+    { value: 'contain', label: __('Contain', 'zoloblocks') },
 ];
 
 export const ANIMATION_TYPES = [
@@ -1222,10 +1222,10 @@ export const TRANSFORM_ORIGINS = [
 ];
 
 export const EASING_TYPES = [
-    { label: __('Ease Out', 'zolo-blocks'), value: 'ease-out' },
-    { label: __('Ease In Out', 'zolo-blocks'), value: 'ease-in-out' },
-    { label: __('Linear', 'zolo-blocks'), value: 'linear' },
-    { label: __('Custom', 'zolo-blocks'), value: 'custom' },
+    { label: __('Ease Out', 'zoloblocks'), value: 'ease-out' },
+    { label: __('Ease In Out', 'zoloblocks'), value: 'ease-in-out' },
+    { label: __('Linear', 'zoloblocks'), value: 'linear' },
+    { label: __('Custom', 'zoloblocks'), value: 'custom' },
 ];
 
 export const TRANSLATE_ICON = (

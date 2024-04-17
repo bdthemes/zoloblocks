@@ -6,7 +6,7 @@ import icons from './icons.json';
 
 const iconCategories = [
     {
-        label: __('All Icons', 'zolo-blocks'),
+        label: __('All Icons', 'zoloblocks'),
         value: 'all',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +17,7 @@ const iconCategories = [
         ),
     },
     {
-        label: __('Font Awesome - Regular', 'zolo-blocks'),
+        label: __('Font Awesome - Regular', 'zoloblocks'),
         value: 'regular',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,7 @@ const iconCategories = [
         ),
     },
     {
-        label: __('Font Awesome - Solid', 'zolo-blocks'),
+        label: __('Font Awesome - Solid', 'zoloblocks'),
         value: 'solid',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,7 +65,7 @@ const iconCategories = [
         ),
     },
     {
-        label: __('Font Awesome - Brand', 'zolo-blocks'),
+        label: __('Font Awesome - Brand', 'zoloblocks'),
         value: 'brands',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +120,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
             if (displayIcons.length === 0) {
                 displayIcons = [
                     {
-                        title: __('No Icons Found', 'zolo-blocks'),
+                        title: __('No Icons Found', 'zoloblocks'),
                         svg: {
                             solid: {
                                 raw: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 0C114.62 0 0 114.62 0 256s114.62 256 256 256 256-114.62 256-256S397.38 0 256 0zm0 480C132.48 480 32 379.52 32 256S132.48 32 256 32s224 100.48 224 224-100.48 224-224 224z"/><path d="M336 192H176a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16zm-16 64H192v-32h128z"/></svg>`,
@@ -139,12 +139,12 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
             <div className="zolo-icon-preview">
                 <label htmlFor="iconPreview">{label}</label>
                 <Button className={`zolo-picker__button ${value ? 'active' : ''}`} id="iconPreview" onClick={() => setIconsPanel(true)}>
-                    {value ? <RawHTML className="zolo__single-preview-icon" children={value} /> : __('ADD ICON', 'zolo-blocks')}
+                    {value ? <RawHTML className="zolo__single-preview-icon" children={value} /> : __('ADD ICON', 'zoloblocks')}
                 </Button>
             </div>
 
             {iconsPanel && (
-                <Modal className="zolo__modal" title={__('ZoloBlocks', 'zolo-blocks')} onRequestClose={() => setIconsPanel(false)}>
+                <Modal className="zolo__modal" title={__('ZoloBlocks', 'zoloblocks')} onRequestClose={() => setIconsPanel(false)}>
                     <div className="zolo-modal__wrapper">
                         <div className="zolo-categories__sidebar">
                             <div className="zolo-category-item">
@@ -161,8 +161,8 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                     ))}
                             </div>
                             <p className="zolo-custom-icon">
-                                <strong>{__('Upcoming: ', 'zolo-blocks')}</strong>
-                                {__('Custom Icons Option', 'zolo-blocks')}
+                                <strong>{__('Upcoming: ', 'zoloblocks')}</strong>
+                                {__('Custom Icons Option', 'zoloblocks')}
                             </p>
                         </div>
                         <div className="modal__content">
@@ -186,10 +186,10 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                             </div>
                             <div className="zolo-icons-wrap">
                                 <h2 className="zolo-icons-title">
-                                    {category === 'all' && __('All Icons', 'zolo-blocks')}
-                                    {category === 'solid' && __('Font Awesome - Solid', 'zolo-blocks')}
-                                    {category === 'brands' && __('Font Awesome - Brand', 'zolo-blocks')}
-                                    {category === 'regular' && __('Font Awesome - Regular', 'zolo-blocks')}
+                                    {category === 'all' && __('All Icons', 'zoloblocks')}
+                                    {category === 'solid' && __('Font Awesome - Solid', 'zoloblocks')}
+                                    {category === 'brands' && __('Font Awesome - Brand', 'zoloblocks')}
+                                    {category === 'regular' && __('Font Awesome - Regular', 'zoloblocks')}
                                 </h2>
                                 <div className="zolo__icons-grid">
                                     {filterIcons &&

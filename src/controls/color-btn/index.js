@@ -24,7 +24,7 @@ const ColorBtn = ({ color, onChange }) => {
                     <ColorPicker color={color} disableAlpha={false} onChangeComplete={(value) => onChange(value.hex)} />
                     {COLORS && (
                         <Fragment>
-                            <p className="zolo-theme-color-label">{__('Theme Colors', 'zolo-blocks')}</p>
+                            <p className="zolo-theme-color-label">{__('Theme Colors', 'zoloblocks')}</p>
                             <div className="zolo-color-circular-option-grid">
                                 {COLORS.map((paletteColor) => (
                                     <div className="components-circular-option-picker__option-wrapper">

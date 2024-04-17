@@ -8,10 +8,10 @@ export const BLOCK_PREFIX = 'fancy-list';
 
 // Presets
 export const PRESETS = [
-    { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
-    { label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
-    { label: __('Preset 4', 'zolo-blocks'), value: 'style-4' },
+    { label: __('Preset 1', 'zoloblocks'), value: 'style-1' },
+    { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
+    { label: __('Preset 3', 'zoloblocks'), value: 'style-3' },
+    { label: __('Preset 4', 'zoloblocks'), value: 'style-4' },
 ];
 export const PRESETS_ALIGNMENT = [
     {

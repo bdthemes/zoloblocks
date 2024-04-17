@@ -2,19 +2,19 @@ import { __ } from '@wordpress/i18n';
 
 export const TABS = [
     {
-        label: __('Welcome', 'zolo-blocks'),
+        label: __('Welcome', 'zoloblocks'),
         value: 'welcome',
     },
     {
-        label: __('Blocks', 'zolo-blocks'),
+        label: __('Blocks', 'zoloblocks'),
         value: 'blocks',
     },
     {
-        label: __('API Settings', 'zolo-blocks'),
+        label: __('API Settings', 'zoloblocks'),
         value: 'apiSettings',
     },
     {
-        label: __('Settings', 'zolo-blocks'),
+        label: __('Settings', 'zoloblocks'),
         value: 'settings',
     },
 ];

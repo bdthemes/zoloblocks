@@ -29,7 +29,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.starRating} alt={__('Tab Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.starRating} alt={__('Tab Preview', 'zoloblocks')} />;
     }
 
     return (

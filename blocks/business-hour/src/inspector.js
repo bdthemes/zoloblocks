@@ -78,9 +78,9 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                        <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <SelectControl
-                                label={__('Preset', 'zolo-blocks')}
+                                label={__('Preset', 'zoloblocks')}
                                 value={preset}
                                 options={PRESETOPTION}
                                 onChange={(v) => {
@@ -88,40 +88,40 @@ function Inspector(props) {
                                 }}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Business List', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Business List', 'zoloblocks')} panelProps={props}>
                             <Sortable businessList={businessList} setAttributes={setAttributes} />
                         </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Item', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <BorderControl
-                                label={__('Border', 'zolo-blocks')}
+                                label={__('Border', 'zoloblocks')}
                                 controlName={BUSINESS_ITEM_BORDER}
                                 requiredProps={requiredProps}
                             />
 
                             <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
+                                label={__('Border Radius', 'zoloblocks')}
                                 controlName={BUSINESS_ITEM_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
 
                             <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
+                                label={__('Margin', 'zoloblocks')}
                                 controlName={BUSINESS_ITEM_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ResDimensionsControl
-                                label={__('padding', 'zolo-blocks')}
+                                label={__('padding', 'zoloblocks')}
                                 controlName={BUSINESS_ITEM_PADDING}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <ResRangeControl label={__('Gap', 'zolo-blocks')} controlName={ITEM_GAP} requiredProps={requiredProps} />
+                            <ResRangeControl label={__('Gap', 'zoloblocks')} controlName={ITEM_GAP} requiredProps={requiredProps} />
                             {preset == 'zolo-biz-hours-style-1' ? (
                                 <NormalBGControl
                                     requiredProps={requiredProps}
@@ -134,7 +134,7 @@ function Inspector(props) {
                                     options={PANEL_OPTION}
                                     normalComponents={
                                         <NormalBGControl
-                                            label={__('Background Odd', 'zolo-blocks')}
+                                            label={__('Background Odd', 'zoloblocks')}
                                             requiredProps={requiredProps}
                                             controlName={BUSINESS_ITEM_ODD_BG}
                                             noOverlay={false}
@@ -153,19 +153,19 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Days', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Days', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <TabPanelControl
                                 options={DAYS_OPTION}
                                 normalComponents={
                                     <>
                                         <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
+                                            label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={DAYS_TYPO}
                                             requiredProps={requiredProps}
                                             max={36}
                                         />
                                         <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={dayColor}
                                             onChange={(value) =>
                                                 setAttributes({
@@ -181,13 +181,13 @@ function Inspector(props) {
                                             noMainBGImg={true}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Border Radius', 'zolo-blocks')}
+                                            label={__('Border Radius', 'zoloblocks')}
                                             controlName={DAYS_RADIUS}
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Padding', 'zolo-blocks')}
+                                            label={__('Padding', 'zoloblocks')}
                                             controlName={DAYS_PADDING}
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
@@ -197,13 +197,13 @@ function Inspector(props) {
                                 hoverComponents={
                                     <>
                                         <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
+                                            label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={CLOSED_DAYS_TYPO}
                                             requiredProps={requiredProps}
                                             max={36}
                                         />
                                         <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={CloseddayColor}
                                             onChange={(value) =>
                                                 setAttributes({
@@ -219,13 +219,13 @@ function Inspector(props) {
                                             noMainBGImg={true}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Border Radius', 'zolo-blocks')}
+                                            label={__('Border Radius', 'zoloblocks')}
                                             controlName={CLOSED_DAYS_RADIUS}
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Padding', 'zolo-blocks')}
+                                            label={__('Padding', 'zoloblocks')}
                                             controlName={CLOSED_DAYS_PADDING}
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
@@ -234,18 +234,18 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Times', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Times', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <TabPanelControl
                                 normalComponents={
                                     <>
                                         <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
+                                            label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={TIMES_TYPO}
                                             requiredProps={requiredProps}
                                             max={36}
                                         />
                                         <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={timeColor}
                                             onChange={(value) =>
                                                 setAttributes({
@@ -260,13 +260,13 @@ function Inspector(props) {
                                             noMainBGImg={true}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Border Radius', 'zolo-blocks')}
+                                            label={__('Border Radius', 'zoloblocks')}
                                             controlName={TIMES_RADIUS}
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Padding', 'zolo-blocks')}
+                                            label={__('Padding', 'zoloblocks')}
                                             controlName={TIMES_PADDING}
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
@@ -276,13 +276,13 @@ function Inspector(props) {
                                 hoverComponents={
                                     <>
                                         <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
+                                            label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={CLOSED_TIMES_TYPO}
                                             requiredProps={requiredProps}
                                             max={36}
                                         />
                                         <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={timeclosedColor}
                                             onChange={(value) =>
                                                 setAttributes({
@@ -297,13 +297,13 @@ function Inspector(props) {
                                             noMainBGImg={true}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Border Radius', 'zolo-blocks')}
+                                            label={__('Border Radius', 'zoloblocks')}
                                             controlName={CLOSED_TIMES_RADIUS}
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Padding', 'zolo-blocks')}
+                                            label={__('Padding', 'zoloblocks')}
                                             controlName={CLOSED_TIMES_PADDING}
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}

@@ -90,7 +90,7 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
                         <p className="modal-description">{description}</p>
                         {children}
                         <button className="settings-save-btn" onClick={handleSaveChanges} disabled={isSaving}>
-                            {isSaving ? __('Saving...', 'zolo-blocks') : __('Save Changes', 'zolo-blocks')}
+                            {isSaving ? __('Saving...', 'zoloblocks') : __('Save Changes', 'zoloblocks')}
                         </button>
                     </div>
                 </Modal>

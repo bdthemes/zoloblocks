@@ -68,7 +68,7 @@ const Edit = (props) => {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.pricingTable} alt={__('Pricing Table Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.pricingTable} alt={__('Pricing Table Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -86,7 +86,7 @@ const Edit = (props) => {
                                 className="zolo-package-title"
                                 value={titleText}
                                 onChange={(titleText) => setAttributes({ titleText })}
-                                placeholder={__('Add service name', 'zolo-blocks')}
+                                placeholder={__('Add service name', 'zoloblocks')}
                                 allowedFormats={['bold', 'italic', 'strikethrough']}
                             />
 
@@ -129,7 +129,7 @@ const Edit = (props) => {
                                     className="zolo-package-desc"
                                     value={descText}
                                     onChange={(descText) => setAttributes({ descText })}
-                                    placeholder={__('Add description', 'zolo-blocks')}
+                                    placeholder={__('Add description', 'zoloblocks')}
                                     allowedFormats={['bold', 'italic', 'strikethrough']}
                                 />
                             )}
@@ -143,7 +143,7 @@ const Edit = (props) => {
                                                     className="zolo-buy-btn"
                                                     value={buttonText}
                                                     onChange={(text) => setAttributes({ buttonText: text })}
-                                                    placeholder={__('Button Text', 'zolo-blocks')}
+                                                    placeholder={__('Button Text', 'zoloblocks')}
                                                     allowedFormats={[]}
                                                 />
                                             )}
@@ -153,7 +153,7 @@ const Edit = (props) => {
                                                     className="zolo-chat-btn"
                                                     value={chatBtnText}
                                                     onChange={(text) => setAttributes({ chatBtnText: text })}
-                                                    placeholder={__('Button Text', 'zolo-blocks')}
+                                                    placeholder={__('Button Text', 'zoloblocks')}
                                                     allowedFormats={[]}
                                                 />
                                             )}
@@ -170,7 +170,7 @@ const Edit = (props) => {
                                     className="zolo-features-title"
                                     value={featureTitle}
                                     onChange={(featureTitle) => setAttributes({ featureTitle })}
-                                    placeholder={__('Add feature title', 'zolo-blocks')}
+                                    placeholder={__('Add feature title', 'zoloblocks')}
                                     allowedFormats={['bold', 'italic', 'strikethrough']}
                                 />
                             )}
@@ -180,7 +180,7 @@ const Edit = (props) => {
                                     className="zolo-features-desc"
                                     value={featureDesc}
                                     onChange={(featureDesc) => setAttributes({ featureDesc })}
-                                    placeholder={__('Add feature description', 'zolo-blocks')}
+                                    placeholder={__('Add feature description', 'zoloblocks')}
                                     allowedFormats={['bold', 'italic', 'strikethrough']}
                                 />
                             )}
@@ -210,7 +210,7 @@ const Edit = (props) => {
                                                     className="zolo-buy-btn"
                                                     value={buttonText}
                                                     onChange={(text) => setAttributes({ buttonText: text })}
-                                                    placeholder={__('Button Text', 'zolo-blocks')}
+                                                    placeholder={__('Button Text', 'zoloblocks')}
                                                     allowedFormats={[]}
                                                     title={buttonText}
                                                 />
@@ -221,7 +221,7 @@ const Edit = (props) => {
                                                     className="zolo-chat-btn"
                                                     value={chatBtnText}
                                                     onChange={(text) => setAttributes({ chatBtnText: text })}
-                                                    placeholder={__('Button Text', 'zolo-blocks')}
+                                                    placeholder={__('Button Text', 'zoloblocks')}
                                                     allowedFormats={[]}
                                                     title={chatBtnText}
                                                 />

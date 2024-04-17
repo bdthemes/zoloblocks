@@ -11,18 +11,18 @@ export const SLIDER_HEIGHT = 'sliderHeight';
 
 // Pagination Types
 export const PAGINATION_TYPES = [
-    { label: __('Bullets', 'zolo-blocks'), value: 'bullets' },
-    { label: __('Fraction', 'zolo-blocks'), value: 'fraction' },
-    { label: __('Progress Bar', 'zolo-blocks'), value: 'progressbar' },
+    { label: __('Bullets', 'zoloblocks'), value: 'bullets' },
+    { label: __('Fraction', 'zoloblocks'), value: 'fraction' },
+    { label: __('Progress Bar', 'zoloblocks'), value: 'progressbar' },
 ];
 
 // Slide Effects
 export const SLIDER_EFFECTS = [
-    { label: __('Slide', 'zolo-blocks'), value: 'slide' },
-    { label: __('Fade', 'zolo-blocks'), value: 'fade' },
-    { label: __('Cube', 'zolo-blocks'), value: 'cube' },
-    { label: __('Coverflow', 'zolo-blocks'), value: 'coverflow' },
-    { label: __('Flip', 'zolo-blocks'), value: 'flip' },
+    { label: __('Slide', 'zoloblocks'), value: 'slide' },
+    { label: __('Fade', 'zoloblocks'), value: 'fade' },
+    { label: __('Cube', 'zoloblocks'), value: 'cube' },
+    { label: __('Coverflow', 'zoloblocks'), value: 'coverflow' },
+    { label: __('Flip', 'zoloblocks'), value: 'flip' },
 ];
 
 // Navigation settings

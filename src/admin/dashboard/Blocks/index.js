@@ -119,8 +119,8 @@ const Blocks = () => {
 
     return (
         <>
-            {notice && <Notice notice={notice} message={__('Data updated successfully.', 'zolo-blocks')} />}
-            <div className="zolo-blocks-list-tab">
+            {notice && <Notice notice={notice} message={__('Data updated successfully.', 'zoloblocks')} />}
+            <div className="zoloblocks-list-tab">
                 <div className="blocks-filter-buttons">
                     {categories &&
                         categories.map((category, index) => {
@@ -145,7 +145,7 @@ const Blocks = () => {
                                 >
                                     <span className="zolo-category-wrap">
                                         {category.icon && <span className="category-icon">{category.icon}</span>}
-                                        <span>{__(category.title, 'zolo-blocks')}</span>
+                                        <span>{__(category.title, 'zoloblocks')}</span>
                                     </span>
                                     <span className="total-blocks">{totalBlocks}</span>
                                 </button>
@@ -172,8 +172,8 @@ const Blocks = () => {
                             </svg>
                             <input
                                 type="text"
-                                className="zolo-blocks-search"
-                                placeholder={__('search block...', 'zolo-blocks')}
+                                className="zoloblocks-search"
+                                placeholder={__('search block...', 'zoloblocks')}
                                 onChange={(event) => setSearch(event.target.value)}
                                 value={search}
                             />
@@ -192,7 +192,7 @@ const Blocks = () => {
                             }
                         </div>
 
-                        <div className="zolo-blocks-actions-btn">
+                        <div className="zoloblocks-actions-btn">
                             <button
                                 className="zolo-activated-btn"
                                 onClick={() => {
@@ -200,7 +200,7 @@ const Blocks = () => {
                                     setNotice(true);
                                 }}
                             >
-                                {__('Activate All', 'zolo-blocks')}
+                                {__('Activate All', 'zoloblocks')}
                             </button>
                             <button
                                 className="zolo-deactivated-btn"
@@ -209,12 +209,12 @@ const Blocks = () => {
                                     setNotice(true);
                                 }}
                             >
-                                {__('Deactivate All', 'zolo-blocks')}
+                                {__('Deactivate All', 'zoloblocks')}
                             </button>
                         </div>
                     </div>
-                    <div className="zolo-blocks-grid">
-                        <div className="zolo-blocks-inner-grid">
+                    <div className="zoloblocks-grid">
+                        <div className="zoloblocks-inner-grid">
                             {blockStates &&
                                 blockStates
                                     .filter((blockState) => {
@@ -285,11 +285,11 @@ const Blocks = () => {
                                     <div className="zolo-no-block-found">
                                         <img src={zoloBlocks.oops} alt="no zoloblocks found" />
 
-                                        <h2 className="zolo-wrong-title">{__('Ops! Wrong Search', 'zolo-blocks')}</h2>
+                                        <h2 className="zolo-wrong-title">{__('Ops! Wrong Search', 'zoloblocks')}</h2>
                                         <p className="zolo-wrong-text">
                                             {__(
                                                 'Did you spell it right? Please use search again. In case the searched feature is missing, you can let us know.',
-                                                'zolo-blocks'
+                                                'zoloblocks'
                                             )}
                                         </p>
                                         <a
@@ -297,7 +297,7 @@ const Blocks = () => {
                                             href="https://feedback.zoloblocks.com/b/dvdyy2v9/feature-ideas/idea/new"
                                             target="_blank"
                                         >
-                                            {__('Make Feature Request', 'zolo-blocks')}
+                                            {__('Make Feature Request', 'zoloblocks')}
                                             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                                 <path
                                                     stroke="currentColor"

@@ -64,7 +64,7 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                     />
                 </UnitsBtn>
                 <WithResDeviceBtn
-                    label={label || __('Text Shadow', 'zolo-blocks')}
+                    label={label || __('Text Shadow', 'zoloblocks')}
                     requiredProps={requiredProps}
                     controlName={controlName}
                     noResetBtn={true}
@@ -82,7 +82,7 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                                 value={hShadow}
                                 type="number"
                             />
-                            <div className="input-label">{__('X', 'zolo-blocks')}</div>
+                            <div className="input-label">{__('X', 'zoloblocks')}</div>
                         </div>
                         <div className="single-shadow-input">
                             <NumberControl
@@ -95,7 +95,7 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                                 value={vShadow}
                                 type="number"
                             />
-                            <div className="input-label">{__('Y', 'zolo-blocks')}</div>
+                            <div className="input-label">{__('Y', 'zoloblocks')}</div>
                         </div>
                         <div className="single-shadow-input">
                             <NumberControl
@@ -109,7 +109,7 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                                 min={0}
                                 type="number"
                             />
-                            <div className="input-label">{__('Blur', 'zolo-blocks')}</div>
+                            <div className="input-label">{__('Blur', 'zoloblocks')}</div>
                         </div>
                     </div>
                 </WithResDeviceBtn>

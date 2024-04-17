@@ -30,7 +30,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.list} alt={__('List Block Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.list} alt={__('List Block Preview', 'zoloblocks')} />;
     }
 
     const handleButtonClick = () => {

@@ -32,21 +32,21 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody>{__('No settings available. Move to Style Tab', 'zolo-blocks')}</PanelBody>
+                        <PanelBody>{__('No settings available. Move to Style Tab', 'zoloblocks')}</PanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} panelProps={props} stylePanel={true}>
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={SLIDE_BORDER} requiredProps={requiredProps} />
+                        <ZoloPanelBody title={__('Item', 'zoloblocks')} firstOpen={true} panelProps={props} stylePanel={true}>
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={SLIDE_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
+                                label={__('Border Radius', 'zoloblocks')}
                                 controlName={SLIDE_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
+                                label={__('Padding', 'zoloblocks')}
                                 controlName={SLIDE_PADDING}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}

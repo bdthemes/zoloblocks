@@ -18,7 +18,7 @@ const MaskControl = ({ controlName, requiredProps }) => {
     return (
         <Fragment>
             <SelectControl
-                label={__('Mask Shape', 'zolo-blocks')}
+                label={__('Mask Shape', 'zoloblocks')}
                 value={maskImage}
                 options={MASK_SHAPES}
                 onChange={(v) =>
@@ -30,7 +30,7 @@ const MaskControl = ({ controlName, requiredProps }) => {
             {maskImage && maskImage !== undefined && (
                 <>
                     <SelectControl
-                        label={__('Mask Size', 'zolo-blocks')}
+                        label={__('Mask Size', 'zoloblocks')}
                         value={maskSize}
                         options={MASK_SIZES}
                         onChange={(v) =>
@@ -41,7 +41,7 @@ const MaskControl = ({ controlName, requiredProps }) => {
                     />
 
                     <SelectControl
-                        label={__('Mask Position', 'zolo-blocks')}
+                        label={__('Mask Position', 'zoloblocks')}
                         value={maskPosition}
                         options={MASK_POSITIONS}
                         onChange={(v) =>
@@ -52,7 +52,7 @@ const MaskControl = ({ controlName, requiredProps }) => {
                     />
 
                     <SelectControl
-                        label={__('Mask Repeat', 'zolo-blocks')}
+                        label={__('Mask Repeat', 'zoloblocks')}
                         value={maskRepeat}
                         options={MASK_REPEATS}
                         onChange={(v) =>

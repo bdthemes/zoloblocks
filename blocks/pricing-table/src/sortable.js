@@ -16,7 +16,7 @@ const Sortable = ({ features, setAttributes }) => {
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
-                <div className="repeater-label">{__('Add a Feature', 'zolo-blocks')}</div>
+                <div className="repeater-label">{__('Add a Feature', 'zoloblocks')}</div>
                 <Button
                     onClick={() => {
                         setAttributes({
@@ -56,7 +56,7 @@ const Sortable = ({ features, setAttributes }) => {
                                 <SortableItem key={feature.id} id={feature.id}>
                                     <PanelBody title={feature.text || 'Title'} initialOpen={false}>
                                         <TextControl
-                                            label={__('Text', 'zolo-blocks')}
+                                            label={__('Text', 'zoloblocks')}
                                             value={feature.text}
                                             onChange={(value) => {
                                                 const newItems = [...deepCloneFeatures];
@@ -67,7 +67,7 @@ const Sortable = ({ features, setAttributes }) => {
                                             }}
                                         />
                                         <ZoloIconPicker
-                                            label={__('Icon', 'zolo-blocks')}
+                                            label={__('Icon', 'zoloblocks')}
                                             value={feature.icon}
                                             onChange={(value) => {
                                                 const newItems = [...deepCloneFeatures];

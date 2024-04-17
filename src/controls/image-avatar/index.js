@@ -53,7 +53,7 @@ const ImageAvatar = ({ imageUrl, imageId, onDeleteImage, onEditImage }) => {
                             <path d="M12 12V12.01" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
 
-                        {__('Replace', 'zolo-blocks')}
+                        {__('Replace', 'zoloblocks')}
                     </Button>
                 )}
             />

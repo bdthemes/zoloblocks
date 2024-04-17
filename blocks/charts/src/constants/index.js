@@ -15,22 +15,22 @@ export const STAR_MARGIN = "starMargin";
 export const SUB_TITLE_ALIGNMENT = "subTitleAlignment";
 
 export const CHART_TYPES = [
-  { label: __("Line", "zolo-blocks"), value: "line" },
-  { label: __("Area", "zolo-blocks"), value: "area" },
-  { label: __("Bar", "zolo-blocks"), value: "bar" },
-  { label: __("Pie", "zolo-blocks"), value: "pie" },
-  { label: __("Donut", "zolo-blocks"), value: "donut" },
-  // { label: __("Radial Bar", "zolo-blocks"), value: "radialBar" },
-  // { label: __("Scatter", "zolo-blocks"), value: "scatter" },
-  // { label: __("Bubble", "zolo-blocks"), value: "bubble" },
-  // { label: __("Heatmap", "zolo-blocks"), value: "heatmap" },
-  // { label: __("Candlestick", "zolo-blocks"), value: "candlestick" },
-  // { label: __("Box Plot", "zolo-blocks"), value: "boxPlot" },
-  // { label: __("Radar", "zolo-blocks"), value: "radar" },
-  // { label: __("Polar Area", "zolo-blocks"), value: "polarArea" },
-  // { label: __("Range Bar", "zolo-blocks"), value: "rangeBar" },
-  // { label: __("Range Area", "zolo-blocks"), value: "rangeArea" },
-  // { label: __("Treemap", "zolo-blocks"), value: "treemap" },
+  { label: __("Line", "zoloblocks"), value: "line" },
+  { label: __("Area", "zoloblocks"), value: "area" },
+  { label: __("Bar", "zoloblocks"), value: "bar" },
+  { label: __("Pie", "zoloblocks"), value: "pie" },
+  { label: __("Donut", "zoloblocks"), value: "donut" },
+  // { label: __("Radial Bar", "zoloblocks"), value: "radialBar" },
+  // { label: __("Scatter", "zoloblocks"), value: "scatter" },
+  // { label: __("Bubble", "zoloblocks"), value: "bubble" },
+  // { label: __("Heatmap", "zoloblocks"), value: "heatmap" },
+  // { label: __("Candlestick", "zoloblocks"), value: "candlestick" },
+  // { label: __("Box Plot", "zoloblocks"), value: "boxPlot" },
+  // { label: __("Radar", "zoloblocks"), value: "radar" },
+  // { label: __("Polar Area", "zoloblocks"), value: "polarArea" },
+  // { label: __("Range Bar", "zoloblocks"), value: "rangeBar" },
+  // { label: __("Range Area", "zoloblocks"), value: "rangeArea" },
+  // { label: __("Treemap", "zoloblocks"), value: "treemap" },
 ];
 
 export const CHART_HEIGHT = 'chartHeight';
@@ -44,16 +44,16 @@ export const CHART_BG_COLOR = 'chartBgColor';
 
 
 export const SOURCE_TYPES = [
-  { label: __("Upload CSV", "zolo-blocks"), value: "upload" },
-  { label: __("Input CSV", "zolo-blocks"), value: "input" },
+  { label: __("Upload CSV", "zoloblocks"), value: "upload" },
+  { label: __("Input CSV", "zoloblocks"), value: "input" },
 ];
 export const THEME_TYPES = [
-  { label: __("Light", "zolo-blocks"), value: "light" },
-  { label: __("Dark", "zolo-blocks"), value: "dark" },
+  { label: __("Light", "zoloblocks"), value: "light" },
+  { label: __("Dark", "zoloblocks"), value: "dark" },
 ];
 export const GRID_POSITION = [
-  { label: __("Back", "zolo-blocks"), value: "back" },
-  { label: __("Front", "zolo-blocks"), value: "front" },
+  { label: __("Back", "zoloblocks"), value: "back" },
+  { label: __("Front", "zoloblocks"), value: "front" },
 ];
 
 // position

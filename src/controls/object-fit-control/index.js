@@ -7,7 +7,7 @@ const ObjectFitControl = ({ label = '', value, onChange }) => {
     return (
         <div className="zolo-control-container zolo-single-control">
             <SelectControl
-                label={label || __('Object Fit', 'zolo-blocks')}
+                label={label || __('Object Fit', 'zoloblocks')}
                 options={OBJECT_FITS}
                 onChange={(v) => onChange(v)}
                 value={value}

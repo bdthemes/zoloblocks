@@ -57,7 +57,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -72,7 +72,7 @@ export default function Edit(props) {
                             className="zolo-progress-bar__title"
                             value={progressText}
                             onChange={(content) => setAttributes({ progressText: content })}
-                            placeholder={__('bar title..', 'zolo-blocks')}
+                            placeholder={__('bar title..', 'zoloblocks')}
                         />
                     )}
                     {barpercentToggle && (

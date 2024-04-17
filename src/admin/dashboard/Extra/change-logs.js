@@ -33,7 +33,7 @@ const ChangeLogs = () => {
       {logsPanel && (
         <div className="logos-panel">
           <div className="logos-panel-header">
-            <h3>{__("What's New", "zolo-blocks")}</h3>
+            <h3>{__("What's New", "zoloblocks")}</h3>
             <button
               onClick={() => setLogsPanel(false)}
               className="logos-panel-close-btn"
@@ -61,41 +61,41 @@ const ChangeLogs = () => {
               date={"April 04, 2024"}
               changes={[
                 {
-                  title: __("Added", "zolo-blocks"),
+                  title: __("Added", "zoloblocks"),
                   list: [
-                    __("Charts block added", "zolo-blocks"),
-                    __("Business hours block added", "zolo-blocks"),
-                    __("Google recaptcha added to Form block", "zolo-blocks"),
+                    __("Charts block added", "zoloblocks"),
+                    __("Business hours block added", "zoloblocks"),
+                    __("Google recaptcha added to Form block", "zoloblocks"),
                     __(
                       "Image height control added to Image gallery block",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
                     __(
                       "Masonary grid features added to Review Grid block",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
-                    __("Icon Option added to Star Rating block", "zolo-blocks"),
+                    __("Icon Option added to Star Rating block", "zoloblocks"),
                     __(
                       "Icon Alignment control added to tabs block",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
                   ],
                 },
                 {
-                  title: __("Improved", "zolo-blocks"),
+                  title: __("Improved", "zoloblocks"),
                   list: [
                     __(
                       "Viewport with & height units added to each range control",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
-                    __("Controls UI improved", "zolo-blocks"),
+                    __("Controls UI improved", "zoloblocks"),
                   ],
                 },
                 {
-                  title: __("Fixed", "zolo-blocks"),
+                  title: __("Fixed", "zoloblocks"),
                   list: [
-                    __("Flipbox block back icon issue fixed", "zolo-blocks"),
-                    __("Star Rating Alignment issue fixed", "zolo-blocks"),
+                    __("Flipbox block back icon issue fixed", "zoloblocks"),
+                    __("Star Rating Alignment issue fixed", "zoloblocks"),
                   ],
                 },
               ]}
@@ -106,32 +106,32 @@ const ChangeLogs = () => {
               date={"March 21, 2024"}
               changes={[
                 {
-                  title: __("Added", "zolo-blocks"),
+                  title: __("Added", "zoloblocks"),
                   list: [
-                    __("Tabs block added", "zolo-blocks"),
-                    __("Image Compare block added", "zolo-blocks"),
-                    __("Essential filter hooks added ", "zolo-blocks"),
+                    __("Tabs block added", "zoloblocks"),
+                    __("Image Compare block added", "zoloblocks"),
+                    __("Essential filter hooks added ", "zoloblocks"),
                   ],
                 },
                 {
-                  title: __("Updated", "zolo-blocks"),
+                  title: __("Updated", "zoloblocks"),
                   list: [
                     __(
                       "Border radius control added in Google Maps block",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
                     __(
                       "Image Height control added in Image gallery block",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
-                    __("Focus style added in Form block", "zolo-blocks"),
+                    __("Focus style added in Form block", "zoloblocks"),
                   ],
                 },
                 {
-                  title: __("Fixed", "zolo-blocks"),
+                  title: __("Fixed", "zoloblocks"),
                   list: [
-                    __("Slider block issue fixed", "zolo-blocks"),
-                    __("Flipbox back icon issue fixed", "zolo-blocks"),
+                    __("Slider block issue fixed", "zoloblocks"),
+                    __("Flipbox back icon issue fixed", "zoloblocks"),
                   ],
                 },
               ]}
@@ -142,49 +142,49 @@ const ChangeLogs = () => {
               date={"March 10, 2024"}
               changes={[
                 {
-                  title: __("Added", "zolo-blocks"),
+                  title: __("Added", "zoloblocks"),
                   list: [
-                    __("Form block added", "zolo-blocks"),
-                    __("List block added", "zolo-blocks"),
-                    __("Floating animation features added", "zolo-blocks"),
-                    __("Transform features added", "zolo-blocks"),
+                    __("Form block added", "zoloblocks"),
+                    __("List block added", "zoloblocks"),
+                    __("Floating animation features added", "zoloblocks"),
+                    __("Transform features added", "zoloblocks"),
                   ],
                 },
                 // {
-                //     title: __('Updated', 'zolo-blocks'),
+                //     title: __('Updated', 'zoloblocks'),
                 //     list: [
-                //         __('Carousel portion removed from Slider block', 'zolo-blocks'),
-                //         __('Advanced Button & Post List block style improved', 'zolo-blocks'),
-                //         __('Accessibility improved', 'zolo-blocks'),
-                //         __('Image Gallery block Lightbox improved', 'zolo-blocks'),
+                //         __('Carousel portion removed from Slider block', 'zoloblocks'),
+                //         __('Advanced Button & Post List block style improved', 'zoloblocks'),
+                //         __('Accessibility improved', 'zoloblocks'),
+                //         __('Image Gallery block Lightbox improved', 'zoloblocks'),
                 //     ],
                 // },
                 {
-                  title: __("Fixed", "zolo-blocks"),
+                  title: __("Fixed", "zoloblocks"),
                   list: [
                     __(
                       "Advanced icon box block css overwriting issue fixed",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
                     __(
                       "Social share block icon size issue fixed",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
                     __(
                       "Social links block icon size issue fixed",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
                     __(
                       "Flipbox block hover background label issue fixed",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
                     __(
                       "Advanced heading preset-3 background image replacing issue fixed",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
                     __(
                       "Image gallery block move horizontal control spelling mistake issue fixed",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
                   ],
                 },
@@ -195,43 +195,43 @@ const ChangeLogs = () => {
               date={"January 23, 2024"}
               changes={[
                 {
-                  title: __("Added", "zolo-blocks"),
+                  title: __("Added", "zoloblocks"),
                   list: [
-                    __("Admin Dashboard added", "zolo-blocks"),
-                    __("Progressbar block added", "zolo-blocks"),
-                    __("Flipbox block added", "zolo-blocks"),
-                    __("Google Map block added", "zolo-blocks"),
-                    __("Post Carousel block added", "zolo-blocks"),
-                    __("Global overflow control added", "zolo-blocks"),
-                    __("Object fit control added", "zolo-blocks"),
-                    __("Image resolution control added", "zolo-blocks"),
-                    __("Lightbox animation style added", "zolo-blocks"),
+                    __("Admin Dashboard added", "zoloblocks"),
+                    __("Progressbar block added", "zoloblocks"),
+                    __("Flipbox block added", "zoloblocks"),
+                    __("Google Map block added", "zoloblocks"),
+                    __("Post Carousel block added", "zoloblocks"),
+                    __("Global overflow control added", "zoloblocks"),
+                    __("Object fit control added", "zoloblocks"),
+                    __("Image resolution control added", "zoloblocks"),
+                    __("Lightbox animation style added", "zoloblocks"),
                   ],
                 },
                 {
-                  title: __("Updated", "zolo-blocks"),
+                  title: __("Updated", "zoloblocks"),
                   list: [
                     __(
                       "Carousel portion removed from Slider block",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
                     __(
                       "Advanced Button & Post List block style improved",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
-                    __("Accessibility improved", "zolo-blocks"),
-                    __("Image Gallery block Lightbox improved", "zolo-blocks"),
+                    __("Accessibility improved", "zoloblocks"),
+                    __("Image Gallery block Lightbox improved", "zoloblocks"),
                   ],
                 },
                 {
-                  title: __("Fixed", "zolo-blocks"),
+                  title: __("Fixed", "zoloblocks"),
                   list: [
                     __(
                       "Fixed several issues as per testing team feedback",
-                      "zolo-blocks",
+                      "zoloblocks",
                     ),
-                    __("Overflow hidded issue fixed", "zolo-blocks"),
-                    __("Slider issue fixed", "zolo-blocks"),
+                    __("Overflow hidded issue fixed", "zoloblocks"),
+                    __("Slider issue fixed", "zoloblocks"),
                   ],
                 },
               ]}

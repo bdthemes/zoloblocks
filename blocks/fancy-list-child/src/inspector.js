@@ -187,7 +187,7 @@ function Inspector(props) {
                                                     >
                                                         <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
                                                     </svg>
-                                                    {__(' Upload Photo', 'zolo-blocks')}
+                                                    {__(' Upload Photo', 'zoloblocks')}
                                                 </Button>
                                             )}
                                         />
@@ -213,22 +213,22 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={ITEM_BORDER} requiredProps={requiredProps} />
+                        <ZoloPanelBody title={__('Item', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={ITEM_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
+                                label={__('Border Radius', 'zoloblocks')}
                                 controlName={ITEM_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
+                                label={__('Padding', 'zoloblocks')}
                                 controlName={ITEM_PADDING}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
+                                label={__('Margin', 'zoloblocks')}
                                 controlName={ITEM_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
@@ -396,7 +396,7 @@ function Inspector(props) {
                                 {mediaType === 'text' && (
                                     <>
                                         <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
+                                            label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={MEDIA_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                             max={36}

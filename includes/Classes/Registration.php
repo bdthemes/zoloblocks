@@ -46,7 +46,7 @@ class Registration {
                 $admin_path = trailingslashit(ZOLO_ADMIN_URL);
                 $version   = ZOLO_VERSION;
 
-                if( isset($block['pro'] ) && $block['pro'] === true ) {
+                if (isset($block['pro']) && $block['pro'] === true) {
                     $block_path = trailingslashit(ZOLO_PRO_DIR_PATH);
                     $admin_path = trailingslashit(ZOLO_PRO_ADMIN_URL);
                     $version   = ZOLO_PRO_VERSION;
@@ -160,8 +160,8 @@ class Registration {
     public function register_block_category($categories, $post) {
         $updatedCat  = [];
         $zb_category = [
-            'slug'  => 'zolo-blocks',
-            'title' => __('Zolo Blocks', 'zolo-blocks')
+            'slug'  => 'zoloblocks',
+            'title' => __('Zolo Blocks', 'zoloblocks')
         ];
         $updatedCat[0] = $zb_category;
         $updatedCat    = array_merge($updatedCat, $categories);

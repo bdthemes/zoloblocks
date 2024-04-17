@@ -13,7 +13,7 @@ const Repeater = ({ markers, setAttributes }) => {
     return (
         <div className="sortable zolo-gmap-repeater">
             <div className="zb-repeater-flex">
-                <div className="repeater-label">{__('Add a Location', 'zolo-blocks')}</div>
+                <div className="repeater-label">{__('Add a Location', 'zoloblocks')}</div>
                 <Button
                     onClick={() =>
                         setAttributes({
@@ -52,7 +52,7 @@ const Repeater = ({ markers, setAttributes }) => {
                             />
                             <PanelBody title={marker?.location || 'Location'} initialOpen={false}>
                                 <GoogleMapAutocomplete
-                                    label={__('Location', 'zolo-blocks')}
+                                    label={__('Location', 'zoloblocks')}
                                     value={marker?.location}
                                     onChange={(v) => {
                                         const newItems = [...deepCloneMarkers];
@@ -71,10 +71,10 @@ const Repeater = ({ markers, setAttributes }) => {
                                         });
                                     }}
                                 />
-                                <TextControl label={__('Latitude', 'zolo-blocks')} value={marker?.position.lat} readOnly={true} />
-                                <TextControl label={__('Longitude', 'zolo-blocks')} value={marker?.position.lng} readOnly={true} />
+                                <TextControl label={__('Latitude', 'zoloblocks')} value={marker?.position.lat} readOnly={true} />
+                                <TextControl label={__('Longitude', 'zoloblocks')} value={marker?.position.lng} readOnly={true} />
                                 <TextareaControl
-                                    label={__('Marker Description', 'zolo-blocks')}
+                                    label={__('Marker Description', 'zoloblocks')}
                                     value={marker?.info}
                                     onChange={(v) => {
                                         const newItems = [...deepCloneMarkers];
@@ -83,7 +83,7 @@ const Repeater = ({ markers, setAttributes }) => {
                                             markers: newItems,
                                         });
                                     }}
-                                    help={__('HTML tags are allowed', 'zolo-blocks')}
+                                    help={__('HTML tags are allowed', 'zoloblocks')}
                                 />
                             </PanelBody>
                         </div>

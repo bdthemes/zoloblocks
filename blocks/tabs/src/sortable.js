@@ -96,7 +96,7 @@ const Sortable = ({
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
-                <div className="repeater-label">{__('Add a Tab', 'zolo-blocks')}</div>
+                <div className="repeater-label">{__('Add a Tab', 'zoloblocks')}</div>
                 <Button onClick={addNewTab}>
                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
@@ -119,7 +119,7 @@ const Sortable = ({
                                 <SortableItem key={tab.id} id={tab.id}>
                                     <PanelBody title={tab.title || 'Title'} initialOpen={false}>
                                         <TextControl
-                                            label={__('Title', 'zolo-blocks')}
+                                            label={__('Title', 'zoloblocks')}
                                             value={tab.title}
                                             onChange={(v) => {
                                                 const newItems = [...deepCloneTitles];
@@ -130,12 +130,12 @@ const Sortable = ({
                                             }}
                                             help={__(
                                                 'title is also used as panel title, so use it but you can hide it from content.',
-                                                'zolo-blocks'
+                                                'zoloblocks'
                                             )}
                                         />
                                         {tab.hasDescription && (
                                             <TextareaControl
-                                                label={__('Description', 'zolo-blocks')}
+                                                label={__('Description', 'zoloblocks')}
                                                 value={tab.description}
                                                 onChange={(v) => {
                                                     const newItems = [...deepCloneTitles];
@@ -145,7 +145,7 @@ const Sortable = ({
                                             />
                                         )}
                                         {/* <ToggleControl
-                                            label={__('Show Tab Icon', 'zolo-blocks')}
+                                            label={__('Show Tab Icon', 'zoloblocks')}
                                             checked={tab.hasMedia}
                                             onChange={() => {
                                                 const newItems = [...deepCloneTitles];
@@ -155,7 +155,7 @@ const Sortable = ({
                                         /> */}
                                         {tab.hasMedia && (
                                             <ZoloIconPicker
-                                                label={__('Select Icon', 'zolo-blocks')}
+                                                label={__('Select Icon', 'zoloblocks')}
                                                 value={tab.icon}
                                                 onChange={(value) => {
                                                     const newItems = [...deepCloneTitles];

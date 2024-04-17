@@ -53,7 +53,7 @@ function GoogleMap({ attributes }) {
             ) : (
                 <div className="zolo-google-map">
                     <p className="zolo-notice-error">
-                        {__('No Google API Key Found. Please add google api key in the ZoloBlocks settings', 'zolo-blocks')}
+                        {__('No Google API Key Found. Please add google api key in the ZoloBlocks settings', 'zoloblocks')}
                     </p>
                 </div>
             )}

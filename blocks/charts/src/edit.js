@@ -280,7 +280,7 @@ export default function Edit(props) {
     return (
       <img
         src={zoloParams.blocksPreview.charts}
-        alt={__("Charts Preview", "zolo-blocks")}
+        alt={__("Charts Preview", "zoloblocks")}
       />
     );
   }

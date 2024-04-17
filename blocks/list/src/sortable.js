@@ -14,7 +14,7 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
-                <div className="repeater-label">{__('Add a List', 'zolo-blocks')}</div>
+                <div className="repeater-label">{__('Add a List', 'zoloblocks')}</div>
                 <Button
                     onClick={() =>
                         setAttributes({
@@ -58,7 +58,7 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                 <SortableItem key={profile.id} id={profile.id}>
                                     <PanelBody title={profile.text.replace(/<[^>]*>/g, '') || 'Title'} initialOpen={false}>
                                         <TextControl
-                                            label={__('Title', 'zolo-blocks')}
+                                            label={__('Title', 'zoloblocks')}
                                             value={profile.text}
                                             onChange={(v) => {
                                                 const newItems = [...deepCloneProfiles];
@@ -70,7 +70,7 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                         />
                                         {DscToggle && preset !== 'zolo-list-style-1' && (
                                             <TextareaControl
-                                                label={__('Description', 'zolo-blocks')}
+                                                label={__('Description', 'zoloblocks')}
                                                 value={profile.desc}
                                                 onChange={(v) => {
                                                     const newItems = [...deepCloneProfiles];
@@ -81,7 +81,7 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                         )}
                                         {preset !== 'zolo-list-style-1' && (
                                             <ZoloIconPicker
-                                                label={__('Select Icon', 'zolo-blocks')}
+                                                label={__('Select Icon', 'zoloblocks')}
                                                 value={profile.icon}
                                                 onChange={(value) => {
                                                     const newItems = [...deepCloneProfiles];
@@ -94,7 +94,7 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                         )}
 
                                         <LinkControl
-                                            label={__('Link', 'zolo-blocks')}
+                                            label={__('Link', 'zoloblocks')}
                                             value={profile.link}
                                             onChange={(value) => {
                                                 const newItems = [...deepCloneProfiles];

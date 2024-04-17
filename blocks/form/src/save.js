@@ -65,7 +65,7 @@ const Save = ({ attributes }) => {
                                 'data-action': 'submit',
                             })}
                         >
-                            {btnLabel || __('Submit Now', 'zolo-blocks')}
+                            {btnLabel || __('Submit Now', 'zoloblocks')}
                         </button>
                     </div>
                 </div>

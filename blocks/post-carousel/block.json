@@ -2,14 +2,14 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Post Carousel",
     "name": "zolo/post-carousel",
-    "category": "zolo-blocks",
+    "category": "zoloblocks",
     "keywords": [
         "post",
         "post carousel"
     ],
     "description": "post carousel view",
     "apiVersion": 2,
-    "textdomain": "zolo-blocks",
+    "textdomain": "zoloblocks",
     "example": {
         "attributes": {
             "preview": true

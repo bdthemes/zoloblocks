@@ -54,7 +54,7 @@ class Notice {
         );
 
         $action_url   = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=gutenberg'), 'install-plugin_gutenberg');
-        $button_label = __('Install Gutenberg', 'zolo-blocks');
+        $button_label = __('Install Gutenberg', 'zoloblocks');
 
         $button = '<p><a href="' . $action_url . '" class="button-primary">' . $button_label . '</a></p><p></p>';
 

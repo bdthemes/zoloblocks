@@ -7,7 +7,7 @@ const OverflowControl = ({ label = '', value, onChange }) => {
     return (
         <div className="zolo-control-container zolo-single-control">
             <SelectControl
-                label={label || __('Content Overflow', 'zolo-blocks')}
+                label={label || __('Content Overflow', 'zoloblocks')}
                 options={OVERFLOWS}
                 onChange={(v) => onChange(v)}
                 value={value}

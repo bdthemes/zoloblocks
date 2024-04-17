@@ -50,7 +50,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.iconBox} alt={__('Icon Box Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.iconBox} alt={__('Icon Box Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -73,7 +73,7 @@ export default function Edit(props) {
                                     render={({ open }) => (
                                         <ToolbarButton
                                             className="components-toolbar__control"
-                                            label={__('Replace Photo', 'zolo-blocks')}
+                                            label={__('Replace Photo', 'zoloblocks')}
                                             icon="edit"
                                             onClick={open}
                                         />
@@ -110,7 +110,7 @@ export default function Edit(props) {
                                 <MediaPlaceholder
                                     icon="format-image"
                                     labels={{
-                                        title: __('Add Photo', 'zolo-blocks'),
+                                        title: __('Add Photo', 'zoloblocks'),
                                         instructions: '',
                                     }}
                                     onSelect={(media) => {
@@ -135,7 +135,7 @@ export default function Edit(props) {
                                         iconBoxTitle: text,
                                     })
                                 }
-                                placeholder={__('The Title Goes Here', 'zolo-blocks')}
+                                placeholder={__('The Title Goes Here', 'zoloblocks')}
                             />
                         )}
                         {showDesc && (
@@ -148,7 +148,7 @@ export default function Edit(props) {
                                         iconBoxDescription: text,
                                     })
                                 }
-                                placeholder={__('The Description Goes Here..', 'zolo-blocks')}
+                                placeholder={__('The Description Goes Here..', 'zoloblocks')}
                             />
                         )}
                         {showButton && (
@@ -171,7 +171,7 @@ export default function Edit(props) {
                                                 buttonText: text,
                                             })
                                         }
-                                        placeholder={__('Read More', 'zolo-blocks')}
+                                        placeholder={__('Read More', 'zoloblocks')}
                                         allowedFormats={['core/bold', 'core/italic']}
                                     />
                                     {showButtonIcon && <DisplayZoloIcon icon={buttonIcon} />}

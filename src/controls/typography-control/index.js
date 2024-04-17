@@ -69,7 +69,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
             : '';
 
     return (
-        <BaseControl label={label || __('Typography', 'zolo-blocks')} className="zb-typography-control-wrapper">
+        <BaseControl label={label || __('Typography', 'zoloblocks')} className="zb-typography-control-wrapper">
             <div className="zolo-flex">
                 {hasValueClass && (
                     <ResetBtn
@@ -125,7 +125,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                         <div className="zolo-panel-control zb-typography-component-panel">
                             <FontPicker
                                 className="zb-fontpicker-fontfamily"
-                                label={__('Font Family', 'zolo-blocks')}
+                                label={__('Font Family', 'zoloblocks')}
                                 value={fontFamily}
                                 onChange={(FontFamily) => {
                                     setAttributes({
@@ -157,7 +157,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
-                                            label={__('Font Size', 'zolo-blocks')}
+                                            label={__('Font Size', 'zoloblocks')}
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
@@ -198,7 +198,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
-                                            label={__('Font Size', 'zolo-blocks')}
+                                            label={__('Font Size', 'zoloblocks')}
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
@@ -239,7 +239,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
-                                            label={__('Font Size', 'zolo-blocks')}
+                                            label={__('Font Size', 'zoloblocks')}
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
@@ -260,7 +260,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                             </div>
 
                             <SelectControl
-                                label={__('Font Weight', 'zolo-blocks')}
+                                label={__('Font Weight', 'zoloblocks')}
                                 value={fontWeight}
                                 options={fontWeightOptions}
                                 onChange={(FontWeight) =>
@@ -271,7 +271,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                             />
 
                             <SelectControl
-                                label={__('Font Style', 'zolo-blocks')}
+                                label={__('Font Style', 'zoloblocks')}
                                 value={fontStyle}
                                 options={fontStyleOptions}
                                 onChange={(fontStyle) =>
@@ -282,7 +282,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                             />
 
                             <SelectControl
-                                label={__('Text Transform', 'zolo-blocks')}
+                                label={__('Text Transform', 'zoloblocks')}
                                 value={textTransform}
                                 options={textTransformOptions}
                                 onChange={(TextTransform) =>
@@ -293,7 +293,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                             />
 
                             <SelectControl
-                                label={__('Text Decoration', 'zolo-blocks')}
+                                label={__('Text Decoration', 'zoloblocks')}
                                 value={textDecoration}
                                 options={textDecorationOptions}
                                 onChange={(TextDecoration) =>
@@ -326,7 +326,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
-                                            label={__('Letter Spacing', 'zolo-blocks')}
+                                            label={__('Letter Spacing', 'zoloblocks')}
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
@@ -367,7 +367,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
-                                            label={__('Letter Spacing', 'zolo-blocks')}
+                                            label={__('Letter Spacing', 'zoloblocks')}
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
@@ -408,7 +408,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
-                                            label={__('Letter Spacing', 'zolo-blocks')}
+                                            label={__('Letter Spacing', 'zoloblocks')}
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
@@ -451,7 +451,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
-                                            label={__('Line Height', 'zolo-blocks')}
+                                            label={__('Line Height', 'zoloblocks')}
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
@@ -492,7 +492,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
-                                            label={__('Line Height', 'zolo-blocks')}
+                                            label={__('Line Height', 'zoloblocks')}
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
@@ -533,7 +533,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn
-                                            label={__('Line Height', 'zolo-blocks')}
+                                            label={__('Line Height', 'zoloblocks')}
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >

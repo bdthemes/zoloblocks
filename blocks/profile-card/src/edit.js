@@ -54,7 +54,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.profileCard} alt={__('Profile Card Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.profileCard} alt={__('Profile Card Preview', 'zoloblocks')} />;
     }
 
     const deepCloneStatusItems = cloneDeep(statusItems);
@@ -84,7 +84,7 @@ export default function Edit(props) {
                                 render={({ open }) => (
                                     <ToolbarButton
                                         className="components-toolbar__control"
-                                        label={__('Replace Photo', 'zolo-blocks')}
+                                        label={__('Replace Photo', 'zoloblocks')}
                                         icon="edit"
                                         onClick={open}
                                     />
@@ -130,7 +130,7 @@ export default function Edit(props) {
                                             value={photo && photo.id}
                                             render={({ open }) => (
                                                 <Button className="components-button button button-large" onClick={open}>
-                                                    {__('Upload Photo', 'zolo-blocks')}
+                                                    {__('Upload Photo', 'zoloblocks')}
                                                 </Button>
                                             )}
                                         />
@@ -144,7 +144,7 @@ export default function Edit(props) {
                                             tagName="span"
                                             value={name}
                                             onChange={(content) => setAttributes({ name: content })}
-                                            placeholder={__('Name', 'zolo-blocks')}
+                                            placeholder={__('Name', 'zoloblocks')}
                                         />
                                     </div>
                                 )}
@@ -158,7 +158,7 @@ export default function Edit(props) {
                                                     username: content,
                                                 })
                                             }
-                                            placeholder={__('Username', 'zolo-blocks')}
+                                            placeholder={__('Username', 'zoloblocks')}
                                         />
                                     </div>
                                 )}
@@ -172,7 +172,7 @@ export default function Edit(props) {
                                                     email: content,
                                                 })
                                             }
-                                            placeholder={__('Email', 'zolo-blocks')}
+                                            placeholder={__('Email', 'zoloblocks')}
                                         />
                                     </div>
                                 )}
@@ -183,7 +183,7 @@ export default function Edit(props) {
                                 <RichText
                                     value={bio}
                                     onChange={(content) => setAttributes({ bio: content })}
-                                    placeholder={__('Bio', 'zolo-blocks')}
+                                    placeholder={__('Bio', 'zoloblocks')}
                                 />
                             </div>
                         )}
@@ -205,7 +205,7 @@ export default function Edit(props) {
                                                             statusItems: newStatusItems,
                                                         });
                                                     }}
-                                                    placeholder={__('Number', 'zolo-blocks')}
+                                                    placeholder={__('Number', 'zoloblocks')}
                                                     allowedFormats={['core/bold', 'core/italic']}
                                                 />
                                                 <RichText
@@ -219,7 +219,7 @@ export default function Edit(props) {
                                                             statusItems: newStatusItems,
                                                         });
                                                     }}
-                                                    placeholder={__('Label', 'zolo-blocks')}
+                                                    placeholder={__('Label', 'zoloblocks')}
                                                     allowedFormats={['core/bold', 'core/italic']}
                                                 />
                                             </div>
@@ -239,7 +239,7 @@ export default function Edit(props) {
                                             followButtonText: content,
                                         })
                                     }
-                                    placeholder={__('Follow', 'zolo-blocks')}
+                                    placeholder={__('Follow', 'zoloblocks')}
                                 />
                             )}
                             {showSocialProfiles && (

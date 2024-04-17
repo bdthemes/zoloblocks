@@ -46,7 +46,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.cta} alt={__('Call to Action Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.cta} alt={__('Call to Action Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -62,7 +62,7 @@ export default function Edit(props) {
                                 className={`zolo-call-out__title`}
                                 value={title}
                                 onChange={(text) => setAttributes({ title: text })}
-                                placeholder={__('Call Out Title', 'zolo-blocks')}
+                                placeholder={__('Call Out Title', 'zoloblocks')}
                             />
                         )}
                         {showDescription && (
@@ -71,7 +71,7 @@ export default function Edit(props) {
                                 className={`zolo-call-out__text`}
                                 value={description}
                                 onChange={(text) => setAttributes({ description: text })}
-                                placeholder={__('Call Out Description', 'zolo-blocks')}
+                                placeholder={__('Call Out Description', 'zoloblocks')}
                             />
                         )}
                     </div>
@@ -94,7 +94,7 @@ export default function Edit(props) {
                                                     className={`zolo-text`}
                                                     value={label}
                                                     onChange={(text) => setAttributes({ label: text })}
-                                                    placeholder={__('button text', 'zolo-blocks')}
+                                                    placeholder={__('button text', 'zoloblocks')}
                                                     allowedFormats={[]}
                                                 />
                                             )}
@@ -121,7 +121,7 @@ export default function Edit(props) {
                                                     className={`zolo-text`}
                                                     value={Slabel}
                                                     onChange={(text) => setAttributes({ Slabel: text })}
-                                                    placeholder={__('Secondary text', 'zolo-blocks')}
+                                                    placeholder={__('Secondary text', 'zoloblocks')}
                                                     allowedFormats={[]}
                                                 />
                                             )}

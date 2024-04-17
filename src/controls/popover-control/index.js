@@ -9,8 +9,8 @@ const PopoverControl = ({ label = '', icon = '', isPro = false, children }) => {
             <div className="zolo-control-container zolo-border-control">
                 <div className="zolo-control-flex">
                     <label className={classNames(`zolo-control-label ${isPro ? 'has-pro-feature' : ''}`)} htmlFor="zolo-control-label">
-                        {label || __('Popover Control', 'zolo-blocks')}
-                        {isPro && <span className="zolo-pro-badge">{__('Pro', 'zolo-blocks')}</span>}
+                        {label || __('Popover Control', 'zoloblocks')}
+                        {isPro && <span className="zolo-pro-badge">{__('Pro', 'zoloblocks')}</span>}
                     </label>
                     <Dropdown
                         className="zolo-background-control-popover-dropdown"

@@ -40,7 +40,7 @@ const Edit = (props) => {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.heading} alt={__('Heading Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.heading} alt={__('Heading Preview', 'zoloblocks')} />;
     }
 
     return (

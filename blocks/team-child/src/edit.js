@@ -82,7 +82,7 @@ export default function Edit(props) {
                                 render={({ open }) => (
                                     <ToolbarButton
                                         className="components-toolbar__control"
-                                        label={__('Replace Photo', 'zolo-blocks')}
+                                        label={__('Replace Photo', 'zoloblocks')}
                                         icon="edit"
                                         onClick={open}
                                     />
@@ -105,7 +105,7 @@ export default function Edit(props) {
                             <MediaPlaceholder
                                 icon="format-image"
                                 labels={{
-                                    title: __('Add Photo', 'zolo-blocks'),
+                                    title: __('Add Photo', 'zoloblocks'),
                                     instructions: '',
                                 }}
                                 onSelect={(media) => {
@@ -130,7 +130,7 @@ export default function Edit(props) {
                                 className={`zolo-name`}
                                 value={memberName}
                                 onChange={(name) => setAttributes({ memberName: name })}
-                                placeholder={__('Name...', 'zolo-blocks')}
+                                placeholder={__('Name...', 'zoloblocks')}
                                 allowedFormats={['core/bold', 'core/italic']}
                             />
                             {showDesignation && (
@@ -142,7 +142,7 @@ export default function Edit(props) {
                                             memberDesignation: designation,
                                         })
                                     }
-                                    placeholder={__('Designation...', 'zolo-blocks')}
+                                    placeholder={__('Designation...', 'zoloblocks')}
                                     allowedFormats={['core/bold', 'core/italic']}
                                 />
                             )}
@@ -155,7 +155,7 @@ export default function Edit(props) {
                                             memberShortBio: bio,
                                         })
                                     }
-                                    placeholder={__('short bio...', 'zolo-blocks')}
+                                    placeholder={__('short bio...', 'zoloblocks')}
                                     allowedFormats={['core/bold', 'core/italic']}
                                 />
                             )}

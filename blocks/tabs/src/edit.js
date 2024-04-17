@@ -54,7 +54,7 @@ const Edit = (props) => {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.tabs} alt={__('Tabs Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.tabs} alt={__('Tabs Preview', 'zoloblocks')} />;
     }
 
     // handle tab click
@@ -177,7 +177,7 @@ const Edit = (props) => {
                                                         newTabTitles[index].title = v;
                                                         setAttributes({ tabTitles: newTabTitles });
                                                     }}
-                                                    placeholder={__('Tab Title', 'zolo-blocks')}
+                                                    placeholder={__('Tab Title', 'zoloblocks')}
                                                 />
                                             )}
                                             {tab.hasDescription && showDesc && (
@@ -190,7 +190,7 @@ const Edit = (props) => {
                                                         newTabTitles[index].description = v;
                                                         setAttributes({ tabTitles: newTabTitles });
                                                     }}
-                                                    placeholder={__('Tab Description', 'zolo-blocks')}
+                                                    placeholder={__('Tab Description', 'zoloblocks')}
                                                 />
                                             )}
                                         </div>

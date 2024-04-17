@@ -46,7 +46,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
     const PostType = [];
     let getPostType = zoloParams.post_types;
     for (let p in getPostType) {
-        PostType.push({ value: p, label: __(getPostType[p], 'zolo-blocks') });
+        PostType.push({ value: p, label: __(getPostType[p], 'zoloblocks') });
     }
     const POSTS_TYPE = PostType;
     //get authors
@@ -55,7 +55,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
     return (
         <>
             <SelectControl
-                label={__('Source', 'zolo-blocks')}
+                label={__('Source', 'zoloblocks')}
                 value={postQuery.postType}
                 options={POSTS_TYPE}
                 onChange={(postType) => setAttributes({ postQuery: { ...postQuery, postType } })}
@@ -73,14 +73,14 @@ const QueryControl = ({ attributes, setAttributes }) => {
             </BaseControl>
 
             <TextControl
-                label={__('Include Only', 'zolo-blocks')}
+                label={__('Include Only', 'zoloblocks')}
                 value={postQuery.postInclude}
                 onChange={(postInclude) => setAttributes({ postQuery: { ...postQuery, postInclude } })}
                 autocomplete="off"
             />
 
             <TextControl
-                label={__('Exclude', 'zolo-blocks')}
+                label={__('Exclude', 'zoloblocks')}
                 autocomplete="off"
                 value={postQuery.postExclude}
                 onChange={(postExclude) => {
@@ -89,7 +89,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
             />
 
             {tpgAllTaxonomies.map((tax, index) => (
-                <BaseControl label={__('By ', 'zolo-blocks') + tax.name} key={index}>
+                <BaseControl label={__('By ', 'zoloblocks') + tax.name} key={index}>
                     <Select2
                         classNamePrefix="zolo-select"
                         options={PRINT_TAXONOMY(allTermList[tax.value])}
@@ -108,7 +108,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
             ))}
 
             <InputControl
-                label={__('Post Per Page', 'zolo-blocks')}
+                label={__('Post Per Page', 'zoloblocks')}
                 value={postQuery.postPerPage}
                 onChange={(postPerPage) => {
                     setAttributes({ postQuery: { ...postQuery, postPerPage } });
@@ -121,7 +121,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
             />
 
             <InputControl
-                label={__('Offset', 'zolo-blocks')}
+                label={__('Offset', 'zoloblocks')}
                 value={postQuery.postOffset}
                 onChange={(postOffset) => {
                     setAttributes({ postQuery: { ...postQuery, postOffset } });
@@ -134,7 +134,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
             />
 
             <SelectControl
-                label={__('Order By', 'zolo-blocks')}
+                label={__('Order By', 'zoloblocks')}
                 value={postQuery.postOrderby}
                 onChange={(postOrderby) => {
                     setAttributes({ postQuery: { ...postQuery, postOrderby } });
@@ -143,7 +143,7 @@ const QueryControl = ({ attributes, setAttributes }) => {
             />
 
             <SelectControl
-                label={__('Sort Order', 'zolo-blocks')}
+                label={__('Sort Order', 'zoloblocks')}
                 value={postQuery.postOrder}
                 onChange={(postOrder) => {
                     setAttributes({ postQuery: { ...postQuery, postOrder } });

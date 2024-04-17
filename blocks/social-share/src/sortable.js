@@ -26,7 +26,7 @@ const Sortable = ({ socialMedia, setAttributes }) => {
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
-                <div className="repeater-label">{__('Add a Media', 'zolo-blocks')}</div>
+                <div className="repeater-label">{__('Add a Media', 'zoloblocks')}</div>
                 <Button
                     onClick={() => {
                         setAttributes({
@@ -69,7 +69,7 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                                 <SortableItem key={profile.id} id={profile.id}>
                                     <PanelBody title={capitalizeWords(profile.value) || 'Title'} initialOpen={false}>
                                         <SelectControl
-                                            label={__('Select Media', 'zolo-blocks')}
+                                            label={__('Select Media', 'zoloblocks')}
                                             value={profile.value}
                                             options={SocialMediaOptions}
                                             onChange={(value) => {
@@ -82,7 +82,7 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                                             }}
                                         />
                                         <TextControl
-                                            label={__('Custom Label', 'zolo-blocks')}
+                                            label={__('Custom Label', 'zoloblocks')}
                                             value={profile.customLabel}
                                             onChange={(v) =>
                                                 setAttributes({
@@ -96,7 +96,7 @@ const Sortable = ({ socialMedia, setAttributes }) => {
                                             }
                                         />
                                         <LinkControl
-                                            label={__('Link', 'zolo-blocks')}
+                                            label={__('Link', 'zoloblocks')}
                                             value={profile.link}
                                             onChange={(value) => {
                                                 const newItems = [...socialMedia];

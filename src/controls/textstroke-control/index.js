@@ -59,7 +59,7 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                     </UnitsBtn>
 
                     <WithResDeviceBtn
-                        label={label || __('Text Stroke', 'zolo-blocks')}
+                        label={label || __('Text Stroke', 'zoloblocks')}
                         requiredProps={requiredProps}
                         controlName={controlName}
                         noResetBtn={true}

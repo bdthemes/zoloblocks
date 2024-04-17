@@ -76,11 +76,11 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
+                        <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             {isBlockRootParent && (
                                 <>
                                     <IconicBtnGroup
-                                        label={__('Container Width', 'zolo-blocks')}
+                                        label={__('Container Width', 'zoloblocks')}
                                         value={containerWidthType}
                                         onChange={(value) =>
                                             setAttributes({
@@ -92,7 +92,7 @@ function Inspector(props) {
                                     {containerWidthType === 'alignfull' && (
                                         <>
                                             <IconicBtnGroup
-                                                label={__('Content Width', 'zolo-blocks')}
+                                                label={__('Content Width', 'zoloblocks')}
                                                 value={contentWidthType}
                                                 onChange={(value) =>
                                                     setAttributes({
@@ -103,7 +103,7 @@ function Inspector(props) {
                                             />
                                             {contentWidthType === 'alignwide' && (
                                                 <ResRangeControl
-                                                    label={__('Content Width', 'zolo-blocks')}
+                                                    label={__('Content Width', 'zoloblocks')}
                                                     controlName={CONTENT_WIDTH}
                                                     requiredProps={requiredProps}
                                                     min={0}
@@ -117,7 +117,7 @@ function Inspector(props) {
 
                             {((isBlockRootParent && containerWidthType === 'custom_width') || !isBlockRootParent) && (
                                 <ResRangeControl
-                                    label={__('Custom Width', 'zolo-blocks')}
+                                    label={__('Custom Width', 'zoloblocks')}
                                     controlName={CONTAINER_WIDTH}
                                     requiredProps={requiredProps}
                                     min={0}
@@ -126,36 +126,36 @@ function Inspector(props) {
                             )}
 
                             <ResRangeControl
-                                label={__('Minimum Height', 'zolo-blocks')}
+                                label={__('Minimum Height', 'zoloblocks')}
                                 controlName={MIN_HEIGHT}
                                 requiredProps={requiredProps}
                                 min={0}
                                 max={1000}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Flex Properties', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Flex Properties', 'zoloblocks')} panelProps={props}>
                             <ResAlignmentControl
-                                label={__('Direction', 'zolo-blocks')}
+                                label={__('Direction', 'zoloblocks')}
                                 controlName={FLEX_DIRECTION}
                                 requiredProps={requiredProps}
                                 alignOptions={FLEX_DIRECTIONS}
                             />
                             <ResAlignmentControl
-                                label={__('Align Items', 'zolo-blocks')}
+                                label={__('Align Items', 'zoloblocks')}
                                 controlName={FLEX_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={alignItemsOptions}
                             />
 
                             <ResAlignmentControl
-                                label={__('Justify Content', 'zolo-blocks')}
+                                label={__('Justify Content', 'zoloblocks')}
                                 controlName={FLEX_JUSTIFY}
                                 requiredProps={requiredProps}
                                 alignOptions={justifyContentOptions}
                                 customClass="zb-flex-justify-content"
                             />
                             <ResAlignmentControl
-                                label={__('Wrap', 'zolo-blocks')}
+                                label={__('Wrap', 'zoloblocks')}
                                 controlName={FLEX_WRAP}
                                 requiredProps={requiredProps}
                                 alignOptions={FLEX_WRAPS}
@@ -165,9 +165,9 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Container Gap', 'zolo-blocks')} stylePanel={true} firstOpen={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Container Gap', 'zoloblocks')} stylePanel={true} firstOpen={true} panelProps={props}>
                             <ResGapControl
-                                label={__('Gap', 'zolo-blocks')}
+                                label={__('Gap', 'zoloblocks')}
                                 controlName={CONTAINER_GAP}
                                 requiredProps={requiredProps}
                                 max={200}

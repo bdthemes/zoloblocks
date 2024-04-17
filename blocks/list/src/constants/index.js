@@ -7,10 +7,10 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'list';
 // Presets
 export const PRESETS = [
-    { label: __('Preset 1', 'zolo-blocks'), value: 'zolo-list-style-1' },
-    { label: __('Preset 2', 'zolo-blocks'), value: 'zolo-list-style-2' },
-    { label: __('Preset 3', 'zolo-blocks'), value: 'zolo-list-style-3' },
-    { label: __('Preset 4', 'zolo-blocks'), value: 'zolo-list-style-4' },
+    { label: __('Preset 1', 'zoloblocks'), value: 'zolo-list-style-1' },
+    { label: __('Preset 2', 'zoloblocks'), value: 'zolo-list-style-2' },
+    { label: __('Preset 3', 'zoloblocks'), value: 'zolo-list-style-3' },
+    { label: __('Preset 4', 'zoloblocks'), value: 'zolo-list-style-4' },
 ];
 
 //Grid LIST

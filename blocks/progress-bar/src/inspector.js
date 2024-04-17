@@ -63,25 +63,25 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <Fragment>
-                        <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
+                        <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
-                                label={__('Presets', 'zolo-blocks')}
+                                label={__('Presets', 'zoloblocks')}
                                 options={applyFilters('zolo.progressBar.presets', PRESETS)}
                                 onChange={(v) => onPresetChange(v)}
                                 value={preset}
                             />
                             <ToggleControl
-                                label={__('Show Title', 'zolo-blocks')}
+                                label={__('Show Title', 'zoloblocks')}
                                 checked={titleToggle}
                                 onChange={() => setAttributes({ titleToggle: !titleToggle })}
                             />
                             <ToggleControl
-                                label={__('Show Percentage Value', 'zolo-blocks')}
+                                label={__('Show Percentage Value', 'zoloblocks')}
                                 checked={percentToggle}
                                 onChange={() => setAttributes({ percentToggle: !percentToggle })}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             <SelectControl
                                 label={__('Select Title Tag')}
                                 value={progressTextTag}
@@ -91,9 +91,9 @@ function Inspector(props) {
                                 }}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Animation Settings', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Animation Settings', 'zoloblocks')} panelProps={props}>
                             <RangeResetControl
-                                label={__('Offset', 'zolo-blocks')}
+                                label={__('Offset', 'zoloblocks')}
                                 controlName={'progressOffset'}
                                 requiredProps={requiredProps}
                                 min={0}
@@ -105,9 +105,9 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Item', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <ResRangeControl
-                                label={__('Item Gap', 'zolo-blocks')}
+                                label={__('Item Gap', 'zoloblocks')}
                                 controlName={PROGRESS_GAP}
                                 requiredProps={requiredProps}
                                 min={1}
@@ -116,7 +116,7 @@ function Inspector(props) {
                                 noUnits={false}
                             />
                             <ResRangeControl
-                                label={__('Height', 'zolo-blocks')}
+                                label={__('Height', 'zoloblocks')}
                                 controlName={PROGRESS_HIGHT}
                                 requiredProps={requiredProps}
                                 min={1}
@@ -125,22 +125,22 @@ function Inspector(props) {
                                 noUnits={false}
                             />
                             <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
+                                label={__('Border Radius', 'zoloblocks')}
                                 controlName={ITEM_BRADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <NormalBGControl
-                                label={__('Background', 'zolo-blocks')}
+                                label={__('Background', 'zoloblocks')}
                                 controlName={PROGRESS_BG_COLOR}
                                 requiredProps={requiredProps}
                                 noMainBGImg={true}
                             />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ColorControl
-                                label={__('Color', 'zolo-blocks')}
+                                label={__('Color', 'zoloblocks')}
                                 color={titleColor}
                                 onChange={(color) => setAttributes({ titleColor: color })}
                             />
@@ -150,31 +150,31 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
+                                label={__('Margin', 'zoloblocks')}
                                 controlName={PROGRESS_TITLE_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Value', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Value', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
+                                label={__('Border Radius', 'zoloblocks')}
                                 controlName={PROGRESS_BAR_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <NormalBGControl
-                                label={__('Background', 'zolo-blocks')}
+                                label={__('Background', 'zoloblocks')}
                                 controlName={PROGRESS_BAR_BG_COLOR}
                                 requiredProps={requiredProps}
                                 noMainBGImg={true}
                             />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Percentage', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Percentage', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ColorControl
-                                label={__('Color', 'zolo-blocks')}
+                                label={__('Color', 'zoloblocks')}
                                 color={progressVColor}
                                 onChange={(color) => setAttributes({ progressVColor: color })}
                             />
@@ -184,7 +184,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
+                                label={__('Margin', 'zoloblocks')}
                                 controlName={PROGRESS_VALUE_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}

@@ -710,8 +710,8 @@ export const VariationPicker = (props) => {
         <div className="zolo-container-variation-picker">
             <BlockVariationPicker
                 icon={<LayoutIcon />}
-                label={__('Choose Container Layout', 'zolo-blocks')}
-                instructions={__('Select a container column layout to start with.', 'zolo-blocks')}
+                label={__('Choose Container Layout', 'zoloblocks')}
+                instructions={__('Select a container column layout to start with.', 'zoloblocks')}
                 variations={variations}
                 onSelect={(nextVariation) => {
                     blockVariationPickerOnSelect(nextVariation);

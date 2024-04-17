@@ -172,7 +172,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.postCarousel} alt={__('Review Carousel Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.postCarousel} alt={__('Review Carousel Preview', 'zoloblocks')} />;
     }
 
     const innerBlocksProps = useInnerBlocksProps(
@@ -197,7 +197,7 @@ export default function Edit(props) {
                 <ToolbarGroup>
                     <ToolbarButton
                         className="components-toolbar__control"
-                        label={__('Add Review', 'zolo-blocks')}
+                        label={__('Add Review', 'zoloblocks')}
                         icon="insert"
                         onClick={() => appendBlock()}
                     />

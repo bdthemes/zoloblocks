@@ -32,7 +32,7 @@ export default function Edit(props) {
         return (
           <img
             src={zoloParams.blocksPreview.businessHour}
-            alt={__("List Links Preview", "zolo-blocks")}
+            alt={__("List Links Preview", "zoloblocks")}
           />
         );
     }

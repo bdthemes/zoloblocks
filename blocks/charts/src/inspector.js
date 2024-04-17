@@ -156,12 +156,12 @@ function Inspector(props) {
         generalTab={
           <>
             <ZoloPanelBody
-              title={__("General", "zolo-blocks")}
+              title={__("General", "zoloblocks")}
               firstOpen={true}
               panelProps={props}
             >
               <SelectControl
-                label={__("Inpur Source", "zolo-blocks")}
+                label={__("Inpur Source", "zoloblocks")}
                 value={sourceType}
                 options={SOURCE_TYPES}
                 onChange={(v) => setAttributes({ sourceType: v })}
@@ -196,7 +196,7 @@ function Inspector(props) {
                 />
               )}
               <SelectControl
-                label={__("Chart Type", "zolo-blocks")}
+                label={__("Chart Type", "zoloblocks")}
                 value={chartType}
                 options={CHART_TYPES}
                 onChange={(v) => {
@@ -204,15 +204,15 @@ function Inspector(props) {
                 }}
               />
               {/* <ResRangeControl
-                label={__("Height", "zolo-blocks")}
+                label={__("Height", "zoloblocks")}
                 controlName={CHART_HEIGHT}
                 requiredProps={requiredProps}
                 min={200}
                 max={1000}
-                units={[{ label: __("px", "zolo-blocks"), value: "px" }]}
+                units={[{ label: __("px", "zoloblocks"), value: "px" }]}
               /> */}
               <SimpleRangeControl
-                label={__("Height", "zolo-blocks")}
+                label={__("Height", "zoloblocks")}
                 value={chartHeight}
                 onChange={(height) =>
                   setAttributes({
@@ -224,12 +224,12 @@ function Inspector(props) {
               />
             </ZoloPanelBody>
             <ZoloPanelBody
-              title={__("Additional Options", "zolo-blocks")}
+              title={__("Additional Options", "zoloblocks")}
               firstOpen={false}
               panelProps={props}
             >
               <ToggleControl
-                label={__("Show Title", "zolo-blocks")}
+                label={__("Show Title", "zoloblocks")}
                 checked={showTitle}
                 onChange={() =>
                   setAttributes({
@@ -238,7 +238,7 @@ function Inspector(props) {
                 }
               />
               <ToggleControl
-                label={__("Show sub Title", "zolo-blocks")}
+                label={__("Show sub Title", "zoloblocks")}
                 checked={showSubTitle}
                 onChange={() =>
                   setAttributes({
@@ -247,7 +247,7 @@ function Inspector(props) {
                 }
               />
               <ToggleControl
-                label={__("Show Legend", "zolo-blocks")}
+                label={__("Show Legend", "zoloblocks")}
                 checked={showLegend}
                 onChange={() =>
                   setAttributes({
@@ -256,7 +256,7 @@ function Inspector(props) {
                 }
               />
               <ToggleControl
-                label={__("Show Tooltip", "zolo-blocks")}
+                label={__("Show Tooltip", "zoloblocks")}
                 checked={showTooltip}
                 onChange={() =>
                   setAttributes({
@@ -265,7 +265,7 @@ function Inspector(props) {
                 }
               />
               <ToggleControl
-                label={__("Show Grid", "zolo-blocks")}
+                label={__("Show Grid", "zoloblocks")}
                 checked={showGrid}
                 onChange={() =>
                   setAttributes({
@@ -274,7 +274,7 @@ function Inspector(props) {
                 }
               />
               <ToggleControl
-                label={__("Show Toolbar", "zolo-blocks")}
+                label={__("Show Toolbar", "zoloblocks")}
                 checked={showToolbar}
                 onChange={() =>
                   setAttributes({
@@ -285,7 +285,7 @@ function Inspector(props) {
               {showToolbar && (
                 <>
                   <ToggleControl
-                    label={__("Show Download", "zolo-blocks")}
+                    label={__("Show Download", "zoloblocks")}
                     checked={showDownload}
                     onChange={() =>
                       setAttributes({
@@ -294,7 +294,7 @@ function Inspector(props) {
                     }
                   />
                   {/* <ToggleControl
-                    label={__("Show Selection", "zolo-blocks")}
+                    label={__("Show Selection", "zoloblocks")}
                     checked={showSelection}
                     onChange={() =>
                       setAttributes({
@@ -303,7 +303,7 @@ function Inspector(props) {
                     }
                   /> */}
                   <ToggleControl
-                    label={__("Show Zoom", "zolo-blocks")}
+                    label={__("Show Zoom", "zoloblocks")}
                     checked={showZoom}
                     onChange={() =>
                       setAttributes({
@@ -312,7 +312,7 @@ function Inspector(props) {
                     }
                   />
                   <ToggleControl
-                    label={__("Show ZoomIn", "zolo-blocks")}
+                    label={__("Show ZoomIn", "zoloblocks")}
                     checked={showZoomIn}
                     onChange={() =>
                       setAttributes({
@@ -321,7 +321,7 @@ function Inspector(props) {
                     }
                   />
                   <ToggleControl
-                    label={__("Show ZoomOut", "zolo-blocks")}
+                    label={__("Show ZoomOut", "zoloblocks")}
                     checked={showZoomOut}
                     onChange={() =>
                       setAttributes({
@@ -330,7 +330,7 @@ function Inspector(props) {
                     }
                   />
                   <ToggleControl
-                    label={__("Show Pan", "zolo-blocks")}
+                    label={__("Show Pan", "zoloblocks")}
                     checked={showPanel}
                     onChange={() =>
                       setAttributes({
@@ -339,7 +339,7 @@ function Inspector(props) {
                     }
                   />
                   <ToggleControl
-                    label={__("Show Reset", "zolo-blocks")}
+                    label={__("Show Reset", "zoloblocks")}
                     checked={showReset}
                     onChange={() =>
                       setAttributes({
@@ -350,7 +350,7 @@ function Inspector(props) {
                 </>
               )}
               {/* <ToggleControl
-                label={__("Show Dropshadow", "zolo-blocks")}
+                label={__("Show Dropshadow", "zoloblocks")}
                 checked={showDropshadow}
                 onChange={() =>
                   setAttributes({
@@ -361,12 +361,12 @@ function Inspector(props) {
             </ZoloPanelBody>
             {showTitle && (
               <ZoloPanelBody
-                title={__("Title", "zolo-blocks")}
+                title={__("Title", "zoloblocks")}
                 firstOpen={false}
                 panelProps={props}
               >
                 <TextControl
-                  label={__("Text", "zolo-blocks")}
+                  label={__("Text", "zoloblocks")}
                   onChange={(newText) =>
                     setAttributes({
                       titleObject: {
@@ -378,7 +378,7 @@ function Inspector(props) {
                   value={titleObject.text}
                 />
                 <IconicBtnGroup
-                  label={__("Alignment", "zolo-blocks")}
+                  label={__("Alignment", "zoloblocks")}
                   value={titleObject.align}
                   onChange={(v) =>
                     setAttributes({
@@ -394,12 +394,12 @@ function Inspector(props) {
             )}
             {showSubTitle && (
               <ZoloPanelBody
-                title={__("Sub Title", "zolo-blocks")}
+                title={__("Sub Title", "zoloblocks")}
                 firstOpen={false}
                 panelProps={props}
               >
                 <TextControl
-                  label={__("Text", "zolo-blocks")}
+                  label={__("Text", "zoloblocks")}
                   onChange={(newText) =>
                     setAttributes({
                       subTitleObject: {
@@ -411,7 +411,7 @@ function Inspector(props) {
                   value={subTitleObject.text}
                 />
                 <IconicBtnGroup
-                  label={__("Alignment", "zolo-blocks")}
+                  label={__("Alignment", "zoloblocks")}
                   value={subTitleObject.align}
                   onChange={(v) =>
                     setAttributes({
@@ -427,12 +427,12 @@ function Inspector(props) {
             )}
             {showLegend && (
               <ZoloPanelBody
-                title={__("Legend", "zolo-blocks")}
+                title={__("Legend", "zoloblocks")}
                 firstOpen={false}
                 panelProps={props}
               >
                 <IconicBtnGroup
-                  label={__("Position", "zolo-blocks")}
+                  label={__("Position", "zoloblocks")}
                   value={legendObject.position}
                   onChange={(v) =>
                     setAttributes({
@@ -445,7 +445,7 @@ function Inspector(props) {
                   options={POSITIONS}
                 />
                 <IconicBtnGroup
-                  label={__("Horizontal Alignment", "zolo-blocks")}
+                  label={__("Horizontal Alignment", "zoloblocks")}
                   value={legendObject.horizontalAlign}
                   onChange={(v) =>
                     setAttributes({
@@ -458,7 +458,7 @@ function Inspector(props) {
                   options={DEFAULT_ALIGNS}
                 />
                 <ToggleControl
-                  label={__("Floating", "zolo-blocks")}
+                  label={__("Floating", "zoloblocks")}
                   checked={legendObject.floating}
                   onChange={() =>
                     setAttributes({
@@ -470,7 +470,7 @@ function Inspector(props) {
                   }
                 />
                 <RangeControl
-                  label={__("Offset X", "zolo-blocks")}
+                  label={__("Offset X", "zoloblocks")}
                   value={legendObject.offsetX}
                   onChange={(v) =>
                     setAttributes({
@@ -484,7 +484,7 @@ function Inspector(props) {
                   max={100}
                 />
                 <RangeControl
-                  label={__("Offset Y", "zolo-blocks")}
+                  label={__("Offset Y", "zoloblocks")}
                   value={legendObject.offsetY}
                   onChange={(v) =>
                     setAttributes({
@@ -501,12 +501,12 @@ function Inspector(props) {
             )}
             {showTooltip && (
               <ZoloPanelBody
-                title={__("Tooltip", "zolo-blocks")}
+                title={__("Tooltip", "zoloblocks")}
                 firstOpen={false}
                 panelProps={props}
               >
                 {/* <ToggleControl
-                  label={__("Shared", "zolo-blocks")}
+                  label={__("Shared", "zoloblocks")}
                   checked={tooltipObject.shared}
                   onChange={() =>
                     setAttributes({
@@ -518,7 +518,7 @@ function Inspector(props) {
                   }
                 /> */}
                 {/* <ToggleControl
-                  label={__("Intersect", "zolo-blocks")}
+                  label={__("Intersect", "zoloblocks")}
                   checked={tooltipObject.intersect}
                   onChange={() =>
                     setAttributes({
@@ -530,7 +530,7 @@ function Inspector(props) {
                   }
                 /> */}
                 <ToggleControl
-                  label={__("Enabled", "zolo-blocks")}
+                  label={__("Enabled", "zoloblocks")}
                   checked={tooltipObject.enabled}
                   onChange={() =>
                     setAttributes({
@@ -542,7 +542,7 @@ function Inspector(props) {
                   }
                 />
                 <ToggleControl
-                  label={__("Follow Cursor", "zolo-blocks")}
+                  label={__("Follow Cursor", "zoloblocks")}
                   checked={tooltipObject.followCursor}
                   onChange={() =>
                     setAttributes({
@@ -554,7 +554,7 @@ function Inspector(props) {
                   }
                 />
                 <ToggleControl
-                  label={__("Inverse Order", "zolo-blocks")}
+                  label={__("Inverse Order", "zoloblocks")}
                   checked={tooltipObject.inverseOrder}
                   onChange={() =>
                     setAttributes({
@@ -566,7 +566,7 @@ function Inspector(props) {
                   }
                 />
                 <ToggleControl
-                  label={__("Hide Empty Series", "zolo-blocks")}
+                  label={__("Hide Empty Series", "zoloblocks")}
                   checked={tooltipObject.hideEmptySeries}
                   onChange={() =>
                     setAttributes({
@@ -579,7 +579,7 @@ function Inspector(props) {
                 />
 
                 <ToggleControl
-                  label={__("Fill Series Color", "zolo-blocks")}
+                  label={__("Fill Series Color", "zoloblocks")}
                   checked={tooltipObject.fillSeriesColor}
                   onChange={() =>
                     setAttributes({
@@ -592,7 +592,7 @@ function Inspector(props) {
                 />
                 <CardDivider />
                 <IconicBtnGroup
-                  label={__("Theme", "zolo-blocks")}
+                  label={__("Theme", "zoloblocks")}
                   value={tooltipObject.theme}
                   onChange={(v) =>
                     setAttributes({
@@ -608,12 +608,12 @@ function Inspector(props) {
             )}
             {showGrid && (
               <ZoloPanelBody
-                title={__("Grid", "zolo-blocks")}
+                title={__("Grid", "zoloblocks")}
                 firstOpen={false}
                 panelProps={props}
               >
                 <ToggleControl
-                  label={__("Show Grid X", "zolo-blocks")}
+                  label={__("Show Grid X", "zoloblocks")}
                   checked={showGridX}
                   onChange={() =>
                     setAttributes({
@@ -622,7 +622,7 @@ function Inspector(props) {
                   }
                 />
                 <ToggleControl
-                  label={__("Show Grid Y", "zolo-blocks")}
+                  label={__("Show Grid Y", "zoloblocks")}
                   checked={showGridY}
                   onChange={() =>
                     setAttributes({
@@ -632,7 +632,7 @@ function Inspector(props) {
                 />
                 <CardDivider />
                 {/* <IconicBtnGroup
-                  label={__("Position", "zolo-blocks")}
+                  label={__("Position", "zoloblocks")}
                   value={gridObject.position}
                   onChange={(v) =>
                     setAttributes({
@@ -651,30 +651,30 @@ function Inspector(props) {
         styleTab={
           <>
             <ZoloPanelBody
-              title={__("Charts", "zolo-blocks")}
+              title={__("Charts", "zoloblocks")}
               firstOpen={true}
               stylePanel={true}
               panelProps={props}
             >
               <BorderControl
-                label={__("Border", "zolo-blocks")}
+                label={__("Border", "zoloblocks")}
                 controlName={CHART_BORDER}
                 requiredProps={requiredProps}
               />
               <ResDimensionsControl
-                label={__("Border Radius", "zolo-blocks")}
+                label={__("Border Radius", "zoloblocks")}
                 controlName={CHART_BORDER_RADIUS}
                 requiredProps={requiredProps}
                 forBorderRadius={true}
               />
               <ResDimensionsControl
-                label={__("Padding", "zolo-blocks")}
+                label={__("Padding", "zoloblocks")}
                 controlName={CHART_PADDING}
                 requiredProps={requiredProps}
                 forBorderRadius={false}
               />
               <ResDimensionsControl
-                label={__("Margin", "zolo-blocks")}
+                label={__("Margin", "zoloblocks")}
                 controlName={CHART_MARGIN}
                 requiredProps={requiredProps}
                 forBorderRadius={false}
@@ -690,7 +690,7 @@ function Inspector(props) {
               />
             </ZoloPanelBody>
             <ZoloPanelBody
-              title={__("Colors", "zolo-blocks")}
+              title={__("Colors", "zoloblocks")}
               firstOpen={true}
               stylePanel={true}
               panelProps={props}
@@ -701,17 +701,17 @@ function Inspector(props) {
                 noMainBGImg={false}
               /> */}
               {/* <ColorControl
-                label={__("Background Color", "zolo-blocks")}
+                label={__("Background Color", "zoloblocks")}
                 color={chartBackground}
                 onChange={(color) => setAttributes({ chartBackground: color })}
               /> */}
               <ColorControl
-                label={__("xAxis Color", "zolo-blocks")}
+                label={__("xAxis Color", "zoloblocks")}
                 color={xAxisColor}
                 onChange={(color) => setAttributes({ xAxisColor: color })}
               />
               <ColorControl
-                label={__("yAxis Color", "zolo-blocks")}
+                label={__("yAxis Color", "zoloblocks")}
                 color={yAxisColor}
                 onChange={(color) => setAttributes({ yAxisColor: color })}
               />
@@ -722,7 +722,7 @@ function Inspector(props) {
                     (_, index) => index,
                   ).map((i) => (
                     <ColorControl
-                      label={__(`${chartType} color ${i + 1}`, "zolo-blocks")}
+                      label={__(`${chartType} color ${i + 1}`, "zoloblocks")}
                       color={attributes.pieChartColor[i]}
                       onChange={(color) => {
                         const pieChartColor = [...attributes.pieChartColor];
@@ -737,7 +737,7 @@ function Inspector(props) {
                     (_, index) => index,
                   ).map((i) => (
                     <ColorControl
-                      label={__(`${chartType} color ${i + 1}`, "zolo-blocks")}
+                      label={__(`${chartType} color ${i + 1}`, "zoloblocks")}
                       color={attributes.pieChartColor[i]}
                       onChange={(color) => {
                         const pieChartColor = [...attributes.pieChartColor];
@@ -750,12 +750,12 @@ function Inspector(props) {
             {showTitle && (
               <>
                 <ZoloPanelBody
-                  title={__("Title", "zolo-blocks")}
+                  title={__("Title", "zoloblocks")}
                   firstOpen={false}
                   panelProps={props}
                 >
                   <ColorControl
-                    label={__("Title Color", "zolo-blocks")}
+                    label={__("Title Color", "zoloblocks")}
                     color={titleObject.style.color}
                     onChange={(color) =>
                       setAttributes({
@@ -770,7 +770,7 @@ function Inspector(props) {
                     }
                   />
                   <SimpleRangeControl
-                    label={__("Title Font Size", "zolo-blocks")}
+                    label={__("Title Font Size", "zoloblocks")}
                     value={titleObject.style.fontSize}
                     onChange={(fontSize) =>
                       setAttributes({
@@ -792,12 +792,12 @@ function Inspector(props) {
             {showSubTitle && (
               <>
                 <ZoloPanelBody
-                  title={__("Sub Title", "zolo-blocks")}
+                  title={__("Sub Title", "zoloblocks")}
                   firstOpen={false}
                   panelProps={props}
                 >
                   <ColorControl
-                    label={__("Sub Title Color", "zolo-blocks")}
+                    label={__("Sub Title Color", "zoloblocks")}
                     color={subTitleObject.style.color}
                     onChange={(color) =>
                       setAttributes({
@@ -812,7 +812,7 @@ function Inspector(props) {
                     }
                   />
                   <SimpleRangeControl
-                    label={__("Sub Title Font Size", "zolo-blocks")}
+                    label={__("Sub Title Font Size", "zoloblocks")}
                     value={subTitleObject.style.fontSize}
                     onChange={(fontSize) =>
                       setAttributes({
@@ -834,12 +834,12 @@ function Inspector(props) {
             {showLegend && (
               <>
                 <ZoloPanelBody
-                  title={__("Legend Color", "zolo-blocks")}
+                  title={__("Legend Color", "zoloblocks")}
                   firstOpen={false}
                   panelProps={props}
                 >
                   <ToggleControl
-                    label={__("useSeriesColors", "zolo-blocks")}
+                    label={__("useSeriesColors", "zoloblocks")}
                     checked={legendObject.labels.useSeriesColors}
                     onChange={() =>
                       setAttributes({
@@ -857,7 +857,7 @@ function Inspector(props) {
                     // If condition
                     !legendObject.labels.useSeriesColors && (
                       <ColorControl
-                        label={__("Legend Color", "zolo-blocks")}
+                        label={__("Legend Color", "zoloblocks")}
                         color={legendObject.labels.colors}
                         onChange={(color) =>
                           setAttributes({

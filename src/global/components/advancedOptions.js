@@ -424,10 +424,10 @@ export const AdvancedOptions = (props) => {
 
     const panels = (
         <>
-            <ZoloPanelBody title={__('Spacing', 'zolo-blocks')} panelProps={props} firstOpen={true} extraPanel={true}>
+            <ZoloPanelBody title={__('Spacing', 'zoloblocks')} panelProps={props} firstOpen={true} extraPanel={true}>
                 {globalConfig?.margin && (
                     <ResDimensionsControl
-                        label={__('Margin', 'zolo-blocks')}
+                        label={__('Margin', 'zoloblocks')}
                         controlName={globalConfig.margin.prefix || 'mainMargin'}
                         requiredProps={requiredProps}
                         forBorderRadius={false}
@@ -436,7 +436,7 @@ export const AdvancedOptions = (props) => {
                 )}
                 {globalConfig?.padding && (
                     <ResDimensionsControl
-                        label={__('Padding', 'zolo-blocks')}
+                        label={__('Padding', 'zoloblocks')}
                         controlName={globalConfig.padding.prefix || 'mainPadding'}
                         requiredProps={requiredProps}
                         forBorderRadius={false}
@@ -445,15 +445,15 @@ export const AdvancedOptions = (props) => {
                 )}
             </ZoloPanelBody>
             {globalConfig?.background && (
-                <ZoloPanelBody title={__('Background', 'zolo-blocks')} panelProps={props} extraPanel={true}>
+                <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
                     <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps} />
                 </ZoloPanelBody>
             )}
             {(globalConfig?.border || globalConfig?.borderRadius || globalConfig?.boxShadow) && (
-                <ZoloPanelBody title={__('Border', 'zolo-blocks')} panelProps={props} extraPanel={true}>
+                <ZoloPanelBody title={__('Border', 'zoloblocks')} panelProps={props} extraPanel={true}>
                     {globalConfig?.border && (
                         <BorderControl
-                            label={__('Border', 'zolo-blocks')}
+                            label={__('Border', 'zoloblocks')}
                             controlName={globalConfig.border.prefix || 'mainBorder'}
                             requiredProps={requiredProps}
                             forBorderRadius={false}
@@ -462,7 +462,7 @@ export const AdvancedOptions = (props) => {
 
                     {globalConfig?.borderRadius && (
                         <ResDimensionsControl
-                            label={__('Border Radius', 'zolo-blocks')}
+                            label={__('Border Radius', 'zoloblocks')}
                             controlName={globalConfig.borderRadius.prefix || 'mainBorderRadius'}
                             requiredProps={requiredProps}
                             forBorderRadius={true}
@@ -480,26 +480,26 @@ export const AdvancedOptions = (props) => {
 
             {globalConfig?.responsiveControls && (
                 <>
-                    <ZoloPanelBody title={__('Responsive Control', 'zolo-blocks')} panelProps={props} extraPanel={true}>
+                    <ZoloPanelBody title={__('Responsive Control', 'zoloblocks')} panelProps={props} extraPanel={true}>
                         <ToggleControl
-                            label={__('Hide on Desktop', 'zolo-blocks')}
+                            label={__('Hide on Desktop', 'zoloblocks')}
                             checked={responsiveness?.hideDesktop || false}
                             onChange={() => handleResponsiveness('hideDesktop', !responsiveness.hideDesktop, 'zolo-hide-desktop')}
                         />
                         <ToggleControl
-                            label={__('Hide on Tablet', 'zolo-blocks')}
+                            label={__('Hide on Tablet', 'zoloblocks')}
                             checked={responsiveness?.hideTab || false}
                             onChange={() => handleResponsiveness('hideTab', !responsiveness.hideTab, 'zolo-hide-tab')}
                         />
                         <ToggleControl
-                            label={__('Hide on Mobile', 'zolo-blocks')}
+                            label={__('Hide on Mobile', 'zoloblocks')}
                             checked={responsiveness?.hideMobile || false}
                             onChange={() => handleResponsiveness('hideMobile', !responsiveness.hideMobile, 'zolo-hide-mobile')}
                         />
                     </ZoloPanelBody>
                 </>
             )}
-            <ZoloPanelBody title={__('Overflow', 'zolo-blocks')} panelProps={props} extraPanel={true} isNew={true}>
+            <ZoloPanelBody title={__('Overflow', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <OverflowControl
                     value={overflow}
                     onChange={(v) => {
@@ -507,29 +507,29 @@ export const AdvancedOptions = (props) => {
                     }}
                 />
             </ZoloPanelBody>
-            <ZoloPanelBody title={__('Z Index', 'zolo-blocks')} panelProps={props} extraPanel={true}>
+            <ZoloPanelBody title={__('Z Index', 'zoloblocks')} panelProps={props} extraPanel={true}>
                 <RangeResetControl
-                    label={__('Set Z Index ', 'zolo-blocks')}
+                    label={__('Set Z Index ', 'zoloblocks')}
                     controlName={'zIndex'}
                     requiredProps={requiredProps}
                     min={0}
                     max={100}
                     step={1}
-                    help={__('Set the z-index for the section', 'zolo-blocks')}
+                    help={__('Set the z-index for the section', 'zoloblocks')}
                 />
             </ZoloPanelBody>
-            <ZoloPanelBody title={__('Custom Attributes', 'zolo-blocks')} panelProps={props} extraPanel={true}>
+            <ZoloPanelBody title={__('Custom Attributes', 'zoloblocks')} panelProps={props} extraPanel={true}>
                 <TextControl
-                    label={__('Add Wrapper ID', 'zolo-blocks')}
+                    label={__('Add Wrapper ID', 'zoloblocks')}
                     onChange={(value) => {
                         const id = value.replace(/\s/g, '_');
                         setAttributes({ zoloId: id });
                     }}
                     value={zoloId}
-                    help={__('Add an ID to the block wrapper.', 'zolo-blocks')}
+                    help={__('Add an ID to the block wrapper.', 'zoloblocks')}
                 />
                 <FormTokenField
-                    label={__('Add Custom Class', 'zolo-blocks')}
+                    label={__('Add Custom Class', 'zoloblocks')}
                     value={customClasses}
                     onChange={(tokens) => {
                         // replace spaces with dashes
@@ -537,28 +537,28 @@ export const AdvancedOptions = (props) => {
                         setAttributes({ customClasses: updatedTokens });
                         handleCustomClasses(updatedTokens);
                     }}
-                    help={__('Add custom class(es) to the block. Separate multiple classes with a space.', 'zolo-blocks')}
+                    help={__('Add custom class(es) to the block. Separate multiple classes with a space.', 'zoloblocks')}
                 />
             </ZoloPanelBody>
-            <ZoloPanelBody title={__('Custom CSS', 'zolo-blocks')} panelProps={props} extraPanel={true} isNew={true}>
+            <ZoloPanelBody title={__('Custom CSS', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <CustomCSSControl attributes={attributes} setAttributes={setAttributes} />
             </ZoloPanelBody>
-            <ZoloPanelBody title={__('Motion Effects', 'zolo-blocks')} panelProps={props} extraPanel={true} isPro={true} isNew={true}>
+            <ZoloPanelBody title={__('Motion Effects', 'zoloblocks')} panelProps={props} extraPanel={true} isPro={true} isNew={true}>
                 <TabPanelControl
                     options={[
                         {
-                            label: __('Entrance', 'zolo-blocks'),
+                            label: __('Entrance', 'zoloblocks'),
                             value: 'normal',
                         },
                         {
-                            label: __('Floating', 'zolo-blocks'),
+                            label: __('Floating', 'zoloblocks'),
                             value: 'hover',
                         },
                     ]}
                     normalComponents={
                         <>
                             <ToggleControl
-                                label={__('Entrance Animation', 'zolo-blocks')}
+                                label={__('Entrance Animation', 'zoloblocks')}
                                 checked={entranceAnimationActive}
                                 onChange={() => {
                                     setAttributes({
@@ -581,7 +581,7 @@ export const AdvancedOptions = (props) => {
                             {entranceAnimationActive && (
                                 <>
                                     <SelectControl
-                                        label={__('Animation Type', 'zolo-blocks')}
+                                        label={__('Animation Type', 'zoloblocks')}
                                         value={entranceAnimation.presetAnimation}
                                         options={ANIMATION_TYPES}
                                         onChange={(value) => {
@@ -597,10 +597,10 @@ export const AdvancedOptions = (props) => {
                                         <>
                                             {entranceAnimation.transformOrigin === 'custom' && (
                                                 <TextControl
-                                                    label={__('Transform Origin Custom', 'zolo-blocks')}
+                                                    label={__('Transform Origin Custom', 'zoloblocks')}
                                                     help={__(
                                                         'Enter a custom transform origin, for example see here: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin',
-                                                        'zolo-blocks'
+                                                        'zoloblocks'
                                                     )}
                                                     value={entranceAnimation.transformOriginCustom}
                                                     onChange={(value) => {
@@ -614,9 +614,9 @@ export const AdvancedOptions = (props) => {
                                                 />
                                             )}
 
-                                            <PopoverControl label={__('Translate', 'zolo-blocks')} icon={TRANSLATE_ICON}>
+                                            <PopoverControl label={__('Translate', 'zoloblocks')} icon={TRANSLATE_ICON}>
                                                 <SimpleRangeControl
-                                                    label={__('Translate X', 'zolo-blocks')}
+                                                    label={__('Translate X', 'zoloblocks')}
                                                     onChange={(value) => {
                                                         setAttributes({
                                                             entranceAnimation: {
@@ -658,7 +658,7 @@ export const AdvancedOptions = (props) => {
                                                     noUnits={false}
                                                 />
                                                 <SimpleRangeControl
-                                                    label={__('Translate Y', 'zolo-blocks')}
+                                                    label={__('Translate Y', 'zoloblocks')}
                                                     onChange={(value) => {
                                                         setAttributes({
                                                             entranceAnimation: {
@@ -700,7 +700,7 @@ export const AdvancedOptions = (props) => {
                                                     noUnits={false}
                                                 />
                                                 <SimpleRangeControl
-                                                    label={__('Translate Z', 'zolo-blocks')}
+                                                    label={__('Translate Z', 'zoloblocks')}
                                                     onChange={(value) => {
                                                         setAttributes({
                                                             entranceAnimation: {
@@ -742,9 +742,9 @@ export const AdvancedOptions = (props) => {
                                                     noUnits={false}
                                                 />
                                             </PopoverControl>
-                                            <PopoverControl label={__('Rotate', 'zolo-blocks')} icon={ROTATE_ICON}>
+                                            <PopoverControl label={__('Rotate', 'zoloblocks')} icon={ROTATE_ICON}>
                                                 <SimpleRangeControl
-                                                    label={__('Rotate X', 'zolo-blocks')}
+                                                    label={__('Rotate X', 'zoloblocks')}
                                                     onChange={(value) => {
                                                         setAttributes({
                                                             entranceAnimation: {
@@ -774,7 +774,7 @@ export const AdvancedOptions = (props) => {
                                                     noUnits={true}
                                                 />
                                                 <SimpleRangeControl
-                                                    label={__('Rotate Y', 'zolo-blocks')}
+                                                    label={__('Rotate Y', 'zoloblocks')}
                                                     onChange={(value) => {
                                                         setAttributes({
                                                             entranceAnimation: {
@@ -804,7 +804,7 @@ export const AdvancedOptions = (props) => {
                                                     noUnits={true}
                                                 />
                                                 <SimpleRangeControl
-                                                    label={__('Rotate Z', 'zolo-blocks')}
+                                                    label={__('Rotate Z', 'zoloblocks')}
                                                     onChange={(value) => {
                                                         setAttributes({
                                                             entranceAnimation: {
@@ -834,7 +834,7 @@ export const AdvancedOptions = (props) => {
                                                     noUnits={true}
                                                 />
                                                 <SelectControl
-                                                    label={__('Transform Origin', 'zolo-blocks')}
+                                                    label={__('Transform Origin', 'zoloblocks')}
                                                     value={entranceAnimation.transformOrigin}
                                                     options={TRANSFORM_ORIGINS}
                                                     onChange={(value) => {
@@ -847,9 +847,9 @@ export const AdvancedOptions = (props) => {
                                                     }}
                                                 />
                                             </PopoverControl>
-                                            <PopoverControl label={__('Scale', 'zolo-blocks')} icon={SCALE_ICON}>
+                                            <PopoverControl label={__('Scale', 'zoloblocks')} icon={SCALE_ICON}>
                                                 <SimpleRangeControl
-                                                    label={__('Scale X', 'zolo-blocks')}
+                                                    label={__('Scale X', 'zoloblocks')}
                                                     onChange={(value) => {
                                                         setAttributes({
                                                             entranceAnimation: {
@@ -892,7 +892,7 @@ export const AdvancedOptions = (props) => {
                                                     noUnits={true}
                                                 />
                                                 <SimpleRangeControl
-                                                    label={__('Scale Y', 'zolo-blocks')}
+                                                    label={__('Scale Y', 'zoloblocks')}
                                                     onChange={(value) => {
                                                         setAttributes({
                                                             entranceAnimation: {
@@ -922,7 +922,7 @@ export const AdvancedOptions = (props) => {
                                                     noUnits={true}
                                                 />
                                                 <SimpleRangeControl
-                                                    label={__('Scale Z', 'zolo-blocks')}
+                                                    label={__('Scale Z', 'zoloblocks')}
                                                     onChange={(value) => {
                                                         setAttributes({
                                                             entranceAnimation: {
@@ -952,9 +952,9 @@ export const AdvancedOptions = (props) => {
                                                     noUnits={true}
                                                 />
                                             </PopoverControl>
-                                            <PopoverControl label={__('Skew', 'zolo-blocks')} icon={SKEW_ICON}>
+                                            <PopoverControl label={__('Skew', 'zoloblocks')} icon={SKEW_ICON}>
                                                 <SimpleRangeControl
-                                                    label={__('Skew X', 'zolo-blocks')}
+                                                    label={__('Skew X', 'zoloblocks')}
                                                     onChange={(value) => {
                                                         setAttributes({
                                                             entranceAnimation: {
@@ -985,7 +985,7 @@ export const AdvancedOptions = (props) => {
                                                 />
 
                                                 <SimpleRangeControl
-                                                    label={__('Skew Y', 'zolo-blocks')}
+                                                    label={__('Skew Y', 'zoloblocks')}
                                                     onChange={(value) => {
                                                         setAttributes({
                                                             entranceAnimation: {
@@ -1029,7 +1029,7 @@ export const AdvancedOptions = (props) => {
                                             </PopoverControl>
 
                                             <SimpleRangeControl
-                                                label={__('Perspective', 'zolo-blocks')}
+                                                label={__('Perspective', 'zoloblocks')}
                                                 value={entranceAnimation.perspective}
                                                 onChange={(value) => {
                                                     setAttributes({
@@ -1052,7 +1052,7 @@ export const AdvancedOptions = (props) => {
                                                 noUnits={true}
                                             />
                                             <SimpleRangeControl
-                                                label={__('Opacity', 'zolo-blocks')}
+                                                label={__('Opacity', 'zoloblocks')}
                                                 value={entranceAnimation.opacity}
                                                 onChange={(value) => {
                                                     setAttributes({
@@ -1076,7 +1076,7 @@ export const AdvancedOptions = (props) => {
                                                 noUnits={true}
                                             />
                                             <SelectControl
-                                                label={__('Easing Type', 'zolo-blocks')}
+                                                label={__('Easing Type', 'zoloblocks')}
                                                 value={entranceAnimation.easing}
                                                 options={EASING_TYPES}
                                                 onChange={(value) => {
@@ -1091,8 +1091,8 @@ export const AdvancedOptions = (props) => {
 
                                             {entranceAnimation.easing === 'custom' && (
                                                 <TextControl
-                                                    label={__('Custom Easing', 'zolo-blocks')}
-                                                    help={__('Example: cubic-bezier(0.42, 0, 0.58, 1)', 'zolo-blocks')}
+                                                    label={__('Custom Easing', 'zoloblocks')}
+                                                    help={__('Example: cubic-bezier(0.42, 0, 0.58, 1)', 'zoloblocks')}
                                                     value={entranceAnimation.easingCustom}
                                                     onChange={(value) => {
                                                         setAttributes({
@@ -1107,7 +1107,7 @@ export const AdvancedOptions = (props) => {
                                         </>
                                     )}
                                     <SimpleRangeControl
-                                        label={__('Delay(ms)', 'zolo-blocks')}
+                                        label={__('Delay(ms)', 'zoloblocks')}
                                         value={entranceAnimation.delay}
                                         onChange={(value) => {
                                             setAttributes({
@@ -1130,7 +1130,7 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                     <SimpleRangeControl
-                                        label={__('Transition Duration(ms)', 'zolo-blocks')}
+                                        label={__('Transition Duration(ms)', 'zoloblocks')}
                                         value={entranceAnimation.duration}
                                         onChange={(value) => {
                                             setAttributes({
@@ -1153,12 +1153,12 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                     <Button
-                                        label={isEntrancePlaying ? __('Reset', 'zolo-blocks') : __('Preview', 'zolo-blocks')}
+                                        label={isEntrancePlaying ? __('Reset', 'zoloblocks') : __('Preview', 'zoloblocks')}
                                         className="zolo-action-button"
                                         isPrimary
                                         onClick={handleEntranceToggle}
                                     >
-                                        {isEntrancePlaying ? __('Reset', 'zolo-blocks') : __('Preview', 'zolo-blocks')}
+                                        {isEntrancePlaying ? __('Reset', 'zoloblocks') : __('Preview', 'zoloblocks')}
                                     </Button>
                                 </>
                             )}
@@ -1167,7 +1167,7 @@ export const AdvancedOptions = (props) => {
                     hoverComponents={
                         <>
                             <ToggleControl
-                                label={__('Floating Animation', 'zolo-blocks')}
+                                label={__('Floating Animation', 'zoloblocks')}
                                 checked={floatingAnimationActive}
                                 onChange={() => {
                                     setAttributes({
@@ -1190,9 +1190,9 @@ export const AdvancedOptions = (props) => {
 
                             {floatingAnimationActive && (
                                 <>
-                                    <PopoverControl label={__('Translate', 'zolo-blocks')} icon={TRANSLATE_ICON}>
+                                    <PopoverControl label={__('Translate', 'zoloblocks')} icon={TRANSLATE_ICON}>
                                         <MultiRangeControl
-                                            label={__('Translate X', 'zolo-blocks')}
+                                            label={__('Translate X', 'zoloblocks')}
                                             min={-100}
                                             max={100}
                                             step={1}
@@ -1213,7 +1213,7 @@ export const AdvancedOptions = (props) => {
                                             }}
                                         />
                                         <MultiRangeControl
-                                            label={__('Translate Y', 'zolo-blocks')}
+                                            label={__('Translate Y', 'zoloblocks')}
                                             min={-100}
                                             max={100}
                                             step={1}
@@ -1234,9 +1234,9 @@ export const AdvancedOptions = (props) => {
                                             }}
                                         />
                                     </PopoverControl>
-                                    <PopoverControl label={__('Rotate', 'zolo-blocks')} icon={ROTATE_ICON}>
+                                    <PopoverControl label={__('Rotate', 'zoloblocks')} icon={ROTATE_ICON}>
                                         <MultiRangeControl
-                                            label={__('Rotate X', 'zolo-blocks')}
+                                            label={__('Rotate X', 'zoloblocks')}
                                             min={-180}
                                             max={180}
                                             step={1}
@@ -1257,7 +1257,7 @@ export const AdvancedOptions = (props) => {
                                             }}
                                         />
                                         <MultiRangeControl
-                                            label={__('Rotate Y', 'zolo-blocks')}
+                                            label={__('Rotate Y', 'zoloblocks')}
                                             min={-180}
                                             max={180}
                                             step={1}
@@ -1278,7 +1278,7 @@ export const AdvancedOptions = (props) => {
                                             }}
                                         />
                                         <MultiRangeControl
-                                            label={__('Rotate Z', 'zolo-blocks')}
+                                            label={__('Rotate Z', 'zoloblocks')}
                                             min={-180}
                                             max={180}
                                             step={1}
@@ -1299,9 +1299,9 @@ export const AdvancedOptions = (props) => {
                                             }}
                                         />
                                     </PopoverControl>
-                                    <PopoverControl label={__('Scale', 'zolo-blocks')} icon={SCALE_ICON}>
+                                    <PopoverControl label={__('Scale', 'zoloblocks')} icon={SCALE_ICON}>
                                         <MultiRangeControl
-                                            label={__('Scale X', 'zolo-blocks')}
+                                            label={__('Scale X', 'zoloblocks')}
                                             min={0}
                                             max={5}
                                             step={0.1}
@@ -1322,7 +1322,7 @@ export const AdvancedOptions = (props) => {
                                             }}
                                         />
                                         <MultiRangeControl
-                                            label={__('Scale Y', 'zolo-blocks')}
+                                            label={__('Scale Y', 'zoloblocks')}
                                             min={0}
                                             max={5}
                                             step={0.1}
@@ -1343,7 +1343,7 @@ export const AdvancedOptions = (props) => {
                                             }}
                                         />
                                         <MultiRangeControl
-                                            label={__('Scale Z', 'zolo-blocks')}
+                                            label={__('Scale Z', 'zoloblocks')}
                                             min={0}
                                             max={5}
                                             step={0.1}
@@ -1364,9 +1364,9 @@ export const AdvancedOptions = (props) => {
                                             }}
                                         />
                                     </PopoverControl>
-                                    <PopoverControl label={__('Skew', 'zolo-blocks')} icon={SKEW_ICON}>
+                                    <PopoverControl label={__('Skew', 'zoloblocks')} icon={SKEW_ICON}>
                                         <MultiRangeControl
-                                            label={__('Skew X', 'zolo-blocks')}
+                                            label={__('Skew X', 'zoloblocks')}
                                             min={-180}
                                             max={180}
                                             step={1}
@@ -1387,7 +1387,7 @@ export const AdvancedOptions = (props) => {
                                             }}
                                         />
                                         <MultiRangeControl
-                                            label={__('Skew Y', 'zolo-blocks')}
+                                            label={__('Skew Y', 'zoloblocks')}
                                             min={-180}
                                             max={180}
                                             step={1}
@@ -1408,9 +1408,9 @@ export const AdvancedOptions = (props) => {
                                             }}
                                         />
                                     </PopoverControl>
-                                    <PopoverControl label={__('Opacity', 'zolo-blocks')} icon={OPACITY_ICON}>
+                                    <PopoverControl label={__('Opacity', 'zoloblocks')} icon={OPACITY_ICON}>
                                         <MultiRangeControl
-                                            label={__('Opacity', 'zolo-blocks')}
+                                            label={__('Opacity', 'zoloblocks')}
                                             min={0}
                                             max={1}
                                             step={0.1}
@@ -1432,7 +1432,7 @@ export const AdvancedOptions = (props) => {
                                         />
                                     </PopoverControl>
                                     <SelectControl
-                                        label={__('Easing Type', 'zolo-blocks')}
+                                        label={__('Easing Type', 'zoloblocks')}
                                         value={floatingAnimation.easing}
                                         options={EASING_TYPES}
                                         onChange={(value) => {
@@ -1447,8 +1447,8 @@ export const AdvancedOptions = (props) => {
 
                                     {floatingAnimation.easing === 'custom' && (
                                         <TextControl
-                                            label={__('Custom Easing', 'zolo-blocks')}
-                                            help={__('Example: cubic-bezier(0.42, 0, 0.58, 1)', 'zolo-blocks')}
+                                            label={__('Custom Easing', 'zoloblocks')}
+                                            help={__('Example: cubic-bezier(0.42, 0, 0.58, 1)', 'zoloblocks')}
                                             value={floatingAnimation.easingCustom}
                                             onChange={(value) => {
                                                 setAttributes({
@@ -1461,7 +1461,7 @@ export const AdvancedOptions = (props) => {
                                         />
                                     )}
                                     <SimpleRangeControl
-                                        label={__('Perspective', 'zolo-blocks')}
+                                        label={__('Perspective', 'zoloblocks')}
                                         value={floatingAnimation.perspective}
                                         onChange={(value) => {
                                             setAttributes({
@@ -1484,7 +1484,7 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                     <SimpleRangeControl
-                                        label={__('Delay(ms)', 'zolo-blocks')}
+                                        label={__('Delay(ms)', 'zoloblocks')}
                                         value={floatingAnimation.delay}
                                         onChange={(value) => {
                                             setAttributes({
@@ -1507,7 +1507,7 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                     <SimpleRangeControl
-                                        label={__('Transition Duration(ms)', 'zolo-blocks')}
+                                        label={__('Transition Duration(ms)', 'zoloblocks')}
                                         value={floatingAnimation.duration}
                                         onChange={(value) => {
                                             setAttributes({
@@ -1530,12 +1530,12 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                     <Button
-                                        label={isPlaying ? __('Stop', 'zolo-blocks') : __('Play', 'zolo-blocks')}
+                                        label={isPlaying ? __('Stop', 'zoloblocks') : __('Play', 'zoloblocks')}
                                         className="zolo-action-button"
                                         isPrimary
                                         onClick={handleFloatingToggle}
                                     >
-                                        {isPlaying ? __('Stop', 'zolo-blocks') : __('Play', 'zolo-blocks')}
+                                        {isPlaying ? __('Stop', 'zoloblocks') : __('Play', 'zoloblocks')}
                                     </Button>
                                 </>
                             )}
@@ -1543,9 +1543,9 @@ export const AdvancedOptions = (props) => {
                     }
                 />
             </ZoloPanelBody>
-            <ZoloPanelBody title={__('Transform', 'zolo-blocks')} panelProps={props} extraPanel={true} isPro={true} isNew={true}>
+            <ZoloPanelBody title={__('Transform', 'zoloblocks')} panelProps={props} extraPanel={true} isPro={true} isNew={true}>
                 <ToggleControl
-                    label={__('Transform', 'zolo-blocks')}
+                    label={__('Transform', 'zoloblocks')}
                     checked={transformAnimationActive}
                     onChange={() => {
                         setAttributes({
@@ -1568,33 +1568,33 @@ export const AdvancedOptions = (props) => {
                     <TabPanelControl
                         normalComponents={
                             <>
-                                <PopoverControl label={__('Translate', 'zolo-blocks')} icon={TRANSLATE_ICON}>
+                                <PopoverControl label={__('Translate', 'zoloblocks')} icon={TRANSLATE_ICON}>
                                     <ResRangeControl
-                                        label={__('translateX', 'zolo-blocks')}
+                                        label={__('translateX', 'zoloblocks')}
                                         controlName={'translateX'}
                                         requiredProps={requiredProps}
                                         min={-1000}
                                         max={1000}
                                         units={[
-                                            { label: __('px', 'zolo-blocks'), value: 'px' },
-                                            { label: __('%', 'zolo-blocks'), value: '%' },
+                                            { label: __('px', 'zoloblocks'), value: 'px' },
+                                            { label: __('%', 'zoloblocks'), value: '%' },
                                         ]}
                                     />
                                     <ResRangeControl
-                                        label={__('translateY', 'zolo-blocks')}
+                                        label={__('translateY', 'zoloblocks')}
                                         controlName={'translateY'}
                                         requiredProps={requiredProps}
                                         min={-1000}
                                         max={1000}
                                         units={[
-                                            { label: __('px', 'zolo-blocks'), value: 'px' },
-                                            { label: __('%', 'zolo-blocks'), value: '%' },
+                                            { label: __('px', 'zoloblocks'), value: 'px' },
+                                            { label: __('%', 'zoloblocks'), value: '%' },
                                         ]}
                                     />
                                 </PopoverControl>
-                                <PopoverControl label={__('Rotate', 'zolo-blocks')} icon={ROTATE_ICON} isPro={true}>
+                                <PopoverControl label={__('Rotate', 'zoloblocks')} icon={ROTATE_ICON} isPro={true}>
                                     <ResRangeControl
-                                        label={__('Rotate', 'zolo-blocks')}
+                                        label={__('Rotate', 'zoloblocks')}
                                         controlName={'transformRotate'}
                                         requiredProps={requiredProps}
                                         min={-360}
@@ -1602,7 +1602,7 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                     <ToggleControl
-                                        label={__('Rotate 3D', 'zolo-blocks')}
+                                        label={__('Rotate 3D', 'zoloblocks')}
                                         checked={transformRotate3DActive}
                                         onChange={() => {
                                             setAttributes({
@@ -1613,7 +1613,7 @@ export const AdvancedOptions = (props) => {
                                     {transformRotate3DActive && (
                                         <>
                                             <ResRangeControl
-                                                label={__('RotateX(deg)', 'zolo-blocks')}
+                                                label={__('RotateX(deg)', 'zoloblocks')}
                                                 controlName={'transformRotateX'}
                                                 requiredProps={requiredProps}
                                                 min={-360}
@@ -1621,7 +1621,7 @@ export const AdvancedOptions = (props) => {
                                                 noUnits={true}
                                             />
                                             <ResRangeControl
-                                                label={__('RotateY(deg)', 'zolo-blocks')}
+                                                label={__('RotateY(deg)', 'zoloblocks')}
                                                 controlName={'transformRotateY'}
                                                 requiredProps={requiredProps}
                                                 min={-360}
@@ -1629,7 +1629,7 @@ export const AdvancedOptions = (props) => {
                                                 noUnits={true}
                                             />
                                             <ResRangeControl
-                                                label={__('Perspective(deg)', 'zolo-blocks')}
+                                                label={__('Perspective(deg)', 'zoloblocks')}
                                                 controlName={'transformPerspective'}
                                                 requiredProps={requiredProps}
                                                 min={0}
@@ -1639,9 +1639,9 @@ export const AdvancedOptions = (props) => {
                                         </>
                                     )}
                                 </PopoverControl>
-                                <PopoverControl label={__('Scale', 'zolo-blocks')} icon={SCALE_ICON} isPro={true}>
+                                <PopoverControl label={__('Scale', 'zoloblocks')} icon={SCALE_ICON} isPro={true}>
                                     <ToggleControl
-                                        label={__('Keep Proportions', 'zolo-blocks')}
+                                        label={__('Keep Proportions', 'zoloblocks')}
                                         checked={scaleProportionally}
                                         onChange={() => {
                                             setAttributes({
@@ -1652,7 +1652,7 @@ export const AdvancedOptions = (props) => {
                                     {!scaleProportionally && (
                                         <>
                                             <ResRangeControl
-                                                label={__('ScaleX', 'zolo-blocks')}
+                                                label={__('ScaleX', 'zoloblocks')}
                                                 controlName={'transformScaleX'}
                                                 requiredProps={requiredProps}
                                                 min={0}
@@ -1661,7 +1661,7 @@ export const AdvancedOptions = (props) => {
                                                 noUnits={true}
                                             />
                                             <ResRangeControl
-                                                label={__('ScaleY', 'zolo-blocks')}
+                                                label={__('ScaleY', 'zoloblocks')}
                                                 controlName={'transformScaleY'}
                                                 requiredProps={requiredProps}
                                                 min={0}
@@ -1674,7 +1674,7 @@ export const AdvancedOptions = (props) => {
                                     {scaleProportionally && (
                                         <>
                                             <ResRangeControl
-                                                label={__('Scale', 'zolo-blocks')}
+                                                label={__('Scale', 'zoloblocks')}
                                                 controlName={'transformScale'}
                                                 requiredProps={requiredProps}
                                                 min={0}
@@ -1685,9 +1685,9 @@ export const AdvancedOptions = (props) => {
                                         </>
                                     )}
                                 </PopoverControl>
-                                <PopoverControl label={__('Skew', 'zolo-blocks')} icon={SKEW_ICON} isPro={true}>
+                                <PopoverControl label={__('Skew', 'zoloblocks')} icon={SKEW_ICON} isPro={true}>
                                     <ResRangeControl
-                                        label={__('SkewX (deg)', 'zolo-blocks')}
+                                        label={__('SkewX (deg)', 'zoloblocks')}
                                         controlName={'transformSkewX'}
                                         requiredProps={requiredProps}
                                         min={-360}
@@ -1695,7 +1695,7 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                     <ResRangeControl
-                                        label={__('SkewY (deg)', 'zolo-blocks')}
+                                        label={__('SkewY (deg)', 'zoloblocks')}
                                         controlName={'transformSkewY'}
                                         requiredProps={requiredProps}
                                         min={-360}
@@ -1703,9 +1703,9 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                 </PopoverControl>
-                                <PopoverControl label={__('Flip', 'zolo-blocks')} icon={FLIP_ICON} isPro={true}>
+                                <PopoverControl label={__('Flip', 'zoloblocks')} icon={FLIP_ICON} isPro={true}>
                                     <ToggleControl
-                                        label={__('Flip Horizontal', 'zolo-blocks')}
+                                        label={__('Flip Horizontal', 'zoloblocks')}
                                         checked={transformFlipHorizontal}
                                         onChange={() => {
                                             setAttributes({
@@ -1714,7 +1714,7 @@ export const AdvancedOptions = (props) => {
                                         }}
                                     />
                                     <ToggleControl
-                                        label={__('Flip Vertical', 'zolo-blocks')}
+                                        label={__('Flip Vertical', 'zoloblocks')}
                                         checked={transformFlipVertical}
                                         onChange={() => {
                                             setAttributes({
@@ -1725,13 +1725,13 @@ export const AdvancedOptions = (props) => {
                                     {(transformFlipHorizontal || transformFlipVertical) && (
                                         <>
                                             <ResAlignmentControl
-                                                label={__('X Anchor Point', 'zolo-blocks')}
+                                                label={__('X Anchor Point', 'zoloblocks')}
                                                 controlName={'transformOriginX'}
                                                 requiredProps={requiredProps}
                                                 alignOptions={DEFAULT_ALIGNS}
                                             />
                                             <ResAlignmentControl
-                                                label={__('Y Anchor Point', 'zolo-blocks')}
+                                                label={__('Y Anchor Point', 'zoloblocks')}
                                                 controlName={'transformOriginY'}
                                                 requiredProps={requiredProps}
                                                 alignOptions={DEFAULT_ALIGNS_VERTICAL}
@@ -1743,33 +1743,33 @@ export const AdvancedOptions = (props) => {
                         }
                         hoverComponents={
                             <>
-                                <PopoverControl label={__('Translate', 'zolo-blocks')} icon={TRANSLATE_ICON}>
+                                <PopoverControl label={__('Translate', 'zoloblocks')} icon={TRANSLATE_ICON}>
                                     <ResRangeControl
-                                        label={__('translateX', 'zolo-blocks')}
+                                        label={__('translateX', 'zoloblocks')}
                                         controlName={'translateXHover'}
                                         requiredProps={requiredProps}
                                         min={-1000}
                                         max={1000}
                                         units={[
-                                            { label: __('px', 'zolo-blocks'), value: 'px' },
-                                            { label: __('%', 'zolo-blocks'), value: '%' },
+                                            { label: __('px', 'zoloblocks'), value: 'px' },
+                                            { label: __('%', 'zoloblocks'), value: '%' },
                                         ]}
                                     />
                                     <ResRangeControl
-                                        label={__('translateY', 'zolo-blocks')}
+                                        label={__('translateY', 'zoloblocks')}
                                         controlName={'translateYHover'}
                                         requiredProps={requiredProps}
                                         min={-1000}
                                         max={1000}
                                         units={[
-                                            { label: __('px', 'zolo-blocks'), value: 'px' },
-                                            { label: __('%', 'zolo-blocks'), value: '%' },
+                                            { label: __('px', 'zoloblocks'), value: 'px' },
+                                            { label: __('%', 'zoloblocks'), value: '%' },
                                         ]}
                                     />
                                 </PopoverControl>
-                                <PopoverControl label={__('Rotate', 'zolo-blocks')} icon={ROTATE_ICON}>
+                                <PopoverControl label={__('Rotate', 'zoloblocks')} icon={ROTATE_ICON}>
                                     <ResRangeControl
-                                        label={__('Rotate', 'zolo-blocks')}
+                                        label={__('Rotate', 'zoloblocks')}
                                         controlName={'transformRotateHover'}
                                         requiredProps={requiredProps}
                                         min={-360}
@@ -1777,7 +1777,7 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                     <ToggleControl
-                                        label={__('Rotate 3D', 'zolo-blocks')}
+                                        label={__('Rotate 3D', 'zoloblocks')}
                                         checked={transformRotate3DActiveHover}
                                         onChange={() => {
                                             setAttributes({
@@ -1788,7 +1788,7 @@ export const AdvancedOptions = (props) => {
                                     {transformRotate3DActiveHover && (
                                         <>
                                             <ResRangeControl
-                                                label={__('RotateX(deg)', 'zolo-blocks')}
+                                                label={__('RotateX(deg)', 'zoloblocks')}
                                                 controlName={'transformRotateXHover'}
                                                 requiredProps={requiredProps}
                                                 min={-360}
@@ -1796,7 +1796,7 @@ export const AdvancedOptions = (props) => {
                                                 noUnits={true}
                                             />
                                             <ResRangeControl
-                                                label={__('RotateY(deg)', 'zolo-blocks')}
+                                                label={__('RotateY(deg)', 'zoloblocks')}
                                                 controlName={'transformRotateYHover'}
                                                 requiredProps={requiredProps}
                                                 min={-360}
@@ -1804,7 +1804,7 @@ export const AdvancedOptions = (props) => {
                                                 noUnits={true}
                                             />
                                             <ResRangeControl
-                                                label={__('Perspective(deg)', 'zolo-blocks')}
+                                                label={__('Perspective(deg)', 'zoloblocks')}
                                                 controlName={'transformPerspectiveHover'}
                                                 requiredProps={requiredProps}
                                                 min={0}
@@ -1814,9 +1814,9 @@ export const AdvancedOptions = (props) => {
                                         </>
                                     )}
                                 </PopoverControl>
-                                <PopoverControl label={__('Scale', 'zolo-blocks')} icon={SCALE_ICON}>
+                                <PopoverControl label={__('Scale', 'zoloblocks')} icon={SCALE_ICON}>
                                     <ToggleControl
-                                        label={__('Keep Proportions', 'zolo-blocks')}
+                                        label={__('Keep Proportions', 'zoloblocks')}
                                         checked={scaleProportionallyHover}
                                         onChange={() => {
                                             setAttributes({
@@ -1827,7 +1827,7 @@ export const AdvancedOptions = (props) => {
                                     {!scaleProportionallyHover && (
                                         <>
                                             <ResRangeControl
-                                                label={__('ScaleX', 'zolo-blocks')}
+                                                label={__('ScaleX', 'zoloblocks')}
                                                 controlName={'transformScaleXHover'}
                                                 requiredProps={requiredProps}
                                                 min={0}
@@ -1836,7 +1836,7 @@ export const AdvancedOptions = (props) => {
                                                 noUnits={true}
                                             />
                                             <ResRangeControl
-                                                label={__('ScaleY', 'zolo-blocks')}
+                                                label={__('ScaleY', 'zoloblocks')}
                                                 controlName={'transformScaleYHover'}
                                                 requiredProps={requiredProps}
                                                 min={0}
@@ -1849,7 +1849,7 @@ export const AdvancedOptions = (props) => {
                                     {scaleProportionallyHover && (
                                         <>
                                             <ResRangeControl
-                                                label={__('Scale', 'zolo-blocks')}
+                                                label={__('Scale', 'zoloblocks')}
                                                 controlName={'transformScaleHover'}
                                                 requiredProps={requiredProps}
                                                 min={0}
@@ -1860,9 +1860,9 @@ export const AdvancedOptions = (props) => {
                                         </>
                                     )}
                                 </PopoverControl>
-                                <PopoverControl label={__('Skew', 'zolo-blocks')} icon={SKEW_ICON}>
+                                <PopoverControl label={__('Skew', 'zoloblocks')} icon={SKEW_ICON}>
                                     <ResRangeControl
-                                        label={__('SkewX (deg)', 'zolo-blocks')}
+                                        label={__('SkewX (deg)', 'zoloblocks')}
                                         controlName={'transformSkewXHover'}
                                         requiredProps={requiredProps}
                                         min={-360}
@@ -1870,7 +1870,7 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                     <ResRangeControl
-                                        label={__('SkewY (deg)', 'zolo-blocks')}
+                                        label={__('SkewY (deg)', 'zoloblocks')}
                                         controlName={'transformSkewYHover'}
                                         requiredProps={requiredProps}
                                         min={-360}
@@ -1878,9 +1878,9 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                 </PopoverControl>
-                                <PopoverControl label={__('Flip', 'zolo-blocks')} icon={FLIP_ICON}>
+                                <PopoverControl label={__('Flip', 'zoloblocks')} icon={FLIP_ICON}>
                                     <ToggleControl
-                                        label={__('Flip Horizontal', 'zolo-blocks')}
+                                        label={__('Flip Horizontal', 'zoloblocks')}
                                         checked={transformFlipHorizontalHover}
                                         onChange={() => {
                                             setAttributes({
@@ -1889,7 +1889,7 @@ export const AdvancedOptions = (props) => {
                                         }}
                                     />
                                     <ToggleControl
-                                        label={__('Flip Vertical', 'zolo-blocks')}
+                                        label={__('Flip Vertical', 'zoloblocks')}
                                         checked={transformFlipVerticalHover}
                                         onChange={() => {
                                             setAttributes({
@@ -1900,13 +1900,13 @@ export const AdvancedOptions = (props) => {
                                     {(transformFlipHorizontalHover || transformFlipVerticalHover) && (
                                         <>
                                             <ResAlignmentControl
-                                                label={__('X Anchor Point', 'zolo-blocks')}
+                                                label={__('X Anchor Point', 'zoloblocks')}
                                                 controlName={'transformOriginXHover'}
                                                 requiredProps={requiredProps}
                                                 alignOptions={DEFAULT_ALIGNS}
                                             />
                                             <ResAlignmentControl
-                                                label={__('Y Anchor Point', 'zolo-blocks')}
+                                                label={__('Y Anchor Point', 'zoloblocks')}
                                                 controlName={'transformOriginYHover'}
                                                 requiredProps={requiredProps}
                                                 alignOptions={DEFAULT_ALIGNS_VERTICAL}
@@ -1915,7 +1915,7 @@ export const AdvancedOptions = (props) => {
                                     )}
                                 </PopoverControl>
                                 <ResRangeControl
-                                    label={__('Transition Duration (ms)', 'zolo-blocks')}
+                                    label={__('Transition Duration (ms)', 'zoloblocks')}
                                     controlName={'transitionDuration'}
                                     requiredProps={requiredProps}
                                     min={0}

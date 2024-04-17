@@ -10,11 +10,11 @@ export const BLOCK_PREFIX = 'tabs';
 export const LAYOUTS = [
     {
         value: 'horizontal',
-        label: __('Horizontal', 'zolo-blocks'),
+        label: __('Horizontal', 'zoloblocks'),
     },
     {
         value: 'vertical',
-        label: __('Vertical', 'zolo-blocks'),
+        label: __('Vertical', 'zoloblocks'),
     },
 ];
 
@@ -22,7 +22,7 @@ export const LAYOUTS = [
 export const VERTICAL_DIRECTIONS = [
     {
         value: 'vertical-left',
-        label: __('Left', 'zolo-blocks'),
+        label: __('Left', 'zoloblocks'),
         icon: (
             <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -32,7 +32,7 @@ export const VERTICAL_DIRECTIONS = [
     },
     {
         value: 'vertical-right',
-        label: __('Right', 'zolo-blocks'),
+        label: __('Right', 'zoloblocks'),
         icon: (
             <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -46,11 +46,11 @@ export const VERTICAL_DIRECTIONS = [
 export const CONTENT_STYLES = [
     {
         value: 'content-style-2',
-        label: __('Style 1', 'zolo-blocks'),
+        label: __('Style 1', 'zoloblocks'),
     },
     {
         value: 'content-style-two',
-        label: __('Style 2', 'zolo-blocks'),
+        label: __('Style 2', 'zoloblocks'),
     },
 ];
 
@@ -58,7 +58,7 @@ export const CONTENT_STYLES = [
 export const CONTENT_DIRECTIONS = [
     {
         value: 'content-style-1',
-        label: __('Left', 'zolo-blocks'),
+        label: __('Left', 'zoloblocks'),
         icon: (
             <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -68,7 +68,7 @@ export const CONTENT_DIRECTIONS = [
     },
     {
         value: 'content-style-3',
-        label: __('Right', 'zolo-blocks'),
+        label: __('Right', 'zoloblocks'),
         icon: (
             <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 2V22" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -82,11 +82,11 @@ export const CONTENT_DIRECTIONS = [
 export const TAB_ITEM_WIDTHS = [
     {
         value: 'tiw_auto',
-        label: __('Auto', 'zolo-blocks'),
+        label: __('Auto', 'zoloblocks'),
     },
     {
         value: 'tiw_justify',
-        label: __('Justify', 'zolo-blocks'),
+        label: __('Justify', 'zoloblocks'),
     },
 ];
 
@@ -94,15 +94,15 @@ export const TAB_ITEM_WIDTHS = [
 export const TAB_STATES = [
     {
         value: 'normal',
-        label: __('Normal', 'zolo-blocks'),
+        label: __('Normal', 'zoloblocks'),
     },
     {
         value: 'hover',
-        label: __('Hover', 'zolo-blocks'),
+        label: __('Hover', 'zoloblocks'),
     },
     {
         value: 'active',
-        label: __('Active', 'zolo-blocks'),
+        label: __('Active', 'zoloblocks'),
     },
 ];
 
@@ -110,15 +110,15 @@ export const TAB_STATES = [
 export const INDICATOR_STYLES = [
     {
         value: 'animation-style-1',
-        label: __('Style 1', 'zolo-blocks'),
+        label: __('Style 1', 'zoloblocks'),
     },
     {
         value: 'animation-style-2',
-        label: __('Style 2', 'zolo-blocks'),
+        label: __('Style 2', 'zoloblocks'),
     },
     {
         value: 'animation-style-3',
-        label: __('Style 3', 'zolo-blocks'),
+        label: __('Style 3', 'zoloblocks'),
     },
 ];
 

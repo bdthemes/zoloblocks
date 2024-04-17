@@ -7,55 +7,55 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'flipbox';
 
 export const FLIPBLOX_SIDE = [
-    { label: __('Front', 'zolo-blocks'), value: 'front' },
-    { label: __('Back', 'zolo-blocks'), value: 'back' },
+    { label: __('Front', 'zoloblocks'), value: 'front' },
+    { label: __('Back', 'zoloblocks'), value: 'back' },
 ];
 
 export const FLIPBOX_ICON_OPTIONS = [
     {
-        label: __('Image', 'zolo-blocks'),
+        label: __('Image', 'zoloblocks'),
         value: 'image',
     },
     {
-        label: __('Icon', 'zolo-blocks'),
+        label: __('Icon', 'zoloblocks'),
         value: 'icon',
     },
 ];
 
 export const LINK_TYPE = [
-    { label: __('Box', 'zolo-blocks'), value: 'box' },
-    { label: __('Title', 'zolo-blocks'), value: 'title' },
-    { label: __('Button', 'zolo-blocks'), value: 'button' },
+    { label: __('Box', 'zoloblocks'), value: 'box' },
+    { label: __('Title', 'zoloblocks'), value: 'title' },
+    { label: __('Button', 'zoloblocks'), value: 'button' },
 ];
 
 export const FLIP_EFFECT = [
-    { label: __('Flip Left', 'zolo-blocks'), value: '3' },
-    { label: __('Flip Right', 'zolo-blocks'), value: '1' },
-    { label: __('Flip Top', 'zolo-blocks'), value: '2' },
-    { label: __('Flip Bottom', 'zolo-blocks'), value: '4' },
-    { label: __('Slide Left', 'zolo-blocks'), value: '7' },
-    { label: __('Slide Right', 'zolo-blocks'), value: '5' },
-    { label: __('Slide Top', 'zolo-blocks'), value: '8' },
-    { label: __('Slide Bottom', 'zolo-blocks'), value: '6' },
-    { label: __('Push Top', 'zolo-blocks'), value: '9' },
-    { label: __('Push Bottom', 'zolo-blocks'), value: '10' },
-    { label: __('Push Left', 'zolo-blocks'), value: '11' },
-    { label: __('Push Right', 'zolo-blocks'), value: '12' },
-    { label: __('Top to Bottom Angle', 'zolo-blocks'), value: '13' },
-    { label: __('Bottom to Top Angle', 'zolo-blocks'), value: '14' },
-    { label: __('Zoom', 'zolo-blocks'), value: '15' },
+    { label: __('Flip Left', 'zoloblocks'), value: '3' },
+    { label: __('Flip Right', 'zoloblocks'), value: '1' },
+    { label: __('Flip Top', 'zoloblocks'), value: '2' },
+    { label: __('Flip Bottom', 'zoloblocks'), value: '4' },
+    { label: __('Slide Left', 'zoloblocks'), value: '7' },
+    { label: __('Slide Right', 'zoloblocks'), value: '5' },
+    { label: __('Slide Top', 'zoloblocks'), value: '8' },
+    { label: __('Slide Bottom', 'zoloblocks'), value: '6' },
+    { label: __('Push Top', 'zoloblocks'), value: '9' },
+    { label: __('Push Bottom', 'zoloblocks'), value: '10' },
+    { label: __('Push Left', 'zoloblocks'), value: '11' },
+    { label: __('Push Right', 'zoloblocks'), value: '12' },
+    { label: __('Top to Bottom Angle', 'zoloblocks'), value: '13' },
+    { label: __('Bottom to Top Angle', 'zoloblocks'), value: '14' },
+    { label: __('Zoom', 'zoloblocks'), value: '15' },
 ];
 
 export const FLIP_EASING_TYPE = [
-    { label: __('Ease Out', 'zolo-blocks'), value: 'ease-out' },
-    { label: __('Ease In Out', 'zolo-blocks'), value: 'ease-in-out' },
-    { label: __('Linear', 'zolo-blocks'), value: 'linear' },
-    { label: __('Custom', 'zolo-blocks'), value: 'custom' },
+    { label: __('Ease Out', 'zoloblocks'), value: 'ease-out' },
+    { label: __('Ease In Out', 'zoloblocks'), value: 'ease-in-out' },
+    { label: __('Linear', 'zoloblocks'), value: 'linear' },
+    { label: __('Custom', 'zoloblocks'), value: 'custom' },
 ];
 
 export const FLIP_TRIGGER_TYPE = [
-    { label: __('Hover', 'zolo-blocks'), value: 'hover' },
-    { label: __('Click', 'zolo-blocks'), value: 'click' },
+    { label: __('Hover', 'zoloblocks'), value: 'hover' },
+    { label: __('Click', 'zoloblocks'), value: 'click' },
 ];
 
 //FRONT ITEMS

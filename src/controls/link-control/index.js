@@ -95,7 +95,7 @@ const LinkControl = ({ label, value, onChange }) => {
 			{isExternal && (
 				<div className="zb-link-popover">
 					<ToggleControl
-						label={__('Open in new tab', 'zolo-blocks')}
+						label={__('Open in new tab', 'zoloblocks')}
 						checked={value && value.openInNewTab}
 						onChange={() => {
 							onChange({
