@@ -1,0 +1,149 @@
+/**
+ * Internal dependencies
+ */
+const {
+  generateResAlignmentAttributies,
+  generateResRangeAttributies,
+  generateBorderAttributies,
+  generateDimensionAttributes,
+  generateNormalBGAttributes,
+  generateBoxShadowAttributies,
+  generateTypographyAttributes,
+} = window.zoloModule;
+
+import {
+  BUTTON_ALIGNMENT,
+  BUTTON_BG,
+  BUTTON_HOVER_BG_COLOR,
+  BUTTON_BORDER,
+  BUTTON_BORDER_RADIUS,
+  BUTTON_BOX_SHADOW,
+  BUTTON_HOVER_BOX_SHADOW,
+  BUTTON_PADDING,
+  ICON_SIZE,
+  PO_SWIDTH,
+  PT_BORDER,
+  PT_BORDER_RADIUS,
+  PTH_BORDER,
+  PTH_BORDER_RADIUS,
+  PF_SWIDTH,
+  PFV_BORDER,
+  PFV_BORDER_RADIUS,
+  PS_BORDER,
+  PS_BORDER_RADIUS,
+  TITLE_MARGIN,
+  DESC_MARGIN,
+  FLEX_GAP,
+  ICON_TEXT_SPACING,
+  ICON_S_SIZE,
+  ICON_TEXT_S_SPACING,
+  BUTTON_S_BORDER,
+  BUTTON_S_BORDER_RADIUS,
+  BUTTON_S_PADDING,
+  BUTTON_S_BG,
+  BUTTON_S_BOX_SHADOW,
+  BUTTON_HOVER_S_BG_COLOR,
+  BUTTON_HOVER_S_BOX_SHADOW,
+} from "./constants";
+
+import * as typographyObjs from "./constants/typoPrefixConstant";
+
+const attributes = {
+  globalConfig: {
+    type: "object",
+    default: {
+      margin: {
+        prefix: "advBtnMargin",
+      },
+      padding: {
+        prefix: "advBtnPadding",
+      },
+      background: {
+        prefix: "advBtnBg",
+      },
+      border: {
+        prefix: "mainBorder",
+      },
+      borderRadius: {
+        prefix: "mainBorderRadius",
+      },
+      boxShadow: {
+        prefix: "mainBoxShadow",
+      },
+      responsiveControls: true,
+    },
+  },
+  // Button Generators
+  ...generateResAlignmentAttributies(BUTTON_ALIGNMENT),
+  ...generateBorderAttributies(BUTTON_BORDER),
+  ...generateBorderAttributies(BUTTON_S_BORDER),
+  ...generateResRangeAttributies(ICON_TEXT_SPACING),
+  ...generateResRangeAttributies(ICON_TEXT_S_SPACING),
+  // typography
+  ...generateTypographyAttributes(Object.values(typographyObjs)),
+
+  // title
+  ...generateDimensionAttributes(TITLE_MARGIN),
+  // description
+  ...generateDimensionAttributes(DESC_MARGIN),
+
+  ...generateDimensionAttributes(BUTTON_S_BORDER_RADIUS),
+  ...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
+  ...generateNormalBGAttributes(BUTTON_BG),
+  ...generateNormalBGAttributes(BUTTON_S_BG),
+  ...generateNormalBGAttributes(BUTTON_HOVER_BG_COLOR),
+  ...generateNormalBGAttributes(BUTTON_HOVER_S_BG_COLOR),
+  ...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
+  ...generateBoxShadowAttributies(BUTTON_S_BOX_SHADOW),
+  ...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
+  ...generateBoxShadowAttributies(BUTTON_HOVER_S_BOX_SHADOW),
+  ...generateDimensionAttributes(BUTTON_PADDING),
+  ...generateDimensionAttributes(BUTTON_S_PADDING),
+
+  // button icon generator
+  ...generateResRangeAttributies(ICON_SIZE),
+  ...generateResRangeAttributies(ICON_S_SIZE),
+
+  // presets
+  ...generateResRangeAttributies(PO_SWIDTH),
+
+  ...generateBorderAttributies(PT_BORDER),
+  ...generateDimensionAttributes(PT_BORDER_RADIUS),
+
+  ...generateBorderAttributies(PTH_BORDER),
+  ...generateDimensionAttributes(PTH_BORDER_RADIUS),
+
+  ...generateResRangeAttributies(PF_SWIDTH),
+
+  ...generateBorderAttributies(PFV_BORDER),
+  ...generateDimensionAttributes(PFV_BORDER_RADIUS),
+
+  ...generateBorderAttributies(PS_BORDER),
+  ...generateDimensionAttributes(PS_BORDER_RADIUS),
+
+  ...generateResRangeAttributies(FLEX_GAP),
+
+  //Block specific Attributes
+  preset: {
+    type: "string",
+    default: "",
+  },
+  placeholder: {
+    type: "string",
+    default: "Type & Hit Enter",
+  },
+  buttonType: {
+    type: "string",
+    default: "text",
+  },
+  buttonIcon: {
+    type: "string",
+    default: "search",
+  },
+  buttonText: {
+    type: "string",
+    default: "Search",
+  },
+};
+
+export default attributes;

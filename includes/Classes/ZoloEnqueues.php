@@ -338,6 +338,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 'get_users'      => ZoloHelpers::get_all_users(),
                 'get_taxonomies' => ZoloHelpers::get_taxonomies(),
                 'all_term_list'  => ZoloHelpers::get_all_taxonomy(),
+                'home_url'       => home_url(),
                 'zolo_nonce'     => wp_create_nonce('zolo-nonce'),
                 'editor_type'    => $editor_type,
                 'admin_email'    => get_option('admin_email'),

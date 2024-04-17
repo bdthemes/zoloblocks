@@ -1,0 +1,40 @@
+.wp-block-zolo-advanced-search {
+	margin-bottom: 20px;
+	.zolo-advanced-search-form-container {
+		display: flex;
+		align-items: stretch;
+	}
+
+	.zolo-advanced-search-form__input {
+		border: 0 !important;
+		width: 100%;
+		-webkit-appearance: initial;
+		appearance: none;
+		border: 1px solid #949494;
+		flex-grow: 1;
+		margin-left: 0;
+		margin-right: 0;
+		min-width: 3rem;
+		padding: 8px;
+		text-decoration: unset !important;
+	}
+
+	.zolo-advanced-search-submit {
+		border: 0 !important;
+		background-color: var(--wp--preset--color--contrast);
+		border-radius: 0.33rem;
+		border-color: var(--wp--preset--color--contrast);
+		border-width: 0;
+		color: var(--wp--preset--color--base);
+		font-family: inherit;
+		font-size: var(--wp--preset--font-size--small);
+		font-style: normal;
+		font-weight: 500;
+		line-height: inherit;
+		padding-top: 0.6rem;
+		padding-right: 1rem;
+		padding-bottom: 0.6rem;
+		padding-left: 1rem;
+		text-decoration: none;
+	}
+}
