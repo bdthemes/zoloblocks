@@ -1,6 +1,7 @@
 import { RichText, useBlockProps } from "@wordpress/block-editor";
 import classnames from "classnames";
 
+import { __ } from "@wordpress/i18n";
 /**
  * Internal Dependencies
  */
@@ -19,49 +20,66 @@ const Save = ({ attributes }) => {
     buttonType,
     buttonText,
     buttonIcon,
+    showLabel,
   } = attributes;
   return (
     <div
       {...useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(
+          uniqueId,
+          `zolo-advanced-search ${preset}`,
+          classArrayToStr(parentClasses),
+        ),
       })}
       {...(zoloId && {
         id: zoloId,
       })}
     >
-      <div className={`zolo-advanced-search ${preset}`}>
-        <form
-          className="zolo-advanced-search-form"
-          onSubmit={formPreventDefault}
-          role="search"
-          action={zoloParams.home_url}
-          method="get"
+      <form
+        className="zolo-form-wrap"
+        onSubmit={formPreventDefault}
+        role="search"
+        action={zoloParams.home_url}
+        method="get"
+      >
+        <div
+          className="zolo-advanced-search-control zolo-form-email-input"
+          role="tablist"
         >
-          <div className="zolo-advanced-search-form-container" role="tablist">
-            <input
-              className="zolo-advanced-search-form__input"
-              type="search"
-              name="s"
-              title="Search"
-              placeholder={placeholder}
-            />
-            <button className="zolo-advanced-search-submit" type="submit">
-              {"button" === buttonType && (
-                <span className="zolo-advanced-search-icon-wrap">
-                  <DisplayZoloIcon icon={buttonIcon} />
-                </span>
-              )}
-              {"text" === buttonType && (
-                <RichText.Content
-                  tagName="span"
-                  className="zolo-advanced-search-button-text"
-                  value={buttonText}
-                />
-              )}
-            </button>
-          </div>
-        </form>
-      </div>
+          <input
+            type="search"
+            name="s"
+            placeholder={placeholder}
+            className="zolo-form-input"
+          />
+          {
+            showLabel && (
+              <label
+                htmlFor={uniqueId}
+                className="zolo-form-label"
+              >
+                {__("Search", "zolo-blocks")}
+              </label>
+            )
+          }
+        </div>
+        <div className="zolo-advanced-search-control zolo-form-submit-btn">
+          <button className="zolo-form-btn" type="submit">
+            {"text" === buttonType && (
+              <RichText.Content
+                tagName="span"
+                className="zolo-form-btn-text"
+                value={buttonText}
+              />
+            )}
+            {"icon" === buttonType && (
+              <span className="zolo-advanced-search-icon-wrap">
+                <DisplayZoloIcon icon={buttonIcon} />
+              </span>
+            )}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

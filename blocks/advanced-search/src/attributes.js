@@ -126,7 +126,7 @@ const attributes = {
   //Block specific Attributes
   preset: {
     type: "string",
-    default: "",
+    default: "zolo-search-1",
   },
   placeholder: {
     type: "string",
@@ -138,11 +138,19 @@ const attributes = {
   },
   buttonIcon: {
     type: "string",
-    default: "search",
+    default: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-9h4v2H10v-2z'/></svg>",
   },
   buttonText: {
     type: "string",
     default: "Search",
+  },
+  showLabel: {
+    type: "boolean",
+    default: true,
+  },
+  labelColor: {
+    type: "string",
+    default: "#000",
   },
 };
 

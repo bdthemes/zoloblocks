@@ -7,8 +7,12 @@ import { __ } from "@wordpress/i18n";
 export const BLOCK_PREFIX = "advanced-button";
 // Presets
 export const PRESETS = [
-  { label: __("Preset 1", "zolo-blocks"), value: "" },
-  { label: __("Preset 2", "zolo-blocks"), value: "style-1" },
+  { label: __("Preset 1", "zolo-blocks"), value: "zolo-search-1" },
+  { label: __("Preset 2", "zolo-blocks"), value: "zolo-search-2" },
+];
+export const BUTTON_TYPES = [
+  { label: __("Text", "zolo-blocks"), value: "text" },
+  { label: __("Icon", "zolo-blocks"), value: "icon" },
 ];
 
 // icons position

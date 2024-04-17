@@ -24,17 +24,22 @@ export default function Edit(props) {
     buttonType,
     buttonIcon,
     buttonText,
+    showLabel,
   } = attributes;
 
   const blockProps = useBlockProps({
-    className: classnames(uniqueId, classArrayToStr(parentClasses)),
+    className: classnames(
+      uniqueId,
+      `zolo-advanced-search ${preset}`,
+      classArrayToStr(parentClasses),
+    ),
   });
 
   // preview image
   if (preview) {
     return (
       <img
-        src={zoloParams.blocksPreview.cta}
+        src={zoloParams.blocksPreview.advancedSearch}
         alt={__("Advanced Search", "zolo-blocks")}
       />
     );
@@ -52,46 +57,61 @@ export default function Edit(props) {
       )}
       <Style props={props} />
       <div {...blockProps}>
-        <form
-          className="zolo-advanced-search-form"
-          onSubmit={formPreventDefault}
-          role="search"
-          action={zoloParams.home_url}
-          method="get"
-        >
-          <div className="zolo-advanced-search-form-container" role="tablist">
-            <input
-              className="zolo-advanced-search-form__input"
-              type="search"
-              name="s"
-              title="Search"
-              placeholder={placeholder}
-            />
-            <button className="zolo-advanced-search-submit" type="submit">
-              {"button" === buttonType && (
-                <span className="zolo-advanced-search-icon-wrap">
-                  <DisplayZoloIcon icon={buttonIcon} />
-                </span>
-              )}
-              {"text" === buttonType && (
-                <RichText
-                  tagName="span"
-                  placeholder={__("Search", "zolo-advanced-search")}
-                  value={buttonText}
-                  onChange={(value) => setAttributes({ buttonText: value })}
-                  className="zolo-advanced-search-button-text"
-                  multiline={false}
-                  allowedFormats={[
-                    "core/bold",
-                    "core/italic",
-                    "core/strikethrough",
-                  ]}
-                />
-              )}
-            </button>
-          </div>
-        </form>
-      </div>
+          <form
+            className="zolo-form-wrap"
+            onSubmit={formPreventDefault}
+            role="search"
+            action={zoloParams.home_url}
+            method="get"
+          >
+            <div
+              className="zolo-advanced-search-control zolo-form-email-input"
+              role="tablist"
+            >
+              <input
+                type="search"
+                name="s"
+                placeholder={placeholder}
+                className="zolo-form-input"
+                required
+              />
+              {
+                showLabel && (
+                  <label
+                    htmlFor={uniqueId}
+                    className="zolo-form-label"
+                  >
+                    {__("Search", "zolo-blocks")}
+                  </label>
+                )
+              }
+            </div>
+            <div className="zolo-advanced-search-control zolo-form-submit-btn">
+              <button type="submit" className="zolo-form-btn">
+                {"text" === buttonType && (
+                  <RichText
+                    tagName="span"
+                    placeholder={__("Search", "zolo-advanced-search")}
+                    value={buttonText}
+                    onChange={(value) => setAttributes({ buttonText: value })}
+                    className="zolo-form-btn-text"
+                    multiline={false}
+                    allowedFormats={[
+                      "core/bold",
+                      "core/italic",
+                      "core/strikethrough",
+                    ]}
+                  />
+                )}
+                {"icon" === buttonType && (
+                  <span className="zolo-advanced-search-icon-wrap">
+                    <DisplayZoloIcon icon={buttonIcon} />
+                  </span>
+                )}
+              </button>
+            </div>
+          </form>
+        </div>
     </>
   );
 }
