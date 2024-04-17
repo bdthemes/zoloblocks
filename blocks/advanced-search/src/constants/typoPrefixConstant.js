@@ -1,2 +1,3 @@
 // Button Typography
-export const TITLE_TYPO = 'titleTypo';
+export const LABEL_TYPOGRAPHY = "labelTypography";
+export const BUTTON_TYPOGRAPHY = "buttonTypography";

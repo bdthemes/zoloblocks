@@ -7,12 +7,12 @@ import { __ } from "@wordpress/i18n";
 export const BLOCK_PREFIX = "advanced-button";
 // Presets
 export const PRESETS = [
-  { label: __("Preset 1", "zolo-blocks"), value: "zolo-search-1" },
-  { label: __("Preset 2", "zolo-blocks"), value: "zolo-search-2" },
+  { label: __("Preset 1", "zoloblocks"), value: "zolo-search-1" },
+  { label: __("Preset 2", "zoloblocks"), value: "zolo-search-2" },
 ];
 export const BUTTON_TYPES = [
-  { label: __("Text", "zolo-blocks"), value: "text" },
-  { label: __("Icon", "zolo-blocks"), value: "icon" },
+  { label: __("Text", "zoloblocks"), value: "text" },
+  { label: __("Icon", "zoloblocks"), value: "icon" },
 ];
 
 // icons position
@@ -102,13 +102,13 @@ export const BUTTON_HOVER_BOX_SHADOW = "buttonHoverBoxShadow";
 
 export const ICON_SIZE = "iconSize";
 
-// secondary button
+// search label
 export const ICON_S_SIZE = "iconSizeSecondary";
 export const ICON_TEXT_S_SPACING = "iconTextSecondary";
-export const BUTTON_S_BORDER = "borderSecondary";
-export const BUTTON_S_BORDER_RADIUS = "borderRadiusSecondary";
-export const BUTTON_S_PADDING = "paddingSecondary";
-export const BUTTON_S_BG = "bgSecondary";
+export const LABEL_BORDER = 'labelBorder'
+export const LABEL_BORDER_RADIUS = 'labelBorderRadius'
+export const LABEL_PADDING = 'labelPadding'
+export const LABEL_BG = 'labelBg'
 export const BUTTON_S_BOX_SHADOW = "boxShadowSecondary";
 export const BUTTON_HOVER_S_BG_COLOR = "hBgColorSecondary";
 export const BUTTON_HOVER_S_BOX_SHADOW = "hBoxShadowSecondary";

@@ -37,10 +37,10 @@ import {
   ICON_TEXT_SPACING,
   ICON_S_SIZE,
   ICON_TEXT_S_SPACING,
-  BUTTON_S_BORDER,
-  BUTTON_S_BORDER_RADIUS,
-  BUTTON_S_PADDING,
-  BUTTON_S_BG,
+  LABEL_BORDER,
+  LABEL_BORDER_RADIUS,
+  LABEL_PADDING,
+  LABEL_BG,
   BUTTON_S_BOX_SHADOW,
   BUTTON_HOVER_S_BG_COLOR,
   BUTTON_HOVER_S_BOX_SHADOW,
@@ -76,7 +76,7 @@ const attributes = {
   // Button Generators
   ...generateResAlignmentAttributies(BUTTON_ALIGNMENT),
   ...generateBorderAttributies(BUTTON_BORDER),
-  ...generateBorderAttributies(BUTTON_S_BORDER),
+  ...generateBorderAttributies(LABEL_BORDER),
   ...generateResRangeAttributies(ICON_TEXT_SPACING),
   ...generateResRangeAttributies(ICON_TEXT_S_SPACING),
   // typography
@@ -87,10 +87,10 @@ const attributes = {
   // description
   ...generateDimensionAttributes(DESC_MARGIN),
 
-  ...generateDimensionAttributes(BUTTON_S_BORDER_RADIUS),
+  ...generateDimensionAttributes(LABEL_BORDER_RADIUS),
   ...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
   ...generateNormalBGAttributes(BUTTON_BG),
-  ...generateNormalBGAttributes(BUTTON_S_BG),
+  ...generateNormalBGAttributes(LABEL_BG),
   ...generateNormalBGAttributes(BUTTON_HOVER_BG_COLOR),
   ...generateNormalBGAttributes(BUTTON_HOVER_S_BG_COLOR),
   ...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
@@ -98,7 +98,7 @@ const attributes = {
   ...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
   ...generateBoxShadowAttributies(BUTTON_HOVER_S_BOX_SHADOW),
   ...generateDimensionAttributes(BUTTON_PADDING),
-  ...generateDimensionAttributes(BUTTON_S_PADDING),
+  ...generateDimensionAttributes(LABEL_PADDING),
 
   // button icon generator
   ...generateResRangeAttributies(ICON_SIZE),
@@ -138,7 +138,8 @@ const attributes = {
   },
   buttonIcon: {
     type: "string",
-    default: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-9h4v2H10v-2z'/></svg>",
+    default:
+      "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-9h4v2H10v-2z'/></svg>",
   },
   buttonText: {
     type: "string",
@@ -150,7 +151,15 @@ const attributes = {
   },
   labelColor: {
     type: "string",
-    default: "#000",
+    default: "",
+  },
+  btnTextColor: {
+    type: "string",
+    default: "",
+  },
+  btnTextHoverColor: {
+    type: "string",
+    default: "",
   },
 };
 

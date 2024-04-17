@@ -33,10 +33,10 @@ import {
   ICON_TEXT_SPACING,
   ICON_S_SIZE,
   ICON_TEXT_S_SPACING,
-  BUTTON_S_BORDER,
-  BUTTON_S_BORDER_RADIUS,
-  BUTTON_S_PADDING,
-  BUTTON_S_BG,
+  LABEL_BORDER,
+  LABEL_BORDER_RADIUS,
+  LABEL_PADDING,
+  LABEL_BG,
   BUTTON_S_BOX_SHADOW,
   BUTTON_HOVER_S_BG_COLOR,
   BUTTON_HOVER_S_BOX_SHADOW,
@@ -44,9 +44,7 @@ import {
 
 import {
   BUTTON_TYPOGRAPHY,
-  BUTTON_S_TYPOGRAPHY,
-  TITLE_TYPO,
-  DESC_TYPO,
+  LABEL_TYPOGRAPHY,
 } from "./constants/typoPrefixConstant";
 import { applyFilters } from "@wordpress/hooks";
 
@@ -54,46 +52,29 @@ export default function Style({ props }) {
   const { attributes, setAttributes } = props;
   const {
     uniqueId,
-    textColor,
-    textHoverColor,
-    borderHoverColor,
-    titleColor,
+    btnTextColor,
+    btnTextHoverColor,
+    labelBorderHoverColor,
+    labelColor,
     descriptionColor,
-    SborderHoverColor,
-    StextColor,
+    SlabelBorderHoverColor,
+    SbtnTextColor,
     SHoverColor,
   } = attributes;
 
   // title
   const {
-    typoStylesDesktop: titleDeskTypo,
-    typoStylesTab: titleTabTypo,
-    typoStylesMobile: titleMobTypo,
+    typoStylesDesktop: labelDeskTypo,
+    typoStylesTab: labelTabTypo,
+    typoStylesMobile: labelMobTypo,
   } = generateTypographyStyles({
-    prefixConstant: TITLE_TYPO,
+    prefixConstant: LABEL_TYPOGRAPHY,
     attributes,
   });
 
-  const {
-    dimensionStylesDesktop: titleDeskMargin,
-    dimensionStylesTab: titleTabMargin,
-    dimensionStylesMobile: titleMobMargin,
-  } = generateDimensionStyle({
-    controlName: TITLE_MARGIN,
-    styleFor: "margin",
-    attributes,
-  });
 
   // description
-  const {
-    typoStylesDesktop: descDeskTypo,
-    typoStylesTab: descTabTypo,
-    typoStylesMobile: descMobTypo,
-  } = generateTypographyStyles({
-    prefixConstant: DESC_TYPO,
-    defaultFontSize: "",
-    attributes,
-  });
+
 
   const {
     dimensionStylesDesktop: descDeskMargin,
@@ -128,11 +109,11 @@ export default function Style({ props }) {
   });
 
   const {
-    backgroundStylesDesktop: SnormalDeskBGStyle,
-    backgroundStylesTab: SnormalTabBGStyle,
-    backgroundStylesMobile: SnormalMobBGStyle,
+    backgroundStylesDesktop: labelDeskBGStyle,
+    backgroundStylesTab: labelTabBGStyle,
+    backgroundStylesMobile: labelMobBGStyle,
   } = generateNormalBGControlStyles({
-    controlName: BUTTON_S_BG,
+    controlName: LABEL_BG,
     attributes,
     noMainBGImg: false,
   });
@@ -169,11 +150,11 @@ export default function Style({ props }) {
   });
 
   const {
-    desktopBorderStyle: SborderStyles,
-    tabBorderStyle: SborderStylesTab,
-    mobBorderStyle: SborderStylesMob,
+    desktopBorderStyle:labelBorderStyles,
+    tabBorderStyle:labelBorderStylesTab,
+    mobBorderStyle:labelBorderStylesMob,
   } = generateBorderStyle({
-    controlName: BUTTON_S_BORDER,
+    controlName: LABEL_BORDER,
     attributes,
   });
 
@@ -188,11 +169,11 @@ export default function Style({ props }) {
     attributes,
   });
   const {
-    dimensionStylesDesktop: SborderRadiusDesktop,
-    dimensionStylesTab: SborderRadiusTab,
-    dimensionStylesMobile: SborderRadiusMob,
+    dimensionStylesDesktop: labelBorderRadiusDesktop,
+    dimensionStylesTab: labelBorderRadiusTab,
+    dimensionStylesMobile: labelBorderRadiusMob,
   } = generateDimensionStyle({
-    controlName: BUTTON_S_BORDER_RADIUS,
+    controlName: LABEL_BORDER_RADIUS,
     styleFor: "border-radius",
     attributes,
   });
@@ -278,14 +259,6 @@ export default function Style({ props }) {
     attributes,
   });
 
-  const {
-    typoStylesDesktop: SbtnTypoDesktop,
-    typoStylesTab: SbtnTypoTab,
-    typoStylesMobile: SbtnTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: BUTTON_S_TYPOGRAPHY,
-    attributes,
-  });
 
   const {
     dimensionStylesDesktop: paddingDesktop,
@@ -301,7 +274,7 @@ export default function Style({ props }) {
     dimensionStylesTab: SpaddingTab,
     dimensionStylesMobile: SpaddingMob,
   } = generateDimensionStyle({
-    controlName: BUTTON_S_PADDING,
+    controlName: LABEL_PADDING,
     styleFor: "padding",
     attributes,
   });
@@ -331,9 +304,24 @@ export default function Style({ props }) {
         ${normalDeskBGStyle}
         ${normalBoxShadowStyle}
       }
+
+      .${uniqueId} .zolo-form-search-input .zolo-form-label{
+        ${labelColor ? `color: ${labelColor};` : ""}
+        ${labelDeskBGStyle}
+        ${labelBorderStyles}
+        ${labelBorderRadiusDesktop}
+        ${labelDeskTypo}
+
+      }
       .${uniqueId} .zolo-form-submit-btn:hover .zolo-form-btn{
         ${hoverDeskBGStyle}
         ${hoverBoxShadowStyle}
+      }
+      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
+        ${btnTextColor ? `color: ${btnTextColor};` : ""}
+      }
+      .${uniqueId} .zolo-form-submit-btn:hover .zolo-form-btn{
+        ${btnTextHoverColor ? `color: ${btnTextHoverColor};` : ""}
       }
 
 

@@ -6,7 +6,7 @@ import { __ } from "@wordpress/i18n";
 import classnames from "classnames";
 
 /**
- * Internal depencencies
+ * Internal dependencies
  */
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
@@ -40,7 +40,7 @@ export default function Edit(props) {
     return (
       <img
         src={zoloParams.blocksPreview.advancedSearch}
-        alt={__("Advanced Search", "zolo-blocks")}
+        alt={__("Advanced Search", "zoloblocks")}
       />
     );
   }
@@ -65,7 +65,7 @@ export default function Edit(props) {
             method="get"
           >
             <div
-              className="zolo-advanced-search-control zolo-form-email-input"
+              className="zolo-advanced-search-control zolo-form-search-input"
               role="tablist"
             >
               <input
@@ -81,7 +81,7 @@ export default function Edit(props) {
                     htmlFor={uniqueId}
                     className="zolo-form-label"
                   >
-                    {__("Search", "zolo-blocks")}
+                    {__("Search", "zoloblocks")}
                   </label>
                 )
               }

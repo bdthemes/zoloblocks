@@ -43,7 +43,7 @@ const Save = ({ attributes }) => {
         method="get"
       >
         <div
-          className="zolo-advanced-search-control zolo-form-email-input"
+          className="zolo-advanced-search-control zolo-form-search-input"
           role="tablist"
         >
           <input
@@ -58,7 +58,7 @@ const Save = ({ attributes }) => {
                 htmlFor={uniqueId}
                 className="zolo-form-label"
               >
-                {__("Search", "zolo-blocks")}
+                {__("Search", "zoloblocks")}
               </label>
             )
           }
