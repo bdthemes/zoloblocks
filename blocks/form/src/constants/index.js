@@ -5,8 +5,8 @@ import { __ } from '@wordpress/i18n';
 
 // Presets
 export const PRESETS = [
-    { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
+    { label: __('Preset 1', 'zoloblocks'), value: 'style-1' },
+    { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
 ];
 
 // Block Prefix
@@ -35,21 +35,21 @@ export const FIELD_BRADIUS = 'fieldBorderRadius';
 
 // Notification types
 export const NOTIFICATION_TYPES = [
-    { label: __('Send Mail', 'zolo-blocks'), value: 'send_mail' },
-    { label: __('Save Response (Pro)', 'zolo-blocks'), value: 'save_response', disabled: true },
-    { label: __('Save Response & Send Mail (Pro)', 'zolo-blocks'), value: 'save_send', disabled: true },
+    { label: __('Send Mail', 'zoloblocks'), value: 'send_mail' },
+    { label: __('Save Response (Pro)', 'zoloblocks'), value: 'save_response', disabled: true },
+    { label: __('Save Response & Send Mail (Pro)', 'zoloblocks'), value: 'save_send', disabled: true },
 ];
 
 // Success types
 export const SUCCESS_TYPES = [
-    { label: __('Message', 'zolo-blocks'), value: 'message' },
-    { label: __('Redirect (Pro)', 'zolo-blocks'), value: 'redirect', disabled: true },
+    { label: __('Message', 'zoloblocks'), value: 'message' },
+    { label: __('Redirect (Pro)', 'zoloblocks'), value: 'redirect', disabled: true },
 ];
 
 // message pos
 export const MESSAGE_POS = [
-    { label: __('Form Top', 'zolo-blocks'), value: 'form_top' },
-    { label: __('Form Bottom', 'zolo-blocks'), value: 'form_bottom' },
+    { label: __('Form Top', 'zoloblocks'), value: 'form_top' },
+    { label: __('Form Bottom', 'zoloblocks'), value: 'form_bottom' },
 ];
 
 // success message

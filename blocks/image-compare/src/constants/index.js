@@ -33,11 +33,11 @@ export const COMPARISON_HEIGHT = 'comparisonHeight';
 //slide position option
 export const SLIDE_POSITION = [
     {
-        label: __('Horizontal', 'zolo-blocks'),
+        label: __('Horizontal', 'zoloblocks'),
         value: 'horizontal_direction',
     },
     {
-        label: __('Vertical', 'zolo-blocks'),
+        label: __('Vertical', 'zoloblocks'),
         value: 'vertical_direction',
     },
 ];

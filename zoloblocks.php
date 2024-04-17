@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Plugin Name: Zolo Blocks
+ * Plugin Name: ZoloBlocks
  * Plugin URI: https://bdthemes.com/
  * Version: 1.0.0-RC7
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
- * Text Domain: zolo-blocks
+ * Text Domain: zoloblocks
  * Description: A collection of custom Gutenberg blocks to design your webpages with ease.
  * Domain Path: /languages
  *  License: GPL v2 or later
@@ -25,12 +25,12 @@ use Zolo\Classes\Maintenance;
 /**
  * Final Class for ZOLO Blocks
  */
-final class Zolo_Blocks {
+final class ZoloBlocks {
 
     private static $instance;
 
     /**
-     * Zolo_Blocks Instance
+     * ZoloBlocks Instance
      */
     public static function get_instance() {
         if (!isset(self::$instance)) {
@@ -65,8 +65,8 @@ final class Zolo_Blocks {
      */
     public function zolo_constants() {
         define('ZOLO_FILE', __FILE__);
-        define('ZOLO_NAMESPACE', 'zolo-blocks');
-        define('ZOLO_SLUG', 'zolo-blocks');
+        define('ZOLO_NAMESPACE', 'zoloblocks');
+        define('ZOLO_SLUG', 'zoloblocks');
         define('ZOLO_VERSION', '1.0.0-RC7');
         define('ZOLO_DIR_PATH', plugin_dir_path(__FILE__));
         define('ZOLO_ADMIN_URL', plugin_dir_url(__FILE__));
@@ -78,11 +78,11 @@ final class Zolo_Blocks {
      * Include required files
      */
     public function includes() {
-        require_once trailingslashit(ZOLO_DIR_PATH) . 'includes/zolo-blocks-loader.php';
+        require_once trailingslashit(ZOLO_DIR_PATH) . 'includes/zoloblocks-loader.php';
     }
 }
 
 /**
- * Initialize the Zolo_Blocks
+ * Initialize the ZoloBlocks
  */
-Zolo_Blocks::get_instance();
+ZoloBlocks::get_instance();

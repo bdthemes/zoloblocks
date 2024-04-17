@@ -4,13 +4,13 @@
 import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'zolo-post-carousel';
 export const PRESETS = [
-    { label: __('Style 1', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Style 2', 'zolo-blocks'), value: 'style-2' },
-    { label: __('Style 3', 'zolo-blocks'), value: 'style-3' },
+    { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
+    { label: __('Style 2', 'zoloblocks'), value: 'style-2' },
+    { label: __('Style 3', 'zoloblocks'), value: 'style-3' },
 ];
 export const CAROUSEL_EFFECTS = [
-    { label: __('Slide', 'zolo-blocks'), value: 'slide' },
-    { label: __('Coverflow', 'zolo-blocks'), value: 'coverflow' },
+    { label: __('Slide', 'zoloblocks'), value: 'slide' },
+    { label: __('Coverflow', 'zoloblocks'), value: 'coverflow' },
 
 ];
 

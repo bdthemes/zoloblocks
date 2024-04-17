@@ -23,11 +23,11 @@ export const ICON_BG = 'iconBg';
 
 export const ICON_OPTIONS = [
     {
-        label: __('Image', 'zolo-blocks'),
+        label: __('Image', 'zoloblocks'),
         value: 'image',
     },
     {
-        label: __('Icon', 'zolo-blocks'),
+        label: __('Icon', 'zoloblocks'),
         value: 'icon',
     },
 ];

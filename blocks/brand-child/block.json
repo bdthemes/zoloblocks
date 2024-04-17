@@ -2,12 +2,12 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Brand Child",
     "name": "zolo/brand-child",
-    "category": "zolo-blocks",
+    "category": "zoloblocks",
     "keywords": ["brand child", "brand"],
     "description": "Acts as a child block for the brand block",
     "parent": ["zolo/brand-grid"],
     "apiVersion": 2,
-    "textdomain": "zolo-blocks",
+    "textdomain": "zoloblocks",
     "supports": {
         "anchor": false,
         "customClassName": false

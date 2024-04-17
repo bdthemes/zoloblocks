@@ -161,15 +161,15 @@ function Inspector(props) {
                 attributes={attributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                        <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <SelectControl
-                                label={__('Presets', 'zolo-blocks')}
+                                label={__('Presets', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.form.presets', PRESETS)}
                                 onChange={(selected) => onPresetChange(selected)}
                             />
                             <ToggleControl
-                                label={__('Show fields icon', 'zolo-blocks')}
+                                label={__('Show fields icon', 'zoloblocks')}
                                 checked={showFieldIcon}
                                 onChange={() =>
                                     setAttributes({
@@ -178,9 +178,9 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Form Settings', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Form Settings', 'zoloblocks')} panelProps={props}>
                             <TextControl
-                                label={__('Form Title', 'zolo-blocks')}
+                                label={__('Form Title', 'zoloblocks')}
                                 value={formSettings?.formTitle}
                                 onChange={(v) =>
                                     setAttributes({
@@ -190,10 +190,10 @@ function Inspector(props) {
                                         },
                                     })
                                 }
-                                placeholder={__('Enter title..', 'zolo-blocks')}
+                                placeholder={__('Enter title..', 'zoloblocks')}
                             />
                             <SelectControl
-                                label={__('Notification Type', 'zolo-blocks')}
+                                label={__('Notification Type', 'zoloblocks')}
                                 value={formSettings?.notificationType}
                                 options={NOTIFICATION_TYPES}
                                 onChange={(v) =>
@@ -206,7 +206,7 @@ function Inspector(props) {
                                 }
                             />
                             <TextControl
-                                label={__('Email To', 'zolo-blocks')}
+                                label={__('Email To', 'zoloblocks')}
                                 value={formSettings?.emailTo}
                                 onChange={(v) =>
                                     setAttributes({
@@ -216,11 +216,11 @@ function Inspector(props) {
                                         },
                                     })
                                 }
-                                placeholder={__('Enter email..', 'zolo-blocks')}
-                                help={__('This email will receive the form submission.', 'zolo-blocks')}
+                                placeholder={__('Enter email..', 'zoloblocks')}
+                                help={__('This email will receive the form submission.', 'zoloblocks')}
                             />
                             <TextControl
-                                label={__('Email CC (optional)', 'zolo-blocks')}
+                                label={__('Email CC (optional)', 'zoloblocks')}
                                 value={formSettings?.emailCC}
                                 onChange={(v) =>
                                     setAttributes({
@@ -230,11 +230,11 @@ function Inspector(props) {
                                         },
                                     })
                                 }
-                                placeholder={__('Enter email..', 'zolo-blocks')}
-                                help={__('This email will receive the form submission.', 'zolo-blocks')}
+                                placeholder={__('Enter email..', 'zoloblocks')}
+                                help={__('This email will receive the form submission.', 'zoloblocks')}
                             />
                             <TextControl
-                                label={__('Email BCC (optional)', 'zolo-blocks')}
+                                label={__('Email BCC (optional)', 'zoloblocks')}
                                 value={formSettings?.emailBCC}
                                 onChange={(v) =>
                                     setAttributes({
@@ -244,12 +244,12 @@ function Inspector(props) {
                                         },
                                     })
                                 }
-                                placeholder={__('Enter email..', 'zolo-blocks')}
-                                help={__('This email will receive the form submission.', 'zolo-blocks')}
+                                placeholder={__('Enter email..', 'zoloblocks')}
+                                help={__('This email will receive the form submission.', 'zoloblocks')}
                             />
                             <TextControl
-                                label={__('Email Subject', 'zolo-blocks')}
-                                help={__('This will be the subject of the email.', 'zolo-blocks')}
+                                label={__('Email Subject', 'zoloblocks')}
+                                help={__('This will be the subject of the email.', 'zoloblocks')}
                                 value={formSettings?.emailSubject}
                                 onChange={(v) =>
                                     setAttributes({
@@ -261,9 +261,9 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Form Submission', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Form Submission', 'zoloblocks')} panelProps={props}>
                             <SelectControl
-                                label={__('Success Type', 'zolo-blocks')}
+                                label={__('Success Type', 'zoloblocks')}
                                 value={submissionSettings?.successType}
                                 options={SUCCESS_TYPES}
                                 onChange={(v) =>
@@ -276,7 +276,7 @@ function Inspector(props) {
                                 }
                             />
                             <IconicBtnGroup
-                                label={__('Message Position', 'zolo-blocks')}
+                                label={__('Message Position', 'zoloblocks')}
                                 value={messagePosition}
                                 onChange={(value) =>
                                     setAttributes({
@@ -286,9 +286,9 @@ function Inspector(props) {
                                 options={MESSAGE_POS}
                             />
                             <TextareaControl
-                                label={__('Success Message', 'zolo-blocks')}
+                                label={__('Success Message', 'zoloblocks')}
                                 value={submissionSettings?.successMessage}
-                                help={__('This message will be shown when the form is submitted successfully.', 'zolo-blocks')}
+                                help={__('This message will be shown when the form is submitted successfully.', 'zoloblocks')}
                                 onChange={(v) =>
                                     setAttributes({
                                         submissionSettings: {
@@ -297,13 +297,13 @@ function Inspector(props) {
                                         },
                                     })
                                 }
-                                placeholder={__('Enter message..', 'zolo-blocks')}
+                                placeholder={__('Enter message..', 'zoloblocks')}
                                 rows={2}
                             />
                             <TextareaControl
-                                label={__('Fail Message', 'zolo-blocks')}
+                                label={__('Fail Message', 'zoloblocks')}
                                 value={submissionSettings?.failMessage}
-                                help={__('This message will be shown when the form submission fails.', 'zolo-blocks')}
+                                help={__('This message will be shown when the form submission fails.', 'zoloblocks')}
                                 onChange={(v) =>
                                     setAttributes({
                                         submissionSettings: {
@@ -312,13 +312,13 @@ function Inspector(props) {
                                         },
                                     })
                                 }
-                                placeholder={__('Enter message..', 'zolo-blocks')}
+                                placeholder={__('Enter message..', 'zoloblocks')}
                                 rows={2}
                             />
                             <TextareaControl
-                                label={__('Validation Message', 'zolo-blocks')}
+                                label={__('Validation Message', 'zoloblocks')}
                                 value={submissionSettings?.validationMessage}
-                                help={__('This message will be shown when the form validation fails.', 'zolo-blocks')}
+                                help={__('This message will be shown when the form validation fails.', 'zoloblocks')}
                                 onChange={(v) =>
                                     setAttributes({
                                         submissionSettings: {
@@ -327,25 +327,25 @@ function Inspector(props) {
                                         },
                                     })
                                 }
-                                placeholder={__('Enter message..', 'zolo-blocks')}
+                                placeholder={__('Enter message..', 'zoloblocks')}
                                 rows={2}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Submit Button', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Submit Button', 'zoloblocks')} panelProps={props}>
                             <TextControl
-                                label={__('Label', 'zolo-blocks')}
+                                label={__('Label', 'zoloblocks')}
                                 value={btnLabel}
                                 onChange={(v) => setAttributes({ btnLabel: v })}
-                                placeholder={__('Enter label..', 'zolo-blocks')}
+                                placeholder={__('Enter label..', 'zoloblocks')}
                             />
                             <ResAlignmentControl
-                                label={__('Alignment', 'zolo-blocks')}
+                                label={__('Alignment', 'zoloblocks')}
                                 controlName={BTN_ALIGNMENT}
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
                             <ToggleControl
-                                label={__('Show Icon', 'zolo-blocks')}
+                                label={__('Show Icon', 'zoloblocks')}
                                 checked={showBtnIcon}
                                 onChange={() =>
                                     setAttributes({
@@ -356,7 +356,7 @@ function Inspector(props) {
                             {showBtnIcon && (
                                 <>
                                     <ZoloIconPicker
-                                        label={__('Select Icon', 'zolo-blocks')}
+                                        label={__('Select Icon', 'zoloblocks')}
                                         value={icon}
                                         onChange={(value) => {
                                             setAttributes({
@@ -365,7 +365,7 @@ function Inspector(props) {
                                         }}
                                     />
                                     <IconicBtnGroup
-                                        label={__('Position', 'zolo-blocks')}
+                                        label={__('Position', 'zoloblocks')}
                                         value={iconPosition}
                                         onChange={(value) =>
                                             setAttributes({
@@ -377,9 +377,9 @@ function Inspector(props) {
                                 </>
                             )}
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Google reCaptcha', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Google reCaptcha', 'zoloblocks')} panelProps={props}>
                             <ToggleControl
-                                label={__('Enable Google reCaptcha', 'zolo-blocks')}
+                                label={__('Enable Google reCaptcha', 'zoloblocks')}
                                 checked={reCaptcha}
                                 onChange={onChangeRecaptcha}
                             />
@@ -393,11 +393,11 @@ function Inspector(props) {
                                     >
                                         {__(
                                             'Please make sure to enter the site key and secret key in the ZoloBlocks settings.',
-                                            'zolo-blocks'
+                                            'zoloblocks'
                                         )}
-                                        <a href="/wp-admin/admin.php?page=zolo-blocks">
+                                        <a href="/wp-admin/admin.php?page=zoloblocks">
                                             {' '}
-                                            {__('Click here to go to settings.', 'zolo-blocks')}
+                                            {__('Click here to go to settings.', 'zoloblocks')}
                                         </a>
                                     </p>
                                 </>
@@ -407,37 +407,37 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Label', 'zolo-blocks')} stylePanel={true} panelProps={props} firstOpen={true}>
+                        <ZoloPanelBody title={__('Label', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={true}>
                             <ColorControl
-                                label={__('Label Color', 'zolo-blocks')}
+                                label={__('Label Color', 'zoloblocks')}
                                 color={labelColor}
                                 onChange={(color) => setAttributes({ labelColor: color })}
                             />
                             <ColorControl
-                                label={__('Required Color', 'zolo-blocks')}
+                                label={__('Required Color', 'zoloblocks')}
                                 color={requiredColor}
                                 onChange={(color) => setAttributes({ requiredColor: color })}
                             />
                             <TypographyDropdown
-                                label={__('Typography', 'zolo-blocks')}
+                                label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={LABEL_TYPO}
                                 requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
+                                label={__('Margin', 'zoloblocks')}
                                 controlName={LABEL_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Field Icons', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Field Icons', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ColorControl
-                                label={__('Color', 'zolo-blocks')}
+                                label={__('Color', 'zoloblocks')}
                                 color={iconColor}
                                 onChange={(color) => setAttributes({ iconColor: color })}
                             />
                             <ResRangeControl
-                                label={__('Icon', 'zolo-blocks')}
+                                label={__('Icon', 'zoloblocks')}
                                 controlName={ICON_SIZE}
                                 requiredProps={requiredProps}
                                 min={1}
@@ -445,45 +445,45 @@ function Inspector(props) {
                                 step={1}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Input Fields', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Input Fields', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ColorControl
-                                label={__('Text Color', 'zolo-blocks')}
+                                label={__('Text Color', 'zoloblocks')}
                                 color={textColor}
                                 onChange={(color) => setAttributes({ textColor: color })}
                             />
                             <ColorControl
-                                label={__('Placeholder Color', 'zolo-blocks')}
+                                label={__('Placeholder Color', 'zoloblocks')}
                                 color={placeholderColor}
                                 onChange={(color) => setAttributes({ placeholderColor: color })}
                             />
                             <TypographyDropdown
-                                label={__('Typography', 'zolo-blocks')}
+                                label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={FIELD_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={FIELD_BORDER} requiredProps={requiredProps} />
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={FIELD_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
+                                label={__('Border Radius', 'zoloblocks')}
                                 controlName={FIELD_BRADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
+                                label={__('Padding', 'zoloblocks')}
                                 controlName={FIELD_PADDING}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Field Focus', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Field Focus', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ColorControl
-                                label={__('Color', 'zolo-blocks')}
+                                label={__('Color', 'zoloblocks')}
                                 color={focusBorderColor}
                                 onChange={(color) => setAttributes({ focusBorderColor: color })}
                             />
                             <RangeControl
-                                label={__('Width', 'zolo-blocks')}
+                                label={__('Width', 'zoloblocks')}
                                 value={focusBorderWidth}
                                 onChange={(value) => setAttributes({ focusBorderWidth: value })}
                                 min={0}
@@ -491,27 +491,27 @@ function Inspector(props) {
                                 step={1}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Submit Button', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Submit Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
-                                label={__('Typography', 'zolo-blocks')}
+                                label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={BTN_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={BTN_BORDER} requiredProps={requiredProps} />
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={BTN_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
+                                label={__('Border Radius', 'zoloblocks')}
                                 controlName={BTN_BRADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
+                                label={__('Padding', 'zoloblocks')}
                                 controlName={BTN_PADDING}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
+                                label={__('Margin', 'zoloblocks')}
                                 controlName={BTN_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
@@ -520,7 +520,7 @@ function Inspector(props) {
                                 normalComponents={
                                     <>
                                         <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={btnColor}
                                             onChange={(color) => setAttributes({ btnColor: color })}
                                         />
@@ -530,7 +530,7 @@ function Inspector(props) {
                                 hoverComponents={
                                     <>
                                         <ColorControl
-                                            label={__('Hover Color', 'zolo-blocks')}
+                                            label={__('Hover Color', 'zoloblocks')}
                                             color={btnHoverColor}
                                             onChange={(color) => setAttributes({ btnHoverColor: color })}
                                         />
@@ -539,42 +539,42 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Message', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Message', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ColorControl
-                                label={__('Close Button Color', 'zolo-blocks')}
+                                label={__('Close Button Color', 'zoloblocks')}
                                 color={closeBtnColor}
                                 onChange={(color) => setAttributes({ closeBtnColor: color })}
                             />
                             <TabPanelControl
                                 options={[
-                                    { label: __('Success', 'zolo-blocks'), value: 'normal' },
-                                    { label: __('Error', 'zolo-blocks'), value: 'hover' },
+                                    { label: __('Success', 'zoloblocks'), value: 'normal' },
+                                    { label: __('Error', 'zoloblocks'), value: 'hover' },
                                 ]}
                                 normalComponents={
                                     <>
                                         <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={sccMsgColor}
                                             onChange={(color) => setAttributes({ sccMsgColor: color })}
                                         />
                                         <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
+                                            label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={SCC_MSG_TYPO}
                                             requiredProps={requiredProps}
                                         />
                                         <BorderControl
-                                            label={__('Border', 'zolo-blocks')}
+                                            label={__('Border', 'zoloblocks')}
                                             controlName={SCC_BORDER}
                                             requiredProps={requiredProps}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Border Radius', 'zolo-blocks')}
+                                            label={__('Border Radius', 'zoloblocks')}
                                             controlName={SCC_BRADIUS}
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Padding', 'zolo-blocks')}
+                                            label={__('Padding', 'zoloblocks')}
                                             controlName={SCC_PADDING}
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
@@ -585,28 +585,28 @@ function Inspector(props) {
                                 hoverComponents={
                                     <>
                                         <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={errMsgColor}
                                             onChange={(color) => setAttributes({ errMsgColor: color })}
                                         />
                                         <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
+                                            label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={ERR_MSG_TYPO}
                                             requiredProps={requiredProps}
                                         />
                                         <BorderControl
-                                            label={__('Border', 'zolo-blocks')}
+                                            label={__('Border', 'zoloblocks')}
                                             controlName={ERR_BORDER}
                                             requiredProps={requiredProps}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Border Radius', 'zolo-blocks')}
+                                            label={__('Border Radius', 'zoloblocks')}
                                             controlName={ERR_BRADIUS}
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Padding', 'zolo-blocks')}
+                                            label={__('Padding', 'zoloblocks')}
                                             controlName={ERR_PADDING}
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}

@@ -16,7 +16,7 @@ const categories = applyFilters('zolo_blocks_categories', [
                 </svg>
             </>
         ),
-        title: __('All', 'zolo-blocks'),
+        title: __('All', 'zoloblocks'),
     },
     {
         value: 'list',
@@ -31,7 +31,7 @@ const categories = applyFilters('zolo_blocks_categories', [
                 </svg>
             </>
         ),
-        title: __('Grid &  List', 'zolo-blocks'),
+        title: __('Grid &  List', 'zoloblocks'),
     },
     {
         value: 'gallery',
@@ -50,7 +50,7 @@ const categories = applyFilters('zolo_blocks_categories', [
                 </svg>
             </>
         ),
-        title: __('Gallery & Image', 'zolo-blocks'),
+        title: __('Gallery & Image', 'zoloblocks'),
     },
     {
         value: 'slider',
@@ -69,7 +69,7 @@ const categories = applyFilters('zolo_blocks_categories', [
                 </svg>
             </>
         ),
-        title: __('Slider & Carousel', 'zolo-blocks'),
+        title: __('Slider & Carousel', 'zoloblocks'),
     },
 
     {
@@ -85,7 +85,7 @@ const categories = applyFilters('zolo_blocks_categories', [
                 </svg>
             </>
         ),
-        title: __('Post', 'zolo-blocks'),
+        title: __('Post', 'zoloblocks'),
     },
 
     {
@@ -101,7 +101,7 @@ const categories = applyFilters('zolo_blocks_categories', [
                 </svg>
             </>
         ),
-        title: __('Review', 'zolo-blocks'),
+        title: __('Review', 'zoloblocks'),
     },
 
     {
@@ -117,7 +117,7 @@ const categories = applyFilters('zolo_blocks_categories', [
                 </svg>
             </>
         ),
-        title: __('Social', 'zolo-blocks'),
+        title: __('Social', 'zoloblocks'),
     },
     {
         value: 'others',
@@ -132,7 +132,7 @@ const categories = applyFilters('zolo_blocks_categories', [
                 </svg>
             </>
         ),
-        title: __('Others', 'zolo-blocks'),
+        title: __('Others', 'zoloblocks'),
     },
 ]);
 export default categories;

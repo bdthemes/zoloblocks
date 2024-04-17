@@ -149,8 +149,8 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
-                            <BaseControl label={__('Selected Side', 'zolo-blocks')}>
+                        <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
+                            <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                 <ButtonGroup className="zolo-button-group">
                                     {FLIPBLOX_SIDE.map((item) => (
                                         <Button
@@ -176,21 +176,21 @@ function Inspector(props) {
                             {side === 'front' && (
                                 <>
                                     <ToggleControl
-                                        label={__('Show Icon', 'zolo-blocks')}
+                                        label={__('Show Icon', 'zoloblocks')}
                                         checked={showFrontIcon}
                                         onChange={() => {
                                             setAttributes({ showFrontIcon: !showFrontIcon });
                                         }}
                                     />
                                     <ToggleControl
-                                        label={__('Show Title', 'zolo-blocks')}
+                                        label={__('Show Title', 'zoloblocks')}
                                         checked={showFrontTitle}
                                         onChange={() => {
                                             setAttributes({ showFrontTitle: !showFrontTitle });
                                         }}
                                     />
                                     <ToggleControl
-                                        label={__('Show Description', 'zolo-blocks')}
+                                        label={__('Show Description', 'zoloblocks')}
                                         checked={showFrontContent}
                                         onChange={() => {
                                             setAttributes({
@@ -203,21 +203,21 @@ function Inspector(props) {
                             {side === 'back' && (
                                 <>
                                     <ToggleControl
-                                        label={__('Show Icon', 'zolo-blocks')}
+                                        label={__('Show Icon', 'zoloblocks')}
                                         checked={showBackIcon}
                                         onChange={() => {
                                             setAttributes({ showBackIcon: !showBackIcon });
                                         }}
                                     />
                                     <ToggleControl
-                                        label={__('Show Title', 'zolo-blocks')}
+                                        label={__('Show Title', 'zoloblocks')}
                                         checked={showBackTitle}
                                         onChange={() => {
                                             setAttributes({ showBackTitle: !showBackTitle });
                                         }}
                                     />
                                     <ToggleControl
-                                        label={__('Show Description', 'zolo-blocks')}
+                                        label={__('Show Description', 'zoloblocks')}
                                         checked={showBackContent}
                                         onChange={() => {
                                             setAttributes({
@@ -226,7 +226,7 @@ function Inspector(props) {
                                         }}
                                     />
                                     <ToggleControl
-                                        label={__('Show Button', 'zolo-blocks')}
+                                        label={__('Show Button', 'zoloblocks')}
                                         checked={showBackLinkBtn}
                                         onChange={() => {
                                             setAttributes({
@@ -236,7 +236,7 @@ function Inspector(props) {
                                     />
                                     {showBackLinkBtn && (
                                         <ToggleControl
-                                            label={__('Show Button Icon', 'zolo-blocks')}
+                                            label={__('Show Button Icon', 'zoloblocks')}
                                             checked={showBackLinkBtnIcon}
                                             onChange={() => {
                                                 setAttributes({
@@ -250,7 +250,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Flipbox Content', 'zolo-block')} panelProps={props}>
-                            <BaseControl label={__('Selected Side', 'zolo-blocks')}>
+                            <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                 <ButtonGroup className="zolo-button-group">
                                     {FLIPBLOX_SIDE.map((item) => (
                                         <Button
@@ -278,7 +278,7 @@ function Inspector(props) {
                                     {showFrontIcon && (
                                         <>
                                             <IconicBtnGroup
-                                                label={__('Icon Type', 'zolo-blocks')}
+                                                label={__('Icon Type', 'zoloblocks')}
                                                 value={frontIconType}
                                                 onChange={(value) =>
                                                     setAttributes({
@@ -296,7 +296,7 @@ function Inspector(props) {
                                             )}
                                             {frontIconType === 'image' && (
                                                 <>
-                                                    <BaseControl label={__('Image', 'zolo-blocks')}>
+                                                    <BaseControl label={__('Image', 'zoloblocks')}>
                                                         {frontIconTypeImage ? (
                                                             <ImageAvatar
                                                                 imageUrl={frontIconTypeImage && frontIconTypeImage.url}
@@ -344,14 +344,14 @@ function Inspector(props) {
                                                                         >
                                                                             <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
                                                                         </svg>
-                                                                        {__(' Upload Photo', 'zolo-blocks')}
+                                                                        {__(' Upload Photo', 'zoloblocks')}
                                                                     </Button>
                                                                 )}
                                                             />
                                                         )}
                                                     </BaseControl>
                                                     <ImageSizes
-                                                        label={__('Image Resolution', 'zolo-blocks')}
+                                                        label={__('Image Resolution', 'zoloblocks')}
                                                         value={imageRes}
                                                         onChange={(value) =>
                                                             setAttributes({
@@ -374,14 +374,14 @@ function Inspector(props) {
 
                                     {showFrontTitle && (
                                         <TextControl
-                                            label={__('Title', 'zolo-blocks')}
+                                            label={__('Title', 'zoloblocks')}
                                             value={frontTitle}
                                             onChange={(newText) => setAttributes({ frontTitle: newText })}
                                         />
                                     )}
                                     {showFrontContent && (
                                         <TextareaControl
-                                            label={__('Description', 'zolo-blocks')}
+                                            label={__('Description', 'zoloblocks')}
                                             value={frontContent}
                                             onChange={(newText) => setAttributes({ frontContent: newText })}
                                         />
@@ -393,7 +393,7 @@ function Inspector(props) {
                                     {showBackIcon && (
                                         <>
                                             <IconicBtnGroup
-                                                label={__('Icon Type', 'zolo-blocks')}
+                                                label={__('Icon Type', 'zoloblocks')}
                                                 value={backIconType}
                                                 onChange={(value) =>
                                                     setAttributes({
@@ -411,7 +411,7 @@ function Inspector(props) {
                                             )}
                                             {backIconType === 'image' && (
                                                 <>
-                                                    <BaseControl label={__('Image', 'zolo-blocks')}>
+                                                    <BaseControl label={__('Image', 'zoloblocks')}>
                                                         {backIconTypeImage ? (
                                                             <ImageAvatar
                                                                 imageUrl={backIconTypeImage && backIconTypeImage.url}
@@ -459,14 +459,14 @@ function Inspector(props) {
                                                                         >
                                                                             <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
                                                                         </svg>
-                                                                        {__(' Upload Photo', 'zolo-blocks')}
+                                                                        {__(' Upload Photo', 'zoloblocks')}
                                                                     </Button>
                                                                 )}
                                                             />
                                                         )}
                                                     </BaseControl>
                                                     <ImageSizes
-                                                        label={__('Image Resolution', 'zolo-blocks')}
+                                                        label={__('Image Resolution', 'zoloblocks')}
                                                         value={imageRes}
                                                         onChange={(value) =>
                                                             setAttributes({
@@ -488,7 +488,7 @@ function Inspector(props) {
                                     )}
                                     {showBackTitle && (
                                         <TextControl
-                                            label={__('Title', 'zolo-blocks')}
+                                            label={__('Title', 'zoloblocks')}
                                             value={backTitle}
                                             onChange={(newText) => setAttributes({ backTitle: newText })}
                                         />
@@ -496,7 +496,7 @@ function Inspector(props) {
 
                                     {showBackContent && (
                                         <TextareaControl
-                                            label={__('Description', 'zolo-blocks')}
+                                            label={__('Description', 'zoloblocks')}
                                             value={backContent}
                                             onChange={(newText) => setAttributes({ backContent: newText })}
                                         />
@@ -504,12 +504,12 @@ function Inspector(props) {
                                     {showBackLinkBtn && (
                                         <>
                                             <TextControl
-                                                label={__('Button Text', 'zolo-blocks')}
+                                                label={__('Button Text', 'zoloblocks')}
                                                 value={buttonText}
                                                 onChange={(newText) => setAttributes({ buttonText: newText })}
                                             />
                                             <LinkControl
-                                                label={__('URL', 'zolo-blocks')}
+                                                label={__('URL', 'zoloblocks')}
                                                 value={link}
                                                 onChange={(value) => setAttributes({ link: value })}
                                             />
@@ -526,9 +526,9 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('General Settings', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('General Settings', 'zoloblocks')} panelProps={props}>
                             <SelectControl
-                                label={__('Flip Effect', 'zolo-blocks')}
+                                label={__('Flip Effect', 'zoloblocks')}
                                 value={flipEffect}
                                 options={FLIP_EFFECT}
                                 onChange={(flipEffect) => {
@@ -536,7 +536,7 @@ function Inspector(props) {
                                 }}
                             />
                             <SelectControl
-                                label={__('Easing Type', 'zolo-blocks')}
+                                label={__('Easing Type', 'zoloblocks')}
                                 value={flipEasingType}
                                 options={FLIP_EASING_TYPE}
                                 onChange={(flipEasingType) => {
@@ -545,14 +545,14 @@ function Inspector(props) {
                             />
                             {flipEasingType === 'custom' && (
                                 <TextControl
-                                    label={__('Custom Easing', 'zolo-blocks')}
-                                    help={__('Example: cubic-bezier(0.42, 0, 0.58, 1)', 'zolo-blocks')}
+                                    label={__('Custom Easing', 'zoloblocks')}
+                                    help={__('Example: cubic-bezier(0.42, 0, 0.58, 1)', 'zoloblocks')}
                                     value={flipCustomEasing}
                                     onChange={(customEasing) => setAttributes({ flipCustomEasing: customEasing })}
                                 />
                             )}
                             <RangeResetControl
-                                label={__('Duration (ms)', 'zolo-blocks')}
+                                label={__('Duration (ms)', 'zoloblocks')}
                                 controlName={'flipDuration'}
                                 requiredProps={requiredProps}
                                 min={0}
@@ -561,7 +561,7 @@ function Inspector(props) {
                                 step={1}
                             />
                             <IconicBtnGroup
-                                label={__('Trigger Type', 'zolo-blocks')}
+                                label={__('Trigger Type', 'zoloblocks')}
                                 value={triggerType}
                                 onChange={(value) =>
                                     setAttributes({
@@ -570,7 +570,7 @@ function Inspector(props) {
                                 }
                                 options={FLIP_TRIGGER_TYPE}
                             />
-                            {triggerType === 'click' && <p>{__('The feature works on the frontend only.', 'zolo-blocks')}</p>}
+                            {triggerType === 'click' && <p>{__('The feature works on the frontend only.', 'zoloblocks')}</p>}
                         </ZoloPanelBody>
                     </>
                 }
@@ -578,7 +578,7 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('Items', 'zolo-block')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <ResRangeControl
-                                label={__('Height', 'zolo-blocks')}
+                                label={__('Height', 'zoloblocks')}
                                 controlName={FLIPBOX_HEIGHT}
                                 requiredProps={requiredProps}
                                 min={200}
@@ -586,16 +586,16 @@ function Inspector(props) {
                                 defaultVal={300}
                             />
                             <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
+                                label={__('Padding', 'zoloblocks')}
                                 controlName={FLIPBOX_ITEMS_PADDING}
                                 requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
+                                label={__('Border Radius', 'zoloblocks')}
                                 controlName={FLIPBOX_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                             />
-                            <BaseControl label={__('Selected Side', 'zolo-blocks')}>
+                            <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                 <ButtonGroup className="zolo-button-group">
                                     {FLIPBLOX_SIDE.map((item) => (
                                         <Button
@@ -621,20 +621,20 @@ function Inspector(props) {
                             {side === 'front' && (
                                 <>
                                     <BorderControl
-                                        label={__('Border', 'zolo-blocks')}
+                                        label={__('Border', 'zoloblocks')}
                                         controlName={FRONT_ITEMS_BORDER}
                                         requiredProps={requiredProps}
                                     />
 
                                     <ResAlignmentControl
-                                        label={__('Alignment', 'zolo-blocks')}
+                                        label={__('Alignment', 'zoloblocks')}
                                         controlName={FRONT_ITEMS_ALIGNMENT}
                                         requiredProps={requiredProps}
                                         alignOptions={DEFAULT_ALIGNS}
                                     />
 
                                     <ResAlignmentControl
-                                        label={__('Vertical Alignment', 'zolo-blocks')}
+                                        label={__('Vertical Alignment', 'zoloblocks')}
                                         controlName={FRONT_ITEMS_VERTICAL_ALIGNMENT}
                                         requiredProps={requiredProps}
                                         alignOptions={FLIPBOX_VERTICAL_ALIGNMENT}
@@ -645,20 +645,20 @@ function Inspector(props) {
                             {side === 'back' && (
                                 <>
                                     <BorderControl
-                                        label={__('Border', 'zolo-blocks')}
+                                        label={__('Border', 'zoloblocks')}
                                         controlName={BACK_ITEMS_BORDER}
                                         requiredProps={requiredProps}
                                     />
 
                                     <ResAlignmentControl
-                                        label={__('Alignment', 'zolo-blocks')}
+                                        label={__('Alignment', 'zoloblocks')}
                                         controlName={BACK_ITEMS_ALIGNMENT}
                                         requiredProps={requiredProps}
                                         alignOptions={DEFAULT_ALIGNS}
                                     />
 
                                     <ResAlignmentControl
-                                        label={__('Vertical Alignment', 'zolo-blocks')}
+                                        label={__('Vertical Alignment', 'zoloblocks')}
                                         controlName={BACK_ITEMS_VERTICAL_ALIGNMENT}
                                         requiredProps={requiredProps}
                                         alignOptions={FLIPBOX_VERTICAL_ALIGNMENT}
@@ -670,7 +670,7 @@ function Inspector(props) {
 
                         {(showFrontIcon || showBackIcon) && (
                             <ZoloPanelBody title={__('Icon/Image', 'zolo-block')} stylePanel={true} panelProps={props}>
-                                <BaseControl label={__('Selected Side', 'zolo-blocks')}>
+                                <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                     <ButtonGroup className="zolo-button-group">
                                         {FLIPBLOX_SIDE.map((item) => (
                                             <Button
@@ -698,27 +698,27 @@ function Inspector(props) {
                                         {showFrontIcon && (
                                             <>
                                                 <ResDimensionsControl
-                                                    label={__('Size', 'zolo-blocks')}
+                                                    label={__('Size', 'zoloblocks')}
                                                     controlName={FRONT_ICON_SIZE}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <BorderControl
-                                                    label={__('Border', 'zolo-blocks')}
+                                                    label={__('Border', 'zoloblocks')}
                                                     controlName={FRONT_ICON_BORDER}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <ResDimensionsControl
-                                                    label={__('Border Radius', 'zolo-blocks')}
+                                                    label={__('Border Radius', 'zoloblocks')}
                                                     controlName={FRONT_ICON_BORDER_RADIUS}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <ResDimensionsControl
-                                                    label={__('Padding', 'zolo-blocks')}
+                                                    label={__('Padding', 'zoloblocks')}
                                                     controlName={FRONT_ICON_PADDING}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <ColorControl
-                                                    label={__('Color', 'zolo-blocks')}
+                                                    label={__('Color', 'zoloblocks')}
                                                     color={frontIconColor}
                                                     onChange={(color) =>
                                                         setAttributes({
@@ -740,27 +740,27 @@ function Inspector(props) {
                                         {showBackIcon && (
                                             <>
                                                 <ResDimensionsControl
-                                                    label={__('Size', 'zolo-blocks')}
+                                                    label={__('Size', 'zoloblocks')}
                                                     controlName={BACK_ICON_SIZE}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <BorderControl
-                                                    label={__('Border', 'zolo-blocks')}
+                                                    label={__('Border', 'zoloblocks')}
                                                     controlName={BACK_ICON_BORDER}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <ResDimensionsControl
-                                                    label={__('Border Radius', 'zolo-blocks')}
+                                                    label={__('Border Radius', 'zoloblocks')}
                                                     controlName={BACK_ICON_BORDER_RADIUS}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <ResDimensionsControl
-                                                    label={__('Padding', 'zolo-blocks')}
+                                                    label={__('Padding', 'zoloblocks')}
                                                     controlName={BACK_ICON_PADDING}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <ColorControl
-                                                    label={__('Color', 'zolo-blocks')}
+                                                    label={__('Color', 'zoloblocks')}
                                                     color={backIconColor}
                                                     onChange={(color) =>
                                                         setAttributes({
@@ -781,8 +781,8 @@ function Inspector(props) {
                         )}
 
                         {(showFrontTitle || showBackTitle) && (
-                            <ZoloPanelBody title={__('Title', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                                <BaseControl label={__('Selected Side', 'zolo-blocks')}>
+                            <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                     <ButtonGroup className="zolo-button-group">
                                         {FLIPBLOX_SIDE.map((item) => (
                                             <Button
@@ -810,12 +810,12 @@ function Inspector(props) {
                                         {showFrontTitle && (
                                             <>
                                                 <TypographyDropdown
-                                                    label={__('Typography', 'zolo-blocks')}
+                                                    label={__('Typography', 'zoloblocks')}
                                                     typoPrefixConstant={FRONT_TITLE_TYPOGRAPHY}
                                                     requiredProps={requiredProps}
                                                 />
                                                 <ColorControl
-                                                    label={__('Color', 'zolo-blocks')}
+                                                    label={__('Color', 'zoloblocks')}
                                                     color={frontTitleColor}
                                                     onChange={(color) =>
                                                         setAttributes({
@@ -824,7 +824,7 @@ function Inspector(props) {
                                                     }
                                                 />
                                                 <ResDimensionsControl
-                                                    label={__('Margin', 'zolo-blocks')}
+                                                    label={__('Margin', 'zoloblocks')}
                                                     controlName={FRONT_TITLE_MARGIN}
                                                     requiredProps={requiredProps}
                                                 />
@@ -835,12 +835,12 @@ function Inspector(props) {
                                 {side === 'back' && (
                                     <>
                                         <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
+                                            label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={BACK_TITLE_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
                                         <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={backTitleColor}
                                             onChange={(color) =>
                                                 setAttributes({
@@ -849,7 +849,7 @@ function Inspector(props) {
                                             }
                                         />
                                         <ResDimensionsControl
-                                            label={__('Margin', 'zolo-blocks')}
+                                            label={__('Margin', 'zoloblocks')}
                                             controlName={BACK_TITLE_MARGIN}
                                             requiredProps={requiredProps}
                                         />
@@ -858,8 +858,8 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
                         {(showFrontContent || showBackContent) && (
-                            <ZoloPanelBody title={__('Description', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                                <BaseControl label={__('Selected Side', 'zolo-blocks')}>
+                            <ZoloPanelBody title={__('Description', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                     <ButtonGroup className="zolo-button-group">
                                         {FLIPBLOX_SIDE.map((item) => (
                                             <Button
@@ -885,12 +885,12 @@ function Inspector(props) {
                                 {side === 'front' && (
                                     <>
                                         <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
+                                            label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={FRONT_CONTENT_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
                                         <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={frontContentColor}
                                             onChange={(color) =>
                                                 setAttributes({
@@ -903,12 +903,12 @@ function Inspector(props) {
                                 {side === 'back' && (
                                     <>
                                         <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
+                                            label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={BACK_CONTENT_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
                                         <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={backContentColor}
                                             onChange={(color) =>
                                                 setAttributes({
@@ -921,8 +921,8 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
                         {showBackLinkBtn && (
-                            <ZoloPanelBody title={__('Button', 'zolo-blocks')} stylePanel={true} panelProps={props}>
-                                <BaseControl label={__('Selected Side', 'zolo-blocks')}>
+                            <ZoloPanelBody title={__('Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <BaseControl label={__('Selected Side', 'zoloblocks')}>
                                     <ButtonGroup className="zolo-button-group">
                                         {FLIPBLOX_SIDE.map((item) => (
                                             <Button
@@ -947,12 +947,12 @@ function Inspector(props) {
                                 {side === 'back' && (
                                     <>
                                         <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
+                                            label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={BACK_LINK_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
                                         <ColorControl
-                                            label={__('Color', 'zolo-blocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={backLinkColor}
                                             onChange={(color) =>
                                                 setAttributes({
@@ -961,7 +961,7 @@ function Inspector(props) {
                                             }
                                         />
                                         <ColorControl
-                                            label={__('Hover Color', 'zolo-blocks')}
+                                            label={__('Hover Color', 'zoloblocks')}
                                             color={backLinkHoverColor}
                                             onChange={(color) =>
                                                 setAttributes({
@@ -970,17 +970,17 @@ function Inspector(props) {
                                             }
                                         />
                                         <BorderControl
-                                            label={__('Border', 'zolo-blocks')}
+                                            label={__('Border', 'zoloblocks')}
                                             controlName={BACK_LINK_BORDER}
                                             requiredProps={requiredProps}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Border Radius', 'zolo-blocks')}
+                                            label={__('Border Radius', 'zoloblocks')}
                                             controlName={BACK_LINK_BORDER_RADIUS}
                                             requiredProps={requiredProps}
                                         />
                                         <ResDimensionsControl
-                                            label={__('Padding', 'zolo-blocks')}
+                                            label={__('Padding', 'zoloblocks')}
                                             controlName={BACK_LINK_PADDING}
                                             requiredProps={requiredProps}
                                         />

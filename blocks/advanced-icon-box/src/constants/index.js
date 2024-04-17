@@ -9,9 +9,9 @@ import { Dashicon } from '@wordpress/components';
 export const BLOCK_PREFIX = 'advanced-icon-box';
 // Presets
 export const PRESETS = [
-    { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
-    // { label: __('Preset 3', 'zolo-blocks'), value: 'style-3' },
+    { label: __('Preset 1', 'zoloblocks'), value: 'style-1' },
+    { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
+    // { label: __('Preset 3', 'zoloblocks'), value: 'style-3' },
 ];
 
 export const PRESETS_ALIGNMENT = [
@@ -118,8 +118,8 @@ export const RIBBON_BORDER = 'ribbonBorder';
 export const RIBBON_RADIUS = 'ribbonRadius';
 export const RIBBON_BG = 'ribbonBg';
 export const RIBBON_POSITIONS = [
-    { label: __('Top Left', 'zolo-blocks'), value: 'top__left' },
-    { label: __('Top Right', 'zolo-blocks'), value: 'top__right' },
+    { label: __('Top Left', 'zoloblocks'), value: 'top__left' },
+    { label: __('Top Right', 'zoloblocks'), value: 'top__right' },
 ];
 
 // export const RIBBON_ALIGN = [

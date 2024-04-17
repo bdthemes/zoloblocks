@@ -113,15 +113,15 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zolo-blocks')} firstOpen={true} panelProps={props}>
+                        <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <SelectControl
-                                label={__('Presets', 'zolo-blocks')}
+                                label={__('Presets', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.socialLinks.presets', PRESETS)}
                                 onChange={(value) => changePremade(value)}
                             />
                             <IconicBtnGroup
-                                label={__('Type', 'zolo-blocks')}
+                                label={__('Type', 'zoloblocks')}
                                 value={socialText}
                                 onChange={(value) =>
                                     setAttributes({
@@ -131,9 +131,9 @@ function Inspector(props) {
                                 options={ICON_STATUS}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Layout', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Layout', 'zoloblocks')} panelProps={props}>
                             <IconicBtnGroup
-                                label={__('Layout Type', 'zolo-blocks')}
+                                label={__('Layout Type', 'zoloblocks')}
                                 value={layout}
                                 onChange={(value) =>
                                     setAttributes({
@@ -142,11 +142,11 @@ function Inspector(props) {
                                 }
                                 options={[
                                     {
-                                        label: __('Flex', 'zolo-blocks'),
+                                        label: __('Flex', 'zoloblocks'),
                                         value: 'flex',
                                     },
                                     {
-                                        label: __('Grid', 'zolo-blocks'),
+                                        label: __('Grid', 'zoloblocks'),
                                         value: 'grid',
                                     },
                                 ]}
@@ -154,7 +154,7 @@ function Inspector(props) {
                             {layout === 'grid' && (
                                 <>
                                     <ResCounterControl
-                                        label={__('Column Number', 'zolo-blocks')}
+                                        label={__('Column Number', 'zoloblocks')}
                                         controlName={COLUMN_COUNT}
                                         requiredProps={requiredProps}
                                         min={1}
@@ -168,23 +168,23 @@ function Inspector(props) {
                                 </>
                             )}
                             <ResGapControl
-                                label={__('Gap', 'zolo-blocks')}
+                                label={__('Gap', 'zoloblocks')}
                                 controlName={COLUMNS_GAP}
                                 requiredProps={requiredProps}
                                 max={200}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Social Profiles', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Social Profiles', 'zoloblocks')} panelProps={props}>
                             <Sortable socialProfiles={socialProfiles} setAttributes={setAttributes} />
                         </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Social Icons', 'zolo-blocks')} stylePanel={true} panelProps={props} firstOpen={true}>
+                        <ZoloPanelBody title={__('Social Icons', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={true}>
                             {socialText !== 'iconOnly' && (
                                 <TypographyDropdown
-                                    label={__('Typography', 'zolo-blocks')}
+                                    label={__('Typography', 'zoloblocks')}
                                     typoPrefixConstant={TEXT_TYPOGRAPHY}
                                     requiredProps={requiredProps}
                                     max={36}
@@ -195,7 +195,7 @@ function Inspector(props) {
                                     {preset === 'preset-3' && (
                                         <>
                                             <ResRangeControl
-                                                label={__('Width', 'zolo-blocks')}
+                                                label={__('Width', 'zoloblocks')}
                                                 controlName={PT_ICON_WIDTH}
                                                 requiredProps={requiredProps}
                                                 min={0}
@@ -203,7 +203,7 @@ function Inspector(props) {
                                                 step={1}
                                             />
                                             <ResRangeControl
-                                                label={__('Height', 'zolo-blocks')}
+                                                label={__('Height', 'zoloblocks')}
                                                 controlName={PT_ICON_HEIGHT}
                                                 requiredProps={requiredProps}
                                                 min={0}
@@ -216,7 +216,7 @@ function Inspector(props) {
                             )}
                             {preset !== 'preset-1' && (
                                 <ResRangeControl
-                                    label={__('Icon Size', 'zolo-blocks')}
+                                    label={__('Icon Size', 'zoloblocks')}
                                     controlName={BUTTON_SIZE}
                                     requiredProps={requiredProps}
                                     min={0}
@@ -226,7 +226,7 @@ function Inspector(props) {
                             )}
                             {socialText === 'iconText' && (
                                 <ResRangeControl
-                                    label={__('Gap', 'zolo-blocks')}
+                                    label={__('Gap', 'zoloblocks')}
                                     controlName={ICON_TEXT_SPACING}
                                     requiredProps={requiredProps}
                                     min={0}
@@ -236,12 +236,12 @@ function Inspector(props) {
                             )}
                             {socialColor === 'custom' && (
                                 <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
+                                    label={__('Border', 'zoloblocks')}
                                     controlName={BUTTON_BORDER}
                                     requiredProps={requiredProps}
                                     hoverControl={
                                         <ColorControl
-                                            label={__('Border Color', 'zolo-blocks')}
+                                            label={__('Border Color', 'zoloblocks')}
                                             color={borderHoverColor}
                                             onChange={(value) =>
                                                 setAttributes({
@@ -254,19 +254,19 @@ function Inspector(props) {
                             )}
 
                             <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
+                                label={__('Border Radius', 'zoloblocks')}
                                 controlName={BTN_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
+                                label={__('Padding', 'zoloblocks')}
                                 controlName={BUTTON_PADDING}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <IconicBtnGroup
-                                label={__('Color Type', 'zolo-blocks')}
+                                label={__('Color Type', 'zoloblocks')}
                                 value={socialColor}
                                 onChange={(value) =>
                                     setAttributes({
@@ -280,7 +280,7 @@ function Inspector(props) {
                                     normalComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={socialTextColor}
                                                 onChange={(value) =>
                                                     setAttributes({
@@ -289,7 +289,7 @@ function Inspector(props) {
                                                 }
                                             />
                                             <ColorControl
-                                                label={__('Background', 'zolo-blocks')}
+                                                label={__('Background', 'zoloblocks')}
                                                 color={socialBgColor}
                                                 onChange={(value) =>
                                                     setAttributes({
@@ -300,7 +300,7 @@ function Inspector(props) {
                                             {socialText !== 'none' && preset === 'preset-3' && (
                                                 <>
                                                     <ColorControl
-                                                        label={__('Icon Color', 'zolo-blocks')}
+                                                        label={__('Icon Color', 'zoloblocks')}
                                                         color={iconColor}
                                                         onChange={(value) =>
                                                             setAttributes({
@@ -309,7 +309,7 @@ function Inspector(props) {
                                                         }
                                                     />
                                                     <ColorControl
-                                                        label={__('Icon Background', 'zolo-blocks')}
+                                                        label={__('Icon Background', 'zoloblocks')}
                                                         color={iconBgColor}
                                                         onChange={(value) =>
                                                             setAttributes({
@@ -326,7 +326,7 @@ function Inspector(props) {
                                     hoverComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={socialTextHoverColor}
                                                 onChange={(value) =>
                                                     setAttributes({
@@ -335,7 +335,7 @@ function Inspector(props) {
                                                 }
                                             />
                                             <ColorControl
-                                                label={__('Background', 'zolo-blocks')}
+                                                label={__('Background', 'zoloblocks')}
                                                 color={socialBgHoverColor}
                                                 onChange={(value) =>
                                                     setAttributes({
@@ -346,7 +346,7 @@ function Inspector(props) {
                                             {socialText !== 'none' && preset === 'preset-3' && (
                                                 <>
                                                     <ColorControl
-                                                        label={__('Icon Color', 'zolo-blocks')}
+                                                        label={__('Icon Color', 'zoloblocks')}
                                                         color={iconHoverColor}
                                                         onChange={(value) =>
                                                             setAttributes({
@@ -355,7 +355,7 @@ function Inspector(props) {
                                                         }
                                                     />
                                                     <ColorControl
-                                                        label={__('Icon Background', 'zolo-blocks')}
+                                                        label={__('Icon Background', 'zoloblocks')}
                                                         color={iconBgHoverColor}
                                                         onChange={(value) =>
                                                             setAttributes({

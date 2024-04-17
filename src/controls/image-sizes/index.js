@@ -28,7 +28,7 @@ const ImageSizes = ({ label = '', value, onChange }) => {
     return (
         <div className="zolo-control-container zolo-image-resolutions">
             <SelectControl
-                label={label || __('Resolutions', 'zolo-blocks')}
+                label={label || __('Resolutions', 'zoloblocks')}
                 value={value}
                 options={
                     SIZES &&

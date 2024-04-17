@@ -2,11 +2,11 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Message",
     "name": "zolo/textarea",
-    "category": "zolo-blocks",
+    "category": "zoloblocks",
     "keywords": ["zolo", "message", "textarea"],
     "description": "A simple text field block for Form Block",
     "apiVersion": 2,
-    "textdomain": "zolo-blocks",
+    "textdomain": "zoloblocks",
     "parent": ["zolo/form"],
     "example": {
         "attributes": {

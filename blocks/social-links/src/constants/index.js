@@ -7,9 +7,9 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'social-icon';
 // Presets
 export const PRESETS = [
-    { label: __('Preset 1', 'zolo-blocks'), value: 'preset-1' },
-    { label: __('Preset 2', 'zolo-blocks'), value: 'preset-2' },
-    { label: __('Preset 3', 'zolo-blocks'), value: 'preset-3' },
+    { label: __('Preset 1', 'zoloblocks'), value: 'preset-1' },
+    { label: __('Preset 2', 'zoloblocks'), value: 'preset-2' },
+    { label: __('Preset 3', 'zoloblocks'), value: 'preset-3' },
 ];
 
 // button icon positions
@@ -35,11 +35,11 @@ export const ICON_POSITIONS = [
 // social icon color
 export const SOCIAL_ICON_COLOR = [
     {
-        label: __('Original', 'zolo-blocks'),
+        label: __('Original', 'zoloblocks'),
         value: 'original',
     },
     {
-        label: __('Custom', 'zolo-blocks'),
+        label: __('Custom', 'zoloblocks'),
         value: 'custom',
     },
 ];

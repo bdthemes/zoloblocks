@@ -7,21 +7,21 @@ import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'advancedImage';
 
 export const LAYOUTS = [
-    { value: 'normal', label: __('Normal', 'zolo-blocks') },
-    { value: 'overlay', label: __('Overlay', 'zolo-blocks') },
+    { value: 'normal', label: __('Normal', 'zoloblocks') },
+    { value: 'overlay', label: __('Overlay', 'zoloblocks') },
 ];
 
 // hover effect
 export const HOVER_EFFECTS = [
-    { value: '', label: __('None', 'zolo-blocks') },
-    // { value: 'zolo-adi-fade', label: __('Fade', 'zolo-blocks') },
-    { value: 'zolo-adi-blur', label: __('Blur', 'zolo-blocks') },
-    { value: 'zolo-adi-slide-top', label: __('Slide Top', 'zolo-blocks') },
-    { value: 'zolo-adi-slide-left', label: __('Slide Left', 'zolo-blocks') },
-    { value: 'zolo-adi-slide-bottom', label: __('Slide Bottom', 'zolo-blocks') },
-    { value: 'zolo-adi-slide-right', label: __('Slide Right', 'zolo-blocks') },
-    { value: 'zolo-adi-zoom ', label: __('Zoom', 'zolo-blocks') },
-    { value: 'zolo-adi-gray ', label: __('Gray Scale', 'zolo-blocks') },
+    { value: '', label: __('None', 'zoloblocks') },
+    // { value: 'zolo-adi-fade', label: __('Fade', 'zoloblocks') },
+    { value: 'zolo-adi-blur', label: __('Blur', 'zoloblocks') },
+    { value: 'zolo-adi-slide-top', label: __('Slide Top', 'zoloblocks') },
+    { value: 'zolo-adi-slide-left', label: __('Slide Left', 'zoloblocks') },
+    { value: 'zolo-adi-slide-bottom', label: __('Slide Bottom', 'zoloblocks') },
+    { value: 'zolo-adi-slide-right', label: __('Slide Right', 'zoloblocks') },
+    { value: 'zolo-adi-zoom ', label: __('Zoom', 'zoloblocks') },
+    { value: 'zolo-adi-gray ', label: __('Gray Scale', 'zoloblocks') },
 ];
 
 // image masking
@@ -60,49 +60,49 @@ export const SEPARATOR_MARGIN = 'separatorMargin';
 
 export const ITEM_VISIBILITY = [
     {
-        label: __('Always', 'zolo-blocks'),
+        label: __('Always', 'zoloblocks'),
         value: 'always_visible',
     },
     {
-        label: __('Hover', 'zolo-blocks'),
+        label: __('Hover', 'zoloblocks'),
         value: 'hover_visible',
     },
 ];
 
 export const SEPARATOR_STYLES = [
     {
-        label: __('None', 'zolo-blocks'),
+        label: __('None', 'zoloblocks'),
         value: '',
     },
     {
-        label: __('Solid', 'zolo-blocks'),
+        label: __('Solid', 'zoloblocks'),
         value: 'solid',
     },
     {
-        label: __('Dotted', 'zolo-blocks'),
+        label: __('Dotted', 'zoloblocks'),
         value: 'dotted',
     },
     {
-        label: __('Dashed', 'zolo-blocks'),
+        label: __('Dashed', 'zoloblocks'),
         value: 'dashed',
     },
     {
-        label: __('Double', 'zolo-blocks'),
+        label: __('Double', 'zoloblocks'),
         value: 'double',
     },
 ];
 
 export const SEPARATOR_POSITIONS = [
     {
-        label: __('Before Title', 'zolo-blocks'),
+        label: __('Before Title', 'zoloblocks'),
         value: 'before_title',
     },
     {
-        label: __('After Title', 'zolo-blocks'),
+        label: __('After Title', 'zoloblocks'),
         value: 'after_title',
     },
     {
-        label: __('After Description', 'zolo-blocks'),
+        label: __('After Description', 'zoloblocks'),
         value: 'after_desc',
     },
 ];

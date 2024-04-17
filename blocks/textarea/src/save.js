@@ -22,7 +22,7 @@ const Save = ({ attributes }) => {
                 {showLabel && (
                     <div className="zolo-label-wrapper">
                         <RichText.Content tagName="label" className="zolo-label" value={label} />
-                        {isRequired && showRequiredSymbol && <span className="zolo-required">{__('*', 'zolo-blocks')}</span>}
+                        {isRequired && showRequiredSymbol && <span className="zolo-required">{__('*', 'zoloblocks')}</span>}
                     </div>
                 )}
                 <div className="zolo-field-input-item">

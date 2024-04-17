@@ -8,15 +8,15 @@ export const BLOCK_PREFIX = 'advanced-button';
 
 // Presets
 export const PRESETS = [
-    { label: __('Style 1', 'zolo-blocks'), value: '' },
-    { label: __('Style 2', 'zolo-blocks'), value: 'button-1' },
-    { label: __('Style 3', 'zolo-blocks'), value: 'button-2' },
-    { label: __('Style 4', 'zolo-blocks'), value: 'button-3' },
-    { label: __('Style 5', 'zolo-blocks'), value: 'button-4' },
-    { label: __('Style 6', 'zolo-blocks'), value: 'button-5' },
-    { label: __('Style 7', 'zolo-blocks'), value: 'button-6' },
-    { label: __('Style 8', 'zolo-blocks'), value: 'button-7' },
-    { label: __('Style 9', 'zolo-blocks'), value: 'button-8' },
+    { label: __('Style 1', 'zoloblocks'), value: '' },
+    { label: __('Style 2', 'zoloblocks'), value: 'button-1' },
+    { label: __('Style 3', 'zoloblocks'), value: 'button-2' },
+    { label: __('Style 4', 'zoloblocks'), value: 'button-3' },
+    { label: __('Style 5', 'zoloblocks'), value: 'button-4' },
+    { label: __('Style 6', 'zoloblocks'), value: 'button-5' },
+    { label: __('Style 7', 'zoloblocks'), value: 'button-6' },
+    { label: __('Style 8', 'zoloblocks'), value: 'button-7' },
+    { label: __('Style 9', 'zoloblocks'), value: 'button-8' },
 ];
 
 /**

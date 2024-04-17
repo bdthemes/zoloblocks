@@ -48,7 +48,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
         <div className="zolo-control-container zolo-border-control">
             <div className="zolo-control-flex">
                 <label className="zolo-control-label" htmlFor="zolo-control-label">
-                    {label || __('Box Shadow', 'zolo-blocks')}
+                    {label || __('Box Shadow', 'zoloblocks')}
                 </label>
                 <div className="zolo-flex">
                     {((shadowType !== 'outset' && (hOffset !== 0 || vOffset !== 0 || blur !== 0 || spread !== 0)) ||
@@ -113,7 +113,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                 />
                             </UnitsBtn>
                             <WithResDeviceBtn
-                                label={label || __('Box Shadow', 'zolo-blocks')}
+                                label={label || __('Box Shadow', 'zoloblocks')}
                                 requiredProps={requiredProps}
                                 controlName={controlName}
                                 noResetBtn={true}
@@ -149,7 +149,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                             value={hOffset}
                                             type="number"
                                         />
-                                        <div className="input-label">{__('X', 'zolo-blocks')}</div>
+                                        <div className="input-label">{__('X', 'zoloblocks')}</div>
                                     </div>
                                     <div className="single-shadow-input">
                                         <NumberControl
@@ -162,7 +162,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                             value={vOffset}
                                             type="number"
                                         />
-                                        <div className="input-label">{__('Y', 'zolo-blocks')}</div>
+                                        <div className="input-label">{__('Y', 'zoloblocks')}</div>
                                     </div>
                                     <div className="single-shadow-input">
                                         <NumberControl
@@ -176,7 +176,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                             min={0}
                                             type="number"
                                         />
-                                        <div className="input-label">{__('Blur', 'zolo-blocks')}</div>
+                                        <div className="input-label">{__('Blur', 'zoloblocks')}</div>
                                     </div>
                                     <div className="single-shadow-input">
                                         <NumberControl
@@ -190,7 +190,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                             min={0}
                                             type="number"
                                         />
-                                        <div className="input-label">{__('Spread', 'zolo-blocks')}</div>
+                                        <div className="input-label">{__('Spread', 'zoloblocks')}</div>
                                     </div>
                                 </div>
                             </WithResDeviceBtn>

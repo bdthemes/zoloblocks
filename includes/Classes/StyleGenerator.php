@@ -244,7 +244,7 @@ class StyleGenerator {
                 // );
 
 
-                $handle = isset($block['attrs']['uniqueId']) ? $block['attrs']['uniqueId'] : 'zolo-blocks';
+                $handle = isset($block['attrs']['uniqueId']) ? $block['attrs']['uniqueId'] : 'zoloblocks';
 
                 // if ( is_array( $style ) && !empty( $style ) ) {
                 //     $style = implode(' ', $style);

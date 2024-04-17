@@ -1,6 +1,6 @@
 <?php return array(
     'root' => array(
-        'name' => 'zolo/zolo-blocks',
+        'name' => 'zolo/zoloblocks',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
         'reference' => '0289c281c19511da987bdf0fecde0210eb378fc9',
@@ -10,7 +10,7 @@
         'dev' => true,
     ),
     'versions' => array(
-        'zolo/zolo-blocks' => array(
+        'zolo/zoloblocks' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
             'reference' => '0289c281c19511da987bdf0fecde0210eb378fc9',

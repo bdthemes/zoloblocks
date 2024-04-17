@@ -145,7 +145,7 @@ function Inspector(props) {
                                 // If preset is not selected, show alignment control
                                 preset === 'style-4' && (
                                     <IconicBtnGroup
-                                        label={__('Layout Direction', 'zolo-blocks')}
+                                        label={__('Layout Direction', 'zoloblocks')}
                                         value={fancyDirection}
                                         onChange={(value) =>
                                             setAttributes({
@@ -185,9 +185,9 @@ function Inspector(props) {
                                 }}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Grid', 'zoloblocks')} panelProps={props}>
                             <ResCounterControl
-                                label={__('Column', 'zolo-blocks')}
+                                label={__('Column', 'zoloblocks')}
                                 controlName={COLUMNS}
                                 requiredProps={requiredProps}
                                 min={1}
@@ -199,7 +199,7 @@ function Inspector(props) {
                                 }}
                             />
                             <ResGapControl
-                                label={__('Gap', 'zolo-blocks')}
+                                label={__('Gap', 'zoloblocks')}
                                 controlName={GRID_GAP}
                                 requiredProps={requiredProps}
                                 max={200}
@@ -208,7 +208,7 @@ function Inspector(props) {
                         {imageToggle && (
                             <ZoloPanelBody title={__('Media', 'zolo-block')} panelProps={props}>
                                 <IconicBtnGroup
-                                    label={__('Media Type', 'zolo-blocks')}
+                                    label={__('Media Type', 'zoloblocks')}
                                     value={mediaType}
                                     onChange={(value) =>
                                         setAttributes({
@@ -217,11 +217,11 @@ function Inspector(props) {
                                     }
                                     options={[
                                         {
-                                            label: __('Text', 'zolo-blocks'),
+                                            label: __('Text', 'zoloblocks'),
                                             value: 'text',
                                         },
                                         {
-                                            label: __('Image', 'zolo-blocks'),
+                                            label: __('Image', 'zoloblocks'),
                                             value: 'image',
                                         },
                                     ]}
@@ -232,22 +232,22 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Item', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={ITEM_BORDER} requiredProps={requiredProps} />
+                        <ZoloPanelBody title={__('Item', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={ITEM_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
+                                label={__('Border Radius', 'zoloblocks')}
                                 controlName={ITEM_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
                             <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
+                                label={__('Padding', 'zoloblocks')}
                                 controlName={ITEM_PADDING}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
                             <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
+                                label={__('Margin', 'zoloblocks')}
                                 controlName={ITEM_MARGIN}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
@@ -417,7 +417,7 @@ function Inspector(props) {
                                 {mediaType === 'text' && (
                                     <>
                                         <TypographyDropdown
-                                            label={__('Typography', 'zolo-blocks')}
+                                            label={__('Typography', 'zoloblocks')}
                                             typoPrefixConstant={MEDIA_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                             max={36}

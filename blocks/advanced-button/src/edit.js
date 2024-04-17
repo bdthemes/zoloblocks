@@ -23,7 +23,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.button} alt={__('Button Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.button} alt={__('Button Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -45,7 +45,7 @@ export default function Edit(props) {
                                 className={`zolo-button-content`}
                                 value={label}
                                 onChange={(text) => setAttributes({ label: text })}
-                                placeholder={__('Button Text', 'zolo-blocks')}
+                                placeholder={__('Button Text', 'zoloblocks')}
                                 allowedFormats={[]}
                             />
                         )}

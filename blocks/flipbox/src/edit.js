@@ -51,7 +51,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.flipbox} alt={__('Flip Box Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.flipbox} alt={__('Flip Box Preview', 'zoloblocks')} />;
     }
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -96,7 +96,7 @@ export default function Edit(props) {
                                                     <MediaPlaceholder
                                                         icon="format-image"
                                                         labels={{
-                                                            title: __('Add Photo', 'zolo-blocks'),
+                                                            title: __('Add Photo', 'zoloblocks'),
                                                             instructions: '',
                                                         }}
                                                         onSelect={(media) => {
@@ -153,7 +153,7 @@ export default function Edit(props) {
                                                     <MediaPlaceholder
                                                         icon="format-image"
                                                         labels={{
-                                                            title: __('Add Photo', 'zolo-blocks'),
+                                                            title: __('Add Photo', 'zoloblocks'),
                                                             instructions: '',
                                                         }}
                                                         onSelect={(media) => {

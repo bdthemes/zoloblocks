@@ -9,19 +9,19 @@ export const BLOCK_PREFIX = 'googleMap';
 // Map Type
 export const MAP_TYPES = [
     {
-        label: __('Roadmap', 'zolo-blocks'),
+        label: __('Roadmap', 'zoloblocks'),
         value: 'roadmap',
     },
     {
-        label: __('Satellite', 'zolo-blocks'),
+        label: __('Satellite', 'zoloblocks'),
         value: 'satellite',
     },
     {
-        label: __('Hybrid', 'zolo-blocks'),
+        label: __('Hybrid', 'zoloblocks'),
         value: 'hybrid',
     },
     {
-        label: __('Terrain', 'zolo-blocks'),
+        label: __('Terrain', 'zoloblocks'),
         value: 'terrain',
     },
 ];
@@ -30,287 +30,287 @@ export const MAP_TYPES = [
 export const LANGUAGES = [
     {
         value: 'af',
-        label: __('Afrikaans', 'zolo-blocks'),
+        label: __('Afrikaans', 'zoloblocks'),
     },
     {
         value: 'sq',
-        label: __('Albanian', 'zolo-blocks'),
+        label: __('Albanian', 'zoloblocks'),
     },
     {
         value: 'am',
-        label: __('Amharic', 'zolo-blocks'),
+        label: __('Amharic', 'zoloblocks'),
     },
     {
         value: 'ar',
-        label: __('Arabic', 'zolo-blocks'),
+        label: __('Arabic', 'zoloblocks'),
     },
     {
         value: 'hy',
-        label: __('Armenian', 'zolo-blocks'),
+        label: __('Armenian', 'zoloblocks'),
     },
     {
         value: 'az',
-        label: __('Azerbaijani', 'zolo-blocks'),
+        label: __('Azerbaijani', 'zoloblocks'),
     },
     {
         value: 'eu',
-        label: __('Basque', 'zolo-blocks'),
+        label: __('Basque', 'zoloblocks'),
     },
     {
         value: 'be',
-        label: __('Belarusian', 'zolo-blocks'),
+        label: __('Belarusian', 'zoloblocks'),
     },
     {
         value: 'bn',
-        label: __('Bengali', 'zolo-blocks'),
+        label: __('Bengali', 'zoloblocks'),
     },
     {
         value: 'bs',
-        label: __('Bosnian', 'zolo-blocks'),
+        label: __('Bosnian', 'zoloblocks'),
     },
     {
         value: 'bg',
-        label: __('Bulgarian', 'zolo-blocks'),
+        label: __('Bulgarian', 'zoloblocks'),
     },
     {
         value: 'my',
-        label: __('Burmese', 'zolo-blocks'),
+        label: __('Burmese', 'zoloblocks'),
     },
     {
         value: 'ca',
-        label: __('Catalan', 'zolo-blocks'),
+        label: __('Catalan', 'zoloblocks'),
     },
     {
         value: 'zh',
-        label: __('Chinese', 'zolo-blocks'),
+        label: __('Chinese', 'zoloblocks'),
     },
     {
         value: 'hr',
-        label: __('Croatian', 'zolo-blocks'),
+        label: __('Croatian', 'zoloblocks'),
     },
     {
         value: 'cs',
-        label: __('Czech', 'zolo-blocks'),
+        label: __('Czech', 'zoloblocks'),
     },
     {
         value: 'da',
-        label: __('Danish', 'zolo-blocks'),
+        label: __('Danish', 'zoloblocks'),
     },
     {
         value: 'nl',
-        label: __('Dutch', 'zolo-blocks'),
+        label: __('Dutch', 'zoloblocks'),
     },
     {
         value: 'en',
-        label: __('English', 'zolo-blocks'),
+        label: __('English', 'zoloblocks'),
     },
     {
         value: 'et',
-        label: __('Estonian', 'zolo-blocks'),
+        label: __('Estonian', 'zoloblocks'),
     },
     {
         value: 'fa',
-        label: __('Farsi', 'zolo-blocks'),
+        label: __('Farsi', 'zoloblocks'),
     },
     {
         value: 'fi',
-        label: __('Finnish', 'zolo-blocks'),
+        label: __('Finnish', 'zoloblocks'),
     },
     {
         value: 'fr',
-        label: __('French', 'zolo-blocks'),
+        label: __('French', 'zoloblocks'),
     },
     {
         value: 'gl',
-        label: __('Galician', 'zolo-blocks'),
+        label: __('Galician', 'zoloblocks'),
     },
     {
         value: 'ka',
-        label: __('Georgian', 'zolo-blocks'),
+        label: __('Georgian', 'zoloblocks'),
     },
     {
         value: 'de',
-        label: __('German', 'zolo-blocks'),
+        label: __('German', 'zoloblocks'),
     },
     {
         value: 'el',
-        label: __('Greek', 'zolo-blocks'),
+        label: __('Greek', 'zoloblocks'),
     },
     {
         value: 'gu',
-        label: __('Gujarati', 'zolo-blocks'),
+        label: __('Gujarati', 'zoloblocks'),
     },
     {
         value: 'iw',
-        label: __('Hebrew', 'zolo-blocks'),
+        label: __('Hebrew', 'zoloblocks'),
     },
     {
         value: 'hi',
-        label: __('Hindi', 'zolo-blocks'),
+        label: __('Hindi', 'zoloblocks'),
     },
     {
         value: 'hu',
-        label: __('Hungarian', 'zolo-blocks'),
+        label: __('Hungarian', 'zoloblocks'),
     },
     {
         value: 'is',
-        label: __('Icelandic', 'zolo-blocks'),
+        label: __('Icelandic', 'zoloblocks'),
     },
     {
         value: 'id',
-        label: __('Indonesian', 'zolo-blocks'),
+        label: __('Indonesian', 'zoloblocks'),
     },
     {
         value: 'it',
-        label: __('Italian', 'zolo-blocks'),
+        label: __('Italian', 'zoloblocks'),
     },
     {
         value: 'ja',
-        label: __('Japanese', 'zolo-blocks'),
+        label: __('Japanese', 'zoloblocks'),
     },
     {
         value: 'kn',
-        label: __('Kannada', 'zolo-blocks'),
+        label: __('Kannada', 'zoloblocks'),
     },
     {
         value: 'kk',
-        label: __('Kazakh', 'zolo-blocks'),
+        label: __('Kazakh', 'zoloblocks'),
     },
     {
         value: 'km',
-        label: __('Khmer', 'zolo-blocks'),
+        label: __('Khmer', 'zoloblocks'),
     },
     {
         value: 'ko',
-        label: __('Korean', 'zolo-blocks'),
+        label: __('Korean', 'zoloblocks'),
     },
     {
         value: 'ky',
-        label: __('Kyrgyz', 'zolo-blocks'),
+        label: __('Kyrgyz', 'zoloblocks'),
     },
     {
         value: 'lo',
-        label: __('Lao', 'zolo-blocks'),
+        label: __('Lao', 'zoloblocks'),
     },
     {
         value: 'lv',
-        label: __('Latvian', 'zolo-blocks'),
+        label: __('Latvian', 'zoloblocks'),
     },
     {
         value: 'lt',
-        label: __('Lithuanian', 'zolo-blocks'),
+        label: __('Lithuanian', 'zoloblocks'),
     },
     {
         value: 'mk',
-        label: __('Macedonian', 'zolo-blocks'),
+        label: __('Macedonian', 'zoloblocks'),
     },
     {
         value: 'ms',
-        label: __('Malay', 'zolo-blocks'),
+        label: __('Malay', 'zoloblocks'),
     },
     {
         value: 'ml',
-        label: __('Malayalam', 'zolo-blocks'),
+        label: __('Malayalam', 'zoloblocks'),
     },
     {
         value: 'mr',
-        label: __('Marathi', 'zolo-blocks'),
+        label: __('Marathi', 'zoloblocks'),
     },
     {
         value: 'mn',
-        label: __('Mongolian', 'zolo-blocks'),
+        label: __('Mongolian', 'zoloblocks'),
     },
     {
         value: 'ne',
-        label: __('Nepali', 'zolo-blocks'),
+        label: __('Nepali', 'zoloblocks'),
     },
     {
         value: 'no',
-        label: __('Norwegian', 'zolo-blocks'),
+        label: __('Norwegian', 'zoloblocks'),
     },
     {
         value: 'pl',
-        label: __('Polish', 'zolo-blocks'),
+        label: __('Polish', 'zoloblocks'),
     },
     {
         value: 'pt',
-        label: __('Portuguese', 'zolo-blocks'),
+        label: __('Portuguese', 'zoloblocks'),
     },
     {
         value: 'pa',
-        label: __('Punjabi', 'zolo-blocks'),
+        label: __('Punjabi', 'zoloblocks'),
     },
     {
         value: 'ro',
-        label: __('Romanian', 'zolo-blocks'),
+        label: __('Romanian', 'zoloblocks'),
     },
     {
         value: 'ru',
-        label: __('Russian', 'zolo-blocks'),
+        label: __('Russian', 'zoloblocks'),
     },
     {
         value: 'sr',
-        label: __('Serbian', 'zolo-blocks'),
+        label: __('Serbian', 'zoloblocks'),
     },
     {
         value: 'si',
-        label: __('Sinhalese', 'zolo-blocks'),
+        label: __('Sinhalese', 'zoloblocks'),
     },
     {
         value: 'sk',
-        label: __('Slovak', 'zolo-blocks'),
+        label: __('Slovak', 'zoloblocks'),
     },
     {
         value: 'sl',
-        label: __('Slovenian', 'zolo-blocks'),
+        label: __('Slovenian', 'zoloblocks'),
     },
     {
         value: 'es',
-        label: __('Spanish', 'zolo-blocks'),
+        label: __('Spanish', 'zoloblocks'),
     },
     {
         value: 'sw',
-        label: __('Swahili', 'zolo-blocks'),
+        label: __('Swahili', 'zoloblocks'),
     },
     {
         value: 'sv',
-        label: __('Swedish', 'zolo-blocks'),
+        label: __('Swedish', 'zoloblocks'),
     },
     {
         value: 'ta',
-        label: __('Tamil', 'zolo-blocks'),
+        label: __('Tamil', 'zoloblocks'),
     },
     {
         value: 'te',
-        label: __('Telugu', 'zolo-blocks'),
+        label: __('Telugu', 'zoloblocks'),
     },
     {
         value: 'th',
-        label: __('Thai', 'zolo-blocks'),
+        label: __('Thai', 'zoloblocks'),
     },
     {
         value: 'tr',
-        label: __('Turkish', 'zolo-blocks'),
+        label: __('Turkish', 'zoloblocks'),
     },
     {
         value: 'uk',
-        label: __('Ukrainian', 'zolo-blocks'),
+        label: __('Ukrainian', 'zoloblocks'),
     },
     {
         value: 'ur',
-        label: __('Urdu', 'zolo-blocks'),
+        label: __('Urdu', 'zoloblocks'),
     },
     {
         value: 'uz',
-        label: __('Uzbek', 'zolo-blocks'),
+        label: __('Uzbek', 'zoloblocks'),
     },
     {
         value: 'vi',
-        label: __('Vietnamese', 'zolo-blocks'),
+        label: __('Vietnamese', 'zoloblocks'),
     },
     {
         value: 'zu',
-        label: __('Zulu', 'zolo-blocks'),
+        label: __('Zulu', 'zoloblocks'),
     },
 ];
 

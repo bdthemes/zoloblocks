@@ -158,76 +158,76 @@ const Inspector = (props) => {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
+                        <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <SelectControl
-                                label={__('Presets', 'zolo-blocks')}
+                                label={__('Presets', 'zoloblocks')}
                                 value={styles}
                                 options={applyFilters('zolo.advancedHeading.presets', STYLES) || STYLES}
                                 onChange={(selected) => changePremade(selected)}
                             />
                             <ToggleControl
-                                label={__('Enable Heading Link', 'zolo-blocks')}
+                                label={__('Enable Heading Link', 'zoloblocks')}
                                 checked={enableTitleLink}
                                 onChange={() => setAttributes({ enableTitleLink: !enableTitleLink })}
                             />
                             <ToggleControl
-                                label={__('Show Sub Heading', 'zolo-blocks')}
+                                label={__('Show Sub Heading', 'zoloblocks')}
                                 checked={showSubTitle}
                                 onChange={() => setAttributes({ showSubTitle: !showSubTitle })}
                             />
                             <ToggleControl
-                                label={__('Show Separator', 'zolo-blocks')}
+                                label={__('Show Separator', 'zoloblocks')}
                                 checked={showSeparator}
                                 onChange={() => setAttributes({ showSeparator: !showSeparator })}
                             />
                             <ToggleControl
-                                label={__('Show Transparent Heading', 'zolo-blocks')}
+                                label={__('Show Transparent Heading', 'zoloblocks')}
                                 checked={showTransparentTitle}
                                 onChange={() => setAttributes({ showTransparentTitle: !showTransparentTitle })}
                             />
                             <ResAlignmentControl
-                                label={__('Alignment', 'zolo-blocks')}
+                                label={__('Alignment', 'zoloblocks')}
                                 controlName={TITLE_ALIGN}
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Content', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             <TextControl
-                                label={__('Main Heading', 'zolo-blocks')}
+                                label={__('Main Heading', 'zoloblocks')}
                                 value={titleText}
                                 onChange={(titleText) => setAttributes({ titleText })}
                             />
                             <SelectControl
-                                label={__('Heading Tag', 'zolo-blocks')}
+                                label={__('Heading Tag', 'zoloblocks')}
                                 options={HEADING}
                                 onChange={(value) => setAttributes({ titleTagName: value })}
                                 value={titleTagName}
                             />
                             {enableTitleLink && (
                                 <LinkControl
-                                    label={__('Link', 'zolo-blocks')}
+                                    label={__('Link', 'zoloblocks')}
                                     value={titleLink}
                                     onChange={(value) => setAttributes({ titleLink: value })}
-                                    help={__('http://your-link.com', 'zolo-blocks')}
+                                    help={__('http://your-link.com', 'zoloblocks')}
                                 />
                             )}
                         </ZoloPanelBody>
                         {showSubTitle && (
-                            <ZoloPanelBody title={__('Sub Heading', 'zolo-blocks')} panelProps={props}>
+                            <ZoloPanelBody title={__('Sub Heading', 'zoloblocks')} panelProps={props}>
                                 <TextControl
-                                    label={__('Text', 'zolo-blocks')}
+                                    label={__('Text', 'zoloblocks')}
                                     value={subTitleText}
                                     onChange={(subTitleText) => setAttributes({ subTitleText })}
                                 />
                                 <SelectControl
-                                    label={__('Select Tag', 'zolo-blocks')}
+                                    label={__('Select Tag', 'zoloblocks')}
                                     options={HEADING}
                                     onChange={(value) => setAttributes({ subTitleTag: value })}
                                     value={subTitleTag}
                                 />
                                 <IconicBtnGroup
-                                    label={__('Sub Heading Position', 'zolo-blocks')}
+                                    label={__('Sub Heading Position', 'zoloblocks')}
                                     value={subTitlePosition}
                                     onChange={(value) =>
                                         setAttributes({
@@ -240,9 +240,9 @@ const Inspector = (props) => {
                         )}
 
                         {showSeparator && (
-                            <ZoloPanelBody title={__('Separator', 'zolo-blocks')} panelProps={props}>
+                            <ZoloPanelBody title={__('Separator', 'zoloblocks')} panelProps={props}>
                                 <IconicBtnGroup
-                                    label={__('Separator Position', 'zolo-blocks')}
+                                    label={__('Separator Position', 'zoloblocks')}
                                     value={separatorPosition}
                                     onChange={(value) =>
                                         setAttributes({
@@ -254,9 +254,9 @@ const Inspector = (props) => {
                             </ZoloPanelBody>
                         )}
                         {showTransparentTitle && (
-                            <ZoloPanelBody title={__('Transparent Heading', 'zolo-blocks')} panelProps={props}>
+                            <ZoloPanelBody title={__('Transparent Heading', 'zoloblocks')} panelProps={props}>
                                 <TextControl
-                                    label={__('Text', 'zolo-blocks')}
+                                    label={__('Text', 'zoloblocks')}
                                     value={transparentTitleText}
                                     onChange={(transparentTitleText) =>
                                         setAttributes({
@@ -265,19 +265,19 @@ const Inspector = (props) => {
                                     }
                                     help={__(
                                         'This heading will show as style as background and you can move and style many way.',
-                                        'zolo-blocks'
+                                        'zoloblocks'
                                     )}
                                 />
 
                                 <SelectControl
-                                    label={__('Heading Tag', 'zolo-blocks')}
+                                    label={__('Heading Tag', 'zoloblocks')}
                                     options={HEADING}
                                     onChange={(value) => setAttributes({ transparentTag: value })}
                                     value={transparentTag}
                                 />
 
                                 <ResRangeControl
-                                    label={__('X Offset', 'zolo-blocks')}
+                                    label={__('X Offset', 'zoloblocks')}
                                     requiredProps={requiredProps}
                                     controlName={TPH_X_OFFSET}
                                     min={-800}
@@ -286,7 +286,7 @@ const Inspector = (props) => {
                                 />
 
                                 <ResRangeControl
-                                    label={__('Y Offset', 'zolo-blocks')}
+                                    label={__('Y Offset', 'zoloblocks')}
                                     requiredProps={requiredProps}
                                     controlName={TPH_Y_OFFSET}
                                     min={-800}
@@ -295,7 +295,7 @@ const Inspector = (props) => {
                                 />
 
                                 <SelectControl
-                                    label={__('Rotate Origin', 'zolo-blocks')}
+                                    label={__('Rotate Origin', 'zoloblocks')}
                                     value={transparentTitleRotateOrigin}
                                     options={TPT_ROTATE_ORIGIN}
                                     onChange={(transparentTitleRotateOrigin) =>
@@ -306,7 +306,7 @@ const Inspector = (props) => {
                                 />
 
                                 <RangeResetControl
-                                    label={__('Rotate', 'zolo-blocks')}
+                                    label={__('Rotate', 'zoloblocks')}
                                     controlName={'transparentTitleRotate'}
                                     requiredProps={requiredProps}
                                     min={-180}
@@ -315,7 +315,7 @@ const Inspector = (props) => {
                                 />
 
                                 <SelectControl
-                                    label={__('Hide At', 'zolo-blocks')}
+                                    label={__('Hide At', 'zoloblocks')}
                                     value={transparentTitleHide}
                                     options={TPT_HIDE}
                                     onChange={(transparentTitleHide) =>
@@ -330,16 +330,16 @@ const Inspector = (props) => {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Heading', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Heading', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
-                                label={__('Typography', 'zolo-blocks')}
+                                label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={TITLE_TYPOGRAPHY}
                                 requiredProps={requiredProps}
                             />
                             {!enableTitleLink && (
                                 <>
                                     <ColorControl
-                                        label={__('Color', 'zolo-blocks')}
+                                        label={__('Color', 'zoloblocks')}
                                         color={titleColor}
                                         onChange={(val) =>
                                             setAttributes({
@@ -355,7 +355,7 @@ const Inspector = (props) => {
                                         normalComponents={
                                             <>
                                                 <ColorControl
-                                                    label={__('Color', 'zolo-blocks')}
+                                                    label={__('Color', 'zoloblocks')}
                                                     color={titleColor}
                                                     onChange={(val) =>
                                                         setAttributes({
@@ -368,7 +368,7 @@ const Inspector = (props) => {
                                         hoverComponents={
                                             <>
                                                 <ColorControl
-                                                    label={__('Hover Color', 'zolo-blocks')}
+                                                    label={__('Hover Color', 'zoloblocks')}
                                                     color={titleHoverColor}
                                                     onChange={(val) =>
                                                         setAttributes({
@@ -384,7 +384,7 @@ const Inspector = (props) => {
                             )}
 
                             <ColorControl
-                                label={__('Background', 'zolo-blocks')}
+                                label={__('Background', 'zoloblocks')}
                                 color={titleBgColor}
                                 onChange={(val) =>
                                     setAttributes({
@@ -394,7 +394,7 @@ const Inspector = (props) => {
                             />
 
                             {styles === 'style-3' && (
-                                <BaseControl label={__('Background Image', 'zolo-blocks')}>
+                                <BaseControl label={__('Background Image', 'zoloblocks')}>
                                     {presetBg ? (
                                         <ImageAvatar
                                             imageUrl={presetBg && presetBg.url}
@@ -430,7 +430,7 @@ const Inspector = (props) => {
                                                     >
                                                         <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
                                                     </svg>
-                                                    {__(' Upload', 'zolo-blocks')}
+                                                    {__(' Upload', 'zoloblocks')}
                                                 </Button>
                                             )}
                                         />
@@ -438,23 +438,23 @@ const Inspector = (props) => {
                                 </BaseControl>
                             )}
 
-                            <BorderControl label={__('Border', 'zolo-blocks')} controlName={TITLE_BORDER} requiredProps={requiredProps} />
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={TITLE_BORDER} requiredProps={requiredProps} />
 
                             <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
+                                label={__('Border Radius', 'zoloblocks')}
                                 controlName={TITLE_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
 
                             <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
+                                label={__('Padding', 'zoloblocks')}
                                 controlName={TITLE_PADDING}
                                 requiredProps={requiredProps}
                             />
 
                             <ResDimensionsControl
-                                label={__('Margin', 'zolo-blocks')}
+                                label={__('Margin', 'zoloblocks')}
                                 controlName={TITLE_MARGIN}
                                 requiredProps={requiredProps}
                             />
@@ -465,7 +465,7 @@ const Inspector = (props) => {
                         </ZoloPanelBody>
 
                         {showSubTitle && (
-                            <ZoloPanelBody title={__('Sub Heading', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Sub Heading', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label="Typography"
                                     typoPrefixConstant={SUBTITLE_TYPOGRAPHY}
@@ -474,7 +474,7 @@ const Inspector = (props) => {
                                 />
 
                                 <ColorControl
-                                    label={__('Color', 'zolo-blocks')}
+                                    label={__('Color', 'zoloblocks')}
                                     color={subTitleColor}
                                     onChange={(val) =>
                                         setAttributes({
@@ -483,7 +483,7 @@ const Inspector = (props) => {
                                     }
                                 />
                                 <ColorControl
-                                    label={__('Background', 'zolo-blocks')}
+                                    label={__('Background', 'zoloblocks')}
                                     color={subTitleBgColor}
                                     onChange={(val) =>
                                         setAttributes({
@@ -493,26 +493,26 @@ const Inspector = (props) => {
                                 />
 
                                 <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
+                                    label={__('Border', 'zoloblocks')}
                                     controlName={SUBTITE_BORDER}
                                     requiredProps={requiredProps}
                                 />
 
                                 <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
+                                    label={__('Border Radius', 'zoloblocks')}
                                     controlName={SUBTITLE_BORDER_RADIUS}
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
 
                                 <ResDimensionsControl
-                                    label={__('Margin', 'zolo-blocks')}
+                                    label={__('Margin', 'zoloblocks')}
                                     controlName={SUBTITLE_MARGIN}
                                     requiredProps={requiredProps}
                                 />
 
                                 <ResDimensionsControl
-                                    label={__('Padding', 'zolo-blocks')}
+                                    label={__('Padding', 'zoloblocks')}
                                     controlName={SUBTITLE_PADDING}
                                     requiredProps={requiredProps}
                                 />
@@ -532,9 +532,9 @@ const Inspector = (props) => {
                         )}
 
                         {showSeparator && (
-                            <ZoloPanelBody title={__('Separator', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Separator', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ColorControl
-                                    label={__('Color', 'zolo-blocks')}
+                                    label={__('Color', 'zoloblocks')}
                                     color={separatorColor}
                                     onChange={(val) =>
                                         setAttributes({
@@ -543,7 +543,7 @@ const Inspector = (props) => {
                                     }
                                 />
                                 <ResRangeControl
-                                    label={__('Width', 'zolo-blocks')}
+                                    label={__('Width', 'zoloblocks')}
                                     requiredProps={requiredProps}
                                     controlName={SEPARATOR_WIDTH}
                                     min={0}
@@ -551,7 +551,7 @@ const Inspector = (props) => {
                                     step={1}
                                 />
                                 <ResRangeControl
-                                    label={__('Height', 'zolo-blocks')}
+                                    label={__('Height', 'zoloblocks')}
                                     requiredProps={requiredProps}
                                     controlName={SEPARATOR_HEIGHT}
                                     min={0}
@@ -559,7 +559,7 @@ const Inspector = (props) => {
                                     step={1}
                                 />
                                 <ResRangeControl
-                                    label={__('Spacing', 'zolo-blocks')}
+                                    label={__('Spacing', 'zoloblocks')}
                                     requiredProps={requiredProps}
                                     controlName={SEPARATOR_SPACING}
                                     min={0}
@@ -570,7 +570,7 @@ const Inspector = (props) => {
                         )}
 
                         {showTransparentTitle && (
-                            <ZoloPanelBody title={__('Advanced Heading', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Advanced Heading', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label="Typography"
                                     typoPrefixConstant={TRANSPARENT_TYPOGRAPHY}
@@ -578,7 +578,7 @@ const Inspector = (props) => {
                                 />
 
                                 <ColorControl
-                                    label={__('Color', 'zolo-blocks')}
+                                    label={__('Color', 'zoloblocks')}
                                     color={tptColor}
                                     onChange={(val) =>
                                         setAttributes({
@@ -587,7 +587,7 @@ const Inspector = (props) => {
                                     }
                                 />
                                 <ColorControl
-                                    label={__('Background', 'zolo-blocks')}
+                                    label={__('Background', 'zoloblocks')}
                                     color={tptBgColor}
                                     onChange={(val) =>
                                         setAttributes({
@@ -597,20 +597,20 @@ const Inspector = (props) => {
                                 />
 
                                 <ResDimensionsControl
-                                    label={__('Padding', 'zolo-blocks')}
+                                    label={__('Padding', 'zoloblocks')}
                                     controlName={TPT_PADDING}
                                     requiredProps={requiredProps}
                                 />
                                 <ResDimensionsControl
-                                    label={__('Margin', 'zolo-blocks')}
+                                    label={__('Margin', 'zoloblocks')}
                                     controlName={TPT_MARGIN}
                                     requiredProps={requiredProps}
                                 />
 
-                                <BorderControl label={__('Border', 'zolo-blocks')} controlName={TPT_BORDER} requiredProps={requiredProps} />
+                                <BorderControl label={__('Border', 'zoloblocks')} controlName={TPT_BORDER} requiredProps={requiredProps} />
 
                                 <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
+                                    label={__('Border Radius', 'zoloblocks')}
                                     controlName={TPT_BORDER_RADIUS}
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
@@ -621,7 +621,7 @@ const Inspector = (props) => {
 
                                 <TextStrokeControl controlName={TPT_TEXT_STROKE} requiredProps={requiredProps} enableTransition={false} />
                                 <RangeResetControl
-                                    label={__('Opacity', 'zolo-blocks')}
+                                    label={__('Opacity', 'zoloblocks')}
                                     controlName="tptOpacity"
                                     requiredProps={requiredProps}
                                     min={0.05}

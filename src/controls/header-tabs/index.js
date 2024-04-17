@@ -34,7 +34,7 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttribut
                         />
                     </svg>
 
-                    <h5 className="zolo-tab-label">{__('Basic', 'zolo-blocks')}</h5>
+                    <h5 className="zolo-tab-label">{__('Basic', 'zoloblocks')}</h5>
                 </Button>
                 <Button
                     className={`zolo-tab ${selectedTab === 'style' ? 'active__tab' : ''}${selectedTab === 'basic' ? 'next__tab' : ''}${
@@ -59,7 +59,7 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttribut
                         />
                     </svg>
 
-                    <h5 className="zolo-tab-label">{__('Style', 'zolo-blocks')}</h5>
+                    <h5 className="zolo-tab-label">{__('Style', 'zoloblocks')}</h5>
                 </Button>
                 <Button
                     className={`zolo-tab ${selectedTab === 'extra' ? 'active__tab' : ''}${selectedTab === 'style' ? 'next__tab' : ''}`}
@@ -81,7 +81,7 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttribut
                             }}
                         />
                     </svg>
-                    <h5 className="zolo-tab-label">{__('Extra', 'zolo-blocks')}</h5>
+                    <h5 className="zolo-tab-label">{__('Extra', 'zoloblocks')}</h5>
                 </Button>
             </ButtonGroup>
             <div className="zolo-tab-controls">

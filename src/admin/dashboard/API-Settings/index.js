@@ -79,10 +79,10 @@ const ApiSettings = () => {
         <div className="zolo-settings-tab">
             <div className="settings-grid">
                 <SettingPanel
-                    title={__('Google Map', 'zolo-blocks')}
+                    title={__('Google Map', 'zoloblocks')}
                     description={__(
                         'Google Map block allows you to add a Google Map to your page. You can add a marker to the map and customize the map controls. You have to retrieve API key to use Google Maps from ZoloBlocks.',
-                        'zolo-blocks'
+                        'zoloblocks'
                     )}
                     docLink="https://developers.google.com/maps/documentation/maps-static"
                     onSave={() => {
@@ -90,13 +90,13 @@ const ApiSettings = () => {
                     }}
                     icon="map"
                 >
-                    <TextControl label={__('API Key', 'zolo-blocks')} onChange={(value) => setGoogleAPIKey(value)} value={googleAPIKey} />
+                    <TextControl label={__('API Key', 'zoloblocks')} onChange={(value) => setGoogleAPIKey(value)} value={googleAPIKey} />
                 </SettingPanel>
                 <SettingPanel
-                    title={__('Google reCaptcha', 'zolo-blocks')}
+                    title={__('Google reCaptcha', 'zoloblocks')}
                     description={__(
                         'Google reCaptcha allows you to add a Google reCaptcha to your form. You have to retrieve API key to use Google reCaptcha from ZoloBlocks.',
-                        'zolo-blocks'
+                        'zoloblocks'
                     )}
                     docLink="https://developers.google.com/maps/documentation/maps-static"
                     icon="captcha"
@@ -105,8 +105,8 @@ const ApiSettings = () => {
                         onChangeSecretKey(secretKey);
                     }}
                 >
-                    <TextControl label={__('Site Key', 'zolo-blocks')} onChange={(value) => setSiteKey(value)} value={siteKey} />
-                    <TextControl label={__('Secret Key', 'zolo-blocks')} onChange={(value) => setSecretKey(value)} value={secretKey} />
+                    <TextControl label={__('Site Key', 'zoloblocks')} onChange={(value) => setSiteKey(value)} value={siteKey} />
+                    <TextControl label={__('Secret Key', 'zoloblocks')} onChange={(value) => setSecretKey(value)} value={secretKey} />
                 </SettingPanel>
             </div>
         </div>

@@ -74,7 +74,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.image} alt={__('Advanced Image Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.image} alt={__('Advanced Image Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -101,7 +101,7 @@ export default function Edit(props) {
                             render={({ open }) => (
                                 <ToolbarButton
                                     className="components-toolbar__control"
-                                    label={__('Edit Image', 'zolo-blocks')}
+                                    label={__('Edit Image', 'zoloblocks')}
                                     icon="edit"
                                     onClick={open}
                                 />
@@ -177,7 +177,7 @@ export default function Edit(props) {
                                                     heading: v,
                                                 })
                                             }
-                                            placeholder={__('Write Title...', 'zolo-blocks')}
+                                            placeholder={__('Write Title...', 'zoloblocks')}
                                         />
                                         {separatorPosition === 'after_title' && separatorStyle !== '' && (
                                             <div className={`zolo-separator ${separatorVisibleOn}`}>
@@ -193,7 +193,7 @@ export default function Edit(props) {
                                                     description: v,
                                                 })
                                             }
-                                            placeholder={__('Write Description...', 'zolo-blocks')}
+                                            placeholder={__('Write Description...', 'zoloblocks')}
                                         />
                                         {separatorPosition === 'after_desc' && separatorStyle !== '' && (
                                             <div className={`zolo-separator ${separatorVisibleOn}`}>
@@ -208,7 +208,7 @@ export default function Edit(props) {
                                     tagName="figcaption"
                                     value={caption || photo?.caption}
                                     onChange={(value) => setAttributes({ caption: value })}
-                                    placeholder={__('Write Caption...', 'zolo-blocks')}
+                                    placeholder={__('Write Caption...', 'zoloblocks')}
                                     className="zolo-caption"
                                 />
                             )}
@@ -238,7 +238,7 @@ export default function Edit(props) {
                             }}
                             allowedTypes={['image']}
                             multiple={false}
-                            labels={{ title: __('Image', 'zolo-blocks') }}
+                            labels={{ title: __('Image', 'zoloblocks') }}
                             icon={
                                 <svg
                                     width="24"

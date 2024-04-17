@@ -2,8 +2,8 @@ import { Dashicon } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'pricing-table';
 export const NORMAL_HOVER = [
-    { label: __('Normal', 'zolo-blocks'), value: 'normal' },
-    { label: __('Hover', 'zolo-blocks'), value: 'hover' },
+    { label: __('Normal', 'zoloblocks'), value: 'normal' },
+    { label: __('Hover', 'zoloblocks'), value: 'hover' },
 ];
 
 export const RIBBON_ALIGN = [
@@ -14,13 +14,13 @@ export const RIBBON_ALIGN = [
 ];
 
 export const BTNS_POSITIONS = [
-    { label: __('Middle', 'zolo-blocks'), value: 'middle' },
-    { label: __('Bottom', 'zolo-blocks'), value: 'bottom' },
+    { label: __('Middle', 'zoloblocks'), value: 'middle' },
+    { label: __('Bottom', 'zoloblocks'), value: 'bottom' },
 ];
 
 export const BTNS_DIRECTIONS = [
-    { label: __('Column', 'zolo-blocks'), value: 'column' },
-    { label: __('Row', 'zolo-blocks'), value: 'row' },
+    { label: __('Column', 'zoloblocks'), value: 'column' },
+    { label: __('Row', 'zoloblocks'), value: 'row' },
 ];
 
 export const ALIGNENT = 'alignment';
@@ -90,8 +90,8 @@ export const SEPARATOR_WIDTH = 'separatorWidth';
 
 // ribbon position options
 export const RIBBON_POSITIONS = [
-    { label: __('Top Left', 'zolo-blocks'), value: 'top__left' },
-    { label: __('Top Right', 'zolo-blocks'), value: 'top__right' },
+    { label: __('Top Left', 'zoloblocks'), value: 'top__left' },
+    { label: __('Top Right', 'zoloblocks'), value: 'top__right' },
 ];
 
 // buttons

@@ -31,7 +31,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.accordion} alt={__('Accordion Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.accordion} alt={__('Accordion Preview', 'zoloblocks')} />;
     }
 
     const acContainerRef = useRef(null);
@@ -120,7 +120,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls>
                 <ToolbarGroup>
-                    <ToolbarButton icon="plus" label={__('Add Accordion', 'zolo-blocks')} onClick={() => appendBlock()} />
+                    <ToolbarButton icon="plus" label={__('Add Accordion', 'zoloblocks')} onClick={() => appendBlock()} />
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
@@ -131,7 +131,7 @@ export default function Edit(props) {
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
                             </svg>
-                            {__('Add Accordion', 'zolo-blocks')}
+                            {__('Add Accordion', 'zoloblocks')}
                         </button>
                     </>
                 ) : (

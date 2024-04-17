@@ -49,7 +49,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.review} alt={__('Review Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.review} alt={__('Review Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -77,7 +77,7 @@ export default function Edit(props) {
                                 render={({ open }) => (
                                     <ToolbarButton
                                         className="components-toolbar__control"
-                                        label={__('Replace Photo', 'zolo-blocks')}
+                                        label={__('Replace Photo', 'zoloblocks')}
                                         icon="edit"
                                         onClick={open}
                                     />
@@ -106,7 +106,7 @@ export default function Edit(props) {
                                     <MediaPlaceholder
                                         icon="format-image"
                                         labels={{
-                                            title: __('Add Photo', 'zolo-blocks'),
+                                            title: __('Add Photo', 'zoloblocks'),
                                             instructions: '',
                                         }}
                                         onSelect={(media) => {
@@ -148,7 +148,7 @@ export default function Edit(props) {
                                                 testimonialMessage: content,
                                             })
                                         }
-                                        placeholder={__('message..', 'zolo-blocks')}
+                                        placeholder={__('message..', 'zoloblocks')}
                                     />
                                 </div>
                             )}
@@ -163,7 +163,7 @@ export default function Edit(props) {
                                                     memberName: content,
                                                 })
                                             }
-                                            placeholder={__('name..', 'zolo-blocks')}
+                                            placeholder={__('name..', 'zoloblocks')}
                                         />
                                     </div>
                                 )}
@@ -176,7 +176,7 @@ export default function Edit(props) {
                                                     memberDesignation: content,
                                                 })
                                             }
-                                            placeholder={__('designation..', 'zolo-blocks')}
+                                            placeholder={__('designation..', 'zoloblocks')}
                                         />
                                     </div>
                                 )}

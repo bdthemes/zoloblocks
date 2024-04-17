@@ -28,7 +28,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.form} alt={__('Form Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.form} alt={__('Form Preview', 'zoloblocks')} />;
     }
 
     // generate a unique form id for each block
@@ -78,7 +78,7 @@ export default function Edit(props) {
                     <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">
                         <div className="zolo-submit-btn">
                             <button type="submit" className={iconPosition}>
-                                {btnLabel || __('Submit Now', 'zolo-blocks')}
+                                {btnLabel || __('Submit Now', 'zoloblocks')}
                                 {showBtnIcon && <DisplayZoloIcon icon={icon} />}
                             </button>
                         </div>

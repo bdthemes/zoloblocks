@@ -20,7 +20,7 @@ import { googleFonts } from './googleFonts';
 const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className, ...props }) => {
     const id = `inspector-zb-font-family-${instanceId}`;
     const fonts = [
-        { value: '', label: __('Default', 'zolo-blocks') },
+        { value: '', label: __('Default', 'zoloblocks') },
         { value: 'Arial', label: 'Arial' },
         { value: 'Helvetica', label: 'Helvetica' },
         { value: 'Times-New-Roman', label: 'Times New Roman' },

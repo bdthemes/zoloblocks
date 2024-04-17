@@ -92,9 +92,9 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props} firstOpen={true}>
+                        <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
                             <ToggleControl
-                                label={__('Show photo caption', 'zolo-blocks')}
+                                label={__('Show photo caption', 'zoloblocks')}
                                 checked={showCaption}
                                 onChange={() =>
                                     setAttributes({
@@ -103,18 +103,18 @@ function Inspector(props) {
                                 }
                             />
                             <ToggleControl
-                                label={__('Enable photo lightbox', 'zolo-blocks')}
+                                label={__('Enable photo lightbox', 'zoloblocks')}
                                 checked={showLightbox}
                                 onChange={() =>
                                     setAttributes({
                                         showLightbox: !showLightbox,
                                     })
                                 }
-                                help={__('This option will only work at the frontend', 'zolo-blocks')}
+                                help={__('This option will only work at the frontend', 'zoloblocks')}
                             />
                             <div className="zolo-gallery-wrapper">
                                 <label className="zolo-control-label" htmlFor="zolo-control-label">
-                                    {__('Gallery Photos', 'zolo-blocks')}
+                                    {__('Gallery Photos', 'zoloblocks')}
                                 </label>
                                 <div className="zolo-gallery-items">
                                     <div className="replace-btn-wrapper">
@@ -130,7 +130,7 @@ function Inspector(props) {
                                             value={advancedGallery && advancedGallery.map((image) => image.id)}
                                             render={({ open }) => (
                                                 <button className="zolo-replace-btn" onClick={open}>
-                                                    {__('Replace Photos', 'zolo-blocks')}
+                                                    {__('Replace Photos', 'zoloblocks')}
                                                 </button>
                                             )}
                                         />
@@ -148,14 +148,14 @@ function Inspector(props) {
                                 </div>
                             </div>
                             <ImageSizes
-                                label={__('Thumb Resolution', 'zolo-blocks')}
+                                label={__('Thumb Resolution', 'zoloblocks')}
                                 value={imageSize}
                                 onChange={(value) => setAttributes({ imageSize: value })}
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Grid', 'zolo-blocks')} panelProps={props}>
+                        <ZoloPanelBody title={__('Grid', 'zoloblocks')} panelProps={props}>
                             <ResCounterControl
-                                label={__('Columns', 'zolo-blocks')}
+                                label={__('Columns', 'zoloblocks')}
                                 controlName={COLUMN_COUNT}
                                 requiredProps={requiredProps}
                                 min={1}
@@ -167,26 +167,26 @@ function Inspector(props) {
                                 }}
                             />
                             <ResGapControl
-                                label={__('Gap', 'zolo-blocks')}
+                                label={__('Gap', 'zoloblocks')}
                                 controlName={COLUMN_GAP}
                                 requiredProps={requiredProps}
                                 max={200}
                             />
                         </ZoloPanelBody>
                         {showLightbox && (
-                            <ZoloPanelBody title={__('Lightbox Settings', 'zolo-blocks')} panelProps={props}>
+                            <ZoloPanelBody title={__('Lightbox Settings', 'zoloblocks')} panelProps={props}>
                                 <ToggleControl
-                                    label={__('Show Thumbnails', 'zolo-blocks')}
+                                    label={__('Show Thumbnails', 'zoloblocks')}
                                     checked={showLightboxThumb}
                                     onChange={() => setAttributes({ showLightboxThumb: !showLightboxThumb })}
                                 />
                                 <ToggleControl
-                                    label={__('Show Caption', 'zolo-blocks')}
+                                    label={__('Show Caption', 'zoloblocks')}
                                     checked={showThumbCaption}
                                     onChange={() => setAttributes({ showThumbCaption: !showThumbCaption })}
                                 />
                                 <ZoloIconPicker
-                                    label={__('Lightbox Opener Icon', 'zolo-blocks')}
+                                    label={__('Lightbox Opener Icon', 'zoloblocks')}
                                     value={lightboxIcon}
                                     onChange={(value) => {
                                         setAttributes({
@@ -195,7 +195,7 @@ function Inspector(props) {
                                     }}
                                 />
                                 <SelectControl
-                                    label={__('Entrance Animation', 'zolo-blocks')}
+                                    label={__('Entrance Animation', 'zoloblocks')}
                                     value={entranceAnimation}
                                     options={MPA_ANIMATIONS}
                                     onChange={(v) => {
@@ -210,9 +210,9 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Image', 'zolo-blocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Image', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <ResRangeControl
-                                label={__('Height', 'zolo-blocks')}
+                                label={__('Height', 'zoloblocks')}
                                 controlName={IMAGE_HEIGHT}
                                 requiredProps={requiredProps}
                                 min={1}
@@ -220,12 +220,12 @@ function Inspector(props) {
                                 step={1}
                             />
                             <BorderControl
-                                label={__('Border', 'zolo-blocks')}
+                                label={__('Border', 'zoloblocks')}
                                 controlName={IMAGE_BORDER}
                                 requiredProps={requiredProps}
                                 hoverControl={
                                     <ColorControl
-                                        label={__('Border Hover Color', 'zolo-blocks')}
+                                        label={__('Border Hover Color', 'zoloblocks')}
                                         color={imageHoverBorderColor}
                                         onChange={(value) =>
                                             setAttributes({
@@ -236,14 +236,14 @@ function Inspector(props) {
                                 }
                             />
                             <ResDimensionsControl
-                                label={__('Border Radius', 'zolo-blocks')}
+                                label={__('Border Radius', 'zoloblocks')}
                                 controlName={IMAGE_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
 
                             <ResDimensionsControl
-                                label={__('Padding', 'zolo-blocks')}
+                                label={__('Padding', 'zoloblocks')}
                                 controlName={IMAGE_PADDING}
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
@@ -277,16 +277,16 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         {showCaption && (
-                            <ZoloPanelBody title={__('Caption', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Caption', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <>
                                     <TypographyDropdown
-                                        label={__('Typography', 'zolo-blocks')}
+                                        label={__('Typography', 'zoloblocks')}
                                         typoPrefixConstant={HEADING_TYPOGRAPHY}
                                         requiredProps={requiredProps}
                                         max={36}
                                     />
                                     <ColorControl
-                                        label={__('Color', 'zolo-blocks')}
+                                        label={__('Color', 'zoloblocks')}
                                         color={headingColor}
                                         onChange={(value) =>
                                             setAttributes({
@@ -295,12 +295,12 @@ function Inspector(props) {
                                         }
                                     />
                                     <BorderControl
-                                        label={__('Border', 'zolo-blocks')}
+                                        label={__('Border', 'zoloblocks')}
                                         controlName={HEADING_BORDER}
                                         requiredProps={requiredProps}
                                     />
                                     <ResDimensionsControl
-                                        label={__('Border Radius', 'zolo-blocks')}
+                                        label={__('Border Radius', 'zoloblocks')}
                                         controlName={HEADING_BORDER_RADIUS}
                                         requiredProps={requiredProps}
                                         forBorderRadius={true}
@@ -311,13 +311,13 @@ function Inspector(props) {
                                         enableTransition={false}
                                     />
                                     <ResDimensionsControl
-                                        label={__('Margin', 'zolo-blocks')}
+                                        label={__('Margin', 'zoloblocks')}
                                         controlName={HEADING_MARGIN}
                                         requiredProps={requiredProps}
                                         forBorderRadius={false}
                                     />
                                     <ResDimensionsControl
-                                        label={__('Padding', 'zolo-blocks')}
+                                        label={__('Padding', 'zoloblocks')}
                                         controlName={HEADING_PADDING}
                                         requiredProps={requiredProps}
                                         forBorderRadius={false}
@@ -327,9 +327,9 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
                         {showLightbox && (
-                            <ZoloPanelBody title={__('Lightbox Icon', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Lightbox Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
-                                    label={__('Size', 'zolo-blocks')}
+                                    label={__('Size', 'zoloblocks')}
                                     controlName={ZOOM_ICON_SIZE}
                                     requiredProps={requiredProps}
                                     min={1}
@@ -337,12 +337,12 @@ function Inspector(props) {
                                     step={1}
                                 />
                                 <BorderControl
-                                    label={__('Border', 'zolo-blocks')}
+                                    label={__('Border', 'zoloblocks')}
                                     controlName={ZOOM_ICON_BORDER}
                                     requiredProps={requiredProps}
                                     hoverControl={
                                         <ColorControl
-                                            label={__('Border Hover Color', 'zolo-blocks')}
+                                            label={__('Border Hover Color', 'zoloblocks')}
                                             color={zoomIconHoverBorderColor}
                                             onChange={(value) =>
                                                 setAttributes({
@@ -353,13 +353,13 @@ function Inspector(props) {
                                     }
                                 />
                                 <ResDimensionsControl
-                                    label={__('Border Radius', 'zolo-blocks')}
+                                    label={__('Border Radius', 'zoloblocks')}
                                     controlName={ZOOM_ICON_BORDER_RADIUS}
                                     requiredProps={requiredProps}
                                     forBorderRadius={true}
                                 />
                                 <ResDimensionsControl
-                                    label={__('Padding', 'zolo-blocks')}
+                                    label={__('Padding', 'zoloblocks')}
                                     controlName={ZOOM_ICON_PADDING}
                                     requiredProps={requiredProps}
                                 />
@@ -367,7 +367,7 @@ function Inspector(props) {
                                     normalComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={zoomIconColor}
                                                 onChange={(value) =>
                                                     setAttributes({
@@ -390,7 +390,7 @@ function Inspector(props) {
                                     hoverComponents={
                                         <>
                                             <ColorControl
-                                                label={__('Color', 'zolo-blocks')}
+                                                label={__('Color', 'zoloblocks')}
                                                 color={zoomIconHoverColor}
                                                 onChange={(value) =>
                                                     setAttributes({
@@ -413,7 +413,7 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
-                        <ZoloPanelBody title={__('Overlay Background', 'zolo-blocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Overlay Background', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <NormalBGControl requiredProps={requiredProps} controlName={OVERLAY_BG_COLOR} noMainBGImg={true} />
                         </ZoloPanelBody>
                     </>

@@ -44,7 +44,7 @@ function addAttributes(settings) {
     if (typeof settings.attributes === 'undefined') {
         return settings;
     }
-    if (settings.category && settings.category == 'zolo-blocks') {
+    if (settings.category && settings.category == 'zoloblocks') {
         if (settings.name === 'zolo/advanced-button') {
         }
         settings.attributes = {
@@ -390,7 +390,7 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 
         const blockType = select('core/blocks').getBlockType(name);
 
-        if (blockType.category != 'zolo-blocks') {
+        if (blockType.category != 'zoloblocks') {
             return <BlockEdit {...props} />;
         }
 
@@ -522,9 +522,9 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 /**
  * Add Attributes Filter
  */
-addFilter('blocks.registerBlockType', 'zolo-blocks/hoc-global', addAttributes);
+addFilter('blocks.registerBlockType', 'zoloblocks/hoc-global', addAttributes);
 
 /**
  * Filter for modification of Edit Function
  */
-addFilter('editor.BlockEdit', 'zolo-blocks/hoc-global', withAdvancedControls);
+addFilter('editor.BlockEdit', 'zoloblocks/hoc-global', withAdvancedControls);

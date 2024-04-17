@@ -46,7 +46,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -62,7 +62,7 @@ export default function Edit(props) {
                                 className="start-rating-title"
                                 value={title}
                                 onChange={(v) => setAttributes({ title: v })}
-                                placeholder={__('Enter title', 'zolo-blocks')}
+                                placeholder={__('Enter title', 'zoloblocks')}
                             />
                         )}
                         {showIcon && (
@@ -84,7 +84,7 @@ export default function Edit(props) {
                                         <MediaPlaceholder
                                             icon="format-image"
                                             labels={{
-                                                title: __('Add Photo', 'zolo-blocks'),
+                                                title: __('Add Photo', 'zoloblocks'),
                                                 instructions: '',
                                             }}
                                             onSelect={(media) => {

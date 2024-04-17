@@ -2,11 +2,11 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Review",
     "name": "zolo/review",
-    "category": "zolo-blocks",
+    "category": "zoloblocks",
     "keywords": ["Rating", "Review"],
     "description": "Single review block",
     "apiVersion": 2,
-    "textdomain": "zolo-blocks",
+    "textdomain": "zoloblocks",
     "example": {
         "attributes": {
             "preview": true

@@ -13,7 +13,7 @@ const Sortable = ({ businessList, setAttributes }) => {
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
-                <div className="repeater-label">{__('Add Business Day', 'zolo-blocks')}</div>
+                <div className="repeater-label">{__('Add Business Day', 'zoloblocks')}</div>
                 <Button
                     onClick={() =>
                         setAttributes({
@@ -54,7 +54,7 @@ const Sortable = ({ businessList, setAttributes }) => {
                                 <SortableItem key={profile.id} id={profile.id}>
                                     <PanelBody title={profile.name || 'Day'} initialOpen={false}>
                                         <TextControl
-                                            label={__('Day', 'zolo-blocks')}
+                                            label={__('Day', 'zoloblocks')}
                                             value={profile.name}
                                             onChange={(v) => {
                                                 const newItems = [...deepCloneProfiles];
@@ -81,7 +81,7 @@ const Sortable = ({ businessList, setAttributes }) => {
                                         {profile.toggleworkday ? (
                                             <>
                                                 <TextControl
-                                                    label={__('Start Time', 'zolo-blocks')}
+                                                    label={__('Start Time', 'zoloblocks')}
                                                     value={profile.startDate}
                                                     onChange={(v) => {
                                                         const newItems = [...deepCloneProfiles];
@@ -91,7 +91,7 @@ const Sortable = ({ businessList, setAttributes }) => {
                                                 />
 
                                                 <TextControl
-                                                    label={__('End Time', 'zolo-blocks')}
+                                                    label={__('End Time', 'zoloblocks')}
                                                     value={profile.endDate}
                                                     onChange={(v) => {
                                                         const newItems = [...deepCloneProfiles];
@@ -102,7 +102,7 @@ const Sortable = ({ businessList, setAttributes }) => {
                                             </>
                                         ) : (
                                             <TextControl
-                                                label={__('Closed Day', 'zolo-blocks')}
+                                                label={__('Closed Day', 'zoloblocks')}
                                                 value={profile.closedDay}
                                                 onChange={(v) => {
                                                     const newItems = [...deepCloneProfiles];

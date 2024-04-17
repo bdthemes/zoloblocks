@@ -1,5 +1,5 @@
 {
-	"name": "zolo/zolo-blocks",
+	"name": "zolo/zoloblocks",
 	"type": "project",
 	"autoload": {
 		"psr-4": {

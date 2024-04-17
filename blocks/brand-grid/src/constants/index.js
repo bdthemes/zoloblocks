@@ -8,22 +8,22 @@ export const BLOCK_PREFIX = 'brand-grid';
 
 // Presets
 export const PRESETS = [
-    { label: __('Preset 1', 'zolo-blocks'), value: 'zb-brand-style-1' },
-    { label: __('Preset 2', 'zolo-blocks'), value: 'zb-brand-style-2' },
+    { label: __('Preset 1', 'zoloblocks'), value: 'zb-brand-style-1' },
+    { label: __('Preset 2', 'zoloblocks'), value: 'zb-brand-style-2' },
 ];
 
 // icon types
 export const LINK_TYPES = [
     {
-        label: __('Global', 'zolo-blocks'),
+        label: __('Global', 'zoloblocks'),
         value: 'logo__global',
     },
     {
-        label: __('Label', 'zolo-blocks'),
+        label: __('Label', 'zoloblocks'),
         value: 'logo__label',
     },
     {
-        label: __('Title', 'zolo-blocks'),
+        label: __('Title', 'zoloblocks'),
         value: 'logo__title',
     },
 ];

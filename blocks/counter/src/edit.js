@@ -44,7 +44,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.counter} alt={__('Counter Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.counter} alt={__('Counter Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -71,7 +71,7 @@ export default function Edit(props) {
                                 render={({ open }) => (
                                     <ToolbarButton
                                         className="components-toolbar__control"
-                                        label={__('Replace Photo', 'zolo-blocks')}
+                                        label={__('Replace Photo', 'zoloblocks')}
                                         icon="update"
                                         onClick={open}
                                     />
@@ -79,7 +79,7 @@ export default function Edit(props) {
                             />
                             <ToolbarButton
                                 className="components-toolbar__control"
-                                label={__('Remove Photo', 'zolo-blocks')}
+                                label={__('Remove Photo', 'zoloblocks')}
                                 icon="trash"
                                 onClick={() => {
                                     setAttributes({

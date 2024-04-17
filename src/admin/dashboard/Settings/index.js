@@ -68,7 +68,7 @@ const Settings = () => {
 
     return (
         <>
-            {notice && <Notice notice={notice} message={__('Data updated successfully.', 'zolo-blocks')} />}
+            {notice && <Notice notice={notice} message={__('Data updated successfully.', 'zoloblocks')} />}
             <div className="zolo-settings">
                 <div id="tabs" className="zolo-settings-tabs-wrap">
                     <div className="zolo-settings-tab-button">
@@ -89,7 +89,7 @@ const Settings = () => {
                                     d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
                                 />
                             </svg>
-                            <span>{__('Editor Options', 'zolo-blocks')}</span>
+                            <span>{__('Editor Options', 'zoloblocks')}</span>
                         </div>
                     </div>
 
@@ -97,10 +97,10 @@ const Settings = () => {
                         <div className="zolo-tab-content-item zolo-tab-content-active">
                             <div className="zolo-settings-option-wrap">
                                 <SettingBox
-                                    title={__('Default Container Width', 'zolo-blocks')}
+                                    title={__('Default Container Width', 'zoloblocks')}
                                     description={__(
                                         "This setting will apply to Container Block's default Width in the Editor.",
-                                        'zolo-blocks'
+                                        'zoloblocks'
                                     )}
                                 >
                                     <div className="zolo-width-number">
@@ -114,15 +114,15 @@ const Settings = () => {
                                             value={editorWidth}
                                             min={1}
                                         />
-                                        <span>{__('px', 'zolo-blocks')}</span>
+                                        <span>{__('px', 'zoloblocks')}</span>
                                     </div>
                                 </SettingBox>
 
                                 <SettingBox
-                                    title={__('Enable SVG Upload', 'zolo-blocks')}
+                                    title={__('Enable SVG Upload', 'zoloblocks')}
                                     description={__(
                                         'Enable the SVG Upload option to upload SVG files in the Media Library and use them in your Blocks.',
-                                        'zolo-blocks'
+                                        'zoloblocks'
                                     )}
                                 >
                                     <ToggleControl

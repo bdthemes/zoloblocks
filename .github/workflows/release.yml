@@ -21,15 +21,15 @@ jobs:
             - name: Build
               run: npm run build
 
-            - name: Create zolo-blocks directory and move files
+            - name: Create zoloblocks directory and move files
               run: |
-                  mkdir -p zolo-blocks &&
-                  find . -maxdepth 1 -not -name 'zolo-blocks' -exec mv {} zolo-blocks \;
+                  mkdir -p zoloblocks &&
+                  find . -maxdepth 1 -not -name 'zoloblocks' -exec mv {} zoloblocks \;
 
             - name: Archive release
               uses: thedoctor0/zip-release@0.7.6
               with:
-                  filename: 'zolo-blocks.zip'
+                  filename: 'zoloblocks.zip'
                   exclusions: '/*src/* /*node_modules/* /*.distignore /*.gitignore /*.github/* /*.git/* /*.editorconfig /*README.md /*Gruntfile.js /*package.json /*package-lock.json /*composer.json  /*composer.lock /*webpack.config.js '
             - name: Display release
               run: ls -a
@@ -37,7 +37,7 @@ jobs:
             - name: Create Release
               uses: ncipollo/release-action@v1.14.0
               with:
-                  artifacts: './zolo-blocks.zip'
+                  artifacts: './zoloblocks.zip'
                   token: ${{ secrets.TOKEN }}
                   removeArtifacts: true
                   allowUpdates: true

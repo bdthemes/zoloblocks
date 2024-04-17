@@ -2,11 +2,11 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Tab",
     "name": "zolo/tab",
-    "category": "zolo-blocks",
+    "category": "zoloblocks",
     "keywords": ["tab"],
     "description": "Show tab",
     "apiVersion": 2,
-    "textdomain": "zolo-blocks",
+    "textdomain": "zoloblocks",
     "parent": ["zolo/tabs"],
     "example": {
         "attributes": {

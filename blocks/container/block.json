@@ -3,10 +3,10 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Container",
     "name": "zolo/container",
-    "category": "zolo-blocks",
+    "category": "zoloblocks",
     "keywords": ["Container"],
     "description": "A container block for other blocks",
-    "textdomain": "zolo-blocks",
+    "textdomain": "zoloblocks",
     "example": {
         "attributes": {
             "preview": true

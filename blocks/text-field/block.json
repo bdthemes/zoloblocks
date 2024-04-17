@@ -2,11 +2,11 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Text Field",
     "name": "zolo/text-field",
-    "category": "zolo-blocks",
+    "category": "zoloblocks",
     "keywords": ["zolo", "text", "field"],
     "description": "A simple text field block for Form Block",
     "apiVersion": 2,
-    "textdomain": "zolo-blocks",
+    "textdomain": "zoloblocks",
     "parent": ["zolo/form"],
     "example": {
         "attributes": {

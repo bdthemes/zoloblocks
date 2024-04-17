@@ -58,7 +58,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.teamGrid} alt={__('Team Grid Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.teamGrid} alt={__('Team Grid Preview', 'zoloblocks')} />;
     }
 
     return (
@@ -91,7 +91,7 @@ export default function Edit(props) {
                 <ToolbarGroup>
                     <ToolbarButton
                         className="components-toolbar__control"
-                        label={__('Add Team Member', 'zolo-blocks')}
+                        label={__('Add Team Member', 'zoloblocks')}
                         icon="insert"
                         onClick={() => appendBlock()}
                     />
@@ -108,11 +108,11 @@ export default function Edit(props) {
                     renderAppender={false}
                 />
 
-                <button className="zolo-appender-btn" label={__('Add Team Member', 'zolo-blocks')} onClick={() => appendBlock()}>
+                <button className="zolo-appender-btn" label={__('Add Team Member', 'zoloblocks')} onClick={() => appendBlock()}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
                     </svg>
-                    {__('Add Team Member', 'zolo-blocks')}
+                    {__('Add Team Member', 'zoloblocks')}
                 </button>
             </div>
         </>

@@ -2,12 +2,12 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Fancy list Child",
     "name": "zolo/fancy-list-child",
-    "category": "zolo-blocks",
+    "category": "zoloblocks",
     "keywords": ["fancy", "fancy list"],
     "description": "Single fancy list",
     "apiVersion": 2,
     "parent": ["zolo/fancy-list"],
-    "textdomain": "zolo-blocks",
+    "textdomain": "zoloblocks",
     "example": {
         "attributes": {
             "preview": true

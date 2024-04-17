@@ -5,7 +5,7 @@ const SingleLog = ({ version, date, changes }) => {
         <div className="single-log">
             <div className="log-header">
                 <h4 className="version">
-                    {__('Version', 'zolo-blocks')} {version}
+                    {__('Version', 'zoloblocks')} {version}
                 </h4>
                 <p className="date">{date}</p>
             </div>

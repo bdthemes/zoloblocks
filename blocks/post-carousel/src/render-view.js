@@ -43,14 +43,14 @@ function RenderView({ attributes, postResults }) {
                 const avatar = <a dangerouslySetInnerHTML={{ __html: post.avatar }} />;
                   const author = (
                       <div className="zolo-post-author-name">
-                          <span>{__('Posted by', 'zolo-blocks')}</span>
+                          <span>{__('Posted by', 'zoloblocks')}</span>
                           <a href="#" className="zolo-post-author-link" dangerouslySetInnerHTML={{ __html: post.author }}></a>
                       </div>
                   );
                 const date = <div className="zolo-post-date">{post.date}</div>;
                 const readingTime = (
                     <div className="zolo-post-estimate">
-                        {post.reading_time} {__('Min Read', 'zolo-blocks')}
+                        {post.reading_time} {__('Min Read', 'zoloblocks')}
                     </div>
                 );
 
@@ -114,7 +114,7 @@ function RenderView({ attributes, postResults }) {
                             {showReadMore && (
                                 <div className="zolo-post-link-btn">
                                     <a href={post.permalink}>
-                                        {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zolo-blocks')}</>}
+                                        {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zoloblocks')}</>}
                                         {showReadmoreIcon && readMoreIcon && <DisplayZoloIcon icon={readMoreIcon} />}
                                     </a>
                                 </div>

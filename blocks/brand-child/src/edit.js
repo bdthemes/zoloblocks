@@ -75,7 +75,7 @@ export default function Edit(props) {
                                 render={({ open }) => (
                                     <ToolbarButton
                                         className="components-toolbar__control"
-                                        label={__('Replace Photo', 'zolo-blocks')}
+                                        label={__('Replace Photo', 'zoloblocks')}
                                         icon="edit"
                                         onClick={open}
                                     />
@@ -121,7 +121,7 @@ export default function Edit(props) {
                                     }
                                     allowedTypes={['image']}
                                     multiple={false}
-                                    labels={{ title: __('Brand Photo', 'zolo-blocks') }}
+                                    labels={{ title: __('Brand Photo', 'zoloblocks') }}
                                 />
                             )}
                         </div>
@@ -170,7 +170,7 @@ export default function Edit(props) {
                                     }
                                     allowedTypes={['image']}
                                     multiple={false}
-                                    labels={{ title: __('Brand Photo', 'zolo-blocks') }}
+                                    labels={{ title: __('Brand Photo', 'zoloblocks') }}
                                 />
                             )}
                         </div>

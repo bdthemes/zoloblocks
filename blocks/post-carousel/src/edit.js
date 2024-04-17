@@ -214,14 +214,14 @@ export default function Edit(props) {
                     <Spinner />
                 </div>
             ) : (
-                <p>{__('No posts found.', 'zolo-blocks')}</p>
+                <p>{__('No posts found.', 'zoloblocks')}</p>
             ),
         ];
     }
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.postCarousel} alt={__('Post Carousel Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.postCarousel} alt={__('Post Carousel Preview', 'zoloblocks')} />;
     }
 
     return (

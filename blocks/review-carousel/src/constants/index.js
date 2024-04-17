@@ -8,15 +8,15 @@ export const BLOCK_PREFIX = 'reviewCarousel';
 
 // Presets
 export const PRESETS = [
-    { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-    { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
-    { label: __('Preset 3', 'zolo-blocks'), value: 'default' },
+    { label: __('Preset 1', 'zoloblocks'), value: 'style-1' },
+    { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
+    { label: __('Preset 3', 'zoloblocks'), value: 'default' },
 ];
 
 
 export const CAROUSEL_EFFECTS = [
-    { label: __('Slide', 'zolo-blocks'), value: 'slide' },
-    { label: __('Coverflow', 'zolo-blocks'), value: 'coverflow' },
+    { label: __('Slide', 'zoloblocks'), value: 'slide' },
+    { label: __('Coverflow', 'zoloblocks'), value: 'coverflow' },
 ];
 
 // Carousel Columns

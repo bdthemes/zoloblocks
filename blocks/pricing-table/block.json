@@ -2,11 +2,11 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Pricing Table",
     "name": "zolo/pricing-table",
-    "category": "zolo-blocks",
+    "category": "zoloblocks",
     "keywords": ["pricing", "pricing table"],
     "description": "Pricing table description",
     "apiVersion": 2,
-    "textdomain": "zolo-blocks",
+    "textdomain": "zoloblocks",
     "example": {
         "attributes": {
             "preview": true

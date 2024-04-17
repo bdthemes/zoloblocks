@@ -15,13 +15,13 @@ const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '' }) => 
                 <div className="block-external-link">
                     {video && (
                         <a href={video} target="_blank" rel="noopener noreferrer">
-                            <span>{__('Video Tutorial', 'zolo-blocks')}</span>
+                            <span>{__('Video Tutorial', 'zoloblocks')}</span>
                         </a>
                     )}
                     <span className="block-separator"></span>
                     {demo && (
                         <a href={demo} target="_blank" rel="noopener noreferrer">
-                            <span>{__('Live Demo', 'zolo-blocks')}</span>
+                            <span>{__('Live Demo', 'zoloblocks')}</span>
                         </a>
                     )}
                 </div>

@@ -74,28 +74,28 @@ const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min
                                 <input type="number" name="top" value={dimensions.top} onChange={onInputChange} />
 
                                 <label className="input-label">
-                                    {forBorderRadius ? __('T.Left', 'zolo-blocks') : __('Top', 'zolo-blocks')}
+                                    {forBorderRadius ? __('T.Left', 'zoloblocks') : __('Top', 'zoloblocks')}
                                 </label>
                             </div>
 
                             <div className="input-wrap">
                                 <input type="number" name="right" value={dimensions.right} onChange={onInputChange} />
                                 <label className="input-label">
-                                    {forBorderRadius ? __('T.Right', 'zolo-blocks') : __('Right', 'zolo-blocks')}
+                                    {forBorderRadius ? __('T.Right', 'zoloblocks') : __('Right', 'zoloblocks')}
                                 </label>
                             </div>
 
                             <div className="input-wrap">
                                 <input type="number" name="bottom" value={dimensions.bottom} onChange={onInputChange} />
                                 <label className="input-label">
-                                    {forBorderRadius ? __('B.Right', 'zolo-blocks') : __('Bottom', 'zolo-blocks')}
+                                    {forBorderRadius ? __('B.Right', 'zoloblocks') : __('Bottom', 'zoloblocks')}
                                 </label>
                             </div>
 
                             <div className="input-wrap">
                                 <input type="number" name="left" value={dimensions.left} onChange={onInputChange} />
                                 <label className="input-label">
-                                    {forBorderRadius ? __('B.Left', 'zolo-blocks') : __('Left', 'zolo-blocks')}
+                                    {forBorderRadius ? __('B.Left', 'zoloblocks') : __('Left', 'zoloblocks')}
                                 </label>
                             </div>
                         </>

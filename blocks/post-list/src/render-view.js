@@ -38,7 +38,7 @@ function RenderView({ attributes, postResults }) {
 
                  const author = (
                      <div className="zolo-post-author-name">
-                         <span>{__('Posted by', 'zolo-blocks')}</span>
+                         <span>{__('Posted by', 'zoloblocks')}</span>
                          <a href="#" className="zolo-post-author-link" dangerouslySetInnerHTML={{ __html: post.author }}></a>
                      </div>
                  );
@@ -48,7 +48,7 @@ function RenderView({ attributes, postResults }) {
                 const readingTimeHtml = (
                     <div className="zolo-post-reading-time">
                         {readingTime}
-                        {__('Min Read', 'zolo-blocks')}
+                        {__('Min Read', 'zoloblocks')}
                     </div>
                 );
 
@@ -78,7 +78,7 @@ function RenderView({ attributes, postResults }) {
                                             <RawHTML>{titleLimitWords}</RawHTML>
                                         </a>
                                     </DynamicTag>
-                               
+
                                 {showMeta && (
                                     <div className="zolo-post-meta">
                                         {author}

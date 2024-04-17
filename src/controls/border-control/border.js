@@ -68,22 +68,22 @@ const Borders = ({ top, right, bottom, left, onChange, neededProps, children }) 
                         <>
                             <div className="input-wrap">
                                 <input type="number" name="top" value={borders.top} onChange={onInputChange} />
-                                <label className="input-label">{__('Top', 'zolo-blocks')}</label>
+                                <label className="input-label">{__('Top', 'zoloblocks')}</label>
                             </div>
 
                             <div className="input-wrap">
                                 <input type="number" name="right" value={borders.right} onChange={onInputChange} />
-                                <label className="input-label">{__('Right', 'zolo-blocks')}</label>
+                                <label className="input-label">{__('Right', 'zoloblocks')}</label>
                             </div>
 
                             <div className="input-wrap">
                                 <input type="number" name="bottom" value={borders.bottom} onChange={onInputChange} />
-                                <label className="input-label">{__('Bottom', 'zolo-blocks')}</label>
+                                <label className="input-label">{__('Bottom', 'zoloblocks')}</label>
                             </div>
 
                             <div className="input-wrap">
                                 <input type="number" name="left" value={borders.left} onChange={onInputChange} />
-                                <label className="input-label">{__('Left', 'zolo-blocks')}</label>
+                                <label className="input-label">{__('Left', 'zoloblocks')}</label>
                             </div>
                         </>
                     )}

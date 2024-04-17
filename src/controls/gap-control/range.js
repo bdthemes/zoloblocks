@@ -32,7 +32,7 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
                         <>
                             <div className="input-wrap">
                                 <RangeControl
-                                    label={__('Row', 'zolo-blocks')}
+                                    label={__('Row', 'zoloblocks')}
                                     value={rowGap}
                                     onChange={(v) =>
                                         setAttributes({
@@ -43,7 +43,7 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
                                     max={max || 100}
                                 />
                                 <RangeControl
-                                    label={__('Column', 'zolo-blocks')}
+                                    label={__('Column', 'zoloblocks')}
                                     value={colGap}
                                     onChange={(v) =>
                                         setAttributes({

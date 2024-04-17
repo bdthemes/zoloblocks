@@ -51,7 +51,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.textarea} alt={__('Message Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.textarea} alt={__('Message Preview', 'zoloblocks')} />;
     }
 
     /**
@@ -80,9 +80,9 @@ export default function Edit(props) {
                                         label: v,
                                     })
                                 }
-                                placeholder={__('Label', 'zolo-blocks')}
+                                placeholder={__('Label', 'zoloblocks')}
                             />
-                            {isRequired && showRequiredSymbol && <span className="zolo-required">{__('*', 'zolo-blocks')}</span>}
+                            {isRequired && showRequiredSymbol && <span className="zolo-required">{__('*', 'zoloblocks')}</span>}
                         </div>
                     )}
                     <div className="zolo-field-input-item">

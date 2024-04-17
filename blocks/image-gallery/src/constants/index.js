@@ -8,8 +8,8 @@ export const BLOCK_PREFIX = 'advanced-image-gallery';
 
 // Presets
 // export const PRESETS = [
-//     { label: __('Preset 1', 'zolo-blocks'), value: 'style-1' },
-//     { label: __('Preset 2', 'zolo-blocks'), value: 'style-2' },
+//     { label: __('Preset 1', 'zoloblocks'), value: 'style-1' },
+//     { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
 // ];
 
 // Grid
@@ -61,27 +61,27 @@ export const OVERLAY_BG_COLOR = 'overlayBgColor';
 // MPA Animations
 export const MPA_ANIMATIONS = [
     {
-        label: __('Zoom', 'zolo-blocks'),
+        label: __('Zoom', 'zoloblocks'),
         value: 'zolo-zoom-in',
     },
     {
-        label: __('Newspaper', 'zolo-blocks'),
+        label: __('Newspaper', 'zoloblocks'),
         value: 'zolo-newspaper',
     },
     {
-        label: __('Move Horizontal', 'zolo-blocks'),
+        label: __('Move Horizontal', 'zoloblocks'),
         value: 'zolo-move-horizontal',
     },
     {
-        label: __('Move Top', 'zolo-blocks'),
+        label: __('Move Top', 'zoloblocks'),
         value: 'zolo-move-form-top',
     },
     {
-        label: __('3d Unfold', 'zolo-blocks'),
+        label: __('3d Unfold', 'zoloblocks'),
         value: 'zolo-3d-unfold',
     },
     {
-        label: __('Zoom Out', 'zolo-blocks'),
+        label: __('Zoom Out', 'zoloblocks'),
         value: 'zolo-zoom-out',
     },
 ];

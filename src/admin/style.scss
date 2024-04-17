@@ -8,7 +8,7 @@
     --zolo-dashboard-brand-color: #3f8efc;
 }
 
-.toplevel_page_zolo-blocks {
+.toplevel_page_zoloblocks {
     background-color: #f8fafc;
 }
 
@@ -182,12 +182,12 @@
     // min-height: 100vh;
 }
 
-.zolo-blocks-grid {
+.zoloblocks-grid {
     height: 100%;
     width: 100%;
 }
 
-.zolo-blocks-grid .zolo-blocks-inner-grid {
+.zoloblocks-grid .zoloblocks-inner-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 15px;
@@ -210,7 +210,7 @@
 
 .zolo-single-block.active,
 .filter-btn,
-input.zolo-blocks-search,
+input.zoloblocks-search,
 .blocks-filter-buttons,
 .zolo-settings-actions,
 .zolo-no-block-found,
@@ -291,7 +291,7 @@ input.zolo-blocks-search,
     gap: 10px;
 }
 
-.zolo-blocks-actions-btn {
+.zoloblocks-actions-btn {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -378,7 +378,7 @@ button.zolo-deactivated-btn {
     }
 }
 
-input.zolo-blocks-search {
+input.zoloblocks-search {
     border: none;
     padding: clamp(0.625rem, 1vw, 0.75rem) clamp(0.875rem, 2vw, 1.25rem);
     padding-left: 44px;
@@ -391,7 +391,7 @@ input.zolo-blocks-search {
     box-shadow: none;
 }
 
-input.zolo-blocks-search:focus {
+input.zoloblocks-search:focus {
     outline: none !important;
     box-shadow: 0 0 0 2px var(--zolo-dashboard-brand-color);
 }
@@ -595,13 +595,13 @@ input.zolo-blocks-search:focus {
     grid-template-columns: repeat(1, 1fr) !important;
 }
 
-.zolo-blocks-list-tab {
+.zoloblocks-list-tab {
     display: flex;
     gap: 15px;
     flex-direction: column;
 }
 
-.zolo-blocks-list-tab {
+.zoloblocks-list-tab {
     .filter-btn {
         font-weight: 600;
         color: #2d3238;
@@ -648,13 +648,13 @@ input.zolo-blocks-search:focus {
         display: none;
         padding: 0;
     }
-    .zolo-blocks-grid .zolo-blocks-inner-grid {
+    .zoloblocks-grid .zoloblocks-inner-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     .settings-grid {
         grid-template-columns: repeat(2, 1fr) !important;
     }
-    .zolo-blocks-actions-btn {
+    .zoloblocks-actions-btn {
         width: 40%;
     }
     .zolo-settings-actions {
@@ -664,7 +664,7 @@ input.zolo-blocks-search:focus {
     }
 }
 @media (min-width: 1024px) {
-    .zolo-blocks-grid .zolo-blocks-inner-grid {
+    .zoloblocks-grid .zoloblocks-inner-grid {
         grid-template-columns: repeat(3, 1fr);
     }
     .total-blocks {
@@ -702,7 +702,7 @@ input.zolo-blocks-search:focus {
             background-color: transparent;
         }
     }
-    .zolo-blocks-list-tab {
+    .zoloblocks-list-tab {
         flex-direction: row;
         gap: 20px;
     }

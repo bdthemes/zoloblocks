@@ -132,14 +132,14 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                             return (
                                 <>
                                     <RangeControl
-                                        label={__('Overlay Opacity', 'zolo-blocks')}
+                                        label={__('Overlay Opacity', 'zoloblocks')}
                                         value={ovl_opacity}
                                         onChange={(v) => setAttributes({ [`${controlName}ovl_opacity`]: v })}
                                         min={0}
                                         max={1}
                                         step={0.1}
                                     />
-                                    <BaseControl label={__('Background Type', 'zolo-blocks')}>
+                                    <BaseControl label={__('Background Type', 'zoloblocks')}>
                                         <ButtonGroup>
                                             {BACKGROUND_TYPES.map(({ value, label }) => (
                                                 <Button
@@ -159,7 +159,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                     {overlayType === 'classic' && (
                                         <>
                                             <ColorControl
-                                                label={__('Overlay Color', 'zolo-blocks')}
+                                                label={__('Overlay Color', 'zoloblocks')}
                                                 color={overlayColor}
                                                 onChange={(overlayColor) =>
                                                     setAttributes({
@@ -170,7 +170,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                             {noOverlayBGImg === false && (
                                                 <>
-                                                    <BaseControl label={__('Overlay Image', 'zolo-blocks')}></BaseControl>
+                                                    <BaseControl label={__('Overlay Image', 'zoloblocks')}></BaseControl>
 
                                                     <MediaUpload
                                                         onSelect={({ url, id }) =>
@@ -186,7 +186,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                 <>
                                                                     <Button
                                                                         className="zb-bg-control-img-btn components-button"
-                                                                        label={__('Upload Image', 'zolo-blocks')}
+                                                                        label={__('Upload Image', 'zoloblocks')}
                                                                         icon="format-image"
                                                                         onClick={open}
                                                                     />
@@ -223,54 +223,54 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                 <>
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Position', 'zolo-blocks')}
+                                                                        label={__('Position', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={ovl_bgImgPos}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Center', 'zolo-blocks'),
+                                                                                    label: __('Center Center', 'zoloblocks'),
                                                                                     value: 'center center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Left', 'zolo-blocks'),
+                                                                                    label: __('Center Left', 'zoloblocks'),
                                                                                     value: 'center left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Right', 'zolo-blocks'),
+                                                                                    label: __('Center Right', 'zoloblocks'),
                                                                                     value: 'center right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Center', 'zolo-blocks'),
+                                                                                    label: __('Top Center', 'zoloblocks'),
                                                                                     value: 'top center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Left', 'zolo-blocks'),
+                                                                                    label: __('Top Left', 'zoloblocks'),
                                                                                     value: 'top left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Right', 'zolo-blocks'),
+                                                                                    label: __('Top Right', 'zoloblocks'),
                                                                                     value: 'top right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Center', 'zolo-blocks'),
+                                                                                    label: __('Bottom Center', 'zoloblocks'),
                                                                                     value: 'bottom center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Left', 'zolo-blocks'),
+                                                                                    label: __('Bottom Left', 'zoloblocks'),
                                                                                     value: 'bottom left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Right', 'zolo-blocks'),
+                                                                                    label: __('Bottom Right', 'zoloblocks'),
                                                                                     value: 'bottom right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Custom', 'zolo-blocks'),
+                                                                                    label: __('Custom', 'zoloblocks'),
                                                                                     value: 'custom',
                                                                                 },
                                                                             ]}
@@ -310,7 +310,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zolo-blocks')}
+                                                                                label={__('X Position', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -352,7 +352,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zolo-blocks')}
+                                                                                label={__('Y Position', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -372,19 +372,19 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                     )}
 
                                                                     <SelectControl
-                                                                        label={__('Attachment', 'zolo-blocks')}
+                                                                        label={__('Attachment', 'zoloblocks')}
                                                                         value={ovl_bgImgAttachment}
                                                                         options={[
                                                                             {
-                                                                                label: __('Default', 'zolo-blocks'),
+                                                                                label: __('Default', 'zoloblocks'),
                                                                                 value: '',
                                                                             },
                                                                             {
-                                                                                label: __('Scroll', 'zolo-blocks'),
+                                                                                label: __('Scroll', 'zoloblocks'),
                                                                                 value: 'scroll',
                                                                             },
                                                                             {
-                                                                                label: __('Fixed', 'zolo-blocks'),
+                                                                                label: __('Fixed', 'zoloblocks'),
                                                                                 value: 'fixed',
                                                                             },
                                                                         ]}
@@ -408,30 +408,30 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zolo-blocks')}
+                                                                        label={__('Repeat', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={ovl_bgImgRepeat}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('No-repeat', 'zolo-blocks'),
+                                                                                    label: __('No-repeat', 'zoloblocks'),
                                                                                     value: 'no-repeat',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat', 'zolo-blocks'),
+                                                                                    label: __('Repeat', 'zoloblocks'),
                                                                                     value: 'repeat',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat-x', 'zolo-blocks'),
+                                                                                    label: __('Repeat-x', 'zoloblocks'),
                                                                                     value: 'repeat-x',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat-y', 'zolo-blocks'),
+                                                                                    label: __('Repeat-y', 'zoloblocks'),
                                                                                     value: 'repeat-y',
                                                                                 },
                                                                             ]}
@@ -445,30 +445,30 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Size', 'zolo-blocks')}
+                                                                        label={__('Size', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={ovl_backgroundSize}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Auto', 'zolo-blocks'),
+                                                                                    label: __('Auto', 'zoloblocks'),
                                                                                     value: 'auto',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Cover', 'zolo-blocks'),
+                                                                                    label: __('Cover', 'zoloblocks'),
                                                                                     value: 'cover',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Contain', 'zolo-blocks'),
+                                                                                    label: __('Contain', 'zoloblocks'),
                                                                                     value: 'contain',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Custom', 'zolo-blocks'),
+                                                                                    label: __('Custom', 'zoloblocks'),
                                                                                     value: 'custom',
                                                                                 },
                                                                             ]}
@@ -509,7 +509,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Width', 'zolo-blocks')}
+                                                                                label={__('Width', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -534,54 +534,54 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                 <>
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Position', 'zolo-blocks')}
+                                                                        label={__('Position', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={TABovl_bgImgPos}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Center', 'zolo-blocks'),
+                                                                                    label: __('Center Center', 'zoloblocks'),
                                                                                     value: 'center center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Left', 'zolo-blocks'),
+                                                                                    label: __('Center Left', 'zoloblocks'),
                                                                                     value: 'center left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Right', 'zolo-blocks'),
+                                                                                    label: __('Center Right', 'zoloblocks'),
                                                                                     value: 'center right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Center', 'zolo-blocks'),
+                                                                                    label: __('Top Center', 'zoloblocks'),
                                                                                     value: 'top center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Left', 'zolo-blocks'),
+                                                                                    label: __('Top Left', 'zoloblocks'),
                                                                                     value: 'top left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Right', 'zolo-blocks'),
+                                                                                    label: __('Top Right', 'zoloblocks'),
                                                                                     value: 'top right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Center', 'zolo-blocks'),
+                                                                                    label: __('Bottom Center', 'zoloblocks'),
                                                                                     value: 'bottom center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Left', 'zolo-blocks'),
+                                                                                    label: __('Bottom Left', 'zoloblocks'),
                                                                                     value: 'bottom left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Right', 'zolo-blocks'),
+                                                                                    label: __('Bottom Right', 'zoloblocks'),
                                                                                     value: 'bottom right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Custom', 'zolo-blocks'),
+                                                                                    label: __('Custom', 'zoloblocks'),
                                                                                     value: 'custom',
                                                                                 },
                                                                             ]}
@@ -621,7 +621,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zolo-blocks')}
+                                                                                label={__('X Position', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -668,7 +668,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zolo-blocks')}
+                                                                                label={__('Y Position', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -693,19 +693,19 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                     )}
 
                                                                     <SelectControl
-                                                                        label={__('Attachment', 'zolo-blocks')}
+                                                                        label={__('Attachment', 'zoloblocks')}
                                                                         value={ovl_bgImgAttachment}
                                                                         options={[
                                                                             {
-                                                                                label: __('Default', 'zolo-blocks'),
+                                                                                label: __('Default', 'zoloblocks'),
                                                                                 value: '',
                                                                             },
                                                                             {
-                                                                                label: __('Scroll', 'zolo-blocks'),
+                                                                                label: __('Scroll', 'zoloblocks'),
                                                                                 value: 'scroll',
                                                                             },
                                                                             {
-                                                                                label: __('Fixed', 'zolo-blocks'),
+                                                                                label: __('Fixed', 'zoloblocks'),
                                                                                 value: 'fixed',
                                                                             },
                                                                         ]}
@@ -729,30 +729,30 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zolo-blocks')}
+                                                                        label={__('Repeat', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={TABovl_bgImgRepeat}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('No-repeat', 'zolo-blocks'),
+                                                                                    label: __('No-repeat', 'zoloblocks'),
                                                                                     value: 'no-repeat',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat', 'zolo-blocks'),
+                                                                                    label: __('Repeat', 'zoloblocks'),
                                                                                     value: 'repeat',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat-x', 'zolo-blocks'),
+                                                                                    label: __('Repeat-x', 'zoloblocks'),
                                                                                     value: 'repeat-x',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat-y', 'zolo-blocks'),
+                                                                                    label: __('Repeat-y', 'zoloblocks'),
                                                                                     value: 'repeat-y',
                                                                                 },
                                                                             ]}
@@ -767,30 +767,30 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Size', 'zolo-blocks')}
+                                                                        label={__('Size', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={TABovl_backgroundSize}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Auto', 'zolo-blocks'),
+                                                                                    label: __('Auto', 'zoloblocks'),
                                                                                     value: 'auto',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Cover', 'zolo-blocks'),
+                                                                                    label: __('Cover', 'zoloblocks'),
                                                                                     value: 'cover',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Contain', 'zolo-blocks'),
+                                                                                    label: __('Contain', 'zoloblocks'),
                                                                                     value: 'contain',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Custom', 'zolo-blocks'),
+                                                                                    label: __('Custom', 'zoloblocks'),
                                                                                     value: 'custom',
                                                                                 },
                                                                             ]}
@@ -831,7 +831,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Width', 'zolo-blocks')}
+                                                                                label={__('Width', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -856,54 +856,54 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                 <>
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Position', 'zolo-blocks')}
+                                                                        label={__('Position', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={MOBovl_bgImgPos}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Center', 'zolo-blocks'),
+                                                                                    label: __('Center Center', 'zoloblocks'),
                                                                                     value: 'center center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Left', 'zolo-blocks'),
+                                                                                    label: __('Center Left', 'zoloblocks'),
                                                                                     value: 'center left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Right', 'zolo-blocks'),
+                                                                                    label: __('Center Right', 'zoloblocks'),
                                                                                     value: 'center right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Center', 'zolo-blocks'),
+                                                                                    label: __('Top Center', 'zoloblocks'),
                                                                                     value: 'top center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Left', 'zolo-blocks'),
+                                                                                    label: __('Top Left', 'zoloblocks'),
                                                                                     value: 'top left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Right', 'zolo-blocks'),
+                                                                                    label: __('Top Right', 'zoloblocks'),
                                                                                     value: 'top right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Center', 'zolo-blocks'),
+                                                                                    label: __('Bottom Center', 'zoloblocks'),
                                                                                     value: 'bottom center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Left', 'zolo-blocks'),
+                                                                                    label: __('Bottom Left', 'zoloblocks'),
                                                                                     value: 'bottom left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Right', 'zolo-blocks'),
+                                                                                    label: __('Bottom Right', 'zoloblocks'),
                                                                                     value: 'bottom right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Custom', 'zolo-blocks'),
+                                                                                    label: __('Custom', 'zoloblocks'),
                                                                                     value: 'custom',
                                                                                 },
                                                                             ]}
@@ -943,7 +943,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zolo-blocks')}
+                                                                                label={__('X Position', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -985,7 +985,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zolo-blocks')}
+                                                                                label={__('Y Position', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -1005,19 +1005,19 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                     )}
 
                                                                     <SelectControl
-                                                                        label={__('Attachment', 'zolo-blocks')}
+                                                                        label={__('Attachment', 'zoloblocks')}
                                                                         value={ovl_bgImgAttachment}
                                                                         options={[
                                                                             {
-                                                                                label: __('Default', 'zolo-blocks'),
+                                                                                label: __('Default', 'zoloblocks'),
                                                                                 value: '',
                                                                             },
                                                                             {
-                                                                                label: __('Scroll', 'zolo-blocks'),
+                                                                                label: __('Scroll', 'zoloblocks'),
                                                                                 value: 'scroll',
                                                                             },
                                                                             {
-                                                                                label: __('Fixed', 'zolo-blocks'),
+                                                                                label: __('Fixed', 'zoloblocks'),
                                                                                 value: 'fixed',
                                                                             },
                                                                         ]}
@@ -1041,30 +1041,30 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zolo-blocks')}
+                                                                        label={__('Repeat', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={MOBovl_bgImgRepeat}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('No-repeat', 'zolo-blocks'),
+                                                                                    label: __('No-repeat', 'zoloblocks'),
                                                                                     value: 'no-repeat',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat', 'zolo-blocks'),
+                                                                                    label: __('Repeat', 'zoloblocks'),
                                                                                     value: 'repeat',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat-x', 'zolo-blocks'),
+                                                                                    label: __('Repeat-x', 'zoloblocks'),
                                                                                     value: 'repeat-x',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat-y', 'zolo-blocks'),
+                                                                                    label: __('Repeat-y', 'zoloblocks'),
                                                                                     value: 'repeat-y',
                                                                                 },
                                                                             ]}
@@ -1079,30 +1079,30 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Size', 'zolo-blocks')}
+                                                                        label={__('Size', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={MOBovl_backgroundSize}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Auto', 'zolo-blocks'),
+                                                                                    label: __('Auto', 'zoloblocks'),
                                                                                     value: 'auto',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Cover', 'zolo-blocks'),
+                                                                                    label: __('Cover', 'zoloblocks'),
                                                                                     value: 'cover',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Contain', 'zolo-blocks'),
+                                                                                    label: __('Contain', 'zoloblocks'),
                                                                                     value: 'contain',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Custom', 'zolo-blocks'),
+                                                                                    label: __('Custom', 'zoloblocks'),
                                                                                     value: 'custom',
                                                                                 },
                                                                             ]}
@@ -1143,7 +1143,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Width', 'zolo-blocks')}
+                                                                                label={__('Width', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -1172,7 +1172,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                     {overlayType === 'gradient' && (
                                         <GradientControl
-                                            label={__('Gradient Color', 'zolo-blocks')}
+                                            label={__('Gradient Color', 'zoloblocks')}
                                             value={overlayGradient}
                                             onChange={(newVal) =>
                                                 setAttributes({
@@ -1187,7 +1187,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                             return (
                                 <>
                                     <RangeControl
-                                        label={__('Overlay Opacity', 'zolo-blocks')}
+                                        label={__('Overlay Opacity', 'zoloblocks')}
                                         value={hov_ovl_opacity}
                                         onChange={(v) =>
                                             setAttributes({
@@ -1198,7 +1198,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                         max={1}
                                         step={0.1}
                                     />
-                                    <BaseControl label={__('Background Type', 'zolo-blocks')}>
+                                    <BaseControl label={__('Background Type', 'zoloblocks')}>
                                         <ButtonGroup>
                                             {BACKGROUND_TYPES.map(({ value, label }) => (
                                                 <Button
@@ -1218,7 +1218,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                     {hov_overlayType === 'classic' && (
                                         <>
                                             <ColorControl
-                                                label={__('Overlay Color', 'zolo-blocks')}
+                                                label={__('Overlay Color', 'zoloblocks')}
                                                 color={hov_overlayColor}
                                                 onChange={(hov_overlayColor) =>
                                                     setAttributes({
@@ -1229,7 +1229,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                             {noOverlayBGImg === false && (
                                                 <>
-                                                    <BaseControl label={__('Overlay Image', 'zolo-blocks')}></BaseControl>
+                                                    <BaseControl label={__('Overlay Image', 'zoloblocks')}></BaseControl>
 
                                                     <MediaUpload
                                                         onSelect={({ url, id }) =>
@@ -1245,7 +1245,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                 <>
                                                                     <Button
                                                                         className="zb-bg-control-img-btn components-button"
-                                                                        label={__('Upload Image', 'zolo-blocks')}
+                                                                        label={__('Upload Image', 'zoloblocks')}
                                                                         icon="format-image"
                                                                         onClick={open}
                                                                     />
@@ -1275,54 +1275,54 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                 <>
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Position', 'zolo-blocks')}
+                                                                        label={__('Position', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={hov_ovl_bgImgPos}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Center', 'zolo-blocks'),
+                                                                                    label: __('Center Center', 'zoloblocks'),
                                                                                     value: 'center center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Left', 'zolo-blocks'),
+                                                                                    label: __('Center Left', 'zoloblocks'),
                                                                                     value: 'center left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Right', 'zolo-blocks'),
+                                                                                    label: __('Center Right', 'zoloblocks'),
                                                                                     value: 'center right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Center', 'zolo-blocks'),
+                                                                                    label: __('Top Center', 'zoloblocks'),
                                                                                     value: 'top center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Left', 'zolo-blocks'),
+                                                                                    label: __('Top Left', 'zoloblocks'),
                                                                                     value: 'top left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Right', 'zolo-blocks'),
+                                                                                    label: __('Top Right', 'zoloblocks'),
                                                                                     value: 'top right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Center', 'zolo-blocks'),
+                                                                                    label: __('Bottom Center', 'zoloblocks'),
                                                                                     value: 'bottom center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Left', 'zolo-blocks'),
+                                                                                    label: __('Bottom Left', 'zoloblocks'),
                                                                                     value: 'bottom left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Right', 'zolo-blocks'),
+                                                                                    label: __('Bottom Right', 'zoloblocks'),
                                                                                     value: 'bottom right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Custom', 'zolo-blocks'),
+                                                                                    label: __('Custom', 'zoloblocks'),
                                                                                     value: 'custom',
                                                                                 },
                                                                             ]}
@@ -1362,7 +1362,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zolo-blocks')}
+                                                                                label={__('X Position', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -1404,7 +1404,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zolo-blocks')}
+                                                                                label={__('Y Position', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -1424,19 +1424,19 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                     )}
 
                                                                     <SelectControl
-                                                                        label={__('Attachment', 'zolo-blocks')}
+                                                                        label={__('Attachment', 'zoloblocks')}
                                                                         value={hov_ovl_bgImgAttachment}
                                                                         options={[
                                                                             {
-                                                                                label: __('Default', 'zolo-blocks'),
+                                                                                label: __('Default', 'zoloblocks'),
                                                                                 value: '',
                                                                             },
                                                                             {
-                                                                                label: __('Scroll', 'zolo-blocks'),
+                                                                                label: __('Scroll', 'zoloblocks'),
                                                                                 value: 'scroll',
                                                                             },
                                                                             {
-                                                                                label: __('Fixed', 'zolo-blocks'),
+                                                                                label: __('Fixed', 'zoloblocks'),
                                                                                 value: 'fixed',
                                                                             },
                                                                         ]}
@@ -1461,30 +1461,30 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zolo-blocks')}
+                                                                        label={__('Repeat', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={hov_ovl_bgImgRepeat}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('No-repeat', 'zolo-blocks'),
+                                                                                    label: __('No-repeat', 'zoloblocks'),
                                                                                     value: 'no-repeat',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat', 'zolo-blocks'),
+                                                                                    label: __('Repeat', 'zoloblocks'),
                                                                                     value: 'repeat',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat-x', 'zolo-blocks'),
+                                                                                    label: __('Repeat-x', 'zoloblocks'),
                                                                                     value: 'repeat-x',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat-y', 'zolo-blocks'),
+                                                                                    label: __('Repeat-y', 'zoloblocks'),
                                                                                     value: 'repeat-y',
                                                                                 },
                                                                             ]}
@@ -1499,30 +1499,30 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Size', 'zolo-blocks')}
+                                                                        label={__('Size', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={hov_ovl_backgroundSize}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Auto', 'zolo-blocks'),
+                                                                                    label: __('Auto', 'zoloblocks'),
                                                                                     value: 'auto',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Cover', 'zolo-blocks'),
+                                                                                    label: __('Cover', 'zoloblocks'),
                                                                                     value: 'cover',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Contain', 'zolo-blocks'),
+                                                                                    label: __('Contain', 'zoloblocks'),
                                                                                     value: 'contain',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Custom', 'zolo-blocks'),
+                                                                                    label: __('Custom', 'zoloblocks'),
                                                                                     value: 'custom',
                                                                                 },
                                                                             ]}
@@ -1563,7 +1563,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Width', 'zolo-blocks')}
+                                                                                label={__('Width', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -1588,54 +1588,54 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                 <>
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Position', 'zolo-blocks')}
+                                                                        label={__('Position', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={hov_TABovl_bgImgPos}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Center', 'zolo-blocks'),
+                                                                                    label: __('Center Center', 'zoloblocks'),
                                                                                     value: 'center center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Left', 'zolo-blocks'),
+                                                                                    label: __('Center Left', 'zoloblocks'),
                                                                                     value: 'center left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Right', 'zolo-blocks'),
+                                                                                    label: __('Center Right', 'zoloblocks'),
                                                                                     value: 'center right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Center', 'zolo-blocks'),
+                                                                                    label: __('Top Center', 'zoloblocks'),
                                                                                     value: 'top center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Left', 'zolo-blocks'),
+                                                                                    label: __('Top Left', 'zoloblocks'),
                                                                                     value: 'top left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Right', 'zolo-blocks'),
+                                                                                    label: __('Top Right', 'zoloblocks'),
                                                                                     value: 'top right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Center', 'zolo-blocks'),
+                                                                                    label: __('Bottom Center', 'zoloblocks'),
                                                                                     value: 'bottom center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Left', 'zolo-blocks'),
+                                                                                    label: __('Bottom Left', 'zoloblocks'),
                                                                                     value: 'bottom left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Right', 'zolo-blocks'),
+                                                                                    label: __('Bottom Right', 'zoloblocks'),
                                                                                     value: 'bottom right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Custom', 'zolo-blocks'),
+                                                                                    label: __('Custom', 'zoloblocks'),
                                                                                     value: 'custom',
                                                                                 },
                                                                             ]}
@@ -1676,7 +1676,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zolo-blocks')}
+                                                                                label={__('X Position', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -1720,7 +1720,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zolo-blocks')}
+                                                                                label={__('Y Position', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -1742,19 +1742,19 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                     )}
 
                                                                     <SelectControl
-                                                                        label={__('Attachment', 'zolo-blocks')}
+                                                                        label={__('Attachment', 'zoloblocks')}
                                                                         value={hov_ovl_bgImgAttachment}
                                                                         options={[
                                                                             {
-                                                                                label: __('Default', 'zolo-blocks'),
+                                                                                label: __('Default', 'zoloblocks'),
                                                                                 value: '',
                                                                             },
                                                                             {
-                                                                                label: __('Scroll', 'zolo-blocks'),
+                                                                                label: __('Scroll', 'zoloblocks'),
                                                                                 value: 'scroll',
                                                                             },
                                                                             {
-                                                                                label: __('Fixed', 'zolo-blocks'),
+                                                                                label: __('Fixed', 'zoloblocks'),
                                                                                 value: 'fixed',
                                                                             },
                                                                         ]}
@@ -1779,30 +1779,30 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zolo-blocks')}
+                                                                        label={__('Repeat', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={hov_TABovl_bgImgRepeat}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('No-repeat', 'zolo-blocks'),
+                                                                                    label: __('No-repeat', 'zoloblocks'),
                                                                                     value: 'no-repeat',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat', 'zolo-blocks'),
+                                                                                    label: __('Repeat', 'zoloblocks'),
                                                                                     value: 'repeat',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat-x', 'zolo-blocks'),
+                                                                                    label: __('Repeat-x', 'zoloblocks'),
                                                                                     value: 'repeat-x',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat-y', 'zolo-blocks'),
+                                                                                    label: __('Repeat-y', 'zoloblocks'),
                                                                                     value: 'repeat-y',
                                                                                 },
                                                                             ]}
@@ -1817,30 +1817,30 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Size', 'zolo-blocks')}
+                                                                        label={__('Size', 'zoloblocks')}
                                                                         noResetBtn={true}
                                                                     >
                                                                         <SelectControl
                                                                             value={hov_TABovl_backgroundSize}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Auto', 'zolo-blocks'),
+                                                                                    label: __('Auto', 'zoloblocks'),
                                                                                     value: 'auto',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Cover', 'zolo-blocks'),
+                                                                                    label: __('Cover', 'zoloblocks'),
                                                                                     value: 'cover',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Contain', 'zolo-blocks'),
+                                                                                    label: __('Contain', 'zoloblocks'),
                                                                                     value: 'contain',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Custom', 'zolo-blocks'),
+                                                                                    label: __('Custom', 'zoloblocks'),
                                                                                     value: 'custom',
                                                                                 },
                                                                             ]}
@@ -1881,7 +1881,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Width', 'zolo-blocks')}
+                                                                                label={__('Width', 'zoloblocks')}
                                                                                 noResetBtn={true}
                                                                             >
                                                                                 <RangeControl
@@ -1908,53 +1908,53 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                 <>
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Position', 'zolo-blocks')}
+                                                                        label={__('Position', 'zoloblocks')}
                                                                     >
                                                                         <SelectControl
                                                                             value={hov_MOBovl_bgImgPos}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Center', 'zolo-blocks'),
+                                                                                    label: __('Center Center', 'zoloblocks'),
                                                                                     value: 'center center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Left', 'zolo-blocks'),
+                                                                                    label: __('Center Left', 'zoloblocks'),
                                                                                     value: 'center left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Center Right', 'zolo-blocks'),
+                                                                                    label: __('Center Right', 'zoloblocks'),
                                                                                     value: 'center right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Center', 'zolo-blocks'),
+                                                                                    label: __('Top Center', 'zoloblocks'),
                                                                                     value: 'top center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Left', 'zolo-blocks'),
+                                                                                    label: __('Top Left', 'zoloblocks'),
                                                                                     value: 'top left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Top Right', 'zolo-blocks'),
+                                                                                    label: __('Top Right', 'zoloblocks'),
                                                                                     value: 'top right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Center', 'zolo-blocks'),
+                                                                                    label: __('Bottom Center', 'zoloblocks'),
                                                                                     value: 'bottom center',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Left', 'zolo-blocks'),
+                                                                                    label: __('Bottom Left', 'zoloblocks'),
                                                                                     value: 'bottom left',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Bottom Right', 'zolo-blocks'),
+                                                                                    label: __('Bottom Right', 'zoloblocks'),
                                                                                     value: 'bottom right',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Custom', 'zolo-blocks'),
+                                                                                    label: __('Custom', 'zoloblocks'),
                                                                                     value: 'custom',
                                                                                 },
                                                                             ]}
@@ -1995,7 +1995,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zolo-blocks')}
+                                                                                label={__('X Position', 'zoloblocks')}
                                                                             >
                                                                                 <RangeControl
                                                                                     value={hov_MOBovl_bgImgcustomPosX}
@@ -2038,7 +2038,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zolo-blocks')}
+                                                                                label={__('Y Position', 'zoloblocks')}
                                                                             >
                                                                                 <RangeControl
                                                                                     value={hov_MOBovl_bgImgcustomPosY}
@@ -2059,19 +2059,19 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                     )}
 
                                                                     <SelectControl
-                                                                        label={__('Attachment', 'zolo-blocks')}
+                                                                        label={__('Attachment', 'zoloblocks')}
                                                                         value={hov_ovl_bgImgAttachment}
                                                                         options={[
                                                                             {
-                                                                                label: __('Default', 'zolo-blocks'),
+                                                                                label: __('Default', 'zoloblocks'),
                                                                                 value: '',
                                                                             },
                                                                             {
-                                                                                label: __('Scroll', 'zolo-blocks'),
+                                                                                label: __('Scroll', 'zoloblocks'),
                                                                                 value: 'scroll',
                                                                             },
                                                                             {
-                                                                                label: __('Fixed', 'zolo-blocks'),
+                                                                                label: __('Fixed', 'zoloblocks'),
                                                                                 value: 'fixed',
                                                                             },
                                                                         ]}
@@ -2096,29 +2096,29 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zolo-blocks')}
+                                                                        label={__('Repeat', 'zoloblocks')}
                                                                     >
                                                                         <SelectControl
                                                                             value={hov_MOBovl_bgImgRepeat}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('No-repeat', 'zolo-blocks'),
+                                                                                    label: __('No-repeat', 'zoloblocks'),
                                                                                     value: 'no-repeat',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat', 'zolo-blocks'),
+                                                                                    label: __('Repeat', 'zoloblocks'),
                                                                                     value: 'repeat',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat-x', 'zolo-blocks'),
+                                                                                    label: __('Repeat-x', 'zoloblocks'),
                                                                                     value: 'repeat-x',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Repeat-y', 'zolo-blocks'),
+                                                                                    label: __('Repeat-y', 'zoloblocks'),
                                                                                     value: 'repeat-y',
                                                                                 },
                                                                             ]}
@@ -2133,29 +2133,29 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                     <WithResDeviceBtn
                                                                         requiredProps={requiredProps}
-                                                                        label={__('Size', 'zolo-blocks')}
+                                                                        label={__('Size', 'zoloblocks')}
                                                                     >
                                                                         <SelectControl
                                                                             value={hov_MOBovl_backgroundSize}
                                                                             options={[
                                                                                 {
-                                                                                    label: __('Default', 'zolo-blocks'),
+                                                                                    label: __('Default', 'zoloblocks'),
                                                                                     value: '',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Auto', 'zolo-blocks'),
+                                                                                    label: __('Auto', 'zoloblocks'),
                                                                                     value: 'auto',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Cover', 'zolo-blocks'),
+                                                                                    label: __('Cover', 'zoloblocks'),
                                                                                     value: 'cover',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Contain', 'zolo-blocks'),
+                                                                                    label: __('Contain', 'zoloblocks'),
                                                                                     value: 'contain',
                                                                                 },
                                                                                 {
-                                                                                    label: __('Custom', 'zolo-blocks'),
+                                                                                    label: __('Custom', 'zoloblocks'),
                                                                                     value: 'custom',
                                                                                 },
                                                                             ]}
@@ -2196,7 +2196,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                                             <WithResDeviceBtn
                                                                                 requiredProps={requiredProps}
-                                                                                label={__('Width', 'zolo-blocks')}
+                                                                                label={__('Width', 'zoloblocks')}
                                                                             >
                                                                                 <RangeControl
                                                                                     value={hov_MOBovl_bgImgCustomSize}
@@ -2226,7 +2226,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                     {hov_overlayType === 'gradient' && (
                                         <GradientControl
-                                            label={__('Gradient Color', 'zolo-blocks')}
+                                            label={__('Gradient Color', 'zoloblocks')}
                                             value={hov_overlayGradient}
                                             onChange={(newVal) =>
                                                 setAttributes({

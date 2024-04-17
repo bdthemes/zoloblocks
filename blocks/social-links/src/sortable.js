@@ -13,7 +13,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
     return (
         <div className="sortable">
             <div className="zb-repeater-flex">
-                <div className="repeater-label">{__('Add a Profile', 'zolo-blocks')}</div>
+                <div className="repeater-label">{__('Add a Profile', 'zoloblocks')}</div>
                 <Button
                     onClick={() =>
                         setAttributes({
@@ -55,7 +55,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                 <SortableItem key={profile.id} id={profile.id}>
                                     <PanelBody title={profile.text || 'Title'} initialOpen={false}>
                                         <TextControl
-                                            label={__('Title', 'zolo-blocks')}
+                                            label={__('Title', 'zoloblocks')}
                                             value={profile.text}
                                             onChange={(v) => {
                                                 const newItems = [...deepCloneProfiles];
@@ -66,7 +66,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                             }}
                                         />
                                         <ZoloIconPicker
-                                            label={__('Select Icon', 'zolo-blocks')}
+                                            label={__('Select Icon', 'zoloblocks')}
                                             value={profile.icon}
                                             onChange={(value) => {
                                                 const newItems = [...deepCloneProfiles];
@@ -78,7 +78,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                         />
 
                                         <LinkControl
-                                            label={__('Link', 'zolo-blocks')}
+                                            label={__('Link', 'zoloblocks')}
                                             value={profile.link}
                                             onChange={(value) => {
                                                 const newItems = [...deepCloneProfiles];

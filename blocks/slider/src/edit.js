@@ -50,7 +50,7 @@ export default function Edit(props) {
 
     // preview image
     if (preview) {
-        return <img src={zoloParams.blocksPreview.slider} alt={__('Slider Preview', 'zolo-blocks')} />;
+        return <img src={zoloParams.blocksPreview.slider} alt={__('Slider Preview', 'zoloblocks')} />;
     }
 
     const blockProps = useBlockProps({
@@ -167,13 +167,13 @@ export default function Edit(props) {
                     border: 2px dashed #ccc;
                     padding: 10px;
                 }
-                
+
             `}
             </style>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <BlockControls>
                 <ToolbarGroup>
-                    <ToolbarButton title={__('Add Slide', 'zolo-blocks')} icon="plus" onClick={addNewSlide} />
+                    <ToolbarButton title={__('Add Slide', 'zoloblocks')} icon="plus" onClick={addNewSlide} />
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
