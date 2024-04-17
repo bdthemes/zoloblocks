@@ -25,6 +25,7 @@ export default function Edit(props) {
     buttonIcon,
     buttonText,
     showLabel,
+    labelText,
   } = attributes;
 
   const blockProps = useBlockProps({
@@ -47,7 +48,6 @@ export default function Edit(props) {
 
   const formPreventDefault = (e) => {
     e.preventDefault();
-    this.bind(e);
   };
 
   return (
@@ -73,7 +73,6 @@ export default function Edit(props) {
                 name="s"
                 placeholder={placeholder}
                 className="zolo-form-input"
-                required
               />
               {
                 showLabel && (
@@ -81,7 +80,7 @@ export default function Edit(props) {
                     htmlFor={uniqueId}
                     className="zolo-form-label"
                   >
-                    {__("Search", "zoloblocks")}
+                    {labelText}
                   </label>
                 )
               }

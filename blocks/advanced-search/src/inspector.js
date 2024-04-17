@@ -53,6 +53,11 @@ import {
   BUTTON_HOVER_BG_COLOR,
   BUTTON_BOX_SHADOW,
   BUTTON_HOVER_BOX_SHADOW,
+  INPUT_TYPO,
+  INPUT_BORDER,
+  INPUT_BORDER_RADIUS,
+  INPUT_PADDING,
+  INPUT_BG,
   ICON_SIZE,
   TITLE_MARGIN,
   DESC_MARGIN,
@@ -72,47 +77,27 @@ import {
 
 import {
   BUTTON_TYPOGRAPHY,
+  INPUT_TYPOGRAPHY,
   LABEL_TYPOGRAPHY,
 } from "./constants/typoPrefixConstant";
 
 function Inspector(props) {
   const { attributes, setAttributes } = props;
   const {
+    preset,
     resMode,
     showLabel,
-    showIcon,
-    showBtn,
-    showSecondaryBtn,
-    title,
-    titleTag,
+    labelText,
     labelColor,
-    description,
-    descriptionColor,
-    label,
-    Slabel,
-    link,
-    Slink,
-    iconType,
-    SiconType,
-    icon,
-    Sicon,
-    iconPosition,
-    SiconPosition,
     btnTextColor,
     btnTextHoverColor,
-    SbtnTextColor,
-    SHoverColor,
     labelBorderHoverColor,
-    SlabelBorderHoverColor,
-    preset,
-    reversePosition,
-    preview,
-    uniqueId,
-    parentClasses,
-    placeholder,
     buttonType,
     buttonIcon,
     buttonText,
+    inputColor,
+    placeholderColor,
+    placeholder,
   } = attributes;
 
   const requiredProps = {
@@ -158,10 +143,49 @@ function Inspector(props) {
                   })
                 }
               />
+
+              {buttonType == 'icon' && (
+                <ZoloIconPicker
+                  label={__("Select Icon", "zoloblocks")}
+                  value={buttonIcon}
+                  onChange={(value) => {
+                    setAttributes({
+                      buttonIcon: value,
+                    });
+                  }}
+                />
+              )}
               <ToggleControl
                 label={__("Show Label", "zoloblocks")}
                 checked={showLabel}
                 onChange={() => setAttributes({ showLabel: !showLabel })}
+              />
+              {showLabel && (
+                <TextControl
+                  label={__("Label Text", "zoloblocks")}
+                  value={labelText}
+                  onChange={(value) =>
+                    setAttributes({
+                      labelText: value,
+                    })
+                  }
+                />
+              )}
+              {buttonType === "text" && (
+                <TextControl
+                  label={__("Button Text", "zoloblocks")}
+                  value={buttonText}
+                  onChange={(value) =>
+                    setAttributes({
+                      buttonText: value,
+                    })
+                  }
+                />
+              )}
+              <TextControl
+                label={__("Placeholder Text", "zoloblocks")}
+                value={placeholder}
+                onChange={(value) => setAttributes({ placeholder: value })}
               />
             </ZoloPanelBody>
           </>
@@ -226,6 +250,50 @@ function Inspector(props) {
                 </ZoloPanelBody>
               </>
             )}
+            <ZoloPanelBody
+              title={__("Field", "zoloblocks")}
+              stylePanel={true}
+              panelProps={props}
+              firstOpen={showLabel ? false : true}
+            >
+              <ColorControl
+                label={__("Input Color", "zoloblocks")}
+                color={inputColor}
+                onChange={(color) => setAttributes({ inputColor: color })}
+              />
+              <ColorControl
+                label={__("Placeholder Color", "zoloblocks")}
+                color={placeholderColor}
+                onChange={(color) => setAttributes({ placeholderColor: color })}
+              />
+              <TypographyDropdown
+                label={__("Typography", "zoloblocks")}
+                typoPrefixConstant={INPUT_TYPOGRAPHY}
+                requiredProps={requiredProps}
+              />
+              <BorderControl
+                label={__("Border", "zoloblocks")}
+                controlName={INPUT_BORDER}
+                requiredProps={requiredProps}
+              />
+              <ResDimensionsControl
+                label={__("Border Radius", "zoloblocks")}
+                controlName={INPUT_BORDER_RADIUS}
+                requiredProps={requiredProps}
+                forBorderRadius={true}
+              />
+              <ResDimensionsControl
+                label={__("Padding", "zoloblocks")}
+                controlName={INPUT_PADDING}
+                requiredProps={requiredProps}
+                forBorderRadius={false}
+              />
+              <NormalBGControl
+                requiredProps={requiredProps}
+                controlName={INPUT_BG}
+                noMainBGImg={false}
+              />
+            </ZoloPanelBody>
             {/* {showIcon && (
               <>
                 <ZoloPanelBody

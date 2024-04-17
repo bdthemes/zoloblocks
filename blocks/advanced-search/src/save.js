@@ -21,6 +21,7 @@ const Save = ({ attributes }) => {
     buttonText,
     buttonIcon,
     showLabel,
+    labelText,
   } = attributes;
   return (
     <div
@@ -58,7 +59,7 @@ const Save = ({ attributes }) => {
                 htmlFor={uniqueId}
                 className="zolo-form-label"
               >
-                {__("Search", "zoloblocks")}
+               {labelText}
               </label>
             )
           }

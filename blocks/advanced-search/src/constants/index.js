@@ -119,8 +119,10 @@ export const BUTTON_HOVER_S_BOX_SHADOW = "hBoxShadowSecondary";
 
 export const PO_SWIDTH = "presetOSWidth";
 
-export const PT_BORDER = "presetTBorder";
-export const PT_BORDER_RADIUS = "presetTRadius";
+export const INPUT_BORDER = 'inputBorder'
+export const INPUT_BORDER_RADIUS = 'inputBorderRadius'
+export const INPUT_PADDING = 'inputPadding'
+export const INPUT_BG = 'inputBg'
 
 export const PTH_BORDER = "presetTHBorder";
 export const PTH_BORDER_RADIUS = "presetTHRadius";

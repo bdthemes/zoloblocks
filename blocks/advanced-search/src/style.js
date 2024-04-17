@@ -37,6 +37,11 @@ import {
   LABEL_BORDER_RADIUS,
   LABEL_PADDING,
   LABEL_BG,
+  INPUT_BORDER,
+  INPUT_BORDER_RADIUS,
+  INPUT_PADDING,
+  INPUT_BG,
+
   BUTTON_S_BOX_SHADOW,
   BUTTON_HOVER_S_BG_COLOR,
   BUTTON_HOVER_S_BOX_SHADOW,
@@ -45,6 +50,7 @@ import {
 import {
   BUTTON_TYPOGRAPHY,
   LABEL_TYPOGRAPHY,
+  INPUT_TYPOGRAPHY,
 } from "./constants/typoPrefixConstant";
 import { applyFilters } from "@wordpress/hooks";
 
@@ -56,10 +62,8 @@ export default function Style({ props }) {
     btnTextHoverColor,
     labelBorderHoverColor,
     labelColor,
-    descriptionColor,
-    SlabelBorderHoverColor,
-    SbtnTextColor,
-    SHoverColor,
+    inputColor,
+    placeholderColor,
   } = attributes;
 
   // title
@@ -69,6 +73,14 @@ export default function Style({ props }) {
     typoStylesMobile: labelMobTypo,
   } = generateTypographyStyles({
     prefixConstant: LABEL_TYPOGRAPHY,
+    attributes,
+  });
+  const {
+    typoStylesDesktop: inputDeskTypo,
+    typoStylesTab: inputTabTypo,
+    typoStylesMobile: inputMobTypo,
+  } = generateTypographyStyles({
+    prefixConstant: INPUT_TYPOGRAPHY,
     attributes,
   });
 
@@ -117,6 +129,15 @@ export default function Style({ props }) {
     attributes,
     noMainBGImg: false,
   });
+  const {
+    backgroundStylesDesktop: inputDeskBGStyle,
+    backgroundStylesTab: inputTabBGStyle,
+    backgroundStylesMobile: inputMobBGStyle,
+  } = generateNormalBGControlStyles({
+    controlName: INPUT_BG,
+    attributes,
+    noMainBGImg: false,
+  });
 
   // hover background
   const {
@@ -158,6 +179,15 @@ export default function Style({ props }) {
     attributes,
   });
 
+  const {
+    desktopBorderStyle:inputBorderStyles,
+    tabBorderStyle:inputBorderStylesTab,
+    mobBorderStyle:inputBorderStylesMob,
+  } = generateBorderStyle({
+    controlName: INPUT_BORDER,
+    attributes,
+  });
+
   // generate border radius
   const {
     dimensionStylesDesktop: borderRadiusDesktop,
@@ -174,6 +204,15 @@ export default function Style({ props }) {
     dimensionStylesMobile: labelBorderRadiusMob,
   } = generateDimensionStyle({
     controlName: LABEL_BORDER_RADIUS,
+    styleFor: "border-radius",
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: inputBorderRadiusDesktop,
+    dimensionStylesTab: inputBorderRadiusTab,
+    dimensionStylesMobile: inputBorderRadiusMob,
+  } = generateDimensionStyle({
+    controlName: INPUT_BORDER_RADIUS,
     styleFor: "border-radius",
     attributes,
   });
@@ -279,6 +318,16 @@ export default function Style({ props }) {
     attributes,
   });
 
+  const {
+    dimensionStylesDesktop: inputPaddingDesktop,
+    dimensionStylesTab: inputPaddingTab,
+    dimensionStylesMobile: inputPaddingMob,
+  } = generateDimensionStyle({
+    controlName: INPUT_PADDING,
+    styleFor: "padding",
+    attributes,
+  });
+
   // flex item
   const {
     desktopRangeStyle: flexGap,
@@ -294,9 +343,24 @@ export default function Style({ props }) {
    * All Style Combination
    */
   const desktopAllStyle = `
-        .wp-block-zolo-advanced-search.${uniqueId} {
-
-        }
+        .${uniqueId} .zolo-form-search-input .zolo-form-label{
+        ${labelColor ? `color: ${labelColor};` : ""}
+        ${labelDeskBGStyle}
+        ${labelBorderStyles}
+        ${labelBorderRadiusDesktop}
+        ${labelDeskTypo}
+      }
+      .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input{
+        ${inputColor ? `color: ${inputColor};` : ""}
+        ${inputDeskTypo}
+        ${inputBorderStyles}
+        ${inputBorderRadiusDesktop}
+        ${inputDeskBGStyle}
+        ${inputPaddingDesktop}
+      }
+      .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input::placeholder{
+        ${placeholderColor ? `color: ${placeholderColor};` : ""}
+      }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
         ${borderStyles}
         ${borderRadiusDesktop}
@@ -305,14 +369,7 @@ export default function Style({ props }) {
         ${normalBoxShadowStyle}
       }
 
-      .${uniqueId} .zolo-form-search-input .zolo-form-label{
-        ${labelColor ? `color: ${labelColor};` : ""}
-        ${labelDeskBGStyle}
-        ${labelBorderStyles}
-        ${labelBorderRadiusDesktop}
-        ${labelDeskTypo}
 
-      }
       .${uniqueId} .zolo-form-submit-btn:hover .zolo-form-btn{
         ${hoverDeskBGStyle}
         ${hoverBoxShadowStyle}
