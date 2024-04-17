@@ -21,13 +21,18 @@ $i = 0;
 $metaSeparator = !empty($settings['metaSeparator']) ? $settings['metaSeparator'] : '//';
 
 $wrapperId = $settings['zoloId'] ?? '';
+$showFeaturedImg = $settings['showfeatureimg'] ?? true;
 
 ?>
 
 <div class="<?php echo esc_attr($wrapper_class); ?>" <?php if (!empty($wrapperId)) { ?> id="<?php echo esc_attr($wrapperId); ?>" <?php } ?>>
     <?php foreach ($post_results['posts'] as $result) {
         $i++;
-        $featuredPostClass = $i === 1 ? 'featured-post' : '';
+        if ($i === 1 && $showFeaturedImg == 1) {
+            $featuredPostClass = 'featured-post';
+        } else {
+            $featuredPostClass = '';
+        }
 
         $result = (object)$result;
 
