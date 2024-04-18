@@ -28,6 +28,12 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
         'frontend-scripts' => false
     ],
+    'advanced-search' => [
+        'name'             => 'advanced-search',
+        'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/advanced-search/block.json',
+        'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
+        'frontend-scripts' => false
+    ],
     'image-gallery' => [
         'name'             => 'image-gallery',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/image-gallery/block.json',
@@ -50,7 +56,7 @@ return apply_filters('zolo_blocks_list_data', [
         'name'             => 'charts',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/charts/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
-        'frontend-scripts' => ['zolo-charts-frontend','zolo-block-editor-dependency']
+        'frontend-scripts' => ['zolo-charts-frontend', 'zolo-block-editor-dependency']
     ],
     'form' => [
         'name'             => 'form',
@@ -247,7 +253,7 @@ return apply_filters('zolo_blocks_list_data', [
         'frontend-styles'  => ['zolo-block-common-style'],
         'frontend-scripts' => false
     ],
-       'business-hour' => [
+    'business-hour' => [
         'name'             => 'business-hour',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/business-hour/block.json',
         'frontend-styles'  => ['zolo-block-common-style'],

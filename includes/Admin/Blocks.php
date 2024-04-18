@@ -37,6 +37,11 @@ return apply_filters(
             'status'     => true
         ],
         [
+            'name'       => 'zolo_advanced_search',
+            'categories' => ['others'],
+            'status'     => true
+        ],
+        [
             'name'       => 'zolo_brand_grid',
             'categories' => ['list'],
             'status'     => true,

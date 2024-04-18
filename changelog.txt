@@ -1,3 +1,21 @@
+## 1.0.0-RC8 [18th April 2024]
+
+### Added
+
+- Search block added
+- Separator Color controls added to Business hours block
+
+### Fixed
+
+- Height issue fixed to Charts block
+- Pie and Donut charts legend issue fixed to Charts block
+- Close Color issue fixed to Business hours block
+- Icon size issue fixed to Social links block
+- Column issue fixed to Review grid block
+- legend color issue fixed to charts block
+- Readmore Button icon color issue fixed to post carousel and post grid block
+- Readmore Button icon issue fixed to post grid block
+
 ## 1.0.0-RC7 [04th April 2024]
 
 ### Added
