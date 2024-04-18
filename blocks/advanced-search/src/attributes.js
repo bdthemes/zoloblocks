@@ -112,8 +112,9 @@ const attributes = {
   },
   showLabel: {
     type: "boolean",
-    default: true,
+    default: false,
   },
+
   labelText: {
     type: "string",
     default: "Search",
