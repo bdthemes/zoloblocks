@@ -159,7 +159,12 @@ const attributes = {
     dayColor: {
         type: 'string',
     },
-    CloseddayColor: { type: 'string' },
+    CloseddayColor: {
+         type: 'string' 
+        },
+    separatColor:{
+        type:'string'
+    },
     timeColor: {
         type: 'string',
     },

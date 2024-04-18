@@ -45,7 +45,7 @@ import { DAYS_TYPO, TIMES_TYPO, CLOSED_DAYS_TYPO, CLOSED_TIMES_TYPO } from './co
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, dayColor, CloseddayColor, timeColor, timeclosedColor } = attributes;
+    const { uniqueId, dayColor, CloseddayColor, timeColor, timeclosedColor,separatColor } = attributes;
 
     //item gap
     const {
@@ -279,7 +279,7 @@ const Style = ({ props }) => {
        ${timeColor && `color:${timeColor}`}
     }
     .wp-block-zolo-business-hour.${uniqueId} .zolo-biz-time-separator{
-        ${timeColor && `color:${timeColor}`}
+        ${separatColor && `color:${separatColor}`}
     }
 
     .wp-block-zolo-business-hour.${uniqueId} .zolo-business-closed-time{
