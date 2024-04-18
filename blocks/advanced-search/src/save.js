@@ -54,7 +54,7 @@ const Save = ({ attributes }) => {
             placeholder={placeholder}
             className="zolo-form-input"
           />
-          {showLabel && (
+          {preset == "zolo-search-2" && (
             <label htmlFor={uniqueId} className="zolo-form-label">
               {labelText}
             </label>
