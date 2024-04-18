@@ -144,4 +144,38 @@
             left: 0;
         }
     }
+
+    // style 3 css here 
+    &.style-3 {
+        .zolo-block-item {
+            --zolo-item-padding: 0;
+            padding: var(--zolo-desc-text-color);
+            overflow: hidden;
+        }
+        .zolo-block-icon-wrap {
+            --zolo-icon-margin: 0;
+            margin: var(--zolo-icon-margin);
+            background-color: var(--zoloblocks-brand-color);
+            width: 100%;
+            box-sizing: border-box;
+             img {
+                --zolo-icon-img-width: 100%;
+                width: var(--zolo-icon-img-width);
+                height: auto;
+                vertical-align: middle;
+            }
+        }
+        .zolo-block-body-content {
+            --zolo-content-padding: 30px;
+            padding: var(--zolo-content-padding);
+        }
+
+         .zolo__display-icon {
+            margin: auto;
+            padding: 100px;
+            svg {
+                fill: #fff;
+            }
+        }
+    }
 }
