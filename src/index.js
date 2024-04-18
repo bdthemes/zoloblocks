@@ -14,6 +14,7 @@ import '../blocks/advanced-button/src';
 import '../blocks/advanced-heading/src';
 import '../blocks/advanced-icon-box/src';
 import '../blocks/advanced-image/src';
+import '../blocks/advanced-search/src';
 import '../blocks/brand-child/src';
 import '../blocks/brand-child/src';
 import '../blocks/brand-grid/src';
