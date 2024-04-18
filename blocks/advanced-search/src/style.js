@@ -25,16 +25,14 @@ import {
   BUTTON_HOVER_BOX_SHADOW,
   BUTTON_PADDING,
   ICON_SIZE,
-
   LABEL_BORDER,
   LABEL_BORDER_RADIUS,
+  LABEL_PADDING,
   LABEL_BG,
-  
   INPUT_BORDER,
   INPUT_BORDER_RADIUS,
   INPUT_PADDING,
   INPUT_BG,
-
 } from "./constants";
 
 import {
@@ -74,11 +72,6 @@ export default function Style({ props }) {
     prefixConstant: INPUT_TYPOGRAPHY,
     attributes,
   });
-
-
-
-
-
 
   // generate Background
   const {
@@ -121,7 +114,6 @@ export default function Style({ props }) {
     noMainBGImg: false,
   });
 
-
   // generate border style
   const {
     desktopBorderStyle: borderStyles,
@@ -133,18 +125,18 @@ export default function Style({ props }) {
   });
 
   const {
-    desktopBorderStyle:labelBorderStyles,
-    tabBorderStyle:labelBorderStylesTab,
-    mobBorderStyle:labelBorderStylesMob,
+    desktopBorderStyle: labelBorderStyles,
+    tabBorderStyle: labelBorderStylesTab,
+    mobBorderStyle: labelBorderStylesMob,
   } = generateBorderStyle({
     controlName: LABEL_BORDER,
     attributes,
   });
 
   const {
-    desktopBorderStyle:inputBorderStyles,
-    tabBorderStyle:inputBorderStylesTab,
-    mobBorderStyle:inputBorderStylesMob,
+    desktopBorderStyle: inputBorderStyles,
+    tabBorderStyle: inputBorderStylesTab,
+    mobBorderStyle: inputBorderStylesMob,
   } = generateBorderStyle({
     controlName: INPUT_BORDER,
     attributes,
@@ -200,34 +192,35 @@ export default function Style({ props }) {
     attributes,
   });
 
-
-
-
   const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
     controlName: BUTTON_BOX_SHADOW,
     attributes,
   });
-
 
   const { boxShadowStyle: hoverBoxShadowStyle } = generateBoxShadowStyles({
     attributes,
     controlName: BUTTON_HOVER_BOX_SHADOW,
   });
 
-
-
-
-
   const {
-    dimensionStylesDesktop: paddingDesktop,
-    dimensionStylesTab: paddingTab,
-    dimensionStylesMobile: paddingMob,
+    dimensionStylesDesktop: btnPaddingDesktop,
+    dimensionStylesTab: btnPaddingTab,
+    dimensionStylesMobile: btnPaddingMob,
   } = generateDimensionStyle({
     controlName: BUTTON_PADDING,
     styleFor: "padding",
     attributes,
   });
 
+  const {
+    dimensionStylesDesktop: labelPaddingDesktop,
+    dimensionStylesTab: labelPaddingTab,
+    dimensionStylesMobile: labelPaddingMob,
+  } = generateDimensionStyle({
+    controlName: LABEL_PADDING,
+    styleFor: "padding",
+    attributes,
+  });
 
   const {
     dimensionStylesDesktop: inputPaddingDesktop,
@@ -239,8 +232,6 @@ export default function Style({ props }) {
     attributes,
   });
 
-
-
   /**
    * All Style Combination
    */
@@ -251,6 +242,7 @@ export default function Style({ props }) {
         ${labelBorderStyles}
         ${labelBorderRadiusDesktop}
         ${labelDeskTypo}
+        ${labelPaddingDesktop}
       }
       .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input{
         ${inputColor ? `color: ${inputColor};` : ""}
@@ -266,7 +258,7 @@ export default function Style({ props }) {
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
         ${borderStyles}
         ${borderRadiusDesktop}
-        ${paddingDesktop}
+        ${btnPaddingDesktop}
         ${normalDeskBGStyle}
         ${normalBoxShadowStyle}
       }
@@ -292,16 +284,51 @@ export default function Style({ props }) {
 
   	`;
   const tabletAllStyle = `
-        .wp-block-zolo-advanced-search.${uniqueId} .zolo-call-out__title {
-
-        }
-
+        .${uniqueId} .zolo-form-search-input .zolo-form-label{
+          ${labelTabTypo}
+        ${labelBorderStylesTab}
+        ${labelBorderRadiusTab}
+        ${labelPaddingTab}
+      }
+      .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input{
+        ${inputTabTypo}
+        ${inputBorderStylesTab}
+        ${inputBorderRadiusTab}
+        ${inputPaddingTab}
+      }
+      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
+        ${borderStylesTab}
+        ${borderRadiusTab}
+        ${btnPaddingTab}
+      }
+      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
+        ${iconSizeTab}
+        ${iconHSizeTab}
+      }
     `;
 
   const mobileAllStyle = `
-        .wp-block-zolo-advanced-search.${uniqueId} .zolo-call-out__title {
-
-        }
+         .${uniqueId} .zolo-form-search-input .zolo-form-label{
+          ${labelMobTypo}
+        ${labelBorderStylesMob}
+        ${labelBorderRadiusMob}
+        ${labelPaddingMob}
+      }
+      .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input{
+        ${inputMobTypo}
+        ${inputBorderStylesMob}
+        ${inputBorderRadiusMob}
+        ${inputPaddingMob}
+      }
+      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
+        ${borderStylesMob}
+        ${borderRadiusMob}
+        ${btnPaddingMob}
+      }
+      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
+        ${iconSizeMob}
+        ${iconHSizeMob}
+      }
     `;
 
   return (
