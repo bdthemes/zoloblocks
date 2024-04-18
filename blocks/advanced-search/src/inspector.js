@@ -99,7 +99,17 @@ function Inspector(props) {
               panelProps={props}
               firstOpen={true}
             >
-              <IconicBtnGroup
+              <SelectControl
+                label={__("Presets", "zoloblocks")}
+                value={preset}
+                options={applyFilters("zolo.advancedSearch.presets", PRESETS)}
+                onChange={(value) =>
+                  setAttributes({
+                    preset: value,
+                  })
+                }
+              />
+              {/* <IconicBtnGroup
                 label={__("Presets", "zoloblocks")}
                 value={preset}
                 onChange={(value) =>
@@ -108,7 +118,7 @@ function Inspector(props) {
                   })
                 }
                 options={applyFilters("zolo.advancedSearch.presets", PRESETS)}
-              />
+              /> */}
               <IconicBtnGroup
                 label={__("Button Type", "zoloblocks")}
                 value={buttonType}
