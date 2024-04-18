@@ -1,17 +1,17 @@
 .zolo-advanced-search {
   --search-form-label-gap: 10px;
   --search-form-label-color: #48484b;
-  --newsletter-input-padding: 15px 16px;
-  --newsletter-input-border-width: 1px;
-  --newsletter-input-border-color: #e7e7e7;
+  --search-input-padding: 15px 16px;
+  --search-input-border-width: 1px;
+  --search-input-border-color: #e7e7e7;
   --search-input-border-style: solid;
-  --newsletter-input-radius: 6px;
-  --newsletter-input-color: #5e5e60;
+  --search-input-radius: 6px;
+  --search-input-color: #5e5e60;
   --search-input-focus-color: #1c64f2;
-  --search-btn-padding: 15px 20px;
+  --search-btn-padding: 16px 20px;
   --search-btn-radius: 6px;
   --search-btn-color: #fff;
-  --search-form-item-gap: 25px;
+  --search-form-item-gap: 10px;
   --search-btn-icon-gap: 8px;
 }
 
@@ -30,27 +30,39 @@
   font-weight: 500;
 
 }
-
-.zolo-form-input {
-  padding: var(--newsletter-input-padding);
-  border-width: var(--newsletter-input-border-width);
-  border-color: var(--newsletter-input-border-color);
-  border-style: var(--search-input-border-style);
-  border-radius: var(--newsletter-input-radius);
-  outline: none;
-  font-size: 15px;
-  transition: all .3s ease;
-  color: var(--newsletter-input-color);
-  box-sizing: border-box;
-  background-color: transparent;
+.zolo-advanced-search-control {
+  .zolo-form-input {
+    padding: var(--search-input-padding);
+    border-width: var(--search-input-border-width);
+    border-color: var(--search-input-border-color);
+    border-style: var(--search-input-border-style);
+    border-radius: var(--search-input-radius);
+    outline: none;
+    font-size: 15px;
+    transition: all .3s ease;
+    color: var(--search-input-color);
+    box-sizing: border-box;
+    background-color: transparent;
+    min-height: unset;
+    box-shadow: unset;
+    line-height: 1;
+  }
+  
+  .zolo-form-input:focus {
+      border-color: var(--search-input-focus-color);
+      outline-style: solid;
+      outline-width: 1px;
+      outline-color: var(--search-input-focus-color);
+  }
+  .zolo__display-icon svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    fill: #fff;
+  }
+  
 }
 
-.zolo-form-input:focus {
-    border-color: var(--search-input-focus-color);
-    outline-style: solid;
-    outline-width: 1px;
-    outline-color: var(--search-input-focus-color);
-}
 
 .zolo-form-btn {
   display: flex;
@@ -68,10 +80,6 @@
   transition: all .3s ease;
 }
 
-.zolo__display-icon svg {
-  width: 20px;
-  height: 20px;
-}
 
 .zolo-form-btn:hover {
   background-color: #2667ff;
@@ -79,13 +87,9 @@
 
 .zolo-form-wrap {
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   gap: var(--search-form-item-gap);
   position: relative;
-}
-
-.zolo-form-input::placeholder {
-  color: transparent;
 }
 
 .zolo-advanced-search-control {
@@ -99,7 +103,7 @@
 
 /* search form style 2,3 */
 
-.zolo-search-1 .zolo-form-label,
+// .zolo-search-3 .zolo-form-label,
 .zolo-search-2 .zolo-form-label {
   position: absolute;
   transform: translateY(-50%);
@@ -108,11 +112,9 @@
   padding: 0 6px;
 }
 
-
-
 /* search form style 3 */
 
-.zolo-search-1 .zolo-form-label,
+// .zolo-search-3 .zolo-form-label,
 .zolo-search-2 .zolo-form-label {
   top: 50%;
   cursor: text;
@@ -122,40 +124,42 @@
 
 }
 
-.zolo-search-1 .zolo-form-input:focus + .zolo-form-label,
+// .zolo-search-3 .zolo-form-input:focus + .zolo-form-label,
 .zolo-search-2 .zolo-form-input:focus + .zolo-form-label {
   font-weight: 500;
   top: 0;
 }
 
-/* search form style 4 */
-
-.zolo-search-1 .zolo-form-wrap,
-.zolo-search-2 .zolo-form-wrap {
-  --search-form-item-gap: 10px;
-  flex-direction: row;
-  gap: var(--search-form-item-gap);
-}
-
-.zolo-search-1 .zolo-form-input {
-  --newsletter-input-padding: 7px;
-  padding: var(--newsletter-input-padding);
-}
-.zolo-search-2 .zolo-form-input {
-  --newsletter-input-padding: 7px;
-  padding: var(--newsletter-input-padding);
+// .zolo-search-3 .zolo-form-input::placeholder,
+.zolo-search-2 .zolo-form-input::placeholder {
+  color: transparent;
 }
 
 /* search form style 5 */
 
-.zolo-search-2 .zolo-form-submit-btn {
+// .zolo-search-2 .zolo-form-submit-btn,
+// .zolo-search-2 .zolo-form-submit-btn {
+//   position: absolute;
+//   right: 0;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
+
+// .zolo-search-4 .zolo-form-btn,
+// .zolo-search-2 .zolo-form-btn {
+//   --search-btn-padding: 10px 12px;
+//   padding: var(--search-btn-padding);
+//   margin: 6px;
+// }
+
+.zolo-search-button-style-2 .zolo-form-submit-btn {
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.zolo-search-2 .zolo-form-btn {
+.zolo-search-button-style-2 .zolo-form-btn {
   --search-btn-padding: 10px 12px;
   padding: var(--search-btn-padding);
   margin: 6px;

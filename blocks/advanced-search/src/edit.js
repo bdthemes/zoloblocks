@@ -58,7 +58,7 @@ export default function Edit(props) {
       <Style props={props} />
       <div {...blockProps}>
           <form
-            className="zolo-form-wrap"
+            className="zolo-form-wrap zolo-search-button-style-1"
             onSubmit={formPreventDefault}
             role="search"
             action={zoloParams.home_url}
