@@ -22,6 +22,7 @@ const Save = ({ attributes }) => {
     buttonIcon,
     showLabel,
     labelText,
+    btnLayoutType,
   } = attributes;
   return (
     <div
@@ -37,7 +38,7 @@ const Save = ({ attributes }) => {
       })}
     >
       <form
-        className="zolo-form-wrap zolo-search-button-style-1"
+        className={`zolo-form-wrap ${btnLayoutType}`}
         onSubmit={formPreventDefault}
         role="search"
         action={zoloParams.home_url}
@@ -53,16 +54,11 @@ const Save = ({ attributes }) => {
             placeholder={placeholder}
             className="zolo-form-input"
           />
-          {
-            showLabel && (
-              <label
-                htmlFor={uniqueId}
-                className="zolo-form-label"
-              >
-               {labelText}
-              </label>
-            )
-          }
+          {preset == "zolo-search-2" && (
+            <label htmlFor={uniqueId} className="zolo-form-label">
+              {labelText}
+            </label>
+          )}
         </div>
         <div className="zolo-advanced-search-control zolo-form-submit-btn">
           <button className="zolo-form-btn" type="submit">
