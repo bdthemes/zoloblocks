@@ -9,7 +9,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, preset, listProfiles, zoloId, iconToggle, DscToggle, titleToggle, linkHoverIcon } = attributes;
+    const { uniqueId, parentClasses, preset, listProfiles, zoloId, iconToggle, DscToggle, titleToggle, linkHoverIcon,globalIcon } = attributes;
 
     return (
         <div
@@ -20,6 +20,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+       
             {listProfiles &&
                 listProfiles.map((profile, index) => {
                     return (
@@ -35,7 +36,7 @@ const Save = ({ attributes }) => {
                                 <div className="zolo-list-icon-and-content-wrap">
                                     {iconToggle && preset !== 'zolo-list-style-1' && (
                                         <div className="zolo-list-icon">
-                                            <DisplayZoloIcon icon={profile.icon} />
+                                            {profile.icon ? <DisplayZoloIcon icon={profile.icon }/> : <DisplayZoloIcon icon={globalIcon}/>}   
                                         </div>
                                     )}
                                     {preset !== 'zolo-list-style-1' && (
@@ -57,7 +58,7 @@ const Save = ({ attributes }) => {
                                 <>
                                     {iconToggle && preset !== 'zolo-list-style-1' && (
                                         <div className="zolo-list-icon">
-                                            <DisplayZoloIcon icon={profile.icon} />
+                                            {profile.icon ? <DisplayZoloIcon icon={profile.icon }/> : <DisplayZoloIcon icon={globalIcon}/>} 
                                         </div>
                                     )}
                                     {preset !== 'zolo-list-style-1' && (

@@ -89,6 +89,7 @@ function Inspector(props) {
         linkHoverIcon,
         HoverIconColor,
         BorderHovColor,
+        globalIcon,
     } = attributes;
 
     const requiredProps = {
@@ -143,7 +144,7 @@ function Inspector(props) {
                 break;
         }
     };
-
+    console.log(globalIcon);
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -250,6 +251,16 @@ function Inspector(props) {
                                 max={100}
                                 min={1}
                             />
+                            {preset !== 'zolo-list-style-1' && (
+                                <ZoloIconPicker
+                                    label={__('Select Global Icon', 'zolo-blocks')}
+                                    value={globalIcon}
+                                    onChange={(v)=>setAttributes({
+                                                ...globalIcon,
+                                                globalIcon:v
+                                             })}    
+                                />
+                            )}
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Add List', 'zoloblocks')} panelProps={props}>
