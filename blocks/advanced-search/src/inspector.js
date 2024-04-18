@@ -15,7 +15,6 @@ import { applyFilters } from "@wordpress/hooks";
  */
 const {
   HeaderTabs,
-  ResAlignmentControl,
   ResRangeControl,
   ColorControl,
   BorderControl,
@@ -25,22 +24,14 @@ const {
   NormalBGControl,
   BoxShadowControl,
   ZoloIconPicker,
-  LinkControl,
   IconicBtnGroup,
   AdvancedOptions,
   ZoloPanelBody,
 } = window.zoloModule;
 
-import {
-  HEADING,
-  TEXT_ALIGN_OPTIONS,
-  ICON_STATUS,
-} from "../../../src/global/constants";
 
 import objAttributes from "./attributes";
 import {
-  ICON_POSITIONS,
-  BUTTON_ALIGNMENT,
   PRESETS,
   BUTTON_TYPES,
   BUTTON_BORDER,
@@ -50,30 +41,19 @@ import {
   BUTTON_HOVER_BG_COLOR,
   BUTTON_BOX_SHADOW,
   BUTTON_HOVER_BOX_SHADOW,
-  INPUT_TYPO,
   INPUT_BORDER,
   INPUT_BORDER_RADIUS,
   INPUT_PADDING,
   INPUT_BG,
   ICON_SIZE,
-  TITLE_MARGIN,
-  DESC_MARGIN,
-  FLEX_GAP,
-  ICON_TEXT_SPACING,
-  // secondary button
-  ICON_S_SIZE,
-  ICON_TEXT_S_SPACING,
+  BUTTON_LAYOUT_TYPES,
   LABEL_BORDER,
   LABEL_BORDER_RADIUS,
   LABEL_PADDING,
   LABEL_BG,
-  BUTTON_S_BOX_SHADOW,
-  BUTTON_HOVER_S_BG_COLOR,
-  BUTTON_HOVER_S_BOX_SHADOW,
 } from "./constants";
 
 import {
-  BUTTON_TYPOGRAPHY,
   INPUT_TYPOGRAPHY,
   LABEL_TYPOGRAPHY,
 } from "./constants/typoPrefixConstant";
@@ -83,7 +63,6 @@ function Inspector(props) {
   const {
     preset,
     resMode,
-    showLabel,
     labelText,
     labelColor,
     iconColor,
@@ -97,6 +76,7 @@ function Inspector(props) {
     inputColor,
     placeholderColor,
     placeholder,
+    btnLayoutType,
   } = attributes;
 
   const requiredProps = {
@@ -119,30 +99,39 @@ function Inspector(props) {
               panelProps={props}
               firstOpen={true}
             >
-              <SelectControl
+              <IconicBtnGroup
                 label={__("Presets", "zoloblocks")}
                 value={preset}
-                options={applyFilters("zolo.advancedSearch.presets", PRESETS)}
                 onChange={(value) =>
                   setAttributes({
                     preset: value,
                   })
                 }
+                options={applyFilters("zolo.advancedSearch.presets", PRESETS)}
               />
-              <SelectControl
+              <IconicBtnGroup
                 label={__("Button Type", "zoloblocks")}
                 value={buttonType}
-                options={applyFilters(
-                  "zolo.advancedSearch.buttonType",
-                  BUTTON_TYPES,
-                )}
                 onChange={(value) =>
                   setAttributes({
                     buttonType: value,
                   })
                 }
+                options={applyFilters(
+                  "zolo.advancedSearch.buttonType",
+                  BUTTON_TYPES,
+                )}
               />
-
+              <IconicBtnGroup
+                label={__("Button Style", "zoloblocks")}
+                value={btnLayoutType}
+                onChange={(value) =>
+                  setAttributes({
+                    btnLayoutType: value,
+                  })
+                }
+                options={BUTTON_LAYOUT_TYPES}
+              />
               {buttonType == "icon" && (
                 <ZoloIconPicker
                   label={__("Select Icon", "zoloblocks")}
@@ -154,12 +143,7 @@ function Inspector(props) {
                   }}
                 />
               )}
-              <ToggleControl
-                label={__("Show Label", "zoloblocks")}
-                checked={showLabel}
-                onChange={() => setAttributes({ showLabel: !showLabel })}
-              />
-              {showLabel && (
+              {preset === "zolo-search-2" && (
                 <TextControl
                   label={__("Label Text", "zoloblocks")}
                   value={labelText}
@@ -181,23 +165,25 @@ function Inspector(props) {
                   }
                 />
               )}
-              <TextControl
-                label={__("Placeholder Text", "zoloblocks")}
-                value={placeholder}
-                onChange={(value) => setAttributes({ placeholder: value })}
-              />
+              {preset === "zolo-search-1" && (
+                <TextControl
+                  label={__("Placeholder Text", "zoloblocks")}
+                  value={placeholder}
+                  onChange={(value) => setAttributes({ placeholder: value })}
+                />
+              )}
             </ZoloPanelBody>
           </>
         }
         styleTab={
           <>
-            {showLabel && (
+            {preset === "zolo-search-2" && (
               <>
                 <ZoloPanelBody
                   title={__("Label", "zoloblocks")}
                   stylePanel={true}
                   panelProps={props}
-                  firstOpen={preset === "" ? true : false}
+                  firstOpen={true}
                 >
                   <ColorControl
                     label={__("Color", "zoloblocks")}
@@ -253,18 +239,22 @@ function Inspector(props) {
               title={__("Field", "zoloblocks")}
               stylePanel={true}
               panelProps={props}
-              firstOpen={showLabel ? false : true}
+              firstOpen={preset === "zolo-search-1" ? true : false}
             >
               <ColorControl
                 label={__("Input Color", "zoloblocks")}
                 color={inputColor}
                 onChange={(color) => setAttributes({ inputColor: color })}
               />
-              <ColorControl
-                label={__("Placeholder Color", "zoloblocks")}
-                color={placeholderColor}
-                onChange={(color) => setAttributes({ placeholderColor: color })}
-              />
+              {preset === "zolo-search-1" && (
+                <ColorControl
+                  label={__("Placeholder Color", "zoloblocks")}
+                  color={placeholderColor}
+                  onChange={(color) =>
+                    setAttributes({ placeholderColor: color })
+                  }
+                />
+              )}
               <TypographyDropdown
                 label={__("Typography", "zoloblocks")}
                 typoPrefixConstant={INPUT_TYPOGRAPHY}
@@ -309,36 +299,6 @@ function Inspector(props) {
                   step={1}
                 />
               )}
-              {/* {iconType !== "iconOnly" && (
-                  <TypographyDropdown
-                    label={__("Typography", "zoloblocks")}
-                    typoPrefixConstant={BUTTON_TYPOGRAPHY}
-                    requiredProps={requiredProps}
-                    max={36}
-                  />
-                )}
-
-                {iconType !== "none" && (
-                  <>
-                    <ResRangeControl
-                      label={__("Icon Size", "zoloblocks")}
-                      controlName={ICON_SIZE}
-                      requiredProps={requiredProps}
-                      min={0}
-                      max={100}
-                      step={1}
-                    />
-                    <ResRangeControl
-                      label={__("Spacing", "zoloblocks")}
-                      controlName={ICON_TEXT_SPACING}
-                      requiredProps={requiredProps}
-                      min={0}
-                      max={100}
-                      step={1}
-                    />
-                  </>
-                )} */}
-
               <BorderControl
                 label={__("Border", "zoloblocks")}
                 controlName={BUTTON_BORDER}
@@ -403,8 +363,7 @@ function Inspector(props) {
                 }
                 hoverComponents={
                   <>
-                   {
-                    buttonType === "text" && (
+                    {buttonType === "text" && (
                       <ColorControl
                         label={__("Hover Color", "zoloblocks")}
                         color={btnTextHoverColor}
@@ -423,9 +382,7 @@ function Inspector(props) {
                           setAttributes({ iconHoverColor: color })
                         }
                       />
-                    )
-
-                   }
+                    )}
                     <NormalBGControl
                       requiredProps={requiredProps}
                       controlName={BUTTON_HOVER_BG_COLOR}

@@ -14,6 +14,10 @@ export const BUTTON_TYPES = [
   { label: __("Text", "zoloblocks"), value: "text" },
   { label: __("Icon", "zoloblocks"), value: "icon" },
 ];
+export const BUTTON_LAYOUT_TYPES = [
+  { label: __("Style 1", "zoloblocks"), value: "zolo-search-button-style-1" },
+  { label: __("Style 2", "zoloblocks"), value: "zolo-search-button-style-2" },
+];
 
 export const BUTTON_BG = "buttonBg";
 export const BUTTON_HOVER_BG_COLOR = "buttonHover";

@@ -3,7 +3,7 @@
     "title": "Advanced Search",
     "name": "zolo/advanced-search",
     "category": "zoloblocks",
-    "keywords": ["search", "ajax search", "zolo"],
+    "keywords": ["search", "advanced search", "ajax search", "zolo", "zoloblocks"],
     "description": "Advanced search block for ZoloBlocks",
     "apiVersion": 2,
     "textdomain": "zoloblocks",

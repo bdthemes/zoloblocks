@@ -87,7 +87,6 @@ const attributes = {
   ...generateBorderAttributies(INPUT_BORDER),
   ...generateDimensionAttributes(INPUT_BORDER_RADIUS),
 
-
   //Block specific Attributes
   preset: {
     type: "string",
@@ -147,6 +146,10 @@ const attributes = {
     type: "string",
     default: "",
   },
+  btnLayoutType:{
+    type: "string",
+    default: "zolo-search-button-style-1",
+  }
 };
 
 export default attributes;
