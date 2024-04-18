@@ -3,14 +3,11 @@
  */
 import { InspectorControls } from "@wordpress/block-editor";
 import {
-  PanelBody,
   SelectControl,
   TextControl,
-  TextareaControl,
   ToggleControl,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
-import { Fragment } from "@wordpress/element";
 import { applyFilters } from "@wordpress/hooks";
 
 /**
@@ -89,6 +86,8 @@ function Inspector(props) {
     showLabel,
     labelText,
     labelColor,
+    iconColor,
+    iconHoverColor,
     btnTextColor,
     btnTextHoverColor,
     labelBorderHoverColor,
@@ -144,7 +143,7 @@ function Inspector(props) {
                 }
               />
 
-              {buttonType == 'icon' && (
+              {buttonType == "icon" && (
                 <ZoloIconPicker
                   label={__("Select Icon", "zoloblocks")}
                   value={buttonIcon}
@@ -294,42 +293,22 @@ function Inspector(props) {
                 noMainBGImg={false}
               />
             </ZoloPanelBody>
-            {/* {showIcon && (
-              <>
-                <ZoloPanelBody
-                  title={__("Description", "zoloblocks")}
-                  stylePanel={true}
-                  panelProps={props}
-                >
-                  <ColorControl
-                    label={__("Color", "zoloblocks")}
-                    color={descriptionColor}
-                    onChange={(value) =>
-                      setAttributes({
-                        descriptionColor: value,
-                      })
-                    }
-                  />
-                  <TypographyDropdown
-                    label={__("Typography", "zoloblocks")}
-                    typoPrefixConstant={DESC_TYPO}
-                    requiredProps={requiredProps}
-                    max={36}
-                  />
-                  <ResDimensionsControl
-                    label={__("Margin", "zoloblocks")}
-                    controlName={DESC_MARGIN}
-                    requiredProps={requiredProps}
-                    forBorderRadius={false}
-                  />
-                </ZoloPanelBody>
-              </>
-            )} */}
+
             <ZoloPanelBody
               title={__("Button", "zoloblocks")}
               stylePanel={true}
               panelProps={props}
             >
+              {buttonType === "icon" && (
+                <ResRangeControl
+                  label={__("Icon Size", "zoloblocks")}
+                  controlName={ICON_SIZE}
+                  requiredProps={requiredProps}
+                  min={1}
+                  max={100}
+                  step={1}
+                />
+              )}
               {/* {iconType !== "iconOnly" && (
                   <TypographyDropdown
                     label={__("Typography", "zoloblocks")}
@@ -391,15 +370,26 @@ function Inspector(props) {
               <TabPanelControl
                 normalComponents={
                   <>
-                    <ColorControl
-                      label={__("Color", "zoloblocks")}
-                      color={btnTextColor}
-                      onChange={(value) =>
-                        setAttributes({
-                          btnTextColor: value,
-                        })
-                      }
-                    />
+                    {buttonType === "text" && (
+                      <ColorControl
+                        label={__("Color", "zoloblocks")}
+                        color={btnTextColor}
+                        onChange={(value) =>
+                          setAttributes({
+                            btnTextColor: value,
+                          })
+                        }
+                      />
+                    )}
+                    {buttonType === "icon" && (
+                      <ColorControl
+                        label={__("Color", "zoloblocks")}
+                        color={iconColor}
+                        onChange={(color) =>
+                          setAttributes({ iconColor: color })
+                        }
+                      />
+                    )}
                     <NormalBGControl
                       requiredProps={requiredProps}
                       controlName={BUTTON_BG}
@@ -413,15 +403,29 @@ function Inspector(props) {
                 }
                 hoverComponents={
                   <>
-                    <ColorControl
-                      label={__("Color", "zoloblocks")}
-                      color={btnTextHoverColor}
-                      onChange={(value) =>
-                        setAttributes({
-                          btnTextHoverColor: value,
-                        })
-                      }
-                    />
+                   {
+                    buttonType === "text" && (
+                      <ColorControl
+                        label={__("Hover Color", "zoloblocks")}
+                        color={btnTextHoverColor}
+                        onChange={(value) =>
+                          setAttributes({
+                            btnTextHoverColor: value,
+                          })
+                        }
+                      />
+                    )}
+                    {buttonType === "icon" && (
+                      <ColorControl
+                        label={__("Hover Color", "zoloblocks")}
+                        color={iconHoverColor}
+                        onChange={(color) =>
+                          setAttributes({ iconHoverColor: color })
+                        }
+                      />
+                    )
+
+                   }
                     <NormalBGControl
                       requiredProps={requiredProps}
                       controlName={BUTTON_HOVER_BG_COLOR}

@@ -4,7 +4,7 @@
 import { __ } from "@wordpress/i18n";
 
 // Block Prefix
-export const BLOCK_PREFIX = "advanced-button";
+export const BLOCK_PREFIX = "advanced-search";
 // Presets
 export const PRESETS = [
   { label: __("Preset 1", "zoloblocks"), value: "zolo-search-1" },
@@ -14,78 +14,6 @@ export const BUTTON_TYPES = [
   { label: __("Text", "zoloblocks"), value: "text" },
   { label: __("Icon", "zoloblocks"), value: "icon" },
 ];
-
-// icons position
-export const ICON_POSITIONS = [
-  {
-    label: "Left",
-    value: "left",
-    icon: (
-      <svg
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          x={11}
-          y={12}
-          width={11}
-          height="0.01"
-          rx="0.005"
-          stroke="#4D4D4D"
-          strokeWidth="1.5"
-        />
-        <rect
-          x={3}
-          y={10}
-          width={4}
-          height={4}
-          rx={2}
-          stroke="#4D4D4D"
-          strokeWidth="1.5"
-        />
-      </svg>
-    ),
-  },
-  {
-    label: "Right",
-    value: "right",
-    icon: (
-      <svg
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          x={3}
-          y={12}
-          width={11}
-          height="0.01"
-          rx="0.005"
-          stroke="#4D4D4D"
-          strokeWidth="1.5"
-        />
-        <rect
-          x={18}
-          y={10}
-          width={4}
-          height={4}
-          rx={2}
-          stroke="#4D4D4D"
-          strokeWidth="1.5"
-        />
-      </svg>
-    ),
-  },
-];
-
-/**
- * Button
- */
 
 export const BUTTON_BG = "buttonBg";
 export const BUTTON_HOVER_BG_COLOR = "buttonHover";
@@ -103,45 +31,23 @@ export const BUTTON_HOVER_BOX_SHADOW = "buttonHoverBoxShadow";
 export const ICON_SIZE = "iconSize";
 
 // search label
-export const ICON_S_SIZE = "iconSizeSecondary";
-export const ICON_TEXT_S_SPACING = "iconTextSecondary";
+
 export const LABEL_BORDER = 'labelBorder'
 export const LABEL_BORDER_RADIUS = 'labelBorderRadius'
 export const LABEL_PADDING = 'labelPadding'
 export const LABEL_BG = 'labelBg'
-export const BUTTON_S_BOX_SHADOW = "boxShadowSecondary";
-export const BUTTON_HOVER_S_BG_COLOR = "hBgColorSecondary";
-export const BUTTON_HOVER_S_BOX_SHADOW = "hBoxShadowSecondary";
 
 /**
  * Presets Styles
  */
 
-export const PO_SWIDTH = "presetOSWidth";
 
 export const INPUT_BORDER = 'inputBorder'
 export const INPUT_BORDER_RADIUS = 'inputBorderRadius'
 export const INPUT_PADDING = 'inputPadding'
 export const INPUT_BG = 'inputBg'
 
-export const PTH_BORDER = "presetTHBorder";
-export const PTH_BORDER_RADIUS = "presetTHRadius";
 
-export const PF_SWIDTH = "presetFSWidth";
 
-export const PFV_BORDER = "presetFVBorder";
-export const PFV_BORDER_RADIUS = "presetFVRadius";
 
-export const PS_BORDER = "presetSBorder";
-export const PS_BORDER_RADIUS = "presetSRadius";
 
-// CTA title
-export const TITLE_MARGIN = "titleMargin";
-
-// CTA description
-export const DESC_MARGIN = "descMargin";
-
-// flex gap
-export const FLEX_GAP = "flexGap";
-
-export const ICON_TEXT_SPACING = "iconTextSpacing";

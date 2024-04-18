@@ -7,7 +7,6 @@ import { __ } from "@wordpress/i18n";
  * Internal depencencies
  */
 const {
-  generateResAlignmentStyle,
   generateResRangeStyle,
   generateBorderStyle,
   generateDimensionStyle,
@@ -18,7 +17,6 @@ const {
 } = window.zoloModule;
 
 import {
-  BUTTON_ALIGNMENT,
   BUTTON_BORDER,
   BUTTON_BORDER_RADIUS,
   BUTTON_BG,
@@ -27,28 +25,19 @@ import {
   BUTTON_HOVER_BOX_SHADOW,
   BUTTON_PADDING,
   ICON_SIZE,
-  TITLE_MARGIN,
-  DESC_MARGIN,
-  FLEX_GAP,
-  ICON_TEXT_SPACING,
-  ICON_S_SIZE,
-  ICON_TEXT_S_SPACING,
+
   LABEL_BORDER,
   LABEL_BORDER_RADIUS,
-  LABEL_PADDING,
   LABEL_BG,
+  
   INPUT_BORDER,
   INPUT_BORDER_RADIUS,
   INPUT_PADDING,
   INPUT_BG,
 
-  BUTTON_S_BOX_SHADOW,
-  BUTTON_HOVER_S_BG_COLOR,
-  BUTTON_HOVER_S_BOX_SHADOW,
 } from "./constants";
 
 import {
-  BUTTON_TYPOGRAPHY,
   LABEL_TYPOGRAPHY,
   INPUT_TYPOGRAPHY,
 } from "./constants/typoPrefixConstant";
@@ -63,6 +52,8 @@ export default function Style({ props }) {
     labelBorderHoverColor,
     labelColor,
     inputColor,
+    iconColor,
+    iconHoverColor,
     placeholderColor,
   } = attributes;
 
@@ -85,29 +76,9 @@ export default function Style({ props }) {
   });
 
 
-  // description
 
 
-  const {
-    dimensionStylesDesktop: descDeskMargin,
-    dimensionStylesTab: descTabMargin,
-    dimensionStylesMobile: descMobMargin,
-  } = generateDimensionStyle({
-    controlName: DESC_MARGIN,
-    styleFor: "margin",
-    attributes,
-  });
 
-  // alignment
-  const {
-    desktopAlignStyle: buttonAlignmentDesktop,
-    tabAlignStyle: buttonAlignmentTab,
-    mobAlignStyle: buttonAlignmentMob,
-  } = generateResAlignmentStyle({
-    controlName: BUTTON_ALIGNMENT,
-    property: "text-align",
-    attributes,
-  });
 
   // generate Background
   const {
@@ -150,15 +121,6 @@ export default function Style({ props }) {
     noMainBGImg: false,
   });
 
-  const {
-    backgroundStylesDesktop: ShoverDeskBGStyle,
-    backgroundStylesTab: ShoverTabBGStyle,
-    backgroundStylesMobile: ShoverMobBGStyle,
-  } = generateNormalBGControlStyles({
-    controlName: BUTTON_HOVER_S_BG_COLOR,
-    attributes,
-    noMainBGImg: false,
-  });
 
   // generate border style
   const {
@@ -237,45 +199,9 @@ export default function Style({ props }) {
     property: "height",
     attributes,
   });
-  //Secondary Button
-  const {
-    desktopRangeStyle: SiconSize,
-    tabRangeStyle: SiconSizeTab,
-    mobRangeStyle: SiconSizeMob,
-  } = generateResRangeStyle({
-    controlName: ICON_S_SIZE,
-    property: "width",
-    attributes,
-  });
 
-  const {
-    desktopRangeStyle: SiconHSize,
-    tabRangeStyle: SiconHSizeTab,
-    mobRangeStyle: SiconHSizeMob,
-  } = generateResRangeStyle({
-    controlName: ICON_S_SIZE,
-    property: "height",
-    attributes,
-  });
 
-  const {
-    desktopRangeStyle: iconGap,
-    tabRangeStyle: iconGapTab,
-    mobRangeStyle: iconGapMob,
-  } = generateResRangeStyle({
-    controlName: ICON_TEXT_SPACING,
-    property: "gap",
-    attributes,
-  });
-  const {
-    desktopRangeStyle: SiconGap,
-    tabRangeStyle: SiconGapTab,
-    mobRangeStyle: SiconGapMob,
-  } = generateResRangeStyle({
-    controlName: ICON_TEXT_S_SPACING,
-    property: "gap",
-    attributes,
-  });
+
 
   const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
     controlName: BUTTON_BOX_SHADOW,
@@ -289,14 +215,7 @@ export default function Style({ props }) {
   });
 
 
-  const {
-    typoStylesDesktop: btnTypoDesktop,
-    typoStylesTab: btnTypoTab,
-    typoStylesMobile: btnTypoMob,
-  } = generateTypographyStyles({
-    prefixConstant: BUTTON_TYPOGRAPHY,
-    attributes,
-  });
+
 
 
   const {
@@ -308,15 +227,7 @@ export default function Style({ props }) {
     styleFor: "padding",
     attributes,
   });
-  const {
-    dimensionStylesDesktop: SpaddingDesktop,
-    dimensionStylesTab: SpaddingTab,
-    dimensionStylesMobile: SpaddingMob,
-  } = generateDimensionStyle({
-    controlName: LABEL_PADDING,
-    styleFor: "padding",
-    attributes,
-  });
+
 
   const {
     dimensionStylesDesktop: inputPaddingDesktop,
@@ -328,16 +239,7 @@ export default function Style({ props }) {
     attributes,
   });
 
-  // flex item
-  const {
-    desktopRangeStyle: flexGap,
-    tabRangeStyle: flexGapTab,
-    mobRangeStyle: flexGapMob,
-  } = generateResRangeStyle({
-    controlName: FLEX_GAP,
-    property: "gap",
-    attributes,
-  });
+
 
   /**
    * All Style Combination
@@ -376,6 +278,11 @@ export default function Style({ props }) {
       }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
         ${btnTextColor ? `color: ${btnTextColor};` : ""}
+      }
+      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
+        ${iconColor ? `fill: ${iconColor};` : ""}
+        ${iconSize}
+        ${iconHSize}
       }
       .${uniqueId} .zolo-form-submit-btn:hover .zolo-form-btn{
         ${btnTextHoverColor ? `color: ${btnTextHoverColor};` : ""}
