@@ -16,6 +16,7 @@ class PostGrid extends PostBlock {
         'excerptWords'     => 15,
         'showReadMore'     => false,
         'readMoreBtnText'  => 'Read More',
+        'showReadmoreIcon' => false,
     ];
 
     public function get_default_attributes() {
@@ -29,7 +30,7 @@ class PostGrid extends PostBlock {
         $attributes = wp_parse_args($attributes, $this->get_default_attributes());
 
         $postQuery = $attributes['postQuery'] ?? [];
-        
+
         $post_results = apply_filters('zolo_post_grid_results', GetPostsV1::zolo_posts_query($postQuery));
 
         ob_start();
