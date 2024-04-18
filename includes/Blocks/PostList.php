@@ -16,15 +16,14 @@ class PostList extends PostBlock {
         'excerptindicator' => '...',
         'excerptWords'     => 15,
         'showCount'        => false,
+        'showFeatureimg'   => true,
     ];
 
-    public function get_default_attributes()
-    {
+    public function get_default_attributes() {
         return array_merge(parent::$default_attributes, $this->default_block_attributes);
     }
 
-    public function render($attributes)
-    {
+    public function render($attributes) {
 
         // var_dump($attributes);
 
