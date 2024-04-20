@@ -86,8 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
           offsetY: legendObject.offsetY,
           offsetX: legendObject.offsetX,
           labels: {
-              colors: legendObject.labels.colors,
-              useSeriesColors: legendObject.labels.useSeriesColors,
+              colors: legendObject.labels?.colors,
+              useSeriesColors: legendObject.labels?.useSeriesColors,
           },
         },
         responsive: [
