@@ -42,6 +42,8 @@ export default function Edit(props) {
         ribbonPosition,
         iconBoxDirection,
     } = attributes;
+
+    const newIconType = preset === 'style-3' ? 'image' : iconType;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
     const blockProps = useBlockProps({
@@ -61,7 +63,7 @@ export default function Edit(props) {
                 {iconTypeImage && (
                     <Fragment>
                         <ToolbarGroup>
-                            {iconType === 'image' && (
+                            {newIconType === 'image' && (
                                 <MediaUpload
                                     onSelect={(media) => {
                                         setAttributes({
@@ -93,7 +95,7 @@ export default function Edit(props) {
                     )}
                     {showMainIcon && (
                         <div className={`zolo-block-icon-wrap`}>
-                            {iconType == 'icon' ? (
+                            {newIconType == 'icon' ? (
                                 <DisplayZoloIcon icon={mainIcon} />
                             ) : iconTypeImage ? (
                                 <>

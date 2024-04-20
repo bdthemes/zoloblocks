@@ -9,9 +9,9 @@ import { Dashicon } from '@wordpress/components';
 export const BLOCK_PREFIX = 'advanced-icon-box';
 // Presets
 export const PRESETS = [
-    { label: __('Preset 1', 'zoloblocks'), value: 'style-1' },
-    { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
-    { label: __('Preset 3', 'zoloblocks'), value: 'style-3' },
+    { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
+    { label: __('Style 2', 'zoloblocks'), value: 'style-2' },
+    { label: __('Style 3', 'zoloblocks'), value: 'style-3' },
 ];
 
 export const PRESETS_ALIGNMENT = [
