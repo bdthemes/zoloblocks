@@ -58,7 +58,6 @@
         img {
             width: var(--zolo-icon-img-width);
             height: auto;
-                box-sizing: border-box;
         }
     }
 
@@ -156,6 +155,8 @@
         .zolo-block-icon-wrap {
             --zolo-icon-margin: 0;
             margin: var(--zolo-icon-margin);
+            background-color: var(--zoloblocks-brand-color);
+            width: 100%;
             box-sizing: border-box;
              img {
                 --zolo-icon-img-width: 100%;
@@ -167,6 +168,14 @@
         .zolo-block-body-content {
             --zolo-content-padding: 30px;
             padding: var(--zolo-content-padding);
+        }
+
+         .zolo__display-icon {
+            margin: auto;
+            padding: 100px;
+            svg {
+                fill: #fff;
+            }
         }
     }
 }

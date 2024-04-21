@@ -74,6 +74,7 @@ export const ICON_HOVER_BOX_SHADOW = 'iconHoverBoxShadow';
 export const ICON_BORDER_RADIUS = 'iconBorderRadius';
 export const ICON_SIZE = 'iconSize';
 export const ICON_TEXT_SPACING = 'iconTextSpacing';
+export const ICON_WRAPPER_BG_COLOR = 'iconWrapperBgColor';
 
 // Button
 export const BUTTON_BG_COLOR = 'buttonBgColor';
