@@ -133,7 +133,6 @@ function Inspector(props) {
         objAttributes,
     };
 
-    const newIconType = preset == "style-3" ? "image" : iconType;
 
 
     return (
@@ -257,10 +256,9 @@ function Inspector(props) {
               >
                 {showMainIcon && (
                   <>
-                    {preset !== "style-3" && (
                       <IconicBtnGroup
                         label={__("Icon Type", "zoloblocks")}
-                        value={newIconType}
+                        value={iconType}
                         onChange={(value) =>
                           setAttributes({
                             iconType: value,
@@ -268,8 +266,7 @@ function Inspector(props) {
                         }
                         options={ICON_BOX_OPTIONS}
                       />
-                    )}
-                    {newIconType === "icon" && (
+                    {iconType === "icon" && (
                       <Fragment>
                         <ZoloIconPicker
                           label={__("Select Icon", "zoloblocks")}
@@ -283,7 +280,7 @@ function Inspector(props) {
                       </Fragment>
                     )}
 
-                    {newIconType === "image" && (
+                    {iconType === "image" && (
                       <>
                         <BaseControl label={__("Image", "zoloblocks")}>
                           {iconTypeImage ? (
@@ -585,11 +582,11 @@ function Inspector(props) {
                 />
               </ZoloPanelBody>
               <ZoloPanelBody
-                title={ preset === "style-3" ? __('Image', 'zoloblocks') : __('Icon', 'zoloblocks')}
+                title={ iconType === "image" ? __('Image', 'zoloblocks') : __('Icon', 'zoloblocks')}
                 panelProps={props}
                 stylePanel={true}
               >
-                {newIconType === "image" && (
+                {iconType === "image" && (
                   <>
                     <ResRangeControl
                       label={__("Image Size", "zoloblocks")}
@@ -623,7 +620,7 @@ function Inspector(props) {
                     />
                   </>
                 )}
-                {newIconType == "icon" && (
+                {iconType == "icon" && (
                   <>
                     {/* {preset === "style-3" && (
                       <NormalBGControl
@@ -686,7 +683,7 @@ function Inspector(props) {
                   controlName={ICON_MARGIN}
                   requiredProps={requiredProps}
                 />
-                {newIconType == "icon" && (
+                {iconType == "icon" && (
                   <TabPanelControl
                     normalComponents={
                       <>
