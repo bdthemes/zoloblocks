@@ -227,6 +227,9 @@ const attributes = {
     imageHoverBorderColor: {
         type: 'string',
     },
+    backdropFilterBlur:{
+        type: 'string',
+    }
 };
 
 export default attributes;
