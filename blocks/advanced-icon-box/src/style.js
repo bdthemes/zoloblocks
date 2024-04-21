@@ -60,6 +60,7 @@ import {
   RIBBON_BORDER,
   RIBBON_RADIUS,
   RIBBON_BG,
+  ICON_WRAPPER_BG_COLOR,
 } from "./constants";
 
 import { TITLE_TYPOGRAPHY, DESCRIPTION_TYPOGRAPHY, BUTTON_TYPOGRAPHY, RIBBON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -435,6 +436,16 @@ export default function Style({ props }) {
         attributes,
         noMainBGImg: true,
     });
+
+    const {
+        backgroundStylesDesktop: iconWrapperBgColorDesk,
+        backgroundStylesTab: iconWrapperBgColorTab,
+        backgroundStylesMobile: iconWrapperBgColorMob,
+    } = generateNormalBGControlStyles({
+        controlName: ICON_WRAPPER_BG_COLOR,
+        attributes,
+        noMainBGImg: true,
+    });
     // button background hover color
     const {
         backgroundStylesDesktop: buttonBGHoverDeskStyle,
@@ -538,9 +549,14 @@ export default function Style({ props }) {
            ${preset !== "style-3" ? itemPaddingDesk : ""}
             ${itemMarginDesk}
         }
+        .${uniqueId}.zolo-block-advanced-icon-box.style-3 .zolo-block-icon-wrap{
+            ${iconWrapperBgColorDesk}
+        }
+
         .${uniqueId}.zolo-block-advanced-icon-box.style-3 .zolo-block-body-content{
            ${preset === "style-3" ? itemPaddingDesk : ""}
         }
+
         .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-item:hover {
             ${itemHBoxShadow}
             ${itemHBgDesk}

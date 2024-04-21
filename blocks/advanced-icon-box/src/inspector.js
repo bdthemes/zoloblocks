@@ -76,6 +76,7 @@ import {
   RIBBON_BG,
   RIBBON_POSITIONS,
   PRESETS_ALIGNMENT,
+  ICON_WRAPPER_BG_COLOR,
 } from "./constants";
 
 
@@ -182,10 +183,7 @@ function Inspector(props) {
                   onChange={() => setAttributes({ showRibbon: !showRibbon })}
                 />
                 <ToggleControl
-                  label={
-                    __("Show ", "zoloblocks") +
-                    (preset === "style-3" ? "Image" : "Icon")
-                  }
+                  label={__("Show Icon", "zoloblocks")}
                   checked={showMainIcon}
                   onChange={() =>
                     setAttributes({
@@ -256,16 +254,16 @@ function Inspector(props) {
               >
                 {showMainIcon && (
                   <>
-                      <IconicBtnGroup
-                        label={__("Icon Type", "zoloblocks")}
-                        value={iconType}
-                        onChange={(value) =>
-                          setAttributes({
-                            iconType: value,
-                          })
-                        }
-                        options={ICON_BOX_OPTIONS}
-                      />
+                    <IconicBtnGroup
+                      label={__("Icon Type", "zoloblocks")}
+                      value={iconType}
+                      onChange={(value) =>
+                        setAttributes({
+                          iconType: value,
+                        })
+                      }
+                      options={ICON_BOX_OPTIONS}
+                    />
                     {iconType === "icon" && (
                       <Fragment>
                         <ZoloIconPicker
@@ -582,7 +580,11 @@ function Inspector(props) {
                 />
               </ZoloPanelBody>
               <ZoloPanelBody
-                title={ iconType === "image" ? __('Image', 'zoloblocks') : __('Icon', 'zoloblocks')}
+                title={
+                  iconType === "image"
+                    ? __("Image", "zoloblocks")
+                    : __("Icon", "zoloblocks")
+                }
                 panelProps={props}
                 stylePanel={true}
               >
@@ -595,7 +597,7 @@ function Inspector(props) {
                       min={0}
                       max={500}
                     />
-                    {(preset == "style-2") && (
+                    {preset == "style-2" && (
                       <IconicBtnGroup
                         label={__("Image Alignment", "zoloblocks")}
                         value={iconAlignment}
@@ -622,13 +624,13 @@ function Inspector(props) {
                 )}
                 {iconType == "icon" && (
                   <>
-                    {/* {preset === "style-3" && (
+                    {preset === "style-3" && (
                       <NormalBGControl
                         requiredProps={requiredProps}
                         controlName={ICON_WRAPPER_BG_COLOR}
                         noMainBGImg={true}
                       />
-                    )} */}
+                    )}
                     <ResRangeControl
                       label={__("Icon Size", "zoloblocks")}
                       controlName={ICON_SIZE}
@@ -637,7 +639,7 @@ function Inspector(props) {
                       max={100}
                       step={1}
                     />
-                    {(preset == "style-2" || preset == "style-3") && (
+                    {preset == "style-2" && (
                       <IconicBtnGroup
                         label={__("Icon Alignment", "zoloblocks")}
                         value={iconAlignment}
