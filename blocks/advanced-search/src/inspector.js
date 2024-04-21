@@ -27,6 +27,7 @@ const {
   IconicBtnGroup,
   AdvancedOptions,
   ZoloPanelBody,
+  labelTextHoverColor,
 } = window.zoloModule;
 
 
@@ -51,6 +52,7 @@ import {
   LABEL_BORDER_RADIUS,
   LABEL_PADDING,
   LABEL_BG,
+  LABEL_HOVER_BG_COLOR,
 } from "./constants";
 
 import {
@@ -70,6 +72,7 @@ function Inspector(props) {
     btnTextColor,
     btnTextHoverColor,
     labelBorderHoverColor,
+    btnBorderHoverColor,
     buttonType,
     buttonIcon,
     buttonText,
@@ -195,20 +198,6 @@ function Inspector(props) {
                   panelProps={props}
                   firstOpen={true}
                 >
-                  <ColorControl
-                    label={__("Color", "zoloblocks")}
-                    color={labelColor}
-                    onChange={(value) =>
-                      setAttributes({
-                        labelColor: value,
-                      })
-                    }
-                  />
-                  <NormalBGControl
-                    requiredProps={requiredProps}
-                    controlName={LABEL_BG}
-                    noMainBGImg={false}
-                  />
                   <BorderControl
                     label={__("Border", "zoloblocks")}
                     controlName={LABEL_BORDER}
@@ -241,6 +230,48 @@ function Inspector(props) {
                     label={__("Typography", "zoloblocks")}
                     typoPrefixConstant={LABEL_TYPOGRAPHY}
                     requiredProps={requiredProps}
+                  />
+                  <TabPanelControl
+                    normalComponents={
+                      <>
+                        <ColorControl
+                          label={__("Color", "zoloblocks")}
+                          color={labelColor}
+                          onChange={(value) =>
+                            setAttributes({
+                              labelColor: value,
+                            })
+                          }
+                        />
+                        <NormalBGControl
+                          requiredProps={requiredProps}
+                          controlName={LABEL_BG}
+                          noMainBGImg={false}
+                        />
+                      </>
+                    }
+                    hoverComponents={
+                      <>
+                        {buttonType === "text" && (
+                          <>
+                          <ColorControl
+                            label={__("Hover Color", "zoloblocks")}
+                            color={labelTextHoverColor}
+                            onChange={(value) =>
+                              setAttributes({
+                                labelTextHoverColor: value,
+                              })
+                            }
+                          />
+                          <NormalBGControl
+                            requiredProps={requiredProps}
+                            controlName={LABEL_HOVER_BG_COLOR}
+                            noMainBGImg={false}
+                          />
+                    </>
+                        )}
+                      </>
+                    }
                   />
                 </ZoloPanelBody>
               </>
@@ -316,10 +347,10 @@ function Inspector(props) {
                 hoverControl={
                   <ColorControl
                     label={__("Border Color", "zoloblocks")}
-                    color={labelBorderHoverColor}
+                    color={btnBorderHoverColor}
                     onChange={(value) =>
                       setAttributes({
-                        labelBorderHoverColor: value,
+                        btnBorderHoverColor: value,
                       })
                     }
                   />
