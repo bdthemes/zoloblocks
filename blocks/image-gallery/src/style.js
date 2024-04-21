@@ -61,7 +61,15 @@ import { applyFilters } from '@wordpress/hooks';
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
 
-    const { uniqueId, headingColor, zoomIconColor, zoomIconHoverColor, zoomIconHoverBorderColor, imageHoverBorderColor } = attributes;
+    const {
+      uniqueId,
+      headingColor,
+      zoomIconColor,
+      zoomIconHoverColor,
+      zoomIconHoverBorderColor,
+      imageHoverBorderColor,
+      backdropFilterBlur,
+    } = attributes;
 
     // column count
     const {
@@ -431,6 +439,7 @@ export default function Style({ props }) {
 
         .${uniqueId}.zolo-image-gallery .zolo-image-wrap::before{
             ${overlayDeskBGStyle}
+            ${backdropFilterBlur ? `backdrop-filter: blur(${backdropFilterBlur}px);` : ''}
         }
 
 		.${uniqueId} .zolo-title {
