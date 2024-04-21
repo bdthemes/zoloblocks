@@ -144,7 +144,6 @@ function Inspector(props) {
                 break;
         }
     };
-    console.log(globalIcon);
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -258,7 +257,7 @@ function Inspector(props) {
                                     onChange={(v)=>setAttributes({
                                                 ...globalIcon,
                                                 globalIcon:v
-                                             })}    
+                                             })}
                                 />
                             )}
                         </ZoloPanelBody>
