@@ -335,6 +335,7 @@ const Inspector = (props) => {
                                 label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={TITLE_TYPOGRAPHY}
                                 requiredProps={requiredProps}
+                                max={200}
                             />
                             {!enableTitleLink && (
                                 <>
@@ -470,7 +471,7 @@ const Inspector = (props) => {
                                     label="Typography"
                                     typoPrefixConstant={SUBTITLE_TYPOGRAPHY}
                                     requiredProps={requiredProps}
-                                    max={64}
+                                    max={100}
                                 />
 
                                 <ColorControl
@@ -570,11 +571,12 @@ const Inspector = (props) => {
                         )}
 
                         {showTransparentTitle && (
-                            <ZoloPanelBody title={__('Advanced Heading', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody title={__('Transparent Heading', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label="Typography"
                                     typoPrefixConstant={TRANSPARENT_TYPOGRAPHY}
                                     requiredProps={requiredProps}
+                                    max={300}
                                 />
 
                                 <ColorControl

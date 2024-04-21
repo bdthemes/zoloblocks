@@ -19,7 +19,6 @@ function RenderView({ attributes, postResults }) {
         metaSeparator,
     } = attributes;
 
-    console.log(showfeatureimg);
 
     return [
         postResults.length > 0 &&
