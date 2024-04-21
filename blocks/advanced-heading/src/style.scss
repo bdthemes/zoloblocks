@@ -1,7 +1,7 @@
 
 .wp-block-zolo-advanced-heading {
-    --zolo-subtitle-color: #454649;
-    --zolo-subtitle-margin: 0 0 10px;
+    --zolo-subtitle-color: #262729;
+    --zolo-subtitle-margin: 0 0 8px;
     --zolo-main-title-color: #202224;
     --zolo-ah-title-color: #202224;
     --zolo-ah-title-margin: 0;
@@ -14,14 +14,14 @@
 
     .zolo-ah-subtitle {
         margin: var(--zolo-subtitle-margin);
-        font-size: 12px;
+        font-size: 16px;
         color: var(--zolo-subtitle-color);
         font-weight: 500;
         text-transform: capitalize;
-        border: 1px solid rgba(194, 194, 194, 0.612);
-        padding: 10px 12px;
+        // border: 1px solid rgba(194, 194, 194, 0.612);
+        // padding: 10px 12px;
         display: inline-block;
-        border-radius: 6px;
+        // border-radius: 6px;
     }
 
     .zolo-transparent-heading-wrap {
