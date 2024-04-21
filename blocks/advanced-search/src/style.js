@@ -29,6 +29,7 @@ import {
   LABEL_BORDER_RADIUS,
   LABEL_PADDING,
   LABEL_BG,
+  LABEL_HOVER_BG_COLOR,
   INPUT_BORDER,
   INPUT_BORDER_RADIUS,
   INPUT_PADDING,
@@ -47,7 +48,9 @@ export default function Style({ props }) {
     uniqueId,
     btnTextColor,
     btnTextHoverColor,
+    labelTextHoverColor,
     labelBorderHoverColor,
+    btnBorderHoverColor,
     labelColor,
     inputColor,
     iconColor,
@@ -110,6 +113,15 @@ export default function Style({ props }) {
     backgroundStylesMobile: hoverMobBGStyle,
   } = generateNormalBGControlStyles({
     controlName: BUTTON_HOVER_BG_COLOR,
+    attributes,
+    noMainBGImg: false,
+  });
+  const {
+    backgroundStylesDesktop: labelHoverDeskBGStyle,
+    backgroundStylesTab: labelHoverTabBGStyle,
+    backgroundStylesMobile: labelHoverMobBGStyle,
+  } = generateNormalBGControlStyles({
+    controlName: LABEL_HOVER_BG_COLOR,
     attributes,
     noMainBGImg: false,
   });
@@ -231,7 +243,6 @@ export default function Style({ props }) {
     styleFor: "padding",
     attributes,
   });
-
   /**
    * All Style Combination
    */
@@ -243,6 +254,12 @@ export default function Style({ props }) {
         ${labelBorderRadiusDesktop}
         ${labelDeskTypo}
         ${labelPaddingDesktop}
+      }
+        .${uniqueId} .zolo-form-search-input:hover .zolo-form-label{
+        ${labelBorderHoverColor ? `border-color: ${labelBorderHoverColor};` : ""}
+        ${labelTextHoverColor ? `color: ${labelTextHoverColor};` : ""}
+        ${labelHoverDeskBGStyle}
+
       }
       .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input{
         ${inputColor ? `color: ${inputColor};` : ""}
@@ -276,8 +293,14 @@ export default function Style({ props }) {
         ${iconSize}
         ${iconHSize}
       }
+
+      .${uniqueId} .zolo-form-submit-btn:hover .zolo-form-btn svg{
+       ${iconHoverColor ? `fill: ${iconHoverColor};` : ""}
+      }
+
       .${uniqueId} .zolo-form-submit-btn:hover .zolo-form-btn{
         ${btnTextHoverColor ? `color: ${btnTextHoverColor};` : ""}
+        ${btnBorderHoverColor ? `border-color: ${btnBorderHoverColor};` : ""}
       }
 
 

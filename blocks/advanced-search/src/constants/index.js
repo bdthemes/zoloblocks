@@ -113,6 +113,7 @@ export const LABEL_BORDER = 'labelBorder'
 export const LABEL_BORDER_RADIUS = 'labelBorderRadius'
 export const LABEL_PADDING = 'labelPadding'
 export const LABEL_BG = 'labelBg'
+export const LABEL_HOVER_BG_COLOR = 'labelHoverBgColor'
 
 /**
  * Presets Styles

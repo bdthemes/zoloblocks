@@ -27,7 +27,7 @@ import {
   INPUT_BORDER_RADIUS,
   INPUT_PADDING,
   INPUT_BG,
-
+  LABEL_HOVER_BG_COLOR,
 } from "./constants";
 
 import * as typographyObjs from "./constants/typoPrefixConstant";
@@ -70,6 +70,7 @@ const attributes = {
   ...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
   ...generateNormalBGAttributes(BUTTON_BG),
   ...generateNormalBGAttributes(LABEL_BG),
+  ...generateNormalBGAttributes(LABEL_HOVER_BG_COLOR),
   ...generateNormalBGAttributes(INPUT_BG),
 
   ...generateNormalBGAttributes(BUTTON_HOVER_BG_COLOR),
@@ -113,12 +114,15 @@ const attributes = {
     type: "boolean",
     default: false,
   },
-
   labelText: {
     type: "string",
     default: "Search",
   },
   labelColor: {
+    type: "string",
+    default: "",
+  },
+  labelTextHoverColor: {
     type: "string",
     default: "",
   },
@@ -146,9 +150,17 @@ const attributes = {
     type: "string",
     default: "",
   },
-  btnLayoutType:{
+  btnLayoutType: {
     type: "string",
     default: "zolo-search-button-style-1",
+  },
+  labelBorderHoverColor:{
+    type: "string",
+    default: "",
+  },
+  btnBorderHoverColor:{
+    type: "string",
+    default: "",
   }
 };
 
