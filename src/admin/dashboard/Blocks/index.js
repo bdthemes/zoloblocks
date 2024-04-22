@@ -38,6 +38,7 @@ const Blocks = () => {
     // set blocks list
     useEffect(() => {
         if (blocks.length > 0) {
+            blocks.sort((a, b) => a.title.localeCompare(b.title));
             setBlockStates(blocks);
         }
     }, [blocks]);
