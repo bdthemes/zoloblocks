@@ -602,6 +602,13 @@ function Inspector(props) {
               panelProps={props}
               stylePanel={true}
             >
+              {preset === "style-3" && (
+                <NormalBGControl
+                  requiredProps={requiredProps}
+                  controlName={ICON_WRAPPER_BG_COLOR}
+                  noMainBGImg={true}
+                />
+              )}
               {iconType === "image" && (
                 <>
                   <ResRangeControl
@@ -638,13 +645,6 @@ function Inspector(props) {
               )}
               {iconType == "icon" && (
                 <>
-                  {preset === "style-3" && (
-                    <NormalBGControl
-                      requiredProps={requiredProps}
-                      controlName={ICON_WRAPPER_BG_COLOR}
-                      noMainBGImg={true}
-                    />
-                  )}
                   <ResRangeControl
                     label={__("Icon Size", "zoloblocks")}
                     controlName={ICON_SIZE}
