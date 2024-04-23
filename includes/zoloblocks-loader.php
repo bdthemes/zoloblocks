@@ -54,6 +54,10 @@ class ZoloBlocks_Loader {
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/FormAjax.php';
         require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/Form/Recaptcha.php';
 
+        //mailchimp
+        if (!class_exists('DrewM\MailChimp')) {
+            require_once trailingslashit(ZOLO_DIR_PATH) . '/includes/API/MailChimp.php';
+        }
         if (is_admin()) {
             // zolo blocks settings
             $zoloSupportSVG = get_option('zolo_support_svg', false);
