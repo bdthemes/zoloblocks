@@ -1,13 +1,13 @@
-=== ZoloBlocks - Page Builder Blocks Addons ===
+=== ZoloBlocks - Page Builder Blocks for Gutenberg ===
 Contributors: bdthemes, selimmw
+Donate link: http://bdthemes.com/
 Tags: blocks, gutenberg blocks, custom block, gutenberg, page builder
 Requires at least: 6.0
 Tested up to: 6.5
-Stable tag: 1.0.0
 Requires PHP: 7.4
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Donate link: http://bdthemes.com/
 
 ZoloBlocks comes with a number of amazing custom Gutenberg blocks to extend the power of editing and designing in the Gutenberg block editor.
 
@@ -16,13 +16,13 @@ ZoloBlocks comes with a number of amazing custom Gutenberg blocks to extend the 
 You need just one good reason to come back to Gutenberg Builder. And that reason is [**ZoloBlocks**](https://zoloblocks.com/).
 
 ZoloBlocks is the most advanced block editor plugin that rivals popular page builder plugins in terms of features, user interface, customizations, and ease of use. Built for Gutenberg, the plugin enhances how you should design your websites from scratch to perfection.
-Meet your page editor blocks, a good 30+ of them in a robust package.
 
-[Image of blocks] - (frequent updates needed)
+Meet your page editor blocks, a good **30+** of them in a robust package.
 
 All blocks come with a detailed options panel and a range of customizations. ZoloBlocks lets you modify the layouts of your content to shape your desired landing page.
 
-[video - customization + options panel tour] [need planning for proper video]
+https://www.youtube.com/watch?v=8kBMIL-4PZI
+
 Not just that, there’s more. The plugin also lets you seamlessly customize the appearance of each content down to each element, making it possible to get creative with your page content interface.
 
 ZoloBlocks promises the flexibility that you have been enjoying with page builders outside Gutenberg till now. But this time, it’s within Gutenberg. Made for solopreneurs and agencies alike, you will enjoy many benefits of ZoloBlocks-
@@ -82,14 +82,15 @@ ZoloBlocks is not about what we promise only, but everything you deserve. So, fe
 - [**Profile Card**](https://demo.zoloblocks.com/profile-card/) - *Profile Card Gutenberg Block – a sleek and dynamic way to introduce team members or individual profiles on your WordPress website.*
 - [**Progress bar**](https://demo.zoloblocks.com/progress-bar/) - *With Progress bar block, you can effortlessly create sleek and customizable progress bars that engage visitors and convey information with clarity.*
 - [**Review**](https://demo.zoloblocks.com/review/) - *Review block you can highlight customer feedback or endorsements in a visually appealing and impactful way.*
-- [**Review Carousel**](https://demo.zoloblocks.com/review-carousel/) - *
+- [**Review Carousel**](https://demo.zoloblocks.com/review-carousel/) - *With Review Carousel, you can create an engaging carousel that cycles through glowing testimonials to build brand trust. Can display name, photo, rating, and feedback easily.*
 - [**Review Grid**](https://demo.zoloblocks.com/review-grid/) - *An innovative way to showcase multiple reviews or testimonials in a visually captivating grid format on your WordPress website.*
 - [**Slider**](https://demo.zoloblocks.com/slider/) - *Introducing ZoloBlock Slider – a versatile and dynamic tool to showcase content in a visually stunning and interactive way on your WordPress website.*
 - [**Social Links**](https://demo.zoloblocks.com/social-links/) - *Effortlessly connect your audience to your social media presence. With this block, easily showcase icons for your favorite platforms like Facebook, Twitter, Instagram, and more.*
 - [**Social Share**](https://demo.zoloblocks.com/demo/social-share/) - *Empower your visitors to effortlessly share your content across their social networks. Increase visibility and drive traffic back to your website with our user-friendly Social Share block.*
 - [**Star Rating**](https://demo.zoloblocks.com/star-rating/) - *A quick and easy way to display fixed ratings on your WordPress website. You can effortlessly showcase predefined star ratings for products, services, or any content you want to rate.*
-- [**Tab**](https://demo.zoloblocks.com/tab/) - *
+- [**Tab**](https://demo.zoloblocks.com/tab/) - *Now add any content you want to include—text, pictures, videos, or other blocks to each tab item. Create tabbed sections that allow users to easily navigate between content.*
 - [**Team grid**](https://demo.zoloblocks.com/team-grid/) - *The perfect solution for showcasing your team members in a visually appealing grid format on your WordPress website.*
+- [**Advanced Search**](https://demo.zoloblocks.com/advanced-search/) - *Want a advanced search feature so you must need advanced search block.*
 
 
 Don’t worry, more features coming up ….
@@ -179,16 +180,13 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Screenshots ==
 
-1. Element Pack Elementor Addons
-2. Element Pack Features
-3. Element Pack Dashboard Widgets Panel
-4. Popular Widget List 01
-5. Popular Widget List 02
-6. 3rd Party Widgets List 01
-7. 3rd Party Widgets List 02
-8. WooCommerce Widgets List
-9. Ready Made Templates List
-10. Ready Made Template Blocks
+1. ZoloBlocks Page Builder Blocks Addons for Gutenberg
+2. ZoloBlocks Best Features
+3. Most Popular Widget List 01
+4. Most Popular Widget List 02
+5. Why you Should use ZoloBlocks
+6. Why you Should use ZoloBlocks
+7. Check out our others popular plugin
 
 == Changelog ==
 
