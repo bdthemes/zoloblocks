@@ -23,6 +23,8 @@ const Save = ({ attributes }) => {
     showLabel,
     labelText,
     btnLayoutType,
+    showIcon,
+    showButtonText,
   } = attributes;
   return (
     <div
@@ -61,20 +63,24 @@ const Save = ({ attributes }) => {
           )}
         </div>
         <div className="zolo-advanced-search-control zolo-form-submit-btn">
-          <button className="zolo-form-btn" type="submit">
-            {"text" === buttonType && (
+          {
+            showButtonText || showIcon ? (
+              <button className="zolo-form-btn" type="submit">
+            {showButtonText && (
               <RichText.Content
                 tagName="span"
                 className="zolo-form-btn-text"
                 value={buttonText}
               />
             )}
-            {"icon" === buttonType && (
+            {showIcon && (
               <span className="zolo-advanced-search-icon-wrap">
                 <DisplayZoloIcon icon={buttonIcon} />
               </span>
             )}
           </button>
+            ) : null
+          }
         </div>
       </form>
     </div>

@@ -47,7 +47,7 @@
     box-shadow: unset;
     line-height: 1;
   }
-  
+
   .zolo-form-input:focus {
       border-color: var(--search-input-focus-color);
       outline-style: solid;
@@ -60,14 +60,14 @@
     display: block;
     fill: #fff;
   }
-  
+
 }
 
 
 .zolo-form-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: var(--search-btn-icon-gap);
   padding: var(--search-btn-padding);
   border: 0;
