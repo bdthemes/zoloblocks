@@ -37,16 +37,14 @@
     --zolo-ribbon-btn-padding: 4px 10px;
     .zolo-block-wrapper {
         border-radius: var(--zolo-item-border-radius);
-        position: relative;
         background-color: var(--zoloblocks-item-bg-color);
         border-width: var(--zolo-item-wrap-border-width);
         border-style: var(--zolo-item-wrap-border-style);
         border-color: var(--zolo-item-wrap-border-color);
-        overflow: hidden;
-        transition: all 0.3s ease;
     }
     .zolo-head-content {
         padding: var(--zolo-head-content-padding);
+        position: relative;
     }
     .zolo-package-title {
         margin: var(--zolo-package-title-margin);
