@@ -194,7 +194,7 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 = Added =
 
-* Typograpy control added to Advanced Search block
+* Typography control added to Advanced Search block
 * Focus Color control added to Advanced Search block
 
 = Fixed =

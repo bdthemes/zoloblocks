@@ -2,7 +2,7 @@
 
 ### Added
 
-- Typograpy control added to Advanced Search block
+- Typography control added to Advanced Search block
 - Focus Color control added to Advanced Search block
 
 ### Fixed

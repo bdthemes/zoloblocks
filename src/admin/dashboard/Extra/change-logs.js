@@ -64,7 +64,7 @@ const ChangeLogs = () => {
                   title: __("Added", "zoloblocks"),
                   list: [
                     __(
-                      "Typograpy control added to Advanced Search block",
+                      "Typography control added to Advanced Search block",
                       "zolo-blocks",
                     ),
                     __(
