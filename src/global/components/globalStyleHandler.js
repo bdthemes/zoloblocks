@@ -494,14 +494,14 @@ export const GlobalStyleHanlder = (props) => {
 
     const desktopGlobalStyles = `
       .parent-${uniqueId}.zolo-block {
-        ${normalBoxShadowStyle ? normalBoxShadowStyle : ''}
-        ${borderRadiusStylesDesktop ? borderRadiusStylesDesktop : ''}
-        ${desktopBorderStyles ? desktopBorderStyles : ''}
-        ${marginStylesDesktop ? marginStylesDesktop : ''}
-        ${paddingStylesDesktop ? paddingStylesDesktop : ''}
-        ${bgDeskStyle ? bgDeskStyle : ''}
-        ${zIndex ? `z-index: ${zIndex};` : ''}
-        ${overflow ? `overflow: ${overflow};` : ''}
+        ${normalBoxShadowStyle ? normalBoxShadowStyle : ""}
+        ${borderRadiusStylesDesktop ? borderRadiusStylesDesktop : ""}
+        ${desktopBorderStyles ? desktopBorderStyles : ""}
+        ${marginStylesDesktop ? marginStylesDesktop : ""}
+        ${paddingStylesDesktop ? paddingStylesDesktop : ""}
+        ${bgDeskStyle ? bgDeskStyle : ""}
+        ${zIndex ? `z-index: ${zIndex};` : ""}
+        ${overflow ? `overflow: ${overflow};` : ""}
         ${transformStylesDesktop}
       }
       .zolo-transform-wrapper {
@@ -509,16 +509,18 @@ export const GlobalStyleHanlder = (props) => {
       }
 
       .parent-${uniqueId}.zolo-block:hover {
-          ${hoverBgDeskStyle ? hoverBgDeskStyle : ''}
+          ${hoverBgDeskStyle ? hoverBgDeskStyle : ""}
           ${transformStylesDesktopHover}
       }
-
+        .zolo-transform-wrapper:hover {
+                ${transformStylesDesktopHover}
+            }
       .parent-${uniqueId}.zolo-block:after {
-          ${overlayDeskStyle ? overlayDeskStyle : ''}
+          ${overlayDeskStyle ? overlayDeskStyle : ""}
       }
 
       .parent-${uniqueId}.zolo-block:hover:after {
-          ${hoverOverlayDeskStyle ? hoverOverlayDeskStyle : ''}
+          ${hoverOverlayDeskStyle ? hoverOverlayDeskStyle : ""}
       }
   `;
 
