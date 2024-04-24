@@ -125,22 +125,6 @@ button[class*='editor-block-list-item-zolo'] {
     }
 }
 
-// Container
-// .zolo-block {
-//     transition: all 0.3s ease-in-out;
-//     &::after {
-//         transition: all 0.3s ease-in-out;
-//     }
-// }
-
-//apply transition to .zolo-block if zolo-block is not exist
-.zolo-block:not(.zolo-entrance-animation) {
-    transition: all 0.3s ease-in-out;
-    &::after {
-        transition: all 0.3s ease-in-out;
-    }
-}
-
 // transform pro
 span.zolo-pro-badge {
     padding: 5.5px;
@@ -166,6 +150,7 @@ span.zolo-pro-badge {
         scaleY(calc(var(--zolo-transform-flipY, 1) * var(--zolo-transform-scaleY, var(--zolo-transform-scale, 1))))
         skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
     transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
+    transition: transform 0.3s ease-out;
 }
 
 // .interface-interface-skeleton__footer .block-editor-block-breadcrumb {

@@ -414,15 +414,17 @@ export const GlobalStyleHanlder = (props) => {
             ${translateXStylesDesktop}
             ${translateYStylesDesktop}
             ${rotateStylesDesktop}
-            ${transformRotate3DActive ? `${rotateXStylesDesktop} ${rotateYStylesDesktop} ${rotatePerspectiveStylesDesktop}` : ''}
-            ${scaleProportionally ? `${scaleStylesDesktop}` : ''}
-            ${!scaleProportionally ? `${scaleXStylesDesktop} ${scaleYStylesDesktop}` : ''}
+            ${transformRotate3DActive ? `${rotateXStylesDesktop} ${rotateYStylesDesktop} ${rotatePerspectiveStylesDesktop}` : ""}
+            ${scaleProportionally ? `${scaleStylesDesktop}` : ""}
+            ${!scaleProportionally ? `${scaleXStylesDesktop} ${scaleYStylesDesktop}` : ""}
             ${skewXStylesDesktop}
             ${skewYStylesDesktop}
-            ${transformFlipHorizontal ? `--zolo-transform-flipX:-1;` : ''}
-            ${transformFlipVertical ? `--zolo-transform-flipY:-1;` : ''}
+            ${transformFlipHorizontal ? `--zolo-transform-flipX:-1;` : ""}
+            ${transformFlipVertical ? `--zolo-transform-flipY:-1;` : ""}
             ${transformOriginXDesktop}
             ${transformOriginYDesktop}
+            ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ""}
+
             `;
     const transformStylesTab = `
             ${translateXStylesTab}
@@ -435,6 +437,7 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesTab}
             ${transformOriginXTab}
             ${transformOriginYTab}
+            ${transitionDurationTab ? `${transitionDurationTab}ms;` : ''}
             `;
     const transformStylesMob = `
             ${translateXStylesMob}
@@ -447,6 +450,7 @@ export const GlobalStyleHanlder = (props) => {
             ${skewYStylesMob}
             ${transformOriginXMob}
             ${transformOriginYMob}
+            ${transitionDurationMob ? `${transitionDurationMob}ms;` : ''}
             `;
 
     // transform hover
@@ -504,7 +508,7 @@ export const GlobalStyleHanlder = (props) => {
         ${overflow ? `overflow: ${overflow};` : ""}
         ${transformStylesDesktop}
       }
-      .zolo-transform-wrapper {
+      .parent-${uniqueId}.zolo-transform-wrapper {
         ${transformStylesDesktop}
       }
 
@@ -512,8 +516,8 @@ export const GlobalStyleHanlder = (props) => {
           ${hoverBgDeskStyle ? hoverBgDeskStyle : ""}
           ${transformStylesDesktopHover}
       }
-        .zolo-transform-wrapper:hover {
-                ${transformStylesDesktopHover}
+        .parent-${uniqueId}.zolo-transform-wrapper:hover {
+            ${transformStylesDesktopHover}
             }
       .parent-${uniqueId}.zolo-block:after {
           ${overlayDeskStyle ? overlayDeskStyle : ""}
