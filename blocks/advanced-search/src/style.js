@@ -137,7 +137,7 @@ export default function Style({ props }) {
   } = generateNormalBGControlStyles({
     controlName: LABEL_HOVER_BG_COLOR,
     attributes,
-    noMainBGImg: false,
+    noMainBGImg: true,
   });
 
   // generate border style
@@ -289,6 +289,9 @@ export default function Style({ props }) {
       }
         .${uniqueId} .zolo-form-search-input:hover .zolo-form-label{
         ${labelBorderHoverColor ? `border-color: ${labelBorderHoverColor};` : ""}
+
+      }
+      .${uniqueId} .zolo-form-input:focus + .zolo-form-label {
         ${labelTextHoverColor ? `color: ${labelTextHoverColor};` : ""}
         ${labelHoverDeskBGStyle}
 

@@ -237,6 +237,16 @@ function Inspector(props) {
                     requiredProps={requiredProps}
                   />
                   <TabPanelControl
+                    options={[
+                      {
+                        label: __("Normal", "zoloblocks"),
+                        value: "normal",
+                      },
+                      {
+                        label: __("Focus", "zoloblocks"),
+                        value: "hover",
+                      },
+                    ]}
                     normalComponents={
                       <>
                         <ColorControl
