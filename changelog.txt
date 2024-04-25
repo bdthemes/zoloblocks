@@ -1,9 +1,10 @@
-## 1.0.1 [23rd April 2024]
+## 1.0.1 [April 25, 2024]
 
 ### Added
 
-- Typography control added to Advanced Search block
-- Focus Color control added to Advanced Search block
+- Style copy & paste feature added
+- Image width, height, max width options added to Advanced image block
+- Button typography, shadow, spacing control added to Advanced Search block
 
 ### Fixed
 
@@ -13,6 +14,8 @@
 ### Improved
 
 - Controls UI improved
+- Deprecated codes are removed
+- Theme colors and gradients palettes are improved
 
 ### 1.0.0
 
