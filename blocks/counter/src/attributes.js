@@ -1,14 +1,4 @@
-const {
-    generateResAlignmentAttributies,
-    generateResRangeAttributies,
-    generateBorderAttributies,
-    generateDimensionAttributes,
-    generateTypographyAttributes,
-    generateBoxShadowAttributies,
-    generateTextShadowAttributies,
-    generateTextStrokeAttributies,
-    generateNormalBGAttributes,
-} = window.zoloModule;
+const { generateResAlignmentAttributies, generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes, generateTypographyAttributes, generateBoxShadowAttributies, generateTextShadowAttributies, generateTextStrokeAttributies, generateNormalBGAttributes } = window.zoloModule;
 
 import {
     CONTENT_ALIGN,
@@ -163,15 +153,8 @@ const attributes = {
     titleTextColor: {
         type: 'string',
     },
-    iconType: {
-        type: 'string',
-        default: 'icon',
-    },
     iconColor: {
         type: 'string',
-    },
-    iconTypeImage: {
-        type: 'object',
     },
 };
 

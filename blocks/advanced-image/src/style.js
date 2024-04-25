@@ -6,17 +6,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const {
-    generateResAlignmentStyle,
-    generateBorderStyle,
-    generateDimensionStyle,
-    generateTypographyStyles,
-    generateMaskStyles,
-    generateBoxShadowStyles,
-    generateResRangeStyle,
-    generateNormalBGControlStyles,
-    GlobalStyleHanlder,
-} = window.zoloModule;
+const { generateResAlignmentStyle, generateBorderStyle, generateDimensionStyle, generateTypographyStyles, generateMaskStyles, generateBoxShadowStyles, generateResRangeStyle, generateNormalBGControlStyles, GlobalStyleHanlder } = window.zoloModule;
 
 import {
     PHOTO_MASK,
@@ -25,6 +15,9 @@ import {
     IMG_BSHADOW,
     IMG_HBSHADOW,
     PHOTO_ALIGN,
+    IMG_WIDTH,
+    IMGMAX_WIDTH,
+    IMG_HEIGHT,
     CAPTION_ALIGN,
     IMG_MARGIN,
     CAPTION_MARGIN,
@@ -47,18 +40,7 @@ import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const {
-        uniqueId,
-        imgHoverBorder,
-        captionColor,
-        onOpacity,
-        ohOpacity,
-        ocPosition,
-        headingColor,
-        descriptionColor,
-        separatorColor,
-        separatorStyle,
-    } = attributes;
+    const { uniqueId, imgHoverBorder, captionColor, onOpacity, ohOpacity, ocPosition, headingColor, descriptionColor, separatorColor, separatorStyle, objectFit } = attributes;
 
     // Image Alignment
     const {
@@ -68,6 +50,36 @@ const Style = ({ props }) => {
     } = generateResAlignmentStyle({
         controlName: PHOTO_ALIGN,
         property: 'justify-content',
+        attributes,
+    });
+    //image sizes
+    const {
+        desktopRangeStyle: DesktopWidth,
+        tabRangeStyle: TabWidth,
+        mobRangeStyle: MobWidth,
+    } = generateResRangeStyle({
+        controlName: IMG_WIDTH,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: DesktopMwidth,
+        tabRangeStyle: TabMwidth,
+        mobRangeStyle: MobMwidth,
+    } = generateResRangeStyle({
+        controlName: IMGMAX_WIDTH,
+        property: 'max-width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: DesktopHeight,
+        tabRangeStyle: TabHeight,
+        mobRangeStyle: MobHeight,
+    } = generateResRangeStyle({
+        controlName: IMG_HEIGHT,
+        property: 'height',
         attributes,
     });
 
@@ -343,6 +355,10 @@ const Style = ({ props }) => {
             ${captionTypoDesktop}
             ${captionMarginDesktop}
         }
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-img-wrap {
+            ${DesktopWidth}
+            ${DesktopMwidth}
+        }
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap {
             ${titleDeskAlign}
         }
@@ -357,6 +373,8 @@ const Style = ({ props }) => {
             ${imgBorderStyles}
             ${imgBradiusDesk}
             ${imgBoxShadow}
+            ${DesktopHeight}
+            ${objectFit && objectFit !== 'none' && `object-fit:${objectFit}`}
         }
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask .zolo-img-wrap:hover .zolo-img {
             border-color: ${imgHoverBorder};
@@ -417,6 +435,10 @@ const Style = ({ props }) => {
             ${captionTypoTab}
             ${captionMarginTab}
         }
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-img-wrap {
+            ${TabWidth}
+            ${TabMwidth}
+        }
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap {
             ${titleTabAlign}
         }
@@ -426,6 +448,7 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask .zolo-img {
             ${imgBorderStylesTab}
             ${imgBradiusTab}
+            ${TabHeight}
         }
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img-wrap::before {
             ${overlayTabBGStyle}
@@ -471,6 +494,10 @@ const Style = ({ props }) => {
             ${captionTypoMob}
             ${captionMarginMob}
         }
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-img-wrap {
+            ${MobWidth}
+            ${MobMwidth}
+        }
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap {
             ${titleMobAlign}
         }
@@ -480,6 +507,7 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask .zolo-img {
             ${imgBorderStylesMob}
             ${imgBradiusMob}
+            ${MobHeight}
         }
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap .zolo-img-wrap::before {
             ${overlayMobBGStyle}

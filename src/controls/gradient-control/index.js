@@ -5,6 +5,25 @@ function GradientControl({ label, value, onChange }) {
         onChange(val);
     };
 
+    const gradients = wp.data.select('core/editor').getEditorSettings().gradients; // fetch theme gradients from api
+
+    const gradientOptions = gradients.map((gradient) => {
+        return {
+            name: gradient.name,
+            gradient: gradient.slug ? `var(--wp--preset--gradient--${gradient.slug})` : gradient.gradient,
+            slug: gradient.slug,
+            value: gradient.gradient,
+        };
+    });
+
+    // if value is var(--wp--preset--gradient--slug) then find the gradient and set it as value else set the value as it is
+    let gradientValue;
+    if (value.startsWith('var(--wp--preset--gradient--')) {
+        // find the gradient by slug and set its value as value
+        const gradient = gradients.find((gradient) => value === `var(--wp--preset--gradient--${gradient.slug})`);
+        gradientValue = gradient.gradient;
+    }
+
     return (
         <div className="zb-gradient-control-wrap">
             {label && (
@@ -14,33 +33,7 @@ function GradientControl({ label, value, onChange }) {
             )}
 
             <div className="zb-gradient-body">
-                <GradientPicker
-                    __nextHasNoMargin={true}
-                    value={value}
-                    onChange={(val) => setSettings(val)}
-                    gradients={[
-                        {
-                            name: 'Green',
-                            gradient: 'linear-gradient(135deg, #80F1A6 0%, #EFD000 100%)',
-                            slug: 'green',
-                        },
-                        {
-                            name: 'Blue',
-                            gradient: 'linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)',
-                            slug: 'blue',
-                        },
-                        {
-                            name: 'Dark Blue',
-                            gradient: 'linear-gradient(50deg, #15D2E3 10%, #11D6E2 40%, #10D7E2 80%)',
-                            slug: 'darkBlue',
-                        },
-                        {
-                            name: 'Yellow',
-                            gradient: 'linear-gradient(135deg, #FBDA61 2.88%, #F76B1C 98.13%)',
-                            slug: 'yellow',
-                        },
-                    ]}
-                />
+                <GradientPicker value={gradientValue} onChange={(val) => setSettings(val)} gradients={gradientOptions} />
             </div>
         </div>
     );

@@ -39,7 +39,9 @@ export const IMG_BRADIUS = 'imgBradius';
 export const IMG_MARGIN = 'imgMargin';
 export const IMG_BSHADOW = 'imgBShadow';
 export const IMG_HBSHADOW = 'imgHbShadow';
-
+export const IMG_WIDTH ='imageWidth';
+export const IMGMAX_WIDTH='imageMaxWidth';
+export const IMG_HEIGHT ='imageHeight';
 // overlay
 export const OVERLAY_BG = 'overlayBg';
 export const OVERLAY_BORDER = 'overlayBorder';

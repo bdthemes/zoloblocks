@@ -1,15 +1,7 @@
 /**
  * Internal dependencies
  */
-const {
-    generateResAlignmentAttributies,
-    generateResRangeAttributies,
-    generateBorderAttributies,
-    generateDimensionAttributes,
-    generateNormalBGAttributes,
-    generateBoxShadowAttributies,
-    generateTypographyAttributes,
-} = window.zoloModule;
+const { generateResAlignmentAttributies, generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes, generateNormalBGAttributes, generateBoxShadowAttributies, generateTypographyAttributes } = window.zoloModule;
 
 import {
     BUTTON_ALIGNMENT,

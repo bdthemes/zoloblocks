@@ -120,7 +120,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls>
                 <ToolbarGroup>
-                    <ToolbarButton icon="plus" label={__('Add Accordion', 'zoloblocks')} onClick={() => appendBlock()} />
+                    <ToolbarButton icon="insert" label={__('Add Accordion', 'zoloblocks')} onClick={() => appendBlock()} />
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>

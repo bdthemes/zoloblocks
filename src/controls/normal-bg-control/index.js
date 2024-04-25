@@ -66,9 +66,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                         popoverProps={{ placement: 'bottom-start' }}
                         renderToggle={({ isOpen, onToggle }) => (
                             <div className="zolo-flex">
-                                {((backgroundColor && backgroundColor !== '') ||
-                                    (bgImageURL && bgImageURL !== '') ||
-                                    backgroundType !== 'classic') && (
+                                {((backgroundColor && backgroundColor !== '') || (bgImageURL && bgImageURL !== '') || backgroundType !== 'classic') && (
                                     <ResetBtn
                                         onReset={() => {
                                             setAttributes({
@@ -84,11 +82,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                 <button onClick={onToggle} aria-expanded={isOpen} className="zolo-panel-opener-btn">
                                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect x={9} y={9} width={12} height={12} rx={2} stroke="#4D4D4D" strokeWidth="1.5" />
-                                        <path
-                                            d="M9 15H5C3.89543 15 3 14.1046 3 13V5C3 3.89543 3.89543 3 5 3H13C14.1046 3 15 3.89543 15 5V9"
-                                            stroke="#4D4D4D"
-                                            strokeWidth="1.5"
-                                        />
+                                        <path d="M9 15H5C3.89543 15 3 14.1046 3 13V5C3 3.89543 3.89543 3 5 3H13C14.1046 3 15 3.89543 15 5V9" stroke="#4D4D4D" strokeWidth="1.5" />
                                     </svg>
                                 </button>
                             </div>
@@ -138,12 +132,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                     render={({ open }) =>
                                                         !bgImageURL && (
                                                             <>
-                                                                <Button
-                                                                    className="zb-bg-control-img-btn components-button"
-                                                                    label={__('Upload Image', 'zoloblocks')}
-                                                                    icon="format-image"
-                                                                    onClick={open}
-                                                                />
+                                                                <Button className="zb-bg-control-img-btn components-button" label={__('Upload Image', 'zoloblocks')} icon="format-image" onClick={open} />
                                                             </>
                                                         )
                                                     }
@@ -169,11 +158,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
 
                                                         {resMode === 'Desktop' && (
                                                             <>
-                                                                <WithResDeviceBtn
-                                                                    requiredProps={requiredProps}
-                                                                    label="Position"
-                                                                    noResetBtn={true}
-                                                                >
+                                                                <WithResDeviceBtn requiredProps={requiredProps} label="Position" noResetBtn={true}>
                                                                     <SelectControl
                                                                         value={bgImgPos}
                                                                         options={[
@@ -250,8 +235,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                             ]}
                                                                             onClick={(bgImgcustomPosXUnit) =>
                                                                                 setAttributes({
-                                                                                    [`${controlName}bgImgcustomPosXUnit`]:
-                                                                                        bgImgcustomPosXUnit,
+                                                                                    [`${controlName}bgImgcustomPosXUnit`]: bgImgcustomPosXUnit,
                                                                                 })
                                                                             }
                                                                         />
@@ -287,8 +271,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                             ]}
                                                                             onClick={(bgImgcustomPosYUnit) =>
                                                                                 setAttributes({
-                                                                                    [`${controlName}bgImgcustomPosYUnit`]:
-                                                                                        bgImgcustomPosYUnit,
+                                                                                    [`${controlName}bgImgcustomPosYUnit`]: bgImgcustomPosYUnit,
                                                                                 })
                                                                             }
                                                                         />
@@ -344,11 +327,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                     </p>
                                                                 )}
 
-                                                                <WithResDeviceBtn
-                                                                    requiredProps={requiredProps}
-                                                                    label="Repeat"
-                                                                    noResetBtn={true}
-                                                                >
+                                                                <WithResDeviceBtn requiredProps={requiredProps} label="Repeat" noResetBtn={true}>
                                                                     <SelectControl
                                                                         value={bgImgRepeat}
                                                                         options={[
@@ -381,11 +360,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                     />
                                                                 </WithResDeviceBtn>
 
-                                                                <WithResDeviceBtn
-                                                                    requiredProps={requiredProps}
-                                                                    label="Size"
-                                                                    noResetBtn={true}
-                                                                >
+                                                                <WithResDeviceBtn requiredProps={requiredProps} label="Size" noResetBtn={true}>
                                                                     <SelectControl
                                                                         value={backgroundSize}
                                                                         options={[
@@ -438,8 +413,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                             ]}
                                                                             onClick={(bgImgCustomSizeUnit) =>
                                                                                 setAttributes({
-                                                                                    [`${controlName}bgImgCustomSizeUnit`]:
-                                                                                        bgImgCustomSizeUnit,
+                                                                                    [`${controlName}bgImgCustomSizeUnit`]: bgImgCustomSizeUnit,
                                                                                 })
                                                                             }
                                                                         />
@@ -464,11 +438,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
 
                                                         {resMode === 'Tablet' && (
                                                             <>
-                                                                <WithResDeviceBtn
-                                                                    requiredProps={requiredProps}
-                                                                    label="Position"
-                                                                    noResetBtn={true}
-                                                                >
+                                                                <WithResDeviceBtn requiredProps={requiredProps} label="Position" noResetBtn={true}>
                                                                     <SelectControl
                                                                         value={TABbgImgPos}
                                                                         options={[
@@ -545,8 +515,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                             ]}
                                                                             onClick={(TABbgImgcustomPosXUnit) =>
                                                                                 setAttributes({
-                                                                                    [`TAB${controlName}bgImgcustomPosXUnit`]:
-                                                                                        TABbgImgcustomPosXUnit,
+                                                                                    [`TAB${controlName}bgImgcustomPosXUnit`]: TABbgImgcustomPosXUnit,
                                                                                 })
                                                                             }
                                                                         />
@@ -558,8 +527,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                                 max={TABbgImgcustomPosXUnit === 'px' ? 2000 : 100}
                                                                                 onChange={(TABbgImgcustomPosX) =>
                                                                                     setAttributes({
-                                                                                        [`TAB${controlName}bgImgcustomPosX`]:
-                                                                                            TABbgImgcustomPosX,
+                                                                                        [`TAB${controlName}bgImgcustomPosX`]: TABbgImgcustomPosX,
                                                                                     })
                                                                                 }
                                                                             />
@@ -583,8 +551,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                             ]}
                                                                             onClick={(TABbgImgcustomPosYUnit) =>
                                                                                 setAttributes({
-                                                                                    [`TAB${controlName}bgImgcustomPosYUnit`]:
-                                                                                        TABbgImgcustomPosYUnit,
+                                                                                    [`TAB${controlName}bgImgcustomPosYUnit`]: TABbgImgcustomPosYUnit,
                                                                                 })
                                                                             }
                                                                         />
@@ -597,8 +564,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                                 step={TABbgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                 onChange={(TABbgImgcustomPosY) =>
                                                                                     setAttributes({
-                                                                                        [`TAB${controlName}bgImgcustomPosY`]:
-                                                                                            TABbgImgcustomPosY,
+                                                                                        [`TAB${controlName}bgImgcustomPosY`]: TABbgImgcustomPosY,
                                                                                     })
                                                                                 }
                                                                             />
@@ -641,11 +607,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                     </p>
                                                                 )}
 
-                                                                <WithResDeviceBtn
-                                                                    requiredProps={requiredProps}
-                                                                    label="Repeat"
-                                                                    noResetBtn={true}
-                                                                >
+                                                                <WithResDeviceBtn requiredProps={requiredProps} label="Repeat" noResetBtn={true}>
                                                                     <SelectControl
                                                                         value={TABbgImgRepeat}
                                                                         options={[
@@ -678,11 +640,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                     />
                                                                 </WithResDeviceBtn>
 
-                                                                <WithResDeviceBtn
-                                                                    requiredProps={requiredProps}
-                                                                    label="Size"
-                                                                    noResetBtn={true}
-                                                                >
+                                                                <WithResDeviceBtn requiredProps={requiredProps} label="Size" noResetBtn={true}>
                                                                     <SelectControl
                                                                         value={TABbackgroundSize}
                                                                         options={[
@@ -735,8 +693,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                             ]}
                                                                             onClick={(TABbgImgCustomSizeUnit) =>
                                                                                 setAttributes({
-                                                                                    [`TAB${controlName}bgImgCustomSizeUnit`]:
-                                                                                        TABbgImgCustomSizeUnit,
+                                                                                    [`TAB${controlName}bgImgCustomSizeUnit`]: TABbgImgCustomSizeUnit,
                                                                                 })
                                                                             }
                                                                         />
@@ -749,8 +706,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                                 step={TABbgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                 onChange={(TABbgImgCustomSize) =>
                                                                                     setAttributes({
-                                                                                        [`TAB${controlName}bgImgCustomSize`]:
-                                                                                            TABbgImgCustomSize,
+                                                                                        [`TAB${controlName}bgImgCustomSize`]: TABbgImgCustomSize,
                                                                                     })
                                                                                 }
                                                                             />
@@ -762,11 +718,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
 
                                                         {resMode === 'Mobile' && (
                                                             <>
-                                                                <WithResDeviceBtn
-                                                                    requiredProps={requiredProps}
-                                                                    label="Position"
-                                                                    noResetBtn={true}
-                                                                >
+                                                                <WithResDeviceBtn requiredProps={requiredProps} label="Position" noResetBtn={true}>
                                                                     <SelectControl
                                                                         value={MOBbgImgPos}
                                                                         options={[
@@ -843,8 +795,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                             ]}
                                                                             onClick={(MOBbgImgcustomPosXUnit) =>
                                                                                 setAttributes({
-                                                                                    [`MOB${controlName}bgImgcustomPosXUnit`]:
-                                                                                        MOBbgImgcustomPosXUnit,
+                                                                                    [`MOB${controlName}bgImgcustomPosXUnit`]: MOBbgImgcustomPosXUnit,
                                                                                 })
                                                                             }
                                                                         />
@@ -856,8 +807,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                                 max={MOBbgImgcustomPosXUnit === 'px' ? 2000 : 100}
                                                                                 onChange={(MOBbgImgcustomPosX) =>
                                                                                     setAttributes({
-                                                                                        [`MOB${controlName}bgImgcustomPosX`]:
-                                                                                            MOBbgImgcustomPosX,
+                                                                                        [`MOB${controlName}bgImgcustomPosX`]: MOBbgImgcustomPosX,
                                                                                     })
                                                                                 }
                                                                             />
@@ -881,8 +831,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                             ]}
                                                                             onClick={(MOBbgImgcustomPosYUnit) =>
                                                                                 setAttributes({
-                                                                                    [`MOB${controlName}bgImgcustomPosYUnit`]:
-                                                                                        MOBbgImgcustomPosYUnit,
+                                                                                    [`MOB${controlName}bgImgcustomPosYUnit`]: MOBbgImgcustomPosYUnit,
                                                                                 })
                                                                             }
                                                                         />
@@ -895,8 +844,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                                 step={MOBbgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                 onChange={(MOBbgImgcustomPosY) =>
                                                                                     setAttributes({
-                                                                                        [`MOB${controlName}bgImgcustomPosY`]:
-                                                                                            MOBbgImgcustomPosY,
+                                                                                        [`MOB${controlName}bgImgcustomPosY`]: MOBbgImgcustomPosY,
                                                                                     })
                                                                                 }
                                                                             />
@@ -939,11 +887,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                     </p>
                                                                 )}
 
-                                                                <WithResDeviceBtn
-                                                                    requiredProps={requiredProps}
-                                                                    label="Repeat"
-                                                                    noResetBtn={true}
-                                                                >
+                                                                <WithResDeviceBtn requiredProps={requiredProps} label="Repeat" noResetBtn={true}>
                                                                     <SelectControl
                                                                         value={MOBbgImgRepeat}
                                                                         options={[
@@ -976,11 +920,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                     />
                                                                 </WithResDeviceBtn>
 
-                                                                <WithResDeviceBtn
-                                                                    requiredProps={requiredProps}
-                                                                    label="Size"
-                                                                    noResetBtn={true}
-                                                                >
+                                                                <WithResDeviceBtn requiredProps={requiredProps} label="Size" noResetBtn={true}>
                                                                     <SelectControl
                                                                         value={MOBbackgroundSize}
                                                                         options={[
@@ -1033,8 +973,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                             ]}
                                                                             onClick={(MOBbgImgCustomSizeUnit) =>
                                                                                 setAttributes({
-                                                                                    [`MOB${controlName}bgImgCustomSizeUnit`]:
-                                                                                        MOBbgImgCustomSizeUnit,
+                                                                                    [`MOB${controlName}bgImgCustomSizeUnit`]: MOBbgImgCustomSizeUnit,
                                                                                 })
                                                                             }
                                                                         />
@@ -1047,8 +986,7 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                                                                                 step={MOBbgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                 onChange={(MOBbgImgCustomSize) =>
                                                                                     setAttributes({
-                                                                                        [`MOB${controlName}bgImgCustomSize`]:
-                                                                                            MOBbgImgCustomSize,
+                                                                                        [`MOB${controlName}bgImgCustomSize`]: MOBbgImgCustomSize,
                                                                                     })
                                                                                 }
                                                                             />

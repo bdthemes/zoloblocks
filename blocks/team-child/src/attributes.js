@@ -1,14 +1,7 @@
 /**
  * Internal dependencies
  */
-const {
-    generateResRangeAttributies,
-    generateBorderAttributies,
-    generateDimensionAttributes,
-    generateBoxShadowAttributies,
-    generateTypographyAttributes,
-    generateNormalBGAttributes,
-} = window.zoloModule;
+const { generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes, generateBoxShadowAttributies, generateTypographyAttributes, generateNormalBGAttributes } = window.zoloModule;
 
 import {
     CONTENT_BG,
@@ -89,7 +82,6 @@ const attributes = {
         default: 'default',
     },
     // Generators
-
     // item
     ...generateNormalBGAttributes(ITEM_BG),
     ...generateBorderAttributies(ITEM_BORDER),

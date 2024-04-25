@@ -1,15 +1,7 @@
 /**
  * Internal dependencies
  */
-const {
-    generateResRangeAttributies,
-    generateBorderAttributies,
-    generateDimensionAttributes,
-    generateBoxShadowAttributies,
-    generateNormalBGAttributes,
-    generateTypographyAttributes,
-    generateResAlignmentAttributies,
-} = window.zoloModule;
+const { generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes, generateBoxShadowAttributies, generateNormalBGAttributes, generateTypographyAttributes, generateResAlignmentAttributies } = window.zoloModule;
 
 import {
     CONTENT_ALIGN,
@@ -101,18 +93,13 @@ const attributes = {
     postQuery: {
         type: 'object',
     },
-    showThumbnail: {
+    showfeatureimg: {
         type: 'boolean',
         default: true,
     },
-
-    showfeatureimg:{
-        type:'boolean',
-        default:true
-    },
-    contentDirection:{
-        type:'string',
-        default:'row'
+    contentDirection: {
+        type: 'string',
+        default: 'row',
     },
     titleTag: {
         type: 'string',

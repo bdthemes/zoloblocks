@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: ZoloBlocks
  * Plugin URI: https://bdthemes.com/

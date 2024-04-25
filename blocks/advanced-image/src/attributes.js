@@ -1,16 +1,7 @@
 /**
  * Internal dependencies
  */
-const {
-    generateResRangeAttributies,
-    generateResAlignmentAttributies,
-    generateBorderAttributies,
-    generateDimensionAttributes,
-    generateBoxShadowAttributies,
-    generateNormalBGAttributes,
-    generateMaskAttributes,
-    generateTypographyAttributes,
-} = window.zoloModule;
+const { generateResRangeAttributies, generateResAlignmentAttributies, generateBorderAttributies, generateDimensionAttributes, generateBoxShadowAttributies, generateNormalBGAttributes, generateMaskAttributes, generateTypographyAttributes } = window.zoloModule;
 
 import {
     PHOTO_MASK,
@@ -34,6 +25,9 @@ import {
     SEPARATOR_WIDTH,
     SEPARATOR_HEIGHT,
     SEPARATOR_MARGIN,
+    IMG_WIDTH,
+    IMGMAX_WIDTH,
+    IMG_HEIGHT,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -68,6 +62,11 @@ const attributes = {
     ...generateMaskAttributes(PHOTO_MASK),
     ...generateResAlignmentAttributies(PHOTO_ALIGN),
     ...generateResAlignmentAttributies(CAPTION_ALIGN),
+    ...generateResRangeAttributies(IMG_WIDTH),
+    ...generateResRangeAttributies(IMGMAX_WIDTH, {
+        defaultUnit: '%',
+    }),
+    ...generateResRangeAttributies(IMG_HEIGHT),
     ...generateBorderAttributies(IMG_BORDER),
     ...generateDimensionAttributes(IMG_BRADIUS),
     ...generateDimensionAttributes(IMG_MARGIN),
@@ -90,6 +89,10 @@ const attributes = {
     // block specific
     photo: {
         type: 'object',
+    },
+    objectFit: {
+        type: 'string',
+        default: 'none',
     },
     imageRes: {
         type: 'string',

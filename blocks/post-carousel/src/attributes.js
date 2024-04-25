@@ -1,15 +1,7 @@
 /**
  * Internal dependencies
  */
-const {
-    generateResRangeAttributies,
-    generateBorderAttributies,
-    generateDimensionAttributes,
-    generateBoxShadowAttributies,
-    generateNormalBGAttributes,
-    generateTypographyAttributes,
-    generateResCounterAttributies,
-} = window.zoloModule;
+const { generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes, generateBoxShadowAttributies, generateNormalBGAttributes, generateTypographyAttributes, generateResCounterAttributies } = window.zoloModule;
 import {
     COLUMNS,
     COLUMNS_GAP,
@@ -136,10 +128,6 @@ const attributes = {
     },
     titleWords: {
         type: 'number',
-    },
-    showExcerpt: {
-        type: 'boolean',
-        default: false,
     },
     excerptWords: {
         type: 'number',
@@ -302,12 +290,6 @@ const attributes = {
     ...generateDimensionAttributes(APAG_BORDER_RADIUS),
     ...generateNormalBGAttributes(APAG_BG),
     // swiper options
-    uniqueId: {
-        type: 'string',
-    },
-    blockStyle: {
-        type: 'object',
-    },
     slideItems: {
         type: 'number',
         default: 3,
