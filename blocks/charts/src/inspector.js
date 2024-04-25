@@ -161,7 +161,7 @@ function Inspector(props) {
               panelProps={props}
             >
               <SelectControl
-                label={__("Inpur Source", "zoloblocks")}
+                label={__("Input Source", "zoloblocks")}
                 value={sourceType}
                 options={SOURCE_TYPES}
                 onChange={(v) => setAttributes({ sourceType: v })}
