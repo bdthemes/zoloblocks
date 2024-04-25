@@ -1,7 +1,7 @@
 .wp-block-zolo-slider {
     box-sizing: border-box;
     overflow: hidden;
-
+	position: relative;
     --zolo-slider-height: clamp(21.875rem, 50vw, 34.375rem);
     --zolo-content-max-width: 825px;
     --zolo-pagination-gap: 12px;
