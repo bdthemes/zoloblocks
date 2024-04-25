@@ -126,7 +126,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl label={__('Inpur Source', 'zoloblocks')} value={sourceType} options={SOURCE_TYPES} onChange={(v) => setAttributes({ sourceType: v })} />
+                            <SelectControl label={__('Source Type', 'zoloblocks')} value={sourceType} options={SOURCE_TYPES} onChange={(v) => setAttributes({ sourceType: v })} />
                             {sourceType === 'upload' && (
                                 <FormFileUpload
                                     accept=".csv"
