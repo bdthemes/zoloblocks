@@ -190,12 +190,14 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
-= 1.0.1 - 23-04-2024 =
+= 1.0.1 - 25-04-2024 =
 
 = Added =
 
-* Typography control added to Advanced Search block
-* Focus Color control added to Advanced Search block
+* Style copy & paste feature added
+* Image width, height, max width options added to Advanced image block
+* Button typography, shadow, spacing control added to Advanced Search block
+
 
 = Fixed =
 
@@ -205,6 +207,8 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 = Improved =
 
 * Controls UI improved
+* Deprecated codes are removed
+* Theme colors and gradients palettes are improved
 
 = 1.0.0 - 22-04-2024 =
 
