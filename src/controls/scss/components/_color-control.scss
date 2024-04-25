@@ -23,6 +23,19 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     padding: 0 15px 15px;
+
+    .components-circular-option-picker__option-wrapper,
+    .components-circular-option-picker__option {
+        position: relative;
+    }
+
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
 }
 
 .zolo-theme-color-label {
