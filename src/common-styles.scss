@@ -195,3 +195,11 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
         }
     }
 }
+
+
+.zolo-entrance-animation:not(.animation-initialized) {
+    opacity: 0;
+}
+.wp-admin .zolo-entrance-animation:not(.animation-initialized) {
+    opacity: 1;
+}
