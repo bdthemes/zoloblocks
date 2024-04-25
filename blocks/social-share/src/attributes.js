@@ -1,27 +1,6 @@
-const {
-    generateResRangeAttributies,
-    generateBorderAttributies,
-    generateResCounterAttributies,
-    generateDimensionAttributes,
-    generateBoxShadowAttributies,
-    generateTypographyAttributes,
-    generateGapAttributes,
-} = window.zoloModule;
+const { generateResRangeAttributies, generateBorderAttributies, generateResCounterAttributies, generateDimensionAttributes, generateBoxShadowAttributies, generateTypographyAttributes, generateGapAttributes } = window.zoloModule;
 
-import {
-    BUTTON_PADDING,
-    BUTTON_BORDER,
-    BTN_BORDER_RADIUS,
-    BTN_SHADOW,
-    BTN_HOVER_SHADOW,
-    ICON_TEXT_SPACING,
-    COLUMN_COUNT,
-    COLUMNS_GAP,
-    BUTTON_SIZE,
-    BLOCK_MARGIN,
-    PT_ICON_WIDTH,
-    PT_ICON_HEIGHT,
-} from './constants';
+import { BUTTON_PADDING, BUTTON_BORDER, BTN_BORDER_RADIUS, BTN_SHADOW, BTN_HOVER_SHADOW, ICON_TEXT_SPACING, COLUMN_COUNT, COLUMNS_GAP, BUTTON_SIZE, BLOCK_MARGIN, PT_ICON_WIDTH, PT_ICON_HEIGHT } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 

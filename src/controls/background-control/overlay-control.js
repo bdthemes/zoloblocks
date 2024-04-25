@@ -131,14 +131,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                         if ('normal' === tab.name) {
                             return (
                                 <>
-                                    <RangeControl
-                                        label={__('Overlay Opacity', 'zoloblocks')}
-                                        value={ovl_opacity}
-                                        onChange={(v) => setAttributes({ [`${controlName}ovl_opacity`]: v })}
-                                        min={0}
-                                        max={1}
-                                        step={0.1}
-                                    />
+                                    <RangeControl label={__('Overlay Opacity', 'zoloblocks')} value={ovl_opacity} onChange={(v) => setAttributes({ [`${controlName}ovl_opacity`]: v })} min={0} max={1} step={0.1} />
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
                                         <ButtonGroup>
                                             {BACKGROUND_TYPES.map(({ value, label }) => (
@@ -184,12 +177,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                         render={({ open }) =>
                                                             !ovl_bgImageURL && (
                                                                 <>
-                                                                    <Button
-                                                                        className="zb-bg-control-img-btn components-button"
-                                                                        label={__('Upload Image', 'zoloblocks')}
-                                                                        icon="format-image"
-                                                                        onClick={open}
-                                                                    />
+                                                                    <Button className="zb-bg-control-img-btn components-button" label={__('Upload Image', 'zoloblocks')} icon="format-image" onClick={open} />
                                                                     <span
                                                                         style={{
                                                                             padding: '10px 0',
@@ -221,11 +209,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                             {resMode === 'Desktop' && (
                                                                 <>
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Position', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Position', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={ovl_bgImgPos}
                                                                             options={[
@@ -302,25 +286,19 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(ovl_bgImgcustomPosXUnit) =>
                                                                                     setAttributes({
-                                                                                        [`${controlName}ovl_bgImgcustomPosXUnit`]:
-                                                                                            ovl_bgImgcustomPosXUnit,
+                                                                                        [`${controlName}ovl_bgImgcustomPosXUnit`]: ovl_bgImgcustomPosXUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('X Position', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={ovl_bgImgcustomPosX}
                                                                                     min={0}
                                                                                     max={ovl_bgImgcustomPosXUnit === 'px' ? 2000 : 100}
                                                                                     onChange={(ovl_bgImgcustomPosX) =>
                                                                                         setAttributes({
-                                                                                            [`${controlName}ovl_bgImgcustomPosX`]:
-                                                                                                ovl_bgImgcustomPosX,
+                                                                                            [`${controlName}ovl_bgImgcustomPosX`]: ovl_bgImgcustomPosX,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -344,17 +322,12 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(ovl_bgImgcustomPosYUnit) =>
                                                                                     setAttributes({
-                                                                                        [`${controlName}ovl_bgImgcustomPosYUnit`]:
-                                                                                            ovl_bgImgcustomPosYUnit,
+                                                                                        [`${controlName}ovl_bgImgcustomPosYUnit`]: ovl_bgImgcustomPosYUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Y Position', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={ovl_bgImgcustomPosY}
                                                                                     min={0}
@@ -362,8 +335,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     step={ovl_bgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(ovl_bgImgcustomPosY) =>
                                                                                         setAttributes({
-                                                                                            [`${controlName}ovl_bgImgcustomPosY`]:
-                                                                                                ovl_bgImgcustomPosY,
+                                                                                            [`${controlName}ovl_bgImgcustomPosY`]: ovl_bgImgcustomPosY,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -406,11 +378,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                         </p>
                                                                     )}
 
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Repeat', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={ovl_bgImgRepeat}
                                                                             options={[
@@ -443,11 +411,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                         />
                                                                     </WithResDeviceBtn>
 
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Size', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Size', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={ovl_backgroundSize}
                                                                             options={[
@@ -474,8 +438,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(ovl_backgroundSize) =>
                                                                                 setAttributes({
-                                                                                    [`${controlName}ovl_backgroundSize`]:
-                                                                                        ovl_backgroundSize,
+                                                                                    [`${controlName}ovl_backgroundSize`]: ovl_backgroundSize,
                                                                                 })
                                                                             }
                                                                         />
@@ -501,17 +464,12 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(ovl_bgImgCustomSizeUnit) =>
                                                                                     setAttributes({
-                                                                                        [`${controlName}ovl_bgImgCustomSizeUnit`]:
-                                                                                            ovl_bgImgCustomSizeUnit,
+                                                                                        [`${controlName}ovl_bgImgCustomSizeUnit`]: ovl_bgImgCustomSizeUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Width', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Width', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={ovl_bgImgCustomSize}
                                                                                     min={0}
@@ -519,8 +477,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     step={ovl_bgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(ovl_bgImgCustomSize) =>
                                                                                         setAttributes({
-                                                                                            [`${controlName}ovl_bgImgCustomSize`]:
-                                                                                                ovl_bgImgCustomSize,
+                                                                                            [`${controlName}ovl_bgImgCustomSize`]: ovl_bgImgCustomSize,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -532,11 +489,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                             {resMode === 'Tablet' && (
                                                                 <>
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Position', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Position', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={TABovl_bgImgPos}
                                                                             options={[
@@ -613,17 +566,12 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(TABovl_bgImgcustomPosXUnit) =>
                                                                                     setAttributes({
-                                                                                        [`TAB${controlName}ovl_bgImgcustomPosXUnit`]:
-                                                                                            TABovl_bgImgcustomPosXUnit,
+                                                                                        [`TAB${controlName}ovl_bgImgcustomPosXUnit`]: TABovl_bgImgcustomPosXUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('X Position', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={TABovl_bgImgcustomPosX}
                                                                                     min={-2000}
@@ -635,8 +583,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     }
                                                                                     onChange={(TABovl_bgImgcustomPosX) =>
                                                                                         setAttributes({
-                                                                                            [`TAB${controlName}ovl_bgImgcustomPosX`]:
-                                                                                                TABovl_bgImgcustomPosX,
+                                                                                            [`TAB${controlName}ovl_bgImgcustomPosX`]: TABovl_bgImgcustomPosX,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -660,17 +607,12 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(TABovl_bgImgcustomPosYUnit) =>
                                                                                     setAttributes({
-                                                                                        [`TAB${controlName}ovl_bgImgcustomPosYUnit`]:
-                                                                                            TABovl_bgImgcustomPosYUnit,
+                                                                                        [`TAB${controlName}ovl_bgImgcustomPosYUnit`]: TABovl_bgImgcustomPosYUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Y Position', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={TABovl_bgImgcustomPosY}
                                                                                     min={-2000}
@@ -683,8 +625,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     step={TABovl_bgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(TABovl_bgImgcustomPosY) =>
                                                                                         setAttributes({
-                                                                                            [`TAB${controlName}ovl_bgImgcustomPosY`]:
-                                                                                                TABovl_bgImgcustomPosY,
+                                                                                            [`TAB${controlName}ovl_bgImgcustomPosY`]: TABovl_bgImgcustomPosY,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -727,11 +668,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                         </p>
                                                                     )}
 
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Repeat', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={TABovl_bgImgRepeat}
                                                                             options={[
@@ -758,18 +695,13 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(TABovl_bgImgRepeat) =>
                                                                                 setAttributes({
-                                                                                    [`TAB${controlName}ovl_bgImgRepeat`]:
-                                                                                        TABovl_bgImgRepeat,
+                                                                                    [`TAB${controlName}ovl_bgImgRepeat`]: TABovl_bgImgRepeat,
                                                                                 })
                                                                             }
                                                                         />
                                                                     </WithResDeviceBtn>
 
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Size', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Size', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={TABovl_backgroundSize}
                                                                             options={[
@@ -796,8 +728,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(TABovl_backgroundSize) =>
                                                                                 setAttributes({
-                                                                                    [`TAB${controlName}ovl_backgroundSize`]:
-                                                                                        TABovl_backgroundSize,
+                                                                                    [`TAB${controlName}ovl_backgroundSize`]: TABovl_backgroundSize,
                                                                                 })
                                                                             }
                                                                         />
@@ -823,17 +754,12 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(TABovl_bgImgCustomSizeUnit) =>
                                                                                     setAttributes({
-                                                                                        [`TAB${controlName}ovl_bgImgCustomSizeUnit`]:
-                                                                                            TABovl_bgImgCustomSizeUnit,
+                                                                                        [`TAB${controlName}ovl_bgImgCustomSizeUnit`]: TABovl_bgImgCustomSizeUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Width', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Width', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={TABovl_bgImgCustomSize}
                                                                                     min={0}
@@ -841,8 +767,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     step={TABovl_bgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(TABovl_bgImgCustomSize) =>
                                                                                         setAttributes({
-                                                                                            [`TAB${controlName}ovl_bgImgCustomSize`]:
-                                                                                                TABovl_bgImgCustomSize,
+                                                                                            [`TAB${controlName}ovl_bgImgCustomSize`]: TABovl_bgImgCustomSize,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -854,11 +779,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                             {resMode === 'Mobile' && (
                                                                 <>
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Position', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Position', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={MOBovl_bgImgPos}
                                                                             options={[
@@ -935,25 +856,19 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(MOBovl_bgImgcustomPosXUnit) =>
                                                                                     setAttributes({
-                                                                                        [`MOB${controlName}ovl_bgImgcustomPosXUnit`]:
-                                                                                            MOBovl_bgImgcustomPosXUnit,
+                                                                                        [`MOB${controlName}ovl_bgImgcustomPosXUnit`]: MOBovl_bgImgcustomPosXUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('X Position', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={MOBovl_bgImgcustomPosX}
                                                                                     min={0}
                                                                                     max={MOBovl_bgImgcustomPosXUnit === 'px' ? 2000 : 100}
                                                                                     onChange={(MOBovl_bgImgcustomPosX) =>
                                                                                         setAttributes({
-                                                                                            [`MOB${controlName}ovl_bgImgcustomPosX`]:
-                                                                                                MOBovl_bgImgcustomPosX,
+                                                                                            [`MOB${controlName}ovl_bgImgcustomPosX`]: MOBovl_bgImgcustomPosX,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -977,17 +892,12 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(MOBovl_bgImgcustomPosYUnit) =>
                                                                                     setAttributes({
-                                                                                        [`MOB${controlName}ovl_bgImgcustomPosYUnit`]:
-                                                                                            MOBovl_bgImgcustomPosYUnit,
+                                                                                        [`MOB${controlName}ovl_bgImgcustomPosYUnit`]: MOBovl_bgImgcustomPosYUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Y Position', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={MOBovl_bgImgcustomPosY}
                                                                                     min={0}
@@ -995,8 +905,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     step={MOBovl_bgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(MOBovl_bgImgcustomPosY) =>
                                                                                         setAttributes({
-                                                                                            [`MOB${controlName}ovl_bgImgcustomPosY`]:
-                                                                                                MOBovl_bgImgcustomPosY,
+                                                                                            [`MOB${controlName}ovl_bgImgcustomPosY`]: MOBovl_bgImgcustomPosY,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1039,11 +948,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                         </p>
                                                                     )}
 
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Repeat', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={MOBovl_bgImgRepeat}
                                                                             options={[
@@ -1070,18 +975,13 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(MOBovl_bgImgRepeat) =>
                                                                                 setAttributes({
-                                                                                    [`MOB${controlName}ovl_bgImgRepeat`]:
-                                                                                        MOBovl_bgImgRepeat,
+                                                                                    [`MOB${controlName}ovl_bgImgRepeat`]: MOBovl_bgImgRepeat,
                                                                                 })
                                                                             }
                                                                         />
                                                                     </WithResDeviceBtn>
 
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Size', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Size', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={MOBovl_backgroundSize}
                                                                             options={[
@@ -1108,8 +1008,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(MOBovl_backgroundSize) =>
                                                                                 setAttributes({
-                                                                                    [`MOB${controlName}ovl_backgroundSize`]:
-                                                                                        MOBovl_backgroundSize,
+                                                                                    [`MOB${controlName}ovl_backgroundSize`]: MOBovl_backgroundSize,
                                                                                 })
                                                                             }
                                                                         />
@@ -1135,17 +1034,12 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(MOBovl_bgImgCustomSizeUnit) =>
                                                                                     setAttributes({
-                                                                                        [`MOB${controlName}ovl_bgImgCustomSizeUnit`]:
-                                                                                            MOBovl_bgImgCustomSizeUnit,
+                                                                                        [`MOB${controlName}ovl_bgImgCustomSizeUnit`]: MOBovl_bgImgCustomSizeUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Width', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Width', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={MOBovl_bgImgCustomSize}
                                                                                     min={0}
@@ -1153,8 +1047,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     step={MOBovl_bgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(MOBovl_bgImgCustomSize) =>
                                                                                         setAttributes({
-                                                                                            [`MOB${controlName}ovl_bgImgCustomSize`]:
-                                                                                                MOBovl_bgImgCustomSize,
+                                                                                            [`MOB${controlName}ovl_bgImgCustomSize`]: MOBovl_bgImgCustomSize,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1243,12 +1136,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                         render={({ open }) =>
                                                             !hov_ovl_bgImageURL && (
                                                                 <>
-                                                                    <Button
-                                                                        className="zb-bg-control-img-btn components-button"
-                                                                        label={__('Upload Image', 'zoloblocks')}
-                                                                        icon="format-image"
-                                                                        onClick={open}
-                                                                    />
+                                                                    <Button className="zb-bg-control-img-btn components-button" label={__('Upload Image', 'zoloblocks')} icon="format-image" onClick={open} />
                                                                     <span
                                                                         style={{
                                                                             padding: '10px 0',
@@ -1273,11 +1161,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                             {resMode === 'Desktop' && (
                                                                 <>
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Position', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Position', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={hov_ovl_bgImgPos}
                                                                             options={[
@@ -1354,25 +1238,19 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_ovl_bgImgcustomPosXUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_${controlName}ovl_bgImgcustomPosXUnit`]:
-                                                                                            hov_ovl_bgImgcustomPosXUnit,
+                                                                                        [`hov_${controlName}ovl_bgImgcustomPosXUnit`]: hov_ovl_bgImgcustomPosXUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('X Position', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={hov_ovl_bgImgcustomPosX}
                                                                                     min={0}
                                                                                     max={hov_ovl_bgImgcustomPosXUnit === 'px' ? 2000 : 100}
                                                                                     onChange={(hov_ovl_bgImgcustomPosX) =>
                                                                                         setAttributes({
-                                                                                            [`hov_${controlName}ovl_bgImgcustomPosX`]:
-                                                                                                hov_ovl_bgImgcustomPosX,
+                                                                                            [`hov_${controlName}ovl_bgImgcustomPosX`]: hov_ovl_bgImgcustomPosX,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1396,17 +1274,12 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_ovl_bgImgcustomPosYUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_${controlName}ovl_bgImgcustomPosYUnit`]:
-                                                                                            hov_ovl_bgImgcustomPosYUnit,
+                                                                                        [`hov_${controlName}ovl_bgImgcustomPosYUnit`]: hov_ovl_bgImgcustomPosYUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Y Position', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={hov_ovl_bgImgcustomPosY}
                                                                                     min={0}
@@ -1414,8 +1287,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     step={hov_ovl_bgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(hov_ovl_bgImgcustomPosY) =>
                                                                                         setAttributes({
-                                                                                            [`hov_${controlName}ovl_bgImgcustomPosY`]:
-                                                                                                hov_ovl_bgImgcustomPosY,
+                                                                                            [`hov_${controlName}ovl_bgImgcustomPosY`]: hov_ovl_bgImgcustomPosY,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1442,8 +1314,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                         ]}
                                                                         onChange={(hov_ovl_bgImgAttachment) =>
                                                                             setAttributes({
-                                                                                [`hov_${controlName}ovl_bgImgAttachment`]:
-                                                                                    hov_ovl_bgImgAttachment,
+                                                                                [`hov_${controlName}ovl_bgImgAttachment`]: hov_ovl_bgImgAttachment,
                                                                             })
                                                                         }
                                                                     />
@@ -1459,11 +1330,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                         </p>
                                                                     )}
 
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Repeat', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={hov_ovl_bgImgRepeat}
                                                                             options={[
@@ -1490,18 +1357,13 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_ovl_bgImgRepeat) =>
                                                                                 setAttributes({
-                                                                                    [`hov_${controlName}ovl_bgImgRepeat`]:
-                                                                                        hov_ovl_bgImgRepeat,
+                                                                                    [`hov_${controlName}ovl_bgImgRepeat`]: hov_ovl_bgImgRepeat,
                                                                                 })
                                                                             }
                                                                         />
                                                                     </WithResDeviceBtn>
 
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Size', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Size', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={hov_ovl_backgroundSize}
                                                                             options={[
@@ -1528,8 +1390,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_ovl_backgroundSize) =>
                                                                                 setAttributes({
-                                                                                    [`hov_${controlName}ovl_backgroundSize`]:
-                                                                                        hov_ovl_backgroundSize,
+                                                                                    [`hov_${controlName}ovl_backgroundSize`]: hov_ovl_backgroundSize,
                                                                                 })
                                                                             }
                                                                         />
@@ -1555,17 +1416,12 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_ovl_bgImgCustomSizeUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_${controlName}ovl_bgImgCustomSizeUnit`]:
-                                                                                            hov_ovl_bgImgCustomSizeUnit,
+                                                                                        [`hov_${controlName}ovl_bgImgCustomSizeUnit`]: hov_ovl_bgImgCustomSizeUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Width', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Width', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={hov_ovl_bgImgCustomSize}
                                                                                     min={0}
@@ -1573,8 +1429,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     step={hov_ovl_bgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(hov_ovl_bgImgCustomSize) =>
                                                                                         setAttributes({
-                                                                                            [`hov_${controlName}ovl_bgImgCustomSize`]:
-                                                                                                hov_ovl_bgImgCustomSize,
+                                                                                            [`hov_${controlName}ovl_bgImgCustomSize`]: hov_ovl_bgImgCustomSize,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1586,11 +1441,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                             {resMode === 'Tablet' && (
                                                                 <>
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Position', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Position', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={hov_TABovl_bgImgPos}
                                                                             options={[
@@ -1641,8 +1492,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_TABovl_bgImgPos) =>
                                                                                 setAttributes({
-                                                                                    [`hov_TAB${controlName}ovl_bgImgPos`]:
-                                                                                        hov_TABovl_bgImgPos,
+                                                                                    [`hov_TAB${controlName}ovl_bgImgPos`]: hov_TABovl_bgImgPos,
                                                                                 })
                                                                             }
                                                                         />
@@ -1668,27 +1518,19 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_TABovl_bgImgcustomPosXUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_TAB${controlName}ovl_bgImgcustomPosXUnit`]:
-                                                                                            hov_TABovl_bgImgcustomPosXUnit,
+                                                                                        [`hov_TAB${controlName}ovl_bgImgcustomPosXUnit`]: hov_TABovl_bgImgcustomPosXUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('X Position', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={hov_TABovl_bgImgcustomPosX}
                                                                                     min={0}
-                                                                                    max={
-                                                                                        hov_TABovl_bgImgcustomPosXUnit === 'px' ? 2000 : 100
-                                                                                    }
+                                                                                    max={hov_TABovl_bgImgcustomPosXUnit === 'px' ? 2000 : 100}
                                                                                     onChange={(hov_TABovl_bgImgcustomPosX) =>
                                                                                         setAttributes({
-                                                                                            [`hov_TAB${controlName}ovl_bgImgcustomPosX`]:
-                                                                                                hov_TABovl_bgImgcustomPosX,
+                                                                                            [`hov_TAB${controlName}ovl_bgImgcustomPosX`]: hov_TABovl_bgImgcustomPosX,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1712,28 +1554,20 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_TABovl_bgImgcustomPosYUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_TAB${controlName}ovl_bgImgcustomPosYUnit`]:
-                                                                                            hov_TABovl_bgImgcustomPosYUnit,
+                                                                                        [`hov_TAB${controlName}ovl_bgImgcustomPosYUnit`]: hov_TABovl_bgImgcustomPosYUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Y Position', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={hov_TABovl_bgImgcustomPosY}
                                                                                     min={0}
-                                                                                    max={
-                                                                                        hov_TABovl_bgImgcustomPosYUnit === 'px' ? 2000 : 100
-                                                                                    }
+                                                                                    max={hov_TABovl_bgImgcustomPosYUnit === 'px' ? 2000 : 100}
                                                                                     step={hov_TABovl_bgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(hov_TABovl_bgImgcustomPosY) =>
                                                                                         setAttributes({
-                                                                                            [`hov_TAB${controlName}ovl_bgImgcustomPosY`]:
-                                                                                                hov_TABovl_bgImgcustomPosY,
+                                                                                            [`hov_TAB${controlName}ovl_bgImgcustomPosY`]: hov_TABovl_bgImgcustomPosY,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1760,8 +1594,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                         ]}
                                                                         onChange={(hov_ovl_bgImgAttachment) =>
                                                                             setAttributes({
-                                                                                [`hov_${controlName}ovl_bgImgAttachment`]:
-                                                                                    hov_ovl_bgImgAttachment,
+                                                                                [`hov_${controlName}ovl_bgImgAttachment`]: hov_ovl_bgImgAttachment,
                                                                             })
                                                                         }
                                                                     />
@@ -1777,11 +1610,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                         </p>
                                                                     )}
 
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Repeat', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={hov_TABovl_bgImgRepeat}
                                                                             options={[
@@ -1808,18 +1637,13 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_TABovl_bgImgRepeat) =>
                                                                                 setAttributes({
-                                                                                    [`hov_TAB${controlName}ovl_bgImgRepeat`]:
-                                                                                        hov_TABovl_bgImgRepeat,
+                                                                                    [`hov_TAB${controlName}ovl_bgImgRepeat`]: hov_TABovl_bgImgRepeat,
                                                                                 })
                                                                             }
                                                                         />
                                                                     </WithResDeviceBtn>
 
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Size', 'zoloblocks')}
-                                                                        noResetBtn={true}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Size', 'zoloblocks')} noResetBtn={true}>
                                                                         <SelectControl
                                                                             value={hov_TABovl_backgroundSize}
                                                                             options={[
@@ -1846,8 +1670,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_TABovl_backgroundSize) =>
                                                                                 setAttributes({
-                                                                                    [`hov_TAB${controlName}ovl_backgroundSize`]:
-                                                                                        hov_TABovl_backgroundSize,
+                                                                                    [`hov_TAB${controlName}ovl_backgroundSize`]: hov_TABovl_backgroundSize,
                                                                                 })
                                                                             }
                                                                         />
@@ -1873,28 +1696,20 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_TABovl_bgImgCustomSizeUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_TAB${controlName}ovl_bgImgCustomSizeUnit`]:
-                                                                                            hov_TABovl_bgImgCustomSizeUnit,
+                                                                                        [`hov_TAB${controlName}ovl_bgImgCustomSizeUnit`]: hov_TABovl_bgImgCustomSizeUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Width', 'zoloblocks')}
-                                                                                noResetBtn={true}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Width', 'zoloblocks')} noResetBtn={true}>
                                                                                 <RangeControl
                                                                                     value={hov_TABovl_bgImgCustomSize}
                                                                                     min={0}
-                                                                                    max={
-                                                                                        hov_TABovl_bgImgCustomSizeUnit === 'px' ? 2000 : 100
-                                                                                    }
+                                                                                    max={hov_TABovl_bgImgCustomSizeUnit === 'px' ? 2000 : 100}
                                                                                     step={hov_TABovl_bgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(hov_TABovl_bgImgCustomSize) =>
                                                                                         setAttributes({
-                                                                                            [`hov_TAB${controlName}ovl_bgImgCustomSize`]:
-                                                                                                hov_TABovl_bgImgCustomSize,
+                                                                                            [`hov_TAB${controlName}ovl_bgImgCustomSize`]: hov_TABovl_bgImgCustomSize,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1906,10 +1721,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                                             {resMode === 'Mobile' && (
                                                                 <>
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Position', 'zoloblocks')}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Position', 'zoloblocks')}>
                                                                         <SelectControl
                                                                             value={hov_MOBovl_bgImgPos}
                                                                             options={[
@@ -1960,8 +1772,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_MOBovl_bgImgPos) =>
                                                                                 setAttributes({
-                                                                                    [`hov_MOB${controlName}ovl_bgImgPos`]:
-                                                                                        hov_MOBovl_bgImgPos,
+                                                                                    [`hov_MOB${controlName}ovl_bgImgPos`]: hov_MOBovl_bgImgPos,
                                                                                 })
                                                                             }
                                                                         />
@@ -1987,26 +1798,19 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_MOBovl_bgImgcustomPosXUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_MOB${controlName}ovl_bgImgcustomPosXUnit`]:
-                                                                                            hov_MOBovl_bgImgcustomPosXUnit,
+                                                                                        [`hov_MOB${controlName}ovl_bgImgcustomPosXUnit`]: hov_MOBovl_bgImgcustomPosXUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('X Position', 'zoloblocks')}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('X Position', 'zoloblocks')}>
                                                                                 <RangeControl
                                                                                     value={hov_MOBovl_bgImgcustomPosX}
                                                                                     min={0}
-                                                                                    max={
-                                                                                        hov_MOBovl_bgImgcustomPosXUnit === 'px' ? 2000 : 100
-                                                                                    }
+                                                                                    max={hov_MOBovl_bgImgcustomPosXUnit === 'px' ? 2000 : 100}
                                                                                     onChange={(hov_MOBovl_bgImgcustomPosX) =>
                                                                                         setAttributes({
-                                                                                            [`hov_MOB${controlName}ovl_bgImgcustomPosX`]:
-                                                                                                hov_MOBovl_bgImgcustomPosX,
+                                                                                            [`hov_MOB${controlName}ovl_bgImgcustomPosX`]: hov_MOBovl_bgImgcustomPosX,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -2030,27 +1834,20 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_MOBovl_bgImgcustomPosYUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_MOB${controlName}ovl_bgImgcustomPosYUnit`]:
-                                                                                            hov_MOBovl_bgImgcustomPosYUnit,
+                                                                                        [`hov_MOB${controlName}ovl_bgImgcustomPosYUnit`]: hov_MOBovl_bgImgcustomPosYUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Y Position', 'zoloblocks')}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Y Position', 'zoloblocks')}>
                                                                                 <RangeControl
                                                                                     value={hov_MOBovl_bgImgcustomPosY}
                                                                                     min={0}
-                                                                                    max={
-                                                                                        hov_MOBovl_bgImgcustomPosYUnit === 'px' ? 2000 : 100
-                                                                                    }
+                                                                                    max={hov_MOBovl_bgImgcustomPosYUnit === 'px' ? 2000 : 100}
                                                                                     step={hov_MOBovl_bgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(hov_MOBovl_bgImgcustomPosY) =>
                                                                                         setAttributes({
-                                                                                            [`hov_MOB${controlName}ovl_bgImgcustomPosY`]:
-                                                                                                hov_MOBovl_bgImgcustomPosY,
+                                                                                            [`hov_MOB${controlName}ovl_bgImgcustomPosY`]: hov_MOBovl_bgImgcustomPosY,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -2077,8 +1874,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                         ]}
                                                                         onChange={(hov_ovl_bgImgAttachment) =>
                                                                             setAttributes({
-                                                                                [`hov_${controlName}ovl_bgImgAttachment`]:
-                                                                                    hov_ovl_bgImgAttachment,
+                                                                                [`hov_${controlName}ovl_bgImgAttachment`]: hov_ovl_bgImgAttachment,
                                                                             })
                                                                         }
                                                                     />
@@ -2094,10 +1890,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                         </p>
                                                                     )}
 
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Repeat', 'zoloblocks')}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Repeat', 'zoloblocks')}>
                                                                         <SelectControl
                                                                             value={hov_MOBovl_bgImgRepeat}
                                                                             options={[
@@ -2124,17 +1917,13 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_MOBovl_bgImgRepeat) =>
                                                                                 setAttributes({
-                                                                                    [`hov_MOB${controlName}ovl_bgImgRepeat`]:
-                                                                                        hov_MOBovl_bgImgRepeat,
+                                                                                    [`hov_MOB${controlName}ovl_bgImgRepeat`]: hov_MOBovl_bgImgRepeat,
                                                                                 })
                                                                             }
                                                                         />
                                                                     </WithResDeviceBtn>
 
-                                                                    <WithResDeviceBtn
-                                                                        requiredProps={requiredProps}
-                                                                        label={__('Size', 'zoloblocks')}
-                                                                    >
+                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Size', 'zoloblocks')}>
                                                                         <SelectControl
                                                                             value={hov_MOBovl_backgroundSize}
                                                                             options={[
@@ -2161,8 +1950,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_MOBovl_backgroundSize) =>
                                                                                 setAttributes({
-                                                                                    [`hov_MOB${controlName}ovl_backgroundSize`]:
-                                                                                        hov_MOBovl_backgroundSize,
+                                                                                    [`hov_MOB${controlName}ovl_backgroundSize`]: hov_MOBovl_backgroundSize,
                                                                                 })
                                                                             }
                                                                         />
@@ -2188,27 +1976,20 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_MOBovl_bgImgCustomSizeUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_MOB${controlName}ovl_bgImgCustomSizeUnit`]:
-                                                                                            hov_MOBovl_bgImgCustomSizeUnit,
+                                                                                        [`hov_MOB${controlName}ovl_bgImgCustomSizeUnit`]: hov_MOBovl_bgImgCustomSizeUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn
-                                                                                requiredProps={requiredProps}
-                                                                                label={__('Width', 'zoloblocks')}
-                                                                            >
+                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Width', 'zoloblocks')}>
                                                                                 <RangeControl
                                                                                     value={hov_MOBovl_bgImgCustomSize}
                                                                                     min={0}
-                                                                                    max={
-                                                                                        hov_MOBovl_bgImgCustomSizeUnit === 'px' ? 2000 : 100
-                                                                                    }
+                                                                                    max={hov_MOBovl_bgImgCustomSizeUnit === 'px' ? 2000 : 100}
                                                                                     step={hov_MOBovl_bgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(hov_MOBovl_bgImgCustomSize) =>
                                                                                         setAttributes({
-                                                                                            [`hov_MOB${controlName}ovl_bgImgCustomSize`]:
-                                                                                                hov_MOBovl_bgImgCustomSize,
+                                                                                            [`hov_MOB${controlName}ovl_bgImgCustomSize`]: hov_MOBovl_bgImgCustomSize,
                                                                                         })
                                                                                     }
                                                                                 />

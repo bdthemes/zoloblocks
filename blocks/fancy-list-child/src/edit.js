@@ -19,28 +19,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, context } = props;
-    const {
-        preview,
-        uniqueId,
-        preset,
-        parentClasses,
-        mediaType,
-        mediaText,
-        image,
-        headingTag,
-        fancyTitle,
-        fancyListText,
-        fancyIcon,
-        imageToggle,
-        titleToggle,
-        textToggle,
-        iconToggle,
-        dscTag,
-        fancyLinkToggle,
-        fancyLink,
-        imageRes,
-        fancyDirection,
-    } = attributes;
+    const { preview, uniqueId, preset, parentClasses, mediaType, mediaText, image, headingTag, fancyTitle, fancyListText, fancyIcon, imageToggle, titleToggle, textToggle, iconToggle, dscTag, fancyLinkToggle, fancyLink, imageRes, fancyDirection } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), fancyDirection),
@@ -70,7 +49,6 @@ export default function Edit(props) {
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-            <BlockControls></BlockControls>
             <DynamicTag
                 tagName={fancyLinkToggle ? 'a' : 'div'}
                 {...blockProps}
@@ -88,10 +66,7 @@ export default function Edit(props) {
                         <>
                             {mediaType === 'image' && image && (
                                 <div className="zb-fancy-list-image">
-                                    <img
-                                        src={image.sizes && image.sizes[imageRes] ? image.sizes[imageRes].url : image.url}
-                                        alt={image.url || fancyTitle}
-                                    />
+                                    <img src={image.sizes && image.sizes[imageRes] ? image.sizes[imageRes].url : image.url} alt={image.url || fancyTitle} />
                                 </div>
                             )}
                             {mediaType === 'text' && <div className="zb-fancy-list-number">{mediaText}</div>}
@@ -99,24 +74,8 @@ export default function Edit(props) {
                     )}
 
                     <div className="zb-fancy-list-inner-content">
-                        {titleToggle == true && (
-                            <RichText
-                                tagName={headingTag}
-                                className="zb-fancy-list-title"
-                                value={fancyTitle}
-                                onChange={(v) => setAttributes({ fancyTitle: v })}
-                                placeholder={__('Title Here', 'zolo-block')}
-                            />
-                        )}
-                        {textToggle == true && (
-                            <RichText
-                                tagName={dscTag}
-                                className="zb-fancy-list-text"
-                                value={fancyListText}
-                                onChange={(v) => setAttributes({ fancyListText: v })}
-                                placeholder={__('Description Here', 'zolo-block')}
-                            />
-                        )}
+                        {titleToggle == true && <RichText tagName={headingTag} className="zb-fancy-list-title" value={fancyTitle} onChange={(v) => setAttributes({ fancyTitle: v })} placeholder={__('Title Here', 'zolo-block')} />}
+                        {textToggle == true && <RichText tagName={dscTag} className="zb-fancy-list-text" value={fancyListText} onChange={(v) => setAttributes({ fancyListText: v })} placeholder={__('Description Here', 'zolo-block')} />}
                     </div>
                 </div>
                 {iconToggle == true && <div className="zb-fancy-icon">{fancyIcon && <DisplayZoloIcon icon={fancyIcon} />}</div>}

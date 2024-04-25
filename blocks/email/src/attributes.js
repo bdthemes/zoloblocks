@@ -1,13 +1,7 @@
 /**
  * Internal dependencies
  */
-const {
-    generateResRangeAttributies,
-    generateTypographyAttributes,
-    generateDimensionAttributes,
-    generateNormalBGAttributes,
-    generateBorderAttributies,
-} = window.zoloModule;
+const { generateResRangeAttributies, generateTypographyAttributes, generateDimensionAttributes, generateNormalBGAttributes, generateBorderAttributies } = window.zoloModule;
 
 import { LABEL_MARGIN, FIELD_PADDING, FIELD_BG, ICON_SIZE, FIELD_BORDER, FIELD_BRADIUS } from './constants';
 
@@ -98,34 +92,6 @@ const attributes = {
         default: true,
     },
     requiredColor: {
-        type: 'string',
-    },
-    rating: {
-        type: 'number',
-        default: 5,
-    },
-    showTitle: {
-        type: 'boolean',
-        default: true,
-    },
-    title: {
-        type: 'string',
-    },
-    titleTag: {
-        type: 'string',
-        default: 'p',
-    },
-    titleColor: {
-        type: 'string',
-    },
-    titlePosition: {
-        type: 'string',
-        default: 'top',
-    },
-    activeStarColor: {
-        type: 'string',
-    },
-    inactiveStarColor: {
         type: 'string',
     },
 };

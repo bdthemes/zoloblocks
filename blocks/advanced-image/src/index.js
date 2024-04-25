@@ -3,8 +3,10 @@ import metadata from '../block.json';
 import attributes from './attributes';
 import Edit from './edit';
 import Save from './save';
-
 import './style.scss';
+
+// deprecated
+import deprecated from './deprecated';
 
 registerBlockType(metadata, {
     icon: {
@@ -19,7 +21,7 @@ registerBlockType(metadata, {
             </svg>
         ),
     },
-
+    deprecated,
     attributes,
     edit: Edit,
     save: Save,

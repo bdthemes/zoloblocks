@@ -4,14 +4,7 @@ import { __ } from '@wordpress/i18n';
 import BGControl from './bg-control';
 import OverflowControl from './overlay-control';
 
-const BackgroundControl = ({
-    requiredProps,
-    controlName,
-    noOverlay = false,
-    noMainBGImg = false,
-    noOverlayBGImg = false,
-    noTransition = false,
-}) => {
+const BackgroundControl = ({ requiredProps, controlName, noOverlay = false, noMainBGImg = false, noOverlayBGImg = false, noTransition = false }) => {
     const { setAttributes, attributes } = requiredProps;
 
     const { [`${controlName}isBgOverlay`]: isBgOverlay } = attributes;
@@ -32,14 +25,7 @@ const BackgroundControl = ({
                         }
                     />
 
-                    {isBgOverlay && (
-                        <OverflowControl
-                            controlName={controlName}
-                            requiredProps={requiredProps}
-                            noOverlayBGImg={noOverlayBGImg}
-                            noTransition={noTransition}
-                        />
-                    )}
+                    {isBgOverlay && <OverflowControl controlName={controlName} requiredProps={requiredProps} noOverlayBGImg={noOverlayBGImg} noTransition={noTransition} />}
                 </>
             )}
         </>

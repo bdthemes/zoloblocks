@@ -58,15 +58,13 @@ const ColorControl = ({ label, defaultColor = '', color, onChange }) => {
                                 {COLORS.map((paletteColor) => (
                                     <div className="components-circular-option-picker__option-wrapper">
                                         <Button
-                                            className={`components-button components-circular-option-picker__option ${
-                                                paletteColor.color === color ? 'is-pressed' : ''
-                                            }`}
+                                            className={`components-button components-circular-option-picker__option ${`var(--wp--preset--color--${paletteColor.slug})` === color || paletteColor.color === color ? 'is-pressed' : ''}`}
                                             style={{
                                                 backgroundColor: paletteColor.color,
                                                 color: paletteColor.color,
                                             }}
                                             onClick={() => {
-                                                onChange(paletteColor.color);
+                                                onChange(`var(--wp--preset--color--${paletteColor.slug})` || paletteColor.color);
                                             }}
                                         />
                                         {paletteColor.color === color && (

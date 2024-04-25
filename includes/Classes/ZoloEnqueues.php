@@ -40,8 +40,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * Constructor
          */
         public function __construct() {
-            // add_action('enqueue_block_assets', [$this, 'editor_assets_loader']);
-            add_action('enqueue_block_editor_assets', [$this, 'editor_assets_loader']);
+            // only for editor
+            add_action('enqueue_block_assets', [$this, 'editor_assets_loader']);
 
             // enqueue style for both editor and frontend
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
@@ -223,7 +223,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // override css
-            wp_register_style(
+            wp_enqueue_style(
                 'zolo-block-editor-override-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/override/editor-override.css',
                 [],
@@ -232,7 +232,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             );
 
             // Swiper Scripts and Styles
-            wp_register_style(
+            wp_enqueue_style(
                 'zolo-swiper-editor-style',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/css/swiper/swiper-bundle.min.css',
                 [],
@@ -240,7 +240,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 'all'
             );
 
-            wp_register_script(
+            wp_enqueue_script(
                 'zolo-swiper-editor-script',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/swiper/swiper-bundle.min.js',
                 [],

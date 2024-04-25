@@ -226,7 +226,6 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
-
     buttonText: {
         type: 'string',
         default: 'Click Here',

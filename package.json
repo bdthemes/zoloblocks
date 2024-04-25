@@ -10,6 +10,18 @@
     },
     "author": "BdThemes",
     "license": "ISC",
+    "prettier": {
+        "printWidth": 300,
+        "tabWidth": 4,
+        "useTabs": false,
+        "semi": true,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "bracketSpacing": true,
+        "jsxBracketSameLine": false,
+        "arrowParens": "always",
+        "endOfLine": "lf"
+    },
     "dependencies": {
         "@codemirror/lang-css": "^6.2.1",
         "@dnd-kit/core": "^6.1.0",

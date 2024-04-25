@@ -1,17 +1,7 @@
 /**
  * Internal dependencies
  */
-const {
-    generateResRangeAttributies,
-    generateDimensionAttributes,
-    generateResAlignmentAttributies,
-    generateBorderAttributies,
-    generateBoxShadowAttributies,
-    generateTypographyAttributes,
-    generateNormalBGAttributes,
-    generateResCounterAttributies,
-    generateGapAttributes,
-} = window.zoloModule;
+const { generateResRangeAttributies, generateDimensionAttributes, generateResAlignmentAttributies, generateBorderAttributies, generateBoxShadowAttributies, generateTypographyAttributes, generateNormalBGAttributes, generateResCounterAttributies, generateGapAttributes } = window.zoloModule;
 
 import {
     CAROUSEL_COLUMNS,
@@ -58,7 +48,6 @@ import {
     APAG_BORDER_RADIUS,
     APAG_BG,
     PAG_BOTTOM_SPACING,
-
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -216,12 +205,6 @@ const attributes = {
     ...generateDimensionAttributes(APAG_BORDER_RADIUS),
     ...generateNormalBGAttributes(APAG_BG),
     // swiper options
-    uniqueId: {
-        type: 'string',
-    },
-    blockStyle: {
-        type: 'object',
-    },
     slideItems: {
         type: 'number',
         default: 3,
