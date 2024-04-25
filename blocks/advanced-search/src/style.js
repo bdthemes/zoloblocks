@@ -23,12 +23,16 @@ import {
   BUTTON_HOVER_BG_COLOR,
   BUTTON_BOX_SHADOW,
   BUTTON_HOVER_BOX_SHADOW,
+  FIELD_BOX_SHADOW,
+  FIELD_FOCUS_BOX_SHADOW,
   BUTTON_PADDING,
+  BUTTON_SPACING,
   ICON_SIZE,
   BUTTON_SIZE,
   LABEL_BORDER,
   LABEL_BORDER_RADIUS,
   LABEL_PADDING,
+  LABEL_SPACING,
   LABEL_BG,
   LABEL_HOVER_BG_COLOR,
   INPUT_BORDER,
@@ -47,21 +51,7 @@ import { applyFilters } from "@wordpress/hooks";
 
 export default function Style({ props }) {
   const { attributes, setAttributes } = props;
-  const {
-    preset,
-    uniqueId,
-    btnTextColor,
-    btnTextHoverColor,
-    labelTextHoverColor,
-    labelBorderHoverColor,
-    btnBorderHoverColor,
-    labelColor,
-    inputColor,
-    focusColor,
-    iconColor,
-    iconHoverColor,
-    placeholderColor,
-  } = attributes;
+  const { preset, uniqueId, btnTextColor, btnTextHoverColor, labelTextHoverColor, labelBorderHoverColor, btnBorderHoverColor, labelColor, inputColor, focusColor, iconColor, iconHoverColor, placeholderColor, btnLayoutType, showIcon,  showButtonText} = attributes;
 
   // title
   const {
@@ -207,6 +197,24 @@ export default function Style({ props }) {
     property: "width",
     attributes,
   });
+  const {
+    desktopRangeStyle: buttonSpacing,
+    tabRangeStyle: buttonSpacingTab,
+    mobRangeStyle: buttonSpacingMob,
+  } = generateResRangeStyle({
+    controlName: BUTTON_SPACING,
+    property: "margin-right",
+    attributes,
+  });
+  const {
+    desktopRangeStyle: labelSpacing,
+    tabRangeStyle: labelSpacingTab,
+    mobRangeStyle: labelSpacingMob,
+  } = generateResRangeStyle({
+    controlName: LABEL_SPACING,
+    property: "margin-left",
+    attributes,
+  });
 
   const {
     desktopRangeStyle: iconHSize,
@@ -245,6 +253,15 @@ export default function Style({ props }) {
     attributes,
     controlName: BUTTON_HOVER_BOX_SHADOW,
   });
+  const { boxShadowStyle: fieldBoxShadowStyle } = generateBoxShadowStyles({
+    controlName: FIELD_BOX_SHADOW,
+    attributes,
+  });
+
+  const { boxShadowStyle: fieldHoverBoxShadowStyle } = generateBoxShadowStyles({
+    attributes,
+    controlName: FIELD_FOCUS_BOX_SHADOW,
+  });
 
   const {
     dimensionStylesDesktop: btnPaddingDesktop,
@@ -280,38 +297,40 @@ export default function Style({ props }) {
    */
   const desktopAllStyle = `
         .${uniqueId} .zolo-form-search-input .zolo-form-label{
-        ${labelColor ? `color: ${labelColor};` : ""}
+        ${labelColor ? `color: ${labelColor};` : ''}
         ${labelDeskBGStyle}
         ${labelBorderStyles}
         ${labelBorderRadiusDesktop}
         ${labelDeskTypo}
         ${labelPaddingDesktop}
+        ${labelSpacing}
       }
         .${uniqueId} .zolo-form-search-input:hover .zolo-form-label{
-        ${labelBorderHoverColor ? `border-color: ${labelBorderHoverColor};` : ""}
+        ${labelBorderHoverColor ? `border-color: ${labelBorderHoverColor};` : ''}
 
       }
       .${uniqueId} .zolo-form-input:focus + .zolo-form-label {
-        ${labelTextHoverColor ? `color: ${labelTextHoverColor};` : ""}
+        ${labelTextHoverColor ? `color: ${labelTextHoverColor};` : ''}
         ${labelHoverDeskBGStyle}
 
       }
       .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input{
-        ${inputColor ? `color: ${inputColor};` : ""}
+        ${inputColor ? `color: ${inputColor};` : ''}
         ${inputDeskTypo}
         ${inputBorderStyles}
         ${inputBorderRadiusDesktop}
         ${inputDeskBGStyle}
         ${inputPaddingDesktop}
+        ${fieldBoxShadowStyle}
       }
       .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input::placeholder{
-        ${placeholderColor ? `color: ${placeholderColor};` : ""}
+        ${placeholderColor ? `color: ${placeholderColor};` : ''}
 
       }
       .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input:focus{
-        ${focusColor ? `outline-color: ${focusColor};border:none;` : ""}
+        ${focusColor ? `outline-color: ${focusColor};border:none;` : ''}
         ${focusBorderWidthDesk}
-
+        ${fieldHoverBoxShadowStyle}
 
       }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
@@ -320,8 +339,10 @@ export default function Style({ props }) {
         ${btnPaddingDesktop}
         ${normalDeskBGStyle}
         ${normalBoxShadowStyle}
-        ${preset == "zolo-search-1" ? buttonSize : ""}
+        ${preset == 'zolo-search-1' ? buttonSize : ''}
         ${buttonDeskTypo}
+        ${btnLayoutType == 'zolo-search-button-style-2' ? buttonSpacing : ''}
+        ${showIcon && showButtonText ? 'justify-content:space-between' : ''}
       }
 
 
@@ -330,19 +351,21 @@ export default function Style({ props }) {
         ${hoverBoxShadowStyle}
       }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
-        ${btnTextColor ? `color: ${btnTextColor};` : ""}
+        ${btnTextColor ? `color: ${btnTextColor};` : ''}
       }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
-        ${iconColor ? `fill: ${iconColor};` : ""}
+        ${iconColor ? `fill: ${iconColor};` : ''}
+        ${iconSize}
+        ${iconHSize}
       }
 
       .${uniqueId} .zolo-form-submit-btn:hover .zolo-form-btn svg{
-       ${iconHoverColor ? `fill: ${iconHoverColor};` : ""}
+       ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
       }
 
       .${uniqueId} .zolo-form-submit-btn:hover .zolo-form-btn{
-        ${btnTextHoverColor ? `color: ${btnTextHoverColor};` : ""}
-        ${btnBorderHoverColor ? `border-color: ${btnBorderHoverColor};` : ""}
+        ${btnTextHoverColor ? `color: ${btnTextHoverColor};` : ''}
+        ${btnBorderHoverColor ? `border-color: ${btnBorderHoverColor};` : ''}
       }
 
 
@@ -354,6 +377,7 @@ export default function Style({ props }) {
         ${labelBorderStylesTab}
         ${labelBorderRadiusTab}
         ${labelPaddingTab}
+        ${labelSpacingTab}
       }
       .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input{
         ${inputTabTypo}
@@ -367,6 +391,7 @@ export default function Style({ props }) {
         ${btnPaddingTab}
         ${buttonSizeTab}
         ${buttonTabTypo}
+        ${btnLayoutType == 'zolo-search-button-style-2' ? buttonSpacingTab : ''}
       }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
         ${iconSizeTab}
@@ -380,6 +405,7 @@ export default function Style({ props }) {
         ${labelBorderStylesMob}
         ${labelBorderRadiusMob}
         ${labelPaddingMob}
+        ${labelSpacingMob}
       }
       .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input{
         ${inputMobTypo}
@@ -393,6 +419,7 @@ export default function Style({ props }) {
         ${btnPaddingMob}
         ${buttonSizeMob}
         ${buttonMobTypo}
+        ${btnLayoutType == 'zolo-search-button-style-2' ? buttonSpacingMob : ''}
       }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
         ${iconSizeMob}

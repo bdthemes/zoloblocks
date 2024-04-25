@@ -140,7 +140,7 @@ span.zolo-pro-badge {
     background: red;
     margin-left: 10px;
 }
-.zolo-editor .zolo-block,
+.zolo-editor .zolo-transform-animation,
 .zolo-transform-wrapper {
     transform: perspective(var(--zolo-transform-perspective, 0)) rotate(var(--zolo-transform-rotate, 0))
         rotateX(var(--zolo-transform-rotateX, 0)) rotateY(var(--zolo-transform-rotateY, 0)) translate(var(--zolo-transform-translate, 0))

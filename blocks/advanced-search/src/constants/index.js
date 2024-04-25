@@ -95,11 +95,15 @@ export const BUTTON_LAYOUT_TYPES = [
 export const BUTTON_BG = "buttonBg";
 export const BUTTON_HOVER_BG_COLOR = "buttonHover";
 export const BUTTON_PADDING = "buttonPadding";
+export const BUTTON_SPACING = "buttonSpacing";
 export const BUTTON_ALIGNMENT = "buttonAlignment";
 export const BUTTON_BORDER = "buttonBorder";
 export const BUTTON_BORDER_RADIUS = "buttonBorderRadius";
 export const BUTTON_BOX_SHADOW = "buttonBoxShadow";
 export const BUTTON_HOVER_BOX_SHADOW = "buttonHoverBoxShadow";
+
+export const FIELD_BOX_SHADOW = "fieldBoxShadow";
+export const FIELD_FOCUS_BOX_SHADOW = "fieldHoverBoxShadow";
 
 /**
  * Button Icon
@@ -115,6 +119,7 @@ export const LABEL_BORDER = 'labelBorder'
 export const LABEL_BORDER_RADIUS = 'labelBorderRadius'
 export const LABEL_PADDING = 'labelPadding'
 export const LABEL_BG = 'labelBg'
+export const LABEL_SPACING = 'labelSpacing'
 export const LABEL_HOVER_BG_COLOR = 'labelHoverBgColor'
 
 /**
