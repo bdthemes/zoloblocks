@@ -423,7 +423,6 @@ export const GlobalStyleHanlder = (props) => {
             ${transformFlipVertical ? `--zolo-transform-flipY:-1;` : ""}
             ${transformOriginXDesktop}
             ${transformOriginYDesktop}
-            ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ""}
 
             `;
     const transformStylesTab = `
@@ -508,8 +507,12 @@ export const GlobalStyleHanlder = (props) => {
         ${overflow ? `overflow: ${overflow};` : ""}
         ${transformStylesDesktop}
       }
+      .parent-${uniqueId}.zolo-block:not(.zolo-entrance-animation) {
+            ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ""}
+      }
       .parent-${uniqueId}.zolo-transform-wrapper {
         ${transformStylesDesktop}
+        ${transitionDurationDesktop ? `${transitionDurationDesktop}ms;` : ""}
       }
 
       .parent-${uniqueId}.zolo-block:hover {
