@@ -117,7 +117,6 @@ function Inspector(props) {
             pieChartLabels: labels,
         });
     }
-
     return (
         <InspectorControls key="controls">
             <HeaderTabs
@@ -240,15 +239,6 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                    {/* <ToggleControl
-                    label={__("Show Selection", "zoloblocks")}
-                    checked={showSelection}
-                    onChange={() =>
-                      setAttributes({
-                        showSelection: !showSelection,
-                      })
-                    }
-                  /> */}
                                     <ToggleControl
                                         label={__('Show Zoom', 'zoloblocks')}
                                         checked={showZoom}
@@ -296,15 +286,6 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
-                            {/* <ToggleControl
-                label={__("Show Dropshadow", "zoloblocks")}
-                checked={showDropshadow}
-                onChange={() =>
-                  setAttributes({
-                    showDropshadow: !showDropshadow,
-                  })
-                }
-              /> */}
                         </ZoloPanelBody>
                         {showTitle && (
                             <ZoloPanelBody title={__('Title', 'zoloblocks')} firstOpen={false} panelProps={props}>

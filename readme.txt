@@ -5,7 +5,7 @@ Tags: blocks, gutenberg blocks, custom block, gutenberg, page builder
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,22 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 7. Check out our others popular plugin
 
 == Changelog ==
+
+= 1.0.1 - 23-04-2024 =
+
+= Added =
+
+* Typography control added to Advanced Search block
+* Focus Color control added to Advanced Search block
+
+= Fixed =
+
+* Row and column issue fixed to Countdown block
+* Focus color issue fixed to Advanced Search block
+
+= Improved =
+
+* Controls UI improved
 
 = 1.0.0 - 22-04-2024 =
 

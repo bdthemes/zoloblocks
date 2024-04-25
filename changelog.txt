@@ -1,3 +1,19 @@
+## 1.0.1 [23rd April 2024]
+
+### Added
+
+- Typography control added to Advanced Search block
+- Focus Color control added to Advanced Search block
+
+### Fixed
+
+- Row and column issue fixed to Countdown block
+- Focus color issue fixed to Advanced Search block
+
+### Improved
+
+- Controls UI improved
+
 ### 1.0.0
 
 Initial Release

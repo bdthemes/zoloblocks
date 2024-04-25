@@ -67,17 +67,17 @@
 }
 
 // Responsive show/hide css for Editor
-.wp-admin .zolo-hide-desktop {
+.zolo-editor .zolo-hide-desktop {
     display: block !important;
     opacity: 0.5;
 }
 
-.wp-admin .zolo-hide-tab {
+.zolo-editor .zolo-hide-tab {
     display: block !important;
     opacity: 0.5;
 }
 
-.wp-admin .zolo-hide-mobile {
+.zolo-editor .zolo-hide-mobile {
     display: block !important;
     opacity: 0.5;
 }
@@ -125,22 +125,6 @@ button[class*='editor-block-list-item-zolo'] {
     }
 }
 
-// Container
-// .zolo-block {
-//     transition: all 0.3s ease-in-out;
-//     &::after {
-//         transition: all 0.3s ease-in-out;
-//     }
-// }
-
-//apply transition to .zolo-block if zolo-block is not exist
-.zolo-block:not(.zolo-entrance-animation) {
-    transition: all 0.3s ease-in-out;
-    &::after {
-        transition: all 0.3s ease-in-out;
-    }
-}
-
 // transform pro
 span.zolo-pro-badge {
     padding: 5.5px;
@@ -156,8 +140,7 @@ span.zolo-pro-badge {
     background: red;
     margin-left: 10px;
 }
-
-.wp-admin .zolo-block,
+.zolo-editor .zolo-block,
 .zolo-transform-wrapper {
     transform: perspective(var(--zolo-transform-perspective, 0)) rotate(var(--zolo-transform-rotate, 0))
         rotateX(var(--zolo-transform-rotateX, 0)) rotateY(var(--zolo-transform-rotateY, 0)) translate(var(--zolo-transform-translate, 0))
@@ -165,7 +148,13 @@ span.zolo-pro-badge {
         scaleX(calc(var(--zolo-transform-flipX, 1) * var(--zolo-transform-scaleX, var(--zolo-transform-scale, 1))))
         scaleY(calc(var(--zolo-transform-flipY, 1) * var(--zolo-transform-scaleY, var(--zolo-transform-scale, 1))))
         skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
-    transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
+        transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
+}
+.zolo-editor .zolo-block:not(.zolo-entrance-animation) {
+    transition: transform 0.3s ease-out;
+}
+.zolo-transform-wrapper {
+    transition: transform 0.3s ease-out;
 }
 
 // .interface-interface-skeleton__footer .block-editor-block-breadcrumb {
@@ -209,4 +198,12 @@ td.block-editor-list-view-block__contents-cell[aria-selected='true'] {
             fill: #fff !important;
         }
     }
+}
+
+
+.zolo-entrance-animation:not(.animation-initialized) {
+    opacity: 0;
+}
+.zolo-editor .zolo-entrance-animation:not(.animation-initialized) {
+    opacity: 1;
 }

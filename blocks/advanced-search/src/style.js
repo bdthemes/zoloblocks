@@ -25,6 +25,7 @@ import {
   BUTTON_HOVER_BOX_SHADOW,
   BUTTON_PADDING,
   ICON_SIZE,
+  BUTTON_SIZE,
   LABEL_BORDER,
   LABEL_BORDER_RADIUS,
   LABEL_PADDING,
@@ -34,17 +35,20 @@ import {
   INPUT_BORDER_RADIUS,
   INPUT_PADDING,
   INPUT_BG,
+  FOCUS_BORDER_WIDTH,
 } from "./constants";
 
 import {
   LABEL_TYPOGRAPHY,
   INPUT_TYPOGRAPHY,
+  BUTTON_TYPOGRAPHY,
 } from "./constants/typoPrefixConstant";
 import { applyFilters } from "@wordpress/hooks";
 
 export default function Style({ props }) {
   const { attributes, setAttributes } = props;
   const {
+    preset,
     uniqueId,
     btnTextColor,
     btnTextHoverColor,
@@ -53,6 +57,7 @@ export default function Style({ props }) {
     btnBorderHoverColor,
     labelColor,
     inputColor,
+    focusColor,
     iconColor,
     iconHoverColor,
     placeholderColor,
@@ -73,6 +78,15 @@ export default function Style({ props }) {
     typoStylesMobile: inputMobTypo,
   } = generateTypographyStyles({
     prefixConstant: INPUT_TYPOGRAPHY,
+    attributes,
+  });
+
+  const {
+    typoStylesDesktop:buttonDeskTypo,
+    typoStylesTab:buttonTabTypo,
+    typoStylesMobile:buttonMobTypo,
+  } = generateTypographyStyles({
+    prefixConstant: BUTTON_TYPOGRAPHY,
     attributes,
   });
 
@@ -123,7 +137,7 @@ export default function Style({ props }) {
   } = generateNormalBGControlStyles({
     controlName: LABEL_HOVER_BG_COLOR,
     attributes,
-    noMainBGImg: false,
+    noMainBGImg: true,
   });
 
   // generate border style
@@ -204,6 +218,24 @@ export default function Style({ props }) {
     attributes,
   });
 
+  const {
+    desktopRangeStyle: buttonSize,
+    tabRangeStyle: buttonSizeTab,
+    mobRangeStyle: buttonSizeMob,
+  } = generateResRangeStyle({
+    controlName: BUTTON_SIZE,
+    property: "width",
+    attributes,
+  });
+    const {
+      desktopRangeStyle: focusBorderWidthDesk,
+      tabRangeStyle: focusBorderWidthTab,
+      mobRangeStyle: focusBorderWidthMob,
+    } = generateResRangeStyle({
+      controlName: FOCUS_BORDER_WIDTH,
+      property: "outline-width",
+      attributes,
+    });
   const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
     controlName: BUTTON_BOX_SHADOW,
     attributes,
@@ -257,6 +289,9 @@ export default function Style({ props }) {
       }
         .${uniqueId} .zolo-form-search-input:hover .zolo-form-label{
         ${labelBorderHoverColor ? `border-color: ${labelBorderHoverColor};` : ""}
+
+      }
+      .${uniqueId} .zolo-form-input:focus + .zolo-form-label {
         ${labelTextHoverColor ? `color: ${labelTextHoverColor};` : ""}
         ${labelHoverDeskBGStyle}
 
@@ -271,6 +306,13 @@ export default function Style({ props }) {
       }
       .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input::placeholder{
         ${placeholderColor ? `color: ${placeholderColor};` : ""}
+
+      }
+      .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input:focus{
+        ${focusColor ? `outline-color: ${focusColor};border:none;` : ""}
+        ${focusBorderWidthDesk}
+
+
       }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
         ${borderStyles}
@@ -278,6 +320,8 @@ export default function Style({ props }) {
         ${btnPaddingDesktop}
         ${normalDeskBGStyle}
         ${normalBoxShadowStyle}
+        ${preset == "zolo-search-1" ? buttonSize : ""}
+        ${buttonDeskTypo}
       }
 
 
@@ -290,8 +334,6 @@ export default function Style({ props }) {
       }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
         ${iconColor ? `fill: ${iconColor};` : ""}
-        ${iconSize}
-        ${iconHSize}
       }
 
       .${uniqueId} .zolo-form-submit-btn:hover .zolo-form-btn svg{
@@ -323,6 +365,8 @@ export default function Style({ props }) {
         ${borderStylesTab}
         ${borderRadiusTab}
         ${btnPaddingTab}
+        ${buttonSizeTab}
+        ${buttonTabTypo}
       }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
         ${iconSizeTab}
@@ -347,6 +391,8 @@ export default function Style({ props }) {
         ${borderStylesMob}
         ${borderRadiusMob}
         ${btnPaddingMob}
+        ${buttonSizeMob}
+        ${buttonMobTypo}
       }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
         ${iconSizeMob}

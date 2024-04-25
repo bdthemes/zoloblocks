@@ -106,6 +106,8 @@ export const BUTTON_HOVER_BOX_SHADOW = "buttonHoverBoxShadow";
  */
 
 export const ICON_SIZE = "iconSize";
+export const BUTTON_SIZE = "iconSize";
+export const FOCUS_BORDER_WIDTH = "focusBorderWidth";
 
 // search label
 

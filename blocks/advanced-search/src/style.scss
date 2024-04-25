@@ -47,7 +47,7 @@
     box-shadow: unset;
     line-height: 1;
   }
-  
+
   .zolo-form-input:focus {
       border-color: var(--search-input-focus-color);
       outline-style: solid;
@@ -60,14 +60,14 @@
     display: block;
     fill: #fff;
   }
-  
+
 }
 
 
 .zolo-form-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: var(--search-btn-icon-gap);
   padding: var(--search-btn-padding);
   border: 0;
@@ -103,7 +103,6 @@
 
 /* search form style 2,3 */
 
-// .zolo-search-3 .zolo-form-label,
 .zolo-search-2 .zolo-form-label {
   position: absolute;
   transform: translateY(-50%);
@@ -114,7 +113,6 @@
 
 /* search form style 3 */
 
-// .zolo-search-3 .zolo-form-label,
 .zolo-search-2 .zolo-form-label {
   top: 50%;
   cursor: text;
@@ -124,33 +122,14 @@
 
 }
 
-// .zolo-search-3 .zolo-form-input:focus + .zolo-form-label,
 .zolo-search-2 .zolo-form-input:focus + .zolo-form-label {
   font-weight: 500;
   top: 0;
 }
 
-// .zolo-search-3 .zolo-form-input::placeholder,
 .zolo-search-2 .zolo-form-input::placeholder {
   color: transparent;
 }
-
-/* search form style 5 */
-
-// .zolo-search-2 .zolo-form-submit-btn,
-// .zolo-search-2 .zolo-form-submit-btn {
-//   position: absolute;
-//   right: 0;
-//   top: 50%;
-//   transform: translateY(-50%);
-// }
-
-// .zolo-search-4 .zolo-form-btn,
-// .zolo-search-2 .zolo-form-btn {
-//   --search-btn-padding: 10px 12px;
-//   padding: var(--search-btn-padding);
-//   margin: 6px;
-// }
 
 .zolo-search-button-style-2 .zolo-form-submit-btn {
   position: absolute;
@@ -161,6 +140,8 @@
 
 .zolo-search-button-style-2 .zolo-form-btn {
   --search-btn-padding: 10px 12px;
+  --search-btn-radius: 3px;
   padding: var(--search-btn-padding);
   margin: 6px;
+  border-radius: var(--search-btn-radius);
 }

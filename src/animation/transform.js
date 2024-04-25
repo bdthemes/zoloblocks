@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const parentDiv = document.createElement('div');
                 // Add necessary classes to the parent div
                 parentDiv.classList.add('zolo-transform-wrapper');
+                parentDiv.classList.add(parentClass);
                 // Wrap the targetElement with the parent div
                 targetElement.parentNode.insertBefore(parentDiv, targetElement);
                 parentDiv.appendChild(targetElement);

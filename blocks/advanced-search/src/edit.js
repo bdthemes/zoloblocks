@@ -26,6 +26,8 @@ export default function Edit(props) {
     buttonText,
     labelText,
     btnLayoutType,
+    showButtonText,
+    showIcon,
   } = attributes;
 
   const blockProps = useBlockProps({
@@ -81,28 +83,32 @@ export default function Edit(props) {
             )}
           </div>
           <div className="zolo-advanced-search-control zolo-form-submit-btn">
-            <button type="submit" className="zolo-form-btn">
-              {"text" === buttonType && (
-                <RichText
-                  tagName="span"
-                  placeholder={__("Search", "zolo-advanced-search")}
-                  value={buttonText}
-                  onChange={(value) => setAttributes({ buttonText: value })}
-                  className="zolo-form-btn-text"
-                  multiline={false}
-                  allowedFormats={[
-                    "core/bold",
-                    "core/italic",
-                    "core/strikethrough",
-                  ]}
-                />
-              )}
-              {"icon" === buttonType && (
-                <span className="zolo-advanced-search-icon-wrap">
-                  <DisplayZoloIcon icon={buttonIcon} />
-                </span>
-              )}
+            {
+              showIcon || showButtonText ? (
+                <button type="submit" className="zolo-form-btn">
+              {showButtonText && (
+                    <RichText
+                      tagName="span"
+                      placeholder={__("Search", "zolo-advanced-search")}
+                      value={buttonText}
+                      onChange={(value) => setAttributes({ buttonText: value })}
+                      className="zolo-form-btn-text"
+                      multiline={false}
+                      allowedFormats={[
+                        "core/bold",
+                        "core/italic",
+                        "core/strikethrough",
+                      ]}
+                    />
+                  )}
+                  {showIcon&& (
+                    <span className="zolo-advanced-search-icon-wrap">
+                      <DisplayZoloIcon icon={buttonIcon} />
+                    </span>
+                  )}
             </button>
+              ) : null
+            }
           </div>
         </form>
       </div>

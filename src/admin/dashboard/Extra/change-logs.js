@@ -57,12 +57,50 @@ const ChangeLogs = () => {
           </div>
           <div className="logos-panel-body">
             <SingleLog
+              version="1.0.1"
+              date={"April 23, 2024"}
+              changes={[
+                {
+                  title: __("Added", "zoloblocks"),
+                  list: [
+                    __(
+                      "Typography control added to Advanced Search block",
+                      "zolo-blocks",
+                    ),
+                    __(
+                      "Focus Color control added to Advanced Search block",
+                      "zolo-blocks",
+                    ),
+                  ],
+                },
+                {
+                  title: __("Fixed", "zoloblocks"),
+                  list: [
+                    __(
+                      "Row and column issue fixed to Countdown block",
+                      "zolo-blocks",
+                    ),
+                    __(
+                      "Focus color issue fixed to Advanced Search block",
+                      "zolo-blocks",
+                    ),
+                  ],
+                },
+                {
+                  title: __("Improved", "zoloblocks"),
+                  list: [
+                    __("Controls UI improved", "zolo-blocks"),
+                  ],
+                },
+              ]}
+            />
+            <SingleLog
               version="1.0.0"
               date={"April 22, 2024"}
               changes={[
                 {
                   title: __("Initial Release", "zoloblocks"),
-                }
+                },
               ]}
             />
           </div>
