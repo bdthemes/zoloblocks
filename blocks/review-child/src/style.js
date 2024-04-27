@@ -254,7 +254,7 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    // Designation
+   // Designation
     const {
         typoStylesDesktop: designationTypoDesk,
         typoStylesTab: designationTypoTab,
@@ -273,6 +273,7 @@ const Style = ({ props }) => {
         styleFor: 'margin',
         attributes,
     });
+           
 
     // Testimonial Message
     const {
