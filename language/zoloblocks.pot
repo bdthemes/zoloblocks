@@ -1,0 +1,930 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ZoloBlocks\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-27 04:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.7; wp-6.5.2\n"
+"X-Domain: zoloblocks"
+
+#. Description of the plugin
+msgid ""
+"A collection of custom Gutenberg blocks to design your webpages with ease."
+msgstr ""
+
+#. Author of the plugin
+msgid "BdThemes"
+msgstr ""
+
+#: blocks/container/block.json:1
+msgctxt "block description"
+msgid "A container block for other blocks"
+msgstr ""
+
+#: blocks/textarea/block.json:1 blocks/text-field/block.json:1
+msgctxt "block description"
+msgid "A simple text field block for Form Block"
+msgstr ""
+
+#: blocks/accordion-child/block.json:1
+msgctxt "block description"
+msgid "Act as child block for accordion"
+msgstr ""
+
+#: blocks/slide/block.json:1
+msgctxt "block description"
+msgid "Act as child block for slider"
+msgstr ""
+
+#: blocks/brand-child/block.json:1
+msgctxt "block description"
+msgid "Acts as a child block for the brand block"
+msgstr ""
+
+#: blocks/advanced-button/block.json:1
+msgctxt "block description"
+msgid "Advanced button description"
+msgstr ""
+
+#: blocks/counter/block.json:1
+msgctxt "block description"
+msgid "Advanced counter box description"
+msgstr ""
+
+#: blocks/advanced-heading/block.json:1
+msgctxt "block description"
+msgid "Advanced heading description"
+msgstr ""
+
+#: blocks/advanced-icon-box/block.json:1
+msgctxt "block description"
+msgid "Advanced icon box description"
+msgstr ""
+
+#: blocks/social-links/block.json:1
+msgctxt "block description"
+msgid "Advanced icon description"
+msgstr ""
+
+#: blocks/advanced-search/block.json:1
+msgctxt "block description"
+msgid "Advanced search block for ZoloBlocks"
+msgstr ""
+
+#: blocks/image-compare/block.json:1
+msgctxt "block description"
+msgid "Beaf description"
+msgstr ""
+
+#: blocks/brand-grid/block.json:1
+msgctxt "block description"
+msgid "Brand grid block description"
+msgstr ""
+
+#: blocks/accordion/block.json:1
+msgctxt "block description"
+msgid "Build accordion and FAQs section"
+msgstr ""
+
+#: blocks/business-hour/block.json:1
+msgctxt "block description"
+msgid "business hour description"
+msgstr ""
+
+#: blocks/cta/block.json:1
+msgctxt "block description"
+msgid "Call to action block"
+msgstr ""
+
+#: blocks/countdown/block.json:1
+msgctxt "block description"
+msgid "Create a Offer for Customers"
+msgstr ""
+
+#: blocks/charts/block.json:1
+msgctxt "block description"
+msgid "Display a chart with data from a csv file"
+msgstr ""
+
+#: blocks/email/block.json:1
+msgctxt "block description"
+msgid "Email field block for Form Block"
+msgstr ""
+
+#: blocks/google-map/block.json:1
+msgctxt "block description"
+msgid "Embed a Google Map"
+msgstr ""
+
+#: blocks/flipbox/block.json:1
+msgctxt "block description"
+msgid "Flipbox block"
+msgstr ""
+
+#: blocks/form/block.json:1
+msgctxt "block description"
+msgid "Form block to display a form"
+msgstr ""
+
+#: blocks/image-gallery/block.json:1
+msgctxt "block description"
+msgid "Image Gallery Block"
+msgstr ""
+
+#: blocks/list/block.json:1
+msgctxt "block description"
+msgid "List description"
+msgstr ""
+
+#: blocks/progress-bar/block.json:1
+msgctxt "block description"
+msgid "Parent progress bar"
+msgstr ""
+
+#: blocks/post-carousel/block.json:1
+msgctxt "block description"
+msgid "post carousel view"
+msgstr ""
+
+#: blocks/post-grid/block.json:1
+msgctxt "block description"
+msgid "post grid view"
+msgstr ""
+
+#: blocks/post-list/block.json:1
+msgctxt "block description"
+msgid "post list view"
+msgstr ""
+
+#: blocks/pricing-table/block.json:1
+msgctxt "block description"
+msgid "Pricing table description"
+msgstr ""
+
+#: blocks/profile-card/block.json:1
+msgctxt "block description"
+msgid "Profile Card"
+msgstr ""
+
+#: blocks/review-carousel/block.json:1
+msgctxt "block description"
+msgid "Review carousel view"
+msgstr ""
+
+#: blocks/review-grid/block.json:1
+msgctxt "block description"
+msgid "Review grid view"
+msgstr ""
+
+#: blocks/advanced-image/block.json:1
+msgctxt "block description"
+msgid "Show an image with advanced settings"
+msgstr ""
+
+#: blocks/slider/block.json:1
+msgctxt "block description"
+msgid "Show content in sliding mode"
+msgstr ""
+
+#: blocks/star-rating/block.json:1
+msgctxt "block description"
+msgid "Show star rating"
+msgstr ""
+
+#: blocks/tab/block.json:1
+msgctxt "block description"
+msgid "Show tab"
+msgstr ""
+
+#: blocks/tabs/block.json:1
+msgctxt "block description"
+msgid "Show tabs"
+msgstr ""
+
+#: blocks/fancy-list-child/block.json:1 blocks/fancy-list/block.json:1
+msgctxt "block description"
+msgid "Single fancy list"
+msgstr ""
+
+#: blocks/progress-bar-child/block.json:1
+msgctxt "block description"
+msgid "Single progress bar item"
+msgstr ""
+
+#: blocks/review-child/block.json:1 blocks/review/block.json:1
+msgctxt "block description"
+msgid "Single review block"
+msgstr ""
+
+#: blocks/team-child/block.json:1
+msgctxt "block description"
+msgid "Single team member"
+msgstr ""
+
+#: blocks/social-share/block.json:1
+msgctxt "block description"
+msgid "Social Share Block"
+msgstr ""
+
+#: blocks/team-grid/block.json:1
+msgctxt "block description"
+msgid "Team members grid view"
+msgstr ""
+
+#: blocks/accordion-child/block.json:1 blocks/accordion/block.json:1
+msgctxt "block keyword"
+msgid "Accordion"
+msgstr ""
+
+#: blocks/advanced-button/block.json:1
+msgctxt "block keyword"
+msgid "advanced button"
+msgstr ""
+
+#: blocks/counter/block.json:1
+msgctxt "block keyword"
+msgid "advanced counter box"
+msgstr ""
+
+#: blocks/advanced-heading/block.json:1
+msgctxt "block keyword"
+msgid "advanced heading"
+msgstr ""
+
+#: blocks/advanced-icon-box/block.json:1
+msgctxt "block keyword"
+msgid "advanced icon box"
+msgstr ""
+
+#: blocks/advanced-image/block.json:1
+msgctxt "block keyword"
+msgid "advanced image"
+msgstr ""
+
+#: blocks/advanced-search/block.json:1
+msgctxt "block keyword"
+msgid "advanced search"
+msgstr ""
+
+#: blocks/advanced-search/block.json:1
+msgctxt "block keyword"
+msgid "ajax search"
+msgstr ""
+
+#: blocks/progress-bar-child/block.json:1
+msgctxt "block keyword"
+msgid "bar"
+msgstr ""
+
+#: blocks/image-compare/block.json:1
+msgctxt "block keyword"
+msgid "beaf"
+msgstr ""
+
+#: blocks/brand-grid/block.json:1 blocks/brand-child/block.json:1
+msgctxt "block keyword"
+msgid "brand"
+msgstr ""
+
+#: blocks/brand-child/block.json:1
+msgctxt "block keyword"
+msgid "brand child"
+msgstr ""
+
+#: blocks/business-hour/block.json:1
+msgctxt "block keyword"
+msgid "business"
+msgstr ""
+
+#: blocks/business-hour/block.json:1
+msgctxt "block keyword"
+msgid "business hour"
+msgstr ""
+
+#: blocks/cta/block.json:1 blocks/advanced-button/block.json:1
+msgctxt "block keyword"
+msgid "button"
+msgstr ""
+
+#: blocks/cta/block.json:1
+msgctxt "block keyword"
+msgid "call to action"
+msgstr ""
+
+#: blocks/profile-card/block.json:1
+msgctxt "block keyword"
+msgid "Card"
+msgstr ""
+
+#: blocks/slide/block.json:1 blocks/slider/block.json:1
+msgctxt "block keyword"
+msgid "Carousel"
+msgstr ""
+
+#: blocks/charts/block.json:1
+msgctxt "block keyword"
+msgid "charts"
+msgstr ""
+
+#: blocks/countdown/block.json:1
+msgctxt "block keyword"
+msgid "clock"
+msgstr ""
+
+#: blocks/container/block.json:1
+msgctxt "block keyword"
+msgid "Container"
+msgstr ""
+
+#: blocks/countdown/block.json:1
+msgctxt "block keyword"
+msgid "countdown"
+msgstr ""
+
+#: blocks/counter/block.json:1
+msgctxt "block keyword"
+msgid "counter"
+msgstr ""
+
+#: blocks/cta/block.json:1
+msgctxt "block keyword"
+msgid "cta"
+msgstr ""
+
+#: blocks/email/block.json:1
+msgctxt "block keyword"
+msgid "email"
+msgstr ""
+
+#: blocks/fancy-list-child/block.json:1 blocks/fancy-list/block.json:1
+msgctxt "block keyword"
+msgid "fancy"
+msgstr ""
+
+#: blocks/fancy-list-child/block.json:1 blocks/fancy-list/block.json:1
+msgctxt "block keyword"
+msgid "fancy list"
+msgstr ""
+
+#: blocks/text-field/block.json:1
+msgctxt "block keyword"
+msgid "field"
+msgstr ""
+
+#: blocks/flipbox/block.json:1
+msgctxt "block keyword"
+msgid "flip box"
+msgstr ""
+
+#: blocks/flipbox/block.json:1
+msgctxt "block keyword"
+msgid "flipbox"
+msgstr ""
+
+#: blocks/list/block.json:1
+msgctxt "block keyword"
+msgid "footer List"
+msgstr ""
+
+#: blocks/image-compare/block.json:1
+msgctxt "block keyword"
+msgid "footer slider"
+msgstr ""
+
+#: blocks/form/block.json:1
+msgctxt "block keyword"
+msgid "form"
+msgstr ""
+
+#: blocks/image-gallery/block.json:1
+msgctxt "block keyword"
+msgid "gallery"
+msgstr ""
+
+#: blocks/google-map/block.json:1
+msgctxt "block keyword"
+msgid "google"
+msgstr ""
+
+#: blocks/google-map/block.json:1
+msgctxt "block keyword"
+msgid "google map"
+msgstr ""
+
+#: blocks/brand-grid/block.json:1
+msgctxt "block keyword"
+msgid "grid"
+msgstr ""
+
+#: blocks/advanced-heading/block.json:1
+msgctxt "block keyword"
+msgid "heading"
+msgstr ""
+
+#: blocks/business-hour/block.json:1
+msgctxt "block keyword"
+msgid "hour"
+msgstr ""
+
+#: blocks/social-share/block.json:1 blocks/advanced-icon-box/block.json:1
+#: blocks/social-links/block.json:1
+msgctxt "block keyword"
+msgid "icon"
+msgstr ""
+
+#: blocks/advanced-image/block.json:1
+msgctxt "block keyword"
+msgid "image"
+msgstr ""
+
+#: blocks/image-compare/block.json:1
+msgctxt "block keyword"
+msgid "image compare"
+msgstr ""
+
+#: blocks/image-gallery/block.json:1
+msgctxt "block keyword"
+msgid "image gallery"
+msgstr ""
+
+#: blocks/list/block.json:1
+msgctxt "block keyword"
+msgid "list"
+msgstr ""
+
+#: blocks/email/block.json:1
+msgctxt "block keyword"
+msgid "mail"
+msgstr ""
+
+#: blocks/google-map/block.json:1
+msgctxt "block keyword"
+msgid "map"
+msgstr ""
+
+#: blocks/advanced-image/block.json:1
+msgctxt "block keyword"
+msgid "media"
+msgstr ""
+
+#: blocks/textarea/block.json:1
+msgctxt "block keyword"
+msgid "message"
+msgstr ""
+
+#: blocks/advanced-image/block.json:1
+msgctxt "block keyword"
+msgid "photo"
+msgstr ""
+
+#: blocks/post-grid/block.json:1 blocks/post-carousel/block.json:1
+#: blocks/post-list/block.json:1
+msgctxt "block keyword"
+msgid "post"
+msgstr ""
+
+#: blocks/post-carousel/block.json:1
+msgctxt "block keyword"
+msgid "post carousel"
+msgstr ""
+
+#: blocks/post-grid/block.json:1
+msgctxt "block keyword"
+msgid "post grid"
+msgstr ""
+
+#: blocks/post-list/block.json:1
+msgctxt "block keyword"
+msgid "post list"
+msgstr ""
+
+#: blocks/pricing-table/block.json:1
+msgctxt "block keyword"
+msgid "pricing"
+msgstr ""
+
+#: blocks/pricing-table/block.json:1
+msgctxt "block keyword"
+msgid "pricing table"
+msgstr ""
+
+#: blocks/profile-card/block.json:1
+msgctxt "block keyword"
+msgid "Profile"
+msgstr ""
+
+#: blocks/progress-bar-child/block.json:1 blocks/progress-bar/block.json:1
+msgctxt "block keyword"
+msgid "progress"
+msgstr ""
+
+#: blocks/progress-bar-child/block.json:1 blocks/progress-bar/block.json:1
+msgctxt "block keyword"
+msgid "progress bar"
+msgstr ""
+
+#: blocks/review-child/block.json:1 blocks/review/block.json:1
+msgctxt "block keyword"
+msgid "Rating"
+msgstr ""
+
+#: blocks/star-rating/block.json:1
+msgctxt "block keyword"
+msgid "rating"
+msgstr ""
+
+#: blocks/review-child/block.json:1 blocks/review/block.json:1
+msgctxt "block keyword"
+msgid "Review"
+msgstr ""
+
+#: blocks/review-grid/block.json:1 blocks/review-carousel/block.json:1
+msgctxt "block keyword"
+msgid "review"
+msgstr ""
+
+#: blocks/review-carousel/block.json:1
+msgctxt "block keyword"
+msgid "review carousel"
+msgstr ""
+
+#: blocks/review-grid/block.json:1
+msgctxt "block keyword"
+msgid "review grid"
+msgstr ""
+
+#: blocks/advanced-search/block.json:1
+msgctxt "block keyword"
+msgid "search"
+msgstr ""
+
+#: blocks/slide/block.json:1 blocks/slider/block.json:1
+msgctxt "block keyword"
+msgid "Slide"
+msgstr ""
+
+#: blocks/slide/block.json:1 blocks/slider/block.json:1
+msgctxt "block keyword"
+msgid "Slider"
+msgstr ""
+
+#: blocks/social-share/block.json:1 blocks/social-links/block.json:1
+msgctxt "block keyword"
+msgid "social"
+msgstr ""
+
+#: blocks/social-links/block.json:1
+msgctxt "block keyword"
+msgid "social links"
+msgstr ""
+
+#: blocks/social-share/block.json:1
+msgctxt "block keyword"
+msgid "social share"
+msgstr ""
+
+#: blocks/star-rating/block.json:1
+msgctxt "block keyword"
+msgid "star rating"
+msgstr ""
+
+#: blocks/tabs/block.json:1 blocks/tab/block.json:1
+msgctxt "block keyword"
+msgid "tab"
+msgstr ""
+
+#: blocks/tabs/block.json:1
+msgctxt "block keyword"
+msgid "tabs"
+msgstr ""
+
+#: blocks/team-grid/block.json:1 blocks/team-child/block.json:1
+msgctxt "block keyword"
+msgid "team"
+msgstr ""
+
+#: blocks/team-grid/block.json:1
+msgctxt "block keyword"
+msgid "team grid"
+msgstr ""
+
+#: blocks/team-child/block.json:1
+msgctxt "block keyword"
+msgid "team member"
+msgstr ""
+
+#: blocks/text-field/block.json:1
+msgctxt "block keyword"
+msgid "text"
+msgstr ""
+
+#: blocks/textarea/block.json:1
+msgctxt "block keyword"
+msgid "textarea"
+msgstr ""
+
+#: blocks/countdown/block.json:1
+msgctxt "block keyword"
+msgid "timer"
+msgstr ""
+
+#: blocks/form/block.json:1 blocks/advanced-search/block.json:1
+#: blocks/charts/block.json:1 blocks/advanced-image/block.json:1
+#: blocks/textarea/block.json:1 blocks/text-field/block.json:1
+#: blocks/email/block.json:1 blocks/flipbox/block.json:1
+msgctxt "block keyword"
+msgid "zolo"
+msgstr ""
+
+#: blocks/advanced-search/block.json:1
+msgctxt "block keyword"
+msgid "zoloblocks"
+msgstr ""
+
+#: blocks/accordion/block.json:1
+msgctxt "block title"
+msgid "Accordion"
+msgstr ""
+
+#: blocks/advanced-button/block.json:1
+msgctxt "block title"
+msgid "Advanced Button"
+msgstr ""
+
+#: blocks/advanced-heading/block.json:1
+msgctxt "block title"
+msgid "Advanced Heading"
+msgstr ""
+
+#: blocks/advanced-icon-box/block.json:1
+msgctxt "block title"
+msgid "Advanced Icon Box"
+msgstr ""
+
+#: blocks/advanced-image/block.json:1
+msgctxt "block title"
+msgid "Advanced Image"
+msgstr ""
+
+#: blocks/advanced-search/block.json:1
+msgctxt "block title"
+msgid "Advanced Search"
+msgstr ""
+
+#: blocks/brand-child/block.json:1
+msgctxt "block title"
+msgid "Brand Child"
+msgstr ""
+
+#: blocks/brand-grid/block.json:1
+msgctxt "block title"
+msgid "Brand Grid"
+msgstr ""
+
+#: blocks/business-hour/block.json:1
+msgctxt "block title"
+msgid "Business Hours"
+msgstr ""
+
+#: blocks/cta/block.json:1
+msgctxt "block title"
+msgid "Call to Action"
+msgstr ""
+
+#: blocks/charts/block.json:1
+msgctxt "block title"
+msgid "Charts"
+msgstr ""
+
+#: blocks/container/block.json:1
+msgctxt "block title"
+msgid "Container"
+msgstr ""
+
+#: blocks/countdown/block.json:1
+msgctxt "block title"
+msgid "Countdown"
+msgstr ""
+
+#: blocks/counter/block.json:1
+msgctxt "block title"
+msgid "Counter"
+msgstr ""
+
+#: blocks/email/block.json:1
+msgctxt "block title"
+msgid "Email"
+msgstr ""
+
+#: blocks/fancy-list/block.json:1
+msgctxt "block title"
+msgid "Fancy list"
+msgstr ""
+
+#: blocks/fancy-list-child/block.json:1
+msgctxt "block title"
+msgid "Fancy list Child"
+msgstr ""
+
+#: blocks/flipbox/block.json:1
+msgctxt "block title"
+msgid "Flipbox"
+msgstr ""
+
+#: blocks/form/block.json:1
+msgctxt "block title"
+msgid "Form"
+msgstr ""
+
+#: blocks/google-map/block.json:1
+msgctxt "block title"
+msgid "Google Map"
+msgstr ""
+
+#: blocks/image-compare/block.json:1
+msgctxt "block title"
+msgid "Image Compare"
+msgstr ""
+
+#: blocks/image-gallery/block.json:1
+msgctxt "block title"
+msgid "Image Gallery"
+msgstr ""
+
+#: blocks/list/block.json:1
+msgctxt "block title"
+msgid "List"
+msgstr ""
+
+#: blocks/textarea/block.json:1
+msgctxt "block title"
+msgid "Message"
+msgstr ""
+
+#: blocks/post-carousel/block.json:1
+msgctxt "block title"
+msgid "Post Carousel"
+msgstr ""
+
+#: blocks/post-grid/block.json:1
+msgctxt "block title"
+msgid "Post Grid"
+msgstr ""
+
+#: blocks/post-list/block.json:1
+msgctxt "block title"
+msgid "Post List"
+msgstr ""
+
+#: blocks/pricing-table/block.json:1
+msgctxt "block title"
+msgid "Pricing Table"
+msgstr ""
+
+#: blocks/profile-card/block.json:1
+msgctxt "block title"
+msgid "Profile Card"
+msgstr ""
+
+#: blocks/progress-bar/block.json:1
+msgctxt "block title"
+msgid "Progress Bar"
+msgstr ""
+
+#: blocks/progress-bar-child/block.json:1
+msgctxt "block title"
+msgid "Progress Bar Item"
+msgstr ""
+
+#: blocks/review/block.json:1
+msgctxt "block title"
+msgid "Review"
+msgstr ""
+
+#: blocks/review-carousel/block.json:1
+msgctxt "block title"
+msgid "Review Carousel"
+msgstr ""
+
+#: blocks/review-child/block.json:1
+msgctxt "block title"
+msgid "Review Child"
+msgstr ""
+
+#: blocks/review-grid/block.json:1
+msgctxt "block title"
+msgid "Review Grid"
+msgstr ""
+
+#: blocks/accordion-child/block.json:1
+msgctxt "block title"
+msgid "Single Accordion"
+msgstr ""
+
+#: blocks/slide/block.json:1
+msgctxt "block title"
+msgid "Slide"
+msgstr ""
+
+#: blocks/slider/block.json:1
+msgctxt "block title"
+msgid "Slider"
+msgstr ""
+
+#: blocks/social-links/block.json:1
+msgctxt "block title"
+msgid "Social Links"
+msgstr ""
+
+#: blocks/social-share/block.json:1
+msgctxt "block title"
+msgid "Social Share"
+msgstr ""
+
+#: blocks/star-rating/block.json:1
+msgctxt "block title"
+msgid "Star Rating"
+msgstr ""
+
+#: blocks/tab/block.json:1
+msgctxt "block title"
+msgid "Tab"
+msgstr ""
+
+#: blocks/tabs/block.json:1
+msgctxt "block title"
+msgid "Tabs"
+msgstr ""
+
+#: blocks/team-child/block.json:1
+msgctxt "block title"
+msgid "Team Child"
+msgstr ""
+
+#: blocks/team-grid/block.json:1
+msgctxt "block title"
+msgid "Team Grid"
+msgstr ""
+
+#: blocks/text-field/block.json:1
+msgctxt "block title"
+msgid "Text Field"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:48
+msgid ""
+"Copyright © 2024 <a href='https://zoloblocks.com/' target='_blank'>"
+"Zoloblocks</a>. All Rights Reserved."
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://bdthemes.com/"
+msgstr ""
+
+#. %s: html tags
+#: includes/Admin/Notice.php:57
+msgid "Install Gutenberg"
+msgstr ""
+
+#: views/post-partials/meta/reading-time.php:10
+msgid "Min Read"
+msgstr ""
+
+#: includes/Helpers/ZoloHelpers.php:237
+msgid "next"
+msgstr ""
+
+#: includes/Classes/ZoloAjax.php:56
+msgid "Nonce did not match"
+msgstr ""
+
+#: includes/Helpers/ZoloHelpers.php:236
+msgid "prev"
+msgstr ""
+
+#: includes/API/GetPostsV1.php:30
+msgid "Session Expired!!"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:56
+msgid "Version "
+msgstr ""
+
+#: includes/Classes/Registration.php:164 includes/Admin/Dashboard.php:25
+#: includes/Admin/Dashboard.php:26
+msgid "Zolo Blocks"
+msgstr ""
+
+#. Name of the plugin
+msgid "ZoloBlocks"
+msgstr ""

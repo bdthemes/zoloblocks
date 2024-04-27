@@ -10,6 +10,37 @@
 
 .toplevel_page_zoloblocks {
     background-color: #f8fafc;
+    .zolo-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        padding-left: 180px;
+        color: #50575e;
+        background: #f8fafc;
+         .zolo-footer-version,
+         .zolo-footer-text {
+                font-size: 13px;
+                margin: 0;
+                line-height: 1.55;
+            }
+         .zolo-footer-text {
+               font-style: italic !important;
+                font-weight: 400;
+                color:#50575e;
+            }
+    }
+    #wpfooter {
+        display: none;
+    }
+
+    &.folded {
+        .zolo-footer {
+            padding-left: 60px;
+
+        }
+    }
 }
 
 .zolo-dashboard-container {
