@@ -56,7 +56,6 @@ function RenderView({ attributes, postResults }) {
                 return (
                     <div className={`zolo-post-item ${index === 0 ? showfeatureimg && 'featured-post' : ''}`}>
                         <div className="zolo-post-image">
-                            { showThumbnail && (
                                 <>
                                     {post.thumbnail && <a href={post.permalink} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
                                     {!post.thumbnail && (
@@ -65,7 +64,6 @@ function RenderView({ attributes, postResults }) {
                                         </a>
                                     )}
                                 </>
-                            )}
                         </div>
 
                         <div className="zolo-post-content">

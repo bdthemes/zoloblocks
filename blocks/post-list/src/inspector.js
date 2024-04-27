@@ -188,7 +188,7 @@ function Inspector(props) {
                                 onChange={(selected) => changePremade(selected)}
                             />
                                 <ToggleControl
-                                label={__('Show Feature Image', 'zoloblocks')}
+                                label={__('Show Feature Post', 'zoloblocks')}
                                 checked={showfeatureimg}
                                 onChange={(v) => setAttributes({ showfeatureimg:v })}
                             />
