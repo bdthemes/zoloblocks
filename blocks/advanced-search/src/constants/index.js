@@ -110,7 +110,7 @@ export const FIELD_FOCUS_BOX_SHADOW = "fieldHoverBoxShadow";
  */
 
 export const ICON_SIZE = "iconSize";
-export const BUTTON_SIZE = "iconSize";
+export const BUTTON_SIZE = "buttonSize";
 export const FOCUS_BORDER_WIDTH = "focusBorderWidth";
 
 // search label
