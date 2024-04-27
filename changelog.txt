@@ -1,4 +1,4 @@
-## 1.0.1 [April 25, 2024]
+## 1.0.1 [April 27, 2024]
 
 ### Added
 
@@ -10,6 +10,7 @@
 
 - Row and column issue fixed to Countdown block
 - Focus color issue fixed to Advanced Search block
+- Arrow position issue fixed to Slider and Carousel Block
 
 ### Improved
 

@@ -3,7 +3,7 @@ Contributors: bdthemes, selimmw
 Donate link: http://bdthemes.com/
 Tags: blocks, gutenberg blocks, custom block, gutenberg, page builder
 Requires at least: 6.0
-Tested up to: 6.5
+Tested up to: 6.5.2
 Requires PHP: 7.4
 Stable tag: 1.0.1
 License: GPLv2 or later
@@ -190,7 +190,7 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
-= 1.0.1 - 25-04-2024 =
+= 1.0.1 - 27-04-2024 =
 
 = Added =
 
@@ -203,6 +203,7 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 * Row and column issue fixed to Countdown block
 * Focus color issue fixed to Advanced Search block
+* Arrow position issue fixed to Slider and Carousel Block
 
 = Improved =
 

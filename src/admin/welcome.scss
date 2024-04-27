@@ -51,6 +51,7 @@ h1,h2,h3,h4,h5,h6 {
     --tw-ring-offset-shadow: 0 0 #0000;
     --tw-ring-shadow: 0 0 #0000;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    z-index: 0;
 }
 
 .zolo-welcome-video-item {

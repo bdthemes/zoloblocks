@@ -1,5 +1,5 @@
 import { useState } from '@wordpress/element';
-
+import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
@@ -81,6 +81,14 @@ const Dashboard = () => {
                     {activeTab === 'apiSettings' && <ApiSettings />}
                     {activeTab === 'settings' && <Settings />}
                 </div>
+            </div>
+            <div className="zolo-footer">
+                <span className="zolo-footer-text alignleft" id="footer-thankyou">
+                   {__('© 2024 ZoloBlocks. All rights reserved.', 'zoloblocks')}
+                </span>
+                <span className="zolo-footer-version alignright" id="footer-version">
+                    {__('Version. ', 'zoloblocks') + zoloBlocks.plugin_version}
+                </span>
             </div>
         </div>
     );

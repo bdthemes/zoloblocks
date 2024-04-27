@@ -13,8 +13,6 @@ class Zolo_Dashboard {
 
     public function __construct() {
         add_action('admin_menu', [$this, 'zolo_admin_menu']);
-        add_filter('admin_footer_text', [$this, 'zolo_admin_footer_text']);
-        add_filter('update_footer', [$this, 'zolo_admin_footer_version'], 999);
     }
 
     /**
@@ -39,22 +37,6 @@ class Zolo_Dashboard {
 ?>
         <div id="zolo-dashboard"></div>
 <?php
-    }
-
-    // footer text
-    public function zolo_admin_footer_text() {
-        $screen = get_current_screen();
-        if ($screen && $screen->base === 'toplevel_page_zoloblocks') {
-            return '<span class="zolo-footer-text" id="footer-thankyou">' . __("Copyright © 2024 <a href='https://zoloblocks.com/' target='_blank'>Zoloblocks</a>. All Rights Reserved.", 'zoloblocks') . '</span>';
-        }
-    }
-
-
-    public function zolo_admin_footer_version() {
-        $screen = get_current_screen();
-        if ($screen && $screen->base === 'toplevel_page_zoloblocks') {
-            return '<span class="zolo-footer-text" id="footer-version">' . __('Version ', 'zoloblocks') . '</span>' . ZOLO_VERSION;
-        }
     }
 }
 

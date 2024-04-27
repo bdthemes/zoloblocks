@@ -37,7 +37,7 @@ const ChangeLogs = () => {
                     <div className="logos-panel-body">
                         <SingleLog
                             version="1.0.1"
-                            date={'Apri 25, 2024'}
+                            date={'April 27, 2024'}
                             changes={[
                                 {
                                     title: __('Added', 'zoloblocks'),
@@ -45,7 +45,7 @@ const ChangeLogs = () => {
                                 },
                                 {
                                     title: __('Fixed', 'zoloblocks'),
-                                    list: [__('Row and column issue fixed to Countdown block', 'zoloblocks'), __('Focus color issue fixed to Advanced Search block', 'zoloblocks')],
+                                    list: [__('Row and column issue fixed to Countdown block', 'zoloblocks'), __('Focus color issue fixed to Advanced Search block', 'zoloblocks'), __('Arrow position issue fixed to Slider and Carousel Block', 'zoloblocks')],
                                 },
                                 {
                                     title: __('Improved', 'zoloblocks'),
