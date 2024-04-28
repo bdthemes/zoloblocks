@@ -33,6 +33,10 @@ const attributes = {
             responsiveControls: true,
         },
     },
+    preset: {
+        type: 'string',
+        default: 'style-1',
+    },
     // Generators
     // ...generateResAlignmentAttributies(ITEMS_ALIGN),
     ...generateDimensionAttributes(LABEL_MARGIN),

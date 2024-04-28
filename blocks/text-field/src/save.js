@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, zoloId, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol, requiredMsg } =
+    const { uniqueId, parentClasses, preset, zoloId, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol, requiredMsg } =
         attributes;
 
     const blockProps = useBlockProps.save({
@@ -27,7 +27,7 @@ const Save = ({ attributes }) => {
                 )}
 
                 <div className="zolo-field-input-item">
-                    {showIcon && (
+                    {showIcon && preset !== 'style-3' && (
                         <div className="zolo-input-icon">
                             <DisplayZoloIcon icon={icon} />
                         </div>

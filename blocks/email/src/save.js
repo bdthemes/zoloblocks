@@ -7,6 +7,7 @@ const Save = ({ attributes }) => {
     const {
         uniqueId,
         parentClasses,
+        preset,
         zoloId,
         showLabel,
         label,
@@ -39,7 +40,7 @@ const Save = ({ attributes }) => {
                 )}
 
                 <div className="zolo-field-input-item">
-                    {showIcon && (
+                    {showIcon && preset !== 'style-3' && (
                         <div className="zolo-input-icon">
                             <DisplayZoloIcon icon={icon} />
                         </div>
