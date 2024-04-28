@@ -46,7 +46,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // enqueue style for both editor and frontend
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
 
-            // enqueu inside wp_head(  )
+            // enqueue inline css to hide block before animation
             add_action('wp_head', [$this, 'initial_css_loader']);
         }
 
