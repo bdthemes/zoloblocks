@@ -137,4 +137,34 @@
         left: 0;
         right: 0;
     }
+
+    /* pro css*/
+
+    &.style-5 {
+        --zolo-item-gap: 30px;
+        align-items: center;
+        gap: var(--zolo-item-gap);
+
+        .zolo-progress-bar__progress {
+            --zolo-progress-border-radius: 30px;
+            --zolo-progress-bar-height: 16px;
+            height: var(--zolo-progress-bar-height);
+            width: 100%;
+            border-radius: var(--zolo-progress-border-radius);
+        }
+        .zolo-progress-bar__progress-bar {
+            box-shadow: 0px 10px 40px 0px #a8adf0;
+            background-color: transparent;
+            background-image: linear-gradient(90deg, #2e72ff 0%, #a0affc 100%);
+            border-radius: var(--zolo-progress-border-radius);
+        }
+        .zolo-progress-bar_content {
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .zolo-progress-bar_counter {   
+            font-size: 40px;
+        }
+    }
 }
