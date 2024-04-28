@@ -18,10 +18,12 @@ function GradientControl({ label, value, onChange }) {
 
     // if value is var(--wp--preset--gradient--slug) then find the gradient and set it as value else set the value as it is
     let gradientValue;
-    if (value.startsWith('var(--wp--preset--gradient--')) {
+    if (value?.startsWith('var(--wp--preset--gradient--')) {
         // find the gradient by slug and set its value as value
         const gradient = gradients.find((gradient) => value === `var(--wp--preset--gradient--${gradient.slug})`);
         gradientValue = gradient.gradient;
+    } else {
+        gradientValue = value;
     }
 
     return (
