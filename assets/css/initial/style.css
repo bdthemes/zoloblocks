@@ -1,0 +1,6 @@
+.zolo-entrance-animation:not(.animation-initialized) {
+    opacity: 0;
+}
+.zolo-editor .zolo-entrance-animation:not(.animation-initialized) {
+    opacity: 1;
+}

@@ -45,7 +45,26 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             // enqueue style for both editor and frontend
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
+
+            // enqueu inside wp_head(  )
+            add_action('wp_head', [$this, 'initial_css_loader']);
         }
+
+        /**
+         * Load Inline CSS
+         *
+         * @since 0.0.1
+         *
+         * @return void
+         */
+        public function initial_css_loader() {
+            $custom_css = ".zolo-entrance-animation:not(.animation-initialized) { opacity: 0; }
+                   .zolo-editor .zolo-entrance-animation:not(.animation-initialized) { opacity: 1; }";
+            if (!empty($custom_css)) {
+                echo '<style id="zolo-init">' . $custom_css . '</style>';
+            }
+        }
+
 
         /**
          * Load Block Assets for both editor and frontend
