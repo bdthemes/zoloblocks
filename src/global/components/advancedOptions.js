@@ -271,7 +271,23 @@ export const AdvancedOptions = (props) => {
                                         ]}
                                     />
                                 </PopoverControl>
-                                <PopoverControl label={__('Rotate', 'zoloblocks')} icon={ROTATE_ICON} isPro={true}>
+                                <PopoverControl
+                                    label={__('Rotate', 'zoloblocks')}
+                                    icon={ROTATE_ICON}
+                                    isPro={true}
+                                    onReset={() =>
+                                        resetAtt(
+                                            ['transformRotate', 'transformRotateX', 'transformRotateY', 'transformPerspective'],
+                                            setAttributes
+                                        )
+                                    }
+                                    hasValue={
+                                        hasValCheck('transformRotate', attributes) ||
+                                        hasValCheck('transformRotateX', attributes) ||
+                                        hasValCheck('transformPerspective', attributes) ||
+                                        hasValCheck('transformRotateY', attributes)
+                                    }
+                                >
                                     <ResRangeControl
                                         label={__('Rotate', 'zoloblocks')}
                                         controlName={'transformRotate'}
@@ -318,7 +334,17 @@ export const AdvancedOptions = (props) => {
                                         </>
                                     )}
                                 </PopoverControl>
-                                <PopoverControl label={__('Scale', 'zoloblocks')} icon={SCALE_ICON} isPro={true}>
+                                <PopoverControl
+                                    label={__('Scale', 'zoloblocks')}
+                                    icon={SCALE_ICON}
+                                    isPro={true}
+                                    onReset={() => resetAtt(['transformScaleX', 'transformScaleY', 'transformScale'], setAttributes)}
+                                    hasValue={
+                                        hasValCheck('transformScaleX', attributes) ||
+                                        hasValCheck('transformScaleY', attributes) ||
+                                        hasValCheck('transformScale', attributes)
+                                    }
+                                >
                                     <ToggleControl
                                         label={__('Keep Proportions', 'zoloblocks')}
                                         checked={scaleProportionally}
@@ -364,7 +390,13 @@ export const AdvancedOptions = (props) => {
                                         </>
                                     )}
                                 </PopoverControl>
-                                <PopoverControl label={__('Skew', 'zoloblocks')} icon={SKEW_ICON} isPro={true}>
+                                <PopoverControl
+                                    label={__('Skew', 'zoloblocks')}
+                                    icon={SKEW_ICON}
+                                    isPro={true}
+                                    onReset={() => resetAtt(['transformSkewX', 'transformSkewY'], setAttributes)}
+                                    hasValue={hasValCheck('transformSkewX', attributes) || hasValCheck('transformSkewY', attributes)}
+                                >
                                     <ResRangeControl
                                         label={__('SkewX (deg)', 'zoloblocks')}
                                         controlName={'transformSkewX'}
@@ -382,7 +414,13 @@ export const AdvancedOptions = (props) => {
                                         noUnits={true}
                                     />
                                 </PopoverControl>
-                                <PopoverControl label={__('Flip', 'zoloblocks')} icon={FLIP_ICON} isPro={true}>
+                                <PopoverControl
+                                    label={__('Flip', 'zoloblocks')}
+                                    icon={FLIP_ICON}
+                                    isPro={true}
+                                    onReset={() => resetAtt(['transformOriginX', 'transformOriginY'], setAttributes)}
+                                    hasValue={hasValCheck('transformOriginX', attributes) || hasValCheck('transformOriginY', attributes)}
+                                >
                                     <ToggleControl
                                         label={__('Flip Horizontal', 'zoloblocks')}
                                         checked={transformFlipHorizontal}
@@ -422,7 +460,12 @@ export const AdvancedOptions = (props) => {
                         }
                         hoverComponents={
                             <>
-                                <PopoverControl label={__('Translate', 'zoloblocks')} icon={TRANSLATE_ICON}>
+                                <PopoverControl
+                                    label={__('Translate', 'zoloblocks')}
+                                    icon={TRANSLATE_ICON}
+                                    onReset={() => resetAtt(['translateXHover', 'translateYHover'], setAttributes)}
+                                    hasValue={hasValCheck('translateXHover', attributes) || hasValCheck('translateYHover', attributes)}
+                                >
                                     <ResRangeControl
                                         label={__('translateX', 'zoloblocks')}
                                         controlName={'translateXHover'}
@@ -446,7 +489,22 @@ export const AdvancedOptions = (props) => {
                                         ]}
                                     />
                                 </PopoverControl>
-                                <PopoverControl label={__('Rotate', 'zoloblocks')} icon={ROTATE_ICON}>
+                                <PopoverControl
+                                    label={__('Rotate', 'zoloblocks')}
+                                    icon={ROTATE_ICON}
+                                    onReset={() =>
+                                        resetAtt(
+                                            ['transformRotateHover', 'transformRotateXHover', 'transformPerspectiveHover', 'transformPerspective'],
+                                            setAttributes
+                                        )
+                                    }
+                                    hasValue={
+                                        hasValCheck('transformRotateHover', attributes) ||
+                                        hasValCheck('transformRotateXHover', attributes) ||
+                                        hasValCheck('transformPerspective', attributes) ||
+                                        hasValCheck('transformPerspectiveHover', attributes)
+                                    }
+                                >
                                     <ResRangeControl
                                         label={__('Rotate', 'zoloblocks')}
                                         controlName={'transformRotateHover'}
