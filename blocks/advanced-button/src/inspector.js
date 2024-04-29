@@ -4,7 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+import { Fragment, useState } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 
 /**
@@ -26,6 +26,7 @@ const {
     AdvancedOptions,
     ZoloIconPicker,
     ZoloPanelBody,
+    BazierControl,
 } = window.zoloModule;
 
 import { TEXT_ALIGN_OPTIONS, ICON_POSITIONS, ICON_STATUS } from '../../../src/global/constants';
@@ -96,7 +97,7 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
-
+    const [value, setValue] = useState([0.25, 0.1, 0.25, 1]);
     return (
         <InspectorControls key="controls">
             {/* {applyFilters('zoloblocks.advanced-button.presets', PRESETS)} */}
@@ -107,6 +108,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            <BazierControl label={__('Custom Easing', 'zoloblocks')} value={value} onChange={(v) => setValue(v)} />
                             <SelectControl
                                 label={__('Styles', 'zoloblocks')}
                                 value={preset}

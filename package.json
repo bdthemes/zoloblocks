@@ -33,6 +33,7 @@
         "@wordpress/server-side-render": "^4.30.0",
         "apexcharts": "^3.48.0",
         "array-move": "^4.0.0",
+        "bezier-easing-editor": "^0.8.0",
         "classnames": "^2.5.1",
         "gsap": "^3.12.5",
         "lodash": "^4.17.21",
