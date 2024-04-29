@@ -58,26 +58,26 @@ ZoloBlocks is not about what we promise only, but everything you deserve. So, fe
 == Check Out All Feature Names And Patterns Below-==
 
 - [**Accordion**](https://demo.zoloblocks.com/accordion/) - *Accordion Block offers a versatile and user-friendly way to create interactive accordion-style content within the Gutenberg editor.*
-- [**Advanced Button**](https://demo.zoloblocks.com/advanced-button/) - *Advanced Button Block elevates your website's call-to-action elements to the next level.*
-- [**Advanced Heading**](https://demo.zoloblocks.com/advanced-heading/) - *ZoloBlocks Advanced Heading Gutenberg Block – a powerful tool to make your headlines stand out.*
+- [**Advanced Button**](https://demo.zoloblocks.com/advanced-button/) - *Whether product purchases, sign-ups, or prompting downloads, the Advanced Button block provides flexibility in styling for more user engagement. Just what you need for your site.*
+- [**Advanced Heading**](https://demo.zoloblocks.com/advanced-heading/) - *A powerful tool to make your headlines stand out. With this block, you can create captivating headings that grab attention and enhance readability on your WordPress site.*
 - [**Advanced Icon Box**](https://demo.zoloblocks.com/advanced-icon-box/) - *Advanced Iconbox Gutenberg Block, your solution for adding stylish and informative icon boxes to your WordPress site.*
-- [**Advanced Image**](https://demo.zoloblocks.com/advanced-image/) - *A versatile blocks that takes your image presentation to the next level on your WordPress website*
-- [**Brand Grid**](https://demo.zoloblocks.com/brand-grid/) - *Brand Grid Block, the ultimate block for showcasing brands, logos, or partners on your WordPress website.*
+- [**Advanced Image**](https://demo.zoloblocks.com/advanced-image/) - *Takes your images to the next level on your WordPress website. With this, you have full control over every aspect of your images, allowing for stunning visual storytelling.*
+- [**Brand Grid**](https://demo.zoloblocks.com/brand-grid/) - *Showcase brands, logos, or partners on your WordPress website effortlessly. Create visually stunning grids that highlight your brand affiliations or featured partners anytime now.*
 - [**Business Hours**](https://demo.zoloblocks.com/business-hours/) - *Business Hours Block, showcase your opening hours in a clear and visually appealing format, ensuring that visitors can easily find when you're available.*
 - [**Call to action**](https://demo.zoloblocks.com/call-to-action/) - *With call to action block, you can easily craft attention-grabbing messages that prompt visitors to take desired actions, such as signing up, making a purchase, or contacting you.*
-- [**Charts**](https://demo.zoloblocks.com/charts/) - *Chart Blocks, effortlessly create stunning charts and graphs to showcase your analytics, reports, or survey results in a visually appealing format.*
+- [**Charts**](https://demo.zoloblocks.com/charts/) - *Now create informative and engaging charts such as bar, line, pie, or area in WordPress easily. Customize the appearance with options for colors, labels, and professional styling.*
 - [**Countdown**](https://demo.zoloblocks.com/countdown/) - *Countdown Block is a handy feature to build excitement and anticipation on your WordPress website. Set the specific date and time for your countdown, and customize its appearance with various options for colors, fonts, and styles.*
 - [**Counter**](https://demo.zoloblocks.com/counter/) - *Introducing the ZoloBlocks Counter Gutenberg Block – a user-friendly tool for showcasing numerical data in a clear and engaging manner on your WordPress website.*
-- [**Fancy list**](https://demo.zoloblocks.com/fancy-list/) - *an innovative way to present lists in a visually stunning grid format on your WordPress website.*
+- [**Fancy list**](https://demo.zoloblocks.com/fancy-list/) - *Create lists in a visually stunning grid format on your WordPress website. Customize each list item with icons, colors, and text, and rearrange it within a responsive grid layout.*
 - [**Flip Box**](https://demo.zoloblocks.com/flip-box/) - *With Flip block, you can captivate your audience by creating captivating flip box elements that reveal unique content on hover or click.*
 - [**Form**](https://demo.zoloblocks.com/form/) - *Enhance your WordPress website's functionality with our dynamic Gutenberg block designed for creating customizable forms*
-- [**Google Map**](https://demo.zoloblocks.com/google-map/) - * the ultimate solution for seamlessly integrating interactive maps into your WordPress website*
+- [**Google Map**](https://demo.zoloblocks.com/google-map/) - *The ultimate solution for seamlessly integrating interactive maps into your WordPress website*
 - [**Image Compare**](https://demo.zoloblocks.com/image-compare/) - *With Image Compare, effortlessly engage your audience by visually highlighting changes, transformations, or enhancements in a captivating and intuitive manner.*
 - [**Image Gallery**](https://demo.zoloblocks.com/image-galley/) - *Image Gallery- Ultimate solution for creating stunning and customizable image galleries on your WordPress website.*
 - [**List**](https://demo.zoloblocks.com/list/) - *List Block is a versatile block to organize and present information in a clear and concise format on your WordPress website.*
 - [**Post Carousel**](https://demo.zoloblocks.com/post-carousel/) - *The perfect block for dynamically showcasing your WordPress posts in a captivating carousel format.*
 - [**Post Grid**](https://demo.zoloblocks.com/post-grid/) - *With ZoloBlocks Post Grid, effortlessly create stunning post grids that dynamically showcase your content.*
-- [**Post list**](https://demo.zoloblocks.com/post-list/) - *Seamlessly organize and display your posts in a sleek and captivating list format.*
+- [**Post list**](https://demo.zoloblocks.com/post-list/) - *Seamlessly organize and display your posts in a sleek and captivating list format. Empowers you to effortlessly curate your content for maximum impact on any landing pages.*
 - [**Pricing Table**](https://demo.zoloblocks.com/pricing-table/) - *You can effortlessly showcase your product or service pricing plans in a clear and engaging format.*
 - [**Profile Card**](https://demo.zoloblocks.com/profile-card/) - *Profile Card Gutenberg Block – a sleek and dynamic way to introduce team members or individual profiles on your WordPress website.*
 - [**Progress bar**](https://demo.zoloblocks.com/progress-bar/) - *With Progress bar block, you can effortlessly create sleek and customizable progress bars that engage visitors and convey information with clarity.*
@@ -97,15 +97,15 @@ Don’t worry, more features coming up ….
 
 == Check out our other Addons 👑 ==
 
-* **[Prime Slider](https://wordpress.org/plugins/bdthemes-prime-slider-lite/)** - The revolutionary slider builder addon with next-gen superb interface.
+* **[Prime Slider](https://wordpress.org/plugins/bdthemes-prime-slider-lite/)** - *The revolutionary slider builder addon with next-gen superb interface.*
 
-* **[Ultimate Post Kit](https://wordpress.org/plugins/ultimate-post-kit/)** - Best blogging addon for building quality blogging websites with fine-tuned features and widgets.
+* **[Ultimate Post Kit](https://wordpress.org/plugins/ultimate-post-kit/)** - *Best blogging addon for building quality blogging websites with fine-tuned features and widgets.*
 
-* **[Ultimate Store Kit](https://wordpress.org/plugins/ultimate-store-kit/)** - The only eCommerce addon for answering all your online store design problems in one package.
+* **[Ultimate Store Kit](https://wordpress.org/plugins/ultimate-store-kit/)** - *The only eCommerce addon for answering all your online store design problems in one package.*
 
-* **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - Pixel Gallery is the first elementor-based WordPress gallery addon that provides the easiest image gallery-making experience.
+* **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - *Pixel Gallery is the first elementor-based WordPress gallery addon that provides the easiest image gallery-making experience.*
 
-* **[Live Copy Paste](https://wordpress.org/plugins/live-copy-paste/)** - Superfast cross-domain copy-paste mechanism for WordPress websites with true UI copy experience.
+* **[Live Copy Paste](https://wordpress.org/plugins/live-copy-paste/)** - *Superfast cross-domain copy-paste mechanism for WordPress websites with true UI copy experience.*
 
 
 Visit [BdThemes](https://bdthemes.com/) to learn about our services, page builder-based products, informative blogs, and documentation.
@@ -194,7 +194,7 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 = Added =
 
-* Style copy & paste feature added
+* Style copy & paste feature added 🦄
 * Image width, height, max width options added to Advanced image block
 * Button typography, shadow, spacing control added to Advanced Search block
 
