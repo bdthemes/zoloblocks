@@ -4,6 +4,7 @@ const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
+        preset, 
         uniqueId,
         parentClasses,
         styles,
@@ -39,7 +40,9 @@ const Save = ({ attributes }) => {
     } = attributes;
 
     const blockprops = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), 
+            preset !== '' && preset
+        ),
     });
 
     const pricingPeriod = period.length !== 0 && period.split(',');

@@ -59,7 +59,7 @@
         display: inline-block !important;
     }
     .zolo-price-info {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: var(--zolo-price-info-gap);
     }
@@ -269,5 +269,38 @@
 
     .zolo-featerd-item .zolo-features-info {
         border-top: 1px solid rgba(215, 218, 223, 0.322);
+    }
+
+    &.style-2 {
+        .zolo-price-info {
+            position: relative;
+        }
+        .zolo-orginal-price {
+            padding: 0;
+            font-size: 30px;
+        }
+
+        .zolo-price {
+            background-color: #3f8efc;
+            font-size: 24px;
+            z-index: 1;
+            color: #fff;
+            padding: 8px 10px;
+            border-radius: 6px;
+            transform: rotate(-5deg) translateY(0);
+            transition: all 0.3s ease;
+            position: absolute;
+            left: -3px;
+        }
+        .zolo-price-info {
+            &:hover {
+                .zolo-price {
+                    transform: rotate(-25deg) translateY(-40px);
+                }
+            }
+        }
+        .zolo-user-month {
+            margin-left: 10px;
+        }
     }
 }
