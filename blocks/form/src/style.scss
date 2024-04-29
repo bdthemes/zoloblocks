@@ -461,18 +461,19 @@
         top: 0;
         transform: translateY(-50%);
         background-color: #fff;
+        backdrop-filter: blur(4px);
         left: 0;
         margin: 0 10px;
-        padding: 0 10px;
-        padding: 0 10px;
+        padding: 6px 8px;
         z-index: 1;
+        border-radius: 6px;
       }
 
       &.style-3 input,
       &.style-3 select,
       &.style-3 textarea {
           background-color: transparent;
-          padding-left: 20px;
+          padding-left: 18px;
       }
 
       &.style-3 input::placeholder,
