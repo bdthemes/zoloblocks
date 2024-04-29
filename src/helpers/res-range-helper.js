@@ -63,22 +63,23 @@ export const generateResRangeStyle = ({ controlName, property, attributes, noUni
     }
 
     const desktopRangeStyle =
-        desktopRange || desktopRange == 0
+        desktopRange && desktopRange !== undefined && desktopRange !== null && desktopRange !== '' && desktopRange !== 'undefined'
             ? (noProperty ? '' : property + ':') +
               desktopRange +
               (desktopUnit !== undefined ? desktopUnit : '') +
               (desktopUnit !== undefined ? ';' : '')
             : '';
-
     const tabRangeStyle =
-        tabRange || tabRange == 0
+        tabRange && tabRange !== undefined && tabRange !== null && tabRange !== '' && tabRange !== 'undefined' && tabRange !== 'null'
             ? (noProperty ? '' : property + ':') + tabRange + (tabUnit !== undefined ? tabUnit : '') + (tabUnit !== undefined ? ';' : '')
             : '';
 
     const mobRangeStyle =
-        mobRange || mobRange == 0
+        mobRange && mobRange !== undefined && mobRange !== null && mobRange !== '' && mobRange !== 'undefined' && mobRange !== 'null'
             ? (noProperty ? '' : property + ':') + mobRange + (mobUnit !== undefined ? mobUnit : '') + (mobUnit !== undefined ? ';' : '')
             : '';
+
+    // console.log('desktopRangeStyle', desktopRangeStyle);
 
     return { desktopRangeStyle, tabRangeStyle, mobRangeStyle };
 };
