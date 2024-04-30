@@ -17,18 +17,40 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+
+            {barpercentToggle && preset === 'style-5' && (
+                <div className="zolo-progress-bar_counter">
+                    <span className="zolo-progress-bar_value" data-value={progressH}></span>
+                    <span className="zolo-progress-bar_percent">%</span>
+                </div>
+            )}
+
             <div className="zolo-progress-bar_content">
                 {barTitleToggle && <RichText.Content value={progressText} tagName={progressTextTag} className="zolo-progress-bar__title" />}
-                {barpercentToggle && (
+                {barpercentToggle && preset !== 'style-5' && (
                     <div className="zolo-progress-bar_counter">
                         <span className="zolo-progress-bar_value" data-value={progressH}></span>
                         <span className="zolo-progress-bar_percent">%</span>
                     </div>
                 )}
+
+                {
+                    preset === 'style-5' && (
+                        <div className="zolo-progress-bar__progress">
+                            <div className="zolo-progress-bar__progress-bar" />
+                        </div>
+                    )
+                }
+
             </div>
-            <div className="zolo-progress-bar__progress">
-                <div className="zolo-progress-bar__progress-bar" />
-            </div>
+            {
+                preset !== 'style-5' && (
+                    <div className="zolo-progress-bar__progress">
+                        <div className="zolo-progress-bar__progress-bar" />
+                   </div>
+                )
+            }
+
         </div>
     );
 };
