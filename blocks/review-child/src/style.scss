@@ -130,7 +130,8 @@
 	*/
 
     &.style-1,
-    &.style-3 {
+    &.style-3,
+    &.style-4 {
         .zolo-review-icon {
             --zolo-review-icon-margin: 0 0 12px;
             margin: var(--zolo-review-icon-margin);
@@ -152,7 +153,8 @@
 
     &.style-1,
     &.style-2,
-    &.style-3 {
+    &.style-3,
+    &.style-4 {
         .zolo-item {
             display: inline-flex;
             flex-direction: column-reverse;
@@ -177,7 +179,6 @@
     }
 
     &.style-3 {
-
         &.zolo-fl-normal {
             .zolo-item {
                 flex-direction: column;
@@ -192,6 +193,37 @@
         .zolo-review-icon {
             --zolo-review-icon-margin: 0;
             margin: var(--zolo-review-icon-margin);
+        }
+    }
+
+    // pro preset 5 style 4
+
+    &.style-4 {
+        --zolo-style-4-meta-content-bg-color: #f7f7f7;
+        .zolo-item {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+        }
+        .zolo-meta-content {
+            background-color: var(--zolo-style-4-meta-content-bg-color);
+            padding: 40px;
+            border-radius: 60px;
+            position: relative;
+        }
+        
+        .zolo-review-img-meta-wrap {
+            padding: 0 40px;
+        }
+        
+        .zolo-meta-content:before {
+            content: "";
+            position: absolute;
+            top: 90%;
+            left: 8%;
+            border-width: 40px;
+            border-style: solid;
+            border-color: var(--zolo-style-4-meta-content-bg-color) transparent transparent transparent;
         }
     }
 }
