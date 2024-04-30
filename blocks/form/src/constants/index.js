@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 export const PRESETS = [
     { label: __('Preset 1', 'zoloblocks'), value: 'style-1' },
     { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
-    { label: __('Preset 3', 'zoloblocks'), value: 'style-3' },
+    { label: __('Preset 3 (Pro)', 'zoloblocks'), value: 'style-3', disabled: true },
 ];
 
 // Block Prefix
@@ -15,6 +15,10 @@ export const BLOCK_PREFIX = 'form';
 
 // Label
 export const LABEL_MARGIN = 'labelMargin';
+export const LABEL_BG = 'labelBg';
+export const LABEL_PADDING = 'labelPadding';
+export const LABEL_BORDER = 'labelBorder';
+export const LABEL_BRADIUS = 'labelBorderRadius';
 
 // submit button
 export const BTN_ALIGNMENT = 'btnAlignment';

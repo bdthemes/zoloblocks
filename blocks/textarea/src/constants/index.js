@@ -8,6 +8,10 @@ export const BLOCK_PREFIX = 'slide';
 
 // Label
 export const LABEL_MARGIN = 'labelMargin';
+export const LABEL_BG = 'labelBg';
+export const LABEL_PADDING = 'labelPadding';
+export const LABEL_BORDER = 'labelBorder';
+export const LABEL_BRADIUS = 'labelBorderRadius';
 
 // Field
 export const FIELD_PADDING = 'fieldPadding';

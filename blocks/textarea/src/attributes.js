@@ -1,9 +1,26 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateTypographyAttributes, generateDimensionAttributes, generateNormalBGAttributes, generateBorderAttributies } = window.zoloModule;
+const {
+    generateResRangeAttributies,
+    generateTypographyAttributes,
+    generateDimensionAttributes,
+    generateNormalBGAttributes,
+    generateBorderAttributies,
+} = window.zoloModule;
 
-import { LABEL_MARGIN, FIELD_PADDING, FIELD_BG, ICON_SIZE, FIELD_BORDER, FIELD_BRADIUS } from './constants';
+import {
+    LABEL_MARGIN,
+    LABEL_BG,
+    LABEL_PADDING,
+    LABEL_BORDER,
+    LABEL_BRADIUS,
+    FIELD_PADDING,
+    FIELD_BG,
+    ICON_SIZE,
+    FIELD_BORDER,
+    FIELD_BRADIUS,
+} from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -41,6 +58,10 @@ const attributes = {
     // Generators
     // ...generateResAlignmentAttributies(ITEMS_ALIGN),
     ...generateDimensionAttributes(LABEL_MARGIN),
+    ...generateNormalBGAttributes(LABEL_BG),
+    ...generateDimensionAttributes(LABEL_PADDING),
+    ...generateDimensionAttributes(LABEL_BRADIUS),
+    ...generateBorderAttributies(LABEL_BORDER),
     ...generateDimensionAttributes(FIELD_PADDING),
     ...generateNormalBGAttributes(FIELD_BG),
     ...generateBorderAttributies(FIELD_BORDER),

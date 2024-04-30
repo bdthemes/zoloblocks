@@ -26,6 +26,10 @@ import {
     BTN_PADDING,
     BTN_MARGIN,
     LABEL_MARGIN,
+    LABEL_BG,
+    LABEL_PADDING,
+    LABEL_BORDER,
+    LABEL_BRADIUS,
     ICON_SIZE,
     FIELD_BG,
     FIELD_BORDER,
@@ -62,6 +66,41 @@ const Style = ({ props }) => {
     } = attributes;
 
     // label
+    const {
+        desktopBorderStyle: labelBorderStyles,
+        tabBorderStyle: labelBorderStylesTab,
+        mobBorderStyle: labelBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: LABEL_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: labelBRDesktop,
+        dimensionStylesTab: labelBRTab,
+        dimensionStylesMobile: labelBRMob,
+    } = generateDimensionStyle({
+        controlName: LABEL_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: labelPaddingDesk,
+        dimensionStylesTab: labelPaddingTab,
+        dimensionStylesMobile: labelPaddingMob,
+    } = generateDimensionStyle({
+        controlName: LABEL_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const { backgroundStylesDesktop: labelBGStyle } = generateNormalBGControlStyles({
+        controlName: LABEL_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
     const {
         dimensionStylesDesktop: labelMarginDesk,
         dimensionStylesTab: labelMarginTab,
@@ -345,6 +384,13 @@ const Style = ({ props }) => {
             ${labelMarginDesk}
         }
 
+        .${uniqueId}.style-3 .zolo-label {
+            ${labelPaddingDesk}
+            ${labelBGStyle}
+            ${labelBorderStyles}
+            ${labelBRDesktop}
+        }
+
         .${uniqueId} .zolo-required {
             color: ${requiredColor};
         }
@@ -434,6 +480,12 @@ const Style = ({ props }) => {
             ${labelMarginTab}
         }
 
+        .${uniqueId}.style-3 .zolo-label {
+            ${labelPaddingTab}
+            ${labelBorderStylesTab}
+            ${labelBRTab}
+        }
+
         .${uniqueId} .zolo-submit-btn {
             ${buttonAlignmentTab}
             ${btnMarginTab}
@@ -491,6 +543,12 @@ const Style = ({ props }) => {
         .${uniqueId} .zolo-label {
             ${labelTypoMob}
             ${labelMarginMob}
+        }
+
+        .${uniqueId}.style-3 .zolo-label {
+            ${labelPaddingMob}
+            ${labelBorderStylesMob}
+            ${labelBRMob}
         }
 
         .${uniqueId} .zolo-submit-btn {

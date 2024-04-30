@@ -19,6 +19,10 @@ import {
     BTN_PADDING,
     BTN_MARGIN,
     LABEL_MARGIN,
+    LABEL_BG,
+    LABEL_PADDING,
+    LABEL_BORDER,
+    LABEL_BRADIUS,
     ICON_SIZE,
     FIELD_BG,
     FIELD_BORDER,
@@ -200,6 +204,10 @@ const attributes = {
 
     // Label
     ...generateDimensionAttributes(LABEL_MARGIN),
+    ...generateNormalBGAttributes(LABEL_BG),
+    ...generateDimensionAttributes(LABEL_PADDING),
+    ...generateDimensionAttributes(LABEL_BRADIUS),
+    ...generateBorderAttributies(LABEL_BORDER),
 
     // Field icon
     ...generateResRangeAttributies(ICON_SIZE, {}),

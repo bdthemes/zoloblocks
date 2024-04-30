@@ -17,7 +17,18 @@ const {
 } = window.zoloModule;
 
 import { FIELD_TYPO, LABEL_TYPO } from './constants/typoPrefixConstant';
-import { LABEL_MARGIN, FIELD_PADDING, FIELD_BG, FIELD_BORDER, FIELD_BRADIUS, ICON_SIZE } from './constants';
+import {
+    LABEL_MARGIN,
+    LABEL_BG,
+    LABEL_PADDING,
+    LABEL_BORDER,
+    LABEL_BRADIUS,
+    FIELD_PADDING,
+    FIELD_BG,
+    FIELD_BORDER,
+    FIELD_BRADIUS,
+    ICON_SIZE,
+} from './constants';
 import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
@@ -25,6 +36,41 @@ const Style = ({ props }) => {
     const { uniqueId, showLabel, labelColor, textColor, placeholderColor, iconColor, showRequiredSymbol, requiredColor } = attributes;
 
     // label
+    const {
+        desktopBorderStyle: labelBorderStyles,
+        tabBorderStyle: labelBorderStylesTab,
+        mobBorderStyle: labelBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: LABEL_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: labelBRDesktop,
+        dimensionStylesTab: labelBRTab,
+        dimensionStylesMobile: labelBRMob,
+    } = generateDimensionStyle({
+        controlName: LABEL_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: labelPaddingDesk,
+        dimensionStylesTab: labelPaddingTab,
+        dimensionStylesMobile: labelPaddingMob,
+    } = generateDimensionStyle({
+        controlName: LABEL_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const { backgroundStylesDesktop: labelBGStyle } = generateNormalBGControlStyles({
+        controlName: LABEL_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
     const {
         dimensionStylesDesktop: labelMarginDesk,
         dimensionStylesTab: labelMarginTab,
@@ -120,6 +166,12 @@ const Style = ({ props }) => {
                 ${labelTypoDesk}
                 color: ${labelColor};
             }
+            .wp-block-zolo-form.style-3 .${uniqueId}.wp-block-zolo-email .zolo-label{
+                ${labelPaddingDesk}
+                ${labelBGStyle}
+                ${labelBorderStyles}
+                ${labelBRDesktop}
+            }
             ${
                 showRequiredSymbol
                     ? `
@@ -160,6 +212,11 @@ const Style = ({ props }) => {
             .${uniqueId}.wp-block-zolo-email .zolo-label {
                 ${labelTypoTab}
             }
+            .wp-block-zolo-form.style-3 .${uniqueId}.wp-block-zolo-email .zolo-label {
+                ${labelPaddingTab}
+                ${labelBorderStylesTab}
+                ${labelBRTab}
+            }
         `
                 : ''
         }
@@ -186,6 +243,11 @@ const Style = ({ props }) => {
             }
             .${uniqueId}.wp-block-zolo-email .zolo-label {
                 ${labelTypoMob}
+            }
+            .wp-block-zolo-form.style-3 .${uniqueId}.wp-block-zolo-email .zolo-label {
+                ${labelPaddingMob}
+                ${labelBorderStylesMob}
+                ${labelBRMob}
             }
         `
                 : ''

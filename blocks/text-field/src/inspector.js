@@ -24,7 +24,18 @@ const {
 import objAttributes from './attributes';
 
 import { FIELD_TYPO, LABEL_TYPO } from './constants/typoPrefixConstant';
-import { LABEL_MARGIN, FIELD_PADDING, FIELD_BG, FIELD_BORDER, FIELD_BRADIUS, ICON_SIZE } from './constants';
+import {
+    LABEL_MARGIN,
+    LABEL_BG,
+    LABEL_PADDING,
+    LABEL_BORDER,
+    LABEL_BRADIUS,
+    FIELD_PADDING,
+    FIELD_BG,
+    FIELD_BORDER,
+    FIELD_BRADIUS,
+    ICON_SIZE,
+} from './constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -72,15 +83,13 @@ function Inspector(props) {
                                 checked={isRequired}
                                 onChange={() => setAttributes({ isRequired: !isRequired })}
                             />
-                            {
-                                preset !== 'style-3' && (
-                                    <ToggleControl
-                                        label={__('Show icon', 'zoloblocks')}
-                                        checked={showIcon}
-                                        onChange={() => setAttributes({ showIcon: !showIcon })}
-                                    />
-                                )
-                            }
+                            {preset !== 'style-3' && (
+                                <ToggleControl
+                                    label={__('Show icon', 'zoloblocks')}
+                                    checked={showIcon}
+                                    onChange={() => setAttributes({ showIcon: !showIcon })}
+                                />
+                            )}
 
                             {isRequired && (
                                 <ToggleControl
@@ -100,15 +109,13 @@ function Inspector(props) {
                                     help={__('This will be used as the label for the field', 'zoloblocks')}
                                 />
                             )}
-                            {
-                                preset !== 'style-3' && (
-                                    <TextControl
-                                        label={__('Placeholder', 'zoloblocks')}
-                                        value={placeholder}
-                                        onChange={(v) => setAttributes({ placeholder: v })}
-                                    />
-                                )
-                            }
+                            {preset !== 'style-3' && (
+                                <TextControl
+                                    label={__('Placeholder', 'zoloblocks')}
+                                    value={placeholder}
+                                    onChange={(v) => setAttributes({ placeholder: v })}
+                                />
+                            )}
 
                             {isRequired && (
                                 <TextareaControl
@@ -151,12 +158,36 @@ function Inspector(props) {
                                     typoPrefixConstant={LABEL_TYPO}
                                     requiredProps={requiredProps}
                                 />
+                                {preset === 'style-3' && (
+                                    <>
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={LABEL_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={LABEL_BRADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={LABEL_PADDING}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={false}
+                                        />
+                                    </>
+                                )}
                                 <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={LABEL_MARGIN}
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
+                                {preset === 'style-3' && (
+                                    <NormalBGControl requiredProps={requiredProps} controlName={LABEL_BG} noMainBGImg={true} />
+                                )}
                             </ZoloPanelBody>
                         )}
 
@@ -171,15 +202,13 @@ function Inspector(props) {
                                 color={textColor}
                                 onChange={(color) => setAttributes({ textColor: color })}
                             />
-                            {
-                                preset !== 'style-3' && (
-                                    <ColorControl
-                                        label={__('Placeholder Color', 'zoloblocks')}
-                                        color={placeholderColor}
-                                        onChange={(color) => setAttributes({ placeholderColor: color })}
-                                    />
-                                )
-                            }
+                            {preset !== 'style-3' && (
+                                <ColorControl
+                                    label={__('Placeholder Color', 'zoloblocks')}
+                                    color={placeholderColor}
+                                    onChange={(color) => setAttributes({ placeholderColor: color })}
+                                />
+                            )}
 
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
