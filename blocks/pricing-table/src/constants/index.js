@@ -1,6 +1,13 @@
 import { Dashicon } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'pricing-table';
+
+
+export const PRESETS = [
+    { label: __('Preset 1', 'zoloblocks'), value: '' },
+    { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
+];
+
 export const NORMAL_HOVER = [
     { label: __('Normal', 'zoloblocks'), value: 'normal' },
     { label: __('Hover', 'zoloblocks'), value: 'hover' },

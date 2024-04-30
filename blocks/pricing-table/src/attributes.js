@@ -80,6 +80,10 @@ const attributes = {
             responsiveControls: true,
         },
     },
+    preset: {
+        type: 'string',
+        default: '',
+    },
     //header
     titleText: {
         type: 'string',

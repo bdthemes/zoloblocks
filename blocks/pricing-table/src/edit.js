@@ -15,6 +15,7 @@ import Style from './style';
 const Edit = (props) => {
     const { attributes, setAttributes, isSelected } = props;
     const {
+        preset,
         preview,
         uniqueId,
         parentClasses,
@@ -61,7 +62,9 @@ const Edit = (props) => {
 
     //block wrapper class
     const blockProps = useBlockProps({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses),
+            preset !== '' && preset
+        ),
     });
 
     const pricingPeriod = period.length !== 0 && period.split(',');

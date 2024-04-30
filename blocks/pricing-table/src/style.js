@@ -761,7 +761,7 @@ const Style = ({ props }) => {
       ${priceMarginDesktop}
       ${alignDesktop}
     }
-    .${uniqueId} .zolo-price{
+    .zolo-block .${uniqueId} .zolo-price{
       ${priceTypoDesktop}
       ${priceColor ? `color: ${priceColor};` : ''}
     }
@@ -774,7 +774,7 @@ const Style = ({ props }) => {
       ${suffixPosition ? ` top: ${suffixPosition}px;` : ''}
     }
 
-    .${uniqueId} .zolo-orginal-price{
+    .zolo-block .${uniqueId} .zolo-orginal-price{
       ${orginalPriceTypoDesktop}
       ${orginalPriceColor ? `color: ${orginalPriceColor};` : ''}
       ${orginalPriceMarginDesktop}
@@ -790,10 +790,10 @@ const Style = ({ props }) => {
       ${priceMarginTab}
       ${alignTab}
     }
-    .${uniqueId} .zolo-price{
+    .zolo-block .${uniqueId} .zolo-price{
       ${priceTypoTab}
     }
-    .${uniqueId} .zolo-orginal-price{
+    .zolo-block .${uniqueId} .zolo-orginal-price{
       ${orginalPriceTypoTab}
       ${orginalPriceMarginTab}
     }
@@ -807,10 +807,10 @@ const Style = ({ props }) => {
       ${priceMarginMobile}
       ${alignMob}
     }
-    .${uniqueId} .zolo-price{
+    .zolo-block .${uniqueId} .zolo-price{
       ${priceTypoMobile}
     }
-    .${uniqueId} .zolo-orginal-price{
+    .zolo-block .${uniqueId} .zolo-orginal-price{
       ${orginalPriceTypoMobile}
       ${orginalPriceMarginMobile}
     }

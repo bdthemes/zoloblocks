@@ -87,6 +87,7 @@ import {
     BTNS_POSITIONS,
     BTNS_DIRECTIONS,
     BTNS_MARGIN,
+    PRESETS
 } from './constants';
 import {
     BTN_TYPOGRAPHY,
@@ -109,6 +110,7 @@ import Sortable from './sortable';
 const Inspector = (props) => {
     const { attributes, setAttributes } = props;
     const {
+        preset,
         resMode,
         //header
         titleText,
@@ -186,6 +188,22 @@ const Inspector = (props) => {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
+                            <SelectControl
+                                label={__('Preset', 'zoloblocks')}
+                                value={preset}
+                                options={PRESETS}
+                                onChange={(preset) => {
+                                    setAttributes({ preset
+                                    });
+
+                                    if (preset === 'style-2') {
+                                        setAttributes({
+                                            sale: true,
+                                        })
+                                    }
+
+                                }}
+                            />
                             <ToggleControl
                                 label={__('Show Ribbon', 'zoloblocks')}
                                 checked={showRibbon}
