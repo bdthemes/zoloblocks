@@ -65,6 +65,10 @@ const attributes = {
         type: 'string',
         default: 'default',
     },
+    presetFourLayout: {
+        type: 'string',
+        default: 'zolo-fl-normal',
+    },
     // Generators content
     ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
 

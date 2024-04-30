@@ -3,6 +3,7 @@ import metadata from '../block.json';
 import attributes from './attributes';
 import Edit from './edit';
 import Save from './save';
+import Context from './context';
 
 registerBlockType(metadata, {
     icon: {
@@ -19,6 +20,7 @@ registerBlockType(metadata, {
     },
 
     attributes,
+    usesContext: Context,
     edit: Edit,
     save: Save,
 });

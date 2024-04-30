@@ -40,6 +40,7 @@ export { default as MaskControl } from './controls/mask-control';
 export { default as PopoverControl } from './controls/popover-control';
 export { default as SimpleRangeControl } from './controls/simple-range-control';
 export { default as MultiRangeControl } from './controls/multi-range-control';
+export { default as BazierControl } from './controls/bezier-control';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from './helpers/backgroundHelpers';

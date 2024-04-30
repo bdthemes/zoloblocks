@@ -27,7 +27,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected, context } = props;
-    const { preview, uniqueId, parentClasses, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol } = attributes;
+    const { preview, preset, uniqueId, parentClasses, showLabel, label, placeholder, showIcon, icon, isRequired, showRequiredSymbol } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -60,6 +60,7 @@ export default function Edit(props) {
     useEffect(() => {
         setAttributes({
             showIcon: context['zolo/showFieldIcon'],
+            preset: context['zolo/preset'],
         });
     }, [context]);
 
@@ -86,7 +87,7 @@ export default function Edit(props) {
                         </div>
                     )}
                     <div className="zolo-field-input-item">
-                        {showIcon && (
+                        {showIcon && preset !== 'style-3' && (
                             <div className="zolo-input-icon">
                                 <DisplayZoloIcon icon={icon} />
                             </div>

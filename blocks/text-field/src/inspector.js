@@ -29,6 +29,7 @@ import { LABEL_MARGIN, FIELD_PADDING, FIELD_BG, FIELD_BORDER, FIELD_BRADIUS, ICO
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
+        preset,
         resMode,
         showLabel,
         label,
@@ -71,11 +72,16 @@ function Inspector(props) {
                                 checked={isRequired}
                                 onChange={() => setAttributes({ isRequired: !isRequired })}
                             />
-                            <ToggleControl
-                                label={__('Show icon', 'zoloblocks')}
-                                checked={showIcon}
-                                onChange={() => setAttributes({ showIcon: !showIcon })}
-                            />
+                            {
+                                preset !== 'style-3' && (
+                                    <ToggleControl
+                                        label={__('Show icon', 'zoloblocks')}
+                                        checked={showIcon}
+                                        onChange={() => setAttributes({ showIcon: !showIcon })}
+                                    />
+                                )
+                            }
+
                             {isRequired && (
                                 <ToggleControl
                                     label={__('Show Required Symbol', 'zoloblocks')}
@@ -94,11 +100,16 @@ function Inspector(props) {
                                     help={__('This will be used as the label for the field', 'zoloblocks')}
                                 />
                             )}
-                            <TextControl
-                                label={__('Placeholder', 'zoloblocks')}
-                                value={placeholder}
-                                onChange={(v) => setAttributes({ placeholder: v })}
-                            />
+                            {
+                                preset !== 'style-3' && (
+                                    <TextControl
+                                        label={__('Placeholder', 'zoloblocks')}
+                                        value={placeholder}
+                                        onChange={(v) => setAttributes({ placeholder: v })}
+                                    />
+                                )
+                            }
+
                             {isRequired && (
                                 <TextareaControl
                                     label={__('Required Message', 'zoloblocks')}
@@ -107,7 +118,7 @@ function Inspector(props) {
                                     onChange={(v) => setAttributes({ requiredMsg: v })}
                                 />
                             )}
-                            {showIcon && (
+                            {showIcon && preset !== 'style-3' && (
                                 <ZoloIconPicker
                                     label={__('Select Icon', 'zoloblocks')}
                                     value={icon}
@@ -160,11 +171,16 @@ function Inspector(props) {
                                 color={textColor}
                                 onChange={(color) => setAttributes({ textColor: color })}
                             />
-                            <ColorControl
-                                label={__('Placeholder Color', 'zoloblocks')}
-                                color={placeholderColor}
-                                onChange={(color) => setAttributes({ placeholderColor: color })}
-                            />
+                            {
+                                preset !== 'style-3' && (
+                                    <ColorControl
+                                        label={__('Placeholder Color', 'zoloblocks')}
+                                        color={placeholderColor}
+                                        onChange={(color) => setAttributes({ placeholderColor: color })}
+                                    />
+                                )
+                            }
+
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={FIELD_TYPO}
@@ -185,7 +201,7 @@ function Inspector(props) {
                             />
                             <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
                         </ZoloPanelBody>
-                        {showIcon && (
+                        {showIcon && preset !== 'style-3' && (
                             <ZoloPanelBody title={__('Icon', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}

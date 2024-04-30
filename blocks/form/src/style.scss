@@ -447,3 +447,38 @@
     background-size: 0.55em 0.55em;
     border-color: transparent;
 }
+
+
+
+  
+  /*  form style 3 */
+  .wp-block-zolo-form {
+    .zolo-field-item {
+        position: relative;
+    }
+    &.style-3 .zolo-label-wrapper {
+        position: absolute;
+        top: 0;
+        transform: translateY(-50%);
+        background-color: #fff;
+        backdrop-filter: blur(4px);
+        left: 0;
+        margin: 0 10px;
+        padding: 6px 8px;
+        z-index: 1;
+        border-radius: 6px;
+      }
+
+      &.style-3 input,
+      &.style-3 select,
+      &.style-3 textarea {
+          background-color: transparent;
+          padding-left: 18px;
+      }
+
+      &.style-3 input::placeholder,
+      &.style-3 textarea::placeholder,
+      &.style-3 select::placeholder {
+        color: transparent;
+      }
+  }

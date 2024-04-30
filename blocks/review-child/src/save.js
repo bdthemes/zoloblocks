@@ -21,12 +21,15 @@ const Save = ({ attributes }) => {
         rating,
         zoloId,
         imageRes,
+        presetFourLayout
     } = attributes;
 
     return (
         <div
             {...useBlockProps.save({
-                className: classnames(uniqueId, 'swiper-slide',`${preset ? preset : ''}`, classArrayToStr(parentClasses)),
+                className: classnames(uniqueId, 'swiper-slide',`${preset ? preset : ''}`, classArrayToStr(parentClasses), `${
+                    preset === 'style-3' ? presetFourLayout : ''
+                }`),
             })}
             {...(zoloId && {
                 id: zoloId,
@@ -65,17 +68,25 @@ const Save = ({ attributes }) => {
                                     <RichText.Content value={memberName} />
                                 </div>
                             ))}
-                        {showDesignation && (
-                            <div className="zolo-designation">
-                                <RichText.Content value={memberDesignation} />
-                            </div>
-                        )}
+
+                            {showDesignation && preset !== 'style-3' && (
+                                <div className="zolo-designation">
+                                    <RichText.Content value={memberDesignation} />
+                                </div>
+                            )}
+
+                            {showRating && preset === 'style-3' && (
+                                <div className="zolo-review-icon">
+                                    <div className="zolo-rating-child" data-rating={rating}></div>
+                                </div>
+                            )}
+
                     </div>
                 </div>
 
                 <div className="zolo-info-wrap">
                     <div className="zolo-meta-content">
-                        {showRating && (
+                        {showRating && preset !== 'style-3' && (
                             <div className="zolo-review-icon">
                                 <div className="zolo-rating-child" data-rating={rating}></div>
                             </div>

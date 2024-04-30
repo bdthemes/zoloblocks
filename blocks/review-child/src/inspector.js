@@ -57,6 +57,7 @@ function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         resMode,
+        preset,
         showPhoto,
         memberPhoto,
         showName,
@@ -183,7 +184,7 @@ function Inspector(props) {
                                     placeholder={__('Name..', 'zoloblocks')}
                                 />
                             )}
-                            {showDesignation && (
+                            {showDesignation && preset !== 'style-3' && (
                                 <TextControl
                                     label={__('Designation', 'zoloblocks')}
                                     onChange={(d) =>
@@ -369,7 +370,7 @@ function Inspector(props) {
                                 )}
                             </ZoloPanelBody>
                         )}
-                        {showDesignation && (
+                        {showDesignation && preset !== 'style-3' && (
                             <ZoloPanelBody title={__('Designation', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zoloblocks')}
