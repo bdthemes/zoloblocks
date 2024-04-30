@@ -6,8 +6,14 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal depencencies
  */
-const { GlobalStyleHanlder, generateTypographyStyles, generateResRangeStyle, generateNormalBGControlStyles, generateDimensionStyle } =
-    window.zoloModule;
+const {
+    GlobalStyleHanlder,
+    generateTypographyStyles,
+    generateResRangeStyle,
+    generateNormalBGControlStyles,
+    generateDimensionStyle,
+    generateBoxShadowStyles,
+} = window.zoloModule;
 
 import {
     PROGRESS_BG_COLOR,
@@ -17,6 +23,8 @@ import {
     PROGRESS_TITLE_MARGIN,
     PROGRESS_VALUE_MARGIN,
     ITEM_BRADIUS,
+    PROGRESS_PERCENT_GAP,
+    PROGRESS_BSHADOW,
 } from './constants';
 import { TITLE_TYPO, PROGRESS_VALUE } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
@@ -71,6 +79,11 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const { boxShadowStyle: progressBoxShadow } = generateBoxShadowStyles({
+        controlName: PROGRESS_BSHADOW,
+        attributes,
+    });
+
     //title margin
     const {
         dimensionStylesDesktop: titleDeskMargin,
@@ -110,6 +123,13 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    // PROGRESS_PERCENT_GAP
+    const {
+        desktopRangeStyle: progressPercentGapDesk,
+        tabRangeStyle: progressPercentGapTab,
+        mobRangeStyle: progressPercentGapMob,
+    } = generateResRangeStyle({ controlName: PROGRESS_PERCENT_GAP, property: '--zolo-item-gap', attributes });
+
     /**
      * All Style Combination
      */
@@ -135,59 +155,71 @@ const Style = ({ props }) => {
       .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
          ${progressBarDeskcolor}
          ${progressBarDeskRadius}
+        ${progressBoxShadow}
       }
 
       .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar.active {
         ${progressH && `width:${progressH}%`};
      }
 
+    .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child.style-5 {
+        ${progressPercentGapDesk}
+    }
+
     `;
 
     const tabletAllStyle = `
-    .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
-        ${typoTabTitle}
-        ${titleTabMargin}
-    }
+        .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
+            ${typoTabTitle}
+            ${titleTabMargin}
+        }
 
-    .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
-        ${progressTabcolor}
-        ${progressTabHeight}
-        ${itemTabMargin}
-    }
+        .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
+            ${progressTabcolor}
+            ${progressTabHeight}
+            ${itemTabMargin}
+        }
 
-    .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
-        ${valueTabMargin}
-        ${typoTabValue}
-    }
+        .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
+            ${valueTabMargin}
+            ${typoTabValue}
+        }
 
-    .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
-        ${progressBarTabcolor}
-        ${progressBarTabRadius}
-    }
+        .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
+            ${progressBarTabcolor}
+            ${progressBarTabRadius}
+        }
 
+        .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child.style-5 {
+            ${progressPercentGapTab}
+        }
     `;
 
     const mobileAllStyle = `
-       .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
-           ${typoMobTitle}
-           ${titleMobMargin}
-       }
+        .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__title{
+            ${typoMobTitle}
+            ${titleMobMargin}
+        }
 
-       .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
-         ${progressMobcolor}
-         ${progressMobHeight}
-         ${itemMobMargin}
-      }
+        .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress{
+            ${progressMobcolor}
+            ${progressMobHeight}
+            ${itemMobMargin}
+        }
 
-      .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
+        .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar_counter{
         ${valueMobMargin}
         ${typoMobValue}
-      }
+        }
 
-      .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
+        .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child .zolo-progress-bar__progress-bar {
         ${progressBarMobcolor}
         ${progressBarMobRadius}
-      }
+        }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-progress-bar-child.style-5 {
+        ${progressPercentGapMob}
+        }
     `;
     return (
         <>

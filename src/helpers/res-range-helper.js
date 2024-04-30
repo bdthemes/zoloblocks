@@ -63,19 +63,19 @@ export const generateResRangeStyle = ({ controlName, property, attributes, noUni
     }
 
     const desktopRangeStyle =
-        desktopRange && desktopRange !== undefined && desktopRange !== null && desktopRange !== '' && desktopRange !== 'undefined'
+        desktopRange !== undefined && desktopRange !== '' && desktopRange !== 'undefined'
             ? (noProperty ? '' : property + ':') +
               desktopRange +
               (desktopUnit !== undefined ? desktopUnit : '') +
               (desktopUnit !== undefined ? ';' : '')
             : '';
     const tabRangeStyle =
-        tabRange && tabRange !== undefined && tabRange !== null && tabRange !== '' && tabRange !== 'undefined' && tabRange !== 'null'
+        tabRange !== undefined && tabRange !== null && tabRange !== '' && tabRange !== 'undefined' && tabRange !== 'null'
             ? (noProperty ? '' : property + ':') + tabRange + (tabUnit !== undefined ? tabUnit : '') + (tabUnit !== undefined ? ';' : '')
             : '';
 
     const mobRangeStyle =
-        mobRange && mobRange !== undefined && mobRange !== null && mobRange !== '' && mobRange !== 'undefined' && mobRange !== 'null'
+        mobRange !== undefined && mobRange !== null && mobRange !== '' && mobRange !== 'undefined' && mobRange !== 'null'
             ? (noProperty ? '' : property + ':') + mobRange + (mobUnit !== undefined ? mobUnit : '') + (mobUnit !== undefined ? ';' : '')
             : '';
 

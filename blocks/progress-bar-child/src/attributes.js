@@ -1,8 +1,13 @@
 /**
  * Internal dependencies
  */
-const { generateNormalBGAttributes, generateTypographyAttributes, generateResRangeAttributies, generateDimensionAttributes } =
-    window.zoloModule;
+const {
+    generateNormalBGAttributes,
+    generateTypographyAttributes,
+    generateResRangeAttributies,
+    generateDimensionAttributes,
+    generateBoxShadowAttributies,
+} = window.zoloModule;
 
 import {
     PROGRESS_BAR_BG_COLOR,
@@ -12,6 +17,8 @@ import {
     PROGRESS_TITLE_MARGIN,
     PROGRESS_VALUE_MARGIN,
     ITEM_BRADIUS,
+    PROGRESS_PERCENT_GAP,
+    PROGRESS_BSHADOW,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -54,9 +61,14 @@ const attributes = {
     //progress
     ...generateNormalBGAttributes(PROGRESS_BG_COLOR),
     ...generateResRangeAttributies(PROGRESS_HIGHT),
+    ...generateBoxShadowAttributies(PROGRESS_BSHADOW),
     //progress bar
     ...generateNormalBGAttributes(PROGRESS_BAR_BG_COLOR),
     ...generateDimensionAttributes(PROGRESS_BAR_RADIUS),
+
+    // Pro Presets
+    ...generateResRangeAttributies(PROGRESS_PERCENT_GAP),
+
     preset: {
         type: 'string',
     },

@@ -22,3 +22,8 @@ export const PROGRESS_TITLE_MARGIN = 'progressTitleMargin';
 
 //progress value
 export const PROGRESS_VALUE_MARGIN = 'progressValueMargin';
+
+export const PROGRESS_BSHADOW = 'progressBoxShadow';
+
+// pro prests
+export const PROGRESS_PERCENT_GAP = 'progressPercentGap';

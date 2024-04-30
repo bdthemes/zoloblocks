@@ -11,9 +11,16 @@ import {
     PROGRESS_TITLE_MARGIN,
     PROGRESS_VALUE_MARGIN,
     ITEM_BRADIUS,
+    PROGRESS_PERCENT_GAP,
+    PROGRESS_BSHADOW,
 } from './constants';
-const { generateTypographyAttributes, generateResRangeAttributies, generateDimensionAttributes, generateNormalBGAttributes } =
-    window.zoloModule;
+const {
+    generateTypographyAttributes,
+    generateResRangeAttributies,
+    generateDimensionAttributes,
+    generateNormalBGAttributes,
+    generateBoxShadowAttributies,
+} = window.zoloModule;
 
 const attributes = {
     //Common Attributes
@@ -57,6 +64,9 @@ const attributes = {
     ...generateNormalBGAttributes(PROGRESS_BAR_BG_COLOR),
     ...generateDimensionAttributes(PROGRESS_BAR_RADIUS),
 
+    // Pro Presets
+    ...generateResRangeAttributies(PROGRESS_PERCENT_GAP),
+    ...generateBoxShadowAttributies(PROGRESS_BSHADOW),
     preset: {
         type: 'string',
     },
@@ -82,7 +92,6 @@ const attributes = {
         type: 'number',
         default: 0,
     },
-
 };
 
 export default attributes;

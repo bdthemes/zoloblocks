@@ -12,7 +12,7 @@ export const PRESETS = [
     { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
     { label: __('Preset 3', 'zoloblocks'), value: 'style-3' },
     { label: __('Preset 4', 'zoloblocks'), value: 'style-4' },
-    { label: __('Preset 5', 'zoloblocks'), value: 'style-5' },
+    { label: __('Preset 5 (Pro)', 'zoloblocks'), value: 'style-5', disabled: true },
 ];
 
 // Item
@@ -27,3 +27,8 @@ export const PROGRESS_BAR_BG_COLOR = 'progressBarBgColor';
 export const PROGRESS_BAR_HEIGHT = 'progressBarHight';
 export const PROGRESS_TITLE_MARGIN = 'progressTitleMargin';
 export const PROGRESS_VALUE_MARGIN = 'progressValueMargin';
+
+export const PROGRESS_BSHADOW = 'progressBoxShadow';
+
+// Preset 5 gap
+export const PROGRESS_PERCENT_GAP = 'progressPercentGap';

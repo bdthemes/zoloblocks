@@ -19,6 +19,7 @@ const {
     ZoloPanelBody,
     ResDimensionsControl,
     RangeResetControl,
+    BoxShadowControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -33,6 +34,8 @@ import {
     PROGRESS_TITLE_MARGIN,
     PROGRESS_VALUE_MARGIN,
     ITEM_BRADIUS,
+    PROGRESS_PERCENT_GAP,
+    PROGRESS_BSHADOW,
 } from './constants';
 
 import { TITLE_TYPO, PROGRESS_VALUE } from './constants/typoPrefixConstants';
@@ -170,6 +173,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 noMainBGImg={true}
                             />
+                            <BoxShadowControl controlName={PROGRESS_BSHADOW} requiredProps={requiredProps} />
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Percentage', 'zoloblocks')} stylePanel={true} panelProps={props}>
@@ -183,6 +187,17 @@ function Inspector(props) {
                                 typoPrefixConstant={PROGRESS_VALUE}
                                 requiredProps={requiredProps}
                             />
+                            {preset === 'style-5' && (
+                                <ResRangeControl
+                                    label={__('Gap', 'zoloblocks')}
+                                    controlName={PROGRESS_PERCENT_GAP}
+                                    requiredProps={requiredProps}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                    noUnits={false}
+                                />
+                            )}
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={PROGRESS_VALUE_MARGIN}
