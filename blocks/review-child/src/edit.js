@@ -62,11 +62,14 @@ export default function Edit(props) {
         showRating,
         rating,
         imageRes,
+        presetFourLayout
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId} ${preset ? preset : ''}`, classArrayToStr(parentClasses)),
+        className: classnames(className, `${uniqueId} ${preset ? preset : ''}`, classArrayToStr(parentClasses), `${
+            preset === 'style-3' ? presetFourLayout : ''
+        }`),
     });
 
     /**
@@ -81,6 +84,7 @@ export default function Edit(props) {
             showName: context['zolo/showName'],
             showRating: context['zolo/showRating'],
             addReviewerWebsiteLink: context['zolo/addReviewerWebsiteLink'],
+            presetFourLayout: context['zolo/presetFourLayout'],
         });
     }, [context]);
 
@@ -192,25 +196,33 @@ export default function Edit(props) {
                                         placeholder={__('Reviewer name', 'zoloblocks')}
                                     />
                                 ))}
-                            {showDesignation && (
-                                <div className="zolo-designation">
-                                    <RichText
-                                        value={memberDesignation}
-                                        onChange={(content) =>
-                                            setAttributes({
-                                                memberDesignation: content,
-                                            })
-                                        }
-                                        placeholder={__('Reviewer designation', 'zoloblocks')}
-                                    />
-                                </div>
-                            )}
+
+                                {showDesignation && preset !== 'style-3' && (
+                                    <div className="zolo-designation">
+                                        <RichText
+                                            value={memberDesignation}
+                                            onChange={(content) =>
+                                                setAttributes({
+                                                    memberDesignation: content,
+                                                })
+                                            }
+                                            placeholder={__('Reviewer designation', 'zoloblocks')}
+                                        />
+                                    </div>
+                                )}
+
+                                {showRating && preset === 'style-3' && (
+                                    <div className="zolo-review-icon">
+                                        <StarRating rating={rating} total={5} />
+                                    </div>
+                                )}
+
                         </div>
                     </div>
 
                     <div className="zolo-info-wrap">
                         <div className="zolo-meta-content">
-                            {showRating && (
+                            {showRating && preset !== 'style-3' && (
                                 <div className="zolo-review-icon">
                                     <StarRating rating={rating} total={5} />
                                 </div>

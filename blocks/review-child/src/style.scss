@@ -129,7 +129,8 @@
 	* Style 1
 	*/
 
-    &.style-1 {
+    &.style-1,
+    &.style-3 {
         .zolo-review-icon {
             --zolo-review-icon-margin: 0 0 12px;
             margin: var(--zolo-review-icon-margin);
@@ -150,7 +151,8 @@
     }
 
     &.style-1,
-    &.style-2 {
+    &.style-2,
+    &.style-3 {
         .zolo-item {
             display: inline-flex;
             flex-direction: column-reverse;
@@ -170,6 +172,25 @@
         }
         .zolo-review-icon {
             --zolo-review-icon-margin:  12px 0 10px 0;
+            margin: var(--zolo-review-icon-margin);
+        }
+    }
+
+    &.style-3 {
+
+        &.zolo-fl-normal {
+            .zolo-item {
+                flex-direction: column;
+            }
+          }
+
+          &.zolo-fl-reverse {
+            .zolo-item {
+                flex-direction: column-reverse;
+            }
+          }
+        .zolo-review-icon {
+            --zolo-review-icon-margin: 0;
             margin: var(--zolo-review-icon-margin);
         }
     }

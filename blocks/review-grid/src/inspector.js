@@ -70,6 +70,7 @@ function Inspector(props) {
         activeRatingColor,
         inactiveRatingColor,
         layoutType,
+        presetFourLayout
     } = attributes;
 
     const requiredProps = {
@@ -92,7 +93,13 @@ function Inspector(props) {
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.reviewGrid.presets', PRESETS)}
-                                onChange={(selected) => setAttributes({ preset: selected })}
+                                onChange={(selected) => {
+                                    setAttributes({ preset: selected });
+
+                                    if (selected === 'style-4') {
+                                        setAttributes({ showDesignation: false });
+                                    }
+                                }}
                             />
                             <ToggleControl
                                 label={__('Add Reviewer Website Link', 'zoloblocks')}
@@ -121,15 +128,20 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ToggleControl
-                                label={__('Show Designation', 'zoloblocks')}
-                                checked={showDesignation}
-                                onChange={() =>
-                                    setAttributes({
-                                        showDesignation: !showDesignation,
-                                    })
-                                }
-                            />
+                            {
+                            preset !== 'style-3' && (
+                                <ToggleControl
+                                    label={__('Show Designation', 'zoloblocks')}
+                                    checked={showDesignation}
+                                    onChange={() =>
+                                        setAttributes({
+                                            showDesignation: !showDesignation,
+                                        })
+                                    }
+                                />
+                            )
+                            }
+                            
                             <ToggleControl
                                 label={__('Show Testimonial Message', 'zoloblocks')}
                                 checked={showTestimonialMessage}
@@ -148,6 +160,25 @@ function Inspector(props) {
                                     })
                                 }
                             />
+                            {
+                            preset === 'style-3' && (
+                                <SelectControl
+                                    label={__('Direction', 'zoloblocks')}
+                                    value={presetFourLayout}
+                                    options={[
+                                        {
+                                            label: __('Normal', 'zoloblocks'),
+                                            value: 'zolo-fl-normal',
+                                        },
+                                        {
+                                            label: __('Reverse', 'zoloblocks'),
+                                            value: 'zolo-fl-reverse',
+                                        },
+                                    ]}
+                                    onChange={(selected) => setAttributes({ presetFourLayout: selected })}
+                                />
+                            )
+                            }
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} panelProps={props}>
                             <IconicBtnGroup
@@ -318,7 +349,7 @@ function Inspector(props) {
                                 )}
                             </ZoloPanelBody>
                         )}
-                        {showDesignation && (
+                        {showDesignation &&  preset !== 'style-3' &&  (
                             <ZoloPanelBody title={__('Designation', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zoloblocks')}

@@ -90,6 +90,10 @@ const attributes = {
         type: 'string',
         default: 'grid',
     },
+    presetFourLayout: {
+        type: 'string',
+        default: 'zolo-fl-normal',
+    },
     ...generateNormalBGAttributes(REVIEW_GRID_BG),
     ...generateResCounterAttributies(GRID_COLUMNS, {
         noUnits: true,
