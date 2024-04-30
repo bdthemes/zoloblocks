@@ -168,15 +168,22 @@ function Inspector(props) {
                                 options={applyFilters('zolo.form.presets', PRESETS)}
                                 onChange={(selected) => onPresetChange(selected)}
                             />
-                            <ToggleControl
-                                label={__('Show fields icon', 'zoloblocks')}
-                                checked={showFieldIcon}
-                                onChange={() =>
-                                    setAttributes({
-                                        showFieldIcon: !showFieldIcon,
-                                    })
-                                }
-                            />
+
+                            {
+                                preset !== 'style-3' && (
+                                    <ToggleControl
+                                        label={__('Show fields icon', 'zoloblocks')}
+                                        checked={showFieldIcon}
+                                        onChange={() =>
+                                            setAttributes({
+                                                showFieldIcon: !showFieldIcon,
+                                            })
+                                        }
+                                    />
+                                )
+                            }
+
+
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Form Settings', 'zoloblocks')} panelProps={props}>
                             <TextControl
@@ -451,11 +458,16 @@ function Inspector(props) {
                                 color={textColor}
                                 onChange={(color) => setAttributes({ textColor: color })}
                             />
-                            <ColorControl
-                                label={__('Placeholder Color', 'zoloblocks')}
-                                color={placeholderColor}
-                                onChange={(color) => setAttributes({ placeholderColor: color })}
-                            />
+                            {
+                                preset !== 'style-3' && (
+                                    <ColorControl
+                                        label={__('Placeholder Color', 'zoloblocks')}
+                                        color={placeholderColor}
+                                        onChange={(color) => setAttributes({ placeholderColor: color })}
+                                    />
+                                )
+                            }
+
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={FIELD_TYPO}
