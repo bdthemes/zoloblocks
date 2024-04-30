@@ -10,6 +10,7 @@ export const BLOCK_PREFIX = 'brand-grid';
 export const PRESETS = [
     { label: __('Preset 1', 'zoloblocks'), value: 'zb-brand-style-1' },
     { label: __('Preset 2', 'zoloblocks'), value: 'zb-brand-style-2' },
+    { label: __('Preset 3 (Pro)', 'zoloblocks'), value: 'zb-brand-style-3', disabled: true },
 ];
 
 // icon types
