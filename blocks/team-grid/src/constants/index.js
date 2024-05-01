@@ -11,6 +11,7 @@ export const PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
     { label: __('Style 2', 'zoloblocks'), value: 'default' },
     { label: __('Style 3', 'zoloblocks'), value: 'style-2' },
+    { label: __('Style 4', 'zoloblocks'), value: 'style-3' },
 ];
 
 // item
