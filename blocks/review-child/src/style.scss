@@ -219,8 +219,9 @@
         .zolo-meta-content:before {
             content: "";
             position: absolute;
-            top: 90%;
+            top: 100%;
             left: 8%;
+            margin-top: -20px;
             border-width: 40px;
             border-style: solid;
             border-color: var(--zolo-style-4-meta-content-bg-color) transparent transparent transparent;
