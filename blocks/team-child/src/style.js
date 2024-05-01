@@ -31,6 +31,7 @@ import {
     ICONS_BOX_SHADOW,
     ICONS_HOVER_BOX_SHADOW,
     ICONS_PADDING,
+    ICONS_MARGIN,
     ICONS_SIZE,
     ICONS_SPACING,
     ICONS_CONTAINER_MARGIN,
@@ -71,6 +72,7 @@ import {
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
+        preset,
         uniqueId,
         nameColor,
         designationColor,
@@ -438,6 +440,16 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const {
+        dimensionStylesDesktop: socialIconsMarginDesk,
+        dimensionStylesTab: socialIconsMarginTab,
+        dimensionStylesMobile: socialIconsMarginMob,
+    } = generateDimensionStyle({
+        controlName: ICONS_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
     const { boxShadowStyle: socialIconNormalBoxShadow } = generateBoxShadowStyles({
         attributes,
         controlName: ICONS_BOX_SHADOW,
@@ -546,12 +558,7 @@ const Style = ({ props }) => {
 			${itemBoxShadow}
 		}
 
-		.${uniqueId}.default .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.default .zolo-item .zolo-hover-content,
-		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
+		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-item .zolo-info-wrap {
             ${contentDeskBg}
 			${contentBorderDeskStyle}
 			${contentDeskBorderRadius}
@@ -603,6 +610,16 @@ const Style = ({ props }) => {
 		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-social-share {
 			${socialIconsGapDesk}
 		}
+
+        ${
+            preset !== 'style-1'
+                ? `
+            .${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-social-share {
+                ${socialIconsMarginDesk}
+            }
+            `
+                : ''
+        }
 
 		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-social-share a {
 			${socialIconDeskBorderStyle}
@@ -664,12 +681,7 @@ const Style = ({ props }) => {
 			${itemTabPadding}
 			${itemTabMargin}
 		}
-		.${uniqueId}.default .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.default .zolo-item .zolo-hover-content,
-		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
+		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-item .zolo-info-wrap {
             ${contentTabBg}
 			${contentBorderTabStyle}
 			${contentTabBorderRadius}
@@ -714,6 +726,16 @@ const Style = ({ props }) => {
 		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-social-share {
 			${socialIconsGapTab}
 		}
+
+        ${
+            preset !== 'style-1'
+                ? `
+            .${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-social-share {
+                ${socialIconsMarginTab}
+            }
+            `
+                : ''
+        }
 
 		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-social-share a {
 			${socialIconTabBorderStyle}
@@ -762,12 +784,7 @@ const Style = ({ props }) => {
 			${itemMobPadding}
 			${itemMobMargin}
 		}
-		.${uniqueId}.default .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-1 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-2 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.style-3 .zolo-item .zolo-info-wrap,
-		.${uniqueId}.default .zolo-item .zolo-hover-content,
-		.${uniqueId}.style-1 .zolo-item .zolo-hover-content {
+		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-item .zolo-info-wrap {
             ${contentMobBg}
 			${contentBorderMobStyle}
 			${contentMobBorderRadius}
@@ -809,6 +826,16 @@ const Style = ({ props }) => {
 		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-social-share {
 			${socialIconsGapMob}
 		}
+
+        ${
+            preset !== 'style-1'
+                ? `
+            .${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-social-share {
+                ${socialIconsMarginMob}
+            }
+            `
+                : ''
+        }
 
 		.${uniqueId}.zolo-block.wp-block-zolo-team-child .zolo-social-share a {
 			${socialIconMobBorderStyle}

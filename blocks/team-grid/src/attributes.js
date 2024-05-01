@@ -1,7 +1,17 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateResAlignmentAttributies, generateBorderAttributies, generateDimensionAttributes, generateBoxShadowAttributies, generateTypographyAttributes, generateNormalBGAttributes, generateResCounterAttributies, generateGapAttributes } = window.zoloModule;
+const {
+    generateResRangeAttributies,
+    generateResAlignmentAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateBoxShadowAttributies,
+    generateTypographyAttributes,
+    generateNormalBGAttributes,
+    generateResCounterAttributies,
+    generateGapAttributes,
+} = window.zoloModule;
 
 import {
     GRID_COLUMNS,
@@ -28,6 +38,7 @@ import {
     ICONS_BORDER,
     ICONS_BORDER_RADIUS,
     ICONS_PADDING,
+    ICONS_MARGIN,
     ICONS_BOX_SHADOW,
     ICONS_HOVER_BOX_SHADOW,
     ICONS_BG,
@@ -130,6 +141,7 @@ const attributes = {
     ...generateBorderAttributies(CONTENT_BORDER),
     ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
     ...generateDimensionAttributes(CONTENT_PADDING),
+    ...generateDimensionAttributes(ICONS_MARGIN),
     ...generateDimensionAttributes(CONTENT_MARGIN),
     ...generateBoxShadowAttributies(CONTENT_BOX_SHADOW),
     ...generateNormalBGAttributes(PHOTO_BG),

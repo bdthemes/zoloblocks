@@ -26,11 +26,13 @@
     --zolo-content-border-color: #f0f0f0;
     --zolo-content-border-width: 1px;
     --zolo-content-border-style: solid;
+    --zolo-social-wrap-margin: 30px;
 
     box-sizing: border-box;
     min-width: 100%;
     .zolo-item {
         overflow: hidden;
+        position: relative;
     }
     .zolo-image-wrap {
         position: relative;
@@ -142,29 +144,23 @@
 
     &.default {
         .zolo-info-wrap {
-            margin: var(--zolo-content-margin);
+            --zolo-content-padding: 20px 0 0;
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
             padding: var(--zolo-content-padding);
-            position: relative;
-            background-color: var(--zoloblocks-item-bg-color);
-            border: var(--zolo-content-border-width) var(--zolo-content-border-style) var(--zolo-content-border-color);
-            border-radius: var(--zolo-item-border-radius);
         }
-    }
-
-    &.default {
-        .zolo-external-link {
-            --zolo-external-btn-padding: 26px;
+        .zolo-social-share {
             position: absolute;
-            bottom: calc(100% - 15px);
-            right: 0;
-            padding: var(--zolo-external-btn-padding);
-            font-size: clamp(0.875rem, 3vw, 1.125rem);
-            border-top-left-radius: var(--zoloblocks-button-border-radius);
-            border-bottom-left-radius: var(--zoloblocks-button-border-radius);
+            top: 0;
+            left: 0;
+        }
+        .zolo-social-link {
+            transform: translateX(-20px);
         }
     }
 
-    &.default,
+    // &.default,
     &.style-1 {
         .zolo-social-and-link-wrap {
             border-top: var(--zolo-social-and-link-wrap-border-width) var(--zolo-social-and-link-wrap-border-style)
@@ -235,10 +231,12 @@
             color: var(--zolo-desc-text-color);
         }
 
-        .zolo-link-btn{
+        .zolo-link-btn {
             transform: translateY(20px);
             opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
         }
 
         .zolo-image-wrap {
@@ -249,8 +247,8 @@
             img {
                 transition: transform 0.3s ease;
             }
-           &:before {
-                content: "";
+            &:before {
+                content: '';
                 position: absolute;
                 bottom: 0;
                 left: 0;
@@ -262,21 +260,67 @@
             }
         }
         .zolo-social-share {
-            --zolo-social-wrap-padding: 30px;
-            flex-direction: column;
             position: absolute;
             top: 0;
             right: 0;
-            width: auto;
-            padding: var(--zolo-social-wrap-padding);
         }
         .zolo-social-link {
             transform: translateX(20px);
+        }
+
+        .zolo-info-wrap {
+            --zolo-content-padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: clamp(0.938rem, 2vw, 1.25rem);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            padding: var(--zolo-content-padding);
+            box-sizing: border-box;
+            z-index: 1;
+        }
+        .zolo-external-link {
+            --zolo-external-btn-padding: 16px;
+            padding: var(--zolo-external-btn-padding);
+            // border-radius: 50%;
+        }
+    }
+
+    &:not(.style-1) {
+        .zolo-social-share {
+            margin: var(--zolo-social-wrap-margin);
+        }
+    }
+
+    &.style-2,
+    &.default {
+        .zolo-item {
+            position: relative;
+            &:hover {
+                .zolo-social-link {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        }
+
+        .zolo-social-share {
+            width: auto;
+            flex-direction: column;
+        }
+
+        .zolo-social-link {
             opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
             background-color: var(--zoloblocks-brand-color);
             border: 0;
-            border-radius: 50%;
+            // border-radius: 50%;
             svg {
                 fill: var(--zoloblocks-brand-button-color);
             }
@@ -304,27 +348,6 @@
             &:nth-child(7) {
                 transition-delay: 0.7s;
             }
-
-        }
-        .zolo-info-wrap {
-            --zolo-content-padding: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: clamp(0.938rem, 2vw, 1.25rem);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            padding: var(--zolo-content-padding);
-            box-sizing: border-box;
-            z-index: 1;
-        }
-        .zolo-external-link {
-            --zolo-external-btn-padding: 16px;
-            padding: var(--zolo-external-btn-padding);
-            border-radius: 50%;
         }
     }
 
@@ -380,6 +403,7 @@
         }
         .zolo-social-share {
             margin-top: 15px;
+            --zolo-social-wrap-margin: 0;
         }
         .zolo-social-link {
             padding: 10px;
@@ -393,7 +417,9 @@
         .zolo-social-link {
             transform: translateY(20px);
             opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
             &:nth-child(1) {
                 transition-delay: 0.1s;
             }

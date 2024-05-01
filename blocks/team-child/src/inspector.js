@@ -70,6 +70,7 @@ import {
     ITEM_BORDER,
     ITEM_BORDER_RADIUS,
     ITEM_BOX_SHADOW,
+    ICONS_MARGIN,
 } from './constants';
 
 import {
@@ -394,18 +395,25 @@ function Inspector(props) {
                         )}
                         {showSocialProfiles && (
                             <>
-                                <ZoloPanelBody title={__('Social Profiles Container', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                    <ResDimensionsControl
-                                        label={__('Margin', 'zoloblocks')}
-                                        controlName={ICONS_CONTAINER_MARGIN}
-                                        requiredProps={requiredProps}
-                                    />
-                                    <ResDimensionsControl
-                                        label={__('Padding', 'zoloblocks')}
-                                        controlName={ICONS_CONTAINER_PADDING}
-                                        requiredProps={requiredProps}
-                                    />
-                                </ZoloPanelBody>
+                                {preset === 'style-1' && (
+                                    <ZoloPanelBody
+                                        title={__('Social Profiles Container', 'zoloblocks')}
+                                        stylePanel={true}
+                                        panelProps={props}
+                                    >
+                                        <ResDimensionsControl
+                                            label={__('Margin', 'zoloblocks')}
+                                            controlName={ICONS_CONTAINER_MARGIN}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={ICONS_CONTAINER_PADDING}
+                                            requiredProps={requiredProps}
+                                        />
+                                    </ZoloPanelBody>
+                                )}
+
                                 <ZoloPanelBody title={__('Social Profiles', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                     {preset === 'default' && (
                                         <ColorControl
@@ -454,6 +462,13 @@ function Inspector(props) {
                                         controlName={ICONS_PADDING}
                                         requiredProps={requiredProps}
                                     />
+                                    {preset !== 'style-1' && (
+                                        <ResDimensionsControl
+                                            label={__('Margin', 'zoloblocks')}
+                                            controlName={ICONS_MARGIN}
+                                            requiredProps={requiredProps}
+                                        />
+                                    )}
                                     <TabPanelControl
                                         normalComponents={
                                             <>

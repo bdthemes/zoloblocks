@@ -1,7 +1,14 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes, generateBoxShadowAttributies, generateTypographyAttributes, generateNormalBGAttributes } = window.zoloModule;
+const {
+    generateResRangeAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateBoxShadowAttributies,
+    generateTypographyAttributes,
+    generateNormalBGAttributes,
+} = window.zoloModule;
 
 import {
     CONTENT_BG,
@@ -25,6 +32,7 @@ import {
     ICONS_BORDER,
     ICONS_BORDER_RADIUS,
     ICONS_PADDING,
+    ICONS_MARGIN,
     ICONS_BOX_SHADOW,
     ICONS_HOVER_BOX_SHADOW,
     ICONS_BG,
@@ -115,6 +123,7 @@ const attributes = {
     ...generateBorderAttributies(ICONS_BORDER),
     ...generateDimensionAttributes(ICONS_BORDER_RADIUS),
     ...generateDimensionAttributes(ICONS_PADDING),
+    ...generateDimensionAttributes(ICONS_MARGIN),
     ...generateDimensionAttributes(TEAM_SHORT_BIO_MARGIN),
     ...generateResRangeAttributies(ICONS_SIZE, {}),
     ...generateResRangeAttributies(ICONS_SPACING, {}),
