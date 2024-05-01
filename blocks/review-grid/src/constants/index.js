@@ -9,6 +9,7 @@ export const PRESETS = [
     { label: __('Preset 2', 'zoloblocks'), value: 'style-2' },
     { label: __('Preset 3', 'zoloblocks'), value: 'default' },
     { label: __('Preset 4', 'zoloblocks'), value: 'style-3' },
+    { label: __('Preset 5 (Pro)', 'zoloblocks'), value: 'style-4', disabled: true },
 ];
 
 // Block Prefix
@@ -24,7 +25,6 @@ export const REVIEW_GRID_PADDING = 'reviewGridPadding';
 export const REVIEW_GRID_MARGIN = 'reviewGridMargin';
 
 // Grid Child Global Style Options
-
 // content
 export const CONTENT_ALIGNMENT = 'ContentAlignment';
 
@@ -56,3 +56,14 @@ export const REVIEWER_TESTIMONIAL_MARGIN = 'reviewTestimonialMessageMargin';
 
 // review icons
 export const ICONS_SIZE = 'reviewIconsSize';
+
+// review container
+export const RC_BORDER = 'rcBorder';
+export const RC_BRADIUS = 'rcBRadius';
+export const RC_BG = 'rcBg';
+export const RC_PADDING = 'rcPadding';
+export const RC_BSHADOW = 'rcBShadow';
+
+// meta content
+export const MC_PADDING = 'mcPadding';
+export const MC_SPACING = 'mcSpacing';

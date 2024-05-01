@@ -37,6 +37,13 @@ import {
     REVIEWER_PHOTO_PADDING,
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
+    RC_BORDER,
+    RC_BRADIUS,
+    RC_PADDING,
+    RC_BSHADOW,
+    RC_BG,
+    MC_SPACING,
+    MC_PADDING,
 } from './constants';
 
 import { REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_NAME_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -45,6 +52,7 @@ const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const {
         uniqueId,
+        preset,
         blurBgOpacity,
         addReviewerWebsiteLink,
         nameColor,
@@ -55,6 +63,7 @@ const Style = ({ props }) => {
         activeRatingColor,
         inactiveRatingColor,
         objectFit,
+        presetFiveArrowColor,
     } = attributes;
 
     // content
@@ -254,7 +263,7 @@ const Style = ({ props }) => {
         attributes,
     });
 
-   // Designation
+    // Designation
     const {
         typoStylesDesktop: designationTypoDesk,
         typoStylesTab: designationTypoTab,
@@ -273,7 +282,6 @@ const Style = ({ props }) => {
         styleFor: 'margin',
         attributes,
     });
-           
 
     // Testimonial Message
     const {
@@ -303,6 +311,72 @@ const Style = ({ props }) => {
     } = generateResRangeStyle({
         controlName: ICONS_SIZE,
         property: 'width',
+        attributes,
+    });
+
+    // RC
+    const {
+        desktopBorderStyle: rcDeskBorderStyle,
+        tabBorderStyle: rcTabBorderStyle,
+        mobBorderStyle: rcMobBorderStyle,
+    } = generateBorderStyle({
+        controlName: RC_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: rcDeskBorderRadius,
+        dimensionStylesTab: rcTabBorderRadius,
+        dimensionStylesMobile: rcMobBorderRadius,
+    } = generateDimensionStyle({
+        controlName: RC_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: rcDeskPadding,
+        dimensionStylesTab: rcTabPadding,
+        dimensionStylesMobile: rcMobPadding,
+    } = generateDimensionStyle({
+        controlName: RC_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const { boxShadowStyle: rcBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: RC_BSHADOW,
+    });
+
+    const {
+        backgroundStylesDesktop: rcDeskBGStyle,
+        backgroundStylesTab: rcTabBGStyle,
+        backgroundStylesMobile: rcMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: RC_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // mc
+    const {
+        desktopRangeStyle: mcDeskSpacing,
+        tabRangeStyle: mcTabSpacing,
+        mobRangeStyle: mcMobSpacing,
+    } = generateResRangeStyle({
+        controlName: MC_SPACING,
+        property: '--zolo-item-gap',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: mcDeskPadding,
+        dimensionStylesTab: mcTabPadding,
+        dimensionStylesMobile: mcMobPadding,
+    } = generateDimensionStyle({
+        controlName: MC_PADDING,
+        styleFor: 'padding',
         attributes,
     });
 
@@ -365,6 +439,28 @@ const Style = ({ props }) => {
 		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-star-rating svg.empty-star {
 			${inactiveRatingColor ? `fill: ${inactiveRatingColor};` : ''}
 		}
+        ${
+            preset === 'style-4'
+                ? `
+                .${uniqueId}.wp-block-zolo-review-child.style-4 .zolo-item {
+                    ${mcDeskSpacing}
+                }
+                .${uniqueId}.wp-block-zolo-review-child.style-4 .zolo-review-img-meta-wrap {
+                    ${mcDeskPadding}
+                }
+                .${uniqueId}.wp-block-zolo-review-child.style-4 .zolo-meta-content {
+                    ${rcDeskBorderStyle}
+                    ${rcDeskBorderRadius}
+                    ${rcBoxShadow}
+                    ${rcDeskBGStyle}
+                    ${rcDeskPadding}
+                }
+                .${uniqueId}.wp-block-zolo-review-child.style-4 .zolo-info-wrap:before {
+                    --zolo-style-4-meta-content-bg-color: ${presetFiveArrowColor};
+                }
+            `
+                : ''
+        }
 	`;
 
     const tabletAllStyle = `
@@ -394,17 +490,39 @@ const Style = ({ props }) => {
 			${nameTypoTab}
 			${nameTabMargin}
 		}
+
 		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-designation {
 			${designationTypoTab}
 			${designationTabMargin}
 		}
+
 		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-meta-content .zolo-desc {
 			${testimonialMessageTypoTab}
 			${testimonialMessageTabMargin}
 		}
+
 		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-star-rating svg {
 			${ratingIconWidthTab}
 		}
+
+        ${
+            preset === 'style-4'
+                ? `
+                .${uniqueId}.wp-block-zolo-review-child.style-4 .zolo-item {
+                    ${mcTabSpacing}
+                }
+                .${uniqueId}.wp-block-zolo-review-child.style-4 .zolo-review-img-meta-wrap {
+                    ${mcTabPadding}
+                }
+                .${uniqueId}.wp-block-zolo-review-child.style-4 .zolo-meta-content {
+                    ${rcTabBorderStyle}
+                    ${rcTabBorderRadius}
+                    ${rcTabBGStyle}
+                    ${rcTabPadding}
+                }
+            `
+                : ''
+        }
 	`;
 
     const mobileAllStyle = `
@@ -434,17 +552,39 @@ const Style = ({ props }) => {
 			${nameTypoMob}
 			${nameMobMargin}
 		}
+        
 		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-review-meta-content .zolo-designation {
 			${designationTypoMob}
 			${designationMobMargin}
 		}
+
 		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-meta-content .zolo-desc {
 			${testimonialMessageTypoMob}
 			${testimonialMessageMobMargin}
 		}
+
 		.${uniqueId}.wp-block-zolo-review-child .zolo-item .zolo-star-rating svg {
 			${ratingIconWidthMob}
 		}
+
+        ${
+            preset === 'style-4'
+                ? `
+                .${uniqueId}.wp-block-zolo-review-child.style-4 .zolo-item {
+                    ${mcMobSpacing}
+                }
+                .${uniqueId}.wp-block-zolo-review-child.style-4 .zolo-review-img-meta-wrap {
+                    ${mcMobPadding}
+                }
+                .${uniqueId}.wp-block-zolo-review-child.style-4 .zolo-meta-content {
+                    ${rcMobBorderStyle}
+                    ${rcMobBorderRadius}
+                    ${rcMobBGStyle}
+                    ${rcMobPadding}
+                }
+            `
+                : ''
+        }
 	`;
 
     return (

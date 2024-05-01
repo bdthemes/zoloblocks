@@ -28,6 +28,13 @@ import {
     REVIEWER_DESIGNATION_MARGIN,
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
+    RC_BORDER,
+    RC_BRADIUS,
+    RC_PADDING,
+    RC_BSHADOW,
+    RC_BG,
+    MC_PADDING,
+    MC_SPACING,
 } from './constants';
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -70,7 +77,8 @@ function Inspector(props) {
         activeRatingColor,
         inactiveRatingColor,
         layoutType,
-        presetFourLayout
+        presetFourLayout,
+        presetFiveArrowColor,
     } = attributes;
 
     const requiredProps = {
@@ -78,6 +86,57 @@ function Inspector(props) {
         setAttributes,
         attributes,
         objAttributes,
+    };
+
+    const onPresetChange = (selected) => {
+        setAttributes({ preset: selected });
+        switch (preset) {
+            case 'style-1':
+                setAttributes({
+                    showPhoto: true,
+                    showName: true,
+                    showDesignation: true,
+                    showTestimonialMessage: true,
+                    showRating: true,
+                });
+                break;
+            case 'style-2':
+                setAttributes({
+                    showPhoto: true,
+                    showName: true,
+                    showDesignation: true,
+                    showTestimonialMessage: true,
+                    showRating: true,
+                });
+                break;
+            case 'style-3':
+                setAttributes({
+                    showPhoto: true,
+                    showName: true,
+                    showDesignation: false,
+                    showTestimonialMessage: true,
+                    showRating: true,
+                });
+                break;
+            case 'style-4':
+                setAttributes({
+                    showPhoto: true,
+                    showName: true,
+                    showDesignation: true,
+                    showTestimonialMessage: true,
+                    showRating: true,
+                });
+                break;
+            default:
+                setAttributes({
+                    showPhoto: true,
+                    showName: true,
+                    showDesignation: true,
+                    showTestimonialMessage: true,
+                    showRating: true,
+                });
+                break;
+        }
     };
 
     return (
@@ -93,13 +152,7 @@ function Inspector(props) {
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.reviewGrid.presets', PRESETS)}
-                                onChange={(selected) => {
-                                    setAttributes({ preset: selected });
-
-                                    if (selected === 'style-4') {
-                                        setAttributes({ showDesignation: false });
-                                    }
-                                }}
+                                onChange={(selected) => onPresetChange(selected)}
                             />
                             <ToggleControl
                                 label={__('Add Reviewer Website Link', 'zoloblocks')}
@@ -128,8 +181,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            {
-                            preset !== 'style-3' && (
+                            {preset !== 'style-3' && (
                                 <ToggleControl
                                     label={__('Show Designation', 'zoloblocks')}
                                     checked={showDesignation}
@@ -139,9 +191,8 @@ function Inspector(props) {
                                         })
                                     }
                                 />
-                            )
-                            }
-                            
+                            )}
+
                             <ToggleControl
                                 label={__('Show Testimonial Message', 'zoloblocks')}
                                 checked={showTestimonialMessage}
@@ -160,8 +211,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            {
-                            preset === 'style-3' && (
+                            {preset === 'style-3' && (
                                 <SelectControl
                                     label={__('Direction', 'zoloblocks')}
                                     value={presetFourLayout}
@@ -177,8 +227,7 @@ function Inspector(props) {
                                     ]}
                                     onChange={(selected) => setAttributes({ presetFourLayout: selected })}
                                 />
-                            )
-                            }
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} panelProps={props}>
                             <IconicBtnGroup
@@ -208,12 +257,7 @@ function Inspector(props) {
                                     mobRange: 1,
                                 }}
                             />
-                            <ResGapControl
-                                label={__('Gap', 'zoloblocks')}
-                                controlName={GRID_GAP}
-                                requiredProps={requiredProps}
-                                max={200}
-                            />
+                            <ResGapControl label={__('Gap', 'zoloblocks')} controlName={GRID_GAP} requiredProps={requiredProps} max={200} />
                         </ZoloPanelBody>
                     </>
                 }
@@ -349,7 +393,7 @@ function Inspector(props) {
                                 )}
                             </ZoloPanelBody>
                         )}
-                        {showDesignation &&  preset !== 'style-3' &&  (
+                        {showDesignation && preset !== 'style-3' && (
                             <ZoloPanelBody title={__('Designation', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
                                     label={__('Typography', 'zoloblocks')}
@@ -370,6 +414,34 @@ function Inspector(props) {
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={REVIEWER_DESIGNATION_MARGIN}
                                     requiredProps={requiredProps}
+                                />
+                            </ZoloPanelBody>
+                        )}
+                        {preset === 'style-4' && (
+                            <ZoloPanelBody title={__('Review Container', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <ColorControl
+                                    label={__('Arrow Color', 'zoloblocks')}
+                                    color={presetFiveArrowColor}
+                                    onChange={(color) =>
+                                        setAttributes({
+                                            presetFiveArrowColor: color,
+                                        })
+                                    }
+                                />
+                                <BorderControl label={__('Border', 'zoloblocks')} controlName={RC_BORDER} requiredProps={requiredProps} />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={RC_BRADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <BoxShadowControl controlName={RC_BSHADOW} requiredProps={requiredProps} enableTransition={false} />
+                                <NormalBGControl requiredProps={requiredProps} controlName={RC_BG} noMainBGImg={false} />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={RC_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
                                 />
                             </ZoloPanelBody>
                         )}
@@ -441,6 +513,21 @@ function Inspector(props) {
                                             />
                                         </>
                                     }
+                                />
+                            </ZoloPanelBody>
+                        )}
+                        {preset === 'style-4' && (
+                            <ZoloPanelBody title={__('Meta Content', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <ResRangeControl
+                                    label={__('Spacing', 'zoloblocks')}
+                                    controlName={MC_SPACING}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={MC_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
                                 />
                             </ZoloPanelBody>
                         )}

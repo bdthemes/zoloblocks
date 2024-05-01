@@ -48,3 +48,14 @@ export const DPL_BORDER_RADIUS = 'DPLBorderRadius';
 export const DPL_PADDING = 'DPLPadding';
 export const DPL_MARGIN = 'DPLMargin';
 export const DPL_ICON_SIZE = 'DPLIconSize';
+
+// rc container
+export const RC_BORDER = 'rcBorder';
+export const RC_BRADIUS = 'rcBRadius';
+export const RC_BG = 'rcBg';
+export const RC_PADDING = 'rcPadding';
+export const RC_BSHADOW = 'rcBShadow';
+
+// meta content
+export const MC_PADDING = 'mcPadding';
+export const MC_SPACING = 'mcSpacing';

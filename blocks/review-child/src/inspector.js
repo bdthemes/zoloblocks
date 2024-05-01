@@ -47,6 +47,13 @@ import {
     REVIEWER_DESIGNATION_MARGIN,
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
+    RC_BORDER,
+    RC_BRADIUS,
+    RC_PADDING,
+    RC_BSHADOW,
+    RC_BG,
+    MC_SPACING,
+    MC_PADDING,
 } from './constants';
 
 import { REVIEWER_NAME_TYPOGRAPHY, REVIEWER_DESIGNATION_TYPOGRAPHY, REVIEWER_MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstants';
@@ -79,6 +86,7 @@ function Inspector(props) {
         inactiveRatingColor,
         imageRes,
         objectFit,
+        presetFiveArrowColor,
     } = attributes;
 
     const requiredProps = {
@@ -394,6 +402,34 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
+                        {preset === 'style-4' && (
+                            <ZoloPanelBody title={__('Review Container', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <ColorControl
+                                    label={__('Arrow Color', 'zoloblocks')}
+                                    color={presetFiveArrowColor}
+                                    onChange={(color) =>
+                                        setAttributes({
+                                            presetFiveArrowColor: color,
+                                        })
+                                    }
+                                />
+                                <BorderControl label={__('Border', 'zoloblocks')} controlName={RC_BORDER} requiredProps={requiredProps} />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={RC_BRADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <BoxShadowControl controlName={RC_BSHADOW} requiredProps={requiredProps} enableTransition={false} />
+                                <NormalBGControl requiredProps={requiredProps} controlName={RC_BG} noMainBGImg={false} />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={RC_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                            </ZoloPanelBody>
+                        )}
                         {showTestimonialMessage && (
                             <ZoloPanelBody title={__('Review Text', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TypographyDropdown
@@ -462,6 +498,21 @@ function Inspector(props) {
                                             />
                                         </>
                                     }
+                                />
+                            </ZoloPanelBody>
+                        )}
+                        {preset === 'style-4' && (
+                            <ZoloPanelBody title={__('Meta Content', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <ResRangeControl
+                                    label={__('Spacing', 'zoloblocks')}
+                                    controlName={MC_SPACING}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={MC_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
                                 />
                             </ZoloPanelBody>
                         )}

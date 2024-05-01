@@ -1,7 +1,17 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateDimensionAttributes, generateResAlignmentAttributies, generateBorderAttributies, generateBoxShadowAttributies, generateTypographyAttributes, generateNormalBGAttributes, generateResCounterAttributies, generateGapAttributes } = window.zoloModule;
+const {
+    generateResRangeAttributies,
+    generateDimensionAttributes,
+    generateResAlignmentAttributies,
+    generateBorderAttributies,
+    generateBoxShadowAttributies,
+    generateTypographyAttributes,
+    generateNormalBGAttributes,
+    generateResCounterAttributies,
+    generateGapAttributes,
+} = window.zoloModule;
 
 import {
     GRID_COLUMNS,
@@ -27,6 +37,13 @@ import {
     REVIEWER_DESIGNATION_MARGIN,
     REVIEWER_TESTIMONIAL_MARGIN,
     ICONS_SIZE,
+    RC_BORDER,
+    RC_BRADIUS,
+    RC_PADDING,
+    RC_BSHADOW,
+    RC_BG,
+    MC_PADDING,
+    MC_SPACING,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -127,15 +144,19 @@ const attributes = {
     ...generateBoxShadowAttributies(REVIEWER_PHOTO_BOX_SHADOW),
     ...generateDimensionAttributes(REVIEWER_PHOTO_MARGIN),
     ...generateDimensionAttributes(REVIEWER_PHOTO_PADDING),
-
     ...generateDimensionAttributes(REVIEWER_NAME_MARGIN),
-
     ...generateDimensionAttributes(REVIEWER_DESIGNATION_MARGIN),
-
     ...generateDimensionAttributes(REVIEWER_TESTIMONIAL_MARGIN),
-
     ...generateResRangeAttributies(ICONS_SIZE, {}),
-
+    // rc
+    ...generateBorderAttributies(RC_BORDER),
+    ...generateDimensionAttributes(RC_BRADIUS),
+    ...generateDimensionAttributes(RC_PADDING),
+    ...generateBoxShadowAttributies(RC_BSHADOW),
+    ...generateNormalBGAttributes(RC_BG),
+    // mc
+    ...generateDimensionAttributes(MC_PADDING),
+    ...generateResRangeAttributies(MC_SPACING, {}),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     photoBgColor: {
         type: 'string',
@@ -157,6 +178,9 @@ const attributes = {
         type: 'string',
     },
     inactiveRatingColor: {
+        type: 'string',
+    },
+    presetFiveArrowColor: {
         type: 'string',
     },
 };

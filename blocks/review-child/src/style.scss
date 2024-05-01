@@ -83,7 +83,7 @@
     .zolo-desc {
         font-size: 16px;
     }
-    .zolo-desc{
+    .zolo-desc {
         color: var(--zolo-desc-text-color);
     }
     .zolo-designation {
@@ -130,7 +130,8 @@
 	*/
 
     &.style-1,
-    &.style-3 {
+    &.style-3,
+    &.style-4 {
         .zolo-review-icon {
             --zolo-review-icon-margin: 0 0 12px;
             margin: var(--zolo-review-icon-margin);
@@ -152,7 +153,8 @@
 
     &.style-1,
     &.style-2,
-    &.style-3 {
+    &.style-3,
+    &.style-4 {
         .zolo-item {
             display: inline-flex;
             flex-direction: column-reverse;
@@ -171,27 +173,58 @@
             gap: 0;
         }
         .zolo-review-icon {
-            --zolo-review-icon-margin:  12px 0 10px 0;
+            --zolo-review-icon-margin: 12px 0 10px 0;
             margin: var(--zolo-review-icon-margin);
         }
     }
 
     &.style-3 {
-
         &.zolo-fl-normal {
             .zolo-item {
                 flex-direction: column;
             }
-          }
+        }
 
-          &.zolo-fl-reverse {
+        &.zolo-fl-reverse {
             .zolo-item {
                 flex-direction: column-reverse;
             }
-          }
+        }
         .zolo-review-icon {
             --zolo-review-icon-margin: 0;
             margin: var(--zolo-review-icon-margin);
+        }
+    }
+
+    // pro preset 5 style 4
+
+    &.style-4 {
+        --zolo-style-4-meta-content-bg-color: #f7f7f7;
+        .zolo-item {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+        }
+        .zolo-meta-content {
+            background-color: var(--zolo-style-4-meta-content-bg-color);
+            padding: 40px;
+            border-radius: 60px;
+            position: relative;
+        }
+
+        .zolo-review-img-meta-wrap {
+            padding: 0 40px;
+        }
+
+        .zolo-info-wrap:before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 8%;
+            margin-top: -25px;
+            border-width: 40px;
+            border-style: solid;
+            border-color: var(--zolo-style-4-meta-content-bg-color) transparent transparent transparent;
         }
     }
 }
