@@ -33,6 +33,10 @@ import {
     ORGINAL_PRICE_MARGIN,
     PERIOD_MARGIN,
     PRICE_MARGIN,
+    PRICE_PADDING,
+    PRICE_BG,
+    PRICE_BORDER,
+    PRICE_BRADIUS,
     TITLE_BORDER,
     TITLE_BORDER_RADIUS,
     TITLE_MARGIN,
@@ -163,6 +167,7 @@ const Style = ({ props }) => {
         attributes,
         controlName: TITLE_BORDER,
     });
+
     const {
         dimensionStylesDesktop: titleBorderRadiusDesktop,
         dimensionStylesTab: titleBorderRadiusTab,
@@ -172,6 +177,7 @@ const Style = ({ props }) => {
         styleFor: 'border-radius',
         attributes,
     });
+
     const { textShadowStyle: titleTextShadowStyle } = generateTextShadowStyles({
         attributes,
         controlName: TITLE_TEXT_SHADOW,
@@ -213,6 +219,7 @@ const Style = ({ props }) => {
         prefixConstant: PRICE_TYPOGRAPHY,
         attributes,
     });
+
     const {
         dimensionStylesDesktop: priceMarginDesktop,
         dimensionStylesTab: priceMarginTab,
@@ -222,6 +229,45 @@ const Style = ({ props }) => {
         styleFor: 'margin',
         attributes,
     });
+
+    const {
+        desktopBorderStyle: priceBorderDesktop,
+        tabBorderStyle: priceBorderTab,
+        mobBorderStyle: priceBorderMob,
+    } = generateBorderStyle({
+        attributes,
+        controlName: PRICE_BORDER,
+    });
+
+    const {
+        dimensionStylesDesktop: priceBRadiusDesktop,
+        dimensionStylesTab: priceBRadiusTab,
+        dimensionStylesMobile: priceBRadiusMob,
+    } = generateDimensionStyle({
+        controlName: PRICE_BRADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: pricePaddingDesktop,
+        dimensionStylesTab: pricePaddingTab,
+        dimensionStylesMobile: pricePaddingMobile,
+    } = generateDimensionStyle({
+        controlName: PRICE_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: priceBgDesktop,
+        backgroundStylesTab: priceBgTab,
+        backgroundStylesMobile: priceBgMob,
+    } = generateNormalBGControlStyles({
+        attributes,
+        controlName: PRICE_BG,
+    });
+
     const {
         typoStylesDesktop: orginalPriceTypoDesktop,
         typoStylesTab: orginalPriceTypoTab,
@@ -421,6 +467,7 @@ const Style = ({ props }) => {
         styleFor: 'border-radius',
         attributes,
     });
+
     const {
         typoStylesDesktop: btnTypoDesktop,
         typoStylesTab: btnTypoTab,
@@ -429,6 +476,7 @@ const Style = ({ props }) => {
         prefixConstant: BTN_TYPOGRAPHY,
         attributes,
     });
+
     const {
         backgroundStylesDesktop: btnBgDesktop,
         backgroundStylesTab: btnBgTab,
@@ -437,6 +485,7 @@ const Style = ({ props }) => {
         attributes,
         controlName: BTN_NORMAL_BG,
     });
+
     const {
         backgroundStylesDesktop: btnHoverBgDesktop,
         backgroundStylesTab: btnHoverBgTab,
@@ -445,6 +494,7 @@ const Style = ({ props }) => {
         attributes,
         controlName: BTN_HOVER_BG,
     });
+
     const {
         desktopBorderStyle: btnBorderDesktop,
         tabBorderStyle: btnBorderTab,
@@ -761,9 +811,15 @@ const Style = ({ props }) => {
       ${priceMarginDesktop}
       ${alignDesktop}
     }
-    .${uniqueId} .zolo-price{
+    .zolo-block .${uniqueId} .zolo-price{
       ${priceTypoDesktop}
       ${priceColor ? `color: ${priceColor};` : ''}
+    }
+    .zolo-block.style-2 .${uniqueId} .zolo-price{
+      ${priceBorderDesktop}
+      ${priceBRadiusDesktop}
+      ${pricePaddingDesktop}
+      ${priceBgDesktop}
     }
     .${uniqueId} .zolo-price .currency{
       ${prefixSize ? ` font-size: ${prefixSize}px;` : ''}
@@ -774,7 +830,7 @@ const Style = ({ props }) => {
       ${suffixPosition ? ` top: ${suffixPosition}px;` : ''}
     }
 
-    .${uniqueId} .zolo-orginal-price{
+    .zolo-block .${uniqueId} .zolo-orginal-price{
       ${orginalPriceTypoDesktop}
       ${orginalPriceColor ? `color: ${orginalPriceColor};` : ''}
       ${orginalPriceMarginDesktop}
@@ -790,10 +846,16 @@ const Style = ({ props }) => {
       ${priceMarginTab}
       ${alignTab}
     }
-    .${uniqueId} .zolo-price{
+    .zolo-block .${uniqueId} .zolo-price{
       ${priceTypoTab}
     }
-    .${uniqueId} .zolo-orginal-price{
+    .zolo-block.style-2 .${uniqueId} .zolo-price{
+      ${priceBorderTab}
+      ${priceBRadiusTab}
+      ${pricePaddingTab}
+      ${priceBgTab}
+    }
+    .zolo-block .${uniqueId} .zolo-orginal-price{
       ${orginalPriceTypoTab}
       ${orginalPriceMarginTab}
     }
@@ -807,10 +869,16 @@ const Style = ({ props }) => {
       ${priceMarginMobile}
       ${alignMob}
     }
-    .${uniqueId} .zolo-price{
+    .zolo-block .${uniqueId} .zolo-price{
       ${priceTypoMobile}
     }
-    .${uniqueId} .zolo-orginal-price{
+    .zolo-block.style-2 .${uniqueId} .zolo-price{
+      ${priceBorderMob}
+      ${priceBRadiusMob}
+      ${pricePaddingMobile}
+      ${priceBgMob}
+    }
+    .zolo-block .${uniqueId} .zolo-orginal-price{
       ${orginalPriceTypoMobile}
       ${orginalPriceMarginMobile}
     }

@@ -1,6 +1,12 @@
 import { Dashicon } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'pricing-table';
+
+export const PRESETS = [
+    { label: __('Preset 1', 'zoloblocks'), value: '' },
+    { label: __('Preset 2 (Pro)', 'zoloblocks'), value: 'style-2', disabled: true },
+];
+
 export const NORMAL_HOVER = [
     { label: __('Normal', 'zoloblocks'), value: 'normal' },
     { label: __('Hover', 'zoloblocks'), value: 'hover' },
@@ -40,6 +46,12 @@ export const DESC_MARGIN = 'descMargin';
 export const PRICE_MARGIN = 'priceMargin';
 export const ORGINAL_PRICE_MARGIN = 'orginalPriceMargin';
 export const PERIOD_MARGIN = 'periodMargin';
+
+// pro preset (2)
+export const PRICE_PADDING = 'pricePadding';
+export const PRICE_BG = 'priceBg';
+export const PRICE_BORDER = 'priceBorder';
+export const PRICE_BRADIUS = 'priceBradius';
 
 //features style
 export const FEATURE_DESC_MARGIN = 'featureDescMargin';

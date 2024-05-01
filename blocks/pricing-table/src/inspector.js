@@ -12,7 +12,6 @@ import {
 import { __ } from '@wordpress/i18n';
 
 const {
-    BackgroundControl,
     BorderControl,
     BoxShadowControl,
     ColorControl,
@@ -64,6 +63,10 @@ import {
     ORGINAL_PRICE_MARGIN,
     PERIOD_MARGIN,
     PRICE_MARGIN,
+    PRICE_PADDING,
+    PRICE_BG,
+    PRICE_BORDER,
+    PRICE_BRADIUS,
     TITLE_BORDER,
     TITLE_BORDER_RADIUS,
     TITLE_MARGIN,
@@ -87,6 +90,7 @@ import {
     BTNS_POSITIONS,
     BTNS_DIRECTIONS,
     BTNS_MARGIN,
+    PRESETS,
 } from './constants';
 import {
     BTN_TYPOGRAPHY,
@@ -105,10 +109,12 @@ import {
 import { DEFAULT_ALIGNS, HEADING } from '../../../src/global/constants';
 
 import Sortable from './sortable';
+import { applyFilters } from '@wordpress/hooks';
 
 const Inspector = (props) => {
     const { attributes, setAttributes } = props;
     const {
+        preset,
         resMode,
         //header
         titleText,
@@ -186,6 +192,20 @@ const Inspector = (props) => {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
+                            <SelectControl
+                                label={__('Preset', 'zoloblocks')}
+                                value={preset}
+                                options={applyFilters('zolo.pricingTable.presets', PRESETS)}
+                                onChange={(preset) => {
+                                    setAttributes({ preset });
+
+                                    if (preset === 'style-2') {
+                                        setAttributes({
+                                            sale: true,
+                                        });
+                                    }
+                                }}
+                            />
                             <ToggleControl
                                 label={__('Show Ribbon', 'zoloblocks')}
                                 checked={showRibbon}
@@ -523,6 +543,27 @@ const Inspector = (props) => {
                                     })
                                 }
                             />
+                            {preset === 'style-2' && (
+                                <>
+                                    <NormalBGControl noMainBGImg={true} controlName={PRICE_BG} requiredProps={requiredProps} />
+                                    <BorderControl
+                                        label={__('Border', 'zoloblocks')}
+                                        controlName={PRICE_BORDER}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Border Radius', 'zoloblocks')}
+                                        controlName={PRICE_BRADIUS}
+                                        requiredProps={requiredProps}
+                                        forBorderRadius={true}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Padding', 'zoloblocks')}
+                                        controlName={PRICE_PADDING}
+                                        requiredProps={requiredProps}
+                                    />
+                                </>
+                            )}
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={PRICE_MARGIN}

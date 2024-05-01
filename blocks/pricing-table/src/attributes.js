@@ -1,5 +1,15 @@
 //internal dependencies controls
-const { generateBackgroundAttributes, generateBorderAttributies, generateBoxShadowAttributies, generateDimensionAttributes, generateTypographyAttributes, generateResRangeAttributies, generateResAlignmentAttributies, generateTextShadowAttributies, generateNormalBGAttributes } = window.zoloModule;
+const {
+    generateBackgroundAttributes,
+    generateBorderAttributies,
+    generateBoxShadowAttributies,
+    generateDimensionAttributes,
+    generateTypographyAttributes,
+    generateResRangeAttributies,
+    generateResAlignmentAttributies,
+    generateTextShadowAttributies,
+    generateNormalBGAttributes,
+} = window.zoloModule;
 
 //block constants
 import {
@@ -30,6 +40,10 @@ import {
     ORGINAL_PRICE_MARGIN,
     PERIOD_MARGIN,
     PRICE_MARGIN,
+    PRICE_PADDING,
+    PRICE_BG,
+    PRICE_BORDER,
+    PRICE_BRADIUS,
     TITLE_BORDER,
     TITLE_BORDER_RADIUS,
     TITLE_MARGIN,
@@ -79,6 +93,10 @@ const attributes = {
             },
             responsiveControls: true,
         },
+    },
+    preset: {
+        type: 'string',
+        default: '',
     },
     //header
     titleText: {
@@ -347,6 +365,10 @@ const attributes = {
     ...generateDimensionAttributes(PRICE_MARGIN),
     ...generateDimensionAttributes(ORGINAL_PRICE_MARGIN),
     ...generateDimensionAttributes(PERIOD_MARGIN),
+    ...generateDimensionAttributes(PRICE_PADDING),
+    ...generateNormalBGAttributes(PRICE_BG),
+    ...generateBorderAttributies(PRICE_BORDER),
+    ...generateDimensionAttributes(PRICE_BRADIUS),
 
     //feature
     ...generateResAlignmentAttributies(ALIGNENT),
