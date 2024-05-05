@@ -98,7 +98,7 @@ export const AdvancedOptions = (props) => {
 
     const panels = (
         <>
-            <ZoloPanelBody title={__('Spacing', 'zoloblocks')} panelProps={props} firstOpen={true} extraPanel={true}>
+            <ZoloPanelBody title={__('Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true} extraPanel={true}>
                 {globalConfig?.margin && (
                     <ResDimensionsControl
                         label={__('Margin', 'zoloblocks')}
@@ -117,6 +117,42 @@ export const AdvancedOptions = (props) => {
                         max={200}
                     />
                 )}
+                <RangeResetControl
+                    label={__('Set Z Index ', 'zoloblocks')}
+                    controlName={'zIndex'}
+                    requiredProps={requiredProps}
+                    min={0}
+                    max={100}
+                    step={1}
+                    help={__('Set the z-index for the section', 'zoloblocks')}
+                />
+                <OverflowControl
+                    label={__('Overflow', 'zoloblocks')}
+                    value={overflow}
+                    onChange={(v) => {
+                        setAttributes({ overflow: v });
+                    }}
+                />
+                <TextControl
+                    label={__('ID', 'zoloblocks')}
+                    onChange={(value) => {
+                        const id = value.replace(/\s/g, '_');
+                        setAttributes({ zoloId: id });
+                    }}
+                    value={zoloId}
+                    help={__('Add an ID to the block wrapper.', 'zoloblocks')}
+                />
+                <FormTokenField
+                    label={__('Class', 'zoloblocks')}
+                    value={customClasses}
+                    onChange={(tokens) => {
+                        // replace spaces with dashes
+                        const updatedTokens = tokens.map((token) => token.replace(/\s/g, '-'));
+                        setAttributes({ customClasses: updatedTokens });
+                        handleCustomClasses(updatedTokens);
+                    }}
+                    help={__('Add custom class(es) to the block. Separate multiple classes with a space.', 'zoloblocks')}
+                />
             </ZoloPanelBody>
             {globalConfig?.background && (
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
@@ -173,47 +209,12 @@ export const AdvancedOptions = (props) => {
                     </ZoloPanelBody>
                 </>
             )}
-            <ZoloPanelBody title={__('Overflow', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
-                <OverflowControl
-                    value={overflow}
-                    onChange={(v) => {
-                        setAttributes({ overflow: v });
-                    }}
-                />
-            </ZoloPanelBody>
-            <ZoloPanelBody title={__('Z Index', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                <RangeResetControl
-                    label={__('Set Z Index ', 'zoloblocks')}
-                    controlName={'zIndex'}
-                    requiredProps={requiredProps}
-                    min={0}
-                    max={100}
-                    step={1}
-                    help={__('Set the z-index for the section', 'zoloblocks')}
-                />
-            </ZoloPanelBody>
-            <ZoloPanelBody title={__('Custom Attributes', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                <TextControl
-                    label={__('Add Wrapper ID', 'zoloblocks')}
-                    onChange={(value) => {
-                        const id = value.replace(/\s/g, '_');
-                        setAttributes({ zoloId: id });
-                    }}
-                    value={zoloId}
-                    help={__('Add an ID to the block wrapper.', 'zoloblocks')}
-                />
-                <FormTokenField
-                    label={__('Add Custom Class', 'zoloblocks')}
-                    value={customClasses}
-                    onChange={(tokens) => {
-                        // replace spaces with dashes
-                        const updatedTokens = tokens.map((token) => token.replace(/\s/g, '-'));
-                        setAttributes({ customClasses: updatedTokens });
-                        handleCustomClasses(updatedTokens);
-                    }}
-                    help={__('Add custom class(es) to the block. Separate multiple classes with a space.', 'zoloblocks')}
-                />
-            </ZoloPanelBody>
+            {/* <ZoloPanelBody title={__('Overflow', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
+
+            </ZoloPanelBody> */}
+            {/* <ZoloPanelBody title={__('Custom Attributes', 'zoloblocks')} panelProps={props} extraPanel={true}>
+
+            </ZoloPanelBody> */}
             <ZoloPanelBody title={__('Custom CSS', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <CustomCSSControl attributes={attributes} setAttributes={setAttributes} />
             </ZoloPanelBody>
@@ -494,7 +495,12 @@ export const AdvancedOptions = (props) => {
                                     icon={ROTATE_ICON}
                                     onReset={() =>
                                         resetAtt(
-                                            ['transformRotateHover', 'transformRotateXHover', 'transformPerspectiveHover', 'transformPerspective'],
+                                            [
+                                                'transformRotateHover',
+                                                'transformRotateXHover',
+                                                'transformPerspectiveHover',
+                                                'transformPerspective',
+                                            ],
                                             setAttributes
                                         )
                                     }
