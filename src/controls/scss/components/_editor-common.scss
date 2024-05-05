@@ -587,3 +587,25 @@ textarea[readonly] {
         font-style: italic;
     }
 }
+
+.zolo-panel-control {
+    .zolo-multiselect-wrap {
+        input {
+            &:focus {
+                border-color: #001feb !important;
+                box-shadow: none !important;
+            }
+        }
+        .css-13cymwt-control {
+            border-color: #ededed;
+            &:hover {
+                border-color: #ededed;
+            }
+        }
+    }
+    .zolo-multiselect-label {
+        margin-bottom: 8px;
+        display: block;
+    }
+}
+
