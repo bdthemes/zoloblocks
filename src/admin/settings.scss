@@ -264,7 +264,7 @@ span.block-separator {
             align-items: center;
             justify-content: center;
         }
-    } 
+    }
     .zolo-settings-switcher {
         .components-form-toggle .components-form-toggle__track {
             box-shadow: none;
@@ -280,5 +280,22 @@ span.block-separator {
             top: 3px;
             width: 16px;
         }
+    }
+
+    // .zolo-pro-feature-wrapper {
+    //     font-size: 14px;
+    //     color: #fff;
+    //    background-color: #3858e9;
+    //    padding: 8px 10px;
+    // }
+    .zolo-pro-badge {
+    font-size: 11px;
+    color: #fff;
+    background-color: #3858e9;
+    padding: 8px 16px;
+    border-radius: 3px;
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: 500;
     }
 }
