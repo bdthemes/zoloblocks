@@ -358,7 +358,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 'zolo_nonce'     => wp_create_nonce('zolo-nonce'),
                 'editor_type'    => $editor_type,
                 'admin_email'    => get_option('admin_email'),
-                'blocksPreview'  => [
+                'blocksPreview'  => apply_filters( 'zolo_blocks_preview', [
                     'advancedSearch' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-search.svg',
                     'button'       => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-button.svg',
                     'businessHour' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/business-hour.svg',
@@ -394,7 +394,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'mail'            => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/mail.svg',
                     'tabs'            => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/tabs.svg',
                     'imageComparison' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/image-comparison.svg',
-                ]
+                ])
             ]);
 
             // placeholder photos

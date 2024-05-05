@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let formNoticeContainer = form.parentNode.querySelector('.zolo-form-msg');
             let formNotice = form.parentNode.querySelector('.zolo-msg-desc');
             const closeBtn = form.parentNode.querySelector('.zolo-msg-close');
+            // const formBtn = form.querySelector('.zolo-submit-btn button[]');
 
             // form validation
             let pristine = new Pristine(form);
