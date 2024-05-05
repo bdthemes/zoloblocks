@@ -133,26 +133,31 @@ export const AdvancedOptions = (props) => {
                         setAttributes({ overflow: v });
                     }}
                 />
-                <TextControl
-                    label={__('ID', 'zoloblocks')}
-                    onChange={(value) => {
-                        const id = value.replace(/\s/g, '_');
-                        setAttributes({ zoloId: id });
-                    }}
-                    value={zoloId}
-                    help={__('Add an ID to the block wrapper.', 'zoloblocks')}
-                />
-                <FormTokenField
-                    label={__('Class', 'zoloblocks')}
-                    value={customClasses}
-                    onChange={(tokens) => {
-                        // replace spaces with dashes
-                        const updatedTokens = tokens.map((token) => token.replace(/\s/g, '-'));
-                        setAttributes({ customClasses: updatedTokens });
-                        handleCustomClasses(updatedTokens);
-                    }}
-                    help={__('Add custom class(es) to the block. Separate multiple classes with a space.', 'zoloblocks')}
-                />
+
+                <div className="zolo-inline-control-wrapper">
+                    <TextControl
+                        label={__('CSS ID', 'zoloblocks')}
+                        className="zolo-css-id"
+                        onChange={(value) => {
+                            const id = value.replace(/\s/g, '_');
+                            setAttributes({ zoloId: id });
+                        }}
+                        value={zoloId}
+                        help={__('Add an ID to the block wrapper.', 'zoloblocks')}
+                    />
+                    <FormTokenField
+                        className="zolo-css-class"
+                        label={__('CSS Class', 'zoloblocks')}
+                        value={customClasses}
+                        onChange={(tokens) => {
+                            // replace spaces with dashes
+                            const updatedTokens = tokens.map((token) => token.replace(/\s/g, '-'));
+                            setAttributes({ customClasses: updatedTokens });
+                            handleCustomClasses(updatedTokens);
+                        }}
+                        help={__('Add custom class(es) to the block. Separate multiple classes with a space.', 'zoloblocks')}
+                    />
+                </div>
             </ZoloPanelBody>
             {globalConfig?.background && (
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
