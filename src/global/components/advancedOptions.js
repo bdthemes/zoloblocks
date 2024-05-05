@@ -214,12 +214,6 @@ export const AdvancedOptions = (props) => {
                     </ZoloPanelBody>
                 </>
             )}
-            {/* <ZoloPanelBody title={__('Overflow', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
-
-            </ZoloPanelBody> */}
-            {/* <ZoloPanelBody title={__('Custom Attributes', 'zoloblocks')} panelProps={props} extraPanel={true}>
-
-            </ZoloPanelBody> */}
             <ZoloPanelBody title={__('Custom CSS', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <CustomCSSControl attributes={attributes} setAttributes={setAttributes} />
             </ZoloPanelBody>
