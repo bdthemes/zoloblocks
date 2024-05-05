@@ -534,3 +534,56 @@ textarea[readonly] {
             0 0 0 var(--wp-admin-border-width-focus) var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9));
     }
 }
+
+
+
+// .zolo-css-id {
+//     .components-base-control__field {
+//         display: flex;
+//         justify-content: space-between;
+//         gap: 10px;
+//         align-items: center;
+
+//         input {
+//             width: 60%;
+//         }
+
+//         label {
+//             margin: 0;
+//         }
+//     }
+//     .components-base-control__help {
+//         text-align: right;
+//     }
+// } 
+
+.zolo-inline-control-wrapper {
+    .components-form-token-field,
+    .components-base-control__field {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+        input,
+        .zolo-css-class {
+            width: 65%;
+        }
+
+        label {
+            margin: 0;
+        }
+    }
+    .components-form-token-field {
+        position: relative;
+        margin-bottom: 30px;
+        .components-spacer {
+            position: absolute;
+        }
+    }
+    .components-form-token-field__help {
+        position: absolute;
+        bottom: -40px;
+        left: 0;
+        font-style: italic;
+    }
+}
