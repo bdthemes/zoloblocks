@@ -92,7 +92,7 @@ class ZoloBlocks_Loader {
         return $classes;
     }
     public function zoloblocks_custom_body_class(array $classes) {
-        $new_class =  'zolo-preview';
+        $new_class =  'zolo-frontend';
         if ($new_class) {
             $classes[] = $new_class;
         }
