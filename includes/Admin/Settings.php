@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ZoloBlocks Settings Endpoint
  */
@@ -51,7 +52,7 @@ class Zolo_Settings {
                             ],
                         ],
                     ],
-                ],    
+                ],
             ]
         );
 
@@ -85,12 +86,26 @@ class Zolo_Settings {
                 ],
                 'sanitize_callback' => NULL,
             ]
-        );  
+        );
 
         // register support svg
         register_setting(
             'zolo_blocks_settings_group',
             'zolo_support_svg',
+            [
+                'type'             => 'boolean',
+                'default'          => false,
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'boolean',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_smooth_scroller',
             [
                 'type'             => 'boolean',
                 'default'          => false,
@@ -133,7 +148,7 @@ class Zolo_Settings {
                 ],
                 'sanitize_callback' => NULL,
             ]
-        ); 
+        );
 
         // Google recaptcha secret key
         register_setting(
@@ -175,11 +190,10 @@ class Zolo_Settings {
             // Update the zolo_blocks_settings option
             update_option('zolo_blocks_settings', $new_blocks);
         }
-
     }
 
     /**
-     * Zolo Blocks List 
+     * Zolo Blocks List
      */
     public static function block_list() {
         $blocks_file = trailingslashit(ZOLO_DIR_PATH) . 'includes/Admin/Blocks.php';
