@@ -5,11 +5,12 @@ import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useCallback } from '@wordpress/element';
 import { ToggleControl } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
-
+const {zoloBlocks} = window;
 const Settings = () => {
     const [notice, setNotice] = useState(false);
     const [editorWidth, setEditorWidth] = useState(1200);
     const [supportSVG, setSupportSVG] = useState(false);
+    const [smoothScroller, setSmoothScroller] = useState(false);
 
     const handleFetchError = (error) => {
         console.error('API Fetch Error:', error);
@@ -21,6 +22,7 @@ const Settings = () => {
             const response = await apiFetch(data);
             setEditorWidth(response.zolo_editor_width);
             setSupportSVG(response.zolo_support_svg);
+            setSmoothScroller(response.zolo_smooth_scroller);
         } catch (error) {
             handleFetchError(error);
         }
@@ -35,6 +37,7 @@ const Settings = () => {
             const response = await apiFetch(data);
             setEditorWidth(response.zolo_editor_width);
             setSupportSVG(response.zolo_support_svg);
+            setSmoothScroller(response.zolo_smooth_scroller);
             setNotice(true);
         } catch (error) {
             handleFetchError(error);
@@ -54,6 +57,13 @@ const Settings = () => {
             path: '/wp/v2/settings',
             method: 'POST',
             data: { zolo_support_svg: value },
+        });
+    };
+    const updateSmoothScroller = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_smooth_scroller: value },
         });
     };
 
@@ -132,6 +142,29 @@ const Settings = () => {
                                             setNotice(true);
                                         }}
                                     />
+                                </SettingBox>
+                                <SettingBox
+                                    title={__('Enable Smooth Scroller', 'zoloblocks')}
+                                    description={__(
+                                        'The Smooth Scroller feature enhances user experience by providing seamless, visually pleasing content navigation through animated transitions, ensuring a polished and user-friendly interface.',
+                                        'zoloblocks'
+                                    )}
+                                >
+                                    {zoloBlocks.has_pro ? (
+                                        <ToggleControl
+                                            checked={smoothScroller}
+                                            onChange={() => {
+                                                updateSmoothScroller(!smoothScroller);
+                                                setNotice(true);
+                                            }}
+                                        />
+                                    ) : (
+                                        <>
+                                            <div className="zolo-pro-feature-wrapper">
+                                                <span className="zolo-pro-badge"> {__('Pro', 'zoloblocks')}</span>
+                                            </div>
+                                        </>
+                                    )}
                                 </SettingBox>
                             </div>
                         </div>

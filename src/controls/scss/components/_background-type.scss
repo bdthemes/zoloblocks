@@ -32,7 +32,7 @@
 
     .components-circular-option-picker {
         display: flex;
-        align-items: center;
+        flex-direction: column;
         justify-content: space-between;
         gap: 8px;
         .components-circular-option-picker__swatches {
@@ -46,6 +46,7 @@
         gap: 8px;
         position: relative;
         z-index: 1;
+
     }
 
     .components-circular-option-picker__custom-clear-wrapper {
@@ -96,9 +97,7 @@
         }
     }
 
-    // .components-base-control {
-    //     margin-bottom: 24px;
-    // }
+
 }
 
 .components-popover .components-input-control__container .components-input-control__backdrop,
@@ -117,3 +116,28 @@
 // .components-popover .components-input-control__container {
 //    width: 100% !important;
 // }
+
+
+.e1epgpqk10 {
+    height: 2px !important; 
+}
+
+.components-range-control__track {
+    height: 2px !important; 
+}
+.components-range-control__thumb-wrapper {
+    margin-top: 8px !important;
+}
+
+.components-number-control {
+    .components-input-control__container {
+        width: auto !important;
+        input {
+            padding-left: calc(10px) !important;
+            padding-right: calc(10px) !important;
+        }
+    }
+    .components-truncate {
+        padding-left: calc(10px);
+    }
+}
