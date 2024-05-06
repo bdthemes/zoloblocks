@@ -2,7 +2,7 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import SingleLog from './log';
-
+const {zoloBlocks} = window;
 const ChangeLogs = () => {
     const [logsPanel, setLogsPanel] = useState(false);
     return (
@@ -30,26 +30,94 @@ const ChangeLogs = () => {
                         <h3>{__("What's New", 'zoloblocks')}</h3>
                         <button onClick={() => setLogsPanel(false)} className="logos-panel-close-btn">
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L11 11M11 1L1 11L11 1Z" stroke="#475569" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path
+                                    d="M1 1L11 11M11 1L1 11L11 1Z"
+                                    stroke="#475569"
+                                    stroke-width="1.4"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                ></path>
                             </svg>
                         </button>
                     </div>
                     <div className="logos-panel-body">
+                        {zoloBlocks.has_pro && (
+                            <>
+                                <div className="zolo-changelog-plugin-name">
+                                    <h3>{__('ZoloBlocks Pro', 'zoloblocks')}</h3>
+                                </div>
+                                <SingleLog
+                                    version="1.0.0"
+                                    date={'May 06, 2024'}
+                                    changes={[
+                                        {
+                                            title: __('Added', 'zoloblocks'),
+                                            list: [
+                                                __('Entrance Animation feature added', 'zoloblocks'),
+                                                __('Floating Animaiton feature added', 'zoloblocks'),
+                                                __('Parallax Animaiton feature added', 'zoloblocks'),
+                                                __('Sticky feature added', 'zoloblocks'),
+                                                __('Hotspot block added', 'zoloblocks'),
+                                                __('datatable block added', 'zoloblocks'),
+                                                __('tooltip feature added to rich text', 'zoloblocks'),
+                                                __('highlight feature added to rich text', 'zoloblocks'),
+                                            ],
+                                        },
+                                    ]}
+                                />
+                                <div className="zolo-changelog-plugin-name">
+                                    <h3>{__('ZoloBlocks Free', 'zoloblocks')}</h3>
+                                </div>
+                            </>
+                        )}
+                        <SingleLog
+                            version="1.0.2"
+                            date={'May 06, 2024'}
+                            changes={[
+                                {
+                                    title: __('Added', 'zoloblocks'),
+                                    list: [
+                                        __('Preset 4 layout added to Review Grid', 'zoloblocks'),
+                                        __('Custom gradients colors feature added to the background control', 'zoloblocks'),
+                                    ],
+                                },
+                                {
+                                    title: __('Improved', 'zoloblocks'),
+                                    list: [
+                                        __('Controls UI improved', 'zoloblocks'),
+                                        __('Deprecated codes are removed', 'zoloblocks'),
+                                        __('Style 2 layout design improved to Team Grid block', 'zoloblocks'),
+                                    ],
+                                },
+                            ]}
+                        />
                         <SingleLog
                             version="1.0.1"
                             date={'April 27, 2024'}
                             changes={[
                                 {
                                     title: __('Added', 'zoloblocks'),
-                                    list: [__('Style copy & paste feature added', 'zoloblocks'), __('Focus Color control added to Advanced Search block', 'zoloblocks'), __('Button typography, shadow, spacing control added to Advanced Search block', 'zoloblocks')],
+                                    list: [
+                                        __('Style copy & paste feature added', 'zoloblocks'),
+                                        __('Focus Color control added to Advanced Search block', 'zoloblocks'),
+                                        __('Button typography, shadow, spacing control added to Advanced Search block', 'zoloblocks'),
+                                    ],
                                 },
                                 {
                                     title: __('Fixed', 'zoloblocks'),
-                                    list: [__('Row and column issue fixed to Countdown block', 'zoloblocks'), __('Focus color issue fixed to Advanced Search block', 'zoloblocks'), __('Arrow position issue fixed to Slider and Carousel Block', 'zoloblocks')],
+                                    list: [
+                                        __('Row and column issue fixed to Countdown block', 'zoloblocks'),
+                                        __('Focus color issue fixed to Advanced Search block', 'zoloblocks'),
+                                        __('Arrow position issue fixed to Slider and Carousel Block', 'zoloblocks'),
+                                    ],
                                 },
                                 {
                                     title: __('Improved', 'zoloblocks'),
-                                    list: [__('Controls UI improved', 'zoloblocks'), __('Deprecated codes are removed', 'zoloblocks'), __('Theme colors and gradients palettes are improved', 'zoloblocks')],
+                                    list: [
+                                        __('Controls UI improved', 'zoloblocks'),
+                                        __('Deprecated codes are removed', 'zoloblocks'),
+                                        __('Theme colors and gradients palettes are improved', 'zoloblocks'),
+                                    ],
                                 },
                             ]}
                         />

@@ -5,7 +5,7 @@ Tags: blocks, gutenberg blocks, custom block, gutenberg, page builder
 Requires at least: 6.0
 Tested up to: 6.5.2
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,19 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 7. Check out our others popular plugin
 
 == Changelog ==
+
+= 1.0.2 - 06-05-2024 =
+
+= Added =
+
+* Preset 4 layout added to Review Grid
+* Custom gradients colors feature added to the background control
+
+= Improved =
+
+* Controls UI improved
+* Deprecated codes are removed
+* Style 2 layout design improved to Team Grid block
 
 = 1.0.1 - 27-04-2024 =
 
