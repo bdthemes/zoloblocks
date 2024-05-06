@@ -4,7 +4,6 @@ import ResetBtn from '../reset-btn';
 import classNames from 'classnames';
 
 const PopoverControl = ({ label = '', icon = '', isPro = false, children, onReset = null, hasValue = false }) => {
-    // console.log('hasvalue', hasValue, typeof hasValue);
     return (
         <>
             <div className="zolo-control-container zolo-border-control">

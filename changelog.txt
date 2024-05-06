@@ -1,3 +1,16 @@
+## 1.0.2 [May 06, 2024]
+
+### Added
+
+- Preset 4 layout added to Review Grid
+- Custom gradients colors feature added to the background control
+
+### Improved
+
+- Controls UI improved
+- Deprecated codes are removed
+- Style 2 layout design improved to Team Grid block
+
 ## 1.0.1 [April 27, 2024]
 
 ### Added

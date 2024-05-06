@@ -906,7 +906,7 @@ export const generateBackgroundControlStyles = ({
     `
           : ' '
   }
-  
+
   ${
       BGnoMainBgi === false && backgroundType === 'classic' && bgImageURL
           ? `
@@ -929,8 +929,8 @@ export const generateBackgroundControlStyles = ({
       ${bgImgAttachment ? `background-attachment: ${bgImgAttachment};` : ' '}
 
       ${bgImgRepeat ? `background-repeat: ${bgImgRepeat};` : ' '}
-      
-      
+
+
       `
           : ' '
   }
@@ -942,17 +942,17 @@ export const generateBackgroundControlStyles = ({
         position: relative;
       `
           : ' '
-  }	
+  }
 
   ${backgroundColor && backgroundType === 'classic' ? `background-color: ${backgroundColor};` : ' '}
-  
+
   ${
       forButton === true
           ? `
     position: relative;
     overflow: hidden;
     z-index:1;
-    
+
     `
           : ''
   }
@@ -983,11 +983,11 @@ export const generateBackgroundControlStyles = ({
             ? `
         background-image: ${
             hov_backgroundType === 'classic' ? `url("${hov_bgImageURL}")` : hov_backgroundType === 'gradient' ? hov_gradientColor : 'none'
-        };    
+        };
         `
             : ' '
     }
-  
+
     ${
         BGnoMainBgi === false && hov_backgroundType === 'classic' && hov_bgImageURL
             ? `
@@ -998,7 +998,7 @@ export const generateBackgroundControlStyles = ({
                   ? `background-size: ${hov_bgImgCustomSize}${hov_bgImgCustomSizeUnit} auto;`
                   : ' '
         }
-  
+
         ${
             hov_bgImgPos && hov_bgImgPos !== 'custom'
                 ? `background-position: ${hov_bgImgPos};`
@@ -1006,17 +1006,17 @@ export const generateBackgroundControlStyles = ({
                   ? `background-position: ${hov_bgImgcustomPosX}${hov_bgImgcustomPosXUnit} ${hov_bgImgcustomPosY}${hov_bgImgcustomPosYUnit};`
                   : ' '
         }
-  
+
         ${hov_bgImgAttachment ? `background-attachment: ${hov_bgImgAttachment};` : ' '}
-  
+
         ${hov_bgImgRepeat ? `background-repeat: ${hov_bgImgRepeat};` : ' '}
-        
+
         `
             : ' '
     }
-  
+
     ${hov_backgroundColor && hov_backgroundType === 'classic' ? `background-color: ${hov_backgroundColor};` : ' '}
-  
+
   `;
 
     const backgroundStylesTab = `
@@ -1030,7 +1030,7 @@ export const generateBackgroundControlStyles = ({
                     ? `background-size: ${TABbgImgCustomSize}${TABbgImgCustomSizeUnit} auto;`
                     : ' '
           }
-  
+
           ${
               TABbgImgPos && TABbgImgPos !== 'custom'
                   ? `background-position: ${TABbgImgPos};`
@@ -1038,13 +1038,13 @@ export const generateBackgroundControlStyles = ({
                     ? `background-position: ${TABbgImgcustomPosX}${TABbgImgcustomPosXUnit} ${TABbgImgcustomPosY}${TABbgImgcustomPosYUnit};`
                     : ' '
           }
-  
+
           ${TABbgImgRepeat ? `background-repeat: ${TABbgImgRepeat};` : ' '}
           background-attachment: scroll;
           `
               : ' '
       }
-  
+
     `;
 
     const hoverBackgroundStylesTab = `
@@ -1058,7 +1058,7 @@ export const generateBackgroundControlStyles = ({
                   ? `background-size: ${hov_TABbgImgCustomSize}${hov_TABbgImgCustomSizeUnit} auto;`
                   : ' '
         }
-  
+
         ${
             hov_TABbgImgPos && hov_TABbgImgPos !== 'custom'
                 ? `background-position: ${hov_TABbgImgPos};`
@@ -1066,13 +1066,13 @@ export const generateBackgroundControlStyles = ({
                   ? `background-position: ${hov_TABbgImgcustomPosX}${hov_TABbgImgcustomPosXUnit} ${hov_TABbgImgcustomPosY}${hov_TABbgImgcustomPosYUnit};`
                   : ' '
         }
-  
+
         ${hov_TABbgImgRepeat ? `background-repeat: ${hov_TABbgImgRepeat};` : ' '}
         background-attachment: scroll;
         `
             : ' '
     }
-  
+
   `;
 
     const backgroundStylesMobile = `
@@ -1086,7 +1086,7 @@ export const generateBackgroundControlStyles = ({
                     ? `background-size: ${MOBbgImgCustomSize}${MOBbgImgCustomSizeUnit} auto;`
                     : ' '
           }
-  
+
           ${
               MOBbgImgPos && MOBbgImgPos !== 'custom'
                   ? `background-position: ${MOBbgImgPos};`
@@ -1094,13 +1094,13 @@ export const generateBackgroundControlStyles = ({
                     ? `background-position: ${MOBbgImgcustomPosX}${MOBbgImgcustomPosXUnit} ${MOBbgImgcustomPosY}${MOBbgImgcustomPosYUnit};`
                     : ' '
           }
-  
+
           ${MOBbgImgRepeat ? `background-repeat: ${MOBbgImgRepeat};` : ' '}
-  
+
           `
               : ' '
       }
-  
+
     `;
 
     const hoverBackgroundStylesMobile = `
@@ -1114,7 +1114,7 @@ export const generateBackgroundControlStyles = ({
                   ? `background-size: ${hov_MOBbgImgCustomSize}${hov_MOBbgImgCustomSizeUnit} auto;`
                   : ' '
         }
-    
+
         ${
             hov_MOBbgImgPos && hov_MOBbgImgPos !== 'custom'
                 ? `background-position: ${hov_MOBbgImgPos};`
@@ -1122,17 +1122,17 @@ export const generateBackgroundControlStyles = ({
                   ? `background-position: ${hov_MOBbgImgcustomPosX}${hov_MOBbgImgcustomPosXUnit} ${hov_MOBbgImgcustomPosY}${hov_MOBbgImgcustomPosYUnit};`
                   : ' '
         }
-    
+
         ${hov_MOBbgImgRepeat ? `background-repeat: ${hov_MOBbgImgRepeat};` : ' '}
-    
+
         `
             : ' '
     }
-    
+
     `;
 
     const overlayStylesDesktop = `
-    
+
       ${
           BGnoOverlay === false && isBgOverlay
               ? `
@@ -1148,21 +1148,21 @@ export const generateBackgroundControlStyles = ({
                     ? `
                 background-image: ${
                     overlayType === 'classic' ? `url("${ovl_bgImageURL}")` : overlayType === 'gradient' ? overlayGradient : 'none'
-                };              
+                };
               `
                     : ' '
             }
-           
+
             ${overlayColor && overlayType === 'classic' ? `background-color: ${overlayColor};` : ' '}
             ${ovl_opacity || ovl_opacity === 0 ? `opacity: ${ovl_opacity};` : ' '}
             ${ovl_blendMode ? `mix-blend-mode: ${ovl_blendMode};` : ' '}
             ${
                 ovl_allowFilters
-                    ? `filter: brightness( ${ovl_fltrBrightness}% ) contrast( ${ovl_fltrContrast}% ) saturate( ${ovl_fltrSaturation}% ) blur( ${ovl_fltrBlur}px ) hue-rotate( 
+                    ? `filter: brightness( ${ovl_fltrBrightness}% ) contrast( ${ovl_fltrContrast}% ) saturate( ${ovl_fltrSaturation}% ) blur( ${ovl_fltrBlur}px ) hue-rotate(
               ${ovl_fltrHue}deg );`
                     : ' '
             }
-  
+
         ${
             BGnoOverlayBgi === false && overlayType === 'classic' && ovl_bgImageURL
                 ? `
@@ -1173,7 +1173,7 @@ export const generateBackgroundControlStyles = ({
                       ? `background-size: ${ovl_bgImgCustomSize}${ovl_bgImgCustomSizeUnit} auto;`
                       : ' '
             }
-  
+
             ${
                 ovl_bgImgPos && ovl_bgImgPos !== 'custom'
                     ? `background-position: ${ovl_bgImgPos};`
@@ -1181,11 +1181,11 @@ export const generateBackgroundControlStyles = ({
                       ? `background-position: ${ovl_bgImgcustomPosX}${ovl_bgImgcustomPosXUnit} ${ovl_bgImgcustomPosY}${ovl_bgImgcustomPosYUnit};`
                       : ' '
             }
-  
+
             ${ovl_bgImgAttachment ? `background-attachment: ${ovl_bgImgAttachment};` : ' '}
-  
+
             ${ovl_bgImgRepeat ? `background-repeat: ${ovl_bgImgRepeat};` : ' '}
-            
+
             `
                 : ' '
         }
@@ -1195,7 +1195,7 @@ export const generateBackgroundControlStyles = ({
     `;
 
     const hoverOverlayStylesDesktop = `
-    
+
     ${
         BGnoOverlay === false && isBgOverlay
             ? `
@@ -1209,17 +1209,17 @@ export const generateBackgroundControlStyles = ({
           `
                 : ' '
         }
-  
+
         ${hov_overlayColor && hov_overlayType === 'classic' ? `background-color: ${hov_overlayColor};` : ' '}
         ${hov_ovl_opacity || hov_ovl_opacity === 0 ? `opacity: ${hov_ovl_opacity};` : ' '}
         ${hov_ovl_blendMode ? `mix-blend-mode: ${hov_ovl_blendMode};` : ' '}
         ${
             hov_ovl_allowFilters
-                ? `filter: brightness( ${hov_ovl_fltrBrightness}% ) contrast( ${hov_ovl_fltrContrast}% ) saturate( ${hov_ovl_fltrSaturation}% ) blur( ${hov_ovl_fltrBlur}px ) hue-rotate( 
+                ? `filter: brightness( ${hov_ovl_fltrBrightness}% ) contrast( ${hov_ovl_fltrContrast}% ) saturate( ${hov_ovl_fltrSaturation}% ) blur( ${hov_ovl_fltrBlur}px ) hue-rotate(
           ${hov_ovl_fltrHue}deg );`
                 : ' '
         }
-    
+
       ${
           BGnoOverlayBgi === false && hov_overlayType === 'classic' && hov_ovl_bgImageURL
               ? `
@@ -1230,7 +1230,7 @@ export const generateBackgroundControlStyles = ({
                     ? `background-size: ${hov_ovl_bgImgCustomSize}${hov_ovl_bgImgCustomSizeUnit} auto;`
                     : ' '
           }
-    
+
           ${
               hov_ovl_bgImgPos && hov_ovl_bgImgPos !== 'custom'
                   ? `background-position: ${hov_ovl_bgImgPos};`
@@ -1238,20 +1238,20 @@ export const generateBackgroundControlStyles = ({
                     ? `background-position: ${hov_ovl_bgImgcustomPosX}${hov_ovl_bgImgcustomPosXUnit} ${hov_ovl_bgImgcustomPosY}${hov_ovl_bgImgcustomPosYUnit};`
                     : ' '
           }
-    
+
           ${hov_ovl_bgImgAttachment ? `background-attachment: ${hov_ovl_bgImgAttachment};` : ' '}
-    
+
           ${hov_ovl_bgImgRepeat ? `background-repeat: ${hov_ovl_bgImgRepeat};` : ' '}
-          
+
           `
               : ' '
       }
-    
+
       `
             : ' '
     }
-    
-    
+
+
     `;
 
     const overlayStylesTab = `
@@ -1265,7 +1265,7 @@ export const generateBackgroundControlStyles = ({
                   ? `background-size: ${TABovl_bgImgCustomSize}${TABovl_bgImgCustomSizeUnit} auto;`
                   : ' '
         }
-  
+
           ${
               TABovl_bgImgPos && TABovl_bgImgPos !== 'custom'
                   ? `background-position: ${TABovl_bgImgPos};`
@@ -1273,13 +1273,13 @@ export const generateBackgroundControlStyles = ({
                     ? `background-position: ${TABovl_bgImgcustomPosX}${TABovl_bgImgcustomPosXUnit} ${TABovl_bgImgcustomPosY}${TABovl_bgImgcustomPosYUnit};`
                     : ' '
           }
-  
+
           ${TABovl_bgImgRepeat ? `background-repeat: ${TABovl_bgImgRepeat};` : ' '}
           background-attachment: scroll;
         `
             : ' '
     }
-    
+
     `;
 
     const hoverOverlayStylesTab = `
@@ -1293,7 +1293,7 @@ export const generateBackgroundControlStyles = ({
                 ? `background-size: ${hov_TABovl_bgImgCustomSize}${hov_TABovl_bgImgCustomSizeUnit} auto;`
                 : ' '
       }
-  
+
         ${
             hov_TABovl_bgImgPos && hov_TABovl_bgImgPos !== 'custom'
                 ? `background-position: ${hov_TABovl_bgImgPos};`
@@ -1301,13 +1301,13 @@ export const generateBackgroundControlStyles = ({
                   ? `background-position: ${hov_TABovl_bgImgcustomPosX}${hov_TABovl_bgImgcustomPosXUnit} ${hov_TABovl_bgImgcustomPosY}${hov_TABovl_bgImgcustomPosYUnit};`
                   : ' '
         }
-  
+
         ${hov_TABovl_bgImgRepeat ? `background-repeat: ${hov_TABovl_bgImgRepeat};` : ' '}
         background-attachment: scroll;
       `
           : ' '
   }
-  
+
   `;
 
     const overlayStylesMobile = `
@@ -1321,7 +1321,7 @@ export const generateBackgroundControlStyles = ({
                   ? `background-size: ${MOBovl_bgImgCustomSize}${MOBovl_bgImgCustomSizeUnit} auto;`
                   : ' '
         }
-  
+
         ${
             MOBovl_bgImgPos && MOBovl_bgImgPos !== 'custom'
                 ? `background-position: ${MOBovl_bgImgPos};`
@@ -1329,12 +1329,12 @@ export const generateBackgroundControlStyles = ({
                   ? `background-position: ${MOBovl_bgImgcustomPosX}${MOBovl_bgImgcustomPosXUnit} ${MOBovl_bgImgcustomPosY}${MOBovl_bgImgcustomPosYUnit};`
                   : ' '
         }
-  
+
         ${MOBovl_bgImgRepeat ? `background-repeat: ${MOBovl_bgImgRepeat};` : ' '}
         `
             : ' '
     }
-    
+
     `;
 
     const hoverOverlayStylesMobile = `
@@ -1348,7 +1348,7 @@ export const generateBackgroundControlStyles = ({
                   ? `background-size: ${hov_MOBovl_bgImgCustomSize}${hov_MOBovl_bgImgCustomSizeUnit} auto;`
                   : ' '
         }
-  
+
         ${
             hov_MOBovl_bgImgPos && hov_MOBovl_bgImgPos !== 'custom'
                 ? `background-position: ${hov_MOBovl_bgImgPos};`
@@ -1356,12 +1356,12 @@ export const generateBackgroundControlStyles = ({
                   ? `background-position: ${hov_MOBovl_bgImgcustomPosX}${hov_MOBovl_bgImgcustomPosXUnit} ${hov_MOBovl_bgImgcustomPosY}${hov_MOBovl_bgImgcustomPosYUnit};`
                   : ' '
         }
-  
+
         ${hov_MOBovl_bgImgRepeat ? `background-repeat: ${hov_MOBovl_bgImgRepeat};` : ' '}
         `
             : ' '
     }
-    
+
     `;
 
     // const bgTransitionStyle = noTransition
