@@ -40,7 +40,6 @@ export default function Edit(props) {
         link,
         showCaption,
         caption,
-        resizedWidth,
         // heading
         heading,
         headingTag,
@@ -120,30 +119,8 @@ export default function Edit(props) {
                     >
                         <div className="zolo-image-block-inner">
                             <div className="zolo-img-wrap">
-                                <ResizableBox
-                                    className="zolo-resizable-box"
-                                    size={{
-                                        width: resizedWidth,
-                                        height: 'auto',
-                                    }}
-                                    onResize={(event, direction, elt, delta) => {
-                                        setAttributes({ resizedWidth: elt.clientWidth });
-                                    }}
-                                    enable={{
-                                        top: false,
-                                        right: true,
-                                        bottom: false,
-                                        left: false,
-                                        topRight: false,
-                                        bottomRight: false,
-                                        bottomLeft: false,
-                                        topLeft: false,
-                                    }}
-                                >
-                                    <img className="zolo-img" src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url} alt={imgAlt} />
-                                </ResizableBox>
+                                <img className="zolo-img" src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url} alt={imgAlt} />
                             </div>
-
                             {layout === 'overlay' && (
                                 <div className="zolo-content-wrap">
                                     <div className="zolo-inner-content">
