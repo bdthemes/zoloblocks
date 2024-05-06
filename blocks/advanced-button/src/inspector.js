@@ -26,7 +26,6 @@ const {
     AdvancedOptions,
     ZoloIconPicker,
     ZoloPanelBody,
-    BazierControl,
 } = window.zoloModule;
 
 import { TEXT_ALIGN_OPTIONS, ICON_POSITIONS, ICON_STATUS } from '../../../src/global/constants';
@@ -108,7 +107,6 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <BazierControl label={__('Custom Easing', 'zoloblocks')} value={value} onChange={(v) => setValue(v)} />
                             <SelectControl
                                 label={__('Styles', 'zoloblocks')}
                                 value={preset}

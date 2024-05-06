@@ -1,10 +1,5 @@
 export const generateNormalBGAttributes = (controlName, defaults = {}) => {
-    const {
-        isBgDefaultGradient,
-        defaultFillColor,
-        defaultBgGradient = 'linear-gradient(45deg, #0066FF 0%, #0A51BB 100%)',
-        noMainBGImg = false,
-    } = defaults;
+    const { isBgDefaultGradient, defaultFillColor, defaultBgGradient, noMainBGImg = false } = defaults;
 
     const bgColorAttr = defaultFillColor
         ? {
@@ -25,6 +20,13 @@ export const generateNormalBGAttributes = (controlName, defaults = {}) => {
             default: isBgDefaultGradient === true ? 'gradient' : 'classic',
         },
         ...bgColorAttr,
+        [`${controlName}customGradient`]: {
+            type: 'boolean',
+            default: false,
+        },
+        [`${controlName}customGradientColor`]: {
+            type: 'string',
+        },
         [`${controlName}gradientColor`]: {
             type: 'string',
             default: defaultBgGradient,
@@ -172,6 +174,7 @@ export const generateNormalBGControlStyles = ({ controlName, attributes, noMainB
         [`${controlName}backgroundType`]: backgroundType,
         [`${controlName}backgroundColor`]: backgroundColor,
         [`${controlName}gradientColor`]: gradientColor,
+        [`${controlName}customGradient`]: customGradient,
         [`${controlName}bgImageURL`]: bgImageURL,
 
         // [`${controlName}bgImageID`]: bgImageID,
@@ -211,9 +214,12 @@ export const generateNormalBGControlStyles = ({ controlName, attributes, noMainB
     ${
         (BGnoMainBgi === false && backgroundType === 'classic' && bgImageURL) || (backgroundType === 'gradient' && gradientColor)
             ? `
-        background-image: ${
-            backgroundType === 'classic' ? `url("${bgImageURL}")` : backgroundType === 'gradient' ? gradientColor : 'none'
-        }; `
+            ${
+                customGradient
+                    ? gradientColor
+                    : `background-image: ${backgroundType === 'classic' ? `url("${bgImageURL}")` : backgroundType === 'gradient' ? gradientColor : 'none'};`
+            }
+            `
             : ' '
     }
 
