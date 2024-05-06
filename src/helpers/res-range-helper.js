@@ -79,7 +79,6 @@ export const generateResRangeStyle = ({ controlName, property, attributes, noUni
             ? (noProperty ? '' : property + ':') + mobRange + (mobUnit !== undefined ? mobUnit : '') + (mobUnit !== undefined ? ';' : '')
             : '';
 
-    // console.log('desktopRangeStyle', desktopRangeStyle);
 
     return { desktopRangeStyle, tabRangeStyle, mobRangeStyle };
 };
