@@ -130,6 +130,16 @@
     justify-content: center;
 }
 
+.zolo-changelog-plugin-name {
+    padding: 20px 30px;
+    background-color: #eef0f2;
+}
+
+.zolo-changelog-plugin-name h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
 .logos-panel {
     position: fixed;
     top: 0;
@@ -139,6 +149,7 @@
     width: 360px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
     z-index: 999;
+    overflow-y: scroll;
 }
 
 .logos-panel-header {
@@ -147,7 +158,11 @@
     justify-content: space-between;
     padding: 40px 30px 10px;
     border-bottom: 1px solid #dddddd;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
 }
+
 
 .logos-panel-close-btn {
     background: none;
@@ -165,18 +180,18 @@
     .version {
         margin: 0 0 5px;
         line-height: 1;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 700;
     }
 
     .date {
-        font-size: 14px;
+        font-size: 12px;
         margin: 0;
         color: #999;
     }
 
     h5.changes-title {
-        font-size: 16px;
+        font-size: 15px;
         margin: 0 0 9px;
         line-height: 1;
         font-weight: 700;
@@ -202,7 +217,6 @@
     }
 }
 .logos-panel-body {
-    overflow: scroll;
     height: 100%;
 }
 
