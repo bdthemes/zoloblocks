@@ -19,17 +19,17 @@
         padding-left: 180px;
         color: #50575e;
         background: #f8fafc;
-         .zolo-footer-version,
-         .zolo-footer-text {
-                font-size: 13px;
-                margin: 0;
-                line-height: 1.55;
-            }
-         .zolo-footer-text {
-               font-style: italic !important;
-                font-weight: 400;
-                color:#50575e;
-            }
+        .zolo-footer-version,
+        .zolo-footer-text {
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.55;
+        }
+        .zolo-footer-text {
+            font-style: italic !important;
+            font-weight: 400;
+            color: #50575e;
+        }
     }
     #wpfooter {
         display: none;
@@ -38,7 +38,6 @@
     &.folded {
         .zolo-footer {
             padding-left: 60px;
-
         }
     }
 }
@@ -234,8 +233,23 @@
     border-radius: 10px;
     transition: box-shadow 0.3s;
     box-shadow: 0 0 0 1px #e7eaf5 inset;
+    position: relative;
     &.active:hover {
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .block-pro {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #408efc;
+        color: #fff;
+        padding: 5px 10px;
+        line-height: 1;
+        border-radius: 0px 10px 0 0px;
+        font-size: 10px;
+        text-transform: uppercase;
+        font-weight: 600;
     }
 }
 
@@ -276,8 +290,8 @@ input.zoloblocks-search,
 }
 
 .block-icon svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: block;
     path {
         fill: #70708e;

@@ -2,9 +2,14 @@ import { ToggleControl } from '@wordpress/components';
 import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '' }) => {
+const SingleBlock = ({ icon, title, value, onClick, demo = '', video = '', isPro = false }) => {
     return (
         <div className={`zolo-single-block ${value ? 'active' : ''}`}>
+            {isPro && (
+                <div className="block-pro">
+                    <span>{__('Pro', 'zoloblocks')}</span>
+                </div>
+            )}
             <div className="block-icon">
                 <RawHTML>{icon}</RawHTML>
             </div>

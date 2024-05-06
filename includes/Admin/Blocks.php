@@ -38,7 +38,7 @@ return apply_filters(
         ],
         [
             'name'       => 'zolo_advanced_search',
-            'categories' => ['others'],
+            'categories' => ['gallery'],
             'status'     => true
         ],
         [

@@ -1,5 +1,14 @@
 import { MediaUpload } from '@wordpress/block-editor';
-import { BaseControl, Button, ButtonGroup, RangeControl, SelectControl, TabPanel } from '@wordpress/components';
+import {
+    BaseControl,
+    Button,
+    ButtonGroup,
+    RangeControl,
+    SelectControl,
+    TabPanel,
+    TextareaControl,
+    ToggleControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';
 import ColorControl from '../color-control';
@@ -18,6 +27,7 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
         [`${controlName}backgroundType`]: backgroundType,
         [`${controlName}backgroundColor`]: backgroundColor,
         [`${controlName}gradientColor`]: gradientColor,
+        [`${controlName}customGradient`]: customGradient,
 
         [`${controlName}bgImageURL`]: bgImageURL,
         [`${controlName}bgImageID`]: bgImageID,
@@ -151,7 +161,12 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                         render={({ open }) =>
                                                             !bgImageURL && (
                                                                 <>
-                                                                    <Button className="zb-bg-control-img-btn components-button" label={__('Upload Image', 'zoloblocks')} icon="format-image" onClick={open} />
+                                                                    <Button
+                                                                        className="zb-bg-control-img-btn components-button"
+                                                                        label={__('Upload Image', 'zoloblocks')}
+                                                                        icon="format-image"
+                                                                        onClick={open}
+                                                                    />
                                                                     <span
                                                                         style={{
                                                                             padding: '10px 0',
@@ -183,7 +198,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
 
                                                             {resMode === 'Desktop' && (
                                                                 <>
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Position', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Position', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={bgImgPos}
                                                                             options={[
@@ -260,19 +279,25 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(bgImgcustomPosXUnit) =>
                                                                                     setAttributes({
-                                                                                        [`${controlName}bgImgcustomPosXUnit`]: bgImgcustomPosXUnit,
+                                                                                        [`${controlName}bgImgcustomPosXUnit`]:
+                                                                                            bgImgcustomPosXUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('X Position', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('X Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={bgImgcustomPosX}
                                                                                     min={-2000}
                                                                                     max={2000}
                                                                                     onChange={(bgImgcustomPosX) =>
                                                                                         setAttributes({
-                                                                                            [`${controlName}bgImgcustomPosX`]: bgImgcustomPosX,
+                                                                                            [`${controlName}bgImgcustomPosX`]:
+                                                                                                bgImgcustomPosX,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -296,12 +321,17 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(bgImgcustomPosYUnit) =>
                                                                                     setAttributes({
-                                                                                        [`${controlName}bgImgcustomPosYUnit`]: bgImgcustomPosYUnit,
+                                                                                        [`${controlName}bgImgcustomPosYUnit`]:
+                                                                                            bgImgcustomPosYUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Y Position', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Y Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={bgImgcustomPosY}
                                                                                     min={-2000}
@@ -309,7 +339,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                     step={bgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(bgImgcustomPosY) =>
                                                                                         setAttributes({
-                                                                                            [`${controlName}bgImgcustomPosY`]: bgImgcustomPosY,
+                                                                                            [`${controlName}bgImgcustomPosY`]:
+                                                                                                bgImgcustomPosY,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -352,7 +383,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                         </p>
                                                                     )}
 
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Repeat', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Repeat', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={bgImgRepeat}
                                                                             options={[
@@ -385,7 +420,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                         />
                                                                     </WithResDeviceBtn>
 
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Size', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Size', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={backgroundSize}
                                                                             options={[
@@ -438,12 +477,17 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(bgImgCustomSizeUnit) =>
                                                                                     setAttributes({
-                                                                                        [`${controlName}bgImgCustomSizeUnit`]: bgImgCustomSizeUnit,
+                                                                                        [`${controlName}bgImgCustomSizeUnit`]:
+                                                                                            bgImgCustomSizeUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Width', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Width', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={bgImgCustomSize}
                                                                                     min={0}
@@ -451,7 +495,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                     step={bgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(bgImgCustomSize) =>
                                                                                         setAttributes({
-                                                                                            [`${controlName}bgImgCustomSize`]: bgImgCustomSize,
+                                                                                            [`${controlName}bgImgCustomSize`]:
+                                                                                                bgImgCustomSize,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -463,7 +508,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
 
                                                             {resMode === 'Tablet' && (
                                                                 <>
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Position', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Position', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={TABbgImgPos}
                                                                             options={[
@@ -540,19 +589,25 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(TABbgImgcustomPosXUnit) =>
                                                                                     setAttributes({
-                                                                                        [`TAB${controlName}bgImgcustomPosXUnit`]: TABbgImgcustomPosXUnit,
+                                                                                        [`TAB${controlName}bgImgcustomPosXUnit`]:
+                                                                                            TABbgImgcustomPosXUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('X Position', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('X Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={TABbgImgcustomPosX}
                                                                                     min={0}
                                                                                     max={TABbgImgcustomPosXUnit === 'px' ? 2000 : 100}
                                                                                     onChange={(TABbgImgcustomPosX) =>
                                                                                         setAttributes({
-                                                                                            [`TAB${controlName}bgImgcustomPosX`]: TABbgImgcustomPosX,
+                                                                                            [`TAB${controlName}bgImgcustomPosX`]:
+                                                                                                TABbgImgcustomPosX,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -576,12 +631,17 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(TABbgImgcustomPosYUnit) =>
                                                                                     setAttributes({
-                                                                                        [`TAB${controlName}bgImgcustomPosYUnit`]: TABbgImgcustomPosYUnit,
+                                                                                        [`TAB${controlName}bgImgcustomPosYUnit`]:
+                                                                                            TABbgImgcustomPosYUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Y Position', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Y Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={TABbgImgcustomPosY}
                                                                                     min={0}
@@ -589,7 +649,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                     step={TABbgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(TABbgImgcustomPosY) =>
                                                                                         setAttributes({
-                                                                                            [`TAB${controlName}bgImgcustomPosY`]: TABbgImgcustomPosY,
+                                                                                            [`TAB${controlName}bgImgcustomPosY`]:
+                                                                                                TABbgImgcustomPosY,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -632,7 +693,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                         </p>
                                                                     )}
 
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Repeat', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Repeat', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={TABbgImgRepeat}
                                                                             options={[
@@ -665,7 +730,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                         />
                                                                     </WithResDeviceBtn>
 
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Size', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Size', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={TABbackgroundSize}
                                                                             options={[
@@ -718,12 +787,17 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(TABbgImgCustomSizeUnit) =>
                                                                                     setAttributes({
-                                                                                        [`TAB${controlName}bgImgCustomSizeUnit`]: TABbgImgCustomSizeUnit,
+                                                                                        [`TAB${controlName}bgImgCustomSizeUnit`]:
+                                                                                            TABbgImgCustomSizeUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Width', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Width', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={TABbgImgCustomSize}
                                                                                     min={0}
@@ -731,7 +805,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                     step={TABbgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(TABbgImgCustomSize) =>
                                                                                         setAttributes({
-                                                                                            [`TAB${controlName}bgImgCustomSize`]: TABbgImgCustomSize,
+                                                                                            [`TAB${controlName}bgImgCustomSize`]:
+                                                                                                TABbgImgCustomSize,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -743,7 +818,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
 
                                                             {resMode === 'Mobile' && (
                                                                 <>
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Position', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Position', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={MOBbgImgPos}
                                                                             options={[
@@ -820,19 +899,25 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(MOBbgImgcustomPosXUnit) =>
                                                                                     setAttributes({
-                                                                                        [`MOB${controlName}bgImgcustomPosXUnit`]: MOBbgImgcustomPosXUnit,
+                                                                                        [`MOB${controlName}bgImgcustomPosXUnit`]:
+                                                                                            MOBbgImgcustomPosXUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('X Position', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('X Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={MOBbgImgcustomPosX}
                                                                                     min={0}
                                                                                     max={MOBbgImgcustomPosXUnit === 'px' ? 2000 : 100}
                                                                                     onChange={(MOBbgImgcustomPosX) =>
                                                                                         setAttributes({
-                                                                                            [`MOB${controlName}bgImgcustomPosX`]: MOBbgImgcustomPosX,
+                                                                                            [`MOB${controlName}bgImgcustomPosX`]:
+                                                                                                MOBbgImgcustomPosX,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -856,12 +941,17 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(MOBbgImgcustomPosYUnit) =>
                                                                                     setAttributes({
-                                                                                        [`MOB${controlName}bgImgcustomPosYUnit`]: MOBbgImgcustomPosYUnit,
+                                                                                        [`MOB${controlName}bgImgcustomPosYUnit`]:
+                                                                                            MOBbgImgcustomPosYUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Y Position', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Y Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={MOBbgImgcustomPosY}
                                                                                     min={0}
@@ -869,7 +959,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                     step={MOBbgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(MOBbgImgcustomPosY) =>
                                                                                         setAttributes({
-                                                                                            [`MOB${controlName}bgImgcustomPosY`]: MOBbgImgcustomPosY,
+                                                                                            [`MOB${controlName}bgImgcustomPosY`]:
+                                                                                                MOBbgImgcustomPosY,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -912,7 +1003,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                         </p>
                                                                     )}
 
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Repeat', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Repeat', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={MOBbgImgRepeat}
                                                                             options={[
@@ -945,7 +1040,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                         />
                                                                     </WithResDeviceBtn>
 
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Size', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Size', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={MOBbackgroundSize}
                                                                             options={[
@@ -998,12 +1097,17 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(MOBbgImgCustomSizeUnit) =>
                                                                                     setAttributes({
-                                                                                        [`MOB${controlName}bgImgCustomSizeUnit`]: MOBbgImgCustomSizeUnit,
+                                                                                        [`MOB${controlName}bgImgCustomSizeUnit`]:
+                                                                                            MOBbgImgCustomSizeUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Width', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Width', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={MOBbgImgCustomSize}
                                                                                     min={0}
@@ -1011,7 +1115,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                     step={MOBbgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(MOBbgImgCustomSize) =>
                                                                                         setAttributes({
-                                                                                            [`MOB${controlName}bgImgCustomSize`]: MOBbgImgCustomSize,
+                                                                                            [`MOB${controlName}bgImgCustomSize`]:
+                                                                                                MOBbgImgCustomSize,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1028,15 +1133,52 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                     )}
 
                                     {backgroundType === 'gradient' && (
-                                        <GradientControl
-                                            label={__('Gradient Color', 'zoloblocks')}
-                                            value={gradientColor}
-                                            onChange={(newVal) =>
-                                                setAttributes({
-                                                    [`${controlName}gradientColor`]: newVal,
-                                                })
-                                            }
-                                        />
+                                        <>
+                                            <ToggleControl
+                                                label={__('Add Custom Gradient', 'zoloblocks')}
+                                                checked={customGradient}
+                                                onChange={() =>
+                                                    setAttributes({
+                                                        [`${controlName}customGradient`]: !customGradient,
+                                                        [`${controlName}gradientColor`]: '',
+                                                    })
+                                                }
+                                            />
+                                            {customGradient && (
+                                                <TextareaControl
+                                                    help={
+                                                        <>
+                                                            {__('Add your gradient color here. Get Sample ', 'zoloblocks')}
+                                                            <a
+                                                                href="https://csspro.com/css-gradients/"
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                            >
+                                                                {__('CSS Gradients', 'zoloblocks')}
+                                                            </a>
+                                                        </>
+                                                    }
+                                                    label={__('Custom Gradient', 'zoloblocks')}
+                                                    onChange={(v) =>
+                                                        setAttributes({
+                                                            [`${controlName}gradientColor`]: v,
+                                                        })
+                                                    }
+                                                    value={gradientColor}
+                                                />
+                                            )}
+                                            {!customGradient && (
+                                                <GradientControl
+                                                    label={__('Gradient Color', 'zoloblocks')}
+                                                    value={gradientColor}
+                                                    onChange={(newVal) =>
+                                                        setAttributes({
+                                                            [`${controlName}gradientColor`]: newVal,
+                                                        })
+                                                    }
+                                                />
+                                            )}
+                                        </>
                                     )}
                                 </>
                             );
@@ -1086,7 +1228,12 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                         render={({ open }) =>
                                                             !hov_bgImageURL && (
                                                                 <>
-                                                                    <Button className="zb-bg-control-img-btn components-button" label={__('Upload Image', 'zoloblocks')} icon="format-image" onClick={open} />
+                                                                    <Button
+                                                                        className="zb-bg-control-img-btn components-button"
+                                                                        label={__('Upload Image', 'zoloblocks')}
+                                                                        icon="format-image"
+                                                                        onClick={open}
+                                                                    />
                                                                     <span
                                                                         style={{
                                                                             padding: '10px 0',
@@ -1111,7 +1258,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
 
                                                             {resMode === 'Desktop' && (
                                                                 <>
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Position', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Position', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={hov_bgImgPos}
                                                                             options={[
@@ -1188,19 +1339,25 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_bgImgcustomPosXUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_${controlName}bgImgcustomPosXUnit`]: hov_bgImgcustomPosXUnit,
+                                                                                        [`hov_${controlName}bgImgcustomPosXUnit`]:
+                                                                                            hov_bgImgcustomPosXUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('X Position', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('X Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={hov_bgImgcustomPosX}
                                                                                     min={-2000}
                                                                                     max={2000}
                                                                                     onChange={(hov_bgImgcustomPosX) =>
                                                                                         setAttributes({
-                                                                                            [`hov_${controlName}bgImgcustomPosX`]: hov_bgImgcustomPosX,
+                                                                                            [`hov_${controlName}bgImgcustomPosX`]:
+                                                                                                hov_bgImgcustomPosX,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1224,12 +1381,17 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_bgImgcustomPosYUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_${controlName}bgImgcustomPosYUnit`]: hov_bgImgcustomPosYUnit,
+                                                                                        [`hov_${controlName}bgImgcustomPosYUnit`]:
+                                                                                            hov_bgImgcustomPosYUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Y Position', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Y Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={hov_bgImgcustomPosY}
                                                                                     min={-2000}
@@ -1237,7 +1399,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                     step={hov_bgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(hov_bgImgcustomPosY) =>
                                                                                         setAttributes({
-                                                                                            [`hov_${controlName}bgImgcustomPosY`]: hov_bgImgcustomPosY,
+                                                                                            [`hov_${controlName}bgImgcustomPosY`]:
+                                                                                                hov_bgImgcustomPosY,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1280,7 +1443,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                         </p>
                                                                     )}
 
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Repeat', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Repeat', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={hov_bgImgRepeat}
                                                                             options={[
@@ -1313,7 +1480,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                         />
                                                                     </WithResDeviceBtn>
 
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Size', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Size', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={hov_backgroundSize}
                                                                             options={[
@@ -1340,7 +1511,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_backgroundSize) =>
                                                                                 setAttributes({
-                                                                                    [`hov_${controlName}backgroundSize`]: hov_backgroundSize,
+                                                                                    [`hov_${controlName}backgroundSize`]:
+                                                                                        hov_backgroundSize,
                                                                                 })
                                                                             }
                                                                         />
@@ -1366,12 +1538,17 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_bgImgCustomSizeUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_${controlName}bgImgCustomSizeUnit`]: hov_bgImgCustomSizeUnit,
+                                                                                        [`hov_${controlName}bgImgCustomSizeUnit`]:
+                                                                                            hov_bgImgCustomSizeUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Width', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Width', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={hov_bgImgCustomSize}
                                                                                     min={0}
@@ -1379,7 +1556,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                     step={hov_bgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(hov_bgImgCustomSize) =>
                                                                                         setAttributes({
-                                                                                            [`hov_${controlName}bgImgCustomSize`]: hov_bgImgCustomSize,
+                                                                                            [`hov_${controlName}bgImgCustomSize`]:
+                                                                                                hov_bgImgCustomSize,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1391,7 +1569,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
 
                                                             {resMode === 'Tablet' && (
                                                                 <>
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Position', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Position', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={hov_TABbgImgPos}
                                                                             options={[
@@ -1468,19 +1650,25 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_TABbgImgcustomPosXUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_TAB${controlName}bgImgcustomPosXUnit`]: hov_TABbgImgcustomPosXUnit,
+                                                                                        [`hov_TAB${controlName}bgImgcustomPosXUnit`]:
+                                                                                            hov_TABbgImgcustomPosXUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('X Position', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('X Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={hov_TABbgImgcustomPosX}
                                                                                     min={0}
                                                                                     max={hov_TABbgImgcustomPosXUnit === 'px' ? 2000 : 100}
                                                                                     onChange={(hov_TABbgImgcustomPosX) =>
                                                                                         setAttributes({
-                                                                                            [`hov_TAB${controlName}bgImgcustomPosX`]: hov_TABbgImgcustomPosX,
+                                                                                            [`hov_TAB${controlName}bgImgcustomPosX`]:
+                                                                                                hov_TABbgImgcustomPosX,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1504,12 +1692,17 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_TABbgImgcustomPosYUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_TAB${controlName}bgImgcustomPosYUnit`]: hov_TABbgImgcustomPosYUnit,
+                                                                                        [`hov_TAB${controlName}bgImgcustomPosYUnit`]:
+                                                                                            hov_TABbgImgcustomPosYUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Y Position', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Y Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={hov_TABbgImgcustomPosY}
                                                                                     min={0}
@@ -1517,7 +1710,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                     step={hov_TABbgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(hov_TABbgImgcustomPosY) =>
                                                                                         setAttributes({
-                                                                                            [`hov_TAB${controlName}bgImgcustomPosY`]: hov_TABbgImgcustomPosY,
+                                                                                            [`hov_TAB${controlName}bgImgcustomPosY`]:
+                                                                                                hov_TABbgImgcustomPosY,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1560,7 +1754,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                         </p>
                                                                     )}
 
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Repeat', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Repeat', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={hov_TABbgImgRepeat}
                                                                             options={[
@@ -1587,13 +1785,18 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_TABbgImgRepeat) =>
                                                                                 setAttributes({
-                                                                                    [`hov_TAB${controlName}bgImgRepeat`]: hov_TABbgImgRepeat,
+                                                                                    [`hov_TAB${controlName}bgImgRepeat`]:
+                                                                                        hov_TABbgImgRepeat,
                                                                                 })
                                                                             }
                                                                         />
                                                                     </WithResDeviceBtn>
 
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Size', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Size', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={hov_TABbackgroundSize}
                                                                             options={[
@@ -1620,7 +1823,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_TABbackgroundSize) =>
                                                                                 setAttributes({
-                                                                                    [`hov_TAB${controlName}backgroundSize`]: hov_TABbackgroundSize,
+                                                                                    [`hov_TAB${controlName}backgroundSize`]:
+                                                                                        hov_TABbackgroundSize,
                                                                                 })
                                                                             }
                                                                         />
@@ -1646,12 +1850,17 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_TABbgImgCustomSizeUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_TAB${controlName}bgImgCustomSizeUnit`]: hov_TABbgImgCustomSizeUnit,
+                                                                                        [`hov_TAB${controlName}bgImgCustomSizeUnit`]:
+                                                                                            hov_TABbgImgCustomSizeUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Width', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Width', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={hov_TABbgImgCustomSize}
                                                                                     min={0}
@@ -1659,7 +1868,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                     step={hov_TABbgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(hov_TABbgImgCustomSize) =>
                                                                                         setAttributes({
-                                                                                            [`hov_TAB${controlName}bgImgCustomSize`]: hov_TABbgImgCustomSize,
+                                                                                            [`hov_TAB${controlName}bgImgCustomSize`]:
+                                                                                                hov_TABbgImgCustomSize,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1671,7 +1881,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
 
                                                             {resMode === 'Mobile' && (
                                                                 <>
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Position', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Position', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={hov_MOBbgImgPos}
                                                                             options={[
@@ -1748,19 +1962,25 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_MOBbgImgcustomPosXUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_MOB${controlName}bgImgcustomPosXUnit`]: hov_MOBbgImgcustomPosXUnit,
+                                                                                        [`hov_MOB${controlName}bgImgcustomPosXUnit`]:
+                                                                                            hov_MOBbgImgcustomPosXUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('X Position', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('X Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={hov_MOBbgImgcustomPosX}
                                                                                     min={0}
                                                                                     max={hov_MOBbgImgcustomPosXUnit === 'px' ? 2000 : 100}
                                                                                     onChange={(hov_MOBbgImgcustomPosX) =>
                                                                                         setAttributes({
-                                                                                            [`hov_MOB${controlName}bgImgcustomPosX`]: hov_MOBbgImgcustomPosX,
+                                                                                            [`hov_MOB${controlName}bgImgcustomPosX`]:
+                                                                                                hov_MOBbgImgcustomPosX,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1784,12 +2004,17 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_MOBbgImgcustomPosYUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_MOB${controlName}bgImgcustomPosYUnit`]: hov_MOBbgImgcustomPosYUnit,
+                                                                                        [`hov_MOB${controlName}bgImgcustomPosYUnit`]:
+                                                                                            hov_MOBbgImgcustomPosYUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Y Position', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Y Position', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={hov_MOBbgImgcustomPosY}
                                                                                     min={0}
@@ -1797,7 +2022,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                     step={hov_MOBbgImgcustomPosYUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(hov_MOBbgImgcustomPosY) =>
                                                                                         setAttributes({
-                                                                                            [`hov_MOB${controlName}bgImgcustomPosY`]: hov_MOBbgImgcustomPosY,
+                                                                                            [`hov_MOB${controlName}bgImgcustomPosY`]:
+                                                                                                hov_MOBbgImgcustomPosY,
                                                                                         })
                                                                                     }
                                                                                 />
@@ -1840,7 +2066,11 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                         </p>
                                                                     )}
 
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Repeat', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Repeat', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={hov_MOBbgImgRepeat}
                                                                             options={[
@@ -1867,13 +2097,18 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_MOBbgImgRepeat) =>
                                                                                 setAttributes({
-                                                                                    [`hov_MOB${controlName}bgImgRepeat`]: hov_MOBbgImgRepeat,
+                                                                                    [`hov_MOB${controlName}bgImgRepeat`]:
+                                                                                        hov_MOBbgImgRepeat,
                                                                                 })
                                                                             }
                                                                         />
                                                                     </WithResDeviceBtn>
 
-                                                                    <WithResDeviceBtn requiredProps={requiredProps} label={__('Size', 'zoloblocks')} noResetBtn={true}>
+                                                                    <WithResDeviceBtn
+                                                                        requiredProps={requiredProps}
+                                                                        label={__('Size', 'zoloblocks')}
+                                                                        noResetBtn={true}
+                                                                    >
                                                                         <SelectControl
                                                                             value={hov_MOBbackgroundSize}
                                                                             options={[
@@ -1900,7 +2135,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                             ]}
                                                                             onChange={(hov_MOBbackgroundSize) =>
                                                                                 setAttributes({
-                                                                                    [`hov_MOB${controlName}backgroundSize`]: hov_MOBbackgroundSize,
+                                                                                    [`hov_MOB${controlName}backgroundSize`]:
+                                                                                        hov_MOBbackgroundSize,
                                                                                 })
                                                                             }
                                                                         />
@@ -1926,12 +2162,17 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                 ]}
                                                                                 onClick={(hov_MOBbgImgCustomSizeUnit) =>
                                                                                     setAttributes({
-                                                                                        [`hov_MOB${controlName}bgImgCustomSizeUnit`]: hov_MOBbgImgCustomSizeUnit,
+                                                                                        [`hov_MOB${controlName}bgImgCustomSizeUnit`]:
+                                                                                            hov_MOBbgImgCustomSizeUnit,
                                                                                     })
                                                                                 }
                                                                             />
 
-                                                                            <WithResDeviceBtn requiredProps={requiredProps} label={__('Width', 'zoloblocks')} noResetBtn={true}>
+                                                                            <WithResDeviceBtn
+                                                                                requiredProps={requiredProps}
+                                                                                label={__('Width', 'zoloblocks')}
+                                                                                noResetBtn={true}
+                                                                            >
                                                                                 <RangeControl
                                                                                     value={hov_MOBbgImgCustomSize}
                                                                                     min={0}
@@ -1939,7 +2180,8 @@ const BGControl = ({ controlName, requiredProps, noMainBGImg }) => {
                                                                                     step={hov_MOBbgImgCustomSizeUnit === 'px' ? 1 : 0.1}
                                                                                     onChange={(hov_MOBbgImgCustomSize) =>
                                                                                         setAttributes({
-                                                                                            [`hov_MOB${controlName}bgImgCustomSize`]: hov_MOBbgImgCustomSize,
+                                                                                            [`hov_MOB${controlName}bgImgCustomSize`]:
+                                                                                                hov_MOBbgImgCustomSize,
                                                                                         })
                                                                                     }
                                                                                 />

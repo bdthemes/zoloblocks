@@ -2,7 +2,7 @@ export const generateBackgroundAttributes = (controlName, defaults = {}) => {
     const {
         isBgDefaultGradient,
         defaultFillColor,
-        defaultBgGradient = 'linear-gradient(45deg,#00000000,#00000000)',
+        defaultBgGradient,
         defaultHovBgGradient,
         noOverlay = false,
         noMainBGImg = false,
@@ -49,6 +49,10 @@ export const generateBackgroundAttributes = (controlName, defaults = {}) => {
             default: isBgDefaultGradient === true ? 'gradient' : 'classic',
         },
         ...bgColorAttr,
+        [`${controlName}customGradient`]: {
+            type: 'boolean',
+            default: false,
+        },
         [`${controlName}gradientColor`]: {
             type: 'string',
             default: defaultBgGradient,
@@ -705,6 +709,7 @@ export const generateBackgroundControlStyles = ({
         [`${controlName}backgroundType`]: backgroundType,
         [`${controlName}backgroundColor`]: backgroundColor,
         [`${controlName}gradientColor`]: gradientColor,
+        [`${controlName}customGradient`]: customGradient,
         [`${controlName}bgImageURL`]: bgImageURL,
         // [`${controlName}bgImageID`]: bgImageID,
         [`${controlName}backgroundSize`]: backgroundSize,
@@ -887,11 +892,17 @@ export const generateBackgroundControlStyles = ({
         // background overlay attributes end
     } = attributes;
 
+    console.log('customGradient', gradientColor);
+
     const backgroundStylesDesktop = `
   ${
       (BGnoMainBgi === false && backgroundType === 'classic' && bgImageURL) || (backgroundType === 'gradient' && gradientColor)
           ? `
-    background-image: ${backgroundType === 'classic' ? `url("${bgImageURL}")` : backgroundType === 'gradient' ? gradientColor : 'none'};
+          ${
+              customGradient
+                  ? gradientColor
+                  : `background-image: ${backgroundType === 'classic' ? `url("${bgImageURL}")` : backgroundType === 'gradient' ? gradientColor : 'none'};`
+          }
     `
           : ' '
   }

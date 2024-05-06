@@ -1,5 +1,33 @@
 import { GradientPicker } from '@wordpress/components';
 
+const defaultGradients = [
+    {
+        name: 'Warm Flame',
+        gradient: 'linear-gradient(142.29deg, #0068EC 21.8%, #00BBF9 73.22%)',
+        slug: 'warm-flame',
+    },
+    {
+        name: 'Night Fade',
+        gradient: 'linear-gradient(45deg, #08AEEA 0%, #2AF598 100%)',
+        slug: 'night-fade',
+    },
+    {
+        name: 'Spring Warmth',
+        gradient: 'linear-gradient(45deg, #FFB199 0%, #FF0844 100%)',
+        slug: 'spring-warmth',
+    },
+    {
+        name: 'Juicy Peach',
+        gradient: 'linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB)',
+        slug: 'juicy-peach',
+    },
+    {
+        name: 'Young Passion',
+        gradient: 'linear-gradient(45deg,#FDBA74,#FB923C,#F87171)',
+        slug: 'young-passion',
+    },
+];
+
 function GradientControl({ label, value, onChange }) {
     const setSettings = (val) => {
         onChange(val);
@@ -35,7 +63,11 @@ function GradientControl({ label, value, onChange }) {
             )}
 
             <div className="zb-gradient-body">
-                <GradientPicker value={gradientValue} onChange={(val) => setSettings(val)} gradients={gradientOptions} />
+                <GradientPicker
+                    value={gradientValue ? gradientValue : defaultGradients[1].gradient}
+                    onChange={(val) => setSettings(val)}
+                    gradients={gradientOptions.length > 0 ? gradientOptions : defaultGradients}
+                />
             </div>
         </div>
     );

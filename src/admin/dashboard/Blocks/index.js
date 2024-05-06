@@ -7,6 +7,7 @@ import blocks from './blocks.json';
 import categories from './categories';
 
 import Notice from '../notice';
+import { applyFilters } from '@wordpress/hooks';
 
 let zoloBlocksInitStatus;
 apiFetch({
@@ -38,7 +39,7 @@ const Blocks = () => {
     // set blocks list
     useEffect(() => {
         if (blocks.length > 0) {
-            setBlockStates(blocks);
+            setBlockStates(applyFilters('zoloblocks.dashboardBlocks', blocks));
         }
     }, [blocks]);
 
@@ -116,6 +117,8 @@ const Blocks = () => {
         },
         [blockStatus]
     );
+
+    console.log('blockStates', blockStates);
 
     return (
         <>
@@ -253,6 +256,9 @@ const Blocks = () => {
                                                         updateStatus(!status[0].status, blockState.name);
                                                         setNotice(true);
                                                     }}
+                                                    {...(blockState?.isPro && {
+                                                        isPro: true,
+                                                    })}
                                                 />
                                             );
                                         }
