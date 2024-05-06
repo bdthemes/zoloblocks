@@ -290,7 +290,10 @@ function addAttributes(settings) {
             ...generateResRangeAttributies('transformRotateY', {
                 defaultUnit: 'deg',
             }),
-            ...generateResRangeAttributies('transformPerspective'),
+            ...generateResRangeAttributies('transformPerspective', {
+                defaultUnit: 'px',
+                defaultRange: 1000,
+            }),
             ...generateResRangeAttributies('transformScale', {
                 defaultUnit: '',
             }),
@@ -322,7 +325,10 @@ function addAttributes(settings) {
             ...generateResRangeAttributies('transformRotateYHover', {
                 defaultUnit: 'deg',
             }),
-            ...generateResRangeAttributies('transformPerspectiveHove'),
+            ...generateResRangeAttributies('transformPerspectiveHover', {
+                defaultUnit: 'px',
+                defaultRange: 1000,
+            }),
             ...generateResRangeAttributies('transformScaleHover', {
                 defaultUnit: '',
             }),
