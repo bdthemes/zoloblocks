@@ -2,41 +2,54 @@
  * Internal dependencies
  */
 const {
-    generateResRangeAttributies,
-    generateDimensionAttributes,
-    generateNormalBGAttributes,
-    generateTypographyAttributes,
-    generateResAlignmentAttributies,
-    generateBorderAttributies,
+  generateResRangeAttributies,
+  generateBorderAttributies,
+  generateDimensionAttributes,
+  generateNormalBGAttributes,
+  generateBoxShadowAttributies,
+  generateTypographyAttributes,
 } = window.zoloModule;
 
 import {
-    STAR_SIZE,
-    TITLE_GAP,
-    ITEMS_ALIGN,
-    ICON_OPTIONS,
-    ICON_SIZE,
-    ICON_BORDER,
-    ICON_BORDER_RADIUS,
-    ICON_PADDING,
-    ICON_BG,
-} from './constants';
+  BUTTON_BORDER,
+  BUTTON_BORDER_RADIUS,
+  BUTTON_BG,
+  BUTTON_HOVER_BG_COLOR,
+  BUTTON_BOX_SHADOW,
+  BUTTON_HOVER_BOX_SHADOW,
+  FIELD_BOX_SHADOW,
+  FIELD_FOCUS_BOX_SHADOW,
+  BUTTON_PADDING,
+  BUTTON_SPACING,
+  ICON_SIZE,
+  BUTTON_SIZE,
+  LABEL_BORDER,
+  LABEL_BORDER_RADIUS,
+  LABEL_PADDING,
+  LABEL_SPACING,
+  LABEL_BG,
+  INPUT_BORDER,
+  INPUT_BORDER_RADIUS,
+  INPUT_PADDING,
+  INPUT_BG,
+  LABEL_HOVER_BG_COLOR,
+  FOCUS_BORDER_WIDTH,
+} from "./constants";
 
-import * as typographyObjs from './constants/typoPrefixConstant';
+import * as typographyObjs from "./constants/typoPrefixConstant";
 
 const attributes = {
-  // global Attributes
   globalConfig: {
     type: "object",
     default: {
       margin: {
-        prefix: "mainMargin",
+        prefix: "advBtnMargin",
       },
       padding: {
-        prefix: "mainPadding",
+        prefix: "advBtnPadding",
       },
       background: {
-        prefix: "mainBg",
+        prefix: "advBtnBg",
       },
       border: {
         prefix: "mainBorder",
@@ -50,114 +63,129 @@ const attributes = {
       responsiveControls: true,
     },
   },
-  // Generators
-  ...generateResAlignmentAttributies(ITEMS_ALIGN),
-  ...generateResRangeAttributies(STAR_SIZE),
-  ...generateResRangeAttributies(TITLE_GAP),
+  // Button Generators
+  ...generateBorderAttributies(BUTTON_BORDER),
+  ...generateBorderAttributies(LABEL_BORDER),
+  // typography
   ...generateTypographyAttributes(Object.values(typographyObjs)),
-  // Icon
-  ...generateResRangeAttributies(ICON_SIZE),
-  ...generateBorderAttributies(ICON_BORDER),
-  ...generateDimensionAttributes(ICON_BORDER_RADIUS),
-  ...generateDimensionAttributes(ICON_PADDING),
-  ...generateNormalBGAttributes(ICON_BG),
 
-  rating: {
-    type: "number",
-    default: 5,
+  // title
+  // description
+
+  ...generateDimensionAttributes(LABEL_BORDER_RADIUS),
+  ...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
+  ...generateNormalBGAttributes(BUTTON_BG),
+  ...generateNormalBGAttributes(LABEL_BG),
+  ...generateNormalBGAttributes(LABEL_HOVER_BG_COLOR),
+  ...generateNormalBGAttributes(INPUT_BG),
+
+  ...generateNormalBGAttributes(BUTTON_HOVER_BG_COLOR),
+  ...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
+  ...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
+  ...generateBoxShadowAttributies(FIELD_BOX_SHADOW),
+  ...generateBoxShadowAttributies(FIELD_FOCUS_BOX_SHADOW),
+  ...generateDimensionAttributes(BUTTON_PADDING),
+  ...generateDimensionAttributes(LABEL_PADDING),
+  ...generateDimensionAttributes(INPUT_PADDING),
+
+  // button icon generator
+  ...generateResRangeAttributies(ICON_SIZE),
+  ...generateResRangeAttributies(BUTTON_SIZE),
+  ...generateResRangeAttributies(BUTTON_SPACING),
+  ...generateResRangeAttributies(LABEL_SPACING),
+  ...generateResRangeAttributies(FOCUS_BORDER_WIDTH),
+
+  // presets
+
+  ...generateBorderAttributies(INPUT_BORDER),
+  ...generateDimensionAttributes(INPUT_BORDER_RADIUS),
+
+  //Block specific Attributes
+  preset: {
+    type: "string",
+    default: "zolo-search-1",
   },
-  showTitle: {
+  placeholder: {
+    type: "string",
+    default: "Type & Hit Enter",
+  },
+
+  buttonType: {
+    type: "string",
+    default: "text",
+  },
+  buttonIcon: {
+    type: "string",
+    default:
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"></path></svg>',
+  },
+  showButtonText: {
     type: "boolean",
     default: true,
   },
   showIcon: {
     type: "boolean",
+    default: true,
+  },
+  buttonText: {
+    type: "string",
+    default: "Search",
+  },
+  showLabel: {
+    type: "boolean",
     default: false,
   },
-  iconType: {
+  labelText: {
     type: "string",
-    default: "icon",
+    default: "Search",
   },
-  iconTypeImage: {
-    type: "object",
-    default: {
-      id: "",
-      url: zoloPlaceholders.placeholder,
-      alt: "",
-    },
-  },
-  icon: {
-    type: "attribute",
-    default:
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>',
-  },
-  imageRes: {
+  labelColor: {
     type: "string",
-    default: "full",
+    default: "",
   },
-  objectFit: {
+  labelTextHoverColor: {
     type: "string",
-    default: "cover",
+    default: "",
   },
-  title: {
+  btnTextColor: {
     type: "string",
+    default: "",
   },
-  titleTag: {
+  btnTextHoverColor: {
     type: "string",
-    default: "p",
+    default: "",
   },
-  titleColor: {
+  inputColor: {
     type: "string",
+    default: "",
   },
-  titlePosition: {
+  focusColor: {
     type: "string",
-    default: "top",
-  },
-  activeStarColor: {
-    type: "string",
-  },
-  inactiveStarColor: {
-    type: "string",
+    default: "",
   },
   iconColor: {
     type: "string",
     default: "",
   },
-  api_key: {
-    type: "string",
-    default: "a273c1d591ca06d0d233e5ab48d00242-us22",
-  },
-  mc_list: {
+  iconHoverColor: {
     type: "string",
     default: "",
   },
-  email_field_label: {
+  placeholderColor: {
     type: "string",
-    default: "Your best email address",
+    default: "",
   },
-  name_field_label: {
+  btnLayoutType: {
     type: "string",
-    default: "Your name",
+    default: "zolo-search-button-style-1",
   },
-  submit_field_label: {
+  labelBorderHoverColor: {
     type: "string",
-    default: "Subscribe",
+    default: "",
   },
-  success_message: {
+  btnBorderHoverColor: {
     type: "string",
-    default: "Thank you for subscribing",
-  },
-  error_message: {
-    type: "string",
-    default: "Sorry, something is not right. Reload the page and try again.",
-  },
-  submit_message: {
-    type: "string",
-    default: "Please fill out all fields with proper values",
-  },
-  duplicate_message: {
-    type: "string",
-    default: "You have already subscribed to our list",
+    default: "",
   },
 };
 

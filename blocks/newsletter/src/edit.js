@@ -1,87 +1,117 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
+import { useBlockProps, RichText } from "@wordpress/block-editor";
+import { __ } from "@wordpress/i18n";
+import classnames from "classnames";
 
 /**
- * External dependencies
+ * Internal dependencies
  */
-import classnames from 'classnames';
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
-/**
- * Internal depencencies
- */
-const { handleUniqueId, StarRating, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
-
-import { BLOCK_PREFIX } from './constants';
-import Inspector from './inspector';
-
-// import style
-import Style from './style';
-
-/**
- * Edit Function
- */
+import Inspector from "./inspector";
+import Style from "./style";
 
 export default function Edit(props) {
-    const { attributes, setAttributes, className, clientId, isSelected } = props;
-    const { preview, uniqueId, parentClasses} = attributes;
+  const { attributes, setAttributes, isSelected } = props;
+  const {
+    preview,
+    uniqueId,
+    parentClasses,
+    preset,
+    placeholder,
+    buttonType,
+    buttonIcon,
+    buttonText,
+    labelText,
+    btnLayoutType,
+    showButtonText,
+    showIcon,
+  } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
+  const blockProps = useBlockProps({
+    className: classnames(
+      uniqueId,
+      `zolo-newsletter ${preset}`,
+      classArrayToStr(parentClasses),
+    ),
+  });
 
-    const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
-
-    });
-
-    // preview image
-    if (preview) {
-        return <img src={zoloParams.blocksPreview.starRating} alt={__('Star Rating Preview', 'zoloblocks')} />;
-    }
-
+  // preview image
+  if (preview) {
     return (
-        <>
-            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            <Style props={props} />
-            <div {...blockProps}>
-                <form
-                    className="zolo-newsletter zolo-newsletter-style-1 zolo-field-icon-style-1 form"
-                >
-                    <div className="wp-block-zolo-email form-group">
-                        <div className="zolo-field-item">
-                            <div className="zolo-label-wrapper">
-                                <label className="zolo-label">Email</label>
-                                <span className="zolo-required">*</span>
-                            </div>
-                            <div className="zolo-field-input-item">
-                                <input
-                                    type="email"
-                                    name="email"
-                                    required=""
-                                    placeholder="Enter your email"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">
-                        <div className="zolo-submit-btn">
-                            <button type="submit" className="right">
-                                Submit Now
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </>
+      <img
+        src={zoloParams.blocksPreview.advancedSearch}
+        alt={__("Advanced Search", "zoloblocks")}
+      />
     );
+  }
+
+  const formPreventDefault = (e) => {
+    e.preventDefault();
+  };
+
+  return (
+    <>
+      {isSelected && (
+        <Inspector attributes={attributes} setAttributes={setAttributes} />
+      )}
+      <Style props={props} />
+      <div {...blockProps}>
+        <form
+          className={`zolo-form-wrap ${btnLayoutType}`}
+          onSubmit={formPreventDefault}
+          role="search"
+          action={zoloParams.home_url}
+          method="get"
+        >
+          <div
+            className="zolo-newsletter-control zolo-form-search-input"
+            role="tablist"
+          >
+            <input
+              type="email"
+              name="email"
+              placeholder={placeholder}
+              className="zolo-form-input"
+            />
+            {preset == "zolo-search-2" && (
+              <label htmlFor={uniqueId} className="zolo-form-label">
+                {labelText}
+              </label>
+            )}
+          </div>
+          <div className="zolo-newsletter-control zolo-form-submit-btn">
+            {
+              showIcon || showButtonText ? (
+                <button type="submit" className="zolo-form-btn">
+              {showButtonText && (
+                    <RichText
+                      tagName="span"
+                      placeholder={__("Search", "zolo-newsletter")}
+                      value={buttonText}
+                      onChange={(value) => setAttributes({ buttonText: value })}
+                      className="zolo-form-btn-text"
+                      multiline={false}
+                      allowedFormats={[
+                        "core/bold",
+                        "core/italic",
+                        "core/strikethrough",
+                      ]}
+                    />
+                  )}
+                  {showIcon&& (
+                    <span className="zolo-newsletter-icon-wrap">
+                      <DisplayZoloIcon icon={buttonIcon} />
+                    </span>
+                  )}
+            </button>
+              ) : null
+            }
+          </div>
+        </form>
+      </div>
+    </>
+  );
 }

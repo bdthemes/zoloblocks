@@ -1,55 +1,70 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
-import classnames from 'classnames';
+import { RichText, useBlockProps } from "@wordpress/block-editor";
+import classnames from "classnames";
+
+import { __ } from "@wordpress/i18n";
+/**
+ * Internal Dependencies
+ */
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
+const formPreventDefault = (e) => {
+  e.preventDefault();
+};
 const Save = ({ attributes }) => {
-    const { uniqueId, parentClasses, zoloId } = attributes;
-
-    const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
-    });
-
-    return (
-        <div
-            {...blockProps}
-            {...(zoloId && {
-                id: zoloId,
-            })}
-        >
-            {/* <input
-                type="email"
-                id="zolo-newsletter-field"
-                className={`zolo-newsletter-field`}
-                placeholder={__('Enter your email address', 'zoloblocks')}
-                aria-label="Input Field"
-            />
-            <button type="submit" id="zolo-newsletter-action" className={`zolo-newsletter-action`} aria-label="Submit Buton">
-                <span className="zolo-newsletter-button-icon">SUBMIT</span>
-            </button> */}
-
-            <form className="zolo-newsletter zolo-newsletter-style-1 zolo-field-icon-style-1 form">
-                <div className="wp-block-zolo-email form-group">
-                    <div className="zolo-field-item">
-                        <div className="zolo-label-wrapper">
-                            <label className="zolo-label">Email</label>
-                            <span className="zolo-required">*</span>
-                        </div>
-                        <div className="zolo-field-input-item">
-                            <input class="zolo-newsletter-field" type="email" name="email" required="" placeholder="Enter your email" />
-                        </div>
-                    </div>
-                </div>
-                <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">
-                    <div className="zolo-submit-btn">
-                        <button type="submit" className="right">
-                            Submit Now
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    );
+  const {
+    uniqueId,
+    parentClasses,
+    preset,
+    zoloId,
+    placeholder,
+    buttonType,
+    buttonText,
+    buttonIcon,
+    showLabel,
+    labelText,
+    btnLayoutType,
+    showIcon,
+    showButtonText,
+  } = attributes;
+  return (
+      <div
+          {...useBlockProps.save({
+              className: classnames(uniqueId, `zolo-newsletter ${preset}`, classArrayToStr(parentClasses)),
+          })}
+          {...(zoloId && {
+              id: zoloId,
+          })}
+      >
+          <form
+              className={`zolo-form-wrap ${btnLayoutType}`}
+              onSubmit={formPreventDefault}
+              role="newsletter"
+              action={zoloParams.home_url}
+              method="get"
+          >
+              <div className="zolo-newsletter-control zolo-form-search-input" role="tablist">
+                  <input id="zolo-newsletter-field" type="email" name="email" placeholder={placeholder} className="zolo-form-input" />
+                  {preset == 'zolo-search-2' && (
+                      <label htmlFor={uniqueId} className="zolo-form-label">
+                          {labelText}
+                      </label>
+                  )}
+              </div>
+              <div className="zolo-newsletter-control zolo-form-submit-btn">
+                  {showButtonText || showIcon ? (
+                      <button className="zolo-form-btn" type="submit">
+                          {showButtonText && <RichText.Content tagName="span" className="zolo-form-btn-text" value={buttonText} />}
+                          {showIcon && (
+                              <span className="zolo-newsletter-icon-wrap">
+                                  <DisplayZoloIcon icon={buttonIcon} />
+                              </span>
+                          )}
+                      </button>
+                  ) : null}
+              </div>
+          </form>
+      </div>
+  );
 };
 
 export default Save;

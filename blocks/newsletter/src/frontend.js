@@ -1,20 +1,14 @@
-
-    console.log(fetch);
 document.addEventListener('DOMContentLoaded', function () {
     const newsLetter = document.querySelectorAll('.wp-block-zolo-newsletter');
-    console.log(newsLetter);
     if (newsLetter.length > 0) {
         newsLetter.forEach((form) => {
-          console.log(form);
             // form validation
-            form.addEventListener('click', function (e) {
+            form.addEventListener('submit', function (e) {
                 e.preventDefault();
-                const email = form.querySelector('.zolo-newsletter-field').value;
+                const email = form.querySelector('#zolo-newsletter-field').value;
                 console.log(email);
                 const apiData = {
                     provider: 'mailchimp',
-                    mailchimpApiKey: 'b977124615e8f40b3a13e9f5cd3ff591-us17',
-                    mailchimpListID: 'dba21cf7e6',
                     textSuccess: 'Thank you for subscribing!',
                     textError: 'Please enter a valid email address',
                     textSubscribed: 'You are already subscribed',
@@ -29,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     method: 'POST',
                     body: data,
                     credentials: 'same-origin',
-
                 })
                     .then((response) => response.json())
                     .then((data) => {

@@ -95,6 +95,7 @@ class Zolo_Admin_Assets {
                 'map'            => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/map.svg',
                 'captcha'        => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/captcha.svg',
                 'oops'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/oops.svg',
+                'mailchimp'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/mailchimp.svg',
             ]
         );
     }

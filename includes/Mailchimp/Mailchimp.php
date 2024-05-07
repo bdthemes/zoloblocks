@@ -14,8 +14,8 @@ class Zolo_Mailchimp {
 
     public function __construct() {
         // render form block
-        // add_filter('render_block', [$this, 'render_zolo_form'], 10, 2);
 
+        // add_filter('render_block', [$this, 'render_zolo_form'], 10, 2);
         // hanlde ajax form submission
         add_action('wp_ajax_zolo_subscribe_newsletter', [$this, 'subscription']);
         add_action('wp_ajax_nopriv_zolo_subscribe_newsletter', [$this, 'subscription']);
@@ -30,7 +30,7 @@ class Zolo_Mailchimp {
         if (empty($_POST['data'])) {
             wp_send_json([
                 'status'  => 'error',
-                'message' => __('Settings data missing!', 'newsletter-block-gutena'),
+                'message' => __('Settings data missing!', 'zoloblocks'),
             ]);
         }
 
@@ -39,7 +39,7 @@ class Zolo_Mailchimp {
         if (0 !== json_last_error() || empty($data) || !is_array($data)) {
             wp_send_json([
                 'status'  => 'error',
-                'message' => __('Error occured! Can\'t parse settings data.', 'newsletter-block-gutena'),
+                'message' => __('Error occured! Can\'t parse settings data.', 'zoloblocks'),
             ]);
         }
 
@@ -48,26 +48,21 @@ class Zolo_Mailchimp {
         $data = wp_parse_args($this->sanitize($data), [
             'email'           => $email,
             'provider'        => '',
-            'mailchimpApiKey' => 'b977124615e8f40b3a13e9f5cd3ff591-us17',
-            'mailchimpListID' => 'dba21cf7e6',
-            'textSuccess'     => __('Thank you for subscribing!', 'newsletter-block-gutena'),
-            'textSubscribed'  => __('You are already subscribed with us!', 'newsletter-block-gutena'),
+            'mailchimpApiKey' => get_option('zolo_mailchimp_api_key', false),
+            'mailchimpListID' => get_option('zolo_mailchimp_audience_id', false),
+            // 'mailchimpApiKey' => 'b977124615e8f40b3a13e9f5cd3ff591-us17',
+            // 'mailchimpListID' => 'dba21cf7e6',
+            'textSuccess'     => __('Thank you for subscribing!', 'zoloblocks'),
+            'textSubscribed'  => __('You are already subscribed with us!', 'zoloblocks'),
         ]);
 
-        if ('mailchimp' === $data['provider']) {
-            if (!empty($data['mailchimpApiKey']) && !empty($data['mailchimpListID'])) {
-                $this->process_mailchimp($data['email'], $data['mailchimpApiKey'], $data['mailchimpListID'], $data['textSuccess'], $data['textSubscribed']);
-            } else {
-                wp_send_json([
-                    'status'  => 'error',
-                    'message' => __('Connect the form to a provider', 'newsletter-block-gutena'),
-                ]);
-            }
+        if (!empty($data['mailchimpApiKey']) && !empty($data['mailchimpListID'])) {
+            $this->process_mailchimp($data['email'], $data['mailchimpApiKey'], $data['mailchimpListID'], $data['textSuccess'], $data['textSubscribed']);
         }
 
         wp_send_json([
             'status'  => 'error',
-            'message' => __('Can\'t process your request.', 'newsletter-block-gutena'),
+            'message' => __('Can\'t process your request.', 'zoloblocks'),
         ]);
     }
 
@@ -122,7 +117,7 @@ class Zolo_Mailchimp {
                 $response['message'] = $email . ' ' . $subscribed;
             } else {
                 $response['status'] = 'error';
-                $response['message'] = __('Can\'t process your request.', 'newsletter-block-gutena');
+                $response['message'] = __('Can\'t process your request.', 'zoloblocks');
             }
 
             wp_send_json($response);
