@@ -56,34 +56,7 @@ export default function Edit(props) {
         )}
         <Style props={props} />
         <div {...blockProps}>
-          <div
-            class="zolo-block-mailchimp"
-            data-success={attributes.success_message}
-            data-error={attributes.error_message}
-            data-submit={attributes.submit_message}
-            data-duplicate={attributes.duplicate_message}
-          >
-            <input
-              type="text"
-              class="zolo-input-name"
-              name="name"
-              value=""
-              placeholder={attributes.name_field_label}
-            />
-            <input
-              type="email"
-              class="zolo-input-email"
-              name="email"
-              value=""
-              placeholder={attributes.email_field_label}
-            />
-            <input
-              type="submit"
-              class="zolo-input-submit"
-              name="submit"
-              value={attributes.submit_field_label}
-            />
-          </div>
+          this is newsletter form
         </div>
       </>
     );
