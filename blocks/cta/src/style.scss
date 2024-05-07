@@ -121,6 +121,7 @@
     .zolo-call-out-btns-group {
         display: flex;
         justify-self: center;
+        flex-wrap: wrap;
         gap: var(--zolo-group-button-gap);
     }
 }

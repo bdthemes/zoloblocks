@@ -9,7 +9,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: var(--zolo-item-gap);
     box-sizing: border-box;
-    overflow: hidden;
+    // overflow: hidden;
 
     a {
         text-decoration: none !important;
@@ -20,7 +20,7 @@
         height: var(--zolo-item-height);
         background-color: #f1f1f1;
         box-sizing: border-box;
-        // overflow: hidden;
+        overflow: hidden;
     }
 
     .zb-brand-image {
