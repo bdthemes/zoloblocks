@@ -165,6 +165,37 @@ class Zolo_Settings {
                 'sanitize_callback' => NULL,
             ]
         );
+        // mailchimp API key
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_mailchimp_api_key',
+            [
+                'type'             => 'string',
+                'default'          => '',
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'string',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
+
+        // mailchimp audience ID
+        register_setting(
+            'zolo_blocks_settings_group',
+            'zolo_mailchimp_audience_id',
+            [
+                'type'             => 'string',
+                'default'          => '',
+                'show_in_rest'     => [
+                    'schema' => [
+                        'type' => 'string',
+                    ],
+                ],
+                'sanitize_callback' => NULL,
+            ]
+        );
     }
 
     // Update settings on plugin activation
