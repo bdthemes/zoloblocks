@@ -71,6 +71,18 @@ const ChangeLogs = () => {
                             </>
                         )}
                         <SingleLog
+                            version="1.0.3"
+                            date={'May 08, 2024'}
+                            changes={[
+                                {
+                                    title: __('Added', 'zoloblocks'),
+                                    list: [
+                                        __('Newsletter block added', 'zoloblocks'),
+                                    ],
+                                }
+                            ]}
+                        />
+                        <SingleLog
                             version="1.0.2"
                             date={'May 06, 2024'}
                             changes={[

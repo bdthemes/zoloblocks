@@ -1,3 +1,9 @@
+## 1.0.3 [May 08, 2024]
+
+### Added
+
+- Newsletter block added
+
 ## 1.0.2 [May 06, 2024]
 
 ### Added

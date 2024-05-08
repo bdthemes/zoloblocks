@@ -139,7 +139,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // form validation
-            if (has_block('zolo/form') || (has_block('zolo/newsletter'))) {
+            if (has_block('zolo/form')) {
                 wp_enqueue_script(
                     'zolo-form-validation',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/form/pristine.min.js',
@@ -394,6 +394,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                     'mail'            => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/mail.svg',
                     'tabs'            => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/tabs.svg',
                     'imageComparison' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/image-comparison.svg',
+                    'newsletter'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/newsletter.svg',
                 ])
             ]);
 

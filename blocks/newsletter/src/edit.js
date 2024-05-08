@@ -49,7 +49,7 @@ export default function Edit(props) {
   if (preview) {
     return (
       <img
-        src={zoloParams.blocksPreview.advancedSearch}
+        src={zoloParams.blocksPreview.newsletter}
         alt={__("Newsletter", "zoloblocks")}
       />
     );

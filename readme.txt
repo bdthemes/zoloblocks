@@ -190,6 +190,12 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 
 == Changelog ==
 
+= 1.0.3 - 08-05-2024 =
+
+= Added =
+
+* Newsletter block added
+
 = 1.0.2 - 06-05-2024 =
 
 = Added =
