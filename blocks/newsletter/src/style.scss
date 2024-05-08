@@ -1,147 +1,198 @@
-.zolo-newsletter {
-  --search-form-label-gap: 10px;
-  --search-form-label-color: #48484b;
-  --search-input-padding: 15px 16px;
-  --search-input-border-width: 1px;
-  --search-input-border-color: #e7e7e7;
-  --search-input-border-style: solid;
-  --search-input-radius: 6px;
-  --search-input-color: #5e5e60;
-  --search-input-focus-color: #1c64f2;
-  --search-btn-padding: 16px 20px;
-  --search-btn-radius: 6px;
-  --search-btn-color: #fff;
-  --search-form-item-gap: 10px;
-  --search-btn-icon-gap: 8px;
-}
+.wp-block-zolo-newsletter {
+  .zolo-newslatter-form {
 
-.zolo-newsletter-control {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: var(--search-form-label-gap);
-  width: 100%;
-  position: relative;
-}
-
-.zolo-form-label {
-  font-size: 14px;
-  color: var(--search-form-label-color);
-  text-transform: capitalize;
-  font-weight: 500;
-
-}
-.zolo-newsletter-control {
-  .zolo-form-input {
-    padding: var(--search-input-padding);
-    border-width: var(--search-input-border-width);
-    border-color: var(--search-input-border-color);
-    border-style: var(--search-input-border-style);
-    border-radius: var(--search-input-radius);
-    outline: none;
+    --newslatter-wrap-padding: 40px;
+    --newslatter-wrap-radius: 0.5rem;
+    --newslatter-title-margin: 0 0 30px;
+    --newslatter-title-color: #0e0e0f;
+    --newslatter-form-label-gap: 10px;
+    --newslatter-form-label-color: #48484b;
+    --newsletter-input-padding: 16px 15px;
+    --newsletter-input-border-width: 1px;
+    --newsletter-input-border-color: #e7e7e7;
+    --newslatter-input-border-style: solid;
+    --newsletter-input-radius: 6px;
+    --newsletter-input-color: #5e5e60;
+    --newslatter-input-focus-color: #1c64f2;
+    --newslatter-btn-padding: 15px 20px;
+    --newslatter-btn-radius: 6px;
+    --newslatter-btn-color: #fff;
+    --newslatter-form-item-gap: 25px;
+    --newslatter-btn-icon-gap: 8px;
+  
+    display: flex;
+    flex-direction: column;
+    gap: var(--newslatter-form-item-gap);
+    position: relative;
+  }
+  
+    .zolo-newslatter-title {
+      margin: var(--newslatter-title-margin);
+      font-size: 24px;
+      color: var(--newslatter-title-color);
+      text-transform: capitalize;
+    }
+    
+    .zolo-form-control {
+      display: flex;
+      justify-content: center;
+      flex-direction: column-reverse;
+      gap: var(--newslatter-form-label-gap);
+      width: 100%;
+      position: relative;
+    }
+    
+    .zolo-form-label {
+      font-size: 14px;
+      color: var(--newslatter-form-label-color);
+      text-transform: capitalize;
+      font-weight: 500;
+    
+    }
+    
+    .zolo-form-input {
+      padding: var(--newsletter-input-padding);
+      border-width: var(--newsletter-input-border-width);
+      border-color: var(--newsletter-input-border-color);
+      border-style: var(--newslatter-input-border-style);
+      border-radius: var(--newsletter-input-radius);
+      outline: none;
+      font-size: 15px;
+      transition: all .3s ease;
+      color: var(--newsletter-input-color);
+      box-sizing: border-box;
+      line-height: 1;
+      min-height: unset;
+    }
+    
+    .zolo-form-input:focus {
+        border-color: var(--newslatter-input-focus-color);
+        outline-style: solid;
+        outline-width: 1px;
+        outline-color: var(--newslatter-input-focus-color);
+    }
+    
+    .zolo-form-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--newslatter-btn-icon-gap);
+      padding: var(--newslatter-btn-padding);
+      border: 0;
+      border-radius: var(--newslatter-btn-radius);
+      font-size: 14px;
+      background-color: #3f8efc;
+      cursor: pointer;
+      color: var(--newslatter-btn-color);
+      text-transform: uppercase;
+      transition: all .3s ease;
+    }
+    
+    .zolo__display-icon svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+      fill: #fff;
+    }
+    
+    .zolo-form-btn:hover {
+      background-color: #2667ff;
+    }
+    
+    
+    .zolo-form-input::placeholder {
+      color: transparent;
+    }
+    
+    .zolo-form-control {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    .zolo-form-submit-btn {
+      width: auto;
+    }
+    
+    
+    /* Newslatter form style 2,3 */
+    
+    .zolo-newslatter-2 .zolo-form-label,
+    .zolo-newslatter-3 .zolo-form-label,
+    .zolo-newslatter-4 .zolo-form-label,
+    .zolo-newslatter-5 .zolo-form-label {
+      position: absolute;
+      transform: translateY(-50%);
+      background-color: #fff;
+      left: 9px;
+      padding: 0 6px;
+    }
+    
+    /* Newslatter form style 2 */
+    
+    .zolo-newslatter-2 .zolo-form-label {
+      top: 0;
+    }
+    
+    /* Newslatter form style 3 */
+    
+    .zolo-newslatter-3 .zolo-form-label,
+    .zolo-newslatter-4 .zolo-form-label,
+    .zolo-newslatter-5 .zolo-form-label {
+      top: 50%;
+      cursor: text;
+      pointer-events: none;
+      font-weight: 400;
+      transition: all 0.2s ease-in-out;
+    
+    }
+    
+    
+    .zolo-newslatter-3 .zolo-form-input:focus + .zolo-form-label,
+    .zolo-newslatter-4 .zolo-form-input:focus + .zolo-form-label,
+    .zolo-newslatter-5 .zolo-form-input:focus + .zolo-form-label {
+      font-weight: 500;
+      top: 0;
+    }
+    
+    /* Newslatter form style 4 */
+    
+    
+    .zolo-newslatter-4 {
+      --newslatter-form-item-gap: 10px;
+      flex-direction: row;
+      gap: var(--newslatter-form-item-gap);
+    }
+    
+    .zolo-newslatter-4 .zolo-form-input {
+      --newsletter-input-padding: 15px 15px;
+      padding: var(--newsletter-input-padding);
+    }
+    
+    /* Newslatter form style 5 */
+    
+    .zolo-search-button-style-2 .zolo-form-submit-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .zolo-search-button-style-2 .zolo-form-btn {
+      --newslatter-btn-padding: 10px 12px;
+      padding: var(--newslatter-btn-padding);
+      margin: 6px;
+    }
+  
+    
+  .zolo-form-notice {
+    margin: 20px 0 0;
+  }
+  
+  .zolo-form-notice-text {
+    margin: 0;
     font-size: 15px;
-    transition: all .3s ease;
-    color: var(--search-input-color);
-    box-sizing: border-box;
-    background-color: transparent;
-    min-height: unset;
-    box-shadow: unset;
-    line-height: 1;
+    color: #68676d;
   }
-
-  .zolo-form-input:focus {
-      border-color: var(--search-input-focus-color);
-      outline-style: solid;
-      outline-width: 1px;
-      outline-color: var(--search-input-focus-color);
-  }
-  .zolo__display-icon svg {
-    width: 18px;
-    height: 18px;
-    display: block;
-    fill: #fff;
-  }
-
-}
-
-
-.zolo-form-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--search-btn-icon-gap);
-  padding: var(--search-btn-padding);
-  border: 0;
-  border-radius: var(--search-btn-radius);
-  font-size: 14px;
-  background-color: #3f8efc;
-  cursor: pointer;
-  color: var(--search-btn-color);
-  text-transform: uppercase;
-  transition: all .3s ease;
-}
-
-
-.zolo-form-btn:hover {
-  background-color: #2667ff;
-}
-
-.zolo-form-wrap {
-  display: flex;
-  // flex-direction: column;
-  gap: var(--search-form-item-gap);
-  position: relative;
-}
-
-.zolo-newsletter-control {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.zolo-form-submit-btn {
-  width: auto;
-}
-
-/* search form style 2,3 */
-
-.zolo-search-2 .zolo-form-label {
-  position: absolute;
-  transform: translateY(-50%);
-  background-color: #fff;
-  left: 9px;
-  padding: 0 6px;
-}
-
-/* search form style 3 */
-
-.zolo-search-2 .zolo-form-label {
-  top: 50%;
-  cursor: text;
-  pointer-events: none;
-  font-weight: 400;
-  transition: all 0.2s ease-in-out;
-
-}
-
-.zolo-search-2 .zolo-form-input:focus + .zolo-form-label {
-  font-weight: 500;
-  top: 0;
-}
-
-.zolo-search-2 .zolo-form-input::placeholder {
-  color: transparent;
-}
-
-.zolo-search-button-style-2 .zolo-form-submit-btn {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.zolo-search-button-style-2 .zolo-form-btn {
-  --search-btn-padding: 10px 12px;
-  --search-btn-radius: 3px;
-  padding: var(--search-btn-padding);
-  margin: 6px;
-  border-radius: var(--search-btn-radius);
+  
+  
 }

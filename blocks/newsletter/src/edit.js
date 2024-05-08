@@ -60,14 +60,14 @@ export default function Edit(props) {
       <Style props={props} />
       <div {...blockProps}>
         <form
-          className={`zolo-form-wrap ${btnLayoutType}`}
+          className={`zolo-newslatter-form ${preset} ${btnLayoutType}`}
           onSubmit={formPreventDefault}
           role="search"
           action={zoloParams.home_url}
           method="get"
         >
           <div
-            className="zolo-newsletter-control zolo-form-search-input"
+            className="zolo-form-control"
             role="tablist"
           >
             <input
@@ -76,24 +76,31 @@ export default function Edit(props) {
               placeholder={placeholder}
               className="zolo-form-input"
             />
-            {preset == "zolo-search-2" && (
               <label htmlFor={uniqueId} className="zolo-form-label">
                 {__('Full Name', 'zolo-newsletter')}
               </label>
-            )}
+          </div>
+
+
+          <div
+            className="zolo-form-control"
+            role="tablist"
+          >
             <input
               type="email"
               name="email"
               placeholder={placeholder}
               className="zolo-form-input"
             />
-            {preset == "zolo-search-2" && (
+            {/* {preset == "zolo-search-2" && ( */}
               <label htmlFor={uniqueId} className="zolo-form-label">
                 {labelText}
               </label>
-            )}
+            {/* )} */}
           </div>
-          <div className="zolo-newsletter-control zolo-form-submit-btn">
+
+
+          <div className="zolo-form-control zolo-form-submit-btn">
             {
               showIcon || showButtonText ? (
                 <button type="submit" className="zolo-form-btn">
@@ -121,7 +128,13 @@ export default function Edit(props) {
               ) : null
             }
           </div>
+
         </form>
+
+        <div class="zolo-form-notice">
+                <p class="zolo-form-notice-text">No spam messages. Only High-Quality information that You deserve.</p>
+            </div>
+
       </div>
     </>
   );
