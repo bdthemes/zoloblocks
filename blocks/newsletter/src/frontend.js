@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const newsLetter = document.querySelectorAll('.wp-block-zolo-newsletter');
 
     const createNotice = (node, data) => {
-        node.after(Object.assign(document.createElement('div'), data));
+        node.append(Object.assign(document.createElement('div'), data));
     };
 
     if (newsLetter.length > 0) {

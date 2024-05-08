@@ -97,10 +97,17 @@ export const BUTTON_LAYOUT_TYPES = [
 export const BUTTON_BG = "buttonBg";
 export const BUTTON_HOVER_BG_COLOR = "buttonHover";
 export const BUTTON_PADDING = "buttonPadding";
+export const MSG_PADDING = "msgPadding";
+export const MSG_MARGIN = "msgMargin";
 export const BUTTON_SPACING = "buttonSpacing";
 export const BUTTON_ALIGNMENT = "buttonAlignment";
 export const BUTTON_BORDER = "buttonBorder";
 export const BUTTON_BORDER_RADIUS = "buttonBorderRadius";
+export const MSG_BORDER = "msgBorder";
+export const MSG_BORDER_RADIUS = "msgBorderRadius";
+export const SUCCESS_MSG_BG = "successMsgBg";
+export const ERROR_MSG_BG = "errorMsgBg";
+export const SUBSCRIBED_MSG_BG = "subscribedMsgBg";
 export const BUTTON_BOX_SHADOW = "buttonBoxShadow";
 export const BUTTON_HOVER_BOX_SHADOW = "buttonHoverBoxShadow";
 

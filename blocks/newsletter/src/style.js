@@ -19,6 +19,13 @@ const {
 import {
   BUTTON_BORDER,
   BUTTON_BORDER_RADIUS,
+  MSG_BORDER,
+  MSG_BORDER_RADIUS,
+  MSG_PADDING,
+  MSG_MARGIN,
+  SUCCESS_MSG_BG,
+  ERROR_MSG_BG,
+  SUBSCRIBED_MSG_BG,
   BUTTON_BG,
   BUTTON_HOVER_BG_COLOR,
   BUTTON_BOX_SHADOW,
@@ -42,16 +49,30 @@ import {
   FOCUS_BORDER_WIDTH,
 } from "./constants";
 
-import {
-  LABEL_TYPOGRAPHY,
-  INPUT_TYPOGRAPHY,
-  BUTTON_TYPOGRAPHY,
-} from "./constants/typoPrefixConstant";
+import { LABEL_TYPOGRAPHY, INPUT_TYPOGRAPHY, BUTTON_TYPOGRAPHY, MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from "@wordpress/hooks";
 
 export default function Style({ props }) {
   const { attributes, setAttributes } = props;
-  const { preset, uniqueId, btnTextColor, btnTextHoverColor, labelTextHoverColor, labelBorderHoverColor, btnBorderHoverColor, labelColor, inputColor, focusColor, iconColor, iconHoverColor, placeholderColor, btnLayoutType, showIcon,  showButtonText} = attributes;
+  const {
+      preset,
+      uniqueId,
+      btnTextColor,
+      btnTextHoverColor,
+      labelTextHoverColor,
+      labelBorderHoverColor,
+      btnBorderHoverColor,
+      labelColor,
+      inputColor,
+      focusColor,
+      iconColor,
+      iconHoverColor,
+      placeholderColor,
+      btnLayoutType,
+      successTextColor,
+      errorTextColor,
+      subscribedTextColor,
+  } = attributes;
 
   // title
   const {
@@ -79,6 +100,14 @@ export default function Style({ props }) {
     prefixConstant: BUTTON_TYPOGRAPHY,
     attributes,
   });
+  const {
+      typoStylesDesktop: msgDeskTypo,
+      typoStylesTab: msgTabTypo,
+      typoStylesMobile: msgMobTypo,
+  } = generateTypographyStyles({
+      prefixConstant: MESSAGE_TYPOGRAPHY,
+      attributes,
+  });
 
   // generate Background
   const {
@@ -87,6 +116,33 @@ export default function Style({ props }) {
     backgroundStylesMobile: normalMobBGStyle,
   } = generateNormalBGControlStyles({
     controlName: BUTTON_BG,
+    attributes,
+    noMainBGImg: false,
+  });
+  const {
+    backgroundStylesDesktop: successMsgDeskBGStyle,
+    backgroundStylesTab: successMsgTabBGStyle,
+    backgroundStylesMobile: successMsgMobBGStyle,
+  } = generateNormalBGControlStyles({
+    controlName: SUCCESS_MSG_BG,
+    attributes,
+    noMainBGImg: false,
+  });
+  const {
+    backgroundStylesDesktop: errorMsgDeskBGStyle,
+    backgroundStylesTab: errorMsgTabBGStyle,
+    backgroundStylesMobile: errorMsgMobBGStyle,
+  } = generateNormalBGControlStyles({
+    controlName: ERROR_MSG_BG,
+    attributes,
+    noMainBGImg: false,
+  });
+  const {
+    backgroundStylesDesktop: warningMsgDeskBGStyle,
+    backgroundStylesTab: warningMsgTabBGStyle,
+    backgroundStylesMobile: warningMsgMobBGStyle,
+  } = generateNormalBGControlStyles({
+    controlName: SUBSCRIBED_MSG_BG,
     attributes,
     noMainBGImg: false,
   });
@@ -139,7 +195,24 @@ export default function Style({ props }) {
     controlName: BUTTON_BORDER,
     attributes,
   });
+  const {
+      desktopBorderStyle: msgBorderStylesDesk,
+      tabBorderStyle: msgBorderStylesTab,
+      mobBorderStyle: msgBorderStylesMob,
+  } = generateBorderStyle({
+      controlName: MSG_BORDER,
+      attributes,
+  });
 
+    const {
+        dimensionStylesDesktop: msgBorderRadiusDesktop,
+        dimensionStylesTab: msgBorderRadiusTab,
+        dimensionStylesMobile: msgBorderRadiusMob,
+    } = generateDimensionStyle({
+        controlName: MSG_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
   const {
     desktopBorderStyle: labelBorderStyles,
     tabBorderStyle: labelBorderStylesTab,
@@ -272,6 +345,24 @@ export default function Style({ props }) {
     styleFor: "padding",
     attributes,
   });
+  const {
+    dimensionStylesDesktop: msgPaddingDesktop,
+    dimensionStylesTab: msgPaddingTab,
+    dimensionStylesMobile: msgPaddingMob,
+  } = generateDimensionStyle({
+    controlName: MSG_PADDING,
+    styleFor: "padding",
+    attributes,
+  });
+  const {
+    dimensionStylesDesktop: msgMarginDesktop,
+    dimensionStylesTab: msgMarginTab,
+    dimensionStylesMobile: msgMarginMob,
+  } = generateDimensionStyle({
+    controlName: MSG_MARGIN,
+    styleFor: "margin",
+    attributes,
+  });
 
   const {
     dimensionStylesDesktop: labelPaddingDesktop,
@@ -342,6 +433,25 @@ export default function Style({ props }) {
         ${preset == 'zolo-search-1' ? buttonSize : ''}
         ${buttonDeskTypo}
         ${btnLayoutType == 'zolo-newsletter-button-style-2' ? buttonSpacing : ''}
+      }
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-newsletter-info-text{
+        ${msgDeskTypo}
+        ${msgBorderStylesDesk}
+        ${msgBorderRadiusDesktop}
+        ${msgPaddingDesktop}
+        ${msgMarginDesktop}
+      }
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-newsletter-info-text.status-success{
+        ${successMsgDeskBGStyle}
+        ${successTextColor ? `color: ${successTextColor};` : ''}
+      }
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-newsletter-info-text.status-warning{
+        ${warningMsgDeskBGStyle}
+        ${subscribedTextColor ? `color: ${subscribedTextColor};` : ''}
+      }
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-newsletter-info-text.status-error{
+        ${errorMsgDeskBGStyle}
+        ${errorTextColor ? `color: ${errorTextColor};` : ''}
       }
 
 

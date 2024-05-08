@@ -12,8 +12,15 @@ const {
 
 import {
   BUTTON_BORDER,
+    MSG_BORDER,
+    MSG_BORDER_RADIUS,
+    MSG_PADDING,
+    MSG_MARGIN,
   BUTTON_BORDER_RADIUS,
   BUTTON_BG,
+  SUCCESS_MSG_BG,
+ERROR_MSG_BG,
+SUBSCRIBED_MSG_BG,
   BUTTON_HOVER_BG_COLOR,
   BUTTON_BOX_SHADOW,
   BUTTON_HOVER_BOX_SHADOW,
@@ -65,6 +72,7 @@ const attributes = {
     },
     // Button Generators
     ...generateBorderAttributies(BUTTON_BORDER),
+    ...generateBorderAttributies(MSG_BORDER),
     ...generateBorderAttributies(LABEL_BORDER),
     // typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
@@ -74,7 +82,11 @@ const attributes = {
 
     ...generateDimensionAttributes(LABEL_BORDER_RADIUS),
     ...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
+    ...generateDimensionAttributes(MSG_BORDER_RADIUS),
     ...generateNormalBGAttributes(BUTTON_BG),
+    ...generateNormalBGAttributes(SUCCESS_MSG_BG),
+    ...generateNormalBGAttributes(ERROR_MSG_BG),
+    ...generateNormalBGAttributes(SUBSCRIBED_MSG_BG),
     ...generateNormalBGAttributes(LABEL_BG),
     ...generateNormalBGAttributes(LABEL_HOVER_BG_COLOR),
     ...generateNormalBGAttributes(INPUT_BG),
@@ -85,6 +97,8 @@ const attributes = {
     ...generateBoxShadowAttributies(FIELD_BOX_SHADOW),
     ...generateBoxShadowAttributies(FIELD_FOCUS_BOX_SHADOW),
     ...generateDimensionAttributes(BUTTON_PADDING),
+    ...generateDimensionAttributes(MSG_PADDING),
+    ...generateDimensionAttributes(MSG_MARGIN),
     ...generateDimensionAttributes(LABEL_PADDING),
     ...generateDimensionAttributes(INPUT_PADDING),
 
@@ -111,7 +125,7 @@ const attributes = {
     },
     placeholder: {
         type: 'string',
-        default: 'type email Here',
+        default: 'type email here',
     },
 
     buttonType: {
@@ -160,6 +174,18 @@ const attributes = {
         default: '',
     },
     btnTextColor: {
+        type: 'string',
+        default: '',
+    },
+    successTextColor: {
+        type: 'string',
+        default: '',
+    },
+    errorTextColor: {
+        type: 'string',
+        default: '',
+    },
+    subscribedTextColor: {
         type: 'string',
         default: '',
     },

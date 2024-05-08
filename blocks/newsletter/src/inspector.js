@@ -31,6 +31,13 @@ import {
     PRESETS,
     BUTTON_BORDER,
     BUTTON_BORDER_RADIUS,
+    MSG_BORDER,
+    MSG_BORDER_RADIUS,
+    MSG_PADDING,
+    MSG_MARGIN,
+    SUCCESS_MSG_BG,
+    ERROR_MSG_BG,
+    SUBSCRIBED_MSG_BG,
     BUTTON_PADDING,
     BUTTON_SPACING,
     BUTTON_BG,
@@ -55,7 +62,7 @@ import {
     LABEL_HOVER_BG_COLOR,
 } from './constants';
 
-import { INPUT_TYPOGRAPHY, LABEL_TYPOGRAPHY, BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { INPUT_TYPOGRAPHY, LABEL_TYPOGRAPHY, BUTTON_TYPOGRAPHY, MESSAGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -77,6 +84,7 @@ function Inspector(props) {
         focusColor,
         placeholderColor,
         placeholder,
+        namePlaceholder,
         btnLayoutType,
         showButtonText,
         showIcon,
@@ -85,6 +93,9 @@ function Inspector(props) {
         textSubscribed,
         textError,
         showMessage,
+        successTextColor,
+        errorTextColor,
+        subscribedTextColor,
     } = attributes;
 
     const requiredProps = {
@@ -197,11 +208,20 @@ function Inspector(props) {
                                 />
                             )}
                             {preset === 'zolo-newslatter-1' && (
-                                <TextControl
-                                    label={__('Placeholder text', 'zoloblocks')}
-                                    value={placeholder}
-                                    onChange={(value) => setAttributes({ placeholder: value })}
-                                />
+                                <>
+                                    {showNameField && (
+                                        <TextControl
+                                            label={__('Placeholder name', 'zoloblocks')}
+                                            value={namePlaceholder}
+                                            onChange={(value) => setAttributes({ namePlaceholder: value })}
+                                        />
+                                    )}
+                                    <TextControl
+                                        label={__('Placeholder email', 'zoloblocks')}
+                                        value={placeholder}
+                                        onChange={(value) => setAttributes({ placeholder: value })}
+                                    />
+                                </>
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Message', 'zoloblocks')} panelProps={props} firstOpen={false}>
@@ -213,17 +233,17 @@ function Inspector(props) {
                             {showMessage && (
                                 <>
                                     <TextControl
-                                        label={__('Success Message', 'newsletter-block-gutena')}
+                                        label={__('Success', 'newsletter-block-gutena')}
                                         value={textSuccess}
                                         onChange={(value) => setAttributes({ textSuccess: value })}
                                     />
                                     <TextControl
-                                        label={__('Already Subscribed Message', 'newsletter-block-gutena')}
+                                        label={__('Warning', 'newsletter-block-gutena')}
                                         value={textSubscribed}
                                         onChange={(value) => setAttributes({ textSubscribed: value })}
                                     />
                                     <TextControl
-                                        label={__('Error Message', 'newsletter-block-gutena')}
+                                        label={__('Error', 'newsletter-block-gutena')}
                                         value={textError}
                                         onChange={(value) => setAttributes({ textError: value })}
                                     />
@@ -306,7 +326,7 @@ function Inspector(props) {
                                             {showButtonText && (
                                                 <>
                                                     <ColorControl
-                                                        label={__('Hover Color', 'zoloblocks')}
+                                                        label={__('Color', 'zoloblocks')}
                                                         color={labelTextHoverColor}
                                                         onChange={(value) =>
                                                             setAttributes({
@@ -529,6 +549,120 @@ function Inspector(props) {
                                     </>
                                 }
                             />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Message', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                            <>
+                                <TypographyDropdown
+                                    label={__('Typography', 'zoloblocks')}
+                                    typoPrefixConstant={MESSAGE_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                    max={36}
+                                />
+
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={MSG_BORDER}
+                                    requiredProps={requiredProps}
+                                    hoverControl={
+                                        <ColorControl
+                                            label={__('Border Color', 'zoloblocks')}
+                                            color={btnBorderHoverColor}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    btnBorderHoverColor: value,
+                                                })
+                                            }
+                                        />
+                                    }
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={MSG_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={MSG_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zoloblocks')}
+                                    controlName={MSG_MARGIN}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <TabPanelControl
+                                options={[
+                                    {
+                                        label: __('Success', 'zoloblocks'),
+                                        value: 'normal',
+                                    },
+                                    {
+                                        label: __('Warning', 'zoloblocks'),
+                                        value: 'hover',
+                                    },
+                                    {
+                                        label: __('Error', 'zoloblocks'),
+                                        value: 'active',
+                                    },
+
+                                ]}
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Text Color', 'zoloblocks')}
+                                                color={successTextColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                       successTextColor : value,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl requiredProps={requiredProps} controlName={SUCCESS_MSG_BG} noMainBGImg={false} />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Text Color', 'zoloblocks')}
+                                                color={subscribedTextColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                       subscribedTextColor : value,
+                                                    })
+                                                }
+                                            />
+
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={SUBSCRIBED_MSG_BG}
+                                                noMainBGImg={false}
+                                            />
+                                        </>
+                                    }
+                                    activeComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Text Color', 'zoloblocks')}
+                                                color={errorTextColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        errorTextColor : value,
+                                                    })
+                                                }
+                                            />
+
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={ERROR_MSG_BG}
+                                                noMainBGImg={false}
+                                            />
+                                        </>
+                                    }
+                                />
+                            </>
                         </ZoloPanelBody>
                     </>
                 }
