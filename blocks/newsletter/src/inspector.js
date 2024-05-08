@@ -205,22 +205,30 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Message', 'zoloblocks')} panelProps={props} firstOpen={false}>
-                            <ToggleControl label={__('Show Message', 'zoloblocks')} checked={showMessage} onChange={(value) => setAttributes({ showMessage: value })} />
-                            <TextControl
-                                label={__('Success Message', 'newsletter-block-gutena')}
-                                value={textSuccess}
-                                onChange={(value) => setAttributes({ textSuccess: value })}
+                            <ToggleControl
+                                label={__('Show Message', 'zoloblocks')}
+                                checked={showMessage}
+                                onChange={(value) => setAttributes({ showMessage: value })}
                             />
-                            <TextControl
-                                label={__('Already Subscribed Message', 'newsletter-block-gutena')}
-                                value={textSubscribed}
-                                onChange={(value) => setAttributes({ textSubscribed: value })}
-                            />
-                            <TextControl
-                                label={__('Error Message', 'newsletter-block-gutena')}
-                                value={textError}
-                                onChange={(value) => setAttributes({ textError: value })}
-                            />
+                            {showMessage && (
+                                <>
+                                    <TextControl
+                                        label={__('Success Message', 'newsletter-block-gutena')}
+                                        value={textSuccess}
+                                        onChange={(value) => setAttributes({ textSuccess: value })}
+                                    />
+                                    <TextControl
+                                        label={__('Already Subscribed Message', 'newsletter-block-gutena')}
+                                        value={textSubscribed}
+                                        onChange={(value) => setAttributes({ textSubscribed: value })}
+                                    />
+                                    <TextControl
+                                        label={__('Error Message', 'newsletter-block-gutena')}
+                                        value={textError}
+                                        onChange={(value) => setAttributes({ textError: value })}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
                     </>
                 }

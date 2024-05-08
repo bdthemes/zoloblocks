@@ -63,7 +63,13 @@ export default function Edit(props) {
               <form className={`zolo-newslatter-form ${preset} ${preset === 'zolo-newslatter-4' ? btnLayoutType : ''}`}>
                   {showNameField && (
                       <div className="zolo-form-control" role="tablist">
-                          <input type="name" name="name" placeholder={namePlaceholder} className="zolo-form-input" />
+                          <input
+                              id="zolo-newsletter-name-field"
+                              type="name"
+                              name="name"
+                              placeholder={namePlaceholder}
+                              className="zolo-form-input"
+                          />
                           <label htmlFor={uniqueId} className="zolo-form-label">
                               {labelName}
                           </label>
@@ -71,7 +77,13 @@ export default function Edit(props) {
                   )}
 
                   <div className="zolo-form-control" role="tablist">
-                      <input type="email" name="email" placeholder={placeholder} className="zolo-form-input" />
+                      <input
+                          id="zolo-newsletter-email-field"
+                          type="email"
+                          name="email"
+                          placeholder={placeholder}
+                          className="zolo-form-input"
+                      />
                       <label htmlFor={uniqueId} className="zolo-form-label">
                           {labelText}
                       </label>

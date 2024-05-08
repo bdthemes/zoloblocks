@@ -14,12 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (form.querySelector('#zolo-newsletter-name-field')) {
                     fname = form.querySelector('#zolo-newsletter-name-field').value;
                 }
-                const apiData = {
-                    provider: 'mailchimp',
-                    textSuccess: 'Thank you for subscribing!',
-                    textError: 'Please enter a valid email address',
-                    textSubscribed: 'You are already subscribed',
-                };
+                const newsletterMsg = form.querySelector('.zolo-newslatter-form').dataset.settings;
 
                 const data = new FormData();
                 data.append('email', email);
@@ -27,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 data.append('fname', fname);
                 data.append('action', 'zolo_subscribe_newsletter');
                 data.append('nonce', zoloSettings.zolo_nonce);
-                data.append('data', JSON.stringify(apiData));
+                data.append('data', newsletterMsg);
                 fetch(zoloSettings.ajaxurl, {
                     method: 'POST',
                     body: data,
