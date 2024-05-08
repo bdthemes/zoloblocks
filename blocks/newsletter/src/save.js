@@ -12,19 +12,19 @@ const formPreventDefault = (e) => {
 };
 const Save = ({ attributes }) => {
   const {
-    uniqueId,
-    parentClasses,
-    preset,
-    zoloId,
-    placeholder,
-    buttonType,
-    buttonText,
-    buttonIcon,
-    showLabel,
-    labelText,
-    btnLayoutType,
-    showIcon,
-    showButtonText,
+      uniqueId,
+      parentClasses,
+      preset,
+      zoloId,
+      placeholder,
+      buttonType,
+      buttonText,
+      buttonIcon,
+      showLabel,
+      labelText,
+      btnLayoutType,
+      showIcon,
+      showButtonText,
   } = attributes;
   return (
       <div
@@ -43,19 +43,24 @@ const Save = ({ attributes }) => {
               method="get"
           >
               <div className="zolo-form-control" role="tablist">
-                  <input type="name" name="name" placeholder={placeholder} className="zolo-form-input" />
+                  <input type="name" name="name" id="zolo-newsletter-name-field" placeholder={placeholder} className="zolo-form-input" />
                   <label htmlFor={uniqueId} className="zolo-form-label">
                       {__('Full Name', 'zolo-newsletter')}
                   </label>
               </div>
 
               <div className="zolo-form-control" role="tablist">
-                  <input type="email" name="email" placeholder={placeholder} className="zolo-form-input" />
-                  {/* {preset == "zolo-search-2" && ( */}
+                  <input
+                      type="email"
+                      name="email"
+                      id="zolo-newsletter-email-field"
+                      placeholder={placeholder}
+                      className="zolo-form-input"
+                      required
+                  />
                   <label htmlFor={uniqueId} className="zolo-form-label">
                       {labelText}
                   </label>
-                  {/* )} */}
               </div>
               <div className="zolo-form-control zolo-form-submit-btn">
                   {showButtonText || showIcon ? (

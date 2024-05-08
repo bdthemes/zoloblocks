@@ -139,7 +139,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
 
             // form validation
-            if (has_block('zolo/form')) {
+            if (has_block('zolo/form') || (has_block('zolo/newsletter'))) {
                 wp_enqueue_script(
                     'zolo-form-validation',
                     trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/form/pristine.min.js',

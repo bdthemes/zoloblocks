@@ -48,7 +48,7 @@ class Zolo_Mailchimp {
 
         $data = wp_parse_args($this->sanitize($data), [
             'email'           => $email,
-            'fname'           => 'abutalib',
+            'fname'           => $fname,
             'provider'        => '',
             'mailchimpApiKey' => get_option('zolo_mailchimp_api_key', false),
             'mailchimpListID' => get_option('zolo_mailchimp_audience_id', false),

@@ -136,7 +136,7 @@ const attributes = {
   },
   labelText: {
     type: "string",
-    default: "Search",
+    default: "Email",
   },
   labelColor: {
     type: "string",
