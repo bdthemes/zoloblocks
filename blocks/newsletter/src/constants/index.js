@@ -9,6 +9,8 @@ export const BLOCK_PREFIX = "advanced-search";
 export const PRESETS = [
   { label: __("Preset 1", "zoloblocks"), value: "zolo-search-1" },
   { label: __("Preset 2", "zoloblocks"), value: "zolo-search-2" },
+  { label: __("Preset 3", "zoloblocks"), value: "zolo-search-3" },
+  { label: __("Preset 4", "zoloblocks"), value: "zolo-search-4" },
 ];
 export const BUTTON_TYPES = [
   { label: __("Text", "zoloblocks"), value: "text" },

@@ -71,6 +71,17 @@ export default function Edit(props) {
             role="tablist"
           >
             <input
+              type="name"
+              name="name"
+              placeholder={placeholder}
+              className="zolo-form-input"
+            />
+            {preset == "zolo-search-2" && (
+              <label htmlFor={uniqueId} className="zolo-form-label">
+                {__('Full Name', 'zolo-newsletter')}
+              </label>
+            )}
+            <input
               type="email"
               name="email"
               placeholder={placeholder}
