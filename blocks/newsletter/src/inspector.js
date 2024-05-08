@@ -159,7 +159,6 @@ function Inspector(props) {
                                   }}
                               />
                           )}
-                          {preset === 'zolo-search-2' && (
                               <TextControl
                                   label={__('Label Text', 'zoloblocks')}
                                   value={labelText}
@@ -169,7 +168,6 @@ function Inspector(props) {
                                       })
                                   }
                               />
-                          )}
                           {showButtonText && (
                               <TextControl
                                   label={__('Button Text', 'zoloblocks')}
@@ -181,7 +179,7 @@ function Inspector(props) {
                                   }
                               />
                           )}
-                          {preset === 'zolo-search-1' && (
+                          {preset === 'zolo-newslatter-1' && (
                               <TextControl
                                   label={__('Placeholder Text', 'zoloblocks')}
                                   value={placeholder}
@@ -193,7 +191,7 @@ function Inspector(props) {
               }
               styleTab={
                   <>
-                      {preset === 'zolo-search-2' && (
+                      {/* {preset === 'zolo-search-2' && ( */}
                           <>
                               <ZoloPanelBody title={__('Label', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={true}>
                                   <BorderControl
@@ -286,7 +284,7 @@ function Inspector(props) {
                                   />
                               </ZoloPanelBody>
                           </>
-                      )}
+                    {/* //   )} */}
                       <ZoloPanelBody
                           title={__('Field', 'zoloblocks')}
                           stylePanel={true}
@@ -329,7 +327,7 @@ function Inspector(props) {
                                           color={inputColor}
                                           onChange={(color) => setAttributes({ inputColor: color })}
                                       />
-                                      {preset === 'zolo-search-1' && (
+                                      {preset === 'zolo-newslatter-1' && (
                                           <ColorControl
                                               label={__('Placeholder Color', 'zoloblocks')}
                                               color={placeholderColor}

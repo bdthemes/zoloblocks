@@ -58,7 +58,6 @@
       border-radius: var(--newsletter-input-radius);
       outline: none;
       font-size: 15px;
-      transition: all .3s ease;
       color: var(--newsletter-input-color);
       box-sizing: border-box;
       line-height: 1;
@@ -67,10 +66,11 @@
     }
 
     .zolo-form-input:focus {
-        border-color: var(--newslatter-input-focus-color);
+        border-color: transparent;
         outline-style: solid;
         outline-width: 1px;
         outline-color: var(--newslatter-input-focus-color);
+        box-shadow: none;
     }
 
     .zolo-form-btn {
@@ -101,10 +101,6 @@
     }
 
 
-    .zolo-form-input::placeholder {
-      color: transparent;
-    }
-
     .zolo-form-control {
       width: 100%;
       box-sizing: border-box;
@@ -127,6 +123,14 @@
       left: 9px;
       padding: 0 6px;
     }
+    .zolo-newslatter-2,
+    .zolo-newslatter-3,
+    .zolo-newslatter-4 {
+      .zolo-form-input::placeholder {
+        color: transparent;
+      }
+    }
+
 
     /* Newslatter form style 2 */
 
