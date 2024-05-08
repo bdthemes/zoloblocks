@@ -47,15 +47,15 @@ document.addEventListener('DOMContentLoaded', function () {
                                 }
                             }
                             createNotice(form, {
-                                innerHTML: `<span id="zolo-newsletter-info-text" class="zolo-newsletter-info-text">${data.message}</span>`,
-                                className: 'zolo-newsletter-message status ' + data.status,
+                                innerHTML: `<span id="zolo-newsletter-info-text" class="zolo-newsletter-info-text status-${data.status}">${data.message}</span>`,
+                                className: 'zolo-newsletter-message',
                             });
                         }
                     })
                     .catch((error) => {
                         createNotice(form, {
-                            innerHTML: `<span id="zolo-newsletter-info-text" class="zolo-newsletter-info-text">${error}</span>`,
-                            className: 'zolo-newsletter-message error',
+                            innerHTML: `<span id="zolo-newsletter-info-text" class="zolo-newsletter-info-text status-${data.status}">${error}</span>`,
+                            className: 'zolo-newsletter-message',
                         });
                     });
             });

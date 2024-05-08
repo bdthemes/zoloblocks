@@ -29,7 +29,12 @@ export default function Edit(props) {
       showButtonText,
       showIcon,
       showNameField,
-      fullNameLabel,
+      labelName,
+      namePlaceholder,
+      showMessage,
+      textSuccess,
+      textSubscribed,
+      textError,
   } = attributes;
 
   const blockProps = useBlockProps({
@@ -58,9 +63,9 @@ export default function Edit(props) {
               <form className={`zolo-newslatter-form ${preset} ${preset === 'zolo-newslatter-4' ? btnLayoutType : ''}`}>
                   {showNameField && (
                       <div className="zolo-form-control" role="tablist">
-                          <input type="name" name="name" placeholder={placeholder} className="zolo-form-input" />
+                          <input type="name" name="name" placeholder={namePlaceholder} className="zolo-form-input" />
                           <label htmlFor={uniqueId} className="zolo-form-label">
-                              {fullNameLabel || __('Full Name', 'zolo-newsletter')}
+                              {labelName}
                           </label>
                       </div>
                   )}
@@ -95,7 +100,13 @@ export default function Edit(props) {
                       ) : null}
                   </div>
               </form>
-              <span class="zolo-newsletter-info-text">Thank you for subscribing!</span>
+              {showMessage && (
+                  <div className="zolo-newsletter-message">
+                      <span class="zolo-newsletter-info-text status-success">{textSuccess}</span>
+                      <span class="zolo-newsletter-info-text status-warning">{textSubscribed}</span>
+                      <span class="zolo-newsletter-info-text status-error">{textError}</span>
+                  </div>
+              )}
           </div>
       </>
   );

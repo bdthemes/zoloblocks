@@ -296,7 +296,7 @@ export default function Style({ props }) {
    * All Style Combination
    */
   const desktopAllStyle = `
-        .${uniqueId} .zolo-form-search-input .zolo-form-label{
+        .${uniqueId}.wp-block-zolo-newsletter .zolo-form-label{
         ${labelColor ? `color: ${labelColor};` : ''}
         ${labelDeskBGStyle}
         ${labelBorderStyles}
@@ -305,7 +305,7 @@ export default function Style({ props }) {
         ${labelPaddingDesktop}
         ${labelSpacing}
       }
-        .${uniqueId} .zolo-form-search-input:hover .zolo-form-label{
+        .${uniqueId}.wp-block-zolo-newsletter:hover .zolo-form-label{
         ${labelBorderHoverColor ? `border-color: ${labelBorderHoverColor};` : ''}
 
       }
@@ -314,7 +314,7 @@ export default function Style({ props }) {
         ${labelHoverDeskBGStyle}
 
       }
-      .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-input{
         ${inputColor ? `color: ${inputColor};` : ''}
         ${inputDeskTypo}
         ${inputBorderStyles}
@@ -323,17 +323,17 @@ export default function Style({ props }) {
         ${inputPaddingDesktop}
         ${fieldBoxShadowStyle}
       }
-      .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input::placeholder{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-input::placeholder{
         ${placeholderColor ? `color: ${placeholderColor};` : ''}
 
       }
-      .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input:focus{
-        ${focusColor ? `outline-color: ${focusColor};border:none;` : ''}
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-input:focus{
+        ${focusColor ? `outline-color: ${focusColor};` : ''}
         ${focusBorderWidthDesk}
         ${fieldHoverBoxShadowStyle}
 
       }
-      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-btn{
         ${borderStyles}
         ${borderRadiusDesktop}
         ${btnPaddingDesktop}
@@ -349,42 +349,40 @@ export default function Style({ props }) {
         ${hoverDeskBGStyle}
         ${hoverBoxShadowStyle}
       }
-      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-btn{
         ${btnTextColor ? `color: ${btnTextColor};` : ''}
       }
-      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-btn svg{
         ${iconColor ? `fill: ${iconColor};` : ''}
         ${iconSize}
         ${iconHSize}
       }
 
-      .${uniqueId} .zolo-form-submit-btn:hover .zolo-form-btn svg{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-btn:hover svg{
        ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
       }
 
-      .${uniqueId} .zolo-form-submit-btn:hover .zolo-form-btn{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-btn:hover {
         ${btnTextHoverColor ? `color: ${btnTextHoverColor};` : ''}
         ${btnBorderHoverColor ? `border-color: ${btnBorderHoverColor};` : ''}
       }
 
-
-
   	`;
   const tabletAllStyle = `
-        .${uniqueId} .zolo-form-search-input .zolo-form-label{
+        .${uniqueId}.wp-block-zolo-newsletter .zolo-form-label{
           ${labelTabTypo}
         ${labelBorderStylesTab}
         ${labelBorderRadiusTab}
         ${labelPaddingTab}
         ${labelSpacingTab}
       }
-      .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-input{
         ${inputTabTypo}
         ${inputBorderStylesTab}
         ${inputBorderRadiusTab}
         ${inputPaddingTab}
       }
-      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-btn{
         ${borderStylesTab}
         ${borderRadiusTab}
         ${btnPaddingTab}
@@ -392,27 +390,27 @@ export default function Style({ props }) {
         ${buttonTabTypo}
         ${btnLayoutType == 'zolo-newsletter-button-style-2' ? buttonSpacingTab : ''}
       }
-      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-btn svg{
         ${iconSizeTab}
         ${iconHSizeTab}
       }
     `;
 
   const mobileAllStyle = `
-         .${uniqueId} .zolo-form-search-input .zolo-form-label{
+         .${uniqueId}.wp-block-zolo-newsletter .zolo-form-label{
           ${labelMobTypo}
         ${labelBorderStylesMob}
         ${labelBorderRadiusMob}
         ${labelPaddingMob}
         ${labelSpacingMob}
       }
-      .${uniqueId} .zolo-form-wrap .zolo-form-search-input .zolo-form-input{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-input{
         ${inputMobTypo}
         ${inputBorderStylesMob}
         ${inputBorderRadiusMob}
         ${inputPaddingMob}
       }
-      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-btn{
         ${borderStylesMob}
         ${borderRadiusMob}
         ${btnPaddingMob}
@@ -420,7 +418,7 @@ export default function Style({ props }) {
         ${buttonMobTypo}
         ${btnLayoutType == 'zolo-newsletter-button-style-2' ? buttonSpacingMob : ''}
       }
-      .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
+      .${uniqueId}.wp-block-zolo-newsletter .zolo-form-btn svg{
         ${iconSizeMob}
         ${iconHSizeMob}
       }
