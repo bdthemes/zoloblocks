@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 const email = form.querySelector('#zolo-newsletter-field').value;
-                console.log(email);
+                let fname = '';
+                if (form.querySelector('#zolo-newsletter-name')) {
+                    fname = form.querySelector('#zolo-newsletter-name').value;
+                }
+                console.log(fname, email);
                 const apiData = {
                     provider: 'mailchimp',
                     textSuccess: 'Thank you for subscribing!',
@@ -16,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const data = new FormData();
                 data.append('email', email);
+                data.append('list', zoloSettings.list_id);
+                data.append('fname', fname);
                 data.append('action', 'zolo_subscribe_newsletter');
                 data.append('nonce', zoloSettings.zolo_nonce);
                 data.append('data', JSON.stringify(apiData));

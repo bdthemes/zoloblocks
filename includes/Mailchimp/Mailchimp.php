@@ -44,9 +44,11 @@ class Zolo_Mailchimp {
         }
 
         $email = !empty($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
+        $fname = !empty($_POST['fname']) ? sanitize_text_field(wp_unslash($_POST['fname'])) : '';
 
         $data = wp_parse_args($this->sanitize($data), [
             'email'           => $email,
+            'fname'           => 'abutalib',
             'provider'        => '',
             'mailchimpApiKey' => get_option('zolo_mailchimp_api_key', false),
             'mailchimpListID' => get_option('zolo_mailchimp_audience_id', false),
@@ -57,7 +59,7 @@ class Zolo_Mailchimp {
         ]);
 
         if (!empty($data['mailchimpApiKey']) && !empty($data['mailchimpListID'])) {
-            $this->process_mailchimp($data['email'], $data['mailchimpApiKey'], $data['mailchimpListID'], $data['textSuccess'], $data['textSubscribed']);
+            $this->process_mailchimp($data['email'], $data['fname'], $data['mailchimpApiKey'], $data['mailchimpListID'], $data['textSuccess'], $data['textSubscribed']);
         }
 
         wp_send_json([
@@ -69,8 +71,8 @@ class Zolo_Mailchimp {
     /**
      * Process Mailchimp subscription.
      */
-    private function process_mailchimp($email, $api_key, $list_id, $success, $subscribed) {
-        $phone = $fname = $lname = '';
+    private function process_mailchimp($email, $fname, $api_key, $list_id, $success, $subscribed) {
+        $phone = $lname = '';
 
         $api_endpoint = 'https://<dc>.api.mailchimp.com/3.0/';
         list(, $datacentre) = explode('-', $api_key);
