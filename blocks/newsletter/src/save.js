@@ -36,21 +36,28 @@ const Save = ({ attributes }) => {
           })}
       >
           <form
-              className={`zolo-form-wrap ${btnLayoutType}`}
+              className={`zolo-newslatter-form ${preset} ${preset === 'zolo-newslatter-4' ? btnLayoutType : ''}`}
               onSubmit={formPreventDefault}
-              role="newsletter"
+              role="search"
               action={zoloParams.home_url}
               method="get"
           >
-              <div className="zolo-newsletter-control zolo-form-search-input" role="tablist">
-                  <input id="zolo-newsletter-field" type="email" name="email" placeholder={placeholder} className="zolo-form-input" />
-                  {preset == 'zolo-search-2' && (
-                      <label htmlFor={uniqueId} className="zolo-form-label">
-                          {labelText}
-                      </label>
-                  )}
+              <div className="zolo-form-control" role="tablist">
+                  <input type="name" name="name" placeholder={placeholder} className="zolo-form-input" />
+                  <label htmlFor={uniqueId} className="zolo-form-label">
+                      {__('Full Name', 'zolo-newsletter')}
+                  </label>
               </div>
-              <div className="zolo-newsletter-control zolo-form-submit-btn">
+
+              <div className="zolo-form-control" role="tablist">
+                  <input type="email" name="email" placeholder={placeholder} className="zolo-form-input" />
+                  {/* {preset == "zolo-search-2" && ( */}
+                  <label htmlFor={uniqueId} className="zolo-form-label">
+                      {labelText}
+                  </label>
+                  {/* )} */}
+              </div>
+              <div className="zolo-form-control zolo-form-submit-btn">
                   {showButtonText || showIcon ? (
                       <button className="zolo-form-btn" type="submit">
                           {showButtonText && <RichText.Content tagName="span" className="zolo-form-btn-text" value={buttonText} />}

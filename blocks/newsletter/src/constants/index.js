@@ -7,10 +7,10 @@ import { __ } from "@wordpress/i18n";
 export const BLOCK_PREFIX = "advanced-search";
 // Presets
 export const PRESETS = [
-  { label: __("Preset 1", "zoloblocks"), value: "zolo-search-1" },
-  { label: __("Preset 2", "zoloblocks"), value: "zolo-search-2" },
-  { label: __("Preset 3", "zoloblocks"), value: "zolo-search-3" },
-  { label: __("Preset 4", "zoloblocks"), value: "zolo-search-4" },
+  { label: __("Preset 1", "zoloblocks"), value: "zolo-newslatter-1" },
+  { label: __("Preset 2", "zoloblocks"), value: "zolo-newslatter-2" },
+  { label: __("Preset 3", "zoloblocks"), value: "zolo-newslatter-3" },
+  { label: __("Preset 4", "zoloblocks"), value: "zolo-newslatter-4" },
 ];
 export const BUTTON_TYPES = [
   { label: __("Text", "zoloblocks"), value: "text" },
@@ -90,7 +90,7 @@ export const BUTTON_LAYOUT_TYPES = [
         />
       </svg>
     ),
-    value: "zolo-search-button-style-2",
+    value: "zolo-newsletter-button-style-2",
   },
 ];
 

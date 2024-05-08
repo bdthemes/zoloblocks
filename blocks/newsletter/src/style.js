@@ -341,8 +341,7 @@ export default function Style({ props }) {
         ${normalBoxShadowStyle}
         ${preset == 'zolo-search-1' ? buttonSize : ''}
         ${buttonDeskTypo}
-        ${btnLayoutType == 'zolo-search-button-style-2' ? buttonSpacing : ''}
-        ${showIcon && showButtonText ? 'justify-content:space-between' : ''}
+        ${btnLayoutType == 'zolo-newsletter-button-style-2' ? buttonSpacing : ''}
       }
 
 
@@ -391,7 +390,7 @@ export default function Style({ props }) {
         ${btnPaddingTab}
         ${buttonSizeTab}
         ${buttonTabTypo}
-        ${btnLayoutType == 'zolo-search-button-style-2' ? buttonSpacingTab : ''}
+        ${btnLayoutType == 'zolo-newsletter-button-style-2' ? buttonSpacingTab : ''}
       }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
         ${iconSizeTab}
@@ -419,7 +418,7 @@ export default function Style({ props }) {
         ${btnPaddingMob}
         ${buttonSizeMob}
         ${buttonMobTypo}
-        ${btnLayoutType == 'zolo-search-button-style-2' ? buttonSpacingMob : ''}
+        ${btnLayoutType == 'zolo-newsletter-button-style-2' ? buttonSpacingMob : ''}
       }
       .${uniqueId} .zolo-form-submit-btn .zolo-form-btn svg{
         ${iconSizeMob}

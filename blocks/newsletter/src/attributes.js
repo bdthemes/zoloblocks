@@ -103,7 +103,7 @@ const attributes = {
   //Block specific Attributes
   preset: {
     type: "string",
-    default: "zolo-search-1",
+    default: "zolo-newslatter-1",
   },
   placeholder: {
     type: "string",
