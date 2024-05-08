@@ -16,18 +16,20 @@ import Style from "./style";
 export default function Edit(props) {
   const { attributes, setAttributes, isSelected } = props;
   const {
-    preview,
-    uniqueId,
-    parentClasses,
-    preset,
-    placeholder,
-    buttonType,
-    buttonIcon,
-    buttonText,
-    labelText,
-    btnLayoutType,
-    showButtonText,
-    showIcon,
+      preview,
+      uniqueId,
+      parentClasses,
+      preset,
+      placeholder,
+      buttonType,
+      buttonIcon,
+      buttonText,
+      labelText,
+      btnLayoutType,
+      showButtonText,
+      showIcon,
+      showNameField,
+      fullNameLabel,
   } = attributes;
 
   const blockProps = useBlockProps({
@@ -43,41 +45,31 @@ export default function Edit(props) {
     return (
       <img
         src={zoloParams.blocksPreview.advancedSearch}
-        alt={__("Advanced Search", "zoloblocks")}
+        alt={__("Newsletter", "zoloblocks")}
       />
     );
   }
-
-  const formPreventDefault = (e) => {
-    e.preventDefault();
-  };
 
   return (
       <>
           {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
           <Style props={props} />
           <div {...blockProps}>
-              <form
-                  className={`zolo-newslatter-form ${preset} ${preset === 'zolo-newslatter-4' ? btnLayoutType : ''}`}
-                  onSubmit={formPreventDefault}
-                  role="search"
-                  action={zoloParams.home_url}
-                  method="get"
-              >
-                  <div className="zolo-form-control" role="tablist">
-                      <input type="name" name="name" placeholder={placeholder} className="zolo-form-input" />
-                      <label htmlFor={uniqueId} className="zolo-form-label">
-                          {__('Full Name', 'zolo-newsletter')}
-                      </label>
-                  </div>
+              <form className={`zolo-newslatter-form ${preset} ${preset === 'zolo-newslatter-4' ? btnLayoutType : ''}`}>
+                  {showNameField && (
+                      <div className="zolo-form-control" role="tablist">
+                          <input type="name" name="name" placeholder={placeholder} className="zolo-form-input" />
+                          <label htmlFor={uniqueId} className="zolo-form-label">
+                              {fullNameLabel || __('Full Name', 'zolo-newsletter')}
+                          </label>
+                      </div>
+                  )}
 
                   <div className="zolo-form-control" role="tablist">
                       <input type="email" name="email" placeholder={placeholder} className="zolo-form-input" />
-                      {/* {preset == "zolo-search-2" && ( */}
                       <label htmlFor={uniqueId} className="zolo-form-label">
                           {labelText}
                       </label>
-                      {/* )} */}
                   </div>
 
                   <div className="zolo-form-control zolo-form-submit-btn">
@@ -86,7 +78,7 @@ export default function Edit(props) {
                               {showButtonText && (
                                   <RichText
                                       tagName="span"
-                                      placeholder={__('Search', 'zolo-newsletter')}
+                                      placeholder={__('Email', 'zolo-newsletter')}
                                       value={buttonText}
                                       onChange={(value) => setAttributes({ buttonText: value })}
                                       className="zolo-form-btn-text"

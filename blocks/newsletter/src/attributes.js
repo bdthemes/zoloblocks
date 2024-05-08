@@ -107,7 +107,7 @@ const attributes = {
   },
   placeholder: {
     type: "string",
-    default: "Type & Hit Enter",
+    default: "Type Email Here",
   },
 
   buttonType: {
@@ -129,6 +129,14 @@ const attributes = {
   buttonText: {
     type: "string",
     default: "SUBSCRIBE",
+  },
+  showNameField: {
+    type: "boolean",
+    default: false,
+  },
+  fullNameLabel: {
+    type: "string",
+    default: "",
   },
   showLabel: {
     type: "boolean",
