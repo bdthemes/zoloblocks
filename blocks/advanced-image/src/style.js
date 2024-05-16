@@ -376,7 +376,7 @@ const Style = ({ props }) => {
             ${DesktopHeight}
             ${objectFit && objectFit !== 'none' && `object-fit:${objectFit}`}
         }
-        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask .zolo-img-wrap:hover .zolo-img {
+        .${uniqueId}.wp-block-zolo-advanced-image .zolo-image-block-wrap.no-mask:hover .zolo-img-wrap .zolo-img {
             border-color: ${imgHoverBorder};
             ${imgHBoxShadow}
         }
@@ -464,7 +464,7 @@ const Style = ({ props }) => {
             ${contentPaddingTab}
             ${contentMarginTab}
         }
-        
+
         .${uniqueId}.wp-block-zolo-advanced-image .zolo-adi-overlay .zolo-inner-content {
             ${contentWidthTab}
         }

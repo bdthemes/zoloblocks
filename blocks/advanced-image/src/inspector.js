@@ -303,7 +303,7 @@ function Inspector(props) {
                             />
 
                             <ResRangeControl label={__('Width', 'zoloblocks')} controlName={IMG_WIDTH} requiredProps={requiredProps} max={1500} />
-                            <ResRangeControl label={__('Max Width', 'zoloblocks')} controlName={IMGMAX_WIDTH} requiredProps={requiredProps} />
+                            {/* <ResRangeControl label={__('Max Width', 'zoloblocks')} controlName={IMGMAX_WIDTH} requiredProps={requiredProps} /> */}
                             <ResRangeControl label={__('Height', 'zoloblocks')} controlName={IMG_HEIGHT} requiredProps={requiredProps} max={1500} />
                             <ObjectFitControl value={objectFit} onChange={(value) => setAttributes({ objectFit: value })} />
                             {photoMaskImage === '' && (
@@ -328,7 +328,6 @@ function Inspector(props) {
                                 </>
                             )}
 
-                            <ResDimensionsControl label={__('Margin', 'zoloblocks')} controlName={IMG_MARGIN} requiredProps={requiredProps} forBorderRadius={false} />
                             {photoMaskImage === '' && <TabPanelControl normalComponents={<BoxShadowControl controlName={IMG_BSHADOW} requiredProps={requiredProps} />} hoverComponents={<BoxShadowControl controlName={IMG_HBSHADOW} requiredProps={requiredProps} />} />}
                         </ZoloPanelBody>
 
