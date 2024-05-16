@@ -134,7 +134,7 @@ function Inspector(props) {
                                     options={PANEL_OPTION}
                                     normalComponents={
                                         <NormalBGControl
-                                            label={__('Background Odd', 'zoloblocks')}
+                                            label={__('Background', 'zoloblocks')}
                                             requiredProps={requiredProps}
                                             controlName={BUSINESS_ITEM_ODD_BG}
                                             noOverlay={false}
@@ -299,7 +299,7 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                        
+
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={CLOSED_TIMES_BG}

@@ -112,7 +112,7 @@ function Inspector(props) {
                             <NormalBGControl requiredProps={requiredProps} controlName={AC_CONTAINER_BG} noMainBGImg={true} />
                             <BoxShadowControl controlName={AC_CONTAINER_BOX_SHADOW} requiredProps={requiredProps} />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Accordion Head', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Accordion Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <TypographyDropdown
                                 label={__('Title Typography', 'zoloblocks')}
                                 typoPrefixConstant={TITLE_TYPO}
@@ -222,7 +222,7 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Accordion Body', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Accordion Content', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={AC_BODY_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}

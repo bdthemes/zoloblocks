@@ -32,6 +32,7 @@ import objAttributes from './attributes';
 import {
     PRESETS,
     CONTENT_ALIGN,
+    CONTENT_V_ALIGN,
     COUNTER_MARGIN,
     COUNTER_GAP,
     COUNTER_TEXT_SHADOW,
@@ -56,7 +57,7 @@ import {
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, COUNTER_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { NORMAL_HTML_TAG, ICON_BOX_OPTIONS, DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { NORMAL_HTML_TAG, ICON_BOX_OPTIONS, DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
 import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
@@ -152,6 +153,14 @@ function Inspector(props) {
                                     controlName={CONTENT_ALIGN}
                                     requiredProps={requiredProps}
                                     alignOptions={DEFAULT_ALIGNS}
+                                />
+                            )}
+                            {preset === 'style-1' && (
+                                <ResAlignmentControl
+                                    label={__('Alignment', 'zoloblocks')}
+                                    controlName={CONTENT_V_ALIGN}
+                                    requiredProps={requiredProps}
+                                    alignOptions={FLEX_ALIGN_OPTIONS}
                                 />
                             )}
                         </ZoloPanelBody>
@@ -325,11 +334,7 @@ function Inspector(props) {
                                         max={200}
                                     />
                                 )}
-                                <BorderControl
-                                    label={__('Border', 'zoloblocks')}
-                                    controlName={ICON_BORDER}
-                                    requiredProps={requiredProps}
-                                />
+                                <BorderControl label={__('Border', 'zoloblocks')} controlName={ICON_BORDER} requiredProps={requiredProps} />
                                 <ResDimensionsControl
                                     label={__('Border Radius', 'zoloblocks')}
                                     controlName={ICON_BORDER_RADIUS}

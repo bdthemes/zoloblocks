@@ -1,3 +1,18 @@
+## 1.0.4 [May 16, 2024]
+
+### Fixed
+
+- Alignment issue fixed to Advanced Search block
+- Overflow issue fixed to Brand Grid block
+
+### Tweak
+
+- Margin control has been removed from container panel within Brand Grid block
+
+### Improved
+
+- Title tag control shifted from style tab to basic tab in Advanced Icon Box
+
 ## 1.0.3 [May 08, 2024]
 
 ### Added

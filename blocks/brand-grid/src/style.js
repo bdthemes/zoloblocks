@@ -25,6 +25,7 @@ import {
     GRID_GAP,
     CONTAINER_HEIGHT,
     CONTAINER_BG,
+    CONTAINER_H_BG,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
@@ -173,6 +174,16 @@ const Style = ({ props }) => {
         backgroundStylesMobile: containerMobBGStyle,
     } = generateNormalBGControlStyles({
         controlName: CONTAINER_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        backgroundStylesDesktop: containerDeskBGHStyle,
+        backgroundStylesTab: containerTabBGHStyle,
+        backgroundStylesMobile: containerMobBGHStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CONTAINER_H_BG,
         attributes,
         noMainBGImg: false,
     });
@@ -335,11 +346,14 @@ const Style = ({ props }) => {
         .${uniqueId} .zb-brand-item{
             ${deskContainerHeight}
             ${containerBorderDesk}
-          
+
             ${containerBoxShadow}
             ${containerPaddingDesk}
             ${containerMarginDesk}
             ${containerDeskBGStyle}
+		}
+        .${uniqueId} .zb-brand-item:hover .zb-brand-content{
+            ${containerDeskBGHStyle}
 		}
 
         .${uniqueId} .zb-brand-item, .${uniqueId} .zb-brand-content{
