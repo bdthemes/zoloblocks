@@ -205,12 +205,7 @@ function Inspector(props) {
                                 min={0}
                                 max={100}
                             />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zoloblocks')}
-                                controlName={CONTAINER_MARGIN}
-                                requiredProps={requiredProps}
-                                forBorderRadius={false}
-                            />
+
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ResDimensionsControl
