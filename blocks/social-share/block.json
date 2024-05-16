@@ -4,7 +4,7 @@
     "name": "zolo/social-share",
     "category": "zoloblocks",
     "keywords": ["icon", "social share", "social"],
-    "description": "Social Share Block",
+    "description": "Adds sharable social media links for the audience",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {

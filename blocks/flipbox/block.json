@@ -4,7 +4,7 @@
     "name": "zolo/flipbox",
     "category": "zoloblocks",
     "keywords": ["flip box", "flipbox", "zolo"],
-    "description": "Flipbox block",
+    "description": "Get the amazing flipbox content layout now in Gutenberg editor",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "supports": {

@@ -4,7 +4,7 @@
     "name": "zolo/business-hour",
     "category": "zoloblocks",
     "keywords": ["business", "business hour", "hour"],
-    "description": "business hour description",
+    "description": "Add your business hours with various content styles",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {

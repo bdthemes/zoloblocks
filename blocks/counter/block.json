@@ -4,7 +4,7 @@
     "name": "zolo/counter",
     "category": "zoloblocks",
     "keywords": ["counter", "advanced counter box"],
-    "description": "Advanced counter box description",
+    "description": "Add engaging counter numbers to display various stats",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {

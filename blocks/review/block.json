@@ -4,7 +4,7 @@
     "name": "zolo/review",
     "category": "zoloblocks",
     "keywords": ["Rating", "Review"],
-    "description": "Single review block",
+    "description": "Single customizable review block for your landing",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {
