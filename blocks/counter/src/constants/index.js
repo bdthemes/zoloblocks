@@ -61,6 +61,7 @@ export const PRESETS_ALIGNMENT = [
 
 // content
 export const CONTENT_ALIGN = 'contentAlign';
+export const CONTENT_V_ALIGN = 'contentVAlign';
 
 // Item
 export const CONTAINER_BACKGROUND = 'containerBg';
