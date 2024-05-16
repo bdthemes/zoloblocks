@@ -5,7 +5,7 @@
 - Hover background control added to Brand Grid block
 
 ### Fixed
-
+- Box Sizing item issue fixed to Charts block
 - Box Shadow hover issue fixed to Advanced Image block
 - Border hover color issue fixed to Advanced Image block
 - Alignment issue fixed to Advanced Search block
@@ -26,6 +26,7 @@
 - Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
 - Title tag control shifted from style tab to basic tab in Advanced Icon Box
 - Default design improved in Counter block
+- Default design improved in Charts block
 
 
 ## 1.0.3 [May 08, 2024]
