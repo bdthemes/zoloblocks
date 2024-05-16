@@ -4,7 +4,7 @@
     "name": "zolo/review-grid",
     "category": "zoloblocks",
     "keywords": ["review", "review grid"],
-    "description": "Review grid view",
+    "description": "Use the dynamic grid layout to display product reviews",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {
