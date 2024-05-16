@@ -1,11 +1,11 @@
 === ZoloBlocks - Page Builder Blocks for Gutenberg ===
 Contributors: bdthemes, selimmw
 Donate link: http://bdthemes.com/
-Tags: blocks, gutenberg blocks, custom block, gutenberg, page builder
+Tags: gutenberg blocks, custom block, gutenberg, blocks, page builder
 Requires at least: 6.0
 Tested up to: 6.5.3
 Requires PHP: 7.4
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -113,12 +113,23 @@ Visit [BdThemes](https://bdthemes.com/) to learn about our services, page builde
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+= Plugin Installation Method: =
+- Go to WordPress dashboard
+- Got to Plugins > Add New
+- Type "ZoloBlocks" in the search box
+- Click on "Install"
+- Activate the plugin
 
-e.g.
+= Installation via Zip file: =
+- Download ZoloBlocks block plugin zip file from WordPress
+- Go to site Dashboard > Plugins > Add New > Upload Plugins
+- Select the ZoloBlocks zip file and proceed to install
+- Activate ZoloBlocks
 
-1. Upload the plugin files to the `/wp-content/plugins/zoloblocks` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
+https://youtu.be/WH-Afb6b4KQ
+
+= Plugin settings: =
+- Please turn on/off required features from ZoloBlocks dashboard (most features are turned on by default)
 
 == Upgrade Notice ==
 
@@ -189,6 +200,35 @@ We have used it for our Image Gallery block to showcase the gallery images in a 
 7. Check out our others popular plugin
 
 == Changelog ==
+
+= 1.0.4 - 16-05-2024 =
+
+= Added =
+
+* Hover background control added to Brand Grid block
+
+= Fixed =
+
+* Box Shadow hover issue fixed to Advanced Image block
+* Border hover color issue fixed to Advanced Image block
+* Alignment issue fixed to Advanced Search block
+* Overflow issue fixed to Brand Grid block
+* Vertical Alignment issue fixed to Business hours block
+* Content Vertical Alignment issue fixed to Counter block
+
+= Tweak =
+
+* Max Width control has been removed from image panel within Advanced Image block
+* Margin control has been removed from container panel within Advanced Image block
+* Margin control has been removed from container panel within Brand Grid block
+
+= Improved =
+
+* Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
+* Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
+* Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
+* Title tag control shifted from style tab to basic tab in Advanced Icon Box
+* Default design improved in Counter block
 
 = 1.0.3 - 08-05-2024 =
 
