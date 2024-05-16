@@ -36,6 +36,7 @@ import {
     LINK_TYPES,
     CONTAINER_HEIGHT,
     CONTAINER_BG,
+    CONTAINER_H_BG,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
@@ -195,8 +196,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl controlName={CONTAINER_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                            <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BG} noMainBGImg={false} />
+
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
                                 controlName={CONTAINER_PADDING}
@@ -205,7 +205,23 @@ function Inspector(props) {
                                 min={0}
                                 max={100}
                             />
-
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_BG} noMainBGImg={false} />
+                                        <BoxShadowControl
+                                            controlName={CONTAINER_BOX_SHADOW}
+                                            requiredProps={requiredProps}
+                                            enableTransition={false}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <NormalBGControl requiredProps={requiredProps} controlName={CONTAINER_H_BG} noMainBGImg={false} />
+                                    </>
+                                }
+                            />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props}>
                             <ResDimensionsControl
@@ -237,8 +253,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <BoxShadowControl controlName={BRAND_PHOTO_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
-                            <NormalBGControl requiredProps={requiredProps} controlName={BRAND_PHOTO_BG} noMainBGImg={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
                                 controlName={BRAND_PHOTO_PADDING}
@@ -253,6 +267,8 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
+                            <NormalBGControl requiredProps={requiredProps} controlName={BRAND_PHOTO_BG} noMainBGImg={false} />
+                            <BoxShadowControl controlName={BRAND_PHOTO_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                         </ZoloPanelBody>
                         {brandNameVisible && (
                             <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
