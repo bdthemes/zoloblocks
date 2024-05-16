@@ -3,8 +3,27 @@ import { select } from '@wordpress/data';
 import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
 
+//tsParticles
+import Particleslib from './particles';
+import { ZIndex } from '@tsparticles/engine';
+
 export default function RenderView({ attributes, clientId, className }) {
-    const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses } = attributes;
+    const {
+        uniqueId,
+        containerWidthType,
+        contentWidthType,
+        isBlockRootParent,
+        parentClasses,
+        //particles
+        particleNum,
+        toggleDensity,
+        particleArea,
+        particlesColor,
+        linksColor,
+        prtShape,
+        prtDirection,
+        prtSpeed,
+    } = attributes;
 
     const { getBlockOrder } = select('core/block-editor');
     const hasChildBlocks = getBlockOrder(clientId).length > 0;
@@ -22,6 +41,17 @@ export default function RenderView({ attributes, clientId, className }) {
 
     return (
         <div {...blockProps}>
+            <Particleslib
+                id="tsparticles"
+                particleNum={particleNum}
+                toggleDensity={toggleDensity}
+                particleArea={particleArea}
+                particlesColor={particlesColor}
+                linksColor={linksColor}
+                prtShape={prtShape}
+                prtDirection={prtDirection}
+                prtSpeed={prtSpeed}
+            />
             {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                 <div className="zolo-container-inner-blocks-wrap">
                     <InnerBlocks renderAppender={hasChildBlocks ? undefined : InnerBlocks.ButtonBlockAppender} />

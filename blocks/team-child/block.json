@@ -4,7 +4,7 @@
     "name": "zolo/team-child",
     "category": "zoloblocks",
     "keywords": ["team", "team member"],
-    "description": "Single team member",
+    "description": "Single item block for the team block",
     "parent": ["zolo/team-grid"],
     "apiVersion": 2,
     "textdomain": "zoloblocks",

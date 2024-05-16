@@ -4,7 +4,7 @@
     "name": "zolo/tabs",
     "category": "zoloblocks",
     "keywords": ["tab", "tabs"],
-    "description": "Show tabs",
+    "description": "Make stunning tabbed content and stack anything in tabs",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {

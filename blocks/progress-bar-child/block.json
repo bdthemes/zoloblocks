@@ -4,7 +4,7 @@
     "name": "zolo/progress-bar-child",
     "category": "zoloblocks",
     "keywords": ["progress bar", "bar", "progress"],
-    "description": "Single progress bar item",
+    "description": "Single item or child item for progress bar",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {

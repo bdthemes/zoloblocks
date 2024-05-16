@@ -4,7 +4,7 @@
     "name": "zolo/charts",
     "category": "zoloblocks",
     "keywords": ["charts", "zolo"],
-    "description": "Display a chart with data from a csv file",
+    "description": "Creative chart stats to display various data dynamically",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {

@@ -133,6 +133,13 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
+         // particle js
+          
+             wp_enqueue_script('zolo-container', trailingslashit(ZOLO_ADMIN_URL) . '/assets/js/particles/particles.min.js', [], ZOLO_VERSION, true);
+           
+
+           
+
             // override css
             if (is_admin()) {
                 return;
@@ -228,6 +235,8 @@ if (!class_exists('Zolo_Block_Enqueue')) {
 
             // load gsap from cdn
             wp_enqueue_script('zolo-transform-effects', trailingslashit(ZOLO_ADMIN_URL) . '/build/animation/index.js', [], ZOLO_VERSION, true);
+
+          
         }
         /**
          * Load Block Editor Assets

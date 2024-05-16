@@ -4,7 +4,7 @@
     "name": "zolo/form",
     "category": "zoloblocks",
     "keywords": ["form", "zolo"],
-    "description": "Form block to display a form",
+    "description": "Very flexible and dynamic form builder for Gutenberg",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {

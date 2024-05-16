@@ -8,7 +8,7 @@ return apply_filters('zolo_blocks_list_data', [
         'name'             => 'container',
         'metadata'         => trailingslashit(ZOLO_DIR_PATH) . 'blocks/container/block.json',
         'frontend-styles'  => ['zolo-fontawesome', 'zolo-block-common-style'],
-        'frontend-scripts' => false
+        'frontend-scripts' => ['zolo-container-frontend']
     ],
     'advanced-button' => [
         'name'             => 'advanced-button',

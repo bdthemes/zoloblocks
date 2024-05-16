@@ -90,6 +90,43 @@ const attributes = {
     ...generateResAlignmentAttributies(FLEX_WRAP, {
         defaultAlign: 'nowrap',
     }),
+
+    //particles
+    particleToggle: {
+        type: 'boolean',
+        default: false,
+    },
+    particleNum: {
+        type: 'number',
+    },
+    toggleDensity: {
+        type: 'boolean',
+        default: false,
+    },
+    particleArea: {
+        type: 'number',
+        default: 800,
+    },
+    particlesColor: {
+        type: 'string',
+        default: '#ffffff',
+    },
+    linksColor: {
+        type: 'string',
+        default: '#fff',
+    },
+    prtShape: {
+        type: 'string',
+        default: 'circle',
+    },
+    prtDirection: {
+        type: 'string',
+        default: 'none',
+    },
+    prtSpeed: {
+        type: 'number',
+        default: 6,
+    },
 };
 
 export default attributes;

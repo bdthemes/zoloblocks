@@ -4,7 +4,7 @@
     "name": "zolo/tab",
     "category": "zoloblocks",
     "keywords": ["tab"],
-    "description": "Show tab",
+    "description": "Single item block for tabs block",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "parent": ["zolo/tabs"],

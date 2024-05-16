@@ -4,7 +4,7 @@
     "name": "zolo/brand-child",
     "category": "zoloblocks",
     "keywords": ["brand child", "brand"],
-    "description": "Acts as a child block for the brand block",
+    "description": "single child item for brand grid block",
     "parent": ["zolo/brand-grid"],
     "apiVersion": 2,
     "textdomain": "zoloblocks",

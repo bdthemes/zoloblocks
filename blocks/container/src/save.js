@@ -19,6 +19,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            <div id="particles-js" className="particles"></div>
             {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                 <div className="zolo-container-inner-blocks-wrap">
                     <InnerBlocks.Content />

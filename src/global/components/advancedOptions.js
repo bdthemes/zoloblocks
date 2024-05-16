@@ -2,11 +2,12 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { ToggleControl, TextControl, FormTokenField } from '@wordpress/components';
+import { ToggleControl, TextControl, FormTokenField, BaseControl, RangeControl, SelectControl } from '@wordpress/components';
 
 /**
  * Internal dependencies
  */
+import ColorControl from '../../controls/color-control';
 import BackgroundControl from '../../controls/background-control';
 import ResDimensionsControl from '../../controls/dimensions-control';
 import BorderControl from '../../controls/border-control';
@@ -64,6 +65,16 @@ export const AdvancedOptions = (props) => {
         globalConfig,
         zoloId,
         overflow,
+        //particles
+        particleToggle,
+        particleNum,
+        toggleDensity,
+        particleArea,
+        particlesColor,
+        linksColor,
+        prtShape,
+        prtDirection,
+        prtSpeed,
     } = attributes;
 
     const handleResponsiveness = (key, value, classname) => {
@@ -162,6 +173,94 @@ export const AdvancedOptions = (props) => {
             {globalConfig?.background && (
                 <ZoloPanelBody title={__('Background', 'zoloblocks')} panelProps={props} extraPanel={true}>
                     <BackgroundControl controlName={globalConfig.background.prefix || 'mainBg'} requiredProps={requiredProps} />
+                    {block == 'zolo/container' && (
+                        <ToggleControl
+                            label={__('Enable Particles', 'zoloblocks')}
+                            checked={particleToggle}
+                            onChange={() => setAttributes({ particleToggle: !particleToggle })}
+                        />
+                    )}
+
+                    {block == 'zolo/container' && particleToggle && (
+                        <PopoverControl
+                            label={__('Particles Settings', 'zoloblocks')}
+                            children={
+                                <>
+                                    <BaseControl id="particles-1" label={__('Particles', 'zoloblocks')}>
+                                        <RangeControl
+                                            label={__('Number', 'zoloblocks')}
+                                            value={particleNum}
+                                            onChange={(v) => setAttributes({ particleNum: v })}
+                                            min={0}
+                                            max={600}
+                                        />
+                                        <ToggleControl
+                                            label={__('Enable Density', 'zoloblocks')}
+                                            checked={toggleDensity}
+                                            onChange={() => setAttributes({ toggleDensity: !toggleDensity })}
+                                        />
+                                        <RangeControl
+                                            label={__('Area', 'zoloblocks')}
+                                            value={particleArea}
+                                            onChange={(v) => setAttributes({ particleArea: v })}
+                                            min={0}
+                                            max={10000}
+                                        />
+
+                                        <RangeControl
+                                            label={__('Speed', 'zoloblocks')}
+                                            value={prtSpeed}
+                                            onChange={(v) => setAttributes({ prtSpeed: v })}
+                                            min={0}
+                                            max={2000}
+                                        />
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={particlesColor}
+                                            onChange={(v) => setAttributes({ particlesColor: v })}
+                                        />
+                                        <ColorControl
+                                            label={__('Link Color', 'zoloblocks')}
+                                            color={linksColor}
+                                            onChange={(v) => setAttributes({ linksColor: v })}
+                                        />
+                                        <SelectControl
+                                            label={__('Shape', 'zoloblocks')}
+                                            value={prtShape}
+                                            options={[
+                                                { label: 'Circle', value: 'circle' },
+                                                { label: 'Edge', value: 'edge' },
+                                                { label: 'Triangle', value: 'triangle' },
+                                                { label: 'Polygon', value: 'polygon' },
+                                                { label: 'Star', value: 'star' },
+                                            ]}
+                                            onChange={(v) => {
+                                                setAttributes({ prtShape: v });
+                                            }}
+                                        />
+                                        <SelectControl
+                                            label={__('Particles Directon', 'zoloblocks')}
+                                            value={prtDirection}
+                                            options={[
+                                                { label: 'None', value: 'none' },
+                                                { label: 'Top', value: 'top' },
+                                                { label: 'Top Right', value: 'top-right' },
+                                                { label: 'Right', value: 'right' },
+                                                { label: 'Bottom Right', value: 'bottom-right' },
+                                                { label: 'Bottom ', value: 'bottom' },
+                                                { label: 'Bottom Left', value: 'bottom-left' },
+                                                { label: 'Left', value: 'left' },
+                                                { label: 'Top Left', value: 'top-left' },
+                                            ]}
+                                            onChange={(v) => {
+                                                setAttributes({ prtDirection: v });
+                                            }}
+                                        />
+                                    </BaseControl>
+                                </>
+                            }
+                        />
+                    )}
                 </ZoloPanelBody>
             )}
             {(globalConfig?.border || globalConfig?.borderRadius || globalConfig?.boxShadow) && (
