@@ -133,13 +133,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 ZOLO_VERSION
             );
 
-         // particle js
-          
-             wp_enqueue_script('zolo-container', trailingslashit(ZOLO_ADMIN_URL) . '/assets/js/particles/particles.min.js', [], ZOLO_VERSION, true);
-           
-
-           
-
+    
             // override css
             if (is_admin()) {
                 return;
