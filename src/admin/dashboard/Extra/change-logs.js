@@ -72,7 +72,7 @@ const ChangeLogs = () => {
                         )}
                         <SingleLog
                             version="1.0.4"
-                            date={'May 16, 2024'}
+                            date={'May 18, 2024'}
                             changes={[
                                 {
                                     title: __('Added', 'zoloblocks'),
