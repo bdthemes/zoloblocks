@@ -40,6 +40,5 @@ jobs:
                   artifacts: './zoloblocks.zip'
                   token: ${{ secrets.TOKEN }}
                   removeArtifacts: true
-                  allowUpdates: true
                   makeLatest: true
                   tag: ${{ github.ref_name }}
