@@ -46,6 +46,7 @@ const Edit = (props) => {
         verticalLayoutDirection,
         contentDirection,
         tabItemWidth,
+        verticalPreset,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -137,7 +138,8 @@ const Edit = (props) => {
                         'zolo-tabs zolo-indicator-position-bottom',
                         `${tabsLayout === 'horizontal' ? `zolo-tab_${tabsLayout}` : `zolo-tab_${verticalLayoutDirection}`}`,
                         `${tabContentStyle === 'content-style-2' ? `zolo-tab_${tabContentStyle}` : `zolo-tab_${contentDirection}`}`,
-                        `zolo-tab_${tabIndicatorStyle}`
+                        `zolo-tab_${tabIndicatorStyle}`,
+                        `${verticalPreset === 'vpreset-2' ? verticalPreset : ''}`
                     )}
                     role="tablist"
                     tabIndex={0}

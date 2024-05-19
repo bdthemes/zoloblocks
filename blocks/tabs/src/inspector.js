@@ -66,6 +66,7 @@ import {
     TAB_WRAP_RADIUS,
     TAB_WRAP_PADDING,
     TAB_WRAP_BSHADOW,
+    VERTICAL_PRESETS,
 } from './constants';
 import { FLEX_HORIZONTAL_OPTIONS, TEXT_ALIGN_OPTIONS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
 import Sortable from './sortable';
@@ -82,6 +83,7 @@ function Inspector(props) {
         tabChildCount,
         uniqueId,
         tabsLayout,
+        verticalPreset,
         tabItemWidth,
         tabIndicatorStyle,
         tabActiveItemNo,
@@ -134,6 +136,20 @@ function Inspector(props) {
                                 }
                                 options={LAYOUTS}
                             />
+                            {
+                                tabsLayout === 'vertical' && (
+                                    <SelectControl
+                                        label={__('Verticle Style', 'zoloblocks')}
+                                        value={verticalPreset}
+                                        options={VERTICAL_PRESETS}
+                                        onChange={(v) =>
+                                            setAttributes({
+                                                verticalPreset: v,
+                                            })
+                                        }
+                                    />
+                                )
+                            }
                             <SelectControl
                                 label={__('Content Style', 'zoloblocks')}
                                 value={tabContentStyle}
