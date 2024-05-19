@@ -98,6 +98,8 @@ class Zolo_Admin_Assets {
                 'mailchimp'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/mailchimp.svg',
             ]
         );
+
+        wp_enqueue_script('frill-widget', '//widget.frill.co/v2/widget.js', null, null, true);
     }
 }
 
