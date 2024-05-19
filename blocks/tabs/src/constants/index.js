@@ -18,6 +18,20 @@ export const LAYOUTS = [
     },
 ];
 
+// vertical presets
+
+export const VERTICAL_PRESETS = [
+    {
+        value: 'vpreset-1',
+        label: __('Preset 1', 'zoloblocks'),
+    },
+    {
+        value: 'vpreset-2',
+        label: __('Preset 2', 'zoloblocks'),
+    },
+];
+
+
 // Vertical direction
 export const VERTICAL_DIRECTIONS = [
     {
