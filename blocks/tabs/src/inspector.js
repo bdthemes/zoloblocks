@@ -4,6 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, SelectControl, __experimentalInputControl as InputControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
@@ -66,6 +67,7 @@ import {
     TAB_WRAP_RADIUS,
     TAB_WRAP_PADDING,
     TAB_WRAP_BSHADOW,
+    VERTICAL_PRESETS,
 } from './constants';
 import { FLEX_HORIZONTAL_OPTIONS, TEXT_ALIGN_OPTIONS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
 import Sortable from './sortable';
@@ -82,6 +84,7 @@ function Inspector(props) {
         tabChildCount,
         uniqueId,
         tabsLayout,
+        verticalPreset,
         tabItemWidth,
         tabIndicatorStyle,
         tabActiveItemNo,
@@ -95,11 +98,29 @@ function Inspector(props) {
         contentDirection,
         itemBorderColors,
     } = attributes;
+
     const requiredProps = {
         attributes,
         setAttributes,
         resMode,
         objAttributes,
+    };
+
+    const onChangeVerticalPreset = (v) => {
+        setAttributes({ verticalPreset: v });
+
+        switch (v) {
+            case 'vpreset-2':
+                setAttributes({
+                    showDesc: true,
+                });
+                break;
+            default:
+                setAttributes({
+                    showDesc: false,
+                });
+                break;
+        }
     };
 
     return (
@@ -134,6 +155,14 @@ function Inspector(props) {
                                 }
                                 options={LAYOUTS}
                             />
+                            {tabsLayout === 'vertical' && (
+                                <SelectControl
+                                    label={__('Verticle Style', 'zoloblocks')}
+                                    value={verticalPreset}
+                                    options={applyFilters('zoloblocks.tabs.verticalPreset', VERTICAL_PRESETS) || []}
+                                    onChange={(v) => onChangeVerticalPreset(v)}
+                                />
+                            )}
                             <SelectControl
                                 label={__('Content Style', 'zoloblocks')}
                                 value={tabContentStyle}
@@ -246,12 +275,7 @@ function Inspector(props) {
                 styleTab={
                     <>
                         {tabsLayout === 'vertical' && (
-                            <ZoloPanelBody
-                                title={__('Tabs Container', 'zoloblocks')}
-                                firstOpen={true}
-                                stylePanel={true}
-                                panelProps={props}
-                            >
+                            <ZoloPanelBody title={__('Tabs Container', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
                                     label={__('Width', 'zoloblocks')}
                                     controlName={TABS_CWIDTH}
@@ -271,11 +295,7 @@ function Inspector(props) {
                         >
                             <NormalBGControl requiredProps={requiredProps} controlName={TAB_WRAP_BGCOLOR} noMainBGImg={false} />
                             <CardDivider />
-                            <BorderControl
-                                label={__('Border', 'zoloblocks')}
-                                controlName={TAB_WRAP_BORDER}
-                                requiredProps={requiredProps}
-                            />
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={TAB_WRAP_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}
                                 controlName={TAB_WRAP_RADIUS}

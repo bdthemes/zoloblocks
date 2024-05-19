@@ -20,6 +20,7 @@ const {
 
 import {
     CONTENT_ALIGN,
+    CONTENT_V_ALIGN,
     CONTAINER_BACKGROUND,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
@@ -58,6 +59,16 @@ const Style = ({ props }) => {
     } = generateResAlignmentStyle({
         controlName: CONTENT_ALIGN,
         property: 'text-align',
+        attributes,
+    });
+
+    const {
+        desktopAlignStyle: contentAlignvDesk,
+        tabAlignStyle: contentAlignvTab,
+        mobAlignStyle: contentAlignvMob,
+    } = generateResAlignmentStyle({
+        controlName: CONTENT_V_ALIGN,
+        property: 'align-items',
         attributes,
     });
 
@@ -282,15 +293,18 @@ const Style = ({ props }) => {
     /**
      * All Style Combination
      */
-    const desktopAllStyle = `	
+    const desktopAllStyle = `
         .${uniqueId} .zolo-counter-item {
             ${contentAlignDesk}
-            ${containerDeskBGStyle}            
+            ${containerDeskBGStyle}
 			${containerBorderDeskStyle}
 			${containerDeskBorderRadius}
 			${containerBoxShadow}
 			${containerMarginDesk}
 			${containerPaddingDesk}
+        }
+        .${uniqueId} .zolo-counter-wrap.style-1 .zolo-counter-item {
+            ${contentAlignvDesk}
         }
 
         .${uniqueId} .zolo-counter-count{
@@ -298,7 +312,7 @@ const Style = ({ props }) => {
             ${counterMarginDesk}
             ${counterTextStrokeStyleDesk}
         }
-        
+
         .${uniqueId} .zolo-counter-sub-text {
             ${suffixColor ? `color: ${suffixColor}; ` : ''}
             ${counterGapDesk}
@@ -309,7 +323,7 @@ const Style = ({ props }) => {
 			${counterTextShadowStyle}
 			color: ${descColor ? descColor : ''};
 		}
-       
+
         .${uniqueId} .zolo-counter-title{
             color: ${titleTextColor ? titleTextColor : ''};
             ${titleTypoDesktop}
@@ -321,7 +335,7 @@ const Style = ({ props }) => {
         .${uniqueId} .zolo-counter-icon svg {
             ${iconSize}
             ${iconHSize}
-			${iconColor ? `fill: ${iconColor}` : ''};	
+			${iconColor ? `fill: ${iconColor}` : ''};
 		}
 
         .${uniqueId} .zolo-counter-icon .zolo__display-icon, .${uniqueId} .zolo-counter-icon img {
@@ -338,8 +352,8 @@ const Style = ({ props }) => {
         }
   	`;
 
-    const tabletAllStyle = `	
-        .${uniqueId} .zolo-counter-item {   
+    const tabletAllStyle = `
+        .${uniqueId} .zolo-counter-item {
             ${contentAlignTab}
             ${containerTabBGStyle}
             ${containerBorderTabStyle}
@@ -347,7 +361,9 @@ const Style = ({ props }) => {
             ${containerMarginTab}
             ${containerPaddingTab}
         }
-        
+        .${uniqueId} .zolo-counter-wrap.style-1 .zolo-counter-item {
+            ${contentAlignvTab}
+        }
         .${uniqueId} .zolo-counter-count{
             ${counterMarginTab}
             ${counterTextStrokeStyleTab}
@@ -395,7 +411,9 @@ const Style = ({ props }) => {
             ${containerMarginMob}
             ${containerPaddingMob}
         }
-
+        .${uniqueId} .zolo-counter-wrap.style-1 .zolo-counter-item {
+            ${contentAlignvMob}
+        }
         .${uniqueId} .zolo-counter-count{
             ${counterMarginMob}
             ${counterTextStrokeStyleMob}

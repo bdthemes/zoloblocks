@@ -44,6 +44,7 @@ import {
     TAB_WRAP_RADIUS,
     TAB_WRAP_BORDER,
     TAB_WRAP_BSHADOW,
+    VERTICAL_PRESETS,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -120,6 +121,12 @@ const attributes = {
         type: 'string',
         default: 'horizontal',
     },
+
+    verticalPreset: {
+        type: 'string',
+        default: 'vpreset-1',
+    },
+
     verticalLayoutDirection: {
         type: 'string',
         default: 'vertical-left',

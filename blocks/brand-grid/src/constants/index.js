@@ -37,11 +37,13 @@ export const GRID_GAP = 'gridGap';
 // container
 export const CONTAINER_HEIGHT = 'containerHeight';
 export const CONTAINER_BG = 'containerBg';
+export const CONTAINER_H_BG = 'containerHBg';
 export const CONTAINER_BORDER = 'containerBorder';
 export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
 export const CONTAINER_MARGIN = 'containerMargin';
 export const CONTAINER_PADDING = 'containerPadding';
+
 
 //  photo
 export const BRAND_PHOTO_BG = 'photoBackground';

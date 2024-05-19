@@ -4,7 +4,7 @@
     "name": "zolo/brand-grid",
     "category": "zoloblocks",
     "keywords": ["grid", "brand"],
-    "description": "Brand grid block description",
+    "description": "Display your brand partners with a seamless grid layout",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {

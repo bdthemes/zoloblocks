@@ -4,7 +4,7 @@
     "name": "zolo/image-gallery",
     "category": "zoloblocks",
     "keywords": ["gallery", "image gallery"],
-    "description": "Image Gallery Block",
+    "description": "Neat and clean gallery block for your images",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {

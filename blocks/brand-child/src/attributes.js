@@ -13,6 +13,7 @@ const {
 import {
     CONTAINER_HEIGHT,
     CONTAINER_BG,
+    CONTAINER_H_BG,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
@@ -70,6 +71,7 @@ const attributes = {
     // container
     ...generateResRangeAttributies(CONTAINER_HEIGHT),
     ...generateNormalBGAttributes(CONTAINER_BG),
+    ...generateNormalBGAttributes(CONTAINER_H_BG),
     ...generateBorderAttributies(CONTAINER_BORDER),
     ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
     ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),

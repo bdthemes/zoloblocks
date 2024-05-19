@@ -71,6 +71,67 @@ const ChangeLogs = () => {
                             </>
                         )}
                         <SingleLog
+                            version="1.0.4"
+                            date={'May 18, 2024'}
+                            changes={[
+                                {
+                                    title: __('Added', 'zoloblocks'),
+                                    list: [__('Hover background control added to Brand Grid block', 'zoloblocks')],
+                                },
+                                {
+                                    title: __('Fixed', 'zoloblocks'),
+                                    list: [
+                                        __('Box Shadow hover issue fixed to Advanced Image block', 'zoloblocks'),
+                                        __('Border hover color issue fixed to Advanced Image block', 'zoloblocks'),
+                                        __('Alignment issue fixed to Advanced Search block', 'zoloblocks'),
+                                        __('Overflow issue fixed to Brand Grid block', 'zoloblocks'),
+                                        __('Vertical Alignment issue fixed to Business hours block', 'zoloblocks'),
+                                        __('Content Vertical Alignment issue fixed to Counter block', 'zoloblocks'),
+                                    ],
+                                },
+                                {
+                                    title: __('Tweak', 'zoloblocks'),
+                                    list: [
+                                        __('Max Width control has been removed from image panel within Advanced Image block', 'zoloblocks'),
+                                        __(
+                                            'Margin control has been removed from container panel within Advanced Image block',
+                                            'zoloblocks'
+                                        ),
+                                        __('Margin control has been removed from container panel within Brand Grid block', 'zoloblocks'),
+                                    ],
+                                },
+                                {
+                                    title: __('Improved', 'zoloblocks'),
+                                    list: [
+                                        __(
+                                            'Active item controls shifted from Active Accordion panel to self panel tab in Accordion block',
+                                            'zoloblocks'
+                                        ),
+                                        __(
+                                            'Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block',
+                                            'zoloblocks'
+                                        ),
+                                        __(
+                                            'Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block',
+                                            'zoloblocks'
+                                        ),
+                                        __('Title tag control shifted from style tab to basic tab in Advanced Icon Box', 'zoloblocks'),
+                                        __('Default design improved in Counter block', 'zoloblocks'),
+                                    ],
+                                },
+                            ]}
+                        />
+                        <SingleLog
+                            version="1.0.3"
+                            date={'May 08, 2024'}
+                            changes={[
+                                {
+                                    title: __('Added', 'zoloblocks'),
+                                    list: [__('Newsletter block added', 'zoloblocks')],
+                                },
+                            ]}
+                        />
+                        <SingleLog
                             version="1.0.2"
                             date={'May 06, 2024'}
                             changes={[

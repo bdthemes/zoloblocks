@@ -4,7 +4,7 @@
     "name": "zolo/advanced-button",
     "category": "zoloblocks",
     "keywords": ["button", "advanced button"],
-    "description": "Advanced button description",
+    "description": "Unlock more stunning button transitions in Gutenberg",
     "apiVersion": 2,
     "textdomain": "zoloblocks",
     "example": {
