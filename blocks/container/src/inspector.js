@@ -3,6 +3,7 @@
  */
 import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { ToggleControl } from '@wordpress/components';
 
 /**
  * Internal depencencies
@@ -43,6 +44,7 @@ function Inspector(props) {
         FlexDirectionZRPAlign,
         TABFlexDirectionZRPAlign,
         MOBFlexDirectionZRPAlign,
+        enableParticlesAnimation,
     } = attributes;
 
     const requiredProps = {
@@ -77,6 +79,11 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            <ToggleControl
+                                label="Particles Animation"
+                                checked={enableParticlesAnimation}
+                                onChange={() => setAttributes({ enableParticlesAnimation: !enableParticlesAnimation })}
+                            />
                             {isBlockRootParent && (
                                 <>
                                     <IconicBtnGroup

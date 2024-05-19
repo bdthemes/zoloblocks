@@ -3,7 +3,16 @@ import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
 
 const Save = ({ attributes }) => {
-    const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId } = attributes;
+    const {
+        uniqueId,
+        isBlockRootParent,
+        containerWidthType,
+        contentWidthType,
+        parentClasses,
+        zoloId,
+        enableParticlesAnimation,
+        particleOptions,
+    } = attributes;
 
     return (
         <div
@@ -19,6 +28,7 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
+            {enableParticlesAnimation && <div className="zolo-particles-background" data-options={JSON.stringify(particleOptions)}></div>}
             {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                 <div className="zolo-container-inner-blocks-wrap">
                     <InnerBlocks.Content />

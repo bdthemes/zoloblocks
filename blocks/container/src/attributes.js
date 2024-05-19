@@ -40,6 +40,13 @@ const attributes = {
             responsiveControls: true,
         },
     },
+    enableParticlesAnimation: {
+        type: 'boolean',
+        default: false,
+    },
+    particleOptions: {
+        type: 'object',
+    },
     // block attributes
     variationStatus: {
         type: 'boolean',
