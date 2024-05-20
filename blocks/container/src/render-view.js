@@ -1,16 +1,20 @@
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
-import { select, use } from '@wordpress/data';
+import { select } from '@wordpress/data';
 import classnames from 'classnames';
 import { useEffect, useRef } from '@wordpress/element';
 const { classArrayToStr } = window.zoloModule;
 
-// particles js
-import Particles, { initParticlesEngine } from '@tsparticles/react';
-import { loadSlim } from '@tsparticles/slim';
-
 export default function RenderView({ attributes, clientId, className, setAttributes }) {
-    const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses, enableParticlesAnimation, particleOptions } =
-        attributes;
+    const {
+        uniqueId,
+        resMode,
+        containerWidthType,
+        contentWidthType,
+        isBlockRootParent,
+        parentClasses,
+        enableParticlesAnimation,
+        particleOptions,
+    } = attributes;
 
     const { getBlockOrder } = select('core/block-editor');
     const hasChildBlocks = getBlockOrder(clientId).length > 0;
@@ -26,97 +30,138 @@ export default function RenderView({ attributes, clientId, className, setAttribu
         ),
     });
 
-    useEffect(() => {
-        // check particleOptions is empty
-        if (particleOptions === null || particleOptions === undefined) {
-            setAttributes({
-                particleOptions: {
-                    background: {
-                        color: {
-                            value: '#0d47a1',
-                        },
-                    },
-                    fullScreen: {
-                        enable: false,
-                        zIndex: -1,
-                    },
-                    fpsLimit: 120,
-                    interactivity: {
-                        events: {
-                            onClick: {
-                                enable: true,
-                                mode: 'push',
-                            },
-                            onHover: {
-                                enable: true,
-                                mode: 'repulse',
-                            },
-                        },
-                        modes: {
-                            push: {
-                                quantity: 4,
-                            },
-                            repulse: {
-                                distance: 200,
-                                duration: 0.4,
-                            },
-                        },
-                    },
-                    particles: {
-                        color: {
-                            value: '#ffffff',
-                        },
-                        links: {
-                            color: '#ffffff',
-                            distance: 150,
-                            enable: true,
-                            opacity: 0.5,
-                            width: 1,
-                        },
-                        move: {
-                            direction: 'none',
-                            enable: true,
-                            outModes: {
-                                default: 'bounce',
-                            },
-                            random: false,
-                            speed: 6,
-                            straight: false,
-                        },
-                        number: {
-                            density: {
-                                enable: true,
-                            },
-                            value: 80,
-                        },
-                        opacity: {
-                            value: 0.5,
-                        },
-                        shape: {
-                            type: 'circle',
-                        },
-                        size: {
-                            value: { min: 1, max: 5 },
-                        },
-                    },
-                    detectRetina: true,
-                },
-            });
-        }
-    }, []);
+    const particlesRef = useRef(null);
 
     useEffect(() => {
-        initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-        });
-    }, []);
+        const options = {
+            particles: {
+                number: {
+                    value: 380,
+                    density: {
+                        enable: true,
+                        value_area: 800,
+                    },
+                },
+                color: {
+                    value: '#000000',
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000',
+                    },
+                    polygon: {
+                        nb_sides: 5,
+                    },
+                    image: {
+                        src: 'img/github.svg',
+                        width: 100,
+                        height: 100,
+                    },
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false,
+                    },
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false,
+                    },
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#000000',
+                    opacity: 0.4,
+                    width: 1,
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200,
+                    },
+                },
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'grab',
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push',
+                    },
+                    resize: true,
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1,
+                        },
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3,
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4,
+                    },
+                    push: {
+                        particles_nb: 4,
+                    },
+                    remove: {
+                        particles_nb: 2,
+                    },
+                },
+            },
+            retina_detect: true,
+        };
+
+        // add default options
+        if (particleOptions === null || particleOptions === undefined) {
+            setAttributes({ particleOptions: options });
+        }
+
+        const deviceType = select('core/editor').getDeviceType();
+        if (enableParticlesAnimation && particlesRef.current && resMode === 'Desktop' && deviceType === 'Desktop') {
+            const particles = particlesRef.current.querySelector(`#zolo-particles-${uniqueId}`);
+            const particlesId = particles.getAttribute('data-id');
+            particlesJS(particlesId, options);
+        }
+    }, [resMode, enableParticlesAnimation]);
 
     return (
-        <div {...blockProps}>
+        <div {...blockProps} ref={particlesRef}>
             {enableParticlesAnimation && (
-                <Particles options={particleOptions} id={`${uniqueId}-particles`} className="zolo-particles-background" />
+                <div data-id={`zolo-particles-${uniqueId}`} id={`zolo-particles-${uniqueId}`} className="zolo-particles"></div>
             )}
-
             {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                 <div className="zolo-container-inner-blocks-wrap">
                     <InnerBlocks renderAppender={hasChildBlocks ? undefined : InnerBlocks.ButtonBlockAppender} />

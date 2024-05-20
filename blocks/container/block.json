@@ -1,5 +1,5 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "title": "Container",
     "name": "zolo/container",
@@ -18,5 +18,5 @@
         "customClassName": false,
         "align": ["wide", "full"]
     },
-    "editorScript": "zolo-block-editor-script"
+    "editorScript": ["zolo-block-editor-script", "zolo-particles-script"]
 }

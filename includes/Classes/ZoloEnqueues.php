@@ -41,7 +41,7 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          */
         public function __construct() {
             // only for editor
-            add_action('enqueue_block_assets', [$this, 'editor_assets_loader']);
+            add_action('enqueue_block_editor_assets', [$this, 'editor_assets_loader']);
 
             // enqueue style for both editor and frontend
             add_action('enqueue_block_assets', [$this, 'block_assets_loader']);
@@ -65,13 +65,13 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             }
         }
 
-
         /**
          * Load Block Assets for both editor and frontend
          * @since 0.0.1
          * @return void
          */
         public function block_assets_loader() {
+
             //Register vendor bundle
             $dependency_path  = trailingslashit(ZOLO_DIR_PATH) . 'vendor-bundle/index.asset.php';
             $script_dependecy = file_exists($dependency_path) ? include $dependency_path : [
@@ -136,6 +136,17 @@ if (!class_exists('Zolo_Block_Enqueue')) {
             // override css
             if (is_admin()) {
                 return;
+            }
+
+            // particles js
+            if( has_block('zolo/container')){
+                wp_enqueue_script(
+                    'particles-js',
+                    trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/particles/particles.min.js',
+                    [],
+                    ZOLO_VERSION,
+                    true
+                );
             }
 
             // form validation
@@ -237,10 +248,6 @@ if (!class_exists('Zolo_Block_Enqueue')) {
          * @return void
          */
         public function editor_assets_loader() {
-            if (!is_admin()) {
-                return;
-            }
-
             // override css
             wp_enqueue_style(
                 'zolo-block-editor-override-style',
@@ -265,6 +272,15 @@ if (!class_exists('Zolo_Block_Enqueue')) {
                 [],
                 ZOLO_VERSION,
                 false
+            );
+
+            // partilces js
+            wp_enqueue_script(
+                'particles-js',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/particles/particles.min.js',
+                [],
+                ZOLO_VERSION,
+                true
             );
 
             //Register Modules

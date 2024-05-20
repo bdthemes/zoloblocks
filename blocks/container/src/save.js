@@ -28,7 +28,14 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
         >
-            {enableParticlesAnimation && <div className="zolo-particles-background" data-options={JSON.stringify(particleOptions)}></div>}
+            {enableParticlesAnimation && (
+                <div
+                    className="zolo-particles"
+                    data-id={`zolo-particles-${uniqueId}`}
+                    id={`zolo-particles-${uniqueId}`}
+                    data-options={JSON.stringify(particleOptions)}
+                ></div>
+            )}
             {isBlockRootParent && 'alignfull' === containerWidthType && 'alignwide' === contentWidthType ? (
                 <div className="zolo-container-inner-blocks-wrap">
                     <InnerBlocks.Content />
