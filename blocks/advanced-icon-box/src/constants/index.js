@@ -14,6 +14,65 @@ export const PRESETS = [
     { label: __('Style 3', 'zoloblocks'), value: 'style-3' },
 ];
 
+
+// animation types 
+export const ANIMATION_TYPES = [
+    {
+        label: __('Select Animation', 'zoloblocks'),
+        value: '',
+    },
+    {
+        label: __('Style 1', 'zoloblocks'),
+        value: 'style-1',
+    },
+    {
+        label: __('Style 2', 'zoloblocks'),
+        value: 'style-2',
+    },
+    {
+        label: __('Style 3', 'zoloblocks'),
+        value: 'style-3',
+    }
+];
+
+export const ANIMATION_POSITIONS_ONE = [
+    {
+        label: __('Top Left', 'zoloblocks'),
+        value: 'top-left',
+    },
+    {
+        label: __('Top Right', 'zoloblocks'),
+        value: 'top-right',
+    },
+    {
+        label: __('Bottom Left', 'zoloblocks'),
+        value: 'bottom-left',
+    },
+    {
+        label: __('Bottom Right', 'zoloblocks'),
+        value: 'bottom-right',
+    },
+];
+
+export const ANIMATION_POSITIONS_TWO = [
+    {
+        label: __('Top', 'zoloblocks'),
+        value: 'top',
+    },
+    {
+        label: __('Bottom', 'zoloblocks'),
+        value: 'bottom',
+    },
+    {
+        label: __('Left', 'zoloblocks'),
+        value: 'left',
+    },
+    {
+        label: __('Right', 'zoloblocks'),
+        value: 'right',
+    }
+];
+
 export const PRESETS_ALIGNMENT = [
     {
         label: 'Left',

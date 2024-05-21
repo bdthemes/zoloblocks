@@ -316,6 +316,16 @@ const attributes = {
         type: 'string',
         default: 'top__right',
     },
+    // animation 
+    animationType: {
+        type: 'string'
+    },
+    animationPositionOne: {
+        type: 'string'
+    },
+    animationPositionTwo: {
+        type: 'string'
+    }
 };
 
 export default attributes;

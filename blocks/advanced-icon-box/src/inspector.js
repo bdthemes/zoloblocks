@@ -84,6 +84,9 @@ import {
   RIBBON_POSITIONS,
   PRESETS_ALIGNMENT,
   ICON_WRAPPER_BG_COLOR,
+  ANIMATION_TYPES,
+  ANIMATION_POSITIONS_ONE,
+  ANIMATION_POSITIONS_TWO
 } from "./constants";
 
 import {
@@ -143,6 +146,11 @@ function Inspector(props) {
     //ribbon style
     ribbonColor,
     iconBoxDirection,
+
+    // animation 
+    animationType,
+    animationPositionOne,
+    animationPositionTwo
   } = attributes;
   const requiredProps = {
     attributes,
@@ -165,9 +173,18 @@ function Inspector(props) {
                               value={preset}
                               options={applyFilters('zolo.advancedIconBox.presets', PRESETS)}
                               onChange={(value) =>
-                                  setAttributes({
-                                      preset: value,
-                                  })
+                                  {
+                                    setAttributes({
+                                        preset: value,
+                                    });
+
+                                    if(value === 'style-3'){
+                                        setAttributes({
+                                            iconType: 'image'
+                                        })
+                                    }
+
+                                  }
                               }
                           />
                           {
@@ -256,6 +273,65 @@ function Inspector(props) {
                               alignOptions={DEFAULT_ALIGNS}
                           />
                       </ZoloPanelBody>
+                      {
+                        preset !== 'style-3' && (
+                            <ZoloPanelBody title={__('Animation', 'zoloblocks')} panelProps={props}>
+                                <SelectControl
+                                    label={__('Animation Type', 'zoloblocks')}
+                                    value={animationType}
+                                    options={ANIMATION_TYPES}
+                                    onChange={(value) =>
+                                        {
+                                            setAttributes({
+                                                animationType: value,
+                                            }); 
+
+                                            if(value === 'style-1'){
+                                                setAttributes({
+                                                    animationPositionOne: 'top-right'
+                                                })
+                                            } else if(value === 'style-2'){
+                                                setAttributes({
+                                                    animationPositionTwo: 'left'
+                                                })
+                                            }
+                                        }
+                                    }
+                                />
+                                {
+                                    animationType === 'style-1' && (
+                                        <SelectControl
+                                            label={__('Animation Position', 'zoloblocks')}
+                                            value={animationPositionOne}
+                                            options={ANIMATION_POSITIONS_ONE}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    animationPositionOne: value,
+                                                })
+                                            }
+                                        />
+                                    )
+                                }
+
+                                {
+                                    animationType === 'style-2' && (
+                                        <SelectControl
+                                            label={__('Animation Position', 'zoloblocks')}
+                                            value={animationPositionTwo}
+                                            options={ANIMATION_POSITIONS_TWO}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    animationPositionTwo: value,
+                                                })
+                                            }
+                                        />
+                                    )
+                                }
+                                
+                                
+                            </ZoloPanelBody>
+                        )
+                      }
                       <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                           {showMainIcon && (
                               <>
