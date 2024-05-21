@@ -1,4 +1,14 @@
-const { generateResAlignmentAttributies, generateResRangeAttributies, generateBorderAttributies, generateDimensionAttributes, generateTypographyAttributes, generateBoxShadowAttributies, generateTextShadowAttributies, generateTextStrokeAttributies, generateNormalBGAttributes } = window.zoloModule;
+const {
+    generateResAlignmentAttributies,
+    generateResRangeAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateTypographyAttributes,
+    generateBoxShadowAttributies,
+    generateTextShadowAttributies,
+    generateTextStrokeAttributies,
+    generateNormalBGAttributes,
+} = window.zoloModule;
 
 import {
     ICON_BOX_ALIGNMENT,
@@ -41,6 +51,10 @@ import {
     RIBBON_MARGIN,
     RIBBON_PADDING,
     ICON_WRAPPER_BG_COLOR,
+    ICON_ANIMATION_BG,
+    ICON_ANIMATION_SIZE,
+    ICON_ANIMATION_RADIUS,
+    ICON_ANIMATION_THICKNESS,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -127,6 +141,12 @@ const attributes = {
 
     // content alignment
     ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
+    //animation
+    ...generateNormalBGAttributes(ICON_ANIMATION_BG),
+    ...generateResRangeAttributies(ICON_ANIMATION_SIZE),
+    ...generateDimensionAttributes(ICON_ANIMATION_RADIUS),
+    ...generateResRangeAttributies(ICON_ANIMATION_THICKNESS),
+
     // item
     itemHBorderColor: {
         type: 'string',
@@ -316,16 +336,16 @@ const attributes = {
         type: 'string',
         default: 'top__right',
     },
-    // animation 
+    // animation
     animationType: {
-        type: 'string'
+        type: 'string',
     },
     animationPositionOne: {
-        type: 'string'
+        type: 'string',
     },
     animationPositionTwo: {
-        type: 'string'
-    }
+        type: 'string',
+    },
 };
 
 export default attributes;

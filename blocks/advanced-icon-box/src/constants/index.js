@@ -4,7 +4,6 @@
 import { __ } from '@wordpress/i18n';
 import { Dashicon } from '@wordpress/components';
 
-
 // Block Prefix
 export const BLOCK_PREFIX = 'advanced-icon-box';
 // Presets
@@ -14,8 +13,7 @@ export const PRESETS = [
     { label: __('Style 3', 'zoloblocks'), value: 'style-3' },
 ];
 
-
-// animation types 
+// animation types
 export const ANIMATION_TYPES = [
     {
         label: __('Select Animation', 'zoloblocks'),
@@ -32,7 +30,7 @@ export const ANIMATION_TYPES = [
     {
         label: __('Style 3', 'zoloblocks'),
         value: 'style-3',
-    }
+    },
 ];
 
 export const ANIMATION_POSITIONS_ONE = [
@@ -70,7 +68,7 @@ export const ANIMATION_POSITIONS_TWO = [
     {
         label: __('Right', 'zoloblocks'),
         value: 'right',
-    }
+    },
 ];
 
 export const PRESETS_ALIGNMENT = [
@@ -159,7 +157,6 @@ export const ICON_IMAGE_SIZE = 'iconImageSize';
 export const IMAGE_BORDER = 'imageBorder';
 export const ICON_IMAGE_BORDER_RADIUS = 'iconImageBorderRadius';
 
-
 // item
 export const ITEM_BG = 'itemBg';
 export const ITEM_HOVER_BG = 'itemHoverBg';
@@ -169,7 +166,6 @@ export const ITEM_PADDING = 'itemPadding';
 export const ITEM_MARGIN = 'itemMargin';
 export const ITEM_BOX_SHADOW = 'itemBoxShadow';
 export const ITEM_HBOX_SHADOW = 'itemHoverShadow';
-
 
 // ribbon style
 export const RIBBON_MARGIN = 'ribbonMargin';
@@ -188,3 +184,10 @@ export const RIBBON_POSITIONS = [
 //     { label: __(<Dashicon icon={'editor-alignright'} />), value: 'right' },
 //     { label: __(<Dashicon icon={'editor-justify'} />), value: 'justify' },
 // ];
+
+//animation
+
+export const ICON_ANIMATION_BG = 'iconAnimationBg';
+export const ICON_ANIMATION_SIZE = 'iconAnimationSize';
+export const ICON_ANIMATION_RADIUS = 'iconAnimationRadius';
+export const ICON_ANIMATION_THICKNESS = 'iconAnimationThickness';
