@@ -1,7 +1,6 @@
 ## 1.0.4 [May 18, 2024]
 
 ### Added
-
 - Hover background control added to Brand Grid block
 
 ### Fixed
