@@ -84,6 +84,9 @@ export default function Style({ props }) {
     splitTextActive
   } = attributes;
 
+  console.log(attributes);
+
+
   //title style generate
   const {
     desktopAlignStyle: titleDeskAlign,
