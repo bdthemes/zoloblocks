@@ -12,6 +12,7 @@ export const PRESETS = [
     { label: __('Style 2', 'zoloblocks'), value: 'default' },
     { label: __('Style 3', 'zoloblocks'), value: 'style-2' },
     { label: __('Style 4 (Pro)', 'zoloblocks'), value: 'style-3', disabled: true },
+    { label: __('Style 5', 'zoloblocks'), value: 'style-4'},
 ];
 
 // item
@@ -75,3 +76,5 @@ export const DPL_ICON_SIZE = 'DPLIconSize';
 // container
 export const TEAM_MEMBER_CONTAINER_PADDING = 'MemberContainerPadding';
 export const TEAM_MEMBER_CONTAINER_MARGIN = 'MemberContainerMargin';
+export const SEPARATOR_TEAM_SIZE = 'SeparatorTeamSizew';
+export const SEPARATOR_SPACING_TEAM = 'SeparatorSpacingTeam';
