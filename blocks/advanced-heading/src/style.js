@@ -83,6 +83,9 @@ export default function Style({ props }) {
     presetBg,
   } = attributes;
 
+  console.log(attributes);
+
+
   //title style generate
   const {
     desktopAlignStyle: titleDeskAlign,
